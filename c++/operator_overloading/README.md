@@ -5,13 +5,17 @@ Operator Overloading/Operator Adhoc Polymorphism?
 Commonly Overloaded Operators:
 	=    +      -      *        /           +=         -=       *=         /=      ==      !=        >>        <<
 
+
 Operators which cannot be overloaded:
 	.(member access)     *(pointer to member)       ?:(Ternary)     sizeof     ::(scope resolution)    typeid
+
 
 Why sizeof cannot be overloaded?
 	 sizeof is compile time operator. ie compiler places value in place of sizeof() at compile time
 
+
 Can any person Define his own Operators? NO. Language have not defined.
+
 
 Syntax of overloading an Operator:
 	return_type Keyword-operator  Operator-to-overload (arguments)
