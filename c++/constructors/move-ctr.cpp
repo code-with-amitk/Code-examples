@@ -22,11 +22,18 @@ public:
 		return *this;
 	}
 
-	//Move Ctr. Takes R-value reference
-	//Its Ctr no return type
+	//Move Ctr. Takes R-value reference. Its Ctr no return type
 	test (test &&obj):len(0),ptr(NULL) {
 		ptr = obj.ptr;	obj.ptr = NULL;
 		len = obj.len;	obj.len = 0;
+	}
+
+	//Move Assignment Operator
+	test &operator = (test &&obj) {
+		this->len = obj.len;
+		this->ptr = obj.ptr;
+		obj.len = 0;	delete [] ptr;	obj.ptr = nullptr;
+		return *this;
 	}
 
 	void disp (){
@@ -48,9 +55,18 @@ int main() {
 	test obj5 (std::move(obj4));	//Move obj4 to obj5
 	obj5.disp ();
 	obj4.disp ();
+
+	//Move Assignment Operator
+	test obj6 (600);
+	test obj7 = std::move(obj6);		// obj7.operator=(obj6)
+	obj7.disp();
+	obj6.disp();
 }
 
 /* Output
  * 200	//obj5
  * 0	//obj4
+ *
+ * 600	//obj7
+ * 0	//obj6
  */
