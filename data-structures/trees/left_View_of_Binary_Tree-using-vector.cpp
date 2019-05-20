@@ -1,112 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<list>
 #include<iostream>
-#include<vector>
+//using namespace std;
 /*
-Problem: 
- - Given a Binary Tree, print Left view of it.
- - Left view of a Binary Tree is set of nodes visible when tree is visited from Left side.
- - The task is to complete the function leftView(), which accepts root of the tree as argument.
- - Left view of following tree is 1 2 4 8
+Input
+        12
+       /  \
+      10  30
+     /    / \
+   14   25   40
+             /
+            50
+Output:
+12 10 14 50
 
-          1
-       /     \
-     2        3
-   /   \    /    \
-  4     5   6    7
-   \
-     8
-
-Input:
-2               <<Number of test cases
-2               <<Number of edges in binary tree
-1 2 R 1 3 L     <<Number of edges+1 number of nodes data        1 2 R,   1 3 L
-4
-10 20 L 10 30 R 20 40 L 20 60 R         =Interpret as=>  10 20 L,  10 30 R,   20 40 L,  20 60 R
-|- This creates tree as:
-                10
-              /    \
-            20     30
-           / \
-          40 60
-
-Output:         //Print nodes in left view of Binary Tree
-1 3
-10 20 40
-*/
-typedef struct node{
-        int val;
-        int leftIdx;
-        int rightIdx;
-}NODE;
-
-int main(){
-        std::vector<NODE> vec;
-        NODE temp;
-        std::vector<NODE>::iterator it;
-
-        int num_of_test_cases, i, j, num_of_edges;
-        int ele1, ele2;
-        std::string left_or_right;
-
-        std::cin>>num_of_test_cases;
-        //std::cout<<"num_of_test_cases="<<num_of_test_cases<<std::endl;
-        for(i=0;i<num_of_test_cases;i++){
-                std::cin>>num_of_edges;
-                //std::cout<<"num_of_edges="<<num_of_edges<<std::endl;
-
-                for(j=0;j<num_of_edges;j++){
-                        std::cin>>ele1;
-                        //std::cout<<"ele1="<<ele1<<std::endl;
-
-                        if(j==0){
-                                temp = {ele1, -1, -1};
-                                vec.push_back(temp);
-                        }
-                        std::cin>>ele2;
-                        //std::cout<<"ele2="<<ele2<<std::endl;
-                        std::cin>>left_or_right;
-                        //std::cout<<"left_or_right="<<left_or_right<<std::endl;
-
-                        //found = find(root, ele1);
-                        //std::cout<<"vec.size()="<<vec.size()<<std::endl;
-                        for(int k=0;k<vec.size();k++){
-                                if(vec[k].val == ele1){
-                                        if(left_or_right == "L"){
-                                                //std::cout<<"Inside L"<<std::endl;
-                                                vec[k].leftIdx = vec.size();
-                                                temp = {ele2, -1, -1};
-                                                vec.push_back(temp);
-                                        }else{
-                                                //std::cout<<"Inside R"<<std::endl;
-                                                vec[k].rightIdx = vec.size();
-                                                temp = {ele2, -1, -1};
-                                                vec.push_back(temp);
-                                        }
-                                }
-                        }
-                }
-                //std::cout<<"Created tree"<<std::endl;
-
-                //std::cout<<"Finding left view"<<std::endl;
-                int l=0;
-                std::cout<<std::endl<<vec[l].val<<" ";
-                while(vec[l].leftIdx != -1){
-                        l = vec[l].leftIdx;
-                        std::cout<<vec[l].val<<" ";
-                }
-                vec.clear();
-        }
-        return 0;
+Logic: 
+- Create a tree
+- func()             //Method-1
+    if(root->left != NULL) print(root->left)
+    if(root->left) fun(root->left)
+    if(root->right) fun(root->right)
+ */
+struct node
+{
+    int data;
+    struct node *left, *right;
+};
+struct node *newNode(int item)
+{
+    struct node *temp =  (struct node *)malloc(sizeof(struct node));
+    temp->data = item;
+    temp->left = temp->right = NULL;
+    return temp;
 }
 
-/*Input
-2
-2
-1 2 R 1 3 L
-4
-10 20 L 10 30 R 20 40 L 20 60 R
+/* list[Doubly LL]            <--> | 4 | <--> | 1 | <--> | 8 | <-->
+    Insertion & remove?   At any place in list->Fast.
+    Search:    Slow, Linear time. Much slower than vector.
+    
 */
+void leftView(node* root){         //Correct!!
+        if (root == NULL)   return;
 
-/*Ouput
-1 3
-10 20 40 
-*/
+        std::list<node*> queue; //create an empty queue and enqueue root node
+        queue.push_back(root);
+
+        node* curr = nullptr;   //pointer to store current node
+
+        while (!queue.empty()){         //run till queue is not empty
+                int size = queue.size();        //calculate number of nodes in current level
+                int i = 0;
+
+                while (i++ < size){     //process every node of current level and enqueue their, non-empty left and right child to queue
+                        curr = queue.front();
+                        queue.pop_front();
+
+                        if (i == 1)     std::cout << curr->data << " ";
+
+                        if (curr->left) queue.push_back(curr->left);
+                        if (curr->right) queue.push_back(curr->right);
+                }
+        }
+}
+
+int main()
+{
+    struct node *root = newNode(12);
+    root->left = newNode(10);
+    root->left->left = newNode(14);
+    root->right = newNode(30);
+    root->right->left = newNode(25);
+    root->right->right = newNode(40);
+    root->right->right->left = newNode(50);
+ 
+    //Method using lists in C++
+    leftView(root);
+
+    std::cout<<"\n";
+    return 0;
+}
