@@ -47,6 +47,26 @@ int heightOfTree(NODE *ptr){
 	}
 	return ((lh>rh)?lh:rh);
 }
+
+/* This function does not takes global variables
+*/
+int height(Node *ptr){
+        int val=0,tmp=0;
+        std::cout<<"node="<<ptr->data<<std::endl;
+        if((ptr->left != NULL) || (ptr->right != NULL)){
+                val++;
+                std::cout<<"node="<<ptr->data<<" val="<<val<<std::endl;
+        }
+        if(ptr->left){
+                tmp = height(ptr->left);
+        }
+        if(ptr->right){
+                tmp = height(ptr->right);
+        }
+        std::cout<<"node="<<ptr->data<<" Returning"<<val+tmp<<std::endl;
+        return (val+tmp);
+}
+
 void main() {
 	NODE *root = create();
 	printf("Tree Created\n");
