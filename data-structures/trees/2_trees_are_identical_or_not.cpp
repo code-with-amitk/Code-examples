@@ -7,7 +7,12 @@
                 return 1;
           else 
                 return 0;
-        
+
+Logic-2(Without Extra Space):
+        - if both trees are empty return 1. Both are identical
+        - else Visit same node of each tree. ie tree1 & tree2
+          - if values are same do nothing
+          - if different return 0.       
  */
 #include<iostream>
 #include<vector>
@@ -73,13 +78,36 @@ int compare(Node *t1, Node *t2){
         }
 }
 
+int identicalTrees(Node* a, Node* b)          //Without extra space
+{
+    /*1. both empty */
+    if (a == NULL && b == NULL)
+        return 1;
+
+    /* 2. both non-empty -> compare them */
+    if (a != NULL && b != NULL)
+    {
+        return ((a->data == b->data) && (identicalTrees(a->left, b->left)) && (identicalTrees(a->right, b->right)));
+    }
+
+    /* 3. one empty, one not -> false */
+    return 0;
+}
+
 int main(){
         Node *tree1, *tree2;
         tree1 = createTree1();
-        tree2 = createTree1();
+        tree2 = createTree2();
         std::cout<<"Trees created tree1="<<tree1<<" tree2="<<tree2<<"\n";
-        if(compare(tree1, tree2))
+        /*if(compare(tree1, tree2))
+                std::cout<<"Equal Trees";
+        else
+                std::cout<<"Non Equal Trees";*/
+ 
+        //Logic without Extra Space
+        if(identicalTrees(tree1, tree2))
                 std::cout<<"Equal Trees";
         else
                 std::cout<<"Non Equal Trees";
+
 }
