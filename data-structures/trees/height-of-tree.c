@@ -4,12 +4,12 @@
  *         \
  *         19
  *  	    
- *  Algorithm:
- *  On every node:
- *  	a. Find leftHeight (lh)
- *  	b. Find rightHeight (rh)
- *  	c. return whichever is bigger
- *  	return (lh > rh) ? lh : rh
+ Logic:
+ On every node(Node *ptr):
+	- if(ptr == NULL) return 0
+	- if(ptr->left)	Increment leftHght variable by 1.
+	- if(ptr->right) Increment rightHght variable by 1.
+	return the bigger of leftHght or rightHght
  */
 #include<stdio.h>
 #include<stdlib.h>
@@ -51,20 +51,20 @@ int heightOfTree(NODE *ptr){
 /* This function does not takes global variables
 */
 int height(Node *ptr){
-        int val=0,tmp=0;
-        std::cout<<"node="<<ptr->data<<std::endl;
-        if((ptr->left != NULL) || (ptr->right != NULL)){
-                val++;
-                std::cout<<"node="<<ptr->data<<" val="<<val<<std::endl;
-        }
+        int lefthgt = 0, righthgt = 0, var1 = 0, var2 = 0;
+
+        if(ptr == NULL) return 0;
+
         if(ptr->left){
-                tmp = height(ptr->left);
+                lefthgt++;
+                var1 = lefthgt + hgt(ptr->left);
         }
+
         if(ptr->right){
-                tmp = height(ptr->right);
+                righthgt++;
+                var2 = righthgt + hgt(ptr->right);
         }
-        std::cout<<"node="<<ptr->data<<" Returning"<<val+tmp<<std::endl;
-        return (val+tmp);
+        return((var1 > var2) ? (var1) : (var2));
 }
 
 void main() {
