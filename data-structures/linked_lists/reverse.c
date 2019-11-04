@@ -42,6 +42,16 @@ NODE* reverse(NODE *head){
 	return newH;
 }
 
+/* Reverse using Recursion
+reverse(Node *ptr){
+    if(ptr->next != NULL){
+        Node *x = reverse (ptr->next);
+    }
+    x = ptr;
+    return ptr->next;
+} 
+*/
+
 void main(){
 	printf("Created LL:%u",create());
 	NODE *p = reverse(create());
