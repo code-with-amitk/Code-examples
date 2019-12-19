@@ -68,6 +68,9 @@ a.      | |             ||              lefttoright=1
  */
 
 
+//TIME COMPLEXITY = O(n)
+//SPACE COMPLEXITY = O(n)+n = O(n)
+
 #include <iostream>
 #include <stack>
 using namespace std;
