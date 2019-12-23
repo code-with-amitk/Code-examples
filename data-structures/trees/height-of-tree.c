@@ -65,6 +65,10 @@ int height(Node *ptr){
                 var2 = righthgt + hgt(ptr->right);
         }
         return((var1 > var2) ? (var1) : (var2));
+	
+/*	OR Simply
+	return (1 + max(height(ptr->left), height(ptr-right)));
+*/
 }
 
 void main() {
