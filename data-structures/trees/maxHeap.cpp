@@ -84,6 +84,10 @@ Code Logic:
 3. Find index of 1st non-leaf node.     (N/2)-1         (11/2)-1=4
 4. Traverse from index 4 to 0 in reverse order, heapify each element. 
         (heapify means: Compare node,it's left & right child. Swap and place largest element at top.)
+        
+TIME COMPLEXITY:
+Heapify a single node takes O(Log N) time complexity where N is the total number of Nodes. 
+Therefore, building the entire Heap will take N heapify operations and the total time complexity will be O(N*logN).
 */
 #include<iostream>
 using namespace std;
