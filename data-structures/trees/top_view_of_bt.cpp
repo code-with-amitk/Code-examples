@@ -32,6 +32,9 @@ Logic:
  Considering You read and understood(verticalOrderTraversal.cpp), printing topView is very simple.
  - Only print 1st element of vector storing nodes.      map<int, vector<int>> &m
 
+TIME COMPLEXITY: O(nlogn)
+a. createMapStoringHD_and_NodeVector(): map in STL is Self-Balancing BST. Search for key = O(Logn)
+b. printVerticalOrder(): n
 */
 
 #include <iostream>
