@@ -70,6 +70,11 @@ Logic:
   - Pass the created map to print fuction.
   - Take iterator. point it passed map
   - Print Second element(ie vector) of map using for loop
+  
+
+TIME COMPLEXITY: O(nlogn)
+a. createMapStoringHD_and_NodeVector(): map in STL is Self-Balancing BST. Search for key = O(Logn)
+b. printVerticalOrder(): n
 */
 
 #include<iostream>
