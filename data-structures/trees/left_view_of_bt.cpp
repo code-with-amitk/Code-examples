@@ -11,13 +11,31 @@ Working. Read Carefully.
              /
             50          left view: 12, 10, 14, 50
 
-Logic(Modified BFS/level order Traversal): 
-- Take 2 queues. currLevelQueue, nextLevelQueue. variable i=0.
-- Push root into currLevelQueue
-- Traverse all elements of currLevelQueue.
-        -> Only Print 1st element
-        -> while traversing Fill left,right children in nextLevelQueue.
-        -> When currLevelQueue becomes empty. swap curr & next.
+*******Logic(Modified BFS/level order Traversal)**********
+Take 2 queues. currLevelQueue, nextLevelQueue. variable i=0.
+
+Push root into currLevelQueue
+
+while(currLevelQueue is not empty){
+        temp = top_of_currLevelQueue; pop_current_level_queue;
+        
+        if(i==0){
+                print temp->data         //THIS IS 1st Element of Current Level.
+                i++
+        }
+        
+        if temp->left
+          Fill element in nextLevelQueue
+          
+        if temp->right 
+          Fill element in nextLevelQueue
+
+        if currLevelQueue is empty{
+            swap(currLevelQueue & nextLevelQueue)
+            i=0
+        }
+}
+***********************************************************
         
 
 TIME COMPLEXITY:        O(n).   //Since we are traversing all elements
