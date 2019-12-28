@@ -75,3 +75,20 @@ int main(){
 
 	display(v, 5);
 }
+/*
+# g++ create_using_adjacency_matrix.cpp --std=c++11
+Output:
+# ./a.out 
+AM created
+
+ Adjacency list of vertex 0 -> 1-> 4
+
+ Adjacency list of vertex 1 -> 0-> 2-> 3-> 4
+
+ Adjacency list of vertex 2 -> 1-> 3
+
+ Adjacency list of vertex 3 -> 1-> 2-> 4
+
+ Adjacency list of vertex 4 -> 0-> 1-> 3
+
+*/
