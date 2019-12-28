@@ -1,16 +1,23 @@
-#include <stdio.h>
-/* Logic-1: Traverse array linearly count number of occurrences of element. Complexity=O(n)
- *
- * Logic-2: Binary search + Linear count.         O(logn) + count
- *  -   Find element using binary search.
- *  -   Once element is found count left, right.
- *
- * Logic-3(Binary Search): Complexity=O(logn)
- *  - Traverse in binary search manner.
- *  - get index of the first occurrence of x in arr[]. Let the index of the first occurrence be i.
- *  - get index of the last occurrence of x in arr[]. Let the index of the last occurrence be j.
- *  - Output  (j - i)
+/*
+ Question: Find occurences of an element in sorted array. Array element is always smaller than sizeof array.
+ Array = {1,1,1,1,2,2,3}
+ find occurences of 2
+ Answer = 2
+
+  Logic-1: Traverse array linearly count number of occurrences of element. Complexity=O(n)
+ 
+  Logic-2: Binary search + Linear count.         O(logn) + count
+   -   Find element using binary search.
+   -   Once element is found count left, right.
+ 
+  Logic-3(Binary Search): Complexity=O(logn)
+   - Traverse in binary search manner.
+   - get index of the first occurrence of x in arr[]. Let the index of the first occurrence be i.
+   - get index of the last occurrence of x in arr[]. Let the index of the last occurrence be j.
+   - Output  (j - i)
 */
+
+#include <stdio.h>
 int BinarySearch(int A[], int sizeofA, int element_to_find, int leftOrRightSearch)
 {
         int low = 0, high = sizeofA - 1, result = -1;
