@@ -6,7 +6,7 @@ Graph to be created:
 	|/  |/
 	4---3
 
-Adjacency Matrix:
+Adjacency Matrix(Way of thinking):
 	 0   1   2   3   4
 	------------------
       0	|0   1   0   0   1	<-row1
@@ -24,11 +24,11 @@ Adjacency Matrix:
 |0 1 2 3 4	|0 1 2 3 4     |0 1 2 3 4    |0 1 2 3 4    |0 1 2 3 4    |
 |v[0]	   	|v[1]	       |v[2]         |v[3]	   |v[4]	 |
 
-  v[0] = Shows connections of Node 0 to other nodes
-  v[1] = Shows connections of Node 1 to other nodes
-  v[2] = Shows connections of Node 2 to other nodes
-  v[3] = Shows connections of Node 3 to other nodes
-  v[4] = Shows connections of Node 4 to other nodes
+  v[0] = {1}		//Shows connections of Node 0 to other nodes
+  v[1] = {0,2,3,4}	//Shows connections of Node 1 to other nodes
+  v[2] = {1,3}		//Shows connections of Node 2 to other nodes
+  v[3] = {1,2,4}	//Shows connections of Node 3 to other nodes
+  v[4] = {0,1,3}	//Shows connections of Node 4 to other nodes
 
  b. Filling the vector:
  - In undirected graph vertex is bidirectional ie:
