@@ -35,8 +35,8 @@ a. Create a Adjacency Matrix:
       7 |0   0   0   0   0   0   0   0
 
         vector <int> v[8];      //8 Arrays of int vector.
-  v[0] = Shows connections of Node 0 to other nodes 
-  v[1] = Shows connections of Node 1 to other nodes so on
+  v[0] = {1,2,3,4} //Shows connections of Node 0 to other nodes 
+  v[1] = {5}       //Shows connections of Node 1 to other nodes so on
             
 b. Take a boolean array of size=NumberOfNodes. 
 |0|0|0|0|0|0|0|0|       //This means none of nodes are visited
