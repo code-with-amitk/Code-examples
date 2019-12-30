@@ -6,7 +6,7 @@ Graph to be created:
 	|/  |/
 	4---3
 
-Adjacency Matrix(Way of thinking):
+Method-1: Adjacency Matrix(Way of thinking):
 	 0   1   2   3   4
 	------------------
       0	|0   1   0   0   1	<-row1
@@ -14,6 +14,14 @@ Adjacency Matrix(Way of thinking):
       2	|0   1   0   1   0	<-row3
       3	|0   1   1   0   1	<-row4
       4	|1   1   0   1   0	<-row5
+      
+Method-2: Adjacency-list	//USED HERE
+	0 -> 1,4
+	1 -> 0,2,3,4
+	2 -> 1,3
+	3 -> 1,2,4
+	4 -> 0,1,3
+	
 
 ***********************Logic**************************
  a. Storing Graph in vector
