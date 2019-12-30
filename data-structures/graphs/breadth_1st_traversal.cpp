@@ -17,12 +17,8 @@ Question: Print nodes of graph in BFS fashion, where starting node is 0
         |               |
         |               |
         ------->7<-------   
-
-****************Logic********************
-1. Create Graph, Take boolean visitedNodes array.
-- Check Code-examples/data-structures/graphs/create_using_adjacency_matrix.cpp
-
-a. Create a Adjacency Matrix:
+        
+Method-1: Adjacency Matrix(Way of thinking):
          0   1   2   3   4   5   6   7
         ------------------------------
       0 |0   1   1   1   1   0   0   0          //0 is connected to 1,2,3,4
@@ -33,8 +29,23 @@ a. Create a Adjacency Matrix:
       5 |0   0   0   0   0   0   0   1          //5 is connected to 7
       6 |0   0   0   0   0   0   0   1          //6 is connected to 7
       7 |0   0   0   0   0   0   0   0
+      
+Method-2: Adjacency-list	//USED HERE
+	0 -> 1,2,3,4
+	1 -> 5
+	2 -> 5
+	3 -> 6
+	4 -> 6
+ 5 -> 7
+ 6 -> 7
 
-        vector <int> v[8];      //8 Arrays of int vector.
+****************Logic********************
+1. Create Graph, Take boolean visitedNodes array.
+- Check Code-examples/data-structures/graphs/create_using_adjacency_matrix.cpp
+
+a. Create a Adjacency LIST:
+  vector <int> v[8];      //8 Arrays of int vector.
+  
   v[0] = {1,2,3,4} //Shows connections of Node 0 to other nodes 
   v[1] = {5}       //Shows connections of Node 1 to other nodes so on
             
