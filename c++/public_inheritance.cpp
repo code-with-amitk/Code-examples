@@ -25,8 +25,8 @@ c. private:
 *******************************************************
 
 *****Memory layout of Derv class object******
-<-      stack   ->
-| c=3 |b=2 | a=1 |
+<-      stack           ->
+| c=3 | b=2 | a=1 | d |
 B obj
 *********************************************
 */
@@ -45,6 +45,7 @@ private:
 };
 
 class B : public A{
+        int d;
 public:
         void f1(){
                 cout<<"a="<<a<<endl;                    //2a
