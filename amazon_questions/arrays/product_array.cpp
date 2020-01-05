@@ -1,5 +1,5 @@
 /*
-https://www.geeksforgeeks.org/a-product-array-puzzle
+https://www.pramp.com/challenge/7Lg1WA1nZqfoWgPbgM0M
 /
 A Product Array Puzzle:
 Given an array arr[] of n integers, construct a Product Array prod[] (of same size) such
