@@ -18,20 +18,25 @@ Approach-1(Brute-force): O(n sqaure)
 
 
 Approach-2(Time Complexity=O(n)):
-Consider this array [2, 3, 4, 5].
+Consider this array [2, 3, 4, 5]    
+                     0  1  2  3
 it's resulting arra [60, 40, 30, 24] 
-Calculated using    [3*4*5, 2*4*5, 2*3*5, 2*3*4].     
-
+Calculated using    [3*4*5, 2*4*5, 2*3*5, 2*3*4]
+                     1*2*3  0*2*3  0*1*3  0*1*2
 Can you see: For every index i We need product of all values to its left with all values to its right?
 
-- 1st Traverse Array left to right using for() loop. 
-        Take 2nd array=sizeof(original array)
-        Take temp variable.
-        Calculate temp = temp*ar[i] and store in 2nd_array.
+Loop-1: Traverse Array from left to right using for(), Fill left[] with product of all elements on left
+//There are no values to the left of index 0 & no values to the right of index arr.length - 1, 
+we can use 1 which is neutral to multiplication.
+ - Fill int left[] = [1, 1*2, 1*2*3, 1*2*3*4]
 
-- 2nd Traverse Array right to left using for() loop.
-        Do same for reverse side as well.
-- Spend some time but was not clear with approach followed to solve the question.
+Loop-2: Traverse Array from right to left using for(), Fill right[] with product of all elements on right.
+ - Fill int right[] = [3*4*5*1, 4*5*1, 5*1, 1]
+
+Answer:
+      for(int i=0;i<sizeofArr -1; i++)
+            cout<<left[i]*right[i]
+
 Time Complexity = O(n)+O(n) = O(n)      //Since 2 for() loop are seperate not nested.
 Space Complexity = O(n)                 //Used Extra array
 ********************************************* 
@@ -41,33 +46,24 @@ Space Complexity = O(n)                 //Used Extra array
 using namespace std;
 
 void approach_2(int arr[], int sizeofArr){
-
-        int i, temp = 1;
-
-        if (sizeofArr == 1){
-                cout << 0;
-                return;
+        int left[sizeofArr]={0},right[sizeofArr]={0}, i;
+        
+        for(i=0;i<sizeofArr;i++){   //Calculate product of left array for each element
+                if(i==0)
+                        left[i] = 1;
+                else
+                        left[i] = left[i-1]*arr[i-1];
         }
 
-        int p[sizeofArr] = {0}; //Product Array
-
-        //In this loop, temp variable contains product of elements on left side excluding arr[i]
-        for (i = 0; i < sizeofArr; i++) {
-                p[i] = temp;
-                temp = temp * arr[i];
+        for(i=(sizeofArr-1);i>=0;i--){   //Calculate product of right array for each element
+                if(i==(sizeofArr-1))
+                        right[i] = 1;
+                else
+                        right[i] = right[i+1]*arr[i+1];
         }
 
-        temp = 1;
-
-        // In this loop, temp variable contains product of elements on right side excluding arr[i]
-        for (i = sizeofArr - 1; i >= 0; i--) {
-                p[i] = p[i] * temp;
-                temp = temp * arr[i];
-        }
-
-        // print the constructed prod array
         for (i = 0; i < sizeofArr; i++)
-                cout << p[i] << " ";
+                cout << left[i]*right[i] << " ";
 }
 
 //Brute Force: O(n sqaure)
