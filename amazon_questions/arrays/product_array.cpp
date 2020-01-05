@@ -18,6 +18,12 @@ Approach-1(Brute-force): O(n sqaure)
 
 
 Approach-2(Time Complexity=O(n)):
+Consider this array [2, 3, 4, 5].
+it's resulting arra [60, 40, 30, 24] 
+Calculated using    [3*4*5, 2*4*5, 2*3*5, 2*3*4].     
+
+Can you see: For every index i We need product of all values to its left with all values to its right?
+
 - 1st Traverse Array left to right using for() loop. 
         Take 2nd array=sizeof(original array)
         Take temp variable.
