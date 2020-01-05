@@ -13,7 +13,7 @@ that prod[i] is equal to the product of all the elements of arr[] except arr[i].
 
 ********************Logic********************
 
-Approach-1(Brute-force):
+Approach-1(Brute-force): O(n sqaure)
 - Run 2 nested for() loops, Calculate the product and store in 2nd array
 
 
@@ -64,6 +64,7 @@ void approach_2(int arr[], int sizeofArr){
                 cout << p[i] << " ";
 }
 
+//Brute Force: O(n sqaure)
 void approach_1(int arr[], int sizeofArr){
         int i, j, t;
 
