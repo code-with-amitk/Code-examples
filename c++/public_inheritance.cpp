@@ -19,7 +19,9 @@ c. private:
 
 3: Instance of derv class can invoke any public function of base class.
 
-4: SAME-NAMED-FUNCTION_IN_BASE_AND_DERV(FUNCTION-OVERRIDING)
+4. Functions from base class are also inherited inside derived class.
+
+5: SAME-NAMED-FUNCTION_IN_BASE_AND_DERV(FUNCTION-OVERRIDING)
  - Base & derv can have same named function. But with derv Object, derv class function is called.
  - (function overriding) Same named function having different body inside derv class.
 *******************************************************
@@ -37,7 +39,9 @@ using namespace std;
 class A{
 public:
         int a = 1;
-        void f(int x){c=x;}
+        void f(int x){
+                c=x;
+        }
 protected:
         int b = 2;
 private:
@@ -61,6 +65,7 @@ private:
 int main(){
         B obj;
         obj.f1();                       //Output: a=1
+        obj.f(4);                       //Works
 }
 
 /*
