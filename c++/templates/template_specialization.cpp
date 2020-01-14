@@ -16,7 +16,7 @@ public:
         }
 };
 
-template <>
+template <>                    //2
 class test<char>{
 public:
         void fun(char a){
