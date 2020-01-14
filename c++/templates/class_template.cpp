@@ -1,6 +1,6 @@
 /*
 Class template: Generic class which having(Generic member variables, Generic member functions)
-- Gen is Genlate variable
+- Gen is Template variable
 
 Rules:
 1. Whenever we define function of template class outside class we need to write template statement again
