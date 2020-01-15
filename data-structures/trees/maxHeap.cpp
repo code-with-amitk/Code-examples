@@ -91,15 +91,28 @@ Step-7: (Heapify 1) First Swap 1 and 17, again swap 1 and 15, finally swap 1 and
 ************Code Logic*************
 1. Calculate number of nodes to be heapified.   size/2 - 1
 
-2. Heapify every node seperately.
+2. Inplace heapify the array
+  2a. In place array Heapify every node seperately.
         for(i=size/2-1; i>=0; i--)
-                heapifyANode(a[i]);          //So, we call heapify function for every node seperately
+                heapifyANode(a,size,indexOfNodeToHeapify);  //So, we call heapify function for every node seperately
 
-3. How heapifyANode() works?
+  2b. How heapifyANode(a,size,indexOfNodeToHeapify) works?
+    - if(leftChildIndex < sizeOfArray && a[leftChildIndex] > a[parentIndex])
+        Just note that parent will be swapped with left
+        IndexOfParent = IndexOfLeft
+      
+    - if(rightChildIndex < sizeOfArray && a[rightChildIndex] > a[parentIndex])
+        IndexOfParent = IndexOfRight
+  
+      if(IndexOfParent != indexOfNodeToHeapify) //This means we need a swap & check that all nodes below it are heapified
+        swap(a[indexOfNodeToHeapify], a[IndexOfParent])
+        heapifyANode(a,size,IndexOfParent);   <<<<<<<<<<<<<<<<
 
+====Now array is inplace heapified but yet Tree is not created====
 
-4. Traverse from index 4 to 0 in reverse order, heapify each element. 
-        (heapify means: Compare node,it's left & right child. Swap and place largest element at top.)
+3. Create Tree level order by traversing the array
+      
+
 
 ***********************************
 TIME COMPLEXITY:
@@ -109,60 +122,104 @@ Therefore, building the entire Heap will take N heapify operations and the total
 #include<iostream>
 using namespace std;
 
-void printHeap(int arr[], int n)
+typedef struct node
 {
-    cout << "Array representation of Heap is:\n";
+        int val;
+        struct node *left, *right;
+}NODE;
 
+void printInPlaceHeapifiedArray(int arr[], int n)
+{
     for (int i = 0; i < n; ++i)
         cout << arr[i] << " ";
     cout << "\n";
 }
 
-//This function heapifies every node seperately
-void heapifyANode(int a[], int size, int i){
+void heapifyANode(int a[], int size, int i){            //This function heapifies every node seperately
 
-    int parentIndex = i;
-    int leftChildIndex = 2*i + 1;             //left-child = 2*i + 1
-    int rightChildIndex = 2*i + 2;            //right-child = 2*i + 2
+        int parentIdx = i;
+        int leftChildIdx = 2*i+1;
+        int rightChildIdx = 2*i+2;
 
-    // If left child is larger than root
-    if (leftChildIndex < size && arr[leftChildIndex] > arr[parentIndex])
-        parentIndex = leftChildIndex;
+        if((leftChildIdx < size) && (a[parentIdx] < a[leftChildIdx]))
+        {
+                parentIdx = leftChildIdx;                       //a
+        }
+        if((rightChildIdx < size) && (a[parentIdx] < a[rightChildIdx]))
+        {
+                parentIdx = rightChildIdx;                      //b
+        }
 
-    // If right child is larger than largest so far
-    if (rightChildIndex < size && arr[rightChildIndex] > arr[parentIndex])
-        parentIndex = rightChildIndex;
+        if (parentIdx != i) {           //This means any of above two(a or b) holds true. otherwise parentIdx was i
+                swap(a[i], a[parentIdx]);
 
-    // If largest is not root
-    if (parentIndex != i) {             //We found parent is smaller than either left or right node
-        swap(arr[i], arr[parentIndex]); //Swap largest element and parentIndex
-
-        // Recursively heapify the affected sub-tree
-        heapifyANode(arr, size, parentIndex);
+                /*Now parent is either left or right child
+                 * We will check new parent is not less than either of its children
+                 *
+                 * Terminating condition for this recursion:
+                 * - (leftChildIdx > size)              //means no left child
+                 * - (rightChildIdx > size)             //means no right child
+                 * - a[parentIdx] > a[rightChildIdx]    //means parent is bigger no swap
+                 * - a[parentIdx] > a[leftChildIdx]     //means parent is bigger no swap
+                 */
+                heapifyANode(a, size, parentIdx);
     }
 }
 
-void buildHeap(int a[], int size){
+
+void heapifyArrayInPlace(int a[], int size){
 
     int startIndex = (size / 2) - 1;         //(11/2)-1 = 4. 1st node to heapify
 
     for (int i = startIndex; i >= 0; i--) {  //Perform heapify operation from 1st nonleaf to root node, in reverse order
-        heapify(a, size, i);               //heapify arr[4], arr[3], arr[2], arr[1] and arr[0]
+        heapifyANode(a, size, i);               //heapify arr[4], arr[3], arr[2], arr[1] and arr[0]
     }
+}
+
+NODE *newNode(int i)
+{
+        NODE *ptr = new NODE();
+        ptr->val = i;
+        ptr->left = ptr->right = NULL;
+        return ptr;
+}
+
+NODE *createMaxHeapTree(int a[], int i, int size)
+{
+        NODE *ptr;
+
+        if(i<size)
+                ptr = newNode(a[i]);
+
+        if(2*i+1 < size)
+                ptr->left = createMaxHeapTree (a,2*i+1,size);
+
+        if(2*i+2 < size)
+                ptr->right = createMaxHeapTree (a,2*i+2,size);
+
+        return ptr;
 }
 
 int main(){
         int a[] = { 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
+        NODE *ptr;
 
         int noofelements = sizeof(a) / sizeof(a[0]);        //11
 
-        buildHeap(a, noofelements);
-        printHeap(a, noofelements);
+        heapifyArrayInPlace(a, noofelements);
 
-        return 0;
+        cout<<"Array is heapified in place\n";
+        printInPlaceHeapifiedArray(a, noofelements);
+
+        ptr = createMaxHeapTree(a,0,noofelements);
+        cout<<"Created Max Heap tree from heapified array\n";
+
 }
 
+/*
 # g++ maxHeap.cpp
-# ./a.out 
-Array representation of Heap is:
+# # ./a.out 
+Array is heapified in place
 17 15 13 9 6 5 10 4 8 3 1 
+Created Max Heap tree from heapified array
+*/
