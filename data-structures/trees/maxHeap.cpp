@@ -16,7 +16,6 @@ Answer
          / \  / \
         4  8 15 1 
 
-
 Basic Logic to Build Max-Heap:
 a. Create Binary tree using level-order-traversal from Array
 b. Perform heapify operation on all non-leaf nodes starting from 1st non-leaf node to top of tree in reverse order.
@@ -90,16 +89,15 @@ Step-7: (Heapify 1) First Swap 1 and 17, again swap 1 and 15, finally swap 1 and
         / \    /  \
        4   8  3    1
 
+************METHOD-1: Code Logic*************
+a. Calculate number of nodes to be heapified.   size/2 - 1
 
-************Code Logic*************
-1. Calculate number of nodes to be heapified.   size/2 - 1
-
-2. Inplace heapify the array
-  2a. In place array Heapify every node seperately.
+b. Inplace heapify the array
+  b1. In place array Heapify every node seperately.
         for(i=size/2-1; i>=0; i--)
                 heapifyANode(a,size,indexOfNodeToHeapify);  //So, we call heapify function for every node seperately
 
-  2b. How heapifyANode(a,size,indexOfNodeToHeapify) works?
+  b2. How heapifyANode(a,size,indexOfNodeToHeapify) works?
     - if(leftChildIndex < sizeOfArray && a[leftChildIndex] > a[parentIndex])
         Just note that parent will be swapped with left
         IndexOfParent = IndexOfLeft
@@ -113,18 +111,24 @@ Step-7: (Heapify 1) First Swap 1 and 17, again swap 1 and 15, finally swap 1 and
 
 ====Now array is inplace heapified but yet Tree is not created====
 
-3. Create Tree level order by traversing the array
-      
+c. Create Tree level order by traversing the array
+**********************************************
 
 
-***********************************
+**********METHOD-2: STL priority_queue**********
+- Instead of implementing the things by yourself, use STL priority_queue
+- priority_queue<int> is implemented as MAX_HEAP.
+************************************************
+
 TIME COMPLEXITY:
 Heapify a single node takes O(Log N) time complexity where N is the total number of Nodes. 
 Therefore, building the entire Heap will take N heapify operations and the total time complexity will be O(N*logN).
 */
 #include<iostream>
+#include<queue>
 using namespace std;
 
+/**********************METHOD-1**************************
 typedef struct node
 {
         int val;
@@ -138,7 +142,7 @@ void printInPlaceHeapifiedArray(int arr[], int n)
     cout << "\n";
 }
 
-void heapifyANode(int a[], int size, int i){            //This function heapifies every node seperately
+void method_1_heapifyANode(int a[], int size, int i){            //This function heapifies every node seperately
 
         int parentIdx = i;
         int leftChildIdx = 2*i+1;
@@ -156,21 +160,21 @@ void heapifyANode(int a[], int size, int i){            //This function heapifie
         if (parentIdx != i) {           //This means any of above two(a or b) holds true. otherwise parentIdx was i
                 swap(a[i], a[parentIdx]);
 
-                /*Now parent is either left or right child
-                 * We will check new parent is not less than either of its children
-                 *
-                 * Terminating condition for this recursion:
-                 * - (leftChildIdx > size)              //means no left child
-                 * - (rightChildIdx > size)             //means no right child
-                 * - a[parentIdx] > a[rightChildIdx]    //means parent is bigger no swap
-                 * - a[parentIdx] > a[leftChildIdx]     //means parent is bigger no swap
-                 */
+                //Now parent is either left or right child
+                //  We will check new parent is not less than either of its children
+                //
+                // Terminating condition for this recursion:
+                // - (leftChildIdx > size)              //means no left child
+                // - (rightChildIdx > size)             //means no right child
+                // - a[parentIdx] > a[rightChildIdx]    //means parent is bigger no swap
+                // - a[parentIdx] > a[leftChildIdx]     //means parent is bigger no swap
+                //
                 heapifyANode(a, size, parentIdx);
     }
 }
 
 
-void heapifyArrayInPlace(int a[], int size){
+void method_1_heapifyArrayInPlace(int a[], int size){
 
     int startIndex = (size / 2) - 1;         //(11/2)-1 = 4. 1st node to heapify
 
@@ -187,7 +191,7 @@ NODE *newNode(int i)
         return ptr;
 }
 
-NODE *createMaxHeapTree(int a[], int i, int size)
+NODE *method_1_createMaxHeapTree(int a[], int i, int size)
 {
         NODE *ptr;
 
@@ -202,27 +206,49 @@ NODE *createMaxHeapTree(int a[], int i, int size)
 
         return ptr;
 }
+***************************************************************/
+
+
+void show_max_heap(priority_queue <int> a)
+{
+        cout<<"Max Heap from priority_queue<>\n";
+        while(a.empty() != 1)   //empty() return value 1 if container is empty
+        {
+                cout<<a.top()<<" ";
+                a.pop();
+        }
+}
 
 int main(){
+        /*************METHOD-1**************************
         int a[] = { 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
+        
+
         NODE *ptr;
 
         int noofelements = sizeof(a) / sizeof(a[0]);        //11
 
-        heapifyArrayInPlace(a, noofelements);
+        method_1_heapifyArrayInPlace(a, noofelements);
 
         cout<<"Array is heapified in place\n";
         printInPlaceHeapifiedArray(a, noofelements);
 
-        ptr = createMaxHeapTree(a,0,noofelements);
+        ptr = method_1_createMaxHeapTree(a,0,noofelements);
         cout<<"Created Max Heap tree from heapified array\n";
-
+        ***********************************************/
+        
+        
+        /***********METHOD-2****************************/
+        priority_queue <int> pq;
+        for(int n: {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17})
+                pq.push(n);
+        show_max_heap(pq);
+        /**********************************************/
 }
 
 /*
 # g++ maxHeap.cpp
-# # ./a.out 
-Array is heapified in place
-17 15 13 9 6 5 10 4 8 3 1 
-Created Max Heap tree from heapified array
+# ./a.out 
+Max Heap from priority_queue<>
+17 15 13 10 9 8 6 5 4 3 1 
 */
