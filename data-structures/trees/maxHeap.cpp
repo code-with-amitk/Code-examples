@@ -3,6 +3,9 @@ What is Binary heap? Balanced complete Binary tree. Duplicates are allowed in he
 Max-Heap?
 Root is always greatest. Condition: parent >= child    //This condition is for all nodes except Root-node.
 
+How Heap is stored?
+- Heap is stored using arrays. This provides advantage that space complexity is low since pointer is not stored as in trees.
+
 Question Build a Max-Heap from array {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
 Answer 
                17
