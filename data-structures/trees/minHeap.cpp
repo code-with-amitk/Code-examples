@@ -2,6 +2,9 @@
 What is Binary heap? Balanced complete Binary tree. Duplicates are allowed in heap. 
 Min-Heap? Root is always smallest. Condition: parent =< child
 
+How Heap is stored?
+- Heap is stored using arrays. This provides advantage that space complexity is low since pointer is not stored as in trees.
+
 Question Build a Max-Heap from array {17, 15, 8, 9, 10, 13, 6, 4, 5, 3, 1}
 Answer 
                1
