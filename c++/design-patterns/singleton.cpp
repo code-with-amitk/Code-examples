@@ -4,35 +4,44 @@
 What? Only single instance/object of class can be created. And provides Global point of access to it.
 
 How to Acheive?
-1. Make default constructor pvt: 
-	-Object should not be created from direct calls of constructor.
+1.  Block All object creation methods
+        a. Make default constructor pvt: Object should not be created from direct calls of constructor.
+        class A{
+                int a;
+        public:
+                A(int b){a=b}
+        };
+        main(){
+                A obj1 = new A(1);
+                A obj2 = new A(2);      //Two objects are created
+        }
 
-2. Make copy constructor pvt: CCtr is used to copy an exiting object to create new object.
+        b. Make copy constructor pvt: CCtr is used to copy an exiting object to create new object.
         class test{    
             String *s; 
             test (test const &t1){    
-	    	this->s = t1.s;
-	    }
+                this->s = t1.s;
+            }
         };
         int main(){
             test t1;
-            t2 obj(t);    //t2 is created as duplicate of t1. This should be avoided since we are using Singleton.
-        }	
-	
-3. Make Assignment operator pvt: Assignment Operator is used if object is already existent,new object is given new value from other object.
+            t2 obj(t);                  //Two objects created. t2 as copy of t1.
+        }       
+        
+        c. Make Assignment operator pvt: Assignment Operator is used if object is already existent,new object is given new value from other object.
         class test{
                 test & operator =(const test &t){  cout<<"=";  }
         };
         int main(){
-                test t1, t2;    //2 objects are created
-                t2 = t1;    //Assignment Operator called. To Stop this call make Assignment Operator Pvt
+                test t1, t2;            
+                t2 = t1;                //Two objects created.
         }
 
-4. Take a static variable and save Object address in it and initialize to NULL.
+2. Take a static variable and save Object address in it and initialize to NULL.
 
-5. Use Static Method to create Objects: because we need to deal with static variables inside.
+3. Use Static Method to create Objects: because we need to deal with static variables inside.
 
-6. Create objects using static variable only from main
+4. Create objects using static variable only from main
 */
 
 #include<iostream>
