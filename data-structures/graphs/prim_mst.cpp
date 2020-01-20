@@ -1,4 +1,4 @@
-*
+/*
         prim_mst.cpp
 
 Amit: It took 1 week to understand this!!
