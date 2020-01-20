@@ -21,9 +21,9 @@ Adjacency Matrix:
                         
 What Prim's Algo says:
 a. Choose arbitrary vertex to start.
-b. Update cost of all edges connected to node.
+b. Update cost of all adjacent vertices connected to node.
 c. Choose and go to one minimum weight edge that is non-visited.
-c. Repeat step-b until all edges are in mst.
+d. Repeat step-b until all edges are in mst.
 
 *********Logic*********
 Step-1. Start with 3 arrays.
@@ -48,7 +48,7 @@ Step-2. Let's take [0] as starting node.
 Step-3. 
         Do this iteratively for all nodes Except node[0].
         for(i=0;i<3;i++)
-                a. Find node's Index with minimum weight edge connected to 0, should not be visited & (cost-of-reaching-node < already-present-cost-in-cost[])
+                a. Find all adjacent vertices, which are connected to node 0.
                         update the cost
                         mark parent.
                 b. Find the edge with minCost in cost[].
