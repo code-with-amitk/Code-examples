@@ -1,5 +1,5 @@
 /*
-        prim_mst.cpp
+        prim_mst_adjacency_list.cpp
 
 Amit: It took 1 week to understand this!!
 
@@ -52,6 +52,11 @@ Step-3. Carry these operations on every nodes.
         3c. Carry operation 3a & 3b for all nodes.
 
 ******************************************
+
+*********Time Complexity**************
+Adjacency Matrix: O(n2)
+Binary Heap: O(E + logV)
+*************************************
 */
 
 
