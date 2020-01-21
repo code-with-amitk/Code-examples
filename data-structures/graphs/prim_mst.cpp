@@ -21,40 +21,38 @@ Adjacency Matrix:
                         
 What Prim's Algo says:
 a. Choose arbitrary vertex to start.
-b. Update cost of all adjacent vertices connected to node.
+b. Update cost of all edges connected to node.
 c. Choose and go to one minimum weight edge that is non-visited.
-d. Repeat step-b until all edges are in mst.
+c. Repeat step-b until all edges are in mst.
 
-*********Logic*********
-Step-1. Start with 3 arrays.
-        int cost[4] |inf|inf|inf|inf|   //This array represents COST of nodes
+*********Logic(is very Simple)*********
+Step-1. Take 3 arrays.
+        int cost[4] |inf|inf|inf|inf|   //Array represents COST to reach nodes
                      0   1   2   3      <-Nodes
 
-        bool visited |0|0|0|0|  //This array represents VISITED nodes in MST.
-                     0 1 2 3    <-Nodes
+        bool visited |0|0|0|0|          //Array represents VISITED nodes in MST.
+                      0 1 2 3           <-Nodes
         
-        int parent[4] |0|0|0|0| //This array represents PARENT of visited node.    
-                       0 1 2 3  <-Nodes
+        int parent[4] |0|0|0|0|         //Array represents PARENT of visited node.         
+                       0 1 2 3          <-Nodes
 
-Step-2. Let's take [0] as starting node.
-                cost[4] |0|inf|inf|inf| //0 is 0 distance aways from itself
-                         0   1   2   3
+Step-2. Start from node [0].
+        int cost[4] |0|inf|inf|inf|   //Cost of reaching node[0] is 0
+                     0   1   2   3      
 
-                visited |1|0|0|0|  //0 is visited
+        bool visited |1|0|0|0|        //Mark node[0] as visited
+                      0 1 2 3         
+        
+        int parent[4] |0|0|0|0|       //Parent of node[0] as 0 itself
+                       0 1 2 3        
+                
+Step-3. Carry these operations on every nodes.
+        3a. Find distance of adjacent,unvisited nodes/vertices. Fill in cost[]
+        3b. Find least cost edge/arc and move to that vertex.
+        3c. Carry operation 3a & 3b for all nodes.
 
-                parent[4] |0|0|0|0|  //Parent of 0 is 0 itself
-                           0 1 2 3      <Nodes
-
-Step-3. 
-        Do this iteratively for all nodes Except node[0].
-        for(i=0;i<3;i++)
-                a. Find all adjacent vertices, which are connected to node 0.
-                        update the cost
-                        mark parent.
-                b. Find the edge with minCost in cost[].
-                        Perform step-a on that node
-*************************
- */
+******************************************
+*/
 
 
 
@@ -62,18 +60,6 @@ Step-3.
 using namespace std;
 
 #define noOfNodes 4
-
-int findMinCostEdgeIndex(int cost[], bool visited[])
-{
-    int min = INT_MAX, index;
-    for (int i = 0; i < noOfNodes; i++){
-        if (visited[i] == false && cost[i] < min){
-            min = cost[i], index = i;
-        }
-    }
-    cout<<"\n\nIndex of Node at Min weight edge = "<<index<<"\n";
-    return index;
-}
 
 void printMST(int parent[], int graph[noOfNodes][noOfNodes])
 {
@@ -84,33 +70,42 @@ void printMST(int parent[], int graph[noOfNodes][noOfNodes])
 
 void primMST(int graph[noOfNodes][noOfNodes])
 {
-    int parent[noOfNodes], cost[noOfNodes], min=INT_MAX, min_index, u=0;
+    int parent[noOfNodes], cost[noOfNodes];             /*****Step-1*******/
     bool visited[noOfNodes];
-
     for (int i = 0; i < noOfNodes; i++){
             cost[i] = INT_MAX, visited[i] = false, parent[i] = 0;
     }
 
-    cost[0] = 0; parent[0] = -1;
+    int min=INT_MAX, min_index, u=0;
+
+    cost[0] = 0; parent[0] = -1;                        /******Step-2*******/
 
 
-    for (int i = 0; i < noOfNodes - 1; i++)
-    {
+    for (int i = 0; i < noOfNodes - 1; i++){
 
-        visited[u] = true;      //Mark node[0] as visited
+        visited[u] = true;                              /******Step-2*******/
 
-        //Find All connected, non-visited nodes, Update reaching cost.
+
+        /**********Step-3a***************/
         for (int j = 0; j < noOfNodes; j++){
-                if (graph[u][j] && visited[j] == false){
-                        if(graph[u][j] < cost[j]){
-                                cost[j] = graph[u][j];
-                                parent[j] = u;
-                                cout<<"parent["<<j<<"]="<<parent[j]<<", cost["<<j<<"]="<<cost[j]<<"\n";
-                    }
+            if (graph[u][j] && visited[j] == false){
+                if(graph[u][j] < cost[j]){
+                    cost[j] = graph[u][j];
+                    parent[j] = u;
+                    cout<<"parent["<<j<<"]="<<parent[j]<<", cost["<<j<<"]="<<cost[j]<<"\n";
                 }
             }
-            //Go to that node whose cost is Minimum from cost[]
-            u = findMinCostEdgeIndex(cost, visited);
+        }
+
+
+        /*********Step-3b***************/
+        for (int k = 0; k < noOfNodes; k++){
+            if (visited[k] == false && cost[k] < min){
+                min = cost[k], min_index = k;
+            }
+        }
+
+        u = min_index;
     }
 
     cout<<"\n\n";
