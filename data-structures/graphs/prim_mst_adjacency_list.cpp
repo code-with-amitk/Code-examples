@@ -22,11 +22,13 @@ Adjacency Matrix:
 What Prim's Algo says:
 a. Choose arbitrary vertex to start.
 b. Update cost of all edges connected to node.
-c. Choose and go to one minimum weight edge that is non-visited.
+c. Go to one minimum weight, unvisited node.
 c. Repeat step-b until all edges are in mst.
 
 *********Logic(is very Simple)*********
-Step-1. Take 3 arrays.
+Step-1. Store the graph in adjacency Matrix int g[4][4]
+
+Step-2. Take 3 arrays.
         int cost[4] |inf|inf|inf|inf|   //Array represents COST to reach nodes
                      0   1   2   3      <-Nodes
 
@@ -36,7 +38,7 @@ Step-1. Take 3 arrays.
         int parent[4] |0|0|0|0|         //Array represents PARENT of visited node.         
                        0 1 2 3          <-Nodes
 
-Step-2. Start from node [0].
+Step-3. Start from node [0].
         int cost[4] |0|inf|inf|inf|   //Cost of reaching node[0] is 0
                      0   1   2   3      
 
@@ -46,16 +48,16 @@ Step-2. Start from node [0].
         int parent[4] |0|0|0|0|       //Parent of node[0] as 0 itself
                        0 1 2 3        
                 
-Step-3. Carry these operations on every nodes.
-        3a. Find distance of adjacent,unvisited nodes/vertices. Fill in cost[]
-        3b. Find least cost edge/arc and move to that vertex.
-        3c. Carry operation 3a & 3b for all nodes.
+Step-4. Carry these operations on every nodes.
+        4a. Find distance of adjacent,unvisited nodes/vertices. Fill in cost[]
+        4b. Find least cost edge/arc and move to that vertex.
+        4c. Carry operation 3a & 3b for all nodes.
 
 ******************************************
 
 *********Time Complexity**************
-Adjacency Matrix: O(n2)
-Binary Heap: O(E + logV)
+Array Implementation(Present): O(n2)
+min Heap/Priority Queues: O(ElogV)
 *************************************
 */
 
