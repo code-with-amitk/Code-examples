@@ -1,27 +1,28 @@
 /*
 Graph to be created:
-	0---1
-	|  /|\
-	| / | 2
-	|/  |/
-	4---3
+	[0] -10- [1] -20- [2]
+	   \	  |	 /
+	   40\ 	  |30  /50
+		 [3] 
+		 
+		 
+1. Adjacency-Matrix representation:
+	   0   1   2   3
+	0  0   10  0   40
+	1  10  0   20  30
+	2  0   20  0   50
+	3  40  30  50  0
+a. Storage Using Arrays
+b. Storage Using vectors
 
-Method-1: Adjacency Matrix(Way of thinking):
-	 0   1   2   3   4
-	------------------
-      0	|0   1   0   0   1	<-row1
-      1	|1   0   1   1   1	<-row2
-      2	|0   1   0   1   0	<-row3
-      3	|0   1   1   0   1	<-row4
-      4	|1   1   0   1   0	<-row5
-      
-Method-2: Adjacency-list	//USED HERE
-	0 -> 1,4
-	1 -> 0,2,3,4
+
+2. Adjacency list representation:
+	0 -> 1,3
+	1 -> 0,2,3
 	2 -> 1,3
-	3 -> 1,2,4
-	4 -> 0,1,3
-	
+	3 -> 0,1,2
+a. Using Doubly LL
+b. Using Singly LL
 
 ***********************Logic**************************
  a. Storing Graph in vector
