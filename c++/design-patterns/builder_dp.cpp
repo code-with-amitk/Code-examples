@@ -12,6 +12,17 @@ d. Director: Class using concrete classes and returning a fancy object.
 Simply director takes concrete class pointers and build object.
 Director here creates object having horsepower of JetPlane and weight of carrierPlane.
 
+UML Digram:
+  
+                        Aggregation
+    Builder class   -----------------------/\ Director
+        /\                                 \/
+         |
+         |Inheritance
+  -----------------
+  |               |
+ jetPlane     carrierPlane 
+    
 */
 
 #include<iostream>
