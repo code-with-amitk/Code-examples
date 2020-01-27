@@ -1,0 +1,60 @@
+/*
+        permutation_of_any_palindrome.cpp
+
+Question: Find Palindrome Permutation: Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words. COVER ALL EDGE CASES.
+
+Example: 
+        Input v={'z','g','h','k','f','l','k'}.  This input contains a palindrome 'kzk'
+        Output = Contains palindrome
+
+Real world Analogy:     Consider people standing in row. And we need to find [A twin pair] & [An element who does not have twin]
+
+Logic:  
+- sort
+- Find single element. flag1=1
+- Find two same elements. flag2=1
+ if (flag1 && flag2)
+        Found palindrome
+
+Time Complexity:
+  O(nlogn)  //Good
+  O(n2)     //Worst
+*/
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_set>
+using namespace std;
+
+
+void find(vector<char> v){
+        bool twinFound = 0;
+        bool singleFound = 0;
+        int size = v.size();
+
+        if(!size || size==1)
+                return;
+
+        sort(v.begin(),v.end());                        //O(nlogn). Worst=O(n2)
+
+        for(auto i=v.begin(); i!=v.end(); i++){         //O(n)
+                if(*i == *(i+1))
+                        twinFound = 1;
+                else
+                        singleFound = 1;
+
+                if(singleFound && twinFound){
+                        cout<<"Palindrome Found\n";
+                        break;
+                }
+                //cout<<*i<<" ";
+        }
+        if(!singleFound || !twinFound)
+                cout<<"Palindrome not found\n";
+        //cout<<"\n";
+}
+
+int main(){
+        vector<char> v = {'z','g','h','k','f','l','k'};         //O(n)
+        find(v);
+}
