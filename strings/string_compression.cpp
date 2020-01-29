@@ -16,6 +16,9 @@ Real world analogy: Twins are standing in row, replace with 1twin-count
         calculate diff.
         Push entry_at_index+count to another string
 ******************************************
+
+Complexity:
+O(mlogn)
 */
 
 #include<iostream>
@@ -34,13 +37,13 @@ void comp(string s){
         string::iterator low,up;
         string compressed;
 
-        while(i<size){
+        while(i<size){                                  //O(m). m is number of unique elements.
 //                cout<<"element:"<<s[i]<<"\n";
 
-                low = lower_bound(s.begin(),s.end(),s[i]);
+                low = lower_bound(s.begin(),s.end(),s[i]);      //O(logn)
 //                cout<<"low:"<<low-s.begin()<<"\n";
 
-                up = upper_bound(s.begin(),s.end(),s[i]);
+                up = upper_bound(s.begin(),s.end(),s[i]);       //O(logn)
 //                cout<<"up:"<<up-s.begin()<<"\n";
 
                 diff = up-low;
