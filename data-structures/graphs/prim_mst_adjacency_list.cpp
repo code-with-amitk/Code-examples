@@ -19,40 +19,30 @@ Adjacency Matrix:
                 2  0   20  0   40
                 3  50  30  40  0
                         
-What Prim's Algo says:
-a. Choose arbitrary vertex to start.
-b. Update cost of all edges connected to node.
-c. Go to one minimum weight, unvisited node.
-c. Repeat step-b until all edges are in mst.
-
 *********Logic(is very Simple)*********
 Step-1. Store the graph in adjacency Matrix int g[4][4]
 
-Step-2. Take 3 arrays.
+Step-2. Take 3 Data structures.
+        bool visited |0|0|0|0|          //Array represents VISITED nodes in MST.
+                      0 1 2 3           <-Nodes
+                      
         int cost[4] |inf|inf|inf|inf|   //Array represents COST to reach nodes
                      0   1   2   3      <-Nodes
 
-        bool visited |0|0|0|0|          //Array represents VISITED nodes in MST.
-                      0 1 2 3           <-Nodes
-        
         int parent[4] |0|0|0|0|         //Array represents PARENT of visited node.         
                        0 1 2 3          <-Nodes
 
-Step-3. Start from node [0].
+Step-3. Start from node=0
         int cost[4] |0|inf|inf|inf|   //Cost of reaching node[0] is 0
-                     0   1   2   3      
-
         bool visited |1|0|0|0|        //Mark node[0] as visited
-                      0 1 2 3         
-        
         int parent[4] |0|0|0|0|       //Parent of node[0] as 0 itself
-                       0 1 2 3        
                 
-Step-4. Carry these operations on every nodes.
-        4a. Find distance of adjacent,unvisited nodes/vertices. Fill in cost[]
-        4b. Find least cost edge/arc and move to that vertex.
+Step-4. Carry these operations on every node.
+        4a. Find distance of unvisited neighbour. 
+                if(cost[] > cost_from_graph)
+                        update cost[]
+        4b. Move to neighbour connected on least cost edge.
         4c. Carry operation 3a & 3b for all nodes.
-
 ******************************************
 
 *********Time Complexity**************
@@ -75,43 +65,40 @@ void printMST(int parent[], int graph[noOfNodes][noOfNodes])
         cout<<parent[i]<<" - "<<i<<" \t"<<graph[i][parent[i]]<<" \n";
 }
 
-void primMST(int graph[noOfNodes][noOfNodes])
+void primMST(int graph[4][4])
 {
-    int parent[noOfNodes], cost[noOfNodes];             /*****Step-1*******/
-    bool visited[noOfNodes];
+    int parent[4], cost[4];                             //Taking mandatory 3 DS
+    bool visited[4];
     for (int i = 0; i < noOfNodes; i++){
             cost[i] = INT_MAX, visited[i] = false, parent[i] = 0;
     }
 
     int min=INT_MAX, min_index, u=0;
 
-    cost[0] = 0; parent[0] = -1;                        /******Step-2*******/
+    cost[0] = 0; parent[0] = 0;                        //Starting from Node=0
 
+    for (int i = 0; i < 4 - 1; i++){
 
-    for (int i = 0; i < noOfNodes - 1; i++){
+        visited[u] = true;                              //Marking node as visited
 
-        visited[u] = true;                              /******Step-2*******/
-
-
-        /**********Step-3a***************/
-        for (int j = 0; j < noOfNodes; j++){
-            if (graph[u][j] && visited[j] == false){
-                if(graph[u][j] < cost[j]){
+        for (int j = 0; j < noOfNodes; j++){            
+                
+            if (graph[u][j] && visited[j] == false){    //3a.Finding unvisited Neighbours
+                if(graph[u][j] < cost[j]){              //if(cost[] > graph_cost) update_cost
                     cost[j] = graph[u][j];
                     parent[j] = u;
                     cout<<"parent["<<j<<"]="<<parent[j]<<", cost["<<j<<"]="<<cost[j]<<"\n";
                 }
             }
+                
         }
 
-
-        /*********Step-3b***************/
-        for (int k = 0; k < noOfNodes; k++){
+        for (int k = 0; k < 4; k++){                    //3b. Move to least cost Neighbour
             if (visited[k] == false && cost[k] < min){
                 min = cost[k], min_index = k;
             }
         }
-
+            
         u = min_index;
     }
 
@@ -121,11 +108,11 @@ void primMST(int graph[noOfNodes][noOfNodes])
 
 int main()
 {
-        int graph[noOfNodes][noOfNodes] = { {0,50,0,80},
-                            {50,0,40,60},
-                            {0,40,0,70},
-                            {80,60,70,0}
-                          };
+    int g[4][4] = { {0,10,0,50},
+                    {10,0,20,30},
+                    {0,20,0,40},
+                    {50,30,40,0}
+                  };
 
     primMST(graph);
 
