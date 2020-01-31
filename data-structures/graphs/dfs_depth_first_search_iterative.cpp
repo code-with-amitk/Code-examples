@@ -1,49 +1,43 @@
 /*
-Depth First Traversal: Reach to deepest node, instead of reaching all neighbors.
+        dfs_depth_first_search_iterative.cpp
         
-        1 ---->  0  ----> 3
-        /\      |/\       |
-        |       | |       |
-        |       | |       \/
-        2 <-----   ------ 4
+Depth First Traversal: Reach to deepest node, instead of reaching all neighbors.
 
-dfs will print: 0 2 1 3 4
+        0 -- 1 -- 2
+         \   |   /
+           \ | /
+             3
+
+Starting node=2, dfs=2 1 0 3
 
 We can store graph using 2 methods
 Method-1: Adjacency Matrix:
-         0   1   2   3   4
-        ------------------
-      0 |0   0   1   0   1
-      1 |1   0   0   0   0
-      2 |0   1   0   0   0
-      3 |0   0   0   0   1
-      4 |1   0   0   0   0
+         0   1   2   3
+        --------------
+      0 |0   1   0   1
+      1 |1   0   1   1
+      2 |0   1   0   1
+      3 |1   1   1   0
 
 Method-2: Adjacency-list        //USED HERE
-        0 -> 2,4
-        1 -> 0,
-        2 -> 1
-        3 -> 4
-        4 -> 1
+        0 -> 1,3
+        1 -> 0,2,3
+        2 -> 1,3
+        3 -> 0,1,2
 
 ***********************Logic**********************
-1. Creating Adjacency List: Take vector array to store Adjacency list.
-vector<int> v[5];
+1. Store the graph nodes in Adjacency List: Take vector array to store Adjacency list.
+        vector<int> v[4];
 
 2. For Depth 1st Search
- - Take a stack. push startingnode on stack.
- - Take a boolen array for marking visitedNodes.
+ - Take a boolen array for marking visitedNodes. visited[4]
+ - Take a stack. push startingnode on it.
  - Perform these operations until stack is empty
-        - Pop top of stack. store value in temp
-        - if this node(temp) is not visited, 
-                Mark node as visited in boolen array.
-                Print to node's value
-        - Iterate through Adjacency List(AL) of popped node(temp).
-                if value retrieved from AL not visited:
-                        Push retrived value from AL to stack.
-
-Note:
- Stack is filled using AL of popped node.
+        - Pop top of stack. store value in u.
+        - Print and mark this node as visited
+        - Find unvisited neighbours of this node. //Iterate through vector
+                push_on_stack
+                break;
 **************************************************
 
 */
@@ -53,25 +47,25 @@ Note:
 #include<vector>
 using namespace std;
 
-void dfs(vector<int> v[], bool visitedNodes[], int startingNode){
-
+void dfs(vector<int> g[], int startingNode){
+        bool visited[4] = {0};
         stack<int> s;
-        int temp;
+        int u;
 
         s.push(startingNode);
 
-        while (!s.empty()){
+        while (s.empty() != 1){
 
-                temp = s.top();         s.pop();
+                u = s.top();         s.pop();
 
-                if (visitedNodes[temp] == false){
-                        cout << temp << " ";
-                        visitedNodes[temp] = true;
-                }
+                visited[u] = true;
+                cout<<u<<" ";
 
-                for (auto i = v[temp].begin(); i != v[temp].end(); ++i){
-                        if (visitedNodes[*i] == false)
+                for (auto i = g[u].begin(); i != g[u].end(); ++i){
+                        if (visited[*i] == false){
                                 s.push(*i);
+                                break;
+                        }
                 }
         }
 
@@ -79,26 +73,25 @@ void dfs(vector<int> v[], bool visitedNodes[], int startingNode){
 
 int main()
 {
-        vector<int> v[5];
-        v[0].push_back(3);      v[0].push_back(2);              //v[0]={3,2}
-        v[1].push_back(0);                                      //v[1]={0}
-        v[2].push_back(1);                                      //v[2]={1}
-        v[3].push_back(4);                                      //v[3]={4}
-        v[4].push_back(0);                                      //v[4]={0}
+        vector<int> v[4];
+        v[0].push_back(1);      v[0].push_back(3);              //v[0]={1,3}
+        v[1].push_back(0); v[1].push_back(2); v[1].push_back(3);//v[1]={0,2,3}
+        v[2].push_back(1); v[2].push_back(3);                   //v[2]={1,3}
+        v[3].push_back(0); v[3].push_back(1); v[3].push_back(2);//v[3]={0,1,2}
 
-        bool visitedNodes[5] = {0};
-
-        int startingNode = 0;                           //Let's start traversal from node=0
-
-        cout << "Following is Depth First Traversal\n";
-        dfs(v, visitedNodes, startingNode);
+        int startingNode = 2;                     //Let's start traversal from node=2
+        cout<<"Starting node="<<startingNode<<"\n";
+        cout << "Depth First Traversal:\n";
+        dfs(v, startingNode);
 
         return 0;
 }
 
+
 /*
 Output:
 # ./a.out 
-Following is Depth First Traversal
-0 2 1 3 4
+Starting node=2
+Depth first Traversal
+2 1 0 3
 */
