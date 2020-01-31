@@ -81,14 +81,16 @@ void primMST(int graph[4][4])
 
         visited[u] = true;                              //Marking node as visited
 
-        for (int j = 0; j < noOfNodes; j++){            
+        for (int j = 0; j < 4; j++){            
                 
             if (graph[u][j] && visited[j] == false){    //3a.Finding unvisited Neighbours
+                    
                 if(graph[u][j] < cost[j]){              //if(cost[] > graph_cost) update_cost
                     cost[j] = graph[u][j];
                     parent[j] = u;
                     cout<<"parent["<<j<<"]="<<parent[j]<<", cost["<<j<<"]="<<cost[j]<<"\n";
                 }
+                    
             }
                 
         }
@@ -122,7 +124,7 @@ int main()
 /*
  * Output:
 Edge    Weight
-0 - 1   50
-1 - 2   40
-1 - 3   60
+0 - 1   10
+1 - 2   20
+1 - 3   30
  */
