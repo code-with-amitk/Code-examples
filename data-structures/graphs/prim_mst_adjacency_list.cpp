@@ -3,8 +3,8 @@
 
 Amit: It took 1 week to understand this!!
 
-Question: Find MST from         [0] -50- [1] -40- [2]   
-                                   \80   |60      /70
+Question: Find MST from         [0] -10- [1] -20- [2]   
+                                   \50   |30    /40
                                          [3]
 0,1,2,3 are graph nodes connected using weighted edges.
 
@@ -14,10 +14,10 @@ Answer:          [0]--[1]---[2]
 
 Adjacency Matrix:
                    0   1   2   3
-                0  0   50  0   80
-                1  50  0   40  60
-                2  0   40  0   70
-                3  80  60  70  0
+                0  0   10  0   50
+                1  10  0   20  30
+                2  0   20  0   40
+                3  50  30  40  0
                         
 What Prim's Algo says:
 a. Choose arbitrary vertex to start.
