@@ -1,71 +1,53 @@
-/*            prim_mst_minHeap.cpp  //Optimized Prim's Algo
+/*            prim_mst_minHeap.cpp      //Optimized Prim's Algo
 
-Question: Find MST from         
+Question: Find MST from graph
         [0] -10- [1] -20- [2]
            \      |       /
             \40   |30   /50
-             \    |   /
                  [3]
                  
 Answer:          [0]--[1]---[2]
                        |
                       [3]
-                      
-"prim_mst_adjacency_list.cpp" vs "prim_mst_minHeap.cpp"?
-                 prim_mst_adjacency_list.cpp       |  prim_mst_minHeap.cpp
-                                                   |
-Storing Graph     Adjacency Matrix                 |    Doubly LL //Takes less space wrt AM
-                                                   |
-Calcuation DS     int visited[4] = {0}             |    vector<bool> visited(4, false) 
-                  int cost[4] = {INF}              |    vector<int> distance(4, INT_MAX); 
-                  int parent[4] = {-1}             |    vector<int> parent(4, -1);
-                                                   |
-Logic             Start at node=0                  |
-                  visited[0] = 1                   |    visited[0] = 1                 
-                  cost[0] = 0                      |    cost[0] = 0
-                  parent[0] = 0                    |    parent[0] = 0
-                                                   |                      key, value
-                                                   |    Insert in minHeap<cost, node>   //Since minHeap is sorted using Key
-                                                   |              minHeap.push(0,0)   
 
-What Prim's Algo says:
-a. Choose arbitrary vertex to start.
-b. Update cost of all edges connected to node.
-c. Go to one minimum weight, unvisited node.
-c. Repeat step-b until all edges are in mst.
-
+We are using: 'minimum Heap' <cost,node>, minHeap will be sorted using key=cost and min cost node will be at root.
+ - Insert all unvisited neighnours into minHeap.
+ - Extract top until minHeap is not empty.
 
 *********Logic(is very Simple)*********
-Step-1: Store the graph in Doubly LL list<pair<int,int>> *ptr[4];
+Step-1: Store the graph in Adjacency list.    <node,cost>
+list<pair<int,int>> *ptr[4];             //Doubly LL 
 
-Step-2. Take 3 vectors
-        vector cost[4] |inf|inf|inf|inf|   //Array represents COST to reach nodes
+Step-2. Take 4 Data structures and intialize.
+Let's start from Node 0. visited[0]=1, cost[0]=0, parent[0]=0
+        vector cost[4] | 0 |inf|inf|inf|   //Array represents COST to reach nodes
                          0   1   2   3      <-Nodes
                          
-        vector visited |0|0|0|0|          //Array represents VISITED nodes in MST.
+        vector visited |1|0|0|0|          //Array represents VISITED nodes in MST.
                         0 1 2 3           <-Nodes
         
-        vector parent[4] |-1|-1|-1|-1|         //Array represents PARENT of visited node.         
-                           0  1  2  3          <-Nodes
+        vector parent[4] | 0 |-1|-1|-1|         //Array represents PARENT of visited node.         
+                           0   1  2  3          <-Nodes
+                           
+        priority_queue <mypair, vector <mypair>, greater<mypair>> minHeap;
+        minHeap.push(make_pair(0, 0));          //Start with (cost,node = 0,0) on min Heap
                           
-Step-3. Start from node [0].
-            cost[4] |0|inf|inf|inf|   //Cost of reaching node[0] is 0
-                     0  1   2   3      
-                     
-             visited |1|0|0|0|        //Mark node[0] as visited
-                      0 1 2 3         
-        
-            parent[4] |0|0|0|0|       //Parent of node[0] as 0 itself
-                       0 1 2 3        
-  
-                      key,value
-            minHeap.push(0,0)       //minHeap<cost, node>.  Insert Node0 and cost to reach node.
-                                    //minHeap is sorted using Key, so cost is taken as 1st and node as 2nd
-                
-Step-4. Carry these operations until minHeap is not Empty. 
-        3a. Find Least cost Edge. PopTop of MinHeap -> O(1)
-        3b. From DLL storing Graph, find adjacent,unvisited vertices. Update cost[], push.minHeap<cost, Adjacentnode>
-        3c. Carry operation 3a & 3b for all nodes.
+Step-3: Carry operations for all nodes
+        3a. Push unvisited neighbours into minHeap.
+        3b. if cost[] > graph's cost. Update cost.
+        3c. Perform step-3a,3b until minHeap is not empty.
+
+Code-wise
+Step-3: Perform until minHeap is not empty.                     while(minHeap.empty() != 1)
+        3a. Reach least cost neighbour ie top()                    int u = top().second; pop();
+        3b. Mark this as visited                                   visited[u] = true
+        3b. Find unvisited neighbours from list<>                  for(auto i=ptr[0].begin;..){
+                                                                     if(visited[*i]==false && cost[] > (*i).second)
+            Update cost                                                  cost[] = (*i).second;
+            push on minHeap                                              minHeap.push(pair(cost,node))
+            Update parent                                                parent[(*i).first] = u
+                                                                   }
+        3c. Carry operation 3a & 3b for all nodes.             }
 -> minHeap is used to store (cost, adjacentVertex).
 -> By poping top of minHeap O(1), we reach on least cost adjacent vertex, Which need O(n) time in array case.
 ******************************************
