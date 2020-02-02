@@ -1,13 +1,8 @@
 /*
-        prim_mst_adjacency_list.cpp
-
-Amit: It took 1 week to understand this!!
-
+        prim_mst_adjacency_list.cpp     Amit: It took 1 week to understand this!!
 Question: Find MST from         [0] -10- [1] -20- [2]   
                                    \50   |30    /40
                                          [3]
-0,1,2,3 are graph nodes connected using weighted edges.
-
 Answer:          [0]--[1]---[2]
                        |
                       [3]
@@ -22,27 +17,26 @@ Adjacency Matrix:
 *********Logic(is very Simple)*********
 Step-1. Store the graph in adjacency Matrix int g[4][4]
 
-Step-2. Take 3 Data structures.
-        bool visited |0|0|0|0|          //Array represents VISITED nodes in MST.
-                      0 1 2 3           <-Nodes
+Step-2. Take 3 Data structures and intialize. 
+Let's start from Node 0. visited[0]=1, cost[0]=0, parent[0]=0
+        bool visited |1|0|0|0|          //Array represents VISITED nodes in MST.
+                      0 1 2 3            <-Nodes
                       
-        int cost[4] |inf|inf|inf|inf|   //Array represents COST to reach nodes
-                     0   1   2   3      <-Nodes
+        int cost[4] | 0 |inf|inf|inf|   //Array represents COST to reach nodes
+                      0   1   2   3      <-Nodes
 
-        int parent[4] |0|0|0|0|         //Array represents PARENT of visited node.         
-                       0 1 2 3          <-Nodes
+        int parent[4] |-1|-1|-1|-1|     //Array represents PARENT of visited node.         
+                        0  1  2  3      <-Nodes
 
-Step-3. Start from node=0
-        int cost[4] |0|inf|inf|inf|   //Cost of reaching node[0] is 0
-        bool visited |1|0|0|0|        //Mark node[0] as visited
-        int parent[4] |0|0|0|0|       //Parent of node[0] as 0 itself
-                
-Step-4. Carry these operations on every node.
-        4a. Find distance of unvisited neighbour. 
-                if(cost[] > cost_from_graph)
-                        update cost[]
-        4b. Move to neighbour connected on least cost edge.
-        4c. Carry operation 3a & 3b for all nodes.
+Step-3. Carry these operations on every node.           for (int i = 0; i < 4 - 1; i++){        //All 4  nodes
+                                                             for (int j = 0; j < 4; j++)     //Every node
+        3a. if node have unvisited Neighour                        if (graph[][] && visited[] == false){
+                if(cost_in_cost[] > graph_cost)                            if(cost[] > graph[][]){
+                        update cost[]                                           cost[] = graph[][]
+                        
+        3b. Move to unvisited, least cost neighbour          for(int k=0;k<4;k++)
+                                                                   if(!visited[k] && cost[k]<min)
+        3c. Carry operation 3a & 3b for all nodes.      }
 ******************************************
 
 *********Time Complexity**************
@@ -85,7 +79,7 @@ void primMST(int graph[4][4])
                 
             if (graph[u][j] && visited[j] == false){    //3a.Finding unvisited Neighbours
                     
-                if(graph[u][j] < cost[j]){              //if(cost[] > graph_cost) update_cost
+                if(cost[j] > graph[u][j]){              //if(cost[] > graph_cost) update_cost
                     cost[j] = graph[u][j];
                     parent[j] = u;
                     cout<<"parent["<<j<<"]="<<parent[j]<<", cost["<<j<<"]="<<cost[j]<<"\n";
