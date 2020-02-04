@@ -1,83 +1,50 @@
-/*	5
- *     / \
- *    6   9
- *         \
- *         19
- *  	    
- Logic:
- On every node(Node *ptr):
-	- if(ptr == NULL) return 0
-	- if(ptr->left)	Increment leftHght variable by 1.
-	- if(ptr->right) Increment rightHght variable by 1.
-	return the bigger of leftHght or rightHght
- */
-#include<stdio.h>
-#include<stdlib.h>
+/*
+	height-of-tree.c	
+
+Height: Number of edges from Root to deepest leaf node.
+                1
+               / \
+              2   3
+             / 
+            4  
+           /
+          6
+         /
+        7 
+       / \
+      9   8
+      
+Ouput: 6
+*/
+#include<iostream>
+using namespace std;
+
 typedef struct node{
-	int val;
-	struct node *left;
-	struct node *right;
-}NODE;
-int lh, rh;
-NODE *create (){
-	NODE *ptr = (NODE *) malloc (sizeof(NODE));
-	ptr->val = 5;
-	ptr->left = (NODE *) malloc (sizeof(NODE));
-	ptr->left->val = 6;
-	ptr->left->left = NULL;
-	ptr->left->right = NULL;
+        int v;
+        struct node *left, *right;
+}Node;
 
-	ptr->right = (NODE *) malloc (sizeof(NODE));
-	ptr->right->val = 9;
-	ptr->right->left = NULL;
-	ptr->right->right = (NODE *) malloc (sizeof(NODE));
-	ptr->right->right->val = 19;
-	ptr->right->right->left = NULL;
-	ptr->right->right->right = NULL;
-	return ptr;
-}
-int heightOfTree(NODE *ptr){
-	if (ptr->left){
-		lh++;
-		heightOfTree(ptr->left);
-	}
-	if (ptr->right){
-		rh++;
-		heightOfTree(ptr->right);
-	}
-	return ((lh>rh)?lh:rh);
+Node *newnode(int a){
+        Node *p = new Node;
+        p->v = a;
+        p->left=p->right=NULL;
+        return p;
 }
 
-/* This function does not takes global variables
-*/
-int height(Node *ptr){
-        int lefthgt = 0, righthgt = 0, var1 = 0, var2 = 0;
-
-        if(ptr == NULL) return 0;
-
-        if(ptr->left){
-                lefthgt++;
-                var1 = lefthgt + hgt(ptr->left);
-        }
-
-        if(ptr->right){
-                righthgt++;
-                var2 = righthgt + hgt(ptr->right);
-        }
-        return((var1 > var2) ? (var1) : (var2));
-	
-/*	OR Simply
-	return (1 + max(height(ptr->left), height(ptr-right)));
-*/
+int hgt(Node *r){
+        if(!r)
+                return 0;
+        return (max(hgt(r->left), hgt(r->right))+1);
 }
 
-void main() {
-	NODE *root = create();
-	printf("Tree Created\n");
+int main(){
+        Node *r = newnode(1);
+        r->left = newnode(2);      r->right = newnode(3);
+        r->left->left = newnode(4);
+        r->left->left->left = newnode(6);
+        r->left->left->left->left = newnode(7);
+        r->left->left->left->left->left = newnode(9);
+        r->left->left->left->left->right = newnode(8);
 
-	printf("Height of Tree=%d\n",heightOfTree(root));
+        cout<<hgt(r)<<"\n";
 }
-/*Output:
- *	Tree Created
- *	Height of Tree = 2
- */
