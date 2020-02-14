@@ -14,7 +14,7 @@ Pairs=[1,77] [5,73]
      else r--
 ********************************     
 
-*******Logic-2(Hash Table)******      O(n)
+*******Logic-2(Hash Table)******      O(n)      //In fact all pair problems can be solved using HT
 This is very simple. 
  a. Iterate through the array.
  b. Find difference of (temp = to_find_sum - arr[i])
