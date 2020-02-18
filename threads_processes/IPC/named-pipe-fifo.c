@@ -12,7 +12,7 @@ FIFO vs normal-file: No data is kept on FIFO, all is exchanged via kernel buffer
 #include <sys/types.h>
 #include <unistd.h>
 
-#ifdef WRITER
+#ifdef READER
 int main(){
     int fd1;
     char str1[80], str2[80];
@@ -30,10 +30,10 @@ int main(){
     }
     return 0;
 }
-//#gcc writer.c -o WRITER
+//#gcc writer.c -o READER
 #endif
 
-#ifdef READER
+#ifdef WRITER
 int main(){
     int fd;
     char arr1[80], arr2[80];
@@ -51,7 +51,7 @@ int main(){
     }
     return 0;
 }
-//#gcc reader.c -o READER
+//#gcc reader.c -o WRITER
 #endif
 
 /*
