@@ -1,7 +1,8 @@
 /*      named-pipe-fifo.c
 
 NAMED-PIPE(mkfifo)?
-When processes exchange data via the FIFO, kernel passes all data internally without writing it to the file. Thus file name merely serves as a reference point so that processes can access the pipe using the name.
+When processes exchange data via the FIFO, kernel passes all data internally without writing it to the file. 
+Thus file name merely serves as a reference point so that processes can access the pipe using the name.
 
 FIFO vs normal-file: No data is kept on FIFO, all is exchanged via kernel buffers.
 */
