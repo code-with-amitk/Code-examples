@@ -22,7 +22,10 @@ v[3] | 0,50 | 1,30 | 2,40 |
 
 2b. Using Singly LL
 
-2c. Using Doubly LL
+2c. Using Array of Doubly LL
+list<mypair> dll[4];
+See Memory layout:
+https://stackoverflow.com/questions/46320526/array-of-linked-lists-in-c-initializing-and-inserting
 */
 
 
@@ -55,7 +58,7 @@ int main(){
 #endif	
 
 #ifdef doubly_ll
-	list<mypair> dll[4];	//Doubly LL
+	list<mypair> dll[4];	//Array of Doubly LL
 	dll[0].push_back(mypair(0,10));		dll[0].push_back(mypair(3,50));
 #endif	
 }
