@@ -22,13 +22,6 @@ bool cmp_fun(int a, int b)
 #include<algorithm>
 using namespace std;
 
-//comparison function should return true or false
-bool fun(int a, int b)
-{
-    if(a != b)  return true;
-    else        return false;
-}
-
 int main(){
         forward_list<int> a = {1,2,3,4,7};
         forward_list<int> b = {4,5};
