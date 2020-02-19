@@ -18,12 +18,11 @@ pthread_mutex_t lock;
 
 void *fun(){
 	pthread_mutex_lock(&lock);       //Thread-2 sleeps until Thread-1 unlocks the mutex
-	unsigned long i = 0; 
-    	counter += 1; 
-    	printf("\n Thread-%d has started a job\n", counter); 
-    	for (i = 0; i < (0xFFFFFFFF); i++) 	//Added to make processing large
+
+    	printf("\n Thread-%d has started a job\n", pthread_self()); 
+    	for (unsigned long i = 0; i < (0xFFFFFFFF); i++) 	//Added to make processing large
         ; 
-    	printf("\n Thread-%d has finished\n", counter); 
+    	printf("\n Thread-%d has finished\n", pthread_self()); 
     	pthread_mutex_unlock(&lock); 
   
     	return NULL;	
@@ -38,14 +37,14 @@ int main(){
 /*
 Output:
 - if pthread_mutex_lock(), pthread_mutex_unlock() are removed.
- Thread-1 has started
- Thread-2 has started		//See thread-1 did not finished while thread-2 entered.
- Thread-2 has finished		
- Thread-2 has finished
-
-- After adding pthread_mutex_lock() & pthread_mutex_unlock()
- Thread-1 has started a job
- Thread-1 has finished
- Thread-2 has started a job
- Thread-2 has finished
+ Thread--1997539584 has started a job
+ Thread--2005932288 has started a job			//SEE BOTH THREADS ARE IN CS
+ Thread--2005932288 has finished
+ Thread--1997539584 has finished
+ 
+- With pthread_mutex_lock() and unlock()
+ Thread-1438967552 has started a job
+ Thread-1438967552 has finished
+ Thread-1430574848 has started a job
+ Thread-1430574848 has finished
 */
