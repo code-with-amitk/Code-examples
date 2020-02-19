@@ -1,7 +1,8 @@
-/*      topological-sort.cpp
+/*      topological-sort-kahn.cpp
 
 Topological Sort/Order?
-Print/visit of directed graph such that for edge(uv) where u->v, u should be printed before v. TS is only possible for DAG(because DAGs don't have cycles and are directed).
+Print/visit of directed graph such that for edge(uv) where u->v, u should be printed before v. 
+TS is only possible for DAG(because DAGs don't have cycles and are directed).
 
 in-degree: In directed graph number of incoming edges is called in-degree.
 out-degree: number of outgoing edges.
