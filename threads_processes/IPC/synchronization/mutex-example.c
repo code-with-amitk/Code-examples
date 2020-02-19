@@ -1,6 +1,8 @@
 /*	mutex-example.c
 
-Thread synchronization is defined as a mechanism which ensures that two or more concurrent processes or threads do not simultaneously execute some particular program segment known as a critical section.
+Thread synchronization is defined as a mechanism which ensures that two or more 
+concurrent processes or threads do not simultaneously execute some particular 
+program segment known as a critical section.
 
 With mutex: Thread-1 did not finished while Thread-2 enters Critical section
 
