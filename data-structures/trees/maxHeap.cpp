@@ -1,10 +1,10 @@
-/*
-What is Binary heap? Balanced complete Binary tree. Duplicates are allowed in heap. 
-Max-Heap?
-Root is always greatest. Condition: parent >= child    //This condition is for all nodes except Root-node.
+/*    maxHeap.cpp
+Binary heap? Balanced complete Binary tree. Duplicates are allowed in heap. 
 
-How Heap is stored?
-- Heap is stored using arrays. This provides advantage that space complexity is low since pointer is not stored as in trees.
+Max-Heap? Root is always greatest. parent >= child
+
+How Heap is stored? Heap is stored using arrays. 
+This provides advantage that space complexity is low since pointer is not stored as in trees.
 
 Question Build a Max-Heap from array {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
 Answer 
@@ -16,11 +16,11 @@ Answer
          / \  / \
         4  8 15 1 
 
-Basic Logic to Build Max-Heap:
+***********Logic to Build Max-Heap*************
 a. Create Binary tree using level-order-traversal from Array
 b. Perform heapify operation on all non-leaf nodes starting from 1st non-leaf node to top of tree in reverse order.
         heapify operation: Compare node,it's left & right child. Swap and place largest element at top.
--> Code logic is given below.
+************************************************
 
 Example:        
 Array = {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
