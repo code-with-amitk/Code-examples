@@ -1,6 +1,6 @@
-/*
-        prim_mst_adjacency_list.cpp     Amit: It took 1 week to understand this!!
-Question: Find MST from         [0] -10- [1] -20- [2]   
+/*      prim_mst_adjacency_list.cpp     Amit: It took 1 week to understand this!!
+
+Task: Find MST from             [0] -10- [1] -20- [2]   
                                    \50   |30    /40
                                          [3]
 Answer:          [0]--[1]---[2]
@@ -115,10 +115,9 @@ int main()
     return 0;
 }
 
-/*
- * Output:
+/*Output:
 Edge    Weight
 0 - 1   10
 1 - 2   20
 1 - 3   30
- */
+*/
