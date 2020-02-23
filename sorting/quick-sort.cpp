@@ -1,5 +1,7 @@
 /*      quick-sort.cpp          //Divide and conquer algo
 
+https://www.youtube.com/watch?v=QN9hnmAgmOc [if confused]
+
 **************Logic is very simple***************
 Crux of Algo.
 a. Any random element is selected as Pivot. Eg: pivot=a[0]=6
