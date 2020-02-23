@@ -1,11 +1,12 @@
 /*    dijkstra_array_minHeap.cpp
 
+Task: Find Minimum distance of every node from Node=0.
                 [0]-10-[1]-20-[2]
                   \     |    /
                    \50  |30 /40
                     \   |  /
                        [3]
-Output:
+Answer:
 Node  Code
 0     0
 1     10
@@ -27,7 +28,7 @@ Node  Code
     |       |
 
 3. Repeat this for all nodes in graph
-    3a. Check if present_cost_of_reaching_unvisited_neighbour > cost_in_graph > selfcost
+    3a. Check if present_cost_of_reaching_unvisited_neighbour > cost_in_graph + selfcost
         update cost
     3b. Move to unvisited,leastcost neighbour
     
