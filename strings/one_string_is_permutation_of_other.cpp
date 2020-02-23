@@ -1,9 +1,11 @@
 /*
         one_string_is_permutation_of_other.cpp  
  
-Question: Check Permutation: Given two strings, write a method to decide if one is a permutation of the other.
+Task: Given two strings examine if one is a permutation of the other.
 
-Approach: [Think Matching Real World Bigger Problem it helps] How to find an element in a sorted array (My Ans-binary search), if given someone who has no knowledge of computer science an alphabetized pile of student papers and they'll likely implement something like binary search to locate a student's paper from pile or dictionary.
+Approach: [Think Matching Real World Bigger Problem it helps] How to find an element in a sorted array 
+(My Ans-binary search), if given someone who has no knowledge of computer science an alphabetized pile of 
+student papers and they'll likely implement something like binary search to locate a student's paper from pile or dictionary.
 
 ********Real World Matching Problem*************
         - - - - - - - - - - - - -       Think Row of 1 lac people standing.
