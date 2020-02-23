@@ -13,7 +13,7 @@ Node  Code
 2     30
 3     40
 
-**************Logic(very simple)******************
+**************Logic(very simple) O(ElogV)******************
 1. Store graph in adjacency matrix g[4][4].   Adds extra space
 
 2. Take 3 DS. Start at node=0
