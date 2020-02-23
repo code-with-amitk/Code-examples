@@ -1,12 +1,7 @@
-/*
-	breadth_1st_traversal_iterative.cpp
+/*	breadth_1st_traversal_iterative.cpp		//Amit Read Algo. Whole day is spent on this.
 
-Amit Read Algo and try understand. Whole day is spent on this.
-
-Question: Print nodes of graph in BFS fashion, where starting node is 0
-
-Graph: 4 Nodes, 5 edges
-	0 -- 1 -- 2
+Task: Print nodes of graph in BFS fashion, where starting node is 0
+Graph: 	0 -- 1 -- 2		//4 Nodes, 5 edges
 	 \  |	/
 	    3
         
@@ -25,7 +20,7 @@ Method-2: Adjacency-list	//USED HERE
 	3 -> 0,1,2
 
 ****************Logic********************
-1. Create graph using vector<int>.
+1. Create graph using vector<int>
 
 2. Breadth 1st Traversal(starting from Node=0):
   a. Take a array to store which nodes in graph are visited,This is mandatory step. else we will revolve in circles.
@@ -41,6 +36,9 @@ Method-2: Adjacency-list	//USED HERE
      	if(neighbour ! visited)
 		mark visited 
 		push neighbour on queue
+		
+Complexity:O(V+E)		
+V=No of vertices,  E=No of edges
 *******************************************
 https://www.geeksforgeeks.org/bfs-using-stl-competitive-coding/      
  */
