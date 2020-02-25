@@ -7,22 +7,21 @@
 	   \	  |	 /
 	   50\ 	  |30  /40
 		 [3] 
-1a. Using Arrays		//Adjacency-Matrix
+1a. Using Arrays		//Adjacency-Matrix= O(n2)
 	   0   1   2   3
 	0  0   10  0   50
 	1  10  0   20  30
 	2  0   20  0   40
 	3  50  30  40  0
 
-2a. Using vectors		//Adjacency-List
+2a. Using vectors		//Edge List
 v[0] | 0,10 | 3,50 |
 v[1] | 0,10 | 2,20 | 3,30 |
 v[2] | 1,20 | 3,40 |
 v[3] | 0,50 | 1,30 | 2,40 |
 
-2b. Using Singly LL
-
-2c. Using Array of Doubly LL
+3a. Using Singly LL		//Adjacency List = O(V+E) V-vertices,E-edges
+3b. Using Array of Doubly LL
 list<mypair> dll[4];
 See Memory layout:
 https://stackoverflow.com/questions/46320526/array-of-linked-lists-in-c-initializing-and-inserting
