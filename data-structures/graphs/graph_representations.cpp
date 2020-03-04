@@ -66,7 +66,7 @@ Adjacency List created
 #include<list>
 using namespace std;
 
-class intf{     //Principle: Program Interface & override in derv class
+class intf{     //OOD Principle: Program Interface & override in derv class
 protected:
         int a[4][4];
         vector<int> v[4];
