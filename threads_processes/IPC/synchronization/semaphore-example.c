@@ -1,6 +1,7 @@
 /*      semaphore-example.c
 
-semaphore? This is a simple integer variable, which kernel keeps atomic. if variable==1(entrance allowed in Critical section), if variable==0(Entrace blocked)
+semaphore? This is a simple integer variable, which kernel keeps atomic. 
+if variable==1(entrance allowed in Critical section), if variable==0(Entrace blocked)
 
 sem_init(): Initializes the semaphore to 1.
 sem_wait(): 
