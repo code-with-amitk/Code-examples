@@ -1,19 +1,20 @@
 /*	smart_pointer.cpp
-What? class that manages automatic deletion of dynamic memory. Allocation is done in constructor, deletion inside destructor. Bcoz Destructors are automatically executed when Object goes out of scope.
 
-How?
+What? class that manages automatic deletion of dynamic memory. Allocation is done in constructor, 
+deletion inside destructor. Bcoz Destructors are automatically executed when Object goes out of scope.
+
+*********Logic********
 - class maintains a local pointer, memory is allocated and assigned to pointer.
 - Overloaded functions are defined for *, ->
-
-*********Steps to Write Generic Code/Templates?*********
-a. Write class for a type(Eg: int)
-b. Replace the type with template
-********************************************************
+***********************
 */
 #include<iostream>
 using namespace std;
 
-template <class T>
+//Steps to Write Generic Code/Templates?
+//a. Write class for a type(Eg: int)
+//b. Replace the type with template
+template <class T>		
 class smart_pointer{
 //	int *a;
 	T *a;
