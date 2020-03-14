@@ -34,9 +34,14 @@ public:
 };
 
 int main(){
+	//Automatic template type deduction => Provided in C++17
 	smart_pointer obj(new int());	//obj is my pointer now. I can carry all pointer operations
 	*obj = 10;
 	cout<<*obj;
 
 	smart_pointer obj1(new float());
 }
+
+/*
+# g++ smart_pointers. --std=c++17
+*/
