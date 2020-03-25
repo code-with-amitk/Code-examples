@@ -1,4 +1,6 @@
-/*      create-thread.cpp               //INTRODUCED IN C++11
+/*      create-thread.cpp               
+
+Creating threads using thread class is introduced in c++11.
   
 Example:
 - Find sum of all even numbers between 1 to 9999999999  Task-1
