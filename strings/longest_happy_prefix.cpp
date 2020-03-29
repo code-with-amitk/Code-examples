@@ -8,7 +8,8 @@ Return an empty string if no such prefix exists.
 Example-1:
 Input: s = "level"
 Output: "l"
-Explanation: s contains 4 prefix excluding itself ("l", "le", "lev", "leve"), and suffix ("l", "el", "vel", "evel"). The largest prefix which is also suffix is given by "l".
+Explanation: s contains 4 prefix excluding itself ("l", "le", "lev", "leve"), and suffix ("l", "el", "vel", "evel"). 
+The largest prefix which is also suffix is given by "l".
 
 Example-2:
 Input: s = "ababab"
