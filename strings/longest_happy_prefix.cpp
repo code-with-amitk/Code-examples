@@ -1,9 +1,10 @@
 /*      longest_happy_prefix.cpp
 
-A string whose prefix is also suffix.
-A string is called a happy prefix if is a non-empty prefix which is also a suffix (excluding itself).
-Given a string s. Return the longest happy prefix of s .
-Return an empty string if no such prefix exists.        
+Task: Find longest prefix which is also suffix?
+
+What is prefix? Example string="level". It contains 4 prefix ("l", "le", "lev", "leve")
+What is suffix? suffix ("l", "el", "vel", "evel"). 
+The longest prefix which is also suffix is given by "l".
 
 Example-1:
 Input: s = "level"
@@ -26,20 +27,35 @@ Output: ""
 
 ***************Logic*******************
 https://www.youtube.com/watch?v=GTJr8OvyEVQ [Tushar Roy]
-a. We need to build a array containing info of prefix and suffix.
+
+a. We need to build information array containing info of prefix and suffix.
 Example:
         Pattern         vector InfoArray
         a b a b a b =>  0 0 1 2 3 4
         0 1 2 3 4 5     0 1 2 3 4 5
 
-Meaning of
-1 in InfoArray: Till index 2(aba), There is string(a) which has suffix=prefix(length=1)
-2 in InfoArray: Till index 3(abab), There is string(ab) which has suffix=prefix(length=2)
-3 in InfoArray: Till index 4(ababa), There is string(aba) which has suffix=prefix(length=3)
-4 in InfoArray: Till index 5(ababab), There is string(abab) which has suffix=prefix(length=4)
+Explanation of InfoArray:
+Index   Value   Meaning
+0       0       Its always 0
+1       0       There is no prefix which is also suffix in subarray[0,1]
+2       1       Length of longest prefix which is also suffix in subarray[0..2] is 1. aba (ie a)
+3       2       Length of longest prefix which is also suffix in subarray[0..3] is 2. abab (ie ab)
+4       3       Length of longest prefix which is also suffix in subarray[0..4] is 3. ababa (ie aba)
+5       4       Length of longest prefix which is also suffix in subarray[0..5] is 4. ababab (ie abab)
 
-b. Logic to calculate InfoArray(very simple)?
+Build the InfoArray(very simple)
  - InfoArray[0] = 0 //Always
+ - take 2 pointers, i=0,j=1. loop will j reaches end
+        if(s[i] == s[j])
+                infoArr[j] = i+1;
+                Make i an j to point to next position
+        if(s[i]!=s[j])
+                if(i!=0){
+                  Make i=Value of (i-1) from InfoArray
+                }else{
+                  Make current infoArry[j] =0;
+                }
+        
  - You can see simply and understand it
 
 Complexity:
