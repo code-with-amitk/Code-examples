@@ -87,6 +87,9 @@ public:
                 }
                 return s.substr(0,infoA[s.size() - 1]);
         }
+        
+        //Another Simple Solution
+        //https://leetcode.com/problems/longest-happy-prefix/discuss/555028/O(n)-Easy-to-understand-using-whileint.for()
 };
 
 int main(){
