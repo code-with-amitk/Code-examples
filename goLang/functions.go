@@ -1,3 +1,5 @@
+//https://tour.golang.org/basics/7
+
 package main
 
 import(                  //import: Include Package/Header-File. Grouping imports
