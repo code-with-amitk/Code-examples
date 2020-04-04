@@ -1,4 +1,4 @@
-/*      recursive_mutex.cpp
+/*      recursive_mutex.cpp     //C++11
 
 Rules:
 1. RM can be locked multiple times by same thread, but we know in case of normal mutex locking already locked mutex results in undefined behavior.
