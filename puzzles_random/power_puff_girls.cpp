@@ -1,8 +1,12 @@
 /*      power_puff_girls.cpp
 
-Professor Utonium is restless because of the increasing crime in the world. The number of villains and their activities has increased to a great extent. The current trio of Powerpuff Girls is not well to fight the evils of the whole world. Professor has decided to create the maximum number of Powerpuff Girls with the ingredients he has.
+Professor Utonium is restless because of the increasing crime in the world. The number of villains and their activities 
+has increased to a great extent. The current trio of Powerpuff Girls is not well to fight the evils of the whole world. 
+Professor has decided to create the maximum number of Powerpuff Girls with the ingredients he has.
 
-There are N ingredients required in a certain quantity to create a Powerpuff Girl. Professor has all the N ingredients in his laboratory and knows the quantity of each available ingredient. He also knows the quantity of a particular ingredient required to create a Powerpuff Girl. Professor is busy with the preparations and wants to start asap.       
+There are N ingredients required in a certain quantity to create a Powerpuff Girl. Professor has all the N ingredients in 
+his laboratory and knows the quantity of each available ingredient. He also knows the quantity of a particular ingredient 
+required to create a Powerpuff Girl. Professor is busy with the preparations and wants to start asap.       
 
 To make a Powerpuff Girl, Professor Utonium requires:
 3 units of Ingredient A
@@ -14,8 +18,10 @@ Question: Determine maximum no of power puff girls can be created?
 
 Input Format
 The first line of input consists of the number of ingredients, N
-The second line of input consists of the N space-separated integers representing the quantity of each ingredient required to create a Powerpuff Girl.
-The third line of input consists of the N space-separated integers representing the quantity of each ingredient present in the laboratory.
+The second line of input consists of the N space-separated integers representing the quantity of each ingredient required to 
+create a Powerpuff Girl.
+The third line of input consists of the N space-separated integers representing the quantity of each ingredient present in 
+the laboratory.
 
 Output Format: Print the required output in a separate line.
 
