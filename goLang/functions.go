@@ -54,7 +54,6 @@ world hello
 7 10
 */
 
-
 /*	FUNCTION VALUES.
 - Functions are values too. They can be passed around just like other values.
 */
@@ -63,4 +62,19 @@ test := func(x, y float64) float64 {
 }
 fmt.Println(test(5, 12))		//17
 
-
+/*      Closure Function
+  
+What is Closure Function?
+ A function that references variables from outside its body.
+*/
+func add() func(int) int {
+        sum := 10
+        return func(x int) int {
+                sum += x
+                return sum
+        }
+}
+func main() {
+        a := add()
+        fmt.Println(a(9))
+}
