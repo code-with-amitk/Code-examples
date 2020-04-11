@@ -52,6 +52,15 @@ func main() {
   hello  2020-04-01 08:53:55.869681784 +0530 IST m=+0.000048093
 world hello
 7 10
-
 */
+
+
+/*	FUNCTION VALUES.
+- Functions are values too. They can be passed around just like other values.
+*/
+test := func(x, y float64) float64 {
+             return (x + y)
+}
+fmt.Println(test(5, 12))		//17
+
 
