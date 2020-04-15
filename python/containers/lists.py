@@ -78,7 +78,8 @@ print(stack.pop())         #4   //Remaning List[1,2,3]
 """
 LISTS AS QUEUES(FIFO)   //lists are not efficient as queues
 Why lists not good queues?
- - Push=Slow: Inserts or pops from the beginning of a list is slow, because all of the other elements have to be shifted by one.
+ - Push=Slow: Inserts or pops from the beginning of a list is slow, because all of the other elements 
+ have to be shifted by one.
  - Pop=Fast: appends and pops from the end of list are fast
 """
 
@@ -86,7 +87,8 @@ Why lists not good queues?
 """
 LIST COMPREHENSIONS:
  Usage? Creating lists
- Applications? make new lists where each element is the result of some operation in just 1 line or few lines, rather than writing whole function
+ Applications? make new lists where each element is the result of some operation in just 1 line or 
+ few lines, rather than writing whole function
  Examples:
     LIST OF SQUARES
     COMBINING ELEMENTS OF TWO LISTS if they are not equal
