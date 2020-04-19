@@ -1,3 +1,8 @@
+"""     creating_tensor.py
+
+TENSOR? Multi-dimensional arrays used to store numbers during computation. 
+"""
+
 """
 0-D/Scalar: Only 1 number 
 https://docs.scipy.org/doc/numpy/reference/arrays.scalars.html
