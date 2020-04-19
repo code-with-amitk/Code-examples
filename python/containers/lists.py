@@ -16,10 +16,12 @@ LISTS:
 a=[1,2,3,4,5,6,7]
 print(a)        #[1,2,3,4,5,6,7]
 
+
 ##MUTABLE##
 a[2]=89
 print(a[2])     #89
 a[2]=3
+
 
 ####INDEXING####
 print(a[2])     #3
