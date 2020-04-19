@@ -20,6 +20,8 @@ Complexity      O(1)                               O(1)
 7. TRUNCATING:  
    erase(): Erases portion of string, reducing its length
         erase(starting_pos, length)
+
+8. INSERTING: Inserts additional characters into the string right before the character indicated by pos.
 */
 #include<iostream>
 #include<string>
@@ -98,4 +100,12 @@ int main(){
          for success, size=11
          for, size=3
          */
+
+        //INSERTING
+        string str4 = "your ass out";
+        str4.insert(0, "work ");
+        cout<<str4<<endl;
+        /*O/P:
+        work your ass out
+        */
 }
