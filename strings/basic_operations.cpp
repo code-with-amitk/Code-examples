@@ -22,6 +22,9 @@ Complexity      O(1)                               O(1)
         erase(starting_pos, length)
 
 8. INSERTING: Inserts additional characters into the string right before the character indicated by pos.
+
+9. REPLACE: Replace a character in string with some other character
+        string.replace(position, length, string-to-replace-with)
 */
 #include<iostream>
 #include<string>
@@ -108,4 +111,17 @@ int main(){
         /*O/P:
         work your ass out
         */
+        
+        //REPLACE: replace "." with "[.]"
+        string str5 = "1.1.1.1";
+        for(auto i=0;i<str5.size();i++){
+                if(str5[i]=='.'){
+                        str5.replace(i,1,"[.]");
+                        i=i+3;
+                }
+        }
+        cout<<str5<<endl;
+        /*O/P:
+         1[.]1[.]1[.]1
+         */
 }
