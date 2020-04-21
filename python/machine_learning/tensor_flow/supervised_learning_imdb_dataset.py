@@ -191,7 +191,8 @@ def evaluate():
 #[1, 14, 22, 16, ... 178, 32]
 >>> train_labels[0]
 1
->>> max([max(sequence) for sequence in train_data])     #Because we restricted to top 10,000 words, no word index will exceed 10,000
+>>> max([max(sequence) for sequence in train_data])     #Because we restricted to top 10,000 words,
+no word index will exceed 10,000
 9999
 """
 
@@ -214,7 +215,8 @@ print(train_data)
 #Step-2: [JUST FOR FUN/NOT REQUIRED] Decode movie review to English words
 #2a. Read word:index mapping from *.json file
 # vim /root/.keras/datasets/imdb_word_index.json
-#   {"fawn": 34701, "tsukino": 52006, "nunnery": 52007, "sonja": 16816, "vani": 63951, "woods": 1408, "spiders": 16115, .....}
+#   {"fawn": 34701, "tsukino": 52006, "nunnery": 52007, "sonja": 16816, "vani": 63951, "woods": 1408, 
+# "spiders": 16115, .....}
 #/usr/local/lib/python3.6/site-packages/tensorflow/python/keras/datasets/imdb.py
 #  def get_word_index(path='/root/.keras/datasets/imdb_word_index.json')
 #    return above_map {{"fawn": 34701, "tsukino": 52006, ......}
