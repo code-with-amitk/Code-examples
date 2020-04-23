@@ -1,9 +1,10 @@
 /*      lambda_expression.cpp
 
-What? Function that does not have any name. This can be defined inside any other function and they return their value to function pointers.
+What? Function that does not have any name. This can be defined inside any other function and they return 
+their value to function pointers.
 URL: https://www.youtube.com/watch?v=uk0Ytomv0wY
 
-*******SYNTAX*********
+LAMBDA EXPRESSION SYNTAX:
     function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};
 
     Lambda should be closed using Semicolon.
@@ -22,12 +23,13 @@ URL: https://www.youtube.com/watch?v=uk0Ytomv0wY
 
     ->:Optional
         return type
-************************
 
 ********COVERS**********
- A. Examples
- B. GENERIC LAMBDA(C++14):
+A. LAMBDA Examples
+B. GENERIC LAMBDA(C++14):
     - Now lambda can be made Generic, for example auto can be used inside lambda. Earlier this use to give error.
+C. LAMBDA CAPTURE INITIALIZERS: 
+ - Allows lambda captures initialized with arbitrary expressions.    
 ************************
 */
 #include<iostream>
@@ -85,4 +87,8 @@ int main(){
         string a="Never", b="GiveUp";
         cout<<ptr(1,2)<<endl;                            //3
         cout<<ptr(a,b)<<endl;                            //NeverGiveUp
+
+    
+        /*Lambda capture initializers*/
+        auto f = [x = test(2)] { return x; };           //20
 }
