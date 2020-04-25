@@ -64,8 +64,6 @@ A8. INITIALIZER LIST CTR:
 using namespace std;
 
 int main(){
-
-        /*******A. CONSTRUCTORS**********/
         vector<int>::iterator it;
 
         //A1.DEFAULT CTR
@@ -117,5 +115,4 @@ int main(){
         for (it = i.begin(); it != i.end(); it++)
                 cout << "  " << *it;            //8,80,800
         cout << '\n';
-        /********************************/
 }
