@@ -1,36 +1,43 @@
 /*
  	singleton.cpp	//Single Object
 
-What? Only single instance/object of class can be created. And provides Global point of access to it.
+WHAT? Only single instance/object of class can be created. And provides Global point of access to it.
 
-How to Acheive?
-1.  Block All object creation methods
-        a. Make default constructor pvt: Object should not be created from direct calls of constructor.
+HOW SINGLETON IS ACHIEVED?
+1.  BLOCK ALL OBJECT CREATION METHODS
+    1A. DEFAULT CTR PVT: Object should not be created from direct calls of constructor.
         class A{
                 int a;
         public:
-                A(int b){a=b}
+                A(){}
         };
         main(){
-                A obj1 = new A(1);
-                A obj2 = new A(2);      //Two objects are created
+                A obj1();
+                A obj2();      //Two objects are created
         }
 
-        b. Make copy constructor pvt: CCtr is used to copy an exiting object to create new object.
-        class test{    
-            String *s; 
-            test (test const &t1){    
-                this->s = t1.s;
+    1B. COPY CTR PVT: CCtr is used to copy an exiting object to create new object.
+        class A{    
+            int a;
+        public:
+	    A(int b):a(b){}
+	    A(const A &k)
+                this->a = k.a;
             }
         };
         int main(){
-            test t1;
-            t2 obj(t);                  //Two objects created. t2 as copy of t1.
+            A obj1(1)
+            A obj2(obj1);                  //Two objects created. obj2 is copy of obj1
         }       
         
-        c. Make Assignment operator pvt: Assignment Operator is used if object is already existent,new object is given new value from other object.
-        class test{
-                test & operator =(const test &t){  cout<<"=";  }
+    1C. ASSIGNMENT OPERATOR PVT: Assignment Operator is used if object is already existent,
+    new object is given new value from other object.
+        class A{
+	    int a;
+	public:
+	    A & operator =(const A &t){
+		cout<<"=";  
+		}
         };
         int main(){
                 test t1, t2;            
