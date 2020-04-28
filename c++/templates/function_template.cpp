@@ -1,5 +1,4 @@
-/*
-Function template
+/* Function template
  - template <class T>. T is template variable
  */
 #include<iostream>
@@ -12,8 +11,12 @@ T maximum(T a, T b){
 
 int main(){
         cout<<maximum(4,5)<<endl;               //5
+ 
         cout<<maximum(5.5,7.8)<<endl;           //7.8
+ 
         cout<<maximum(5,7.8)<<endl;             //error: no matching function for call to ‘maximum(int, double)’
+ 
         cout<<maximum('a','b')<<endl;           //b
+ 
         return 0;
 }
