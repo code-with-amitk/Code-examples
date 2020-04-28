@@ -2,10 +2,11 @@
 Class template: Generic class which having(Generic member variables, Generic member functions)
 - Gen is Template variable
 
-Rules:
-1. Whenever we define function of template class outside class we need to write template statement again
-2. Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data types we would be using.
-3. If arguments are of other type and template argument of other type. Compiler will ignore Argument type.
+RULES:
+  A. template statement need to be written again when template class function is defined outside template class.
+  B. Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data 
+types we would be using.
+  C. If arguments are of other type and template argument of other type. Compiler will ignore Argument type.
  */
 #include<iostream>
 using namespace std;
@@ -24,13 +25,13 @@ class test {
         Gen multiply ();
 };
 
-template <class Gen>                    //Rule-1
+template <class Gen>                    //A
 Gen test <Gen>::multiply(){
         return a*b;
 }
 
 int main(){
-        test <int> obj(5,6);            //Rule-2
+        test <int> obj(5,6);            //B
         cout<<obj.add()<<endl;          //Output: 11
 
         test <float> obj1(5.6,6.7);
