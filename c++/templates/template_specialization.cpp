@@ -2,8 +2,10 @@
 Template Specialization: Seperate class template is defined for a data type.
 
 1. Generic Template/Implementation
+
 2. Special Template/Implementation for char.
-        - char is specialization Parameter. This tells about the type for which template class is specialized
+        - char is specialization Parameter. This tells about the type for which
+template class is specialized
  */
 #include<iostream>
 using namespace std;
