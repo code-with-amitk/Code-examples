@@ -4,8 +4,12 @@
 WHAT? Only single instance/object of class can be created. And provides Global point of access to it.
 
 HOW SINGLETON IS ACHIEVED?
-1.  BLOCK ALL OBJECT CREATION METHODS
-    1A. DEFAULT CTR PVT: Object should not be created from direct calls of constructor.
+
+**********1.  BLOCK ALL OBJECT CREATION METHODS************
+
+*****1A. DEFAULT CTR PVT:********
+- Object should not be created from direct calls of constructor.
+	////////USER DEFINED DEFAULT CTR/////////////
         class A{
                 int a;
         public:
@@ -15,8 +19,21 @@ HOW SINGLETON IS ACHIEVED?
                 A obj1();
                 A obj2();      //Two objects are created
         }
+	
+	///////////COMPILER PROVIDED DEFAULT CTR///////////
+	class A{
+        	int a=1;
+	public:
+        	void disp(){ cout<<a<<"\n";}
+	};
+	int main(){
+        	A obj1; obj1.disp();    //1
+        	A obj2; obj2.disp();    //1
+	}
+	
 
-    1B. COPY CTR PVT: CCtr is used to copy an exiting object to create new object.
+*******1B. COPY CTR PVT:**********
+CCtr is used to copy an exiting object to create new object.
         class A{    
             int a;
         public:
