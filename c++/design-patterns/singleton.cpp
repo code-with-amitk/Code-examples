@@ -90,12 +90,11 @@ Assignment Operator is used if object is already existent, new object is given n
 	}
 **********************************************
 
-2. Take a static variable and save Object address in it and initialize to NULL.
+2. Use static variable to save Object address, since only 1 static variable exists/class.
 
-3. Use Static Method to create Objects: because we need to deal with static variables inside.
+3. Use Static Method to create Objects, static variables can be manipulated inside static methods.
 
-4. Create objects using static variable only from main
-
+4. Call static method from main(), to create Object.
 
 ***************Multi-threaded, Synchronization***************
 Multithreaded: Below code is not thread-safe. if 2 threads run this code it will creates two objects for singleton.
@@ -133,32 +132,30 @@ Drawbacks of Synchronization: This is heavy/time consuming operation.
 #include<iostream>
 using namespace std;
 
-class test{
-private:	
-        test(){}    				//1
-        test(const test &){}    		//2
-        test operator=(const test &);    	//3
-        static test *obj;    			//4
+class A{
+        A(){}					//1A
+        A(A &){}				//1B
+        void operator = (const A&){}		//1C
+        static A *ptr;				//2
 public:
-                static test *fun(){      	//5
-                        if(obj == NULL)
-                                obj = new test;
-                        return obj;
-                }
+        static A *fun(){			//3
+                if(ptr == NULL)
+                        ptr = new A();
+                return ptr;
+        }
 };
 
-test *test::obj = NULL;    			//4
+A *A::ptr = nullptr;
 
 int main(){
-	test *p1 = test::fun();    //Address: 0x6000227f0		//6
-	cout<<"p1="<<p1<<"\n";
-	test *p2 = test::fun();    //Address: 0x6000227f0
-	cout<<"p2="<<p2<<"\n";
-	return 0;
+//      A obj1;         //Error:error: ‘A::A()’ is private within this context
+        A *p1 = A::fun();			//4
+        cout<<p1<<endl;
+
+        A *p2 = A::fun();
+        cout<<p2<<endl;
 }
-/*
-Output:
-# ./a.out
-p1=0x2129e70
-p2=0x2129e70
- */
+/*      Output:
+0x1ec5e70
+0x1ec5e70
+*/
