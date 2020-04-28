@@ -7,19 +7,9 @@ HOW SINGLETON IS ACHIEVED?
 
 **********1.  BLOCK ALL OBJECT CREATION METHODS************
 
-*****1A. DEFAULT CTR PVT:********
+*****1A. MAKE DEFAULT CTR PVT:********
 - Object should not be created from direct calls of constructor.
-	////////USER DEFINED DEFAULT CTR/////////////
-        class A{
-                int a;
-        public:
-                A(){}
-        };
-        main(){
-                A obj1();
-                A obj2();      //Two objects are created
-        }
-	
+
 	///////////COMPILER PROVIDED DEFAULT CTR///////////
 	class A{
         	int a=1;
@@ -31,9 +21,33 @@ HOW SINGLETON IS ACHIEVED?
         	A obj2; obj2.disp();    //1
 	}
 	
+	////////USER DEFINED DEFAULT CTR/////////////
+        class A{
+                int a;
+        public:
+                A(){}
+        };
+        main(){
+                A obj1();
+                A obj2();      //Two objects are created
+        }
+	
 
-*******1B. COPY CTR PVT:**********
+*******1B. MAKE COPY CTR PVT:**********
 CCtr is used to copy an exiting object to create new object.
+
+        ///////////COMPLIER PROVIDED COPY CTR///////////
+	class A{
+        	int a=1;
+	public:
+        	void disp(){ cout<<a<<"\n"; }
+	};
+	int main(){
+        	A obj1; obj1.disp();    //1
+        	A obj2(obj1);  obj2.disp();    //1
+	}
+	
+	//////////USER CREATED COPY CTR///////////////
         class A{    
             int a;
         public:
@@ -47,19 +61,34 @@ CCtr is used to copy an exiting object to create new object.
             A obj2(obj1);                  //Two objects created. obj2 is copy of obj1
         }       
         
-    1C. ASSIGNMENT OPERATOR PVT: Assignment Operator is used if object is already existent,
-    new object is given new value from other object.
-        class A{
-	    int a;
+*********1C. MAKING ASSIGNMENT OPERATOR PVT************
+Assignment Operator is used if object is already existent, new object is given new value from other object.
+
+        ///////////COMPLIER PROVIDED ASSIGNMENT OPERATOR///////////
+	class A{
+        	int a=1;
 	public:
-	    A & operator =(const A &t){
-		cout<<"=";  
-		}
-        };
-        int main(){
-                test t1, t2;            
-                t2 = t1;                //Two objects created.
-        }
+        	void disp(){ cout<<a<<"\n"; }
+	};
+	int main(){
+        	A obj1; obj1.disp();    //1
+        	A obj2 = obj1;  obj2.disp();    //1
+	}
+	
+	///////////USER CREATED ASSIGNMENT OPERATOR///////////
+	class A{
+        	int a=1;
+	public:
+        	void operator = (A &k){
+                	this->a = k.a;
+        	}
+        	void disp(){ cout<<a<<"\n"; }
+	};
+	int main(){
+        	A obj1; obj1.disp();    	//1
+        	A obj2 = obj1;  obj2.disp();    //1
+	}
+**********************************************
 
 2. Take a static variable and save Object address in it and initialize to NULL.
 
