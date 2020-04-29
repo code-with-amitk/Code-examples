@@ -11,7 +11,8 @@ A1. SYNTAX OF TPP:
         e. pattern ...
 
 A2. TPP Expansion:
-        - A parameter-name followed by an ellipsis can be expanded into 0 or more comma-separated instantiations of parameters.
+        - A parameter-name followed by an ellipsis can be expanded into 0 or more comma-separated instantiations 
+        of parameters.
 
 
 ********B. VARIADIC TEMPLATE*********
@@ -20,7 +21,8 @@ A template with at least one parameter pack or Template taking variable number o
 TYPES OF VT:
  B1. VARIADIC FUNCTION TEMPLATE: Function template taking variable no of arguments. Parameter pack may appear at any place.
 
- B2. VARIADIC CLASS TEMPLATE: lass template taking variable no of arguments. template parameter pack must be the final parameter in the template parameter list else its compile time error.
+ B2. VARIADIC CLASS TEMPLATE: lass template taking variable no of arguments. template parameter pack must be the 
+ final parameter in the template parameter list else its compile time error.
 */
 
 #include<iostream>
