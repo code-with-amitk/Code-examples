@@ -1,43 +1,51 @@
-/* L-Value(C++98)?
- * 	Values those are suitable for Left Hand side of assignment Operator. Types:
- *	a. Modiyable L-values	b. Non-Modifyable L-values
- *
- * L-Value Reference(C++11)?
- * 	These are called reference variables in C++98
- *
- * R-Value(C++98)?
- *	Eveything that is not L value. Eg:
- *		a. Literals(eg: 5), Temporary variables(x+1)
- *
- * R-Value Reference(C++11)?
- * 	Represented by &&
- * 	Points to R-values
- *
- * Usage of R-value, R-value Reference?
- * 	a. Overloading Functions based on parameter types
- */
+/*      rvalue-reference.cpp
+
+RULES:
+ A. overloading the function based on parameter type.
+
+ B. Pass-by-value parameter cannot be used with L,Rvalue references.
+     - One interesting thing here is if we declare int f(int i) with below functions. It will not compile. 
+     Since compiler will not know which function to call in case of fun(a) or fun(6).
+
+ C. r-value reference is collected in l-value reference.
+*/
 
 #include<iostream>
-void fun(int &var) {
-	std::cout<<"L value Reference"<<std::endl;
+using namespace std;
+void f(int &a){                         //A
+        cout<<"a="<<a<<endl;
 }
-void fun(int &&var){
-	std::cout<<"R value Reference"<<std::endl;
-}
-//void fun(int var){}		
-//This will confuse compiler because 'var' can take L-value, R-value also. So it will give an error
 
-int main() {
-	//Examples
-	int a = 5;	//a is L-value, 5 is R-value
-	int &b = a;	//b is L-value Reference
-	int &&c = 5;	//c is R-value Reference
-
-	fun (10);	//R value reference
-	fun (a);	//L value reference
-	return 0;
+void f(int &&rval){                     //A
+        cout<<"rval="<<rval<<endl;
 }
-/*Output:
- * R value Reference
- * L value Reference
- */
+
+/*///////// B /////////////
+ error: call of overloaded ‘f(int)’ is ambiguous
+void f(int b){
+        cout<<"b="<<b;
+}
+*/
+int main(){
+        int b = 5;              //b:l value, 5:r value
+        int &lr = b;            //lr: l value reference
+
+        f(b);                   //calls f(&a). b is lvalue              
+        f(lr);                  //calls f(&a). lr is lvalue ref
+        /* O/P:
+         * a = 5
+         * a = 5
+         */
+
+        int &&rr = 10;          //rr: r value reference
+        f(10);                  //calls f(&&a). 10 is rvalue
+        /* O/P:
+         * rval = 10
+        */
+
+        //C
+        f(rr);                  //calls f(&a). Because rval reference cannot be collected in rvalue reference
+        /* O/P:
+         * a = 10;
+         */
+}
