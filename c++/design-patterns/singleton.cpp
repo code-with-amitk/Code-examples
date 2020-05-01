@@ -132,6 +132,24 @@ Drawbacks of Synchronization: This is heavy/time consuming operation.
 #include<iostream>
 using namespace std;
 
+//////////////////////////////LAZY INITIALIZATION START///////////////////////////////////
+/****C++11 CLASS*****/
+class A{
+        A(){}					//1A
+        A(A &)=delete;				//1B
+        void operator = (const A&)=delete;	//1C
+	~A()=delete;
+        static A *ptr;				//2
+public:
+        static A *fun(){			//3
+                if(ptr == NULL)
+                        ptr = new A();
+                return ptr;
+        }
+};
+/*****C++11 CLASS*****/
+
+/****C++98 CLASS*******
 class A{
         A(){}					//1A
         A(A &){}				//1B
@@ -144,6 +162,8 @@ public:
                 return ptr;
         }
 };
+*****C++98 CLASS*****/
+//////////////////////////////LAZY INITIALIZATION END///////////////////////////////////
 
 A *A::ptr = nullptr;
 
