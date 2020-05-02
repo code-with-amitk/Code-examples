@@ -15,7 +15,10 @@ Complexity      O(1)                               O(1)
 
 5. SEARCHING:   find()
 
-6. SUBSTRING:   substr()
+6. SUBSTRING:   
+   a. str.substr(pos,length)
+   pos: start position of the substring 
+   len: number of characters in a substring
 
 7. TRUNCATING:  
    erase(): Erases portion of string, reducing its length
