@@ -1,5 +1,10 @@
 /*	naive_algorithm.cpp
 
+CASES WHERE NAIVE DOES NOT WORK WELL:
+A. Many matching characters followed by a mismatching character. 
+   txt[] = "AAAAAAAAAAAAAAAAAB"
+   pat[] = "AAAAB"
+
 Complexity = O(mn)	
 */
 #include<iostream>
