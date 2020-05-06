@@ -132,7 +132,8 @@ Amit Custom Exception 6
 #7. finally clause
 #finally clause will execute as last task before try statement completes.
 #The finally clause runs whether or not the try statement produces an exception
-#If a finally clause includes a return statement, the returned value will be the one from the finally clause’s return statement, not the value from the try clause’s return statement
+#If a finally clause includes a return statement, the returned value will be the one from the 
+#finally clause’s return statement, not the value from the try clause’s return statement
 #try:
 #    raise KeyboardInterrupt
 #finally:
