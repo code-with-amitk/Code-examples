@@ -1,4 +1,5 @@
 /*	fold_expression.cpp
+https://en.cppreference.com/w/cpp/language/fold
 
 FOLD? means reducing or compressing
 
@@ -21,9 +22,13 @@ SYNTAX:
 
 pack-variable: unexpanded parameter pack expression
 
-operator: any of the following 32 binary operators: + - * / % ^ & | = < > << >> += -= *= /= %= ^= &= |= <<= >>= == != <= >= && || , .* ->*. In a binary fold, both ops must be the same.
+operator: any of the following 32 binary operators: + - * / % ^ & | = < > 
+<< >> += -= *= /= %= ^= &= |= <<= >>= == != <= >= && || , .* ->*. 
+In a binary fold, both ops must be the same.
 
-initial-value: an expression that does not contain an unexpanded parameter pack and does not contain an operator with precedence lower than cast at the top level (formally, a cast-expression)
+initial-value: an expression that does not contain an unexpanded parameter
+pack and does not contain an operator with precedence lower than cast at
+the top level (formally, a cast-expression)
 */
 
 
