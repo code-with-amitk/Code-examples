@@ -15,4 +15,7 @@ Round-3(Technical): Again on TCP
   
 
 Round-4(Technical-Manager)
+  1. reverse words of string.
+      "today is friday" should become "friday is today"
+      - How we are going to test this rigoursly covering all test cases.
   
