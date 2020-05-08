@@ -2,7 +2,8 @@ F5 PRODUCTS?
 
 Big-IP? 
 -Originally 
-	- BIG-IP was Load-Balancer. Because it had lot of IP-Addresses behind, it 		  looked its a bigger IP address.
+	- BIG-IP was Load-Balancer. Because it had lot of IP-Addresses behind, it
+	  looked its a bigger IP address.
 -Today:
   - BIG-IP is family of software & hardware solutions providing:
     a. intelligent traffic management
