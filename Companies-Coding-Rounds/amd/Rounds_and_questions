@@ -9,9 +9,7 @@ Round-2(Skype):
     - Use cases of move?
     - Things to consider while moving?
     - Do we need to do memory NULL after move?
-
   2. How virtual table works?
-
   3. Linked List Questions(write code).
     a. Detecting loop?
     b. Finding intersection of 2 LL?
