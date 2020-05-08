@@ -27,4 +27,4 @@ int main(){
 	*p=20;
 }
 8. why lambda function is required?
-9. What is "extern c" in C++?
+9. What is "extern c" in C++, why its required? What is name mangling?
