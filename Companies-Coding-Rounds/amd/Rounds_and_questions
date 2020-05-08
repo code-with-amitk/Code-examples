@@ -1,0 +1,17 @@
+Round-1(Telephonic):
+ a. Sum of consecutive elements of array to be stored in same array.
+	input: 9999
+	output 1818 
+
+
+Round-2(Skype):
+  1. move vs copy ctr
+    - Use cases of move?
+    - Things to consider while moving?
+    - Do we need to do memory NULL after move?
+
+  2. How virtual table works?
+
+  3. Linked List Questions(write code).
+    a. Detecting loop?
+    b. Finding intersection of 2 LL?
