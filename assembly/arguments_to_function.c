@@ -1,4 +1,7 @@
 /*      arguments_to_function.c
+
+- Function arguments are stored in:
+   rdi,rsi,rdx,rcx,r8......r15
 */
 
 int fun(int a){
