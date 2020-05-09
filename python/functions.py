@@ -29,6 +29,7 @@ argument.
 
 13. RANGE(): produces continuous sequence
 
+14. SPLIT(): A list of strings after breaking the given string by the specified separator.
 """
 
 """
@@ -252,3 +253,12 @@ print ('The {1} who says {0}.'.format("person",'Hello')) #The Hello who says Per
 """
 print(list(range(5,8)))         #5,6,7
 print(list(range(5,10,2)))      #5,7,9      #3rd argument tells interval of sequence
+
+
+"""
+14. SPLIT(): 
+   Returns? A list of strings after breaking the given string by the specified separator.
+   if separator is not provide WHITESPACE is taken as separator.
+"""
+word = 'geeks, for, geeks'               0       1       2
+print(word.split(', '))             #['geeks', 'for', 'geeks']
