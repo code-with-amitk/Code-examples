@@ -3,98 +3,18 @@
 
 WHAT? Only single instance/object of class can be created. And provides Global point of access to it.
 
-HOW SINGLETON IS ACHIEVED?
-
-**********1.  BLOCK ALL OBJECT CREATION METHODS************
-
-*****1A. MAKE DEFAULT CTR PVT:********
-- Object should not be created from direct calls of constructor.
-
-	///////////COMPILER PROVIDED DEFAULT CTR///////////
-	class A{
-        	int a=1;
-	public:
-        	void disp(){ cout<<a<<"\n";}
-	};
-	int main(){
-        	A obj1; obj1.disp();    //1
-        	A obj2; obj2.disp();    //1
-	}
+******HOW SINGLETON IS ACHIEVED?*********
+1.  BLOCK ALL OBJECT CREATION METHODS
+	1A. MAKE DEFAULT CTR PVT
+	1B. MAKE COPY CTR PVT
+	1C. MAKING ASSIGNMENT OPERATOR PVT
 	
-	////////USER DEFINED DEFAULT CTR/////////////
-        class A{
-                int a;
-        public:
-                A(){}
-        };
-        main(){
-                A obj1();
-                A obj2();      //Two objects are created
-        }
-	
-
-*******1B. MAKE COPY CTR PVT:**********
-CCtr is used to copy an exiting object to create new object.
-
-        ///////////COMPLIER PROVIDED COPY CTR///////////
-	class A{
-        	int a=1;
-	public:
-        	void disp(){ cout<<a<<"\n"; }
-	};
-	int main(){
-        	A obj1; obj1.disp();    //1
-        	A obj2(obj1);  obj2.disp();    //1
-	}
-	
-	//////////USER CREATED COPY CTR///////////////
-        class A{    
-            int a;
-        public:
-	    A(int b):a(b){}
-	    A(const A &k)
-                this->a = k.a;
-            }
-        };
-        int main(){
-            A obj1(1)
-            A obj2(obj1);                  //Two objects created. obj2 is copy of obj1
-        }       
-        
-*********1C. MAKING ASSIGNMENT OPERATOR PVT************
-Assignment Operator is used if object is already existent, new object is given new value from other object.
-
-        ///////////COMPLIER PROVIDED ASSIGNMENT OPERATOR///////////
-	class A{
-        	int a=1;
-	public:
-        	void disp(){ cout<<a<<"\n"; }
-	};
-	int main(){
-        	A obj1; obj1.disp();    //1
-        	A obj2 = obj1;  obj2.disp();    //1
-	}
-	
-	///////////USER CREATED ASSIGNMENT OPERATOR///////////
-	class A{
-        	int a=1;
-	public:
-        	void operator = (A &k){
-                	this->a = k.a;
-        	}
-        	void disp(){ cout<<a<<"\n"; }
-	};
-	int main(){
-        	A obj1; obj1.disp();    	//1
-        	A obj2 = obj1;  obj2.disp();    //1
-	}
-**********************************************
-
 2. Use static variable to save Object address, since only 1 static variable exists/class.
 
 3. Use Static Method to create Objects, static variables can be manipulated inside static methods.
 
 4. Call static method from main(), to create Object.
+**********************************************
 
 ***************Multi-threaded, Synchronization***************
 Multithreaded: Below code is not thread-safe. if 2 threads run this code it will creates two objects for singleton.
