@@ -68,7 +68,6 @@ public:
         }
 };
 /*****C++11 CLASS*****/
-
 /****C++98 CLASS*******
 class A{
         A(){}
@@ -98,3 +97,13 @@ int main(){
 0x1ec5e70
 */
 //////////////////////////////LAZY INITIALIZATION END///////////////////////////////////
+
+//////////////////////////////EAGERLY INITIALIZATION START/////////////////////////////////
+public class Singleton {
+	private static Singleton uniqueInstance = new Singleton();
+	private Singleton() {}
+	public static Singleton getInstance() {
+		return uniqueInstance;
+	}
+}
+//////////////////////////////EAGERLY INITIALIZATION END///////////////////////////////////
