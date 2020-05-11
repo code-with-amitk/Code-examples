@@ -1,6 +1,17 @@
 /*      number_of_islands.cpp
 https://leetcode.com/problems/number-of-islands/
 
+Given a 2d matrix '1's (land) and '0's (water), count the number of islands.
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or
+vertically.
+
+Input:
+11110
+11010
+11000
+00000
+Output: 1
+
 *****************Logic******************
 1. Take visited[][] vector same sized as original 2D vector.
 2. Mark all adjacent 1's as visited using recursion.
