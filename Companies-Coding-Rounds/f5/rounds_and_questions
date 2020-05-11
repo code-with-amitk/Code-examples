@@ -1,22 +1,27 @@
 Round-1(Coding Hackerrank): 3 questions
   
-  
 Round-2(Technical): Everything about TCP
   1. Is TCP connection established between end to end or hop to hop?
   2. Congestion Control, Flow Control
   3. Slding window
-  
-  
+ 
 Round-3(Technical): Again on TCP
   1. Exponential backoff Algo
   2. Nagle Algo
   3. What is SACK, why its used?
   4. Data structure of a trie node?
   
-
 Round-4(Technical-Manager)
   1. reverse words of string.
       "today is friday" should become "friday is today"
       - How we are going to test this rigoursly covering all test cases.
   2. Do you know SAML, we work lot on it.
   
+Round-5(Techincal Hackerrank test):
+ 1. memcpy vs memmove
+ 2. HTTP
+  - which http request is used to partially modify a resource
+  - which HTTP response code shows attempt to access restricted resource
+  - what return code is returned after successful HTTP DELETE
+  - What are all READ ONLY methods in REST 
+ 3. delete[] vs delete
