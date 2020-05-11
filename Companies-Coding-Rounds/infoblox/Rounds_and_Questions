@@ -1,7 +1,7 @@
 Round-1(Coding+Process Management):
 - https://www.geeksforgeeks.org/segregate-0s-and-1s-in-an-array-by-traversing-array-once/
 - lonely 1
-- merging 2 ll
+- merging 2 ll in O(1) space
 - Function pointer
    - function pointer returning function pointer
    - function pointer array
