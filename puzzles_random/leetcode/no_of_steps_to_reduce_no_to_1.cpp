@@ -2,6 +2,13 @@
 
 https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one
 
+Task: Number "s" is given in binary representation. Return the number of steps to reduce it to 1 under the following rules:
+ - If the current number is even, you have to divide it by 2.
+ - If the current number is odd, you have to add 1 to it.
+
+Example-1:
+  Input: s = "1101"
+  Output: 6
 Goal: make the string s=="1".
 
 Perform operation on last bit.
