@@ -1,9 +1,10 @@
-/* Lets Suppose we want to store Student data:
- * Key:Value
- * (1,20)  (2,70)  (42,80)  (4,25)  (12,44)  (13,78)  (14,32) (17,11)  (37,97)
- *
- * Then We can generalize this Algo for bigger data
- */
+/* hashtableExample.c
+
+Hash table stores Student data (Key:Value)
+(1,20)  (2,70)  (42,80)  (4,25)  (12,44)  (13,78)  (14,32) (17,11)  (37,97)
+
+Then We can generalize this Algo for bigger data
+*/
 
 #include<stdio.h>
 #include<stdlib.h>	//malloc
