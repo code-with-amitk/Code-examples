@@ -3,7 +3,8 @@
 https://godbolt.org/
 https://amitkumar25nov.wordpress.com/stack-frame-example-code/
 
-----stack grows------><------heap grows------
+|----stack grows-----|-------------><------heap grows------
+450		   400
 rbp     	   rsp
 
 rbp: Base pointer, points to base of stack
