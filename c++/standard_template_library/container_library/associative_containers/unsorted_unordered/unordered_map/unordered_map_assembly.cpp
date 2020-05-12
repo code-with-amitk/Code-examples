@@ -40,7 +40,7 @@ STEPS:
 
    b.Move rbp to rsp
    --------------------
-            rsp1
+            rsp10
             rbp1
 
 2. Create stack for main            
