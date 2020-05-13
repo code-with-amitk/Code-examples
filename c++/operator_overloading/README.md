@@ -1,1 +1,15 @@
+ABOUT ASSEMBLY:
 
+1. Stack grows in reverse direction.
+  |----stack grows-----|-------------><------heap grows------
+ 0x450                0x200
+ rbp                  rsp       
+
+2. rdi, rsi, rdx, rcx, r8, r9: Stores 1st 6 arguments to function. If there are more than 6 parameters, 
+   then the program’s stack is used to pass in additional parameters to the function.
+
+3. rax: stores return value of the function. Larger return types like structs are returned using the stack.
+
+4. rax, rcx, rdx, rdi, rsi, rsp, r8-r11: These are caller save registers. 
+   rbx, rbp, r12-r15: These are callee save registers. These are saved across function calls.   	
+   |- As per telephone system. Caller is main(), callee fun()
