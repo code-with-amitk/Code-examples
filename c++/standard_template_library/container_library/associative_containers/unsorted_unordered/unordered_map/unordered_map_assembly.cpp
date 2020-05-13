@@ -1,12 +1,28 @@
 /*      unordered_map_assembly.cpp
 
-POINTS TO REMEMBER:
+******POINTS TO REMEMBER******
 1. Stack grows in reverse direction.
   |----stack grows-----|-------------><------heap grows------
  0x450                0x200
  rbp                  rsp       
 
 2. Arguments to function are stored in:  rdi, rsi, rdx, rcx, r8...r15 
+*************************************
+
+**********CTR, DTR CALLED***********
+unordered_map<datatype1, datatype2> calls
+  unordered_map<datatype1, datatype2, hash<datatype1>, equal_to<datatype1>, 
+                allocator<pair<datatype1 const, datatype2>>> :: unordered_map(){
+                ....
+  }
+
+And destructor:
+unordered_map<datatype1, datatype2, hash<datatype1>, equal_to<datatype1>, 
+              allocator<pair<datatype1 const, datatype2>>> :: ~unordered_map(){
+              ........
+}
+*************************************
+        
 */
 
 #include<iostream>
@@ -24,10 +40,10 @@ main:
         sub     rsp, 64         //2. stack of size=64 created
         lea     rax, [rbp-64]   //3
         mov     rdi, rax        //4
-        call    std::unordered_map<int, char, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, char> > >::unordered_map() [complete object constructor]
+        call    unordered_map<int, char, hash<int>, equal_to<int>, allocator<pair<int const, char> > >::unordered_map() [complete object constructor]
         lea     rax, [rbp-64]
         mov     rdi, rax
-        call    std::unordered_map<int, char, std::hash<int>, std::equal_to<int>, std::allocator<std::pair<int const, char> > >::~unordered_map() [complete object destructor]
+        call    unordered_map<int, char, hash<int>, equal_to<int>, allocator<pair<int const, char> > >::~unordered_map() [complete object destructor]
         mov     eax, 0
         leave
         ret
