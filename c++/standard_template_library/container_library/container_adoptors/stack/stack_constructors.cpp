@@ -3,7 +3,8 @@
 WHAT? Container Adoptor providing LIFO. introduced in C++11
 
 CONTAINER ADOPTORS(stack, queue, priority_queue)? 
- - These are not full container classes, but classes that provide interface relying on an object of one of the container classes (such as deque or list) to handle the elements.
+ - These are not full container classes, but classes that provide interface relying on an object of one of the 
+ container classes (such as deque or list) to handle the elements.
  - Stacks are internally implemented using deque
 
 CONSTRUCTORS:
