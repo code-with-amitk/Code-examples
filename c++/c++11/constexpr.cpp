@@ -2,51 +2,23 @@
 
 WHAT IS CONST?
 - CONST VARIABLE: Whose value remains same through out the program.
-- CONST FUNCTION: 
+- CONST FUNCTION: Which always returns a constant value
  
-A. CONSTEXPR VARIABLE: variable whose value is derived at compile-time & its initialized. 
-    - Should be compile time constant. 
-    - Should be initialized at declaration.
+A. CONSTEXPR VARIABLE: 
 
- B. CONSTEXPR FUNCTION:
-    B1. it return value should be computable at compile time only.
-    B2. RULES:
-        - constexpr function or constructor is implicitly inline.
-        - constexpr function accepts and returns only literal-types.
-        - constexpr functions cannot be virtual
-        - A constructor can't be defined as constexpr when the enclosing class has any virtual base classes.
-        - The body can be defined as = default or = delete.
-        - The body can contain no goto statements or try blocks.
-        - constexpr function return value can be collected in const variable.
+B. CONSTEXPR FUNCTION:
 */
 
 #include<iostream>
 using namespace std;
 
-/*********B1************/
-/*Problem: return depends on runtime
-constexpr float fun(float a)
-{
-        int b;
-        cin>>b;                 //error: uninitialized variable ‘b’ in ‘constexpr’ function
-        return a+b; 
-};*/
-
-//Solution: nothing depends on runtime
-constexpr float fun(float a)
-{
-        int b=10;
-        return a+b;
-};
-/***********************/
-
-
+/******** A. CONSTEXPR VARIABLE******
+- variable whose value is derived at compile-time & its initialized. 
+ a. Should be compile time constant. 
+ b. Should be initialized at declaration.
+*/
 int main(){
 
-        /******** A. CONSTEXPR VARIABLE*******
-          - Should be compile time constant. 
-          - Should be initialized at declaration.        
-        */
          ///////////PROBLMATIC CODE////////////
         int a;
         cin>>a;
@@ -57,7 +29,38 @@ int main(){
         //constexpr int c = a;  //error: uninitialized const ‘c’ [-fpermissive
         //constexpr int c;      // error: uninitialized const ‘c’ [-fpermissive]
         constexpr int c = 1;
-        /***************************************/
-
-        const float d = fun(2);
 }
+/***************************************/
+
+
+/*********B. CONSTEXPR FUNCTION***********
+- it return value should be computable at compile time only.
+- RULES:
+ a. constexpr function or constructor is implicitly inline.
+ b. constexpr function accepts and returns only literal-types.
+ c. constexpr functions cannot be virtual
+ d. A constructor can't be defined as constexpr when the enclosing class has any virtual base classes.
+ e. The body can be defined as = default or = delete.
+ f. The body can contain no goto statements or try blocks.
+ g. constexpr function return value can be collected in const variable.
+*/
+/////////PBOBLEM: Function is not const because return depends on runtime////////////
+const float fun()
+{
+        int b;
+        cin>>b;                 //error: uninitialized variable ‘b’ in ‘constexpr’ function
+        return b;              //NO ERROR
+};
+
+/////////////SOLUTION////////////////////////
+constexpr float fun()
+{
+        //int b;               //error: uninitialized variable ‘b’ in ‘constexpr’ function
+        int b = 10;
+        return b;  
+};
+
+int main(){
+         const float d = fun(2);
+}
+/***************************************/
