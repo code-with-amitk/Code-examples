@@ -5,7 +5,8 @@
    4   5 6    7
   / \
  8   9
-What Lowest Common Ancestor(LCA) of Node-1, Node-2? The LCA of (Node-1,Node-2) is the 1st common node in ancestors of node-1 & node-2.
+What Lowest Common Ancestor(LCA) of Node-1, Node-2? The LCA of (Node-1,Node-2) is the 
+1st common node in ancestors of node-1 & node-2.
 Examples: 
 a. LCA for 8,5 is 1. Bcoz 1 is 1st common node in ancestors of 8,5. Ancestors of 8: 8, 4, 1.    Ancestors of 5: 5,1
 b. LCA for 6,2 is 2. Bcoz we consider node is ancestor of itself.
@@ -13,7 +14,8 @@ b. LCA for 6,2 is 2. Bcoz we consider node is ancestor of itself.
 Logic:
         - Search node-1,node-2 in Tree.
         - if either node-1 or node-2 is found, return that node Address.
-        - On whichever node ((left returned Address != NULL) && (right returned Address != NULL)) This is the common Ansector. Print.
+        - On whichever node ((left returned Address != NULL) && (right returned Address != NULL)) 
+        This is the common Ansector. Print.
 */
 #include<iostream>
 struct Node{
