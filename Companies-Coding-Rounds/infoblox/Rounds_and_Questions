@@ -8,6 +8,14 @@ Round-1(Coding+Process Management):
 - Union
    - representing union inside struct
    - ethernet packet showing union inside
+   
+   
+Round-2(OS Concepts):
+- setjump, longjump call
+- how vlan differentiates between packets
+- symbol table
+- hard link,soft link. Can hard link be created on directories?
+   
 
 HIRING FOR: platform position
 product nyos(handles onPremisis DDA).
