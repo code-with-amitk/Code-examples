@@ -49,6 +49,13 @@ BIG-IP series?
   - Does optimizations using algorithms
   - You can manager bandwidth appropriately. 
   - Eg: loosy network, high latency network, database replication
+8. WAF(Web application firewalls): 
+   Prevents application from Attacks:
+    - Malicious bot protection: Automation is used by attackers.
+    - Application-layer encryption
+    - API inspection
+    - Behavior analytics to help defend against application attacks
+    - Preventing Identity attacks:   
   
   
 BIGIQ: Management solution for managing all BIG-IPs
