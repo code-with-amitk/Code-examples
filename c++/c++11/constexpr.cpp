@@ -1,7 +1,10 @@
 /*      constexpr.cpp
 
-RULES:
- A. CONSTEXPR VARIABLE:
+WHAT IS CONST?
+- CONST VARIABLE: Whose value remains same through out the program.
+- CONST FUNCTION: 
+ 
+A. CONSTEXPR VARIABLE: variable whose value is derived at compile-time & its initialized. 
     - Should be compile time constant. 
     - Should be initialized at declaration.
 
@@ -40,15 +43,21 @@ constexpr float fun(float a)
 
 int main(){
 
-        /*******A**********/
+        /******** A. CONSTEXPR VARIABLE*******
+          - Should be compile time constant. 
+          - Should be initialized at declaration.        
+        */
+         ///////////PROBLMATIC CODE////////////
         int a;
         cin>>a;
-        const int b = a;        //Problem: How b is const if its value can be changed during runtime?
-
+        const int b = a;   //Problem: How b is const if its value can be changed at runtime?
+        //////////////////////////////////////
+ 
+        /////////SOLUTION: constexpr//////////
         //constexpr int c = a;  //error: uninitialized const ‘c’ [-fpermissive
         //constexpr int c;      // error: uninitialized const ‘c’ [-fpermissive]
         constexpr int c = 1;
-        /*******************/
+        /***************************************/
 
         const float d = fun(2);
 }
