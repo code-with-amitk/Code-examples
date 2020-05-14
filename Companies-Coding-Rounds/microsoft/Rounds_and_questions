@@ -34,6 +34,8 @@ INFINITE-DATA-COMING:
 	1. Median of infinite stream of numbers. Follow up : Median of two sorted sets in O(log(n))
 
 DESIGN:
-1. Design a voting system with about 100M users who will use it in a space of 1 day distributed randomly across the world.(Assume a platform where NRI and Indian residents are allowed voting). Make all necassary assumptions and keep in mind the scale of the system.
+1. Design a voting system with about 100M users who will use it in a space of 1 day distributed randomly 
+across the world.(Assume a platform where NRI and Indian residents are allowed voting). Make all necassary 
+assumptions and keep in mind the scale of the system.
 
 2. Vehicular Live tracking and notifications based on certain events(Overspeeding,Breakdown etc).
