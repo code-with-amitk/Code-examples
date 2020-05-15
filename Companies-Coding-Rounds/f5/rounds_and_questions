@@ -25,3 +25,12 @@ Round-5(Techincal Hackerrank test):
   - what return code is returned after successful HTTP DELETE
   - What are all READ ONLY methods in REST 
  3. delete[] vs delete
+
+Round-6(Technical):
+ 1. volatile variable?
+ 2. const volatile?
+ 3. remove word(world) from string using strstr	"hello world there"
+ 4. switching bit on or off 
+ 5. how ping works?
+ 6. ARP cache?
+ 8. how agile works?
