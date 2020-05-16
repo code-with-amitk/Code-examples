@@ -12,32 +12,12 @@ Question: Implement vector class. (github: implementing_vector.cpp)
 
 **********A.CONSTRUCTORS************
 A1. DEFAULT CTR: 
-    Constructs an empty container with a default-constructed allocator.
-        Until C++17: vector()
-        After C++17: vector() noexcept(noexcept(Allocator()));  
 
 A2. FILL CTR: 
-    Constructs a container with n elements. Each element is a copy of 'a'(if provided)
-        Until C++11 explicit vector(size_type n, const T& value = T(), const Allocator& alloc = Allocator());
-        Since C++11          vector(size_type n, const T& a, const Allocator& alloc = Allocator());
-        Arguments(latest):
-                1. n = sizeof vector to be created
-                2. a = Value to which each element is assigned
-                3. alloc = Default valued, not to be passed when calling
 
 A3. RANGE CTR: 
-    Constructs the container with the contents of the range [first, last)
-        template< class T >
-        vector( T first, T last, const Allocator& alloc = Allocator() );        
-        Arguments:
-                1. first: Input iterator to the initial position in a range.
-                2. second: Input iterator to the final position in a range.
-                3. alloc = Default valued, not to be passed when calling
 
 A4. COPY CTR:
-    Create a new vector that is a copy of the given vector.
-        Until C++11: vector( const vector& other );
-        Since C++11: vector( const vector& other, const Allocator& alloc );
 
 A5. FIXED SIZED CTR:
      Construct container contaning n element init to 0. No copies are made.
@@ -66,25 +46,52 @@ using namespace std;
 int main(){
         vector<int>::iterator it;
 
-        //A1.DEFAULT CTR
+        /*A1.DEFAULT CTR
+            Constructs an empty container with a default-constructed allocator.
+            Until C++17: vector()
+            After C++17: vector() noexcept(noexcept(Allocator()));  
+        */
         vector<int> a;
         for (it = a.begin(); it != a.end(); it++)
                 cout << "  " << *it;         //Nothing printed
         cout << "\n";
 
-        //A2. FILL CTR
+ 
+        /*A2. FILL CTR
+            Constructs a container with n elements. Each element is a copy of 'a'(if provided)
+            Until C++11 explicit vector(size_type n, const T& value = T(), const Allocator& alloc = Allocator());
+            Since C++11          vector(size_type n, const T& a, const Allocator& alloc = Allocator());
+            Arguments(latest):
+                1. n = sizeof vector to be created
+                2. a = Value to which each element is assigned
+                3. alloc = Default valued, not to be passed when calling
+        */
         vector<int> b (5 , 10);              //vector sized 5 init to 10.
         for (it = b.begin(); it != b.end(); it++)
                 cout << "  " << *it;            //10 10 10 10 10
         cout << '\n';
 
-        //A3. RANGE CTR
+ 
+        /*A3. RANGE CTR
+            Constructs the container with the contents of the range [first, last)
+             template< class T >
+            vector( T first, T last, const Allocator& alloc = Allocator() );        
+            Arguments:
+                1. first: Input iterator to the initial position in a range.
+                2. second: Input iterator to the final position in a range.
+                3. alloc = Default valued, not to be passed when calling
+        */
         vector<int> c(b.begin(), b.end());
         for (it = c.begin(); it != c.end(); it++)
                 cout << "  " << *it;            //10 10 10 10 10
         cout << '\n';
 
-        //A4. COPY CTR
+ 
+        /*A4. COPY CTR
+            Create a new vector that is a copy of the given vector.
+            Until C++11: vector( const vector& other );
+            Since C++11: vector( const vector& other, const Allocator& alloc );
+        */
         vector<int> d (c);
         for (it = d.begin(); it != d.end(); it++)
                 cout << "  " << *it;            //10 10 10 10 10
