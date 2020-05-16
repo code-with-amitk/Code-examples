@@ -15,27 +15,19 @@ A1. DEFAULT CTR:
 
 A2. FILL CTR: 
 
-A3. RANGE CTR: 
+A3. RANGE CTR
 
-A4. COPY CTR:
+A4. COPY CTR
 
-A5. FIXED SIZED CTR:
-     Construct container contaning n element init to 0. No copies are made.
-         Until C++14: explicit vector( size_type n );
-         Since C++14: explicit vector( size_type n, const Allocator& alloc = Allocator() );
+A5. FIXED SIZED CTR
 
-A6. MOVE CTR:
-     Construct the vector from 'orig' using move semantics. After the move, other is guaranteed to be empty().
-         Until C++17: vector( vector&& orig )
-         Since C++17: vector( vector&& orig ) noexcept;
+A6. MOVE CTR
 
 A7. ALLOCATOR EXTENDED MOVE CTR:
      Here, original vector is not guaranteed to be empty after the move.
          Since C++11: vector( vector&& other, const Allocator& alloc );
 
-A8. INITIALIZER LIST CTR:
-     Constructs the container with the contents of the initializer list l
-         Since C++11: vector( initializer_list<T> l, const Allocator& alloc = Allocator() );    
+A8. INITIALIZER LIST CTR
 */
 
 #include<iostream>
@@ -97,13 +89,22 @@ int main(){
                 cout << "  " << *it;            //10 10 10 10 10
         cout << '\n';
 
-        //A5. FIXED SIZED CTR
+ 
+        /*A5. FIXED SIZED CTR
+         Construct container contaning n element init to 0. No copies are made.
+         Until C++14: explicit vector( size_type n );
+         Since C++14: explicit vector( size_type n, const Allocator& alloc = Allocator() );
+        */
         vector<int> e(4);
         for (it = e.begin(); it != e.end(); it++)
                 cout << "  " << *it;            //0 0 0 0 
         cout << '\n';
 
-        //A6. MOVE CTR
+        /*A6. MOVE CTR
+             Construct the vector from 'orig' using move semantics. After the move, other is guaranteed to be empty().
+         Until C++17: vector( vector&& orig )
+         Since C++17: vector( vector&& orig ) noexcept;
+        */
         vector<int> f (5 , 10);
         vector<int> g(move(f));
         for (it = f.begin(); it != f.end(); it++)
@@ -113,7 +114,10 @@ int main(){
                 cout << "  " << *it;            //10 10 10 10 10 
         cout << '\n';
 
-        //A8. INITIALIZER LIST CTR:
+        /*A8. INITIALIZER LIST CTR
+         Constructs the container with the contents of the initializer list l
+         Since C++11: vector( initializer_list<T> l, const Allocator& alloc = Allocator() );  
+         */
         vector<int> h{1,2,3,4};
         vector<int> i(initializer_list<int>{8, 80, 800});
         for (it = h.begin(); it != h.end(); it++)
