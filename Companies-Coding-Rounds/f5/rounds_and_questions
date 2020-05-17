@@ -35,3 +35,15 @@ Round-6(Technical):
  6. ARP cache?
  8. how agile works?
  9. Phony targets in Makefile
+
+Round-7(Technical):
+1. What's output of this?
+
+#define A B(HOST, "HOST"), B(CONTENT, "cont")
+
+#define B(suf, ...) HTTP_ ## suf
+
+enum C{
+  A
+};
+# undef B
