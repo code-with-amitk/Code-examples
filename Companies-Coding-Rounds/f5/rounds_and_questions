@@ -47,3 +47,12 @@ enum C{
   A
 };
 # undef B
+
+2. struct A{
+  int a;
+  char b[12];
+};
+  A obj;
+both are correct but which should be used?
+  a. memset(&obj, 0, sizeof(struct A))
+  b. memset(&obj, 0, sizeof(obj))       <<<<<<<<This should be used
