@@ -16,7 +16,8 @@ using namespace std;
  Which one will compiler use for linking function?
 
  How complier overcomes the problem?
-  - Type deduction in this case fails, no error is emitted & Compiler deduce from type of passed argument. The compiler simply ignores this candidate and looks at the others.
+  - Type deduction in this case fails, no error is emitted & Compiler deduce from type of passed argument. 
+  The compiler simply ignores this candidate and looks at the others.
   - Since, integer literals are signed by default A will be picked.
   <<<BUT THIS IS WRONG
  */
