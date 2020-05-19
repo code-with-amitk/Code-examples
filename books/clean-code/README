@@ -1,2 +1,42 @@
 Important Points
-1. 
+
+/////Q. WHY YOU WROTE BAD/MESSY CODE?/////
+ a. Not deep understanding of problem.
+ b. Going too fast, thought boss would be angry with you if you took the time to clean up your code?
+ c. OR you were just tired of working on this program and wanted it to be over. 
+ d. OR Backlog of other stuff is too high & wanted to move on to the next. 
+-> We’ve all done it.
+
+
+/////Q. TOTAL COST OF OWNING BAD CODE/MESS?//////
+ a. Other teams using it will get slowed down.
+ b. Over time the mess becomes so big they can not clean it up.
+ c. Want Re-design.
+ 
+ 
+ //////Q. CORRECT ATTITUDE?///////
+  a. The managers/sales team look to us for the information they need to make promises and commitments; 
+  and even when they don’t look to us, we should not be shy about telling them what we think. 
+  b. And you know, Most managers 
+    - Want the truth, even when they don’t act like it.
+    - Most managers want good code, even when they are obsessing about the schedule.
+    - They may defend the schedule and requirements with passion; but that’s their job. 
+    -> AND ITS YOUR JOB TO DEFEND THE CODE WITH EQUAL PASSION.
+  c. The next time you write a line of code, remember you are an AUTHOR, writing for readers who will judge your effort.
+  
+  
+  /////Q. WHAT ABOUT DEADLINES?//////
+  a. You will not meet the deadline by making the messy code. The mess will slow you down gradually & will force you to miss
+  the deadline later.
+  b. Only way is to keep code clean all times.
+  
+  
+  ///////Q. WHAT IS CLEAN CODE?////////
+  a. As per Bjarne Stroustrup:
+    - Elegent: clean variable names, clean function names
+    - Efficient
+    - Minimal dependencies
+    - Straight forward logic
+    - Error handling complete
+    - Performance close to optimal
+    - Modular, each module doing 1 and only task, irrespective of surroundings.
