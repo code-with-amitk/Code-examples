@@ -15,6 +15,16 @@ Round-2(OS Concepts):
 - how vlan differentiates between packets
 - symbol table
 - hard link,soft link. Can hard link be created on directories?
+
+
+Round-3(Technical):
+ 1. How to know what all files were opened by binary in past?
+ 2. Macro for returning maximum number?
+ 3. System calls vs normal function calls
+   a. Why system calls are heavy wrt normal function calls?
+   b. How to reduce resources consumed by system calls?
+ 4. Write fp is a pointer to function (pointer to function (void) returning void) returning array of 10 integers
+ 
    
 
 HIRING FOR: platform position
