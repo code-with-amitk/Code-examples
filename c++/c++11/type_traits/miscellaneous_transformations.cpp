@@ -4,7 +4,8 @@ List of all miscellaneous type traits:
 https://en.cppreference.com/w/cpp/header/type_traits
 
 ***************enable_if*****************
-WHAT? Helps in conditionally removing functions from overload resolution in SFINAE based on type traits & provide separate function overloads and specializations for different type traits.
+WHAT? Helps in conditionally removing functions from overload resolution in SFINAE based on type traits & 
+provide separate function overloads and specializations for different type traits.
 
 HOW TO USE? can be used as
 	- an additional function argument OR
