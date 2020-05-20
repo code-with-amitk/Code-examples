@@ -1,9 +1,8 @@
-Approach I follow?
-1. Understand requirement correctly.
-2. Design 1 user based system, connected directly by LAN.
-3. Move them apart
-	- 100 users
-	- 1 lac users
-4. Internal logic change
-5. Hard Fit: S3,L3,C2,A3,R3
-6. DB Model
+ARCHITECTURE?
+
+1 User System
+	 --------			 --------
+	| client |   -----LAN-------	| server |
+	 --------			 --------
+	 
+	 
