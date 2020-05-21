@@ -1,0 +1,52 @@
+THESE RULES SHOULD BE FOLLOWED
+
+1. USE INTENTION REVEALING NAMES(function, variable, class)
+ - Take care with your names and change them when you find better ones.
+ - If a name requires a comment, then the name does not reveal its intent
+ Bad Practice:
+  int d; // elapsed time in days
+ Good Name:
+  int elapsedTimeInDays //specifies what is being measured and the unit of that measurement
+  int daysSinceCreation
+  
+  
+2. AVOID DISINFORMATION
+ - hp , aix , and sco are poor variable names.
+ - referring to a grouping of accounts as an accountList is wrong unless it’s actually a List. just plain accounts would be better
+ 
+ 
+3. MAKE MEANINGFUL DISTINCTIONS
+How are the programmers in this project supposed to know which of these functions to call?
+getActiveAccount();
+getActiveAccounts();
+getActiveAccountInfo();
+
+
+4. USE PRONUNCABLE WORDS
+This matters because programming is a social activity.
+class DtaRcrd102 {
+  private Date genymdhms;
+  private Date modymdhms;
+  private final String pszqint = "102";
+/* ... */
+};
+to
+class Customer {
+  private Date generationTimestamp;
+  private Date modificationTimestamp;;
+  private final String recordId = "102";
+/*... */
+};
+
+
+5. CLASS NAMES
+- Should have noun names like Customer , WikiPage ,Account , and AddressParser .
+- A class name should not be a verb.
+
+
+6. METHOD NAMES
+- should have verb or verb phrase names like postPayment , deletePage , or save .
+
+
+7. DONT USE CLEVER/CUTE NAMES
+- In place of HolyHandGrenade() DeleteItems() might be a better name.
