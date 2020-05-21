@@ -1,8 +1,39 @@
 ARCHITECTURE?
 
-1 User System
-	 --------			 --------
-	| client |   -----LAN-------	| server |
-	 --------			 --------
+A. 1 CLIENT,SERVER (directly connected)
+	 --------			------------
+	| client |   -----LAN------    | web-server |
+	 --------			------------
+- Configure index.html, port, IP. # service httpd start
+
+
+B. 250 CLIENTS
+- Internally Apache maintains threadpool.
+- Main thread forks 3-10 children, Each child creates 20-25 threads depending on load.	[10*25=250 connections]
+- Children creates threads at startup. Each thread serves 1 connection. 
+- Listener thread listens for connections & gives connection to other threads.
+	server(main-process)        //maintains  Idle thread pool(thread-4, thread-17, thread-10, thread-50)
+         |- child-1--------------------------------------------------------------------
+         |                   |                       |                                |
+         |               listener thread            thread-2                      thread-n
+         |- child-2
+         |
+         |- child-n
+	
+
+C. MOVING SERVER TO DATA CENTER
+- Seperate page
+
+
+D. 1000 CLIENTS	
+- 4 servers needed, each serving 250 connections.
+			 |- |Web Server|
+       ---------------	 |		
+      | Load-Balancer | -|- |Web Server|
+       ---------------   |
+       			 |- |Web Server|
+			 |
+			 |- |Web Server|
 	 
-	 
+D1. How load balancer distributes the load?
+- Seperate Page
