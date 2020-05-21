@@ -27,13 +27,21 @@ C. MOVING SERVER TO DATA CENTER
 
 D. 1000 CLIENTS	
 - 4 servers needed, each serving 250 connections.
-			 |- |Web Server|
+- Each webserver have identical copy of records.
+	<---------Data center-1(Location: Asia)-------->
+			   Server Farm/Pool
+			   	\/
+			 |- |Web Server-1|
        ---------------	 |		
-      | Load-Balancer | -|- |Web Server|
+      | Load-Balancer | -|- |Web Server-2|
        ---------------   |
-       			 |- |Web Server|
-			 |
-			 |- |Web Server|
+       			 |- |Web Server-3|
+			 | ....
+			 |- |Web Server-n|
+			 
+	 -------------------------
+	| Data-center-2 (Africa) |
+	 ------------------------
 	 
 D1. How load balancer distributes the load?
 - Seperate Page
