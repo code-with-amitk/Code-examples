@@ -16,3 +16,10 @@ For all n ≥ n0. We are not concerned about small values of n (i.e. , anything 
 a. f(n) = O(g(n)). c.g(n) is upper bound of f(n). Always f(n)≤ c·g(n)
 b. f(n) = Ω(g(n)). c.g(n) is lower bound of f(n). Always f(n)≥ c·g(n)   [Ω:Omega]
 c. f(n) = Θ(g(n)). c1·g(n) ≥ f(n) ≥ c2·g(n) [Θ:Theta]
+
+
+CLASSIFICATION OF DATA STRUCTURES:
+		Contigious					Linked
+Based on	Arrays						pointers
+	  	composed of single slabs of memory		distinct chunks of memory bound together by pointers
+Examples	arrays,matrices,heaps & hash tables		lists, trees, and graph adjacency lists
