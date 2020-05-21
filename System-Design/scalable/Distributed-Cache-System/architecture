@@ -1,1 +1,10 @@
-redis
+EXAMPLE: Redis
+
+/////////1. BOE CALCULATIONS///////////////
+- Store terabytes of data (10pow12)
+- Read/Write Requests: 50k - 1M/sec
+- Latency: 1ms (GET or POST)
+- Eviction: LRU
+- Availability: 100%
+- Scalable
+
