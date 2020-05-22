@@ -1,15 +1,43 @@
-/*
-Template Specialization: Seperate class template is defined for a data type.
+/*      template_specialization.cpp
 
-1. Generic Template/Implementation
+Template Specialization? Seperate class template is defined for a particular data type.
+
+TYPES?
+1. FUNCTION T
+2. CLASS TS
 
 2. Special Template/Implementation for char.
         - char is specialization Parameter. This tells about the type for which
 template class is specialized
- */
+*/
+
 #include<iostream>
 using namespace std;
 
+/*****************FUNCTION TEMPLATE SPECIALIZATION***************
+template <class T>
+void fun (T &a, T &b)
+{
+        cout<<"Template fun";
+}
+
+template <>
+//void fun <int> (int &a, int &b)       OR
+void fun (int &a, int &b)
+{
+    cout << "Specialized Template";
+}
+
+int main ()
+{
+        int a = 10, b = 20;
+//      fun <int> (a, b);       OR
+        fun (a, b);                     //Specialized Template
+}
+/***************************************************************/
+
+
+/*****************CLASS TEMPLATE SPECIALIZATION***************/
 template <class T>              //1
 class test{
 public:
@@ -36,3 +64,4 @@ int main(){
         test <float> obj3;
         obj3.fun(5.5);                  //Output: Generic a=5.5
 }
+/***************************************************************/
