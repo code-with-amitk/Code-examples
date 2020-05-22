@@ -1,8 +1,9 @@
 /*  variadic_template.cpp
 
-*****************VARIADIC TEMPLATE*************************
 https://eli.thegreenplace.net/2014/variadic-templates-in-c/
-A template with at least one parameter pack or Template taking variable number of arguments.
+
+VARIADIC TEMPLATE? A template with at least one parameter pack or Template taking 
+variable number of arguments.
 
 TYPES OF VT:
  1. VARIADIC FUNCTION TEMPLATE
