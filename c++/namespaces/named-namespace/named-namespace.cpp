@@ -1,11 +1,18 @@
 /*
-Namespace: Logical grouping of: classes, objects, variables etc. These are used to avoid name conflict.
- */
+WHAT IS NAMESPACE?
+-Logical grouping of: classes, objects, variables etc. These are used to avoid name conflict.
+
+*/
 #include<iostream>
 using namespace std;
 
 int a = 10;
 
+/***********NAMED NAMESPACE**************
+- namespace having name.
+SYNTAX:
+namespace ns_name { declarations }
+*/
 namespace A{
         int a;
 }
