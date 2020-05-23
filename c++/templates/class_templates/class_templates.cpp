@@ -10,8 +10,7 @@ Rule-A: template statement need to be written again when template class function
 Rule-B: Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data 
 types we would be using.
 Rule-C: If arguments are of other type and template argument of other type. Compiler will ignore Argument type.
-****************************************/
-
+*/
 template <class T>            //OR <typename T>
 class A {
         A a, b;               //Generic Member variables
@@ -33,13 +32,13 @@ int main(){
         test <int> obj2(5.6,6.7);       //C
         cout<<obj2.multiply()<<endl;    //Output: 30
 }
-*/
+/**********************************************************/
 
 /**********************************************************
 Rule-D: Seperate class is created for different parameter types
 Test<int>::Test()     //class-1
 Test<double>::Test()  //class-2
-***********************************************************/
+*/
 template <class T>
 class Test
 {
@@ -61,4 +60,28 @@ int main()
     cout << Test<double>::count << endl;      //1
     return 0;
 }
-*************************************************/
+/*************************************************/
+
+
+/*******************************************************
+RULE-E: Template can have 0 templated argument.
+RULE-F: Only 1 copy of static variable is kept per class
+*/
+template<int n>                                //E
+struct st
+{
+    static const int val = 2 * st<n-1>::val;
+};
+
+template<> 
+struct st<0>                                   //E
+{
+    static const int val = 1 ;
+};
+
+int main()
+{
+    cout << s<10>::val << endl;                //Output=1024
+    return 0;
+}
+/****************************************************/
