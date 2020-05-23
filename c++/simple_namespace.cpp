@@ -4,21 +4,33 @@ Namespace: Logical grouping of: classes, objects, variables etc. These are used 
 #include<iostream>
 using namespace std;
 
-int a;
+int a = 10;
+
 namespace A{
         int a;
 }
 
 int main(){
-        a = 10;
-        A::a = 20;
-        cout<<"A::a "<<A::a<<endl;    //20
-        cout<<"Global a: "<<a<<endl;
+        int a = 20;
+
+        /*Initializing namespace*/
+        A::a = 30;
+        cout<<"namespace's a "<<A::a<<endl;    //30
+
+        /*Global variable*/
+        {
+                extern int a;
+                cout<<"Global a: "<<a<<endl;    //10
+        }
+
+
+        cout<<"Main's a: "<<a<<endl;            //20
         return 0;
 }
 
 /*
 # ./a.out 
-A::a 20
+namespace's a 30
 Global a: 10
+Main's a: 20
  */
