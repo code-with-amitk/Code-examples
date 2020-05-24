@@ -7,25 +7,19 @@ A. 1 CLIENT,SERVER (directly connected)
 - Configure index.html, port, IP. # service httpd start
 
 
-B. 250 CLIENTS
-- Internally Apache maintains threadpool.
-- Main thread forks 3-10 children, Each child creates 20-25 threads depending on load.	[10*25=250 connections]
-- Children creates threads at startup. Each thread serves 1 connection. 
-- Listener thread listens for connections & gives connection to other threads.
-	server(main-process)        //maintains  Idle thread pool(thread-4, thread-17, thread-10, thread-50)
-         |- child-1--------------------------------------------------------------------
-         |                   |                       |                                |
-         |               listener thread            thread-2                      thread-n
-         |- child-2
-         |
-         |- child-n
+B. MOVING SERVER TO DATA CENTER //Seperate page
+	- Consider DNS
+
+
+C. 50-60k CLIENTS
+- 1 Apache box can handle 250-512 clients
+- 1 Ngnix box can handle upto 60k connections(ngnix was designed to solve C10K problem)	
+	- 1 process/core. 1 process can handle 1000 connections.
+	- 56 cores = 56 processes = 56k connections
+//See HTTP Page	
 	
 
-C. MOVING SERVER TO DATA CENTER
-- Seperate page
-
-
-D. 1000 CLIENTS	
+D. 1 lac CLIENTS	
 - 4 servers needed, each serving 250 connections.
 - Each webserver have identical copy of records.
 	<---------Data center-1(Location: Asia)-------->
