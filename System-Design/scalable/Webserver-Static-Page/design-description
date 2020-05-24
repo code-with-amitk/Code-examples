@@ -19,9 +19,11 @@ C. 50-60k CLIENTS
 //See HTTP Page	
 	
 
-D. 1 lac CLIENTS	
-- 4 servers needed, each serving 250 connections.
+D. 2lac-20Cr CLIENTS	
 - Each webserver have identical copy of records.
+- [2lac] 4 ngnix servers can server 2lac connections.
+- [20Cr] Making Data plane to be handled by Application & Control plane by kernel.
+	- SCALING WEB SERVER FOR 10 Million(1 Crore) CONNECTIONS (Solves C10M problem)		//See HTTP Page
 	<---------Data center-1(Location: Asia)-------->
 			   Server Farm/Pool
 			   	\/
@@ -37,5 +39,5 @@ D. 1 lac CLIENTS
 	| Data-center-2 (Africa) |
 	 ------------------------
 	 
-D1. How load balancer distributes the load?
-- Seperate Page
+- Can load balancer be bottleneck?
+ No, See HTTP Page
