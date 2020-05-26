@@ -115,6 +115,7 @@ static struct file_operations fops =
 /*
 STEP-6: LKM initialization function.
 	This function is called using module_init()
+- register_chrdev() register your character DD
 
 int register_chrdev_region(dev_t first, unsigned int count, char name);  	
 -  Obtain 1 or more device numbers                                                                                
@@ -148,6 +149,7 @@ static int __init ebbchar_init(void){
 	printk(KERN_INFO "Initializing the EBBChar LKM\n");
 
    	//We should use alloc_chrdev_region instead
+	//register_chrdev() is older approach, now-a-days kernel uses cdev_init(&fops)
 	majorNumber = register_chrdev(0, DEVICE_NAME, &fops);
    	if (majorNumber<0)
    	{
