@@ -1,1 +1,19 @@
 Step 1: Requirements clarifications
+- Ask questions about the exact scope of the problem we are solving.
+- Since we only have 35-40 minutes to design a system, we should clarify what parts of the system are required.
+
+Step 2: Back-of-the-envelope estimation
+- What scale is expected from the system (e.g., number of new tweets, number of tweet views, 
+number of timeline generations per sec., etc.)?
+- How much storage will we need?
+- What network bandwidth usage are we expecting?
+
+Step 3: System interface definition
+- Define what APIs are expected from the system? Ex for twitter
+postTweet(user_id, tweet_data, tweet_location, user_location, timestamp, …)  
+generateTimeline(user_id, current_time, user_location, …)  
+markTweetFavorite(user_id, tweet_id, timestamp, …)  
+
+Step 4: Defining data model
+
+
