@@ -3,7 +3,19 @@ Telstra Corporation Limited(Australian Telecom Company)
  - Industry: Telecommunication
  - HQ: Melbourne Australia
  - Chair: John Mullen, CEO: Andy Penn
- - Products: Fixed Line, Mobile Telephony, Internet, Data Services, Network Services, paytv
+
+Products: 
+	- Network
+	- Cloud
+	- Fixed Line
+	- Mobile Telephony
+	- Internet
+	- Data Services
+	- Network Services
+	- paytv
+	- voice services
+	- Satellite
+	-> Takes care of connectivity,network of customers.
  
 ////ABOUT ROLE////
 Designation: Senior Software Engineer
