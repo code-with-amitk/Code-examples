@@ -1,19 +1,35 @@
-Step 1: Requirements clarifications
+/////Step 1: Requirements clarifications//////
 - Ask questions about the exact scope of the problem we are solving.
 - Since we only have 35-40 minutes to design a system, we should clarify what parts of the system are required.
 
-Step 2: Back-of-the-envelope estimation
+/////Step 2: Back-of-the-envelope estimation/////
 - What scale is expected from the system (e.g., number of new tweets, number of tweet views, 
 number of timeline generations per sec., etc.)?
 - How much storage will we need?
 - What network bandwidth usage are we expecting?
 
-Step 3: System interface definition
+/////Step 3: System interface definition//////
 - Define what APIs are expected from the system? Ex for twitter
 postTweet(user_id, tweet_data, tweet_location, user_location, timestamp, …)  
 generateTimeline(user_id, current_time, user_location, …)  
 markTweetFavorite(user_id, tweet_id, timestamp, …)  
 
-Step 4: Defining data model
+/////Step 4: Defining data model///////
+- Identify various entities/blocks of system. 
 
+////Step-5: High Level Design//////
+- Draw a block diagram with 5-6 boxes representing the core components of system. 
+- We should identify enough components that are needed to solve the actual problem from end-to-end.
+Place Load Balancers, Databases(different types)
+
+//////Step-6: Detialed Design//////
+- Dig deeper into 1 or 2 major components. 
+- Discuss with interviewer to check which part of system need discussion.
+- Keep system contraints in mind, discuss different approaches their pros & cons.
+
+/////Step-7: Identify & resolve bottlenecks////////
+ - Is there any single point of failure in our system? What are we doing to mitigate it?
+ - Do we have enough replicas of the data so that if we lose a few servers, we can still serve our users?
+ - How are we monitoring the performance of our service? Do we get alerts whenever critical components fail 
+ or their performance degrades?
 
