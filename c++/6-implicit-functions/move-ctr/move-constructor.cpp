@@ -86,6 +86,9 @@ int main() {
     /*You must be thinking, v1 is lvalue then how this qualifies as r-value?
     std::move() just takes Reference and casts as rvalue reference.
     move(v1) = (vector<string> &&) v1;
+    
+    Advantage of using move() here is it will sure shot create r value reference,
+    once compiler sees its R value ref, It will sure shot call move ctr.
     */
     auto v2 = move(v1);
     disp(v1);
