@@ -1,4 +1,4 @@
-Step 1: Requirements clarifications
+////////Step 1: Requirements clarifications//////////
 a. Functional:
     a1. Given a URL, our service should generate a shorter and unique alias of it
     a2. When users access short link, our service should redirect them to the original link.
@@ -11,7 +11,51 @@ c. Extended requirements:
     c1. Analytics; e.g., how many times a redirection happened?
     
     
-Step 2: Back-of-the-envelope estimation   
-This is read heavy application. Consider 100:1 Read/Write requests.
-a. 10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
-b. 60M bytes/sec write
+/////////Step 2: Back-of-the-envelope estimation///////////
+This is read heavy application.
+Consider 100:1 Read/Write requests.
+a. [Writes] 10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
+b. [Read/Redirection] 1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
+STORAGE Estimate:
+- Let's assume long & short URLs are stored for 5 years.
+- Long URL length=256 bytes, Short URL=6 bytes. 
+    - 1 request requires 256+6=262 bytes to be stored
+    - For 5 years. Total requests = 10k/sec*60*60*30*12*5 * 262 = 10k*1.5G = 10 Tera bytes
+CACHE Estimates:
+ - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
+ - Following 80:20 rule, 20% of URLs are often hit.
+    Total requests/day. 10k*60*60 = 36 Million. 20% of 36 Million = 7.2 Million * 262 = 1.8 GB
+    
+    
+//////////Step-3: System APIs////////////////////
+a. creating the short URL:
+    createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)   //REST API 
+      Parameters
+        api_dev_key(string): Developer key of registered account.
+        original_url(string): To be shortened
+        custom_alias(optional): Custom key for URL
+        user_name(optional): Username to be used for encoding
+        expire_date(string): Optional expiration date of URL
+      Returns
+        short_url(string)
+b. Deleting short and long URL pair from DB
+    deleteURL(api_dev_key, url_key)
+      Parameters:
+        url_key: shortened URL to be retrieved & removed
+        
+        
+////////Step-4:Database Design////////////////////
+- Number of tables = 2
+Table-1 Stores URL mappings.
+    original_url(512)   creation_date   expiration_date     userID
+Table-2 Stores user’s data who created the short link
+        user_name   user_email  creationDate    lastLogin
+
+- Type of DB: noSQL
+Why? Billions of rows should be saved on noSQL
+
+
+///////////Step-5: SYSTEM DESIGN/////////////////
+- Short-url can be 6 characters long. Let's suppose any of character from 
+[0-9][a-z][A-Z] forms short url. These are 62 different characters. 
+So, BASE-62 number system. 62^6=56 Billion possible strings.
