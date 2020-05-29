@@ -67,8 +67,9 @@ int main(){
         cout<<"obj1.a = "<<quoted(obj1.a)<<"\n";        //obj1.a = ""
         cout<<"obj2.a = "<<quoted(obj2.a)<<"\n";        //obj2.a = "test"
 }
+/*********************************************************/
 
-///////EXAMPLE-2: MOVING VECTOR USING std::move()/////////
+/**********EXAMPLE-2: MOVING VECTOR USING std::move()*********/
 void disp(vector<string> &v){
     if(!v.size())
             cout<<"Empty";
