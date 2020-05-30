@@ -72,11 +72,11 @@ Why? Billions of rows should be saved on noSQL
 
 ## 5. SYSTEM DESIGN
 
-### How to generate keys
+### 5.1 How to generate keys
 
 #### USING BASE-64 Number System:
-Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
-These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
+- Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
+- These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
 
 #### STEPS   
 
@@ -84,25 +84,28 @@ These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 =
 > long-url > |SHA3-Hash|  > 512bit            //We can take SHA3-Hash OR
 long-url > |MD5-Hash|  > 128bit             //Let's consider this
         
-##### Step-2: Converting to Base-64    //See How to convert Hexadecimal number to base-62 on Number system page
+##### Step-2: Converting 128bit hash to Base-64    
+> See How to convert Hexadecimal number to base-62 on Number system page
         - Base-2 uses 2 bits to create a word : 2=2^1
         - Base-8 uses 3 bits to create word : 8=2^3
         - Base-16 uses 4 bits to create word: 16=2^4
         - Base-64 uses 6 bits to create word: 64=2^6
         128/6 = 21.33 = 21 characters or words. But we need only 8 characters as Output short-url.
         
-    Step-3: Getting 8 character short-url from 21 characters.
-        - Return 1st 8 characters from 21 characters.
-        Problem: Differnt long URL's can produce same 1st 8 characters.
-        Solution: Append timestamp or userId with longURL and then generate the short url
+##### Step-3: Deducing 8 character short-url from 21 characters.
+- Return 1st 8 characters from 21 characters.
+- Problem: Differnt long URL's can produce same 1st 8 characters.
+- Solution: Append timestamp or userId with longURL and then generate the short url
         
-    Step-4: Store short URL in DB
+##### Step-4: Store short URL in DB
+```
         client          server         encoder              DB
              -long url->    -long url->
                                        encoded
                                             --short url-->
                                             <-Duplicate-
                                     regenerate & store
+```
         
         
->>>>>>>OFFLINE KEYS<<<<<<<<<<<<
+### 5.2 How to generate keys
