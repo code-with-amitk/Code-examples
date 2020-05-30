@@ -30,7 +30,7 @@ array([[1.        , 1.41421356],
 """
 ```
 
-####2. Converting Fahrenheit to Celsius in NumPy.
+#### 2. Converting Fahrenheit to Celsius in NumPy.
 ```
 def fun(temps):
   return (5/9)*(temps-32)
@@ -40,8 +40,8 @@ celsius = f2c(fahrenheits)
 print('Celsius: {}'.format(repr(celsius)))        #Celsius: array([  0., -20., -10., -40.])
 ```
 
-####3. NON-LINEAR FUNCTIONS: EXPONENTIAL, LOGRITHMIC
-#####3.1 Exponential
+#### 3. NON-LINEAR FUNCTIONS: EXPONENTIAL, LOGRITHMIC
+##### 3.1 Exponential
 ```
 arr = np.array([[1, 2], [3, 4]])
 print(repr(np.exp(arr)))            # Raised to power of e
@@ -51,7 +51,7 @@ Outputs
 array([[ 2.71828183,  7.3890561 ], [20.08553692, 54.59815003]])
 array([[ 2.,  4.], [ 8., 16.]])
 ```
-#####3.2 Logrithmic
+##### 3.2 Logrithmic
 ```
 arr2 = np.array([[1, 10], [np.e, np.pi]])
 print(repr(np.log(arr2)))               # Natural logarithm
@@ -60,4 +60,32 @@ print(repr(np.log10(arr2)))             # Base 10 logarithm
 Outputs:
 array([[0.        , 2.30258509], [1.        , 1.14472989]])
 array([[0.        , 1.        ], [0.43429448, 0.49714987]])
+```
+
+#### 4. np.power() Regular power operation
+```
+arr = np.array([[1, 2], [3, 4]])          
+print(repr(np.power(3, arr)))                    # Raise 3 to power of each number in arr
+
+arr2 = np.array([[10.2, 4], [3, 5]])
+print(repr(np.power(arr2, arr)))                 # Raise arr2 to power of each number in arr
+
+Outputs:
+array([[ 3,  9],[27, 81]])
+array([[ 10.2,  16. ],[ 27. , 625. ]])
+```    
+
+
+#### 5. np.matmul() to find matrix product
+```
+arr1 = np.array([1, 2, 3])
+arr2 = np.array([-3, 0, 10])
+print(np.matmul(arr1, arr2))                                   #27
+
+arr3 = np.array([[1, 2], [3, 4], [5, 6]])
+arr4 = np.array([[-1, 0, 1], [3, 2, -4]])
+print(repr(np.matmul(arr3, arr4)))                 #array([[  5,   4,  -7],[  9,   8, -13],[ 13,  12, -19]])
+print(repr(np.matmul(arr4, arr3)))                 #array([[  4,   4],[-11, -10]])
+# This will result in ValueError
+print(repr(np.matmul(arr3, arr3)))
 ```
