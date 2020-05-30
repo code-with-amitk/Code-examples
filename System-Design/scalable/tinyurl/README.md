@@ -1,6 +1,6 @@
 ## Step 1: Requirements clarifications
 ### a. Functional:
-* Given a URL, our service should generate a shorter and unique alias of it
+- Given a URL, our service should generate a shorter and unique alias of it
 * When users access short link, our service should redirect them to the original link.
 * Users should be able to pick a custom short link for their URL.
 * Links should expire after default time span.
