@@ -40,7 +40,8 @@
 
 ### creating the short URL
 ```
-    createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)   //REST API 
+    //REST API
+    createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)    
       Parameters
         api_dev_key(string): Developer key of registered account.
         original_url(string): To be shortened
@@ -58,14 +59,14 @@
         url_key: shortened URL to be retrieved & removed
 ```        
         
-////////Step-4:Database Design////////////////////
-- Number of tables = 2
-Table-1 Stores URL mappings.
+## 4.Database Design
+> Number of tables = 2
+### Table-1 Stores URL mappings.
     original_url(512)   creation_date   expiration_date     userID
-Table-2 Stores user’s data who created the short link
+### Table-2 Stores user’s data who created the short link
         user_name   user_email  creationDate    lastLogin
 
-- Type of DB: noSQL
+###  Type of DB: noSQL
 Why? Billions of rows should be saved on noSQL
 
 
