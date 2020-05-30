@@ -61,12 +61,12 @@
         
 ## 4.Database Design
 > Number of tables = 2
-### Table-1 Stores URL mappings.
+#### Table-1 Stores URL mappings.
     original_url(512)   creation_date   expiration_date     userID
-### Table-2 Stores user’s data who created the short link
+#### Table-2 Stores user’s data who created the short link
         user_name   user_email  creationDate    lastLogin
 
-###  Type of DB: noSQL
+####  Type of DB: noSQL
 Why? Billions of rows should be saved on noSQL
 
 
@@ -82,15 +82,17 @@ Why? Billions of rows should be saved on noSQL
 
 ##### Step-1: Calculate hash of long URL
 > long-url > |SHA3-Hash|  > 512bit            //We can take SHA3-Hash OR
+
 long-url > |MD5-Hash|  > 128bit             //Let's consider this
         
 ##### Step-2: Converting 128bit hash to Base-64    
 > See How to convert Hexadecimal number to base-62 on Number system page
-        - Base-2 uses 2 bits to create a word : 2=2^1
-        - Base-8 uses 3 bits to create word : 8=2^3
-        - Base-16 uses 4 bits to create word: 16=2^4
-        - Base-64 uses 6 bits to create word: 64=2^6
-        128/6 = 21.33 = 21 characters or words. But we need only 8 characters as Output short-url.
+
+- Base-2 uses 2 bits to create a word : 2=2^1
+- Base-8 uses 3 bits to create word : 8=2^3
+- Base-16 uses 4 bits to create word: 16=2^4
+- Base-64 uses 6 bits to create word: 64=2^6
+- 128/6 = 21.33 = 21 characters or words. But we need only 8 characters as Output short-url.
         
 ##### Step-3: Deducing 8 character short-url from 21 characters.
 - Return 1st 8 characters from 21 characters.
