@@ -1,6 +1,6 @@
 ## WHAT is NumPy array?
 
-> Numpy also converts data into usable form.
+Python library providing multidimensional numeric arrays. NumPy converts input datasets into usable form
 
 
 #### 1. np.array() converting python lists TO NumPy arrays using 
