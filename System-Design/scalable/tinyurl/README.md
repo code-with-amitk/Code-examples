@@ -1,17 +1,17 @@
-# Step 1: Requirements clarifications
-## a. Functional:
+## Step 1: Requirements clarifications
+### a. Functional:
 * Given a URL, our service should generate a shorter and unique alias of it
 * When users access short link, our service should redirect them to the original link.
 * Users should be able to pick a custom short link for their URL.
 * Links should expire after default time span.
-## b. Non-Function:
+### b. Non-Function:
 * Highly available. 
 * Minimum latency
-## c. Extended requirements:
+### c. Extended requirements:
 * Analytics; e.g., how many times a redirection happened?
     
     
-# Step 2: Back-of-the-envelope estimation
+## Step 2: Back-of-the-envelope estimation
 
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
