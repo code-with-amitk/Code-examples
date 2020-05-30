@@ -11,9 +11,10 @@
 * Analytics; e.g., how many times a redirection happened?
     
     
-/////////Step 2: Back-of-the-envelope estimation///////////
-This is read heavy application.
-Consider 100:1 Read/Write requests.
+# Step 2: Back-of-the-envelope estimation
+
+> This is read heavy application. Consider 100:1 Read/Write requests.
+
 a. [Writes] 10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
 b. [Read/Redirection] 1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
 STORAGE Estimate:
