@@ -110,4 +110,4 @@ long-url > |MD5-Hash|  > 128bit             //Let's consider this
 ```
         
         
-### 5.2 How to generate keys
+### 5.2 How to generate offline keys
