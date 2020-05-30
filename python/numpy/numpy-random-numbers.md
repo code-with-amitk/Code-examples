@@ -4,6 +4,9 @@ NumPy has its own submodule for pseudo-random number generation called **np.rand
 This is similar to python's **random** module
 
 ### 1. Generating pseudo random numbers
+> np.random.randint(n): Choose a random integer uniformly from the range [0, n)
+> np.random.randint(n): Choose a random integer uniformly from the range [0, n).
+
 ```
 print(np.random.randint(5))             #Any random number less than 5
 print(np.random.randint(5))           
