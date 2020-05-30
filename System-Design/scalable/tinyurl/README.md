@@ -1,15 +1,14 @@
-# Test
-////////Step 1: Requirements clarifications//////////
-a. Functional:
-    a1. Given a URL, our service should generate a shorter and unique alias of it
-    a2. When users access short link, our service should redirect them to the original link.
-    a3. Users should be able to pick a custom short link for their URL.
-    a4. Links should expire after default time span.
-b. Non-Function:
-    b1. Highly available. 
-    b2. Minimum latency
-c. Extended requirements:
-    c1. Analytics; e.g., how many times a redirection happened?
+# Step 1: Requirements clarifications
+## a. Functional:
+    * a1. Given a URL, our service should generate a shorter and unique alias of it
+    * a2. When users access short link, our service should redirect them to the original link.
+    * a3. Users should be able to pick a custom short link for their URL.
+    * a4. Links should expire after default time span.
+## b. Non-Function:
+    * b1. Highly available. 
+    * b2. Minimum latency
+## c. Extended requirements:
+    * c1. Analytics; e.g., how many times a redirection happened?
     
     
 /////////Step 2: Back-of-the-envelope estimation///////////
