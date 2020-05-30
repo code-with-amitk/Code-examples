@@ -1,26 +1,26 @@
-## Step 1: Requirements clarifications
+## 1: Requirements clarifications
 ### a. Functional:
-* Given a URL, our service should generate a shorter and unique alias of it
-* When users access short link, our service should redirect them to the original link.
-* Users should be able to pick a custom short link for their URL.
-* Links should expire after default time span.
+- Given a URL, our service should generate a shorter and unique alias of it
+- When users access short link, our service should redirect them to the original link.
+- Users should be able to pick a custom short link for their URL.
+- Links should expire after default time span.
 ### b. Non-Function:
-* Highly available. 
-* Minimum latency
+- Highly available. 
+- Minimum latency
 ### c. Extended requirements:
-* Analytics; e.g., how many times a redirection happened?
+- Analytics; e.g., how many times a redirection happened?
 
 
 
-## Step 2: Back-of-the-envelope estimation
+## 2. Back-of-the-envelope estimation
 
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
-### [Writes] 
+### Writes
 
 10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
 
-### [Read/Redirection] 
+### Read/Redirection
 
 1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
 
@@ -36,8 +36,10 @@
     Total requests/day. 10k*60*60 = 36 Million. 20% of 36 Million = 7.2 Million * 262 = 1.8 GB
     
     
-//////////Step-3: System APIs////////////////////
-a. creating the short URL:
+## 3. System APIs
+
+### creating the short URL
+```
     createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)   //REST API 
       Parameters
         api_dev_key(string): Developer key of registered account.
@@ -47,11 +49,14 @@ a. creating the short URL:
         expire_date(string): Optional expiration date of URL
       Returns
         short_url(string)
-b. Deleting short and long URL pair from DB
+```        
+        
+### Deleting short and long URL pair from DB
+```    
     deleteURL(api_dev_key, url_key)
       Parameters:
         url_key: shortened URL to be retrieved & removed
-        
+```        
         
 ////////Step-4:Database Design////////////////////
 - Number of tables = 2
