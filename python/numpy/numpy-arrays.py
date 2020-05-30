@@ -81,3 +81,109 @@ print(repr(arr))           #array([-1,  0,  1,  2,  3])
 #using a step size of s.
 arr = np.arange(-1.5, 4, 2)
 print(repr(arr))              #array([-1.5,  0.5,  2.5])
+
+
+#8. NP.LINSPACE(start, end) 
+# Create array by specifying the number of elements in the array, 
+# rather than the step size
+arr = np.linspace(5, 11, num=4)
+print(repr(arr))                                   #array([ 5.,  7.,  9., 11.])
+
+arr = np.linspace(5, 11, num=4, endpoint=False)
+print(repr(arr))                                   #array([5. , 6.5, 8. , 9.5])
+
+arr = np.linspace(5, 11, num=4, dtype=np.int32)    #dtype keyword argument for manual casting.
+print(repr(arr))                                   #array([ 5,  7,  9, 11], dtype=int32)
+
+
+#9. NP.RESHAPE(array_to_be_reshaped, new_shape)
+# This function reshapes the array. Reshaping means changing dimensions of array.
+#The new shape must exactly contain all the elements from the input array.
+#For example, we could reshape an array with 12 elements to (4, 3), but we can't reshape it to (4, 4).
+varr = np.arange(8)
+print(repr(arr))                                  #array([0, 1, 2, 3, 4, 5, 6, 7])
+
+reshaped_arr = np.reshape(arr, (2, 4))
+print(repr(reshaped_arr))                          #array([[0, 1, 2, 3], [4, 5, 6, 7]])
+print('New shape: {}'.format(reshaped_arr.shape))  #New shape: (2, 4)
+
+reshaped_arr = np.reshape(arr, (-1, 2, 2))         #array([[[0, 1], [2, 3]], [[4, 5], [6, 7]]])
+print(repr(reshaped_arr))                          #New shape: (2, 2, 2)
+print('New shape: {}'.format(reshaped_arr.shape))
+
+
+#10. FLATTEN() function. TO flatten the array to 1-D array
+arr = np.arange(8)
+arr = np.reshape(arr, (2, 4))
+print(repr(arr))                                      #array([[0, 1, 2, 3],[4, 5, 6, 7]])
+print('arr shape: {}'.format(arr.shape))              #arr shape: (2, 4)
+
+flattened = arr.flatten()
+print(repr(flattened))                                 #array([0, 1, 2, 3, 4, 5, 6, 7])
+print('flattened shape: {}'.format(flattened.shape))  #flattened shape: (8,)
+
+
+#11. TRANSPOSE() function to transpose the array
+arr = np.arange(8)
+arr = np.reshape(arr, (4, 2))
+print(repr(arr))                            
+print('arr shape: {}'.format(arr.shape))
+"""
+array([[0, 1],
+       [2, 3],
+       [4, 5],
+       [6, 7]])
+arr shape: (4, 2)       
+"""       
+
+transposed = np.transpose(arr)
+print(repr(transposed))
+print('transposed shape: {}'.format(transposed.shape))
+"""
+array([[0, 2, 4, 6],
+       [1, 3, 5, 7]])
+transposed shape: (2, 4)
+"""
+
+
+#12. NP.ZEROS()   NP.ONES()
+# Creating arrays filled with 0s or 1s.
+# For example, since binary data is labeled with 0 and 1, we may need to create dummy datasets of strictly one label
+arr = np.zeros(4)
+print(repr(arr))                    #array([0., 0., 0., 0.])
+   
+arr = np.ones((2, 3))
+print(repr(arr))                    
+"""
+array([[1., 1., 1.],
+       [1., 1., 1.]])
+"""
+
+arr = np.ones((2, 3), dtype=np.int32)
+print(repr(arr))
+"""
+Output:
+array([[1, 1, 1],
+       [1, 1, 1]], dtype=int32)
+"""
+
+
+#13. NPZEROS_LIKE(), NPONCES_LIKE()
+# If we want to create an array of 0's or 1's with the same shape as another array, use above functions
+arr = np.array([[1, 2], [3, 4]])
+print(repr(np.zeros_like(arr)))
+"""
+OUtput:
+array([[0, 0],
+       [0, 0]])
+"""
+
+arr = np.array([[0., 1.], [1.2, 4.]])
+print(repr(np.ones_like(arr)))
+print(repr(np.ones_like(arr, dtype=np.int32)))
+"""
+array([[1., 1.],
+       [1., 1.]])
+array([[1, 1],
+       [1, 1]], dtype=int32)
+"""
