@@ -1,6 +1,7 @@
 
 NumPy has its own submodule for pseudo-random number generation called **np.random**
-This is similar to python's **random* module
+
+This is similar to python's **random** module
 
 ### 1. Generating pseudo random numbers
 ```
