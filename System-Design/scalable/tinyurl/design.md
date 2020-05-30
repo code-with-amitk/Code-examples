@@ -70,17 +70,21 @@
 Why? Billions of rows should be saved on noSQL
 
 
-///////////Step-5: SYSTEM DESIGN/////////////////
->>>>HOW KEY GENERATION WORKS<<<<<<
-USING BASE-64 Number System:
-    - Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
-    - These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
-STEPS:    
-    Step-1:     
-        long-url > |SHA3-Hash|  > 512bit            //We can take SHA3-Hash OR
-        long-url > |MD5-Hash|  > 128bit             //Let's consider this
+## 5. SYSTEM DESIGN
+
+### How to generate keys
+
+#### USING BASE-64 Number System:
+Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
+These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
+
+#### STEPS   
+
+##### Step-1: Calculate hash of long URL
+> long-url > |SHA3-Hash|  > 512bit            //We can take SHA3-Hash OR
+long-url > |MD5-Hash|  > 128bit             //Let's consider this
         
-    Step-2: Converting to Base-64    //See How to convert Hexadecimal number to base-62 on Number system page
+##### Step-2: Converting to Base-64    //See How to convert Hexadecimal number to base-62 on Number system page
         - Base-2 uses 2 bits to create a word : 2=2^1
         - Base-8 uses 3 bits to create word : 8=2^3
         - Base-16 uses 4 bits to create word: 16=2^4
