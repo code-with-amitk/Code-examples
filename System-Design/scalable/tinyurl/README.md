@@ -1,6 +1,6 @@
 ## Step 1: Requirements clarifications
 ### a. Functional:
-- Given a URL, our service should generate a shorter and unique alias of it
+* Given a URL, our service should generate a shorter and unique alias of it
 * When users access short link, our service should redirect them to the original link.
 * Users should be able to pick a custom short link for their URL.
 * Links should expire after default time span.
@@ -15,8 +15,14 @@
 
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
-a. [Writes] 10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
-b. [Read/Redirection] 1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
+### [Writes] 
+
+10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
+
+### [Read/Redirection] 
+
+1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
+
 STORAGE Estimate:
 - Let's assume long & short URLs are stored for 5 years.
 - Long URL length=256 bytes, Short URL=6 bytes. 
