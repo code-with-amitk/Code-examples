@@ -1,0 +1,24 @@
+/*	Stereo is seperate entity
+ */
+public class Stereo
+{
+	public void on()
+	{
+		System.put.println("Stereo on");
+	}
+
+	public void off()
+	{
+		System.put.println("Stereo on");
+	}
+
+	public void setCD()
+	{
+		System.put.println("Stereo CD set");
+	}
+
+	public void setVolume( int a )
+	{
+		System.put.println("Stereo volume = " + a);
+	}
+}

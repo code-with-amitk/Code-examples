@@ -1,0 +1,18 @@
+/*	class to talk to stereo is seperate entity
+ */
+public class StereoOnWithCDCommand implements Command 
+{
+	Stereo s;
+
+	public StereoOnWithCDCommand( Stereo k )
+	{
+		this.s = k;
+	}
+
+	public void execute() 
+	{
+		s.on();
+		s.setCD();
+		s.setVolume(11);
+	}
+}
