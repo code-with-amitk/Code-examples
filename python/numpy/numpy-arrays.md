@@ -1,13 +1,16 @@
-"""
-WHAT is NumPy array?
-   Numpy also converts data into usable form.
-"""
+## WHAT is NumPy array?
 
-#1. CONVERTING PYTHON LIST TO NumPy arrays using np.array()
-#Argument: dtype: keyword argument takes in a NumPy type and manually casts the array to the specified type
+> Numpy also converts data into usable form.
+
+
+### 1. CONVERTING PYTHON LIST TO NumPy arrays using np.array()
+> Argument: dtype: keyword argument takes in a NumPy type and manually casts the array to the specified type
+      
+```python
 import numpy as np
 arr = np.array([[0, 1, 2], [3, 4, 5]], dtype=np.float32)
 print(repr(arr))
+```
 
 
 #2. UPCASTING of NumPy array. When array contains mixed types
