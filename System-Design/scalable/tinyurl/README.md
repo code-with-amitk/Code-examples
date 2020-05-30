@@ -9,8 +9,9 @@
 * Minimum latency
 ### c. Extended requirements:
 * Analytics; e.g., how many times a redirection happened?
-    
-    
+
+
+
 ## Step 2: Back-of-the-envelope estimation
 
 > This is read heavy application. Consider 100:1 Read/Write requests.
@@ -23,12 +24,13 @@
 
 1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
 
-STORAGE Estimate:
+### STORAGE Estimate
 - Let's assume long & short URLs are stored for 5 years.
 - Long URL length=256 bytes, Short URL=6 bytes. 
     - 1 request requires 256+6=262 bytes to be stored
     - For 5 years. Total requests = 10k/sec*60*60*30*12*5 * 262 = 10k*1.5G = 10 Tera bytes
-CACHE Estimates:
+    
+### CACHE Estimates
  - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
  - Following 80:20 rule, 20% of URLs are often hit.
     Total requests/day. 10k*60*60 = 36 Million. 20% of 36 Million = 7.2 Million * 262 = 1.8 GB
