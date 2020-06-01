@@ -64,8 +64,8 @@
 
 #### Table-1 Stores URL mappings(long URL to short URL)
 
-    | original_url(512) | creation_date | expiration_date | userID |
-    | ------ | ---- | ---- |  -- |
+    | Original_url(512) | Creation_date | Expiration_date | UserID |
+    | --- | --- | --- |  --- |
     | <long-url> | timestamp | timestamp |        |
     
 #### Table-2 Stores user’s data who created the short link
