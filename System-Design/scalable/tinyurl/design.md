@@ -64,14 +64,14 @@
 
 #### Table-1 Stores URL mappings(long URL to short URL)
 
-    | Original_url(512) | Creation_date | Expiration_date | UserID |
-    | --- | --- | --- |  --- |
-    | <long-url> | timestamp | timestamp |        |
+| Original_url(512) | Creation_date | Expiration_date | UserID |
+| --- | --- | --- |  --- |
+| <long-url> | timestamp | timestamp |        |
     
 #### Table-2 Stores user’s data who created the short link
-       | user_name | user_email | creationDate | lastLogin |
-       | -- | -- | -- | -- |
-       |    |   |   |   |
+| user_name | user_email | creationDate | lastLogin |
+| --- | --- | --- | --- |
+|    |   |   |   |
 
 ####  Type of DB: noSQL
 Why? Billions of rows should be saved on noSQL
