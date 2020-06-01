@@ -1,13 +1,13 @@
 ## 1: Requirements clarifications
-### a. Functional:
+#### a. Functional:
 - Given a URL, our service should generate a shorter and unique alias of it
 - When users access short link, our service should redirect them to the original link.
 - Users should be able to pick a custom short link for their URL.
 - Links should expire after default time span.
-### b. Non-Function:
+#### b. Non-Function:
 - Highly available. 
 - Minimum latency
-### c. Extended requirements:
+#### c. Extended requirements:
 - Analytics; e.g., how many times a redirection happened?
 
 
@@ -16,21 +16,21 @@
 
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
-### Writes
+#### Writes
 
 10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
 
-### Read/Redirection
+#### Read/Redirection
 
 1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
 
-### STORAGE Estimate
+#### STORAGE Estimate
 - Let's assume long & short URLs are stored for 5 years.
 - Long URL length=256 bytes, Short URL=6 bytes. 
     - 1 request requires 256+6=262 bytes to be stored
     - For 5 years. Total requests = 10k/sec*60*60*30*12*5 * 262 = 10k*1.5G = 10 Tera bytes
     
-### CACHE Estimates
+#### CACHE Estimates
  - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
  - Following 80:20 rule, 20% of URLs are often hit.
     Total requests/day. 10k*60*60 = 36 Million. 20% of 36 Million = 7.2 Million * 262 = 1.8 GB
@@ -61,8 +61,11 @@
         
 ## 4.Database Design
 > Number of tables = 2
-#### Table-1 Stores URL mappings.
-    original_url(512)   creation_date   expiration_date     userID
+
+#### Table-1 Stores URL mappings(long URL to short URL)
+    | original_url(512) | creation_date | expiration_date | userID |
+    |-------------------|---------------|-----------------|--------|
+    |                   |               |                 |        |
 #### Table-2 Stores user’s data who created the short link
         user_name   user_email  creationDate    lastLogin
 
