@@ -65,32 +65,35 @@
 #### Table-1 Stores URL mappings(long URL to short URL)
 
     | original_url(512) | creation_date | expiration_date | userID |
-    | ----------------- | ------------- | --------------- | ------ |
-    |                   |               |                 |        |
+    | ------ | ---- | ---- |  -- |
+    | <long-url> | timestamp | timestamp |        |
     
 #### Table-2 Stores user’s data who created the short link
-        user_name   user_email  creationDate    lastLogin
+       | user_name | user_email | creationDate | lastLogin |
+       | -- | -- | -- | -- |
+       |    |   |   |   |
 
 ####  Type of DB: noSQL
 Why? Billions of rows should be saved on noSQL
 
 
-## 5. SYSTEM DESIGN
+## 5. SYSTEM DESIGN (Generating Keys)
 
-### 5.1 How to generate keys
+### 5.1 Method-1: Generating keys on Runtime
+ie As system gets request to generate short-url, it creates short-key and returns.
 
-#### USING BASE-64 Number System:
-- Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
-- These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
-
-#### STEPS   
+#### Steps to generate keys on runtime
 
 ##### Step-1: Calculate hash of long URL
 > long-url > |SHA3-Hash|  > 512bit            //We can take SHA3-Hash OR
 
 long-url > |MD5-Hash|  > 128bit             //Let's consider this
         
-##### Step-2: Converting 128bit hash to Base-64    
+##### Step-2: Converting 128bit hash to Base-64  format
+
+> What is BASE-64 Number System?
+> Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
+> These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
 > See How to convert Hexadecimal number to base-62 on Number system page
 
 - Base-2 uses 2 bits to create a word : 2=2^1
@@ -106,7 +109,7 @@ long-url > |MD5-Hash|  > 128bit             //Let's consider this
         
 ##### Step-4: Store short URL in DB
 ```
-        client          server         encoder              DB
+        **client        App-server         encoder              DB**
              -long url->    -long url->
                                        encoded
                                             --short url-->
@@ -114,5 +117,88 @@ long-url > |MD5-Hash|  > 128bit             //Let's consider this
                                     regenerate & store
 ```
         
-        
-### 5.2 How to generate offline keys
+### 5.2 Method-2 Generate and store offline keys, use them at runtime
+**KGS(Key generation service)**
+
+KGS will generate the 6-letter keys beforehand and keep in key-DB.
+
+##### Advantages of before hand key generation:
+1. Run Time calculations saving. Hash & conversion to Base-64 will be saved.
+2. Collions will be saved. We already have generated keys in place hence risk of same key generation is 0
+
+##### Databases used by KGS
+KGS will keep keys in 2 seperate databases.
+    | used keys DB |        //DB stores all allocated keys
+    | -- |
+    
+    | unused keys DB |      //DB storing unused keys
+    | -- |
+    
+###### Size of Key-DB
+Base-64 will have 2^64 = 68.7 Billion unique six letters short urls
+1 key = 6 characters = 6 bytes.
+Total storage = 6 * 68.7 Billion = 412 GB
+
+###### Is KGS Single point of Failure? 
+Yes
+Solution: Take replicas/standby servers of KGS, replicas can take over to generate and provide keys.
+
+###### Can App-Server cache some keys from KGS
+> Yes
+
+
+## 6. DB Paritioning & Replication
+> To store billions of long URL to short URL mapping, we need distributed DB.
+
+#### 6.1 Range based Partitions
+DB-1 will store all short urls starting from 'A' and 'a'.
+DB-2 will store all short urls starting from 'B' and 'b'.
+..
+
+###### Drawback of this approach
+1 DB can be hugely loaded while other maybe free.
+For example, we decide to put all URLs starting with letter ‘E’ into a DB partition, but later we realize that we have too many URLs that start with the letter ‘E’.
+
+#### 6.2 Hash based Partitions
+short-url is generated. Now hash value (between 1-256) is calculated from short-url as well and based on hash one of DB servers is selected for storage of long-url to short-url mapping.
+
+###### Drawback of this approach
+Again all times only 1 hash can be generated overloading only 1 server.
+
+####### Solution
+Consistent hashing
+
+## 7. Cache
+Frequently asked long-url to short-url mappings would be stored in cache.
+
+
+## Final Architecture
+```
+                                        **KGS(Key Generation Service)**
+                                        - Generate 68.7 Billion short urls
+                                        
+                                        short-url > |Hash| > hash between 1-256
+                                        //Let's suppose Hash=50, store on DB50
+                                        
+                                        Store short-url into respective DB using hash
+                                        
+                                                   ---store short url->   
+                                                                        Unused
+                                                                        Key-DB1
+                                                                        Key-DB2
+                                                                        Key-DB3
+                                                                        ..
+                                                                        Key-DB256
+
+                                                   
+        **client        (App-server  +   cache[Memcached])            KGS
+             -long url--->        
+                            ----long url->
+                                        if mapping is found
+                            <--return short url--
+                                        else
+                                            -----------long url------>
+                                                                Map long-url to short-url
+                                                                Move short-url to Used-DB
+                             <--------------short url------------------          
+```
