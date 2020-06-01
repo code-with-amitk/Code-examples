@@ -128,15 +128,17 @@ KGS will generate the 6-letter keys beforehand and keep in key-DB.
 
 ##### Databases used by KGS
 KGS will keep keys in 2 seperate databases.
-    | used keys DB |        //DB stores all allocated keys
-    | -- |
+| used keys DB |        //DB stores all allocated keys
+| --- |
     
-    | unused keys DB |      //DB storing unused keys
-    | -- |
+| unused keys DB |      //DB storing unused keys
+| --- |
     
 ###### Size of Key-DB
-Base-64 will have 2^64 = 68.7 Billion unique six letters short urls
+Base-64 will have 2^64 = 68.7 Billion unique six letters short urls.
+
 1 key = 6 characters = 6 bytes.
+
 Total storage = 6 * 68.7 Billion = 412 GB
 
 ###### Is KGS Single point of Failure? 
