@@ -63,9 +63,11 @@
 > Number of tables = 2
 
 #### Table-1 Stores URL mappings(long URL to short URL)
+
     | original_url(512) | creation_date | expiration_date | userID |
     |-------------------|---------------|-----------------|--------|
     |                   |               |                 |        |
+    
 #### Table-2 Stores user’s data who created the short link
         user_name   user_email  creationDate    lastLogin
 
