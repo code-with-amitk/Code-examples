@@ -1,5 +1,3 @@
-"""     functions.py
-
 ### 1. FUNCTIONS AS OBJECTS
 Means functions can be used as variable
 ```python
