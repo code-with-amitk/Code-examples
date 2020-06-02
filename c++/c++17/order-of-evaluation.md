@@ -1,6 +1,6 @@
-c = a+b
-operand +
-operator a,b
+if c = a+b
+- + is operand
+- a,b are operators
 
 ## Order of Evaluation
 - OOE means order in which expression is evaluated.
