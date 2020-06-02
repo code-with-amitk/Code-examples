@@ -1,10 +1,9 @@
 ## What is pandas?
 This library for processing and analyzing real world data. Usages:
-a. parsing multiple file formats
-b. converting input data table into a NumPy matrix
+- parsing multiple file formats
+- converting input data table into a NumPy matrix
 
-## 1-D and 2-D Arrays/Data
-### 1-D data (also called series)
+## 1-D data (also called series)
 - A Series is created through the pd.Series constructor(Takes keyword arguments).
   - data = Specifies the elements of the Series     //1st kwarg
   - dtype (same as numpy arrays)                    //2nd kwarg for manual casting
@@ -54,7 +53,80 @@ print(s,'\n')                                     # a    1
                                                   # dtype: int64                           
 ```
 
-### 2-D data (also called DataFrame)
+## 2-D data (also called DataFrame)
 - This is tabular data(in form of tables or speardsheets)
 - A dataFrame is created through the pd.dataFrame constructor(Takes same arguments as pd.series).
   - Takes additional coloumn keyword argument.
+
+Example
+```python
+df = pd.DataFrame()
+print(df)                       #Empty DataFrame
+                                # Columns: []
+                                # Index: []
+
+df = pd.DataFrame([5, 6])       
+print(df)                       #0
+                                #0  5
+                                #1  6
+                                
+df = pd.DataFrame({'c1': [1, 2], 'c2': [3, 4]},               //taking dictionary as argument
+                  index=['r1', 'r2'])
+print(df)                                   #    c1  c2
+                                            #r1   1   3
+                                            #r2   2   4
+```
+
+### Upcasting happen on coloumns
+```python
+a = pd.DataFrame([[5, 6], [1.2, 3]])
+print(upcast)                               #     0  1
+                                            # 0  5.0  6     //coloumn is upcasted
+                                            # 1  1.2  3
+```
+
+### Appending additonal row through append() function
+```python
+df = pd.DataFrame([[5, 6], [1.2, 3]])
+print(df)                                     #     0  1
+                                              # 0  5.0  6
+                                              # 1  1.2  3 
+r = pd.Series([0, 0], name='r3')
+
+df = df.append(r)
+print('{}\n'.format(r))                       #      0  1
+                                              # 0   5.0  6
+                                              # 1   1.2  3
+                                              # r3  0.0  0
+```
+##### Setting ignore_index=True will change the row labels to integer indexes.
+```python
+//continuation to above code
+df_app = df.append(r, ignore_index=True)
+print(df_app)                               #      0  1
+                                            # 0  5.0  6 
+                                            # 1  1.2  3
+                                            # 2  0.0  0
+                                            # 3  0.0  0 
+```
+
+### Dropping row/coloumn using drop() function
+##### Method-1(labels keyword argument): specify the labels of the rows/columns we want to drop
+```python
+df = pd.DataFrame({'c1': [1, 2], 'c2': [3, 4], 'c3': [5, 6]}, index=['r1', 'r2'])
+print(df)                                   #     c1  c2  c3
+                                            # r1   1   3   5
+                                            # r2   2   4   6
+df = df.drop(labels='r1')
+print(df)                                   #     c1  c2  c3
+                                            # r2   2   4   6
+```
+
+##### Method-2(Directly specify row/colomn)
+```python
+//continuing to above example
+df_drop = df.drop(columns='c2')
+print('{}\n'.format(df_drop))               #    c1  c3
+                                            # r1   1   5
+                                            # r2   2   6
+```
