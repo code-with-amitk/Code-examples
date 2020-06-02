@@ -85,7 +85,7 @@ print(upcast)                               #     0  1
                                             # 1  1.2  3
 ```
 
-### Appending additonal row through append() function
+### append():Appending additonal row through 
 ```python
 df = pd.DataFrame([[5, 6], [1.2, 3]])
 print(df)                                     #     0  1
@@ -110,7 +110,7 @@ print(df_app)                               #      0  1
                                             # 3  0.0  0 
 ```
 
-### Dropping row/coloumn using drop() function
+### drop():Dropping row/coloumn
 ##### Method-1(labels keyword argument): specify the labels of the rows/columns we want to drop
 ```python
 df = pd.DataFrame({'c1': [1, 2], 'c2': [3, 4], 'c3': [5, 6]}, index=['r1', 'r2'])
@@ -129,4 +129,38 @@ df_drop = df.drop(columns='c2')
 print('{}\n'.format(df_drop))               #    c1  c3
                                             # r1   1   5
                                             # r2   2   6
+```
+
+### concat(): concatenate multiple DataFrames along either rows or columns
+- axis argument specifies whether we concatenate the rows (axis=0, the default), or concatenate the columns (axis=1).
+```python
+df1 = pd.DataFrame({'c1':[1,2], 'c2':[3,4]}, index=['r1','r2'])
+df2 = pd.DataFrame({'c1':[5,6], 'c2':[7,8]}, index=['r1','r2'])
+print(df1)                        #     c1  c2
+                                  # r1   1   3
+                                  # r2   2   4
+                                  
+print(df2)                        #    c1  c2
+                                  # r1   5   7
+                                  # r2   6   8
+c = pd.concat([df1, df2], axis=1)      
+print(c)                          #    c1  c2  c1  c2
+                                  # r1   1   3   5   7
+                                  # r2   2   4   6   8
+```
+
+### merge(): Merging the data frames
+```python
+mlb_df1 = pd.DataFrame({'name': ['john doe', 'al smith', 'sam black', 'john doe'],
+                        'pos': ['1B', 'C', 'P', '2B'],
+                        'year': [2000, 2004, 2008, 2003]})
+mlb_df2 = pd.DataFrame({'name': ['john doe', 'al smith', 'jack lee'],
+                        'year': [2000, 2004, 2012],
+                        'rbi': [80, 100, 12]})
+                        
+print('{}\n'.format(mlb_df1))
+print('{}\n'.format(mlb_df1))
+
+mlb_merged = pd.merge(mlb_df1, mlb_df2)
+print('{}\n'.format(mlb_merged))
 ```
