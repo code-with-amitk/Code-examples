@@ -1,12 +1,9 @@
-/*
-Function returns a temporary value in Register(rax).
-Temporary value is R-value.
-Copying object using R-value calls move ctr.
-*/
+## Function call returns a Temporary Value in rax register
+- Temporary value is R value
+- Copying object using R-value calls move ctr.
 
-/************EXAMPLE-1: Function returning R-value*******************
-To understand steps: See Assembly below.
-*/
+### Example-1        
+```
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -27,9 +24,6 @@ public:
                 cout<<"move ctr\n";
         }
 };
-
-/*Function returns a temporary unnamed value, which is definition of R-value
-*/
 A fun(A o)
 {
         return o;
@@ -56,10 +50,11 @@ main:
         call    A::A(int)                     //A(1)
         call    fun(A)                        //fun(A(1))
 */
-/*******************************************************************/
+```
 
 
-/************EXAMPLE-2: Function returning R-value*******************/
+### Example-2
+```
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -116,4 +111,4 @@ main:
         call    A::A(A&)                      //fun(A o) = fun(obj1).Passing L-value and hence copy ctr called
         call    fun(A)        
         
-/*******************************************************************/
+```
