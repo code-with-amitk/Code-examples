@@ -3,7 +3,7 @@
 ### Creating copy using function call
 3 copies
 
-```
+```C
 #include<iostream>
 using namespace std;
 int fun(int a){
@@ -13,7 +13,9 @@ int main(){
     int a = 10;
     int b = fun(a);
 }
+```
 
+```assembly
 ASSEMBLY:
 fun(int):
         push    rbp
