@@ -171,7 +171,9 @@ Again all times only 1 hash can be generated overloading only 1 server.
 Consistent hashing
 
 ## 7. Cache
-Frequently asked long-url to short-url mappings would be stored in cache.
+- Frequently asked long-url to short-url mappings would be stored in cache.
+### How much cache memory is required
+- Let's start with 20% of traffic
 
 
 ## Final Architecture
