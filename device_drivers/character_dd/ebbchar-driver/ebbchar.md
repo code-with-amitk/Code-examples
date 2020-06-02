@@ -1,31 +1,46 @@
-/*	ebbchar.c
-http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device
-This is Character Device Driver
+### Steps for Writing Character Device Driver
 
-STEPS:
-A. Write device driver named 'ebbchar.c'
-B. Build the driver ebbchar.ko
+Rename this file as **ebbchar.c**
+
+Take Soure part only and compile.
+
+http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device
+a. Write device driver named 'ebbchar.c'
+b. Build the driver ebbchar.ko
+```
 	# make; ls 
 	ebbchar.ko
-C. Insert the driver into kernel
+```
+c. Insert the driver into kernel
+```
         # insmod ebbchar.ko	
-D. Verify driver is inserted
+```
+d. Verify driver is inserted
+```
 	# dmesg
-E. Check listing of driver
+```
+e. Check listing of driver
+```
 	# lsmod |grep ebb
 	# ls -ltr /dev/ebb*
 	crw-------- 1 root root 238,0 	//238 major no is automatically assigned by kernel
-F. Write & compile user application to communicate with driver.
+```
+f. Write & compile user application to communicate with driver.
+```
 	# vim testebbdriver.c
-G. Test interaction
+```
+g. Test interaction
+```
 	# ./test
-H. Remove the driver.
+```
+h. Remove the driver.
+```
 	# rmmod ebbchar
-*/
+```
 
 
-/*
-STEP-1: Declare Headers
+
+#### STEP-1: Declare Headers
  linux/init.h:		Provides mark up functions e.g. __init __exit
  linux/module.h:	Loads LKMs into the kernel
  linux/device.h: 	Header to support the kernel Driver Model
@@ -35,7 +50,7 @@ STEP-1: Declare Headers
 
  DEVICE_NAME "ebbchar"    The device will appear at /dev/ebbchar
  CLASS_NAME  "ebb"        The device class -- this is a character device driver
- */
+```
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/device.h>
@@ -44,43 +59,43 @@ STEP-1: Declare Headers
 #include <linux/uaccess.h>
 #define  DEVICE_NAME "ebbchar"
 #define  CLASS_NAME  "ebb"
+```
 
-/* 
-STEP-2: License, Author, Description, Version
+#### STEP-2: License, Author, Description, Version
 MODULE_DESCRIPTION: This will be seen in modinfo
 MODULE_VERSION: For user information purpose
- */
+```
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Amit Kumar");
 MODULE_DESCRIPTION("A simple Linux char driver for the BBB");
 MODULE_VERSION("0.1");
+```
 
-/*
-STEP-3: Global variables
+#### STEP-3: Global variables
 	majorNumber:		Stores the device number -- determined automatically
 	message[256]:		String that is passed from userspace
 	size_of_message:        size of the string stored
 	numberOpens:            Counts the number of times the device is opened
 	struct class* charClass: Driver class struct pointer
 	struct device* ebbcharDevice: Driver device struct pointer
-*/
+```
 static int    majorNumber;
 static char   message[256] = {0};
 static short  size_of_message;
 static int    numberOpens = 0;
 static struct class*  ebbcharClass  = NULL;
 static struct device* ebbcharDevice = NULL;
+```
 
-/*
-STEP-4: Declarations for Driver
- */
+#### STEP-4: Declarations for Driver
+ ```
 static int     dev_open(struct inode *, struct file *);
 static int     dev_release(struct inode *, struct file *);
 static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
 static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
+```
 
-/*
-STEP-5: File Operations Structure (/linux/fs.h)
+#### STEP-5: File Operations Structure (/linux/fs.h)
 - Provides callback functions that needed to be called from user space
 struct file_operations{
     struct module *owner;
@@ -103,7 +118,8 @@ struct file_operations{
     unsigned long (*get_unmapped_area) (struct file*, unsinged long, unsinged long, unsinged long, unsinged long);
 };
 It is not necessary to implement all functions. If function is not implemented corresponding pointer = 0.
- */
+ 
+```
 static struct file_operations fops =
 {
    .open = dev_open,
@@ -111,9 +127,9 @@ static struct file_operations fops =
    .write = dev_write,
    .release = dev_release,
 };
+```
 
-/*
-STEP-6: LKM initialization function.
+#### STEP-6: LKM initialization function.
 	This function is called using module_init()
 - register_chrdev() register your character DD
 
@@ -144,7 +160,7 @@ int alloc_chrdev_region(dev_t dev, unsigned int firstminor,
       -ve: In error, error code will be returned                             
  Notes:                                                                      
       declared in <linux/fs.h>                                               
-*/
+```
 static int __init ebbchar_init(void){
 	printk(KERN_INFO "Initializing the EBBChar LKM\n");
 
@@ -183,11 +199,10 @@ static int __init ebbchar_init(void){
 
    	return 0;
 }
+```
 
-/* 
-Step-7: LKM exit function to be called from module_exit()
- - Does cleanup tasks
-*/
+#### Step-7: LKM exit function to be called from module_exit()  - Does cleanup tasks
+```
 static void __exit ebbchar_exit(void)
 {
 	device_destroy(ebbcharClass, MKDEV(majorNumber, 0));    
@@ -196,10 +211,9 @@ static void __exit ebbchar_exit(void)
    	unregister_chrdev(majorNumber, DEVICE_NAME);            
    	printk(KERN_INFO "EBBChar: Goodbye from the LKM!\n");
 }
+```
 
-
-/*
-STEP-7: Provide Function to be called from user space applications.
+#### STEP-8: Provide Function to be called from user space applications.
  dev_open(): called each time device file is opened
  dev_read(): called when device file is read from user space
  	copy_to_user(): function to send the buffer string to the user 
@@ -207,7 +221,7 @@ STEP-7: Provide Function to be called from user space applications.
  dev_write(): called when device file is written from user space i.e. data
  		is sent to the device from the user.
  dev_release(): Called when user space calls close() on device file
-*/
+```
 static int dev_open(struct inode *inodep, struct file *filep)
 {
 	numberOpens++;
@@ -246,11 +260,10 @@ static int dev_release(struct inode *inodep, struct file *filep)
 	printk(KERN_INFO "EBBChar: Device successfully closed\n");
    	return 0;
 }
+```
 
-/* 
-STEP-8:
- Initialization, cleanup functions for module
- Use module_init(), module_exit() provided in linux/init.h
-*/ 
+#### STEP-9:  Initialization, cleanup functions for module. Use module_init(), module_exit() provided in linux/init.h
+``` 
 module_init(ebbchar_init);
 module_exit(ebbchar_exit);
+```
