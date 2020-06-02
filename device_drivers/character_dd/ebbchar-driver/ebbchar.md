@@ -9,34 +9,34 @@
 a. Write device driver named 'ebbchar.c'
 b. Build the driver ebbchar.ko
 ```
-	# make; ls 
+# make; ls 
 	ebbchar.ko
 ```
 c. Insert the driver into kernel
 ```
-        # insmod ebbchar.ko	
+# insmod ebbchar.ko	
 ```
 d. Verify driver is inserted
 ```
-	# dmesg
+# dmesg
 ```
 e. Check listing of driver
 ```
-	# lsmod |grep ebb
-	# ls -ltr /dev/ebb*
+# lsmod |grep ebb
+# ls -ltr /dev/ebb*
 	crw-------- 1 root root 238,0 	//238 major no is automatically assigned by kernel
 ```
 f. Write & compile user application to communicate with driver.
 ```
-	# vim testebbdriver.c
+# vim testebbdriver.c
 ```
 g. Test interaction
 ```
-	# ./test
+# ./test
 ```
 h. Remove the driver.
 ```
-	# rmmod ebbchar
+# rmmod ebbchar
 ```
 
 
