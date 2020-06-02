@@ -1,5 +1,5 @@
 if c = a+b
-- + is operand
+- '+' is operand
 - a,b are operators
 
 ## Order of Evaluation
