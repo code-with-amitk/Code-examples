@@ -1,7 +1,9 @@
 ## How many Temporary copies are created?
 
 ### Creating copy using function call
-3 copies
+- To make copy of a variable using function call, 3 copies are created.
+- For example, we are creating copy of variable **a** as variable **b** using fun()
+    - In this process, 3 temporary copies of **a** are created.
 
 ```C
 #include<iostream>
