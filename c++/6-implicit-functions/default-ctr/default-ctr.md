@@ -8,9 +8,9 @@
 
 ### DEFAULT CONSTRUCTOR
 - Same named function of class
-- When Compiler provides default ctr?
+- When Compiler **provides default ctr**?
   1. No user created Constructor is declared in class
-- When complier does not provide default ctr?
+- When complier **does not provide default ctr**?
   1. If user has  defined ANY constructor(either default of copy ctr)
   2. There is a Member in class that is not default-constructible. Eg: Pointer, Reference    
   3. [In C++11] Deleting Default Constructor using A() = delete;
