@@ -1,13 +1,12 @@
-### Steps for Writing Character Device Driver
+## Steps for Writing Character Device Driver
 
 - Rename this file as **ebbchar.c**
 
 - Take Soure part only and compile.
 
-http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device
+[Source](http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device)
 
 a. Write device driver named 'ebbchar.c'
-
 b. Build the driver ebbchar.ko
 ```
 	# make; ls 
@@ -39,7 +38,6 @@ h. Remove the driver.
 ```
 	# rmmod ebbchar
 ```
-
 
 
 ### STEP-1: Declare Headers
