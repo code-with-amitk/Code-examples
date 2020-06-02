@@ -4,7 +4,7 @@
 2. Onsite (Coding) Questions: Matrix:1, infinite-data-coming:1
 3. Onsite (Coding) Questions: Strings:1,2,3,4
 4. Onsite (Bar-raiser) 
-	- (Shortest path in grid with obstacle)[https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/]
+	- [Shortest path in grid with obstacle](https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/)
 5. Onsite (Design)
 6. Onsite (Hiring Manager) Software Principles & Culture Fit
 
@@ -14,7 +14,7 @@
 hexadecimal Value is attained. (Validation of strings had to be done as well). Input 8981 Output B. Eg. 8981 -> Sum=26 ->Hexa 
 	   Value 1A->Sum=1+10=11->Hexa Value B (Answer)
 
-2. (Given a String with one type of brackets, validate if it is balanced or not)[https://leetcode.com/problems/valid-parentheses/]
+2. [Given a String with one type of brackets, validate if it is balanced or not](https://leetcode.com/problems/valid-parentheses/)
 
 3. Given a string with parentheses of three types with precedence, validate the balance status of the string.
 A higher precedence parentheses can enclose a lower precedence parentheses but not vice and versa.
@@ -24,7 +24,7 @@ A higher precedence parentheses can enclose a lower precedence parentheses but n
 5. [Minimum characters to remove to make a string a balanced parentheses](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/)	
 
 ### MATRIX Questions
-1. (Word Search)[https://leetcode.com/problems/word-search/]
+1. [Word Search](https://leetcode.com/problems/word-search/)
 
 ### INFINITE-DATA-COMING:
 1. Median of infinite stream of numbers. Follow up : Median of two sorted sets in O(log(n))
