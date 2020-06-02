@@ -85,7 +85,7 @@ print(upcast)                               #     0  1
                                             # 1  1.2  3
 ```
 
-### append():Appending additonal row through 
+### append():Appending additonal row
 ```python
 df = pd.DataFrame([[5, 6], [1.2, 3]])
 print(df)                                     #     0  1
@@ -163,4 +163,71 @@ print('{}\n'.format(mlb_df1))
 
 mlb_merged = pd.merge(mlb_df1, mlb_df2)
 print('{}\n'.format(mlb_merged))
+```
+
+### Indexing into dataFrames
+- Accessing elements using indexes
+- DataFrame as a though of as dictionary of Series objects(1-D data), where each coloumn is a series.
+#### Direct indexing
+##### Coloumns can be retireved using names
+```python
+df = pd.DataFrame({'c1': [1, 2], 'c2': [3, 4],
+                   'c3': [5, 6]}, index=['r1', 'r2'])
+print(df)                                       #    c1  c2  c3
+                                                # r1   1   3   5
+                                                # r2   2   4   6                   
+col1 = df['c1']
+# Newline for separating print statements
+print(col1)                                     # r1    1
+                                                # r2    2 
+                                                # Name: c1, dtype: int64
+```
+
+##### Rows cannot be retireved using names, rather only slices of rows can be obtained
+```python
+df = pd.DataFrame({'c1': [1, 2, 3], 'c2': [4, 5, 6],
+                   'c3': [7, 8, 9]}, index=['r1', 'r2', 'r3'])
+print(df)                                   #     c1  c2  c3
+                                            # r1   1   4   7
+                                            # r2   2   5   8
+                                            # r3   3   6   9
+
+first_two_rows = df[0:2]
+print(first_two_rows)                     #    c1  c2  c3
+                                           r1   1   4   7
+                                           r2   2   5   8
+
+last_two_rows = df['r2':'r3']
+print(last_two_rows)
+
+# Results in KeyError
+df['r1']
+```
+#### Indirect indexing
+- Using **iloc** to access complete row using index
+```python
+df = pd.DataFrame({'c1': [1, 2, 3], 'c2': [4, 5, 6],
+                   'c3': [7, 8, 9]}, index=['r1', 'r2', 'r3'])
+print(df)                                 #     c1  c2  c3
+                                           r1   1   4   7
+                                           r2   2   5   8
+                                           r3   3   6   9
+
+print(df.iloc[1])                         #c1    2
+                                           c2    5
+                                           c3    8   
+```
+- Using **loc** which specifies row label
+```python
+df = pd.DataFrame({'c1': [1, 2, 3], 'c2': [4, 5, 6],
+                   'c3': [7, 8, 9]}, index=['r1', 'r2', 'r3'])
+                   
+print('{}\n'.format(df))                                #    c1  c2  c3
+                                                        r1   1   4   7
+                                                        r2   2   5   8
+                                                        r3   3   6   9
+
+print('{}\n'.format(df.loc['r2']))                      # c1    2
+                                                          c2    5 
+                                                          c3    8 
 ```
