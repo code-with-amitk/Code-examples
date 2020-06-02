@@ -5,6 +5,7 @@
 - For example, we are creating copy of variable **a** as variable **b** using fun()
     - In this process, 3 temporary copies of **a** are created.
 
+**EXAMPLE**
 ```C
 #include<iostream>
 using namespace std;
@@ -17,8 +18,8 @@ int main(){
 }
 ```
 
+**ASSEMBLY**
 ```assembly
-ASSEMBLY:
 fun(int):
         push    rbp
         mov     rbp, rsp
@@ -38,8 +39,10 @@ main:
         mov     eax, 0
         leave
         ret
+```        
         
-STEPS:        
+**STEPS**
+```
 1. Function Epilogue.
    a. Push value of rbp0 somewhere on stack
    ------------                        Head
