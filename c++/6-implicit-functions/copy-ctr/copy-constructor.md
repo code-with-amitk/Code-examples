@@ -1,25 +1,22 @@
 ## Copy Constructor
-	- member function of class for creating a new object as a copy of an existing object.
-	- same named function of class A.
-	- Achieved using const L-value reference.
-	- **PARAMETERS**
-		- 1st parameter is A&, const A&, volatile A&, or const volatile A&
-		- Either there are no other parameters, or the rest of the parameters all have default values.
+- member function of class for creating a new object as a copy of an existing object.
+- same named function of class A.
+- Achieved using const L-value reference.
+- **PARAMETERS**
+	- 1st parameter is A&, const A&, volatile A&, or const volatile A&
+	- Either there are no other parameters, or the rest of the parameters all have default values.
 
 ### When compiler does not provide copy ctr?
-        1. CC declared by user.
-        2. If class has virtual function. class A{ public: virtual f();}
-        3. If class has virtual base class class A:virtual B{}
-        4. Class has member which cannot be copied to other object(ie not copy construable) Eg: reference variable
-
-### Forcing compiler to create copy ctr
-   class-name (class-name &) = default;
+1. CC declared by user.
+2. If class has virtual function. class A{ public: virtual f();}
+3. If class has virtual base class class A:virtual B{}
+4. Class has member which cannot be copied to other object(ie not copy construable) Eg: reference variable
 
 ### Syntax
 ```
-        class_name ( const class_name & )
-        class_name ( const class_name & ) = default;
-        class_name ( const class_name & ) = delete;
+class_name ( const class_name & )
+class_name ( const class_name & ) = default;
+class_name ( const class_name & ) = delete;
 ```
 
 ### Compiler provided copy ctr
