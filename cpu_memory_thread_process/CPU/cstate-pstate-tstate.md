@@ -11,13 +11,13 @@
 - ACPI divided power management technologies into 2 categories.
 
 ### 1.1 P-State(Power performance/Processing states)?
- - **What** 
+ **What** 
   - This is a map <voltage,frequency> pairs based on which speed and power consumption of the [coprocessor](https://github.com/amitkumar50/Code-examples/blob/master/cpu_memory_thread_process/CPU/processor_coprocessor.md) is decided.
   - Provides way to scale Frequency & voltage on which processor is running, with aim of reducing power consumption.
   -  The coprocessor's PM SW(status word) handles the transition from one P-state to another
- - **Goal** 
+ **Goal** 
   - Reducing Power Consumption Without Impacting Performance
-- **Frequency to battery relation**  
+**Frequency to battery relation**  
  - High Frequency -> high CPU I/O Rate -> High Processor performance -> high battery consumption
  - Reduced frequency to 1/2 -> CPU I/O Rate is reduced to 1/2 -> performance 1/2ed -> less battery consumption
  - PC-States(Core P states):
