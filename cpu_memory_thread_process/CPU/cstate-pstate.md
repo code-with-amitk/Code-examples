@@ -1,4 +1,13 @@
-## P-State?
+## ACPI(Advanced Configuration and Power Interface)
+- This is Open standard using which Operating system can:
+  1. Discover & configure Hardware components
+  2. Perform power management. This brings power management under OS control. (Eg: putting unused components on sleep)
+  3. Perform status monitoring
+- ACPI replaces APM & PnP specifications.
+- How it works?
+ - ACPI advertises aviable components to OS kernel using methods provided thru [firmware(UEFI or BIOS)](https://github.com/amitkumar50/Code-examples/blob/master/cpu_memory_thread_process/CPU/firmware_UEFI.md)
+
+## P-State(pacakage based)?
  - These are frequency & voltage operating points.
  - High Frequency means
     - high CPU I/O Rate means
