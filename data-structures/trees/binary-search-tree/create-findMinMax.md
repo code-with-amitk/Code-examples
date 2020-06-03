@@ -83,6 +83,6 @@ int findMin(Node *node)
        / \
       3   5
 ```
-#####  **Complexity**
+##### **Complexity**
 	- Every deletion need 2 search operations (2 O(logn))
 	- Plus constant amount of time in pointer manipulations.
