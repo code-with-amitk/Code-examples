@@ -1,9 +1,8 @@
 
 ## BST (Binary Search Tree)
 - **What** Binary tree having 2 child nodes. Every key is unique. It follows this property
- > Left child < parent
- 
- > right child > parent
+	- Left child < parent
+ 	- right child > parent
  
 - **Usage** Mainly for searching operations.
 
