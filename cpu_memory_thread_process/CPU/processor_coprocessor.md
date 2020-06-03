@@ -1,9 +1,13 @@
 ## COPROCESSOR
 - **What**
-	- computer processor used to supplement the functions of the primary processor (the CPU).
+	- computer processor used to supplement the functions of the primary processor/CPU/mircoprocessor.
+	- coprocessor shares same memory, IO devices, bus control, clocks as with CPU.
+	- coprocessor has its own instruction set, which would be added to CPU
+	- coprocessor can have upto ***60 cores*** in 1 package.
 - **Usage**
 	- Offloads processor-intensive tasks from the main processor and hence can accelerate system performance
 - **Operations performed by the coprocessor**
-	- floating point arithmetic, graphics, signal processing, string processing, cryptography or I/O interfacing with peripheral devices.
+	- floating point arithmetic, graphics, signal processing, string processing, cryptography or I/O interfacing with peripheral devices.	
 - **Examples**
+	- 8087 was 1st math coprocessor developed by intel.
 	- GPU(Graphics Processing Units)
