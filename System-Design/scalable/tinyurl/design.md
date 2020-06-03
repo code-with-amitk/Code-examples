@@ -1,4 +1,4 @@
-## 1: Requirements clarifications
+## 1: REQUIREMENT CLARIFICATION
 #### a. Functional:
 - Given a URL, our service should generate a shorter and unique alias of it
 - When users access short link, our service should redirect them to the original link.
@@ -11,8 +11,7 @@
 - Analytics; e.g., how many times a redirection happened?
 
 
-
-## 2. Back-of-the-envelope estimation
+## 2. BACK-OF-ENVELOPE CALCULATIONS
 
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
@@ -36,8 +35,7 @@
     Total requests/day. 10k*60*60 = 36 Million. 20% of 36 Million = 7.2 Million * 262 = 1.8 GB
     
     
-## 3. System APIs
-
+## 3. SYSTEM APIs
 ### creating the short URL
 ```
     //REST API
@@ -59,7 +57,7 @@
         url_key: shortened URL to be retrieved & removed
 ```        
         
-## 4.Database Design
+## 4. DATABASE DESIGN
 > Number of tables = 2
 
 #### Table-1 Stores URL mappings(long URL to short URL)
@@ -128,11 +126,14 @@ KGS will generate the 6-letter keys beforehand and keep in key-DB.
 
 ##### Databases used by KGS
 KGS will keep keys in 2 seperate databases.
+
 | used keys DB |        //DB stores all allocated keys
 | --- |
+| xya123 |
     
 | unused keys DB |      //DB storing unused keys
 | --- |
+| KHma45 |
     
 ###### Size of Key-DB
 Base-64 will have 2^64 = 68.7 Billion unique six letters short urls.
@@ -149,7 +150,7 @@ Solution: Take replicas/standby servers of KGS, replicas can take over to genera
 > Yes
 
 
-## 6. DB Paritioning & Replication
+## 6. DB PARTIONING & REPLICATION
 > To store billions of long URL to short URL mapping, we need distributed DB.
 
 #### 6.1 Range based Partitions
@@ -170,13 +171,33 @@ Again all times only 1 hash can be generated overloading only 1 server.
 ####### Solution
 Consistent hashing
 
-## 7. Cache
+#### Cleaning/Purging of DB
+- short-url to long-url mapping should be removed after 30 days or when user tolds.
+
+## 7. CACHE
 - Frequently asked long-url to short-url mappings would be stored in cache.
+
 ### How much cache memory is required
-- Let's start with 20% of traffic
-
-
+- Let's start with 20% of traffic storage
+- **Traffic flowing in**
+  - 10k new URL shortning requests/sec
+  - 10k*60*60*24*7 = 6x10^9 = 6 billion requests/week
+- **Cache size**
+  - 1 incoming request size = 256 characters. = 256*4 = 1k bytes
+  - 1 short URL size = 6 characters = 6*6 = 36 bytes
+  - For 6 billion = 55296 billion bytes = 55 TB
+- Cache can be fitted into number of smaller machines.  
+- **Cache Eviction Policy**
+  - When the cache is full, ***LRU*** will be used.
+  
+## 8. LOAD BALANCERS  
+- Places where Load Balancers can be placed?
+  1. Between client and Application servers.
+  2. Between App-servers and cache. Since we can have 100s of cache servers, those needed load balancing.
+  3. Between cache and DB servers. Since DB servers can be upto 256 LB in front of it is good.
+  
 ## Final Architecture
+![Imgur](https://i.ibb.co/WgBXmdk/Screenshot-from-2020-06-04-00-21-24.png)
 ```
                                         **KGS(Key Generation Service)**
                                         - Generate 68.7 Billion short urls
@@ -195,7 +216,7 @@ Consistent hashing
                                                                         Key-DB256
 
                                                    
-        **client        (App-server  +   cache[Memcached])            KGS
+        **client        (APP-SERVER(s)  +  cache(s)[Memcached])            KGS
              -long url--->        
                             ----long url->
                                         if mapping is found
