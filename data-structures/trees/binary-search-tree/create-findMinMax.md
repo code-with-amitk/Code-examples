@@ -1,15 +1,16 @@
-/* What is BST?
- * This is mainly used for searching operations.
- * 	Left child <= parent
- * 	right child >= parent
- *
- * How it works?
- * 	- It does binary search on Sorted array.
- *	- mid of binary search is created as element of tree
- *
- * Input: An sorted array {1,2,3,4,5,6,7,8,9}
- * Output: BST
- */
+
+## BST (Binary Search Tree)
+- **What** Binary tree having 2 child nodes. Every key is unique. It follows this property
+ > Left child < parent
+ > right child > parent
+ 
+- **Usage** Mainly for searching operations.
+
+### 1. CREATION	
+- Perform binary search on Sorted array.
+- mid of binary search is created as element of tree
+```C++
+Input: An sorted array {1,2,3,4,5,6,7,8,9}	
 #include<stdio.h>
 #include<stdlib.h>	//malloc
 typedef struct node {
@@ -39,3 +40,4 @@ void main() {
 /* Output:
  * Just Created
  */
+```
