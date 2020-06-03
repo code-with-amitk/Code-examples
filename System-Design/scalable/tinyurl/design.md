@@ -197,7 +197,7 @@ Consistent hashing
   3. Between cache and DB servers. Since DB servers can be upto 256 LB in front of it is good.
   
 ## Final Architecture
-![Imgur](https://i.ibb.co/WgBXmdk/Screenshot-from-2020-06-04-00-21-24.png)
+![Imgur](https://i.ibb.co/rtNRtTd/tiny-url.png)
 ```
                                         **KGS(Key Generation Service)**
                                         - Generate 68.7 Billion short urls
