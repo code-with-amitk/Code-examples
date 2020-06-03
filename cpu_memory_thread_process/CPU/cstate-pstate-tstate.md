@@ -25,11 +25,12 @@
   - High Frequency -> high CPU I/O Rate -> High Processor performance -> high power consumption
   - Reduced frequency to 1/2 -> CPU I/O Rate is reduced to 1/2 -> performance 1/2ed -> less power consumption
 
-- **Why Application Developer should bother about power, He wants speed?
+- **Why Application Developer should bother about power, He wants speed?**
   - More power consumption -> More cost of cooling 
   - if we can get power consumption down without losing performance, this means we can pack more processors in same power budget.
 
 - **Types of P States**
+
 | P-State | CPU Utilization |
 | --- | --- |
 | P0 | 100%. CPU running fastest |
@@ -41,6 +42,7 @@ P ~ f V²	//f=frequency, V=voltage
 - **What** 
   - State in which CPU is at idle or turned off certain functions.
 - **Types of C-States**
+
 | C-State | Name | Meaning |
 | --- | --- | --- |
 | C0 | Active | Processor executing |
