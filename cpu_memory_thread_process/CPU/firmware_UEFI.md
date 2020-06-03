@@ -8,3 +8,4 @@
 ## UEFI(Unified Extensible Firmware Interface)
 - This is a specification that defines a software interface between an operating system and platform firmware.
 ![Imgur](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Efi-simple.svg/316px-Efi-simple.svg.png)
+- UEFI replaces the legacy Basic Input/Output System (BIOS) firmware interface.
