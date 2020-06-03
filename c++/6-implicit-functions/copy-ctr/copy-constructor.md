@@ -1,29 +1,29 @@
-/*	copy-constructor.cpp
-WHAT?
-   - member function of class for creating a new object as a copy of an existing object.
-   - same named function of class A.
-   - Achieved using const L-value reference.
+## Copy Constructor
+	- member function of class for creating a new object as a copy of an existing object.
+	- same named function of class A.
+	- Achieved using const L-value reference.
+	- **PARAMETERS**
+		- 1st parameter is A&, const A&, volatile A&, or const volatile A&
+		- Either there are no other parameters, or the rest of the parameters all have default values.
 
-PARAMETERS?   
-   - 1st parameter is A&, const A&, volatile A&, or const volatile A&
-   - Either there are no other parameters, or the rest of the parameters all have default values.
-
-COMPILER DOES NOT PROVIDE COPY CTR WHEN?   
+### When compiler does not provide copy ctr?
         1. CC declared by user.
         2. If class has virtual function. class A{ public: virtual f();}
         3. If class has virtual base class class A:virtual B{}
         4. Class has member which cannot be copied to other object(ie not copy construable) Eg: reference variable
 
-FORCING COMPLIER TO CREATE COPY CTR:    
+### Forcing compiler to create copy ctr
    class-name (class-name &) = default;
 
-SYNTAX?
+### Syntax
+```
         class_name ( const class_name & )
         class_name ( const class_name & ) = default;
         class_name ( const class_name & ) = delete;
-*/
+```
 
-/********************COMPLIER PROVIDED COPY CTR**************/
+### Compiler provided copy ctr
+```
 class A{
         int a=10;
 public:
@@ -36,9 +36,11 @@ int main(){
         A obj2(obj1);  
         obj2.disp();    //10
 }
+```
 
 
-/**************FORCING COMPILER TO GENERATE COPY CTR**********/
+### Forcing compiler to generate copy ctr
+```
 class A{
         int a=10;
 public:
@@ -53,9 +55,10 @@ int main(){
         A obj2(obj1);  
         obj2.disp();    //10
 }
+```
 
-
-/***************USER CREATED COPY CTR**********************/
+### User created copy ctr
+```
 class A{
        int a;
 public:
@@ -73,4 +76,4 @@ int main(){
         A obj2(obj1);                  //Two objects created. obj2 is copy of obj1
         obj2.disp();    //4
 }
-
+```
