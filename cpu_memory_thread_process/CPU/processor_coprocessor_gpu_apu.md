@@ -23,7 +23,7 @@
 	- Complex mathematical calculations.
 	- financial simulations and risk modeling
 - **Companies**
-	- In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.
+	- In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.	
 - **CPU vs GPU**
 
 |  | CPU | GPU |
@@ -32,9 +32,27 @@
 | works on | | Parallelism |
 | Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
 	
-	
-### GPU Architecture
+- **General Terms**
+	- ***AMD Powertune***
+		- Dynamic frequency scaling techniques built into some AMD's GPU/APU.
+		- This allow the clock speed of the processor to be dynamically changed making low power consumption, low noise, low overheating.
+	- ***GPU Clocks (unit 10KHz)***
+		1. VCLK, DCLK: UVD(See wiki) Internal clocks
+		2. SCLK: GPU Engine clock
+		3. MCLK: GPU Memory clock
+	- ***GPU voltages***
+		1. VDDC: (mV) This is GPU core voltage.
+		2. VDDCI: (mV) This is IO Bus voltage between GPU & Memory comes from PCI-express slot.
+		3. MVDD: Memory voltage
+	- ***I2C Bus***
+		- This is a bus protocol developed by philips for connnecting devices
+	- ***SMBus(System Management Bus)***		
+		- This based on the I2C protocol. The I2C bus connects one or more master chips and one or more slave chips.
+	- ***SMU(System Management Unit)***
+		- This is firmware provided by AMD
+		- The SMU is designed to prevent unauthorized code execution. 
 
+### GPU Architecture
 
 ## APU(AMD Accelerated Processing Unit)/Formely Fusion
 - **What**
