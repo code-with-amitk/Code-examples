@@ -30,8 +30,7 @@
 | --- | --- | --- |
 | Cores | 4 | Nvidia's GeForce:4000, AMD's Radeon: 2500, Intel's HD 500: 1100 |
 | works on | | Parallelism |
-| Tasks | varied: 
-					open spreadsheets, DB queries | To computation intensive tasks only |
+| Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
 	
 	
 ### GPU Architecture
