@@ -14,13 +14,29 @@
 	
 ## GPU(Graphics Processing Unit)
 - **What**
-	- This is specialized electronic circuit for creating,manipulating images rapidly. ie Specialized in Graphics & Image processing.
+	- This is specialized electronic circuit created for manipulating images rapidly. ie Specialized in Graphics & Image processing.
 	- GPUs are used in mobile phones, personal computers, workstations, and game consoles.
 	- They work on ***parallel computing***.
-	-  In machine training, deep learning neural networks, GPUs can be 250 times faster than CPUs
+- **Usages**
+	- Create high resolution images, videos
+	- In machine training, deep learning neural networks, GPUs can be 250 times faster than CPUs.
+	- Complex mathematical calculations.
+	- financial simulations and risk modeling
 - **Companies**
 	- In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.
+- **CPU vs GPU**
+
+|  | CPU | GPU |
+| --- | --- | --- |
+| Cores | 4 | Nvidia's GeForce:4000, AMD's Radeon: 2500, Intel's HD 500: 1100 |
+| works on | | Parallelism |
+| Tasks | varied: 
+					open spreadsheets, DB queries | To computation intensive tasks only |
 	
+	
+### GPU Architecture
+
+
 ## APU(AMD Accelerated Processing Unit)/Formely Fusion
 - **What**
 	- This is 64-bit CPU from AMD designed to act as CPU+GPU on single die. These are general purpose processors.
@@ -32,5 +48,6 @@
 | 2nd | 2012 | Brazos-2 | Trinity |
 | 3rd | 2014 | Kabini,Temash | Kaveri |
 | 4th | 2017 | Ryzen |
-	- 1st(Llano) Jan 2011
-	- 2nd
+
+
+
