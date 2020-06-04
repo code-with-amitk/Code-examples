@@ -25,6 +25,7 @@
 - **What**
 	- This is 64-bit CPU from AMD designed to act as CPU+GPU on single die. These are general purpose processors.
 - **Generations of APU**
+
 | Generation | Launched in | Low Power APUs | High Power APUs |
 | --- | --- | --- | --- |
 | 1st | 2011 | Brazos | Llano |
