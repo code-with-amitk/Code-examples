@@ -12,6 +12,16 @@
 	- 8087 was 1st math coprocessor developed by intel.
 	- GPU(Graphics Processing Units)
 	
+## CPU/Processor
+- **Terms**
+	- ***flip-flop***
+		- a circuit that has two stable states(0 or 1) – a bistable multivibrator. This stores a single bit (binary digit) of data; one of its two states represents a "one" and the other represents a "zero".
+		- It is the basic storage element in sequential logic.
+	- ***Synchronous circuit***
+		- A digital circuit in which the changes in the state of memory elements are synchronized by a clock signal. Data is stored in memory devices called flip-flops or latches.
+	- ***Clock gating***
+		-  technique used in synchronous circuits for reducing dynamic power dissipation, by removing the clock signal when the circuit is not in use. Now Clock flip-flops do not have to switch states. Switching states consumes power. switching power consumption goes to zero, and only leakage currents are present.
+	
 ## GPU(Graphics Processing Unit)
 - **What**
 	- This is specialized electronic circuit created for manipulating images rapidly. ie Specialized in Graphics & Image processing.
