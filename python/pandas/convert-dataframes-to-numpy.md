@@ -2,7 +2,7 @@
 -  most machine learning frameworks (e.g. TensorFlow), work directly with NumPy data
 
 ### How conversion?
-- Convert each categorical feature into a set of indicator features for each of its categories. 
+#### get_dummies(): Convert each categorical feature into indicator features for each of its categories. 
 ```
 # predefined non-indicator DataFrame
 print('{}\n'.format(df))              //DataFrame df has a single categorical feature called Color
