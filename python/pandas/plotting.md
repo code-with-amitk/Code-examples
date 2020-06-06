@@ -9,7 +9,7 @@ print('{}\n'.format(df))
 df.plot()
 plt.show()
 ```
-![Imgurl](https://www.educative.io/api/collection/6083138522447872/5629499534213120/page/5713144022302720/image/5674248798470144)
+![Imgurl](https://i.ibb.co/rQNmFDY/plot.png)
 
 ### savefig(): save the plot to a PNG or PDF file.
 ```
