@@ -21,7 +21,7 @@
 
 - Each container runs inside docker host.
 - This can be thought of as a VM inside base OS but this is not VM.
-![ImgUrl](https://www.researchgate.net/profile/Yahya_Al-Dhuraibi/publication/317297877/figure/fig4/AS:504367121539072@1497261900721/Container-based-Virtualization-vs-Traditional-Virtualization.png)
+![ImgUrl](https://image.slidesharecdn.com/dockerug-magnumandkolla-150628004034-lva1-app6892/95/openstacking-containers-13-638.jpg?cb=1435452205)
 
 ## Image?
 - Container is created from image. 
