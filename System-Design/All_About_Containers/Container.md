@@ -12,6 +12,7 @@
 - **Disadv of container**
   - Some application may not be suited for a containerized environment. Ex: applications accessing low-level hardware information.
 - **Containers vs VM**
+
 |  | Containers | VM |
 | --- | --- | --- | 
 | size | Smaller | Bigger wrt containers |
