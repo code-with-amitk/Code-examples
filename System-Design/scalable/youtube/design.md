@@ -92,14 +92,17 @@ User                App-server
 ## 5. DATABASE SCHEMA
 ### 5.1 Video-Metadata-DB(MySQL)
 - ***Table for each video***
+
 | VideoID | Title | Description | Size | thumbnail | Uploader | No of Likes | Dislikes | Views |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 - ***Table for each video comment***
+
 | CommentID | VideoID | UserID | Comment | TimeOfCreation |
 | --- | --- | --- | --- | --- |
 
 - ***User table, storing user information***
+
 | UserID | Name | email | Age| Registration detials |
 | --- | --- | --- | --- | --- |
 
