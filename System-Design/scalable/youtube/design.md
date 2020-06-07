@@ -68,7 +68,7 @@ A media stream (a video chunk) from the given offset.
 ```
 
 ## 4. HIGH LEVEL DESIGN
-- **Uploading Video**
+### UPLOADING VIDEO/WRITE OPERATION
 ```
 User                App-server        
     --- video-n---->
@@ -84,10 +84,24 @@ User                App-server
 <-Your Video--
 ```
 
-- **Playing Video**
-```
-- Using CDN
-```
+- **HOW VIDEOS ARE STORED?**
+  - Store videos on multiple DB backends using sharding.
+    1. [Approach-1, Wll not follow] Sharding based on userId's
+      - userID > |Hash Func| > hash-value(maps to a DB)
+      - [Drawback] if some user becomes hugely popular, then only 1 server will be loaded while others are free.
+    2. [Approach-2, Wll not follow] Sharding based on Video's ID
+      - Each video has a videoID
+      - videoID > |Hash Func| > hash-value(maps to a DB)
+      - [Drawback] if some video becomes most popular, this will overload few servers.
+    3. [Appraoch-3] Consistent Hashing (will follow)
+      - CH is used to balance load among servers.
+- Less popular videos (1-20 views per day) that are not cached by CDNs can be served by our servers in various data centers.      
+### PLAYING VIDEO/READ OPERATION
+      
+- **DETECTING DUPLICATE VIDEOS**
+  - At time of uploading the videos, a service can run video matching algorithms (e.g., Block Matching, Phase Correlation, etc.) to find duplications.
+      
+
 
 ## 5. DATABASE SCHEMA
 ### 5.1 Video-Metadata-DB(MySQL)
@@ -106,4 +120,12 @@ User                App-server
 | UserID | Name | email | Age| Registration detials |
 | --- | --- | --- | --- | --- |
 
-## 6. 
+
+## 6. LOAD BALANCING
+- Load between cache servers is balanced using ***Consistent Hashing***
+
+## 7. CACHE
+- memcached in front of 'App-servers'.
+- Cache Eviction Policy: LRU. Discard least recently viewed contents from cache.
+
+
