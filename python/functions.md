@@ -118,7 +118,7 @@ EXAMPLES:
    (as a string) is available as the value of the global variable __name__.
    __module__: Module name in which class is defined
 ```
-#### 8a. __ITER__()
+#### 8a. `__ITER__()`
 - returns an iterator for the given object. iter() calls __iter__() internally
 ```
 a = [4, 7, 0, 3]
@@ -127,7 +127,7 @@ print(next(it))     #4
 print(next(it))     #7
 ```
 
-#### 8b. __CONTAINS__
+#### 8b. `__CONTAINS__`
 - Called using in "containment check" operator
 ```
 class A:
@@ -140,14 +140,14 @@ if 'd' in obj:          #in operator calls __contains__
     print('True')
 ```    
 
-#### 8c. __GETITEM__
+#### 8c. `__GETITEM__`
 -  a[i] Python calls a.__getitem__(i)
 ```
 #object['sslVersionMin'] == ['TLS1.0']
 #True
 ```
 
-#### 8d. __REPR__()
+#### 8d. `__REPR__()`
 - Returns a printable representation of the given object. takes 1 parameter ie object, whose printable representation has to be returned
 ```
 class D:
@@ -156,7 +156,7 @@ p = D()
 print("repr",p)     #repr <__main__.D object at 0x7f283adce278>
 ```
 
-#### 8e. __STR__(): 
+#### 8e. `__STR__()`
 - Initially we had the Person class with nothing implemented. Created object of class and printed out the same. 
 - It shows class reference.Defined __str__ method, See object reference it displayed the string which was returned from the __str__ method.
 - __STR__:if we override/define  __str__() inside the class we can print the text when object is tried to be printed using print()
@@ -172,7 +172,7 @@ p = C()
 print(p)            #Class C
 ```
 
-#### 8f. __builtins__():
+#### 8f. `__builtins__()`
 - Python3, the module `__builtin__` has been renamed to `builtins` to avoid some of this confusion.
 - provides direct access to all ‘built-in’ identifiers of Python.
 ```
