@@ -1,7 +1,8 @@
 ## RVO(Return value optimization)
 - Compiler is allowed to avoid creating temporary objects for return values, even if they have side effects.
 
-#### Without RVO
+### Simple Example-1
+##### Without RVO
 ```
 int fun(int a)
 {
@@ -21,6 +22,48 @@ int b()
 - if we note here,
   - copying value to fun()'s stack(temporary copy) is an unecessary step.
 
-### With RVO
+#### With RVO
 - Instead of writing a to stack of fun() we place a directly onto stack of b()
 - Code for doing such optimization is written in complier itself.
+
+### Example-2
+> -fno-elide-constructors this switch disables RVO.
+```
+# vim test.cpp
+#include<iostream>
+using namespace std;
+
+struct A{   // Note: All methods have side effects
+        A() { cout << "c'tor" << endl; }
+        ~A() { cout << "d'tor" << endl; }
+        A(const A&) { cout << "copy c'tor" << endl; }
+        A(A&&) { cout << "move c'tor" << endl; }
+};
+
+A ExampleRVO() {
+          return A();
+}
+
+int main() {
+          A s = ExampleRVO();
+}
+```
+
+- RVO Disabled by user. 
+```
+# g++ -fno-elide-constructors test.cpp
+# ./a.out
+c'tor
+move c'tor
+d'tor
+move c'tor
+d'tor
+d'tor
+```
+
+- RVO not disabled by user.
+```
+# g++ test.cpp
+c'tor
+d'tor
+```
