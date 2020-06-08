@@ -61,7 +61,7 @@ d'tor
 d'tor
 ```
 
-- RVO not disabled by user.
+- RVO not disabled by user, complier doing RVO.
 ```
 # g++ test.cpp
 c'tor
