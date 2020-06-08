@@ -43,7 +43,7 @@ int main(){
 ```
 
 #### 3b. Pass by value(Not Changable) in capture-list. 
-> Passing variable defined outside lambda cannot be modified in lambda.
+- Passing variable defined outside lambda cannot be modified in lambda.
 ```
   int i = 5;
   auto p4 =  [ i ]  (int a, int b)  ->  int {  return a + b + i;   };
@@ -60,7 +60,7 @@ int main(){
 ```  
 
 #### 3d. Passing Reference(Changable) inside capture list
-> Passing outside variable using refrence & to lambda. This variable can be changed inside lambda.
+- Passing outside variable using refrence & to lambda. This variable can be changed inside lambda.
 ```  
   int i = 2;
   auto p6 = [ &i ] (int a, int b)  ->  int {  
@@ -71,7 +71,7 @@ int main(){
 ```
 
 #### 3e. Passing both Reference and Value inside capture list
-> Except "j" everything else is captured as reference(ie can be changed). Just "j" cannot be changed
+- Except "j" everything else is captured as reference(ie can be changed). Just "j" cannot be changed
 ```  
   auto p7  =  [ &, j ]  (int a, int b)  ->  int {
     i=7;
@@ -80,13 +80,13 @@ int main(){
 ```  
 
 #### 3f. Except "i" nothing can be changed.
-> Since It says capture everything as Value except "j"
+- Since It says capture everything as Value except "j"
 ```  
   auto p8  =  [ =, &i ]  (int a, int b)  ->  int {  i=95;  return a + b + i; };
 ```
 
 #### 3g. Lambda capture initializers
-Allows lambda captures initialized with arbitrary expressions.
+- Allows lambda captures initialized with arbitrary expressions.
 ```
   auto f = [x = test(2)] { return x; };           //20  
 ```  
