@@ -36,11 +36,6 @@ Million=10^6. Billion=10^9. Trillion=10^12, Quadtrillion=10^15
 
 - Place these nodes in design.
 
-(Web-server on ECS)
-- least privileges(22 for SSH to only whitelisted IPs). 
--Create a private subnet
-- smartcard access
-    
 ## 2. CAPACITY ESTIMATIONS/BOE CALCULATIONS
   - ***Read/Write*** or View/Upload = 200/1
     - Read = Views: 50k/sec
@@ -108,6 +103,7 @@ A media stream (a video chunk) from the given offset.
   - uploading user
   - total views
   - likes, dislikes
+![ImgUrl](https://i.ibb.co/TqQghZ2/youtube.png)  
 ```
 User                App-server        
     --- video-n---->
