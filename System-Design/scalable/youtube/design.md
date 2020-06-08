@@ -69,6 +69,14 @@ A media stream (a video chunk) from the given offset.
 
 ## 4. HIGH LEVEL DESIGN
 ### UPLOADING VIDEO/WRITE OPERATION
+- Thumbnails
+  - Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
+- Metadata of video:
+  - title
+  - file path in the system
+  - uploading user
+  - total views
+  - likes, dislikes
 ```
 User                App-server        
     --- video-n---->
@@ -87,16 +95,17 @@ User                App-server
 - **HOW VIDEOS ARE STORED?**
   - Store videos on multiple DB backends using sharding.
     1. [Approach-1, Wll not follow] Sharding based on userId's
-      - userID > |Hash Func| > hash-value(maps to a DB)
-      - [Drawback] if some user becomes hugely popular, then only 1 server will be loaded while others are free.
+        - userID > |Hash Func| > hash-value(maps to a DB)
+        - `[Drawback]` if some user becomes hugely popular, then only 1 server will be loaded while others are free.
     2. [Approach-2, Wll not follow] Sharding based on Video's ID
-      - Each video has a videoID
-      - videoID > |Hash Func| > hash-value(maps to a DB)
-      - [Drawback] if some video becomes most popular, this will overload few servers.
+        - Each video has a videoID
+        - videoID > |Hash Func| > hash-value(maps to a DB)
+        - `[Drawback]` if some video becomes most popular, this will overload few servers.
     3. [Appraoch-3] Consistent Hashing (will follow)
-      - CH is used to balance load among servers.
+        - CH is used to balance load among servers.
 - Less popular videos (1-20 views per day) that are not cached by CDNs can be served by our servers in various data centers.      
 ### PLAYING VIDEO/READ OPERATION
+- 
       
 - **DETECTING DUPLICATE VIDEOS**
   - At time of uploading the videos, a service can run video matching algorithms (e.g., Block Matching, Phase Correlation, etc.) to find duplications.
