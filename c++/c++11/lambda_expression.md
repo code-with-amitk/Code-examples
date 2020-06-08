@@ -7,16 +7,16 @@
 
 ***function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};***
 
-1. `[   ]` called Capture List
+- `[   ]` called Capture List
   - captures local/Global variables defined outside lambda to be used inside lambda function.
   - For changing Values of passed variables:
     a. Passed by value: Cannot be changed. This passes variables are Read-Only
     b. Passed as reference variable: Can be changed.
-2. () called Parameter list which is Optional
+- () called Parameter list which is Optional
   - Function Parameters to be passed.
-3. mutable keyword is Optional
-4. throw keyword is Optional
-5. -> is return type which is Optional
+- mutable keyword is Optional
+- throw keyword is Optional
+- -> is return type which is Optional
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
 ## Examples
