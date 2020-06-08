@@ -1,8 +1,8 @@
 ## RVO(Return value optimization)
 - Compiler is allowed to avoid creating temporary objects for return values, even if they have side effects.
 
-### Simple Example-1
-##### Without RVO
+#### Simple Example-1(RVO)
+###### Without RVO
 ```
 int fun(int a)
 {
@@ -26,7 +26,7 @@ int b()
 - Instead of writing a to stack of fun() we place a directly onto stack of b()
 - Code for doing such optimization is written in complier itself.
 
-### Example-2
+#### Example-2(RVO)
 > -fno-elide-constructors this switch disables RVO.
 [Article](https://shaharmike.com/cpp/rvo/)
 ```
