@@ -1,28 +1,25 @@
-## Lambda Expression(C++11)
+# Lambda Expression(C++11)
 - **What** 
   - Function that does not have any name. 
   - These can be defined inside any other function and they return their value to function pointers.
   - Lambda should be closed using Semicolon
 - **Syntax**
-> function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};
-  - ***[ ]: Capture List***
+***function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};***
+
+  1. [ ] called Capture List
     - captures local/Global variables defined outside lambda to be used inside lambda function.
     - For changing Values of passed variables:
       a. Passed by value: Cannot be changed. This passes variables are Read-Only
       b. Passed as reference variable: Can be changed.
-  - ***(): Optional*** Parameter list
+  2. () called Parameter list which is Optional
     - Function Parameters to be passed.
-  - ***mutable Optional***
-  - ***throw Optional***
-  - ***-> Optional***
-    - return type
-[Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)
+  3. mutable keyword is Optional
+  4. throw keyword is Optional
+  5 -> is return type which is Optional
+[Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
-C. LAMBDA CAPTURE INITIALIZERS: 
- - Allows lambda captures initialized with arbitrary expressions.    
-
-### Examples
-#### 1. Empty capture list, parameter list, function body
+## Examples
+### 1. Empty capture list, parameter list, function body
 ```
 #include<iostream>
 using namespace std;
@@ -31,19 +28,19 @@ int main(){
   p1();                           //Calling lambda, Nothing is printed
 ```  
 
-#### 2. Filled Parameter List
+### 2. Filled Parameter List
 ```  
   auto p2 = [ ] (int a, int b) -> int { return a+b; };
   cout << p2(2,3) << endl;            //O/P 5
 ```
 
-#### 3. Capture List Examples.
-##### 3a. Compilation Error. Local variable(i) should be passed in capture list
+### 3. Capture List Examples.
+#### 3a. Compilation Error. Local variable(i) should be passed in capture list
 ```  
   auto p3 =  [ ]  (int a, int b)  ->  int {  return a + b + i;   };
 ```
 
-##### 3b. Pass by value(Not Changable) in capture-list. 
+#### 3b. Pass by value(Not Changable) in capture-list. 
 > Passing variable defined outside lambda cannot be modified in lambda.
 ```
   int i = 5;
@@ -87,6 +84,7 @@ int main(){
 ```
 
 #### 3g. Lambda capture initializers
+Allows lambda captures initialized with arbitrary expressions.
 ```
   auto f = [x = test(2)] { return x; };           //20  
 ```  
