@@ -3,6 +3,14 @@
   - Function that does not have any name. 
   - These can be defined inside any other function and they return their value to function pointers.
   - Lambda should be closed using Semicolon
+- **Advantages**
+  1. Can defined inside other function
+  2. Complete Logic of function can be written as argument to function.
+```  
+    vector<int> v {4, 1};  
+    count(v.begin(), v.end(), [] (int a) { return (a >= 5); });
+```    
+  3. For some logic/code to be used for only 1 time, function is not a good idea.
 - **Syntax**
 
 ***function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};***
