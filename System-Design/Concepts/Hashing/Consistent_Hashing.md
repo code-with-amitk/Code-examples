@@ -1,4 +1,4 @@
-## DHT(Distrbuted Hashing/DCT(Distributed Caching)
+## DHT(Distrbuted Hashing)/DCT(Distributed Caching)
 - **What**
   - Cache is distributed over cluster of servers.
 - **Advantages**
