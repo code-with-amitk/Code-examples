@@ -4,9 +4,10 @@
   - These can be defined inside any other function and they return their value to function pointers.
   - Lambda should be closed using Semicolon
 - **Syntax**
+
 ***function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};***
 
-  1. [ ] called Capture List
+  1. `[   ]` called Capture List
     - captures local/Global variables defined outside lambda to be used inside lambda function.
     - For changing Values of passed variables:
       a. Passed by value: Cannot be changed. This passes variables are Read-Only
