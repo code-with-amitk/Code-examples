@@ -12,11 +12,12 @@
   - For changing Values of passed variables:
     a. Passed by value: Cannot be changed. This passes variables are Read-Only
     b. Passed as reference variable: Can be changed.
-- () called Parameter list which is Optional
+- `()` called Parameter list which is Optional
   - Function Parameters to be passed.
-- mutable keyword is Optional
-- throw keyword is Optional
-- -> is return type which is Optional
+- `mutable` keyword is Optional
+- `throw` keyword is Optional
+- `->` is return type which is Optional.
+
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
 ## Examples
