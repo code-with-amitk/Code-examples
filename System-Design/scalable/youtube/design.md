@@ -22,9 +22,7 @@ Million=10^6. Billion=10^9. Trillion=10^12, Quadtrillion=10^15
 | | CDN | AWS Cloud |
 | --- | --- | --- |
 | SOA/modular | API G/W | ECS (containerized) |
-| Secure | WAF, Shield | SSL-Term: https, encrypt(Web-server on ECS), 
-least privileges(22 for SSH to only whitelisted IPs), 
-Create a private subnet, smartcard access |
+| Secure | WAF, Shield | SSL-Term: https, encrypt(Web-server on ECS), least privileges(22 for SSH to only whitelisted IPs), Create a private subnet, smartcard access |
 | Scaling | | |
 | Logging | | cloudwatch-logs |
 | Load | | Autoscalar, Elastic-LB |
@@ -35,6 +33,8 @@ Create a private subnet, smartcard access |
 | Redundant | | DynamoDB(noSQL), Aurora(SQL) |
 | Fast | Lambda | Lambda |
 | User-pass-store | Cognito | |
+
+- Place these nodes in design.
 
 (Web-server on ECS)
 - least privileges(22 for SSH to only whitelisted IPs). 
