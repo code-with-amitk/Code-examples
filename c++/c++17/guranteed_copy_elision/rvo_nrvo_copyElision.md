@@ -28,6 +28,7 @@ int b()
 
 ### Example-2
 > -fno-elide-constructors this switch disables RVO.
+[Article](https://shaharmike.com/cpp/rvo/)
 ```
 # vim test.cpp
 #include<iostream>
@@ -67,3 +68,20 @@ d'tor
 c'tor
 d'tor
 ```
+
+## NRVO(Named Return Value Optimization)
+- Object with a name is returned but is not copied or used.
+```
+int fun(int a)
+{ 
+  int c = a;
+  return c;
+}
+int b() 
+{
+  int a[fun(10)];
+}
+```
+
+## Copy Elison
+- The objects are constructed directly into the storage where they would otherwise be copied/moved to.
