@@ -1,2 +1,26 @@
 ## RVO(Return value optimization)
-- 
+- Compiler is allowed to avoid creating temporary objects for return values, even if they have side effects.
+
+#### Without RVO
+```
+int fun(int a)
+{
+  return a;
+}
+int b() 
+{
+  int a[fun(10)];
+}
+```
+> See how_many_temporary_copies.md on call by value page.
+
+- In b(), Before call to fun(), 10 is copied in register rdi.
+- Inside fun(), rdi is copied to stack of fun()
+- a=10 is copied to register(rax) to be returned to b().
+
+- if we note here,
+  - copying value to fun()'s stack(temporary copy) is an unecessary step.
+
+### With RVO
+- Instead of writing a to stack of fun() we place a directly onto stack of b()
+- Code for doing such optimization is written in complier itself.
