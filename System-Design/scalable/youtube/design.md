@@ -6,9 +6,38 @@ Million=10^6. Billion=10^9. Trillion=10^12, Quadtrillion=10^15
     - Service can do stat collection: no of vistors, views, likes, dislikes.
     - User can like/dislike the videos.
   - **Non-functional**
-    - Reliable
-    - Available
-    - Fast(No lag)
+    - S<sup>3</sup>
+      L<sup>3</sup>
+      C<sup>2</sup>
+      A<sup>3</sup>
+      R<sup>2</sup>
+      F
+      - SOA, Secure, Scalable
+      - Load, Latency, Logging
+      - Cache(Cache invalidation, Negative cache)
+      - Available, Authentication, Analyze, 
+      - Reliable, Redundant(using DB), 
+      - Fast(Lambda)
+
+| | CDN | AWS Cloud |
+| --- | --- | --- |
+| SOA/modular | API G/W | ECS (containerized) |
+| Secure | WAF, Shield | SSL-Term: https, encrypt(Web-server on ECS), least privileges(22 for SSH to only whitelisted IPs), Create a private subnet, smartcard access |
+| Scaling | | |
+| Logging | | cloudwatch-logs |
+| Load | | Autoscalar, Elastic-LB |
+| Cache | | ElasticCache, varnish(not aws product) |
+| Combine & Derive | | Sagemaker |
+| Authentication | S3 Auth frontend  | |
+| Analyze | | Kinetics |
+| Redundant | | DynamoDB(noSQL), Aurora(SQL) |
+| Fast | Lambda | Lambda |
+| User-pass-store | Cognito | |
+
+(Web-server on ECS)
+- least privileges(22 for SSH to only whitelisted IPs). 
+-Create a private subnet
+- smartcard access
     
 ## 2. CAPACITY ESTIMATIONS/BOE CALCULATIONS
   - ***Read/Write*** or View/Upload = 200/1
@@ -105,7 +134,16 @@ User                App-server
         - CH is used to balance load among servers.
 - Less popular videos (1-20 views per day) that are not cached by CDNs can be served by our servers in various data centers.      
 ### PLAYING VIDEO/READ OPERATION
-- 
+```
+  user        
+    -videoID->  CDN                     [Cache]==[App-server]         <<<DB-servers>>       
+            video not here                      |                         |
+                  --videoID--> |Hash-fun|-> Hash-value  ----Hash value--> |
+                                                |                         |
+                                                |                       hash found at server1,server3..
+                                                | <-Ranked List of Videos-|
+        <---------ranked video list-------------|
+```
       
 - **DETECTING DUPLICATE VIDEOS**
   - At time of uploading the videos, a service can run video matching algorithms (e.g., Block Matching, Phase Correlation, etc.) to find duplications.
@@ -131,7 +169,7 @@ User                App-server
 
 
 ## 6. LOAD BALANCING
-- Load between cache servers is balanced using ***Consistent Hashing***
+- Load between cache servers is balanced using ***[Consistent Hashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Consistent_Hashing.md)***
 
 ## 7. CACHE
 - memcached in front of 'App-servers'.
