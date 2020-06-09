@@ -2,6 +2,7 @@
 Pairs=[1,77] [5,73]
 
 #### Logic-1(Sort)
+
   a. Sort the array.          std::sort()=>O(nlogn)
   b. Take two index variables
      - Initialize first to the leftmost index: l=0
@@ -12,6 +13,7 @@ Pairs=[1,77] [5,73]
      - else r--
        
 ### Logic-2(Hash Table)      O(n)      //In fact all pair problems can be solved using HT
+
 This is very simple. 
   a. Iterate through the array.
   b. Find difference (temp = to_find_sum - arr[i])
