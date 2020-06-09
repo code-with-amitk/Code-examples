@@ -1,4 +1,4 @@
-## Find pairs with sum=78 in array 6,7,5,1,61,50,73,77,65.
+### Find pairs with sum=78 in array 6,7,5,1,61,50,73,77,65
 Pairs=[1,77] [5,73]
 
 #### Logic-1(Sort)
