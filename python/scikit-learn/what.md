@@ -13,8 +13,9 @@
     - mean = μ
     - overall standard deviation, σ.
 ```
-z = (x - μ)
-    
+z = (x - μ) / σ
+z is called standardized data value    
 ```
     
+### Standarding numpy array data usin sci-kit-learn
   
