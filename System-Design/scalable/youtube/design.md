@@ -5,19 +5,6 @@ Million=10^6. Billion=10^9. Trillion=10^12, Quadtrillion=10^15
     - Users can upload, view, search
     - Service can do stat collection: no of vistors, views, likes, dislikes.
     - User can like/dislike the videos.
-  - **Non-functional**
-    - S<sup>3</sup>
-      L<sup>3</sup>
-      C<sup>2</sup>
-      A<sup>3</sup>
-      R<sup>2</sup>
-      F
-      - SOA, Secure, Scalable
-      - Load, Latency, Logging
-      - Cache(Cache invalidation, Negative cache)
-      - Available, Authentication, Analyze, 
-      - Reliable, Redundant(using DB), 
-      - Fast(Lambda)
 
 | | CDN | AWS Cloud |
 | --- | --- | --- |
