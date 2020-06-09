@@ -18,8 +18,8 @@
   - `[   ]` called Capture List
     - captures local/Global variables defined outside lambda to be used inside lambda function.
     - Changing Values of passed variables:
-      - Passed by value(=): Cannot be changed. This passes variables are Read-Only
-      - Passed as reference variable(&): Can be changed.
+      - Passed by value `[=]` are RO: These cannot be changed.
+      - Passed as reference `[&]`: Can be changed.
   - `()` called Parameter list which is Optional
     - Function Parameters to be passed.
   - `mutable` keyword is Optional
@@ -48,14 +48,31 @@ int main(){
 #### 3a. Compilation Error. Local variable(i) should be passed in capture list
 ```  
   auto p3 =  [ ]  (int a, int b)  ->  int {  return a + b + i;   };
+  //Compilation error
 ```
 
-#### 3b. Pass by value(Not Changable) in capture-list. 
-- Passing variable defined outside lambda cannot be modified in lambda.
+#### 3b. PASS BY VALUE `[ = ]`
+##### 3b1. Using Single outside variable inside lambda
 ```
   int i = 5;
   auto p4 =  [ i ]  (int a, int b)  ->  int {  return a + b + i;   };
   cout << p4(3,4) << endl;            //O/P 12 
+```  
+
+##### 3b2. Using all outside variables inside lambda
+```
+  int i = 5, j = 6;
+  auto p4 =  [ = ]  (int a, int b)  ->  int {  return a + b + i + j;   };
+  cout << p4(3,4) << endl;            //O/P 18 
+```  
+
+##### 3b3. Pass by value variable are RO, cannot be modified lambda
+```
+  int i = 5;
+  auto p4 =  [ = ]  (int a, int b) -> int { i = 6;  return a + b + i;   };
+  cout << p4(3,4) << endl;
+  
+  Compilation error: assignment of read-only variable ‘i’
 ```  
 
 #### 3c. = inside Capture-list
