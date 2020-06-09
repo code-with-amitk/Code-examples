@@ -15,16 +15,16 @@
 
 ***function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};***
 
-- `[   ]` called Capture List
-  - captures local/Global variables defined outside lambda to be used inside lambda function.
-  - Changing Values of passed variables:
-    - Passed by value: Cannot be changed. This passes variables are Read-Only
-    - Passed as reference variable: Can be changed.
-- `()` called Parameter list which is Optional
-  - Function Parameters to be passed.
-- `mutable` keyword is Optional
-- `throw` keyword is Optional
-- `->` is return type which is Optional.
+  - `[   ]` called Capture List
+    - captures local/Global variables defined outside lambda to be used inside lambda function.
+    - Changing Values of passed variables:
+      - Passed by value(=): Cannot be changed. This passes variables are Read-Only
+      - Passed as reference variable(&): Can be changed.
+  - `()` called Parameter list which is Optional
+    - Function Parameters to be passed.
+  - `mutable` keyword is Optional
+  - `throw` keyword is Optional
+  - `->` is return type which is Optional.
 
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
@@ -44,7 +44,7 @@ int main(){
   cout << p2(2,3) << endl;            //O/P 5
 ```
 
-### 3. Capture List Examples.
+### 3. CAPTURE LIST EXAMPLES
 #### 3a. Compilation Error. Local variable(i) should be passed in capture list
 ```  
   auto p3 =  [ ]  (int a, int b)  ->  int {  return a + b + i;   };
