@@ -6,7 +6,7 @@
 
 RBSHD
 
-**Non-functional Requirements**
+6. Non-functional Requirements
   - S<sup>3</sup>
       L<sup>3</sup>
       C<sup>2</sup>
