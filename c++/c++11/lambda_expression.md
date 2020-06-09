@@ -17,9 +17,9 @@
 
 - `[   ]` called Capture List
   - captures local/Global variables defined outside lambda to be used inside lambda function.
-  - For changing Values of passed variables:
-    a. Passed by value: Cannot be changed. This passes variables are Read-Only
-    b. Passed as reference variable: Can be changed.
+  - Changing Values of passed variables:
+    - Passed by value: Cannot be changed. This passes variables are Read-Only
+    - Passed as reference variable: Can be changed.
 - `()` called Parameter list which is Optional
   - Function Parameters to be passed.
 - `mutable` keyword is Optional
