@@ -22,7 +22,7 @@
 ## 3. System APIs
   - Get Place/person/thing information
 ```
-<structure> search(dev_key, searchTerm, userLocation, radius, max_results, category, sort, long, lat, userInfo struct, 
+<structure> search(dev_key, searchTerm, userLocation, radius, max_results, category, sort, long, lat)
 Parameters:
   - dev_key: Id of registered user
   - searchTerm: This is the string which is to be searched
@@ -33,7 +33,6 @@ Parameters:
   - sort (Optional) Best matched (0 - default), Minimum distance (1), Highest rated (2).
   - longitude
   - lattitude
-  - quering user info: <structure>
 Returns: JSON containing information about 
   - list of businesses matching the search query. 
   - reviews
