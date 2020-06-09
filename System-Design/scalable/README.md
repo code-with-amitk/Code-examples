@@ -1,4 +1,4 @@
-10^6=Million, 10^9=Billion, 10^12=Trillion, 10^15=Quadtrillion
+10<sup>6</sup> = Million, 10<sup>9</sup> = Billion, 10<sup>12</sup> = Trillion, 10<sup>15</sup> = Quadtrillion
 
 1. Requirements Functional
 2. BOE
