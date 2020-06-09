@@ -28,8 +28,7 @@
 
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
-## Examples
-### 1. Empty capture list, parameter list, function body
+## 1. Empty capture list, parameter list, function body
 ```
 #include<iostream>
 using namespace std;
@@ -38,35 +37,38 @@ int main(){
   p1();                           //Calling lambda, Nothing is printed
 ```  
 
-### 2. Filled Parameter List
+## 2. Filled Parameter List
 ```  
   auto p2 = [ ] (int a, int b) -> int { return a+b; };
   cout << p2(2,3) << endl;            //O/P 5
 ```
 
-### 3. CAPTURE LIST EXAMPLES
-#### 3a. Compilation Error. Local variable(i) should be passed in capture list
+## 3. CAPTURE LIST EXAMPLES
+### 3A. Compilation Error. Local variable(i) should be passed in capture list
 ```  
   auto p3 =  [ ]  (int a, int b)  ->  int {  return a + b + i;   };
   //Compilation error
 ```
 
-#### 3b. PASS BY VALUE `[ = ]`
-##### 3b1. Using Single outside variable inside lambda
+### 3B. PASS BY VALUE `[ = ]`
+#### 3B1. Passing 1 outside variable inside lambda
+- Outside variable i can be used inside lambda.
 ```
   int i = 5;
   auto p4 =  [ i ]  (int a, int b)  ->  int {  return a + b + i;   };
   cout << p4(3,4) << endl;            //O/P 12 
 ```  
 
-##### 3b2. Using all outside variables inside lambda
+#### 3B2. Using all outside variables inside lambda `[ = ]`
+- This means all local variables can be used inside lamba without defining inside capture list.
+- But values of i,j cannot be changed.
 ```
   int i = 5, j = 6;
   auto p4 =  [ = ]  (int a, int b)  ->  int {  return a + b + i + j;   };
   cout << p4(3,4) << endl;            //O/P 18 
 ```  
 
-##### 3b3. Pass by value variable are RO, cannot be modified lambda
+#### 3B3. Pass by value variable are RO, cannot be modified lambda
 ```
   int i = 5;
   auto p4 =  [ = ]  (int a, int b) -> int { i = 6;  return a + b + i;   };
@@ -75,27 +77,24 @@ int main(){
   Compilation error: assignment of read-only variable ‘i’
 ```  
 
-#### 3c. = inside Capture-list
-- This means local variables can be used inside lamba without defining inside capture list.
-- But values of i,j cannot be changed.
-```  
-  int i = 5, j = 6;
-  auto p5  =  [=]  (int a, int b)  ->  int {  return a + b + i + j;   };
-  cout << p5(3,4) << endl;                        //O/P 3+4+5+6=18
-```  
-
-#### 3d. Passing Reference(Changable) inside capture list
+### 3C. PASS BY REFERENCE `[ & ]` RW
+#### 3C1. Passing 1 outside variable inside lambda
 - Passing outside variable using refrence & to lambda. This variable can be changed inside lambda.
 ```  
   int i = 2;
-  auto p6 = [ &i ] (int a, int b)  ->  int {  
-    i = 5;
-    return a + b + i; 
-  };
+  auto p6 = [ &i ] (int a, int b)  ->  int { i = 5;  return a + b + i; };
   cout << p6(3,4) << endl;            //3+4+5 = 12
 ```
 
-#### 3e. Passing both Reference and Value inside capture list
+#### 3C2. Using all outside variables inside lambda `[ & ]`
+```  
+  int i = 2, j = 3;
+  auto p6 = [ & ] (int a, int b)  ->  int { return a + b + i + j; };
+  cout << p6(4,5);    //14
+```
+  
+### 3D. Using both `[=]` and `[&]`
+#### 3D1. Capture by reference all except 1
 - Except "j" everything else is captured as reference(ie can be changed). Just "j" cannot be changed
 ```  
   auto p7  =  [ &, j ]  (int a, int b)  ->  int {
@@ -104,17 +103,17 @@ int main(){
   };
 ```  
 
-#### 3f. Except "i" nothing can be changed.
-- Since It says capture everything as Value except "j"
+#### 3D2. Capture by Value all except 1
+- Except "i" nothing can be changed.
 ```  
   auto p8  =  [ =, &i ]  (int a, int b)  ->  int {  i=95;  return a + b + i; };
 ```
 
-#### 3g. Lambda capture initializers
+### 3E. Lambda capture initializers
 - Allows lambda captures initialized with arbitrary expressions.
 ```
   auto f = [x = test(2)] { return x; };           //20  
-```  
+```
           
 ## GENERIC LAMBDA(C++14)
 - Now lambda can be made Generic, for example auto can be used inside lambda. Earlier this use to give error.
@@ -123,4 +122,49 @@ int main(){
   string a = "Never", b = "GiveUp";
   cout<<ptr(1,2)<<endl;                            //3
   cout<<ptr(a,b)<<endl;                            //NeverGiveUp   
+```
+
+## THIS INSIDE CAPTURE LIST 
+### LAMBDA CAPTURE FOR `*THIS` (C++17)
+- This is CALL-VALUE-COPY of the current object.
+- call-by-value means you cannot change any of object's values.
+```
+class A{
+  int  a = 3;       
+public:
+  void f(){
+    int l;
+    auto ptr = [l, *this]{
+
+      //Compilation error
+      //a = 3;  //Changing value of RO Object is not allowed
+
+      int k = a + l;    //This is OK
+    };
+  }
+};
+```
+
+### Other `this` examples
+#### Using `this` with Reference inside capture list
+```
+  int i = 2;
+  auto p6 = [ &, this ] (int a)  ->  int { return a + i; };     //OK, equivalent to [&]
+  cout << p6(4);    //6
+
+   [&, this, i]{};                                              // OK, equivalent to [&, i]
+```
+
+#### Using `this` with Value inside capture list
+```
+  [=, *this]{};   // since c++17: OK: captures the enclosing function by copy
+                  // until C++17: Error: invalid syntax
+                    
+  [=, this] {};   // since C++20: OK, same as [=]
+                  // until C++20: Error: this when = is the default
+```
+
+#### Repeated `this` inside capture list
+```
+  [this, *this] {};   // Error: "this" repeated (C++17)
 ```
