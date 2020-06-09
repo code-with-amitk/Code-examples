@@ -1,3 +1,5 @@
+10^6=Million, 10^9=Billion, 10^12=Trillion, 10^15=Quadtrillion
+
 1. Requirements Functional
 2. BOE
 3. System APIs
