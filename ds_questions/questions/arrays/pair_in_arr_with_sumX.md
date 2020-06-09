@@ -12,7 +12,7 @@ Pairs=[1,77] [5,73]
      - else if( A[l] + A[r] <  sum )  then l++
      - else r--
        
-### Logic-2(Hash Table)      O(n)      //In fact all pair problems can be solved using HT
+#### Logic-2(Hash Table)      O(n)      //In fact all pair problems can be solved using HT
 
 This is very simple. 
   1. Iterate through the array.
