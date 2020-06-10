@@ -1,6 +1,5 @@
 ## Scikit-learn?
-  - Helps is data processing
-  - It includes tools for data preprocessing and data mining
+  - This is data preprocessing library.
   
 ### Data Standardization
   - Problem: Data can contain all sorts of different values makeing it difficult to interpret.. Example:
