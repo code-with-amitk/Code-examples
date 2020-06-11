@@ -3,7 +3,7 @@
   - This represents the number of bytes between successive addresses at which objects of this type can be allocated.
   - Alignment can be retrieved for class/struct/union or enumeration. Cannot be applied to function parameter or exception parameter of a catch.
   
-### ALIGNOF() or ALIGNMENT_OF() returns alignment of struct,class,union,variable,enum.
+### A. ALIGNOF() or ALIGNMENT_OF() returns alignment of struct,class,union,variable,enum.
 #### Example-1
 ```c++
 int main(){
@@ -25,7 +25,7 @@ struct X {
 };    //size=8, alignment=4
 ```
 
-## ALIGNAS() setting alignment.
+## B. ALIGNAS() function for setting alignment.
   - Can be applied to any of these:
     - Variable, non-bitfield class data member, declaration or definition of a class/struct/union or enumeration.
   - Cannot be applied to:
