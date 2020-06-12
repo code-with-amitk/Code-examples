@@ -7,7 +7,7 @@
     - Orgnization becomes more productive since not need to worry about
       - procurement, capacity planning, software maintenance, patching, heavy lifting tasks.
       
-## 4 Primary Areas?
+## 4 Primary Areas of AWS
   1. Compute
     - EC2: create/deploy your own virtual machine.
     - LightSail(VPS Service – Virtual Private service): Lightsail launches virtual private servers which are VMs.
