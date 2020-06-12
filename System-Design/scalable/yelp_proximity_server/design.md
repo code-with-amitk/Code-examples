@@ -79,6 +79,18 @@ Returns: JSON containing information about
   - **Finding neighbouring grid of given grid***
     - Note only leaf node can contain list of locations
     - All leaf nodes of a parent will be neighbours. We can connect all leaves using `doubly linked list` and move easiy between them.
+  - **MEMORY REQUIREMENTS**
+    - Number of Grids
+      - Total earth area = 200 * 10<sub>6</sub> sq miles. (200 Million sq miles)
+      - let's take grid diagonal = 10 miles
+      - Total Grids = 20 Million
+    - objectId=4 bytes, lattitude,longitude=8bytes.   24 bytes
+    - Database requirement:  24 * 20 * 10<sub>6</sub> = 4 * 10<sub>9</sub> = 4 GB
+    - QuadTree: objectID(4 bytes) + 4 pointers(32 bytes) = 36 * 20 * 10<sub>6</sub> = 7 GB
+  - **Adding new place into system**
+    - Insertion need to take place in DB, Quadtree both.
+    - Quadtree resides on multiple server
+      - find the grid/server of the new Place and then add it there
    
   
   
