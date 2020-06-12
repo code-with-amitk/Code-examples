@@ -47,9 +47,11 @@ Returns: JSON containing information about
   - We can store information about things into:
     - `grids`(ie tree having 4 children)
     - SQL DB.
+![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)    
+    
 
 ### Storing data in GRID
-  - Divide the whole world map into dynamic grids.
+  - Divide the whole world map into dynamic grids.  
   - **Grid size**
     - Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
     - This will help in faster searching.
@@ -87,7 +89,7 @@ Returns: JSON containing information about
 - objectID: This is a unique ID assigned to object(place, thing etc)
 - lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
 - longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
-- (lattitude, longitude): precise location of features on the surface of the Earth.
+  - (lattitude, longitude): precise location of features on the surface of the Earth.
 
 
 
