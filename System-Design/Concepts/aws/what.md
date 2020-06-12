@@ -8,14 +8,25 @@
       - procurement, capacity planning, software maintenance, patching, heavy lifting tasks.
       
 ## 4 Primary Areas of AWS
-  1. Compute
-    - EC2: create/deploy your own virtual machine.
-    - LightSail(VPS Service – Virtual Private service): Lightsail launches virtual private servers which are VMs.
-    - ECS(Elastice container search): Runs, manages docker containers. This is something like managed Kubernetes service.
-    - Lambda: Upload a function on AWS get it executed really fast.
-    - Batch: used for Batch processing. Batch dynamically provisions the optimal quantity and type of compute resources, based on the volume and specific resource requirements of the batch jobs submitted
-  2. Storage
-    - EBS, EFS, S3, Glacier, Storage Gateway, Storage Migration Services
+  1. **Compute**
+    - ***EC2***
+      - create/deploy your own virtual machine.
+    - ***LightSail(VPS Service – Virtual Private service)***
+      - Lightsail launches virtual private servers which are VMs.
+    - ***ECS(Elastice container search)***
+      - Runs, manages docker containers. This is something like managed Kubernetes service.
+    - ***Lambda***
+      - Upload a function on AWS get it executed really fast.
+    - ***Batch***
+      - used for Batch processing. Batch dynamically provisions the optimal quantity and type of compute resources, based on the volume and specific resource requirements of the batch jobs submitted
+  2. **Storage**
+    - ***S3***
+      - Object / Bucket type of storage.
+    - ***EFS***
+      - upload your files to an EFS and then mount that on to multiple virtual machines
+    - ***Glacier***
+      - Used for data archival. used to store data that you do not need to use right away.
+    , Storage Gateway, Storage Migration Services
   3. Database
     - RDS, Redshift
   4. Network
