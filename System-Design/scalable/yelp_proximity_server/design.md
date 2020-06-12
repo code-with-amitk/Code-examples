@@ -68,6 +68,8 @@ Returns: JSON containing information about
     };
   };
 ```    
+![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
+
   - ***Building the Grid***
     - Start with one node that will represent the whole world in one grid, break it down into four nodes and distribute locations among them.
     - keep repeating this process with each child node until there are no nodes left with more than 500 locations.
