@@ -44,38 +44,50 @@ Returns: JSON containing information about
 
 ## 4. HLD
   - We need to store data of places so that when user queries and place falls in radius (based on category) information can be relyaed.
+  - We can store information about things into:
+    - `grids`(ie tree having 4 children)
+    - SQL DB.
 
-**Storing data in GRID**
-  - Divide the whole map into smaller dynamic grids.
+### Storing data in GRID
+  - Divide the whole world map into dynamic grids.
   - **Grid size**
-    - Dynamically adjust the grid size such that whenever grid gets lot of places in it break it down to create smaller grids.
-    - Let not take more than 500 places in a grid so that we can have a faster searching. So, whenever a grid reaches 500 things, ***break it down into four grids*** of equal size and distribute places among them.
+    - Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
+    - This will help in faster searching.
+    - So, whenever a grid reaches 500 things, ***break it down into four grids*** of equal size and distribute places among them.
       - Thickly populated areas like San Francisco will have a lot of grids.
       - Sparsely populated area like the Pacific Ocean will have large grids with places only around the coastal lines.
-    - Datastructure to store Grid information: Tree with 4 child nodes(called `QuadTree`).
-      - All the leaf nodes will represent the grids that cannot be further broken down.
-      - ***Building the Grid***
-        - Start with one node that will represent the whole world in one grid.
-        - break it down into four nodes and distribute locations among them
-        - keep repeating this process with each child node until there are no nodes left with more than 500 locations.
+  - **Datastructure to store Grid information**: Tree with 4 child nodes(`QuadTree`).
+    - All the leaf nodes will represent the grids that cannot be further broken down.
 ```
-
-```
-    
+  struct node{
+    struct node* children[4];
+    struct information{
+      long objectID;        //This is a unique ID assigned to object(place, thing etc)
+    };
+  };
+```    
+  - ***Building the Grid***
+    - Start with one node that will represent the whole world in one grid, break it down into four nodes and distribute locations among them.
+    - keep repeating this process with each child node until there are no nodes left with more than 500 locations.
+  - **Finding grid for given location**
+    - Start from root node, search the required node in tree downwards.
+    - Once objectID is found search it in DB.
+  - **Finding neighbouring grid of given grid***
+    - Note only leaf node can contain list of locations
+    - All leaf nodes of a parent will be neighbours. We can connect all leaves using `doubly linked list` and move easiy between them.
+   
   
   
 ## 5. DATABASE SCHEMA
 
-  - ObjectID: This is a unique ID assigned to object(place, thing etc)
-  - lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
-  - longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.
-    - (lattitude, longitude) = precise location of features on the surface of the Earth.
-
 | objectID | lattitude | longitude |
 | --- | --- | --- |
-| ram temple(12) | 38.8951 | -77.0364 |
+| ram temple | 38.8951 | -77.0364 |
 
-  - For fast searching; we should have indexes on both these fields
-  
+- objectID: This is a unique ID assigned to object(place, thing etc)
+- lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
+- longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
+- (lattitude, longitude): precise location of features on the surface of the Earth.
+
 
 
