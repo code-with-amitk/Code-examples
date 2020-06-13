@@ -1,5 +1,6 @@
 ## Pages
-### deleting.md Deleting elements
+### remove.md Deleting elements
   - clear()
+  - erase()
 ### insert.md Inserting elements
   - insert()
