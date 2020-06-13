@@ -8,3 +8,11 @@
 | Uses | Online Transactional Processing (OLTP) |  Online Analytical Processing (OLAP) |
 | Modelling Techniques used | ER modeling techniques | data modeling techniques |
 
+## Object vs Block vs File storage
+
+| | Object | Block | File |
+| --- | --- | --- | --- |
+| Stores | objects{ID,metaData+data} | raw blocks(xfs,ext4 etc) | data in file, with limited meta-data |
+| Scaling | Easy | Tough(on high volume becomes unmanagable) |
+| Suitable for | Static data(docs,photos,songs,videos) |
+| Examples | Amazon S3, ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | Amazon EBS, SAN-arrays | Amazon EFS, Gluster |
