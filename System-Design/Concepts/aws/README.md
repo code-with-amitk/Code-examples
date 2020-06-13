@@ -21,17 +21,20 @@
     - used for Batch processing. Batch dynamically provisions the optimal quantity and type of compute resources, based on the volume and specific resource requirements of the batch jobs submitted
       
 ### 2. **Storage**
- - **S3(Simple Storage Service**
-    - Object / Bucket type of storage.
-  - **EFS(Network attached storage)**
+  - Object store: For photos, videos
+    - [S3(Simple Storage Service)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/s3.md)
+  - Block based storage
+    - [EBS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/ebs.md)
+  - File based storage
+    - [EFS](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/aws/storage)
     - upload your files to an EFS and then mount that on to multiple virtual machines
   - **Glacier**
     - Storage used for data archival. Used to store data that you do not need to use right away.
     - It takes 3 – 5 hours to restore from Glacier. Costs - $0.01 per gigabyte, per month
-  - **Snowball**
+  - [Snowball](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/snowball.md)
     - For transporting data from AWS to data center.
     - Snowball hardware device is provided to you. Upload your data on device. AWS will upload data from device to AWS
-  - **Storage Gateway**
+  - [Storage Gateway](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/storage_gateway.md)
     - VM installed in your data center, this replicates the data back to S3.
     
 ### 3. Database
