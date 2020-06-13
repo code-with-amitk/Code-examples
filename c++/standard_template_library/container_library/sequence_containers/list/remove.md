@@ -9,15 +9,28 @@
         cout<<dll.size()<<endl;                           //0
 ```
 
-### 2. Removing 1 or more elements
+### 2. Removing elements
 > iterator erase (const_iterator position);
 - Remove 1 element
 ```
   list<int> a ={1,2,3,4,5};
   list<int>::iterator it1;
 
-  it1 = a.begin();
-  a.erase(it1);
+  it1 = a.begin();        a.erase(it1);
   for (auto i:a)
     cout<< i <<" ";   //2 3 4 5
+```
+
+> iterator erase (const_iterator first, const_iterator last);
+- Remove range of elements (first,last)
+```
+  list<int> a ={1,2,3,4,5};
+  list<int>::iterator it1,it2;
+
+  it1 = a.begin();  it1++;
+  it2 = a.end();
+  
+  a.erase(it1,it2);
+  for (auto i:a)
+    cout<< i <<" ";             //1
 ```
