@@ -1,4 +1,5 @@
-## [Browser history](https://leetcode.com/problems/design-browser-history/)
+## Browser history
+[Question link](https://leetcode.com/problems/design-browser-history/)
 
 You have a browser of one tab where you start on the homepage and you can visit another url, 
 get back in the history number of steps or move forward in the history number of steps.
