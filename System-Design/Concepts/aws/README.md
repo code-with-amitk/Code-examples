@@ -46,8 +46,7 @@
   - **Graph DB**
     - Neptune
   - **Cache**
-    - ElasticCache
-      - offers fully managed Redis and Memcached
+    - [ElasticCache](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/aws-elasticache.md)
   - **Data warehouse services**
     - [Redshift](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/datawarehouse/aws-redshift.md)
     
