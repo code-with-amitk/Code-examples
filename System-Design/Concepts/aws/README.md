@@ -44,7 +44,7 @@
   - **NoSQL DB**
     - [DynamoDB](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/aws-dynamodb.md)
   - **Graph DB**
-    - Neptune
+    - [Neptune](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/graph/aws-neptune.md)
   - **Cache**
     - [ElasticCache](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/aws-elasticache.md)
   - **Data warehouse services**
