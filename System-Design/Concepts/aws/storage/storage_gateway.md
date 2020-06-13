@@ -1,4 +1,4 @@
-## Storage gatway
+## Storage gateway
   - **What?**
     - This is a service that connects an on-premises software application with a cloud-based storage
     - Storage Gateway is a virtual appliance installed on a hyper visor in your DC.
