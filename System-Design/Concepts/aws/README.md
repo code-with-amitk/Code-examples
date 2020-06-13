@@ -42,12 +42,14 @@
         - compatible with MySQL and PostgreSQL
       b. Others: MySQL, PostgreSQL, MariaDB, Oracle, and SQL Server, Redshift
   - **NoSQL DB**
-    a. DynamoDB
+    a. [DynamoDB](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/aws-dynamodb.md)
   - **Graph DB**
     a. Neptune
   - **Cache**
     a. ElasticCache
       - offers fully managed Redis and Memcached
+  - **Data warehouse services**
+    - (Redshift](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/datawarehouse/aws-redshift.md)
     
 ### 4. Network
   - CloudFront, VPC, Direct Connect, Load Balancing, Route 53
