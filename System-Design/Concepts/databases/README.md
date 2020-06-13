@@ -16,4 +16,4 @@
 | Scaling | Easy | Tough(on high volume becomes unmanagable) |
 | Suitable for | Static data(docs,photos,songs,videos) |
 | Accessible from internet | yes | no(this is just disk drive) |
-| Examples | Amazon S3, ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | Amazon EBS, SAN-arrays | Amazon EFS, Gluster |
+| Examples | [Amazon S3](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/s3.md), ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | [Amazon EBS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/ebs.md), SAN-arrays | [Amazon EFS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/efs.md), Gluster |
