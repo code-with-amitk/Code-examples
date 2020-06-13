@@ -15,4 +15,5 @@
 | Stores | objects{ID,metaData+data} | raw blocks(xfs,ext4 etc) | data in file, with limited meta-data |
 | Scaling | Easy | Tough(on high volume becomes unmanagable) |
 | Suitable for | Static data(docs,photos,songs,videos) |
+| Accessible from internet | yes | no(this is just disk drive) |
 | Examples | Amazon S3, ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | Amazon EBS, SAN-arrays | Amazon EFS, Gluster |
