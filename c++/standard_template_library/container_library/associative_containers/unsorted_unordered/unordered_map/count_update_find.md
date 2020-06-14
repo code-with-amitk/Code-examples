@@ -12,7 +12,7 @@
   vector<int>& arr = {4,3,1,1,3,3,2};
   unordered_map<int,int> um;           //<value,count>
   
-Method-1:
+Method-1:                     //USE THIS
   for(auto i:arr)
     um[i] = um[i] + 1;
   
