@@ -104,7 +104,7 @@ Returns: JSON containing information about
 - longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
   - (lattitude, longitude): precise location of features on the surface of the Earth.
 - locationID(8 bytes): Uniquely identifies a location. LocationId is taken 8 bytes(64 bits) considering future in mind.
-  - 2 <sub>64</sup> = Huge number of locations
+  - 2<sup>64</sup> = Huge number of locations
 - Description(512 bytes)
 - Category(1 byte): E.g., coffee shop, restaurant, theater, etc.
 
