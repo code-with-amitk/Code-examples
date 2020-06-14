@@ -48,7 +48,6 @@ Returns: JSON containing information about
     - `grids`(ie tree having 4 children)
     - SQL DB.
 ![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)    
-    
 
 ### Storing data in GRID
   - Divide the whole world map into dynamic grids.  
@@ -92,10 +91,8 @@ Returns: JSON containing information about
     - Quadtree resides on multiple server
       - find the grid/server of the new Place and then add it there
    
-  
-  
-## 5. DATABASE SCHEMA
-
+## 5. DATABASE
+### 5A. DB SCHEMA
 | objectID | lattitude | longitude |
 | --- | --- | --- |
 | ram temple | 38.8951 | -77.0364 |
@@ -105,5 +102,10 @@ Returns: JSON containing information about
 - longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
   - (lattitude, longitude): precise location of features on the surface of the Earth.
 
-
+### 5B. DATA PARTIONING
+#### 5B1. SHARDING BASED ON REGION
+  - Storing all places having particular zip code on set of servers.
+  - Over time, some regions can end up storing a lot of places compared to others
+#### 5B1. SHARDING BASED ON LOCATION ID
+  - Using locationID to hash function. ServerID is generated. Data will be stored here.
 
