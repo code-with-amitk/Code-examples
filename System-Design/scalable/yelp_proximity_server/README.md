@@ -93,14 +93,19 @@ Returns: JSON containing information about
    
 ## 5. DATABASE
 ### 5A. DB SCHEMA
-| objectID | lattitude | longitude |
-| --- | --- | --- |
+- Each place will have following feilds
+| objectID | lattitude | longitude | locationID | Description | Category |
+| --- | --- | --- | --- | --- | --- |
 | ram temple | 38.8951 | -77.0364 |
 
 - objectID: This is a unique ID assigned to object(place, thing etc)
 - lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
 - longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
   - (lattitude, longitude): precise location of features on the surface of the Earth.
+- locationID(8 bytes): Uniquely identifies a location. LocationId is taken 8 bytes(64 bits) considering future in mind.
+  - 2 <sub>64</sup> = Huge number of locations
+- Description(512 bytes)
+- Category(1 byte): E.g., coffee shop, restaurant, theater, etc.
 
 ### 5B. DATA PARTIONING
 #### 5B1. SHARDING BASED ON REGION
@@ -109,3 +114,24 @@ Returns: JSON containing information about
 #### 5B1. SHARDING BASED ON LOCATION ID
   - Using locationID to hash function. ServerID is generated. Data will be stored here.
 
+## 6. REPLICATION
+  - We will take master-slave configuration.
+    - Master: caters all writes. Syncs data to replica
+    - Replica: Can serve Read traffic.
+    
+## 7. CACHE(memcached)
+  - To deal with hot Places, we can introduce a cache in front of our database.
+  - Based on clients’ usage pattern, we can adjust how many cache servers we need.
+  - Cache Eviction policy: LRU
+  
+## 8. LOAD BALANCING
+  - At 2 places load balancers can be placed:
+    a. Between clients and Application servers
+    b. B/w application & backend servers.
+    
+## 9. RANKING
+- **WHAT** rank the search results by proximity, popularity, relevance.
+- **How**
+  - Store the start given by user for place in QuadTree and database both.
+  - While searching for the top 100 places in a given radius, we can ask each partition of the QuadTree to return the top 100 places with maximum popularity. 
+  - Assuming the popularity of a place is not expected to reflect in the system within a few hours, we can decide to update it once or twice a day, especially when the load on the system is minimum
