@@ -22,7 +22,7 @@
   }
 ```
 
-### 2. Find smallest key in map
+### 2. Find pair having smallest `key`
   - Considering map in bullet-1, smallest key=1 and pair=<1,2>
 ```
   unordered_map<int,int>::iterator it;
