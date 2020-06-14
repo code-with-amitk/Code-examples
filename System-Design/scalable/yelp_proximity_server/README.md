@@ -93,6 +93,7 @@ Returns: JSON containing information about
    
 ## 5. DATABASE
 ### 5A. DB SCHEMA
+
 - Each place will have following feilds
 | objectID | lattitude | longitude | locationID | Description | Category |
 | --- | --- | --- | --- | --- | --- |
