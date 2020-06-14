@@ -23,7 +23,7 @@
 ```
 
 ### 2. Find smallest key in map
-  - Considering map in bullet-1, smallest key=1. Output=<1,2>
+  - Considering map in bullet-1, smallest key=1 and pair=<1,2>
 ```
   unordered_map<int,int>::iterator it;
   it = min_element(um.begin(), um.end());
@@ -31,7 +31,7 @@
 ```
 
 ### 3. Finding <key,value> pair having smallest `value`.
-  - Considering map in bullet-1
+  - Considering map in bullet-1, smallest value pair = `<4,1>`
 ```
   static bool comp(pair<int,int> i, pair<int, int> j)
     return i.second < j.second;
