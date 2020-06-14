@@ -1,0 +1,42 @@
+### 1. Create unordered_map <value, count> from array. Where key=element_in_array, value=no_of_times_element_repeated_in_array
+  - Array {4,3,1,1,3,3,2} is given.
+
+| key | value |
+| --- | --- |
+| 4 | 1 |
+| 3 | 3 |
+| 1 | 2 |
+| 2 | 1 |
+
+```
+  vector<int>& arr = {4,3,1,1,3,3,2};
+  unordered_map<int,int> um;           //<value,count>
+  unordered_map<int,int>::iterator it;
+      
+  for(auto i:arr){
+    it = um.find(i);
+    if(it != um.end())
+      ++it->second;
+    else
+      um.insert(make_pair(i,1));
+  }
+```
+
+### 2. Find smallest key in map
+  - Considering map in bullet-1, smallest key=1. Output=<1,2>
+```
+  unordered_map<int,int>::iterator it;
+  it = min_element(um.begin(), um.end());
+  cout<<it->first<<" " <<it->second;          //1 2
+```
+
+### 3. Finding <key,value> pair having smallest `value`.
+  - Considering map in bullet-1
+```
+  static bool comp(pair<int,int> i, pair<int, int> j)
+    return i.second < j.second;
+
+  unordered_map<int,int>::iterator it;
+  it = min_element(um.begin(), um.end(),compare_func);
+  cout<<it->first<<" " <<it->second;          //4 1
+```
