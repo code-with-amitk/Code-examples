@@ -1,7 +1,8 @@
 Files
 
 constructor.md
-  - Creating unordered map using 
-    - default, copy, fill, range, move constructors
+  - Constructors: default, copy, fill, range, move
+  - insert(): Inserting 1 or multiple pairs
+  - printing unordered_map
     
     
