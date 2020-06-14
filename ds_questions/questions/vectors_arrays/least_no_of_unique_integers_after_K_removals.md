@@ -20,6 +20,9 @@ Explanation: Remove 4, 2 and either one of the two 1s or three 3s. 1 and 3 will 
   2. Create vector containing only values from map    //O(m)
   3. Convert vector into min_heap   //O(logn)
   4. Decrement top of min_heap until k>0    //O(1)
+  
+### Complexity
+  O(nlogn)
 ```
 #include<iostream>
 #include<vector>
