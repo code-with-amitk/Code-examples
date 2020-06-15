@@ -14,9 +14,9 @@
 #### A1. Insert(Q,x)  
 Given an item x with key k, insert it into the priority queue Q. 
 #### A2. Find-Minimum(Q) or Find-Maximum(Q)
-  -  Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
+Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
 #### A3. Delete-Minimum(Q) or Delete-Maximum(Q)
-  -  Remove the item from the priority queue Q whose key is minimum (maximum).
+Remove the item from the priority queue Q whose key is minimum (maximum).
 
 ### A. TYPES OF HEAP
 #### A1. MAX_HEAP (priority_queue<int>)
