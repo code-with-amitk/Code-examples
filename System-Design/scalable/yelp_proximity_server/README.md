@@ -52,7 +52,7 @@ Returns: JSON containing information about
 ### Storing data in GRID
   - Divide the whole world map into dynamic grids.
   - **What is Grid**
-    - grid is a datastructure that stores nodes with a region. May be a class or struct.
+    - Each grid is a datastructure that stores nodes with a lattitude & longitude. May be a class or struct.
     - we can find all the neighboring grids and then query these grids to find nearby places.
   - **Grid size**
     - Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
