@@ -12,7 +12,7 @@
     
 ### A. OPERATIONS ON HEAP
 #### A1. Insert(Q,x)  
-  -  Given an item x with key k, insert it into the priority queue Q. 
+Given an item x with key k, insert it into the priority queue Q. 
 #### A2. Find-Minimum(Q) or Find-Maximum(Q)
   -  Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
 #### A3. Delete-Minimum(Q) or Delete-Maximum(Q)
