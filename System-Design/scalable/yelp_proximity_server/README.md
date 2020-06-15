@@ -1,5 +1,5 @@
-## What is yelp or proximity server?
-- used to discover nearby attractions like places, events, restaurants, theaters, etc.
+## Yelp or Proximity Server?
+- Used to discover nearby attractions like places, events, restaurants, theaters, etc.
 
 ## Need To cover(RBSHD):
   1. Requirements(Functional)
@@ -50,7 +50,10 @@ Returns: JSON containing information about
 ![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)    
 
 ### Storing data in GRID
-  - Divide the whole world map into dynamic grids.  
+  - Divide the whole world map into dynamic grids.
+  - **What is Grid**
+    - grid is a datastructure that stores nodes with a region. May be a class or struct.
+    - we can find all the neighboring grids and then query these grids to find nearby places.
   - **Grid size**
     - Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
     - This will help in faster searching.
