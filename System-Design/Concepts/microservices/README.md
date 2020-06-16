@@ -3,7 +3,7 @@
   - Bigger project is broken into independent modules/processes(called microservice) running on independent VM or Docker container.
 - **Size** 
   - Size of microservices can vary from 100 LOC to keeping complete team busy.
-- **CD** 
+- **[CD(Continous Delivery)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/CI-CD/README.md)** 
   - Each microservice has its own continuous delivery pipeline, this provides continous delivery.
   - CI/CD pipeline contains smaller number of tests as microservices code is small.
 - **Stateless** 
