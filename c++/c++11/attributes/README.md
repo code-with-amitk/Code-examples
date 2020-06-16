@@ -24,10 +24,7 @@
 #### A2. `[[carries_dependency]]`
   - Tells complier to skip unnecessary memory fence instructions for this function as it will consumes/releases memory being part atomic operation.
   
-#### A3. 
-`[[deprecated]] C++14`
-`[[deprecated("reason")]](C++14)`
-
+#### A3. `[[deprecated]]C++14  [[deprecated("reason")]](C++14)`
   - The use of the name or entity declared with this attribute is allowed, but discouraged for some reason.
 ```
 [[deprecated("Use addTemplated(int,int) instead")]]
@@ -39,7 +36,7 @@ int main(){
     : warning: ‘int add(int, int)’ is deprecated: Use addTemplated(int,int) instead [-Wdeprecated-declarations]
   ```
 
-#### A4. `[[fallthrough]]`` only with switch
+#### A4. `[[fallthrough]]` only with switch
   - Indicates that the fall through from the previous case label is intentional & compiler should not throw warning
   - fallthrough can only be used with switch statement.
 ##### Code generating warning 
@@ -75,4 +72,28 @@ void fun(int n) {
 int main(){
   fun(1);
 }
+```
+
+#### A5. `[[nodiscard]](C++17)  [[nodiscard("reason")]](C++20)`
+  - Compiler will issue a warning if return value is discarded from `nodiscard` function.
+  - **Where nodicard can be used?**
+    1. Function declaration
+      - 
+    2. Enumeration declaration
+      - 
+    3. class declaration
+      - 
+```c++
+//////////////////////////FUNCTION DECLARATION///////////////////
+[[nodiscard]] int f(){
+  return 1;
+}
+int main(){
+  f();
+}
+$ g++ nodiscard.cpp
+test.cpp: In function ‘int main()’:
+test.cpp:9:3: warning: ignoring return value of ‘int f()’, declared with attribute nodiscard [-Wunused-result]
+    9 |  f();
+      |  ~^~
 ```
