@@ -9,3 +9,21 @@ public class main{
 		t.prepareRecipe();
 	}
 }
+
+/*
+$ javac *.java
+$ java main
+Creating Coffee
+
+Boiling water
+Adding Coffee
+Pouring into cup
+Adding Sugar and Milk
+
+Creating Tea
+
+Boiling water
+Adding tea
+Pouring into cup
+Adding Lemon
+*/
