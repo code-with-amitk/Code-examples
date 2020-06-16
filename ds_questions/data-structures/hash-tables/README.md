@@ -1,33 +1,42 @@
 ## Hash Table
-  - HT are very efficient in searching. Search complexity = O(1){Average Case}. O(n){Worst case}
+This is very efficient in searching. Search complexity = O(1){Average Case}. O(n){Worst case}
 
-### Why Hash Tables?
+### A. Advantages, Disadvantages
+#### A1. Advantages
+  - Efficient search in O(1) time.
+#### A2. Disadvantages of HT
+  - **Guess Approximate input data**
+    - You have to know approximate size of input data before initializing hash table. Otherwise you need to resize hash table which is a very time-consuming operation. For example, your hash table size is 100 and then you want to               insert the 101st element. Not only the size of hash table is enlarged to 150, all element in hash table have to be rehashed. This insertion operation takes O(n).
+  - **Elements are stored as unsorted order**
+    - In certain circumstance, we want data to be stored with sorted order, like contacts in cell phone.
+  - **Hash Collision**
+    - It's possible that a hash function generates same hash value for different inputs. Now newly inserted key maps to an already occupied slot in hash table
+
+### B. Why Hash Tables?
 For storing real world data structures. EG:
   1. Big Employees data:    Name, Ph Number, Residential address, Age, salary, designation etc
   2. Big Student Data:    Roll No, Name, class, subjects, age, address etc
 
-### Hash Function
+### C. Hash Function
   - A hash function maps a big number or string to a small integer that can be used as index in hash table. 
 ```
   key -> |Hash Function| -> index of array/table
 ```
 
-### Hash Collision
-  - **What**
-    - When hash function provides same index or value for 2 different keys.
+### D. Hash Collision
+**What** When hash function provides same index or value for 2 different keys.
     
-#### Solutions to Hash Collision
-##### A. SEPERATE CHAINING
-  - ***What*** 
-    - Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
+#### D1. Solutions to Hash Collision
+##### D1A. SEPERATE CHAINING
+  - ***What*** Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
   - ***Advantages:*** 
-    a. Simple implementation
-    b. Space will never exhaust
-    c. Less sensitive to hash function
+    - Simple implementation
+    - Space will never exhaust
+    - Less sensitive to hash function
   - ***Disadvantages:***
-    a. Once LL/chain grows long, performance will degrade search time=O(n)
-    b. Space wastage, some parts of hash table may never be used
-    c. Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
+    - Once LL/chain grows long, performance will degrade search time=O(n)
+    - Space wastage, some parts of hash table may never be used
+    - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
 ```
   Example:  Hash Function = xmod7, a[]={50, 700, 76, 85, 46, 92, 73, 10}        
   50mod7=1, 700mod7=0,  76mod7=6,  85mod7=1,    46mod7=1
@@ -39,12 +48,6 @@ For storing real world data structures. EG:
              0         1          2      3       4        5       6
 ```
     
-##### B. OPEN ADDRESSING
+##### D1B. OPEN ADDRESSING
 
-### Disadvantages of HT
-  - **Guess Approximate input data**
-    - You have to know approximate size of input data before initializing hash table. Otherwise you need to resize hash table which is a very time-consuming operation. For example, your hash table size is 100 and then you want to               insert the 101st element. Not only the size of hash table is enlarged to 150, all element in hash table have to be rehashed. This insertion operation takes O(n).
-  - **Elements are stored as unsorted order**
-    - In certain circumstance, we want data to be stored with sorted order, like contacts in cell phone.
-  - **Hash Collision**
-    - It's possible that a hash function generates same hash value for different inputs. Now newly inserted key maps to an already occupied slot in hash table
+
