@@ -52,7 +52,7 @@ Returns: JSON containing information about
 ### Storing data in GRID
   - Divide the whole world map into dynamic grids.
   - **What is Grid**
-    - Each grid is a datastructure that stores nodes with a lattitude & longitude. May be a class or struct.
+    - Each grid datastructure will store all the Places residing within a specific range of longitude and latitude
     - we can find all the neighboring grids and then query these grids to find nearby places.
   - **Grid size**
     - Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
@@ -117,6 +117,25 @@ Returns: JSON containing information about
   - Over time, some regions can end up storing a lot of places compared to others
 #### 5B1. SHARDING BASED ON LOCATION ID
   - Using locationID to hash function. ServerID is generated. Data will be stored here.
+  
+## 6. ARCHITECTURE
+### 6A. Storing location information in DB
+```
+User                            
+click on add place
+- Fill category
+- Pick place on map
+  (Lattitude, Longitude)
+- Add name of place
+         Authentication-happened
+-Add_Place(lattitude,long,category,name)   <-------------------Data center-------------------->
+                           |-------------->  APP-SERVER    
+                                               |
+                                        Generate a locationID                        DB-1
+                                        locationID->|Hash|->ServerID(3)             DB-2
+                                                             -place info----->DB-3
+ 
+```
 
 ## 6. REPLICATION
   - We will take master-slave configuration.
