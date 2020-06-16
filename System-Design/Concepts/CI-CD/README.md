@@ -2,6 +2,7 @@
 - **What** A approach where software is continuously brought into production with the help of a continuous delivery pipeline
 
 ### A. Phases of CD
+![ImgUrl](https://i.ibb.co/pjDPbK2/ms.png)
 
 A1. Commit Phase
 - software compilation, unit tests, and static code analysis
