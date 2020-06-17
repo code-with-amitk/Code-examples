@@ -43,20 +43,48 @@ Returns: JSON containing information about
 ```
 
 ## 4. HLD
-  - We need to store data of places so that when user queries and place falls in radius (based on category) information can be relyaed.
-  - We can store information about things into:
-    - `grids`(ie tree having 4 children)
-    - SQL DB.
-![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)    
+  - User queries something as "Schools near me". Yelp/Google-map sends lattitude,longitude of user's device and on DB all locations within `10 km` radius of lattitude,longitude are relayed back to user.
+  - For this, We need to store information of all places/things on earth so that when user queries a place/thing & all places that falls in 10 km radius are relyaed back.
+  - This information will be huge, to store places/things information we will use ***SQL DB***.
+  - For searching information faster we will use ***GRIDS(Tree data structure)***.    
+![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)   
 
-### Storing data in GRID
-  - Divide the whole world map into dynamic grids.
-  - **What is Grid**
-    - Each grid datastructure will store all the Places residing within a specific range of longitude and latitude
-    - we can find all the neighboring grids and then query these grids to find nearby places.
-  - **Grid size**
-    - Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
-    - This will help in faster searching.
+### Storing information into DB?
+  1. **Step-1** GRIDS
+    - Whole whole world map is divided into grids.
+    - Grid is a Node in Tree data structure.
+    - Grid stores the DB server ID which contains all places information b/w lattitude,long range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a specific range of longitude and latitude.
+```
+  struct grid{
+    uint32 gridId;        //gridId hash gives the DB where (latt-start,long-start,latt-end,long-end) are stored
+    double lattitude-start,lattitude-end;
+    double longitude-start,longitude-end;
+    struct grid *child[4];
+  }
+```
+    - Whenever user provides lattitude,longitude(of region to be searched), appropriate grid which serves enquired lattitude,longitude is searched in tree.
+    
+```
+    User
+  Parks near me
+(lattitude-p,longitude-p)--->  APP-SERVER
+                          lattitude-p,longitude-p
+                                    |-------search in quadTree------>  QUADTREE(root)
+                                    |                                     / | \ \
+                                    |                                     Node-60
+                                    |                               lattitude-start < lattitude-p < lattitude-end
+                                    |                               longitude-start < longitude-p < longitude-end                                                           |    <---gridId of Node-60--------
+                        gridId->|Hash|->serverID(n)
+                            //serverID is DB number where info is stored
+                                    |
+                                    |                                        DB-n
+                                    |---get info(lattitude-p,longitude-p)---> |
+                                    |                                  Search DB for all (lattitude,longitude) 
+                                    |                                  pairs within 10km of (lattitude-p,longitude-p)
+                                    | <------create AJAX/REST information-----|  
+     <------information-----------  |                     
+```
+    - GRID SIZE: Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
     - So, whenever a grid reaches 500 things, ***break it down into four grids*** of equal size and distribute places among them.
       - Thickly populated areas like San Francisco will have a lot of grids.
       - Sparsely populated area like the Pacific Ocean will have large grids with places only around the coastal lines.
