@@ -34,9 +34,14 @@ Complexity: O(n2)
 #include<string>
 using namespace std;
 
-void isPalindrome(string s){
+string isPalindrome(string s){
         int n = s.size(), k;
 
+        /*Edge cases
+        if(!n)  return "";
+        if(n==1)  return s;
+        */
+  
         bool tab[n][n];
         int maxlength=0;
         int startIndex = 0;
@@ -69,14 +74,12 @@ void isPalindrome(string s){
         }
         cout<<"startIndex="<<startIndex<<"\n";
         cout<<"maxlength="<<maxlength<<"\n";
-        cout<<"palindrome=";
-        for(int i=startIndex;i<startIndex+maxlength;i++)
-                cout<<s[i];
+        return s.substr(startIndex, maxlength);
 }
 
 int main(){
         string s = "abeetteec";
-        isPalindrome(s);
+        cout<<"palindrome="<<isPalindrome(s);
 }
 /*Output:
 # ./a.out 
