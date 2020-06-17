@@ -43,17 +43,19 @@ Returns: JSON containing information about
 ```
 
 ## 4. HLD
-  - User queries something as "Schools near me". Yelp/Google-map sends lattitude,longitude of user's device and on DB all locations within `10 km` radius of lattitude,longitude are relayed back to user.
+  - User queries something as `Schools near me`.
+  - Yelp/Google-map sends `(lattitude,longitude)` of user's device and on DB all locations within `10 km` radius of `(lattitude,longitude)` are relayed back to user.
   - For this, We need to store information of all places/things on earth so that when user queries a place/thing & all places that falls in 10 km radius are relyaed back.
   - This information will be huge, to store places/things information we will use ***SQL DB***.
   - For searching information faster we will use ***GRIDS(Tree data structure)***.    
 ![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)   
 
 ### Storing information into DB?
-  1. **Step-1** GRIDS
+  1. **Step-1 GRIDS**
+  ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
     - Whole whole world map is divided into grids.
-    - Grid is a Node in Tree data structure.
-    - Grid stores the DB server ID which contains all places information b/w lattitude,long range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a specific range of longitude and latitude.
+    - Grid is a Node in QuadTree data structure.
+    - Grid stores the DB server ID which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
 ```
   struct grid{
     uint32 gridId;        //gridId hash gives the DB where (latt-start,long-start,latt-end,long-end) are stored
@@ -98,7 +100,7 @@ Returns: JSON containing information about
     };
   };
 ```    
-![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
+
 
   - ***Building the Grid***
     - Start with one node that will represent the whole world in one grid, break it down into four nodes and distribute locations among them.
