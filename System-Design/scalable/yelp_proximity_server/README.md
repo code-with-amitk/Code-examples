@@ -56,35 +56,37 @@ Returns: JSON containing information about
   
   - Whole whole world map is divided into grids.
   - Grid is a Node in QuadTree data structure.
-  - Grid stores the DB server ID which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
+  - Grid stores the `DB server ID` which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
     
 ```
-  struct grid{
+  struct gridNode{
     uint32 gridId;        //gridId hash gives the DB where (latt-start,long-start,latt-end,long-end) are stored
     double lattitude-start,lattitude-end;
     double longitude-start,longitude-end;
     struct grid *child[4];
   }
 ```
-    - Whenever user provides lattitude,longitude(of region to be searched), appropriate grid which serves enquired lattitude,longitude is searched in tree.
+  - ***Case-1***: User queries `Schools near me`.
+    - User's device provides self lattitude,longitude. appropriate grid which serves enquired lattitude,longitude is searched in tree.
     
 ```
     User
-  Parks near me
-(lattitude-p,longitude-p)--->  APP-SERVER
-                          lattitude-p,longitude-p
+  Schools near me
+  Google-map sends self
+(lattitude-s,longitude-s)--->  APP-SERVER
+                          lattitude-s,longitude-s
                                     |-------search in quadTree------>  QUADTREE(root)
                                     |                                     / | \ \
                                     |                                     Node-60
-                                    |                               lattitude-start < lattitude-p < lattitude-end
-                                    |                               longitude-start < longitude-p < longitude-end                                                           |    <---gridId of Node-60--------
+                                    |                               lattitude-start < lattitude-s < lattitude-end
+                                    |                               longitude-start < longitude-s < longitude-end                                                           |    <---gridId of Node-60--------
                         gridId->|Hash|->serverID(n)
-                            //serverID is DB number where info is stored
+                        //serverID is DB number where info is stored
                                     |
                                     |                                        DB-n
-                                    |---get info(lattitude-p,longitude-p)---> |
+                                    |---get info(lattitude-s,longitude-s)---> |
                                     |                                  Search DB for all (lattitude,longitude) 
-                                    |                                  pairs within 10km of (lattitude-p,longitude-p)
+                                    |                                  pairs within 10km of (lattitude-s,longitude-s)
                                     | <------create AJAX/REST information-----|  
      <------information-----------  |                     
 ```
