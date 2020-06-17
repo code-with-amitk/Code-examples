@@ -30,15 +30,11 @@
         |  700  |   50     |        |        |        |        |    76    |        Hash Table
              0         1          2      3       4        5       6
 ```
-    
-    - **OPEN ADDRESSING**
-**What** All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains.
-##### Types of Open addressing
-###### D1Ba. Linear/Sequential probing
-  - **Insertion** Once same hash is derived, inserts the new item in the next open spot in the table ie next to already existent element with same hash.
-  - If the table is not too full, the contiguous runs of items should be fairly small, hence this location should be only a few slots from its intended position
-  - **Deletion** Ugly here removing one element might break a chain of insertions, making some elements inaccessible. We need to reinsert all the items in the run following the new hole.
-  
-###### D1Bb. Quadratic Probing
+   - **B. OPEN ADDRESSING** All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains. Types of Open addressing
+    - ***B1. Linear/Sequential probing***
+      - `INSERTION`: Once same hash is derived, inserts the new item in the next open spot in the table ie next to already existent element with same hash.
+      - If the table is not too full, the contiguous runs of items should be fairly small, hence this location should be only a few slots from its intended position
+      - `DELETION`: Ugly here removing one element might break a chain of insertions, making some elements inaccessible. We need to reinsert all the items in the run following the new hole.
+    - ***B2. Quadratic Probing***
 
 
