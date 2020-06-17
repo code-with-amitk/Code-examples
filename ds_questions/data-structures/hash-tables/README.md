@@ -13,19 +13,13 @@
 ```
   key -> |Hash Function| -> index of array/table
 ```
-  - **Hash Collision** When hash function provides same index or value for 2 different keys.
-    
-#### Solutions to Hash Collision
-##### A. SEPERATE CHAINING
-  - ***What*** Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
-  - ***Advantages:*** 
-    - Simple implementation
-    - Space will never exhaust
-    - Less sensitive to hash function
-  - ***Disadvantages:***
-    - Once LL/chain grows long, performance will degrade search time=O(n)
-    - Space wastage, some parts of hash table may never be used
-    - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
+  - **Hash Collision** When hash function provides same index or value for 2 different keys. Solutions to Hash Collision:
+    - **A. SEPERATE CHAINING** Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
+      - ***Advantages:*** Simple implementation, Space will never exhaust, Less sensitive to hash function
+      - ***Disadvantages:***
+        - Once LL/chain grows long, performance will degrade search time=O(n)
+        - Space wastage, some parts of hash table may never be used
+        - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
 ```
   Example:  Hash Function = xmod7, a[]={50, 700, 76, 85, 46, 92, 73, 10}        
   50mod7=1, 700mod7=0,  76mod7=6,  85mod7=1,    46mod7=1
@@ -37,7 +31,7 @@
              0         1          2      3       4        5       6
 ```
     
-##### B. OPEN ADDRESSING
+    - **OPEN ADDRESSING**
 **What** All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains.
 ##### Types of Open addressing
 ###### D1Ba. Linear/Sequential probing
