@@ -50,7 +50,10 @@ Returns: JSON containing information about
   - For searching information faster we will use ***GRIDS(Tree data structure)***.    
 ![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)   
 
-### How information is stored?
+### How place/thing information is stored?
+  1. Using grids
+  2. Using SQL DB
+  
 #### 1. **GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
   
@@ -106,8 +109,6 @@ Returns: JSON containing information about
     - objectId=4 bytes, lattitude,longitude=8bytes.   24 bytes
     - Database requirement:  24 * 20 * 10<sub>6</sub> = 4 * 10<sub>9</sub> = 4 GB
     - QuadTree: objectID(4 bytes) + 4 pointers(32 bytes) = 36 * 20 * 10<sub>6</sub> = 7 GB
-#### 2. SQL DB
-  - See DB schema below.
   
   - ***Case-2: Storing Place/Thing information on QuadTree, SQL-DB***
 ```
