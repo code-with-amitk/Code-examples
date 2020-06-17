@@ -50,12 +50,12 @@ Returns: JSON containing information about
   - For searching information faster we will use ***GRIDS(Tree data structure)***.    
 ![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)   
 
-### Storing information into DB?
-  1. **Step-1 GRIDS**
+### How information is stored?
+#### 1. **GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
   
   - Whole whole world map is divided into grids.
-  - Grid is a Node in QuadTree data structure.
+  - Grid is a `Node in QuadTree` data structure. QuadTree can reside on multiple servers.
   - Grid stores the `DB server ID` which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
     
 ```
@@ -66,7 +66,7 @@ Returns: JSON containing information about
     struct grid *child[4];
   }
 ```
-  - ***Case-1***: User queries `Schools near me`.
+  - ***Case-1: User queries `Schools near me`***
     - User's device provides self lattitude,longitude. appropriate grid which serves enquired lattitude,longitude is searched in tree.
     
 ```
@@ -90,28 +90,11 @@ Returns: JSON containing information about
                                     | <------create AJAX/REST information-----|  
      <------information-----------  |                     
 ```
-    - GRID SIZE: Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
+  - ***GRID SIZE***: Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
     - So, whenever a grid reaches 500 things, ***break it down into four grids*** of equal size and distribute places among them.
       - Thickly populated areas like San Francisco will have a lot of grids.
       - Sparsely populated area like the Pacific Ocean will have large grids with places only around the coastal lines.
-  - **Datastructure to store Grid information**: Tree with 4 child nodes(`QuadTree`).
-    - All the leaf nodes will represent the grids that cannot be further broken down.
-```
-  struct node{
-    struct node* children[4];
-    struct information{
-      long objectID;        //This is a unique ID assigned to object(place, thing etc)
-    };
-  };
-```    
-
-
-  - ***Building the Grid***
-    - Start with one node that will represent the whole world in one grid, break it down into four nodes and distribute locations among them.
-    - keep repeating this process with each child node until there are no nodes left with more than 500 locations.
-  - **Finding grid for given location**
-    - Start from root node, search the required node in tree downwards.
-    - Once objectID is found search it in DB.
+    - All the leaf nodes will represent the grids that cannot be further broken down
   - **Finding neighbouring grid of given grid***
     - Note only leaf node can contain list of locations
     - All leaf nodes of a parent will be neighbours. We can connect all leaves using `doubly linked list` and move easiy between them.
@@ -123,10 +106,34 @@ Returns: JSON containing information about
     - objectId=4 bytes, lattitude,longitude=8bytes.   24 bytes
     - Database requirement:  24 * 20 * 10<sub>6</sub> = 4 * 10<sub>9</sub> = 4 GB
     - QuadTree: objectID(4 bytes) + 4 pointers(32 bytes) = 36 * 20 * 10<sub>6</sub> = 7 GB
-  - **Adding new place into system**
-    - Insertion need to take place in DB, Quadtree both.
-    - Quadtree resides on multiple server
-      - find the grid/server of the new Place and then add it there
+#### 2. SQL DB
+  - See DB schema below.
+  
+  - ***Case-2: Storing Place/Thing information on QuadTree, SQL-DB***
+```
+User                            
+click on add New place
+- Fill category
+- Pick place on map(Lattitude-n, Longitude-n)
+- Add name of place
+         Authentication-happened
+-Add_Place(lattitude-n,long-n,category,name)   <-------------------Data center-------------------->
+                            |-------------->  APP-SERVER    
+                                     Search (lattitude-n,long-n) in QuadTree
+                                                 |----(lattitude-n,long-n)---->   QUADTREE(root)
+                                                 |                                 / | \ \
+                                                 |                       lattitude-start < lattitude-n < lattitude-end
+                                                 |                       longitude-start < longitude-n < longitude-end
+                                                 |                        Node-89 will store lattitude-n,longitude-n
+                                                 |  <--gridID of Node89---------------|
+                                                 |
+                                        gridId->|Hash|->ServerID(3)                  DB-1
+                                                      DB-3 will store infor
+                                                             ---information----->    DB-3
+                                                                              objectID,lattitude,longitude,locationID
+                                                                              Description,Category
+ 
+```
    
 ## 5. DATABASE
 ### 5A. DB SCHEMA
@@ -152,28 +159,6 @@ Returns: JSON containing information about
 #### 5B1. SHARDING BASED ON LOCATION ID
   - Using locationID to hash function. ServerID is generated. Data will be stored here.
   
-## 6. ARCHITECTURE
-### 6A. Storing location information in DB
-```
-User                            
-click on add place
-- Fill category
-- Pick place on map
-  (Lattitude, Longitude)
-- Add name of place
-         Authentication-happened
--Add_Place(lattitude,long,category,name)   <-------------------Data center-------------------->
-                           |-------------->  APP-SERVER    
-                                               |
-                                        Generate a locationID, objectID              DB-1
-                                  LocationID is generated based on Lat,lon           DB-2
-                                        locationID->|Hash|->ServerID(3)              DB-4
-                                                             -place info----->       DB-3
-                                                                              objectID,lattitude,longitude,locationID
-                                                                              Description,Category
- 
-```
-
 ## 6. REPLICATION
   - We will take master-slave configuration.
     - Master: caters all writes. Syncs data to replica
