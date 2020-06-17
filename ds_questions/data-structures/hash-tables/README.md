@@ -1,33 +1,22 @@
 ## Hash Table
-This is very efficient in searching. Search complexity = O(1){Average Case}. O(n){Worst case}
-
-### A. Advantages, Disadvantages
-#### A1. Advantages
-  - Efficient search in O(1) time.
-#### A2. Disadvantages of HT
-  - **Guess Approximate input data**
-    - You have to know approximate size of input data before initializing hash table. Otherwise you need to resize hash table which is a very time-consuming operation. For example, your hash table size is 100 and then you want to               insert the 101st element. Not only the size of hash table is enlarged to 150, all element in hash table have to be rehashed. This insertion operation takes O(n).
-  - **Elements are stored as unsorted order**
-    - In certain circumstance, we want data to be stored with sorted order, like contacts in cell phone.
-  - **Hash Collision**
-    - It's possible that a hash function generates same hash value for different inputs. Now newly inserted key maps to an already occupied slot in hash table
-
-### B. Why Hash Tables?
-For storing real world data structures. EG:
-  1. Big Employees data:    Name, Ph Number, Residential address, Age, salary, designation etc
-  2. Big Student Data:    Roll No, Name, class, subjects, age, address etc
-
-### C. Hash Function
-  - A hash function maps a big number or string to a small integer that can be used as index in hash table. 
+  - This is very efficient in searching. Search complexity = O(1){Average Case}. O(n){Worst case}
+  - **Advantages**
+    - Efficient search in O(1) time.
+  - **Disadvantages of HT**
+    - ***a. Guess Approximate input data*** You have to know approximate size of input data before initializing hash table. Otherwise you need to resize hash table which is a very time-consuming operation. For example, your hash table size is 100 and then you want to  insert the 101st element. Not only the size of hash table is enlarged to 150, all element in hash table have to be rehashed. This insertion operation takes O(n).
+    - ***b. Elements are stored as unsorted order*** In certain circumstance, we want data to be stored with sorted order, like contacts in cell phone.
+    - ***c. Hash Collision*** It's possible that a hash function generates same hash value for different inputs. Now newly inserted key maps to an already occupied slot in hash table
+  - **Why Hash Tables?**  For storing real world data structures. EG:
+    1. Big Employees data:    Name, Ph Number, Residential address, Age, salary, designation etc
+    2. Big Student Data:    Roll No, Name, class, subjects, age, address etc
+  - **Hash Function** A hash function maps a big number or string to a small integer that can be used as index in hash table. 
 ```
   key -> |Hash Function| -> index of array/table
 ```
-
-### D. Hash Collision
-**What** When hash function provides same index or value for 2 different keys.
+  - **Hash Collision** When hash function provides same index or value for 2 different keys.
     
-#### D1. Solutions to Hash Collision
-##### D1A. SEPERATE CHAINING
+#### Solutions to Hash Collision
+##### A. SEPERATE CHAINING
   - ***What*** Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
   - ***Advantages:*** 
     - Simple implementation
@@ -48,7 +37,7 @@ For storing real world data structures. EG:
              0         1          2      3       4        5       6
 ```
     
-##### D1B. OPEN ADDRESSING
+##### B. OPEN ADDRESSING
 **What** All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains.
 ##### Types of Open addressing
 ###### D1Ba. Linear/Sequential probing
