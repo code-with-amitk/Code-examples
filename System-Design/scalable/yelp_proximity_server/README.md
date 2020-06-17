@@ -131,9 +131,12 @@ click on add place
 -Add_Place(lattitude,long,category,name)   <-------------------Data center-------------------->
                            |-------------->  APP-SERVER    
                                                |
-                                        Generate a locationID                        DB-1
-                                        locationID->|Hash|->ServerID(3)             DB-2
-                                                             -place info----->DB-3
+                                        Generate a locationID, objectID              DB-1
+                                  LocationID is generated based on Lat,lon           DB-2
+                                        locationID->|Hash|->ServerID(3)              DB-4
+                                                             -place info----->       DB-3
+                                                                              objectID,lattitude,longitude,locationID
+                                                                              Description,Category
  
 ```
 
