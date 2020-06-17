@@ -6,7 +6,7 @@
     - do some specific code generation
   - Compilers ignore attribute values they don't recognize. This means you cannot define your own attributes
   
-### A. Types of attributes
+### Types of attributes
   1. `[[noreturn]]`
   2. `[[carries_dependency]]`
   3. `[[deprecated]]C++14  [[deprecated("reason")]](C++14)`
