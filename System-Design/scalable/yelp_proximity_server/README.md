@@ -53,9 +53,11 @@ Returns: JSON containing information about
 ### Storing information into DB?
   1. **Step-1 GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
-    - Whole whole world map is divided into grids.
-    - Grid is a Node in QuadTree data structure.
-    - Grid stores the DB server ID which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
+  
+  - Whole whole world map is divided into grids.
+  - Grid is a Node in QuadTree data structure.
+  - Grid stores the DB server ID which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
+    
 ```
   struct grid{
     uint32 gridId;        //gridId hash gives the DB where (latt-start,long-start,latt-end,long-end) are stored
