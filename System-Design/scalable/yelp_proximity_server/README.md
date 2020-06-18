@@ -161,9 +161,12 @@ click on add New place
   - Using locationID to hash function. ServerID is generated. Data will be stored here.
   
 ## 6. REPLICATION
-  - We will take master-slave configuration.
+  - **QUad-tree** We will have replication of quad-tree in master-slave configuration 
     - Master: caters all writes. Syncs data to replica
     - Replica: Can serve Read traffic.
+  - **Server dies**
+    - We can have a secondary replica of each server and, if primary dies, it can take control after the failover. 
+    - Both primary and secondary servers will have the same QuadTree structure.
     
 ## 7. CACHE(memcached)
   - To deal with hot Places, we can introduce a cache in front of our database.
