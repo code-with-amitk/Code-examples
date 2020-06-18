@@ -58,5 +58,8 @@
   - ***Example*** This pattern is frequently found at public APIs on the Internet. 
   
 #### How to select a pattern?
-  - Pattern should be choosen based on 1. Domain  2. communication relationships between the teams  3. Structures.
+  - Pattern should be choosen based on 
+    1. Domain  
+    2. communication relationships between the teams  
+    3. Structures.
 
