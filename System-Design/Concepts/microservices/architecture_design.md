@@ -37,3 +37,26 @@
   - `Bounded context` does not directly use the domain model/information of the other bounded context.
   - It contains a `layer for decoupling` its own domain model from the model of the bounded context
 ![ImgUrl](https://i.ibb.co/GcVL7Cc/acl.png)
+
+#### B4. SEPERATE WAYS PATTERN
+  - the bounded contexts are `not related` at the software level.
+  - Example: Ecommerce website
+    - There is a micro service for payment
+    - Let's suppose a new MS/bounded context is added (ie Purchasing).
+    - Purchasing would be separate from the remaining system
+![ImgUrl](https://i.ibb.co/C0sJLwB/seperateways.png)    
+    
+#### B5. SHARED KERNEL PATTERN    
+  - Describes a common core that is shared by multiple bounded contexts. 
+  - `It is an anti-pattern` for microservices systems. But because DDD can also be applied to deployment monoliths, there are still scenarios in which a shared kernel is used.
+![ImgUrl](https://i.ibb.co/j86VGdH/sharedkernel.png)
+
+#### B6. OPEN HOST SERVICE PATTERN
+  - The `bounded context-1` offers a generic interface with several services.
+  - Other bounded contexts can implement their own integration with `bounded context-1`, its their choice.
+  - `Published language` is a domain model accessible by all bounded contexts.
+  - ***Example*** This pattern is frequently found at public APIs on the Internet. 
+  
+#### How to select a pattern?
+  - Pattern should be choosen based on 1. Domain  2. communication relationships between the teams  3. Structures.
+
