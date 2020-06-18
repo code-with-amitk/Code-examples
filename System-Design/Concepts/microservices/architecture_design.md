@@ -22,7 +22,18 @@
   - DDD describes in several patterns how exactly communication takes place.
 
 ##### B1. CUSTOMER/SUPPLIER PATTERN
-  Supplier  --->    Consumer
-  (Upstream)      (Downstream)
-  
-  
+  - There is 1 supplier(upstream) and 1 customer/consumer(downstream).
+  - Example: if upstream/supplier(order-process) does not provide correct data downstream/customer(Payment). Transaction cannot be processed.
+    - So consumer can provide his requirements to supplier.
+![ImgUrl](https://i.ibb.co/87HYv44/suppconsumer.png)
+
+#### B2. CONFORMIST PATTERN
+  - A `bounded context` simply uses a `domain model` from `another bounded context`.
+  - Example: Processing online order
+    - `Dataware house team` takes information from `order process team`.
+    -  `Dataware house team` cannot demand more information from other bounded context. It has to work with information from other bounded contexts
+    
+#### B3. ANTI-CORRUPTION LAYER/ACL PATTERN
+  - `Bounded context` does not directly use the domain model/information of the other bounded context.
+  - It contains a `layer for decoupling` its own domain model from the model of the bounded context
+![ImgUrl](https://i.ibb.co/GcVL7Cc/acl.png)
