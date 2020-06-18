@@ -14,3 +14,5 @@
   5. `[[nodiscard]](C++17)  [[nodiscard("reason")]](C++20)`
   6. `[[maybe_unused]](C++17)`
   7. `[[likely]](C++20)  [[unlikely]](C++20)`
+  8. `[[no_unique_address]](since C++20)`
+
