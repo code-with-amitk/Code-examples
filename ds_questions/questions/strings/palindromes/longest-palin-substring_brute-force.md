@@ -12,7 +12,7 @@
   4. Comparing  O(n)
     - Steps 3 and 4 are added hence O(n) + O(n)
     
-####Space:  O(n)
+#### Space:  O(n)
   1. Storing reversed string
   
 ```
