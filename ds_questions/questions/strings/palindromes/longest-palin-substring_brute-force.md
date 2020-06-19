@@ -8,7 +8,9 @@
 #### Time Complexity:  O(n<sup>3</sup>)
   1. O(n)
   2. Goes from 1 to (n-1) O(n)
-  3+4. (Reverse O(n)) + (Comparing O(n))
+  3. (Reverse O(n))
+  4. Comparing  O(n)
+    - Steps 3 and 4 are added hence O(n) + O(n)
 ####Space:  O(n)
   1. Storing reversed string
   
