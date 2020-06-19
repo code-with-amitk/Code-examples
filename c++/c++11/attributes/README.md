@@ -15,4 +15,5 @@
   6. `[[maybe_unused]](C++17)`
   7. `[[likely]](C++20)  [[unlikely]](C++20)`
   8. `[[no_unique_address]](since C++20)`
+  9. `[[optimize_for_synchronized]]`
 
