@@ -16,4 +16,14 @@
   7. `[[likely]](C++20)  [[unlikely]](C++20)`
   8. `[[no_unique_address]](since C++20)`
   9. `[[optimize_for_synchronized]]`
+  
+#### Added support in C++17
+`[[ using attribute-namespace : attribute-list ]]		(since C++17)`
+  -  attribute-list is comma seperated 0 or more attributes.
+```
+[[using gnu : const, always_inline, hot]] [[nodiscard]]
+int main(){
+  cout<<"Hello";
+}
+```
 
