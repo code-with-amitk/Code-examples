@@ -25,10 +25,11 @@ size = 5
 | 0 | 0 | 0 | 1 | 0 |
 | 0 | 0 | 0 | 0 | 1 |
 
-  - Window Size = 2. Consider 2 characters at a time. LPS
-    - Length of LPS from index 0 to 1 is 1, hence `a[0][1] = 1`
-    - Length of LPS from index 1 to 2 is 1, hence `a[1][2] = 1`
-    - `a[2][3] = a[3][4] = 1`
+  - Window Size = 2. Consider 2 characters at a time. `[0.1], [1.2] [2.3] [3.4]` LPS
+    - Length of LPS from index 0 to 1 `ba` is 1, hence `a[0][1] = 1`
+    - Length of LPS from index 1 to 2 `ab` is 1, hence `a[1][2] = 1`
+    - Length of LPS from index 2 to 3 `ba` is 1, hence `a[2][3] = 1`
+    - Length of LPS from index 3 to 4 `ad` is 1, hence `a[3][4] = 1`
       
 | 1 | 1 | 0 | 0 | 0 |
 | --- | --- | --- | --- | --- |
@@ -36,6 +37,18 @@ size = 5
 | 0 | 0 | 1 | 1 | 0 |
 | 0 | 0 | 0 | 1 | 1 |
 | 0 | 0 | 0 | 0 | 1 |      
+
+  - Window Size = 3. Consider 3 characters at a time. `[0..2], [1..3] [2..4]` LPS
+    - Length of LPS from index 0 to 2 `bab` is 3, hence `a[0][2] = 3`
+    - Length of LPS from index 1 to 3 `aba` is 3, hence `a[1][3] = 3`
+    - Length of LPS from index 2 to 4 `bas` is 1, hence `a[2][4] = 1`
+      
+| 1 | 1 | 0 | 0 | 0 |
+| --- | --- | --- | --- | --- |
+| 0 | 1 | 1 | 0 | 0 |
+| 0 | 0 | 1 | 1 | 0 |
+| 0 | 0 | 0 | 1 | 1 |
+| 0 | 0 | 0 | 0 | 1 |   
      
 ```      
 /*      longest_palindrome_substring.cpp
