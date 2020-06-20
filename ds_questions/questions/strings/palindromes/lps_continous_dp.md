@@ -1,3 +1,28 @@
+
+## Problem
+  - Given a string find longest palindromic substring present in it. str=`babad`
+  - Palindromic Substrings(any substring is fine):
+    - bab
+    - aba
+    
+| b | a | b | a | d |
+| --- | --- | --- | --- | --- |
+| 0 | 1 | 2 | 3 | 4 |     
+size = 5      
+    
+### Logic [Sliding Window]
+  1. Take 2-D array of equal size as input string. 5x5 here and initlilize to 0.
+  2. Windows
+     - Size = 1
+      
+| 1 | 0 | 0 | 0 | 0 |
+| --- | --- | --- | --- | --- |
+| 0 | 1 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 0 | 0 |
+| 0 | 0 | 0 | 1 | 0 |
+| 0 | 0 | 0 | 0 | 1 |      
+     
+```      
 /*      longest_palindrome_substring.cpp
 
 Task: Given a string find longest palindrome present in it.
@@ -87,3 +112,4 @@ startIndex=2
 maxlength=6
 palindrome=eettee
 */
+```
