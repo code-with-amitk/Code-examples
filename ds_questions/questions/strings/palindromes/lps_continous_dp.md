@@ -21,8 +21,9 @@ size = 5
   else
     table[i][j] = 0
 ```    
-- geeksforgeeks logic is wrong
-- [Correct Source](https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/LongestPalindromicSubsequence.java), [Video](https://www.youtube.com/watch?v=_nCsPn7_OgI)
+
+- [Correct Source geeks](https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/)
+- Donot see Tushar Roy, He only confuses and gives complicated method
     
 ## Logic `[Sliding Window]`
 
@@ -79,33 +80,57 @@ size = 5
      
 - Complexity O(n<sup>2</sup>)
 ```c++
-int isPalindrome(string s){              //babad
-        int size = s.size();
+class Solution {
+public:
+  string longestPalindrome(string str) {
+    int size = str.size();
 
-        int a[size][size];
+    //Edge Cases
+    if(!size || size==1)
+        return str;
+        
+    bool table[size][size];
+    int maxLength = 1;
+    int start = 0;
 
-        //str[0][0], str[1][1] .. are always palindromes
-        for(int i=0; i <size; i++){
-            a[i][i] = 1;
+    memset(table, 0, sizeof(table));
+
+    // All substrings of length 1 are palindromes
+    for (int i = 0; i < size; ++i)
+        table[i][i] = true;
+
+    // check for sub-string of length 2.
+    for (int i = 0; i < size - 1; ++i) {
+        if (str[i] == str[i + 1]) {
+            table[i][i + 1] = true;
+            start = i;
+            maxLength = 2;
         }
+    }
 
-        for(int l = 2; l <= size; l++){
+    // Check for lengths greater than 2 ie 3,4,5...
+    // k is length of substring
+    for (int k = 3; k <= size; ++k) {
+        for (int i = 0; i < size - k + 1; ++i) {
 
-            for(int i = 0; i < size-l + 1; i++){
+            //j is ending index of substring
+            int j = i + k - 1;
 
-                int j = i + l - 1;
+            // checking for sub-string from ith index to
+            // jth index if str[i+1] to str[j-1] is a
+            // palindrome
+            if (table[i + 1][j - 1] && str[i] == str[j]) {
+                table[i][j] = true;
 
-                if(l == 2 && s[i] == s[j]){
-                    a[i][j] = 2;
-                }else if(s[i] == s[j]){
-                    a[i][j] = a[i + 1][j-1] + 2;
-                }else{
-                    a[i][j] = max(a[i + 1][j], a[i][j - 1]);
+                if (k > maxLength) {
+                    start = i;
+                    maxLength = k;
                 }
             }
         }
+    }
 
-        return a[0][size-1];
-
-}
+    return str.substr(start, maxLength);
+    }
+};
 ```
