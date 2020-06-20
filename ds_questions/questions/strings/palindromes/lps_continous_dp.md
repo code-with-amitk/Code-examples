@@ -4,13 +4,14 @@
   - Palindromic Substrings(any substring is fine):
     - bab
     - aba
-    
+
 | b | a | b | a | d |
 | --- | --- | --- | --- | --- |
-| 0 | 1 | 2 | 3 | 4 |     
+| 0 | 1 | 2 | 3 | 4 |
+
 size = 5      
     
-### Logic [Sliding Window]
+### Logic `[Sliding Window]`
   1. Take 2-D array of equal size as input string. 5x5 here and initlilize to 0.
   2. Windows
      - Size = 1
