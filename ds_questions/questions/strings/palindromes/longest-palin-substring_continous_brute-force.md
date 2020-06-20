@@ -2,6 +2,7 @@
   - Find longest palindromic substring in source string. Eg: `babad`
     - This will have 2 longest palindromic substrings `bab` & `aba`.
     - Any of 2 answers is fine.
+  - There can be 1 more problem where palindromic characters are not continous `bagab`, But that's a seperate problem.
     
 ### Logic
   - Loop over every substring present in main string. For `babab`
