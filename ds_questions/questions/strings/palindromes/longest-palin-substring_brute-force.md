@@ -1,3 +1,8 @@
+## Problem
+  - Find longest palindromic substring in source string. Eg: `babad`
+    - This will have 2 longest palindromic substrings `bab` & `aba`.
+    - Any of 2 answers is fine.
+    
 ### Logic
   1. Loop over every substring present in main string.
     bab =loop over=>  b, ba, bab, a, ab, b
