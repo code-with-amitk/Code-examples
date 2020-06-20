@@ -4,6 +4,14 @@
     - **Macro architecture** consists of all decisions that can be made at a global level and apply to all microservices.
 ![ImgUrl](https://i.ibb.co/9vYXjLz/macro-micro.png)
 
+  - Table shows the typical micro and macro architecture decisions:
+| Micro or Macro | Micro | Macro |
+| --- | --- | --- |
+| Programming Language | Continuous Delivery Pipeline	| Communication Protocol |
+| Database | Authorization |	Authentication |
+| Look and Feel |	Tests of the Microservice in Isolation	| Integration tests |
+| Documentation | |
+
 ## Design Types
 ### A. Domain Driven Design(DDD)
   - **What** Each Micro-service serves a different domain.
