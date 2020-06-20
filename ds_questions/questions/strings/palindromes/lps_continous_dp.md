@@ -40,7 +40,7 @@ size = 5
 
   - Window Size = 3. Consider 3 characters at a time. `[0..2], [1..3] [2..4]` LPS
     - Length of LPS from index 0 to 2 `bab` is 3
-      - From `b` and `b` = 2
+      - Since `a[0] == a[2]` = 2
       - `a[1][1]=1` hence LPS = `a[0][2] = 2 + 1 = 3`
     - Length of LPS from index 1 to 3 `aba` is 3, hence `a[1][3] = 3`. Same calculation as above.
     - Length of LPS from index 2 to 4 `bas` is 1, hence `a[2][4] = 1`
