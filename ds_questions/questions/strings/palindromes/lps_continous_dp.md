@@ -12,12 +12,11 @@
 size = 5      
     
 ## Logic `[Sliding Window]`
-  1. Take 2-D array (bool `a[5][5]`) of equal size as input string. and initlilize to 0.
-  2. Windows
-     - Size = 1. Consider 1 character at a time. LPS will be 1.
-       - `s[0]` is compared with `s[0]`. if(`s[0]` == `s[0]`) `a[0][0]` = 1
-       - `s[1]` is compared with `s[1]`. if(`s[1]` == `s[1]`) `a[1][1]` = 1
-       - `s[4]` is compared with `s[4]`. ..
+  - Take 2-D array (bool `a[5][5]`) of equal size as input string. and initlilize to 0.
+  - Window Size = 1. Consider 1 character at a time. LPS will be 1.
+    - `s[0]` is compared with `s[0]`. if(`s[0]` == `s[0]`) `a[0][0]` = 1
+    - `s[1]` is compared with `s[1]`. if(`s[1]` == `s[1]`) `a[1][1]` = 1
+    - `s[4]` is compared with `s[4]`. ..
       
 | 1 | 0 | 0 | 0 | 0 |
 | --- | --- | --- | --- | --- |
@@ -26,10 +25,10 @@ size = 5
 | 0 | 0 | 0 | 1 | 0 |
 | 0 | 0 | 0 | 0 | 1 |
 
-     - Size = 2. Consider 2 characters at a time. LPS
-       - Length of LPS from index 0 to 1 is 1, hence `a[0][1] = 1`
-       - Length of LPS from index 1 to 2 is 1, hence `a[1][2] = 1`
-       - `a[2][3] = a[3][4] = 1`
+  - Window Size = 2. Consider 2 characters at a time. LPS
+    - Length of LPS from index 0 to 1 is 1, hence `a[0][1] = 1`
+    - Length of LPS from index 1 to 2 is 1, hence `a[1][2] = 1`
+    - `a[2][3] = a[3][4] = 1`
       
 | 1 | 1 | 0 | 0 | 0 |
 | --- | --- | --- | --- | --- |
