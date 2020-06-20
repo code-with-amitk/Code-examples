@@ -10,9 +10,22 @@
 | 0 | 1 | 2 | 3 | 4 |
 
 size = 5      
+
+## Overall Logic
+  - Take 2-D array (bool `table[5][5]`) of equal size as input string. and initlilize to 0.
+  - Value of `table[i][j] = 1` if `str[i ,i+1...j-1, j]` is palindrome
+    - if `str[i+1][j-1]` is palindrome and `s[i]==s[j]` then `str[i..to..j]` is palindrome
+```    
+  if (table[i+1][j-1] == 1 && str[i] == str[j])
+    table[i][j] = 1
+  else
+    table[i][j] = 0
+```    
+- geeksforgeeks logic is wrong
+- [Correct Source](https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/LongestPalindromicSubsequence.java), [Video](https://www.youtube.com/watch?v=_nCsPn7_OgI)
     
 ## Logic `[Sliding Window]`
-  - Take 2-D array (bool `a[5][5]`) of equal size as input string. and initlilize to 0.
+
   - Window Size = 1. Consider 1 character at a time. LPS will be 1.
     - `s[0]` is compared with `s[0]`. if(`s[0]` == `s[0]`) `a[0][0]` = 1
     - `s[1]` is compared with `s[1]`. if(`s[1]` == `s[1]`) `a[1][1]` = 1
@@ -40,8 +53,7 @@ size = 5
 
   - Window Size = 3. Consider 3 characters at a time. `[0..2], [1..3] [2..4]` LPS
     - Length of LPS from index 0 to 2 `bab` is 3
-      - Since `a[0] == a[2]` = 2
-      - `a[1][1]=1` hence LPS = `a[0][2] = 2 + 1 = 3`
+      - because `s[0] == s[2] &&  a[1][1]=1`    //i=0,j=2 `s[i][j] && a[i+1][j-1]`
     - Length of LPS from index 1 to 3 `aba` is 3, hence `a[1][3] = 3`. Same calculation as above.
     - Length of LPS from index 2 to 4 `bas` is 1, hence `a[2][4] = 1`
       
@@ -65,94 +77,35 @@ size = 5
 | 0 | 0 | 0 | 1 | 1 |
 | 0 | 0 | 0 | 0 | 1 | 
      
-```      
-/*      longest_palindrome_substring.cpp
+- Complexity O(n<sup>2</sup>)
+```c++
+int isPalindrome(string s){              //babad
+        int size = s.size();
 
-Task: Given a string find longest palindrome present in it.
-Input string: abeetteec, size=9
-Palindromes present: ee, ee, ette, eettee
-Output = eettee
+        int a[size][size];
 
-******************Logic(Dynamic Programming)*******************
-Concept is very simple.
-1. Take a 2D boolen array sizexsize, here 9x9. tab[9][9] & intialize to 0. Make tab[i][j] = 1 when substr[i..to..j] is palindrome
-2. Take maxlength, startindex variables. Note starting index and maximum length of palindrome string.
-
-
-
-- Start with filling diagonal=1, check 2 chars, then 3,4,5..n characters
-a. All 1 characters are palindromes.
-  tab[1][1] = tab[2][2] ... tab[8][8] = 1
-
-b. Check 2 characters from index 0. if adjacent characters are equal set tab[][]=1
-Example:
-  if(s[0] == s[1])  tab[0][1]=1; maxlength=2; startindex=0
- 
-c. Check 3,4.....n characters from index 0.
-if character at index[0] == index[3] and inside it is also palindrome ie 1 mark this as 1.
-  //Checking 3 characters
-  if(s[0] == s[2] && tab[1][1]==1) tab[0][2]=1
-
-Complexity: O(n2)  
-***************************************************************
-*/
-
-
-#include<iostream>
-#include<string>
-using namespace std;
-
-string isPalindrome(string s){
-        int n = s.size(), k;
-
-        /*Edge cases
-        if(!n)  return "";
-        if(n==1)  return s;
-        */
-  
-        bool tab[n][n];
-        int maxlength=0;
-        int startIndex = 0;
-
-        //Strings of len=1 are always palindrome
-        for(int i=0;i<n;i++)
-                tab[i][i]=true;
-
-        //Checking strings of size 2
-        for(int i=0;i<n-1;i++){
-                if(s[i]==s[i+1]){
-                        tab[i][i+1]=true;
-                        maxlength=2;
-                        startIndex = i;
-                }
+        //str[0][0], str[1][1] .. are always palindromes
+        for(int i=0; i <size; i++){
+            a[i][i] = 1;
         }
 
-        //Checking substrings of size=3,4,....n
-        for(int i=0;i<n-3;i++){
-                k=0;
-                for(int j=i+2;j<=n-1;j++){
+        for(int l = 2; l <= size; l++){
 
-                        if(s[k]==s[j] && tab[k+1][j-1]){
-                                maxlength = j-1;
-                                startIndex = k;
-                                tab[k][j]=true;
-                        }
-                        k++;
+            for(int i = 0; i < size-l + 1; i++){
+
+                int j = i + l - 1;
+
+                if(l == 2 && s[i] == s[j]){
+                    a[i][j] = 2;
+                }else if(s[i] == s[j]){
+                    a[i][j] = a[i + 1][j-1] + 2;
+                }else{
+                    a[i][j] = max(a[i + 1][j], a[i][j - 1]);
                 }
+            }
         }
-        cout<<"startIndex="<<startIndex<<"\n";
-        cout<<"maxlength="<<maxlength<<"\n";
-        return s.substr(startIndex, maxlength);
-}
 
-int main(){
-        string s = "abeetteec";
-        cout<<"palindrome="<<isPalindrome(s);
+        return a[0][size-1];
+
 }
-/*Output:
-# ./a.out 
-startIndex=2
-maxlength=6
-palindrome=eettee
-*/
 ```
