@@ -1,4 +1,4 @@
-### Definition
+### Definition of Template DP
   - This deﬁnes the skeleton of an algorithm in a method, deferring some steps to subclasses. 
   - Template Method lets subclasses to redeﬁne certain steps of an algorithm without changing the algorithm’s structure.
 
@@ -6,7 +6,7 @@
   - Method present in base class, which defines algorithms of steps(functions called in specific order).
   - Some algorithms are kept intact(should not be overriden), while others allowed to be overridden.
   
-### Task: Create a generic Beverage Maker machine (Coffee,Tea etc)
+### PROBLEM/TASK: Create a generic Beverage Maker machine (Coffee,Tea etc)
 #### Steps for Making beverage:
 
 | Step | Coffee | Tea |
