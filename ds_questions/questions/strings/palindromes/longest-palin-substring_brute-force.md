@@ -4,14 +4,14 @@
     - Any of 2 answers is fine.
     
 ### Logic
-  1. Loop over every substring present in main string. For `babab`
+  - Loop over every substring present in main string. For `babab`
     - b, ba, bab, baba, babab
     - a, ab, aba, abab
     - b, ba, bab
     - a, ab
     - b
-  2. Check if each substring is a palindrome.
-  3. Store the starting, end index of longest palindrome.  
+  - Check if each substring is a palindrome.
+  - Store the starting, end index of longest palindrome.  
   
 ### Complexity
 #### Time Complexity:  O(n<sup>3</sup>)
