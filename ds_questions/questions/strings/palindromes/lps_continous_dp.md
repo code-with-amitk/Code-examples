@@ -11,10 +11,13 @@
 
 size = 5      
     
-### Logic `[Sliding Window]`
+## Logic `[Sliding Window]`
   1. Take 2-D array of equal size as input string. 5x5 here and initlilize to 0.
   2. Windows
-     - Size = 1
+     a. Size = 1. Means 
+        - `b[0]` is compared with `b[0]`. if(`b[0]` == `b[0]`) `b[0][0]` = 1
+        - `b[1]` is compared with `b[1]`. if(`b[1]` == `b[1]`) `b[1][1]` = 1
+        - `b[4]` is compared with `b[4]`. ..
       
 | 1 | 0 | 0 | 0 | 0 |
 | --- | --- | --- | --- | --- |
