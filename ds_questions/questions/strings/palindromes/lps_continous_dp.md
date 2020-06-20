@@ -39,16 +39,31 @@ size = 5
 | 0 | 0 | 0 | 0 | 1 |      
 
   - Window Size = 3. Consider 3 characters at a time. `[0..2], [1..3] [2..4]` LPS
-    - Length of LPS from index 0 to 2 `bab` is 3, hence `a[0][2] = 3`
-    - Length of LPS from index 1 to 3 `aba` is 3, hence `a[1][3] = 3`
+    - Length of LPS from index 0 to 2 `bab` is 3
+      - From `b` and `b` = 2
+      - `a[1][1]=1` hence LPS = `a[0][2] = 2 + 1 = 3`
+    - Length of LPS from index 1 to 3 `aba` is 3, hence `a[1][3] = 3`. Same calculation as above.
     - Length of LPS from index 2 to 4 `bas` is 1, hence `a[2][4] = 1`
       
-| 1 | 1 | 0 | 0 | 0 |
+| 1 | 1 | 3 | 0 | 0 |
 | --- | --- | --- | --- | --- |
-| 0 | 1 | 1 | 0 | 0 |
-| 0 | 0 | 1 | 1 | 0 |
+| 0 | 1 | 1 | 3 | 0 |
+| 0 | 0 | 1 | 1 | 1 |
 | 0 | 0 | 0 | 1 | 1 |
 | 0 | 0 | 0 | 0 | 1 |   
+
+  - Window Size = 4. Consider 4 characters at a time. `[0..3], [3..4]` LPS
+    - Length of LPS from index 0 to 3 `baba` is 1
+      - if `s[0] == s[3]` no. `a[0][3] = 1`
+    - Length of LPS from index 1 to 4 `abad` is 1
+      - if `s[1] == s[4]` no. `a[1][4] = 1`
+      
+| 1 | 1 | 3 | 1 | 0 |
+| --- | --- | --- | --- | --- |
+| 0 | 1 | 1 | 3 | 1 |
+| 0 | 0 | 1 | 1 | 1 |
+| 0 | 0 | 0 | 1 | 1 |
+| 0 | 0 | 0 | 0 | 1 | 
      
 ```      
 /*      longest_palindrome_substring.cpp
