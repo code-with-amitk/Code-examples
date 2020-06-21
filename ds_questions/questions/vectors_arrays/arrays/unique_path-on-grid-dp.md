@@ -41,9 +41,9 @@ int numberOfPaths(int row, int col)
         for (int j = 1; j < col; j++)
             //By uncommenting the last part the code calculatest he total
             //possible paths if the diagonal Movements are allowed
-            count[i][j] = count[i - 1][j] + count[i][j - 1]; //+ count[i-1][j-1];
+            a[i][j] = a[i - 1][j] + a[i][j - 1]; //+ a[i-1][j-1];
     }
-    return count[m - 1][n - 1];
+    return a[row - 1][col - 1];
 }
 ```
 
