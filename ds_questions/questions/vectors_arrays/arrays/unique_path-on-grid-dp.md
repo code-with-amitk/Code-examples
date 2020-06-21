@@ -9,16 +9,16 @@
 #### Logic
   - Count of paths will be same either we calculate for `2x3` or `3x2` matrix
   - Consider `3x2` matrix. We take `3x2` array. a[3][2]
-  - **Steps** 
-    1. Count of reaching 1st row, 1st col is 1 always.
+#### Steps
+  1. Count of reaching 1st row, 1st col is 1 always.
 
 | 1 | 1 |
 | --- | --- |
 | 1 | 0 |
 | 1 | 0 |
    
-     2. iterate for remaining entries in matix
-        - count of reaching position = count-of-up-position + count-of-back-position
+  2. iterate for remaining entries in matix
+     - count of reaching position = count-of-up-position + count-of-back-position
 
 | 1 | 1 |
 | --- | --- |
