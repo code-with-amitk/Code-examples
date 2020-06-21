@@ -1,13 +1,12 @@
 10<sup>6</sup> = Million, 10<sup>9</sup> = Billion, 10<sup>12</sup> = Trillion, 10<sup>15</sup> = Quadtrillion
 
+RBSHD
+
 1. Requirements Functional
 2. BOE
 3. System APIs
 4. HLD
 5. DB Schema
-
-RBSHD
-
 6. Non-functional Requirements
   - S<sup>3</sup>
       L<sup>3</sup>
