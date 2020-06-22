@@ -91,3 +91,37 @@ n
     - So, in 5 years we can expect 6000 million new words to be added.
     - 100 million -> 2GB
     - 6000 million -> `2*60`  = 120 GB space needed for 5 years.
+    
+### 6. DATA PARTITION
+  - Although `Trie` can fit on 1 server, we can partition it for higher efficiency and lower latencies.
+  - Strategies of paritioning
+    a. Range-based partition
+       - All letters/terms starting with `A` are stored on 1 DB server.
+       - All letters/terms starting with `B` are stored on 1 DB server.
+       - We can store all letters having less words on 1 server also.
+    b. Partition based on server capacity.
+       - DB-1 will store all words starting with ABC
+       - DB-2 will store all words with DEFG and so on.
+       
+### 7. CACHING
+  - Caching top searched terms will be helpful here. Memcached in front of Trie server will be good.
+
+### 8. HLD
+```
+                                                                                             Storing-trie
+  typeahead-Clients       Load-Balancer-pairs     App-servers   Load-Balancers    memcached==DB-Servers-master
+                                                                                                |
+                                                                                             DB-servers-replicas
+```
+
+### 9. TYPEAHEAD-CLIENTS
+  - Server should only be reached if the user has not pressed any key for 50ms.
+  - Client can pre-fetch some data from server to give fast results in future.
+  - Clients should store recent history locally. Recent history always has very high rate of being reused.
+  - Early connection with server is the key.  As user opens borwser, the client should connect() the server, hence when user starts typing in, client should not waster time in connecting to server.
+  - CDNs should be used by server to push data near to client.
+  
+### 10. PERSONALIZED SUGGESTIONS
+  - Users will recieve suggestions based on historical searches, preferences, location etc.
+  - These can either be stored on client or on server.
+  - Personalized searches always comes before others.
