@@ -80,3 +80,14 @@ n
 ### 4. SCALE ESTIMATION
   - Out of 100k queries/sec(See BOE calculations). About 80% would be duplicate and only 20% would be unique.
   - We can build [index](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Indexing/README.md) for frequently searched terms.
+  
+### 5. STORAGE ESTIMATIONS
+  - Assuming average word/term size = 10 character.
+    - 2 bytes to store 1 character. 10x2 = 20 bytes/word
+  - if we assume we have `100 million` unique terms/words. 100 millionx20 bytes = 2GB storage
+  - Assuming 2% growth in words/terms everyday.
+  - Removing 1% of words which are not searched everyday.
+  - 1% of 100 million = 10 million/everyday.  300 million/month.  1200 million/year.  6000 million/5 year.
+    - So, in 5 years we can expect 6000 million new words to be added.
+    - 100 million -> 2GB
+    - 6000 million -> `2*60`  = 120 GB space needed for 5 years.
