@@ -7,7 +7,8 @@
  * You need to find turbulence Period.
  * Turbulance Period is defined as 
  * Condition-1: When array elements are getting up and Down alternatively. Eg: 2424242. Turbulence->6
- * Contition-2: If 2 consecutive of array are either incresing or decreasing Eg: 4,8,12,16. Turbulence->2[4->8(increase),8->12(increase),12->16(increase)]
+ * Contition-2: If 2 consecutive of array are either incresing or decreasing Eg: 4,8,12,16. 
+ Turbulence->2[4->8(increase),8->12(increase),12->16(increase)]
  *
  * Input: Array A[] contaning height in every second, N=Length of array
  *
