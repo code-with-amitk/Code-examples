@@ -1,7 +1,8 @@
 /*
 Integers K, M and a non-empty array A consisting of N integers, not bigger than M, are given.
 
-The leader of the array is a value that occurs in more than half of the elements of the array, and the segment of the array is a sequence of consecutive elements of the array.
+The leader of the array is a value that occurs in more than half of the elements of the array,
+and the segment of the array is a sequence of consecutive elements of the array.
 
 You can modify A by choosing exactly one segment of length K and increasing by 1 every element within that segment.
 
