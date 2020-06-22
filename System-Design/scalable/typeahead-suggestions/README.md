@@ -78,5 +78,5 @@ n
   - Please note, storing top suggestions and their counts with each node is very hard.
   
 ### 4. SCALE ESTIMATION
-  - Out of 100k queries/sec. About 80% would be duplicate and only 20% would be unique.
-  - We can build [index](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Indexing/README.md) for frequently searched terms.
+  - Out of 100k queries/sec(See BOE calculations). About 80% would be duplicate and only 20% would be unique.
+  - We can build [index]System-Design/Concepts/Indexing/README.md) for frequently searched terms.
