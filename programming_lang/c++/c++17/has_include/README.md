@@ -54,5 +54,3 @@ Test is present a=3     //When test.h is present
 // contents of the file are here
 #endif
 ```
-
-  
