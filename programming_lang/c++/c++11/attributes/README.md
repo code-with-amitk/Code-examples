@@ -6,7 +6,7 @@
     - enforce constraints(conditions) on code
     - do some specific code generation
   - Compilers ignore attribute values they don't recognize. This means you cannot define your own attributes.
-  - These attributes are given standard values which can be expanded using `__has_cpp_attribute( attribute-token ) C++20`. if you observe these values are year-month in which attribute is added to working draft.
+  - **VALUES** These attributes are given standard values which can be expanded using `__has_cpp_attribute( attribute-token ) C++20`. if you observe these values are year-month in which attribute is added to working draft.
 
 | attribute-token | Attribute | Value | Standard |
 | --- | --- | --- | --- |
