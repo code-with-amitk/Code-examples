@@ -38,6 +38,7 @@
   | Security | More, since all MS are isolated from each other | |
   | Performance | Accurate & Easy to measure | |
   | Fast delivery to market | Yes | no |
-  | Database | Each should have its own DB or atleast its own DB schema | |
+  | Database | Each should have its own DB or atleast its own DB schema. CI/CD is not possible in common DB| |
+  | Complexity | Small code, easy to understand | Huge code, tough to correlate |
   
   
