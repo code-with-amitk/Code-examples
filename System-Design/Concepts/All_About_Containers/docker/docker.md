@@ -8,6 +8,7 @@
 - **Comparison**
 
 | | Docker | VM |
+| --- | --- | --- |
 | Kernel | shared | Each host has its own |
 | Network Interface | seperate for each docker container | seperate | 
 | No of units | 100's of dockers can be started on 1 laptop | 3-4 max |
