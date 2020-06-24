@@ -1,5 +1,6 @@
 
 [Problem](https://leetcode.com/problems/unique-paths/)
+[Solution](https://www.geeksforgeeks.org/count-possible-paths-top-left-bottom-right-nxm-matrix/)
 
   - `mxn` grid. Robot will start from `0x0` to bottom-right corner of the grid
   -  robot can only move either down or right at any point in time.
@@ -10,7 +11,7 @@
   - Count of paths will be same either we calculate for `2x3` or `3x2` matrix
   - Consider `3x2` matrix. We take `3x2` array. a[3][2]
 #### Steps
-  1. Count of reaching 1st row, 1st col is 1 always.
+  1. Number of paths to reach element in 1st row, 1st col is always 1, since only right and down movements allowed. So we can make 1st row, 1st col as 1.
 
 | 1 | 1 |
 | --- | --- |
@@ -31,10 +32,10 @@ int numberOfPaths(int row, int col)
 {
     int a[row][col];
 
-    for (int i = 0; i < row; i++)       //Count of paths to reach any cell in first column is 1
+    for (int i = 0; i < row; i++)       //No of paths to reach 1st row, col is always 1
         a[i][0] = 1;
 
-    for (int j = 0; j < col; j++)       //Count of paths to reach any cell in first row is 1
+    for (int j = 0; j < col; j++)
         a[0][j] = 1;
 
     for (int i = 1; i < row; i++) {
