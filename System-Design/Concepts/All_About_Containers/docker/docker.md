@@ -44,6 +44,25 @@ EXPOSE 8080                                             //Port on which docker i
 ```
 # docker build --tag=<tag-name-of-image> <directory-name-where-docker-file-is-present>    //docker is command line tool
 ```
+
+### DOCKER COMPOSE
+  - **What** Microservices can contact other microservice using DC.
+  - **How** Docker Compose configures the interaction of the Docker containers with a YAML configuration file named ***docker-compose.yml***
+ ```
+ version: '3'
+services:
+  common:                                   // is a web application that is supposed to deliver common artifacts.
+    build: ../scs-demo-esi-common/
+  order:                                   //is a web application for processing orders.
+    build: ../scs-demo-esi-order
+  varnish:                                //is a web cache to coordinate the two web applications.
+    build: varnish
+    links:
+     - common
+     - order
+    ports:
+     - "8080:8080"
+ ```
   
 ### DOCKER FOR MICROSERVICES, VMs are too heavy for MS
   - Microservices as separately deployable units(we can think them as Processes).
