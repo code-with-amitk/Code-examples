@@ -20,6 +20,7 @@
         - Once LL/chain grows long, performance will degrade search time=O(n)
         - Space wastage, some parts of hash table may never be used
         - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
+![ImgUrl](https://i.ibb.co/XWZfxwX/chain.png)        
 ```
   Example:  Hash Function = xmod7, a[]={50, 700, 76, 85, 46, 92, 73, 10}        
   50mod7=1, 700mod7=0,  76mod7=6,  85mod7=1,    46mod7=1
@@ -35,7 +36,7 @@
       - `INSERTION`: Once same hash is derived, inserts the new item in the next open spot in the table ie next to already existent element with same hash.
       - If the table is not too full, the contiguous runs of items should be fairly small, hence this location should be only a few slots from its intended position
       - `DELETION`: Ugly here removing one element might break a chain of insertions, making some elements inaccessible. We need to reinsert all the items in the run following the new hole.
-      
     - ***B2. Quadratic Probing***
 
+![ImgUrl](https://i.ibb.co/b7Qnkh2/oa.png)
 
