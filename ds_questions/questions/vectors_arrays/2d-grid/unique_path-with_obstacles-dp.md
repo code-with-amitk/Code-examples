@@ -113,3 +113,33 @@ int main(){
 }    
 ```
   
+## Solution-python
+```python
+def uniquePathsWithObstacles(A):
+
+    paths = [[0]*len(A[0]) for i in A]            # create a 2D-matrix and initializing with value 0
+
+    if A[0][0] == 0:                              # initializing the left corner if no obstacle there
+        paths[0][0] = 1
+
+    
+    for i in range(1, len(A)):                     # initializing first column of the 2D matrix
+        if A[i][0] == 0:                           # If not obstacle
+            paths[i][0] = paths[i-1][0]
+
+   
+    for j in range(1, len(A[0])):                  # initializing first row of the 2D matrix
+        if A[0][j] == 0:                           # If not obstacle
+            paths[0][j] = paths[0][j-1]
+
+    for i in range(1, len(A)):
+        for j in range(1, len(A[0])):
+            if A[i][j] == 0:                       # If current cell is not obstacle
+                paths[i][j] = paths[i-1][j] + paths[i][j-1]
+
+    return paths[-1][-1]                            # returning the corner value of the matrix
+
+
+A = [[0, 0, 0], [1, 1, 1], [0, 0, 0]]
+print(uniquePathsWithObstacles(A))
+```
