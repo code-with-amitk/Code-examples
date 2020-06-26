@@ -1,8 +1,8 @@
 ## RANGE BASED FOR LOOP
   - **What** For loop executing over a range.
   - **Why RBL** 
-    a. Less suceptible to segmentation fault. i++ can cause writing over the range.
-    b. RBL are faster wrt traditional loops in nanoseconds precision.
+    - Less suceptible to segmentation fault. i++ can cause writing over the range.
+    - RBL are faster wrt traditional loops in nanoseconds precision.
 ```    
       for (auto i : v)                          //10575 nanosec. Calculated using chrono
             cout << i << ' ';
