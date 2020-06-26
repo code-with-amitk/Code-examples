@@ -26,13 +26,13 @@ There are two ways to reach the bottom-right corner:
 ## LOGIC
   1. Take a seperate 2-D array(paths). Initlialize paths[0][0]=1 if grid[0][0]=0.
   2. Initialize 1st row, 1st col of paths array
-     if(grid[0][i] == 0)
-      path[0][i] = path[0][i-1]
-    -> This means if there is no obstacle in Orginal grid
-    -> And there is a path from prev node(ie prev == 1) then make current = 1
+     - if(grid[0][i] == 0)
+       - path[0][i] = path[0][i-1]
+     - This means if there is no obstacle in Orginal grid
+     - And there is a path from prev node(ie prev == 1) then make current = 1
   3. Calculate paths of all nodes in 2-D array
-    -> if (grid[i][j] == 0)   //Means no obstacle
-        current_path = above_path + back_path
+     - if (grid[i][j] == 0)   //Means no obstacle
+       - current_path = above_path + back_path
         
 ## Solution
 ```c++
