@@ -55,7 +55,7 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
       - if (s[0] == '1') (number of ways = tab[2]) = tab[2]+tab[1]
 
-| input string | 2 | 2 | 6 |
+| input string | 2 | 2 | 6 | |
 | --- | --- | --- | --- | --- |
 | index | 0 | 1 | 2 |  |
 | dp-table | 1 | 1 | 1 | 2 |
