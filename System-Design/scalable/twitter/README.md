@@ -20,7 +20,27 @@
     - Reliable, Redundant(Using DB)
     - Fast
 
-### BOE Calculations (should be done after HLD)
+### B. SYSTEM APIs
+1. Search user
+```
+pointer_to_follower_struct *searchUser(toBeSearched_userId)
+```
+
+2. Add follower
+```
+successOrFail addFollower(toBeFollowed_id, follower's_id)
+```
+
+3. Posting tweet 
+```
+string publishTweet(tweet_message, *tweet_photo, *tweet_video, userId, user_location)
+Parameters:
+  - userLocation(optional): (Lattitude, Longitude) of user adding the tweet
+Return:
+  - Location to stored tweet, else HTTP error.
+```
+
+### B. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
   - **Daily Active Twitter users**
     - 40% have internet connection = 32x10<sup>8</sup>
@@ -31,9 +51,7 @@
       - 10% of user does 1 tweet per day. 32x10<sup>5</sup>
       - Let's each tweet has 150 characters. 1 character takes 2 bytes of storage. 300 bytes/tweet.
       - 32x10<sup>5</sup> x 300 = 9x10<sup>8</sup> / day
-      - 27x10<sup>9</sup>/month
-      - 324x10<sup>9</sup>/year
-      - 1x10<sup>12</sup>/year = 1 TB/5 years
+      - 9x10<sup>8</sup> x 30 x 12 x 5 = 1x10<sup>12</sup>/year = 1 TB/5 years
     - ***For Storage of Photo Tweets***
       - Let's assume every 5th tweet has photo on it. Photo size = 200kb
       - Total photo tweets = 32x10<sup>5</sup> / 5 = 64x10<sup>4</sup> photo tweets per day
@@ -43,6 +61,9 @@
       - Video tweets per day = 32x10<sup>4</sup> / day
       - 32x10<sup>4</sup> x 30 x 12 x 5 x 2MB = 1 Quadtrillion = 10<sup>15</sup> bytes / 5 years
       
+
+
+
 
 ### B. HLD
 #### B1. 3 users(A,B,C) Design
