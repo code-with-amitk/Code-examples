@@ -67,7 +67,7 @@ f.push_back(user-1);
     
   [File-A]    
 ```
-  - Tweet+metadata is pushed to followers using above vector.
+    - Tweet+metadata is pushed to followers using above vector.
 
 ### C. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
