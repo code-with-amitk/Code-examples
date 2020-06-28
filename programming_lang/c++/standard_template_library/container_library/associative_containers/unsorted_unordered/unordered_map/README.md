@@ -5,13 +5,12 @@
     - |bucket-1|  |bucket-2|..... |bucket-n|
     - elements are stored in buckets based on hash value.
 
-### **Files*
-
+### **Files**
 - constructor_insert.md
-  A. Constructors: default, copy, fill, range, move
-  B. insert()
+  a. Constructors: default, copy, fill, range, move
+  b. insert()
      - make_pair()
-  C. printing
+  c. printing
     
 - count_update_find.md    
   - find pair having smallest key
