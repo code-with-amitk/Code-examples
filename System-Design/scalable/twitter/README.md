@@ -45,24 +45,28 @@ Return:
 #### C1. 5 users(A,B,C,D,E) Design
   1. **Searching for users** A(normal person) want to search B(politician). 
      - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
-```
-user-list.txt
-  A, B, C, D, E
-```
   2. **Adding myself as follower**
      - After sucessful search, click on button to add myself as follower of B.
-```
-struct user_struct{
-  vector<STRUCT followers> f;   //List of followers of this user
-  tweet-file *ptr;
-};
-f.push_back(user-1);
-```
   3. **Posting Tweet** 
      - User-2(politician) posts the tweet. 
      - Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
      - Tweet+metadata is pushed to followers using above vector.
+
+| Design | Searching for User | Adding myself as follower | Posting a Tweet |
+| --- | --- | --- | --- |
+| 5 Users | user-list.txt A,B,C,D,E | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
+| 1000 Users | user-list.txt 1000 users | vector size=1000 | 100 files |
+| 1 Million Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
+
 ```
+2. ADDING MYSELF AS FOLLOWER
+struct user_info{
+  vector<STRUCT followers> f;   //List of followers of this user
+  tweet-file *ptr;
+};
+f.push_back(user-1);
+
+3. POSTING THE TWEET
   [File-B]
     meta-data + Tweet-1
     meta-data + Tweet-2
