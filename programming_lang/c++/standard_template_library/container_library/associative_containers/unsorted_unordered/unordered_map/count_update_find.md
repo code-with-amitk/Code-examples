@@ -1,13 +1,10 @@
-### 1. Create unordered_map <value, count> from array. Where key=element_in_array, value=no_of_times_element_repeated_in_array
-  - Array {4,3,1,1,3,3,2} is given.
-
-| key | value |
-| --- | --- |
-| 4 | 1 |
-| 3 | 3 |
-| 1 | 2 |
-| 2 | 1 |
-
+## A. COUNT
+### A1. No of occurences from Arrays
+  - Create <key=value, value=count> from array. Where key=element_in_array, value=no_of_times_element_repeated_in_array
+  - Array {4,3,1,1,3,3,2}
+  
+<key,value>
+| 4,1 | 3,3 | 1,2 | 2,1 |
 ```
   vector<int>& arr = {4,3,1,1,3,3,2};
   unordered_map<int,int> um;           //<value,count>
@@ -27,7 +24,8 @@ Method-2:
   }
 ```
 
-### 2. Find pair having smallest `key`
+## B. FIND
+### B1. Pair having smallest `key`
   - Considering map in bullet-1, smallest key=1 and pair=<1,2>
 ```
   unordered_map<int,int>::iterator it;
@@ -35,7 +33,7 @@ Method-2:
   cout<<it->first<<" " <<it->second;          //1 2
 ```
 
-### 3. Finding <key,value> pair having smallest `value`.
+### B2. Pair having smallest `value`
   - Considering map in bullet-1, smallest value pair = `<4,1>`
 ```
   static bool comp(pair<int,int> i, pair<int, int> j)
