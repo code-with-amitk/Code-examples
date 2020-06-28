@@ -17,7 +17,7 @@
 ```
 
 #### 2. RANGE CTR
-  - Constructs the container from range [first, last). 
+  - Constructs the container from range `[first, last)`. 
   - If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
   - Internally                                         
 ```
@@ -88,3 +88,18 @@
     cout << i << ' ';
   cout << '\n';
 ```                                         
+
+## B. INSERT
+  - Inserting elements to set.
+### B1. PAIR
+```
+  set<pair<int,int>> s;                       //Create a set of pairs
+  
+  s.insert(make_pair(x,y));                   //Insert
+  
+  if(s.find({x,y}) != s.end()){               //FINDING pairs {}
+    return true;
+  }else{
+    s.insert(make_pair(x,y));
+  }  
+```
