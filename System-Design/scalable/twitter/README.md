@@ -2,14 +2,15 @@
 
 ### A. REQUIREMENTS
 #### A1. FUNCTIONAL
-  1. **Followers**
-     - Can see the tweets(text,videos,photos) of people they follow on their timeline.
-     - Can mark any tweet as favourite.
-     - Can reply to tweets
-  2. **Followed**
-     - Post tweet < 150 characters.
-  3. **Search**
-     - Both followers, followed can search any person.     
+  1. **Search**
+     - Any twitter user can search any other twitter user by name.
+  2. **Adding myself as Follower**
+     - Let's suppose user-1 searches user-2, then user-1 can add himself as follower of user-2.
+     - User-1 can see the tweets(text,videos,photos) of people he follow on their timeline.
+     - Any user can mark any tweet as favourite.
+     - User can reply to tweets.
+  3. **Posting Tweets**
+     - Any user can post tweet < 150 characters.
      
 #### A2. NON-FUNCTIONAL
   - S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
@@ -40,7 +41,35 @@ Return:
   - Location to stored tweet, else HTTP error.
 ```
 
-### B. BOE Calculations (should be done after HLD)
+### C. HLD
+#### C1. 5 users(A,B,C,D,E) Design
+  1. **Searching for users** A(normal person) want to search B(politician). 
+    - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
+```
+user-list.txt
+  A, B, C, D, E
+```
+  2. **Adding myself as follower**
+    - After sucessful search, click on button to add myself as follower of B.
+```
+struct user_struct{
+  vector<STRUCT followers> f;   //List of followers of this user
+  tweet-file *ptr;
+};
+f.push_back(user-1);
+```
+  3. **Posting Tweet** 
+    - User-2(politician) posts the tweet. Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
+```
+  [File-B]
+    meta-data + Tweet-1
+    meta-data + Tweet-2
+    
+  [File-A]    
+```
+  - Tweet+metadata is pushed to followers using above vector.
+
+### C. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
   - **Daily Active Twitter users**
     - 40% have internet connection = 32x10<sup>8</sup>
@@ -60,12 +89,4 @@ Return:
       - Let video takes 2MB of data and every 10th is a video tweet.
       - Video tweets per day = 32x10<sup>4</sup> / day
       - 32x10<sup>4</sup> x 30 x 12 x 5 x 2MB = 1 Quadtrillion = 10<sup>15</sup> bytes / 5 years
-      
-
-
-
-
-### B. HLD
-#### B1. 3 users(A,B,C) Design
-  - 3 files. User A writes to file-a. Changes are pushed to user-B,C.
-  - 
+     
