@@ -1,4 +1,4 @@
-[Problem](https://leetcode.com/problems/path-crossing/)
+## [Problem](https://leetcode.com/problems/path-crossing/)
 
 ### Task
   - Given a string path, where path[i] = 'N', 'S', 'E' or 'W', each representing moving one unit north, south, east, or west, respectively.
