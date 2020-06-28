@@ -9,8 +9,9 @@
     - The algorithm starts at the top left of a picture and moves down across small blocks of data, 
       looking at each block and matching, constantly asking, “Is this a face?”
   - **Cascades/Stages**
-    - Breaking the problem of detecting faces into multiple stages.
-    - There canbe 30-50 cascades.
+    - Cascade dictionary meaning is waterfall.
+    - Breaking the problem of detecting faces into multiple stages. There canbe 30-50 cascades.
+    - The cascades themselves are just a bunch of XML files that contain OpenCV data used to detect objects.
     
 [Real Python](https://realpython.com/face-recognition-with-python/)    
     
