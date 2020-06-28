@@ -44,13 +44,13 @@ Return:
 ### C. HLD
 #### C1. 5 users(A,B,C,D,E) Design
   1. **Searching for users** A(normal person) want to search B(politician). 
-    - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
+     - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
 ```
 user-list.txt
   A, B, C, D, E
 ```
   2. **Adding myself as follower**
-    - After sucessful search, click on button to add myself as follower of B.
+     - After sucessful search, click on button to add myself as follower of B.
 ```
 struct user_struct{
   vector<STRUCT followers> f;   //List of followers of this user
@@ -59,7 +59,7 @@ struct user_struct{
 f.push_back(user-1);
 ```
   3. **Posting Tweet** 
-    - User-2(politician) posts the tweet. Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
+     - User-2(politician) posts the tweet. Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
 ```
   [File-B]
     meta-data + Tweet-1
