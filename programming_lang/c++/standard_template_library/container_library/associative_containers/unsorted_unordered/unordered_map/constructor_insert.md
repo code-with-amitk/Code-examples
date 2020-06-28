@@ -1,21 +1,13 @@
-## UNORDERED_MAP<key, value>(Since C++11)
-  - **What**
-    - <key,value> pair with unique keys.
-  - **Complexity**
-    - Amortized: O(1), Worst case: O(n)
-  - **Internal Implementation**
-    - |bucket-1|  |bucket-2|..... |bucket-n|
-    - elements are stored in buckets based on hash value.
-    
+   
 ### A. CONSTRUCTORS
-#### A1. Default constructor
+#### A1. DEFAULT
 ```      
 \\explicit unordered_map( const Allocator& alloc );
 
 #include<unordered_map>
 std::unordered_map<string, int> um1;
 ```
-#### A2. List constructor
+#### A2. LIST
 ```
     std::unordered_map<int, std::string> m2 =
     {
@@ -24,15 +16,15 @@ std::unordered_map<string, int> um1;
         {2, "baz"},
     };
 ```
-#### A3. Copy constructor
+#### A3. COPY
 ```
 std::unordered_map<int, std::string> m3 = m2;
 ```
-#### A4. Move Constructor
+#### A4. MOVE
 ```
 std::unordered_map<int, std::string> m4 = std::move(m2);
 ```
-#### A5. Range constructor
+#### A5. RANGE
 ```
     std::vector<std::pair<std::bitset<8>, int>> v = { {0x12, 1}, {0x01,-1} };
     std::unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());
@@ -48,7 +40,6 @@ std::unordered_map<int, std::string> m4 = std::move(m2);
         {"test2", 2},
         {"test3", 3},
     };
-
   um.insert(make_pair("test4",4));
 ```
 #### B2. Range insertion
