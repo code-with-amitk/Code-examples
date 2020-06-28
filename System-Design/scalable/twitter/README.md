@@ -42,7 +42,7 @@ Return:
 ```
 
 ### C. HLD
-#### C1. 5 users(A,B,C,D,E) Design
+#### C1. 5, 5000, 1 Million Users Design
   1. **Searching for users** A(normal person) want to search B(politician). 
      - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
   2. **Adding myself as follower**
@@ -54,7 +54,7 @@ Return:
 
 | Design | Searching for User | Adding myself as follower | Posting a Tweet |
 | --- | --- | --- | --- |
-| 5 Users | user-list.txt A,B,C,D,E | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
+| 5 Users(A,B,C,D,E) | user-list.txt A,B,C,D,E | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
 | 1000 Users | user-list.txt 1000 users | vector size=1000 | 100 files |
 | 1 Million Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
 
