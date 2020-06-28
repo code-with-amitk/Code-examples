@@ -59,7 +59,9 @@ struct user_struct{
 f.push_back(user-1);
 ```
   3. **Posting Tweet** 
-     - User-2(politician) posts the tweet. Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
+     - User-2(politician) posts the tweet. 
+     - Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
+     - Tweet+metadata is pushed to followers using above vector.
 ```
   [File-B]
     meta-data + Tweet-1
@@ -67,7 +69,6 @@ f.push_back(user-1);
     
   [File-A]    
 ```
-    - Tweet+metadata is pushed to followers using above vector.
 
 ### C. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
