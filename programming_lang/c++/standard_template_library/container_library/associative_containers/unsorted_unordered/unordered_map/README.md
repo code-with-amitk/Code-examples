@@ -7,10 +7,10 @@
 
 ### **Files**
 - constructor_insert.md
-  a. Constructors: default, copy, fill, range, move
-  b. insert()
+  1. Constructors: default, copy, fill, range, move
+  2. insert()
      - make_pair()
-  c. printing
+  3. printing
     
 - count_update_find.md    
   - find pair having smallest key
