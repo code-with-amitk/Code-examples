@@ -133,8 +133,7 @@ public:
     int l;
     auto ptr = [l, *this]{
 
-      //Compilation error
-      //a = 3;  //Changing value of RO Object is not allowed
+      //a = 3;                              //Compilation error: Changing value of RO Object is not allowed
 
       int k = a + l;    //This is OK
     };
