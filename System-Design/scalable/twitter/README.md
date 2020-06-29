@@ -41,43 +41,10 @@ Return:
   - Location to stored tweet, else HTTP error.
 ```
 
-### C. HLD
-#### C1. 5, 5000, 1 Million Users Design
-  1. **Searching for users** A(normal person) want to search B(politician). 
-     - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
-  2. **Adding myself as follower**
-     - After sucessful search, click on button to add myself as follower of B.
-  3. **Posting Tweet** 
-     - User-2(politician) posts the tweet. 
-     - Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
-     - Tweet+metadata is pushed to followers using above vector.
-
-| Design | Searching for User | Adding myself as follower | Posting a Tweet |
-| --- | --- | --- | --- |
-| 5 Users(A,B,C,D,E) | user-list.txt A,B,C,D,E | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
-| 1000 Users | user-list.txt 1000 users | vector size=1000 | 100 files |
-| 1 Million Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
-
-```
-2. ADDING MYSELF AS FOLLOWER
-struct user_info{
-  vector<STRUCT followers> f;   //List of followers of this user
-  tweet-file *ptr;
-};
-f.push_back(user-1);
-
-3. POSTING THE TWEET
-  [File-B]
-    meta-data + Tweet-1
-    meta-data + Tweet-2
-    
-  [File-A]    
-```
-
 ### C. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
   - **Daily Active Twitter users**
-    - 40% have internet connection = 32x10<sup>8</sup>
+    - Out of 8 Billion 40% have internet connection = 32x10<sup>8</sup>
     - Out of 40% only 10% active are Twitter users = 32x10<sup>7</sup> = 320 Million user
     - Let's 10% be daily active user. 320 Million user = 32 Million users.
   - **Storage Requirements**
@@ -94,4 +61,60 @@ f.push_back(user-1);
       - Let video takes 2MB of data and every 10th is a video tweet.
       - Video tweets per day = 32x10<sup>4</sup> / day
       - 32x10<sup>4</sup> x 30 x 12 x 5 x 2MB = 1 Quadtrillion = 10<sup>15</sup> bytes / 5 years
+    - This is read heavy system, since much higher data is read wrt written to the system.      
+
+### D. HLD/DESIGN
+#### D1. 5, 5000, 1 Million Users Design
+  1. **Searching for users** A(normal person) want to search B(politician). 
+     - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
+  2. **Adding myself as follower**
+     - After sucessful search, click on button to add myself as follower of B.
+  3. **Posting Tweet** 
+     - User-2(politician) posts the tweet. 
+     - Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
+     - Tweet+metadata is pushed to followers using above vector.
+
+| Design | Searching for User | Adding myself as follower | Posting a Tweet |
+| --- | --- | --- | --- |
+| 5 Users(A,B,C,D,E) | array of user_info structs=5 | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
+| 1000 Users | array of user_info structs. size=1000 | vector size=1000 | 100 files |
+| 1 Million Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
+
+```
+2. ADDING MYSELF AS FOLLOWER
+struct user_info{
+  vector<STRUCT followers> f;   //List of followers of this user
+  uint selfUserId;
+  string username;               //self username
+  file1 *ptr;                   //All self posted tweets
+  file2 *ptr;                   //my home timeline
+};
+f.push_back(user-1);
+
+3. POSTING THE TWEET
+  [File-B]
+    meta-data + Tweet-1
+    meta-data + Tweet-2
+    
+  [File-A]    
+```
+
+#### D2. 320 Million Users Design
+  - Storing tweets, user information we need to migrate to DB, since all this information cannot be stored in files.
+  - **User Table** storing information of users
+  
+| userID(uint) | username(varchar) | email | creationDate | lastLogin | Following |
+| --- | --- | --- | --- | --- | --- | --- |
+| amit1222 | amit | amit@greatest.com | <> | <> | person-1,person-2.. |
+| test56 | test | test@sandbox.com | <> | <> | person-x,person-y.. |
+
+  - **Tweets Table** Stores all the tweets created by users.
+    - To get tweet posted by particular user, search user-who-created-tweet(as primary key) go to pointer-to-tweet.
+  
+| TweetId | User-who-created-Tweet | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
+| --- | --- | --- | --- | --- | --- | --- |
+| rtg1 | politician-1 | abcddefghij... | <> | <> | <> | 0x45912 |
+  
+### E. DATA SHARDING
+
      
