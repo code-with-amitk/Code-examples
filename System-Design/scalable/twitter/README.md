@@ -104,7 +104,7 @@ f.push_back(user-1);
   - **User Table** storing information of users
   
 | userID(uint) | username(varchar) | email | creationDate | lastLogin | Following |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | amit1222 | amit | amit@greatest.com | <> | <> | person-1,person-2.. |
 | test56 | test | test@sandbox.com | <> | <> | person-x,person-y.. |
 
