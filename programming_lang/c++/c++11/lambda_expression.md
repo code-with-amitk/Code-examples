@@ -11,10 +11,7 @@
     vector<int> v {4, 1};  
     count(v.begin(), v.end(), [] (int a) { return (a >= 5); });
 ```
-- **Syntax**
-
-***function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};***
-
+- **Syntax:**     function_pointer  = [ ] () mutable throw -> return_type { .....function body ......};
   - `[   ]` called Capture List
     - captures local/Global variables defined outside lambda to be used inside lambda function.
     - Changing Values of passed variables:
@@ -51,7 +48,7 @@ int main(){
 ```
 
 ### 3B. PASS BY VALUE `[ = ]`
-#### 3B1. Passing 1 outside variable inside lambda
+#### 1. Passing 1 outside variable inside lambda
 - Outside variable i can be used inside lambda.
 ```
   int i = 5;
@@ -59,7 +56,7 @@ int main(){
   cout << p4(3,4) << endl;            //O/P 12 
 ```  
 
-#### 3B2. Using all outside variables inside lambda `[ = ]`
+#### 2. Using all outside variables inside lambda `[ = ]`
 - This means all local variables can be used inside lamba without defining inside capture list.
 - But values of i,j cannot be changed.
 ```
@@ -68,7 +65,7 @@ int main(){
   cout << p4(3,4) << endl;            //O/P 18 
 ```  
 
-#### 3B3. Pass by value variable are RO, cannot be modified lambda
+#### 3. Pass by value variable are RO, cannot be modified lambda
 ```
   int i = 5;
   auto p4 =  [ = ]  (int a, int b) -> int { i = 6;  return a + b + i;   };
@@ -78,7 +75,7 @@ int main(){
 ```  
 
 ### 3C. PASS BY REFERENCE `[ & ]` RW
-#### 3C1. Passing 1 outside variable inside lambda
+#### 1. Passing 1 outside variable inside lambda
 - Passing outside variable using refrence & to lambda. This variable can be changed inside lambda.
 ```  
   int i = 2;
@@ -86,7 +83,7 @@ int main(){
   cout << p6(3,4) << endl;            //3+4+5 = 12
 ```
 
-#### 3C2. Using all outside variables inside lambda `[ & ]`
+#### 2. Using all outside variables inside lambda `[ & ]`
 ```  
   int i = 2, j = 3;
   auto p6 = [ & ] (int a, int b)  ->  int { return a + b + i + j; };
@@ -94,7 +91,7 @@ int main(){
 ```
   
 ### 3D. Using both `[=]` and `[&]`
-#### 3D1. Capture by reference all except 1
+#### 1. Capture by reference all except 1
 - Except "j" everything else is captured as reference(ie can be changed). Just "j" cannot be changed
 ```  
   auto p7  =  [ &, j ]  (int a, int b)  ->  int {
@@ -103,7 +100,7 @@ int main(){
   };
 ```  
 
-#### 3D2. Capture by Value all except 1
+#### 2. Capture by Value all except 1
 - Except "i" nothing can be changed.
 ```  
   auto p8  =  [ =, &i ]  (int a, int b)  ->  int {  i=95;  return a + b + i; };
