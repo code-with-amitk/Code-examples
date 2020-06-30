@@ -1,7 +1,7 @@
 ## Twitter Design
 
 ### A. REQUIREMENTS
-#### A1. FUNCTIONAL
+#### 1. FUNCTIONAL
   1. **Search**
      - Any twitter user can search any other twitter user by name.
   2. **Adding myself as Follower**
@@ -12,7 +12,7 @@
   3. **Posting Tweets**
      - Any user can post tweet < 150 characters.
      
-#### A2. NON-FUNCTIONAL
+#### 2. NON-FUNCTIONAL
   - S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
     - Scalable, Secure, SOA
     - Logging, Load, Latency
@@ -64,7 +64,7 @@ Return:
     - This is read heavy system, since much higher data is read wrt written to the system.      
 
 ### D. HLD/DESIGN
-#### D1. 5, 5000, 1 Million Users Design
+#### 1. 5, 5000, 1 Million Users Design
   1. **Searching for users** A(normal person) want to search B(politician). 
      - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
   2. **Adding myself as follower**
@@ -99,7 +99,7 @@ f.push_back(user-1);
   [File-A]    
 ```
 
-#### D2. 320 Million Users Design
+#### 2. 320 Million Users Design
   - Storing tweets, user information we need to migrate to DB, since all this information cannot be stored in files.
   - **User Table** storing information of users
   
