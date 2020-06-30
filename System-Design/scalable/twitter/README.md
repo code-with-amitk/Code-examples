@@ -78,7 +78,7 @@ Return:
 | --- | --- | --- | --- |
 | 5 Users(A,B,C,D,E) | LL of user_info structs=5 | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
 | 100 Users | LL of user_info structs. size=1000 | vector size=1000 | 100 files |
-| 10k Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
+| 10k Users | File search is slow | Huge vector, may not handle | 10k files immposible to maintain |
 
 <img src="https://i.ibb.co/0tjFBtS/tw1.png" alt="tw1" border="0">
 
@@ -101,21 +101,38 @@ f.push_back(user-1);
   [File-A]    
 ```
 
-#### 2. 320 Million Users Design
-  - Storing tweets, user information we need to migrate to DB, since all this information cannot be stored in files.
-  - **User Table** storing information of users
-  
-| userID(uint) | username(varchar) | email | creationDate | lastLogin | Following |
-| --- | --- | --- | --- | --- | --- |
-| amit1222 | amit | amit@greatest.com | <> | <> | person-1,person-2.. |
-| test56 | test | test@sandbox.com | <> | <> | person-x,person-y.. |
+#### 2. 1 Million Users Design
+  - **Old Structure Based Design**
+    - LL size becomes 1 million. 
+      - Very slow in searching. if some user tweeted and system want to post on follower's timeline.
+    - 2 million files
+      - RW slow.
+    - if each user follows 5 people, 5 million vector space.
+  - **Migrate to New DB based design**
+    - **User Table** (Replaces LL of user_info struct)
+      - Storing information of users
+    - **Tweets Table** (Replaces files for storing tweets)
+      - To get tweet posted by particular user, search user-who-created-tweet(as primary key) go to pointer-to-tweet.
+      
+ **USER TABLE**
+ 
+| userID(uint) | username(varchar) | email | creationDate | lastLogin | Following(same as vector) | All selfTweets |
+| --- | --- | --- | --- | --- | --- | --- |
+| amit1222 | amit | amit@greatest.com | <> | <> | person-1,person-2.. | 0x4581(takes from tweet-table-2) |
+| test56 | test | test@sandbox.com | <> | <> | person-x,person-y.. | 0x891 |
 
-  - **Tweets Table** Stores all the tweets created by users.
-    - To get tweet posted by particular user, search user-who-created-tweet(as primary key) go to pointer-to-tweet.
+ **TWEET TABLE-1** Stores 
   
 | TweetId | User-who-created-Tweet | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
 | --- | --- | --- | --- | --- | --- | --- |
-| rtg1 | politician-1 | abcddefghij... | <> | <> | <> | 0x45912 |
+| t5 | amit1222 | abcddefghij... | <> | <> | <> | 0x45912 |
+
+**TWEET TABLE-2** 
+
+| UserName | Tweets //All self posted tweets | UniqueId/Address |
+| --- | --- | --- |
+| amit1222 | t1,t5,t6,t9 | 0x4581 |
+| test56 | t3, t49, t89 | 0x891 |
   
 ### E. DATA SHARDING
 
