@@ -1,5 +1,9 @@
 ## ASSOCIATIVE CONTAINERS
-  - **What** Store <key,value> pair. Keys are always RO.
+  - **What** Store <key,value> pair. 
+  - **Properties**
+    - Keys are always RO.
+    - `unordered_set,map` have UNIQUE Keys.
+    -  `multiset,multimap` can have DUPLICATE Keys.
   
 ### TYPES OF ASSOCIATIVE CONTAINERS
 
