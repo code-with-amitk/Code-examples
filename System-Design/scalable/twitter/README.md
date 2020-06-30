@@ -79,6 +79,7 @@ Return:
 | 5 Users(A,B,C,D,E) | LL of user_info structs=5 | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
 | 100 Users | LL of user_info structs. size=1000 | vector size=1000 | 100 files |
 | 10k Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
+
 ![ImgURL](https://i.ibb.co/GW1G2Qt/twitter.png)
 ```
 2. ADDING MYSELF AS FOLLOWER
