@@ -1,7 +1,7 @@
-## Twitter Design
+# Twitter Design
 
-### A. REQUIREMENTS
-#### 1. FUNCTIONAL
+## A. REQUIREMENTS
+### 1. FUNCTIONAL
   1. **Search**
      - Any twitter user can search any other twitter user by name.
   2. **Adding myself as Follower**
@@ -12,7 +12,7 @@
   3. **Posting Tweets**
      - Any user can post tweet < 150 characters.
      
-#### 2. NON-FUNCTIONAL
+### 2. NON-FUNCTIONAL
   - S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
     - Scalable, Secure, SOA
     - Logging, Load, Latency
@@ -21,7 +21,7 @@
     - Reliable, Redundant(Using DB)
     - Fast
 
-### B. SYSTEM APIs
+## B. SYSTEM APIs
 1. Search user
 ```
 pointer_to_follower_struct *searchUser(toBeSearched_userId)
@@ -41,7 +41,7 @@ Return:
   - Location to stored tweet, else HTTP error.
 ```
 
-### C. BOE Calculations (should be done after HLD)
+## C. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
   - **Daily Active Twitter users**
     - Out of 8 Billion 40% have internet connection = 32x10<sup>8</sup>
@@ -63,8 +63,8 @@ Return:
       - 32x10<sup>4</sup> x 30 x 12 x 5 x 2MB = 1 Quadtrillion = 10<sup>15</sup> bytes / 5 years
     - This is read heavy system, since much higher data is read wrt written to the system.      
 
-### D. HLD/DESIGN
-#### 1. 5, 100, 10k Users Design
+## D. HLD/DESIGN & DB SCHEMA
+### D1. 5, 100, 10k Users Design
   1. **Searching for users** A(normal person) want to search B(politician). 
      - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
   2. **Adding myself as follower**
@@ -80,7 +80,7 @@ Return:
 | 100 Users | LL of user_info structs. size=1000 | vector size=1000 | 100 files |
 | 10k Users | File search is slow | Huge vector, may not handle | 10k files immposible to maintain |
 
-<img src="https://i.ibb.co/0tjFBtS/tw1.png" alt="tw1" border="0">
+<img src="https://i.ibb.co/jTbD4FK/tw2.png" alt="tw1" border="0">
 
 ```
 2. ADDING MYSELF AS FOLLOWER
@@ -101,7 +101,7 @@ f.push_back(user-1);
   [File-A]    
 ```
 
-#### 2. 1 Million Users Design
+### D2. 1 Million Users Design
   - **Old Structure Based Design**
     - LL size becomes 1 million. 
       - Very slow in searching. if some user tweeted and system want to post on follower's timeline.
