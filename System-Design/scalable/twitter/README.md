@@ -80,7 +80,7 @@ Return:
 | 100 Users | LL of user_info structs. size=1000 | vector size=1000 | 100 files |
 | 10k Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
 
-![ImgURL](https://i.ibb.co/GW1G2Qt/twitter.png)
+![ImgURL](https://ibb.co/X8Z3y8g)
 
 ```
 2. ADDING MYSELF AS FOLLOWER
