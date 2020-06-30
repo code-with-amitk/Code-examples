@@ -1,4 +1,4 @@
-## UNNAMED/ANONYMOUS NAMESPACE
+## Anonymous namespace
 	- **What** Namespace without name.
 	- **Why**
 		- Makes variables, functions, classes local to translation unit(.cpp file and all its includes) scope.
