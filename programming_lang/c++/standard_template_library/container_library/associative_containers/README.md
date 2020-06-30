@@ -5,7 +5,11 @@
 
 |  | Sorted/Ordered | Unordered/Unsorted |
 | --- | --- | --- |
-| Types | - set<key>            | - unordered_set<key> |
+| Types | <ul><li>set<key></li> <li>map<key,value></li></ul> <li>multiset<key></li></ul> <li>multimap<key,value></li></ul> | - unordered_set<key> |
+  
+- set<key>            | - unordered_set<key> |
           - map<key,value>        - unordered_map<key,value> 
           - multiset<key>         - unordered_multiset<key> 
           - multimap<key,value>   - unordered_multimap<key,value>
+  
+
