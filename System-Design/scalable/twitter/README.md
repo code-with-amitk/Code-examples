@@ -64,7 +64,7 @@ Return:
     - This is read heavy system, since much higher data is read wrt written to the system.      
 
 ### D. HLD/DESIGN
-#### 1. 5, 5000, 1 Million Users Design
+#### 1. 5, 100, 10k Users Design
   1. **Searching for users** A(normal person) want to search B(politician). 
      - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
   2. **Adding myself as follower**
@@ -76,10 +76,10 @@ Return:
 
 | Design | Searching for User | Adding myself as follower | Posting a Tweet |
 | --- | --- | --- | --- |
-| 5 Users(A,B,C,D,E) | array of user_info structs=5 | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
-| 1000 Users | array of user_info structs. size=1000 | vector size=1000 | 100 files |
-| 1 Million Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
-
+| 5 Users(A,B,C,D,E) | LL of user_info structs=5 | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
+| 100 Users | LL of user_info structs. size=1000 | vector size=1000 | 100 files |
+| 10k Users | File search is slow | Huge vector, may not handle | 1 million files immposible to maintain |
+![ImgURL](https://i.ibb.co/GW1G2Qt/twitter.png)
 ```
 2. ADDING MYSELF AS FOLLOWER
 struct user_info{
