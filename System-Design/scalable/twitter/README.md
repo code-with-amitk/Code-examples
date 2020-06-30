@@ -110,24 +110,28 @@ f.push_back(user-1);
     - if each user follows 5 people, 5 million vector space.
   - **Migrate to New DB based design**
     - **User Table** (Replaces LL of user_info struct)
-      - Storing information of users
-    - **Tweets Table** (Replaces files for storing tweets)
-      - To get tweet posted by particular user, search user-who-created-tweet(as primary key) go to pointer-to-tweet.
+      - Storing user information, people they are following, all self created tweets pointer.
+    - **Tweets Table-1** (Replaces files for storing tweets)
+      - Stores the actual tweet content in varchar format.
+    - **Tweet Table-2** 
+      - Stores all tweets created by particular user.
       
  **USER TABLE**
  
-| userID(uint) | username(varchar) | email | creationDate | lastLogin | Following(same as vector) | All selfTweets |
+| userID(uint) | username(varchar) | email | creationDate | lastLogin | Following(same as vector) | All created selfTweets |
 | --- | --- | --- | --- | --- | --- | --- |
-| amit1222 | amit | amit@greatest.com | <> | <> | person-1,person-2.. | 0x4581(takes from tweet-table-2) |
-| test56 | test | test@sandbox.com | <> | <> | person-x,person-y.. | 0x891 |
+| amit1222 | amit | amit@greatest.com | <> | <> | person1,person2.. | 0x4581(takes from tweet-table-2) |
+| test56 | test | test@sandbox.com | <> | <> | personx,persony.. | 0x891 |
 
- **TWEET TABLE-1** Stores 
+
+ **TWEET TABLE-1** Stores actual tweet content
   
-| TweetId | User-who-created-Tweet | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
-| --- | --- | --- | --- | --- | --- | --- |
-| t5 | amit1222 | abcddefghij... | <> | <> | <> | 0x45912 |
+| TweetId | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
+| --- | --- | --- | --- | --- | --- |
+| t5 | abcddefghij... | <> | <> | <> | 0x45912 |
 
-**TWEET TABLE-2** 
+
+**TWEET TABLE-2** stores all tweet IDs created by particular user
 
 | UserName | Tweets //All self posted tweets | UniqueId/Address |
 | --- | --- | --- |
