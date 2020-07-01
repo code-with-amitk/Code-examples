@@ -1,5 +1,7 @@
 # COMPILATION STEPS
 
+<img src="https://i.ibb.co/wCLkhjX/com-steps.png" alt="com-steps" border="0">
+
 Source
 ```
 # cat test.c
