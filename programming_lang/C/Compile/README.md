@@ -57,15 +57,17 @@ int main(){
 ```
   # gcc -c test.c
   # cat test.o
- ^?ELF^B^A^A^@^@^@^@^@^@^@^@^@^A^@>^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^P^C^@^@^@^@^@^@^@^@^@^@@^@^@^@^@^@@^@^N^@^M^@ó^O^^úUH<89>åH<8d>=^@^@^@^@¸^@^@^@^@è^@^@^@^@¸^@^@^@^@]ÃHello^@^@GCC: (Ubuntu 9.3.0-10ubuntu2) ....
+ ^?ELF^B^A^A^@^@^@^@^@^@^@^@^@^A^@>^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^P^C^@^@^@^@^@^@^@^@^@^@@^@^@^@^@^@@^@^N^@^M^@ó^O^^
+ úUH<89>åH<8d>=^@^@^@^@¸^@^@^@^@è^@^@^@^@¸^@^@^@^@]ÃHello^@^@GCC: (Ubuntu 9.3.0-10ubuntu2) ....
 ```
    
 ## 4. [LD] LINKER `(*.o → *[.exe])`
-   - lets you are working on project having 10 modules, each having seperate `*.c` file. All c files create object files and at end you want A SINGLE EXE file. Linker does it     
-   - Also Links code from library
-   - **Steps for building executable**
-     a. ***Symbol resolution*** Obj files define and reference symbols. The purpose of symbol resolution is to associate each symbol reference with exactly one symbol definition.
-     b. ***Relocation*** Compilers and assemblers generate code and data sections that start at addr 0. The linker relocates these sections by associating a mem location with each symbol definition, and then modifying all of the references to those symbols so that they point to this mem location.
+  - lets you are working on project having 10 modules, each having seperate `*.c` file. All c files create object files and at end you 
+   want A SINGLE EXE file. Linker does it.    
+  - Also Links code from library
+  - **Steps for building executable**
+    a. ***Symbol resolution*** Obj files define and reference symbols. The purpose of symbol resolution is to associate each symbol reference with exactly one symbol definition.
+    b. ***Relocation*** Compilers and assemblers generate code and data sections that start at addr 0. The linker relocates these sections by associating a mem location with each symbol definition, and then modifying all of the references to those symbols so that they point to this mem location.
    
 ```
 # $ld -o hello-world [sys obj files and args] /tmp/test1.o /tmp/test2.o
