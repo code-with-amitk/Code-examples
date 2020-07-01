@@ -1,6 +1,6 @@
 # COMPILATION STEPS
 
-<img src="https://i.ibb.co/yhvFyVj/com-steps.png" alt="com-steps" border="0">
+<img src="https://i.ibb.co/447zDgX/com-steps.png" alt="com-steps" border="0">
 
 Source
 ```
