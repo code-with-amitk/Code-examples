@@ -66,8 +66,8 @@ int main(){
    want A SINGLE EXE file. Linker does it.    
   - Also Links code from library
   - **Steps for building executable**
-    a. ***Symbol resolution*** Obj files define and reference symbols. The purpose of symbol resolution is to associate each symbol reference with exactly one symbol definition.
-    b. ***Relocation*** Compilers and assemblers generate code and data sections that start at addr 0. The linker relocates these sections by associating a mem location with each symbol definition, and then modifying all of the references to those symbols so that they point to this mem location.
+    - ***Symbol resolution*** Obj files define and reference symbols. The purpose of symbol resolution is to associate each symbol reference with exactly one symbol definition.
+    - ***Relocation*** Compilers and assemblers generate code and data sections that start at addr 0. The linker relocates these sections by associating a mem location with each symbol definition, and then modifying all of the references to those symbols so that they point to this mem location.
    
 ```
 # $ld -o hello-world [sys obj files and args] /tmp/test1.o /tmp/test2.o
