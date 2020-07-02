@@ -9,10 +9,10 @@
   
 ## EXAMPLE
 ### 1. HOME THEATER
-  - PROBLEM
-    a. You have all components for creating a home theater
+  - **PROBLEM**
+    - You have all components for creating a home theater
       - DvDPlayer, Tuner, Screen, CDPlayer, Projector, TheaterLights, PopcornPopper, Amplifier
-    b. Problem here is, if you want to enjoy home theater you have to:
+    - Problem here is, if you want to enjoy home theater you have to:
       - Turn on the popcorn popper Start the popper popping 
       - Dim the lights 
       - Put the screen down 
@@ -20,7 +20,7 @@
       - Turn the sound ampliﬁer on 
       - Set the ampliﬁer to DVD input
       - Start DVD.
-      - **So much of work needed to be done by myself**
+      - ***So much of work needed to be done by myself***
       - And when movie is over, all these steps again.
   - SOLUTION
     - create a new class HomeTheaterFacade, which exposes a few simple methods such as `startHomeTheater(), stopHomeTheater()`
