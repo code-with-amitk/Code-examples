@@ -9,6 +9,11 @@
     6. Determine which devices are bootable    
     7. Initiate the bootstrap sequence
     
+## VBIOS(Video BIOS)
+  - **What** 
+    - (BIOS) of a graphics card or the integrated graphics controller in a computer.
+    - provides a set of video-related functions that are used by programs to access the video hardware.
+    
 ## Boot loader/Bootstrap loader
   - Loads Operating system.
   - Popular boot loaders: GRUB, LILO, Loadlin, SYSLINUX
