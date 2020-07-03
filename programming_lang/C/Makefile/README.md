@@ -50,8 +50,9 @@ clean :
    
   
 ### SPECIAL CHARACTERS
+
 | character | Name | Meaning |
-| --- | --- |
+| --- | --- | --- |
 | @ | Silent | @rm means rm will be executed but silently ie not output on screen |
 | $@ | Target | name of the file being generated |
 | $% | | target member name. When target is foo.a(bar.o) ‘$%’ is bar.o |
@@ -61,7 +62,7 @@ clean :
 ### SWITCHES
 | switch | Name | Meaning |
 | --- | --- | --- |
-| -D | 
+| -D | | |
 
 ### FILES
 
