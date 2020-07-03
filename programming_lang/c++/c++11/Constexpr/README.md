@@ -1,22 +1,21 @@
-/*      constexpr.cpp
+## CONSTEXPR
 
-WHAT IS CONST?
-- CONST VARIABLE: Whose value remains same through out the program.
-- CONST FUNCTION: Which always returns a constant value
+### **CONST?** 
+#### ***CONST VARIABLE*** 
+ - Whose value remains same through out the program.
+  
+#### ***CONST FUNCTION*** 
+ - Which always returns a constant value
  
-A. CONSTEXPR VARIABLE: 
+### **CONSTEXPR?**
+#### ***CONSTEXPR VARIABLE***
+- Variable whose value is derived at compile-time & is initialized. 
+  a. Should be compile time constant. 
+  b. Should be initialized at declaration.
 
-B. CONSTEXPR FUNCTION:
-*/
-
+```
 #include<iostream>
 using namespace std;
-
-/******** A. CONSTEXPR VARIABLE******
-- variable whose value is derived at compile-time & its initialized. 
- a. Should be compile time constant. 
- b. Should be initialized at declaration.
-*/
 int main(){
 
          ///////////PROBLMATIC CODE////////////
@@ -30,20 +29,19 @@ int main(){
         //constexpr int c;      // error: uninitialized const ‘c’ [-fpermissive]
         constexpr int c = 1;
 }
-/***************************************/
+```
 
-
-/*********B. CONSTEXPR FUNCTION***********
-- it return value should be computable at compile time only.
+#### ***CONSTEXPR FUNCTION***
+- It return value should be computable at compile time only.
 - RULES:
- a. constexpr function or constructor is implicitly inline.
- b. constexpr function accepts and returns only literal-types.
- c. constexpr functions cannot be virtual
- d. A constructor can't be defined as constexpr when the enclosing class has any virtual base classes.
- e. The body can be defined as = default or = delete.
- f. The body can contain no goto statements or try blocks.
- g. constexpr function return value can be collected in const variable.
-*/
+  a. constexpr function or constructor is implicitly inline.
+  b. constexpr function accepts and returns only literal-types.
+  c. constexpr functions cannot be virtual
+  d. A constructor can't be defined as constexpr when the enclosing class has any virtual base classes.
+  e. The body can be defined as = default or = delete.
+  f. The body can contain no goto statements or try blocks.
+  g. constexpr function return value can be collected in const variable.
+```
 /////////PBOBLEM: Function is not const because return depends on runtime////////////
 const float fun()
 {
@@ -63,4 +61,4 @@ constexpr float fun()
 int main(){
          const float d = fun(2);
 }
-/***************************************/
+```
