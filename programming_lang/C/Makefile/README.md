@@ -67,4 +67,5 @@ clean :
 ### FILES
 
 | Extension | Meaning |
+| --- | --- |
 | .d | Dependency file contains make dependencies(which are automatically detected). Header files which are required for C/C++ source file are added into this |
