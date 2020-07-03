@@ -1,7 +1,8 @@
 ## Makefile
 
 ### Sections in Makefile
-1. Target
+1. **Target**
+   - ***What*** an executable or object file name.
 2. Dependency
 3. Rules
 
