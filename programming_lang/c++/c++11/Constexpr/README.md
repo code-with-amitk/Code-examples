@@ -1,11 +1,8 @@
 ## CONSTEXPR
 
 ### **CONST?** 
-#### ***CONST VARIABLE*** 
- - Whose value remains same through out the program.
-  
-#### ***CONST FUNCTION*** 
- - Which always returns a constant value
+- ***CONST VARIABLE*** Whose value remains same through out the program.
+- ***CONST FUNCTION*** Which always returns a constant value
  
 ### **CONSTEXPR?**
 #### ***CONSTEXPR VARIABLE***
