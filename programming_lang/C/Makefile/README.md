@@ -1,10 +1,12 @@
 ## Makefile
 
-### Sections in Makefile
+### SECTIONS IN MAKEFILE
 1. **Target**
    - ***What*** an executable or object file name.
-2. Dependency
-3. Rules
+2. **Dependency**
+   - Source code or other things needed to make the target
+3. ***Rules***
+   - commands needed to make the target
 
 ### Meanings in Makefile
 - **PHONY target** not real name of a file, it is just a name for a recipe to be executed.
