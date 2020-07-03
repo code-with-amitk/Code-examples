@@ -164,3 +164,10 @@ public:
 ```
   [this, *this] {};   // Error: "this" repeated (C++17)
 ```
+
+## BY-COPY, BY-REFERENCE CAPTURE of Parameter Pack (C++20)
+```
+auto f = []<typename ...Ts>(Ts&& ...ts) {
+   return foo(std::forward<Ts>(ts)...);
+};
+```
