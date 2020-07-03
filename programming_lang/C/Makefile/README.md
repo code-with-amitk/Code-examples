@@ -47,6 +47,9 @@ clean :
 - **override**: This is for setting the variable. Example: (override variable = value)
 - **$(call variable,param1,param2,…)** Used for creating function(named variable) with parameters(param1,param2..)
    - Here BOOST_CHECK variable is assigned to function.
+- **User variables** Defined by Users. Examples:
+   - CPPFLAGS
+   - LDLIBS: flags to give to compilers when they are supposed to invoke the linker, ld , such as -L . Libraries ( -lfoo ) should be added to the LDLIBS.
    
   
 ### SPECIAL CHARACTERS
@@ -62,7 +65,9 @@ clean :
 ### SWITCHES
 | switch | Name | Meaning |
 | --- | --- | --- |
-| -D | | |
+| -Dmacro | Predefine name| (#man gcc) option Predefine name as a macro, with definition 1 |
+| -O | Optimize | (#man gcc) Can have values 1,2,3,4 |
+| -g | Debugging info | (#man gcc) Produce debugging information. -g0:no debug |
 
 ### FILES
 
