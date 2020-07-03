@@ -1,5 +1,10 @@
 ## Makefile
 
+### Sections in Makefile
+1. Target
+2. Dependency
+3. Rules
+
 ### Meanings in Makefile
 - **PHONY target** not real name of a file, it is just a name for a recipe to be executed.
 - **.PRECIOUS** 
@@ -17,3 +22,8 @@
 | $@ | name of the file being generated |
 | $% | target member name. When target is foo.a(bar.o) ‘$%’ is bar.o |
 | := | Simple assignment. Example `CC :=${GCC} ${FLAGS}` is expanded to `gcc -W` |
+
+### SWITCHES
+| switch | Name | Meaning |
+| --- | --- | --- |
+| -D | 
