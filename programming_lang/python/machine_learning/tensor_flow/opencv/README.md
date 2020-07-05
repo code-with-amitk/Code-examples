@@ -1,4 +1,6 @@
-## OPENCV
+# OPENCV
+
+## Basic Information
   - **What** opensource library for image processing, recognizance.
   - **How it works**
     - OpenCV uses machine learning algorithms to search for faces within a picture
@@ -11,7 +13,13 @@
   - **Cascades/Stages**
     - Cascade dictionary meaning is waterfall.
     - Breaking the problem of detecting faces into multiple stages. There canbe 30-50 cascades.
-    - The cascades themselves are just a bunch of XML files that contain OpenCV data used to detect objects.
+    - The cascades themselves are **just a bunch of XML files** that contain OpenCV data used to detect objects.
     
-[Real Python](https://realpython.com/face-recognition-with-python/)    
+## Installation
+### Ubuntu
+```
+# sudo apt update
+# sudo apt install python3-pip
+# sudo apt install python3-opencv
+```
     
