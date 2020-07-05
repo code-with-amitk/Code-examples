@@ -1,3 +1,8 @@
+**Contents**
+- database vs datawarehouse
+- Object vs block vs file storage
+- SQL vs NoSQL DB
+
 ## Database vs Datawarehouse
 
 | | Database | Datawarehouse |
