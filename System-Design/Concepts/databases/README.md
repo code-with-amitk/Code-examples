@@ -29,3 +29,15 @@
   - **data** anything we want to store, from a family photo to a 400,000-page manual for assembling an aircraft.
   - **Metadata** contains contextual information about what the data is, what it should be used for Metadata can include anything from the security classification of the file within the object to the importance of the application associated with the information. 
 - **globally unique identifier** address given to the object in order for the object to be found over a distributed system
+
+## SQL vs noSQL
+
+| | SQL, Relational, Structured | noSQL, nonRelational, unStructured |
+| --- | --- | --- |
+| Storage form | Table(Records searched using primary key) | key-value or xml or json or objects |
+| Huge data support | no(becomes slow) | yes |
+| Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
+| Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
+| Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
+| Schema | fixed | not fixed. defining schema for unstructured data is very tough |
+| Examples | Amazon S3, MySQL, postgre | SEMI: Amazon S3, Apache Cassandra, dynamoDB, UNSTRU: Amazon S3, Apache CouchDB, MongoDB |
