@@ -130,6 +130,8 @@ f.push_back(user-1);
 | --- | --- | --- | --- | --- | --- |
 | t5 | abcddefghij... | <> | <> | <> | 0x45912 |
 
+**Tweetid** We don’t want to store tweet creation time separately, hence `TweetId = epochTime + autoIncrementInteger`
+
 
 **TWEET TABLE-2** stores all tweet IDs created by particular user
 
