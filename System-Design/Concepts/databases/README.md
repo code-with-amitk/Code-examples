@@ -40,4 +40,4 @@
 | Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
 | Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 | Schema | fixed | not fixed. defining schema for unstructured data is very tough |
-| Examples | Amazon S3, MySQL, postgre | SEMI: Amazon S3, Apache Cassandra, dynamoDB, UNSTRU: Amazon S3, Apache CouchDB, MongoDB |
+| Examples | Amazon S3, MySQL, postgre | <ul><li>SEMI: Amazon S3, Apache Cassandra, dynamoDB</li></ul> <ul><li>UNSTRU: Amazon S3, Apache CouchDB, MongoDB</li></ul> |
