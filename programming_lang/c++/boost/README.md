@@ -12,6 +12,7 @@
 # git clone --recursive https://github.com/boostorg/boost.git		    //Please note RECURSIVE is most important. Time taken=45 min
 # cd boost
 # git checkout <branch-name>    //branch you want to use
+# cd tools/build; chmod +x bootstrap.sh
 # ./bootstrap.sh
 # ./b2 headers
 ```
