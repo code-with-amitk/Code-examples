@@ -9,7 +9,7 @@
 ### A. Installation
 #### A1. (Linux) From source github
 ```
-# git clone --recursive https://github.com/boostorg/boost.git		              //Please note RECURSIVE is most important.
+# git clone --recursive https://github.com/boostorg/boost.git		    //Please note RECURSIVE is most important. Time taken=45 min
 # cd boost
 # 
 ```
