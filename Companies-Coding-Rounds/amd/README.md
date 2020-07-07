@@ -1,17 +1,21 @@
-AMD(ADVANCED MICRO DEVICES)
- - Estd: 1969, 51 year old
- - Industry: Semiconductors
- - Employees(2019): 11400
- - Revenue(2019): USD $6.3 Billion
+# AMD(ADVANCED MICRO DEVICES)
+| | Intel | AMD |
+| --- | --- | --- |
+| Estb | 1968 | 1969 |
+| Industry | Semiconductor | Semiconductor |
+| Employee(2019) | 110200 | 11400 |
+| Revenue USD (2019) | $71.9 Billion | $6.3 Billion |
+| Vision | High Performance Computing is Transforming Our Lives | |
 
-List of CEOs
+
+# List of CEOs
  - Jerry Sanders, 1969–2002 (founder, electrical engineer)
  - Hector Ruiz, 2002–2008 (electrical engineer)
  - Dirk Meyer, 2008–2011 (computer engineer)
  - Rory Read, 2011–2014 (information systems)
  - Lisa Su, 2014–present (electrical engineer)
 
-PRODUCTS: 
+## PRODUCTS
   1. embedded processors 
   2. Graphics processors for servers, workstations, PCs and embedded system applications.
   3. APU(Accelrated Processing Unit): 64 bit microprocessor from AMD designed to act as a 
@@ -25,7 +29,7 @@ PRODUCTS:
   5. Graphics card: Radeon
       - RX 5700 series
 
-AMD Vision: High Performance Computing is Transforming Our Lives
+
 
 WHY YOU WANT TO JOIN AMD?
   1. I am electronics Engineer, fond of semiconductor devices.
