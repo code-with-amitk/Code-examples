@@ -33,8 +33,8 @@ freq[]
 | --- | --- | --- | --- | --- |
 | 0 | 1 | 2 | 3 | 4 |
 
-  3. Let's Understand Frequency Array
-    - index=0. Even number present at Index=0 means There exists ***pair of numbers*** which are exactly divisible by k.
+  3. Let's Understand Frequency Array.
+     - index=0. Even number present at Index=0 means There exists ***pair of numbers*** which are exactly divisible by k.
       - Example: 5,10,15,20 etc.
       - Number of pairs = freq[0]/2
     - index=1, index=4
