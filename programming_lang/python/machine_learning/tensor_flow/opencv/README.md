@@ -1,7 +1,7 @@
 # OPENCV
 
 ## Basic Information
-  - **What** opensource library for image processing, recognizance.
+  - **What** opensource library(written in C++,python,java) for image processing, recognizance.
   - **How it works**
     - OpenCV uses machine learning algorithms to search for faces within a picture
     - There are thousands of small patterns and features that must be matched. 
