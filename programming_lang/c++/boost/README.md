@@ -11,7 +11,7 @@
 #### **1. (B2 = Boost.Build) Build system**
   - **What** This is compiler & platform-independent build system. B2 supports many compilers.
   - Boost does not know anything by himself, everything is written into jam files.
-  - ****.jam file*** Configuration file for b2
+  - ****.JAM FILE*** Configuration file for b2
     - Create a Configuration file telling where to find source files
     - Every directory can be build with jam file, and b2 keeps looking it upto root.
     - ***jamroot.jam*** b2 climbs up parent directories until it finds this configuration file. This tells b2 not to look for jam files further.
