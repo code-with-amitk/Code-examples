@@ -46,5 +46,33 @@ freq[]
           - ((freq[2]+freq[3])%2 == 0) it means exact pairs are present, no extra element
           - pairs = (freq[2]+freq[3])/2  
         
-  4.         
+  ```
+  bool canPairs(vector<int> &a, int k)  //td = Number to divide with
+{
+        vector<int> freq(td,0);
+
+        for(auto i:v)
+        {
+            freq[(i%td + td) % td]++;
+        }
+
+        if(freq[0] % 2 !=0)
+            return 0;
+
+        for(int i=1; i<td; i++)
+        {
+            if(freq[i] != freq[td-i])
+                return 0;
+        }
+        return 1;
+}
+int main()
+{
+  int k =5;
+  vector<int> v = {2,63,3,72,9,11,13,13};   //ok
+  cout<<canPairs(v, k)<<endl;
+
+  return 0;
+}  
+  ```
   
