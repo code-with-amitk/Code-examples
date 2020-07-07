@@ -34,14 +34,14 @@ freq[]
 | 0 | 1 | 2 | 3 | 4 |
 
   3. Let's Understand Frequency Array.
-     - index=0. Even number present at Index=0 means There exists ***pair of numbers*** which are exactly divisible by k.
-      - Example: 5,10,15,20 etc.
-      - Number of pairs = freq[0]/2
-    - index=1, index=4
+     - **index=0** Even number present at Index=0 means There exists ***pair of numbers*** which are exactly divisible by k.
+        - Example: 5,10,15,20 etc.
+        - Number of pairs = freq[0]/2
+    - **index=1, index=4**
       - If sum of numbers at index=1,4 is even, then pairs exist.
         - ((freq[1]+freq[4])%2 == 0) it Means exact pairs are present, no extra element. Ex: (1,4) they will give reminder as 1,4
         - pairs = (freq[1]+freq[4])/2
-    - index=2,index=3
+    - **index=2,index=3**
       - If sum of numbers at index=2,3 is even, then pairs exist.
         - ((freq[2]+freq[3])%2 == 0) it means exact pairs are present, no extra element
         - pairs = (freq[2]+freq[3])/2  
