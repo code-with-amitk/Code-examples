@@ -1,12 +1,13 @@
+**Index**
 
-1. Introduction.md
-  - What is boost
-  - How boost works
-  - hpp files
+- Introduction.md
+  1. What is boost
+  2. How boost works
+  3. hpp files
   
-2. Installation.md
-  - What is B2(boost.build) system
-  - What is JAM FILE
-  - Installation from github source
+- Installation.md
+  1. What is B2(boost.build) system
+  2. What is JAM FILE
+  3. Installation from github source
 
 
