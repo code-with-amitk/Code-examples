@@ -44,9 +44,3 @@
 
 ## 4. ROLE at PLATFORM TEAM?
 - Developing tools and interfaces for BIOS/firmware stack.
-  
-  
-INTEL VS AMD?
-                 INTEL         AMD
-Market-share      80%
-
