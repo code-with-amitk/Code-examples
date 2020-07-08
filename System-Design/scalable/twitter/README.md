@@ -1,4 +1,10 @@
-# Twitter Design
+## Index
+  - A. Requirements (functiona, non-functional)
+  - B. System APIs
+  - C. BOE Calculations
+  - D. HLD/DESIGN & DB SCHEMA
+  - E. Data Sharding
+  - F. Use Case
 
 ## A. REQUIREMENTS
 ### 1. FUNCTIONAL
@@ -147,6 +153,9 @@ f.push_back(user-1);
 - Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned.
 - User's tweets can be stored on multiple servers.
 
-## F. Use Case
+## F. USE CASES
 ### F1. User storing the tweet on server
 ![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
+
+## G. CACHE
+- 
