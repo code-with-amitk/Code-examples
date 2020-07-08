@@ -1,7 +1,12 @@
 ## Content in pages
-- asic_fpga.md
+- **asic_fpga.md**
   - ASIC
     - CAIL(Common ASIC Initialization Library)
   - fpga
   - ATI Technologies
--    
+- **bios_vbios.md**
+  - ROM/BIOS
+  - VBIOS
+  - Boot loader/Bootstrap loader
+- **cstate-pstate-tstate.md**
+  - 
