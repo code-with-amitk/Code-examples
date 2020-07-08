@@ -1,5 +1,5 @@
 # A. ROM/BIOS(Basic I/O System)
-## What is ROM  
+## A1. What is ROM  
 - ROM chip located on all motherboard. 
 - When computer is turned on these are sequence of tasks performed by BIOS:
   1. Check the CMOS Setup.
@@ -10,11 +10,11 @@
   6. Determine which devices are bootable    
   7. Initiate the bootstrap sequence
     
-# VBIOS(Video BIOS)
-## What is VBIOS
+# B. VBIOS(Video BIOS)
+## B1. What is VBIOS
 - (BIOS) of a graphics card or the integrated graphics controller in a computer.
 - provides a set of video-related functions that are used by programs to access the video hardware.
     
-# Boot loader/Bootstrap loader
+# C. Boot loader/Bootstrap loader
 - Loads Operating system.
 - Popular boot loaders: GRUB, LILO, Loadlin, SYSLINUX
