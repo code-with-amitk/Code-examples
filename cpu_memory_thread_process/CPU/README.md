@@ -9,4 +9,9 @@
   - VBIOS
   - Boot loader/Bootstrap loader
 - **cstate-pstate-tstate.md**
-  - 
+  - ACPI(Advanced Configuration and Power Interface)
+  - Processor Power Management Technologies
+    - P-State(Execution Power Saving states)
+    - C-State(Idle Power Saving states)
+    - PC-State(Pacakge Idle States)
+    - T-State(Throttling State)
