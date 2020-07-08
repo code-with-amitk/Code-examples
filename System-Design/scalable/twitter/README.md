@@ -123,6 +123,8 @@ f.push_back(user-1);
 | amit1222 | amit | amit@greatest.com | <> | <> | person1,person2.. | 0x4581(takes from tweet-table-2) |
 | test56 | test | test@sandbox.com | <> | <> | personx,persony.. | 0x891 |
 
+- **Following** people can be stored on Graph Datastructure(Eg: Neoj4).
+
 
  **TWEET TABLE-1** Stores actual tweet content
   
@@ -140,6 +142,11 @@ f.push_back(user-1);
 | amit1222 | t1,t5,t6,t9 | 0x4581 |
 | test56 | t3, t49, t89 | 0x891 |
   
-### E. DATA SHARDING
+## E. DATA SHARDING
+- UserId is passed to hash function, which gives DB server Id on which Tweet should be stored. All tweets of particular user are co-located. This helps in fanning out tweets to followers.
+- Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned.
+- User's tweets can be stored on multiple servers.
 
-     
+## F. Use Case
+### F1. User storing the tweet on server
+![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
