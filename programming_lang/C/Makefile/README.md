@@ -61,6 +61,7 @@ clean :
 | $% | | target member name. When target is foo.a(bar.o) ‘$%’ is bar.o |
 | := | | Simple assignment. Example `CC :=${GCC} ${FLAGS}` is expanded to `gcc -W` |
 | $< | Source file | |
+| $^ | Pre-requisites | The names of all the prerequisites, with spaces between them |
 
 ### SWITCHES
 | switch | Name | Meaning |
