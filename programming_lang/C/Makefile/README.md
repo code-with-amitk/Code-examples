@@ -99,12 +99,13 @@ vpath %.h include
 - LDLIBS: flags to give to compilers when they are supposed to invoke the linker, ld , such as -L . Libraries ( -lfoo ) should be added to the LDLIBS.
    
 
-### C. SWITCHES
+### C. SWITCHES/GCC OPTIONS
 | switch | Name | Meaning |
 | --- | --- | --- |
 | -Dmacro | Predefine name| (#man gcc) option Predefine name as a macro, with definition 1 |
 | -O | Optimize | (#man gcc) Can have values 1,2,3,4 |
 | -g | Debugging info | (#man gcc) Produce debugging information. -g0:no debug |
+| -fPIC | | emit position-independent code, suitable for dynamic linking |
 
 ### D. FILES
 
