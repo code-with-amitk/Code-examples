@@ -4,7 +4,7 @@
 - makefile consists of a set of `RULES`.
 	- Rules consists of 3 parts 
 		1. Target: target and pre-requisites are separated by a colon (:)
-		2. List of pre-requisites/Depends.
+		2. List of pre-requisites/Dependencies.
 		3. A command: The command must be preceded by a tab (NOT spaces)
 - To complete a target:
 	1. Pre-requsites must exist, if does not exist, rules are checked to create pre-requisites.
@@ -38,34 +38,63 @@ target: pre-requisite-1 pre-requisite-2 ...
 | $+ | similar to $^, but includes duplicates |
 | $? | names of all prerequisites that are newer than the target, separated by spaces |
 | $% | target member name. When target is foo.a(bar.o) ‘$%’ is bar.o |
+
+**Other Characters**
+| Character | Meaning |
+| --- | --- |
+| % | Wildcard. <ul<li>**%.c** Matches all *.c files</ul></li> <ul<li>**%.h** Matches all *.h files</ul></li> |
 | @ | Silent, @rm means rm will be executed but silently ie not output on screen |
 | := | Simple assignment. Example `CC :=${GCC} ${FLAGS}` is expanded to `gcc -W` |
 
-### B3 .PRECIOUS
+### B3. VPATH & vpath
+#### VPATH(uppercase)
+- specify the directory to search for dependencies(remember depedency is pre-requisite mentioned in section A above) and target files.
+```
+# Search for dependencies and targets from "src" and "include" directories
+# The directories are separated by space
+VPATH = src include
+```
+
+#### vpath(lowercase)
+- to be more precise about the file type and its search directory
+```
+# Search for .c files in "src" directory; .h files in "include" directory
+# The pattern matching character '%' matches filename without the extension
+vpath %.c src
+vpath %.h include
+```
+
+### B4. PATTERN RULES
+- 
+
+### B4 .PRECIOUS
   - if make is killed or interrupted during the execution of their recipes, the target is not deleted. 
   - Also, if the target is an intermediate file, it will not be deleted after it is no longer needed
   - Basically, .PRECIOUS to preserve intermediate files.
-### B4. include 
+	
+### B5. include 
 	- Suspend reading current Makefile and read other makefile before continuing.
 	
-### B5. override
+### B6. override
 	- This is for setting the variable. Example: (override variable = value)
-### B6. $(call variable,param1,param2,…)
+	
+### B7. $(call variable,param1,param2,…)
 	- Used for creating function(named variable) with parameters(param1,param2..)
    - Here BOOST_CHECK variable is assigned to function.
-### B7. **User variables** Defined by Users. Examples:
+	 
+### B8. **User variables** Defined by Users. Examples:
    - CPPFLAGS
    - LDLIBS: flags to give to compilers when they are supposed to invoke the linker, ld , such as -L . Libraries ( -lfoo ) should be added to the LDLIBS.
    
 
-### SWITCHES
+### C. SWITCHES
 | switch | Name | Meaning |
 | --- | --- | --- |
 | -Dmacro | Predefine name| (#man gcc) option Predefine name as a macro, with definition 1 |
 | -O | Optimize | (#man gcc) Can have values 1,2,3,4 |
 | -g | Debugging info | (#man gcc) Produce debugging information. -g0:no debug |
 
-### FILES
+### D. FILES
 
 | Extension | Meaning |
 | --- | --- |
