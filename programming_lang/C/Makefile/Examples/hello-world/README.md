@@ -26,6 +26,7 @@ clean:
 ```
 
 ### Steps Involved
+#### `# make`
 1. `make` command reaches `Rule = all`.
    - `Rule = all` has pre-requisite `hello.exe`(does not exist), so it looks for a rule to create it.
 2. Reaches `Rule = hello.exe` 
@@ -38,3 +39,6 @@ clean:
    - Pre-requisite `hello.o`(exists)
    - Run its command `gcc -o hello.exe hello.o`.
 5. Finally, `Rule = all` does nothing.
+
+#### `# make clean`
+> Specifying the `target` to be build with make.
