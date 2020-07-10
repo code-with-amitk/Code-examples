@@ -17,6 +17,8 @@
 | -pie | Produce a dynamically linked position independent executable on targets that support it |
 | -Ldir | Add directory dir to the list of directories to be searched for -l |
 | -lLibrary | Search the library named library when linking |
+| -M | output a rule suitable for making the dependencies of the main source file |
+| -MD | equivalent to -M |
 
 - What is Optimization?
   - Optimization Option. When we compile the program Compiler inherently optimizes the code at compilation phase(called "Code Optimization"). With these flags we can ask compiler to further optimize in addition to optimization provided by complier inherently.
