@@ -26,14 +26,15 @@ clean:
 ```
 
 ### Steps Involved
-1. `make` command reaches `rule = all`.
-2. `Rule = all` has pre-requisite `hello.exe`, so it looks for a rule to create it.
-3. `Rule = hello.exe` has a pre-requisite `hello.o`, so it looks for a rule to create it.
-4. `Rule = hello.o` has a pre-requisite `hello.c`. 
-	 - Pre-requisite exists.
-	 - Runs the command `gcc -c hello.c`
-	 - Rule finishes, goes back to `Rule = hello.exe`
-5. Comes to `Rule = hello.exe` 
-	 - Pre-requisite(hello.o) created.
-	 - Run its command `gcc -o hello.exe hello.o`.
-6. Finally, `Rule = all` does nothing.
+1. `make` command reaches `Rule = all`.
+   - `Rule = all` has pre-requisite `hello.exe`(does not exist), so it looks for a rule to create it.
+2. Reaches `Rule = hello.exe` 
+   - Pre-requisite `hello.o`(does not exist) so it looks for a rule to create it.
+3. Reaches `Rule = hello.o` 
+   - Pre-requisite `hello.c`(exists)
+   - Runs the command `gcc -c hello.c`
+   - Rule finishes, goes back to `Rule = hello.exe`
+4. Reaches `Rule = hello.exe` 
+   - Pre-requisite `hello.o`(exists)
+   - Run its command `gcc -o hello.exe hello.o`.
+5. Finally, `Rule = all` does nothing.
