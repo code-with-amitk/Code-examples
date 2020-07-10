@@ -6,6 +6,10 @@
 		1. Target: target and pre-requisites are separated by a colon (:)
 		2. List of pre-requisites 
 		3. A command: The command must be preceded by a tab (NOT spaces)
+- To complete a target:
+	1. Pre-requsites must exist, if does not exist, rules are checked to create pre-requisites.
+	2. Once pre-requisites are created, command is executed.
+[See Hello-World example to Understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/README.md)	
 ```
 target: pre-req-1 pre-req-2 ...
 	command
