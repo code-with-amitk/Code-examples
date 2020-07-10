@@ -3,7 +3,7 @@
 | Option | Meaning |
 | --- | --- |
 | -g | Produce debugging information in the operating system's native format |
-| -c | Compile or assemble the source files, but do not link (gcc -c test.c) |
+| -c | Compile or Assemble the source files, **but do not link** (gcc -c test.c) |
 | -o file | Place output in file file |
 | -std=standard | gnu90=c++98 |
 | --sysroot=dir | Use dir as the logical root directory for headers and libraries |
