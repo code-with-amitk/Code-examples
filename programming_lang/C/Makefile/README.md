@@ -31,18 +31,24 @@ target: pre-requisite-1 pre-requisite-2 ...
 
 | Automatic Variable | Meaning |
 | --- | --- |
-| $@ | Target Filename, name of the file being generated |
+| $@ | Target name, name of the file being generated |
 | $* | Target filename without extension |
 | $< | 1st Pre-requisite/Depends filename |
 | $^ | Filename of all Pre-requisites seperated by spaces(discard Duplicates) |
 | $+ | similar to $^, but includes duplicates |
 | $? | names of all prerequisites that are newer than the target, separated by spaces |
 | $% | target member name. When target is foo.a(bar.o) ‘$%’ is bar.o |
+| $(COMPILE.c) | consists of compiler name and compiler options |
+| $(COMPILE.cpp) | consists of compiler name and compiler options |
+| $(OUTPUT_OPTION) | could be -o $@ |
+| LINK.cc | $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH) |
+| $(LINK.cpp) | Equal to $(LINK.cc) |
+| make --print-data-base | ALL set of implicit pattern rules | 
 
 **Other Characters**
 | Character | Meaning |
 | --- | --- |
-| % | Wildcard. <ul<li>**%.c** Matches all *.c files</ul></li> <ul<li>**%.h** Matches all *.h files</ul></li> |
+| % | Pattern Matching Character. <ul><li>**%.c** Matches all *.c files</ul></li> <ul><li>**%.h** Matches all *.h files</ul></li> |
 | @ | Silent, @rm means rm will be executed but silently ie not output on screen |
 | := | Simple assignment. Example `CC :=${GCC} ${FLAGS}` is expanded to `gcc -W` |
 
@@ -65,7 +71,13 @@ vpath %.h include
 ```
 
 ### B4. PATTERN RULES
-- 
+- We can create a `TARGET` using pattern matching character `%`
+
+[See pattern-rule-example to understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/automatic-variables-makefile.md)
+```
+%.o: %.c
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
+```
 
 ### B4 .PRECIOUS
   - if make is killed or interrupted during the execution of their recipes, the target is not deleted. 
@@ -73,18 +85,18 @@ vpath %.h include
   - Basically, .PRECIOUS to preserve intermediate files.
 	
 ### B5. include 
-	- Suspend reading current Makefile and read other makefile before continuing.
+- Suspend reading current Makefile and read other makefile before continuing.
 	
 ### B6. override
-	- This is for setting the variable. Example: (override variable = value)
+- This is for setting the variable. Example: (override variable = value)
 	
 ### B7. $(call variable,param1,param2,…)
-	- Used for creating function(named variable) with parameters(param1,param2..)
-   - Here BOOST_CHECK variable is assigned to function.
+- Used for creating function(named variable) with parameters(param1,param2..)
+- Here BOOST_CHECK variable is assigned to function.
 	 
 ### B8. **User variables** Defined by Users. Examples:
-   - CPPFLAGS
-   - LDLIBS: flags to give to compilers when they are supposed to invoke the linker, ld , such as -L . Libraries ( -lfoo ) should be added to the LDLIBS.
+- CPPFLAGS
+- LDLIBS: flags to give to compilers when they are supposed to invoke the linker, ld , such as -L . Libraries ( -lfoo ) should be added to the LDLIBS.
    
 
 ### C. SWITCHES
