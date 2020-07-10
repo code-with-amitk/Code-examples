@@ -1,23 +1,12 @@
-
-### Steps
-  1. import opencv library
-  2. Get Image file from command line.
-  3. Take the xml file from where cascade will be parsed
-  4. 
-
-
-### Complete source code
+## Complete source code
 ```
 import cv2                                            //1
 import sys
 
-imagePath = sys.argv[1]                               //2
-cascPath = "haarcascade_frontalface_default.xml"      //3
-
-faceCascade = cv2.CascadeClassifier(cascPath)
+faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")    //2
 
 # Read the image
-image = cv2.imread(imagePath)
+image = cv2.imread(sys.argv[1])                       //2
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # Detect faces in the image
@@ -38,3 +27,18 @@ for (x, y, w, h) in faces:
 cv2.imshow("Faces found", image)
 cv2.waitKey(0)
 ```
+
+## Steps
+  1. import opencv library
+  2. Load a cascade classifier from a file. This classifier is used for parsing the image.
+     - Remember, the cascade is just an XML file that contains the data to detect faces.
+```
+class CascadeClassifier{
+public:
+  CascadeClassifier(const string& filename){      //filename – Name of the file from which the classifier is loaded.
+  }
+}
+```
+  3. Get Image file from command line. We will detect **faces** from this image file.
+     - Pass the xml file into `CascadeClassifier` function.
+  4. 
