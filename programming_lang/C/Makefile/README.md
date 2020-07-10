@@ -10,7 +10,7 @@
 	1. Pre-requsites must exist, if does not exist, rules are checked to create pre-requisites.
 	2. Once pre-requisites are created, command is executed.
 
-[See Simple Makefile example to Understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/simple-Makefile.md)
+[1. See Simple Makefile example to Understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/simple-Makefile.md)
 ```
 target: pre-requisite-1 pre-requisite-2 ...
 	command
@@ -27,7 +27,7 @@ target: pre-requisite-1 pre-requisite-2 ...
 	- ***Singlecharacter variables*** do not need the parentheses. Eg: $@, $^
 - **Automatic Variables** These are ***automatically(note automatically)*** set by make whenever rule is matched.
 
-[See Automatic Variable Makefile example to understand Automatic Variables](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/automatic-variables-makefile.md)
+[2. See Automatic Variable Makefile example to understand Automatic Variables](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/automatic-variables-makefile.md)
 
 | Automatic Variable | Meaning |
 | --- | --- |
@@ -73,7 +73,7 @@ vpath %.h include
 ### B4. PATTERN RULES
 - We can create a `TARGET` using pattern matching character `%`
 
-[See pattern-rule-example to understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/automatic-variables-makefile.md)
+[3. See pattern-rule-example to understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/3.%20pattern-matching-example.md)
 ```
 %.o: %.c
 	$(COMPILE.c) $(OUTPUT_OPTION) $<
