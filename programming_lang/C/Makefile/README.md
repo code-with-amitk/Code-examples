@@ -3,11 +3,11 @@
 https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html#zz-2.
 
 ### A. STRUCTURE OF Makefile
-   - makefile consists of a set of `RULES`.
-      - Rules consists of 3 parts 
-         a. Target: target and pre-requisites are separated by a colon (:)
-         b. List of pre-requisites 
-         c. A command: The command must be preceded by a tab (NOT spaces)
+	- makefile consists of a set of `RULES`.
+    - Rules consists of 3 parts 
+      a. Target: target and pre-requisites are separated by a colon (:)
+      b. List of pre-requisites 
+      c. A command: The command must be preceded by a tab (NOT spaces)
 ```
 target: pre-req-1 pre-req-2 ...
 	command
