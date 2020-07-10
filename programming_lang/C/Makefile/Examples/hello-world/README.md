@@ -1,6 +1,6 @@
 ## HELLO WORLD EXAMPLE
 
-### Source
+### A. Source
 ```
 // hello.c
 #include <stdio.h>
@@ -11,7 +11,7 @@ int main() {
 }
 ```
 
-### Makefile or makefile or GNUMakefile (Must be tab stopped not spaces)
+### B. Makefile (Must be tab stopped not spaces)
 ```
 all: hello.exe                                //Running make without target hits `all`
 
