@@ -14,6 +14,9 @@
 | -W Warning Options | <ul><li>-Wall:   enables all the warnings about constructions</li></ul> |
 | -E | Stop after the preprocessing stage; do not run the compiler proper.|
 | -S | Stop after compilation stage, do not assemble |
+| -pie | Produce a dynamically linked position independent executable on targets that support it |
+| -Ldir | Add directory dir to the list of directories to be searched for -l |
+| -lLibrary | Search the library named library when linking |
 
 - What is Optimization?
   - Optimization Option. When we compile the program Compiler inherently optimizes the code at compilation phase(called "Code Optimization"). With these flags we can ask compiler to further optimize in addition to optimization provided by complier inherently.
