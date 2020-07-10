@@ -1,4 +1,4 @@
-## HELLO WORLD (Simple Makefile)
+## Simple Makefile
 
 ### A. Source
 ```
