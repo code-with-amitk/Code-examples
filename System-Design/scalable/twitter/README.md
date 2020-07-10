@@ -148,7 +148,10 @@ f.push_back(user-1);
 | amit1222 | t1,t5,t6,t9 | 0x4581 |
 | test56 | t3, t49, t89 | 0x891 |
   
-[ImgURL](https://i.ibb.co/XzKZ1Rj/tw3.png)  
+**Big Picture**
+
+![ImgURL](https://i.ibb.co/XzKZ1Rj/tw3.png)  
+
 ## E. DATA SHARDING
 - UserId is passed to hash function, which gives DB server Id on which Tweet should be stored. All tweets of particular user are co-located. This helps in fanning out tweets to followers.
 - Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned.
