@@ -1,0 +1,33 @@
+# PATTERN MATCHING EXAMPLE
+
+## A. Source
+```
+// hello.c
+#include <stdio.h>
+ 
+int main() {
+    printf("Hello, world!\n");
+    return 0;
+}
+```
+
+## B. Makefile (Must be tab stopped not spaces)
+```
+all: hello.exe                           //Running make without target hits `all`
+ 
+%.exe: %.o                               //%.exe: This Target creates File with extension *.exe
+	gcc -o $@ $<                           //%.o: is pre-requisite. ie Any object file
+                                         //%.exe: %.o    =     hello.exe: hello.o
+                                         //$< means 1st pre-requisite filename = hello.o
+                                         //$@ means target file name = hello.exe
+                                         //gcc -o $@ $<  = gcc -o hello.exe hello.o
+                                        
+%.o: %.c                                //%.o: This Target creates any of object file
+	gcc -c $<                             //%.c: Pre-requsite is file name having extension *.c
+                                        // %.o: %.c  =   hello.o: hello.c
+                                        //$< means 1st pre-requisite filename = hello.c
+                                        //gcc -c $<  =  gcc -c hello.c
+     
+clean:
+	rm hello.o hello.exe
+```
