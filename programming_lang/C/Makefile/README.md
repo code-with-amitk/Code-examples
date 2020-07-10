@@ -4,7 +4,7 @@
 - makefile consists of a set of `RULES`.
 	- Rules consists of 3 parts 
 		1. Target: target and pre-requisites are separated by a colon (:)
-		2. List of pre-requisites 
+		2. List of pre-requisites/Depends.
 		3. A command: The command must be preceded by a tab (NOT spaces)
 - To complete a target:
 	1. Pre-requsites must exist, if does not exist, rules are checked to create pre-requisites.
@@ -12,7 +12,7 @@
 
 [See Simple Makefile Hello-World example to Understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/simple-Makefile-hello-world.md)
 ```
-target: pre-req-1 pre-req-2 ...
+target: pre-requisite-1 pre-requisite-2 ...
 	command
 ```
 
@@ -31,7 +31,7 @@ target: pre-req-1 pre-req-2 ...
 | --- | --- |
 | $@ | Target Filename, name of the file being generated |
 | $* | Target filename without extension |
-| $< | 1st Pre-requisite filename |
+| $< | 1st Pre-requisite/Depends filename |
 | $^ | Filename of all Pre-requisites seperated by spaces(discard Duplicates) |
 | $+ | similar to $^, but includes duplicates |
 | $? | names of all prerequisites that are newer than the target, separated by spaces |
