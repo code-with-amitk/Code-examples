@@ -6,7 +6,7 @@ import sys
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")    //2
 
 # Read the image
-image = cv2.imread(sys.argv[1])                       //2
+image = cv2.imread(sys.argv[1])                       //3
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 # Detect faces in the image
