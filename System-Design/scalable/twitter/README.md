@@ -162,3 +162,14 @@ f.push_back(user-1);
 ![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
 
 ## G. CACHE
+### G1. Caches can be placed at:
+**1. At Database Servers** 
+  - Storing hot tweets and users. Eg: Memcached.
+  -  Application servers, before hitting database, can quickly check if the cache has desired tweets.
+  - Based on clients’ usage patterns we can determine how many cache servers are needed.
+**2. Application servers**
+  - Most frequently used contents can be stored at this cache
+### G2. Cache Eviction policy:
+  - LRU(Least recently used) older tweets can be discarded.
+### G3. Cache Storage policy (80-20 rule)
+  - 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
