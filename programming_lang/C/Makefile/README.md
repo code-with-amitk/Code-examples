@@ -27,7 +27,7 @@ target: pre-requisite-1 pre-requisite-2 ...
 	- ***Singlecharacter variables*** do not need the parentheses. Eg: $@, $^
 - **Automatic Variables** These are ***automatically(note automatically)*** set by make whenever rule is matched.
 
-[See Automatic Variable Makefile example to understand this](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/automatic-variables-makefile.md)
+[See Automatic Variable Makefile example to understand Automatic Variables](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/C/Makefile/Examples/hello-world/automatic-variables-makefile.md)
 
 | Automatic Variable | Meaning |
 | --- | --- |
