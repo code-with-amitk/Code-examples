@@ -25,10 +25,15 @@ clean:
 	 rm hello.o hello.exe
 ```
 
-### C. RULES
-#### C1. Running make `without argument` hits target `all` in the makefile.
-```
-# make                  OR                     make all (both same)
-gcc -c hello.c
-gcc -o hello.exe hello.o
-```
+### Steps Involved
+1. `make` command reaches `rule = all`.
+2. `Rule = all` has pre-requisite `hello.exe`, so it looks for a rule to create it.
+3. `Rule = hello.exe` has a pre-requisite `hello.o`, so it looks for a rule to create it.
+4. `Rule = hello.o` has a pre-requisite `hello.c`. 
+	 - Pre-requisite exists.
+	 - Runs the command `gcc -c hello.c`
+	 - Rule finishes, goes back to `Rule = hello.exe`
+5. Comes to `Rule = hello.exe` 
+	 - Pre-requisite(hello.o) created.
+	 - Run its command `gcc -o hello.exe hello.o`.
+6. Finally, `Rule = all` does nothing.
