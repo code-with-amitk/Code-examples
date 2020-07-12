@@ -2,7 +2,7 @@
 ## LINKER ERRORS
 - Those errors which occurs at linking stage.
 - This means Compiler compiles the program successfully, which linker(Finding actual definition in CS) finds error.
-- Undefined reference is **Linker Error**.
+- **Undefined reference is Linker Error**.
 
 ### A. MEANING OF UR
 - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
