@@ -1,6 +1,6 @@
 ### Contents
   - A. Linker Errors
-    a. undefined reference
+    - undefined reference
   
 ## A. LINKER ERRORS
 - Those errors which occurs at linking stage.
@@ -11,7 +11,7 @@
   - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
   - *Linker* cannot find the definition of a linked object.
 - **Reasons for udefined reference**
-  a. *No Definition Provided For Object* The programmer has forgotten to define the object.
+  (i) *No Definition Provided For Object* The programmer has forgotten to define the object.
 ```c++
 #include <iostream>
 int fun();
