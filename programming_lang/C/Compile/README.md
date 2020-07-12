@@ -9,14 +9,14 @@
       - [AS] ASSEMBLER (*.s → *.o)
       - [LD] LINKER (*.o → *[.exe])
   - **Compiler.md**      
-      a. LEXICAL ANALYSIS/SCANNER
-      b. SYNTAX ANALYZER/PARSING
-      c. SEMANTIC ANALYZER
-      d. INTERMEDIATE CODE GENERATOR
-      e. CODE OPTIMIZER
-      f. CODE GENERATOR
+    - LEXICAL ANALYSIS/SCANNER
+    - SYNTAX ANALYZER/PARSING
+    - SEMANTIC ANALYZER
+    - INTERMEDIATE CODE GENERATOR
+    - CODE OPTIMIZER
+    - CODE GENERATOR
   - **Linker.md**
-    a. Creating exe from object file
+    - Creating exe from object file
   - **Error_Messages.md**
-    a. undefined reference
-    b. 
+    - undefined reference
+    -  
