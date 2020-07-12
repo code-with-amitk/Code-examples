@@ -13,7 +13,6 @@
 - **Reasons for udefined reference**
   1. *No Definition Provided For Object* The programmer has forgotten to define the object.
 ```c++
-#include <iostream>
 int fun();
 int main()
 {
@@ -26,3 +25,20 @@ collect2: error: ld returned 1 exit status
 
 //How to resolve? Provide definition of fun()
 ```
+  2. *Wrong Definition* 
+    - Definition of function is different from what's declared.
+    - In Example below, declaration of function does not contain parameter, while definition does.
+```c++
+int fun();
+int main()
+{
+    fun();
+}
+int fun(int n){
+    cout<<"hello, world!!";
+}
+/usr/bin/ld: /tmp/cc3VJO9c.o: in function `main':
+undefined-reference1.cpp:(.text+0x9): undefined reference to `fun()'
+collect2: error: ld returned 1 exit status
+```
+  3. 
