@@ -1,6 +1,6 @@
 - **Contents**
-  a. GCC/G++ Compiler options
-  b. LD linker options
+  1. GCC/G++ Compiler options
+  2. LD linker options
 
 ## A. [GCC/G++]COMPILER OPTIONS
 
