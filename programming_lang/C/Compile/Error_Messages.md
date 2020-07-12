@@ -11,7 +11,7 @@
   - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
   - *Linker* cannot find the definition of a linked object.
 - **Reasons for udefined reference**
-  (i) *No Definition Provided For Object* The programmer has forgotten to define the object.
+  1. *No Definition Provided For Object* The programmer has forgotten to define the object.
 ```c++
 #include <iostream>
 int fun();
