@@ -1,17 +1,16 @@
-### Contents
-  - A. Linker Errors
-    - undefined reference
-  
-## A. LINKER ERRORS
+# UNDEFINED REFERENCE
+## LINKER ERRORS
 - Those errors which occurs at linking stage.
 - This means Compiler compiles the program successfully, which linker(Finding actual definition in CS) finds error.
+- Undefined reference is **Linker Error**.
 
-### A1. UNDEFINED REFERENCE
-- **Meaning** 
-  - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
-  - *Linker* cannot find the definition of a linked object.
-- **Reasons for udefined reference**
-  1. *No Definition Provided For Object* The programmer has forgotten to define the object.
+### A. MEANING OF UR
+- *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
+- *Linker* cannot find the definition of a linked object.
+
+### B. REASONS/CAUSES OF UR
+#### B1. No Definition Provided For Object
+- The programmer has forgotten to define the object.
 ```c++
 int fun();
 int main()
@@ -25,9 +24,10 @@ collect2: error: ld returned 1 exit status
 
 //How to resolve? Provide definition of fun()
 ```
-  2. *Wrong Definition* 
-    - Definition of function is different from what's declared.
-    - In Example below, declaration of function does not contain parameter, while definition does.
+
+#### B2. Wrong/Mismatched Definition
+- Definition of function is different from what's declared.
+- In Example below, declaration of function does not contain parameter, while definition does.
 ```c++
 int fun();
 int main()
@@ -41,4 +41,29 @@ int fun(int n){
 undefined-reference1.cpp:(.text+0x9): undefined reference to `fun()'
 collect2: error: ld returned 1 exit status
 ```
-  3. 
+
+#### B3. Object files not linked properly
+- We have more than 1 source file and those are compiled independently. 
+- At time linking, object files are not linked properly.
+- Example: function `fun()` is declared in main.cpp & defined in `test.cpp`. 
+  - When main.c is compiled seperately. We get -> undefined Reference
+  - When both files are compiled together. No Error.
+```c++
+/////////////test.cpp////////////////
+void fun(int a){
+  cout<<a;
+}
+
+////////////main.cpp////////////////
+int fun(int);
+int main(){
+  cout<<fun(1);
+}
+$ g++ main.c                                      <<<<<<<<<<<<<<<<Error when main.cpp is compiled seperately ie definition is not found
+/usr/bin/ld: /tmp/ccugsclC.o: in function `main':
+main.c:(.text+0xe): undefined reference to `fun(int)'
+collect2: error: ld returned 1 exit status
+
+$ g++ test.c main.c                               <<<<<<<<<<<<< No Error
+$
+```
