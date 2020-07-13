@@ -1,0 +1,24 @@
+## Contents
+- **Tokenize.md**
+  - Tokenize string based on space character 
+    - using *stringstream*
+- **Creating.md**
+  - Create string from int, string, double
+    - using *stringstream*
+- **Traversal.md**    
+  - Forward Traversal: using Forward iterator
+  - Reverse Traversal: using reverse iterator
+- **Size-of-String.md**
+  - str.length(), str.size()
+- **Searching.md**
+  - str.find("s")
+- **Substring**
+  - s.substring(pos, length)
+- **Truncating.md**
+  - s.erase(starting_pos, length)
+- **Inserting.md**
+  - s.insert(position, string)
+- **Replace.md**
+  - string.replace(position, length, string-to-replace-with)
+- **Compare.md**
+  - string::compare (const string& str)
