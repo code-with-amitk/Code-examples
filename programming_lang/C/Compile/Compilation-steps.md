@@ -32,7 +32,11 @@ int main(){
 ```    
   
 ## 2. [CCL] COMPILER `(*.i → *.s)`
-   - **What** Converts Intermediate files to Assembly language files `*.s`
+   - **What** 
+    - Converts Intermediate files to Assembly language files `*.s`
+    - Compiler is only bothered about ***function declaration***, it does not check definition.
+      - Linking definition to function is task of ***Linker***. Linker gives `undefined reference` error if it cannot find definition inside 
+        - `*.obj` OR  `*.so`  OR  `*.a`
    - **Functions**
      a. Lexical Analysis    
      b. parsing    
