@@ -14,11 +14,12 @@
 ### B1. Free Account User
 - 15 GB space is allocated for free account.
 - This is collective space, user can use it in docs, xls, videos (any way they want) but sum up should be < 15 GB.
+
 | | Word Document | Xls Document | Vidoes |
 | --- | --- | --- | --- |
 | Max Size/Document | 2 MB | 20 MB | 1 GB |
 | No of documents | 1000 | 100 | 10 |
-| Size occupied | 2x10<sub>9</sub> | 2x10<sub>9</sub> | 1x10<sub>9</sub> |
+| Size occupied | 2x10<sup>9</sup> | 2x10<sup>9</sup> | 1x10<sup>9</sup> |
 > Total size occupied = 14 GB
 
 ### B2. For paid account
