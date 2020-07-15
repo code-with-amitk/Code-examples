@@ -9,4 +9,4 @@
     - CPU vs GPU
     - GPU Architecture
     - GPU Series
-- **DGPU.md**  
+- **DGPU.md {Dual GPU}**  
