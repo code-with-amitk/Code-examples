@@ -11,8 +11,10 @@
 
 ## Creating/Linking Shared library
 1. Create static object `libtotal.a`
+- /bin Contains executables for basic operations. Commands: mkdir, cp, chmod, uname etc
+- /usr/bin Installed softwares by user
 ```
-# /bin/cat total.c
+# /bin/cat total.c                  
     int total(int a, int b){
         return (a+b);
     }
