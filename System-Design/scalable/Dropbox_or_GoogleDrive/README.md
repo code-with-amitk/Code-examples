@@ -41,4 +41,4 @@
 | 40% using internet | 28x10<sup>8</sup> |
 | 50% of this 40% using Gmail | 28x10<sup>7</sup> |
 | <ul><li>Free Users(50%)</li></ul> <ul><li>Paid Users(50%)</li></ul>| <ul><li>Space used by free Users(14x10<sup>7</sup>x15 GB)</li></ul> <ul><li>Space used by paid Users(14x10<sup>7</sup>x15 TB)</li></ul> |
-> Total Space used = 14x15x<sup>16</sup> + 14x15x<sup>19</sup> = 210x<sup>19</sup> = 10x<sup>22</sup> bytes
+> Total Space used = 14x15x10<sup>16</sup> + 14x15x10<sup>19</sup> = 210x10<sup>19</sup> = 10<sup>22</sup> bytes
