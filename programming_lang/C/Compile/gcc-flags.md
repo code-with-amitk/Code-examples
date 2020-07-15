@@ -26,7 +26,7 @@
 | -march=cpu-type | Generate code that runs on cpu-type.  cpu-type are z900/arch5, z990/arch6, z9-109, z9-ec/arch7, z10/arch8, z196/arch9, zEC12, z13/arch11 |
 | -mtune=cpu-type | Tune to this type of CPU. The list of cpu-type values is the same as for -march. |
 | -msse | Use SSE register passing conventions for float and double arguments and return values |
-| -fPIC | <ul><li>If supported, emit Position Independent Code, suitable for dynamic linking.</li></ul> <ul><li>|
+| -f<option> -fPIC | <ul><li>If supported, emit Position Independent Code, suitable for dynamic linking.</li></ul> <ul><li>|
 | -fworking-directory | Generate line markers in prepprocessor output, so that compiler know the current working directory at the time of preprocessing. This option is implicitly enabled if debugging information is enabled |
 | -fno-working-directory | opposite of working-directory |
 | -fwrapv | Tell the compiler to wrap overflow of addition, subtraction, multiplication around twos-complement representation |
@@ -39,4 +39,5 @@
 ## [LD]LINKER OPTIONS
 
 | Options | Meaning |
+
 
