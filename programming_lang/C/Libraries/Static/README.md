@@ -9,8 +9,8 @@
 - If changes in static library, application code has to be complied everytime
   - 3rd Party static library developer done some changes in libtotal.a & publishes on internet, to take those changes we have to download & compile with our exe again.
 
-## Creating/Linking Shared library
-1. Create static object `libtotal.a`
+## Creating/Linking Static library
+### 1. Create static object `libtotal.a`
 - /bin Contains executables for basic operations. Commands: mkdir, cp, chmod, uname etc
 - /usr/bin Installed softwares by user
 ```
@@ -34,7 +34,7 @@
 | r | Insert the files member... into archive (with replacement) |
 | s | Add an index to the archive, or update it if it already exists. |
 
-2. Link static library to code `libtotal.a`
+### 2. Link static library to code `libtotal.a`
 ```
 # /bin/cat main.c
   # include<iostream>
