@@ -2,13 +2,23 @@
 
 ## A. REQUIREMENTS
 ### A1. FUNCTIONAL
-- **Word or Xls Document** User should be able to
-  - Create document
-  - Write into document
-  - Document should be auto-saved.
-- **For Videos**
-  - 
+- **Word or Xls Document or Videos** User should be able to
+  - ***Upload***
+    - Create document
+    - Write into document
+    - Document should be auto-saved.
+  - ***Download*** the documents.
+  - ***Share*** files with other users
+  - ***Synchronization*** Automatic synchronization between devices, i.e., after updating a file on one device, it should get synchronized on all devices.
+  - ***Offline upload/edits*** User should be able to upload/edit while he's offline, information should go on drive as he comes online.
 ### A2. NON-FUNCTIONAL
+- S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+  - Scalable, Secure, SOA
+  - Logging, Load, Latency
+  - Cache(Invalidation, negative cache)
+  - Available, Accurate, Analyze, Authenticate
+  - Reliable, Redundant(Using DB)
+  - Fast
 
 ## B. BOE Calculations
 ### B1. Free Account User
