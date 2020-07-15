@@ -12,7 +12,7 @@
 
 ## B. BOE Calculations
 ### B1. Free Account User
-- 15 GB space is allocated for free account.
+- Free account user can use = 15 GB space.
 - This is collective space, user can use it in docs, xls, videos (any way they want) but sum up should be < 15 GB.
 
 | | Word Document | Xls Document | Vidoes |
@@ -23,5 +23,12 @@
 > Total size occupied = 14 GB
 
 ### B2. For paid account
-- 50 TB space allocated for basic paid account.
+- 15 TB space allocated for basic paid account.
+
+| | Word Document | Xls Document | Vidoes |
+| --- | --- | --- | --- |
+| Max Size/Document | 200 MB | 2000 MB | 1 TB |
+| No of documents | 10000 | 10000 | 10 |
+| Size occupied | 2x10<sup>12</sup> | 2x10<sup>12</sup> | 1x10<sup>12</sup> |
+> Total size occupied = 15 TB
 
