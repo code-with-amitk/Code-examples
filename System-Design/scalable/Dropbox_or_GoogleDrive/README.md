@@ -19,6 +19,8 @@
   - Available, Accurate, Analyze, Authenticate
   - Reliable, Redundant(Using DB)
   - Fast
+### A3. Extended 
+- **Snaphot of data** System should support snapshotting of the data, so that users can go back to any version of the files.
 
 ## B. BOE Calculations
 ### B1. Free Account User
