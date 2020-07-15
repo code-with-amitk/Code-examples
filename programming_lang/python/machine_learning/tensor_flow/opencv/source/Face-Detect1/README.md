@@ -4,11 +4,12 @@
 
 ## A. Steps
 
-| Steps/Functions | What it does | Parameter(s) | Return | Syntax |
-| --- | --- | --- | --- | --- |
-| 1. import cv2 | import opencv library | | | |
-| 2. object = cv2.CascadeClassifier(cascadeFile.xml) | <ul><li>Load a cascade classifier from xml file</li></ul> <ul><li>Remember, the cascade is just an XML file that contains the data to detect faces</li></ul> | Classifier object | <CascadeClassifier object>	=	cv.CascadeClassifier(	filename	) |
-| 3. cv2.imread(imageFile.png) | <ul><li>Load an image from the specified file</li></ul> <ul><li>We will detect **faces** from this image file</li></ul> | imageFile | Image that is loaded from specified file | 
+| Steps/Functions | What it does | Parameter(s) | Return |
+| --- | --- | --- | --- |
+| 1. import cv2 | import opencv library | | | 
+| 2. <CascadeClassifier object>	=	cv.CascadeClassifier(filename) | <ul><li>Load a cascade classifier from xml file</li></ul> <ul><li>Remember, the cascade is just an XML file that contains the data to detect faces</li></ul> | Classifier object |
+| 3. cv2.imread(filename[, flags]) | <ul><li>Load an image from the specified file</li></ul> <ul><li>We will detect **faces** from this image file</li></ul> | imageFile | Image that is loaded from specified file |
+| 4. dst	=	cv.cvtColor(	src, code[, dst[, dstCn]]	)| <ul><li>Converts image from one color space to another</li></ul> <ul><li>COLOR_BGR2GRAY=convert from RGB/BGR to grayscale</li></ul> <ul><li>Many operations in OpenCV are done in grayscale</li></ul>| |
   
 ## B. Complete source code
 ```
@@ -19,7 +20,7 @@ faceCascadeObject = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 # Read the image
 image = cv2.imread(sys.argv[1])                       //3
-gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)        //4
 
 # Detect faces in the image
 faces = faceCascade.detectMultiScale(
