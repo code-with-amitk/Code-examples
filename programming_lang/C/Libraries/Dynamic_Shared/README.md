@@ -10,15 +10,22 @@
 
 ## Creating Linking `*.so`
 ### 1. Create shared object
+- Object files for shared libraries need to be compiled as position independent code (-fPIC) because they are mapped to any position in the address space.
+  - See `-fPIC` option on Compile/gcc-options.md
+- /bin Contains executables for basic operations. Commands: mkdir, cp, chmod, uname etc
+- /usr/bin Installed softwares by user  
 ```
-# /usr/bin/vim total.c
+# /usr/bin/vim total.cpp
   int sum(int a, intb){ 
     return a+b; 
   }
-# /usr/bin/gcc -shared -o libtotal.so total.c       //Step-1: Create *.so(shared object)
+# /usr/bin/g++ -c -fPIC total.cpp                           //Step-1: Create *.o (Object Files) with -fPIC flag enabled
 # /bin/ls
-  libtotal.so total.cpp
-# /usr/bin/nm -D libtotal.so                                 //List symbols
+  total.o total.cpp
+# /usr/bin/g++ -shared ./total.o -o libtotal.so             //Step-2: Create *.so(Shared object) with -shared flag
+# /bin/ls
+  libtotal.so total.o total.cpp
+# /usr/bin/nm -D libtotal.so                                //List symbols
                  w _ITM_deregisterTMCloneTable
                  w _ITM_registerTMCloneTable
 000000000000057a T _Z3sumii
@@ -33,18 +40,17 @@
 
 ### 2. Link the shared object
 ```
-# /usr/bin/vim main.c
+# /usr/bin/vim main.c                                          //Step-3: Create driver file
   int sum(int, int);
   int main(){ 
     int c = sum(3,2); 
   }
-# /usr/bin/g++ main.cpp -L/home/amit/amit-code -ltotal -o TEST    //Step-2: -L<path-to-shared-lib-dir>  -l<named of shared library without .so>
+# /usr/bin/g++ main.cpp -L/home/amit/amit-code -ltotal -o TEST    //Step-4: -L<path-to-shared-lib-dir>  -l<named of shared library without .so>
 # /bin/ls
   TEST  libtotal.so  main.cpp  total.cpp
-# ldd TEST                                                      //Step-3: List all shared libraries linked to this exe
+# ldd TEST                                                      //Step-5: List all shared libraries linked to this exe
   linux-vdso.so.1 (0x00007ffff2074000)
   libtotal.so => not found
   libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fcee89d0000)
   /lib64/ld-linux-x86-64.so.2 (0x00007fcee9000000)
 ```
-
