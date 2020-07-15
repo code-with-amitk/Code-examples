@@ -15,7 +15,7 @@
 - Free account user can use = 15 GB space.
 - This is collective space, user can use it in docs, xls, videos (any way they want) but sum up should be < 15 GB.
 
-| | Word Document | Xls Document | Vidoes |
+| | Word Document | Xls Document | Videos |
 | --- | --- | --- | --- |
 | Max Size/Document | 2 MB | 20 MB | 1 GB |
 | No of documents | 1000 | 100 | 10 |
@@ -25,10 +25,20 @@
 ### B2. For paid account
 - 15 TB space allocated for basic paid account.
 
-| | Word Document | Xls Document | Vidoes |
+| | Word Document | Xls Document | Videos |
 | --- | --- | --- | --- |
 | Max Size/Document | 200 MB | 2000 MB | 1 TB |
 | No of documents | 10000 | 10000 | 10 |
 | Size occupied | 2x10<sup>12</sup> | 2x10<sup>12</sup> | 1x10<sup>12</sup> |
 > Total size occupied = 15 TB
 
+### B3. How many users are using Google Drive/Gmail?
+- All users using Gmail are given their personal google-drive.
+
+| Percentage & Population | |
+| --- | --- |
+| World Population(2019) | 7 Billion(10<sup>9</sup>) |
+| 40% using internet | 28x10<sup>8</sup> |
+| 50% of this 40% using Gmail | 28x10<sup>7</sup> |
+| <ul><li>Free Users(50%)</li></ul> <ul><li>Paid Users(50%)</li></ul>| <ul><li>Space used by free Users(14x10<sup>7</sup>x15 GB)</li></ul> <ul><li>Space used by paid Users(14x10<sup>7</sup>x15 TB)</li></ul> |
+> Total Space used = 14x15x<sup>16</sup> + 14x15x<sup>19</sup> = 210x<sup>19</sup> = 10x<sup>22</sup> bytes
