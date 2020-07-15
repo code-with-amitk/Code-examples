@@ -1,5 +1,6 @@
 ## Contents
 - **What-is-GPU.md**
+  - Graphics card
   - What is GPU
   - GPU Usages
   - CPU vs GPU
