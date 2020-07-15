@@ -1,4 +1,5 @@
 # Comparison
+![ImgURL](https://i.ibb.co/17gSHNw/uni.jpg)
 | | Unicast | Broadcast | Multicast |
 | --- | --- | --- | --- |
 | What | 1 Sender, 1 Receiver | 1 Sender to All connected Receivers/Nodes | 1/More Sender to 1/More receiver |
