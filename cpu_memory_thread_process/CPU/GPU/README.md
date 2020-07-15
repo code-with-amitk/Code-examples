@@ -1,9 +1,12 @@
 ## Contents
-- **What-is-GPU.md**
-  - Graphics card
-  - What is GPU
-  - GPU Usages
-  - CPU vs GPU
-  - GPU Architecture
-  - GPU Series
+- **GPU.md**
+  - Graphics card and components
+    - VRAM
+    - VRM
+    - PCB
+  - GPU
+    - Usages
+    - CPU vs GPU
+    - GPU Architecture
+    - GPU Series
 - **DGPU.md**  
