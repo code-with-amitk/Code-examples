@@ -1,6 +1,7 @@
 ## Task
 - Take a image file(abba.png)
-- 
+- Identify the image
+- Draw rectangle around faces inside the image
 
 ## A. Steps
 
