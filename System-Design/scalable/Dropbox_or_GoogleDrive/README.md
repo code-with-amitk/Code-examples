@@ -54,3 +54,11 @@
 | 50% of this 40% using Gmail | 28x10<sup>7</sup> |
 | <ul><li>Free Users(50%)</li></ul> <ul><li>Paid Users(50%)</li></ul>| <ul><li>Space used by free Users(14x10<sup>7</sup>x15 GB)</li></ul> <ul><li>Space used by paid Users(14x10<sup>7</sup>x15 TB)</li></ul> |
 > Total Space used = 14x15x10<sup>16</sup> + 14x15x10<sup>19</sup> = 210x10<sup>19</sup> = 10<sup>22</sup> bytes
+
+# C. HLD/Design
+### a. 1 Server, 1 User Design
+- Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
+- A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
+```
+  
+```
