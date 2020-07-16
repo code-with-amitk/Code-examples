@@ -13,7 +13,7 @@
 | -E | Stop after the preprocessing stage; do not run the compiler proper.|
 | -g | Produce debugging information in the operating system's native format |
 | -Ldir | Add directory dir to the list of directories to be searched for -l |
-| -lLibrary | Search the library named library when linking |
+| -lLibrary | <ul><li>Search the library named library when linking</li></ul> <ul><li>Option is provided in LDLIBS += lpthread</li></ul> ||
 | -o file | Place output in file file |
 | -O Optimization Options | <ul><li>-O0: optimization level 0 (no optimization, same as omitting the -O argument)</li></ul> <ul<li>-O1: Optimize More. Compilation time increases.</li></ul> |
 | -W Warning Options | <ul><li>-Wall: enables all the warnings about constructions</li></ul> <ul><li>-Wno-array-bounds: Warn about subscripts/indexes of arrays that are out of bounds(enabled by -Wall)</li></ul> <ul><li>-Wunused-but-set-variable: Warn when local variable is assigned but not used. (enabled by -Wall)</li></ul>|
