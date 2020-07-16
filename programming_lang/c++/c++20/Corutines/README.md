@@ -1,5 +1,5 @@
 # COROUTINES
-## A. What
+## A. WHAT
 - This is **a stackless function** that can suspend execution to be resumed later. Resumption information is stored seperately from stack.
 - **Restrictions**
   1. ***Coroutines cannot Use***
@@ -16,14 +16,14 @@
      - current suspension point
      - local variables
      
-## B. Applications
+## B. APPLICATIONS
 1. Asynchronous code execution. Examples
    - Handle non-blocking I/O without explicit callbacks.
    - Algorithms on lazy-computed infinite sequences
 
-### C. Creating coroutines
+## C. CREATING COROUTINES
 - Functions becomes coroutine if it does any of following
-#### C1. co_await()
+### 1. co_await()
 - co_await operator to suspend execution until resumed
 ```
 task<> tcp_echo_server() {
@@ -34,7 +34,7 @@ task<> tcp_echo_server() {
   }
 }
 ```
-#### C2. co_yeild()
+### 2. co_yeild()
 - co_yield to suspend execution returning a value
 ```
 generator<int> iota(int n = 0) {
@@ -42,7 +42,7 @@ generator<int> iota(int n = 0) {
     co_yield n++;
 }
 ```
-#### C3. co_return()
+### 3. co_return()
 - co_return to complete execution returning a value
 ```
 lazy<int> f() {
