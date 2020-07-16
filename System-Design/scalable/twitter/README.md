@@ -6,7 +6,7 @@
   - E. Data Sharding
   - F. Use Case
 
-## A. REQUIREMENTS
+# A. REQUIREMENTS
 ### 1. FUNCTIONAL
   1. **Search**
      - Any twitter user can search any other twitter user by name.
@@ -27,7 +27,7 @@
     - Reliable, Redundant(Using DB)
     - Fast
 
-## B. SYSTEM APIs
+# B. SYSTEM APIs
 1. Search user
 ```
 pointer_to_follower_struct *searchUser(toBeSearched_userId)
@@ -47,7 +47,7 @@ Return:
   - Location to stored tweet, else HTTP error.
 ```
 
-## C. BOE Calculations (should be done after HLD)
+# C. BOE Calculations (should be done after HLD)
   - Total world population = 8 Billion = 8x10<sup>9</sup>
   - **Daily Active Twitter users**
     - Out of 8 Billion 40% have internet connection = 32x10<sup>8</sup>
@@ -69,7 +69,7 @@ Return:
       - 32x10<sup>4</sup> x 30 x 12 x 5 x 2MB = 1 Quadtrillion = 10<sup>15</sup> bytes / 5 years
     - This is read heavy system, since much higher data is read wrt written to the system.      
 
-## D. HLD/DESIGN & DB SCHEMA
+# D. HLD/DESIGN & DB SCHEMA
 ### D1. 5, 100, 10k Users Design
   1. **Searching for users** A(normal person) want to search B(politician). 
      - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
@@ -152,7 +152,7 @@ f.push_back(user-1);
 
 ![ImgURL](https://i.ibb.co/XzKZ1Rj/tw3.png)  
 
-## E. DATA SHARDING
+# E. DATA SHARDING
 - UserId is passed to hash function, which gives DB server Id on which Tweet should be stored. All tweets of particular user are co-located. This helps in fanning out tweets to followers.
 - Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned.
 - User's tweets can be stored on multiple servers.
@@ -162,11 +162,11 @@ f.push_back(user-1);
   - All writes will first go to the primary server and then will be replicated to secondary servers. 
   - This scheme will also give us fault tolerance, since whenever the primary server goes down we can failover to a secondary server.
 
-## F. USE CASES
+# F. USE CASES
 ### F1. User storing the tweet on server
 ![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
 
-## G. CACHE
+# G. CACHE
 ### G1. Caches can be placed at:
 **1. At Database Servers** 
   - Storing hot tweets and users. Eg: Memcached.
@@ -179,7 +179,7 @@ f.push_back(user-1);
 ### G3. Cache Storage policy (80-20 rule)
   - 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
   
-## H. LOAD BALANCING
+# H. LOAD BALANCING
 ### H1. Places of adding load balancers
 1. Between client and application servers
 2. Between application servers & DB
@@ -187,7 +187,7 @@ f.push_back(user-1);
 ### H2. Scheme of Load balancing
 - Simple round robin.
 
-## I. MONITORING
+# I. MONITORING
 - Monitoring means collecting the data to find whether system is Dead/slow/active?
 - Metrics/counters to get an understanding of the performance of our service:
   - New tweets per day/second, what is the daily peak? 
