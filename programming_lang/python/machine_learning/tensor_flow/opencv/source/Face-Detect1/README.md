@@ -5,7 +5,7 @@
 ## A. Steps
 
 | Steps/Functions | What it does | Returns |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 1. import cv2 | import opencv library | |
 | 2. `<CascadeClassifier object>	=	cv.CascadeClassifier(filename)` | <ul><li>Load a cascade classifier from xml file</li></ul> <ul><li>Remember, the cascade is just an XML file that contains the data to detect faces</li></ul> | Classifier object |
 | 3. `cv2.imread(filename[, flags])` | <ul><li>Load an image from the specified file</li></ul> <ul><li>We will detect **faces** from this image file</li></ul> | Image that is loaded from specified file |
