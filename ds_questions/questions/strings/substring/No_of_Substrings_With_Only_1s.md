@@ -23,7 +23,7 @@ index   substring
 ### Logic(Dynamic Programming)
 - Take a dp array of same size as input string. Consider s = "0110111"
 
-| | | | | | |
+|  |  |  |  |  |  |  |
 | --- | --- | --- | --- | --- | --- | --- |
 | 0 | 1 | 2 | 3 | 4  | 5 | 6 |
 
