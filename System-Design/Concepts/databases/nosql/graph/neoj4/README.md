@@ -10,10 +10,12 @@
 # A. Installation
 ## A1. Ubuntu
 ```
- # sudo apt install openjdk-8-jdk; 
- $ sudo wget -O - https://debian.neo4j.org/neotechnology.gpg.key | sudo apt-key add -       //Update the package repository to include Neo4J
- $ sudo echo 'deb https://debian.neo4j.org/repo stable/' | sudo tee -a /etc/apt/sources.list.d/neo4j.list
+ # sudo apt install openjdk;
+ # java --version                         //JDK version 9 or above is good
+ $ sudo wget -O - https://debian.neo4j.org/neotechnology.gpg.key | sudo apt-key add -      //Take key
+ $ sudo echo 'deb https://debian.neo4j.org/repo stable/' | sudo tee -a /etc/apt/sources.list.d/neo4j.list //Add repository
  $ sudo apt-get update
- $ sudo apt install neo4j
+ $ sudo apt install neo4j                     //Install
+ $ sudo apt remove neo4j                     //Remove
  $ neo4j --version
 ``` 
