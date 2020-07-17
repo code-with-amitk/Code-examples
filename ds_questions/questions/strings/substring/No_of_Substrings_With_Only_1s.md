@@ -1,11 +1,11 @@
 [Problem](https://leetcode.com/contest/weekly-contest-197/problems/number-of-substrings-with-only-1s/)
 
-## Question
+# Question
 - Given a binary string s (a string consisting only of '0' and '1's).
 - Return the number of CONTINIOUS substrings with all characters 1's.
 - Since the answer may be too large, return it modulo 10^9 + 7.
 
-### Example-1
+## Example-1
 ```
 Input: s = "0110111"
 Output: 9
@@ -20,7 +20,7 @@ index   substring
           9
 ```
 
-### A. This is Arithematic Progression
+# A. This is Arithematic Progression
 - if 2 continuous `1s` are present (eg: 11). Number of substrings = 2+1 = 3
 ```
   index   substrings
@@ -44,7 +44,7 @@ index   substring
 ```
 - **Again, count[4]=count[3]+1.   count[3]=count[2]+1   count[n]=count[n-1]+1   !! Dynamic Programming !!**
 
-### B. Logic
+# B. Logic
 - Take a dp array of same size as input string. Consider s = "0110111"
 
 |  |  |  |  |  |  |  |
@@ -92,6 +92,7 @@ i = 6, `dp[6] = 1+dp[5]`
 | --- | --- | --- | --- | --- | --- | --- |
 | 0 | 1 | 2 | 3 | 4  | 5 | 6 |
 
+# C. Code
 ```
 class Solution {
 public:
