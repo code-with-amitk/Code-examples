@@ -57,8 +57,22 @@
 
 # C. HLD/Design
 ### a. 1 Server, 1 User Design
-- Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
-- A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
-```
-  
-```
+1. Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
+2. A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
+3. User creates a file. A client Application running on user's machine sends these information to server
+     - Unique Id assigned to user.  =>  userID
+     - Unique Id assigned to file   =>  uniqueFID
+     - Actual content of file (sent in JSON format/websockets)
+     - startPtr of file
+     - endPtr of file
+     - sha3 hash calculated of file content
+4. **Object-store-DB** Actual file-content/Photos/Videos are stored on seperate DB
+     - Text, Photos, Videos stored on Object store DB   
+5. **Meta-data server** stores following informtion:
+   - File's Metadata is stored in following table
+   
+| userId | uniqueFileID(uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocationPtrOnDB | Directory-structure | Shared-With |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| amit | amit102 | 0x42 | 0x506 | faga1B | DB_4-offset_89100 | dir1/dir2/file-2 | user10,user41 |
+
+
