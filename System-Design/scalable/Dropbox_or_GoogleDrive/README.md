@@ -71,8 +71,8 @@
 5. **Meta-data server** stores following informtion:
    - File's Metadata is stored in following table
    
-| userId | uniqueFileID(uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocationPtrOnDB | Directory-structure | Shared-With |
+| userId | uniqueFileID (uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocation (PtrOnDB) | Directory structure | Shared-With |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| amit | amit102 | 0x42 | 0x506 | faga1B | DB_4-offset_89100 | dir1/dir2/file-2 | user10,user41 |
+| amit | amit102 | 0x42 | 0x506 | faga1B | DB_4-offset_89100 | dir1/dir2/file | user10,user41 |
 
 
