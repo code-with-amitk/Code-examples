@@ -56,7 +56,8 @@
 > Total Space used = 14x15x10<sup>16</sup> + 14x15x10<sup>19</sup> = 210x10<sup>19</sup> = 10<sup>22</sup> bytes
 
 # C. HLD/Design
-### a. 1 Server, 1 User Design
+## A. 1 Server, 1 User Design
+### A1. Case: New File Creation
 1. Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
 2. A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
 3. User creates a file. A client Application running on user's machine sends these information to server
@@ -75,4 +76,4 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | amit | amit102 | 0x42 | 0x506 | faga1B | DB_4-offset_89100 | dir1/dir2/file | user10,user41 |
 
-
+![ImgURL](https://i.ibb.co/LNfsTc4/dropbox1.png)
