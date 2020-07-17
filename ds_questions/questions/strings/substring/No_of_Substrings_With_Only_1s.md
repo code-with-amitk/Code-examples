@@ -24,7 +24,7 @@ index   substring
 - Take a dp array of same size as input string. Consider s = "0110111"
 
 | | | | | | |
-| - | - | - | - | - | - | - |
+| --- | --- | --- | --- | --- | --- | --- |
 
 - s[0] == 0
 | 0 | 
