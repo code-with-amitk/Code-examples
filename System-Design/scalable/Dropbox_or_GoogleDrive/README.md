@@ -89,11 +89,15 @@
     - Client will store hash of chunks.
     - Whenever user writes to file, Client Application will recalculate the hashes for chunk.
       - Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
-- **Modules** We can create different modules inside Client-Application doing above task.
-  1. ***Chunker*** Module doing all processing about chunks
+- **Modules of Client Application** We can create different modules inside Client-Application doing above task.
+  1. ***Watcher*** This will keep watch on workspace for any changes made by user. When user changes file.
+     - It will notify chunker about the change.
+     - This also implements **select()/poll()/epoll()** API, it listens for communication from drop-box server.
+  2. ***Chunker*** Module doing all processing about chunks
      - Decide chunk-size on the fly based on directions from dropbox server.
-     - Calculate hash of chunks
+     - On reception of message from watcher, Calculate hash of all the chunks.
      - Compare oldHashes with newHash deciding on which chunk to be transmitted.
+     - This module is also responsible for recreation of file on reception of **chunks**.
   2. ***Transmitter*** Module sending the changed chunk to dropbox server
      - Chunker will provide this information to transmitter:
        - Old Hash of chunk        //Dropbox server is also storing hashes,server will find this hash in its DB and know this field needs updation
