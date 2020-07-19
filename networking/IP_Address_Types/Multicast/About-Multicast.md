@@ -1,7 +1,7 @@
 
 # A. What is multicast
 - Sending packet by 1/More Sender to 1/More receiver.
-- Mutlicast uses UDP.
+- Mutlicast uses UDP. 
 
 # B. How it works?
 - Read (networking/OSI-Layers/Layer-3/Protocols/IGMP/About-IGMP.md) //Will understand.
