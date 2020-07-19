@@ -57,7 +57,7 @@
 
 # C. HLD/Design
 ## A. 1 Server, 1 User Design
-### CASE-1: New File Creation
+### CASE-1: NEW FILE CREATION
 1. Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
 2. A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
 3. User creates a file. A client Application running on user's machine sends these information to server
@@ -79,7 +79,7 @@
 ![ImgURL](https://i.ibb.co/LNfsTc4/dropbox1.png)
 
 
-### CASE-2: Updating the existing file
+### CASE-2: UPDATING THE EXISTING FILE
 - Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
   1. User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
   2. User erases last 100 lines and adds new 200 lines. File size is changed.
@@ -90,30 +90,28 @@
     - Whenever user writes to file, Client Application will recalculate the hashes for chunk.
       - Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
 - **Modules of Client Application** We can create different modules inside Client-Application doing above task.
-  1. ***Watcher*** This will keep watch on workspace for any changes made by user. When user changes file.
+  1. ***Internal Metadata Database*** Stores all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks.
+    
+| fileUniqueID | No of chunks | sizeofChunk | fileStartPointer | fileEndPointer | ptrTo_hash_structure | version |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0x8129 | 4 | 200 bytes | 0x45 | 0x789 | 0x492m | 4 |
+                                               |
+                                               | 
+                                              \/
+                                        | hashOf-Chunk1 | hashOf-Chunk2 | hashOf-Chunk3 | hashOf-Chunk4 |
+                                          hashOf_chunkStructure
+
+  2. ***Watcher*** This will keep watch on workspace for any changes made by user. When user changes file.
      - It will notify chunker about the change.
      - This also implements **select()/poll()/epoll()** API, it listens for communication from drop-box server.
-  2. ***Chunker*** Module doing all processing about chunks
+  3. ***Chunker*** Module doing all processing about chunks. Fills/updates *Internal Metadata database*.
      - Decide chunk-size on the fly based on directions from dropbox server.
      - On reception of message from watcher, Calculate hash of all the chunks.
      - Compare oldHashes with newHash deciding on which chunk to be transmitted.
      - This module is also responsible for recreation of file on reception of **chunks**.
-  2. ***Transmitter*** Module sending the changed chunk to dropbox server
+  4. ***Transmitter*** Module sending the changed chunk to dropbox server
      - Chunker will provide this information to transmitter:
        - Old Hash of chunk        //Dropbox server is also storing hashes,server will find this hash in its DB and know this field needs updation
        - New Hash of chunk        //If data is modified in transit, server can detect data is malformed.
        - Actual data of chunk     //To be stored on object store
-    
-| FileUniqueID | No of chunks | ptrToChunkStructure |
-| --- | --- | --- |
-| 0x8129(file-1) | 4 | ptrChunk_file-1 |
-                               |
-                               | 
-                               \/
-                        | hashOf-Chunk1 | hashOf-Chunk2 | hashOf-Chunk3 | hashOf-Chunk4 |
-                        chunkStructure
-  - Client Application will calculate the hash of new file, compare with old hash if changed.
-  - if(oldHash == newHash)  
-    - nothing changed
-  - else
-    - File changed, Send complete file in chunks.
+ 
