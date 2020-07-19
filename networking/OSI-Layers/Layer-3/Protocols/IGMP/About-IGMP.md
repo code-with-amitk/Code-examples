@@ -39,8 +39,3 @@
 - If Host receives another report for the Group its time is running(means it will send report), It stops self timer for the group and does not sends the report. To suppress Duplicate reports in network.
 - **Unsolicited  Reports**
   - Host should send Immediately as it becomes member of particular group.
-
-## F. TERMS
-### 1. IGMP Snooping
-- Means listening to IGMP Traffic between Router and Host.
-- **Why Required** By listening to these conversations the switch maintains a map of which links need which IP multicast streams.
