@@ -8,7 +8,7 @@
   - If want to use other languages you need to use [Cypher(Query Language)](https://en.wikipedia.org/wiki/Cypher_(query_language))
 
 # A. Installation
-## A1. Ubuntu
+#### Ubuntu
 ```
  # sudo apt install openjdk;
  # java --version                         //JDK version 9 or above is good
@@ -19,3 +19,22 @@
  $ sudo apt remove neo4j                     //Remove
  $ neo4j --version
 ``` 
+
+#### Fedora   `[Working]`
+```
+# rpm --import https://debian.neo4j.com/neotechnology.gpg.key
+# cat <<EOF>  /etc/yum.repos.d/neo4j.repo
+[neo4j]
+name=Neo4j RPM Repository
+baseurl=https://yum.neo4j.com/stable
+enabled=1
+gpgcheck=1
+EOF
+# yum install neo4j -y
+# systemctl disable neo4j                     //Disable autostart
+```
+
+# B. DATABASE
+- Neo4j supports multiple databases within the same DBMS. 
+- The metadata + security-model for these databases is maintained in a special database called the **system database**.
+- All multi-database administrative commands must be run against the system database.
