@@ -1,8 +1,10 @@
 
 # A. What is multicast
 - Sending packet by 1/More Sender to 1/More receiver.
+- Mutlicast uses UDP.
 
 # B. How it works?
+- Read (networking/OSI-Layers/Layer-3/Protocols/IGMP/About-IGMP.md) //Will understand.
 - Multicast packets are replicated in N/W at a point where Paths Diverges by Router enabled by PIM(Protocol Independent Multicast) & Other supporting multicast protocols.
 - Multicast addresses are used as destination addresess only, source addresses are always unicast.
 - **Multicast Groups?** These are arbitrary group of receivers that expresses interest in receiving certain data stream. These hosts joins the Groups using IGMP.
