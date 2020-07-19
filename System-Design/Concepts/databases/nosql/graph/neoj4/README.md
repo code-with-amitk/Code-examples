@@ -21,6 +21,10 @@
 ``` 
 
 #### Fedora   `[Working]`
+- Minimum Oracle openjdk version 11 is required.
+```
+```
+- Install neoj4
 ```
 # rpm --import https://debian.neo4j.com/neotechnology.gpg.key
 # cat <<EOF>  /etc/yum.repos.d/neo4j.repo
