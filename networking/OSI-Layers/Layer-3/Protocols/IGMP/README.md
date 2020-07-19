@@ -1,0 +1,16 @@
+## Contents
+- **About-IGMP.md**
+  - What is IGMP
+  - How it works?
+  - MESSAGE TYPES
+    - Report
+    - Query
+    - Leave
+  - Message Format
+  - Node Types
+    - Router
+    - Host
+  - Terms
+    - IGMP Snooping
+- **IGMPv1v2v3.md**
+  - Comparison of v1 v2 v3
