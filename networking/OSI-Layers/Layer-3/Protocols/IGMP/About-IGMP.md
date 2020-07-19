@@ -9,6 +9,7 @@
 ## B. How it works?
 - A multicast server(on internet) serves particular multicast group & sends the multicat packets over internet.
 - A multicast router recieves the multicast packets and forwards to those hosts which are intrested in recieving the packets.
+- Only 1 packet is sent from the source, and multiple copies are created by router and then sent to the desired recipients.
 ![ImgURL](https://i.ibb.co/4dnM8qm/igmp.png)
 
 ## C. MESSAGE TYPES
