@@ -17,7 +17,7 @@
 | Name | Meaning |
 | --- | --- |
 | Report | send by Host to Router to express intrest in recieving multicast packets of particular group |
-| Query | <ul><li>Send by Router to hosts to ask whether you are still intrested in particular multicast group traffic or not</li></ul> <ul><li>Always sent on `224.0.0.1`</li></ul> <ul><li>When there is no reply to 3 consecutive IGMP membership queries, the router times out the group and stops sending query for that group</li></ul> | 
+| Query | <ul><li>Send by Router to hosts to ask whether you are still intrested in particular multicast group traffic or not</li></ul> <ul><li>Always sent on `224.0.0.1`</li></ul> <ul><li>This message is recieved by all nodes on LAN but only intrested responds</li></ul> <ul><li>When there is no reply to 3 consecutive IGMP membership queries, the router times out the group and stops sending query for that group</li></ul> | 
 | Leave | Whenever a Host want to leave a multicast group it sends this message to Router on `224.0.0.2` |
 
 ## D. Message Format
