@@ -114,4 +114,4 @@
        - Old Hash of chunk        //Dropbox server is also storing hashes,server will find this hash in its DB and know this field needs updation
        - New Hash of chunk        //If data is modified in transit, server can detect data is malformed.
        - Actual data of chunk     //To be stored on object store
- 
+ ![ImgURL](https://i.ibb.co/TMDWjLr/dropbox-client-application.png)
