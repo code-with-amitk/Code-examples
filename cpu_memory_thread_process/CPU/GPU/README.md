@@ -1,12 +1,14 @@
 ## Contents
-- **GPU.md**
-  - Graphics card and components
+- **Graphics_Card.md**
+  - What
+  - Components of Graphics card
     - VRAM
     - VRM
     - PCB
-  - GPU
-    - Usages
-    - CPU vs GPU
-    - GPU Architecture
-    - GPU Series
+- **GPU.md**
+  - Usages
+  - CPU vs GPU
+  - GPU Series
+    - AMD:  Navi 14,10
+  - GPU Architecture
 - **DGPU.md {Dual GPU}**  
