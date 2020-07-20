@@ -1,10 +1,10 @@
-# A. ROM(READ ONLY MEMORY)?
-- ROM is non-volatile memory whose data cannot be modified once manufacturer has written it.
+# ROM(READ ONLY MEMORY)?
+- **What** ROM is non-volatile memory whose data cannot be modified once manufacturer has written it.
 
-# B. EEPROM(Erasable programmable ROM)
-- These can be electrically erased and re-programmed, but possible only certain number of times.
+# EEPROM(Erasable programmable ROM)
+- **What** These can be electrically erased and re-programmed, but possible only certain number of times.
 
-# C. BIOS(Basic I/O System)/ (Also called ROM BIOS)
+# BIOS(Basic I/O System)/ (Also called ROM BIOS)
 - **What** 
   - This is firmware used to perform hardware initialization during the booting process (power-on startup)
   - This comes pre-installed on a PC's, and is 1st software to run when powered on.
@@ -21,8 +21,7 @@
   - **Originally** BIOS firmware was stored in a ROM chip on the PC motherboard.
   - **Present Day** BIOS contents are stored on flash memory so it can be rewritten without removing the chip from the motherboard.  
     
-# B. VBIOS(Video BIOS)
-## VBIOS?
+# VBIOS(Video BIOS)
 - (BIOS) of a graphics card or the integrated graphics controller in a computer.
 - provides a set of video-related functions that are used by programs to access the video hardware.
     
