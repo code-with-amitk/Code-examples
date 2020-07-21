@@ -58,6 +58,7 @@
 # C. HLD/Design
 ## A. 1 Server, 1 User Design
 ### CASE-1: NEW FILE CREATION
+#### WHAT HAPPENS ON CLIENT & SERVER
 1. Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
 2. A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
 3. User creates a file. A client Application running on user's machine sends these information to server
@@ -80,6 +81,7 @@
 
 
 ### CASE-2: UPDATING THE EXISTING FILE
+#### 1. WHAT HAPPENS ON CLIENT
 - Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
   1. User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
   2. User erases last 100 lines and adds new 200 lines. File size is changed.
@@ -115,3 +117,10 @@
        - New Hash of chunk        //If data is modified in transit, server can detect data is malformed.
        - Actual data of chunk     //To be stored on object store
  ![ImgURL](https://i.ibb.co/TMDWjLr/dropbox-client-application.png)
+
+#### 2. WHAT HAPPENS ON SERVER
+- Server was storing actual files on `Object store` & file,related information on `metadata server`.
+- Server gets information from Transmitter:
+  - For user=uniqueUserID, uniqueFileID, oldHash, newHash, actual changed content are changed.   //When existing file updated
+    - Updates metadata server, object store database.
+  - For user=uniqueUserID, new file is created, size, chunk-hashes, actual file content.
