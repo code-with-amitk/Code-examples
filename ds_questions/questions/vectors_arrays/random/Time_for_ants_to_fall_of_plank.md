@@ -1,8 +1,5 @@
 ## [Problem](https://leetcode.com/contest/weekly-contest-196/problems/last-moment-before-all-ants-fall-out-of-a-plank/)
 
-## Question
-- See leetcode link
-
 ## Logic
 - We need to find maximum distance travelled by ant placed leftmost on plank(travelling right) & rightmost ant(travelling left)
 - Collision of ants does not matter because its just exchange of ants but and movement of 1+ position.
