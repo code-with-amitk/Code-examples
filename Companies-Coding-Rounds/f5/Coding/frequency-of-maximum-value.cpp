@@ -1,4 +1,6 @@
-/*	frequencey of maximum number
+/*	frequencey of maximum Value
+ 
+ >>>>>>>>>>>>>>>>Only 2 test cases passed<<<<<<<<<<<<<<<<<<<<<
  
  Input array n={5,4,5,3,2} is given
  Index Array q={1,2,3,4,5} is given
