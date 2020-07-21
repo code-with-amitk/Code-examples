@@ -1,0 +1,20 @@
+## Contents
+- **2-d-vector.cpp** 2-Dimensional vector
+  - Arbitary size
+  - Fixed size
+- **Convert_vector_to_heap.md**
+  - to min_heap
+  - to max_heap
+- **insert_iterate_delete.cpp**
+  - *insert* push_back(), 
+  - *Traversal* 
+    - Using index
+    - Using iterator
+  - *Deletion*
+    - erase(): Removes a range
+    - clear(): Empties the container
+- **sizeof_vector.md**
+  - Calculating sizeof vector
+- **vector_constructors.cpp**: default, fill, range, copy, fixed, move, initializer list
+- **Searching.md**
+  - max/min element
