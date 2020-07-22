@@ -1,3 +1,4 @@
-- Other Question:
+- **Other Question**
   1. fun_with_anagrams: Check Code-examples/ds_questions/questions/strings/anagram_pangram/fun_with_anagrams.md
-  2. [Partitioning_array](https://leetcode.com/discuss/interview-question/375262/twitter-oa-2019-partitioning-array)
+  2. Partitioning_array => Code-examples/ds_questions/questions/vectors_arrays/subarrays-subseq/Partitioning_array.md
+    
