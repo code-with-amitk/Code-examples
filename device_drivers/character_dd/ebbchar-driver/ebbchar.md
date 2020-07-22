@@ -1,4 +1,4 @@
-## Steps for Writing Character Device Driver
+# Steps for Writing Character Device Driver
 
 - Rename this file as **ebbchar.c**
 
@@ -6,35 +6,35 @@
 
 [Source](http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device)
 
-a. Write device driver named 'ebbchar.c'
-b. Build the driver ebbchar.ko
+# 1. Write device driver named 'ebbchar.c'
+# 2. Build the driver ebbchar.ko
 ```
 # make; ls 
 	ebbchar.ko
 ```
-c. Insert the driver into kernel
+# 3. Insert the driver into kernel
 ```
 # insmod ebbchar.ko	
 ```
-d. Verify driver is inserted
+# 4. Verify driver is inserted
 ```
 # dmesg
 ```
-e. Check listing of driver
+# 5. Check listing of driver
 ```
 # lsmod |grep ebb
 # ls -ltr /dev/ebb*
 	crw-------- 1 root root 238,0 	//238 major no is automatically assigned by kernel
 ```
-f. Write & compile user application to communicate with driver.
+# 6. Write & compile user application to communicate with driver.
 ```
 # vim testebbdriver.c
 ```
-g. Test interaction
+# 7. Test interaction
 ```
 # ./test
 ```
-h. Remove the driver.
+# 8. Remove the driver.
 ```
 # rmmod ebbchar
 ```
