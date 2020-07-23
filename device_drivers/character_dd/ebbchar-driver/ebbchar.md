@@ -1,45 +1,46 @@
 # Steps for Writing Character Device Driver
-
 - Rename this file as **ebbchar.c**
+- Take Soure part only and compile. [Source](http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device)
 
-- Take Soure part only and compile.
-
-[Source](http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device)
-
-# 1. Write device driver named 'ebbchar.c'
-# 2. Build the driver ebbchar.ko
+### 1. Write device driver code inside file 'ebbchar.c'
+- Device File is created inside Device Driver using `register_chrdev`.
+- `register_chrdev` will dynamically allocate a major number for the device.
 ```
-# make; ls 
+#define  DEVICE_NAME "ebbchar"
+majorNumber = register_chrdev(0, DEVICE_NAME, &fops);						//Creates /dev/ebbchar
+```
+### 2. Build the driver ebbchar.ko
+```
+# make; 
+# ls 
 	ebbchar.ko
 ```
-# 3. Insert the driver into kernel
+### 3. Insert/Register Device Driver, Verify driver & Device file being created
 ```
 # insmod ebbchar.ko	
-```
-# 4. Verify driver is inserted
-```
 # dmesg
+# lsmod |grep ebb									  //Check listing of driver
+# ls -ltr /dev/ebb*								  //Device file
+	crw-------- 1 root root 238,0 	  //238 major no is automatically assigned by kernel
 ```
-# 5. Check listing of driver
-```
-# lsmod |grep ebb
-# ls -ltr /dev/ebb*
-	crw-------- 1 root root 238,0 	//238 major no is automatically assigned by kernel
-```
-# 6. Write & compile user application to communicate with driver.
+### 4. Write/compile/Test user application to communicate with driver.
+- Note, User space application should be aware of Device file `/dev/ebbchar`.
+- User space application will open this device and do RW operation on it
 ```
 # vim testebbdriver.c
-```
-# 7. Test interaction
-```
+..
+fd = open("/dev/ebbchar", O_RDWR);
+write(fd, stringToSend, strlen(stringToSend));
+read(fd, receive, BUFFER_LENGTH); 
+..
 # ./test
 ```
-# 8. Remove the driver.
+### 5. Remove the driver.
 ```
 # rmmod ebbchar
 ```
 
-
+# Code Explained
 ### STEP-1: Declare Headers
 ```
 /*
