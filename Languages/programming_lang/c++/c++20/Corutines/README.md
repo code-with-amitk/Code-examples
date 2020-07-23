@@ -1,6 +1,6 @@
 # COROUTINES
 ## A. WHAT
-- This is **a stackless function** that can suspend execution to be resumed later. Resumption information is stored seperately from stack.
+- Same as **yield** keyword in `python`.
 - **Restrictions**
   1. ***Coroutines cannot Use***
      - Variadic arguments
