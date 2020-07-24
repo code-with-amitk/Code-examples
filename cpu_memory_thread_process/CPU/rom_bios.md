@@ -24,6 +24,10 @@
 # VBIOS(Video BIOS)
 - (BIOS) of a graphics card or the integrated graphics controller in a computer.
 - provides a set of video-related functions that are used by programs to access the video hardware.
+
+# SMBIOS(System Management BIOS)
+- **What** Data structures (and access methods) for reading management information produced by the BIOS.
+- **Why** This eliminates the need for the operating system to probe hardware directly to discover what devices are present in the computer
     
 # C. Boot loader/Bootstrap loader
 - Loads Operating system.
