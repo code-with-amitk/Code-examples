@@ -22,16 +22,14 @@
    - Algorithms on lazy-computed infinite sequences
 
 ## C. CREATING COROUTINES
-- Functions becomes coroutine if it does any of following
+- Functions becomes coroutine if it has any of these 3 keywords in its body `co_await` or `co_yield` or `co_return`.
 ### 1. co_await()
-- co_await operator to suspend execution until resumed
+- co_yield suspends the functions execution, stores that state in the generator<int>
+- then returns the value of current through the generator<int>.
 ```
-task<> tcp_echo_server() {
-  char data[1024];
-  for (;;) {
-    size_t n = co_await socket.async_read_some(buffer(data));
-    co_await async_write(socket, buffer(data, n));
-  }
+generator<int> get_integers( int start=0, int step=1 ) {
+  for (int current=start; true; current+= step)
+    co_yield current;
 }
 ```
 ### 2. co_yeild()
