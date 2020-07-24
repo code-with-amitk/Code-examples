@@ -3,9 +3,9 @@
 - Maps file or device(device file) into Memory.
 
 ### Why mmap
-a. Multiple Processes Accessing Data from Shared File:    Load/time/memory of opening/closing file is saved. What we do is open file, write file into buffer. So this write into buffer is saved, you can directly work of memory address. 
-b. This is advantageous for Big Files:    This may happens file data/structures are much bigger than Buffer taken to read file. That may cause issues.
-c. Provides Huge speed Advantage wrt I/O.
+- Multiple Processes Accessing Data from Shared File:    Load/time/memory of opening/closing file is saved. What we do is open file, write file into buffer. So this write into buffer is saved, you can directly work of memory address. 
+- This is advantageous for Big Files:    This may happens file data/structures are much bigger than Buffer taken to read file. That may cause issues.
+- Provides Huge speed Advantage wrt I/O.
 
 ### Syntax
 ```
