@@ -1,6 +1,5 @@
-## 1. Inorder Vector Recursively
-- Pass Created tree to a function.
-- Recursively iterate through tree
+## 1. Function returning Vector<int> created after inorder traversal [Recursive]
+- Pass Created tree to a function
 - Create a vector during recursive traversal & return it
 - **Input**
 ```
@@ -12,7 +11,7 @@
 ```
 - **Ouput**: Vector created after inorder traversal
 ```
-  vector<int> = {1,3,2}
+vector<int> = {1,3,2}
 ```
 ### Code
 ```
