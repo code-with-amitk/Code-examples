@@ -1,6 +1,6 @@
-## 1. Function returning Vector<int> created after inorder traversal [Recursive]
+# Function returning Vector<int> created after inorder traversal
 - Pass Created tree to a function
-- Create a vector during recursive traversal & return it
+- Create a vector during inorder traversal & return it
 - **Input**
 ```
   1
@@ -13,7 +13,7 @@
 ```
 vector<int> = {1,3,2}
 ```
-### Code
+## 1. Recursive Approach
 ```
 struct TreeNode {
   int val;
