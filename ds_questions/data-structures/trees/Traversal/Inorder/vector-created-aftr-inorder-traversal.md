@@ -14,6 +14,10 @@
 vector<int> = {1,3,2}
 ```
 ## 1. Recursive Approach
+- **Logic**
+  - Take 2 vectors `v`, `temp`.
+  - Create vector `temp` after recursive traversal of tree
+  - Append `temp` at end of `v` when branch's traversal is over.
 ```
 struct TreeNode {
   int val;
@@ -26,20 +30,20 @@ struct TreeNode {
 class Solution {
 public:
   vector<int> inorderTraversal(TreeNode* root) {
-    vector<int> r, x;
+    vector<int> v, temp;
     if (!root) {
-      return r;
+      return v;
     }
     if (root->left != NULL) {
-      x = inorderTraversal(root->left);
-      r.insert(r.end(), x.begin(), x.end());
+      temp = inorderTraversal(root->left);
+      v.insert(r.end(), temp.begin(), temp.end());
     }
-    r.push_back(root->val);
+    v.push_back(root->val);
     if (root->right != NULL) {
-      x = inorderTraversal(root->right);
-      r.insert(r.end(), x.begin(), x.end());
+      temp = inorderTraversal(root->right);
+      v.insert(v.end(), temp.begin(), temp.end());
     }
-    return r;
+    return v;
   }
 };
 int main(){
@@ -53,4 +57,30 @@ int main(){
   for(auto i:v)
     cout<<i<<" ";
 }
+```
+
+## 2. Iterative Approach
+```
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> r;
+        if (root == NULL) {
+            return r;
+        }
+        stack<TreeNode*> st;
+        TreeNode* p = root;
+        while (p || !st.empty()) {
+            while (p) {
+                st.push(p);
+                p = p->left;
+            }
+            p = st.top();
+            st.pop();
+            r.push_back(p->val);
+            p = p->right;
+        }
+        return r;
+    }
+};
 ```
