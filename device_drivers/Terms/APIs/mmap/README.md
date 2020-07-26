@@ -17,8 +17,7 @@
 | off_t offset | Start reading file(Or other object) at offset offset. |
 
 ### Example-1
-- Maps /dev/mem to memory(`*ptr`)
-- Maps (131072 bytes) starting at (offset=917504) from "/dev/mem" to memory (`*map_base`)
+- Maps (131072 bytes) starting at (offset=917504) from "/dev/mem" to memory (`*ptr`)
 ```
 fd = open(/dev/mem, RW|SYNC)
 void *ptr = mmap(0, 131072, PROT_READ |PROT_WRITE, MAP_SHARED, fd, 917504)
