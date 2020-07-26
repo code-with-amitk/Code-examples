@@ -58,7 +58,7 @@
 # C. HLD/Design
 ## A. 1 Server, 1 User Design
 ### CASE-1: NEW FILE CREATION
-#### WHAT HAPPENS ON CLIENT & SERVER
+#### WHAT HAPPENS ON CLIENT
 1. Normal User creates a gmail/google drive account. On server space of 15 GB gets reserved for user.
 2. A sort of Dashboard is allocated to user on server, whenever user connects to Google Drive URL, dashboard is rendered to user.
 3. User creates a file. A client Application running on user's machine sends these information to server
@@ -68,9 +68,10 @@
      - startPtr of file
      - endPtr of file
      - sha3 hash calculated of file content
-4. **Object-store-DB** Actual file-content/Photos/Videos are stored on seperate DB
-     - Text, Photos, Videos stored on Object store DB   
-5. **Meta-data server** stores following informtion:
+#### WHAT HAPPENS ON SERVER     
+1. **Object-store-DB** Actual file-content/Photos/Videos are stored on seperate DB
+   - Text, Photos, Videos stored on Object store DB   
+2. **Meta-data server** stores following informtion:
    - File's Metadata is stored in following table
    
 | userId | uniqueFileID (uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocation (PtrOnDB) | Directory structure | Shared-With |
@@ -81,7 +82,7 @@
 
 
 ### CASE-2: UPDATING THE EXISTING FILE
-#### 1. WHAT HAPPENS ON CLIENT
+#### WHAT HAPPENS ON CLIENT
 - Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
   1. User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
   2. User erases last 100 lines and adds new 200 lines. File size is changed.
@@ -118,9 +119,9 @@
        - Actual data of chunk     //To be stored on object store
  ![ImgURL](https://i.ibb.co/TMDWjLr/dropbox-client-application.png)
 
-#### 2. WHAT HAPPENS ON SERVER
+#### WHAT HAPPENS ON SERVER
 - Server was storing actual files on `Object store` & file,related information on `metadata server`.
-- Server gets information from Transmitter:
-  - For user=uniqueUserID, uniqueFileID, oldHash, newHash, actual changed content are changed.   //When existing file updated
-    - Updates metadata server, object store database.
-  - For user=uniqueUserID, new file is created, size, chunk-hashes, actual file content.
+- Server gets information from Transmitter. Following changes are done:
+  - **On Object Store** Actual file content/chunk is updated. 
+  - **On Meta-data server** For user=uniqueUserID, uniqueFileID
+    - oldHash is replaced with newHash.
