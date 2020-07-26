@@ -1,4 +1,4 @@
-## [On LeetCode](https://leetcode.com/problems/bulb-switcher-iv/)
+## [Problem](https://leetcode.com/problems/bulb-switcher-iv/)
 
 - Read Question completely on Leet-code only.
 ## Logic
