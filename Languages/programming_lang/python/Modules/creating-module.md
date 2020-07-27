@@ -16,9 +16,9 @@ def sum1(a,b):
 ```
 
 ## IMPORTING A MODULE? 
-- means including the module to use its functionality.
+- **What** means including the module to use its functionality.
+- There are 2 methods of importing a module.
 
-### METHODS OF IMPORTING?
 #### 1A. Importing complete module
 ```
 import mult_sum as a
