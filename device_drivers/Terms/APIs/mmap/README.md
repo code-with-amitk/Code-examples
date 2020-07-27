@@ -1,12 +1,12 @@
 # mmap(Memory Map)
-- **What** Maps file or device(device file) into Memory.
+- **What** Maps file or device(device file) to Memory. That means copy contents of file to memory & return pointer to it.
 - **Why mmap**
-	- Multiple Processes Accessing Data from Shared File:    Load/time/memory of opening/closing file is saved. What we do is open file, write file into buffer. So this write into buffer is saved, you can directly work of memory address. 
+	- Multiple Processes Accessing Data from Shared File: Load/time/memory of opening/closing file is saved. What we do is open file, write file into buffer. So this write into buffer is saved, you can directly work of memory address. 
 	- This is advantageous for Big Files:    This may happens file data/structures are much bigger than Buffer taken to read file. That may cause issues.
 	- Provides Huge speed Advantage wrt I/O.
 
-## A. `mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)`
-### Parameters
+### A. `void* mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)`
+#### Parameters
 | Parameter | Meaning |
 | --- | --- | 
 | void `*addr` | <ul><li> This is virtual Address space of calling process. Start copying at this address.</li></ul> <ul><li>if NULL, then the kernel chooses the (page-aligned) address at which to create the mapping</li></ul> <ul><li>value=NULL is the most portable method of creating a new mapping.</li></ul> |
@@ -15,8 +15,16 @@
 | int flags | <ul><li>Whether this mapping is visible to other processes or not</li></ul> <ul><li>MAP_SHARED: Share this mapping</li></ul> |
 | int fd | file to map |
 | off_t offset | Start reading file(Or other object) at offset offset. |
+```
+ ---------------------copy----------------------
+ |																							|
+\/																							|
+|=============|											|			|=========length==========|			|
+/\																 fd			offset
+ptr
+```
 
-### Example-1
+#### Example-1
 - Maps (131072 bytes) starting at (offset=917504) from "/dev/mem" to memory (`*ptr`)
 ```
 fd = open(/dev/mem, RW|SYNC)
