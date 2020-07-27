@@ -14,7 +14,19 @@
 | int prot | memory protection of mapping |
 | int flags | <ul><li>Whether this mapping is visible to other processes or not</li></ul> <ul><li>MAP_SHARED: Share this mapping</li></ul> |
 | int fd | file to map |
-| off_t offset | <ul><li>Start reading file(Or other object) at offset.</li></ul> <ul><li>offset is multiple of **page size**</li></ul> |
+| off_t offset | <ul><li>Start reading file(Or other object) at offset.</li></ul> <ul><li>offset is multiple of **page size** as returned by sysconf(_SC_PAGE_SIZE)</li></ul> |
+### Calculating page size on system
+```
+//# man sysconf
+#include<stdio.h>
+#include <unistd.h>
+int main(){
+  printf("%ld",sysconf(_SC_PAGE_SIZE));
+}
+# ./a.out
+4096
+```
+### Pictorial view
 ```
  ---------------------copy----------------------
  |						|
