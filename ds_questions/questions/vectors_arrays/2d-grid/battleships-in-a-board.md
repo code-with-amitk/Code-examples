@@ -1,4 +1,4 @@
-## [Problem](https://leetcode.com/problems/battleships-in-a-board/)
+## [LeetCode](https://leetcode.com/problems/battleships-in-a-board/)
 
 ## Problem Description
 - Given a 2-D board filled with `X` and `.`
