@@ -30,25 +30,24 @@ using namespace std;
 
 class Solution {
 public:
-        //O(m). m are number of directly connected 1's ie same island.
-        void markConnectedVisited(vector<vector<char>>& grid, vector<vector<int>>& vis, int f, int s, int row, int col){
-                vis[f][s]=1;
-                if (f>0 && (vis[f-1][s] == false) && (grid[f-1][s] == '1')){        //Above Element
-                        markConnectedVisited (grid, vis, f-1, s, row, col);
-                }
-                if (s>0 && (vis[f][s-1] == false) &&  (grid[f][s-1] == '1')){       //Left Element
-                        markConnectedVisited (grid, vis, f, s-1, row, col);
-                }
-                if ((s<=col-2) && (vis[f][s+1] == false) && (grid[f][s+1] == '1')){ //Right Element
-                        markConnectedVisited (grid, vis, f, s+1, row, col);
-                }
-                if ((f<=row-2) && (vis[f+1][s] == false) && (grid[f+1][s] == '1')){ //Below element
-                        markConnectedVisited (grid, vis, f+1, s, row, col);
-                }
+  //O(m). m are number of directly connected 1's ie same island.
+  void markConnectedVisited(vector<vector<char>>& grid, vector<vector<int>>& vis, int f, int s, int row, int col){
+    vis[f][s]=1;
+    if (f>0 && (vis[f-1][s] == false) && (grid[f-1][s] == '1')){        //Above Element
+      markConnectedVisited (grid, vis, f-1, s, row, col);
+     }
+    if (s>0 && (vis[f][s-1] == false) &&  (grid[f][s-1] == '1')){       //Left Element
+      markConnectedVisited (grid, vis, f, s-1, row, col);
+    }
+    if ((s<=col-2) && (vis[f][s+1] == false) && (grid[f][s+1] == '1')){ //Right Element
+      markConnectedVisited (grid, vis, f, s+1, row, col);
+    }
+    if ((f<=row-2) && (vis[f+1][s] == false) && (grid[f+1][s] == '1')){ //Below element
+      markConnectedVisited (grid, vis, f+1, s, row, col);
+    }
+  }
 
-        }
-
-        int numIslands(vector<vector<char>>& grid){
+  int numIslands(vector<vector<char>>& grid){
                 int rows = grid.size();
 
                 if(rows == 0)
