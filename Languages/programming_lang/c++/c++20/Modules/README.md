@@ -1,5 +1,9 @@
 # MODULES
-- **What** same as python module. File containing functions, class, variables etc.
+- **What** 
+  - Same as python module. File containing functions, class, variables etc.
+  - A module is a set of source code files that are compiled independently of the translation units that import them.
+  - Isn't it same as header files of namespaces?
+  https://docs.microsoft.com/en-us/cpp/cpp/modules-cpp?view=vs-2019
 - **Why** Modules help divide large amounts of code into logical parts.
 
 ## Creating & Using Modules
@@ -39,3 +43,5 @@ int main() {
     hello();
 }
 ```
+
+## MODULES vs HEADER FILES
