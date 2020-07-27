@@ -92,7 +92,8 @@
     - Client will store hash of chunks.
     - Whenever user writes to file, Client Application will recalculate the hashes for chunk.
       - Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
-- **Modules of Client Application** We can create different modules inside Client-Application doing above task.
+#### **Modules of Client Application** 
+> We can create different modules inside Client-Application doing above task.
   1. ***Internal Metadata Database*** Stores all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks.
     
 | fileUniqueID | No of chunks | sizeofChunk | fileStartPointer | fileEndPointer | ptrTo_hash_structure | version |
@@ -125,3 +126,5 @@
   - **On Object Store** Actual file content/chunk is updated. 
   - **On Meta-data server** For user=uniqueUserID, uniqueFileID
     - oldHash is replaced with newHash.
+
+## C2. DROPBOX SERVER COMPONENTS
