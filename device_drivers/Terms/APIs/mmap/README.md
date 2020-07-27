@@ -10,11 +10,11 @@
 | Parameter | Meaning |
 | --- | --- | 
 | void `*addr` | <ul><li> This is virtual Address space of calling process. Start copying at this address.</li></ul> <ul><li>if NULL, then the kernel chooses the (page-aligned) address at which to create the mapping</li></ul> <ul><li>value=NULL is the most portable method of creating a new mapping.</li></ul> |
-| size_t length | copy these many bytes from file(fd). |
+| size_t length | <ul><li>copy these many bytes from file(fd)</li></ul> <ul><li>size_t is unsigned int</li></ul> |
 | int prot | memory protection of mapping |
 | int flags | <ul><li>Whether this mapping is visible to other processes or not</li></ul> <ul><li>MAP_SHARED: Share this mapping</li></ul> |
 | int fd | file to map |
-| off_t offset | Start reading file(Or other object) at offset offset. |
+| off_t offset | <ul><li>Start reading file(Or other object) at offset.</li></ul> <ul><li>offset is multiple of page size</li></ul> |
 ```
  ---------------------copy----------------------
  |																							|
