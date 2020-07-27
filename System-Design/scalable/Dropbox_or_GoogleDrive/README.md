@@ -128,3 +128,16 @@
     - oldHash is replaced with newHash.
 
 ## C2. DROPBOX SERVER COMPONENTS
+1. **Communication Server** 
+- Recieves/Sends messages to/from client applications.
+- If client is offline, it pools to client for updates as soon as client comes online(it responds).
+2. **DB Server Updater** Updates DB with actual file/photo/video contents.
+- Client application can directly send/recv messages to object store.
+3. **MOM** Used for communication b/w server and client. Types of queues in MOM
+   - *Request queues* Global queue shared by all clients.
+   - *Response Queues* Sending update messages to each client. we need to create separate Response Queues for each subscribed client to share update messages
+4. **Meta data Server Updater** Stores meta data of files/photos/videos. 
+5. **Synchronization Server** Sends notification to all subscribed users of particular user about change of document/photo etc.
+![ImgURL](https://i.ibb.co/1XMg8Zk/dropbox-server.png)
+
+![ImgURL](https://i.ibb.co/fN50SNG/dropbox-server1.png)
