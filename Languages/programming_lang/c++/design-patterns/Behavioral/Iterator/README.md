@@ -13,9 +13,9 @@
     - For displaying the menu, writing code again and again is not a good idea.
     
 ## Solution
-- How about asking each resturant to implement 2 additional methods.
-  - `size()`: Returns size of the container.
-  - `get(i)`: Returns each item from the container.
+- How about asking each resturant to implement a interface(We call this interface as **iterator**.) Interface provides these 2 methods
+  - `hasNext()`: Method tells us if there are more elements in the aggregate/collection of objects to iterate through.
+  - `next()`:  Method returns the next object in the aggregate.
 ```
 for (int i = 0; i < breakfastItems.size(); i++) {
   MenuItem menuItem = (MenuItem)breakfastItems.get(i);
