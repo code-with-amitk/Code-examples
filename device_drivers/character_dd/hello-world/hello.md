@@ -1,19 +1,15 @@
-Take source code and place in hello.c
+## PREREQUISITE
+1. Install kernel source.	
+```
+# yum install kernel-devel -y
+```
 
-Note only super user can load and unload module.
-	
-Your module’s code has to be recompiled for each version of the kernel.
-
-#### PREREQUISITE
-Install kernel source.	# yum install kernel-devel -y
-
-### Steps
-
+## Steps
 1. MODULE_LICENSE: Tell kernel module us under free license
 2. Define functions to be called at module load & exit. 
 3. Call these function in module_init() & module_exit()
-4. Create Makefile;	# make
-5. Load the module		# insmod ./hello.ko
+4. Create Makefile;	`# make`
+5. Load the module		`# insmod ./hello.ko`
 ```C
 	# dmesg
 	hello: loading out-of-tree module
@@ -21,8 +17,8 @@ Install kernel source.	# yum install kernel-devel -y
 ```	
 
 6. List modules loaded in kernel	# lsmod
-	- lsmod reads /proc/modules virtual file.
-	- Information on currently loaded modules can also be found in sysfs virtual filesystem:
+- lsmod reads /proc/modules virtual file.
+- Information on currently loaded modules can also be found in sysfs virtual filesystem:
 		/sys/module
 ```		
 	# lsmod |grep hello
