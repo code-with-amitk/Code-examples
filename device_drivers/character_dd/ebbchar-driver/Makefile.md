@@ -1,3 +1,10 @@
+## Pre-requisites 
+```
+# yum install kernel-devel -y
+```
+
+## Makefile
+```
 obj-m+=ebbchar.o
 
 all:
@@ -6,3 +13,4 @@ all:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build/ M=$(PWD) clean
 	rm test
+```
