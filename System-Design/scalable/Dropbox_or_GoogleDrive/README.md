@@ -128,16 +128,44 @@
     - oldHash is replaced with newHash.
 
 ## C2. DROPBOX SERVER COMPONENTS
-1. **Communication Server** 
+### 1. **Communication Server** 
 - Recieves/Sends messages to/from client applications.
 - If client is offline, it pools to client for updates as soon as client comes online(it responds).
-2. **DB Server Updater** Updates DB with actual file/photo/video contents.
+### 2. **DB Server Updater** 
+- Updates DB with actual file/photo/video contents.
 - Client application can directly send/recv messages to object store.
-3. **MOM** Used for communication b/w server and client. Types of queues in MOM
-   - *Request queues* Global queue shared by all clients.
-   - *Response Queues* Sending update messages to each client. we need to create separate Response Queues for each subscribed client to share update messages
-4. **Meta data Server Updater** Stores meta data of files/photos/videos. 
-5. **Synchronization Server** Sends notification to all subscribed users of particular user about change of document/photo etc.
+### 3. **MOM** 
+- Used for communication b/w server and client. Types of queues in MOM
+  - *Request queues* Global queue shared by all clients.
+  - *Response Queues* Sending update messages to each client. we need to create separate Response Queues for each subscribed client to share update messages
+### 4. **Meta data Server Updater** 
+- Stores meta data of files/photos/videos. 
+### 5. **Synchronization Server** 
+- Sends notification to all subscribed users of particular user about change of document/photo etc.
 ![ImgURL](https://i.ibb.co/1XMg8Zk/dropbox-server.png)
 
 ![ImgURL](https://i.ibb.co/fN50SNG/dropbox-server1.png)
+
+
+## D. METADATA SERVER PARTIONING
+### **Why** 
+- We need to scale metadata-DB, because we need to store information about millions of users and billions of files/chunks. 
+### **Hash Based Partioning**
+- Take hash of userID. Hashes from 1-100 goes to DB-server1, 100-200 goes to DB-server2 and so on.
+- Still this approach can get overloaded.
+- We should use **consistent hashing**.
+
+## E. CACHING
+### 1. Chunk cacher
+- Stores frequently accessed chunks of files by particular user.
+- **memcached** is fit for solution.
+- **LRU** can be used as cache replacement policy.
+
+## F. LOAD BALANCEER
+- LB can be placed at 2 places.
+### 1. B/W client application & Dropbox reciver component
+### 2. B/W client application & meta data sever
+- Client application later on will interact directly with meta data server after proper end point are discoverd.
+
+
+  
