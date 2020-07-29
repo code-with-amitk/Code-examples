@@ -1,18 +1,15 @@
-/*      functors.cpp
-
-WHAT? 
+## Functor
+### WHAT?
 - A object of class that can used on left side of Function call operator (). Ex: object()
 - Overloading () operator inside class, now Object of this class can behave as Function.
 - Remember functors are objects only, Hence can store state.
+- Compipler does not provide functors, we need to define explicitly.
 
-DOES COMPILER PROVIDES FUNCTOR? No, we need to define explicitly.
-
-WHY?
-1. FUNCTOR vs NORMAL-FUNCTION?
-                NORMAL-FUNCTION                 FUNCTOR
-store state?    No                              Yes
-                Need to use global,static       a. non-static pvt member(ie object specific)
-                                                b. static(across all objects)
+### FUNCTOR vs NORMAL-FUNCTION?
+| | NORMAL-FUNCTION | FUNCTOR |
+| --- | --- | --- |  
+| store state? | <ul><li>No</li></ul> <ul><li>Need to use global,static</li></lu> | <ul><li>Yes</li></ul> <ul><li>a. non-static pvt member(ie object specific)</li></ul> <ul><li>b. static(across all objects)</li></ul> |
+                                                
 
  */
 #include<iostream>
