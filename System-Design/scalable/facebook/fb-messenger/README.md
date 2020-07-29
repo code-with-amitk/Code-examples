@@ -31,6 +31,6 @@
 - Data estimations(bytes to stored)
 
 | | Per day | Per 5 years |
-| --- | --- |
+| --- | --- | --- |
 | Text/Chat | 4000x14x10<sup>7</sup> | 56x10<sup>10</sup>x30x12x5 |
 | Video | 
