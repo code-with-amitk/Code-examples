@@ -28,7 +28,7 @@
 - Out of these 50% use facebook. 14x10<sup>8</sup>
 - Only 10% of FB users do chat/send audio video per day. 14x10<sup>7</sup> users
 - Each chat message=500 words=500x8 bytes.
-- Data estimations(bytes to stored)
+- **Data estimations(bytes to stored)**
 
 | | Per day | Per 5 years |
 | --- | --- | --- |
