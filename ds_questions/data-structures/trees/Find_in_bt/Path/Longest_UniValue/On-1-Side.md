@@ -22,6 +22,17 @@ On-Both-sides will give answer = 4
 ```
 
 ## Logic
+1. Start from root
+2. Traverse left, right subtrees
+3. At each node:
+  - Find length of left Subtree
+  - Find length of right subtree
+  - if(present_node's_value == left_child's_value)
+      leftVal = left_subree_length + 1
+  - if(present_node's_value == right_child's_value)
+      rightVal = right_subree_length + 1
+  - We need to consider the greater length
+      max(leftVal, rightVal)
 
 ## Code
 ```
@@ -49,7 +60,7 @@ int length(TreeNode *node) {
   if (node->left && node->left->val == node->val)
     leftPath += 1;
 
-  return leftPath+rightPath;
+  return max(leftPath, rightPath);
 }
 
 int main(){
