@@ -21,7 +21,7 @@ Answer = 4
 ```
 
 ## Logic
-> There are 3 parts of this algorthm which needed to carried on every node:
+> There are 4 parts of this algorthm which needed to carried on every node:
 1. Traversing to child nodes
 2. Is there any child(of current node) whose value is equal to mine?
 ```
