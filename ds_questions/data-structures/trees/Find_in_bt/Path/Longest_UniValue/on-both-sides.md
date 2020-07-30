@@ -21,21 +21,21 @@ Answer = 4
 ```
 
 ## Logic
-- There are 3 parts of this algorthm which needed to carried on every node:
-  - 1. Traversing to child nodes
-  - 2. Is there any child(of current node) whose value is equal to mine?
+> There are 3 parts of this algorthm which needed to carried on every node:
+1. Traversing to child nodes
+2. Is there any child(of current node) whose value is equal to mine?
 ```
   if(yes)
     same_child_as_me = (recieved_value_of_same_child_nodes + 1);
   else
     same_child_as_me = 0;
 ```
-  - 3. Maintaining a single Reference/global variable b/w function calls which stores **maximum path length till present node(ON BOTH SIDES)**
-    - This is the answer we are seeking and will return finally.
+3. Maintaining a single Reference/global variable b/w function calls which stores **maximum path length till present node(ON BOTH SIDES)**
+   - This is the answer we are seeking and will return finally.
 ```
   return max(stored_value, leftPath+rightPath)
 ```
-  - 4. Return Maximum pathlen of only 1 side. This is because for node above present node, there is no signifiance of pathlen of both sides.
+4. Return Maximum pathlen of only 1 side. This is because for node above present node, there is no signifiance of pathlen of both sides.
   
   
 ## Code
