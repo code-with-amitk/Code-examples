@@ -1,5 +1,5 @@
 # VIRTUAL AND PHYSICAL MEMORY
-**Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage**
+**Only Read <div class="text-purple">Modern-Operating-System-Tanenbaum.pdf</div> because internet is Garbage**
 
 # A. VIRTUAL MEMORY
 ## 1. What
