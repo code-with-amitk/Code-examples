@@ -6,8 +6,8 @@
 - This is hard disk.
 - **Concept** 
   - VM is bits and pieces of many programs in RAM/Physical memory at one time.
-  - Each program has its own address space or virtual address space which is divided into fixed-size units called **pages**.
-  - Units inside Physical Address space(RAM) are called **Frames**. Pages and frames are of *SAME SIZE*.
+  - Each program has its own address space or virtual address space which is divided into fixed-size units called **PAGES** and Process of dividing Hard-Disk to equal-sized blocks is called **PAGING**.
+  - Units inside Physical Address space(RAM) are called **FRAMES**. Pages and frames are of *SAME SIZE*.
   - Pages are mapped to physical Memory(RAM), but not all pages have to be in physical memory to run the program.
   - Tranlation from Virtual to Physical Address is done by **MMU**.
 
@@ -28,7 +28,8 @@
     - Every page begins on a multiple of 4096 and ends 4095, so 4K-8K really means 4096-8191 and 8K to 12K means 8192-12287.      
 ![ImgURL](https://i.ibb.co/rZ1K6S7/virtual-physical.png)
 
-### 3b. Accessing the pages
+### 3b. Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
+> Never try accessing Virtual address directly. Its not real address and will result in corruption.
 #### 1. `MOV REG 0`
 - Program tries to access address 0. 0 is the virtual address. Virtual address is sent to MMU for translation.
 - 0 falls on 1st page (0-4k) which according to its mapping is page frame 2(8192-122870). MMU sends 8192 onto Bus
@@ -43,6 +44,10 @@
 - Address 12308 is placed on Bus.
 #### 4. `MOV REG 32780` = `MOV REG 32k+12` 
 - **Request to reference a unmapped address**.
-- Now, MMU finds page in unmmaped, CPU **traps the OS**. This is called **Page fault**.
-  - **Page Fault**? OS picks a least-used page frame and writes its contents back to the disk, then copies page into page frame changes mapping, and restarts the trapped instruction. This is called **Page Eviction**.
+- Now, MMU finds page in unmmaped, CPU **TRAPS the OS**. This is called **PAGE FAULT**.
+  - **Page Fault**? OS picks a least-used page frame and writes its contents back to the disk, then copies page into page frame changes mapping, and restarts the trapped instruction. This is called **Page Eviction**. Movement of pages in/out of RAM is done by **SWAPPER**.
+    - Example Let OS decides to evict Page number=0. 
+      - Page=0 is mapped to frame=2, ie at physical address 8192.
+      - Virtual Page 8 = 32k is loaded into physical memory 8192.
+      - Changes done in MMU.  a. Make entry of virtual-page=0(as unmapped)  b. Place 1 at frame=2 at Virtual-Page-8's entry.
 
