@@ -1,5 +1,0 @@
-## Functor
-### WHAT?
-
-
-
