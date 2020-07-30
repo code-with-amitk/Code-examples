@@ -1,15 +1,22 @@
 # VIRTUAL AND PHYSICAL MEMORY
 **Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage**
 
-| | Physical Memory OR RAM | Virtual Memory OR HARD-DISK |
-| --- | --- | --- |
-| Where program can run | Processor can only Run the program If it is on the RAM</li></ul> | Not here |
-| Volatile | Yes(looses content at power off) | no |
+# A. VIRTUAL MEMORY
+## What
+- This is hard disk.
+- **Concept** 
+  - VM is bits and pieces of many programs in RAM/Physical memory at one time.
+  - Each program has its own address space or virtual address space which is divided into fixed-size units called **pages**.
+  - Units inside Physical Address space(RAM) are called **page frames**.
+  - Pages are mapped to physical Memory(RAM), but not all pages have to be in physical memory to run the program.
 
-## A. PHYSICAL/PRIMARY/MAIN MEMORY OR RAM
-### What
-### TYPES OF RAM
-- DRAM(DYNAMIC RAM): Made from capacitors. Capacitors cannot hold charge for long. We have to refresh them with electricity to hold the information.
-- SRAM(SYNCHRONOUS DRAM): This also has capacitors. SRAM is faster than DRAM. It runs in sync with system clock.
+## WHY VIRTUAL REQUIRED
+- Now-a-days Complex programs require minimum `1 GB RAM`.
+- Bigger programs need more RAM(>1 GB) and there are 10s of these on high end programs(Eg: in aircraft deisgning).
+- So if 10 progmras are there each requiring `1 GB`, then system need to make `10 GB` available instantaneouly?
 
-## B. HARD DISK/Secondary/External/Auxillary Memory
+## Practical Example
+- Consider a system have (Physical/Memory or RAM = 32KB) & (Hard Disk or Virtual Memory = 64KB).
+![ImgURL](https://i.ibb.co/3Mk2pk3/virtual-physical.png)
+
+- Memory is d
