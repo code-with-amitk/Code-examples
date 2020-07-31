@@ -52,7 +52,18 @@
       - Virtual Page 8 = 32k is loaded into physical memory 8192.
       - Changes done in MMU.  a. Make entry of virtual-page=0(as unmapped)  b. Place 1 at frame=2 at Virtual-Page-8's entry.
 
-# Fragment, Offset Scheme
+# Fragment/Page No(4 bits) + Offset(12 bits) 
 - For 64k Virtual Memory. MMU uses 16 bit scheme.
-  - 4 bit is reserved for Page Number. 2<sup>4</sup> = 16. With 4 bits we can access 16 pages.
-  - 12 bit is reserved for **OFFSET**. 2<sup>12</sup> = 4096. With 12 bits we can access all 4096 bits inside a page.
+  - Page Number(4 bit) 
+    - 2<sup>4</sup> = 16. With 4 bits we can access 16 pages.
+    - Page no is used as index into Page Table, outputting the Physical Page no.
+  - OFFSET(12 bit)
+    - 2<sup>12</sup> = 4096. With 12 bits we can access all 4096 bits inside a page.
+![ImgURL]()    
+### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
+#### Mov REG 8196
+- Access Virtual page no=8196. Binary=0010000000000100. Page No=0010, Offset=000000000100
+- page_table`[page_no]` = page_table`[0010]` = page_table`[2]` = 110 = 6
+  - Access 6th page frame
+- Physical-Address = `0110``000000000100` = `output_of_page_table_entry``offset_copied_as_it_is` = 0110000000000100
+  - 
