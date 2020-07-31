@@ -35,11 +35,3 @@ int main(){
   cout<<obj(3)<<endl;        //Using object as Function ie functor. //30
 }
 ```
-
-# B. PREDICATE CLASS
-- A class that implements functor `bool object()` that returns boolean value(true or false).
-
-## B1. TYPES OF PREDICATES
-| Type | Unary | Binary |
-| --- | --- | --- |
-| What | Unary functor returning bool | Binary functor returning bool |
