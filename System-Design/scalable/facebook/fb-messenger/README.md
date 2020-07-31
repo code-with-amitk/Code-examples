@@ -33,11 +33,11 @@
 - **Data estimations(bytes to stored)**
 
 | Million | Billion/Giga | Trillion/Tera | Quadrillion/Peta | Quintillion/Exa | Zeta |
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | 10<sup>6</sup> | 10<sup>9</sup> | 10<sup>12</sup> | 10<sup>15</sup> | 10<sup>18</sup> | 10<sup>21</sup> |
 
 | | 1 Day storage Req(bytes) | 5 years storage Req(bytes)
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | Chat | 4k x 140 Million = 56 Billion | 56B x 30 x 12 x 5 = 1 Quadrillion |
 | Audio | 1M x 140 Million = .14 Quadrillion | .14 x30x12x5 = 252 Quadrillion |
 | Video | 10M x  14 Million = 1.4 Quadrillion | 25.2 Quadrillion |
