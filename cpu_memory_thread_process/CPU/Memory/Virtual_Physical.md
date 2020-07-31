@@ -26,7 +26,7 @@
       - Virtual Pages = 64KB/4KB = 16         //Means 16 pages on Hard Disk
       - Physical Pages = 32KB/4KB = 8         //8 frames on RAM
     - Every page begins on a multiple of 4096 and ends 4095, so 4K-8K really means 4096-8191 and 8K to 12K means 8192-12287.      
-![ImgURL](https://i.ibb.co/rZ1K6S7/virtual-physical.png)
+![ImgURL](https://i.ibb.co/hZ7PvVs/virtual-physical.png)
 
 ### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
 > Never try accessing Virtual address directly. Its not real address and will result in corruption.
