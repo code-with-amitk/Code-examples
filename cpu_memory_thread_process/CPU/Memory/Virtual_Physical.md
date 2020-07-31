@@ -68,7 +68,7 @@
 - This is content of virtual-table.
 - This is used as an index into the page table to find the mapping for that virtual page.
 - And then from Page-Table, Page-Frame is found.
-- VPN + offset creates 
+- VPN + offset creates actual Physical Address. See Below example.
 
 | **Present/Absent bit ->** | 1 | 1 | 1 | 0 | ... |
 | --- | --- | --- | --- | --- | --- |
@@ -77,8 +77,8 @@
 
 ### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
 #### Mov REG 8196
-- Access addres=8196. This is virtual address. Binary=0010000000000100. Page No=0010, Offset=000000000100
-- page_table`[page_no]` = page_table`[0010]` = page_table`[2]` = 110 = 6
-  - Access 6th page frame
-- Physical-Address = `0110``000000000100` = `output_of_page_table_entry=VPN``offset_copied_as_it_is` = 0110000000000100
+- Access address=8196. This is virtual address. Binary=0010000000000100. PageNo=0010, Offset=000000000100
+- virtual_table`[page_no]` = virtual_table`[0010]` = virtual_table`[2]` = 110 = 6
+  - Access 6th page frame.
+- Physical-Address = `0110``000000000100` = `output_of_virtual_table_entry=VPN``offset_copied_as_it_is` = 0110000000000100
 - If the Present/absent bit is 0, a trap to the OS is caused.
