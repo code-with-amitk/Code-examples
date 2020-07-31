@@ -54,16 +54,31 @@
 
 # Fragment/Page No(4 bits) + Offset(12 bits) 
 - For 64k Virtual Memory. MMU uses 16 bit scheme.
-  - Page Number(4 bit) 
-    - 2<sup>4</sup> = 16. With 4 bits we can access 16 pages.
-    - Page no is used as index into Page Table, outputting the Physical Page no.
-  - OFFSET(12 bit)
-    - 2<sup>12</sup> = 4096. With 12 bits we can access all 4096 bits inside a page.
-![ImgURL]()    
+- Virtual Page(4 bit) 
+  - 2<sup>4</sup> = 16. With 4 bits we can access 16 pages.
+  - Page no is used as index into Page Table, outputting the Physical Page no.
+  - This is always high order bits.
+  - However 3 or 5 bits can also be taken for the page. Different splits imply different page sizes.
+- OFFSET(12 bit)
+  - 2<sup>12</sup> = 4096. With 12 bits we can access all 4096 bits inside a page.
+  - These are always low order bits.
+![ImgURL]()   
+
+### VPN(Virtual Page Number)
+- This is content of virtual-table.
+- This is used as an index into the page table to find the mapping for that virtual page.
+- And then from Page-Table, Page-Frame is found.
+- VPN + offset creates 
+
 ### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
 #### Mov REG 8196
-- Access Virtual page no=8196. Binary=0010000000000100. Page No=0010, Offset=000000000100
+- Access addres=8196. This is virtual address. Binary=0010000000000100. Page No=0010, Offset=000000000100
 - page_table`[page_no]` = page_table`[0010]` = page_table`[2]` = 110 = 6
   - Access 6th page frame
-- Physical-Address = `0110``000000000100` = `output_of_page_table_entry``offset_copied_as_it_is` = 0110000000000100
-  - 
+- Physical-Address = `0110``000000000100` = `output_of_page_table_entry=VPN``offset_copied_as_it_is` = 0110000000000100
+- If the Present/absent bit is 0, a trap to the OS is caused.
+
+| Present/Absent bit -> | 1 | 1 | 1 | 0 | ... |
+| --- | --- | --- | --- | --- | --- |
+| VPN -> | 0010 = 2 | 0001 = 1 | 0110 = 6 | 0000 |  |
+| Index -> | 0 | 1 | 2 | ... | 15 |
