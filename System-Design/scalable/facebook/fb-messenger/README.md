@@ -42,5 +42,5 @@
 | Audio | 1M x 140 Million = .14 Quadrillion | .14 x30x12x5 = 252 Quadrillion |
 | Video | 10M x  14 Million = 1.4 Quadrillion | 25.2 Quadrillion |
 
-Total space requirement for 5 years = 252+1+25.2 = 276 Quadrillion = 0.2 Quintillion
+Total space requirement for 5 years = 252+1+25.2 = 276 Quadrillion = 276 petabytes
 > Not considering users who deleted chat/video/audio/account permanently. not considering compression.
