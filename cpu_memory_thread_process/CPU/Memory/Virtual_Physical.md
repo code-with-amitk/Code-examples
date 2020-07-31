@@ -69,6 +69,7 @@
 - This is used as an index into the page table to find the mapping for that virtual page.
 - And then from Page-Table, Page-Frame is found.
 - VPN + offset creates 
+
 | **Present/Absent bit ->** | 1 | 1 | 1 | 0 | ... |
 | --- | --- | --- | --- | --- | --- |
 | **VPN ->** | 0010 = 2 | 0001 = 1 | 0110 = 6 | 0000 |  |
