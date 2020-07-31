@@ -26,7 +26,7 @@
       - Virtual Pages = 64KB/4KB = 16         //Means 16 pages on Hard Disk
       - Physical Pages = 32KB/4KB = 8         //8 frames on RAM
     - Every page begins on a multiple of 4096 and ends 4095, so 4K-8K really means 4096-8191 and 8K to 12K means 8192-12287.      
-![ImgURL](https://i.ibb.co/hZ7PvVs/virtual-physical.png)
+![ImgURL](https://i.ibb.co/GCFwbL0/virtual-physical.png)
 
 ### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
 > Never try accessing Virtual address directly. Its not real address and will result in corruption.
@@ -62,13 +62,17 @@
 - OFFSET(12 bit)
   - 2<sup>12</sup> = 4096. With 12 bits we can access all 4096 bits inside a page.
   - These are always low order bits.
-![ImgURL]()   
+![ImgURL](https://i.ibb.co/86bzCf4/MMU-opearation.png)   
 
 ### VPN(Virtual Page Number)
 - This is content of virtual-table.
 - This is used as an index into the page table to find the mapping for that virtual page.
 - And then from Page-Table, Page-Frame is found.
 - VPN + offset creates 
+| **Present/Absent bit ->** | 1 | 1 | 1 | 0 | ... |
+| --- | --- | --- | --- | --- | --- |
+| **VPN ->** | 0010 = 2 | 0001 = 1 | 0110 = 6 | 0000 |  |
+| **Index ->** | 0 | 1 | 2 | ... | 15 |
 
 ### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
 #### Mov REG 8196
@@ -77,8 +81,3 @@
   - Access 6th page frame
 - Physical-Address = `0110``000000000100` = `output_of_page_table_entry=VPN``offset_copied_as_it_is` = 0110000000000100
 - If the Present/absent bit is 0, a trap to the OS is caused.
-
-| Present/Absent bit -> | 1 | 1 | 1 | 0 | ... |
-| --- | --- | --- | --- | --- | --- |
-| VPN -> | 0010 = 2 | 0001 = 1 | 0110 = 6 | 0000 |  |
-| Index -> | 0 | 1 | 2 | ... | 15 |
