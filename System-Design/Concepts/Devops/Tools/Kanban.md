@@ -20,3 +20,6 @@
 - Process should be explained throughly to everyone to discuss problems & gain feedback.
 ### 5. Improve Collaboratively
 - If teams have a shared understanding of theories about work, workflow, process, and risk they can solve problem more quickly.
+
+[kanban board](https://i.ibb.co/LkRwDQs/kanban-board.png)
+- **Row1 is Expediate Lane** This is reserved for highly urgent items that must go live quickly.
