@@ -18,7 +18,8 @@
 - **Success of Devops** is in culture of trust b/w different depts, culture of sharing ideas, issues, processes, tools, and goals.
   - Development: Programmers do not code alone; rather, everyone helps them to understand what to code
   - Quality: Testers are not solely responsible for quality; rather, the whole team works together to maintain quality.
-  - Shared Incentives: 
+  - Shared Incentives: Performance bonus & incentives of each should depends on other dev and ops.
+  - [Area of Devops](Area-Matrix.md): How they can cooperate & work with each other. 
 ## Why Devops?
 1. Deliver High quality software more quickly, which is more aligned with customer's requirements and basic conditions.
 
