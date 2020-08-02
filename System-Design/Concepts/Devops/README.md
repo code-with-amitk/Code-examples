@@ -12,12 +12,13 @@
 
 # A2. Solution(Devops) 
 ## What is Devops?
-- Close these gaps by aligning approaches, tools.
+- Close these gaps by aligning approaches, tools between dev & operations.
 - Bringing Agile approaches to all parts of the software delivery process.
 - streaming feedback from production to development and improving the cycle time. (i.e., the time from inception to delivery)
 - **Success of Devops** is in culture of trust b/w different depts, culture of sharing ideas, issues, processes, tools, and goals.
   - Development: Programmers do not code alone; rather, everyone helps them to understand what to code
   - Quality: Testers are not solely responsible for quality; rather, the whole team works together to maintain quality.
+  - Shared Incentives: 
 ## Why Devops?
 1. Deliver High quality software more quickly, which is more aligned with customer's requirements and basic conditions.
 
