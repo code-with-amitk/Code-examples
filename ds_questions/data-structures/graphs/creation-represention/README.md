@@ -1,18 +1,32 @@
-/*      graph_representations.cpp
+## Graph Representation
+
+### 1. Adjacency Matrix/Lookup table
+- **What** Each cell keeps how two nodes are connected.
+  - For unweighted graph values are `1` 
+  - For weighted graph values are cost/weights.
+- **Advantages**    
+  - Easy to represent    
+  - Removing an edge takes O(1) time.
+  - Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
+
+### Example
+```
         a --> c 
         |     |
         |     \/
         ----> d <-- b
+```
+#### 1. Adjacency Matrix
+a=0, b=1, c=2, d=3
+  
+| |  | 0 | 1 | 2 | 3 |
+| --- | --- | --- | --- | --- | --- |
+| a-> | 0 | 0 | 1 | 1 |
+| b-> | 0 | 0 | 0 | 1 |
+| c-> | 0 | 0 | 0 | 1 |
+| d-> | 0 | 0 | 0 | 0 |
 
-Adjacency Matrix:       
-                 a b c d
-                 0 1 2 3
-            a 0  0 0 1 1
-            b 1  0 0 0 1
-            c 2  0 0 0 1
-            d 3  0 0 0 0
-
-Adjacency List: 
+#### 2. Adjacency List: 
            a(0) -> c(2) -> d(3)
            b(1) -> d(3)
            c(2) -> d(3)
