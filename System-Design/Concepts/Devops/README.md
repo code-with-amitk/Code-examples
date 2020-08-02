@@ -28,7 +28,7 @@
 - **Cyle Time** Amount of time required from the start of the development process to the beginning of revenue generation.
 - **lead time** Amount of time between an input for a request to the system and the completion of that order
 
-## C. Devops Practices
+## C. Devops Building Blocks/Fundamental of Devops
 - **1. Reduce batch size** With reduced bat size, we can deploy more frequently.
 - **2. Deploy Freequently, Deploy small**
    - Root causes of production incidents can be undersood quickly.
@@ -40,4 +40,16 @@
     - 1. If an automated system has an error, the full system is often completely unavailable
     - 2. Finding error in automated system is challending task, that cannot be performed by a novice engineer.
     - 3. Strong skills & experience is required to maintain/evelop the system.
-- **4. Monitoring Application/UI** Monitoring app should be available with relaease itself, monitoring will check issues on software in production. It should be seen by everyone in team.
+- **4. Monitoring Application/UI** Monitoring app should be available with relaease itself, monitoring will check issues on software in production. It should be seen by everyone in team. Monitoring goes hand with `SMOKE TESTS`.
+- **5. Decoupling Deployment & Release** This accelerates delivery. Release strategies:
+  - *5a. Branch by Abstraction?* Do code change Branch by branch & bring to production.
+    - 1. Create an abstraction over part of system that need to change. 
+    - 2. Refactor the rest of the system to use the abstraction layer. 
+    - 3. Continue coding; the abstraction layer delegates to the old or new code, as required. 
+    - 4. Remove the old implementation.
+    - 5. Once the old implementation has been completely replaced, remove the abstraction layer
+  - *5b. Feature Toggle?* Deliver complete code to production but use data-driven switches to decide which feature is made available during runtime.
+    - Advantage? Restore system to a baseline state when a deployment goes wrong.
+  - *5c. Dark Launch/Beta Release?* Deploying 1st versions of functionality into production before releasing the functionality to all users.
+  - *5d. Blue Green Deployment?* Deploy the version of the application side by side with the old version. Now 2 proudction enviornments are available. Router switch can used to switch between deployments. At any one time, one of them (e.g., the green environment) is live. This is combined with A/B TESTING.
+    - *A/B Testing?* 2 versions of software are compared. To determine which version is better, experimentation with both versions are done simultaneously
