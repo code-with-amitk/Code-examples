@@ -1,8 +1,8 @@
 ## Spanning Tree
 ### **What** 
 - Subgraph derived from Graph satisfying these conditions:  
-  a. There are no cycles(ie it is acyclic), Since it a tree
-  b. Should connect all vertices with minimum number of edges.
+  - There are no cycles(ie it is acyclic), Since it a tree
+  - Should connect all vertices with minimum number of edges.
 
 ### Properties of ST
 - 1 graph can have many spanning trees.
