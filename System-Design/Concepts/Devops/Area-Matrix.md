@@ -17,6 +17,6 @@
 - Operations team getting involved in the development process but in a holistic way.
     
 
-Area | Practice | Goals 
---- | --- | ---
-1. Ext dev to ops | Use tools(eg:Puppet) to provision environments from versioned code | <ul><li>Fast feedback through automation</li></ul> <ul><li>Reuse of code and tools</li></ul>
+| Area | Practice | Goals |
+| --- | --- | --- |
+| 1. Ext dev to ops | Use tools(eg:Puppet) to provision environments from versioned code | <ul><li>Fast feedback through automation</li></ul> <ul><li>Reuse of code and tools</li></ul> |
