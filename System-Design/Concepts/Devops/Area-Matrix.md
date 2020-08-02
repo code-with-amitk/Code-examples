@@ -4,16 +4,13 @@
   - Each area emphasizes interactions in both directions 
 
 # Four areas are defined
-## 1. Extend development to operations
+### 1. Extend development to operations
 - Development & operations collaborate on anything that is related to delivering the project outcome to production
-
-## 2. Extend operations to development
+### 2. Extend operations to development
 - Streaming information from operations back to development
-
-## 3. Embed development into operations
+### 3. Embed development into operations
 - Development team's involvement in things that are located in production (or are under the responsibility of operations).
-
-## 4. Embed operations into development
+### 4. Embed operations into development
 - Operations team getting involved in the development process but in a holistic way.
     
 # Goals of Each Area    
