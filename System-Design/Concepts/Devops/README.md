@@ -62,3 +62,6 @@
   - Maybe next to each other's desk. 
   - Each should participate in other's Stand up meetings.
   - New ideas experiments, approaches should be encouraged.
+
+# D. Tools for implementing devops
+- [**kanban**](Tools/Kanban.md)
