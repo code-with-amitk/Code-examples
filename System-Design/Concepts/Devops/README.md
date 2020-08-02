@@ -29,14 +29,15 @@
 - **lead time** Amount of time between an input for a request to the system and the completion of that order
 
 ## C. Devops Practices
-- **Reduce batch size** With reduced bat size, we can deploy more frequently.
-- **Deploy Freequently, Deploy small**
+- **1. Reduce batch size** With reduced bat size, we can deploy more frequently.
+- **2. Deploy Freequently, Deploy small**
    - Root causes of production incidents can be undersood quickly.
    - Errors detected easily code change is much smaller. 
-- **Automatic Build,Test,Release** Creating release candidates automatically. This reduces risks of missing something during the release.
-  - What to automate? Automatic Building, Automatic testing, Automatic release will increase efficiency.
+- **3. Automatic Build,Test,Release** Creating release candidates automatically. This reduces risks of missing something during the release.
+  - *What to automate?* Automatic Building, Automatic testing, Automatic release will increase efficiency.
+  - *Why to automate?* To get fast feedback. Do not automate simply because you want to automate but it must result in concrete benefits. 
   - *Issues in Automation?* Compelte system cannot/should not be automated.
     - 1. If an automated system has an error, the full system is often completely unavailable
     - 2. Finding error in automated system is challending task, that cannot be performed by a novice engineer.
     - 3. Strong skills & experience is required to maintain/evelop the system.
-- **Monitoring Application/UI** Monitoring app should be available with relaease itself, monitoring will check issues on software in production.    
+- **4. Monitoring Application/UI** Monitoring app should be available with relaease itself, monitoring will check issues on software in production. It should be seen by everyone in team.
