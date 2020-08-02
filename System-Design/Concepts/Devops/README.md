@@ -57,3 +57,7 @@ expected and unexpected conditions
   - *5c. Dark Launch/Beta Release?* Deploying 1st versions of functionality into production before releasing the functionality to all users.
   - *5d. Blue Green Deployment?* Deploy the version of the application side by side with the old version. Now 2 proudction enviornments are available. Router switch can used to switch between deployments. At any one time, one of them (e.g., the green environment) is live. This is combined with A/B TESTING.
     - *A/B Testing?* 2 versions of software are compared. To determine which version is better, experimentation with both versions are done simultaneously
+- **6. Dev & Ops teams should be colocated**
+  - Maybe next to each other's desk. 
+  - Each should participate in other's Stand up meetings.
+  - New ideas experiments, approaches should be encouraged.
