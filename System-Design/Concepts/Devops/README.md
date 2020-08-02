@@ -19,7 +19,7 @@
   - Development: Programmers do not code alone; rather, everyone helps them to understand what to code
   - Quality: Testers are not solely responsible for quality; rather, the whole team works together to maintain quality.
   - Shared Incentives: Performance bonus & incentives of each should depends on other dev and ops.
-  - [Area of Devops](Area-Matrix.md): How they can cooperate & work with each other. 
+  - Area of Devops: How they can cooperate & work with each other. [See this Page](Area-Matrix.md)
 ## Why Devops?
 1. Deliver High quality software more quickly, which is more aligned with customer's requirements and basic conditions.
 
@@ -27,11 +27,11 @@
 - **Cyle Time** Amount of time required from the start of the development process to the beginning of revenue generation.
 - **System Capacity** Maximum throughput system can sustain for a given workload while maintaining an acceptable response time.
 - **DOD(Definition of Done)** No development job is finished until complete testing/depoyed on target systems, in a defined quality, monitoring is avaliable.
-- **lead time** Amount of time between an input for a request to the system and the completion of that order
+- **lead time** Amount of time between an input for a request to the system and the completion of that order.
+- [**Quality**](Terms/Quality.md)
 - **MTTR(Mean time to repair)** Time taken to resolve a system or network issue
 - **MTTD(Mean time to detect)** Issue detection by the operations team.
-- **Resilience** Ability of system to adjust itself during changes or disturbances, so that it can sustain required operations.
-expected and unexpected conditions
+- **Resilience** Ability of system to adjust itself during changes or disturbances, so that it can sustain required operations expected and unexpected conditions.
 
 # C. Devops Building Blocks/Fundamental of Devops
 - **1. Reduce batch size** With reduced bat size, we can deploy more frequently.
