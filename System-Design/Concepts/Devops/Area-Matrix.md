@@ -4,7 +4,7 @@
   - Each area emphasizes interactions in both directions 
 
 # Four areas are defined
-### 1. Extending development to operations
+## 1. Extending development to operations
 - Development & operations collaborate on anything that is related to delivering the project outcome to production
 
 ## 2. Extending operations to development
@@ -16,3 +16,7 @@
 ## 4. To embed operations into development
 - Operations team getting involved in the development process but in a holistic way.
     
+
+Area | Practice | Goals 
+--- | --- | ---
+1. Ext dev to ops | Use tools(eg:Puppet) to provision environments from versioned code | <ul><li>Fast feedback through automation</li></ul> <ul><li>Reuse of code and tools</li></ul>
