@@ -1,8 +1,8 @@
 ## About
 
-| Founded | HQ | Revenue | Major shareholder | No of Employeees | Industry | Acquisitions | CEO |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1998 | Palo ALto, US | $8.97 Billion | 80.8% Dell | 24200(2019) | Cloud Computing & Virtualization | 40 | P. Gelsinger |
+| Founded | HQ | Revenue | Major shareholder | No of Employeees | Industry | Acquisitions | CEO | Mission |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1998 | Palo ALto, US | $8.97 Billion | 80.8% Dell | 24200(2019) | Cloud Computing & Virtualization | 40 | P. Gelsinger | Work here, transform everywhere |
 
 ## Products/Produit
 
@@ -13,3 +13,5 @@
 | Multicloud operations | Use cloud-based solutions to manage work across different clouds and platforms |
 | Hyperconverged Infrastructure | <ul><li>Storage,networking in a single software-defined platform</li></ul> <ul><li>vSAN:storage virtualization software</li></ul> <ul><li>vSphere:Server virtualization platform</li></ul> <ul><li>NSX Data center:L2-L7 networking and security virtualization platform</li></ul> <ul><li>vRealize Suite:automation and operations for cloud</li></ul>|
 | Multi-Cloud Operations | <ul><li>Cloud Health</li></ul> <ul><li>HCX: Application Migration & Mobility Platform</li></ul> <ul><li>vRealize Automation Cloud: automate your multi-cloud</li></ul> |
+| Intrinsic Security | <ul><li>AppDefense: App security within hypervisor</li></ul> <ul><li>NSX Distributed IDS/IPS: advanced threat detection engine</li></ul>|
+| Emerging Technologies | <ul><li>VMWare Blockchain: record-keeping technology, information blocks are kept chained on different clouds</li></ul> <ul><li>BigData</li></ul> |
