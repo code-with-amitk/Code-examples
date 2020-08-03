@@ -1,4 +1,4 @@
-## For Python Build Engineer Role
+## Role(Python Build Engineer)
 ### 1. Round-1(Python)
 - list comprehension use cases, tuple, 
 - map(), join() method in python
@@ -13,7 +13,7 @@
 - how system call works in linux?
 
 
-## About
+## About VMWare
 
 | Founded | HQ | Revenue | Major shareholder | No of Employeees | Industry | Acquisitions | CEO | Mission |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
