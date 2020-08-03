@@ -3,6 +3,7 @@
 ## Logic
 1. Machine Address is unsigned long. May be a bigger no. `unsinged long ma = 18294175360`
 2. Make a `void *` point towards local variable storing machine address
+
 |ActualContent->| 0A| 43 | FF| .. | 
 | --- | --- | --- | --- | --- |
 |MachineAdd->| 18294175360 | 18294175361 | 18294175362 | 18294175363 |
