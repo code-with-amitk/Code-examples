@@ -46,3 +46,8 @@
 
 Total space requirement for 5 years = 157 zeta bytes
 > Not considering users who deleted chat/video/audio/account permanently. not considering compression.
+
+# 3. HLD
+## 3A. 2 users on same LAN
+- user-1(192.168.1.2), user-2(192.168.1.3) provided by router
+- Write 
