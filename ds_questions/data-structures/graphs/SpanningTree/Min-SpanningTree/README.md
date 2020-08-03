@@ -37,11 +37,11 @@ Step-2    [0] -2- [1] -4- [3]           [0] -2- [1] -4- [3]
 ```
   -----
   |   \/Loop
-  --- a ---------  b                        a --6---b       
+  --- a ---------  b                        a --6---b                       a    b
   /   |            |    \                7/ |    /  | \5    
- e    |            |     f              e   3   4   2  f    
+ e    |            |     f              e   3   4   2  f                e           f
   \   |            |    /                8\ | /     | /2    
-      c --------- d                        c ---3-- d       
+      c --------- d                        c ---3-- d                       c    d
       | parallel  |                 Step-2: Write all vertices
        -----------                          since MST will hav
  Step-1: Remove all loops                   all vertices      
