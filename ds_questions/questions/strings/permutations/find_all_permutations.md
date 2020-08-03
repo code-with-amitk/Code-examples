@@ -33,7 +33,7 @@ A B C
 Time Complexity: O(n*n!), where n is number of elements in string     
 ```
 
-### Method-1
+### Method-1 next_permutation()
 ```
 #include<algorithm>
 
