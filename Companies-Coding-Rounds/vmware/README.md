@@ -1,8 +1,15 @@
 ## About
 
-| Founded | HQ | Revenue | Major shareholder | No of Employeees | Industry | Acquisitions |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1998 | Palo ALto, US | $8.97 Billion | 80.8% Dell | 24200(2019) | Cloud Computing & Virtualization | 40 |
+| Founded | HQ | Revenue | Major shareholder | No of Employeees | Industry | Acquisitions | CEO |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1998 | Palo ALto, US | $8.97 Billion | 80.8% Dell | 24200(2019) | Cloud Computing & Virtualization | 40 | P. Gelsinger |
 
 ## Products/Produit
 
+| Produit | What/quel |
+| --- | --- |
+| Application Modernization | Technology to build, run and manage all your applications across any cloud |
+| Private & Hybrid cloud/Nuage | <ul><li>VMWare cloud Foundation: Hybrid cloud management platform & orchestrating containers</li></ul> <ul><li>VMWare cloud on Dell EMC:  Public cloud delivered as-a-service to data center and edge locations</li></ul> <ul><li>VMWare cloud on AWS:  VMware environment to the AWS public cloud.</li></ul> |
+| Multicloud operations | Use cloud-based solutions to manage work across different clouds and platforms |
+| Hyperconverged Infrastructure | <ul><li>Storage,networking in a single software-defined platform</li></ul> <ul><li>vSAN:storage virtualization software</li></ul> <ul><li>vSphere:Server virtualization platform</li></ul> <ul><li>NSX Data center:L2-L7 networking and security virtualization platform</li></ul> <ul><li>vRealize Suite:automation and operations for cloud</li></ul>|
+| Multi-Cloud Operations | <ul><li>Cloud Health</li></ul> <ul><li>HCX: Application Migration & Mobility Platform</li></ul> <ul><li>vRealize Automation Cloud: automate your multi-cloud</li></ul> |
