@@ -1,7 +1,11 @@
 # Facebook Messenger
 - Users can send text/video/audio/image messages using laptop or mobile.
 
-## Things to do
+| Million | Billion/Giga | Trillion/Tera | Quadrillion/Peta | Quintillion/Exa | Zeta |
+| --- | --- | --- | --- | --- | --- |
+| 10<sup>6</sup> | 10<sup>9</sup> | 10<sup>12</sup> | 10<sup>15</sup> | 10<sup>18</sup> | 10<sup>21</sup> |
+
+## To Cover
 - Requirements: Functional, Non-functional, Extended(Group chat)
 - Back of Envelope Calculations
 - HLD: For 2, 100, 1 lac users
@@ -19,28 +23,26 @@
 - User can send messages to friends, Message should be delivered instantly.
 - User can search unblocked people, can send friend requests.
 - User can see online/offline friends. Seen/Unseen messages.
-- These sizes should be delivered as 1 message.
-  - text < 500 words, audio/video < 10 MB
+- These sizes can be delivered as 1 message.
+  - {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
 - Chat history should be stored.  
 
 # 2. BOE Calculations
-- Consider 7 Billion people on earth. 7x10<sup>9</sup>
-- 40% are using internet(2.8 Billion). Out of these 50% use facebook(1.4 Billion). 
-- Let's suppose Only 10% of FB users(.14 Billion = 140 Million) send 1 chat/audio/video per day which needs to be stored.
-  - 1 chat message = 500 words = 500x8 = 4k bytes
-  - 1 audio message = 1 MB
-  - 1 Video = 10 MB
+- World population = 7 Billion = 7x10<sup>9</sup>   //Year 2020
+- Using Internet = 40% = 2.8 Billion
+- Using FB = 60% of Internet users = 1.68 Billion
+- Users sending:
+  - Text messages(per day) = 60% = 1.68x0.6 = 1 Billion
+  - Audio messages(per day) = 20% = 1.68x0.2 = 336 Million
+  - Video messages(per day) = 5% = 1.68x0.05 = 84 Million
+  
 - **Data estimations(bytes to stored)**
-
-| Million | Billion/Giga | Trillion/Tera | Quadrillion/Peta | Quintillion/Exa | Zeta |
-| --- | --- | --- | --- | --- | --- |
-| 10<sup>6</sup> | 10<sup>9</sup> | 10<sup>12</sup> | 10<sup>15</sup> | 10<sup>18</sup> | 10<sup>21</sup> |
 
 | | 1 Day storage Req(bytes) | 5 years storage Req(bytes)
 | --- | --- | --- |
-| Chat | 4k x 140 Million = 56 Billion | 56B x 30 x 12 x 5 = 1 Quadrillion |
-| Audio | 1M x 140 Million = .14 Quadrillion | .14 x30x12x5 = 252 Quadrillion |
-| Video | 10M x  14 Million = 1.4 Quadrillion | 25.2 Quadrillion |
+| Chat | 1 Billion(messages) x 650x8(size) = 5.2 Trillion | 5.2 x 30 x 12 x 5 = 9.3 peta Bytes |
+| Audio | 330Million(audio messages) x 10MB(size) = 3.3 Exa bytes | 3.3x30x12x5 = 6 Zeta bytes |
+| Video | 84Million(video messages) x 1GB(size) = 84 Exa bytes | 84x30x12x5 = 151 zeta bytes |
 
-Total space requirement for 5 years = 252+1+25.2 = 276 Quadrillion = 276 petabytes
+Total space requirement for 5 years = 157 zeta bytes
 > Not considering users who deleted chat/video/audio/account permanently. not considering compression.
