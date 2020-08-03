@@ -25,6 +25,21 @@ All Permutations:
 Output= {1,2,3} {3,2,1}
 ```
 
+# Example-3
+- Input no = 4
+```
+n = 4
+Valid Permutations:
+1 2 3 4
+1 4 3 2
+2 1 4 3
+2 3 4 1
+3 2 1 4
+3 4 1 2
+4 1 2 3
+4 3 2 1
+```
+
 ## Logic
 - Generate a vector from incoming no. Eg: n=4. Generate vector{1,2,3,4}
 - Create a 2-D vector to store permutations.
