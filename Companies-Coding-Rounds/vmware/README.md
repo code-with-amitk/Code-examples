@@ -1,3 +1,18 @@
+## For Python Build Engineer Role
+### 1. Round-1(Python)
+- list comprehension use cases, tuple, 
+- map(), join() method in python
+- How memory allocation happens in python before __init__ call or after. Can we reallocate memory?
+- Object calling hierarchy in python? MRO in python
+- iterable object in python
+### 2. Round-2(Linux)
+- init process vs systemd
+- debugging shell scripts
+- debugging python scripts (pdb debugger)
+- debugging kernel, What are pre-requisites?
+- how system call works in linux?
+
+
 ## About
 
 | Founded | HQ | Revenue | Major shareholder | No of Employeees | Industry | Acquisitions | CEO | Mission |
