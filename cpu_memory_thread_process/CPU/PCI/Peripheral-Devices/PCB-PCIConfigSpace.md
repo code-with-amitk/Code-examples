@@ -19,7 +19,6 @@
   <---64 bytes----><------208 bytes------>
     standard        vendor defined
 
-
  |vendor-id(2byte) | Device ID(2) | Command Reg(2) | Status Reg(2) | class code(3) | CacheLine(1)| LatencyTimer(1)| HeaderType(1)| BIST(1)|
  |BaseAddress0(4bytes) | BaseAddress1(4) | BaseAddress2(4) | BaseAddress3(4) | 
  |BaseAddress4(4bytes) | BaseAddress5(4) | Card Bus CIS Pointer(4) | SubSystem Vendor ID(2) | SubSystem Device ID(2) | 
@@ -49,15 +48,14 @@
 - **Types of PCI BARs**
   - 1. *Register holding base address of PCI Memory space* 
     - Indicate on which address space this Device register will be present
+  - 2. *Register holding base address of PCI I/O space* 
+    - Indicate on which address space this Device register will be present    
 
 |content->|base-address-of-memory-space|...|0|
 | --- | --- | --- | --- |
 |index->|31 |...|0|
 
-  - 2. *Register holding base address of PCI I/O space* 
-    - Indicate on which address space this Device register will be present
-
-|content->|base-address-of-i/o-space|...|1|
+|content->|base-address-of-I/O-space|...|1|
 | --- | --- | --- | --- |
 |index->|31 |...|0|
 
