@@ -58,7 +58,7 @@
 |index->|31 |...|0|
 
 
-## A2. Steps of Reading from PCI(256 bytes) Address Space
+## A2. Reading from PCI(256 bytes) Config Space Registers
 > Note this is only for PCI or for 1st 256 bytes of PCIe
 - **Message format for reading PCI address space**
 	- Register Address(8 bit) 2<sup>8</sup> = 256 bytes
@@ -83,7 +83,7 @@
 	<-------------Read information--------------------------|
 ```
 
-## A3. Steps of Reading from PCIe(4096 bytes) Address Space
+## A3. Reading from PCIe(4096 bytes) Config Space Registers
 - **MMCFG(Memory Mapped Config)** 
  - This is new mechanism for reading beyond 256 bytes, because 256 bytes(PCI), PCIe provides 4096 bytes address space.
 - For 1 PCI Domain
