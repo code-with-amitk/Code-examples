@@ -110,7 +110,7 @@
 ```
 //Read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40
 
-															Index-Register [0xCF8]		Data-Register[0xCFC]
+																Index-Register [0xCF8]		Data-Register[0xCFC]
 			-----------write 80031540------------>|							|
 	<-------------Read information--------------------------|
 ```
@@ -123,7 +123,14 @@
 			- Each device can have **8 functions**.
 				- For Each Function have **4096 bytes(PCI)** config space.
 	- Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
-```
-
+- Remember the diagram of system memory(4GB), BIOS will take 256 MB as MMCFG Space just below MMIO-Low memory.
+	- Any access to MMCFG-Space is treated as config transaction.
+	- Now system will use this 256 MB for access PCI config space on PCIe.
+		- Lowest 1 MB is used by PCI-Bus-0.
+		- Next 1 MB is used by PCI-Bus-1.
+```	
+														  					  	<---MMIO-Low-->
+	|			|	 		|SMMTSeg|	(MMCFG-Space)256MB	|							|
+	0		 1 MB						2G	 						      						  4G
 ```
 	
