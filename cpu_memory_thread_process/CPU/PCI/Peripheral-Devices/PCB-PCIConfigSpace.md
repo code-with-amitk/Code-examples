@@ -132,5 +132,8 @@
 														  					  	<---MMIO-Low-->
 	|			|	 		|SMMTSeg|	(MMCFG-Space)256MB	|							|
 	0		 1 MB						2G	 						      						  4G
+										 /\
+										 |
+										 MMCFG_Base_address
 ```
 	
