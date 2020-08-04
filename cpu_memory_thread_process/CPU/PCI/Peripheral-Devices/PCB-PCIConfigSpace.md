@@ -4,33 +4,7 @@
   - Configuration Registers (also called **config space**	{Section-C})
   - memory locations
   - I/O ports
- 
- # B. PCI Device Addresses
-- **PCI Bus size** 8 bit. 2<sup>8</sup> = 256     or 12 bit for 4096.
-- Device on PCI Bus can be represented by using 2 byte address with either of these:
-  - a. (B:D) = (Bus-number(1byte) : device+function-number(1byte))    OR
-  - b. (B:D:F) = (1-byte:Bus-number  : device : function)    OR
-  - c. (DO:B:D:F) = (Domain(16 bit) : Bus-number(8 bit)  : device(5 bit) : function(5 bit) )   
-- Commands to see PCI devices:
-```
-        # lspci                     //lists of devices are being used
-        # tree /sys/bus/pci/devices/
-            0000:00:14.0 -> ../../../devices/pci0000:00/0000:00:14.0
-        #$ tree /sys/bus/pci/devices/0000:00:10.0
-            |-- class
-            |-- config        //allows raw PCI information to be read from device.
-            |-- detach_state
-            |-- device
-            |-- irq        //current IRQ assigned to this PCI device
-            |-- power
-            |`-- state
-            |-- resource    //shows the current memory resources allocated by this device
-            |-- subsystem_device
-            |-- subsystem_vendor
-            `-- vendor
-        # cat /proc/bus/pci/devices| cut -f1
-```
- 
+  
 # C. PCI Config Space/Configuration Register/PCI Config Header (PCI = 256 bytes, PCIe = 4096 byte)
 - **What** Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
 - **How to access Config Space** OS provides APIs to access config space to device drivers.
@@ -132,3 +106,23 @@
 										 MMCFG_Base_address
 ```
 	
+
+# Commands to see PCI devices:
+```
+        # lspci                     //lists of devices are being used
+        # tree /sys/bus/pci/devices/
+            0000:00:14.0 -> ../../../devices/pci0000:00/0000:00:14.0
+        #$ tree /sys/bus/pci/devices/0000:00:10.0
+            |-- class
+            |-- config        //allows raw PCI information to be read from device.
+            |-- detach_state
+            |-- device
+            |-- irq        //current IRQ assigned to this PCI device
+            |-- power
+            |`-- state
+            |-- resource    //shows the current memory resources allocated by this device
+            |-- subsystem_device
+            |-- subsystem_vendor
+            `-- vendor
+        # cat /proc/bus/pci/devices| cut -f1
+```
