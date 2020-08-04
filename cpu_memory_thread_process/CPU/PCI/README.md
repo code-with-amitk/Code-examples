@@ -15,11 +15,13 @@
                                        -----PCi-Bus-2---      --PCI-Bus-3-         
                                        |0            31|     |0         31|
                                      mouse                  device0
-
-In 1 PCI Domain:
-   - Upto 256 PCI buses
-   - Each Bus can connect upto 32 devices
-   - 1 Peripheral device can have 8 functions.
+1 PCI Domain:
+=> 256 Buses
+=> 32 PCI devices/Bus
+=> 8 functions/Device
+=> Config Space Register/function
+ - 256 (PCI)
+ - 4096 (PCIe)
 ``` 
 ## Contents
   - **Peripheral-Devices.md**
