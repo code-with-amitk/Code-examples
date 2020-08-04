@@ -92,12 +92,13 @@
 |index->|31 |...|0|
 
 
-## C1. Steps of Reading from PCI Address Space
-- Message formet for reading PCI address space
+## C1. Steps of Reading from PCI(256 bytes) Address Space
+> Note this is only for PCI or for 1st 256 bytes of PCIe
+- Message format for reading PCI address space
 
 |Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 7 .. 0 |
 | --- | --- | --- | --- | --- |
-| 1000 0000 | Bus number | Device(5bit) Function(3bit) | Register-Address| 
+| | 1000 0000 | Bus number | Device(5bit) Function(3bit) | Register-Address| 
 
 - For Example, we want to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40		{3:2:5:40}
 
@@ -114,4 +115,15 @@
 	<-------------Read information--------------------------|
 ```
 
+## C2. Steps of Reading from PCIe(4096 bytes) Address Space
+- **MMCFG(Memory Mapped Config)** This is new mechanism for reading beyond 256 bytes, because 256 bytes was for PCI, PCIe provides 4096 bytes address space.
+- **Remember** For PCIe
+	- **256 PCI buses** 
+		- Each bus can connect **32 PCI devices**.
+			- Each device can have **8 functions**.
+				- For Each Function have **4096 bytes(PCI)** config space.
+	- Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
+```
 
+```
+	
