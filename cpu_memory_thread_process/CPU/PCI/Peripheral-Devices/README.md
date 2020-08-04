@@ -18,7 +18,7 @@
 ```
 
 ## Contents
-- **What_is-Peripheral-Device.md**
+- **What_is-Peripheral-Device_PCB.md**
   - Device Number
   - Function Number
   - Types of PCI Devices
@@ -27,8 +27,8 @@
   - Registers in PCI Devices
     - Type-0
     - Type-1
+  - PCB?    
 - **PCB-PCIConfigSpace.md**
-  - PCB?
   - PCI Config Space?
     - BAR(Base address register)
   - PCI Device addresses
