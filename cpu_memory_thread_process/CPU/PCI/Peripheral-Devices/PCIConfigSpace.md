@@ -95,6 +95,7 @@
 - **MMCFG Space**
   - This is 256 MB space reserved at start of MMIO-Low for addressing 4k registers in PCIe.
   - Every Bus is assigned 1 MB Space.
+- **MMCFG-Base** This is the starting address of MMCFG Space & is required for constructing message for reading PCIe address space.  
 
 ![ImgURL](https://i.ibb.co/LSnZW04/mmcfg-space.png)
 
@@ -117,7 +118,7 @@
 		- Lowest 1 MB is used by PCI-Bus-0.
 		- Next 1 MB is used by PCI-Bus-1.
 
-# B. How to Know Exact starting address of MMCFG-Space
+# B. How to Know MMCFG-Base
 - ACPI-Table
 
 # C. Commands to see PCI devices:
