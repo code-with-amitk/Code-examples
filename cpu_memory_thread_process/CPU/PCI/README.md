@@ -2,10 +2,12 @@
   - **Peripheral-Devices.md**
     - Peripheral Devices?
     - PCB & configuration registers
+    - PCI Device Addresses
+    - How PCI devices are detected
   - **PCIAndPCI_Bus.md**
     - PCI?
-    - PCI Bridges?
-
+    - PCI Bridges
+    - PCI Domain
 ```
    -------CPU-----------
   |           Registers |
