@@ -1,5 +1,4 @@
  ## Min Spanning Tree
- ### What
  - A ST where total weight of all edges is minimum. Has n-1 edges.
  
  ### How to find
@@ -12,7 +11,13 @@
     c --1-- d        c --1-- d        c --1-- d       c --1-- d                                    
 ```
 
-### Algos to find MST
+### Algorithms
+
+| Algo | Kruskal's | Prim's |
+| --- | --- | --- |
+| Time Complexity | O(E log V) | O(E + V log V) //slow |
+| When to use | | Works faster in graph with many more edges than vertices |
+
 #### A. PRIM's Algorithm  [Time Complexity = O(E + V log V) //slow wrt kruskal's]
 - 1. Choose arbitrary vertex to start
 - 2. Choose min weight edge that is not in(output mst), note that in mst.  
@@ -55,10 +60,3 @@ Step-2    [0] -2- [1] -4- [3]           [0] -2- [1] -4- [3]
 Step-3:Include       Step-4: Include       Step-5: Include
 minimum edges        next min edges       next min edges
 ```
-
-### Comparison
-
-| Algo | Kruskal's | Prim's |
-| --- | --- | --- |
-| Time Complexity | O(E log V) | O(E + V log V) //slow |
-| When to use | | Works faster in graph with many more edges than vertices |
