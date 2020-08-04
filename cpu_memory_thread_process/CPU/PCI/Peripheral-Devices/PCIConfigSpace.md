@@ -1,7 +1,11 @@
-# C. PCI Config Space/Configuration Register/PCI Config Header (PCI = 256 bytes, PCIe = 4096 byte)
-- **What** Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
+**1st See (What_is_Peripheral-Device_PCB.md)**
+
+# A. PCI Config Space (PCI = 256 bytes, PCIe = 4096 byte)
+> Also called Configuration Register/PCI Config Header 
+- **What** 
+	- Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
+
 - **How to access Config Space** OS provides APIs to access config space to device drivers.
-  - 5 bit = Device No.    3 bit = Function no
 - **About**
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
   - 1st 64 bytes of configuration space are standardized; the remainder are available for vendor-defined purposes
@@ -11,7 +15,7 @@
     standard        vendor defined
 ```
 
-### Feilds of Config Register
+## A1. Feilds of Config Register
 ```
  |vendor-id(2byte) | Device ID(2) | Command Reg(2) | Status Reg(2) | class code(3) | CacheLine(1)| LatencyTimer(1)| HeaderType(1)| BIST(1)|
  |BaseAddress0(4bytes) | BaseAddress1(4) | BaseAddress2(4) | BaseAddress3(4) | 
@@ -54,7 +58,7 @@
 |index->|31 |...|0|
 
 
-## C1. Steps of Reading from PCI(256 bytes) Address Space
+## A2. Steps of Reading from PCI(256 bytes) Address Space
 > Note this is only for PCI or for 1st 256 bytes of PCIe
 - Message format for reading PCI address space
 
@@ -69,6 +73,7 @@
 | 1000=8 0000=0 | Bus number = 03 | Device(0010) Function(101) = 10101 = 15 | 40 | 
 | 80 | 03 | 15 | 40 | 
 
+![ImgURL](https://i.ibb.co/xzwy2hY/PCI-READ.png)
 ```
 //Read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40
 
