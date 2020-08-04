@@ -8,7 +8,7 @@
 |                                                                           |
 ----------------------------------------------------------------------------
 
- - **Remember PCI Domain** Each domain can have upto 
+1 PCI Domain:
 => 256 Buses
 => 32 PCI devices/Bus
 => 8 functions/Device
