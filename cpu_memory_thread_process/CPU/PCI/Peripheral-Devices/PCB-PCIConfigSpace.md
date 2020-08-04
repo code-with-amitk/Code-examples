@@ -1,11 +1,11 @@
-# A. PERIPHERAL CIRCUIT BOARD(PCB)?
+# A. Peripheral Circuit Board(PCB)?
 - **What** Boards of peripheral devices. PCB has 8 pins out of which 4 are for interrupts. Eg: dvr, printer, external modem, game console etc.  
 - **Response PCI provides to CPU?** PCB provides only these 3 addresses to CPU: 
   - Configuration Registers (also called **config space**	{Section-C})
   - memory locations
   - I/O ports
  
- # B. PCI DEVICE ADDRESSES
+ # B. PCI Device Addresses
  - **Remember PCI Domain** PCI specifications allowed creation of PCI domains. Each domain can have upto 
 	- **256 PCI buses** 
 		- Each bus can connect **32 PCI devices**.
