@@ -13,8 +13,8 @@
                                                 -----PCI-Bus-1------
                                                 |                  |
                                        -----PCi-Bus-2---      --PCI-Bus-3-         
-                                       |1            32|     |1         32|
-                                     mouse                  keyboard
+                                       |0            31|     |0         31|
+                                     mouse                  device0
 
 In 1 PCI Domain:
    - Upto 256 PCI buses
