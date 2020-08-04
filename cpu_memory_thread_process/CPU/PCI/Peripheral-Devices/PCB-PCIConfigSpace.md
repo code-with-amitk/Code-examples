@@ -1,13 +1,15 @@
 ## A. PERIPHERAL CIRCUIT BOARD(PCB)?
 - **What** Boards of peripheral devices. PCB has 8 pins out of which 4 are for interrupts. Eg: dvr, printer, external modem, game console etc.  
-- **PCB ADDRESS** Each PCI device has its own 265 byte configuration registers.
 - **Response PCI provides to CPU?** PCB provides only these 3 addresses to CPU: 
+  - Configuration Registers (also called **config space**)
   - memory locations
   - I/O ports
-  - Configuration Registers (also called **config space**)
   
-### A1. CONFIGURATION REGISTERS/CONFIG SPACE
-- PCI registers are always little endian.
+### A1. PCI Config Space/Configuration Registers (256 bytes)
+- **What** Registers present on PCI devices which are mapped to Memory location(maybe virtual).
+- **How to access Config Space** OS provides APIs to access config space to device drivers.
+- **PCI Bus size** 8 bit. 2<sup>8</sup> = 256
+  - 5 bit = Device No.    3 bit = Function no
 - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
 ```
  |vendor-id(2byte) | Device ID(2) | Command Reg(2) | Status Reg(2) | class code(3) | CacheLine(1)| LatencyTimer(1)| HeaderType(1)| BIST(1)|
