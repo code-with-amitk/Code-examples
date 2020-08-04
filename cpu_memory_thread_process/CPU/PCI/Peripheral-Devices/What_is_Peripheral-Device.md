@@ -1,21 +1,22 @@
 ## A. Peripheral/PCI Device
-### 1. What
+### 1. WHAT
   - Device used to put/get information into/from computer. ie IO devices
   - Device that is connected to PCI Bus.
   - Each PCI device have a associated **Device Number (5 bit) feild**, (0-31).
+    - Device numbers are assigned at hardware level. 
   
-### 2. Types of PCI devices
+### 2. TYPES OF DEVICES
 
 | | What | Example |
 | --- | --- | --- |
 | End-Point Device | does not spawn another bus behind it | VGA, LAN card |
 | Bridge Device | Which can spawn another bus behind it | |
 
-### 3. Function Number of PCI Device
+### 3. FUNCTION NUMBER
 - Each device can have multiple functions with in it.
 - Function numbers can be `0-7` hence 3 bit field.
 
-### 4. Registers within PCI Devices
+### 4. REGISTERS
 #### What 
 - PCI Devices exposes some registers using which software can configure the device called Config Registers.
   
