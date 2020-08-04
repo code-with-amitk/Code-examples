@@ -1,3 +1,11 @@
+## Contents
+  - **Peripheral-Devices.md**
+    - Peripheral Devices?
+    - PCB & configuration registers
+  - **PCIAndPCI_Bus.md**
+    - PCI?
+    - PCI Bridges?
+
 ```
    -------CPU-----------
   |           Registers |
@@ -21,7 +29,3 @@ In 1 PCI Domain:
    - Each Bus can connect upto 32 devices
    - 1 Peripheral device can have 8 functions.
 ``` 
-
-## Contents
-  - Peripherals
-  - PCIAndPCI_Bus
