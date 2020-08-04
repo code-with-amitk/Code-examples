@@ -38,8 +38,8 @@
   - device-id(mandatory):
 - Status register: Report which features are supported  
 - Header Type: different layouts of remaining 48 bytes
-  - Type-1: For Root Complex, switches, and bridges
   - Type-0: For endpoints
+  - Type-1: For Root Complex, switches, and bridges
 - Cache Line register: Must be programmed before the device can do memory-write-and-invalidate transaction
 - BAR: See below
 - subSystem Vendor ID,SubSystem Device ID(2 byte): For further identification of a device
