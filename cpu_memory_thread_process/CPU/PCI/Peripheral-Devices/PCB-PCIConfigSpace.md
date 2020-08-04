@@ -1,20 +1,44 @@
 # A. PERIPHERAL CIRCUIT BOARD(PCB)?
 - **What** Boards of peripheral devices. PCB has 8 pins out of which 4 are for interrupts. Eg: dvr, printer, external modem, game console etc.  
 - **Response PCI provides to CPU?** PCB provides only these 3 addresses to CPU: 
-  - Configuration Registers (also called **config space**)
+  - Configuration Registers (also called **config space**	{Section-C})
   - memory locations
   - I/O ports
  
- 
-## A1. PCI Config Space/Configuration Register/PCI Config Header (PCI = 256 bytes, PCIe = 4096 byte)
-- **What** Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
-- **How to access Config Space** OS provides APIs to access config space to device drivers.
-- **Remember PCI Domain** PCI specifications allowed creation of PCI domains. Each domain can have upto 
+ # B. PCI DEVICE ADDRESSES
+ - **Remember PCI Domain** PCI specifications allowed creation of PCI domains. Each domain can have upto 
 	- **256 PCI buses** 
 		- Each bus can connect **32 PCI devices**.
 			- Each device can have **8 functions**.
 				- For Each Function have **256 bytes(PCI) or 4096 bytes(PCIe)** config space.
 - **PCI Bus size** 8 bit. 2<sup>8</sup> = 256     or 12 bit for 4096.
+- Device on PCI Bus can be represented by using 2 byte address with either of these:
+  - a. (B:D) = (Bus-number(1byte) : device+function-number(1byte))    OR
+  - b. (B:D:F) = (1-byte:Bus-number  : device : function)    OR
+  - c. (DO:B:D:F) = (Domain(16 bit) : Bus-number(8 bit)  : device(5 bit) : function(5 bit) )   
+- Commands to see PCI devices:
+```
+        # lspci                     //lists of devices are being used
+        # tree /sys/bus/pci/devices/
+            0000:00:14.0 -> ../../../devices/pci0000:00/0000:00:14.0
+        #$ tree /sys/bus/pci/devices/0000:00:10.0
+            |-- class
+            |-- config        //allows raw PCI information to be read from device.
+            |-- detach_state
+            |-- device
+            |-- irq        //current IRQ assigned to this PCI device
+            |-- power
+            |`-- state
+            |-- resource    //shows the current memory resources allocated by this device
+            |-- subsystem_device
+            |-- subsystem_vendor
+            `-- vendor
+        # cat /proc/bus/pci/devices| cut -f1
+```
+ 
+# C. PCI Config Space/Configuration Register/PCI Config Header (PCI = 256 bytes, PCIe = 4096 byte)
+- **What** Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
+- **How to access Config Space** OS provides APIs to access config space to device drivers.
   - 5 bit = Device No.    3 bit = Function no
 - **About**
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
@@ -68,31 +92,26 @@
 |index->|31 |...|0|
 
 
-### Steps of Accessing PCI Address Space
-- 1. Write on Index register `0xCF`
-- 2. Read or Write on Data Register `0xCFC`
+## C1. Steps of Reading from PCI Address Space
+- Message formet for reading PCI address space
 
-## B. PCI DEVICE ADDRESSES
-- Device on PCI Bus can be represented by using 2 byte address with either of these:
-  - a. (B:D) = (Bus-number(1byte) : device+function-number(1byte))    OR
-  - b. (B:D:F) = (1-byte:Bus-number  : device : function)    OR
-  - c. (DO:B:D:F) = (Domain(16 bit) : Bus-number(8 bit)  : device(5 bit) : function(5 bit) )   
-- Commands to see PCI devices:
+|Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 7 .. 0 |
+| --- | --- | --- | --- | --- |
+| 1000 0000 | Bus number | Device(5bit) Function(3bit) | Register-Address| 
+
+- For Example, we want to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40		{3:2:5:40}
+
+|Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 7 .. 0 |
+| --- | --- | --- | --- | --- |
+| 1000=8 0000=0 | Bus number = 03 | Device(0010) Function(101) = 10101 = 15 | 40 | 
+| 80 | 03 | 15 | 40 | 
+
 ```
-        # lspci                     //lists of devices are being used
-        # tree /sys/bus/pci/devices/
-            0000:00:14.0 -> ../../../devices/pci0000:00/0000:00:14.0
-        #$ tree /sys/bus/pci/devices/0000:00:10.0
-            |-- class
-            |-- config        //allows raw PCI information to be read from device.
-            |-- detach_state
-            |-- device
-            |-- irq        //current IRQ assigned to this PCI device
-            |-- power
-            |`-- state
-            |-- resource    //shows the current memory resources allocated by this device
-            |-- subsystem_device
-            |-- subsystem_vendor
-            `-- vendor
-        # cat /proc/bus/pci/devices| cut -f1
+//Read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40
+
+															Index-Register [0xCF8]		Data-Register[0xCFC]
+			-----------write 80031540------------>|							|
+	<-------------Read information--------------------------|
 ```
+
+
