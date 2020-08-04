@@ -16,7 +16,7 @@
 - Each device can have multiple functions with in it.
 - Function numbers can be `0-7` hence 3 bit field.
 
-### 4. REGISTERS
+### 4. REGISTERS / Configuration Space
 #### What 
 - PCI Devices exposes some registers using which software can configure the device called Config Registers.
   
@@ -33,3 +33,10 @@
 - Every PCB has BIOS, NVRAM, or PROM. CPU can access device's address space by reading and writing registers in the PCI controller.
 - At system boot, the firmware (Linux kernel) performs configuration transactions with every PCI peripheral & allocate a safe place its address region.
 - When device driver accesses the PCI device, its memory and I/O regions have already been mapped into the processor’s address space.
+
+## C. Peripheral Circuit Board(PCB)?
+- **What** Boards of peripheral devices. PCB has 8 pins out of which 4 are for interrupts. Eg: dvr, printer, external modem, game console etc.  
+- **Response PCI provides to CPU?** PCB provides only these 3 addresses to CPU: 
+  - Configuration Registers (also called **config space**	{Section-C})
+  - memory locations
+  - I/O ports
