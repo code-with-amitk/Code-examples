@@ -9,10 +9,12 @@
 ----------------------------------------------------------------------------
 
  - **Remember PCI Domain** Each domain can have upto 
-  - **256 PCI buses** 
-	  - Each bus can connect **32 PCI devices**.
-			- Each device can have **8 functions**.
-				- For Each Function have **256 bytes(PCI) or 4096 bytes(PCIe)** config space.
+=> 256 Buses
+=> 32 PCI devices/Bus
+=> 8 functions/Device
+=> Config Space Register/function
+ - 256 (PCI)
+ - 4096 (PCIe)
 ```
 
 ## Contents
