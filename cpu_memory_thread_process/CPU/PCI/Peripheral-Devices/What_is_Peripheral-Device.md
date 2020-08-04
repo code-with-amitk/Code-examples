@@ -9,8 +9,8 @@
 
 | | What | Example |
 | --- | --- | --- |
-| End-Point Device | does not spawn another bus behind it | VGA, LAN card |
-| Bridge Device | Which can spawn another bus behind it | |
+| End-Point Device(Type-0) | does not spawn another bus behind it | VGA, LAN card |
+| Bridge Device(Type-1) | Which can spawn another bus behind it | |
 
 ### 3. FUNCTION NUMBER
 - Each device can have multiple functions with in it.
@@ -23,12 +23,6 @@
 | | PCI | PCIe |
 | --- | --- | --- |
 | Register length | 256 bytes | 4096 bytes |
-
-#### Types of Registers
-
-|| Type-0 | Type-1 |
-| --- | --- | --- |
-| What | For End-point Device | For Bridge Device |
 
 ### 5.Examples OF PD** 
 - a. Input: Sends instructions to computer. Eg: mouse, keyboard, webcam etc.
