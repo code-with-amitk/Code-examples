@@ -5,23 +5,62 @@
   - memory locations
   - I/O ports
   
-### A1. PCI Config Space/Configuration Registers (256 bytes)
+### A1. PCI Config Space/Configuration Registers/PCI Config Header (256 bytes)
+> PCI-X2.0 introduces 4096 byte sized register
 - **What** Registers present on PCI devices which are mapped to Memory location(maybe virtual).
 - **How to access Config Space** OS provides APIs to access config space to device drivers.
 - **PCI Bus size** 8 bit. 2<sup>8</sup> = 256
   - 5 bit = Device No.    3 bit = Function no
-- Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
+- **About**
+  - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
+  - 1st 64 bytes of configuration space are standardized; the remainder are available for vendor-defined purposes
 ```
+  <====256 byte Configuration Register====>
+  <---64 bytes----><------208 bytes------>
+    standard        vendor defined
+
+
  |vendor-id(2byte) | Device ID(2) | Command Reg(2) | Status Reg(2) | class code(3) | CacheLine(1)| LatencyTimer(1)| HeaderType(1)| BIST(1)|
  |BaseAddress0(4bytes) | BaseAddress1(4) | BaseAddress2(4) | BaseAddress3(4) | 
  |BaseAddress4(4bytes) | BaseAddress5(4) | Card Bus CIS Pointer(4) | SubSystem Vendor ID(2) | SubSystem Device ID(2) | 
  |Expansion ROM Base Address(4 bytes) | Reserved(8) | IRQLine(1) | IRQPin(1) | Min_Gnt(1) | Max_Gnt(1) |
 ``` 
-- vendor-id(2 bytes mandatory): Identifies hardware manufacturer.
-- device-id(2 bytes mandatory): vendor-id + device-id together are called signature
-- class(2 bytes): 1st byte=Group
+
+|field->|vendor-id|Device-id|command-register|status-register|..|HeaderType-register|CacheLine-register|BaseAddressRegister|
+| --- | --- | --- | --- | --- | --- | ---- | --- | --- |
+|size(bytes)|2|2|2|2| |1|1|56|
+
+- PCI ID/Signature: These 2 field identify the device.
+  - vendor-id(mandatory): assigned by the vendor.
+  - device-id(mandatory):
+- Status register: Report which features are supported  
+- Header Type: different layouts of remaining 48 bytes
+  - Type-1: For Root Complex, switches, and bridges
+  - Type-0: For endpoints
+- Cache Line register: Must be programmed before the device can do memory-write-and-invalidate transaction
+- BAR: See below
 - subSystem Vendor ID,SubSystem Device ID(2 byte): For further identification of a device
 - Required Registers: vendorID, DeviceID, Command Reg, Status Reg, Revision ID, Header Type, Reserved.      //All other are optional.
+
+### A11. BAR(Base Address Register) 56 bytes
+- **What** 
+  - Different PCI devices have different requirements for PCI I/O and Memory.
+  - This will tell CPU how much space this PCI device requires for I/O and PCI memory.
+- **Types of PCI BARs**
+  - 1. *Register holding base address of PCI Memory space* 
+    - Indicate on which address space this Device register will be present
+
+|content->|base-address-of-memory-space|...|0|
+| --- | --- | --- | --- |
+|index->|31 |...|0|
+
+  - 2. *Register holding base address of PCI I/O space* 
+    - Indicate on which address space this Device register will be present
+
+|content->|base-address-of-i/o-space|...|1|
+| --- | --- | --- | --- |
+|index->|31 |...|0|
+
 
 ## B. PCI DEVICE ADDRESSES
 - Device on PCI Bus can be represented by using 2 byte address with either of these:
