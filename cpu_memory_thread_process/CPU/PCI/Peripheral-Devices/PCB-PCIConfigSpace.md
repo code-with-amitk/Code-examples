@@ -6,11 +6,15 @@
   - I/O ports
  
  
-## A1. PCI Config Space/Configuration Register/PCI Config Header (256 bytes)
-> PCI-X2.0 introduces 4096 byte sized register
+## A1. PCI Config Space/Configuration Register/PCI Config Header (PCI = 256 bytes, PCIe = 4096 byte)
 - **What** Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
 - **How to access Config Space** OS provides APIs to access config space to device drivers.
-- **PCI Bus size** 8 bit. 2<sup>8</sup> = 256
+- **Remember PCI Domain** PCI specifications allowed creation of PCI domains. Each domain can have upto 
+	- **256 PCI buses** 
+		- Each bus can connect **32 PCI devices**.
+			- Each device can have **8 functions**.
+				- For Each Function have **256 bytes(PCI) or 4096 bytes(PCIe)** config space.
+- **PCI Bus size** 8 bit. 2<sup>8</sup> = 256     or 12 bit for 4096.
   - 5 bit = Device No.    3 bit = Function no
 - **About**
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
@@ -63,6 +67,10 @@
 | --- | --- | --- | --- |
 |index->|31 |...|0|
 
+
+### Steps of Accessing PCI Address Space
+- 1. Write on Index register `0xCF`
+- 2. Read or Write on Data Register `0xCFC`
 
 ## B. PCI DEVICE ADDRESSES
 - Device on PCI Bus can be represented by using 2 byte address with either of these:
