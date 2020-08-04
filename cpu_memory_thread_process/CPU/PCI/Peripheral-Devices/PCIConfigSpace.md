@@ -60,7 +60,8 @@
 
 ## A2. Steps of Reading from PCI(256 bytes) Address Space
 > Note this is only for PCI or for 1st 256 bytes of PCIe
-- Message format for reading PCI address space
+- **Message format for reading PCI address space**
+	- Register Address(8 bit) 2<sup>8</sup> = 256 bytes
 
 |Bits->|31 ... 24| 23 ... 16 | 15 ... 8 | 7 .. 0 |
 | --- | --- | --- | --- | --- |
@@ -97,6 +98,9 @@
 
 ![ImgURL](https://i.ibb.co/LSnZW04/mmcfg-space.png)
 
+- **Message format for reading PCIe address space**
+	- Register Address(12 bit) 2<sup>12</sup> = 4096 bytes
+	
 |Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 12 .. 0 |
 | --- | --- | --- | --- | --- |
 | | Base-Address-of-MMCFG-Space | Bus number | Device(5bit) Function(3bit) | Register-Address| 
@@ -113,9 +117,10 @@
 		- Lowest 1 MB is used by PCI-Bus-0.
 		- Next 1 MB is used by PCI-Bus-1.
 
-	
+# B. How to Know Exact starting address of MMCFG-Space
+- ACPI-Table
 
-# Commands to see PCI devices:
+# C. Commands to see PCI devices:
 ```
         # lspci                     //lists of devices are being used
         # tree /sys/bus/pci/devices/
