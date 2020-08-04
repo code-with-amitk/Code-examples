@@ -1,11 +1,12 @@
-## A. PERIPHERAL CIRCUIT BOARD(PCB)?
+# A. PERIPHERAL CIRCUIT BOARD(PCB)?
 - **What** Boards of peripheral devices. PCB has 8 pins out of which 4 are for interrupts. Eg: dvr, printer, external modem, game console etc.  
 - **Response PCI provides to CPU?** PCB provides only these 3 addresses to CPU: 
   - Configuration Registers (also called **config space**)
   - memory locations
   - I/O ports
-  
-### A1. PCI Config Space/Configuration Registers/PCI Config Header (256 bytes)
+ 
+ 
+## A1. PCI Config Space/Configuration Register/PCI Config Header (256 bytes)
 > PCI-X2.0 introduces 4096 byte sized register
 - **What** Registers present on PCI devices which are mapped to Memory location(maybe virtual).
 - **How to access Config Space** OS provides APIs to access config space to device drivers.
@@ -18,12 +19,15 @@
   <====256 byte Configuration Register====>
   <---64 bytes----><------208 bytes------>
     standard        vendor defined
+```
 
+### Feilds of Config Register
+```
  |vendor-id(2byte) | Device ID(2) | Command Reg(2) | Status Reg(2) | class code(3) | CacheLine(1)| LatencyTimer(1)| HeaderType(1)| BIST(1)|
  |BaseAddress0(4bytes) | BaseAddress1(4) | BaseAddress2(4) | BaseAddress3(4) | 
  |BaseAddress4(4bytes) | BaseAddress5(4) | Card Bus CIS Pointer(4) | SubSystem Vendor ID(2) | SubSystem Device ID(2) | 
  |Expansion ROM Base Address(4 bytes) | Reserved(8) | IRQLine(1) | IRQPin(1) | Min_Gnt(1) | Max_Gnt(1) |
-``` 
+```
 
 |field->|vendor-id|Device-id|command-register|status-register|..|HeaderType-register|CacheLine-register|BaseAddressRegister|
 | --- | --- | --- | --- | --- | --- | ---- | --- | --- |
@@ -41,7 +45,7 @@
 - subSystem Vendor ID,SubSystem Device ID(2 byte): For further identification of a device
 - Required Registers: vendorID, DeviceID, Command Reg, Status Reg, Revision ID, Header Type, Reserved.      //All other are optional.
 
-### A11. BAR(Base Address Register) 56 bytes
+### BAR(Base Address Register) {56 bytes}
 - **What** 
   - Different PCI devices have different requirements for PCI I/O and Memory.
   - This will tell CPU how much space this PCI device requires for I/O and PCI memory.
