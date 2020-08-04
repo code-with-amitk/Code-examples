@@ -4,4 +4,4 @@
   - function from overloaded funtions or
   - template specialization from specializations. 
 - Named sets of such requirements are **called concepts**, Concepts is a predicate(evaluated at compile time).
-  - [**What is predicate?** ](operator_overloading/Functor/Predicate)
+  - [**What is predicate?** ](Languages/programming_lang/c++/operator_overloading/Functor/Predicate/)
