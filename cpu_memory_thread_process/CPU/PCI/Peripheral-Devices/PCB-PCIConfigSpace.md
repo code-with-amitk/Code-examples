@@ -6,11 +6,6 @@
   - I/O ports
  
  # B. PCI Device Addresses
- - **Remember PCI Domain** PCI specifications allowed creation of PCI domains. Each domain can have upto 
-	- **256 PCI buses** 
-		- Each bus can connect **32 PCI devices**.
-			- Each device can have **8 functions**.
-				- For Each Function have **256 bytes(PCI) or 4096 bytes(PCIe)** config space.
 - **PCI Bus size** 8 bit. 2<sup>8</sup> = 256     or 12 bit for 4096.
 - Device on PCI Bus can be represented by using 2 byte address with either of these:
   - a. (B:D) = (Bus-number(1byte) : device+function-number(1byte))    OR
