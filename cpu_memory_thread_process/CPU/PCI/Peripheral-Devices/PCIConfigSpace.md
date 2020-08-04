@@ -62,7 +62,7 @@
 > Note this is only for PCI or for 1st 256 bytes of PCIe
 - Message format for reading PCI address space
 
-|Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 7 .. 0 |
+|Bits->|31 ... 24| 23 ... 16 | 15 ... 8 | 7 .. 0 |
 | --- | --- | --- | --- | --- |
 | | 1000 0000 | Bus number | Device(5bit) Function(3bit) | Register-Address| 
 
@@ -84,26 +84,35 @@
 
 ## A3. Steps of Reading from PCIe(4096 bytes) Address Space
 - **MMCFG(Memory Mapped Config)** 
- - This is new mechanism for reading beyond 256 bytes, because 256 bytes was for PCI, PCIe provides 4096 bytes address space.
-- **Remember** For PCIe
-	- **256 PCI buses** 
-		- Each bus can connect **32 PCI devices**.
-			- Each device can have **8 functions**.
-				- For Each Function have **4096 bytes(PCI)** config space.
-	- Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
-- Remember the diagram of system memory(4GB), BIOS will take 256 MB as MMCFG Space just below MMIO-Low memory.
+ - This is new mechanism for reading beyond 256 bytes, because 256 bytes(PCI), PCIe provides 4096 bytes address space.
+- For 1 PCI Domain
+  - 256 PCI buses
+  - 32 PCI devices/Bus
+  - 8 functions/Device
+  - 4096 bytes config space/Function
+	  - Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
+- **MMCFG Space**
+  - This is 256 MB space reserved at start of MMIO-Low for addressing 4k registers in PCIe.
+  - Every Bus is assigned 1 MB Space.
+
+![ImgURL](https://i.ibb.co/LSnZW04/mmcfg-space.png)
+
+|Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 12 .. 0 |
+| --- | --- | --- | --- | --- |
+| | Base-Address-of-MMCFG-Space | Bus number | Device(5bit) Function(3bit) | Register-Address| 
+
+- For Example, we want to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40		{3:2:5:40}
+
+|Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 12 .. 0 |
+| --- | --- | --- | --- | --- |
+| if 2G=0x8000-0000 | Bus number = 03 | Device(0010) Function(101) = 10101 = 15 | 040 | 
+| 0x8 | 03 | 15 | 40 | 
+
 	- Any access to MMCFG-Space is treated as config transaction.
 	- Now system will use this 256 MB for access PCI config space on PCIe.
 		- Lowest 1 MB is used by PCI-Bus-0.
 		- Next 1 MB is used by PCI-Bus-1.
-```	
-														  					  	<---MMIO-Low-->
-	|			|	 		|SMMTSeg|	(MMCFG-Space)256MB	|							|
-	0		 1 MB						2G	 						      						  4G
-										 /\
-										 |
-										 MMCFG_Base_address
-```
+
 	
 
 # Commands to see PCI devices:
