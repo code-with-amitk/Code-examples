@@ -8,7 +8,7 @@
  
 ## A1. PCI Config Space/Configuration Register/PCI Config Header (256 bytes)
 > PCI-X2.0 introduces 4096 byte sized register
-- **What** Registers present on PCI devices which are mapped to Memory location(maybe virtual).
+- **What** Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
 - **How to access Config Space** OS provides APIs to access config space to device drivers.
 - **PCI Bus size** 8 bit. 2<sup>8</sup> = 256
   - 5 bit = Device No.    3 bit = Function no
