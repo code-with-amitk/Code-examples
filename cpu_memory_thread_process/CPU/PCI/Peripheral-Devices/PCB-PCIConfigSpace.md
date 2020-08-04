@@ -50,9 +50,9 @@
   - Different PCI devices have different requirements for PCI I/O and Memory.
   - This will tell CPU how much space this PCI device requires for I/O and PCI memory.
 - **Types of PCI BARs**
-  - 1. *Register holding base address of PCI Memory space* 
+  - *1. Register holding base address of PCI Memory space* 
     - Indicate on which address space this Device register will be present
-  - 2. *Register holding base address of PCI I/O space* 
+  - *2. Register holding base address of PCI I/O space* 
     - Indicate on which address space this Device register will be present    
 
 |content->|base-address-of-memory-space|...|0|
