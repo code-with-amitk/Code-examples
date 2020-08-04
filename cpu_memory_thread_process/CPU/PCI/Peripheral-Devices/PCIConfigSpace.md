@@ -82,8 +82,9 @@
 	<-------------Read information--------------------------|
 ```
 
-## C2. Steps of Reading from PCIe(4096 bytes) Address Space
-- **MMCFG(Memory Mapped Config)** This is new mechanism for reading beyond 256 bytes, because 256 bytes was for PCI, PCIe provides 4096 bytes address space.
+## A3. Steps of Reading from PCIe(4096 bytes) Address Space
+- **MMCFG(Memory Mapped Config)** 
+ - This is new mechanism for reading beyond 256 bytes, because 256 bytes was for PCI, PCIe provides 4096 bytes address space.
 - **Remember** For PCIe
 	- **256 PCI buses** 
 		- Each bus can connect **32 PCI devices**.
