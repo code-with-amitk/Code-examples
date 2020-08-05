@@ -9,7 +9,7 @@
 2. License, Author, Description, Version
 3. Declare Global variables
 4. Declare the prototype of functions those whould be invoked using callbacks.
-5. file_operations structure Provides callback functions that needed to be called from user space. It is not necessary to implement all functions. If function is not implemented corresponding pointer = 0
+5. **file_operations structure** Provides callback functions that needed to be called from user space. It is not necessary to implement all functions. If function is not implemented corresponding pointer = 0
 6. Define the function to be called at time of device driver initialization. This function is passed as parameter to module_init().
 	 - Create device file from device driver dynamically using `register_chrdev`.
 	 - Register device class
