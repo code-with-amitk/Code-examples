@@ -3,9 +3,7 @@
 # A. PCI Config Space (PCI = 256 bytes, PCIe = 4096 byte)
 > Also called Configuration Register/PCI Config Header 
 - **What** 
-	- Registers present on PCI devices having device information, this is mapped to Memory location(maybe virtual).
-
-- **How to access Config Space** OS provides APIs to access config space to device drivers.
+	- Registers present on PCI devices having device information, this is mapped to Memory location(PHYSICAL MEMORY).
 - **About**
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
   - 1st 64 bytes of configuration space are standardized; the remainder are available for vendor-defined purposes
@@ -60,6 +58,7 @@
 
 ## A2. Reading from PCI(256 bytes) Config Space Registers
 > Note this is only for PCI or for 1st 256 bytes of PCIe
+
 - **Message format for reading PCI address space**
 	- Register Address(8 bit) 2<sup>8</sup> = 256 bytes
 
@@ -94,7 +93,6 @@
 	  - Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
 - **MMCFG Space**
   - This is 256 MB space reserved at start of MMIO-Low for addressing 4k registers in PCIe.
-  - Contents of Config Space Registers from Device functions are read and stored here.
 - **MMCFG-Base** This is the starting address of MMCFG Space & is required for constructing message for reading PCIe address space.  
 
 ![ImgURL](https://i.ibb.co/LSnZW04/mmcfg-space.png)
