@@ -3,7 +3,9 @@
 # A. PCI Config Space (PCI = 256 bytes, PCIe = 4096 byte)
 > Also called Configuration Register/PCI Config Header 
 - **What** 
-	- Registers present on PCI devices having device information, this is mapped to Memory location(PHYSICAL MEMORY).
+	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
+	- These are mapped to Memory location(PHYSICAL MEMORY).
+	- These registers are read/written using configuration RW cycles.
 - **About**
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
   - 1st 64 bytes of configuration space are standardized; the remainder are available for vendor-defined purposes
@@ -58,6 +60,7 @@
 
 ## A2. Reading from PCI(256 bytes) Config Space Registers
 > Note this is only for PCI or for 1st 256 bytes of PCIe
+- 0xCF8{CONFIG_ADDRESS}, 0xCFC{CONFIG_DATA}
 
 - **Message format for reading PCI address space**
 	- Register Address(8 bit) 2<sup>8</sup> = 256 bytes
@@ -83,7 +86,7 @@
 ```
 
 ## A3. Reading from PCIe(4096 bytes) Config Space Registers
-- **MMCFG(Memory Mapped Config)** 
+- **MCFG(Memory Mapped Config)** 
  - New mechanism for reading beyond 256 bytes, because 256 bytes(PCI), PCIe(4096 bytes) address space.
 - For 1 PCI Domain
   - 256 PCI buses
@@ -91,9 +94,9 @@
   - 8 functions/Device
   - 4096 bytes config space/Function
 	  - Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
-- **MMCFG Space**
+- **MCFG Space**
   - This is 256 MB space reserved at start of MMIO-Low for addressing 4k registers in PCIe.
-- **MMCFG-Base** This is the starting address of MMCFG Space & is required for constructing message for reading PCIe address space.  
+- **MCFG-Base** This is the starting address of MCFG Space & is required for constructing message for reading PCIe address space.  
 
 ![ImgURL](https://i.ibb.co/LSnZW04/mmcfg-space.png)
 
@@ -102,7 +105,7 @@
 	
 |Bits->|31 ... 24| 23 ... 16 | 15 ... 8| 12 .. 0 |
 | --- | --- | --- | --- | --- |
-| | Base-Address-of-MMCFG-Space | Bus number | Device(5bit) Function(3bit) | Register-Address| 
+| | Base-Address-of-MCFG-Space | Bus number | Device(5bit) Function(3bit) | Register-Address| 
 
 - For Example, we want to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40		{3:2:5:40}
 
@@ -111,12 +114,12 @@
 | if 2G=0x8000-0000 | Bus number = 03 | Device(0010) Function(101) = 10101 = 15 | 040 | 
 | 0x8 | 03 | 15 | 40 | 
 
-	- Any access to MMCFG-Space is treated as config transaction.
+	- Any access to MCFG-Space is treated as config transaction.
 	- Now system will use this 256 MB for access PCI config space on PCIe.
 		- Lowest 1 MB is used by PCI-Bus-0.
 		- Next 1 MB is used by PCI-Bus-1.
 
-# B. How to Know MMCFG-Base
+# B. How to Know MCFG-Base
 - ACPI-Table
 
 # C. Commands to see PCI devices:
