@@ -16,9 +16,9 @@
 - Each device can have multiple functions with in it.
 - Function numbers can be `0-7` hence 3 bit field.
 
-#### 4. REGISTERS / Configuration Space
+#### 4. REGISTERS / [PCI Configuration Space](PCIConfigSpace.md)
 ##### What 
-- PCI Devices exposes some registers using which software can configure the device called Config Registers.
+- PCI Devices exposes these registers using which CPU can initialize/configure the device called Config Registers.
   
 | | PCI | PCIe |
 | --- | --- | --- |
@@ -33,7 +33,7 @@
   
 ## B. Communication b/w CPU & PCI Device
 ### Method-1 MMIO(Memory Mapped IO)
-- At system boot, kernel send/recv messages with each PCI-device & **MAPS PCI-device control registers(PCI Config Space registers)** are mapped into the address space of the processor, this address space is called MMCFG-SPACE(256 MB). 
+- At system boot, kernel send/recv messages with each PCI-device & **MAPS PCI-device control registers(PCI Config Space registers)** are mapped into the address space of the processor, this address space is called MCFG-SPACE(256 MB). 
 - When device driver accesses the PCI device, its memory and I/O regions have already been mapped into the processor’s address space. Details [PCIConfigSpace.md](PCIConfigSpace.md)
 
 ### Method-2 (Special I/O instructions)
