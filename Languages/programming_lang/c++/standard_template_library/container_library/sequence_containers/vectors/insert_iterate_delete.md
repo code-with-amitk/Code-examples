@@ -10,6 +10,13 @@
 
   v.push_back(11);          //10 10 10 10 10 11
 ```
+
+### 2. void assign( size_type count, const T& value )
+-  Replaces the contents with count copies of value value
+```
+  vector<int> v; 
+  v.assign(3, 10);            //10 10 10  
+```
        
 ## B. TRAVERSING/ITERATING VECTOR
 ### Method-1 for()
