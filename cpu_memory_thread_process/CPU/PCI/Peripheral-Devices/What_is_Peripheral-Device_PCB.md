@@ -24,7 +24,7 @@
 | --- | --- | --- |
 | Register length | 256 bytes | 4096 bytes |
 
-![ImgURL](https://i.ibb.co/s94sPGG/pci.png)
+![ImgURL](https://i.ibb.co/SK8BKzH/pci.png)
 
 #### 5.Examples OF PD** 
 - a. Input: Sends instructions to computer. Eg: mouse, keyboard, webcam etc.
