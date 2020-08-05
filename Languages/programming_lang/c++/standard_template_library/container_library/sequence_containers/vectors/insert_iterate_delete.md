@@ -19,17 +19,17 @@
 ```
        
 ## B. TRAVERSING/ITERATING VECTOR
-### Method-1 for()
+### 1. index
 ```
   for(int i=0;i<v.size();i++)
     cout<<v[i]<<",";        //10,10,10,10,10,11,
 ```
-### Method-2 begin(), end()
+### 2. begin(), end()
 ```
   for(auto i=v.begin();i!=v.end();i++)
     cout<<*i<<";";          //10;10;10;10;10;11;
 ```
-### Method-3 iterator
+### 3. iterator
 ```
   vector<int>::iterator itr;
   for(itr=v.begin(); itr!=v.end(); itr++) //10'10'10'10'10'11'
