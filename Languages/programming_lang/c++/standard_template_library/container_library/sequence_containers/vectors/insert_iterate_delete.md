@@ -1,8 +1,8 @@
 ## A. INSERTION
-### 1. Appends the value to the end of the container.
-#### void push_back( T&& value );   //Since C++11
-- Return value: None
-- Complexity: Amortized constant.
+### 1. void push_back( T&& value );   //Since C++11
+- Appends the value to the end of the container.
+  - Return value: None
+  - Complexity: Amortized constant.
 ```
   vector<int> v(5,10);            //array of size=5, Each element value=10
   for(auto i:v)
