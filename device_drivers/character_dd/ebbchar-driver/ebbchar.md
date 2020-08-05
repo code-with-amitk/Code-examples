@@ -203,5 +203,5 @@ struct file_operations{
 ## Functions
 
 | API | Purpose | Parameters | Return |
-| --- | --- | --- |
+| --- | --- | --- | --- |
 | int register_chrdev_region() | Register character DD | <ul><li>first: beginning device number of the range you would like to allocate</li></ul> <ul><li>count: total number of contiguous device numbers you are requesting</li></ul> <ul><li>name: name of the device that should be associated with this range it will appear in /proc/devices and sysfs</li></ul> | Major Number |
