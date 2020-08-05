@@ -85,7 +85,7 @@
 
 ## A3. Reading from PCIe(4096 bytes) Config Space Registers
 - **MMCFG(Memory Mapped Config)** 
- - This is new mechanism for reading beyond 256 bytes, because 256 bytes(PCI), PCIe provides 4096 bytes address space.
+ - New mechanism for reading beyond 256 bytes, because 256 bytes(PCI), PCIe(4096 bytes) address space.
 - For 1 PCI Domain
   - 256 PCI buses
   - 32 PCI devices/Bus
@@ -94,7 +94,7 @@
 	  - Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
 - **MMCFG Space**
   - This is 256 MB space reserved at start of MMIO-Low for addressing 4k registers in PCIe.
-  - Every Bus is assigned 1 MB Space.
+  - Contents of Config Space Registers from Device functions are read and stored here.
 - **MMCFG-Base** This is the starting address of MMCFG Space & is required for constructing message for reading PCIe address space.  
 
 ![ImgURL](https://i.ibb.co/LSnZW04/mmcfg-space.png)
