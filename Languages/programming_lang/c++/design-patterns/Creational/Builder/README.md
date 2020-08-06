@@ -1,19 +1,14 @@
-/*
-                builder_dp.cpp
+## Builder DP
+- **What** Creating bigger object using smaller objects. Multiple products can be produced using same process.
 
-Builder DP: Creating bigger object using smaller objects. Multiple products can be produced using same process.
+### Entities present in Builder DP
+- **a. Builder:** Abstract class declaring pure virtual functions
+- **b. Concrete class1:** Class overriding builder class
+- **c. Concrete-class2:** Another class overriding builder class
+- **d. Director:** Class using concrete classes and returning a fancy/custom object.  
 
-Entities present in Builder DP:
-a. Builder: Abstract class declaring pure virtual functions
-b. Concrete class1: Class overriding builder class
-c. Concrete-class2: Another class overriding builder class
-d. Director: Class using concrete classes and returning a fancy object.
-
-Simply director takes concrete class pointers and build object.
-Director here creates object having horsepower of JetPlane and weight of carrierPlane.
-
-UML Digram:
-  
+### UML DIagram  
+```  
                         Aggregation
     Builder class   -----------------------/\ Director
         /\                                 \/
@@ -21,28 +16,29 @@ UML Digram:
          |Inheritance
   -----------------
   |               |
- jetPlane     carrierPlane 
-    
-*/
+ jetPlane     carrierPlane  
+```
 
+### Code
+```
 #include<iostream>
 #include <string>
 using namespace std;
 
-class aeroplane {
+class aeroplane {                        
 public:
         float weight;
         int horsePower;
 };
 
-class Builder {
+class Builder {                          //BUIDER. Base Class
  public:
         virtual void setWeight() = 0;
         virtual void setHorsePower() = 0;
         virtual void disp() = 0;
 };
 
-class jetPlane : public Builder {
+class jetPlane : public Builder {                 //Derv-class-1
         aeroplane a;
 public:
         void setHorsePower(){
@@ -56,7 +52,7 @@ public:
         }
 };
 
-class carrierPlane : public Builder {
+class carrierPlane : public Builder {           //Derv-class-2
         aeroplane a;
 public:
         void setHorsePower() {
@@ -70,7 +66,7 @@ public:
         }
 };
 
-class Director {
+class Director {                                //Director
 public:
         void fun(jetPlane *a, carrierPlane *b) {
             a->setHorsePower();
@@ -92,3 +88,4 @@ int main(){
 
     return 0;
 }
+```
