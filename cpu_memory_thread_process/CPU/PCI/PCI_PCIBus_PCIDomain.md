@@ -8,8 +8,7 @@
 
 ## C. PCI Domain
 - Earlier there were 32 devices connected to 1 PCI bus. But this was not sufficient for many large systems. 
-- PCI specifications allowed creation of PCI domains. Each domain can have upto 
-- 1 PCI Domain can have:
+- PCI specifications allowed creation of PCI domains. Each domain can have **n PCI domains**. 1 PCI Domain can have:
 	- 256 Buses
 	- 32 PCI devices/Bus
 	- 8 functions/Device
