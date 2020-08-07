@@ -24,5 +24,7 @@
 
 ## D. SYSFS File System
 - sysfs file system is automatically mounted at /sys by kernel contains information of PCI devices on system.
+```
     # cd /sys/devices/pci0000:00        //PCI device resource tree of PCI domain 
-    # 
+    #
+```    
