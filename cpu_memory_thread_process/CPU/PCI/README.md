@@ -32,7 +32,7 @@
     - PCB & configuration registers
     - PCI Device Addresses
     - How PCI devices are detected
-  - **PCIAndPCI_Bus.md**
+  - **PCI_PCIBus_PCIDomain.md**
     - PCI?
     - PCI Bridges
     - PCI Domain
