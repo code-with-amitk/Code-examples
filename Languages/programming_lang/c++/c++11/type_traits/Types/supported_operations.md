@@ -1,8 +1,7 @@
-/*	supported_operations.cpp
-
-WHAT? Tells if type supports the operation or not?
-
-TYPES?
+## Supported Operations
+- WHAT? Tells if type supports the operation or not?
+- TYPES?
+```	
 is_constructible,is_trivially_constructible,is_nothrow_constructible: 
 	checks if a type has a constructor for specific arguments
 is_default_constructible,is_trivially_default_constructible,is_nothrow_default_constructible:checks if a 
@@ -18,31 +17,27 @@ is_destructible,is_trivially_destructible,is_nothrow_destructible:checks if a ty
 has_virtual_destructor:checks if a type has a virtual destructor
 is_swappable_with,is_swappable,is_nothrow_swappable_with,is_nothrow_swappable:checks if objects of a type can be 
 swapped with objects of same or different type
+```
 
-*********is_copy_constructible***********
-WHAT? T is copy_constructible type if:
-	T is not a referenceable type OR
-	a function type with a cv-qualifier-seq OR
-
-Return?
-        True, if T is copy_constructible
-        Otherwise false
-
-DEFINED?
-/usr/include/boost/type_traits/is_void.hpp
-/usr/include/c++/8/type_traits.cpp
-
-SYNTAX:
-        template< class T >
-        struct is_copy_constructible;
-
+### Example is_copy_constructible
+- T is copy_constructible type if:
+	- T is not a referenceable type OR
+	- a function type with a cv-qualifier-seq OR
+- Return?
+	- True, if T is copy_constructible
+	- Otherwise false
+- DEFINED?
+	- /usr/include/boost/type_traits/is_void.hpp
+	- /usr/include/c++/8/type_traits.cpp
+- SYNTAX:
+```
+	template< class T >
+  struct is_copy_constructible;
 ::value returns the bool showing result meets desired specification or not?
-******************************************
-*/
-
-#include<iostream>
+```
+- Code
+```
 #include<type_traits>
-using namespace std;
 
 struct Ex1 {
 	string str; // member has a non-trivial copy ctor
@@ -55,3 +50,4 @@ int main(){
 /*./a.out
  * Ex1 is copy-constructible
  */
+```
