@@ -12,5 +12,5 @@
 ### struct RSDPDescriptor20       //ACPI Version 2.0
 
 | Type-> | struct RDSPDescriptor | uint32 | uint64 | uint8 | uint8 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | Feild -> | firstPart | Length | XsdtAddress | ExtendedChecksum | reserved`[3]` |
