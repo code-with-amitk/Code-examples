@@ -20,6 +20,7 @@ Output: [2,3]
 
 **Count Array**
 - Count Array can be 1 greater than input array since `a[i] ≤ n`. Array element can be equal to size.
+
 | elements-> | 0 | 1 | 2 | 2 | 1 | 0 | 0 | 1 | |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Indexes-> | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
