@@ -6,8 +6,8 @@
 ### struct RDSPDescriptor          //ACPI Version 1.0
 
 | Type-> | char | uint8 | char | uint8 | uint32 |
-| --- | --- | --- | --- | --- |
-| Feild -> | signature[8] | OEMID[16] | Revision | RsdtAddress |
+| --- | --- | --- | --- | --- | --- |
+| Feild -> | signature`[8]` | checksum | OEMID`[16]` | Revision | RsdtAddress |
 
 ### struct RSDPDescriptor20       //ACPI Version 2.0
 
