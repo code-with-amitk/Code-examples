@@ -1,11 +1,15 @@
 ## ACPI(Advanced Configuration and Power Interface)
-- This is Open standard using which Operating system can:
-  1. Discover & configure Hardware components
-  2. Perform power management. This brings power management under OS control. (Eg: putting unused components on sleep)
-  3. Perform status monitoring
 - ACPI replaces APM & PnP specifications.
-- How it works?
- - ACPI advertises available components to OS kernel using methods provided thru [firmware(UEFI or BIOS)](https://github.com/amitkumar50/Code-examples/blob/master/cpu_memory_thread_process/CPU/firmware_UEFI.md)
+- **What** This is Open standard for:
+  - 1. Power Management
+    - Controls amount of power each device is given.
+    - Check thermal zones eg: sensors, fan speed.
+  - 2. Stores configuration used by OS during boot.
+- **How ACPI information is stored?** ACPI information is stored in BIOS in these forms:
+  - 1. ACPI Tables: Used by OS during boot to get information about no of CPUs, APIC details, NUMA Memory range.
+  - 2. AML(ACPI Machine Language) Code
+  - 3. ACPI SMM(System Management Mode) code
+- OS must look for **RDSP pointer** to begin using ACPI.  
 
 ## 1. Processor Power Management Technologies
 - ACPI divided power management technologies into 2 categories.
