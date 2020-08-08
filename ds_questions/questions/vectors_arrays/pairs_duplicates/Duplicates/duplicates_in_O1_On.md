@@ -139,7 +139,10 @@ vector<int> findDuplicates(vector<int>& a) {
     for (int i = 0; i < s; i++){
         if (a[i] > s*2)
         {
-            v.push_back(i);
+            if(!i)                                    //Index 0 will store count of max element not 0
+              v.push_back(size);
+            else
+              v.push_back(i);
         }
     }
     return v;
@@ -152,4 +155,3 @@ int main(){
     cout<<i<<" ";
 }  
 ```
-
