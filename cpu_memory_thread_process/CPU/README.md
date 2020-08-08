@@ -8,7 +8,7 @@
   - ROM/BIOS
   - VBIOS
   - Boot loader/Bootstrap loader
-- **cstate-pstate-tstate.md**
+- **ACPI**
   - ACPI(Advanced Configuration and Power Interface)
   - Processor Power Management Technologies
     - P-State(Execution Power Saving states)
