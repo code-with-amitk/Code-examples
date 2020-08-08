@@ -1,0 +1,12 @@
+## ACPI(Advanced Configuration and Power Interface)
+- ACPI replaces APM & PnP specifications.
+- **What** This is Open standard for:
+  - 1. Power Management
+    - Controls amount of power each device is given.
+    - Check thermal zones eg: sensors, fan speed.
+  - 2. Stores configuration used by OS during boot.
+- **How ACPI information is stored?** ACPI information is stored in BIOS in these forms:
+  - 1. ACPI Tables: Used by OS during boot to get information about no of CPUs, APIC details, NUMA Memory range.
+  - 2. AML(ACPI Machine Language) Code
+  - 3. ACPI SMM(System Management Mode) code
+- OS must look for **RDSP pointer** to begin using ACPI.  
