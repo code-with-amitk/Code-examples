@@ -16,8 +16,9 @@
   - s.substring(pos, length)
 - **Truncating.md**
   - s.erase(starting_pos, length)
-- **Inserting.md**
+- **Insert_append.md**
   - s.insert(position, string)
+  - s.append(s2)
 - **Replace.md**
   - string.replace(position, length, string-to-replace-with)
 - **Compare.md**
