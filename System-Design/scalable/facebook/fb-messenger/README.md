@@ -1,7 +1,7 @@
 # Facebook Messenger
 - Users can send text/video/audio/image messages using laptop or mobile.
 
-| Million 10<sup>6</sup> | Billion/Giga 10<sup>12</sup> | Trillion/Tera 10<sup>18</sup> | Quadrillion/Peta 10<sup>18</sup> | Quintillion/Exa 10<sup>15</sup | Zeta 10<sup>21</sup> |
+| Million 10<sup>6</sup> | Billion/Giga 10<sup>12</sup> | Trillion/Tera 10<sup>15</sup> | Quadrillion/Peta 10<sup>18</sup> | Quintillion/Exa 10<sup>15</sup | Zeta 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
 ## To Cover
