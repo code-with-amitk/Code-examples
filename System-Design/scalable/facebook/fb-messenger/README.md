@@ -27,13 +27,13 @@
 - Chat history should be stored.  
 
 # 2. BOE Calculations
-- World population = 7 Billion = 7x10<sup>9</sup>   //Year 2020
-- Using Internet = 40% = 2.8 Billion
-- Using FB = 60% of Internet users = 1.68 Billion
-- Users sending:
-  - Text messages(per day) = 60% = 1.68x0.6 = 1 Billion
-  - Audio messages(per day) = 20% = 1.68x0.2 = 336 Million
-  - Video messages(per day) = 5% = 1.68x0.05 = 84 Million
+
+|World Population=7x10<sup>9</sup> //Year 2020|InternetUsers = 40% = 2.8 Billion|FB Users= 60% of Internet users = 1.68 Billion|
+|---|---|---|
+
+|Users Sending|Text message|Audio Messages| Audio Messages |Video Messages|
+|---|---|---|---|---|
+|per day|60% = 1.68x0.6 = 1 Billion|20% = 1.68x0.2 = 336 Million|5% = 1.68x0.05 = 84 Million|
   
 - **Data estimations(bytes to stored)**
 
