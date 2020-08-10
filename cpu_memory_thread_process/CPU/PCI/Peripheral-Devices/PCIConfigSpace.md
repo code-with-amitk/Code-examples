@@ -42,6 +42,7 @@
 - Constructing Address(32 bytes) to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40 {3:2:5:40} = 0x8031540
 	
 | Base-Address-of-MCFG-Space=0x80000000 | Bus number=03 | Device(5bit)=00010 Function(3bit)=101 | Register-Address=40 |
+| --- | --- | --- | --- |
 
 
 # B. How to Know MCFG-Base
