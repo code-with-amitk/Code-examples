@@ -26,14 +26,10 @@
 |signature`[4]|length|revision|OEMID`[6]`|oemTableId`[8]`|revision|creatorId`[4]`|creatorRevision|Array-of-8Byte-Physical_Addresses-to-Description-Headers|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
-##### C2. MCFG Table
+##### C2. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)
 
 |signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|MMCFG-BaseAddress(8byte)|PCISegmentGroupNo|StartPCIBusNo|EndPCIBusNo|Reserved|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-
-- **Configuration-Space-Registers**
-  - This is list of Memory mapped configuration base address location structures.
-  - Contains entry to each PCI Segment group present on system.
 
 
 ## 2. Locating MCFGTable using RDSP struct
@@ -43,11 +39,10 @@
     - Once `RDP PTR` string is located, Read `36 bytes` this is RDSP Structure.
     - Read `uint64 xsdtAddress` and go to xsdt-table
   - Read `128 bytes` from each 8 Byte-Physical_Addresses present at end of `XSDT Table`.
-    - if content at this 128 byte starts with `MCFG`, This is MCFG table.
-    - Note this starting address from Physical Memory, This is **MCFGBase Address**.
-  - Read `MCFG Table`
+    - if content at this 60 byte starts with `MCFG`, This is MCFG table.
+    - Read **MMCFG-BaseAddress** at offset 44 from start.
 - **Overall Steps**
-> RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{Configuration-Space-Addresses-List} -> 
+> RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MMCFG-BaseAddress} -> 
   
 
 
