@@ -8,8 +8,8 @@
 
 ## A1. Config Register Structure
 
-|field->|vendorId|DeviceId|..|HeaderType|BAR0|BAR1|BAR2|BAR3|BAR4|BAR5|
-| --- | --- | --- | --- | --- | --- | ---- | --- | --- |
+|vendorId|DeviceId|..|HeaderType|BAR0|BAR1|BAR2|BAR3|BAR4|BAR5|
+| --- | --- | --- | --- | --- | --- | ---- | --- | --- | --- |
 
 - vendor-id,device-id(mandatory): assigned by the vendor.
 - **BAR(Base Address Register) {56 bytes}** Tells CPU how much space this PCI device requires for I/O and PCI memory.
