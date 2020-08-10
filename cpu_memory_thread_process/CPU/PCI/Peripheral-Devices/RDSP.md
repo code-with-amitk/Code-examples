@@ -28,8 +28,8 @@
 
 ##### C2. MCFG Table
 
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|List-of-Configuration-Space-Registers|
+|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|MMCFG-BaseAddress(8byte)|PCISegmentGroupNo|StartPCIBusNo|EndPCIBusNo|Reserved|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 - **Configuration-Space-Registers**
   - This is list of Memory mapped configuration base address location structures.
