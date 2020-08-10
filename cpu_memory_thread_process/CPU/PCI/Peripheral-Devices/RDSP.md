@@ -28,15 +28,15 @@
 
 ##### C2. MCFG Table
 
-|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|List-of-Configuration-Space-Registers|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|List-of-Configuration-Space-Registers|
 
 - **Configuration-Space-Registers**
   - This is list of Memory mapped configuration base address location structures.
   - Contains entry to each PCI Segment group present on system.
 
 
-## 2. Locating RDSP
+## 2. Locating MCFGTable using RDSP struct
 - **Steps**
   - Seach `RSDP Structure` in Physical Memory 
     - Start searching string **RDP PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure.
