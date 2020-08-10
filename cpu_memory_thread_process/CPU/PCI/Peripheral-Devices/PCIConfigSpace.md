@@ -21,7 +21,7 @@
 ### 1. PCI(256 bytes)
 - Constructing Address(32 bytes) to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40 {3:2:5:40} = x80031540
 
-| 1000 0000 |Bus-number=03|Device(5bit)=00010 Function(3bit)=010|Register-Address=40| 
+| 1000 0000 |Bus-number=03|Device(5bit)=00010 Function(3bit)=010|RegisterAddress(8 bit)=40| 
 | --- | --- | --- | --- | 
 
 - Write 80031540 to 0xCF8{CONFIG_ADDRESS} and read information from 0xCFC{CONFIG_DATA}
@@ -40,7 +40,7 @@
 
 - Constructing Address(32 bytes) to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40 {3:2:5:40} = 0x8031540
 	
-| Base-Address-of-MCFG-Space=0x80000000 | Bus number=03 | Device(5bit)=00010 Function(3bit)=101 | Register-Address=40 |
+|BaseAddressOfMCFGSpace(8 byte)=0x80000000|BusNumber=03|Device(5bit)=00010 Function(3bit)=101|RegisterAddress(12bit)=40 |
 | --- | --- | --- | --- |
 
 
