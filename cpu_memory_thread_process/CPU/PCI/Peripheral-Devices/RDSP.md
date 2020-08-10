@@ -18,19 +18,19 @@
 
 #### C. [struct RSDP**36 bytes**      //ACPI Version 3.0](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
 
-| Feild -> | signature`[8]`="RDP PTR\0" | checksum | OEMID`[16]` | Revision | RsdtAddress | length | uint64 xsdtAddress | extendedchecksum | reserved`[3]` |
+| Feild | signature`[8]`="RDP PTR\0" | checksum | OEMID`[16]` | Revision | RsdtAddress | length | uint64 xsdtAddress | extendedchecksum | reserved`[3]` |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Description|RDP PTR\0| |Identifies OEM| |4 byte Physical Address of RSDT table|table length including header|8byte Physical address of xsdt table| | |
 
 ##### C1. XSDT/Extended System Descriptor Table(Size=92 bytes)
 
-| Feild -> | signature`[4]`|length|revision|OEMID`[6]`|oemTableId`[8]`|revision|creatorId`[4]`|creatorRevision|Array-of-8Byte-Physical_Addresses-to-Description-Headers|
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| signature`[4]`|length|revision|OEMID`[6]`|oemTableId`[8]`|revision|creatorId`[4]`|creatorRevision|Array-of-8Byte-Physical_Addresses-to-Description-Headers|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 ##### C2. MCFG Table
 
-|Feild ->|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|List-of-Configuration-Space-Registers|
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|List-of-Configuration-Space-Registers|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 - **Configuration-Space-Registers**
   - This is list of Memory mapped configuration base address location structures.
