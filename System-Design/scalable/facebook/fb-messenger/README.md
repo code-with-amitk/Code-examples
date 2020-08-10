@@ -44,9 +44,18 @@
 | Video | 84Million(video messages) x 1GB(size) = 84 Exa bytes | 84x30x12x5 = 151 zeta bytes |
 
 Total space requirement for 5 years = 157 zeta bytes
-> Not considering users who deleted chat/video/audio/account permanently. not considering compression.
+> Not considering users who deleted chat/video/audio/account permanently. Compression, new users added.
 
 # 3. HLD
 ## 3A. 2 users on same LAN
-- user-1(192.168.1.2), user-2(192.168.1.3) provided by router
-- Write 
+- User-1(192.168.1.2), user-2(192.168.1.3) provided by router. They can ping but cannot chat(without a dedicated server).
+- Install chat Client on both the machine.
+```
+User-1          Char-Server(Router)
+  -msg |dst=user2|-->|
+            Get  IP Address from forwarding table
+               |user-name|IPAddress|
+            Based on IPAddresss get next hop from routing table
+                    |                       User-2
+                    |------msg from user-1-->|
+```
