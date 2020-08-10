@@ -28,7 +28,7 @@
 
 ##### C2. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)
 
-|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|MMCFG-BaseAddress(8byte)|PCISegmentGroupNo|StartPCIBusNo|EndPCIBusNo|Reserved|
+|signature`[4]`="MCFG"|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|MCFG_BaseAddress(8byte)|PCISegmentGroupNo|StartPCIBusNo|EndPCIBusNo|Reserved|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 
@@ -40,9 +40,9 @@
     - Read `uint64 xsdtAddress` and go to xsdt-table
   - Read `128 bytes` from each 8 Byte-Physical_Addresses present at end of `XSDT Table`.
     - if content at this 60 byte starts with `MCFG`, This is MCFG table.
-    - Read **MMCFG-BaseAddress** at offset 44 from start.
+    - Read **MCFG_BaseAddress** at offset 44 from start.
 - **Overall Steps**
-> RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MMCFG-BaseAddress} -> 
+> RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> 
   
 
 
