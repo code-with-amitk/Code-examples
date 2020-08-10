@@ -38,12 +38,14 @@
 
 ## 2. Locating RDSP
 - **Steps**
-  - Read `XSDTAddress` from `RSDP Structure` in Physical Memory 
+  - Seach `RSDP Structure` in Physical Memory 
     - Start searching string **RDP PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure.
     - Once `RDP PTR` string is located, Read `36 bytes` this is RDSP Structure.
     - Read `uint64 xsdtAddress` and go to xsdt-table
   - Read `128 bytes` from each 8 Byte-Physical_Addresses present at end of `XSDT Table`.
     - if content at this 128 byte starts with `MCFG`, This is MCFG table.
+    - Note this starting address from Physical Memory, This is **MCFGBase Address**.
+  - Read `MCFG Table`
 - **Overall Steps**
 > RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{Configuration-Space-Addresses-List} -> 
   
