@@ -1,9 +1,8 @@
 # Facebook Messenger
 - Users can send text/video/audio/image messages using laptop or mobile.
 
-| Million | Billion/Giga | Trillion/Tera | Quadrillion/Peta | Quintillion/Exa | Zeta |
+| Million 10<sup>6</sup> | Billion/Giga 10<sup>12</sup> | Trillion/Tera 10<sup>18</sup> | Quadrillion/Peta 10<sup>18</sup> | Quintillion/Exa 10<sup>15</sup | Zeta 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
-| 10<sup>6</sup> | 10<sup>9</sup> | 10<sup>12</sup> | 10<sup>15</sup> | 10<sup>18</sup> | 10<sup>21</sup> |
 
 ## To Cover
 - Requirements: Functional, Non-functional, Extended(Group chat)
