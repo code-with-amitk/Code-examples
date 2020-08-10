@@ -40,12 +40,12 @@
 
 - Constructing Address(32 bytes) to read from PCI-Bus=3, PCI-Device=2, Function=5, Register=40 {3:2:5:40} = 0x8031540
 	
-|BaseAddressOfMCFGSpace(8 byte)=0x80000000|BusNumber=03|Device(5bit)=00010 Function(3bit)=101|RegisterAddress(12bit)=40 |
+|BaseAddressOfMCFG_BaseAddress(8 byte)=0x80000000|BusNumber=03|Device(5bit)=00010 Function(3bit)=101|RegisterAddress(12bit)=40 |
 | --- | --- | --- | --- |
 
 
-# B. How to Know MCFG-Base
-- ACPI-Table
+# B. How to Know MCFG_BaseAddress
+- [Using RDSP Structure](RDSP.md)
 
 # C. Commands to see PCI devices:
 ```
