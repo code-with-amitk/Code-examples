@@ -7,12 +7,8 @@
   - to max_heap
 - **insert_iterate_delete.cpp**
   - *insert* push_back(), assign()
-  - *Traversal* 
-    - Using index
-    - Using iterator
-  - *Deletion*
-    - erase(): Removes a range
-    - clear(): Empties the container
+  - *Traversal* Using index, iterator, vector.at(), begin() end()
+  - *Deletion* erase(): Removes a range, clear(): Empties the container
 - **sizeof_vector.md** Calculating sizeof vector
 - **vector_constructors.cpp**: default, fill, range, copy, fixed, move, initializer list
 - **Searching.md** max element in vector, min element
