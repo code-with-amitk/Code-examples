@@ -1,6 +1,7 @@
 ## A. PCI(Peripheral Component Interconnect)
 - **What**
-  - This is a standard that describes how to connect the peripheral components of a system together in a structured and controlled way.
+  - A **standard** that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
+- What is PCI Device
   
 ## B. PCI-Bridges
 - These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
@@ -21,10 +22,3 @@
 	 1 bus=32 devices
 	 1 device=8 functions
 ```
-
-## D. SYSFS File System
-- sysfs file system is automatically mounted at /sys by kernel contains information of PCI devices on system.
-```
-    # cd /sys/devices/pci0000:00        //PCI device resource tree of PCI domain 
-    #
-```    
