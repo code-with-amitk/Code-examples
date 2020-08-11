@@ -1,5 +1,6 @@
-### 1. FUNCTIONS AS OBJECTS
-Means functions can be used as variable
+### 1. FUNCTIONS AS: 
+#### 1a. Objects
+- Means functions can be used as variable
 ```python
 def fun():
     return "Hello"
@@ -7,8 +8,8 @@ test = fun
 print(test())        #Hello
 ```
 
-### 2. FUNCTIONS AS ARGUMENTS
-Function can be passed as arguments to other functions same as variables.
+#### 1b. Arguments
+- Function can be passed as arguments to other functions same as variables.
 ```python
 def f(a,b):
     return a+b
@@ -17,7 +18,7 @@ def f1(var):
 f1(f(1,2))              #Passing function f() as argument of f1() //hello 3
 ```
 
-### 3. INNER FUNCTIONS: function inside function
+### 2. INNER FUNCTIONS: function inside function
 - Note that the order in which the inner functions are defined does not matter. 
 - Like with any other functions, the printing only happens when the inner functions are executed. 
 - Further fun1,fun2 are locally scoped to parent(): they only exist inside the parent() function as local variables.
@@ -235,7 +236,8 @@ print(word.split(', '))             #['geeks', 'for', 'geeks']
 ```
 
 ### 15. INPUT(str-message-before-input)
-- The input() function allows user input.
+- The input() function allows user input until new line is pressed.
+- *raw_input()* This was older function replaced by input()
 - **Returns** string
 ```
 r = float(input('Enter radius'))
