@@ -1,5 +1,5 @@
 ## A. INSERTION
-### 1. void push_back( T&& value );   //Since C++11
+#### 1. void push_back( T&& value );   //Since C++11
 - Appends the value to the end of the container.
   - Return value: None
   - Complexity: Amortized constant.
@@ -11,33 +11,41 @@
   v.push_back(11);          //10 10 10 10 10 11
 ```
 
-### 2. void assign( size_type count, const T& value )
+#### 2. void assign( size_type count, const T& value )
 -  Replaces the contents with count copies of value value
 ```
   vector<int> v; 
   v.assign(3, 10);            //10 10 10  
 ```
        
-## B. TRAVERSING/ITERATING VECTOR
-### 1. index
+## B. TRAVERSING/ITERATING
+#### 1. index
 ```
   for(int i=0;i<v.size();i++)
     cout<<v[i]<<",";        //10,10,10,10,10,11,
 ```
-### 2. begin(), end()
+#### 2. begin(), end()
 ```
   for(auto i=v.begin();i!=v.end();i++)
     cout<<*i<<";";          //10;10;10;10;10;11;
 ```
-### 3. iterator
+#### 3. vector<int>::iterator itr
 ```
   vector<int>::iterator itr;
   for(itr=v.begin(); itr!=v.end(); itr++) //10'10'10'10'10'11'
     cout<<*itr<<"'";
 ```
+#### 4. vector.at(position)
+- Returns a reference to the element at position n in the vector.
+- This is same operator`[]` but .at() checks the bounds of array while `operator[]` does not. at() throws `out_of_range` exception when index is out of bounds.
+```
+vector<int> v = {1,2,3};
+cout<<v.at(2);            //3
+cout<<v.at(3);            //terminate called after throwing an instance of 'std::out_of_range' coredumped
+```
 
 ## C. ERASE/DELETE/REMOVE
-### iterator erase( const_iterator pos );   //Since C++11
+#### 1. iterator erase( const_iterator pos );   //Since C++11
 - Remove element at position
 ```
   v.erase(v.begin());
@@ -45,7 +53,7 @@
     cout<<i<<" ";           //10 10 10 10 11
 ```
 
-### iterator erase( const_iterator first, const_iterator last );  //Since C++11
+#### 2. iterator erase( const_iterator first, const_iterator last );  //Since C++11
 - Remove in range
 ```
   v.erase(v.begin()+1, v.end()-1);
