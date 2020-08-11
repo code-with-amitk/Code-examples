@@ -17,8 +17,5 @@ namespace std _GLIBCXX_VISIBILITY(default){
             ~set() = default;
 ```
 
-### Files
-  - create_insert.md
-    - constructors
-    - insert()
-      - s.make_pair(x,y)
+## Pages
+- **create_insert.md**  constructors, insert(), s.make_pair(x,y)
