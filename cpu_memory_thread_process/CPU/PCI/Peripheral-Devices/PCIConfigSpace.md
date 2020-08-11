@@ -46,23 +46,3 @@
 
 # B. How to Know MCFG_BaseAddress
 - [Using RDSP Structure](RDSP.md)
-
-# C. Commands to see PCI devices:
-```
-        # lspci                     //lists of devices are being used
-        # tree /sys/bus/pci/devices/
-            0000:00:14.0 -> ../../../devices/pci0000:00/0000:00:14.0
-        #$ tree /sys/bus/pci/devices/0000:00:10.0
-            |-- class
-            |-- config        //allows raw PCI information to be read from device.
-            |-- detach_state
-            |-- device
-            |-- irq        //current IRQ assigned to this PCI device
-            |-- power
-            |`-- state
-            |-- resource    //shows the current memory resources allocated by this device
-            |-- subsystem_device
-            |-- subsystem_vendor
-            `-- vendor
-        # cat /proc/bus/pci/devices| cut -f1
-```
