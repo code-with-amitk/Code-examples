@@ -1,10 +1,9 @@
 # A. Peripheral/PCI Device
-### 1. WHAT?
-- Device used to put/get information into/from computer eg: I/O devices. Devices that is connected to PCI Bus.
+- **What?** Device used to put/get information into/from computer eg: I/O devices. Devices that is connected to PCI Bus.
 - **PCI Device Examples?**
-  - *Input* mouse, keyboard, webcam etc.
-  - *Output* Monitor, printer, headphones etc
-  - *I/O* Network cards, Bus controllers USB, PCMCIA, Sound cards, Graphics cards
+  - *Input*: Mouse, keyboard, webcam etc.
+  - *Output*: Monitor, printer, headphones etc
+  - *I/O*: Network cards, Bus controllers USB, PCMCIA, Sound cards, Graphics cards
   
 - **PCI Device types**
   1. *End point device(Type 0)* That does not spawn another bus behind it. Example: VGA, LAN card
@@ -15,7 +14,6 @@
   - *Bus No* Bus on which PCI device is connected
   - *Device Number (5 bit)* Each device is given a number by vendor.
   - *Function number(3 bit)* Each device can have upto 8 functions.
-  - 
 - **Listing all PCI devices on system**
   - *lspci*
 ```
