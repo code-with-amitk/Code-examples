@@ -233,3 +233,11 @@ print(list(range(5,10,2)))      #5,7,9      #3rd argument tells interval of sequ
 word = 'geeks, for, geeks'               0       1       2
 print(word.split(', '))             #['geeks', 'for', 'geeks']
 ```
+
+### 15. INPUT(str-message-before-input)
+- The input() function allows user input.
+- **Returns** string
+```
+r = float(input('Enter radius'))
+print('Area=' + 3.14*r**2)                                     //** is Exponetial. ie x^y
+```
