@@ -1,3 +1,6 @@
+## Constructor calling hierarchy
+
+```
 class Base1(object):
 	def __init__(self):
 		print("Base1")
@@ -12,3 +15,4 @@ class Derv(Base2,Base1):
 		print("Derv")
 
 obj = Derv()	#Output = Derv. Unlike C++ Ctr calling hierarchy
+```
