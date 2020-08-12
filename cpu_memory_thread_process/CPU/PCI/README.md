@@ -26,6 +26,9 @@
 => Config Space Register/function
  - 256 (PCI)
  - 4096 (PCIe)
+ 
+ MMCFG Table Size=>
+ 256(buses) x 32(Devices/Bus) x 8(functions/Device) x 4KB(size/function) = 256MB
 ``` 
 ## Contents
   - **Peripheral-Devices.md**
