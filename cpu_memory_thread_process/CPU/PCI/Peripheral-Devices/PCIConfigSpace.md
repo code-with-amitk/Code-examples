@@ -45,6 +45,15 @@
   - 8 functions/Device
   - 4096 bytes config space/Function
 	  - Total = 256 x 32 x 8 x 4096 = 256 MB. Means 1 MB for each bus.
+- 1MB(1048576) PCI Space/Bus
+	- 1048576/32 Devices = 32KB(32768) space/Device
+	- 32768/8 Functions = 4KB(4096) Space/Function
+```
+|																					|									|
+|==4kb(fun0)==|==4kb(fun1)==|==4kb(fun8)==|									|
+|<---Device0(32KB) PCI Config Space------>|<-----Device1--->|
+MCFGBase
+```
 		
 |BaseAddressOfMCFG_BaseAddress(8 byte)=0x80000000|BusNumber=03|Device(5bit)=00010 Function(3bit)=101|RegisterAddress(12bit)=40 |
 | --- | --- | --- | --- |
