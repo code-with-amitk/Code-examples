@@ -27,8 +27,9 @@
  - 256 (PCI)
  - 4096 (PCIe)
  
- MCFG Table Size=>  256(buses) x 32(Devices/Bus) x 8(functions/Device) x 4KB(size/function) = 256MB
+ MCFG Table Size=>  256(buses) x 32(Devices/Bus) x 8(functions/Device) x 4KB(Bytes/function) = 256MB
  mmap 256MB from MCFGTable-base address to process memory
+ 4096bytes Config Space per function
 ``` 
 ## Contents
   - **Peripheral-Devices.md**
