@@ -1,5 +1,7 @@
 ## Vector
-- **What** Dynamic Allocated Array, Elements are stored in contiguous location. Vector keeps some space reserved in advance for storage of some variables. Now when this space is exhausted. It again re-allocates bigger contiguous space, copies the elements to new space, deletes present memory.  
+- **What** 
+  - Dynamic Allocated Array, Elements are stored in contiguous location. 
+  -Vector keeps some space reserved in advance for storage of some variables. Now when this space is exhausted. It again re-allocates bigger contiguous space, copies the elements to new space, deletes present memory.  
 - **ARRAYLIST Vs VECTORS?**
   - Vectors are synchronized by default but ArrayLists are not.
   - Means if multiple threads accesses vectors then no synchronization needed but required in AL.    
