@@ -176,7 +176,12 @@ print(p)            #Class C
 #### 8f. `__builtins__()`
 - Python3, the module `__builtin__` has been renamed to `builtins` to avoid some of this confusion.
 - provides direct access to all ‘built-in’ identifiers of Python.
+
+#### 8g. `__doc__`
+- A docstring is a string literal that occurs as the first statement in a module/function/class or method definition.
+- Docstring becomes the __doc__ special attribute of that object. All modules should normally have docstrings, and all functions and classes exported by a module should also have docstrings. Public methods (including the __init__ constructor) should also have docstrings.
 ```
+print(abs.__doc__)      #Return the absolute value of the argument.
 ```
 
 ### 9. VARIABLE NO OF ARGUMENTS
