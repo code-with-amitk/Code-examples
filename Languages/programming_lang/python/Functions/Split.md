@@ -22,7 +22,7 @@ l2 = word.split(', ',1)      #['Amit', 'will, achieve']     //2
 print(l2)
 ```
 
-### 2 SPLIT()
+### 2 RSPLIT()
 ```
 word = 'Amit, will, achieve'
 li = word.rsplit(', ')
