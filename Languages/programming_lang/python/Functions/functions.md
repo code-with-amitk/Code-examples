@@ -191,7 +191,7 @@ fun ( 'te', 90 )
 ```
 
 ### 10. STRING.STRIP([CHARS]): 
-Removes characters from both left and right based on the argument (a string specifying the set of characters to be removed)
+- Removes characters from both left and right based on the argument (a string specifying the set of characters to be removed)
 ```python
 def test(gpLink):
     ret = []
@@ -221,18 +221,10 @@ print ('The {1} who says {0}.'.format("person",'Hello')) #The Hello who says Per
 ```
 
 ### 13. RANGE()
-produces continuous sequence
+- produces continuous sequence
 ```python
 print(list(range(5,8)))         #5,6,7
 print(list(range(5,10,2)))      #5,7,9      #3rd argument tells interval of sequence
-```
-
-### 14. SPLIT()
-   Returns? A list of strings after breaking the given string by the specified separator.
-   if separator is not provide WHITESPACE is taken as separator.
-```python
-word = 'geeks, for, geeks'               0       1       2
-print(word.split(', '))             #['geeks', 'for', 'geeks']
 ```
 
 ### 15. INPUT(str-message-before-input)
