@@ -1,21 +1,22 @@
 ## Constructors
 
-### 1. DEFAULT CTR
+### 1. DEFAULT
 - Constructs an empty container with a default-constructed allocator.
  ```
-// Until C++17: vector()
-// After C++17: vector() noexcept(noexcept(Allocator()));  
+Until C++17: vector()
+After C++17: vector() noexcept(noexcept(Allocator()));  
+
 vector<int>::iterator it;
 vector<int> a;
 for (it = a.begin(); it != a.end(); it++)
  cout << "  " << *it;         //Nothing printed
 ```
 
-### 2. FILL CTR
+### 2. FILL
 - Constructs a container with n elements. Each element is a copy of 'a'(if provided)
  ```
-// Until C++11 explicit vector(size_type n, const T& value = T(), const Allocator& alloc = Allocator());
-// Since C++11          vector(size_type n, const T& a, const Allocator& alloc = Allocator());
+Until C++11 explicit vector(size_type n, const T& value = T(), const Allocator& alloc = Allocator());
+Since C++11          vector(size_type n, const T& a, const Allocator& alloc = Allocator());
  Arguments(latest):
  1. n = sizeof vector to be created
  2. a = Value to which each element is assigned
@@ -27,8 +28,8 @@ for (it = b.begin(); it != b.end(); it++)
 cout << '\n';
 ```
 
-### 3. RANGE CTR
-- Constructs the container with the contents of the range [first, last)
+### 3. RANGE 
+- Constructs the container with the contents of the range `[first, last)`
 ```
 template< class T > vector( T first, T last, const Allocator& alloc = Allocator() );        
 Arguments:
@@ -42,7 +43,7 @@ for (it = c.begin(); it != c.end(); it++)
 cout << '\n';
 ```                                                           
 
-### 4. COPY CTR
+### 4. COPY
 - Create a new vector that is a copy of the given vector.
 ```                                                           
 Until C++11: vector( const vector& other );
@@ -54,7 +55,7 @@ for (it = d.begin(); it != d.end(); it++)
 cout << '\n';
 ```
 
-### 5. FIXED SIZED CTR
+### 5. FIXED SIZED
 - Construct container contaning n element init to 0. No copies are made.
 ```                                                           
 Until C++14: explicit vector( size_type n );
@@ -66,7 +67,7 @@ for (it = e.begin(); it != e.end(); it++)
 cout << '\n';
 ```
 
-### 6. MOVE CTR
+### 6. MOVE
 - Construct the vector from 'orig' using move semantics. After the move, other is guaranteed to be empty()
 ```
 Until C++17: vector( vector&& orig )
@@ -82,11 +83,13 @@ for (it = g.begin(); it != g.end(); it++)
 cout << '\n';
 ```
 
-### 7. ALLOCATOR EXTENDED MOVE CTR:
-     Here, original vector is not guaranteed to be empty after the move.
-         Since C++11: vector( vector&& other, const Allocator& alloc );
+### 7. ALLOCATOR EXTENDED MOVE
+- Here, original vector is not guaranteed to be empty after the move.
+```
+Since C++11: vector( vector&& other, const Allocator& alloc );
+```
 
-### 8. INITIALIZER LIST CTR
+### 8. INITIALIZER LIST
 - Constructs the container with the contents of the initializer list l
 ```
 Since C++11: vector( initializer_list<T> l, const Allocator& alloc = Allocator() );  
