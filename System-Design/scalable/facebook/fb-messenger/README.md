@@ -47,15 +47,12 @@ Total space requirement for 5 years = 157 zeta bytes
 > Not considering users who deleted chat/video/audio/account permanently. Compression, new users added.
 
 # 3. HLD
-## 3A. 2 users on same LAN
-- User-1(192.168.1.2), user-2(192.168.1.3) provided by router. They can ping but cannot chat(without a dedicated server).
-- Install chat Client on both the machine.
+## 3A. 2 users
 ```
-User-1          Char-Server(Router)
-  -msg |dst=user2|-->|
-            Get  IP Address from forwarding table
-               |user-name|IPAddress|
-            Based on IPAddresss get next hop from routing table
-                    |                       User-2
-                    |------msg from user-1-->|
+User-1               Chat-Server                User-2
+  |-- login home page -->|                  does same as user-1
+  |   user/password      |
+  |<-Default Page--------|
+  | <-Chat,Friends Info--|
+  
 ```
