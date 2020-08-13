@@ -50,9 +50,12 @@ Total space requirement for 5 years = 157 zeta bytes
 ## 3A. 2 users
 ```
 User-1               Chat-Server                User-2
-  |-- login home page -->|                  does same as user-1
+  |---- Register-------->|                  does same as user-1
   |   user/password      |
   |<-Default Page--------|
   | <-Chat,Friends Info--|
+
+- Server will need?
+  - 
   
 ```
