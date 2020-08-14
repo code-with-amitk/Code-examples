@@ -17,7 +17,11 @@
 30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 .........
 ```
-- **Config Register Structure**
+- **PCI Config Register Structure**
+
+|vendorID|deviceID|
+|---|---|
+
 	- offset0: VendorID, offset1: DeviceID, offset10: classID, offset16to39: BAR0-BAR5, offset44: subvendorID
 		- vendor-id,device-id(mandatory): assigned by the vendor.		
 	- *BAR(Base Address Register) {56 bytes}* Tells CPU how much space this PCI device requires for I/O and PCI memory.
