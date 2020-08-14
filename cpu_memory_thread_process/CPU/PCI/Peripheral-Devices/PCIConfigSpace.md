@@ -19,8 +19,8 @@
 ```
 - **PCI Config Register Structure**
 
-|vendorID|deviceID|
-|---|---|
+|vendorID(1byte)|deviceID(1byte)|CommandRegister(1byte)|StatusRegister(1byte)|RevisionID(4bit)|classCode(12bit)|
+|---|---|---|---|---|---|
 
 	- offset0: VendorID, offset1: DeviceID, offset10: classID, offset16to39: BAR0-BAR5, offset44: subvendorID
 		- vendor-id,device-id(mandatory): assigned by the vendor.		
