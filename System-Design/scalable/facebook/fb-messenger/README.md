@@ -19,12 +19,11 @@
 
 # 1. REQUIREMENTS
 ## FUNCTIONAL
-- User can send messages to friends, Message should be delivered instantly.
-- User can search unblocked people, can send friend requests.
-- User can see online/offline friends. Seen/Unseen messages.
+- (1st) User can see all of his friends and can send message to any of his friend.
+- (2nd) Chat history should be stored.  
+- (3rd) User can send message to any person on facebook provided target person has not blocked incoming messages
 - These sizes can be delivered as 1 message.
   - {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
-- Chat history should be stored.  
 
 # 2. BOE Calculations
 
@@ -49,11 +48,22 @@ Total space requirement for 5 years = 157 zeta bytes
 # 3. HLD
 ## 3A. 2 users
 ```
-User-1               Chat-Server                User-2
-  |---- Register-------->|                  does same as user-1
-  |   user/password      |
-  |<-Default Page--------|
-  | <-Chat,Friends Info--|
+User-1               Chat-Server              
+  |----  Register -------->|
+  |-Login(userid/password->|
+  |                 Read following information from files
+  |                - friends of userId.  {Req-1} //server maintains a file-1 containing friend list(encrypted/compressed)
+  |                - chat History  {Req-2} //(file-2) is maintained/userId containing all chats userId done with friends/world.
+  |                                        //Chats are stored in chornological order with timestamps.
+  |                - See all unblocked people on fb. {Req-3}   //A global file-3 containing all userId present on system.
+  |                      |                                     //Each userId is associated with hidden field, allows/blocks userId to be seen in searches.          
+  | <-show friends-------|
+  | <-show chat history--|
+  |                      | 
+  |--search user n-----> |
+  |                  check user is present in file-3
+  |                  if present, check hidden flag?
+  |<--user-2 information-|                 
 
 - Server will need?
   - 
