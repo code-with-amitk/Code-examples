@@ -22,10 +22,10 @@
 - A1. Header type 0
 	- 1st feild is vendorID
 
-|register|05|04|04|04|04|03|03|03|03|01|01|00|00|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|Size(bytes)|BAR0(4)|BIST(1)|HdrType(1)|LatencyTimer(1)|cacheLineSize(1)|classCode(1)|Subclass(1)|ProgIF(1)|Rev(1)|Status(2)|Command(2)|DeviceId(2)|vendorId(2)|
-|offset-> hex(dec)|10(16)|0F(15)|0E(14)|0D(13)|0C(12)|0B(11)|0A(10)|09|08|06|04|02|00|
+|register|09|08|07|06|05|04|03|03|03|03|02|02|02|02|01|01|00|00|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|Size(bytes)|BAR5(4)|BAR4(4)|BAR3(4)|BAR2(4)|BAR1(4)|BAR0(4)|BIST(1)|HdrType(1)|LatencyTimer(1)|cacheLineSize(1)|classCode(1)|Subclass(1)|ProgIF(1)|Rev(1)|Status(2)|Command(2)|DeviceId(2)|vendorId(2)|
+|offset-> hex(dec)|24(36)|20(32)|1C(28)|18(24)|14(20)|10(16)|0F(15)|0E(14)|0D(13)|0C(12)|0B(11)|0A(10)|09|08|06|04|02|00|
 
 ```
 - vendor-id,device-id(mandatory): assigned by the vendor.		
