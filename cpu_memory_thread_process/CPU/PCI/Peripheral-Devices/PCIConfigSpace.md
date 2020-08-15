@@ -17,10 +17,13 @@
 30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 .........
 ```
-- **PCI Config Register Structure**
+- **[PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)**
+- A1. Header type 0
 
-|vendorID(1byte)|deviceID(1byte)|CommandRegister(1byte)|StatusRegister(1byte)|RevisionID(4bit)|classCode(12bit)|
+|register|04|03|02|01|00|
 |---|---|---|---|---|---|
+||BAR0(4byte)|(BIST1byte)(HdrType1byte)(LatencyTimer1byte)(cacheLineSize1byte)|(classCode1byte)(Subclass1byte)(ProgIF1byte)(Rev1byte)|(Status2byte)(Command2byte)|(DeviceId2byte)(vendorId2byte)|
+|offset->|10|0C|08|04|00|
 
 	- offset0: VendorID, offset1: DeviceID, offset10: classID, offset16to39: BAR0-BAR5, offset44: subvendorID
 		- vendor-id,device-id(mandatory): assigned by the vendor.		
