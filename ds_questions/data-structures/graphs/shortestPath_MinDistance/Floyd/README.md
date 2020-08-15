@@ -1,5 +1,6 @@
 ## Floyd Warshall
 - Not Single Source algorithm It means Algorithm will tell shortest path between all nodes in graph.
+- Works for both directed and undirected graphs.
 
 ### Example(Graph of friends)
 ![ImgURL](https://i.ibb.co/Hn059w4/floyd-warshall.png)
