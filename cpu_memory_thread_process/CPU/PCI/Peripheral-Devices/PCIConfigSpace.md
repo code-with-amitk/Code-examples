@@ -20,18 +20,21 @@
 - **[PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)**
 
 - A1. Header type 0
+	- 1st feild is vendorID
 
 |register|05|04|04|04|04|03|03|03|03|01|01|00|00|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |Size(bytes)|BAR0(4)|BIST(1)|HdrType(1)|LatencyTimer(1)|cacheLineSize(1)|classCode(1)|Subclass(1)|ProgIF(1)|Rev(1)|Status(2)|Command(2)|DeviceId(2)|vendorId(2)|
 |offset-> hex(dec)|10(16)|0F(15)|0E(14)|0D(13)|0C(12)|0B(11)|0A(10)|09|08|06|04|02|00|
 
-	- offset0: VendorID, offset1: DeviceID, offset10: classID, offset16to39: BAR0-BAR5, offset44: subvendorID
-		- vendor-id,device-id(mandatory): assigned by the vendor.		
-	- *BAR(Base Address Register) {56 bytes}* Tells CPU how much space this PCI device requires for I/O and PCI memory.
-		- *Types of PCI BARs*
-  		- *1. Register holding base address of PCI Memory space* : Indicate on which address space this Device register will be present
-  		- *2. Register holding base address of PCI I/O space* : Indicate on which address space this Device register will be present    
+```
+- vendor-id,device-id(mandatory): assigned by the vendor.		
+- BAR(Base Address Register): 4 bytes each. 6 registers
+	- Tells CPU how much space this PCI device requires for I/O and PCI memory.
+	- *Types of PCI BARs*
+  	- *1. Register holding base address of PCI Memory space* : Indicate on which address space this Device register will be present
+  	- *2. Register holding base address of PCI I/O space* : Indicate on which address space this Device register will be present    
+```
 
 ## A2. Reading from Config Space Register
 > Consider Reading from Bus=3, Device=2, Function=5, Register=40 {3:2:5:40} = 0x80031540
