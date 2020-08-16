@@ -171,3 +171,13 @@ auto f = []<typename ...Ts>(Ts&& ...ts) {
    return foo(std::forward<Ts>(ts)...);
 };
 ```
+
+### Real world examples
+#### 1. Open /dev/mem
+```
+int main(){
+  int fd;
+  if((fd=[]()->int{return open("./hello.txt", O_RDWR);}()) != -1)
+    cout<<fd;
+}
+```
