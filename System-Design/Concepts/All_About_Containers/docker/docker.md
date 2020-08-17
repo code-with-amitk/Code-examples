@@ -25,11 +25,6 @@
 ### DOCKER ARCHITECTURE
 ![ImgUrl](https://i.ibb.co/Hz89jmJ/dc.png)
   - **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
-  - **Contianers**
-    - Contains processes
-    - Each container has its own network interface with its own IP address
-    - Each container has its own file system.
-    - All Docker containers share the kernel of the Docker host
     
 ### DOCKER FILES
   - The creation of Docker images is done via files named Dockerfile(which are easy to write).
