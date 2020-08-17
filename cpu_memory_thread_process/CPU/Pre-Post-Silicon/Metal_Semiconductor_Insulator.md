@@ -4,10 +4,10 @@
 #### 1. Energy Bands
   - **What** According to band theory, the electrons in a solid can possess bands of energies called allowed bands of energies and these electrons may not possess some other bands of energies called forbidden bands of energies. 
     - *Forbidden Band/Band Gap* Band seperating valance and conduction band.
-    - *Valance Band* highest range of electron energies in which electrons are present at 0 temperature.
+    - *Valance Band* highest range of electron energies in which electrons are present at 0 temperature. As electrons reach conduction band from valance band it leaves a hole and other electrons can move bit more freely in valance band.
     - *Conduction Band* topmost band of energy
 #### 2. Electrical Conductivity
-  - 
+  - Depends on amount/capacity of electrons to move from valance to conduction band.
   
 ### B. Comparison
 - **Metals**
