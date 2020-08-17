@@ -23,7 +23,7 @@
 ![ImgURL](https://i.ibb.co/DLw6gHp/metal-insulator-semicond.png)  
 
 | |Insulator|Metal|Semiconductor|
-|---|---|---|
+|---|---|---|---|
 |Valence Band|Full of electrons| overlap with CB | Partially full|
 |Conduction Band|Empty| |Partially full|
 |Band Gap|Largest, Crossing requires large energy| None | Less |
