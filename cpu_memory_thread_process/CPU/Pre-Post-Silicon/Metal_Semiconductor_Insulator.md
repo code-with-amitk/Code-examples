@@ -3,9 +3,9 @@
 ### A. Terms
 #### 1. Energy Bands
   - **What** According to band theory, the electrons in a solid can possess bands of energies called allowed bands of energies and these electrons may not possess some other bands of energies called forbidden bands of energies. 
-  - **Forbidden Band/Band Gap** Band seperating valance and conduction band.
-  - **Valance Band** highest range of electron energies in which electrons are present at 0 temperature.
-  - **Conduction Band** topmost band of energy
+    - *Forbidden Band/Band Gap* Band seperating valance and conduction band.
+    - *Valance Band* highest range of electron energies in which electrons are present at 0 temperature.
+    - *Conduction Band* topmost band of energy
 #### 2. Electrical Conductivity
   - 
   
