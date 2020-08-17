@@ -1,17 +1,21 @@
 # Dev(developer), Ops(Operations or deployment)
-- **How Metrics are measured**
-  - **Dev teams** Amount of new changes they can deliver. This builds their reputation.
-  - **Operations team** How stable software is in production.
+
+# 1. Waterfall/Traditional development model(SDLC)
+## 1A. Problems?
+- **1. Code Broke in Production?**
+```
+Dev(4 moths) --> testing(2 months) --> Production(Code Broke)
+```
+  - Because code bases running on prod and dev were hugely different.
+  - Different tools, management models used by development-team and operations-team.
+- **2. Dev and Operations Teams are not aligned to common Goal**  
+  - **How Metrics are measured**
+    - **Dev teams** Amount of new changes they can deliver. This builds their reputation.
+    - **Operations team** How stable software is in production.
     - But dont you think these are OPPOSITE. So, what happens? Dev team continually creates new features/changes/bug fixes and throws them over the wall to operations. The operations team perfects its best defense to prevent change.
 
-# A1. Problem in Traditional development model(SDLC)
-- Code Broke in Production!!
-   - Dev(4 moths) --> testing(2 months) --> Production(Code Broke)**Why?** 
-     - Because code bases running on prod and dev were hugely different. it might be no one's fault
-     - Different tools, management models used by development-team and operations-team.
-
-# A2. Solution(Devops) 
-## What is Devops?
+## 1B. Solution = Devops
+### A. What is Devops?
 - Close these gaps by aligning approaches, tools between dev & operations.
 - Bringing Agile approaches to all parts of the software delivery process.
 - streaming feedback from production to development and improving the cycle time. (i.e., the time from inception to delivery)
@@ -20,10 +24,10 @@
   - Quality: Testers are not solely responsible for quality; rather, the whole team works together to maintain quality.
   - Shared Incentives: Performance bonus & incentives of each should depends on other dev and ops.
   - Area of Devops: How they can cooperate & work with each other. [See this Page](Area-Matrix.md)
-## Why Devops?
+### B. Why Devops?
 1. Deliver High quality software more quickly, which is more aligned with customer's requirements and basic conditions.
 
-# B. Terms
+### C. Terms
 - **Cyle Time** Amount of time required from the start of the development process to the beginning of revenue generation.
 - **System Capacity** Maximum throughput system can sustain for a given workload while maintaining an acceptable response time.
 - **DOD(Definition of Done)** No development job is finished until complete testing/depoyed on target systems, in a defined quality, monitoring is avaliable.
@@ -33,7 +37,7 @@
 - **MTTD(Mean time to detect)** Issue detection by the operations team.
 - **Resilience** Ability of system to adjust itself during changes or disturbances, so that it can sustain required operations expected and unexpected conditions.
 
-# C. Devops Building Blocks/Fundamental of Devops
+### D. Devops Building Blocks/Fundamental of Devops
 - **1. Reduce batch size** With reduced bat size, we can deploy more frequently.
 - **2. Deploy Freequently, Deploy small**
    - Root causes of production incidents can be undersood quickly.
