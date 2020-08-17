@@ -5,6 +5,8 @@
 - **What**
   - Isolated partition of OS for 1 application/process.
   - This OS has all libraries for application to be built/run independently and securely of other applications on system.
+  - Each container has its own network interface, its own IP address, its own file system.
+  - All containers share the kernel of the host.
 - **Issues without container**
   - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 - **Advantages**
