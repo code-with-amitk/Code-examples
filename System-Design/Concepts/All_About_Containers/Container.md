@@ -2,6 +2,8 @@
 - Packaging software code and all its dependencies in a bundle.
 
 ## Containers
+- **What**
+  - Isolated partition of OS which has all libraries for application to be built/run independently and securely of other applications on system.
 - **Issues without container**
   - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 - **Advantages**
