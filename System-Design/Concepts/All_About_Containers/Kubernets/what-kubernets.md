@@ -4,13 +4,12 @@
   - **Benefits of kubernets**
     - Zero-downtime deployments, fault tolerance, high availability, scaling, scheduling, and self-healing are in Kubernetes.
     
-## Creating kubernets cluster
-  - **Options**
-    1. create a few nodes with Vagrant (a tool for building and managing virtual machine environments in a single workflow) 
-    2. create a VirtualBox image that would have all the required software pre-installed
-    3. use Ansible to run provisioning of those images also execute all the commands required to join VMs into a cluster
-    4. Using ***Minikube***:
-      - Minikube creates a 1-node cluster inside a VM on your laptop. 
+## Options for Creating kubernets cluster
+1. create a few nodes with Vagrant (a tool for building and managing virtual machine environments in a single workflow) 
+2. create a VirtualBox image that would have all the required software pre-installed
+3. use Ansible to run provisioning of those images also execute all the commands required to join VMs into a cluster
+4. Using ***Minikube***:
+  - Minikube creates a 1-node cluster inside a VM on your laptop. 
 
 ### Working with Minikube
 
