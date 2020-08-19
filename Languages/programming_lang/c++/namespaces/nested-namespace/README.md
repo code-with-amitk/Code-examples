@@ -1,7 +1,7 @@
 ## Nested Namespace (C++17)
 - Namespace inside a namespace.
  
-```
+```c++
  namespace A::B::C { ... } 
 
 is equivalent to 
@@ -12,7 +12,10 @@ is equivalent to
      } 
    } 
  }
-```             
+```     
+
+### Example
+```c++
 namespace A{
  int a = 10;
 }
