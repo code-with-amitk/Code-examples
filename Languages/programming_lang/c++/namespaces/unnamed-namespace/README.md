@@ -9,7 +9,7 @@
 			
 ### EXAMPLES
 #### 1. unnamed namespace inside named namespace
-```
+```c++
 #include<iostream>
 using namespace std;
 
