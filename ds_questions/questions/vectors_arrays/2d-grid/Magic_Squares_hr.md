@@ -36,7 +36,9 @@
   - 45 + 3x = 60. x = 5.  Middle element=5
 - Finding other values.
   - Simply ensure that all rows, columns and diagonals sum to 15. and all elements are unique.
+  
   ![ImgURL](https://i.ibb.co/pn8HBHY/magic-square.png)
+  
 - **Note** Variations on the 3x3 magic square can be found by rotating the entries around the center number 5.
   
  
