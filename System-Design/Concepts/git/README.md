@@ -3,7 +3,7 @@
 
 | | github/gitlab/bitbucket | gerrit |
 | --- | --- | --- |
-|What|Code Hosting tool|Github's product which provides Code Review/Access Control on Git repositories|
+|What|Code Hosting tool|Github's product. Web based Code Review/Access Control on Git repositories|
 |Code review Capabilites|lesser|Extensive|
 |Does not provide||Code browsing,search,Continious build,Code hosting|
 |git history|not clean|cleaner|
