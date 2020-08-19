@@ -2,7 +2,7 @@
 
 |Issue|Steps|
 |---|---|
-|1. git clone remote head refers to nonexistent ref|<ul><li>Head(.git/HEAD) is a file storing reference to checkout branch</li></ul> <ul><li>ref: ref is a file storing hash of recent commit on checkout branch</li></ul> <ul><li>This error means:HEAD exists, but ref(File storing SHA-1 of recent commit on remote branch) is missing</li></ul>|
+|1. git clone remote head refers to nonexistent ref|<ul><li>Head(.git/HEAD) is a file storing reference to checkout branch</li></ul> <ul><li>ref: ref is a file storing hash of recent commit on checkout branch</li></ul> <ul><li>This error means:HEAD exists, but ref(File storing SHA-1 of recent commit on remote branch) is missing</li></ul> <ul><li>To resolve the issue(Admin can create symbolic links)# cd path/to/repo; git symbolic-ref HEAD refs/heads/master</li></ul>|
 
 ### Issue-1 (remote head refers to nonexistent ref)
 ```
