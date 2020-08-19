@@ -1,9 +1,21 @@
 ## [Problem](https://www.hackerrank.com/challenges/magic-square-forming/problem)
 
-### Description
+### 1. Description
 - Find in how many replacements a 3x3 matrix can be converted to magic square?
+```
+5 3 4
+1 5 8
+6 4 2
+```
+- We can convert it to the following magic square:
+```
+8 3 4
+1 5 9
+6 7 2
+```
+- This took three replacements at a cost of |5-8|+|8-9|+|4-7| = 7
 
-### [WHAT IS MAGIC SAUARE](http://jwilson.coe.uga.edu/EMAT6680Su07/McKee/6690/magicsquares/ms1.html)
+### 2. [WHAT IS MAGIC SAUARE](http://jwilson.coe.uga.edu/EMAT6680Su07/McKee/6690/magicsquares/ms1.html)
 - A square grid in which distinct numbers are written into each cell of the grid in such a way that each row, each column and each diagonal add up to the same number.
 #### 1x1 Magic square
 - This is always a magic square
@@ -36,9 +48,66 @@
   - 45 + 3x = 60. x = 5.  Middle element=5
 - Finding other values.
   - Simply ensure that all rows, columns and diagonals sum to 15. and all elements are unique.
+- There can be 8 Magic Squares for 3x3 matrix.  
   
   ![ImgURL](https://i.ibb.co/pn8HBHY/magic-square.png)
   
 - **Note** Variations on the 3x3 magic square can be found by rotating the entries around the center number 5.
   
+ ## 3. Logic
+ - Since input is all times 3x3 matrix. 
+ - Create a 2-D vector that contains all possible 8 magic square generated from 3x3 matrix.
+ - Take input from keyboard
+ - Sum the difference of each position on on array and magic squares
+ - Whichever magic sauare gives least difference, that means this is the answer requiring least replacements wrt others.
  
+ ## 4. Code
+ ```c++
+ int main() {
+    vector<vector<int>> valid_squares = {             //All valid magic squares
+      {8,1,6,3,5,7,4,9,2},
+      {4,3,8,9,5,1,2,7,6},
+      {2,9,4,7,5,3,6,1,8},
+      {6,7,2,1,5,9,8,3,4},
+      {6,1,8,7,5,3,2,9,4},
+      {8,3,4,1,5,9,6,7,2},                <<<<<<<<<<Nearest magic square to input array
+      {4,9,2,3,5,7,8,1,6},
+      {2,7,6,9,5,1,4,3,8}
+    };
+
+    int a[9],j;
+    for(int i=0;i<9;i++) cin>>a[i];                 //Take input array
+    
+    int best = 1000000;
+    for(int i=0;i<8;i++){
+        int diff = 0;
+        for(j=0;j<9;j++)
+          diff += abs(a[j]-valid_squares[i][j]);          //Difference of magic square vs input matrix
+
+          cout<<"j="<<j<<",diff="<<diff<<endl;
+
+        if (diff<best)
+          best = diff;
+    }
+    cout<<best<<endl;
+    return 0;
+}
+# ./a.out
+5 3 4
+1 5 8
+6 4 2
+i=0,diff=17
+i=1,diff=31
+i=2,diff=29
+i=3,diff=13
+i=4,diff=29
+i=5,diff=7            <<<<This is answer. Because it has least differences means its nearest magic square to input.
+i=6,diff=21
+i=7,diff=33
+7
+ ```
+ 
+ ## 6. Complexity
+ - Considering n=9 elements in 3x3 matrix.
+   - Space O(n<sup>2</sup>)
+   - Time O(n<sup>2</sup>)
