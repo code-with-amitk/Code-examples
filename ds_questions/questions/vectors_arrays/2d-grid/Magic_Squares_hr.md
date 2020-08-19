@@ -57,13 +57,13 @@
  ## 3. Logic
  - Since input is all times 3x3 matrix. 
  - Create a 2-D vector that contains all possible 8 magic square generated from 3x3 matrix.
- - Take input from keyboard
- - Sum the difference of each position on on array and magic squares
+ - Convert input vector to 1-D array.
+ - Sum the difference of each position on on array and magic square arrays.
  - Whichever magic sauare gives least difference, that means this is the answer requiring least replacements wrt others.
  
  ## 4. Code
  ```c++
- int main() {
+int formingMagicSquare(vector<vector<int>> s) {
     vector<vector<int>> valid_squares = {             //All valid magic squares
       {8,1,6,3,5,7,4,9,2},
       {4,3,8,9,5,1,2,7,6},
@@ -75,8 +75,10 @@
       {2,7,6,9,5,1,4,3,8}
     };
 
-    int a[9],j;
-    for(int i=0;i<9;i++) cin>>a[i];                 //Take input array
+   int a[9], l=0;
+    for(int i=0;i<3;i++)                  //Convert 2-D vector to 1-D array. Ease of calculation
+      for(int k=0;k<3;k++)
+        a[l++] = s[i][k];               
     
     int best = 1000000;
     for(int i=0;i<8;i++){
@@ -89,8 +91,16 @@
         if (diff<best)
           best = diff;
     }
-    cout<<best<<endl;
-    return 0;
+    return best;
+}
+int main() {
+  vector<vector<int>> v = {
+    {5, 3, 4},
+    {1, 5, 8},
+    {6, 4, 2}
+  };
+  cout<<formingMagicSquare(v);
+  return 0;
 }
 # ./a.out
 5 3 4
