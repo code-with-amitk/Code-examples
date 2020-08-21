@@ -1,8 +1,8 @@
 ## Firmware
-![ImgURL](https://i.ibb.co/3pFs5Sc/firmware.png)
+![ImgURL](https://i.ibb.co/WtcxxMt/firmware.jpg)
 
 - **What**
-  - Firmware is a software program burned on Hardware by manufacturer.
+  - Firmware is a software program placed on memory built in to particular Hardware by manufacturer.
   - It provides the necessary instructions for how the device communicates with the other computer hardware.
   - a computer motherboard without firmware would not detect the hard drive or video card that is found inside computer.
 - **Example**
