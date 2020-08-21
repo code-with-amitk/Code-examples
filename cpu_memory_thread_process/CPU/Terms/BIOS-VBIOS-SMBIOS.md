@@ -1,6 +1,6 @@
 ## BIOS(Basic I/O System)/ (Also called ROM BIOS)
 - **What**
-  - This is ** a firmware** used to perform hardware initialization during the booting process (power-on startup)
+  - This is **a firmware** used to perform hardware initialization during the booting process (power-on startup)
   - This comes pre-installed on a PC's, and is 1st software to run when powered on.
   - *Unified Extensible Firmware Interface (UEFI)* is a successor of legacy BIOS, which aims to address its technical shortcomings.
 - **Tasks performed by BIOS on power on**
