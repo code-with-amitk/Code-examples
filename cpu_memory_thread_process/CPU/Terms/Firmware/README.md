@@ -14,4 +14,3 @@
 
 #### 2. UEFI(Unified Extensible Firmware Interface)
 - UEFI replaces the (BIOS) firmware interface.
-![Imgurl](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Efi-simple.svg/316px-Efi-simple.svg.png)
