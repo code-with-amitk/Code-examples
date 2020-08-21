@@ -22,4 +22,5 @@
 | off_t offset | <ul><li>Start reading file(Or other object) at offset.</li></ul> <ul><li>offset is multiple of **page size** as returned by **sysconf(_SC_PAGE_SIZE) //See below example**</li></ul> <ul><li>offset is actual physical address(Not Page number).</li></ul> <ul><li>offset=917504 means 917504/4*1024=224th page</li></ul>|
 
 - **Pictorial**
+
 ![ImgURL](https://i.ibb.co/tznt7b9/mmap.png)
