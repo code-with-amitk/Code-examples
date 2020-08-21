@@ -9,14 +9,14 @@
   - *How* When a design passes from pre-silicon verification, few initial prototypes of the chips are fabricated and are used as test objects.
   - *Issues* Very low observability of the system since only access to the input and output pins on the hardware. No access to the internal signals of the design. 
 - **Pre Silicon Verification/Emulation**
-  - *:red_circle: What*
+  - *What*
     - Before placing silicon on the board(ie before creating chip), *Software Designs are developed in :red_circle:VerilogorHDL and run on Simulators*.
     - Simulators:
       - VEH, SOC emulators
       - SimNow, FPGA etc
     - Everything can be simulated, clock speed, power consumption etc.
     - software development can be completed before silicon. This is :red_circle: software development using Emulation.
-  - *:red_circle: Why Pre-silicon:* Software is verififed before bring up.
+  - *Why Pre-silicon:* Software is verififed before bring up.
   - *How it performed* Creating a bug-free design in the first attempt is nearly impossible. So, several verification stages are instrumented to capture the bugs in the design, rectify issues.  
   
 ## C. Pre-Silicon Emulation/Verfication
