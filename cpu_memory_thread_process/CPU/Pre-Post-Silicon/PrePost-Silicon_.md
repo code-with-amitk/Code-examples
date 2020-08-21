@@ -8,14 +8,14 @@
   - *What* Validation is executed on silicon chip in a real environment.
   - *How* When a design passes from pre-silicon verification, few initial prototypes of the chips are fabricated and are used as test objects.
   - *Issues* Very low observability of the system since only access to the input and output pins on the hardware. No access to the internal signals of the design. 
-- **Pre Silicon Verification**
+- **Pre Silicon Verification/Emulation**
   - *What*
     - Before placing silicon on the board(ie before creating chip), Designs are developed in **Verilog or HDL** and run on Simulators. 
     - Everything can be simulated, clock speed, power consumption etc.
-    - Verification phase takes more than 50% time of the product design cycle, because Si is placed on chip it cannot be undone.
+    - software development can be completed before silicon. This is ```diff - software development using Emulation```.
   - *How it performed* Creating a bug-free design in the first attempt is nearly impossible. So, several verification stages are instrumented to capture the bugs in the design, rectify issues.  
   
-## C. Pre-Silicon Detailed
+## C. Pre-Silicon Emulation Detailed
 ![ImgURL](https://i.ibb.co/dGgM2pN/pre-silicon.png)
 - **Verification**
   - *Goal:* Functional correctness before tapeout
