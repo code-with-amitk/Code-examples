@@ -8,8 +8,8 @@
   - filter(function, iterable)
 
 
-### Example
-- 1. Return iterable from filter function containing vowels only.
+### Examples
+#### 1. Return iterable from filter function containing vowels only.
 ```python
 def fun(var):
   l = ['a', 'e', 'i', 'o', 'u']
