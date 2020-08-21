@@ -12,7 +12,7 @@
   - *What*
     - Before placing silicon on the board(ie before creating chip), Designs are developed in **Verilog or HDL** and run on Simulators. 
     - Everything can be simulated, clock speed, power consumption etc.
-    - software development can be completed before silicon. This is `#ffffff` software development using Emulation.
+    - software development can be completed before silicon. This is :heart_eyes: software development using Emulation.
   - *How it performed* Creating a bug-free design in the first attempt is nearly impossible. So, several verification stages are instrumented to capture the bugs in the design, rectify issues.  
   
 ## C. Pre-Silicon Emulation Detailed
