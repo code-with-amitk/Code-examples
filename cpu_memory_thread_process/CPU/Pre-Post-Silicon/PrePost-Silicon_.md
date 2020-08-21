@@ -16,7 +16,9 @@
       - SimNow, FPGA etc
     - Everything can be simulated, clock speed, power consumption etc.
     - software development can be completed before silicon. This is :red_circle: software development using Emulation.
-  - *Why Pre-silicon:* Software is verififed before bring up.
+  - *Why Pre-silicon:*
+    - Software is verified before bring up.
+    - HW SW defects are detected earlier.
   - *How it performed* Creating a bug-free design in the first attempt is nearly impossible. So, several verification stages are instrumented to capture the bugs in the design, rectify issues.  
   
 ## C. Pre-Silicon Emulation/Verfication
