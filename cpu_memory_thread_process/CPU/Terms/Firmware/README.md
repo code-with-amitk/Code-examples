@@ -2,7 +2,7 @@
 ![ImgURL](https://i.ibb.co/WtcxxMt/firmware.jpg)
 
 - **What**
-  - Firmware is a *:red-label:low-level software* program placed on memory built in to particular Hardware by manufacturer.
+  - Firmware is a **low-level software** program placed on memory built in to particular Hardware by manufacturer.
 - **Why firmware required?**  
   - It provides instructions to device that how the device can communicate with the other computer hardware.
   - It's a manual for device to which it refers before communicating with other devices.
