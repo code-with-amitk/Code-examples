@@ -16,7 +16,7 @@
 | int fd | file to map |
 | off_t offset | <ul><li>Start reading file(Or other object) at offset.</li></ul> <ul><li>offset is multiple of **page size** as returned by **sysconf(_SC_PAGE_SIZE) //See below example**</li></ul> <ul><li>offset is actual physical address(Not Page number).</li></ul> <ul><li>offset=917504 means 917504/4*1024=224th page</li></ul>|
 ### Calculating page size on system
-```
+```C
 //# man sysconf
 #include<stdio.h>
 #include <unistd.h>
@@ -47,7 +47,7 @@ void *ptr = mmap(0, 131072, PROT_READ |PROT_WRITE, MAP_SHARED, fd, 917504)
 - Program creates/opens a file `log.txt`. Writes 900 to file.
 - Uses mmap() to map file to memory and returns pointer `ptr`.
 - 
-```
+```C
 #include <stddef.h>
 #include <stdio.h>
 #include <fcntl.h>        //O_RDWR, O_CREAT flags are defined here.
