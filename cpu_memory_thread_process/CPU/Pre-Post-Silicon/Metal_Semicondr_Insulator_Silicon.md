@@ -1,6 +1,7 @@
 **Contents**
 - Terms
 - Metal vs SemiCondr vs Insulator
+- Silicon Semiconductor
 
 ## A. Terms
 #### 1. Energy Bands
