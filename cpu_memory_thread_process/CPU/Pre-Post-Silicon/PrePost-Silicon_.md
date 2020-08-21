@@ -10,12 +10,12 @@
   - *Issues* Very low observability of the system since only access to the input and output pins on the hardware. No access to the internal signals of the design. 
 - **Pre Silicon Verification/Emulation**
   - *What*
-    - Before placing silicon on the board(ie before creating chip), Designs are developed in **Verilog or HDL** and run on Simulators. 
+    - Before placing silicon on the board(ie before creating chip), **Software Designs are developed in :red_circle:VerilogorHDL and run on Simulators**
     - Everything can be simulated, clock speed, power consumption etc.
     - software development can be completed before silicon. This is :red_circle: software development using Emulation :red_circle:
   - *How it performed* Creating a bug-free design in the first attempt is nearly impossible. So, several verification stages are instrumented to capture the bugs in the design, rectify issues.  
   
-## C. Pre-Silicon Emulation Detailed
+## C. Pre-Silicon Emulation/Verfication
 ![ImgURL](https://i.ibb.co/dGgM2pN/pre-silicon.png)
 - **Verification**
   - *Goal:* Functional correctness before tapeout
