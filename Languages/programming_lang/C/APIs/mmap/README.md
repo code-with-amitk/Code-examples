@@ -11,6 +11,7 @@
 - void* mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset)
 ```
 - **Parameters**
+
 | Parameter | Meaning |
 | --- | --- | 
 | void `*addr` | <ul><li> This is virtual Address space of calling process. Start copying at this address.</li></ul> <ul><li>if NULL, then the kernel chooses the (page-aligned) address at which to create the mapping</li></ul> <ul><li>value=NULL is the most portable method of creating a new mapping.</li></ul> |
@@ -19,13 +20,6 @@
 | int flags | <ul><li>Whether this mapping is visible to other processes or not</li></ul> <ul><li>MAP_SHARED: Share this mapping</li></ul> |
 | int fd | file to map |
 | off_t offset | <ul><li>Start reading file(Or other object) at offset.</li></ul> <ul><li>offset is multiple of **page size** as returned by **sysconf(_SC_PAGE_SIZE) //See below example**</li></ul> <ul><li>offset is actual physical address(Not Page number).</li></ul> <ul><li>offset=917504 means 917504/4*1024=224th page</li></ul>|
+
 - **Pictorial**
-```diff
- ---------------------copy------------------------------|
- |																								|<----length--->|
- |																							offset					  |
-\/																								|							  |
-|===Virtual-Mem=======|				|======Physical-Mem========================|
-/\			 						
-void *p
-```
+![ImgURL](https://i.ibb.co/tznt7b9/mmap.png)
