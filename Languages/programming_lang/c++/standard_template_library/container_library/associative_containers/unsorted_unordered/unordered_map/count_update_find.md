@@ -5,9 +5,10 @@
   
 <key,value>
 | 4,1 | 3,3 | 1,2 | 2,1 |
-```
+
+```c++
   vector<int>& arr = {4,3,1,1,3,3,2};
-  unordered_map<int,int> um;           //<value,count>
+  unordered_map<int,int> um;           //<key=element, value=count>
   
 Method-1:                     //USE THIS
   for(auto i:arr)
@@ -27,7 +28,7 @@ Method-2:
 ## B. FIND
 ### B1. Pair having smallest `key`
   - Considering map in bullet-1, smallest key=1 and pair=<1,2>
-```
+```c++
   unordered_map<int,int>::iterator it;
   it = min_element(um.begin(), um.end());
   cout<<it->first<<" " <<it->second;          //1 2
@@ -35,7 +36,7 @@ Method-2:
 
 ### B2. Pair having smallest `value`
   - Considering map in bullet-1, smallest value pair = `<4,1>`
-```
+```c++
   static bool comp(pair<int,int> i, pair<int, int> j)
     return i.second < j.second;
 
