@@ -1,4 +1,4 @@
-| Million 10<sup>6</sup> | Billion/Giga 10<sup>12</sup> | Trillion/Tera 10<sup>15</sup> | Quadrillion/Peta 10<sup>18</sup> | Quintillion/Exa 10<sup>15</sup> | Zeta 10<sup>21</sup> |
+| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
 # Facebook Messenger
@@ -40,12 +40,22 @@
 
 | | 1 Day storage Req(bytes) | 5 years storage Req(bytes)
 | --- | --- | --- |
-| Chat | 1 Billion(messages) x 650x8(size) = 5.2 Trillion | 5.2 x 30 x 12 x 5 = 9.3 peta Bytes |
+| Chat | 1 Billion(messages) x 650x8(size) = 5.2 Tera bytes | 5.2 x 30 x 12 x 5 = 9.3 peta Bytes |
 | Audio | 330Million(audio messages) x 10MB(size) = 3.3 Exa bytes | 3.3x30x12x5 = 6 Zeta bytes |
 | Video | 84Million(video messages) x 1GB(size) = 84 Exa bytes | 84x30x12x5 = 151 zeta bytes |
 
 Total space requirement for 5 years = 157 zeta bytes
 > Not considering users who deleted chat/video/audio/account permanently. Compression, new users added.
+
+- **Bandwidth Capacity Estimations**
+
+| |1 second incoming data = 1 day/24x60x60|
+|---|---|
+|chat|60x10<sup>6</sup>|
+|Audio|70x10<sup>9</sup>|
+|Video|972x10<sup>9</sup>|
+|Total|10<sup>9</sup> = 1 Giga bytes|
+> We will need a link recieve/send(upload/download) 1GB/second.
 
 # 3. HLD
 ## 3A. 2 users
