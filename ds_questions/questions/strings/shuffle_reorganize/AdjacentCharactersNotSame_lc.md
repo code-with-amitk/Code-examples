@@ -10,19 +10,19 @@ Input: S = "aaab"
 Output: ""
 ```
 
-### Logic (Hash and priority_queue/maxHeap)
+## Logic (Hash and priority_queue/maxHeap)
 > s = "aaaaaccbbb"
-1. Count number of elements using hash table`unordered_map<key=char,value=count>`. This contains unique keys. O(n)
+1. Count number of elements using hash table`unordered_map<key=char,value=count>`. This contains unique keys.
 
 | a,5 | c,2 | b,3 |
 |---|---|---|
 
-2. From hash table create `priority queue<key=count, value=char>`. Since heap is balanced BT, nodes are inserted using level order traversal. Insertion=O(1) but balance=O(logn)
+2. From hash table create `priority queue<key=count, value=char>`.
 
 ```
   5,a
   / \
-2,c 3,b     =   
+2,c 3,b
 ```
 
 3. Perform following operation on Priority queue.
@@ -35,7 +35,10 @@ Output: ""
 |2,c|
 |---|
   
-  - Create output string using 2nd elements of p1 and p2. string = ab
+  - Create output string using 2nd elements of p1 and p2. 
+```  
+string = ab
+```
   - Decrement 1st element of p1,p2.   p1=(4,a)  p2(2,b)
   - If p1.first>0 push Again on queue
   - If p2.first>0 push Again on queue
@@ -45,6 +48,20 @@ Output: ""
 
   - Repeat proces till queue is not empty
   
+## Complexity
+- Creating Hash Table = O(n)
+- Creating priority Queue using Hash table
+  -  Since heap is balanced BT, nodes are inserted using level order traversal. Insertion=O(1) but balance=O(logn)
+- Remove top1, top2 = O(1)  
+- Re-Insert = O(logn).
+  - If all elements are unique reinsertion will not happen only pop top will happen O(1).
+  - if half elements are same as other half. Eg: aaaaabbbbb. Then n/2 insertions will happen. 
+- **Complexity** 
+```diff
++ O(n) + n/2*O(logn)
+```
+  
+## Code  
 ```c++
 #include<iostream>
 #include<string>
