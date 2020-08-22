@@ -23,5 +23,10 @@
 #### 2. Min Heap `(priority_queue <int, vector<int>, greater<int>>)`
 - Root is always least. Condition: parent =< child. Heapify only non-leaf nodes.
   
+### Operations & Complexities
 
-
+| |Heap|Array|Balanced BT|
+|---|---|---|---|
+|Search highest,least|O(1)|O(n)|O(logn)|
+|Insert|O(logn)|O(1)|O(logn)|
+ 
