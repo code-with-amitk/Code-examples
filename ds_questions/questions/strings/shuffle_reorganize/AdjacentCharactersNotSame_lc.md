@@ -58,7 +58,7 @@ string = ab
   - if half elements are same as other half. Eg: aaaaabbbbb. Then n/2 insertions will happen. 
 - **Complexity** 
 ```diff
-+ O(n) + n/2*O(logn)
+ O(n) + n/2*O(logn)
 ```
   
 ## Code  
