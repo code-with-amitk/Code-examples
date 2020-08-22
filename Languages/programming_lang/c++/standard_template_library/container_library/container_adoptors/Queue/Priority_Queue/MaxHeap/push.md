@@ -1,4 +1,4 @@
-## A. insert
+## A. Push
 ```c++
 #include<queue>
 priority_queue<pair<int, char>> pq;
