@@ -15,6 +15,8 @@
 ```
 - This took three replacements at a cost of |5-8|+|8-9|+|4-7| = 7
 
+#### [Self Video Explanation youtube](https://youtu.be/ZfPYGJJYhtc)
+
 ### 2. [WHAT IS MAGIC SQUARE](http://jwilson.coe.uga.edu/EMAT6680Su07/McKee/6690/magicsquares/ms1.html)
 - A square grid in which distinct numbers are written into each cell of the grid in such a way that each row, each column and each diagonal add up to the same number.
 #### 1x1 Magic square
