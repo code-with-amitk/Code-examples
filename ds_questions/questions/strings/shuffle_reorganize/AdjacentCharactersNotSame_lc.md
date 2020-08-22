@@ -10,6 +10,8 @@ Input: S = "aaab"
 Output: ""
 ```
 
+## [Self Video for Understanding](https://youtu.be/kE7q5LL8j-0)
+
 ## Logic (Hash and priority_queue/maxHeap)
 > s = "aaaaaccbbb"
 1. Count number of elements using hash table`unordered_map<key=char,value=count>`. This contains unique keys.
