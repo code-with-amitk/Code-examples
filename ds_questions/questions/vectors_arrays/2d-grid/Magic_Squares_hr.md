@@ -15,7 +15,7 @@
 ```
 - This took three replacements at a cost of |5-8|+|8-9|+|4-7| = 7
 
-### 2. [WHAT IS MAGIC SAUARE](http://jwilson.coe.uga.edu/EMAT6680Su07/McKee/6690/magicsquares/ms1.html)
+### 2. [WHAT IS MAGIC SQUARE](http://jwilson.coe.uga.edu/EMAT6680Su07/McKee/6690/magicsquares/ms1.html)
 - A square grid in which distinct numbers are written into each cell of the grid in such a way that each row, each column and each diagonal add up to the same number.
 #### 1x1 Magic square
 - This is always a magic square
