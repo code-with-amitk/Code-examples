@@ -10,7 +10,7 @@ Input: S = "aaab"
 Output: ""
 ```
 
-## [Self Video for Understanding](https://youtu.be/kE7q5LL8j-0)
+### [Self Video for Understanding](https://youtu.be/kE7q5LL8j-0)
 
 ## Logic (Hash and priority_queue/maxHeap)
 > s = "aaaaaccbbb"
