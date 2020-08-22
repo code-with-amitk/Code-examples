@@ -7,7 +7,7 @@
   - This is balanced complete Binary tree. Duplicates are allowed. 
   - This is suited to be stored in array ie Heap can be implemented using arrays. If you use arrays to implement Heaps then you don't need to store pointer as done in trees and its space advantage
   
-### Types of Heap
+### A. Types of Heap
 #### 1. Max Heap `(priority_queue<int>)`
 - **What** Root is always greatest. Condition: parent >= child
 - **Building Max Heap from Array**
@@ -23,7 +23,7 @@
 #### 2. Min Heap `(priority_queue <int, vector<int>, greater<int>>)`
 - Root is always least. Condition: parent =< child. Heapify only non-leaf nodes.
   
-### Operations & Complexities
+### B. Operations & Complexities
 
 | |Heap|Array|Balanced BT|
 |---|---|---|---|
