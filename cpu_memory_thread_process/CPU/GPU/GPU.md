@@ -1,16 +1,14 @@
-# GPU(Graphics Processing Unit)
-
-# GPU?
-- This is specialized electronic circuit created for manipulating images rapidly. ie Specialized in Graphics & Image processing.
-- GPUs are used in mobile phones, personal computers, workstations, and game consoles.
-- They work on ***parallel computing***.
-- **Companies** In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.	
-
-# GPU Usages?
-- Create high resolution images, videos
-- In machine training, deep learning neural networks, GPUs can be 250 times faster than CPUs.
-- Complex mathematical calculations.
-- financial simulations and risk modeling
+## GPU(Graphics Processing Unit)
+- **What**
+  - This is specialized electronic circuit created for manipulating images rapidly. ie Specialized in Graphics & Image processing.
+  - GPUs are used in mobile phones, personal computers, workstations, and game consoles.
+  - They work on ***parallel computing***.
+  - **Companies** In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.	
+- **GPU Usages?**
+  - Create high resolution images, videos
+  - In machine training, deep learning neural networks, GPUs can be 250 times faster than CPUs.
+  - Complex mathematical calculations.
+  - financial simulations and risk modeling
 
 # CPU vs GPU
 
@@ -21,7 +19,7 @@
 | Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
 
 # GPU Series
-## 1. AMD's GPUs
+- **AMD's GPUs**
 
 | Name | Year | transistor & Die size | Desktop | Mobile |
 | --- | --- | --- | --- | --- |
