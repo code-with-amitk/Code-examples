@@ -1,5 +1,5 @@
-# Graphics Card
-## What
+## Graphics Card
+- **What**
   - Used in gaming PC or a professional high-performance PC for graphic processing.
   - It has different components that work altogether for graphics processing.
   
