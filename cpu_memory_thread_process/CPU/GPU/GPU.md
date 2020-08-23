@@ -10,7 +10,7 @@
   - Complex mathematical calculations.
   - financial simulations and risk modeling
 
-# CPU vs GPU
+## CPU vs GPU
 
 |  | CPU | GPU |
 | --- | --- | --- |
@@ -18,7 +18,7 @@
 | works on | | Parallelism |
 | Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
 
-# GPU Series
+## GPU Series
 - **AMD's GPUs**
 
 | Name | Year | transistor & Die size | Desktop | Mobile |
@@ -27,4 +27,4 @@
 | Navi-14 / Radeon-5300 | 2019/Nov | 251 mm<sup>2</sup> |  | [x] |
 | Navi-10 / Radeon-5600 | 2020/Jan | 251 mm<sup>2</sup> | [x] | |
 
-# GPU Architecture
+## GPU Architecture
