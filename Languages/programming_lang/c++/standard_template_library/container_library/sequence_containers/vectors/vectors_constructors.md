@@ -2,9 +2,9 @@
 
 ### 1. DEFAULT
 - Constructs an empty container with a default-constructed allocator.
- ```
-Until C++17: vector()
-After C++17: vector() noexcept(noexcept(Allocator()));  
+ ```c++
+//Until C++17: vector()
+//After C++17: vector() noexcept(noexcept(Allocator()));  
 
 vector<int>::iterator it;
 vector<int> a;
@@ -14,9 +14,9 @@ for (it = a.begin(); it != a.end(); it++)
 
 ### 2. FILL
 - Constructs a container with n elements. Each element is a copy of 'a'(if provided)
- ```
-Until C++11 explicit vector(size_type n, const T& value = T(), const Allocator& alloc = Allocator());
-Since C++11          vector(size_type n, const T& a, const Allocator& alloc = Allocator());
+ ```c++
+//Until C++11 explicit vector(size_type n, const T& value = T(), const Allocator& alloc = Allocator());
+//Since C++11          vector(size_type n, const T& a, const Allocator& alloc = Allocator());
  Arguments(latest):
  1. n = sizeof vector to be created
  2. a = Value to which each element is assigned
@@ -30,7 +30,7 @@ cout << '\n';
 
 ### 3. RANGE 
 - Constructs the container with the contents of the range `[first, last)`
-```
+```c++
 template< class T > vector( T first, T last, const Allocator& alloc = Allocator() );        
 Arguments:
  1. first: Input iterator to the initial position in a range.
@@ -45,7 +45,7 @@ cout << '\n';
 
 ### 4. COPY
 - Create a new vector that is a copy of the given vector.
-```                                                           
+```c++                                         
 Until C++11: vector( const vector& other );
 Since C++11: vector( const vector& other, const Allocator& alloc );
 
@@ -57,7 +57,7 @@ cout << '\n';
 
 ### 5. FIXED SIZED
 - Construct container contaning n element init to 0. No copies are made.
-```                                                           
+```c++                       
 Until C++14: explicit vector( size_type n );
 Since C++14: explicit vector( size_type n, const Allocator& alloc = Allocator() );
 
@@ -85,14 +85,14 @@ cout << '\n';
 
 ### 7. ALLOCATOR EXTENDED MOVE
 - Here, original vector is not guaranteed to be empty after the move.
-```
+```c++
 Since C++11: vector( vector&& other, const Allocator& alloc );
 ```
 
 ### 8. INITIALIZER LIST
 - Constructs the container with the contents of the initializer list l
-```
-Since C++11: vector( initializer_list<T> l, const Allocator& alloc = Allocator() );  
+```c++
+//Since C++11: vector( initializer_list<T> l, const Allocator& alloc = Allocator() );  
 
 #include <initializer_list>
 vector<int> h{1,2,3,4};
