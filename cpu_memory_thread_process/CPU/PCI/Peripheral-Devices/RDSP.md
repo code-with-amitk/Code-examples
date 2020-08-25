@@ -1,19 +1,27 @@
 ## Structures Tables in System Memory
 
-- **RDSP(Root System Description Pointer)**
+- **A. [RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)**
   - From RSDP-Table we can reach PCI Config space of CPU and find PCI devices.RDSP structure contains address of XDST-Table(Extended RSDT table) or RDST-Table.
 
-- [struct RSDP**36 bytes**      //ACPI Version 3.0](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
-
-|signature`[8]`=`RDP PTR\0`|checksum|OEMID`[16]`|Revision|RsdtAddress|length|uint64 xsdtAddress=Physical address of xsdt tablee|extendedchecksum|reserved`[3]`|
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-
-##### C1. XSDT/Extended System Descriptor Table(Size=92 bytes)
-
-|signature`[4]`|length|revision|OEMID`[6]`|oemTableId`[8]`|revision|creatorId`[4]`|creatorRevision|Array-of-8Byte-Physical_Addresses-to-Description-Headers|
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-
-##### C2. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)
+- **B. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)**
+  - There are many kinds of SDT. All the SDT may be split into two parts. 
+    - **1. header** which is common to all the SDT 
+    - **2. Data** which is different for each table.
+  - Types of SDT:
+    - **1. SRAT/System Resource Affinity Table (SRAT)**
+    - [Many other](https://wiki.osdev.org/XSDT)
+    - **2. XSDT/Extended System Descriptor Table(Size=92 bytes)**
+      - Validating XSDT: sum all the bytes in the table and compare the result to 0.
+```c
+bool doChecksum(ACPISDTHeader *tableHeader){    //Validating xsdt
+    unsigned char sum = 0;
+    for (int i = 0; i < tableHeader->Length; i++){
+        sum += ((char *) tableHeader)[i];
+    }
+    return sum == 0;
+}
+```
+- **C. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)**
 
 |signature`[4]`=`MCFG`|length|revision|checksum|OEMID|OEMID-Rev|CreatorID|CreatorRev|Reseverd|MCFG_BaseAddress(8byte)|StartPCIBusNo|EndPCIBusNo|Reserved|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
