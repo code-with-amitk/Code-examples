@@ -1,14 +1,14 @@
-## Structures Tables in System Memory
+## A. Structures Tables in System Memory
 
 |Table|Why|
 |---|---|
-|[RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)|<ul><li>To reach PCI Config Space of CPU and find PCI devices</li></ul> <ul><li>RSDP Table->XSDT Table->MCFG Table (contains MCFGBase)->PCI Config Space starts from MCFGBase</li></ul>|
-|[SDT(System Description Table)](https://wiki.osdev.org/XSDT)|Generic XSDT Table.(Described Below)|
-|[MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
+|1. [RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)|<ul><li>To reach PCI Config Space of CPU and find PCI devices</li></ul> <ul><li>RSDP Table->XSDT Table->MCFG Table (contains MCFGBase)->PCI Config Space starts from MCFGBase</li></ul>|
+|2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)|<ul><li>Generic XSDT Table.(Described Below)</li></ul>|
+|3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
 
 ![ImgURL](https://i.ibb.co/QNVLK4z/mcfg-xsdt-rdsp.png)
 
-## Locating MCFGTable using RDSP struct
+## B. Locating MCFGTable using RDSP struct
 - **Steps**
   - Seach `RSDP Structure` in Physical Memory 
     - Start searching string **RDP PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure.
@@ -26,7 +26,7 @@
 - **Overall Steps**
 > RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> Store Mapping to PCIConfig Space -> 
 
-### Table Descriptions
+## C. Table Descriptions
 - **SDT(System Description Table)**
   - There are many kinds of SDT. All the SDT may be split into two parts. 
     - **1. header** which is common to all the SDT 
