@@ -1,9 +1,9 @@
-## **CONST?** 
-- **CONST VARIABLE** Whose value remains same through out the program.
-- **CONST FUNCTION** Which always returns a constant value
+## const?
+- **const variable** Whose value remains same through out the program.
+- **const function** Which always returns a constant value
  
-## **CONSTEXPR?**
-- **CONSTEXPR VARIABLE**
+## consexpr?
+- **constexpr variable**
   - Variable whose value is derived at compile-time & is initialized. 
     a. Should be compile time constant. 
     b. Should be initialized at declaration.
@@ -17,7 +17,6 @@ int main(){
  int a;
  cin>>a;
  const int b = a;   //Problem: How b is const if its value can be changed at runtime?
- //////////////////////////////////////
  
  /////////SOLUTION: constexpr//////////
  //constexpr int c = a;  //error: uninitialized const ‘c’ [-fpermissive
@@ -26,7 +25,7 @@ int main(){
 }
 ```
 
-- **CONSTEXPR FUNCTION**
+- **constexpr function**
   - It return value should be computable at compile time only.
   - RULES:
     - constexpr function or constructor is implicitly inline.
