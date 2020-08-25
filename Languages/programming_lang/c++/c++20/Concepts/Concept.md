@@ -13,7 +13,7 @@
 2. Create a function whose arguments should adhere to `concept TEST`.
    - Hash of String "abc" can be calculated and be converted to size_t.
    - Hash of structure cannot be calculated.
-```
+```c++
 template<typename T>
 concept TEST = requires(T a) {                  //1
     { std::hash<T>{}(a) } -> std::convertible_to<std::size_t>;    //1
