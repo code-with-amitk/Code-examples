@@ -1,22 +1,9 @@
-## RDSP(Root System Description Pointer)
-- **Why** 
+## Structures Tables in System Memory
+
+- **RDSP(Root System Description Pointer)**
   - From RSDP-Table we can reach PCI Config space of CPU and find PCI devices.RDSP structure contains address of XDST-Table(Extended RSDT table) or RDST-Table.
 
-**What is ACPI?**
-- See cpu_memory_thread_process/CPU/ACPI
-
-## 1. RDSP Structures
-#### A. struct RDSP          //ACPI Version 1.0
-
-| signature`[8]` | checksum | OEMID`[16]` | Revision | RsdtAddress |
-| --- | --- | --- | --- | --- |
-
-#### B. struct RSDP       //ACPI Version 2.0
-
-| firstPart | Length | XsdtAddress | ExtendedChecksum | reserved`[3]` |
-| --- | --- | --- | --- | --- |
-
-#### C. [struct RSDP**36 bytes**      //ACPI Version 3.0](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
+- [struct RSDP**36 bytes**      //ACPI Version 3.0](https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf)
 
 |signature`[8]`=`RDP PTR\0`|checksum|OEMID`[16]`|Revision|RsdtAddress|length|uint64 xsdtAddress=Physical address of xsdt tablee|extendedchecksum|reserved`[3]`|
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
