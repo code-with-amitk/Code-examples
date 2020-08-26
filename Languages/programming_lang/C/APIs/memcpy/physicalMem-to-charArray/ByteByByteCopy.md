@@ -1,7 +1,7 @@
 ## Dumping RAM/Physical Memory to buffer
 
 ## Logic
-1. Machine Address is unsigned long. May be a bigger no. `unsinged long ma = 18294175360`
+1. Machine Address is unsigned long long(8 byte). `unsinged long ma = 18294175360`
 2. Make a `void *` point towards local variable storing machine address
 
 |ActualContent->| 0A| 43 | FF| .. | 
@@ -22,7 +22,6 @@ Local Variable
    - This means now machine address would be used as index in character array.
    - Access the contents at Machine address using `((unsigned char*)machine-address)[i]`
    
-
 ### Code
 ```C
 void dump_to_buffer(void *data, unsigned int len){
