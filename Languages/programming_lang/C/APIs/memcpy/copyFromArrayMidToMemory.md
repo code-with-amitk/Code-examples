@@ -6,7 +6,7 @@
 int main(){
   uint64_t u64Array[] = {10,20,30,40,50};                     //size=40 bytes
   
-  //new Syntax:  *ptr = new type[size]
+  /*new Syntax:  *ptr = new type[size]*/
   uint64_t *pcDest = new uint64_t[new sizeof(uint64_t)*5];    //Take memory of 40 bytes
   
   //Typecast destination pointer to void before copy
