@@ -1,9 +1,8 @@
-#  APU(AMD Accelerated Processing Unit)/Formely Fusion
-## What
-- This is 64-bit CPU from AMD designed to act as CPU+GPU on single die. These are general purpose processors.
-
-## APUs
-### Desktop APUs
+##  APU(AMD Accelerated Processing Unit)/Formely Fusion
+- **What**
+  - This is 64-bit CPU from AMD designed to act as CPU+GPU on single die. These are general purpose processors.
+- **Examples** 
+  - Desktop APUs
 
 | Year | Name |
 | --- | --- |
@@ -16,7 +15,7 @@
 | 2018 | Raven Ridge |
 | 2019 | Picasso |
 
-### Mobile APUs
+- **Mobile APUs**
 
 | Year | Name |
 | --- | --- |
