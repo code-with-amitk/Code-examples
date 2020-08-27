@@ -20,10 +20,13 @@
 - **GPU Series**
   - **AMD's GPUs**
 
-| Name | Year | transistor & Die size | Desktop | Mobile |
-| --- | --- | --- | --- | --- |
-| Navi-14 / Radeon-5500 | 2019/Jul | 158 mm<sup>2</sup> | [x] | |
-| Navi-14 / Radeon-5300 | 2019/Nov | 251 mm<sup>2</sup> |  | [x] |
-| Navi-10 / Radeon-5600 | 2020/Jan | 251 mm<sup>2</sup> | [x] | |
+| Name | Year | transistor & Die size | Desktop | Mobile |Control Units/chip|
+| --- | --- | --- | --- | --- |---|
+|Navi-21/Big Navi|2020|7nm|[x] | |80|
+| Navi-10 / Radeon-5600 | 2020/Jan | 251 mm<sup>2</sup> | [x] | |40|
+| Navi-14 / Radeon-5500 | 2019/Jul | 158 mm<sup>2</sup> | [x] | ||
+|VEGA12||||||
+|VEGA10||||||
+
 
 ## GPU Architecture
