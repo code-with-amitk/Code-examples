@@ -15,7 +15,7 @@
 | 2018 | Raven Ridge |
 | 2019 | Picasso |
 
-- **Mobile APUs**
+  - Mobile APUs
 
 | Year | Name |
 | --- | --- |
