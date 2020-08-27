@@ -17,9 +17,8 @@
 | works on | | Parallelism |
 | Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
 
-
-## GPU Series
-- **AMD's GPUs**
+- **GPU Series**
+  - **AMD's GPUs**
 
 | Name | Year | transistor & Die size | Desktop | Mobile |
 | --- | --- | --- | --- | --- |
