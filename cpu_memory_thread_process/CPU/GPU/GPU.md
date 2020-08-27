@@ -18,15 +18,6 @@
 | Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
 
 - **GPU Series**
-  - **AMD's GPUs**
-
-| Name | Year | transistor & Die size | Desktop | Mobile |Control Units/chip|
-| --- | --- | --- | --- | --- |---|
-|Navi-21/Big Navi|2020|7nm|[x] | |80|
-| Navi-10 / Radeon-5600 | 2020/Jan | 251 mm<sup>2</sup> | [x] | |40|
-| Navi-14 / Radeon-5500 | 2019/Jul | 158 mm<sup>2</sup> | [x] | ||
-|VEGA12||||||
-|VEGA10||||||
-
+  - **AMD's GPUs**: Navi21 22 23, Vega 10 14, MI 200. Comparison is on private research.
 
 ## GPU Architecture
