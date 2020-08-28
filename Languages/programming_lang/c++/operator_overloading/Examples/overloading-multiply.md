@@ -1,8 +1,12 @@
-/* Meaning:
- * 	- Overloading Operator * to multiply 2 objects
- * Format:
- * 	return_type operator_keyword Operator_to_overload (arguments)
- */
+## Overload Multiply
+- **What** 	
+	- Overloading Operator `*` to multiply 2 objects
+ - **Format**
+ ```c++
+  	return_type operator_keyword Operator_to_overload (arguments)
+ ```
+ - **Code**
+ ```c++
 #include<iostream>
 class test {
 	int a;
@@ -24,3 +28,4 @@ int main() {
 /*
  * Output:200
  */
+```
