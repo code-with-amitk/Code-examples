@@ -1,4 +1,4 @@
-## Hungarian Naming Convention
+## Hungarian Naming Convention `[SPB]`
 - This is language independent.
 - **[Variable names](http://web.mst.edu/~cpp/common/hungarian.html)**
   - All variable names are composed of following 3 types: 
