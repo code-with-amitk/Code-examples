@@ -1,25 +1,30 @@
-/*
- * Format :
- * 	return_type operator_keyword operator_to_overload (arguments)
- */
+## Overloading `=`
+- **Format**
+```c++
+return_type operator_keyword operator_to_overload (arguments)
+```
+- **Code**
+```c++
 #include<iostream>
 #include<cstring>
-# define arr 10
+constexpr int arr= 10
 
 class A{
-        int *p;
+  int *p;
 public:
-        A(int a):p(new int()){*p = a;}
-
-        A operator = (const A &k){
-                int *t = new int;
-                t = k.p;                //Deep copy
-                return *this;
-        }
+  A(int a):p(new int()){
+    *p = a;
+  }
+  
+  A operator = (const A &k){
+    int *t = new int;
+    t = k.p;                //Deep copy
+    return *this;
+  }
 };
 
 int main(){
-        A obj1(1);
-        A obj2 = obj1;
+  A obj1(1);
+  A obj2 = obj1;
 }
-
+```
