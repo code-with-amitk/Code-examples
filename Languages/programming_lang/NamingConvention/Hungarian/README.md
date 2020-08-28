@@ -2,10 +2,23 @@
 - This is language independent.
 - **[Variable names](http://web.mst.edu/~cpp/common/hungarian.html)**
   - All variable names are composed of following 4 types: 
-    - scope: m_ for class member, g_ global, s_ static
-    - prefixes: p pointer, u unsigned, signed, 
-    - base type: ch character, sz Null terminated string, b byte, w word(2 byte), lw long word(4 byte), llw long long word(8 byte)|
-  - Examples:
+    - scope
+      - m_ class member
+      - g_ global
+      - s_ static
+    - prefixes:
+      - p pointer
+      - u unsigned
+      - s signed
+    - base type:
+      - ch character
+      - sz Null terminated string
+      - b byte(1 byte)
+      - s short(2 byte)
+      - i int(4 byte)
+      - l long(4 byte)
+      - ll long long(8 byte)
+- **Examples:**
   
 ||Scope|Prefix|Base-Type|Compelete-Name|
 |---|---|---|---|---|
