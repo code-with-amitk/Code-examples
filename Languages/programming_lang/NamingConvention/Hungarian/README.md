@@ -1,7 +1,7 @@
 ## Hungarian Naming Convention
 - This is language independent.
 - **[Variable names](http://web.mst.edu/~cpp/common/hungarian.html)**
-  - All variable names are composed of following 4 types: 
+  - All variable names are composed of following 3 types: 
     - scope
       - m_ class member
       - g_ global
@@ -18,7 +18,7 @@
       - i int(4 byte)
       - l long(4 byte)
       - ll long long(8 byte)
-- **Examples:**
+- **Examples `[SPB]`**
   
 ||Scope|Prefix|Base-Type|Compelete-Name|
 |---|---|---|---|---|
