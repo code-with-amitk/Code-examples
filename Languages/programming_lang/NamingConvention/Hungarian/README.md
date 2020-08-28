@@ -1,6 +1,6 @@
 ## Hungarian Naming Convention
 - This is language independent.
-- **(Variable names)[http://web.mst.edu/~cpp/common/hungarian.html]**
+- **[Variable names](http://web.mst.edu/~cpp/common/hungarian.html)**
   - All variable names are composed of following 4 types: 
     - scope: m_ for class member, g_ global, s_ static
     - prefixes: p pointer, u unsigned, signed, 
@@ -11,6 +11,6 @@
 |---|---|---|---|---|
 |unsigned char variable of class|m_|u|ch|unsinged char m_uchVariable|
 |char variable of class|m_||c|char m_cName|
-|char pointer||p|c|char *pcName|
+|char pointer||p|c|char `*pcName`|
 |local string|||str|string strName|
 |Null terminated string|||sz|char szName[]|
