@@ -10,6 +10,7 @@
       - p pointer
       - u unsigned
       - s signed
+      - C Class
     - base type:
       - ch character
       - sz Null terminated string
@@ -27,3 +28,4 @@
 |char pointer||p|c|char `*pcName`|
 |local string|||str|string strName|
 |Null terminated string|||sz|char szName[]|
+|Declaring class||C||class CName{..|
