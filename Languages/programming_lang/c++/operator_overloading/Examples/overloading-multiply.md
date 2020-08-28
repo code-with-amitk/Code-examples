@@ -2,8 +2,8 @@
 - **What** Overloading Operator `*` to multiply 2 objects
  - **Format**
  ```c++
-  	return_type operator_keyword Operator_to_overload (arguments)
-		const A 				operator 					* 							(class object)
+return_type operator_keyword Operator_to_overload (arguments)
+const A operator * (class object)
  ```
  - **Code**
  ```c++
