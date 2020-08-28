@@ -1,7 +1,5 @@
-/*
-This code writes "Writing into file" in a file named "test.txt" and then reads the same file.
-*/
-
+## Read Write to File
+- This code writes "Writing into file" in a file named "test.txt" and then reads the same file.
 - **Code**
 ```c++
 #include<iostream>                   //BOTH IO Stream Header   
