@@ -11,7 +11,7 @@
 class A {
 	int a;
 public:
-	A (int b):a(b) {}		
+	A (int b):a(b) {}
 	const A operator * (A obj) {
 		return (this->a)*(obj.a);
 	}
