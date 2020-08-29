@@ -1,6 +1,6 @@
 ## Virtual & Physical Memory
 ```diff
-- Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage**
+- Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage
 ```
 - **What is VM?** This is hard disk.
 - **VM Concept** 
