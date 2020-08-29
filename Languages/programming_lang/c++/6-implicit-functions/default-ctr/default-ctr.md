@@ -1,12 +1,12 @@
-## SIX DEFAULT/TRIVIAL/IMPLICIT FUNCTIONS PROVIDED BY G++ COMPILER:        
-1. DEFAULT CONSTRUCTOR
-2. COPY CONSTRUCTOR
-3. COPY ASSIGNMENT OPERATOR
-4. MOVE CONSTRUCTOR: (Since C++11)
-5. MOVE ASSIGNMENT OPERATOR (Since C++11)
-6. DESTRUCTOR
+## 6 default/implicit/trivial functions provided by g++ compiler
+1. Default ctr
+2. Copy ctr
+3. Copy assignment operator
+4. Move ctr (Since C++11)
+5. Move assignment operator (Since C++11)
+6. Destructor
 
-### DEFAULT CONSTRUCTOR
+### Default Ctr
 - Same named function of class
 - When Compiler **provides default ctr**?
   1. No user created Constructor is declared in class
@@ -17,7 +17,7 @@
 - Forcing compiler to create default ctr
   - class_name () = default
 
-### SYNTAX
+### Syntax
 ```c++
   class_name ( ) ;
   class_name :: class_name ( ) body
@@ -26,8 +26,8 @@
   class_name :: class_name ( ) = default ;        (since C++11)
 ```
 
-### COMPILER PROVIDED DEFAULT CTR
-```
+### Compiler provided default ctr
+```c++
 #include<iostream>
 #include<iomanip>
 using namespace std;
@@ -48,8 +48,8 @@ int main(){
 }
 ```
 
-### FORCING COMPILER TO GENERATE DEFAULT CTR
-```
+### Forcing compiler to generate default ctr
+```c++
 class A{
         int a=1;
 public:
@@ -67,8 +67,8 @@ int main(){
 }
 ```
 
-### USER DEFINED DEFAULT CTR
-```
+### User defined default ctr
+```c++
 class A{
         int a;
 public:
