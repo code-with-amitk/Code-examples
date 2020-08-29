@@ -3,6 +3,8 @@
   - Whenever derived class constructor(default or parameterized) is called, Base class default constructor is ***ALWAYS*** called.
 - **Why Base class Constructor called by Derived class ctr**
   - Constructors have job to initialize member variables. A Derived class constructor has access only to its own class members, but a Derived class object also have inherited property of Base class, and only base class constructor can properly initialize base class members. Hence all the constructors are called, else object wouldn't be constructed properly.
+- **Constructor of Pure Virtual/Abstract class**
+  - See example-4
 
 ## Rules of Calling Base class Constructor
 ### 1. if Base class ctr is defined it's called
@@ -56,4 +58,27 @@ Error cannot find A::A()
 - 1st class B constructor > Then class C constructor > Then class A constructor.
 ```c++
 class A : public B, public C ;
+```
+
+### 4. Contructor of Abstract class
+  - A class containing pure virtual function is only a template, Since we will not be creating object of that class, it good to provide empty contructor.
+```c++
+class A{                                  //Abstract class.
+public:
+  virtual void fun()=0;                   //Pure Virtual function
+  A(){};
+  virtual ~A(){};
+};
+class B: public A {
+public:
+  void fun(){}                          //Derived class must override PVF else declare it as PV.
+  B() { cout<<"Derv ctr"<<endl;  }
+  ~B() { cout<<"Derv dtr"<<endl;  }
+};
+int main(){
+    B obj;
+}
+# ./a.out
+Derv ctr
+Derv dtr
 ```
