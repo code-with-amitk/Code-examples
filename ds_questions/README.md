@@ -13,19 +13,19 @@
 ```c++
 //1. ios_base is class for IO streams.
 // static bool sync_with_stdio( bool sync = true );
-	- Sets whether the standard C++ streams are synchronized to the standard C streams after each input/output operation.
-	- To speed up streams should not be synched after each IP operation.
+- Sets whether the standard C++ streams are synchronized to the standard C streams after each input/output operation.
+- To speed up streams should not be synched after each IP operation.
 
 //2. cin.tie(NULL)	means  flush std::cout before std::cin accepts an input.
-	//useful for interactive console programs which require the console to be updated constantly
+//useful for interactive console programs which require the console to be updated constantly
 
-int beforeMain() {										//Speeds up cout.
+int beforeMain() {			//Speeds up cout.
 	ios_base::sync_with_stdio( false );
   cin.tie(NULL);
   return 0;
 }
 
-int static r = beforeMain();				//Call function before main
+int static r = beforeMain();		//Call function before main
 
-#define endl '\n';									//Changes endl to "\n". This prevents flushing buffer for each line.
+#define endl '\n';			//Changes endl to "\n". This prevents flushing buffer for each line.
 ```
