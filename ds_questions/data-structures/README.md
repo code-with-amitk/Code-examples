@@ -5,11 +5,8 @@
 |Based on|Arrays|Pointers|
 ||contigously allocated memory area|distinct chunks of memory bound together by pointers|
 |Examples|arrays,matrices,heaps & hash tables|lists, trees, and graph adjacency lists|
-|Advantages|<ul><li>Constant time access from index</li></ul><ul><li>No space wasted for storing links</li></ul>|<ul><li>Insertion,deletion is simpler wrt arrays. Bcoz arrays will require shifting.</li></ul><ul><li>Moving pointers is easier wrt moving record itself.</li></ul>|
+|Advantages|<ul><li>Constant time access from index</li></ul><ul><li>No space wasted for storing links</li></ul><ul><li>Excellent memory/Cache locality(Physical continuity b/w successive data elments helps exploit high-speed cache mem)</li></ul|<ul><li>Insertion,deletion is simpler wrt arrays. Bcoz arrays will require shifting.</li></ul><ul><li>Moving pointers is easier wrt moving record itself.</li></ul>|
 
-		3. Excellent memory/Cache locality:
-		- Physical continuity b/w successive data
-		elements helps exploit high-speed cache mem.
 Disadvantage	1. Size cannot be adjusted in mid of program	1. Space requirement is high. Pointer to next node takes 
 		execution.					significant space.
 		Solution: Dynamic Arrays			2. Random access not allowed.
