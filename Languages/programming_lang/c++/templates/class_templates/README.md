@@ -3,9 +3,9 @@
   - Generic class which having(Generic member variables, Generic member functions)
   
 - **Rule-a**
-  1. Template statement need to be written again when template class function is defined outside template class.
-  2. Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data types we would be using.
-  3. If arguments are of other type and template-type of other type. Compiler will ignore Argument type
+  - **A.** Template statement need to be written again when template class function is defined outside template class.
+  - **B.** Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data types we would be using.
+  - **C.** If arguments are of other type and template-type of other type. Compiler will ignore Argument type
 ```c++
 template <class T>            //OR <typename T>
 class A {
