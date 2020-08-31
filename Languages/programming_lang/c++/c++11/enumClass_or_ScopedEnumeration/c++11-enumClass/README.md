@@ -11,7 +11,7 @@ int main() {
   place p = place::pune;        //Initialization is done using scope resolution
   animal a = animal::horse;
 
-  if ( p == a )           //Compilation Error. while same was not giving error in c++98
-    cout<<"Yes";              
+  //if ( p == a )           //Compilation Error. while same was not giving error in c++98
+    //cout<<"Yes";              
 }
 ```
