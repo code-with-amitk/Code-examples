@@ -4,7 +4,8 @@
   - Function TS
   - Class TS
 
-### Example Code
+### Example-1
+- Special template class for char.
 ```c++
 template <typename T>
 class A{
