@@ -40,7 +40,7 @@ struct A<Fruit>{
 };
 
 int main(){
-  cout << A<Color>::name(index1) << " ";
-  cout << A<Fruit>::name(index2) << "\n";  
+  cout << Traits<Color>::name(1);         //green
+  cout << Traits<Fruit>::name(2);         //pear
 }
 ```
