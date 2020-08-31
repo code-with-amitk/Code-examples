@@ -1,6 +1,6 @@
 ## Drawbacks of C++98 enums
-### 1. Not type safe
-  - **What is type safe?**
+- **1. Not type safe**
+  - *What is type safe?*
     - Extent to which programming language prevents type errors.
     - type error is erroneous program behaviour caused by a discrepancy between differing data types
 ```c++
@@ -16,7 +16,7 @@ int main() {
 }
 ```
 
-### 2. Variables cannot take names of enum variables
+- **2. Variables cannot take names of enum variables**
 ```c++
 int main() {
   enum color {red,black,blue};
@@ -26,7 +26,7 @@ int main() {
 }
 ```
 
-### 3. Two enums cannot have same named variables
+- **3. Two enums cannot have same named variables**
 ```c++
 int main() {
   enum IndianColor {red,black,blue};
