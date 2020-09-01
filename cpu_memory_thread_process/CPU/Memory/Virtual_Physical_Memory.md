@@ -1,7 +1,8 @@
-## Virtual & Physical Memory
 ```diff
 - Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage
 ```
+## Virtual & Physical Memory
+[MyYouTube Video For Understanding](https://www.youtube.com/watch?v=OjGycsu0I1M)
 - **What is VM?** This is hard disk.
 - **VM Concept** 
   - VM is bits and pieces of many programs in RAM/Physical memory at one time.
