@@ -24,6 +24,7 @@
 ||Scope|Prefix|Base-Type|Compelete-Name|
 |---|---|---|---|---|
 |unsigned char variable of class|m_|u|ch|unsinged char m_uchVariable|
+|uint64_t `*`||p|u64|p_u64Name|
 |char variable of class|m_||c|char m_cName|
 |char pointer||p|c|char `*pcName`|
 |local string|||str|string strName|
