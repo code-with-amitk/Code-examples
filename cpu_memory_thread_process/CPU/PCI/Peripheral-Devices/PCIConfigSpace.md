@@ -19,13 +19,13 @@
 ![ImgURL](https://i.ibb.co/nCN4X92/pci-header.png)
 
 ### C. BAR(Base Address Register)
-- **What** Hold memory addresses used by this device, or offsets for port addresses. 
+- **What** This PCI devide is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
 - **Types of BARS**
 
-|Type|Identified by|
-|---|---|
-|1.Memory Space BAR|LSB is 0|
-|2.I/O Space BAR|LSB is 1|
+|Type|Located in|Identified by|Feilds|
+|---|---|---|
+|1.Memory Space BAR|Physical Memory|LSB is 0|<ul><li>Type=0(base register is 32bit), Type=2(Base regiser is 64bit), Type=1(not used)</li></ul>|
+|2.I/O Space BAR||LSB is 1||
 
 
 
