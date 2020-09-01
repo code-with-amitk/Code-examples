@@ -21,6 +21,7 @@
 - **BAR(Base Address Register)**
 - *What* Hold memory addresses used by this device, or offsets for port addresses. 
 - *Types of BARS*
+
 |Type|Identified by|
 |---|---|
 |1.Memory Space BAR|LSB is 0|
