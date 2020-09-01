@@ -10,16 +10,22 @@
 
 ## B. Locating MCFGTable using RDSP struct
 - **Steps**
-  - Seach `RSDP Structure` in Physical Memory 
-    - Start searching string **RDP PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure.
+  - *1.* Search `RSDP Structure` in Physical Memory 
+    - Start searching string **RDP PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure. RSDP structure may not be page aligned ie it may not fall on 4096 bytes(page size=4k) start address. It may be inside page as well.
     - Once `RDP PTR` string is located, Read `36 bytes` this is RDSP Structure.
     - Read `uint64 xsdtAddress` and go to xsdt-table
-  - Read `128 bytes` from each 8 Byte-Physical_Addresses present at end of `XSDT Table`.
-    - if content at this 60 byte starts with `MCFG`, This is MCFG table.
-    - Read **MCFG_BaseAddress** at offset 44 from start.
-    - Read **StartPCIBusNo** at offset 45 from start.
-    - Read **EndPCIBusNo** at offset 46 from start.
-  - Store PCI Space mapping of 256 buses locally. struct{unint64 mappedAddress, uint64 mappedRegion, char `*MMBase`};
+  - *2.* Parsing `PointerToOtherSDT[] or Description Headers` array present at end of XSDT table to find `MCFGTable` base address.
+    - `PointerToOtherSDT` is array of uint64_t ie 64 bit length physical Addresses.
+    - 2nd field Length of ACPISDTHeader is complete length ie ACPISDTHeader + Description headers.
+    - Read ACPISDTHeader > Read 2nd field Length.
+    - Number of Description Headers n = (TotalLength(2nd field) - ACPISDTHeaderLength(36 bytes) )/ 8
+    - Allocate array of storing Description headers `uint64_t PointerToOtherSDT[n]`. These are physical addresses.
+    - `mmap()` each Physical address to virtual space, if (1st 4 bytes == MCFG) this is MCFGTable.
+      - Read *MCFG_BaseAddress* at offset 44 from start. MCFGBase is starting of PCI Config Space.
+      - Read *StartPCIBusNo* at offset 45 from start.
+      - Read *EndPCIBusNo* at offset 46 from start.
+  - *3.* Reading PCI Config Space.      
+    - Store PCI Space mapping of 256 buses locally. struct{unint64 mappedAddress, uint64 mappedRegion, char `*MMBase`};
     - Iterate in for loop read contents from MCFGBase and store in structure.
       - mappedAddress = Physical Address of PCI Config Space
       - mappedRegion = Sizeof memory area to accessed using mappedAddress
