@@ -1,6 +1,6 @@
 **1st See (What_is_Peripheral-Device_PCB.md)**
 
-## A. PCI Config Space/Config Registers/Config Header 
+### A. PCI Config Space/Config Registers/Config Header 
 > (PCI = 256 bytes, PCIe = 4096 byte)
 - **What** 
 	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
@@ -8,7 +8,7 @@
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
 	- Listing Config Space Registers	**lspci -x**
 
-## B. [PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)
+### B. [PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 
 |Header-type|For|
 |---|---|
