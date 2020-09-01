@@ -7,15 +7,21 @@
 	- These are mapped to Memory location(PHYSICAL MEMORY) & read/written using configuration RW cycles.
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
 	- Listing Config Space Registers	**lspci -x**
-- **[PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)**
 
+## B. [PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 |Header-type|For|
 |---|---|
 |0|Standard Header(all other)|
 |1|PCI-to-PCI Bridge|
 |2|PCI-to-Card-Bus Bridge|
-
 ![ImgURL](https://i.ibb.co/nCN4X92/pci-header.png)
+- **BAR(Base Address Register)**
+- *What* Hold memory addresses used by this device, or offsets for port addresses. 
+- *Types of BARS*
+|Type|Identified by|
+|---|---|
+|1.Memory Space BAR|LSB is 0|
+|2.I/O Space BAR|LSB is 1|
 
 
 
