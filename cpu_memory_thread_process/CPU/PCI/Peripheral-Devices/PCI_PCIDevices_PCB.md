@@ -48,13 +48,22 @@ Functions or PCI Configuration Space Registers: 256 bytes(PCI), 4096 bytes(PCIe)
     - *Device Number (5 bit)* Each device is given a number by vendor.
     - *Function number(3 bit)* Each device can have upto 8 functions.
 - **Listing all PCI devices on system**
-```
-# lspci             or lspci -x       //Enumerates all PCI devices
+```c
+# lspci                    //Enumerates all PCI devices
 Bus:Device.Function
   00:00.0          Host Bridge Intel corporation..
   00.07.0          ISA Bridge
   00.07.1          IDE Interface
   00.80.0          VGA Compatible Controller
+# lspci -x										//Lists PCI configuration space for each device
+.........
+00:07.0	ISA Bridge: Intel Corporation 823171AB/EB/MB PIIX4 ISA (rev 01)
+00: 86 80 10 81 07 00 00 02 01 00 01 06 00 00 80 00
+10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+20: 00 00 00 00 00 00 00 00 00 00 00 00 14 14 00 00
+30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+.........
+
 ```
 - *SYSFS File System* sysfs file system is automatically mounted at /sys by kernel contains information of PCI devices on system.
 ```
