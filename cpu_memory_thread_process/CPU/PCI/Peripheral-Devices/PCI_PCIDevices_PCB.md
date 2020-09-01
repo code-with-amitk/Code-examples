@@ -1,5 +1,5 @@
 ### A. PCI(Peripheral Component Interconnect)
-- **What** A *standard* that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
+- A standard that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
   
 ### B. PCI-Bridges
 - These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
