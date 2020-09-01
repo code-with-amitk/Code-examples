@@ -1,7 +1,7 @@
 ```diff
 - Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage
 ```
-## Virtual & Physical Memory
+## A. Virtual & Physical Memory
 [MyYouTube Video For Understanding](https://www.youtube.com/watch?v=OjGycsu0I1M)
 - **What is VM?** This is hard disk.
 - **VM Concept** 
@@ -15,7 +15,7 @@
   - Now-a-days Complex programs require minimum `1 GB RAM` or more. There are 10s of these on high end programs(Eg: in aircraft deisgning).
   - So if 10 programs are there each requiring `1 GB`, then system need to make `10 GB` available instantaneouly?
 
-## VM Example
+### A1. VM Example
 - Consider a system having 
   - Physical/Memory or RAM = 32KB
   - Virtual Memory or Hard Disk = 64KB
@@ -51,7 +51,7 @@
       - Virtual Page 8 = 32k is loaded into physical memory 8192.
       - Changes done in MMU.  a. Make entry of virtual-page=0(as unmapped)  b. Place 1 at frame=2 at Virtual-Page-8's entry.
 
-## Fragment/Page No(4 bits) + Offset(12 bits) 
+## B. Fragment/Page No(4 bits) + Offset(12 bits) 
 - For 64k Virtual Memory. MMU uses 16 bit scheme.
 - Virtual Page(4 bit) 
   - 2<sup>4</sup> = 16. With 4 bits we can access 16 pages.
