@@ -9,12 +9,15 @@
 	- Listing Config Space Registers	**lspci -x**
 
 ## B. [PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)
+
 |Header-type|For|
 |---|---|
 |0|Standard Header(all other)|
 |1|PCI-to-PCI Bridge|
 |2|PCI-to-Card-Bus Bridge|
+
 ![ImgURL](https://i.ibb.co/nCN4X92/pci-header.png)
+
 - **BAR(Base Address Register)**
 - *What* Hold memory addresses used by this device, or offsets for port addresses. 
 - *Types of BARS*
