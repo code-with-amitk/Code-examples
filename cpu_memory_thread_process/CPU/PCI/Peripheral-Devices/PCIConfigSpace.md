@@ -23,7 +23,7 @@
 - **Types of BARS**
 
 |Type|Located in|Identified by|Feilds|
-|---|---|---|
+|---|---|---|---|
 |1.Memory Space BAR|Physical Memory|LSB is 0|<ul><li>Type=0(base register is 32bit), Type=2(Base regiser is 64bit), Type=1(not used)</li></ul>|
 |2.I/O Space BAR||LSB is 1||
 
