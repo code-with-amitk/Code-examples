@@ -1,6 +1,6 @@
 **1st See (What_is_Peripheral-Device_PCB.md)**
 
-## PCI Config Space/Config Registers/Config Header 
+## A. PCI Config Space/Config Registers/Config Header 
 > (PCI = 256 bytes, PCIe = 4096 byte)
 - **What** 
 	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
@@ -9,24 +9,17 @@
 	- Listing Config Space Registers	**lspci -x**
 - **[PCI Config Register Structure](https://wiki.osdev.org/PCI#PCI_Device_Structure)**
 
-- A1. Header type 0
-	- 1st feild is vendorID
+|Header-type|For|
+|---|---|
+|0|Standard Header(all other)|
+|1|PCI-to-PCI Bridge|
+|2|PCI-to-Card-Bus Bridge|
 
-|register|09|08|07|06|05|04|03|03|03|03|02|02|02|02|01|01|00|00|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|Size(bytes)|BAR5(4)|BAR4(4)|BAR3(4)|BAR2(4)|BAR1(4)|BAR0(4)|BIST(1)|HdrType(1)|LatencyTimer(1)|cacheLineSize(1)|classCode(1)|Subclass(1)|ProgIF(1)|Rev(1)|Status(2)|Command(2)|DeviceId(2)|vendorId(2)|
-|offset-> hex(dec)|24(36)|20(32)|1C(28)|18(24)|14(20)|10(16)|0F(15)|0E(14)|0D(13)|0C(12)|0B(11)|0A(10)|09|08|06|04|02|00|
+![ImgURL](https://i.ibb.co/nCN4X92/pci-header.png)
 
-```
-- vendor-id,device-id(mandatory): assigned by the vendor.		
-- BAR(Base Address Register): 4 bytes each. 6 registers
-	- Tells CPU how much space this PCI device requires for I/O and PCI memory.
-	- *Types of PCI BARs*
-  	- *1. Register holding base address of PCI Memory space* : Indicate on which address space this Device register will be present
-  	- *2. Register holding base address of PCI I/O space* : Indicate on which address space this Device register will be present    
-```
 
-## A2. Reading from Config Space Register
+
+## B. Reading from Config Space Register
 > Consider Reading from Bus=3, Device=2, Function=5, Register=40 {3:2:5:40} = 0x80031540
 
 ### 1. PCI(256 bytes)
