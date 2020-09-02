@@ -9,7 +9,7 @@
 	- Listing Config Space Registers **lspci -x**
 - **Each Bus>Device>Function(4k bytes) has {Header 8 bytes}+{Memory Area}**	
 	- 1 Device = 8x4096 = 32K bytes of space.
-		- **Bus>Device>Function Header(64 bytes)**
+	- **Bus>Device>Function Header(64 bytes)**
 
 |Header-type|For|
 |---|---|
