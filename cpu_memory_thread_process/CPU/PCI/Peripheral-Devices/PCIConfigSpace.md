@@ -6,8 +6,8 @@
 	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
 	- These are mapped to Memory location(PHYSICAL MEMORY) & read/written using configuration RW cycles.
   - Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
-	- Listing Config Space Registers	**lspci -x**
-	- Function will have Header and memory area
+	- Listing Config Space Registers**lspci -x**
+	- Bus>Device>Function(4096 bytes) will have Header and memory area.
 - **PCI Header(64 bytes)**
 
 |Header-type|For|
