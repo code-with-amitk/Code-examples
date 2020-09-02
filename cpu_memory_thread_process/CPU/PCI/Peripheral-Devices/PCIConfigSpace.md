@@ -19,7 +19,7 @@
 
 ![ImgURL](https://i.ibb.co/tz3NrNz/pci-header.png)
 
-- **BAR(Base Address Register)**
+### BAR(Base Address Register)
 	- **What** This PCI device is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
 	- **Types of BARS**
 	
@@ -30,7 +30,13 @@
 |1.Memory Space BAR|Physical Memory|LSB is 0|<ul><li>Type=0(base register is 32bit), Type=2(Base regiser is 64bit), Type=1(not used)</li></ul><ul><li>Prefetchable means base address region does not have read side effects</li></ul>|<ul><li>For 16bit:(BAR[x] & 0xFFF0)</li></ul><ul><li>For 32 bit(BAR[x] & 0xFFF0)</li></ul><ul><li>For 64 bit((BAR[x] & 0xFFFFFFF0) + ((BAR[x+1] & 0xFFFFFFFF) << 32))|
 |2.I/O Space BAR||LSB is 1||(BAR[x] & 0xFFFFFFFC)|
 
-
+	- **What Each BAR Contains**
+	
+||Contents|
+|---|---|
+|BAR0(MMIO Register)||
+|BAR1(VRAM Aperature)||
+|BAR2
 
 ## B. Reading from Config Space Register
 > Consider Reading from Bus=3, Device=2, Function=5, Register=40 {3:2:5:40} = 0x80031540
