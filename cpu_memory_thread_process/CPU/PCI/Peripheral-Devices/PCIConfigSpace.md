@@ -13,7 +13,7 @@
 
 |Header-type|For|
 |---|---|
-|0|Standard Header(all other)|
+|0|End point Device|
 |1|PCI-to-PCI Bridge|
 |2|PCI-to-Card-Bus Bridge|
 
