@@ -2,8 +2,6 @@
 
 ## A. Terms
 - **Tape-out or tapeout** is the final result of the design process for integrated circuits or printed circuit boards before they are sent for manufacturing. 
-
-## B. Post/Pre Silicon Validation
 - **Post Silicon Validation**
   - *What* Validation is executed on silicon chip in a real environment.
   - *How* When a design passes from pre-silicon verification, few initial prototypes of the chips are fabricated and are used as test objects.
