@@ -21,10 +21,11 @@
 ### C. BAR(Base Address Register)
 - **What** This PCI device is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
 - **Types of BARS**
+![ImgURL](https://i.ibb.co/7n2BqDJ/bar-pci.png)
 
 |Type|Located in|Identified by|Feilds|Retrieving Base address of BAR|
 |---|---|---|---|---|
-|1.Memory Space BAR|Physical Memory|LSB is 0|<ul><li>Type=0(base register is 32bit), Type=2(Base regiser is 64bit), Type=1(not used)</li></ul>|<ul><li>For 16bit:(BAR[x] & 0xFFF0)</li></ul><ul><li>For 32 bit(BAR[x] & 0xFFF0)</li></ul><ul><li>For 64 bit((BAR[x] & 0xFFFFFFF0) + ((BAR[x+1] & 0xFFFFFFFF) << 32))|
+|1.Memory Space BAR|Physical Memory|LSB is 0|<ul><li>Type=0(base register is 32bit), Type=2(Base regiser is 64bit), Type=1(not used)</li></ul><ul><li>Prefetchable means base address region does not have read side effects</li></ul>|<ul><li>For 16bit:(BAR[x] & 0xFFF0)</li></ul><ul><li>For 32 bit(BAR[x] & 0xFFF0)</li></ul><ul><li>For 64 bit((BAR[x] & 0xFFFFFFF0) + ((BAR[x+1] & 0xFFFFFFFF) << 32))|
 |2.I/O Space BAR||LSB is 1||(BAR[x] & 0xFFFFFFFC)|
 
 
