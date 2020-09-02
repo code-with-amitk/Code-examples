@@ -8,7 +8,8 @@
 	- Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
 	- Listing Config Space Registers **lspci -x**
 	- Bus>Device>Function(4096 bytes) will have Header and memory area.
-		- **Bus>Device>Function Header(64 bytes)**
+
+- **Bus>Device>Function Header(64 bytes)**
 
 |Header-type|For|
 |---|---|
