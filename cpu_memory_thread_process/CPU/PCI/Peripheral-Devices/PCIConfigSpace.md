@@ -17,7 +17,7 @@
 |1|PCI-to-PCI Bridge|
 |2|PCI-to-Card-Bus Bridge|
 
-![ImgURL](https://i.ibb.co/nCN4X92/pci-header.png)
+![ImgURL](https://i.ibb.co/1XJRZXq/bar-pci.png)
 
 #### BAR(Base Address Register)
 - **What** This PCI device is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
