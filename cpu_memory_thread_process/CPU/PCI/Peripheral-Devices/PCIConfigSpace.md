@@ -1,15 +1,15 @@
 **1st See (What_is_Peripheral-Device_PCB.md)**
 
-## A. [PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
-> (PCI = 256 bytes, PCIe = 4096 byte)
+## [PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
+> (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
 - **What** 
 	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
 	- These are mapped to Memory location(PHYSICAL MEMORY) & read/written using configuration RW cycles.
 	- Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
 	- Listing Config Space Registers **lspci -x**
-	- Bus>Device>Function(4096 bytes) will have Header and memory area.
-
-- **Bus>Device>Function Header(64 bytes)**
+- **Each Bus>Device>Function(4k bytes) has {Header 8 bytes}+{Memory Area}**	
+	- 1 Device = 8x4096 = 32K bytes of space.
+		- **Bus>Device>Function Header(64 bytes)**
 
 |Header-type|For|
 |---|---|
@@ -19,10 +19,10 @@
 
 ![ImgURL](https://i.ibb.co/tz3NrNz/pci-header.png)
 
-#### BAR(Base Address Register)
-- **What** This PCI device is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
-- **Types of BARS**
-
+- **BAR(Base Address Register)**
+	- **What** This PCI device is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
+	- **Types of BARS**
+	
 ![ImgURL](https://i.ibb.co/1XJRZXq/bar-pci.png)
 
 |Type|Located in|Identified by|Feilds|Retrieving Base address of BAR|
