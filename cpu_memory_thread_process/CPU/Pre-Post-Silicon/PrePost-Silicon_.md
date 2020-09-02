@@ -1,4 +1,4 @@
-- Both are Verification and Validation checks for the correctness of the design
+- Both are Verification and Validation checks for the correctness of the design.
 
 ## A. Terms
 - **Tape-out or tapeout** is the final result of the design process for integrated circuits or printed circuit boards before they are sent for manufacturing. 
