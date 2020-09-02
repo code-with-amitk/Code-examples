@@ -1,6 +1,6 @@
 **1st See (What_is_Peripheral-Device_PCB.md)**
 
-## A. [PCI Config Space/Config Registers/Config Header]((https://wiki.osdev.org/PCI#PCI_Device_Structure)
+## A. [PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (PCI = 256 bytes, PCIe = 4096 byte)
 - **What** 
 	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
