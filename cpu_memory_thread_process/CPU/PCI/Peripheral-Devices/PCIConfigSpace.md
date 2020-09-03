@@ -10,7 +10,7 @@
 	- 1 Device = 8x4096 = 32K bytes of space.
 	- **Bus>Device>Function Header(64 bytes)**
 
-![ImgURL](https://i.ibb.co/Wfr2YJ8/pci-header.png)
+![ImgURL](https://i.ibb.co/xgcHM2r/pci-header.png)
 
 ### BAR(Base Address Register)
 - **What** This PCI device is using some memory, BAR will holds addresses of memory used by this device, or offsets for port addresses. 
@@ -18,9 +18,17 @@
 ```c
 1. Memory Space BAR
 |16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|
+LSB: Always 0
+Type:
+	|-0: Base register is 32bit
+	|-2: Base regiser is 64bit
+	|-1: Not used
+Prefechable: Base address region does not have read side effects
 
 2. I/O Bar Space
 |4byte Aligned Base Address(30bits)|Reserved(1 bit)|1(1 bit)|
+LSB: Always 1
+
 ```
 
 |Type|Located in|Identified by|Feilds|Retrieving Base address of BAR|
