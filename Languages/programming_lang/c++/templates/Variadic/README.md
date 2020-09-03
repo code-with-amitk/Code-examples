@@ -1,18 +1,11 @@
-## Variadic Templates
--  A template with at least one parameter pack or Template taking variable number of arguments.
+### Variadic Templates
+- **What**
+  - Function taking arbitary/variable number of arguments same as `va_` family functions in C.
+  - But good thing is unlike C, all arguments and function definition is resolved at compile time.
 - **Types of VT**
   - *1.* Variadic Function template
   - *2.* Variadic class template
 
-### Example
-- **1. Variadic Function template**
-  - Function template taking variable no of arguments. Parameter pack may appear at any place.
-```c++
-template<typename ... T>
-void fun(T ... args){
-  (cout << ... << args);
-}
-```
 
 - **2. Variadic class template**
 - class template taking variable no of arguments. template parameter pack must be the final parameter in the template parameter list else its compile time error.
