@@ -95,3 +95,5 @@ For 2 user approach
   - A global file-3 containing all userId present on system.
   - Each user chats can be stored in chornological order with timestamps in seperate file. 
 ```
+
+### 3B. 100 to 1lac Users
