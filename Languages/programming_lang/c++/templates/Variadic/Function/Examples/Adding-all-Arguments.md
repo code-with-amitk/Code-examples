@@ -16,6 +16,7 @@ T add ( T v ) {
 
 template < typename T, typename... Vals >
 T add ( T first, Vals... vals ) {
+  cout << __PRETTY_FUNCTION__ << "\n";                      //Verbose output
   return first + adder ( vals... );
 }
 
