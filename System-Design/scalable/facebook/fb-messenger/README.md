@@ -1,10 +1,10 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-# Facebook Messenger
+## Facebook Messenger
 - Users can send text/video/audio/image messages using laptop or mobile.
 
-## To Cover
+### To Cover
 - Requirements: Functional, Non-functional, Extended(Group chat)
 - Back of Envelope Calculations
 - HLD: For 2, 100, 1 lac users
@@ -17,15 +17,15 @@
   - Reliable, Redundant(Using DB)
   - Fast
 
-# 1. REQUIREMENTS
-## FUNCTIONAL
+## 1. REQUIREMENTS
+### FUNCTIONAL
 - (1st) User can see all of his friends and can send message to any of his friend.
 - (2nd) Chat history should be stored.  
 - (3rd) User can send message to any person on facebook provided target person has not blocked incoming messages
 - These sizes can be delivered as 1 message.
   - {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
 
-# 2. BOE Calculations
+## 2. BOE Calculations
 
 |World Population=7x10<sup>9</sup> //Year 2020|InternetUsers = 40% = 2.8 Billion|FB Users= 60% of Internet users = 1.68 Billion|
 |---|---|---|
@@ -57,27 +57,41 @@ Total space requirement for 5 years = 157 zeta bytes
 |Total|10<sup>9</sup> = 1 Giga bytes|
 > We will need a link recieve/send(upload/download) 1GB/second.
 
-# 3. HLD
-## 3A. 2 users
-```
-User-1               Chat-Server              
-  |----  Register -------->|
-  |-Login(userid/password->|
-  |                 Read following information from files
-  |                - friends of userId.  {Req-1} //server maintains a file-1 containing friend list(encrypted/compressed)
+## 3. HLD
+### 3A. 2 users
+- **User-1 sending chat to user-2**
+```c
+User-1                    Registrar
+Browser+FbClient            |
+  |----  Register --------->|
+  |<---200 ok---------------|
+  |                              Auth-Server+DB(Kerberos)
+  |-Login(Id/hash of password)-------->|
+  |                             check hash ok
+  |<-------------TGT-------------------|                             
+{Req-1}Open UI to see live users                   Ticket-Granting-Server
+  |---(Message=Check Live users)+TGT---------------------->|
+  |<-----Service Ticket(for Live user service)-------------|            Live-User-Checker(service-1)
+  |                                                                     Keeps list of live users/zone
+  |                                                                     using keepalive messages sent on
+  |                                                                     web sockets
+  |------------------------------------Service Ticket+Message=Check Live Users---->|
+  |                                                                      Check Live friends of User-1--------> DB or file-1(encrypted,compressed)
+  |<------------------Live friends(User ids)+Service Ticket 2----------------------|<---------------------------------|
+  |                                                                                                         File-1 contains friend list
+{Req-2}Chat with Live User  
+  |                                                                    Chat-Server
+  |-(Self userID, Friend UserId + message + scanReport + Service Ticket-2)-->|                              Queue
+  |                                                                          |--userid-1, userid-2, Message-->|
+  |                                                                                                           |
+  |                                                                               Connector <---------------->|
+  |                                                                           Read from queue
+  |                                                        Spawn new non-blocking thread to handle 1k connections
+  |                                                                             Thread-n    
+  |                                                                                  |--send/recv message------>User-2
   |                - chat History  {Req-2} //(file-2) is maintained/userId containing all chats userId done with friends/world.
-  |                                        //Chats are stored in chornological order with timestamps.
-  |                - See all unblocked people on fb. {Req-3}   //A global file-3 containing all userId present on system.
-  |                      |                                     //Each userId is associated with hidden field, allows/blocks userId to be seen in searches.          
-  | <-show friends-------|
-  | <-show chat history--|
-  |                      | 
-  |--search user n-----> |
-  |                  check user is present in file-3
-  |                  if present, check hidden flag?
-  |<--user-2 information-|                 
-
-- Server will need?
-  - 
   
+For 2 user approach
+  - A global file-3 containing all userId present on system.
+  - Each user chats can be stored in chornological order with timestamps in seperate file. 
 ```
