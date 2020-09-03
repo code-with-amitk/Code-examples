@@ -15,15 +15,13 @@
 ### BAR(Base Address Register)
 - **What** This PCI device is using some memory, BAR will holds addresses of memory used by this device, or offsets for port addresses. 
 - **BAR Types**
-	- *1. Memory Space BAR*
-
+```c
+1. Memory Space BAR
 |16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|
-|---|---|---|---|
 
-	- *2. I/O Bar Space*
-
+2. I/O Bar Space
 |4byte Aligned Base Address(30bits)|Reserved(1 bit)|1(1 bit)|
-|---|---|---|
+```
 
 |Type|Located in|Identified by|Feilds|Retrieving Base address of BAR|
 |---|---|---|---|---|
