@@ -3,40 +3,42 @@
 ## [PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
 - **What** 
-	- Registers present on PCI devices having device information, these are used by CPU for device intialization/configuration.
+	- These are Registers present on PCI devices having PCI device information, these are used by CPU for PCI device intialization/configuration.
 	- These are mapped to Memory location(PHYSICAL MEMORY) & read/written using configuration RW cycles.
-	- Every PCI manufacturer assigns values to these RO registers(vendor-id, device-id, class). Driver uses these to look for device.
 	- Listing Config Space Registers **lspci -x**
-- **Each Bus>Device>Function(4k bytes) has {Header 8 bytes}+{Memory Area}**	
+- **Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}**	
 	- 1 Device = 8x4096 = 32K bytes of space.
 	- **Bus>Device>Function Header(64 bytes)**
-
-|Header-type|For|
-|---|---|
-|0|End point Device|
-|1|PCI-to-PCI Bridge|
-|2|PCI-to-Card-Bus Bridge|
 
 ![ImgURL](https://i.ibb.co/Wfr2YJ8/pci-header.png)
 
 ### BAR(Base Address Register)
-	- **What** This PCI device is using some memory, BAR will hold the memory addresses used by this device, or offsets for port addresses. 
-	- **Types of BARS**
-	
-![ImgURL](https://i.ibb.co/1XJRZXq/bar-pci.png)
+- **What** This PCI device is using some memory, BAR will holds addresses of memory used by this device, or offsets for port addresses. 
+- **BAR Types**
+	- *1. Memory Space BAR*
+
+|16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|
+|---|---|---|---|
+
+	- *2. I/O Bar Space*
+
+|4byte Aligned Base Address(30bits)|Reserved(1 bit)|1(1 bit)|
+|---|---|---|
 
 |Type|Located in|Identified by|Feilds|Retrieving Base address of BAR|
 |---|---|---|---|---|
 |1.Memory Space BAR|Physical Memory|LSB is 0|<ul><li>Type=0(base register is 32bit), Type=2(Base regiser is 64bit), Type=1(not used)</li></ul><ul><li>Prefetchable means base address region does not have read side effects</li></ul>|<ul><li>For 16bit:(BAR[x] & 0xFFF0)</li></ul><ul><li>For 32 bit(BAR[x] & 0xFFF0)</li></ul><ul><li>For 64 bit((BAR[x] & 0xFFFFFFF0) + ((BAR[x+1] & 0xFFFFFFFF) << 32))|
 |2.I/O Space BAR||LSB is 1||(BAR[x] & 0xFFFFFFFC)|
 
-	- **What Each BAR Contains**
+- **What Each BAR Contains**
 	
 ||Contents|
 |---|---|
 |BAR0(MMIO Register)||
 |BAR1(VRAM Aperature)||
 |BAR2
+
+
 
 ## B. Reading from Config Space Register
 > Consider Reading from Bus=3, Device=2, Function=5, Register=40 {3:2:5:40} = 0x80031540
