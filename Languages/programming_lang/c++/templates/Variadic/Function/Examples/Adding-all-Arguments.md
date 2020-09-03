@@ -43,5 +43,4 @@ adder<int, int, int, int> (first=2){         //fun-2  //2,3,4,5
 adder<int, int, int, int, int> (first=1){    //1,2,3,4,5
   1 + fun-2
 }
-
 ```
