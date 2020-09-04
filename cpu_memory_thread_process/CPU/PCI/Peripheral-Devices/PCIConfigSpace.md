@@ -10,7 +10,7 @@
 	- 1 Device = 8x4096 = 32K bytes of space.
 	- **Bus>Device>Function Header(64 bytes)**
 
-![ImgURL](https://i.ibb.co/xgcHM2r/pci-header.png)
+![ImgURL](https://i.ibb.co/Tt0N7Tq/pci-header.png)
 
 ### BAR(Base Address Register)
 - **What** This PCI device is using some memory, BAR will holds addresses of memory used by this device, or offsets for port addresses. 
