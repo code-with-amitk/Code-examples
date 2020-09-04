@@ -1,6 +1,6 @@
-**1st See (What_is_Peripheral-Device_PCB.md)**
-**Book: ACPI_6_3_final_Jan30.pdf Section: 5.5.2.4.3 PCI Device BAR Target Protocols**
-** [PCI-SIG](https://pcisig.com/specifications?field_technology_value%5B%5D=express&speclib=bar)
+- **1st See (What_is_Peripheral-Device_PCB.md)**
+- **Book: ACPI_6_3_final_Jan30.pdf Section: 5.5.2.4.3 PCI Device BAR Target Protocols**
+- ** [PCI-SIG](https://pcisig.com/specifications?field_technology_value%5B%5D=express&speclib=bar)
 
 ## [A. PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
@@ -8,7 +8,7 @@
 	- These are Registers present on PCI devices having PCI device information, these are used by CPU for PCI device intialization/configuration.
 	- These are mapped to Memory location(PHYSICAL MEMORY) & read/written using configuration RW cycles.
 	- Listing Config Space Registers **lspci -x**
-- **Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}**	
+- **Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}**
 	- 1 Device = 8x4096 = 32K bytes of space.
 	- **Bus>Device>Function Header(64 bytes)**
 
