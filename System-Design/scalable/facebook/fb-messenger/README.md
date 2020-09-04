@@ -1,7 +1,6 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-## Facebook Messenger
 - Users can send text/video/audio/image messages using laptop or mobile.
 
 ### To Cover
@@ -95,5 +94,6 @@ For 2 user approach
   - A global file-3 containing all userId present on system.
   - Each user chats can be stored in chornological order with timestamps in seperate file. 
 ```
+- Client and server will communicate over web sockets.
 
 ### 3B. 100 to 1lac Users
