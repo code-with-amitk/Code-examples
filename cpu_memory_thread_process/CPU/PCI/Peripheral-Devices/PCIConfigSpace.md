@@ -2,7 +2,7 @@
 **Book: ACPI_6_3_final_Jan30.pdf Section: 5.5.2.4.3 PCI Device BAR Target Protocols**
 ** [PCI-SIG](https://pcisig.com/specifications?field_technology_value%5B%5D=express&speclib=bar)
 
-## [PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
+## [A. PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
 - **What** 
 	- These are Registers present on PCI devices having PCI device information, these are used by CPU for PCI device intialization/configuration.
