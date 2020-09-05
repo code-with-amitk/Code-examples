@@ -18,7 +18,7 @@ Output: 0
 Explanation: the amount of 3 cannot be made up just with coins of 2.
 ```
 
-### You need to watch Self-Youtube-Video for explanation, because its pretty complex.
+### You need to watch [Self-Youtube-Video](https://youtu.be/7pRO5Zuiijo) for explanation, because its pretty complex.
 
 ### Code
 ```c++
