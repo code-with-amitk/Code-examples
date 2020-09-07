@@ -6,7 +6,7 @@
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
 - **What** 
 	- These are Registers present on PCI devices having PCI device information, these are used by CPU for PCI device intialization/configuration.
-	- These are mapped to Memory location(PHYSICAL MEMORY) & read/written using configuration RW cycles.
+	- These registers need to be mapped to System memory so that it can be accessed using Driver.
 	- Listing Config Space Registers **lspci -x**
 - **Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}**
 	- 1 Device = 8x4096 = 32K bytes of space.
@@ -41,12 +41,15 @@ LSB: Always 1
 
 ||offset|Purpose|
 |---|---|---|
-|BAR0(MMIO_BASE/MMIO Register)|0x10||
+|BAR0(MEM_BASE/MMIO Register)|0x10||
 |BAR1(IO_BASE/VRAM Aperature)|0x14|area of prefetchable memory that maps to the card’s VRAM.|
 |BAR2(REG_BASE_LO)|0x18||
 |BAR3(REG_BASE_HI)|0x1C||
 |BAR4(IO_BASE_WS)|0x20||
 |BAR5(REG_BASE)|0x24||
+
+- **Reading BAR Register**
+
 
 
 
