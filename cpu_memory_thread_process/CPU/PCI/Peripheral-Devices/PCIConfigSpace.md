@@ -5,8 +5,8 @@
 ## [A. PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
 - **What** 
-	- These are Registers present on PCI devices having PCI device information, these are used by CPU for PCI device intialization/configuration.
-	- These registers need to be mapped to System memory so that it can be accessed using Driver.
+	- These are Registers/Memory present on PCI device having PCI device information, these are used by device driver to interact with PCI device.
+	- These registers/memory need to be mapped to System memory so that it can be accessed using Driver or BIOS.
 	- Listing Config Space Registers **lspci -x**
 - **Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}**
 	- 1 Device = 8x4096 = 32K bytes of space.
@@ -26,8 +26,8 @@
 |16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|
 LSB: Always 0
 Type:
-	|-0: Base register is 32bit
-	|-2: Base regiser is 64bit
+	|-0: 32bit decoder.	//Means This PCI device can access addresses from 0-4GB. 2^32 = 4GB. BIOS will mmap this device's Memory(after header) to MMIO_LOW.
+	|-2: 64bit decoder.	//This PCI device can access addresses from 0-16ExaBytes. BIOS can allocate space from MMIO_LOW or MMIO_HIGH. In this case next BAR is ganged together.
 	|-1: Not used
 Prefechable: Base address region does not have read side effects
 When you want to retrieve the actual base address of a BAR, be sure to mask the lower bits.
@@ -49,6 +49,8 @@ LSB: Always 1
 |BAR5(REG_BASE)|0x24||
 
 - **Reading BAR Register**
+> How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
+
 
 
 
