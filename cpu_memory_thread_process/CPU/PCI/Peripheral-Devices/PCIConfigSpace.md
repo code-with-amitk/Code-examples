@@ -56,16 +56,21 @@ BIOS									BAR0(0xE000_000C)
 -Write 0xFFFF_FFFF->						//Write all 1's to BAR register
 										0xE000_000C & 0xE000_000C
 <-Read BAR0-
-0xFFF0_0000
+0xFFF0_000C
 Last 20 bits are 0s. 2^20 = 1048576 = 1MB
+BIOS allocates 1MB MMIO Space, mmap() PCI contents to this Virtual Memory. Driver can use this VM to interact with PCI device.
+Restore BAR register that means write original value.
 
 Example-2: Let this PCI device bought 4KB memory with it so it will need 4KB of MMIO range.
 BIOS									BAR0(0xE000_000C)
 -Write 0xFFFF_FFFF->							//Write all 1's to BAR register
 									0xE000_000C & 0xE000_000C
 <-Read BAR0-
-0xFFFF_F000
+0xFFFF_F00C
 Last 12 bits are 0s. 2^12 = 4096 = 4KB
+BIOS allocates 4KB MMIO Space.
+BIOS allocates 1MB MMIO Space, mmap() PCI contents to this Virtual Memory. Driver can use this VM to interact with PCI device.
+Restore BAR register that means write original value
 ```
 
 
