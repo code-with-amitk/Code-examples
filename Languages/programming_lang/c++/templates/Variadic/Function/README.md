@@ -1,5 +1,5 @@
 ### Variadic Function template
-- **What** Function template taking variable no of arguments.
+- **What** Function template taking variable no of arguments. Arguments can be different types, Eg: int,float,string,char etc.
 - **How its internally Implemented? => Recursive code**
   - Implemented as recursive code must have
     - *1.* Generic case which recurses
