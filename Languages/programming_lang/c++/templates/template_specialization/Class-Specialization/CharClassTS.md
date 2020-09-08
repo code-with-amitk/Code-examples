@@ -1,30 +1,24 @@
-## Class Template Specialization 
-- **What** Seperate class/function template is defined for a particular data type.
-- **Types**
-  - Function TS
-  - Class TS
-
-### Example-1
 - Special template class for char.
+
 ```c++
-template <typename T>
-class A{
+template < typename T >
+class A {
 public:
-  void fun(){
+  void fun () {
     cout<<"Generic class"; 
   }
 };
 
 template <>
-class A<char>{
+class A < char > {
 public:
-  void fun(){ 
+  void fun (){ 
     cout<<"Specialized class"; 
   }
 };
 
-int main(){
-  A <char> o1;
+int main() {
+  A  <char> o1;
   o1.fun();                  //Output: Specialized class
 
   A <int> o2;
