@@ -24,7 +24,7 @@ struct B <> {                              //class B Base case
 };
 
 template < bool t, bool ... Ts >
-struct B <t , Ts ... > {                //class B templated case
+struct B <t , Ts ... > {                    //class B templated case
     static constexpr int val = t + 2*B < Ts ... >::val;
 };
 
