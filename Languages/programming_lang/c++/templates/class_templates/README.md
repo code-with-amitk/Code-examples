@@ -1,7 +1,5 @@
 ## Class Template
-- **What**
-  - Generic class which having(Generic member variables, Generic member functions)
-  
+- **What** Generic class which having(Generic member variables, Generic member functions)
 - **Rule-a**
   - **A.** Template statement need to be written again when template class function is defined outside template class.
   - **B.** Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data types we would be using.
@@ -21,7 +19,7 @@ T A <T>::add(){
 }
 
 int main() {
-  A<int> obj(5,6);                  //B
+  A <int> obj(5,6);                  //B
   cout<<obj.add()<<endl;          //11
 
   A <float> obj1(5.6,6.7);
@@ -33,19 +31,19 @@ int main() {
 ```
 
 - **Rule-b**
-  1. Template can have 0 templated argument.
-  2. Only 1 copy of static variable is kept per class
+  - *1.* Template can have 0 templated argument.
+  - *2.* Only 1 copy of static variable is kept per class
 ```c++
-template<int n>                                //1
+template < int n >                                //1
 struct st
 {
-    static const int val = 2 * st<n-1>::val;
+  static const int val = 2 * st<n-1>::val;
 };
 
-template<> 
-struct st<0>                                   //1
+template <> 
+struct st < 0 >                                   //1
 {
-    static const int val = 1 ;
+  static const int val = 1 ;
 };
 
 int main()
@@ -56,7 +54,7 @@ int main()
 ```
 
 - **Rule-3**
-  1. On compile time, compiler creates seperate class for different parameter types.
+  - *1.* On compile time, compiler creates seperate class for different parameter types.
 ```c++
 Test<int>::Test()     //class-1
 Test<double>::Test()  //class-2
