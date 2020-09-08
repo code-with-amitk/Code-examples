@@ -1,5 +1,11 @@
 ## Template/Generic Programming
-- **What?** Writing a code that is independent of particular type.
+- **What?** 
+	- Writing a code that is independent of particular type.
+	- Template is compiler abstraction.
+	- Compiler creates the overloaded functions(specialization) for each type at compile time. Eg seperate for long int, short int, int, double, string.
+	- Specialization 
+		- Benefits: Makes code type-safe.
+		- Drawbacks: increases sizeof object file(But not much because compiler achieves using optimizations & inlining).
 - **Types of templates?**
 	- *1. Function template:* Generic function that can be called/worked without particular type
 	- *2. Class template:* Class having
@@ -8,4 +14,3 @@
 	- *3. Template specialization:* Giving special implementation for specific data type of class and Generic for all others. Types:
 		- Explicit/Full Specialization
 		- Partial Specialization
-	
