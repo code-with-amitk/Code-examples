@@ -9,7 +9,7 @@ template <class T>            //OR <typename T>
 class A {
   A a, b;                    //Generic Member variables
 public:
-  A (T x, T y):a(x),b(y){}
+  A (T x, T y) : a(x), b(y) {}
   A add ();
 };
 
