@@ -1,10 +1,5 @@
-## Function Templates
-- Template is compiler abstraction.
-- Compiler creates the specialization for each type at compile time. Means Seperate specializations(overloaded functions) for:
-  - long int, short int, int, double, string
-- Specialization
-  - Benefits: Makes code type-safe.    
-  - Drawbacks: increases sizeof object file
+- 
+
 ```c++
 //At compile time, compiler creates 2 overloaded versions of maxof function.
 //maxof(int a, int b){ }
