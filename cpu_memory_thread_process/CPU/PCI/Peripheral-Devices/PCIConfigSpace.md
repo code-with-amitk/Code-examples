@@ -41,12 +41,12 @@ LSB: Always 1
 
 ||offset|Purpose|
 |---|---|---|
-|BAR0(MEM_BASE/MMIO Register)|0x10||
+|BAR0(MEM_BASE/MMIO Register)|0x10|Store memory base address|
 |BAR1(IO_BASE/VRAM Aperature)|0x14|area of prefetchable memory that maps to the card’s VRAM.|
 |BAR2(REG_BASE_LO)|0x18||
 |BAR3(REG_BASE_HI)|0x1C||
 |BAR4(IO_BASE_WS)|0x20||
-|BAR5(REG_BASE)|0x24||
+|BAR5(REG_BASE)|0x24|Stores register base address|
 
 - **Steps of Reading BAR Register**
 > How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
