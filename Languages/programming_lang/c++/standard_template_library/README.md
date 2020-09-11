@@ -19,8 +19,8 @@ CLASS ALLOCATOR Dynamic memory allocation/deallocation tasks are done by allocat
 |---|---|---|
 |1.Seqeunce Containers|Elements can be accessed sequentially. Provides better cache locality.|vectors, deque, list, forward list, array|
 |2.Container Adopters|These are not full container classes, but classes that provide a specific interface relying on an object of one of the container classes|stack, queue, priority_queue|
-|3a.Associative Sorted/Ordered|<ul><li>Implemented using Self-Balanced RBT. O(nlogn)</li></ul><ul><li>All elements are always sorted means All elements are in order(ascending/descending)</li></ul>|set<key>, multiset<key>, map<key,value>, multimap<key,value>|
-|3b.Associative UnSorted/Unordered|<ul><li>Implemented using Hash tables. O(1)</li></ul><ul><li>Means elements are not stored in any order(ascending or descending). Only fast insert/delete/search operations matter.</li></ul>|unordered_set<key>, unordered_multiset<key>, unordered_map<key,value>, unordered_multimap<key,value>|
+|3a.Associative Sorted/Ordered|<ul><li>Implemented using Self-Balanced RBT. O(nlogn)</li></ul><ul><li>All elements are always sorted means All elements are in order(ascending/descending)</li></ul>|`set<key>, multiset<key>, map<key,value>, multimap<key,value>`|
+|3b.Associative UnSorted/Unordered|<ul><li>Implemented using Hash tables. O(1)</li></ul><ul><li>Means elements are not stored in any order(ascending or descending). Only fast insert/delete/search operations matter.</li></ul>|`unordered_set<key>, unordered_multiset<key>, unordered_map<key,value>, unordered_multimap<key,value>`|
 
 ### 2. Algorithms: 
 - This is logic to work on containers. algorithms works via iterators over containers
