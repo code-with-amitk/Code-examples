@@ -6,8 +6,9 @@
   
 ## Building Blocks
 
-|Component|<ul><li>Small,Isolated piece of code</li></ul><ul><li>Takes parameters/props/properties as input</li></ul><ul><li>Return hierarchy of views to display</li></ul>|
+|Name|Description|
 |---|---|
+|Component|<ul><li>Small,Isolated piece of code</li></ul><ul><li>Takes parameters/props/properties as input</li></ul><ul><li>Return hierarchy of views to display</li></ul><ul><li>Each react component can operate independently, this allows you to build complex UIs from simple components.</li></ul>|
 
 ## Methods
 
