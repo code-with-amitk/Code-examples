@@ -63,9 +63,10 @@ Restore BAR register that means write original value.
 
 Example-2: Let this PCI device bought 4KB memory with it so it will need 4KB of MMIO range.
 BIOS									BAR0(0xE000_000C)
--Write 0xFFFF_FFFF->							//Write all 1's to BAR register
-									0xE000_000C & 0xE000_000C
-<-Read BAR0-
+		-Write 0xFFFF_FFFF->
+								//Write all 1's to BAR register
+									0xE000_000C & 0xFFFF_FFFF
+		<-Read BAR0-
 0xFFFF_F00C
 Last 12 bits are 0s. 2^12 = 4096 = 4KB
 BIOS allocates 4KB MMIO Space.
