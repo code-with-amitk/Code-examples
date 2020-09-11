@@ -53,9 +53,10 @@ LSB: Always 1
 ```c++
 Example-1: Let this PCI device(Video Card) bought 1MB memory with it so it will need 1MB of MMIO range.
 BIOS									BAR0(0xE000_000C)
--Write 0xFFFF_FFFF->						//Write all 1's to BAR register
-										0xE000_000C & 0xE000_000C
-<-Read BAR0-
+	-Write 0xFFFF_FFFF->
+									//Write all 1's to BAR register
+										0xE000_000C & 0xFFFF_FFFF
+	<-Read BAR0-
 0xFFF0_000C
 Last 20 bits are 0s. 2^20 = 1048576 = 1MB
 BIOS allocates 1MB MMIO Space, mmap() PCI contents to this Virtual Memory. Driver can use this VM to interact with PCI device.
