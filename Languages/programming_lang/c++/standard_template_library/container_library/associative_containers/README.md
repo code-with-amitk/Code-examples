@@ -1,8 +1,8 @@
 ## Associative Containers <key,value> pair
 - **Properties**
   - Keys are always RO.
-  - `unordered_set,map` have UNIQUE Keys.
-  -  `multiset,multimap` can have DUPLICATE Keys.
+  - `set,map` have UNIQUE Keys.
+  - `multiset,multimap` can have DUPLICATE Keys.
   
 ### Types of AC
 
