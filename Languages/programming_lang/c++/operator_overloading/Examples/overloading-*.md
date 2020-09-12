@@ -13,7 +13,7 @@ class A {
 public:
 	A (int b):a(b) {}
 	const A operator * (A obj) {
-    cout<<"this->a="<<this->a<<endl;				//10
+    cout<<"this->a="<<this->a<<endl;				//10	Even you can write a not this->a
     cout<<"obj.a="<<obj.a<<endl;						//20
 		
 		return (this->a)*(obj.a);
