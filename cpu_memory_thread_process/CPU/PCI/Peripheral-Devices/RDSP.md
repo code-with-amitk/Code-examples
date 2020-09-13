@@ -30,19 +30,21 @@
       - Store PCI Space mapping all buses(default=256).
 ```c
   struct PCIInfo{
-    uint64_t mappedAddress;       //Mapped virtual address
-    uint64_t mappedAddressSize;
-    uint8_t *MMBase;
+    uint64_t mappedAddress;       //Virtual address of mapped region
+    uint64_t mappedAddressSize;   //size of mapped region
+    uint8_t *MMBase;              //char* to Mapped Virtual address
   };
+  vector<PCIInfo> vec_PCIInfo;
+  
+  //0x100000 = 1 MB = 1048576 = 32 x 8 x 4096 //Memory Space needed by 1 Bus
+  
   for ( int i = StartPCIBusNo; i <= EndPCIBusNo; ++i) {
     PCIInfo test;
-    mmap ( "Domain0 Base Address" + i 
+    mmap ( "Domain0 Base Address" + i * 0x100000, 0x100000, &test.mappedAddress, &test.mappedAddressSize, "/dev/mem fd");
+    test.MMBase = (char*) test.mappedAddress;
+    vec_PCIInfo [i] = test;
   }
 ```
-        - `struct{unint64 mappedAddress, uint64 mappedRegion, char `*MMBase`};`
-    - Iterate in for loop read contents from MCFGBase and store in structure.
-      - mappedAddress = Physical Address of PCI Config Space
-      - mappedRegion = Sizeof memory area to accessed using mappedAddress
 - **Overall Steps**
 > RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> Store Mapping to PCIConfig Space -> 
 
