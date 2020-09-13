@@ -1,5 +1,5 @@
-| --- | --- | --- | --- | --- | --- |
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
+| --- | --- | --- | --- | --- | --- |
 
 - Users can send text/video/audio/image messages using laptop or mobile.
 
@@ -20,7 +20,7 @@
 ### FUNCTIONAL
 - (1st) User can see all of his friends and can send message to any of his friend.
 - (2nd) Chat history should be stored.  
-- (3rd) User can send message to any person on facebook provided target person has not blocked incoming messages
+- (3rd) User can send message to any person on facebook provided target person has not blocked incoming messages.
 - These sizes can be delivered as 1 message.
   - {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
 
@@ -58,7 +58,7 @@ Total space requirement for 5 years = 157 zeta bytes
 
 ## 3. HLD
 ### 3A. 2 users
-- **User-1 sending chat to user-2**
+- **User-1 sending chat Message to User-2**
 ```c
 User-1                    Registrar
 Browser+FbClient            |
@@ -96,4 +96,21 @@ For 2 user approach
 ```
 - Client and server will communicate over web sockets.
 
-### 3B. 100 to 1lac Users
+### 3B. User-1 sending Chat message to 100th or 1 Lac'th User
+```c
+- Registration and getting TGT flow is same.
+{Req-1}Open UI to see live users                   Ticket-Granting-Server
+  |---(Message=Check Live users)+TGT---------------------->|
+  |<-----Service Ticket(for Live user service)-------------|            
+  |                                                                   Live-User-Checker(service-1)
+  |                                                                   - Get list of friends of user-1 from different databases  
+  |                                                                   - Send keepalive(about friend's of user-1) to distant servers  
+  |                                                                   - Distant servers responsded
+  |                                                                   - Maitain hashMap <user, associated-server>
+  |                                                                   - Send message over web sockets.
+  |<-------------Your live friends----------------------------------------------|
+  |
+  {Req-2} Send chat to live user
+  |
+
+```
