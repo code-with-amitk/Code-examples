@@ -21,11 +21,25 @@
     - Number of Description Headers n = (TotalLength(2nd field) - ACPISDTHeaderLength(36 bytes) )/ 8
     - Allocate array of storing Description headers `uint64_t PointerToOtherSDT[n]`. These are physical addresses.
     - `mmap()` each Physical address to virtual space, if (1st 4 bytes == MCFG) this is MCFGTable.
-      - Read *MCFG_BaseAddress* at offset 44 from start. MCFGBase is starting of PCI Config Space.
-      - Read *StartPCIBusNo* at offset 45 from start.
-      - Read *EndPCIBusNo* at offset 46 from start.
-  - *3.* Reading PCI Config Space.      
-    - Store PCI Space mapping of 256 buses locally. struct{unint64 mappedAddress, uint64 mappedRegion, char `*MMBase`};
+      - Read `ACPISDTHeader + 8` then Array of PCI-Domains is present.
+  - *3. Parsing PCI Domains*
+      - Read *Domain0 Base Address* at offset 44 from start. This is starting of PCI Config Space.
+      - Read *StartPCIBusNo* at offset 45 from start. This is starting bus number present in this PCI Domain.
+      - Read *EndPCIBusNo* at offset 46 from start. This is end Bus number in this PCI domain.
+        - Example: Ubuntu20.17 has StartPCIBusNo=0, EndPCIBusNo=63. This means only 63 buses.
+      - Store PCI Space mapping all buses(default=256).
+```c
+  struct PCIInfo{
+    uint64_t mappedAddress;       //Mapped virtual address
+    uint64_t mappedAddressSize;
+    uint8_t *MMBase;
+  };
+  for ( int i = StartPCIBusNo; i <= EndPCIBusNo; ++i) {
+    PCIInfo test;
+    mmap ( "Domain0 Base Address" + i 
+  }
+```
+        - `struct{unint64 mappedAddress, uint64 mappedRegion, char `*MMBase`};`
     - Iterate in for loop read contents from MCFGBase and store in structure.
       - mappedAddress = Physical Address of PCI Config Space
       - mappedRegion = Sizeof memory area to accessed using mappedAddress
