@@ -111,6 +111,42 @@ For 2 user approach
   |<-------------Your live friends----------------------------------------------|
   |
   {Req-2} Send chat to live user
-  |
-
+  |                                                                    Chat-Server
+  |-(Self userID, Friend UserId + message + scanReport + Service Ticket-2)-->|                        Queue-Datacenter-1
+  |                                                                          |--userid-1, userid-2, Message-->|
+                                                                                                              |
+                                                                        Local-Checker<---------------Read Queue
+                                                                             |
+                                                             Does any user falls in List served locally?
+                                                             Yes-> Connect to user on web sockets
+                                                             No-> Copt message to global queue
+                                                                             |                         Global-Send-Queue
+                                                                             |-copy message to global Queue->|
+                                                                                                             |
+                                                                  Distributor<-------------------------Read Queue
+                                                                        |             
+                                                        Checks which user belongs to which
+                                                        geographical domain?
+                                                        Send (message,username) to that particular
+                                                        geographical server.
+                                                                        |                         Geographical-server
+                                                                        |-------username,message---------->|
+                                                                                                           |--------deliver to user2-->|
+                                                                 ACK-Receiver                              |
+                                                                        |<---------message delivered-------|
+                                                                        |
+                                                                        |                       Global-ACK-Queue
+                                                                        |----Add ACK to queue---------->|
+                                                                                                        |------>ACK-distributor
+                                                                   Local-ACK-Reciever                                 |
+                                                                        |<------(username, ACK)-----------------------|
+                                                                 check friends of username
+                                                                        |
+                                                                        |--username--------------->Shared-DB(Based on username)
+                                                                        |<---friends of username-------------|
+User-1-Local-Cache                                                                        
+           |<----------------------------usernme for whom chat was sent-|
+           |---user-2-------------------------------------------------->|
+User-1
+  <---------------------------response of chat message------------------|
 ```
