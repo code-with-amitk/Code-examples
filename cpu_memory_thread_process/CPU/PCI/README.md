@@ -19,7 +19,7 @@
                                                                               |        0000:03:07.6.40 | //Domain:0,Bus:3,Device:7,Function:6,Register:40
                                                                               --------------------------
                                                                         
-1 PCI Domain:     //Can have 65535 domains
+1 PCI Domain:     //Can have 65535 domains(or PCI Segment Groups)
 => 256 Buses
 => 32 PCI devices/Bus
 => 8 functions/Device.        //This is config address space mapped to system Memory at MMCFG-Space
