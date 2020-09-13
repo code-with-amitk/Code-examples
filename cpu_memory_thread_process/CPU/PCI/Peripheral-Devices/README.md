@@ -8,7 +8,7 @@
 |                                                                           |
 ----------------------------------------------------------------------------
 
-Upto 65535 PCI Domain. Most systems have only 1 PCI Domain/Segment Group(number=0).
+Upto 65535 PCI Domain(or PCI Segment Group). Most systems have only 1 PCI Domain/Segment Group(number=0).
 1 PCI Domain:
 => 256 Buses
 => 32 PCI devices/Bus
