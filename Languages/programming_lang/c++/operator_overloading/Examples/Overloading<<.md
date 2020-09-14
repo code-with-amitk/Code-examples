@@ -1,9 +1,7 @@
 ## Overloading Output Stream Object(<<)
-- **What is Output Stream?**
-  - Stream used to provide output to Printer, Monitor etc.
+- **What is Output Stream?**  Stream used to provide output to Printer, Monitor etc.
   - cout is object of output stream clas.
-- **Why friend?**
-  - operator overloading function a friend of the class because it would be called without creating an object.
+- **Why friend?** operator overloading function a friend of the class because it would be called without creating an object.
 - **Code**
 ```c++
 #include <iostream>
