@@ -1,6 +1,6 @@
 ## Tokenize
 
-```
+```c++
 #include<iostream>
 #include<string>
 #include<sstream>
