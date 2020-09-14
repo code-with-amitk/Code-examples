@@ -1,4 +1,4 @@
-## Tokenize
+## 1. Using stringstream
 
 ```c++
 #include<iostream>
@@ -24,4 +24,9 @@ int main(){
   never
   give
   up */
+```
+
+## 2. boost::tokenizer
+```
+Code-examples/Languages/programming_lang/c++/boost/Libraries/Tokenizer/Examples/1.string-from-stdin.md
 ```
