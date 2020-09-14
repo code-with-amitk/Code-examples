@@ -1,10 +1,6 @@
-## insert() extended by inserting new elements
-  - Complexity: Linear
-  - 
-
-### 1. insert single element
-- iterator insert (const_iterator position, const value_type& val);
-```
+## insert()
+### 1. iterator insert (const_iterator position, const value_type& val)    //Insert single element
+```c++
   list<string> dll{"one","two","three"};
   list<string>::iterator it;
   
@@ -14,12 +10,11 @@
   //Insert at end. dll.end() returns end iterator
   dll.insert(dll.end(),"four");
   for(auto i:dll)
-          cout<<i<<" ";*              //one test two three four
+    cout<<i<<" ";*              //one test two three four
 ```
 
-### 2. insert multiple elements
-- iterator insert (const_iterator position, size_type n, const value_type& val);
-```
+### 2. iterator insert (const_iterator position, size_type n, const value_type& val)   //insert multiple elements
+```c++
   list<int> dll{1,5,6,7};
   list<int>::iterator it = dll.begin();
   it++;
