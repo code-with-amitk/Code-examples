@@ -1,12 +1,11 @@
 ## Operator Overloading/Operator Adhoc Polymorphism
-- **What**
-  - Different behavior of operators in different context.    x=6, y=4; x+y=10 , x="hey", y="man"; x+y="hey man";
+- **What** Different behavior of operators in different context.    x=6, y=4; x+y=10 , x="hey", y="man"; x+y="hey man";
 - **Commonly overloaded operators**    
-```c
+```c++
 =    +      -      `*`        /           +=         -=       `*=`         /=      ==      !=        >>        <<
 ```
 - **Operators which cannot be overloaded**    
-```c
+```c++
 .(member access)     `*(pointer to member)`       ?:(Ternary)     sizeof     ::(scope resolution)    typeid
 ```
 - **Why sizeof cannot be overloaded**   sizeof is compile time operator. ie compiler places value in place of sizeof() at compile time. 
