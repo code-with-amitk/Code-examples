@@ -1,4 +1,4 @@
-## Operator Overloading/Operator Adhoc Polymorphism
+### Operator Overloading/Operator Adhoc Polymorphism
 - **What** Different behavior of operators in different context.    x=6, y=4; x+y=10 , x="hey", y="man"; x+y="hey man";
 - **Commonly overloaded operators**    
 ```c++
