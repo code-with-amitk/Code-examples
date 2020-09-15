@@ -64,18 +64,26 @@ public:
 void cache::insert (int val) {
   int lru;
   
-  if ( um.find (val) == um.end() ) {          //Cannot find entry in cache
-
-    if (l.size() == size) {                    //Cache full. Remove last entry(Least recently used)
-      lru = l.back ();
+  if ( l.size() < size ) {    //Cache has place. Insert at head
+    l.push_front (val);
+    um [val] = l.begin();
+  } else {                //Cache is Full
+    if ( um.find (val) == um.end() ) {  //Cannot find entry
+      lru = l.back ();    //Remove lru
       l.pop_back ();
       um.erase (lru);
-    } else {                                  //entry found in cache
-      l.erase (um[val] );                     //Erase <key,value> pair
-    }
 
-    l.push_front (val);                       //Insert value always at front of cache, and store in map
-    um [val] = l.begin ();
+      l.push_front (val);   //Insert at front
+      um [val] = l.begin();
+    } else {            //Cache is Full and entry is found
+      l.remove (val);   //Remove entry from mid
+      um.erase (val);
+
+      l.push_front (val);     //Insert again at front
+      um[val] = l.begin ();
+    }
+  }
+  
 }
 
 void cache::display () {
