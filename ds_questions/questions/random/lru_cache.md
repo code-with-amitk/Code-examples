@@ -8,7 +8,7 @@
 ```c++
 LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
 - Suppose cache has capacity to store 5 entries/PageNumbers. 
-          5           3         2        1        4
+          5           3         2        1          4
   MostRecentlyUsed                           LeastRecentlyUsed
 - Now, next key=PageNumber comes in is 1(which is a cache hit), then the cache state will be:
           1           5         3         2         4 
@@ -16,21 +16,24 @@ LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
           6           1         5         3         2
   //NOTE: 4=lru removed.
 ```
-  - **How to Implement LRUCache?** Insert/Remove/Search should be O(1)
+  - **Data Structures to Implement LRUCache?** Insert/Remove/Search
   
-|Operation(should be O(1))|How|Datastrcuture|
+|Operation(should be O(1))|How|DataStructure|
 |---|---|---|
-|Search a key=PageNumber|<ul><li>Before insert/remove a key, that key has to searched in cache</li></ul><ul><li>Because if key is present its made Most recently used</li></ul><ul><li>if key is absent, LRU entry is removed and its made MRU</li></ul>|Hash-Table|
+|Search a key=PageNumber|<ul><li>Before insert/remove a key, that key has to searched in cache</li></ul><ul><li>Because if key is present its made Most recently used(nothing deleted from cache)</li></ul><ul><li>if key is absent, LRU entry is removed and new key is made MRU</li></ul>|Hash-Table|
 |Insertion (O(1))|Done at head|Doubly Linked-List|
 |Removal (O(1))|Done at tail|Doubly LL|
 
+  - *How Hash-table<key, value> is used?* `<key=PageNumber, value=address-of-queue-node>`
+  
+![ImgURL](https://i.ibb.co/1n22bjF/LRUCache-Hash-Doubly-LL.png)    
 
 ### Logic
 - **Data-Structures** 
   - **Doubly LL** container to store cache entries.
     - entry is added at front.
     - entry is removed from back, considering last used.
-  - **Hash-table <key, value>** key=page-number, value=address-of-queue-node
+  - **Hash-table <key, value>** 
 - **Operations:**
   - insert(value): value will always be inserted at LL front.
     - case-1: Cannot find entry inside hash-table
