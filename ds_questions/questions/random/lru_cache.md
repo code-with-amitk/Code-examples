@@ -1,10 +1,11 @@
-## LRU Cache?
-- **What is Cache?**
+## Cache?
+- **What**
   - Cache is used in computers to store the pages which are most frequently(or often asked and used). 
   - But there is limitation that size of cache is not huge as Hard disk, because if it becomes large then searching will take time and cache should be fast.
-- **What is LRUCache?** 
-  - This is a caching scheme where least recently used Page entry is removed when cache is full and insert a new Page needs to be inserted which is not there in cache.
-  - **LRU Example**
+
+## LRUCache?  
+- **What?** This is a caching scheme where least recently used Page entry is removed when cache is full and insert a new Page needs to be inserted which is not there in cache.
+- **Example**
 ```c++
 LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
 - Suppose cache has capacity to store 5 entries/PageNumbers. 
@@ -16,7 +17,7 @@ LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
           6           1         5         3         2
   //NOTE: 4=lru removed.
 ```
-  - **Data Structures to Implement LRUCache?** Insert/Remove/Search
+- **Data Structures to Implement LRUCache?** Insert/Remove/Search
   
 |Operation(should be O(1))|How|DataStructure|
 |---|---|---|
@@ -24,7 +25,7 @@ LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
 |Insertion (O(1))|Done at head|Doubly Linked-List|
 |Removal (O(1))|Done at tail|Doubly LL|
 
-  - *How Hash-table<key, value> is used?* `<key=PageNumber, value=address-of-queue-node>`
+- **How Hash-table<key, value> is used?** `<key=PageNumber, value=address-of-queue-node>`
   
 ![ImgURL](https://i.ibb.co/1n22bjF/LRUCache-Hash-Doubly-LL.png)    
 
