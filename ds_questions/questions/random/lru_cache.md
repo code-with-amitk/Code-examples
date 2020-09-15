@@ -30,26 +30,17 @@ LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
 ![ImgURL](https://i.ibb.co/1n22bjF/LRUCache-Hash-Doubly-LL.png)    
 
 ### Logic
-- **Data-Structures** 
-  - **Doubly LL** container to store cache entries.
-    - entry is added at front.
-    - entry is removed from back, considering last used.
-  - **Hash-table <key, value>** 
-- **Operations:**
-  - insert(value): value will always be inserted at LL front.
-    - case-1: Cannot find entry inside hash-table
-      - cache is full and entry not present: Remove last entry
-      - cache is empty: In both cases, Add entry at front
+- **Doubly LL** container to store cache entries. entry is added at front. entry is removed from back, considering last used.
+- **Hash-table <key, value>** 
 - **Complexity**
-  - Space: 
 ```c++
-        list=2k+n + Hash=k+n    //Considering n elements
-        2k+n=prev+val+next, k+n=key+value
-        O(3k+ 2n)
- ```
- - Time:
-```c++
-        insert: O(1), because finding element in unordered_map=O(1) and pushing at front of list=O(1)
+Space
+  list=2k+n + Hash=k+n    //Considering n elements
+  2k+n=prev+val+next, k+n=key+value
+  O(3k+ 2n)
+  
+Time:
+  insert: O(1), because finding element in unordered_map=O(1) and pushing at front of list=O(1)
 ```         
 
 ### Code
@@ -60,40 +51,36 @@ LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
 using namespace std;
 
 class cache {
-  list<int> l;            //Actual cache
-  unordered_map<int, list<int>::iterator> um;     //Hash-Table. Insert/Display: O(1)
-  int size;               //Size of cache
+  list<int> l;                                       //Actual cache
+  unordered_map < int, list<int>::iterator > um;     //Hash-Table. <key=PageNumber, value=AddressOfPage>
+  int size;                                          //Size of cache
 public:
-  cache(int a):size(a){}
-  void insert(int);
-  void display();
+  cache (int a) : size (a) {}
+  void insert ( int );
+  void display ();
 };
 
-/* Function to insert Page into cache
-*/
-void cache::insert(int val){
+// Function to insert Page into cache
+void cache::insert (int val) {
   int lru;
+  
+  if ( um.find (val) == um.end() ) {          //Cannot find entry in cache
 
-  if (um.find(val) == um.end()){          //Cannot find entry in cache
-
-    //Cache full. Remove last entry(Least recently used)
-    if (l.size() == size){
-      lru = l.back();
-      l.pop_back();
-      um.erase(lru);
-    }else{                                  //entry found in cache, remove
-      l.erase(um[val]);
+    if (l.size() == size) {                    //Cache full. Remove last entry(Least recently used)
+      lru = l.back ();
+      l.pop_back ();
+      um.erase (lru);
+    } else {                                  //entry found in cache
+      l.erase (um[val] );                     //Erase <key,value> pair
     }
 
-    //Insert value always at front of cache, and store in map
-    l.push_front(val);
-    um[val] = l.begin();
+    l.push_front (val);                       //Insert value always at front of cache, and store in map
+    um [val] = l.begin ();
 }
 
-void cache::display(){
+void cache::display () {
   for (auto i = l.begin(); i != l.end(); i++)
     cout << (*i) << " ";
-
   cout << endl;
 }
 
