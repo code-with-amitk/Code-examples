@@ -1,15 +1,29 @@
 ## LRU Cache?
-- **What** Remove least recently used entry when cache is full and insert a new entry which is not there in cache.
-- **Example**
+- **What is Cache?**
+  - Cache is used in computers to store the pages which are most frequently(or often asked and used). 
+  - But there is limitation that size of cache is not huge as Hard disk, because if it becomes large then searching will take time and cache should be fast.
+- **What is LRUCache?** 
+  - This is a caching scheme where least recently used Page entry is removed when cache is full and insert a new Page needs to be inserted which is not there in cache.
+  - **LRU Example**
 ```c++
-- Suppose cache has capacity to store 5 keys (arranged from most recently used key to least recently used keys):
-5 3 2 1 4
-- Now, next key comes in is 1(which is a cache hit), then the cache state will be:
-1 5 3 2 4
-- Now, If the next key comes in 6(which is a cache miss), then the cache state will be:
-6 1 5 3 2
-//NOTE: 4 has been discarded because it was the least recently used key and since the capacity of cache is 5, it could not be retained in the cache any longer.
+LRUCache: <key=PageNumber> arranged from MostRecent to LeastRecent
+- Suppose cache has capacity to store 5 entries/PageNumbers. 
+          5           3         2        1        4
+  MostRecentlyUsed                           LeastRecentlyUsed
+- Now, next key=PageNumber comes in is 1(which is a cache hit), then the cache state will be:
+          1           5         3         2         4 
+- Next key=PageNumber comes in 6(which is a cache miss), then the cache state will be:
+          6           1         5         3         2
+  //NOTE: 4=lru removed.
 ```
+  - **How to Implement LRUCache?** Insert/Remove/Search should be O(1)
+  
+|Operation(should be O(1))|How|Datastrcuture|
+|---|---|---|
+|Search a key=PageNumber|<ul><li>Before insert/remove a key, that key has to searched in cache</li></ul><ul><li>Because if key is present its made Most recently used</li></ul><ul><li>if key is absent, LRU entry is removed and its made MRU</li></ul>|Hash-Table|
+|Insertion (O(1))|Done at head|Doubly Linked-List|
+|Removal (O(1))|Done at tail|Doubly LL|
+
 
 ### Logic
 - **Data-Structures** 
