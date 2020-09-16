@@ -1,4 +1,4 @@
-## A. COUNT
+## A. Count
 ### A1. No of occurences from Arrays
   - Create <key=value, value=count> from array. Where key=element_in_array, value=no_of_times_element_repeated_in_array
   - Array {4,3,1,1,3,3,2}
@@ -25,8 +25,26 @@ Method-2:
   }
 ```
 
-## B. FIND
-### B1. Pair having smallest `key`
+## B. Find
+- **1. Key in unordered map<key,value>**
+```c++
+class Command{ ... };
+class Command1 : public Command { ... };
+class Command2 : public Command { ... };
+
+unordered_map<string, Command *> um;
+
+um["command1"] = new Command1();
+um["command2"] = new Command2();
+
+auto it = um.find ("Command1");
+
+if (it != um.end()) {               //Found Key
+  cout << it->second->fun();        //Call method of class
+}
+```
+
+-  **2. Pair having smallest `key`**
   - Considering map in bullet-1, smallest key=1 and pair=<1,2>
 ```c++
   unordered_map<int,int>::iterator it;
@@ -34,7 +52,7 @@ Method-2:
   cout<<it->first<<" " <<it->second;          //1 2
 ```
 
-### B2. Pair having smallest `value`
+- **3. Pair having smallest `value`**
   - Considering map in bullet-1, smallest value pair = `<4,1>`
 ```c++
   static bool comp(pair<int,int> i, pair<int, int> j)
