@@ -41,10 +41,22 @@ private:
   }
 
 public:
-  base() :  m_msg(nullptr) {}
-  base (const char* m) : m_msg(nullptr) {
+  base (const char* m) : m_msg(nullptr) { //Default ctr doing deep copy
     copyMsg (m);
-    cout << "Logged message on Log server\n";                 //1
+    cout << "Logged message on Log server\n";
+  }
+  base (const exception& obj) {         //copy ctr doing deep copy
+    copyMsg (obj.what());
+  }
+  base& operator = (const base& obj) {    //Assigment operator deep copy
+    if (this != &obj)
+      copyMsg(obj.what());
+  }
+  virtual ~base() {                     //Destructor
+    if ( nullptr != m_msg) {
+      delete [] m_msg;
+      m_msg = nullptr;
+    }
   }
   virtual const char* what() const {
     return m_msg;
