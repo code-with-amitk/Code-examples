@@ -21,13 +21,12 @@ std::unordered_map<int, std::string> m4 = std::move(m2);
 std::unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());
 ```
 
-## Insert
+## Insertion
+- **1. insert()**
 ```c++
-//Method-1
-unordered_map<string, int> um = { 
-  {"test1", 1} 
-};
-um.insert(make_pair("test4",4));
+//Method-1  
+unordered_map<string, int> um;
+um.insert(make_pair("test",4));
 
 //2. Range insertion
 unordered_map<string, int> test = {
@@ -41,8 +40,9 @@ um.insert({
     {"test8",8},
     {"test7",7}
     });
-
-//Method-4 Preferred 
+```
+- **2. operator `[]`**
+```
 um[key] = value;
 ```
 
