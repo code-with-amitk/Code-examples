@@ -1,33 +1,26 @@
-###  `1. insert (const value_type& val)`
+### Insert
+
+||insert()|emplace() = Inplace insertion|
+|---|---|---|
+|What|<ul><li>Used for inserting element into stl</li></ul><ul><li>Creates object somewhere else, copies objects into the vector</li></ul>|<ul><li>same</li></ul><ul><li>construct them inside of the vector</li></ul>|
+|Preferred||Yes, over insert()|
+|Adv||<ul><li>Does in place insertion, avoids unneccessary copy</li></ul>|
+
+- **1. insert()**
 ```c++
-#include<map>
+pair<iterator,bool> insert (const value_type& val);
+template <class P> pair<iterator,bool> insert (P&& val);
 
-template < typename K, typename V >
-class mymap {
-  std::map < K, V > m;
-public:
-  void assign ( K const& key, V const& value ) {
-    m.insert ( std::pair <K, V> (key, value));
-  }
+map< char, int > m;
+m.insert(make_pair('a', 1));
+```
+- **2. emplace**
+```c++
+template <class... Args>
+  pair<iterator,bool> emplace (Args&&... args);
   
-  void disp () {
-    typename std::map<K,V>::iterator it;
-    for ( it = m.begin(); it != m_map.end(); it++ ) {
-      std::cout << it->first << ", "<< it->second << std::endl;
-    }  
-  }
-  
-};
+m.emplace('b', 2);
 
-int main() {
-  mymap obj;
-  obj.assign (1, 'a');
-  obj.assign (2, 'b');
-  obj.disp();
-}
-
-/*
-1 a
-2 b
-*/
+for (auto i:m)
+  cout << i;                    //a 1   b 2
 ```
