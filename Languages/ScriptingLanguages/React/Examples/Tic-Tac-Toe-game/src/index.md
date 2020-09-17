@@ -1,17 +1,22 @@
-## Rename this file to `index.js`
+### Rename this file to `index.js`
 
-|Component-Name|Function|
+- **React Component Names**
+|React-Component-Names|Purpose|
 |---|---|
-|1.Square(Child Component)|Renders a single `<button>`|  
-|2.Board(Parent Component)|Renders 9 squares|
-|3.Game|Renders a board with placeholder values|
+|a.Square(Child Component)|Renders a single `<button>`|  
+|b.Board(Parent Component)|Renders 9 squares|
+|c.Game|Renders a board with placeholder values|
+
+- **Steps**
+  - *1.* Pass a prop(called value) to Square Component. Board --prop--> Square
+  - *2.* Display the value of prop passed by Board component. Square (Displays)
 
 ```js
 class Square extends React.Component {
   render() {
     return (
       <button className="square">
-        {this.props.value}                        //2. Display the value by passed by Board component
+        {this.props.value}                        //2. Display the value of prop passed by Board component
       </button>
     );
   }
@@ -66,4 +71,5 @@ ReactDOM.render(
   <Game />,
   document.getElementById('root')
 );
+
 ```
