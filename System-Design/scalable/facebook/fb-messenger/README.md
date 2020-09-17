@@ -94,7 +94,12 @@ For 2 user approach
   - A global file-3 containing all userId present on system.
   - Each user chats can be stored in chornological order with timestamps in seperate file. 
 ```
-- Client and server will communicate over web sockets.
+- **Communication**
+  - **1. Online User to server**
+    - Client and server will communicate over web sockets, ie client will hold open connection with server.
+    - Server will maintain a hash table <key=userId, value=Connection-Structure>. When message comes for userId, server will search in O(1) and send message to userId.
+  - **2. Offline User**
+    - The server will store the message for a while and retry sending it once the receiver reconnects.
 
 ### 3B. User-1 sending Chat message to 100th or 1 Lac'th User
 ```c
@@ -106,7 +111,7 @@ For 2 user approach
   |                                                                   - Get list of friends of user-1 from different databases  
   |                                                                   - Send keepalive(about friend's of user-1) to distant servers  
   |                                                                   - Distant servers responsded
-  |                                                                   - Maitain hashMap <user, associated-server>
+  |                                                                   - Maintain hashMap <user, associated-server>
   |                                                                   - Send message over web sockets.
   |<-------------Your live friends----------------------------------------------|
   |
@@ -123,8 +128,8 @@ For 2 user approach
                                                                              |                         Global-Send-Queue
                                                                              |-copy message to global Queue->|
                                                                                                              |
-                                                                  Distributor<-------------------------Read Queue
-                                                                        |             
+                                     Group-of-DB                    Distributor<-------------------------Read Queue
+                        stores connection info <--userId--------->      |             
                                                         Checks which user belongs to which
                                                         geographical domain?
                                                         Send (message,username) to that particular
@@ -150,3 +155,5 @@ User-1-Local-Cache
 User-1
   <---------------------------response of chat message------------------|
 ```
+#### 3C. How many Chat servers are needed
+- Asumming 1 Billion incoming text messages. 1 server can handle 1 lac connections. 1 Billion/1 lac = 10k chat servers.
