@@ -1,7 +1,8 @@
-## String from int, string, double
-### 1. stringstream
-- `>>` is input stream object.
-```
+## Create
+### A. String from int, string, double
+- **1. Using stringstream**
+  - `>>` is input stream object.
+```c++
 #include<sstream>
 int main(){
   stringstream ss;  int a=4;   string b="fail";   char c='e';
@@ -10,9 +11,9 @@ int main(){
 }
 ```
 
-## Creating vector from stringstream
+### B. vector from stringstream
 - `<<` is output stream object.
-```
+```c++
 vector<int> v;
 string s = "Hello 444";
 stringstream ss(s.substr(s.rfind(" ") + 1));      //ss=444
