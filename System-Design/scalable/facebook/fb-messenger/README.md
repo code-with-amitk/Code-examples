@@ -16,8 +16,8 @@
   - Reliable, Redundant(Using DB)
   - Fast
 
-## 1. REQUIREMENTS
-### FUNCTIONAL
+## 1. Requirements
+### Functional
 - (1st) User can see all of his friends and can send message to any of his friend.
 - (2nd) Chat history should be stored.  
 - (3rd) User can send message to any person on facebook provided target person has not blocked incoming messages.
