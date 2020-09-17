@@ -1,6 +1,7 @@
 ### Rename this file to `index.js`
 
 - **React Component Names**
+
 |React-Component-Names|Purpose|
 |---|---|
 |a.Square(Child Component)|Renders a single `<button>`|  
