@@ -1,5 +1,5 @@
 ## insert()
-### 1. Insert single element
+- **1. Insert 1 element**
 > Syntax: iterator insert (const_iterator position, const value_type& val)
 ```c++
   list<string> dll{"one","two","three"};
@@ -14,7 +14,7 @@
     cout<<i<<" ";*              //one test two three four
 ```
 
-### 2. insert multiple elements
+- **2. insert multiple elements**
 > syntax: iterator insert (const_iterator position, size_type n, const value_type& val)
 ```c++
   list<int> dll{1,5,6,7};
