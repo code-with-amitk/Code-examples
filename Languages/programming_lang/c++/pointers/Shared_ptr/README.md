@@ -5,7 +5,7 @@
   - Once count reaches 0, allocated memory is deleted.
 - **Equivalent** We can think `shared_ptr<int> p   =   int* p`
 
-### Copy Initialization not supported
+### shared_ptr does not support copy Initialization
 - **Copy Initialization?** 
   - When we initialise with `=`, we invoke copy-initialisation.
   - C++ does not allow copy-initialisation of a shared_ptr from a raw pointer.
