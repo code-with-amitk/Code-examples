@@ -1,11 +1,11 @@
 ## shared_ptr
-### What
+### 1. What
 - Container of raw pointer with following characteristics:
   - Maintains reference count ownership of its contained pointer. 
   - Once count reaches 0, allocated memory is deleted.
 - **Equivalent** We can think `shared_ptr<int> p   =   int* p`
 
-### shared_ptr does not support copy Initialization
+### 2. shared_ptr does not support copy Initialization
 - **Copy Initialization?** 
   - When we initialise with `=`, we invoke copy-initialisation.
   - C++ does not allow copy-initialisation of a shared_ptr from a raw pointer.
