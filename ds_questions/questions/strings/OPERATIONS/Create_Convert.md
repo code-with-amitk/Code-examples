@@ -10,7 +10,8 @@ int main(){
 }
 ```
 
-- **B. `vector<int>` from stringstream**
+- **B. `vector<int>` from string**
+  - **1. Using stringstream**
 ```c++
 vector<int> v;
 string s = "Hello 444";
