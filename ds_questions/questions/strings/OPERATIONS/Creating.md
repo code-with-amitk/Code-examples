@@ -1,7 +1,6 @@
 ## Create
-### A. String from int, string, double
-- **1. Using stringstream**
-  - `>>` is input stream object.
+- **A. String from int, string, double**
+  - **1. Using stringstream**
 ```c++
 #include<sstream>
 int main(){
@@ -11,8 +10,7 @@ int main(){
 }
 ```
 
-### B. vector from stringstream
-- `<<` is output stream object.
+- **B. `vector<int>` from stringstream**
 ```c++
 vector<int> v;
 string s = "Hello 444";
