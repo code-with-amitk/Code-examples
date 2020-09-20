@@ -1,9 +1,8 @@
-/*      binary_maze.cpp
-
-Situation/Task: Given a maze, where 1 represents blocked and 0 represents allowed paths.
+### Problem/Situation/Task
+- Given a maze, where 1 represents blocked and 0 represents allowed paths.
 - Find minimum distance needed to reach from S to D. Diagonal movement is not allowed
-
-Example:
+- Example:
+```c++
         0 1 2 3 4 5 6
      0  1 1 1 1 1 1 1
      1  0 0 S 0 0 0 0
@@ -20,29 +19,30 @@ Example:
 Source(S)=(1,2). Destination(D)=(3,5)
 There are 2 paths from source to Destination.
 Minimum Distance = 5
+```        
 
-***********Logic(DFS, Stack)**************
-a. Take visited[5][7], cost[5][7] matrices.
-b. Start from point S(1,2). 
+### Logic(DFS, Stack)
+- Take visited[5][7], cost[5][7] matrices.
+- Start from point S(1,2). 
   - Check all adjacent 0 points, fill on stack.
-C. while (stack!empty)
-        pop top
-        mark popped as visited.
-        Check all adjacent 0 points of present node, Fill in stack.
-        cost calculation:
-                -> On cost matrix, check least cost on any of 4 adjacent cells
-                        mycost=least_cost +1
-d. Minimum distance(int, int):
-   Take the point.
-   Find least number present in my adjacent cells from cost array(except -1)
+- while (stack!empty)
+  - pop top
+  - mark popped as visited.
+  - Check all adjacent 0 points of present node, Fill in stack.
+  - cost calculation:
+    - On cost matrix, check least cost on any of 4 adjacent cells
+      - mycost = least_cost +1
+- Minimum distance(int, int):
+  - Take the point.
+  - Find least number present in my adjacent cells from cost array(except -1)
 
 
-Complexities:
-Space: 3*O(nm)+m(for stack)     //where nxm matrix is present (n=rows, m=colomns)
-Time: 4*O(n)    //Because 4 operations are required to check adjacent nodes
-******************************************
-*/
+### Complexities:
+- Space: 3*O(nm)+m(for stack)     //where nxm matrix is present (n=rows, m=colomns)
+- Time: 4*O(n)    //Because 4 operations are required to check adjacent nodes
 
+### Code
+```c++  
 #include <bits/stdc++.h>
 using namespace std;
 int ROW=5;
@@ -197,3 +197,4 @@ Cost Matrix
 -1 -1 -1 -1 -1 -1 -1 
 cost to reach = 5
 */
+```
