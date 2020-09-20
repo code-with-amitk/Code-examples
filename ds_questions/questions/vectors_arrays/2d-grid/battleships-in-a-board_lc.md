@@ -1,19 +1,18 @@
-## [LeetCode](https://leetcode.com/problems/battleships-in-a-board/)
-
-## Problem Description
+### [Problem](https://leetcode.com/problems/battleships-in-a-board/)
 - Given a 2-D board filled with `X` and `.`
 - Continous `X` represents a battle ship, `.` represents a seperation
 - Battleships can only be placed horizontally or vertically ie they can only be made of 1XN size or Nx1 size.
 - At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.
-## Example
+- Task: Count number of battleships.
+#### Example
+```c
 - This has 2 battleships
-```
   {'X','.','.','X'},
   {'.','.','.','X'},
   {'.','.','.','X'}
 ```
 
-## Logic
+#### Logic
 - Take a visited array of same size as 2-D grid. Initialize it to 0.
 - Traverse Complete 2-D array from top-left to bottom-right.
   - if node=='X' && unvisited
@@ -25,12 +24,8 @@
   - *Time* O(mxn) Visiting all nodes, because once node is marked visited it not revisited
   - *Space* O(mxn) Taking a visited array.    
    
-## Code   
-```
-#include<iostream>
-#include<vector>
-using namespace std;
-
+#### Code   
+```c++
 class Solution {
 public:
 
