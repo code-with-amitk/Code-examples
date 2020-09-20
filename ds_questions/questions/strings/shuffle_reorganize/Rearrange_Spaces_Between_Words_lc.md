@@ -4,7 +4,6 @@
 - Rearrange the spaces so that there is an equal number of spaces between every pair of adjacent words and that number is maximized. 
 - If you cannot redistribute all the spaces equally, place the extra spaces at the end, meaning the returned string should be the same length as text.
 - Return the string after rearranging the spaces.
-
 - Examples: 
 ```c
 Example-1:
