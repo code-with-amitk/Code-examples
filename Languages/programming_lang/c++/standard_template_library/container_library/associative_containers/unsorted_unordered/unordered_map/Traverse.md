@@ -10,7 +10,7 @@
     cout << i.first << "   " << i.second << endl;
 }    
  
-O/p:
+O/p:            //May come in any order
 2 gpu2
 1 gpu1
 ```
@@ -33,4 +33,8 @@ O/p:
   for ( i=um.begin(); i!=um.end(); ++i) {
     cout<<i->first<<" "<<i->second<<"\n";
   }
+  
+O/p:
+2 gpu2
+1 gpu1  
 ```  
