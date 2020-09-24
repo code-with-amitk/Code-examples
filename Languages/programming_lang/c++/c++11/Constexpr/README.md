@@ -1,13 +1,10 @@
-## const?
-- **const variable** Whose value remains same through out the program.
-- **const function** Which always returns a constant value
- 
-## consexpr?
-- **constexpr variable**
-  - Variable whose value is derived at compile-time & is initialized. 
-    a. Should be compile time constant. 
-    b. Should be initialized at declaration.
+### const vs constexpr
 
+||Variable|Function|
+|---|---|---|
+|const|Whose value remains same through out the program|Always returns a constant value|
+|constexpr|<ul><li>Variable whose value is derived at compile-time & is initialized.</li></ul><ul><li>Should be compile time constant</li></ul><ul><li>Should be initialized at declaration</li></ul>||
+ 
 ```c++
 #include<iostream>
 using namespace std;
