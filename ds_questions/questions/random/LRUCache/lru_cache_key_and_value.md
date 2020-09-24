@@ -1,33 +1,31 @@
 ## Cache
-### What is Cache
+- **What is Cache**
   - Cache is used in computers to store the pages which are most frequently used.
-### Limitation of Cache
+- **Limitation of Cache**
   - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
-### LRUCache?  
-#### What?
+  
+## LRUCache
+### What?
   - When cache is full, remove least recently used Page entry.
   - When cache is not full, insert a new Page into cache.
   
-#### Example
+### LRU Cache Example
 ```c++
 Cache:  {key = UniquePriority,  Value = PageAddress}
-
-1. Suppose cache has capacity to store 5 entries `<key, Value>` pair. 
 ```
+
+- **1.** Suppose cache has capacity to store 5 entries `<key, Value>` pair. 
 
   |Key,Value| 1, 0x10 (MostRecentlyUsed)| 2, 0x20 | 3, 0x30 | 4, 0x40 | 5, 0x50 (LeastRecentlyUsed)|
   |---|---|---|---|---|---|
 
-```c++
-2. Request for `<key,value> = <6,0x60>` comes in, which is cache miss. Hence LRU is deleted and entry is inserted at head.
-```
+
+- **2.** Request for `<key,value> = <6,0x60>` comes in, which is cache miss. Hence LRU is deleted and entry is inserted at head.
 
   |Key,Value| 6,0x60 (MostRecentlyUsed) | 1, 0x10 | 2, 0x20 | 3, 0x30 | 4, 0x40 (LeastRecentlyUsed)|
   |---|---|---|---|---|---|
 
-```c++
-3. Next, request for `<key,value> = <3,0x30>` comes in, which is cache hit. Hence `<3,0x30>` becomes MRU.
-```
+- **3.** Next, request for `<key,value> = <3,0x30>` comes in, which is cache hit. Hence `<3,0x30>` becomes MRU.
 
   |Key,Value| 3, 0x30 (MostRecentlyUsed)| 6,0x60 | 1, 0x10 | 2, 0x20 | 4, 0x40 (LeastRecentlyUsed)|
   |---|---|---|---|---|---|
