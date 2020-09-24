@@ -4,10 +4,14 @@
 - **Limitation of Cache**
   - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
   
+### [Self youtube video](https://youtu.be/mhcTL2lqwI0)
+
 ## LRUCache
-### What?
-  - When cache is full, remove least recently used Page entry.
-  - When cache is not full, insert a new Page into cache.
+### What? 
+  - This organizes items/pages in order of use, allowing to quickly identify which item hasn't been used for the longest amount of time.
+  - Operations:
+    - When cache is full, remove least recently used Page entry.
+    - When cache is not full, insert a new Page into cache.
   
 ### LRU Cache Example
 ```c++
