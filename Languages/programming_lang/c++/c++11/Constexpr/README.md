@@ -1,10 +1,12 @@
-### const vs constexpr
+## constexpr
+- **1. const vs constexpr**
 
 ||Variable|Function|
 |---|---|---|
 |const|Whose value remains same through out the program|Always returns a constant value|
 |constexpr|<ul><li>Variable whose value is derived at compile-time & is initialized.</li></ul><ul><li>Should be compile time constant</li></ul><ul><li>Should be initialized at declaration</li></ul>||
  
+ - **2. constexpr Variable**
 ```c++
 #include<iostream>
 using namespace std;
@@ -22,7 +24,7 @@ int main(){
 }
 ```
 
-- **constexpr function**
+- **3. constexpr function**
   - It return value should be computable at compile time only.
   - RULES:
     - constexpr function or constructor is implicitly inline.
