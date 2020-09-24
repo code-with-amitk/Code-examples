@@ -22,12 +22,12 @@ Cache:  {key = UniquePriority,  Value = PageAddress}
 
 - **2.** Request for `<key,value> = <6,0x60>` comes in, which is cache miss. Hence LRU is deleted and entry is inserted at head.
 
-  |Key,Value| 6,0x60 (MostRecentlyUsed) | 1, 0x10 | 2, 0x20 | 3, 0x30 | 4, 0x40 (LeastRecentlyUsed)|
+  |Key,Value| 6,0x60 MRU | 1, 0x10 | 2, 0x20 | 3, 0x30 | 4, 0x40 LRU|
   |---|---|---|---|---|---|
 
 - **3.** Next, request for `<key,value> = <3,0x30>` comes in, which is cache hit. Hence `<3,0x30>` becomes MRU.
 
-  |Key,Value| 3, 0x30 (MostRecentlyUsed)| 6,0x60 | 1, 0x10 | 2, 0x20 | 4, 0x40 (LeastRecentlyUsed)|
+  |Key,Value| 3, 0x30 MRU| 6,0x60 | 1, 0x10 | 2, 0x20 | 4, 0x40 LRU|
   |---|---|---|---|---|---|
 
 ### Data Structures to Implement LRUCache? 
