@@ -1,5 +1,5 @@
 ### 1. Delete list
-- **a. void clear() noexcept**
+- **a. Empty the list**  `void clear() noexcept`
   - Removes all elements from the list container leaving the container with a size of 0
 ```c++
   list<string> dll {"one","two","three","four","five"};
@@ -10,7 +10,7 @@
 ```
 
 ### 2. Remove elements
-- **a. Remove 1 element iterator erase (const_iterator position);**
+- **a. Remove 1 element** `iterator erase (const_iterator position);`
 ```c++
   list<int> a = {1,2,3,4,5};
   list<int>::iterator it;
@@ -22,7 +22,7 @@
     cout<< i <<" ";   //2 3 4 5
 ```
 
-- **b. Remove Range:    iterator erase (const_iterator first, const_iterator last);**
+- **b. Remove Range:**    `iterator erase (const_iterator first, const_iterator last);`
   - Remove range of elements (first,last)
 ```c++
   list<int> a = {1,2,3,4,5};
