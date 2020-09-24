@@ -5,8 +5,9 @@
   - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
 ### LRUCache?  
 #### What?
-    - When cache is full, remove least recently used Page entry.
-    - When cache is not full, insert a new Page into cache.
+  - When cache is full, remove least recently used Page entry.
+  - When cache is not full, insert a new Page into cache.
+  
 #### Example
 ```c++
 Cache:  {key = UniquePriority,  Value = PageAddress}
