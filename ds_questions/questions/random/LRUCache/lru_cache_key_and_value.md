@@ -4,10 +4,10 @@
 ### Limitation of Cache
   - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
 ### LRUCache?  
-  - **What?** 
+#### What?
     - When cache is full, remove least recently used Page entry.
     - When cache is not full, insert a new Page into cache.
-  - **Example**
+#### Example
 ```c++
 Cache:  {key = UniquePriority,  Value = PageAddress}
 
@@ -31,9 +31,10 @@ Cache:  {key = UniquePriority,  Value = PageAddress}
   |Key,Value| 3, 0x30 (MostRecentlyUsed)| 6,0x60 | 1, 0x10 | 2, 0x20 | 4, 0x40 (LeastRecentlyUsed)|
   |---|---|---|---|---|---|
 
-- **Data Structures to Implement LRUCache?** Insert/Remove/Search
-  
-|Operation(should be O(1))|How|DataStructure|
+### Data Structures to Implement LRUCache? 
+> Insert/Remove/Search time complexity = O(1)
+
+|Operation|How|DataStructure|
 |---|---|---|
 |Search a key=PageNumber|<ul><li>Before insert/remove a key, that key has to searched in cache</li></ul><ul><li>Because if key is present its made Most recently used(nothing deleted from cache)</li></ul><ul><li>if key is absent, LRU entry is removed and new key is made MRU</li></ul>|Hash-Table|
 |Insertion (O(1))|Done at head|Doubly Linked-List|
