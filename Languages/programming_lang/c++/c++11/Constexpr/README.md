@@ -1,10 +1,10 @@
 ## constexpr
 - **1. const vs constexpr**
 
-||Variable|Function|
-|---|---|---|
-|const|Whose value remains same through out the program|Always returns a constant value|
-|constexpr|<ul><li>Variable whose value is derived at compile-time & is initialized.</li></ul><ul><li>Should be compile time constant</li></ul><ul><li>Should be initialized at declaration</li></ul>||
+||Variable|Function|Object|
+|---|---|---|---|
+|const|Whose value remains same through out the program|Always returns a constant value|once initialized, the value of that object won't change|
+|constexpr|<ul><li>Variable whose value is derived at compile-time & is initialized.</li></ul><ul><li>Should be compile time constant</li></ul><ul><li>Should be initialized at declaration</li></ul>|||
  
  - **2. constexpr Variable**
 ```c++
@@ -55,3 +55,10 @@ int main(){
   const float d = fun(2);
 }
 ```
+
+## Constexpr vs Macro
+
+||macro|constexpr|
+|---|---|---|
+|Type|int|unsigned|
+|When to use|Use constexpr whenever you may|macros only if no other solution is possible|
