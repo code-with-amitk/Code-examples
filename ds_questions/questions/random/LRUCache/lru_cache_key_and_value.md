@@ -35,91 +35,109 @@ Cache:  {key = UniquePriority,  Value = PageAddress}
 
 |Operation|How|DataStructure|
 |---|---|---|
-|Search a key=PageNumber|<ul><li>Before insert/remove a key, that key has to searched in cache</li></ul><ul><li>Because if key is present its made Most recently used(nothing deleted from cache)</li></ul><ul><li>if key is absent, LRU entry is removed and new key is made MRU</li></ul>|Hash-Table|
+|Search a `<key,value>`|<ul><li>Before insert/remove `<key,value>`, that entry has to searched in cache</li></ul><ul><li>if `<key,value>` is present its made Most recently used.</li></ul><ul><li>if `<key,value>` is absent, LRU entry is removed and new key is made MRU</li></ul>|Hash-Table|
 |Insertion (O(1))|Done at head|Doubly Linked-List|
 |Removal (O(1))|Done at tail|Doubly LL|
 
 - **How Hash-table<key, value> is used?** `<key=PageNumber, value=address-of-queue-node>`
   
-![ImgURL](https://i.ibb.co/1n22bjF/LRUCache-Hash-Doubly-LL.png)    
+![ImgURL](https://i.ibb.co/FJw3qHX/LRUCache-key-value-pair.png)    
 
 ### Logic
 - **Doubly LL** container to store cache entries. entry is added at front. entry is removed from back, considering last used.
-- **Hash-table <key, value>** 
-- **Complexity**
+- **Hash-table <key, Address-of-LL>** when request comes to update cache, it searches key in hash-table if found go to LL. This is O(1) operation.
 ```c++
-Space
-  list=2k+n + Hash=k+n    //Considering n elements
-  2k+n=prev+val+next, k+n=key+value
-  O(3k+ 2n)
+Space   //Considering n elements
+  List:   <key=8byte, value=8byte> + <prev=8byte, next=8byte> = 4n
+  Hash:   <key=8byte, value=8byte> = 2n
+  O(6n)
   
 Time:
-  insert: O(1), because finding element in unordered_map=O(1) and pushing at front of list=O(1)
+  insert: O(1)
+    -> Search/Delete in unordered_map=O(1) 
+    -> Insert at front of list=O(1)
 ```         
 
 ### Code
 ```c++
 #include<iostream>
-#include<unordered_map>
 #include<list>
+#include<unordered_map>
 using namespace std;
 
-class cache {
-  list<int> l;                                       //Actual cache
-  unordered_map < int, list<int>::iterator > um;     //Hash-Table. <key=PageNumber, value=AddressOfPage>
-  int size;                                          //Size of cache
+class Cache {
 public:
-  cache (int a) : size (a) {}
-  void insert ( int );
-  void display ();
+  list <pair<int, int>> lst;                              //Actual cache <key,value>
+  unordered_map <int, list<pair<int,int>>::iterator> um;  //um<key,address-of-key>
+  int cp;
+  Cache(int c):cp(c){}
+  ~Cache(){}
+  virtual void set(int key, int value)=0;   //Set <Key,value> pair in list
+  virtual int get()=0;                      //Return 
+  virtual void display()=0;
 };
 
-// Function to insert Page into cache
-void cache::insert (int val) {
-  int lru;
-  
-  if ( l.size() < size ) {    //Cache has place. Insert at head
-    l.push_front (val);
-    um [val] = l.begin();
-  } else {                //Cache is Full
-    if ( um.find (val) == um.end() ) {  //Cannot find entry
-      lru = l.back ();    //Remove lru
-      l.pop_back ();
-      um.erase (lru);
+class LRUCache : public Cache {
+      unordered_map <int, list<pair<int,int>>::iterator>::iterator it;
+public:
+  LRUCache (int c) : Cache(c) {}
 
-      l.push_front (val);   //Insert at front
-      um [val] = l.begin();
-    } else {            //Cache is Full and entry is found
-      l.remove (val);   //Remove entry from mid
-      um.erase (val);
+  void set(int key, int val) {
+//    cout<<"Capacity="<<cp;
+    pair<int, int> lru;
 
-      l.push_front (val);     //Insert again at front
-      um[val] = l.begin ();
+    if (lst.size() < cp) {        //Cache has place, insert at head
+
+      lst.push_front ( make_pair(key, val));
+      um [key] = lst.begin();
+
+    } else {                    //Cache full
+
+      if ( (it = um.find (key)) == um.end() ) {  //Cannot find key in cache
+
+        lru = lst.back ();                            //Remove last entry ie lru
+        lst.pop_back ();
+        um.erase (lru.first);
+
+        lst.push_front (make_pair(key,val));          //Insert new entry at front
+        um [key] = lst.begin();
+
+      } else {                                    //Cache is Full and entry is found
+        lst.erase(it->second);
+        um.erase (key);
+
+        lst.push_front (make_pair(key,val));     //Insert again at front
+        um [key] = lst.begin ();
+      }
+
     }
   }
-  
-}
 
-void cache::display () {
-  for (auto i = l.begin(); i != l.end(); i++)
-    cout << (*i) << " ";
-  cout << endl;
-}
+  void display(){
+    list<pair<int,int>>::iterator i;
+    for (i=lst.begin(); i != lst.end(); ++i)
+      cout << i->first <<","<< i->second <<"\n";
+      cout<<"\n";
+  }
 
+  int get (int key) {                         //Return value correponding to key
+    if ( (it = um.find (key)) == um.end() ) {
+      return -1;
+    } else {
+      //return value from key in lru
+      return it->second->second;
+    }
+  }
+};      
 int main(){
-  cache obj(3);
-  obj.insert(1);
-  obj.insert(2);
-  obj.insert(3);
-  obj.insert(4);
-  obj.insert(5);
-  obj.display();
-  return 0;
+  LRUCache l(4);
+  l.set(1,10);                       //set(key,value)
+  l.set(2,20);
+  l.set(3,30);
+  l.set(4,40);
+  l.set(5,50);
+  l.set(3,300);
+  l.display();
 }
 
-/*
-# g++ lru-cache.cpp 
-# ./a.out 
-5 4 3 
-*/
 ```
