@@ -9,7 +9,7 @@
     - When cache is not full, insert a new Page into cache.
   - **Example**
 ```c++
-<key=PageNumber> arranged from MostRecent to LeastRecent
+Cache:  {key = PageNumber}  arranged from MostRecent to LeastRecent
 - Suppose cache has capacity to store 5 entries/PageNumbers. 
           5           3         2        1          4
   MostRecentlyUsed                           LeastRecentlyUsed
