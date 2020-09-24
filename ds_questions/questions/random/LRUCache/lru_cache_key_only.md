@@ -1,13 +1,19 @@
 ## Cache
-### What is Cache
+- **What is Cache**
   - Cache is used in computers to store the pages which are most frequently used.
-### Limitation of Cache
+- **Limitation of Cache**
   - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
-### LRUCache?  
-  - **What?** 
+  
+### [Self youtube video](https://youtu.be/mhcTL2lqwI0)
+
+## LRUCache
+### What? 
+  - This organizes items/pages in order of use, allowing to quickly identify which item hasn't been used for the longest amount of time.
+  - Operations:
     - When cache is full, remove least recently used Page entry.
     - When cache is not full, insert a new Page into cache.
-  - **Example**
+    
+### **Example**
 ```c++
 Cache:  {key = PageNumber}  arranged from MostRecent to LeastRecent
 - Suppose cache has capacity to store 5 entries/PageNumbers. 
@@ -19,7 +25,7 @@ Cache:  {key = PageNumber}  arranged from MostRecent to LeastRecent
           6           1         5         3         2
   //NOTE: 4=lru removed.
 ```
-- **Data Structures to Implement LRUCache?** Insert/Remove/Search
+### **Data Structures to Implement LRUCache?** Insert/Remove/Search
   
 |Operation(should be O(1))|How|DataStructure|
 |---|---|---|
