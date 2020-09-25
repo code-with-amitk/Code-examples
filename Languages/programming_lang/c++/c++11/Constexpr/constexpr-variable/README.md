@@ -4,7 +4,7 @@
 
 ||const|constexpr|
 |---|---|---|
-||(As per definition)Whose value remains same through out the program|variable whose value is derived at compile-time & initialized|
+|What?|(As per definition)Whose value remains same through out the program|variable whose value is derived at compile-time & initialized|
 
 - **Example**
 ```c++
