@@ -24,22 +24,22 @@ Explanation: Maximum non-negative product is in bold (1 * 1 * -2 * -4 * 1 = 8).
   - Matrix-1(maxProduct), Matrix-2(minProduct)
 ```c++
 input arr=	    
-		  0   1  2
-	0  {1, -2, 1},
-	1  {1, -2, 1},
+      0   1  2
+  0  {1, -2, 1},
+  1  {1, -2, 1},
   2  {3, -4, 1}
 	
 maxProduct = 
-		0   1  2
-	 0 {1, -2, 4}.
-	 1 {1, 4,
-	 2 {3,
+     0   1  2
+  0 {1, -2, 4}.
+  1 {1, 4,
+  2 {3,
 
 minProduct = 
-		0   1  2
-	 0 {1, -2, 4}.
-	 1 {1, -2,
-	 2 {3,	 
+     0   1  2
+  0 {1, -2, 4}.
+  1 {1, -2,
+  2 {3,	 
 	 
 For filling maxProduct[1][1],minProduct[1][1]. We calculate 4 elements.
 a = maxProduct[0][1]*arr[1][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
