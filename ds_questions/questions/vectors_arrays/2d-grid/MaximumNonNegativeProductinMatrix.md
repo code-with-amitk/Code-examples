@@ -84,22 +84,22 @@ try{
 
     //1st row
     for( int i = 1; i < cols; ++i ) {
-      maxProduct[0][i] = maxProduct[0][i-1] * g[0][i];
+      maxProduct[0][i] = g[0][i] * maxProduct[0][i-1];
       minProduct[0][i] = maxProduct[0][i];
     }
 
     //1st col
     for( int i = 1; i < rows; ++i ) {
-      maxProduct[i][0] = maxProduct[i-1][0] * g[i][0];
+      maxProduct[i][0] = g[i][0] * maxProduct[i-1][0];
       minProduct[i][0] = maxProduct[i][0];
     }
     T1 a=0, b=0, c=0, d=0;
     for (int i = 1; i < rows; ++i) {
       for (int j = 1; j < cols; ++j) {
-        a = maxProduct[i-1][j] * g[i][j];
-        b = maxProduct[i][j-1] * g[i][j];
-        c = minProduct[i-1][j] * g[i][j];
-        d = minProduct[i][j-1] * g[i][j];
+        a = g[i][j] * maxProduct[i-1][j];
+        b = g[i][j] * maxProduct[i][j-1];
+        c = g[i][j] * minProduct[i-1][j];
+        d = g[i][j] * minProduct[i][j-1];
 
         maxProduct[i][j] = max (max(a, b),
                                 max(c, d));
