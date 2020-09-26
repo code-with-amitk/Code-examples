@@ -42,10 +42,10 @@ minProduct =
   2 {3,	 
 	 
 For filling maxProduct[1][1],minProduct[1][1]. We calculate 4 elements.
-a = maxProduct[0][1]*arr[1][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
-b = maxProduct[1][0]*arr[1][1] = -2*1 = -2                //present-input-arr-element * Back-Product
-c = minProduct[0][1]*arr[1][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
-d = minProduct[1][0]*arr[1][1] = 1*-2 = -2
+a = arr[1][1]*maxProduct[0][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
+b = arr[1][1]*maxProduct[1][0] = -2*1 = -2                //present-input-arr-element * Back-Product
+c = arr[1][1]*minProduct[0][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
+d = arr[1][1]*minProduct[1][0] = 1*-2 = -2
 maxProduct[1][1] = 4
 minProduct[1][1] = -2
 
