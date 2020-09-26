@@ -21,9 +21,107 @@ Explanation: Maximum non-negative product is in bold (1 * 1 * -2 * -4 * 1 = 8).
 
 ### Logic (Dynamic Programming)
 - Take 2 matrices of same size as input array
-  - Matrix-1(maxProduct): stores max(present-box*aboveBox, presentBox*prevBox)
-  - Matrix-2(minProduct) 
+  - Matrix-1(maxProduct), Matrix-2(minProduct)
+```c++
+input arr=	    
+		  0   1  2
+	0  {1, -2, 1},
+	1  {1, -2, 1},
+  2  {3, -4, 1}
+	
+maxProduct = 
+		0   1  2
+	 0 {1, -2, 4}.
+	 1 {1, 4,
+	 2 {3,
+
+minProduct = 
+		0   1  2
+	 0 {1, -2, 4}.
+	 1 {1, -2,
+	 2 {3,	 
+	 
+For filling maxProduct[1][1],minProduct[1][1]. We calculate 4 elements.
+a = maxProduct[0][1]*arr[1][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
+b = maxProduct[1][0]*arr[1][1] = -2*1 = -2                //present-input-arr-element * Back-Product
+c = minProduct[0][1]*arr[1][1] = -2*-2 = 4                //present-input-arr-element * Above-Product
+d = minProduct[1][0]*arr[1][1] = 1*-2 = -2
+maxProduct[1][1] = 4
+minProduct[1][1] = -2
+
+Finally we get:
+maxProduct:     //Every element represents max product till that element traversed from 0,0
+    1 -2 -2
+    1  4  4
+    3  8  8
+
+minProduct:     //Every element represents min product till that element traversed from 0,0
+    1  -2 -2
+    1  -2 -2
+    3 -16 -16
+```
 
 ### Code
 ```c++
+template<typename T1>
+class Solution {
+  int rows, cols;
+public:
+  T1 mp ( vector<vector<T1>>& g ) {
+try{
+    if(not g.size()){
+      string a = "size is 0";
+      throw a;
+    }
+
+    rows = g.size();
+    cols = g[0].size();
+
+    T1 maxProduct[rows][cols];
+    T1 minProduct[rows][cols];
+
+    maxProduct[0][0] = minProduct[0][0] = g[0][0];
+
+    //1st row
+    for( int i = 1; i < cols; ++i ) {
+      maxProduct[0][i] = maxProduct[0][i-1] * g[0][i];
+      minProduct[0][i] = maxProduct[0][i];
+    }
+
+    //1st col
+    for( int i = 1; i < rows; ++i ) {
+      maxProduct[i][0] = maxProduct[i-1][0] * g[i][0];
+      minProduct[i][0] = maxProduct[i][0];
+    }
+    T1 a=0, b=0, c=0, d=0;
+    for (int i = 1; i < rows; ++i) {
+      for (int j = 1; j < cols; ++j) {
+        a = maxProduct[i-1][j] * g[i][j];
+        b = maxProduct[i][j-1] * g[i][j];
+        c = minProduct[i-1][j] * g[i][j];
+        d = minProduct[i][j-1] * g[i][j];
+
+        maxProduct[i][j] = max (max(a, b),
+                                max(c, d));
+        minProduct[i][j] = min (min(a, b),
+                                min(c, d));
+      }
+    }
+    return (maxProduct[rows-1][cols-1] < 0) ? -1 : (maxProduct[rows-1][cols-1] % 1000000007);
+  }catch(string e){
+    cout<<"Exception!! "<<e;
+  }catch(...){
+    cout<<"Caught=";
+  }
+  }
+};
+int main() {
+  vector<vector<int64_t>> g = {   //8
+    {1,-2,1},
+    {1,-2,1},
+    {3,-4,1}
+  };
+  Solution <int64_t>s;
+  cout << s.mp(g);
+}
 ```
