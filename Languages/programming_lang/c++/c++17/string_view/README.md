@@ -12,6 +12,6 @@ int main() {
   string_view b{ a };           //b = a     no other copy is created, points to a
   string_view c{ b };           //c = a
     
-  b[3] = 'p';                   //Compilation error, its RO
+  //b[3] = 'p';                   //Compilation error, its RO
 }
 ```
