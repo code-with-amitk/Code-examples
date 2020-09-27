@@ -10,8 +10,11 @@
 int main() {
   string_view a{ "hello" };     //a = hello
   string_view b{ a };           //b = a     no other copy is created, points to a
-  string_view c{ b };           //c = a
-    
+  string_view c{ b };           //c = a 
   //b[3] = 'p';                   //Compilation error, its RO
+  cout << c;
 }
+# g++ test.cpp --std=c++17
+# ./a.out
+hello
 ```
