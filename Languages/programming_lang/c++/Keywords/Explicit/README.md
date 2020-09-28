@@ -1,5 +1,6 @@
 ## explicit keyword
-- **Implicit conversion?** Compiler converts data-type to class object which is wrong.
+- **What is Implicit conversion?** 
+  - Compiler converts data-type to class object which is wrong.
   - Example-1: fun() takes object as argument but we passed int and compiler did conversion internally. This is done using default constructor(1).
 ```c++
 class A {
@@ -20,11 +21,12 @@ void fun (A obj) {
 int main() {
   fun (3);
 }
-# g++ test.cpp
-# ./a.out
+# g++ test.cpp;./a.out
 3
 ```
-- **Explicit** Prefixing the explicit keyword before constructor prevents the compiler for using that constructor for implicit conversions. Above code will give error, we need.
+- **Explicit** 
+  - explicit can only come in front of constructor.
+  - Prefixing the explicit keyword before constructor prevents the compiler for using that constructor for implicit conversions. Above code will give error, we need.
 ```c++
 class A {
   ...
