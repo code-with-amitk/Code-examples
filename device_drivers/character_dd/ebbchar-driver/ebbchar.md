@@ -22,7 +22,7 @@
  	- dev_write(): called when device file is written from user space i.e. data is sent to the device from the user.
  	- dev_release(): Called when user space calls close() on device file
 9. Provide Initialization, cleanup functions to module_init(), module_exit()
-```
+```c
 # vim ebbchar.c
  linux/init.h:		Provides mark up functions e.g. __init __exit			//1
  linux/module.h:	Loads LKMs into the kernel
@@ -141,14 +141,14 @@ module_exit(ebbchar_exit);
 ```
 
 10. Build driver ebbchar.ko
-```
+```c
 # make; 
 # ls 
 	ebbchar.ko
 ```
 
 11. Insert/Register Device Driver, Verify driver & Device file being created
-```
+```c
 # insmod ebbchar.ko	
 # dmesg
 # lsmod |grep ebb									  //Check listing of driver
@@ -158,18 +158,18 @@ module_exit(ebbchar_exit);
 12. Write/compile/Test user application to communicate with driver.
 	  - Note, User space application should be aware of Device file `/dev/ebbchar`.
 		- User space application will open this device and do RW operation on it
-```
+```c
 # vim testebbdriver.c
 ..
 fd = open("/dev/ebbchar", O_RDWR);
 write(fd, stringToSend, strlen(stringToSend));
 read(fd, receive, BUFFER_LENGTH); 
-..
+..c
 # ./test
 ```
 
 13. Remove the driver.
-```
+```c
 # rmmod ebbchar
 ```
 
@@ -177,7 +177,7 @@ read(fd, receive, BUFFER_LENGTH);
 
 ## Data Structures
 - struct file_operations
-```
+```c
 struct file_operations{
     struct module *owner;
     loff_t (*llseek) (struct file *, loff_t, int);
