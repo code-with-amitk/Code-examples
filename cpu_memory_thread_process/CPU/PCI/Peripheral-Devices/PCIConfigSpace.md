@@ -15,12 +15,12 @@
 ![ImgURL](https://i.ibb.co/Tt0N7Tq/pci-header.png)
 
 ### BAR(Base Address Register)
-- **What** 
-	- BARs contains base address of an I/O or Memory mapped region of this PCI device where its control registers lie.
-	- Ownership of the I/O & Memory regions associated with BARs is given to a device driver associated with PCI device.
-	- PCI BAR Target operation regions may only be declared in the scope of PCI devices that have a PCI Header Type of 0.
-	- Device can have upto six 32bit BARs. Two 32bit BARs can be combined to create 64Bit BAR.
-- **BAR Types**
+#### What
+    - BARs contains base address of an I/O or Memory mapped region of this PCI device where its control registers lie.
+    - Ownership of the I/O & Memory regions associated with BARs is given to a device driver associated with PCI device.
+    - PCI BAR Target operation regions may only be declared in the scope of PCI devices that have a PCI Header Type of 0.
+    - Device can have upto six 32bit BARs. Two 32bit BARs can be combined to create 64Bit BAR.
+#### BAR Types
 ```c
 1. Memory Space BAR
 |16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|
@@ -37,7 +37,7 @@ When you want to retrieve the actual base address of a BAR, be sure to mask the 
 LSB: Always 1
 
 ```
-- **6 BARs**
+#### 6 BARs
 
 ||offset|Purpose|
 |---|---|---|
@@ -48,34 +48,37 @@ LSB: Always 1
 |BAR4(IO_BASE_WS)|0x20||
 |BAR5(REG_BASE)|0x24|Stores register base address|
 
-- **Steps of Reading BAR Register**
+#### Reading BAR Registers
 > How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
-```c++
-Example-1: Let this PCI device(Video Card) bought 1MB memory with it so it will need 1MB of MMIO range.
-BIOS									BAR0(0xE000_000C)
-	-Write 0xFFFF_FFFF->
-									//Write all 1's to BAR register
-										0xE000_000C & 0xFFFF_FFFF
-	<-Read BAR0-
-0xFFF0_000C
-Last 20 bits are 0s. 2^20 = 1048576 = 1MB
-BIOS allocates 1MB MMIO Space, mmap() PCI contents to this Virtual Memory. Driver can use this VM to interact with PCI device.
-Restore BAR register that means write original value.
+- **1. Reading BAR0, BAR1** Aperature address is stored on both.
+  - uint64_t aperatureStartAddress = BAR1 + BAR0 & 0xffff_fff0
+```c
+    BIOS						BAR0(c000_000c)
+       ----Read BAR5 in uint32_t--->
+       <---read(bn, dn, offset=0x10, &dword)---
+ uint64 aperatureStartAddress = c000_000c & ffff_fff0;      //0000_0000_c000_0000
 
-Example-2: Let this PCI device bought 4KB memory with it so it will need 4KB of MMIO range.
-BIOS									BAR0(0xE000_000C)
-		-Write 0xFFFF_FFFF->
-								//Write all 1's to BAR register
-									0xE000_000C & 0xFFFF_FFFF
-		<-Read BAR0-
-0xFFFF_F00C
-Last 12 bits are 0s. 2^12 = 4096 = 4KB
-BIOS allocates 4KB MMIO Space.
-BIOS allocates 1MB MMIO Space, mmap() PCI contents to this Virtual Memory. Driver can use this VM to interact with PCI device.
-Restore BAR register that means write original value
+    if (BAR0 & 0x04){   //Check if 64 bit
+       ----Read BAR1 in uint32_t--->                      BAR1(0000_0000)
+       <---read(bn, dn, offset=0x14, &dword)---
+       //Left shift BAR1 read by 32
+       dword << 32 = 0000_0000_0000_0000
+       aperatureStartAddress = aperatureStartAddress + dword
+       aperatureStartAddress = 0000_0000_c000_0000
+    }
 ```
 
+- **2. Reading BAR5**
+```c
+    BIOS						BAR5(d0a0_0000)
+       ----Read BAR5 in uint32_t--->
+       <---read(bn, dn, offset=0x24, &dword)---
+ uint64 registerBaseAddress = d0a0_0000 & 0xffff_fff0;	      //0000_0000_d0a0_0000
 
+    if (BAR5 & 0x04){       //Check if 64 bit
+       //does not go inside
+    }
+```
 
 
 ## B. Reading from Config Space Register
