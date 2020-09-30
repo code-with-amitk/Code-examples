@@ -1,23 +1,17 @@
-[Problem](https://leetcode.com/problems/decode-ways/)
+
 [Solution](https://www.geeksforgeeks.org/count-possible-decodings-given-digit-sequence/)
 
-## Task
-  - String contains letters from `A` to `Z`
-  - determine the total number of ways to decode it.
-```
-'A' -> 1
-'B' -> 2
-...
-'Z' -> 26
-```
-### Example-1
-```
+## [Problem](https://leetcode.com/problems/decode-ways/)
+- String contains letters from `A` to `Z`. determine the total number of ways to decode it.
+```c
+'A' -> 1, 'B' -> 2, ..., 'Z' -> 26
+
+Example-1:
 Input: "12"
 Output: 2
 Explanation: It could be decoded as "AB" (1 2) or "L" (12).
-```
-### Example-2
-```
+
+Example-2:
 Input: "226"
 Output: 3
 Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
@@ -46,21 +40,22 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
   - (Step-3) Start from i=2
     - i = 2
-      - if s[1] > '0', (number of ways = tab[2]) = tab[1]
+      - if s[1] > '0', (number of ways = tab[2]) = tab[1])
 
 | input string | 2 | 2 | 6 | |
 | --- | --- | --- | --- | --- |
 | index |        0 | 1 | 2 |  |
 | dp-table     | 1 | 1 | 1 |  |
 
-      - if (s[0] == '1') (number of ways = tab[2]) = tab[2]+tab[1]
+      - if (s[0] == '1') (number of ways = tab[2]) = tab[2]+tab[1])
 
 | input string | 2 | 2 | 6 | |
 | --- | --- | --- | --- | --- |
 | index | 0 | 1 | 2 |  |
 | dp-table | 1 | 1 | 1 | 2 |
 
-```
+### Code
+```c++
 class Solution {
 public:
     int numDecodings(string s) {
