@@ -79,7 +79,7 @@ LSB: Always 1
     }
 ```
 
-- **3. IO Base Address = BAR1 or BAR4 & 0000_fffe)
+- **3. IO Base Address = BAR1 or BAR4 & 0000_fffe)**
 ```c
     Program						BAR1(000a_0000)
     uint16_t wread
