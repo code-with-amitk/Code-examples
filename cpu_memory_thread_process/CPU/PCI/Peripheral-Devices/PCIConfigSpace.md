@@ -99,6 +99,14 @@ LSB: Always 1
    void* mmap(=0, length=131072(1MB), prot=READ|WRITE, flags=SHARED, fd='/dev/mem', offset=registerBaseAddress=d0a0_0000)
    logical_address = 0x7fff19239100
    
+How we know 1MB is to be mapped?
+   Program                          BAR1
+           -----write ffff_ffff--->
+	   <---Read BAR back------
+    fff0_0000
+    Last 20 bits are zeros. 2^20=1MB
+           ---Restore value to BAR--->
+	   
    //Reading dword(32 bytes) from offset=16 in GPU Register
    > readdword offset=16
    if (logical_address and offset < 1MB) {
