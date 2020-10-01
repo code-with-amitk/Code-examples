@@ -11,9 +11,6 @@
 
 ```c++
   string st = "LoveWork";
-  cout<<st.size()<<endl;
-  cout<<st.length()<<endl;
-  /*O/P:
-  8
-  8 */
+  cout<<st.size()<<endl;          //8
+  cout<<st.length()<<endl;        //8
 ```
