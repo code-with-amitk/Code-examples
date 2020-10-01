@@ -67,7 +67,7 @@ LSB: Always 1
     }
 ```
 
-- **2. Register_Base_Address = BAR5**
+- **2. Register_Base_Address //This is Where GPU Registers are present**
 ```c
     BIOS						BAR5(d0a0_0000)
        ----Read BAR5 in uint32_t--->
@@ -90,6 +90,27 @@ LSB: Always 1
        <---read(bn, dn, offset, &word)---
      uint32_t ioBase = wread & 0000_fffe = 0000_3000
     }
+```
+
+- **4. Reading/Writing GPU Registers**
+```c
+   //Map 1MB from start of registerBaseAddress to virtual Memory
+   void* mmap(=0, length=131072(1MB), prot=READ|WRITE, flags=SHARED, fd='/dev/mem', offset=registerBaseAddress=d0a0_0000)
+   logical_address = 0x7fff19239100
+   
+   //Reading dword(32 bytes) from offset=16 in GPU Register
+   > readdword 16
+   if (logical_address and offset < 1MB) {
+     char *p = logical_address + 16;
+   if (p != 0)
+     cout << *((uint32 *)p);
+
+   //Writing dword=4 at offset=16 in GPU Register
+   > regwrite 16 4
+   if (logical_address and offset < 1MB) {
+     char *p = logical_address + 16;
+   if (p != 0)
+     cout << *((uint32 *)p);
 ```
 
 ## B. Reading from Config Space Register
