@@ -94,23 +94,24 @@ LSB: Always 1
 
 - **4. Reading/Writing GPU Registers**
 ```c
+   -> Read/Write on 
    //Map 1MB from start of registerBaseAddress to virtual Memory
    void* mmap(=0, length=131072(1MB), prot=READ|WRITE, flags=SHARED, fd='/dev/mem', offset=registerBaseAddress=d0a0_0000)
    logical_address = 0x7fff19239100
    
    //Reading dword(32 bytes) from offset=16 in GPU Register
-   > readdword 16
+   > readdword offset=16
    if (logical_address and offset < 1MB) {
-     char *p = logical_address + 16;
+     char *p = logical_address=0x7fff19239100 + offset=16;
    if (p != 0)
      cout << *((uint32 *)p);
 
    //Writing dword=4 at offset=16 in GPU Register
-   > regwrite 16 4
+   > regwrite offset=16 value=4
    if (logical_address and offset < 1MB) {
-     char *p = logical_address + 16;
+     char *p = logical_address=0x7fff19239100 + offset16;
    if (p != 0)
-     cout << *((uint32 *)p);
+     *((uint32 *)ptr) = (uint32)val=4;
 ```
 
 ## B. Reading from Config Space Register
