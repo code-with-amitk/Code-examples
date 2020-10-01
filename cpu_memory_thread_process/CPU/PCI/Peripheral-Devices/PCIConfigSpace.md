@@ -50,7 +50,7 @@ LSB: Always 1
 
 #### Reading BAR Registers
 > How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
-- **1. uint64_t  Aperature_Start_Address = BAR1 + (BAR0 & 0xffff_fff0)**
+- **1. uint64_t  Aperature_Start_Address = AperatureBase = BAR1 + (BAR0 & 0xffff_fff0)**
 ```c
     BIOS						BAR0(c000_000c)
        ----Read BAR5 in uint32_t--->
