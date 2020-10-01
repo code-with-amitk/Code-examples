@@ -4,22 +4,22 @@
 
 ## [A. PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
-- **What** 
-	- These are Registers/Memory present on PCI device having PCI device information, these are used by device driver to interact with PCI device.
-	- These registers/memory need to be mapped to System memory so that it can be accessed using Driver or BIOS.
-	- Listing Config Space Registers **lspci -x**
-- **Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}**
-	- 1 Device = 8x4096 = 32K bytes of space.
-	- **Bus>Device>Function Header(64 bytes)**
+ ### What
+  - These are Registers/Memory present on PCI device having PCI device information, these are used by device driver to interact with PCI device.
+  - These registers/memory need to be mapped to System memory so that it can be accessed using Driver or BIOS.
+  - Listing Config Space Registers **lspci -x**
+### Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}
+  - 1 Device = 8x4096 = 32K bytes of space.
+  - **Bus>Device>Function Header(64 bytes)**
 
 ![ImgURL](https://i.ibb.co/Tt0N7Tq/pci-header.png)
 
 ### BAR(Base Address Register)
 #### What
-    - BARs contains base address of an I/O or Memory mapped region of this PCI device where its control registers lie.
-    - Ownership of the I/O & Memory regions associated with BARs is given to a device driver associated with PCI device.
-    - PCI BAR Target operation regions may only be declared in the scope of PCI devices that have a PCI Header Type of 0.
-    - Device can have upto six 32bit BARs. Two 32bit BARs can be combined to create 64Bit BAR.
+  - BARs contains base address of an I/O or Memory mapped region of this PCI device where its control registers lie.
+  - Ownership of the I/O & Memory regions associated with BARs is given to a device driver associated with PCI device.
+  - PCI BAR Target operation regions may only be declared in the scope of PCI devices that have a PCI Header Type of 0.
+  - Device can have upto six 32bit BARs. Two 32bit BARs can be combined to create 64Bit BAR.
 #### BAR Types
 ```c
 1. Memory Space BAR
@@ -37,7 +37,7 @@ When you want to retrieve the actual base address of a BAR, be sure to mask the 
 LSB: Always 1
 
 ```
-#### 6 BARs
+#### 6 BAR Registers
 
 ||offset|Purpose|
 |---|---|---|
