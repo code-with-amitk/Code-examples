@@ -41,8 +41,8 @@ LSB: Always 1
 
 ||offset|Purpose|
 |---|---|---|
-|BAR0(MEM_BASE/MMIO Register)|0x10|Store memory base address|
-|BAR1(IO_BASE/VRAM Aperature)|0x14|area of prefetchable memory that maps to the card’s VRAM.|
+|BAR0(MEM_BASE)|0x10|Store memory base address. BAR1+(BAR0& ffff_fff0)|
+|BAR1(IO_BASE)|0x14||
 |BAR2(REG_BASE_LO)|0x18||
 |BAR3(REG_BASE_HI)|0x1C||
 |BAR4(IO_BASE_WS)|0x20||
@@ -50,8 +50,7 @@ LSB: Always 1
 
 #### Reading BAR Registers
 > How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
-- **1. Reading BAR0, BAR1** Aperature address is stored on both.
-  - uint64_t aperatureStartAddress = BAR1 + BAR0 & 0xffff_fff0
+- **1. uint64_t  Aperature_Start_Address = BAR1 + (BAR0 & 0xffff_fff0)**
 ```c
     BIOS						BAR0(c000_000c)
        ----Read BAR5 in uint32_t--->
@@ -68,7 +67,7 @@ LSB: Always 1
     }
 ```
 
-- **2. Reading BAR5**
+- **2. Register_Base_Address = BAR5**
 ```c
     BIOS						BAR5(d0a0_0000)
        ----Read BAR5 in uint32_t--->
@@ -80,6 +79,18 @@ LSB: Always 1
     }
 ```
 
+- **3. IO Base Address = BAR1 or BAR4 & 0000_fffe)
+```c
+    Program						BAR1(000a_0000)
+    uint16_t wread
+       ----Read BAR1 in uint16_t--->
+       <---read(bn, dn, offset, &word)---
+     if (word == 0)                                     BAR4(0000_3001)
+       ----Read BAR4 in uint16_t--->
+       <---read(bn, dn, offset, &word)---
+     uint32_t ioBase = wread & 0000_fffe = 0000_3000
+    }
+```
 
 ## B. Reading from Config Space Register
 > Consider Reading from Bus=3, Device=2, Function=5, Register=40 {3:2:5:40} = 0x80031540
