@@ -102,11 +102,18 @@ For 2 user approach
     - The server will store the message for a while and retry sending it once the receiver reconnects.
 
 ### 3B. User-1 sending Chat message to 100th or 1 Lac'th User
+- **1. Authentication to service**
 ```c
 - Registration and getting TGT flow is same.
 {Req-1}Open UI to see live users                   Ticket-Granting-Server
   |---(Message=Check Live users)+TGT---------------------->|
-  |<-----Service Ticket(for Live user service)-------------|            
+  |<-----Service Ticket(for Live user service)-------------|
+```
+- **2. Get list of online friends
+
+![ImgURL](https://i.ibb.co/z4J4Pnn/Fb-getlive-friendlist.png)
+
+```c
   |                                                                   Live-User-Checker(service-1)
   |                                                                   - Get list of friends of user-1 from different databases  
   |                                                                   - Send keepalive(about friend's of user-1) to distant servers  
