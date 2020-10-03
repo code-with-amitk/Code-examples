@@ -109,10 +109,6 @@ For 2 user approach
   |---(Message=Check Live users)+TGT---------------------->|
   |<-----Service Ticket(for Live user service)-------------|
 ```
-- **2. Get list of online friends
-
-![ImgURL](https://i.ibb.co/z4J4Pnn/Fb-getlive-friendlist.png)
-
 ```c
   |                                                                   Live-User-Checker(service-1)
   |                                                                   - Get list of friends of user-1 from different databases  
@@ -162,5 +158,10 @@ User-1-Local-Cache
 User-1
   <---------------------------response of chat message------------------|
 ```
+
+- **2. Get list of online friends**
+
+![ImgURL](https://i.ibb.co/z4J4Pnn/Fb-getlive-friendlist.png)
+
 #### 3C. How many Chat servers are needed
 - Asumming 1 Billion incoming text messages. 1 server can handle 1 lac connections. 1 Billion/1 lac = 10k chat servers.
