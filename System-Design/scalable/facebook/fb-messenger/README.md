@@ -3,7 +3,7 @@
 
 - Users can send text/video/audio/image messages using laptop or mobile.
 
-### To Cover
+## To Cover
 - Requirements: Functional, Non-functional, Extended(Group chat)
 - Back of Envelope Calculations
 - HLD: For 2, 100, 1 lac users
@@ -56,9 +56,9 @@ Total space requirement for 5 years = 157 zeta bytes
 |Total|10<sup>9</sup> = 1 Giga bytes|
 > We will need a link recieve/send(upload/download) 1GB/second.
 
-## 3. HLD
-### 3A. 2 users
-- **User-1 sending chat Message to User-2**
+# 3. HLD
+## 3A. 2 users
+### User-1 sending chat Message to User-2
 ```c
 User-1                    Registrar
 Browser+FbClient            |
@@ -101,15 +101,13 @@ For 2 user approach
   - **2. Offline User**
     - The server will store the message for a while and retry sending it once the receiver reconnects.
 
-### 3B. User-1 sending Chat message to 100th or 1 Lac'th User
-- **1. Authentication to service**
+## 3B. User-1 sending Chat message to 100th or 1 Lac'th User
+### 1. Authentication to service
 ```c
 - Registration and getting TGT flow is same.
 {Req-1}Open UI to see live users                   Ticket-Granting-Server
   |---(Message=Check Live users)+TGT---------------------->|
   |<-----Service Ticket(for Live user service)-------------|
-```
-```c
   |                                                                   Live-User-Checker(service-1)
   |                                                                   - Get list of friends of user-1 from different databases  
   |                                                                   - Send keepalive(about friend's of user-1) to distant servers  
@@ -159,9 +157,19 @@ User-1
   <---------------------------response of chat message------------------|
 ```
 
-- **2. Get list of online friends**
+### 2. Get list of online friends
 
 ![ImgURL](https://i.ibb.co/z4J4Pnn/Fb-getlive-friendlist.png)
+
+### 3. User-1 sending "Hi" to user-2
+
+- **Which Database**
+  - We need to have very high rate of small updates and also fetch a range of records quickly.
+  - RDBMS like MySQL or NoSQL like MongoDB are not useful because read/write a row from the database every time a user receives/sends a message is not efficient in RDBMS.
+  - We will use wide-column noSQL-database like HBase. HBase runs over Hadoop Ditributed file system(HDFS).
+    - HBase groups data together to store new data in a memory buffer and, once the buffer is full, it dumps the data to the disk.
+- **Knowing which users are online/offline?**
+  - 
 
 #### 3C. How many Chat servers are needed
 - Asumming 1 Billion incoming text messages. 1 server can handle 1 lac connections. 1 Billion/1 lac = 10k chat servers.
