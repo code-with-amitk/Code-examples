@@ -19,6 +19,8 @@ Input: nums = [3,6,7,7,0]
 Output: -1
 ```
 
+## [Self Video Explaning solution](https://youtu.be/y6WBNHY24vY)
+
 ### Logic
 - Consider this array = [0,4,3,0,4]
 - Create unordered_map having count of elements in array
