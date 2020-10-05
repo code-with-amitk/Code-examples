@@ -34,7 +34,7 @@ int main(){
   //A obj2 = obj1;      //This will invoke Copy Ctr.
    A obj2;
    obj2 = obj1;
-   obj2.disp();         //This calls copy ctr. 
+   obj2.disp();         //This calls assignment operator
 }
 ```
 
