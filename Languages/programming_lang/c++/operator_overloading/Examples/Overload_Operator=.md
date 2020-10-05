@@ -1,8 +1,7 @@
 ## Overloading `=`
 - **Format**
-```c++
-return_type operator_keyword operator_to_overload (arguments)
-```
+  - return_type operator_keyword operator_to_overload (arguments)
+
 - **Code**
 ```c++
 #include<iostream>
@@ -16,7 +15,7 @@ public:
     *p = a;
   }
   
-  A operator = (const A &k){
+  A operator = (const A &k) {
     int *t = new int;
     t = k.p;                //Deep copy
     return *this;
@@ -25,6 +24,6 @@ public:
 
 int main(){
   A obj1(1);
-  A obj2 = obj1;
+  A obj2 = obj1;            //obj2.operator=(obj1)
 }
 ```
