@@ -55,9 +55,9 @@ int main(){
   obj2 = obj1;
   obj2.disp();    //1
 }
+```
 
-
-### 3. User created assignment `operator`
+### 3. User created assignment operator
 ```c++
 class A{
   int a=40;
