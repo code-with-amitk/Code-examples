@@ -157,7 +157,7 @@ User-1
   <---------------------------response of chat message------------------|
 ```
 
-### 2. Get list of online friends
+### 2. Get Friend List of user
 
 ![ImgURL](https://i.ibb.co/z4J4Pnn/Fb-getlive-friendlist.png)
 
