@@ -11,13 +11,46 @@
 ### Logic
 - Take 2 stacks. `mainStack<TreeNode*>, tempStack<TreeNode*>`.
   - *1.* mainStack for traversing a particular level
-  - *2.* tempStack for storing children at time of traversal
+  - *2.* tempStack for storing children at time of traversal of level.
 - When mainStack is empty (ie all nodes on particular level) are traversed.
   - Swap mainStack and tempStack
-- For Example
+- Example
 ```c
+			mainStack 		tempStack
 
-```
+			| |				| |
+
+			
+			push 40		
+			|40|
+
+Level=0		pop 40			push 20		|20|
+							push 60		|60|20|
+			empty		
+swap		|60|20|			| |
+
+level=1		pop 60			push 70		|70|
+							push 50		|50|70|
+					
+			pop 20			push 30		|30|50|70|
+							push 10		|10|30|50|70|
+			empty
+swap		|10|30|50|70|		| |
+
+Level=2		pop 10			push N
+							push 5		|5|
+			pop 30			
+			pop 50			push 55		|55|5|
+			pop 70
+			empty
+swap		|55|5|			| |			
+		
+Level=3		pop 55			| |
+			pop 5			| |
+	
+			//pop are printed
+			40 60 20 10 30 50 70 55 5
+``` 
 
 ### Code
 ```c++
