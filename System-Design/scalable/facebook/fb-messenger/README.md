@@ -163,6 +163,8 @@ User-1
 
 - **3. User sending "Hi" to friend**
 
+![ImgURL](fb-messenger-sending-hi.png)
+
 - **4. How many Chat servers are needed**
   - Asumming 1 Billion incoming text messages. 1 server can handle 1 lac connections. 1 Billion/1 lac = 10k chat servers.
 
