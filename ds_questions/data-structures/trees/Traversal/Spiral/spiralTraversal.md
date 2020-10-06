@@ -8,6 +8,8 @@
     
 ![ImgURL](spiralTraversalExample.jpg)
 
+## [Self Youtube Video](https://youtu.be/aWKOMRt3wVs)
+
 ### Logic
 - Take 2 stacks. `mainStack<TreeNode*>, tempStack<TreeNode*>`.
   - *1.* mainStack for traversing a particular level
@@ -24,28 +26,28 @@
 			push 40		
 			|40|
 
-Level=0		pop 40			push 20		|20|
-							push 60		|60|20|
+Level=0			pop 40			push 20		|20|
+						push 60		|60|20|
 			empty		
-swap		|60|20|			| |
+swap			|60|20|			| |
 
-level=1		pop 60			push 70		|70|
-							push 50		|50|70|
+level=1			pop 60			push 70		|70|
+						push 50		|50|70|
 					
 			pop 20			push 30		|30|50|70|
-							push 10		|10|30|50|70|
+						push 10		|10|30|50|70|
 			empty
-swap		|10|30|50|70|		| |
+swap			|10|30|50|70|		| |
 
-Level=2		pop 10			push N
-							push 5		|5|
+Level=2			pop 10			Donot push NULL
+						push 5		|5|
 			pop 30			
 			pop 50			push 55		|55|5|
 			pop 70
 			empty
-swap		|55|5|			| |			
+swap			|55|5|			| |			
 		
-Level=3		pop 55			| |
+Level=3			pop 55			| |
 			pop 5			| |
 	
 			//pop are printed
