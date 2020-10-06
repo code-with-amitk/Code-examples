@@ -1,8 +1,6 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-![ImgURL](Fb-get-friendlist.PNG)
-
 - Users can send text/video/audio/image messages using laptop or mobile.
 
 ## To Cover
@@ -161,7 +159,7 @@ User-1
 
 ### 2. Get Friend List of user
 
-![ImgURL](https://i.ibb.co/z4J4Pnn/Fb-getlive-friendlist.png)
+![ImgURL](Fb-get-friendlist.PNG)
 
 ### 3. User-1 sending "Hi" to user-2
 
