@@ -179,10 +179,11 @@ User-1
 |Fit for this usecase|<ul><li>No</li></ul><ul><li>SQL databases are not good for small frequent updates, Since users will send small frequent messages</li></ul><ul><li>Because in RDBMS complete row needs to Read/Written(which is heavy operation)</li></ul>|<ul><li>Yes</li></ul><ul><li>Because noSQL database can store multiple values against 1 key</li></ul><ul><li>|
   
 - **2. How many HBase databases required?**
-  - Assuming 1 HBase-DB can store 10 TB.
-```c
-157 zeta bytes / 10 TB  = 10pow9
-```
+  - Assuming 1 HBase-DB can store 10 TB. `157 zeta bytes / 10 TB  = 10pow9`
   - That's high number of Databases, we need to compress or deploy method to increase storage capacity on databases.
 
+- **3. Group-Chat**
+  - Database can store a seperate coloumn for group-chat(Identified by GroupChat-ID)
+  - This entry will contain all userId's who are part of group chat.
+  - Once a message is sent on group, Message is copied to data-stores of respective user Id's.
 
