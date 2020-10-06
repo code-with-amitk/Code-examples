@@ -168,11 +168,21 @@ User-1
 - **4. How many Chat servers are needed**
   - Asumming 1 Billion incoming text messages. 1 server can handle 1 lac connections. 1 Billion/1 lac = 10k chat servers.
 
+- **5. What happens when server crashes?**
+  - Server pairs should operate in master-slave mode, when 1 server fails complete connection information(for active clients) should be tranferred to slave.
+
 ## 4. DB Requirements
 - **1. Which DB is better in this usecase SQL or noSQL**
 
 ||RDBMS(mongoDB,MySQL)|NoSQL(HBase)|
 |---|---|---|
 |Fit for this usecase|<ul><li>No</li></ul><ul><li>SQL databases are not good for small frequent updates, Since users will send small frequent messages</li></ul><ul><li>Because in RDBMS complete row needs to Read/Written(which is heavy operation)</li></ul>|<ul><li>Yes</li></ul><ul><li>Because noSQL database can store multiple values against 1 key</li></ul><ul><li>|
+  
+- **2. How many HBase databases required?**
+  - Assuming 1 HBase-DB can store 10 TB.
+```c
+157 zeta bytes / 10 TB  = 10pow9
+```
+  - That's high number of Databases, we need to compress or deploy method to increase storage capacity on databases.
 
 
