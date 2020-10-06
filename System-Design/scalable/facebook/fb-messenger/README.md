@@ -159,7 +159,7 @@ User-1
 
 - **2. Get Friend List of user**
 
-![ImgURL](Fb-get-friendlist.PNG)
+![ImgURL](fb-get-friendlist.png)
 
 - **3. User sending "Hi" to friend**
 
