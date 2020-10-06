@@ -1,7 +1,7 @@
 ## Problem
 - Traverse binary tree in zigzag fashion.
 
-![ImgURL](spiralTraversalExample.jpeg)  
+![ImgURL](spiralTraversalExample.jpg)  
 
 - **Example**
 ```c++
