@@ -1,19 +1,19 @@
 ## Problem
 - Traverse binary tree in zigzag fashion.
+- **Example**
 
 ![ImgURL](spiralTraversalExample.jpg)  
 
-- **Example**
 ```c++
-      1       << Level 0
-     / \
-    10  4     << Level 1
-   /   / \
-  3   7   9   << Level 2
- / \  /    \
-12 8  6     2 << Level 3
+       40       << Level 0
+      / \
+    20   60     << Level 1
+   / \   / \
+  10 30  50 70  << Level 2
+ /        \
+5          55   << Level 3
 
-Print: 1 4 10 3 7 9 12 8 6 2
+Print: 40 60 20 10 30 50 70 55 5
 
 Level:
   - Even: Traverse from Left to Right
