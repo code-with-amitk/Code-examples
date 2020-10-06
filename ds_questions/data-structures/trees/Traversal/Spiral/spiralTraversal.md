@@ -86,16 +86,16 @@ void Solution::ZigZagTraversal (TreeNode *root) {
 }
 
 int main(){
-  TreeNode a12(12);
-  TreeNode a8(8);
-  TreeNode a6(6);
-  TreeNode a2(2);
-  TreeNode a3(3,&a12,&a8);
-  TreeNode a7(7,&a6,nullptr);
-  TreeNode a9(9,nullptr,&a2);
-  TreeNode a10(10,&a3,nullptr);
-  TreeNode a4(4,&a7,&a9);
-  TreeNode r(1,&a10,&a4);
+  TreeNode a5(5);
+  TreeNode a55(55);
+  TreeNode a30(30);
+  TreeNode a70(70);
+  TreeNode a10(10,&a5,nullptr);
+  TreeNode a50(50,nullptr,&a55);
+  TreeNode a20(20,&a10,&a30);
+  TreeNode a60(60,&a50,&a70);
+  TreeNode r(40,&a20,&a60);
+  
   TreeNode* root = &r;
 
   Solution s;
