@@ -6,7 +6,8 @@
 - Given the root of a binary tree, return true if the binary tree is Even-Odd, otherwise return false.
 - **Examples** See examples with pictures on Leetcode only.
 
-### Logic
+
+### [Logic Explained Video](https://youtu.be/-1mgyuRH_oA)
 ```c
                        mainStack 		tempStack		//FIFO
 
