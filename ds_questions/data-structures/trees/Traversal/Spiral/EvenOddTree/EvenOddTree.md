@@ -7,6 +7,50 @@
 - **Examples** See examples with pictures on Leetcode only.
 
 ### Logic
+```c
+                       mainStack 		tempStack		//FIFO
+
+			| |			| |
+
+			push 1		
+			|1|			| |
+												Even Level = push left right
+												Even odd = push right left
+Level=0		         pop 1			push 10		|10|
+						push 4		|4|10|
+								top
+			empty	
+check 						tempStack sorted=Yes						
+swap		       |4|10|			| |
+
+
+level=1		       pop 4			push 9		|9|
+						push 7		|7|9|
+					
+		       pop 10			N		|7|9|
+						push 3		|3|7|9|
+		       empty	
+check 			 		        tempStack sorted=Yes
+swap		      |3|7|9|			| |
+
+Level=2		        pop 3			push 12		|12|
+						push 8		|8|12|
+							
+			pop 7			push 6		|6|8|12|
+						Null
+							
+			pop 9			Null
+						push 2		|2|6|8|12|
+			empty
+check 			  		        tempStack sorted=Yes
+swap		      |2|6|8|12|		| |			
+		
+Level=3		        pop 2			| |
+			pop 6			| |
+			pop 8			| |
+			pop 12			| |
+			empty
+```
 
 ### Code
 ```c++
