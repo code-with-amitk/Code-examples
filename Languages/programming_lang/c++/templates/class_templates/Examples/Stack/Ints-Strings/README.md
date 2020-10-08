@@ -26,6 +26,8 @@
   - Only Member functions for int type are instantiated(ie created).
   -  If a class template has static members, then functions are instantiated only once.
 
+## [Self youtube Video](https://youtu.be/hggsO0nMVL8)
+
 ### stack.h
 ```c++
 #pragma once
