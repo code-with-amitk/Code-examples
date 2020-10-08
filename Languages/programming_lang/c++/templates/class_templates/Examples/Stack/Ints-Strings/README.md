@@ -12,6 +12,7 @@
       stk(vector<T>& v)     //Constructor
       virtual ~stk()        //Destructor
 ```
+- **A,B,C,D,E** are placed in code below
 - **A. Virtual:**
   - *1.* Base class must provide definition of Virtual function
   - *2.* Derived class can define its own or use Base class function
