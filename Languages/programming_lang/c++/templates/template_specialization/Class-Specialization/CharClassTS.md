@@ -1,4 +1,6 @@
-- Special template class for char.
+### Things to note:
+- *A.* Template class is declared with `template <>`
+- *B.* The type to be used as a template argument must be specified directly following the name of the class
 
 ```c++
 template < typename T >
@@ -9,8 +11,8 @@ public:
   }
 };
 
-template <>
-class A < char > {
+template <>                               //A
+class A < char > {                        //B   class A<char>
 public:
   void fun (){ 
     cout<<"Specialized class"; 
