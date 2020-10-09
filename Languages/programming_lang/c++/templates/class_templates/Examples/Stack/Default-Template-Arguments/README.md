@@ -82,14 +82,14 @@ void Stack<T, CONTAINER>::pop() {                       //D
 }
 
 template<typename T, typename CONTAINER>
-void Stack<T, CONTAINER>::push(T const& a) {        //C1
+void Stack<T, CONTAINER>::push(T const& a) {
   elements.push_back(a);
   cout<<"Element ("<<a<<") pushed";
   Display();
 }
 
 template<typename T, typename CONTAINER>
-T Stack<T, CONTAINER>::top() const {              //C2
+T Stack<T, CONTAINER>::top() const {
   if (Empty()) {
     throw out_of_range("Stack<>::top(): empty stack");
   }
