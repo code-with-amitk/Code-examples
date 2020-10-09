@@ -1,6 +1,6 @@
 ## Create
-- **A. String from int, string, double**
-  - **1. Using stringstream**
+#### A. String from int, string, double
+- **1. Using stringstream**
 ```c++
 #include<sstream>
 int main(){
@@ -10,7 +10,7 @@ int main(){
 }
 ```
 
-- **B. `vector<int>` from string**
+#### B. `vector<int>` from string
   - **1. Using stringstream**
 ```c++
 vector<int> v;
