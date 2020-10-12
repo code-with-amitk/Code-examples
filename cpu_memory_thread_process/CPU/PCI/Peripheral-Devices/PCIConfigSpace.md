@@ -41,16 +41,16 @@ LSB: Always 1
 
 ||offset|Purpose|
 |---|---|---|
-|BAR0(MEM_BASE)|0x10|Store memory base address. BAR1+(BAR0& ffff_fff0)|
-|BAR1(IO_BASE)|0x14||
-|BAR2(REG_BASE_LO)|0x18||
-|BAR3(REG_BASE_HI)|0x1C||
-|BAR4(IO_BASE_WS)|0x20||
+|BAR0(MEM_BASE)|0x10|Frame Buffer or Video Memory BAR1+(BAR0& ffff_fff0)|
+|BAR1(IO_BASE)|0x14|Combined with BAR0 makes frame buffer|
+|BAR2(REG_BASE_LO)|0x18|Doorbell|
+|BAR3(REG_BASE_HI)|0x1C|Doorbell|
+|BAR4(IO_BASE_WS)|0x20|IO BAR|
 |BAR5(REG_BASE)|0x24|Stores register base address|
 
 #### Reading BAR Registers
 > How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
-- **1. uint64_t  Aperature_Start_Address = AperatureBase = BAR1 + (BAR0 & 0xffff_fff0)**
+- **1. uint64_t  Aperature_Start_Address = Video Frame Buffer = BAR1 + (BAR0 & 0xffff_fff0)**
 ```c
     BIOS						BAR0(c000_000c)
        ----Read BAR5 in uint32_t--->
@@ -67,7 +67,7 @@ LSB: Always 1
     }
 ```
 
-- **2. Register_Base_Address //This is Where GPU Registers are present**
+- **2. BAR5 = MM_REG_BASE = Register_Base_Address //This is Where GPU Registers are present**
 ```c
     BIOS						BAR5(d0a0_0000)
        ----Read BAR5 in uint32_t--->
