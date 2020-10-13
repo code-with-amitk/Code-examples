@@ -39,14 +39,14 @@ LSB: Always 1
 ```
 #### 6 BAR Registers
 
-||offset|Purpose|
+|BAR No|offset|Purpose|
 |---|---|---|
-|BAR0(MEM_BASE)|0x10|Frame Buffer or Video Memory BAR1+(BAR0& ffff_fff0)|
-|BAR1(IO_BASE)|0x14|Combined with BAR0 makes frame buffer|
-|BAR2(REG_BASE_LO)|0x18|Doorbell|
-|BAR3(REG_BASE_HI)|0x1C|Doorbell|
-|BAR4(IO_BASE_WS)|0x20|IO BAR|
-|BAR5(REG_BASE)|0x24|Memory Mapped Register Space or Register Base Address|
+|0|0x10|Frame Buffer/Video Memory BAR1+(BAR0 & ffff_fff0)|
+|1|0x14|Combined with BAR0 makes frame buffer|
+|2|0x18|Doorbell or REG_BASE_LO|
+|3|0x1C|Doorbell or REG_BASE_HI|
+|4|0x20|IO Base|
+|5|0x24|Memory Mapped Register Space or Register Base Address or GPU Register Access|
 
 #### Reading BAR Registers
 > How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
