@@ -4,13 +4,13 @@
 
 ## [A. PCI Config Space/Config Registers/Config Header](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 > (Bus>Device>Function Size on PCI=256 bytes, PCIe=4096 byte)
- ### What
+### What
   - These are Registers/Memory present on PCI device having PCI device information, these are used by device driver to interact with PCI device.
   - These registers/memory need to be mapped to System memory so that it can be accessed using Driver or BIOS.
   - Listing Config Space Registers **lspci -x**
-### Each Bus>Device>Function(4k bytes) has {Header 64bytes}+{Memory Area 4032bytes}
-  - 1 Device = 8x4096 = 32K bytes of space.
-  - **Bus>Device>Function Header(64 bytes)**
+  - **Each Segment>Bus>Device>Function(4096 bytes) has {Header 64bytes}+{Memory Area 4032bytes}**
+    - 1 Device = 8x4096 = 32K bytes of space.
+    - **Bus>Device>Function Header(64 bytes)**
 
 ![ImgURL](https://i.ibb.co/Tt0N7Tq/pci-header.png)
 
@@ -21,27 +21,25 @@
   - PCI BAR Target operation regions may only be declared in the scope of PCI devices that have a PCI Header Type of 0.
   - Device can have upto six 32bit BARs. Two 32bit BARs can be combined to create 64Bit BAR.
 #### BAR Types
+  - **1. Memory Space BAR**
 ```c
-1. Memory Space BAR
-|16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|
-LSB: Always 0
+|16byte Aligned Base Address(28 bits)|Prefechable(1 bit)|Type(2 bit)|0(1 bit)|   //LSB: Always 0
 Type:
-	|-0: 32bit decoder.	//Means This PCI device can access addresses from 0-4GB. 2^32 = 4GB. BIOS will mmap this device's Memory(after header) to MMIO_LOW.
-	|-2: 64bit decoder.	//This PCI device can access addresses from 0-16ExaBytes. BIOS can allocate space from MMIO_LOW or MMIO_HIGH. In this case next BAR is ganged together.
-	|-1: Not used
+  |-0: 32bit decoder.	//Means This PCI device can access addresses from 0-4GB. 2^32 = 4GB. BIOS will mmap this device's Memory(after header) to MMIO_LOW.
+  |-2: 64bit decoder.	//This PCI device can access addresses from 0-16ExaBytes. BIOS can allocate space from MMIO_LOW or MMIO_HIGH. In this case next BAR is ganged together.
+  |-1: Not used
 Prefechable: Base address region does not have read side effects
-When you want to retrieve the actual base address of a BAR, be sure to mask the lower bits.
+```
 
-2. I/O Bar Space
-|4byte Aligned Base Address(30bits)|Reserved(1 bit)|1(1 bit)|
-LSB: Always 1
-
+  - **2. I/O Bar Space**
+```c  
+|4byte Aligned Base Address(30bits)|Reserved(1 bit)|1(1 bit)|		//LSB: Always 1
 ```
 #### 6 BAR Registers
 
 |BAR No|offset|Purpose|
 |---|---|---|
-|0|0x10|Frame Buffer/Video Memory BAR1+(BAR0 & ffff_fff0)|
+|0|0x10|Frame Buffer/Video Memory 64Bit = <BAR0 on left 32 bits><BAR1 on right 32 Bits>|
 |1|0x14|Combined with BAR0 makes frame buffer|
 |2|0x18|Doorbell or REG_BASE_LO|
 |3|0x1C|Doorbell or REG_BASE_HI|
@@ -49,13 +47,13 @@ LSB: Always 1
 |5|0x24|Memory Mapped Register Space or Register Base Address or GPU Register Access|
 
 #### Reading BAR Registers
-> How BIOS discover what's sizeof MMIO Range is needed by Device. Sizeof MMIO Range means memory needed to map this device configuration space.
-- **1. BAR1 + (BAR0 & 0xffff_fff0) `[Video Frame Buffer]`**
+> How BIOS discover what's sizeof MMIO Range is needed by PCI Device(Eg:GPU). Sizeof MMIO Range means memory needed to map this device configuration space.
+- **1. (BAR0 << 32) + BAR1 Video Frame Buffer**
 ```c
     BIOS						BAR0(c000_000c)
        ----Read BAR5 in uint32_t--->
-       <---read(bn, dn, offset=0x10, &dword)---
- uint64 aperatureStartAddress = c000_000c & ffff_fff0;      //0000_0000_c000_0000
+       <---read(bn, dn, offset=0x10, &dword=c000_000c)---
+ uint64 aperatureStartAddress = c000_000c & ffff_fff0 = 0000_0000_c000_0000
 
     if (BAR0 & 0x04){   //Check if 64 bit
        ----Read BAR1 in uint32_t--->                      BAR1(0000_0000)
