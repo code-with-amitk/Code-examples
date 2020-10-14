@@ -39,7 +39,7 @@ Prefechable: Base address region does not have read side effects
 
 |BAR No|offset|Purpose|
 |---|---|---|
-|0|0x10|Frame Buffer/Video Memory 64Bit = <BAR0 on left 32 bits><BAR1 on right 32 Bits>|
+|0|0x10|<ul><li>Frame Buffer/Video Memory 64Bit</li></ul><ul><li><BAR0 on left 32 bits><BAR1 on right 32 Bits></li></ul>|
 |1|0x14|Combined with BAR0 makes frame buffer|
 |2|0x18|Doorbell or REG_BASE_LO|
 |3|0x1C|Doorbell or REG_BASE_HI|
