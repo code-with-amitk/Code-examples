@@ -20,3 +20,17 @@ int a;
 ss>>std::hex>>a;                                  //a=Hex of 444
 v.push_back(a);
 ```
+
+## Convert
+#### A. String to int
+```c++
+  string str = "4", str1 = "5";
+  int a;  
+  stringstream ss (str);  
+  ss >> a;
+  cout << a << "\n";                  //4
+
+  ss.clear(); ss.str(str1);           //Resuing stringstream
+  ss >> a;
+  cout << a << "\n";                  //4
+```
