@@ -102,11 +102,12 @@ For 2 user approach
     - The server will store the message for a while and retry sending it once the receiver reconnects.
 
 ## 3B. 10Lac to 1Cr Users
-- **1. Get list of Live users*
 
-- **2. Get Friend List of user**
+- **1. Get Friend List of user**
 
 ![ImgURL](fb-get-friendlist.png)
+
+- **2. Get list of Live users**
 
 - **3. User sending "Hi" to friend**
 
