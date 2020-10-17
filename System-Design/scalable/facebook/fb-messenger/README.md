@@ -109,6 +109,8 @@ For 2 user approach
 
 - **2. Get list of Live users**
 
+![ImgURL](fb-get-live-friends.png)
+
 - **3. User sending "Hi" to friend**
 
 ![ImgURL](fb-messenger-send-hi.png)
@@ -134,4 +136,8 @@ For 2 user approach
   - Database can store a seperate coloumn for group-chat(Identified by GroupChat-ID)
   - This entry will contain all userId's who are part of group chat.
   - Once a message is sent on group, Message is copied to data-stores of respective user Id's.
+
+## 5. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+
+![ImgURL](S3L2C2R3A2F.png)
 
