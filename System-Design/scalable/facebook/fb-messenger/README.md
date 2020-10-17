@@ -139,5 +139,5 @@ For 2 user approach
 
 ## 5. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
 
-![ImgURL](S3L2C2R3A2F.png)
+![ImgURL](S3L2C2R3A2F.PNG)
 
