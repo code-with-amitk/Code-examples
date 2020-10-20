@@ -6,7 +6,7 @@
   - *b.* Ask permission from user to detect location
 - *2.* Show Theater names, showtimings after Clicking on Movie name.
 ```c
-Rambo
+Movie: Rambo
 PVR-Select-Delhi  1.41pm  4.45pm  8pm
 PVR-Naraina-Delhi 2pm   5pm   9pm
 ..
