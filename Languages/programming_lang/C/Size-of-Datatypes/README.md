@@ -1,4 +1,4 @@
-## Sizes(bytes)
+## Sizes(bytes)/sizeof
 
 |Type|C|C++|Python|
 |---|---|---|---|
