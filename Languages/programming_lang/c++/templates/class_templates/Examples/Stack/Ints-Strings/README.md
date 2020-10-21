@@ -1,3 +1,7 @@
+## Question
+- Create a templated class, which implements stack.
+- Using this class we can create stack of ints,strings,floats etc.
+
 ### Notes
 - Type of class:
   - Type is stk<T>, so whenever class is used its used as stk<T>. Example
