@@ -1,7 +1,10 @@
-## Default Template Arguments
-- **What** Define default values for template parameters.
+## Question
+- Create a templated class implementing stack.
+- Caller of class can specify type of container(vector or queue) he want to use ie Create Stack using (vector or Deque) based on Template argument.
 
-## Creating Stack using (vector or Deque) based on Template argument.
+### Terms
+- **Default Template Arguments** Define default values for template parameters.
+
 ### Things to Note
 - *A.* Type of class is Stack<T, CONTAINER>, so whenever class is used its used as Stack<T, CONTAINER>
 ```c++  
