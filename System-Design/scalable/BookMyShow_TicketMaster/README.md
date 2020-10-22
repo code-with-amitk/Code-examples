@@ -1,6 +1,7 @@
 ## BookMyShow.com / TicketMaster.com / Online Ticket Booking system
 
 ### 1. Requirements
+> When user logs into portal.. Portal should..
 - *1.* Show Movies in City. 
   - *a.* Option to select Country > State > City > Show Movies in City
   - *b.* Ask permission from user to detect location
