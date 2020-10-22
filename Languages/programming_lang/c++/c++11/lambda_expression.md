@@ -1,12 +1,12 @@
 # Lambda Expression(C++11)
-- **What** 
+- **What**
   - Function that does not have any name. 
   - These can be defined inside any other function and they return their value to function pointers.
   - Lambda should be closed using Semicolon
+- **When to use** For some logic/code to be used for only 1 time, function is not a good idea.  
 - **Advantages**
   1. Can defined inside other function.
-  2. For some logic/code to be used for only 1 time, function is not a good idea.  
-  3. Complete Logic of function can be written as argument to function.
+  2. Complete Logic of function can be written as argument to function.
 ```c++
     vector<int> v {4, 1};  
     count(v.begin(), v.end(), [] (int a) { return (a >= 5); });
