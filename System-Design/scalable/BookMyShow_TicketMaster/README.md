@@ -1,5 +1,8 @@
 ## BookMyShow.com / TicketMaster.com / Online Ticket Booking system
 
+| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
+| --- | --- | --- | --- | --- | --- |
+
 ### 1. Requirements
 > When user logs into portal.. Portal should..
 - *1.* Show Movies in City. 
@@ -27,5 +30,8 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 
 ||User Data|Photos|Blogs|Videos|
 |---|---|---|---|---|
-|PerDay|2KB x 1KB (assuming 1 user data=2KB)|<ul><li>1 photo=5KB</li></ul><1 lac photos anytime. 5x10<sup>9</sup></li></ul>||||
-|5 years|3 x 10<sup>9</sup>|5x10<sup>9</sup>||||
+|PerDay|2KB x 1KB (assuming 1 user data=2KB)|<ul><li>1 photo=5KB</li></ul>1 lac photos anytime. 5x10<sup>9</sup></li></ul>|<ul><li>1 blog=100KB</li></ul>1 lac blogs anytime. 100x10<sup>9</sup></li></ul>|<ul><li>1 Video=1GB</li></ul>50K videos anytime. 5x10<sup>13</sup></li></ul>|
+|5 years|3 x 10<sup>9</sup>|5x10<sup>9</sup>|100x10<sup>9</sup>|5x10<sup>13</sup>|
+
+- {For 5 years} 3 x 10<sup>9</sup> + 5x10<sup>9</sup> + 100x10<sup>9</sup> + 5x10<sup>13</sup> = 6 x 10<sup>13</sup> = 60 Tera Bytes / 5 years
+- At anytime website will have 1 lac photos, blogs, 50k movies. Old will be deleted and new will be added.
