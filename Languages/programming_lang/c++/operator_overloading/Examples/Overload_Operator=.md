@@ -19,7 +19,7 @@ public:
     *p = a;
   }
   
-  A operator = (const A &k) {
+  A& operator = (const A &k) {
     int *t = new int;
     t = k.p;                //Deep copy
     return *this;
