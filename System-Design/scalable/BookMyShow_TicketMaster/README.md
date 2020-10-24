@@ -1,9 +1,9 @@
-## BookMyShow.com / TicketMaster.com / Online Ticket Booking system
+# BookMyShow.com / TicketMaster.com / Online Ticket Booking system
 
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-### 1. Requirements
+## 1. Requirements
 > When user logs into portal.. Portal should..
 - *1.* Show Movies in City. 
   - *a.* Option to select Country > State > City > Show Movies in City
@@ -19,19 +19,38 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 - *4.* After seat selection, take payment.
 - *5.* Send E-Ticket on Phone, Email.
 
-### 2. BOE Calculations
-#### Connections to be served/second. Traffic Estimates
+## 2. BOE Calculations
+### *2a.* Traffic Estimates/Connections to be served/second.
 
 |World Population|Using internet|Booking ticket on bookmyshow/month|PerDay|PerSecond|
 |---|---|---|---|---|
 |7 x 10<sup>9</sup>|40%|1% = 28 x 10<sup>6</sup>|9 x 10<sup>5</sup>|10<sup>4</sup> / 16 = 625|
 
-#### Bytes to be stored for 5 years. Storage Estimates.
+### *2b.* Storage Estimates/Bytes to be stored for 5 years
+- **Theater Data** Every theater information(name,address,number of seats) are stored inside bookmyshow.com's DB.
+  - Theater will be base class. All derived classes are objects of theater base class.
+  - All derived classes are created at start of Application(ie nothing created at runtime).
+```c++
+  class Theater {                         //Total size = 15+15+100+5700 = around 6000 bytes
+    string TheaterName;                       //Max=30 characters. 1 character=4bit(Hex no system). 30 characters = 120bit = 15 byte
+    string TheaterState;                      //15 byte
+    string TheaterAddress(including PIN);     //200 characters. 800 bits. 100 bytes
+    bool seats [row][col];                    //Each theater will have different. Assumed row=15, col=10
+    struct userInformation[row][col];         //Each seat will have associated user DataStructure.  150x38 = 5700 bytes
+  };
+  struct userInformation{                   //38 bytes
+    string name;                            //Max 30 characters. 15 bytes
+    string email;                           //Max 30 characters. 15 bytes
+    uint64_t phoneNumber;                   //64 bit. 8 byte
+  };
+  
+-> For all 3600 Theaters. 5700x3600 = 20 MB
+```
 
-||User Data|Photos|Blogs|Videos|
+||Theater+User Data|Photos|Blogs|Videos|
 |---|---|---|---|---|
-|PerDay|2KB x 1KB (assuming 1 user data=2KB)|<ul><li>1 photo=5KB</li></ul>1 lac photos anytime. 5x10<sup>9</sup></li></ul>|<ul><li>1 blog=100KB</li></ul>1 lac blogs anytime. 100x10<sup>9</sup></li></ul>|<ul><li>1 Video=1GB</li></ul>50K videos anytime. 5x10<sup>13</sup></li></ul>|
-|5 years|3 x 10<sup>9</sup>|5x10<sup>9</sup>|100x10<sup>9</sup>|5x10<sup>13</sup>|
+|PerDay|20 MB|<ul><li>1 photo=5KB</li></ul>1 lac photos anytime. 5x10<sup>9</sup></li></ul>|<ul><li>1 blog=100KB</li></ul>1 lac blogs anytime. 100x10<sup>9</sup></li></ul>|<ul><li>1 Video=1GB</li></ul>50K videos anytime. 5x10<sup>13</sup></li></ul>|
+|5 years|20 MB|5x10<sup>9</sup>|100x10<sup>9</sup>|5x10<sup>13</sup>|
 
-- {For 5 years} 3 x 10<sup>9</sup> + 5x10<sup>9</sup> + 100x10<sup>9</sup> + 5x10<sup>13</sup> = 6 x 10<sup>13</sup> = 60 Tera Bytes / 5 years
+- {For 5 years} 20 MB + 5x10<sup>9</sup> + 100x10<sup>9</sup> + 5x10<sup>13</sup> = 6 x 10<sup>13</sup> = 60 Tera Bytes / 5 years
 - At anytime website will have 1 lac photos, blogs, 50k movies. Old will be deleted and new will be added.
