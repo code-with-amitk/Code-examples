@@ -35,7 +35,7 @@ Linker Error: undefined reference to `void fun<int>()'
   
 ## Solutions
 ### 1. Include test.cpp in main.cpp
-### 2. Inclusion Model (recommended)
+### 2. Inclusion Model
 - **What?** Include definition of function template inside header file.
 ```c++
 //test.hpp
@@ -80,6 +80,32 @@ template void fun<int>();                 //EXPLICIT INSTANTIATION
 
 //main.cpp
 #include "test.hpp"
+int main() {
+ fun<int>();
+}
+```
+
+### 4. Inclusion Model + Explicit Instantiation (recommended)
+- **What?** Declaration and definition in seperate files.
+  - Declaration inside `test.hpp`
+  - Definition inside `testdef.hpp`
+  - `testdef.hpp` is included in `main.cpp`
+```c++
+//test.hpp                                 //Declaration inside Header
+#pragma once  
+template <typename T>
+void fun ();
+
+//testdef.hpp                             //Definition inside Header file
+#include <iostream>
+#include "test.hpp"
+template <typename T>
+void fun () {
+ std::cout <<"In fun" << std::endl;
+}
+
+//main.cpp
+#include "testdef.hpp"                    //Definition header file included in .cpp
 int main() {
  fun<int>();
 }
