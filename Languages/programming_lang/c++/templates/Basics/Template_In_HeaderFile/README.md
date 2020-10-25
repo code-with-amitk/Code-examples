@@ -1,6 +1,6 @@
 ## Problem
-- **Linker Error: undefined reference to `void fun<int>()'**
-  - Template function declaration is present in Header File, Definition inside source. But **Linker Error** on compilation.
+- Template function declaration is present in Header File, Definition inside source. But **Linker Error** on compilation.
+  - Linker Error: undefined reference to `void fun<int>()'
 ```c++
 //test.hpp
 #pragma once
