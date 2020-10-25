@@ -1,12 +1,13 @@
 ## Template/Generic Programming
-- **What?** 
-	- Writing a code that is independent of particular type.
-	- Template is compiler abstraction.
-	- Compiler creates the overloaded functions(specialization) for each type at compile time. Eg seperate for long int, short int, int, double, string.
-	- Specialization 
-		- Benefits: Makes code type-safe.
-		- Drawbacks: increases sizeof object file(But not much because compiler achieves using optimizations & inlining).
-- **Types of templates?**
+### What?
+  - Writing a code that is independent of particular type.
+  - Template is compiler abstraction.
+  - Compiler creates the overloaded functions(specialization) for each type at compile time. Eg seperate for long int, short int, int, double, string.
+  - Specialization 
+    - Benefits: Makes code type-safe.
+    - Drawbacks: increases sizeof object file(But not much because compiler achieves using optimizations & inlining).
+    
+### Types of templates?
 
 |Type|What|
 |---|---|
