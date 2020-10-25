@@ -56,8 +56,31 @@ int main() {
  fun<int>();
 }
 # g++ main.cpp -I.
-
 ```
 - **Problems with inclusion model**
   - *1.* With header file system header files also gets included in main.cpp, which increases size and increses compilation time.
-  
+
+### 3. Explicit/Manual Instantiation
+- **What?** Explicit instantiation directive consists of the keyword template followed by the fully substituted declaration of the entity we want to instantiate.
+- **Disadvantage?** We must carefully keep track of which entities to instantiate. For bigger projects this becomes a burden, hence not recommended.
+```c++
+//test.hpp
+#pragma once
+template <typename T>
+void fun ();
+
+//test.cpp
+#include <iostream>
+#include "test.hpp"
+template <typename T>
+void fun () {
+ std::cout <<"In fun" << std::endl;
+}
+template void fun<int>();                 //EXPLICIT INSTANTIATION
+
+//main.cpp
+#include "test.hpp"
+int main() {
+ fun<int>();
+}
+```
