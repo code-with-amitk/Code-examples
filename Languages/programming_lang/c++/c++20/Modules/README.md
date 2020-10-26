@@ -41,7 +41,7 @@ int main() {
 }
 ```
 
-## MODULES vs HEADER FILES
+## Modules vs Header Files
 | | Modules | Headers |
 | --- | --- | --- |
 | include | import modules in any order without concern for macro redefinitions | provide header guards so that its not included again |
