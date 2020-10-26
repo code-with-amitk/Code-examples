@@ -110,3 +110,11 @@ int main() {
  fun<int>();
 }
 ```
+
+### 5. Making template function as inline 
+- **What** Both function templates and inline functions can be defined in multiple files. ie placing definition in header file & including it in multiple `cpp` files.
+- **When/Why**
+  - When function template is small, it can be declared as inline.
+  - The only use of the inline keyword is to stop compilers complaining about ODR violations.
+- **Disadvantages**
+  - *1.* By using inline the name mangling works out different which gets round the name clash at link time but at the expense of vastly bloated code.  
