@@ -1,10 +1,10 @@
-## Module
+# Module
 - **What** 
   - Same as python module. File containing functions, class, variables etc. A module is a set of source code files that are compiled independently of the translation units that import them. Modules can be used side-by-side of header files, see difference below.
 - **Why** Modules help divide large amounts of code into logical parts.
 
-### Creating & Using Modules
-#### A. In Python
+## Creating & Using Modules
+### A. In Python
 ```
 //////Creating Module///////
 # vim mult_sum.py           #Module named mult_sum is defined.    //file1
@@ -20,7 +20,7 @@ a.fmult(1,2)                        #2
 a.fsum(4,5)                         #9
 ```
 
-#### B. In C++
+### B. In C++
 - **Creating Module**
 ```c++
 # vim hello.cpp                                                 //file1
