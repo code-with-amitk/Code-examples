@@ -9,7 +9,7 @@
   - Traffic Estimates
   - Storage Estimates
 - *3.* HLD(High level Design)
-  - 2 users
+  - 1 user
   - 100 users >>> 1 lac users
 - *4.* Database schema
 - *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
@@ -28,7 +28,7 @@
 - *2.* Show Theater names, showtimings after Clicking on Movie name.
 ```c
 Movie: Rambo
-PVR-Select-Delhi  1.41pm  4.45pm  8pm
+PVR-Select-Delhi  1:41pm  4:45pm  8pm
 PVR-Naraina-Delhi 2pm   5pm   9pm
 ..
 ```
@@ -71,3 +71,15 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 
 - {For 5 years} 20 MB + 5x10<sup>9</sup> + 100x10<sup>9</sup> + 5x10<sup>13</sup> = 6 x 10<sup>13</sup> = 60 Tera Bytes / 5 years
 - At anytime website will have 1 lac photos, blogs, 50k movies. Old will be deleted and new will be added.
+
+## 3. HLD 
+### A. 1 User
+```
+          Server
+Stores all seats,theater listing
+of worldwide theaters                               User
+            <--Logs into server, does seat booking--
+                                              Prints seatno, date
+```
+
+### B. 100 Users
