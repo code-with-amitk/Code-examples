@@ -4,11 +4,13 @@
 - Users can send text/video/audio/image messages using laptop or mobile.
 
 ## To Cover
-- Requirements: Functional, Non-functional, Extended(Group chat)
-- Back of Envelope Calculations
-- HLD: For 2, 100, 1 lac users
-- Database schema
-- S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+- *1.* Requirements: Functional, Non-functional, Extended(Group chat)
+- *2.* Back of Envelope Calculations
+  - Storage estimates
+  - Traffic estimates
+- *3.* HLD: For 2, 100, 1 lac users
+- *4.* Database schema
+- *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
   - Scalable, Secure, SOA
   - Logging, Load, Latency
   - Cache(Invalidation, negative cache)
@@ -35,7 +37,7 @@
 |---|---|---|
 |60% = 1.68x0.6 = 1 Billion|20% = 1.68x0.2 = 336 Million|5% = 1.68x0.05 = 84 Million|
   
-- **Data estimations(bytes to stored)**
+- **Storage Estimate(bytes to stored)**
 
 | | 1 Day storage Req(bytes) | 5 years storage Req(bytes)
 | --- | --- | --- |
@@ -46,7 +48,7 @@
 Total space requirement for 5 years = 157 zeta bytes
 > Not considering users who deleted chat/video/audio/account permanently. Compression, new users added.
 
-- **Bandwidth Capacity Estimations**
+- **Traffic Estimates**
 
 | |1 second incoming data = 1 day/24x60x60|
 |---|---|
