@@ -15,6 +15,7 @@
 |uint128_t(unsigned)|16|16||
 |float|4|4|400|
 |double|8|8|not present|
+|long double|16|16|not present|
 |empty string ""|1|1|49|
 |array,vector,list|0,int a[]|0 vector<int> a|64|
 |map,dict||48 map<int,int> a|240{}|
