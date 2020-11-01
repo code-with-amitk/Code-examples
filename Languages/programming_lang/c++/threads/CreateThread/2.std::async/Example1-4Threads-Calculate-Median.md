@@ -1,6 +1,9 @@
 ## Task
 - Imagine there is a huge floating number array stored on the disk, which has been partitioned over N different processing nodes. Design a software system in C++ to calculate the median value using N multiple processing nodes.
 
+### Code
+- 4 nodes are considered as Threads.
+
 ```c++
 using ld = long double;
 
@@ -12,23 +15,22 @@ std::vector<ld> ldArray= {
 };
 
 ld Node1(uint32_t start, uint32_t end){
-  std::sort(ldArray.begin()+start,ldArray.begin()+end);
-  std::cout<<"Done sort" <<std::endl;
+  std::sort(ldArray.begin()+start,ldArray.begin()+end);   //Median is calculated over sorted array
   ld median = ldArray.at((start+end)/2);
   std::cout<<"Median = "<<median<<std::endl;
   return median;
 }
 
-int main(){                             //Task1 by main process
+int main(){                             
   auto startTime = high_resolution_clock::now();
   uint32_t nodes = 4, i = 0;
   uint32_t index = 0;
   ld overAllMedian;
   while (i < nodes) {
-//    std::thread t1(Node1, index, index+9);
-    auto ret = std::async(Node1, index, index+9);
-//    std::cout<<"ret="<<ret.get()<<"\n";
-    overAllMedian += static_cast<ld>(ret.get());
+
+    auto ret = std::async(Node1, index, index+9);     //async returns future
+
+    overAllMedian += static_cast<ld>(ret.get());      //future.get() blocks until thread executes
     index += 10;
     ++i;
 //    t1.join();
