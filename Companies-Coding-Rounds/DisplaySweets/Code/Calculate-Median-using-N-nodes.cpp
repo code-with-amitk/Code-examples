@@ -13,7 +13,8 @@ median-1  md-2      md-3            md-n
     ------> name-node <--------------
               main(overall median)
 ```
-- In this example 4 threads are created assuming as 4 nodes. A common vector<long double> is shared and threads take 10 entries, caculate/display median and sends median back. Main thread calculates overall median.
+- In this example 4 threads are created assuming as 4 nodes. A common vector<long double> is shared and threads take 10 entries, 
+caculate/display median and sends median back. Main thread calculates overall median.
 */
 #include<iostream>
 #include <unistd.h>
