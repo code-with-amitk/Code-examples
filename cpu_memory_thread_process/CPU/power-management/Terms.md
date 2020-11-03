@@ -1,11 +1,15 @@
 ## 1. Voltage 
-### Voltage? 
-- Voltage, electric potential difference, electric pressure or electric tension is the difference in electric potential between two points.
-### Voltage Regulator?
-- Component which takes varied voltage and outputs regulated/cutted voltage.
+- **Voltage?** Voltage, electric potential difference, electric pressure or electric tension is the difference in electric potential between two points.
+- **Voltage Regulator?** Component which takes varied voltage and outputs regulated/cutted voltage.
+  - 1 VR supports 2 SVI planes/domains.
 ```c
 --Varying Voltage--> |Voltage Regulator| ---Stable Voltage-->
 ```
+- **SVI(Serial VID Interface) Controller/Regulator?** Allows dynamic adjustment of the Core and Northbridge output voltages independently and in combination from 0.500V to 1.55V. Voltage control is done using SVI.
+- **Voltage Control Types?**
+  - *1.* SVI Based voltage control
+  - *2.* I2C based voltage control
+  - *3.* Parallel based Voltage control/GPI
 ### Voltage Rails?
 - **Rail?**
   - In a PC, different components use different voltage levels, and so a power supply must take the electricity from the wall and split it into 12v, 5v, and 3.3v power
@@ -27,7 +31,7 @@
 
 ## 3. DPM(Dynamic power management)
 - **What?** This is collaboration project between the IBM Austin Research Lab and MontaVista Software. Project aims at making power consumption low by using open source software.
-GPU and memory clocks adjust dynamically based on load & saves power. This results in very low fan noise and heating.
+GPU and memory clocks adjust dynamically on load & saves power. This results in very low fan noise and heating.
 - **Enabling AMD RADEON DPM in Ubuntu 13.0** Will work for Radeon HD 2000 graphics cards and newer. In Ubuntu 14.0 this may be enabled by default.
 ```c++
 # vim /etc/default/grub
