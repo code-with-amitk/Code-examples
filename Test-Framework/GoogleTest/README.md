@@ -11,20 +11,23 @@
 
 # sudo cp *.a /usr/lib                            //3. copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
 ```
+#### 1B. CentOS/Fedora/RedHat
+```c++
+# yum install gtest -y
+```
 
 ### 2. Using Googletest Examples
 #### Example-1 {Testing class}
-- **test.cpp**
+- **Code**
 ```c++
-class A{
+class A{                              //test.cpp
 public:
   int fun(int a, int b) {
     return (a/b);
   }
 };
-```
-- **main.cpp**
-```c++
+
+# vim main.cpp
 #include "test.cpp"
 #include <gtest/gtest.h>
 
@@ -41,9 +44,8 @@ int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
-```
-- **CMakeList.txt**
-```c++
+
+# vim CMakeLists.txt
 cmake_minimum_required(VERSION 2.6)
 
 # Locate GTest
