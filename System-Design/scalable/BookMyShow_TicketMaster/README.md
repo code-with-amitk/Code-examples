@@ -93,4 +93,5 @@ of worldwide theaters                               User
 - Updates user information in SQL databases. 
 - **Other components**
   - **Amazon RDS** All SQL databases are connected using Amazon RDS(Relational DB Service).
-  
+
+![ImgURL](bookmyshow-hld.png)
