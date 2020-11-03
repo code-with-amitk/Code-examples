@@ -83,3 +83,14 @@ of worldwide theaters                               User
 ```
 
 ### B. 100-1Million Users
+#### 4. Application Server(Amazon EC2):
+- Finds which server stores info in DB for Theater-1
+- **Other Components**
+  - **Amazon SimpleDB** Nosql databases master-slave pairs are made highly available using this.
+  - **Amazon EMR(Elastic MapReduce)** Processes vast amounts of data using open source tools(as: Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto). 
+  - **Amazon Cloudwatch** Monitors health/logs/statistics of Application server using cloudwatch
+#### 5. DB Updater Service
+- Updates user information in SQL databases. 
+- **Other components**
+  - **Amazon RDS** All SQL databases are connected using Amazon RDS(Relational DB Service).
+  
