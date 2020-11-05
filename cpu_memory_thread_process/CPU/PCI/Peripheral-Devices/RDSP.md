@@ -9,7 +9,7 @@
 ## B. Locating MCFGTable using RDSP struct
 - **Steps**
   - *1.* Search `RSDP Structure` in Physical Memory 
-    - Start searching string **RDP PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure. RSDP structure may not be page aligned ie it may not fall on 4096 bytes(page size=4k) start address. It may be inside page as well.
+    - Start searching string **RSD PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure. RSDP structure may not be page aligned ie it may not fall on 4096 bytes(page size=4k) start address. It may be inside page as well.
     - Once `RDP PTR` string is located, Read `36 bytes` this is RDSP Structure.
     - Read `uint64 xsdtAddress` and go to xsdt-table
   - *2.* Parsing `PointerToOtherSDT[] or Description Headers` array present at end of XSDT table to find `MCFGTable` base address.
