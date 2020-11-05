@@ -6,8 +6,6 @@
 |2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)|<ul><li>Generic XSDT Table.(Described Below)</li></ul><ul><li>sizeof(ACPISDTHeader) = 36 bytes</li></ul>|
 |3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
 
-![ImgURL](https://i.ibb.co/KVQMRsN/mcfg-xsdt-rdsp.png)
-
 ## B. Locating MCFGTable using RDSP struct
 - **Steps**
   - *1.* Search `RSDP Structure` in Physical Memory 
@@ -47,6 +45,8 @@
 ```
 - **Overall Steps**
 > RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> Store Mapping to PCIConfig Space -> 
+
+![ImgURL](https://i.ibb.co/KVQMRsN/mcfg-xsdt-rdsp.png)
 
 ## C. Table Descriptions
 - **SDT(System Description Table)**
