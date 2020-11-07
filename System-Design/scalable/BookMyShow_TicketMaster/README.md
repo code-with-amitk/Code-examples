@@ -41,7 +41,7 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 
 |World Population|Using internet|Booking ticket on bookmyshow/month|PerDay|PerSecond|
 |---|---|---|---|---|
-|7 x 10<sup>9</sup>|40%|1% = 28 x 10<sup>6</sup>|9 x 10<sup>5</sup>|10<sup>4</sup> / 16 = 625|
+|7 x 10<sup>9</sup>|40% = 28 x 10<sup>8</sup>|1% = 28 x 10<sup>6</sup>|9 x 10<sup>5</sup>|10<sup>4</sup> / 16 = 625|
 
 ## *2b.* Storage Estimates/Bytes to be stored for 5 years
 - **Theater Data** Every theater information(name,address,number of seats) are stored inside bookmyshow.com's DB.
