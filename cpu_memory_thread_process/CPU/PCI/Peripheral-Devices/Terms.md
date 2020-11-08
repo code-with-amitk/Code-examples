@@ -1,13 +1,8 @@
 
 ## Terms
-- **A. PCI(Peripheral Component Interconnect)**
-  - A standard that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
-  
-- **B. PCI-Bridges**
-  - These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
-
-- **C. PCI Bus Architecture**
-  - Overall layout of a PCI system is a tree where each bus is connected to an upper-layer bus, up to bus 0 at the root of the tree.
+- **A. PCI(Peripheral Component Interconnect)?** A standard that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
+- **B. PCI-Bridges?** These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
+- **C. PCI Bus Architecture?** Overall layout of a PCI system is a tree where each bus is connected to an upper-layer bus, up to bus 0 at the root of the tree.
 ```c++
    -------CPU-----------
   |           Registers |
@@ -32,7 +27,7 @@
 1 PCI Domain:     
 256 Buses > 32 PCI devices/Bus > 8 functions/Device.        
 Functions or PCI Configuration Space Registers: 256 bytes(PCI), 4096 bytes(PCIe)
-1 Device = 8*4096 = 32K bytes.
+1 PCI Device is represented by 1 Function = 4096 bytes
  
  MCFG Table Size=>  256(buses) x 32(Devices/Bus) x 8(functions/Device) x 4KB(Bytes/function) = 256MB
  mmap 256MB from MCFGTable-base address to process memory
@@ -45,7 +40,7 @@ Functions or PCI Configuration Space Registers: 256 bytes(PCI), 4096 bytes(PCIe)
 - **PCI Device types**
   1. *End point device(Type 0)* That does not spawn another bus behind it. Example: VGA, LAN card
   2. *Bridge Device(Type-1)* Which can spawn another bus behind it.
-- **PCI Device Representation  Bus:Device:Function**
+- **Locating PCI Device:** PCI device can be reached at Bus:Device:Function
   - Each PCI device is represented using: 
     - *Bus No* Bus on which PCI device is connected
     - *Device Number (5 bit)* Each device is given a number by vendor.
@@ -54,10 +49,8 @@ Functions or PCI Configuration Space Registers: 256 bytes(PCI), 4096 bytes(PCIe)
 ```c
 # lspci                    //Enumerates all PCI devices
 Bus:Device.Function
-  00:00.0          Host Bridge Intel corporation..
-  00.07.0          ISA Bridge
-  00.07.1          IDE Interface
-  00.80.0          VGA Compatible Controller
+  03:00:0          VGA Controller(GPU)
+  03.00.1          Audio Device
 # lspci -x										//Lists PCI configuration space for each device
 .........
 00:07.0	ISA Bridge: Intel Corporation 823171AB/EB/MB PIIX4 ISA (rev 01)
