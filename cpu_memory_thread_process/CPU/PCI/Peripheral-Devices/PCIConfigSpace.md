@@ -1,4 +1,4 @@
-- **1st See (What_is_Peripheral-Device_PCB.md)**
+- **1st See Terms.md**
 - **Book: ACPI_6_3_final_Jan30.pdf Section: 5.5.2.4.3 PCI Device BAR Target Protocols**
 - ** [PCI-SIG](https://pcisig.com/specifications?field_technology_value%5B%5D=express&speclib=bar)
 
@@ -7,10 +7,9 @@
 ### What
   - These are Registers/Memory present on PCI device having PCI device information, these are used by device driver to interact with PCI device.
   - These registers/memory need to be mapped to System memory so that it can be accessed using Driver or BIOS.
-  - Listing Config Space Registers **lspci -x**
-  - **Each Segment>Bus>Device>Function(4096 bytes) has {Header 64bytes}+{Memory Area 4032bytes}**
-    - 1 Device = 8x4096 = 32K bytes of space.
-    - **Bus>Device>Function Header(64 bytes)**
+  - Listing Config Space Registers `lspci -x`
+  - Each PCI Device is represented using **4096bytes Function**.
+  - Each Function present at (Segment>Bus>Device>Function) has {Header 64bytes}+{Memory Area 4032bytes}
 
 ![ImgURL](https://i.ibb.co/Tt0N7Tq/pci-header.png)
 
