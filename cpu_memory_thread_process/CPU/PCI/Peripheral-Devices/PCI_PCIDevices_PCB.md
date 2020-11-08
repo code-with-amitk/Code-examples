@@ -1,11 +1,13 @@
-### A. PCI(Peripheral Component Interconnect)
-- A standard that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
-  
-### B. PCI-Bridges
-- These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
 
-### C. PCI Bus Architecture
-- Overall layout of a PCI system is a tree where each bus is connected to an upper-layer bus, up to bus 0 at the root of the tree.
+## Terms
+- **A. PCI(Peripheral Component Interconnect)**
+  - A standard that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
+  
+- **B. PCI-Bridges**
+  - These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
+
+- **C. PCI Bus Architecture**
+  - Overall layout of a PCI system is a tree where each bus is connected to an upper-layer bus, up to bus 0 at the root of the tree.
 ```c++
    -------CPU-----------
   |           Registers |
