@@ -1,12 +1,11 @@
-## A. Structures Tables in System Memory
+## Why read PCI Config Space?
+- PCI Configuration space of System has PCI-devices(GPU,CPU,APU) which are connected to system. if we want to RW we need to map PCIConfigSpace then find particular device.
+- RDP-PTR > RDSP-struct{xsdt-struct-address} > XSDT-struct{64bit-mcfg-struct-address} > MCFG-struct{contains MCFG_BaseAddress} > Store Mapping to PCIConfig Spac
 
-|Table|Why|
-|---|---|
-|1. [RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)|<ul><li>To reach PCI Config Space of CPU and find PCI devices</li></ul> <ul><li>RSDP Table->XSDT Table->MCFG Table (contains MCFGBase)->PCI Config Space starts from MCFGBase</li></ul>|
-|2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)|<ul><li>Generic XSDT Table.(Described Below)</li></ul><ul><li>sizeof(ACPISDTHeader) = 36 bytes</li></ul>|
-|3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
+### A. Locating PCIConfigSpace
 
-## B. Locating MCFGTable using RDSP struct
+![ImgURL](https://i.ibb.co/KVQMRsN/mcfg-xsdt-rdsp.png)
+
 - **Steps**
   - *1.* Search `RSDP Structure` in Physical Memory 
     - Start searching string **RSD PTR** from address `0xe0000=917504` till 1 MB. **RDP PTR** is 1st element of RSDP Structure. RSDP structure may not be page aligned ie it may not fall on 4096 bytes(page size=4k) start address. It may be inside page as well.
@@ -46,9 +45,16 @@
 - **Overall Steps**
 > RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> Store Mapping to PCIConfig Space -> 
 
-![ImgURL](https://i.ibb.co/KVQMRsN/mcfg-xsdt-rdsp.png)
 
-## C. Table Descriptions
+### B. Structures Tables in System Memory
+
+|Table|Why|
+|---|---|
+|1. [RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)|<ul><li>To reach PCI Config Space of CPU and find PCI devices</li></ul> <ul><li>RSDP Table->XSDT Table->MCFG Table (contains MCFGBase)->PCI Config Space starts from MCFGBase</li></ul>|
+|2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)|<ul><li>Generic XSDT Table.(Described Below)</li></ul><ul><li>sizeof(ACPISDTHeader) = 36 bytes</li></ul>|
+|3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
+
+### C. Table Descriptions
 - **SDT(System Description Table)**
   - There are many kinds of SDT. All the SDT may be split into two parts. 
     - **1. header** which is common to all the SDT 
