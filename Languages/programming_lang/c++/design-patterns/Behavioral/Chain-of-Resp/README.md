@@ -1,15 +1,12 @@
-## Chain of Responsibilty
-- **What?** Request is processed by 1 or more objects in chain. 
+## Chain of Responsibilty/Work
+- **What?** Request is processed by 1 or more objects in chain.
 - **Logic?**
-  - Take a Abstract class, which will overriden by Concrete classes
-  - Override Handler Interface using Concrete classes
-    - Each concrete class will hold pointer to Object of next class
-    - Responsibility is passed by calling function from other object using pointer.
+  - Take a Abstract class(also called handler interface), override in concrete class
+    - Each concrete class will hold pointer to Object of next class.
+    - Responsibility/Work is passed by calling function from other object using pointer.
 
 ### Code
-- **Pure Virtual Func**
-  - Cannot have body in Abstract class
-  - Must be overridden in derived class.
+- **Pure Virtual Func** Cannot have body in Abstract class, must be overridden in derived class.
 ```c++
 #include <iostream>
 using namespace std;
