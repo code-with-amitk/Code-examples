@@ -83,15 +83,28 @@ of worldwide theaters                               User
 ```
 
 ## B. 100-1Million Users
-### 4. Application Server(Amazon EC2):
-- Finds which server stores info in DB for Theater-1
-- **Other Components**
-  - **Amazon SimpleDB** Nosql databases master-slave pairs are made highly available using this.
-  - **Amazon EMR(Elastic MapReduce)** Processes vast amounts of data using open source tools(as: Apache Spark, Apache Hive, Apache HBase, Apache Flink, Apache Hudi, and Presto). 
-  - **Amazon Cloudwatch** Monitors health/logs/statistics of Application server using cloudwatch
-### 5. DB Updater Service
-- Updates user information in SQL databases. 
-- **Other components**
-  - **Amazon RDS** All SQL databases are connected using Amazon RDS(Relational DB Service).
+### Steps
+- *1.*
+  - *a.* BMS representative comes to Theater owner, creates theater layout on bookmyshow.com.
+  - *b.* Provides URL to Theater Owner to which Theater Owner can login and:
+    - Assign shows, show-timings,  Cost per seat, Book a seat(it gets update in bookmyshow DB)
+- *2.* User enters https://bms.com in browser. Browser gets IP-Address using DNS.
+- *3.* Browser opens a "Web socket" connection to IP-Address of BMS via Forward Proxy.
+- *4.* CDN provides homepage to user.
+  - If user is registered and tries login, authenticated using s3 auth.
+- *5.* User selects theater,show,seat. Browser sends Theater-UniqueId, Show,seats to CDN.
+- *6.* CDN forwards message nearest in Data-center.
+- *7.* SSL Terminator decrypts HTTPS Packet to HTTP packet, sends to load balancer.
+- *8.* Load balancer selects Application server based on Hash based scheduling algorithm.
+- *9.* Finds the datacenter which stores the information of Theater-1. 
+- *10.* Responds back to CDN > User. Please wait we are processing
+- *11.* Application server sends logs to log storage
+- *12.* Real time data is sent for analysis using kinetics
+- *13.* AI powered Sagemaker helps admins to derive meaning and write new rules
+- *14.* Application server sends message to DB updater found in Step-9
+- *15.* RDS updates the theater-SQL DB, user-SQL DB. (RDS: This is a web service running "in the cloud" for setup, operation, and scaling of a relational/SQL databases. This itself is not SQL Database.)
+- *16.* Movie-Code, Theater-Code, ClientIP, Number of tickets are filled in Amazon-SQS(Simple Queue Service)
+- *17.* Price Calculator service, calculates the cost and sends to AWS PAYGATE(payment gateway).
+- *18.* Payment gateway(Paygate) converts the dollars to INR(local currency) & sends to pay.
 
 ![ImgURL](bookmyshow-hld.png)
