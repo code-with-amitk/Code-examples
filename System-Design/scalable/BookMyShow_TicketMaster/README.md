@@ -37,6 +37,7 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 - *5.* Send E-Ticket on Phone, Email.
 
 # 2. BOE Calculations
+[Self Video](https://youtu.be/oOPEeP1gSwA)
 ## *2a.* Traffic Estimates/Connections to be served/second.
 
 |World Population|Using internet|Booking ticket on bookmyshow/month|PerDay|PerSecond|
@@ -83,6 +84,7 @@ of worldwide theaters                               User
 ```
 
 ## B. 100-1Million Users
+[Self Video](https://youtu.be/NIEP7wdJOMA)
 ### Steps
 - *1.*
   - *a.* BMS representative comes to Theater owner, creates theater layout on bookmyshow.com.
