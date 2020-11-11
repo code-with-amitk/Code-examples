@@ -1,18 +1,17 @@
-## RANGE BASED FOR LOOP
+## Range based for
   - **What** For loop executing over a range.
   - **Why RBL** 
     - Less suceptible to segmentation fault. i++ can cause writing over the range.
     - RBL are faster wrt traditional loops in nanoseconds precision.
-```    
-      for (auto i : v)                          //10575 nanosec. Calculated using chrono
-            cout << i << ' ';
-      for(auto i=v.begin();i!=v.end();i++)     //11317 nanosec.
-            cout<<*i<<' ';
+```c++    
+  for (auto i : v)                          //10575 nanosec. Calculated using chrono
+    cout << i << ' ';
+  for(auto i=v.begin();i!=v.end();i++)     //11317 nanosec.
+    cout<<*i<<' ';
 ```
 
-
-### SYNTAX
-```
+### Syntax
+```c++
 (until C++20)
   attr(optional) for ( range_declaration : range_expression ) loop_statement                //1
   
@@ -35,17 +34,30 @@ loop_statement: any compound statement, which is the body of the loop
 }  
 ```
 
-### Example-1  (vector)
-```
+### Examples
+- **1. vector**
+```c++
   vector<int> v{1,2,5,3,4};
   for (auto i : v) {                    //i variable takes value of vector variables for each iteration. No need to do ++
     cout <<i<<' ';        //1 2 3 4 5
   }
 ```
 
-### Example-2 (map)
-```
+- **2. map**
+```c++
   for (auto&& [first,second] : mymap) {
     // use first and second
+  }
+```
+
+- **3. string**
+```c++
+  string str = ":):):(((((:)";
+  
+  for (auto& ch:strInput) {
+    if (ch == ':' and *(&ch+1) == ')')          //Refferring to next character in string
+      ++u64HappyFace;
+    if (ch == ':' and *(&ch+1) == '(')
+      ++u64SadFace;
   }
 ```
