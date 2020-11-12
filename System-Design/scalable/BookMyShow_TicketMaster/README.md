@@ -110,3 +110,50 @@ of worldwide theaters                               User
 - *18.* Payment gateway(Paygate) converts the dollars to INR(local currency) & sends to pay.
 
 ![ImgURL](bookmyshow-hld.png)
+
+# 4. DB Schema
+
+- **1. Theater DB** Consider this will be in database form
+
+|string|
+|---|
+|varchar|
+
+- **Movie-DB**
+|varchar title|varchar language|datetime ReleaseDate|varchar Country|varchar Genre|
+|---|---|---|---|---|
+
+- **Theater-DB**
+|varchar name|int seats`[row][col]`|int TheaterId|int NumberOfShow|map<string(moviename), <float(showstarttime), float(showendtime)>> MovieInfo;|float cost`[row][col]`|Ptr to userInformation|
+
+- **UserInformation-DB**
+|varchar name|varchar email|uint64_t phoneNo|
+
+- **Multiplex-DB**
+|varchar name|varchar address|struct Theater theater`[6]` //6 screens|
+
+```c++
+  struct Movie{
+    float duration;
+    map<string, string> Characters;           //<Hero, Amit>|<Villian, Amit>|..
+    float ThisWeekRating;
+  };
+  struct Theater{
+    int seats[rows][cols];
+    string TheaterName;                       //Audi-1,2,3,4
+    int numberOfShows;
+    map<string, <float, float>> MovieInfo;    //<movie-name, [showStartTime, showEndTime]>
+    float cost[rows][cols];
+    UserInformation us[rows][cols];
+  };
+  class Multiplex {
+    string Name;
+    string Address(including PIN);
+    struct Theater theater[6];             //Assuming 6 theaters inside multiplex
+  };
+  struct UserInformation{
+    string name;         
+    string email;        
+    uint64_t phoneNumber;
+  };
+```
