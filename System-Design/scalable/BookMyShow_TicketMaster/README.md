@@ -113,12 +113,6 @@ of worldwide theaters                               User
 
 # 4. DB Schema
 
-- **1. Theater DB** Consider this will be in database form
-
-|string|
-|---|
-|varchar|
-
 - **Movie-DB**
 
 |varchar title|varchar language|datetime ReleaseDate|varchar Country|varchar Genre|
