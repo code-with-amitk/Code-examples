@@ -126,7 +126,7 @@ of worldwide theaters                               User
 
 - **Theater-DB**
 
-|varchar name|int seats`[row][col]`|int TheaterId|int NumberOfShow|map<string(moviename), <float(showstarttime), float(showendtime)>> MovieInfo;|float cost`[row][col]`|Ptr to userInformation|
+|varchar name|int seats`[row][col]`|int TheaterId|int NumberOfShow|map<string(moviename), <float(showstarttime), float(showendtime)>> MovieInfo;|float cost`[row][col]`|UserInformation us`[rows][cols]`;|
 |---|---|---|---|---|---|---|
 - **UserInformation-DB**
 
