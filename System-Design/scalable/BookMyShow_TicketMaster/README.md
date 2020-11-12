@@ -120,17 +120,24 @@ of worldwide theaters                               User
 |varchar|
 
 - **Movie-DB**
+
 |varchar title|varchar language|datetime ReleaseDate|varchar Country|varchar Genre|
 |---|---|---|---|---|
 
 - **Theater-DB**
+
 |varchar name|int seats`[row][col]`|int TheaterId|int NumberOfShow|map<string(moviename), <float(showstarttime), float(showendtime)>> MovieInfo;|float cost`[row][col]`|Ptr to userInformation|
+|---|---|---|---|---|---|
 
 - **UserInformation-DB**
+
 |varchar name|varchar email|uint64_t phoneNo|
+|---|---|---|
 
 - **Multiplex-DB**
+
 |varchar name|varchar address|struct Theater theater`[6]` //6 screens|
+|---|---|---|
 
 ```c++
   struct Movie{
