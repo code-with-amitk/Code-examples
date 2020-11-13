@@ -23,7 +23,7 @@ S4 = "011100110110001"
     - Inverse bits of this substring
     - Reverse substring
     - Insert 1 at end, if i < n-1
-```
+```c++
   char findKthBit(int n, int k) {
     //Create n positioned string
     string s;
