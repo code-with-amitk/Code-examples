@@ -1,7 +1,7 @@
 ```diff
 - Only Read Modern-Operating-System-Tanenbaum.pdf because internet is Garbage
 ```
-## Virtual Memory & Physical Memory
+# Virtual Memory & Physical Memory
 
 [MyYouTube Video For Understanding](https://www.youtube.com/watch?v=OjGycsu0I1M)
 
@@ -16,7 +16,7 @@
 - **Paging** Process of dividing Hard-Disk to equal-sized blocks is called paging.
 - **MMU(Memory Management unit)** Takes Virtual address(of Virtual Memory) as Input provides Physical Address(of RAM) as output ie translate virtual to physical address.
 
-## A. Understating Virtual Memory on 16 bit System
+# A. Understating Virtual Memory on 16 bit System
 ### A1. Conversion of Virtual to Physical Address  (16 Bit system)
 > Consider a 16 bit system having following.
 
@@ -94,3 +94,7 @@ Code-Segment
 - **Modified bit** 1=means page is written in RAM ie dirty page
 - **Referenced bit** 1=means page is referenced either by reading or writing
 - **Caching Disabled** 1=means disable caching for the page.
+
+# MOVING TO 32 BIT SYSTEM
+- 2<sup>32</sup> = 4,294,967,296. This is last bit that can be accessed. 
+- Page =4,294,967,296/4096 = 1,048,576(1 Million). Page table will have 1 million entries.
