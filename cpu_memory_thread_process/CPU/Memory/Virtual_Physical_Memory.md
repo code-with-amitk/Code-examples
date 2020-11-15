@@ -81,21 +81,13 @@ Code-Segment
   
 ![ImgURL](https://i.ibb.co/86bzCf4/MMU-opearation.png)   
 
-### VPN(Virtual Page Number)
-- This is content of virtual-table.
-- This is used as an index into the page table to find the mapping for that virtual page.
-- And then from Page-Table, Page-Frame is found.
-- VPN + offset creates actual Physical Address. See Below example.
+## C. Page Table/Virtual Table Entry
 
-| **Present/Absent bit ->** | 1 | 1 | 1 | 0 | ... |
-| --- | --- | --- | --- | --- | --- |
-| **VPN ->** | 0010 = 2 | 0001 = 1 | 0110 = 6 | 0000 |  |
-| **Index ->** | 0 | 1 | 2 | ... | 15 |
+| |caching disabled(1 bit)|referenced(1 bit)|modified(1 bit)|protection(1 bit)|present/absent(1 bit)|Page Frame number|
+|---|---|---|---|---|---|---|
 
-### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
-#### Mov REG 8196
-- Access address=8196. This is virtual address. Binary=0010000000000100. PageNo=0010, Offset=000000000100
-- virtual_table`[page_no]` = virtual_table`[0010]` = virtual_table`[2]` = 110 = 6
-  - Access 6th page frame.
-- Physical-Address = `0110``000000000100` = `output_of_virtual_table_entry=VPN``offset_copied_as_it_is` = 0110000000000100
-- If the Present/absent bit is 0, a trap to the OS is caused.
+- **Present/Absent bit** 1 means page is present in RAM, 0 means page absent in RAM. Accessing page with this bit=0 causes page fault.
+- **Protection bit** 1=RW, 0=RO
+- **Modified bit** 1=means page is written in RAM ie dirty page
+- **Referenced bit** 1=means page is referenced either by reading or writing
+- **Caching Disabled** 1=means disable caching for the page.
