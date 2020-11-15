@@ -16,7 +16,7 @@
 - **Paging** Process of dividing Hard-Disk to equal-sized blocks is called paging.
 - **MMU(Memory Management unit)** Takes Virtual address(of Virtual Memory) as Input provides Physical Address(of RAM) as output ie translate virtual to physical address.
 
-## Virtual Memory Example
+## A. Conversion of Virtual to Physical Address
 > Consider a system having following.
 
 ||Virtual Memory/Hard Disk|Physical Memory/RAM|
@@ -27,7 +27,6 @@
 - Page Size = 4KB = 4`*`1024 = 4096 Bytes. In Real systems Page sizes might be as large as 64KB.
 ![ImgURL](https://i.ibb.co/GCFwbL0/virtual-physical.png)
 
-### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
 - **Ex1. MOV REG 0**
   - Program tries to access virtual address 0. Virtual address is sent to MMU for translation. 
 ```c++
