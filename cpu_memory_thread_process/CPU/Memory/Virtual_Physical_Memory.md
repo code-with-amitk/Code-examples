@@ -16,8 +16,9 @@
 - **Paging** Process of dividing Hard-Disk to equal-sized blocks is called paging.
 - **MMU(Memory Management unit)** Takes Virtual address(of Virtual Memory) as Input provides Physical Address(of RAM) as output ie translate virtual to physical address.
 
-## A. Conversion of Virtual to Physical Address
-> Consider a system having following.
+## A. Understating Virtual Memory on 16 bit System
+### A1. Conversion of Virtual to Physical Address  (16 Bit system)
+> Consider a 16 bit system having following.
 
 ||Virtual Memory/Hard Disk|Physical Memory/RAM|
 |---|---|---|
@@ -71,8 +72,7 @@ Code-Segment
                       <---Virtual Address 0----
 ```
 
-## B. Page-No(4 bits) + Offset(12 bits)
-**64KB Hard Disk**:   Page-No(4 bits) + Offset(12 bits)
+### A2. 16 bit system = Page-No(4 bits) + Offset(12 bits)
 **32 bit system**:    Page-No(20 bits) + Offset(12 bits)    //anywhere offset is always 12 bit
 
 - To access every bit of 64 kilibytes memory, we would need 16 bits. 2<sup>16</sup> = 65535 = 64KB
@@ -84,7 +84,7 @@ Code-Segment
   
 ![ImgURL](https://i.ibb.co/86bzCf4/MMU-opearation.png)   
 
-## C. Page Table/Virtual Table Entry
+### A3. Page Table/Virtual Table Entry
 
 | |caching disabled(1 bit)|referenced(1 bit)|modified(1 bit)|protection(1 bit)|present/absent(1 bit)|Page Frame number|
 |---|---|---|---|---|---|---|
