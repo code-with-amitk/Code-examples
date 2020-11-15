@@ -14,9 +14,9 @@
 
 - **Why VM needed?** Now-a-days programs are RAM hungry. every other program(eg: adobe photoshop, microsoft teams) need more RAM. if 10 such processes want to run simultaneously then 10GB RAM is needed which is not available. VM is illusion to program that it has complete access to RAM.
 - **Paging** Process of dividing Hard-Disk to equal-sized blocks is called paging.
-- **MMU(Memory Management unit)** Takes Virtual address as Input provides Physical Address as output ie translate virtual to physical address.
+- **MMU(Memory Management unit)** Takes Virtual address(of Virtual Memory) as Input provides Physical Address(of RAM) as output ie translate virtual to physical address.
 
-### Virtual Memory Example
+## Virtual Memory Example
 > Consider a system having following.
 
 ||Virtual Memory/Hard Disk|Physical Memory/RAM|
@@ -27,11 +27,19 @@
 - Page Size = 4KB = 4`*`1024 = 4096 Bytes. In Real systems Page sizes might be as large as 64KB.
 ![ImgURL](https://i.ibb.co/GCFwbL0/virtual-physical.png)
 
-- **Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses**
-> Never try accessing Virtual address directly. Its not real address and will result in corruption.
+### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
+- **Ex1: MOV REG 0**
+  - Program tries to access virtual address 0. 0 is the virtual address. Virtual address is sent to MMU for translation. 
+```c++
+Program Instruction(CS)     
+      MOV REG 0   
+                --MOV REG 0--> CPU
+                                ---Get Physical Address for 0--> MMU
+                                 <--Physical Address 8192---Frame-2-Address
+
+  
 - **1. `MOV REG 0`**
-  - Program tries to access address 0. 0 is the virtual address. Virtual address is sent to MMU for translation.
-  - 0 falls on 1st page (0-4095) which according to its mapping is page frame 2(8192-12287). MMU sends 8192 onto Bus
+ - 0 falls on 1st page (0-4095) which according to its mapping is page frame 2(8192-12287). MMU sends 8192 onto Bus
   - Please note, Bus does not know anything about addresses, whichever address is placed on it carries.
   - Thus, MMU has mapped all virtual addresses between 0 and 4095 onto physical addresses 8192 to 12287.
 - **2. `MOV REG 8192` = `MOV REG 8k`**
