@@ -17,6 +17,9 @@
 - **MMU(Memory Management unit)** Takes Virtual address(of Virtual Memory) as Input provides Physical Address(of RAM) as output ie translate virtual to physical address.
 
 # A. Understating Virtual Memory on 16 bit System
+- 16 Bit System means Bus Size=16 Bit. 16 bit=2 byte bus can access 2 bytes from (216 = 65535 = 64KB) memory. To address 65536 17 bits are needed.
+- On 16 bit system you can plug huge Hard disk but that will be no use, since in 1 go Only 2 bytes can be accessed.
+
 ### A1. Conversion of Virtual to Physical Address  (16 Bit system)
 > Consider a 16 bit system having following.
 
