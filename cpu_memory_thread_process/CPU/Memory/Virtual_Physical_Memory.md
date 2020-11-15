@@ -71,16 +71,14 @@ Code-Segment
                       <---Virtual Address 0----
 ```
 
-## B. Fragment/Page No(4 bits) + Offset(12 bits) 
-- For 64k Virtual Memory. MMU uses 16 bit scheme.
-- Virtual Page(4 bit) 
-  - 2<sup>4</sup> = 16. With 4 bits we can access 16 pages.
-  - Page no is used as index into Page Table, outputting the Physical Page no.
-  - This is always high order bits.
-  - However 3 or 5 bits can also be taken for the page. Different splits imply different page sizes.
-- OFFSET(12 bit)
-  - 2<sup>12</sup> = 4096. With 12 bits we can access all 4096 bits inside a page.
-  - These are always low order bits.
+## B. Page-No(4 bits) + Offset(12 bits)
+- To access every bit of 64 kilibytes memory, we would need 16 bits. 2<sup>16</sup> = 65535 = 64KB
+- 1 page=4KB=4096 bytes. 64x1024/4x1024 = 16 Pages. 64KB will have 16 pages.
+- 2<sup>4</sup> = 16. With 4 bits we can access every 16 page.
+- 2<sup>12</sup> = 4096. With 12 bits we can access every bit in page.
+- **How Physical Address is converted to Virtual Address?**
+  - Offset(12 bits) are copied as such. From Page-No(4 bit), frame number is constructed.
+  
 ![ImgURL](https://i.ibb.co/86bzCf4/MMU-opearation.png)   
 
 ### VPN(Virtual Page Number)
