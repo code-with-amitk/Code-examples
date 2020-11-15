@@ -28,36 +28,49 @@
 ![ImgURL](https://i.ibb.co/GCFwbL0/virtual-physical.png)
 
 ### Accessing the pages/CONVERSION OF VIRTUAL to PHYSICAL Addresses
-- **Ex1: MOV REG 0**
-  - Program tries to access virtual address 0. 0 is the virtual address. Virtual address is sent to MMU for translation. 
+- **Ex1. MOV REG 0**
+  - Program tries to access virtual address 0. Virtual address is sent to MMU for translation. 
 ```c++
-Program Instruction(CS)     
-      MOV REG 0   
-                --MOV REG 0--> CPU
-                                ---Get Physical Address for 0--> MMU
-                                 <--Physical Address 8192---Frame-2-Address
-
-  
-- **1. `MOV REG 0`**
- - 0 falls on 1st page (0-4095) which according to its mapping is page frame 2(8192-12287). MMU sends 8192 onto Bus
-  - Please note, Bus does not know anything about addresses, whichever address is placed on it carries.
-  - Thus, MMU has mapped all virtual addresses between 0 and 4095 onto physical addresses 8192 to 12287.
-- **2. `MOV REG 8192` = `MOV REG 8k`**
-  - Page(8192) maps to page-frame-6(24k = 24`*`1024 = 24576)
-  - `MOV REG 8192` becomes `MOV REG 24576`
-- **3. Acesss virtual address `20500`**
-  - On Virtual-table 20500 falls on 5th page(20k = 20`*`1024 = 20480). 
-  - But 20500 is not start of page but it falls 20 inside. 20500 = 20480 + 20.
-  - To access Physical address, offset is added = (12k + 20) = 12`*`1024 +20 = 12288 + 20 = 12308. 
-  - Address 12308 is placed on Bus.
-- **4. `MOV REG 32780` = `MOV REG 32k+12`**
-  - **Request to reference a unmapped address**.
-    - Now, MMU finds page in unmmaped, CPU **TRAPS the OS**. This is called **PAGE FAULT**.
-  - **Page Fault**? OS picks a least-used page frame and writes its contents back to the disk, then copies page into page frame changes mapping, and restarts the trapped instruction. This is called **Page Eviction**. Movement of pages in/out of RAM is done by **SWAPPER**.
-    - Example Let OS decides to evict Page number=0. 
-      - Page=0 is mapped to frame=2, ie at physical address 8192.
-      - Virtual Page 8 = 32k is loaded into physical memory 8192.
-      - Changes done in MMU.  a. Make entry of virtual-page=0(as unmapped)  b. Place 1 at frame=2 at Virtual-Page-8's entry.
+Code-Segment    
+  MOV REG 0 ----> CPU
+                   --Get Physical Address for 0--> MMU
+                   <--Physical Address 8192-  Page-0 maps to Frame-2
+//MMU has mapped all virtual addresses between 0-4095 onto physical addresses 8192-12287.                   
+```                   
+- **Ex2. MOV REG 8192**
+```c++
+Code-Segment    
+  MOV REG 8192 -> CPU
+                   --Get Physical Address for 8192-->       MMU
+                   <--Physical Add (24k=24x1024=24576)-- Page-3 maps to Frame-6
+```
+- **Ex3. MOV REG 20500**
+  - 1stPage(0-4095), 2nd(4096-8191), 3rd(8192-12281), 4th(12282-16383), 5th(16384-20479), 6th(20480-24576)
+  - 20500 falls 20 byte inside 6th Page.
+```c++
+Code-Segment    
+  MOV REG 20500 -> CPU
+                    -Get Physical Address for 20500-->       MMU
+                                                        Page-6 maps to Frame3
+                    <--Physical Add 12302---- Frame-3-start:12282. PhysicalAdd=12282+20=12302
+```
+- **Ex4. MOV REG 24576** Request to reference a unmapped address(ie MMU does not have mapping).
+  - **Page Fault**? CPU issues trap() system call. OS picks a LRU Frame(from Physical Memory/RAM) and moves/writes back to the Hard-Disk/Virtual-Memory. Then copies Page into RAM. MMU updates mapping.
+  - **Page Eviction:** Movement of pages in/out of RAM is done by SWAPPER.
+```c++
+Code-Segment
+  MOV REG 24576 ---> CPU
+                      --Return PhyAdd for 24576-> MMU
+                      <---Not present--------------
+                    trap() --Map 24576------------>
+                                                      RAM(PM)                             Hard-Disk(VM)
+                                                        --Frame=0 moved to VM-------------->
+                                                        <-Page 24576 loaded in RAM(at address 0)--
+                                            MMU(Updates Mapping)
+                                            Page(12K not mapped)  
+                                            Page-24K maps to Frame0
+                      <---Virtual Address 0----
+```
 
 ## B. Fragment/Page No(4 bits) + Offset(12 bits) 
 - For 64k Virtual Memory. MMU uses 16 bit scheme.
