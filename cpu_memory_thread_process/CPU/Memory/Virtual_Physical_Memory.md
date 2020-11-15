@@ -5,7 +5,7 @@
 
 [MyYouTube Video For Understanding](https://www.youtube.com/watch?v=OjGycsu0I1M)
 
-||Virtual Memory/Hard Disk|Physical Memory/RAM|
+||Virtual Memory = Hard Disk|Physical Memory = RAM|
 |---|---|---|
 |What|This is Hard Disk|This is RAM|
 |Size|Always Bigger|Smaller from HD|
