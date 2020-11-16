@@ -3,8 +3,6 @@
 ```
 # Virtual Memory & Physical Memory
 
-[MyYouTube Video For Understanding](https://www.youtube.com/watch?v=OjGycsu0I1M)
-
 ||Virtual Memory = Hard Disk|Physical Memory = RAM|
 |---|---|---|
 |What|This is Hard Disk|This is RAM|
@@ -29,7 +27,7 @@
 |Count|64k/4k = 16 Pages|32k/4k = 8 Frames|
 
 - Page Size = 4KB = 4`*`1024 = 4096 Bytes. In Real systems Page sizes might be as large as 64KB.
-![ImgURL](https://i.ibb.co/GCFwbL0/virtual-physical.png)
+![ImgURL](https://i.ibb.co/pbTrjFn/virtual-physical.png)
 
 - **Ex1. MOV REG 0**
   - Program tries to access virtual address 0. Virtual address is sent to MMU for translation. 
@@ -98,6 +96,20 @@ Code-Segment
 - **Referenced bit** 1=means page is referenced either by reading or writing
 - **Caching Disabled** 1=means disable caching for the page.
 
-# MOVING TO 32 BIT SYSTEM
-- 2<sup>32</sup> = 4,294,967,296. This is last bit that can be accessed. 
-- Page =4,294,967,296/4096 = 1,048,576(1 Million). Page table will have 1 million entries.
+# MOVING TO 32 and 64 BIT SYSTEM
+- 32 bit system. Bus size=32 bit. At a time 32 bits can be sent. Maximum address that can be reached  using 32 bit(2<sup>32</sup> = 4,294,967,296). 
+- 64 bit system. Bus size=64 bit. At a time 64 bits can be sent. Maximum address that can be reached  using 64 bit (2<sup>64</sup> = 18x1018). 18 Exa bytes
+- **Problem with 32 & 64 bit =Huge Virtual Page Table**: 32 bit (4294967296/4096 = 1 Million Page entries in Virtual Page Table). 64 bit huge
+## Solution-1 TLB (Translation Lookaside Buffer) 
+- Practically from complete PT only a small fraction of the page table entries are heavily read; the rest are barely used. 
+- This is hardware inside MMU which stores only few entries(8-256) for Virtual-to-Physical mapping. 
+- TLB Example: Request for Virtual Page comes to TLB 
+  - if  TLB entry found-> TLB Hit 
+  - else TLB miss(goes to Page Table), find entry updates Page Table. restarts trap instruction.
+
+|Valid|Virtual Page No|Modified|Protection|Frame No|
+|---|---|---|---|---|
+|1|140|1|RW|31|
+
+### Problem with TLB: TLB being small, if it happens process tries to get unused page every time, there will be lot of TLB misses
+- Solution: Software to maintain a cache internally.
