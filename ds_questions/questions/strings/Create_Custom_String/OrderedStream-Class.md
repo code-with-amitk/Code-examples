@@ -28,7 +28,8 @@ os.insert(4, "ddddd"); // Inserts (4, "ddddd"), returns ["ddddd", "eeeee"].
 ## Logic
 
 |bool,string->|1,aaaa|1,bbbb|1,cccc|1,eeeee|1,ddddd|
-|index->|0|1|2|3|4|5|
+|---|---|---|---|---|---|
+|index->|0|1|2|3|4|
 
 ## Code
 ```c++
