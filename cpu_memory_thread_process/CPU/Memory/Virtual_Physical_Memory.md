@@ -111,5 +111,8 @@ Code-Segment
 |---|---|---|---|---|
 |1|140|1|RW|31|
 
-### Problem with TLB: TLB being small, if it happens process tries to get unused page every time, there will be lot of TLB misses
+### Problem with TLB: 
+- TLB being small, if it happens process tries to get unused page every time, there will be lot of TLB misses
 - Solution: Software to maintain a cache internally.
+
+## Solution-2 (Multilevel Page Tables)
