@@ -115,4 +115,9 @@ Code-Segment
 - TLB being small, if it happens process tries to get unused page every time, there will be lot of TLB misses
 - Solution: Software to maintain a cache internally.
 
-## Solution-2 (Multilevel Page Tables)
+## Solution-2 (Multilevel Page Tables) 32 Bit system
+- 32 bit system (232 = 4,294,967,296) can support up to 4GB RAM/Physical Memory. 4294967296/4096 bytes = 1,048,576 Pages.
+- 32 bit address = 10 Bit(Page-Table-1) + 10 Bit(Page-Table-2) + 12 Bit(offset). 
+    - Page-Table-1 contains 1024 entries. Each entry can be reached using 10 bits. 210 = 1024. Each entry points to 4MB Memory chunk.
+    - Page-Table-2 contains 1024 entries. 4MB = 4x1024x1024. 4MB/1024 = 4096 Bytes = 1 Page Size
+![ImgURL](multilevel-page-table.PNG)
