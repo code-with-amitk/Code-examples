@@ -6,7 +6,7 @@
 - if LL size=3, delete 2nd.
 - if LL size=4, delete 3rd(ie 2nd middle).
 
-### Solution-1 C++ (forward_list<>). Complexity: O(n + n/2)
+### 1. C++ (forward_list<>). Complexity: O(n + n/2)
 - forward_list is singly LL.
 ```c++
 #include<iostream>
