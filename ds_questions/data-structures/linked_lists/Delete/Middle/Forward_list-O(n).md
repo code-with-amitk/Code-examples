@@ -26,7 +26,8 @@ LinkedList        Output
   1   --->     2  -->   3
   /\          /\        /\
 beforeslow   slow      fast
-- Delete next element of beforeSlow. Because in singly LL we cannot get prev element. Also forward_list does not provide erase_current() only erase_next()
+- Delete next element of beforeSlow. Because in singly LL we cannot get prev element.
+Also forward_list does not provide erase_current() only erase_next()
 ```
 - *3.* Odd number of elements
 ```c
@@ -51,7 +52,8 @@ forward_list<int> Delete(forward_list<int>& fl){
   if(itSlow == fl.end())    //empty list
     return fl;
 
-//next(iterator,pos):Returns iterator pointing to element if advanced by position=pos. But original iterator is not advanced as done using ++itr
+//next(iterator,pos):Returns iterator pointing to element if advanced by position=pos. 
+//But original iterator is not advanced as done using ++itr
 //  pos:Number of element positions offset
   if((next(itSlow,1) == fl.end()) or    //1 node
      (next(itSlow,2) == fl.end())       //2 nodes
