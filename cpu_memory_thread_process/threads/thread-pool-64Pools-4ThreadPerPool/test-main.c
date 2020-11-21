@@ -38,20 +38,19 @@ void dummy_task(void *arg) {
 
 int main(int argc, char **argv)
 {
-    	int i, copy = 1;
-    	left = SIZE;
+  int copy = 1;
+  left = SIZE;
 
-    	pthread_mutex_init(&lock, NULL);
-    	for(i = 0; i < QUEUES; i++) {	//QUEUES=64. Creating 64 pools and 4 threads in each pool.
-		printf("Pool[%d]:\n",i);
-        	pool[i] = threadpool_create(THREAD, SIZE, 0);	//THREAD=4, SIZE=8192
-        	assert(pool[i] != NULL);
-    	}
-	printf("\nCreated 64 Pools\n");
-	printf("Step-1: %d threads created and information stored in (struct threadpool_t) using threadpool_create()\n",THREAD);
-    	usleep(10);
-printf("\n\
-***********FUNCTION=> threadpool_create(int thread_count, queue_size)**************\n\
+  pthread_mutex_init(&lock, NULL);	//1. Initialize mutex attributes
+
+  for(int i = 0; i < QUEUES; i++) {	//2. Create 64 Thread-pools(QUEUE=64) and 4 threads in each pool.
+    printf("Pool[%d]:\n",i);
+    pool[i] = threadpool_create(THREAD, SIZE, 0);	//THREAD=4, SIZE=8192
+    assert(pool[i] != NULL);
+  }
+  printf("\nCreated 64 Pools\n");
+
+/**** threadpool_create(int thread_count, queue_size) 
 1. allocates threadpool_t structure memset to 0\n\
 2. Does mutex_init(NULL); cond_init(NULL);\n\
 3. Creates threads and notes thier IDs in thread varible\n\n\
@@ -65,25 +64,22 @@ for(i=0;i<thread_count;i++)\n\
         pool->thread_count++;\n\
         pool->started++;\n\
 return pool\n\
-*************************************************\n");
+*************************************************/
 
-    	for(i = 0; i < SIZE; i++) {//SIZE=8192
-       // 	tasks[i] = 0;
-        	assert(threadpool_add(pool[0], &dummy_task, &(tasks[i]), 0) == 0);
-    	}
+  //3. Add tasks to threadpool. Threads start working on the tasks.
+  for(i = 0; i < SIZE; i++) {//SIZE=8192
+    assert(threadpool_add(pool[0], &dummy_task, &(tasks[i]), 0) == 0);
+  }
 
-    while(copy > 0) {
-        usleep(10);
-        pthread_mutex_lock(&lock);
-        copy = left;
-        pthread_mutex_unlock(&lock);
-    }
+  while(copy > 0) {
+    pthread_mutex_lock(&lock);
+    copy = left;
+    pthread_mutex_unlock(&lock);
+  }
 
-    for(i = 0; i < QUEUES; i++) {
-        assert(threadpool_destroy(pool[i], 0) == 0);
-    }
+  //4. Destroy the threadpool
+  for(i = 0; i < QUEUES; i++)
+    assert(threadpool_destroy(pool[i], 0) == 0);
 
-    pthread_mutex_destroy(&lock);
-    return 0;
+  pthread_mutex_destroy(&lock);
 }
-
