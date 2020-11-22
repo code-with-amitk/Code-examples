@@ -7,10 +7,10 @@
 pid_t fork(void)        //typedef int pid_t;
  - Creates a new process(called child process), Called once, returns twice. fork() is internally implemented as using clone().
  
-                pid_t pid = fork()
-      ------------|----------------
+                pid_t ret = fork()
+      ----ret==0-----|-----ret!=0--
       |                           |
-   pid=0(child)                 parent
+   Child(pid=176)             Parent(pid=175)
 |CS|DS|SS|HS|               |CS|DS|SS|HS|        
 ```
 - **COW(Copy On Write)**
@@ -29,9 +29,9 @@ This blocks parent if it has any unterminated child, else returns immediately.
 #include <stdio.h>
 
 int main(){
-  pid_t pid;
-  pid = fork();
-  if (pid == 0){                       //Child
+  int ret;
+  ret = fork();
+  if (ret == 0){                       //Child
     printf ("Inside Child\n");
     printf ("[Child] Parent's PID=%d\n", getppid());      //175. Parent's PID is always smaller since its created earlier.
     printf ("[Child] Self PID=%d\n", getpid());           //176
