@@ -5,9 +5,13 @@
 - **API for creation**
 ```c
 pid_t fork(void)        //typedef int pid_t;
-
- - Creates a new process(called child process), Called once, returns twice.
- - fork() is internally implemented as using clone().
+ - Creates a new process(called child process), Called once, returns twice. fork() is internally implemented as using clone().
+ 
+                pid_t pid = fork()
+      ------------|----------------
+      |                           |
+   pid=0(child)                 parent
+|CS|DS|SS|HS|               |CS|DS|SS|HS|        
 ```
 - **COW(Copy On Write)**
   - CS, DS, SS, HS all are shared between parent & child Initially. If any one of them Modifies, New page is created & modified data is copied
@@ -25,23 +29,25 @@ This blocks parent if it has any unterminated child, else returns immediately.
 #include <stdio.h>
 
 int main(){
-  if (fork() == 0){                       //Child
-    printf ("Inside Child");
-    printf ("Parent's PID=%d", getppid());
-    printf ("Self PID=%d", getpid());  
+  pid_t pid;
+  pid = fork();
+  if (pid == 0){                       //Child
+    printf ("Inside Child\n");
+    printf ("[Child] Parent's PID=%d\n", getppid());      //175. Parent's PID is always smaller since its created earlier.
+    printf ("[Child] Self PID=%d\n", getpid());           //176
   }
   else                                    //Parent
   {
-    printf ("Inside Parent");
-    printf ("Parent's PID=%d", getppid());
-    printf ("Self PID=%d", getpid());  
+    printf ("Inside Parent\n");
+    printf ("[Parent] Parent's PID=%d\n", getppid());     //92
+    printf ("[Parent] Self PID=%d\n", getpid());          //175
   }
 }
-# ./a.out
+$ ./a.out
 Inside Parent
-  Parent's PID=42
-  Self PID=144
 Inside Child
-  Parent's PID=144
-  Self PID=145
+[Parent] Parent's PID=92
+[Child] Parent's PID=175
+[Parent] Self PID=175
+[Child] Self PID=176
 ```
