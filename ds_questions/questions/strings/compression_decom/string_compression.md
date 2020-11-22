@@ -1,7 +1,7 @@
 ## Problem
 - Implement compression using the counts of repeated characters. Assume string only contains Upper and lower case letters(a-z).
 - Examples:
-```c
+```c++
  aabcccccaaa --becomes--> a2b1c5a3
 ```
 
