@@ -12,7 +12,6 @@
   - upper_bound(ForwardIterator first, ForwardIterator last, const T& val); //returns index of last+1
   - calculate diff.
 - Create output string character+count
-```
 
 ## Complexity:
 - O(mlogn)
