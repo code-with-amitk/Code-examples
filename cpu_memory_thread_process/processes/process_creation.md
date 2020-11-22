@@ -6,8 +6,8 @@
 ```c
 pid_t fork(void)        //typedef int pid_t;
 
- - Creates a new process(called child process), child runs concurrently with parent process. 
- - fork() is internally implemented as using clone(). Called once, returns twice.
+ - Creates a new process(called child process), Called once, returns twice.
+ - fork() is internally implemented as using clone().
 ```
 - **COW(Copy On Write)**
   - CS, DS, SS, HS all are shared between parent & child Initially. If any one of them Modifies, New page is created & modified data is copied
@@ -15,7 +15,8 @@ pid_t fork(void)        //typedef int pid_t;
 ```c
 getppid(): To get Parent's ProcessID.    
 getpid(): Get self PID
-int wait(int *status): Parent process to wait for child to terminate. returns pid of terminated child, sets term_status in *status. This blocks parent if it has any unterminated child, else returns immediately.
+int wait(int *status): Parent process to wait for child to terminate. returns pid of terminated child, sets term_status in status. 
+This blocks parent if it has any unterminated child, else returns immediately.
 ```  
 
 ## Code
@@ -29,7 +30,7 @@ int main(){
     printf ("Parent's PID=%d", getppid());
     printf ("Self PID=%d", getpid());  
   }
-  else                        //Parent
+  else                                    //Parent
   {
     printf ("Inside Parent");
     printf ("Parent's PID=%d", getppid());
