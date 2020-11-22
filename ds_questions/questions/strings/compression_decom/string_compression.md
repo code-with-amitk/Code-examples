@@ -1,26 +1,24 @@
-/*
-        string_compression.cpp
+## Problem
+- Implement compression using the counts of repeated characters. Assume string only contains Upper and lower case letters(a-z).
+- Examples:
+```c
+ aabcccccaaa --becomes--> a2b1c5a3
+```
 
-Question: Implement compression using the counts of repeated characters. Examples:
-- string aabcccccaaa would become a2b1c5a3
-- If the compressed string > original string, your method should return the original string.
-- Assume string only contains Upper and lower case letters(a-z).
-
-Real world analogy: Twins are standing in row, replace with 1twin-count
-
-*******************Logic******************
+## Logic
 - start from index=0
 - Find index duplicates using
-        lower_bound(ForwardIterator first, ForwardIterator last, const T& val); //returns index of 1st occurence
-        upper_bound(ForwardIterator first, ForwardIterator last, const T& val); //returns index of last+1
-        calculate diff.
-        Push entry_at_index+count to another string
-******************************************
+  - lower_bound(ForwardIterator first, ForwardIterator last, const T& val); //returns index of 1st occurence
+  - upper_bound(ForwardIterator first, ForwardIterator last, const T& val); //returns index of last+1
+  - calculate diff.
+- Create output string character+count
+```
 
-Complexity:
-O(mlogn)
-*/
+## Complexity:
+- O(mlogn)
 
+## Code
+```c++
 #include<iostream>
 #include<algorithm>
 using namespace std;
@@ -72,3 +70,4 @@ int main(){
 Output:
 A2a2b3c5
 */
+```
