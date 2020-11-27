@@ -1,5 +1,5 @@
 ## Create
-#### A. String from int, string, double
+#### A. int, string, double to String
 - **1. Using stringstream**
 ```c++
 #include<sstream>
@@ -23,7 +23,14 @@ v.push_back(a);
 
 ## Convert
 #### A. String to int
-**1. Stringstream**
+**1. istringstream**
+```c++
+  string a ="12";
+  uint64_t val;
+  istringstream(a) >> hex >> val;
+  cout<<hex<<val;                     //12
+```
+**2. Stringstream**
 ```c++
   string str = "4", str1 = "5";
   int a;  
@@ -33,7 +40,7 @@ v.push_back(a);
 
   ss.clear(); ss.str(str1);           //Resuing stringstream
   ss >> a;
-  cout << a << "\n";                  //4
+  cout << a << "\n";                  //5
 ```
 
 ||string|
