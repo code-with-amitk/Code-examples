@@ -52,7 +52,7 @@ THINGS TO BE DONE
 1. Understand question completely. 
   - Speak the question back to interviwer.
   - Are there any restrictions/contriants
-2. Find Naive approach. Discuss with interviwer.
+2. Find Naive approach. Discuss with interviwer.    //Working is always better than Perfact
 3. Optimize
 4. Write test cases
 ```
@@ -63,6 +63,13 @@ THINGS TO BE DONE
 3. How processes communicate with each other?
 4. How unix file system works?
 5. How to troubleshoot unix system?
+6. Memory usage, Process Execution and/or Threads?
+7. The kernel and how it interacts with other system components?
+8. Modern Web Architectures and Webservers?
+9. userspace / Kernel space boundaries and interactions.
+  - Examples might include: ioctls, sysctls, context switches.
+10. Review troubleshooting tools for system-level performance issues.
+11. Review troubleshooting tools for debugging application-level performance issues or bugs.  
 ```
 ### 4. Network Interview
 ```c
@@ -72,6 +79,9 @@ THINGS TO BE DONE
 ### 5. Design Interview
 - Ask lot of questions from interviewer.
 ```c
+Problems:
 1. Design a system that reports fake account information to FB?
-2. 
+Things to consider:
+1. Scaling the system, SOA(breaking into modules)
+2. Where solution fails?
 ```
