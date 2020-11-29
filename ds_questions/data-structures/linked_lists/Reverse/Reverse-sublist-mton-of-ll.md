@@ -1,15 +1,15 @@
 ## [Reverse a sublist of linked list](https://www.interviewbit.com/problems/reverse-link-list-ii/)
+## [Reverse Link List II](https://leetcode.com/problems/reverse-linked-list-ii/)
 - Reverse a linked list from position m to n. Do it in-place and in one-pass.
 - Example
 ```c++
 Postions given m=3, n=6.
 Starting from node position=3 to node position=6, reverse the LL
 
-position 1  2   3           6     
-Input : 10->20->30->40->50->60->70->NULL
-                /\          /\
+position 1      2        3                       6     
+Input : 10  ->  20  ->  30  ->  40  ->  50  ->  60  ->  70  ->  NULL
                 
-Output : 10->20->60->50->40->30->70->NULL
+Output : 10  ->  20  ->  60  ->  50  ->  40  ->  30  ->  70  ->  NULL
 ```
 
 ## Logic
