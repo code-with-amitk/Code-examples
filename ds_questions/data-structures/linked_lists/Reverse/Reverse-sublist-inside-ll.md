@@ -11,6 +11,7 @@ Input : 10  ->  20  ->  30  ->  40  ->  50  ->  60  ->  70  ->  NULL
                 
 Output : 10  ->  20  ->  60  ->  50  ->  40  ->  30  ->  70  ->  NULL
 ```
+# [Self Youtube Video](https://youtu.be/spPo-KA-YdA)
 
 ## Logic
 - *Step-1.* Find following pointers:
