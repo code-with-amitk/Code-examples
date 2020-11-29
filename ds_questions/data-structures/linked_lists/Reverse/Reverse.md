@@ -5,6 +5,8 @@
   Output = 4->3->2->1->N
 ```
 
+# [Self Video Explanation](https://youtu.be/UheqFiqUbgQ)
+
 ## Logic (3 pointers)
 - *1.* Take 3 pointers pointing 3 consecutive nodes in LL.
 ```c
