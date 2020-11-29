@@ -29,7 +29,7 @@ Output : 10  ->  20  ->  60  ->  50  ->  40  ->  30  ->  70  ->  NULL
           /\      /\                      /\      /\
       start_prev start                    end   end_next
 ```
-- *Step-3* Reverse the LL between start and end and return new Head, store new Head in start_prev->next
+- *Step-3* Reverse the LL between start and end and return new Head, start_prev->next = newhead
 ```c++
 
       30  ->  40  ->  50  ->  60
@@ -47,6 +47,7 @@ After Reverse
   10  ->  20  ->  60  ->  50  ->  40  ->  30      70  ->  NULL
           /\      /\                      /\      /\
       start_prev end                    start   end_next      
+                 head
 ```
 - *Step-4* Make start->next = end_next
 ```c++
