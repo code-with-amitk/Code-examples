@@ -15,6 +15,8 @@
  7 8 9          3 6 9
 ```
 
+# [Self Video](https://youtu.be/aBnSUT7HuhY)
+
 ## Logic
 - *1.* Return if only 1 element
 - *2.* if rows != cols (eg 2x3 matrix)  //TransposeAnyMatrix
