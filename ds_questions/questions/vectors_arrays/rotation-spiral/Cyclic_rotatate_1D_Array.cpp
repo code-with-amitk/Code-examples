@@ -1,19 +1,20 @@
-/*         cyclic_rotationOfArray.cpp
-
-Rotation?
-Means that each element is shifted right by one index, and the last element of the array is moved to the first place. 
-For example, the rotation of array A = [3, 8, 9, 7, 6] is [6, 3, 8, 9, 7].
-
-Task: Rotate array k times.
+## Rotation?
+- Means that each element is shifted right by one index, and the last element of the array is moved to the first place. 
+- For example, the rotation of array A = [3, 8, 9, 7, 6] is [6, 3, 8, 9, 7].
+- Task: Rotate array k times.
+```c
 A = [3, 8, 9, 7, 6], K = 3
 Answer: [9, 7, 6, 3, 8]
+```
 
-***************Logic:******************
+## Logic
+```c
 a. If rotation_size(K) > size_of_array(N). Calculate actual_rotation(K) = rotation_size(K) % size_of_array(N)
 b. Use vector's rotate() function to place Kth element from last at start of vector.
-****************************************
-*/
+```
 
+## Code
+```c
 #include<iostream>
 #include<algorithm>
 #include<vector>
@@ -53,3 +54,4 @@ int main(){
         for (auto &it: vect)    std::cout<<" "<<it;
 //    solution(vect, 5);
 }
+```
