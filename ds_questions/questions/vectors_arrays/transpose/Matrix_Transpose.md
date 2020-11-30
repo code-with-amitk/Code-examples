@@ -17,9 +17,11 @@
 
 ## Logic
 - *1.* Return if only 1 element
-- *2.* if rows != cols (eg 2x3 matrix), exchange rows and cols.
-- *3.* Create a vector to store transpose of matrix.
-- *4.* Exchange elements across major diagonal.
+- *2.* if rows != cols (eg 2x3 matrix)  //TransposeAnyMatrix
+  - Create a vector(t) to store transpose of matrix.
+  - `t[j][i] = a[i][j];`
+- *3.* if rows == cols (eg 3x3)          //TransposeSquareMatrix
+ - `swap(a[j][i], a[i][j])` // Exchange elements across major diagonal.
  
 ## Code
 ```c
@@ -28,28 +30,42 @@ using namespace std;
 
 class Solution{
 public:
-  vector<vector<int>> Transpose(vector<vector<int>>& a){
+  vector<vector<int>> TransposeSquareMatrix(vector<vector<int>>& a){         //3
+    int rows = a.size();
+    if (rows == 1)                            //1
+      return a;
+
+    for(int i = 0; i < rows; ++i){
+      for(int j =i ; j < rows;++j){
+        if(i not_eq j)
+          swap(a[i][j], a[j][i]);
+      }
+    }
+    return a;
+  }
+  
+  vector<vector<int>> TransposeAnyMatrix(vector<vector<int>>& a){        //2
     int rows = a.size();
     int cols = a[0].size();
     int r,c;
     if (rows == 1 and cols == 1)                   //1
       return a;
 
-    if (rows == cols)                              //2
+    if (rows == cols)                              
       r = rows, c = cols;
     else
       r = cols,c = rows;
 
     vector<vector<int>> t(r, vector<int>(c,0));    //3
 
-    for(int i = 0; i < c; ++i){                    //4
+    for(int i = 0; i < c; ++i){                   
       for(int j =0 ; j <r;++j){
-        if(a[i][j])
           t[j][i] = a[i][j];
       }
     }
     return t;
   }
+  
   void print(vector<vector<int>>& a){
     int rows = a.size();
     int cols = a[0].size();
@@ -77,7 +93,7 @@ int main(){
 
   Solution s;
   s.print(a);
-  vector<vector<int>> b = s.Transpose(a);
+  vector<vector<int>> b = s.TransposeAnyMatrix(a);
   cout<<"Transpose\n";
   s.print(b);
 }
