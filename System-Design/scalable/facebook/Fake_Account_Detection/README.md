@@ -2,6 +2,8 @@
 - 1. Registration using default values
 - 2. 5+ registration from same IP address
 - 3. Any of security attacks
+### Where
+- This detection can be done at CDN(waf or sheild).
 
 ## Fake exisiting account: (monitoring traffic)
 - 1. User uploading vulgur/voilent/controversial videos/images on his account
