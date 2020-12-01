@@ -1,7 +1,7 @@
 ## Problem
 - Find the contiguous subarray within an array, A which has the largest sum.
 - Examples
-```c
+```c++
 Input 1:    A = [1, 2, 3, 4, -10]
 Output 1:    10
 Explanation 1: The subarray [1, 2, 3, 4] has the maximum possible sum of 10.
@@ -17,20 +17,20 @@ Explanation 2: The subarray [4,-1,2,1] has the maximum possible sum of 6.
   - MaxHere: Maximum upto this array entry
   - MaxSoFar: 
 - Example
-```c
+```c++
 Input array: -2, 1, -3, 4, -1, 2, 1, -5, 4
         
 If (MaxHere+array_element < 0)
   MaxHere = 0
 ```
 
-MaxHere = 0
+MaxHere = 0,
 MaxSoFar = 0
         
 || -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
 |---|---|---|---|---|---|---|---|---|---|
-|MaxHere| 0 | 1 | 0 (1-3=-2. Take 0 when sum<0) | 4 | 3 | 5 | 6 | 1 | 5 |
-|MaxSoFar| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
+|int MaxHere| 0 if(MaxHere+array_element<0) MaxHere=0 | 1=0+1 | 0 (1-3=-2. Take 0 when sum<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
+|int MaxSoFar| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
 
 ## Code
 ```c
