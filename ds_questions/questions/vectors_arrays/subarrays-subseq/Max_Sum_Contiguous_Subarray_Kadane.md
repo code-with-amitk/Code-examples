@@ -1,0 +1,54 @@
+## Problem
+- Find the contiguous subarray within an array, A which has the largest sum.
+- Examples
+```c
+Input 1:    A = [1, 2, 3, 4, -10]
+Output 1:    10
+Explanation 1: The subarray [1, 2, 3, 4] has the maximum possible sum of 10.
+
+Input 2: A = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Output 2:  6
+Explanation 2: The subarray [4,-1,2,1] has the maximum possible sum of 6.
+```
+
+## Logic Kadane's Algo
+- Only consider +ve subarrays in array. Do not consider -ve.
+- Use 2 variables:
+  - MaxHere: Maximum upto this array entry
+  - MaxSoFar: 
+- Example
+```c
+Input array: -2, 1, -3, 4, -1, 2, 1, -5, 4
+        
+If (MaxHere+array_element < 0)
+  MaxHere = 0
+```
+
+MaxHere = 0
+MaxSoFar = 0
+        
+|| -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
+|---|---|---|---|---|---|---|---|---|---|
+|MaxHere| 0 | 1 | 0 (1-3=-2. Take 0 when sum<0) | 4 | 3 | 5 | 6 | 1 | 5 |
+|MaxSoFar| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
+
+## Code
+```c
+class Solution {
+public:
+  int maxSubArray(vector<int>& a) {
+    int max_so_far = INT_MIN, max_ending_here = 0; 
+  
+    for (int i = 0; i < a.size(); i++) 
+    { 
+        max_ending_here = max_ending_here + a[i]; 
+        if (max_so_far < max_ending_here) 
+            max_so_far = max_ending_here; 
+  
+        if (max_ending_here < 0) 
+            max_ending_here = 0; 
+    } 
+    return max_so_far;         
+  }
+};
+```
