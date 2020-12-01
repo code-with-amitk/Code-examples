@@ -37,18 +37,17 @@ MaxSoFar = 0
 class Solution {
 public:
   int maxSubArray(vector<int>& a) {
-    int max_so_far = INT_MIN, max_ending_here = 0; 
+    int MaxSoFar = INT_MIN, MaxHere = 0; 
   
-    for (int i = 0; i < a.size(); i++) 
-    { 
-        max_ending_here = max_ending_here + a[i]; 
-        if (max_so_far < max_ending_here) 
-            max_so_far = max_ending_here; 
+    for (int i = 0; i < a.size(); i++) { 
+        MaxHere = MaxHere + a[i]; 
+        if (MaxSoFar < MaxHere) 
+            MaxSoFar = MaxHere; 
   
-        if (max_ending_here < 0) 
-            max_ending_here = 0; 
+        if (MaxHere < 0) 
+            MaxHere = 0; 
     } 
-    return max_so_far;         
+    return MaxSoFar;         
   }
 };
 ```
