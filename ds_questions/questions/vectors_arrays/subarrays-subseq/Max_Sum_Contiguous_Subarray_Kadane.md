@@ -1,4 +1,4 @@
-## Problem
+## [Problem](https://leetcode.com/problems/maximum-subarray/)
 - Find the contiguous subarray within an array, A which has the largest sum.
 - Examples
 ```c++
@@ -10,6 +10,8 @@ Input 2: A = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 Output 2:  6
 Explanation 2: The subarray [4,-1,2,1] has the maximum possible sum of 6.
 ```
+
+# [Self Video](https://youtu.be/zXB9SQ5kqJA)
 
 ## Logic Kadane's Algo
 - Only consider +ve subarrays in array. Do not consider -ve.
@@ -24,8 +26,7 @@ If (MaxHere+array_element < 0)
   MaxHere = 0
 ```
 
-MaxHere = 0,
-MaxSoFar = 0
+MaxHere = 0, MaxSoFar = 0
         
 || -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -37,7 +38,8 @@ MaxSoFar = 0
 class Solution {
 public:
   int maxSubArray(vector<int>& a) {
-    int MaxSoFar = INT_MIN, MaxHere = 0; 
+    int MaxSoFar = INT_MIN
+    int MaxHere = 0; 
   
     for (int i = 0; i < a.size(); i++) { 
         MaxHere = MaxHere + a[i]; 
