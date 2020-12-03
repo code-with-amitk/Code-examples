@@ -1,3 +1,8 @@
+## fork()
+- Returns:
+  - 0 to the child
+  - nonzero to the parent.
+```c
 /* This is a simple code which does following:
  1. Takes two variables:  
 	(a)global variable(DS) 
@@ -72,3 +77,4 @@ Code After if_else block:\n\
 *******************************************************\n");
 	return 0;	
 }
+```
