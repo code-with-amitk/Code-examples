@@ -20,7 +20,7 @@ public:
           i = lps[i - 1];
        }
     }
-
+    cout << "LPS Array:\n";
     for(auto i:lps)
       cout << i <<" ";
     cout<<"\n";
@@ -64,6 +64,7 @@ int main(){
   obj.SearchNeedle(haystack, needle);
 }
 # ./a.out
+LPS Array:
 0 0 1 2
 Found pattern at index 0 
 Found pattern at index 5 
