@@ -1,4 +1,4 @@
-## Knuth–Morris–Pratt algorithm
+## Knuth Morris Pratt algorithm
 ### Step-1: Build LPS(longest prefix which is also proper suffix)
   - Logic is discussed in `longest_happy_prefix.cpp`
 ### Step-2: Search needle using LPS in haystack
