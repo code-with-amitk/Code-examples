@@ -1,40 +1,36 @@
-/*      longest_happy_prefix.cpp
-
-Task: Find longest prefix which is also suffix?
-
-What is prefix? Example string="level". It contains 4 prefix ("l", "le", "lev", "leve")
-What is suffix? suffix ("l", "el", "vel", "evel"). 
-The longest prefix which is also suffix is given by "l".
-
+# [Longest Prefix which is also Suffix](https://leetcode.com/problems/longest-happy-prefix/)
+- **Prefix?** Substrings taken from `index[0]`, exculding the complete string.
+- **Suffix?** Substrings taken from `index[n-1]`, exculding the complete string.
+- Examples
+```c++
 Example-1:
-Input: s = "level"
-Output: "l"
-Explanation: s contains 4 prefix excluding itself ("l", "le", "lev", "leve"), and suffix ("l", "el", "vel", "evel"). 
-The largest prefix which is also suffix is given by "l".
+s = "level". 
+  - 4 prefixes ("l", "le", "lev", "leve")    //s contains 4 prefix excluding itself
+  - 4 suffixes ("l", "el", "vel", "evel"). 
+  - The longest prefix which is also suffix is given by "l".
 
 Example-2:
-Input: s = "ababab"
+s = "ababab"
 Output: "abab"
 Explanation: "abab" is the largest prefix which is also suffix. They can overlap in the original string.
 
 Example-3:
-Input: s = "leetcodeleet"
+s = "leetcodeleet"
 Output: "leet"
 
 Example-4:
 Input: s = "a"
 Output: ""
+```
 
-***************Logic*******************
-https://www.youtube.com/watch?v=GTJr8OvyEVQ [Tushar Roy]
-
-a. We need to build information array containing info of prefix and suffix.
+## [Logic](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
+- *1.* Build LPS(Longest prefix which is also suffix) array containing info of prefix and suffix. This array is build from pattern to be searches inside main string.
+```c++
 Example:
-        Pattern         vector InfoArray
-        a b a b a b =>  0 0 1 2 3 4
-        0 1 2 3 4 5     0 1 2 3 4 5
+  Pattern         LPS array
+  a b a b a b =>  0 0 1 2 3 4
 
-Explanation of InfoArray:
+Explanation of LPS Array:
 Index   Value   Meaning
 0       0       Its always 0
 1       0       There is no prefix which is also suffix in subarray[0,1]
@@ -42,27 +38,30 @@ Index   Value   Meaning
 3       2       Length of longest prefix which is also suffix in subarray[0..3] is 2. abab (ie ab)
 4       3       Length of longest prefix which is also suffix in subarray[0..4] is 3. ababa (ie aba)
 5       4       Length of longest prefix which is also suffix in subarray[0..5] is 4. ababab (ie abab)
+```
 
-Build the InfoArray(very simple)
- - InfoArray[0] = 0 //Always
+- *1a.* Build the LPSArray(very simple)
+```c++        
+ - LPSArray[0] = 0 //Always
  - take 2 pointers, i=0,j=1. loop will j reaches end
         if(s[i] == s[j])
-                infoArr[j] = i+1;
+                LPSArray[j] = i+1;
                 Make i an j to point to next position
         if(s[i]!=s[j])
                 if(i!=0){
                   Make i=Value of (i-1) from InfoArray
                 }else{
-                  Make current infoArry[j] =0;
-                }
-        
+                  Make current LPSArray[j] =0;
+                }  
  - You can see simply and understand it
+ ```
 
-Complexity:
-Time: O(n)      //n-Length of input string
-Space: O(n)     //Same lengthed temporary InfoArray
-******************************************
-*/
+- *2.* Complexity:
+  - Time: O(n)      //n-Length of input string
+  - Space: O(n)     //Same lengthed temporary InfoArray
+
+## Code
+```c++
 #include<iostream>
 #include<vector>
 #include<sstream>
@@ -93,17 +92,10 @@ public:
 };
 
 int main(){
-//      string s = "acacabacacabacacac";
-//      string s = "level";
-//      string s = "ababab";
         Solution obj;
         string s = "leetcodeleet";
-//      string s = "bba";
-//      string s = "cbcbcba";
         cout<<obj.longestPrefix(s);
-//      computeTemporaryArray(s);
 }
-/*
 #./a.out
 leet
-*/
+```
