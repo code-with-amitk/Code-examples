@@ -1,6 +1,6 @@
 ## [Longest Prefix which is also Suffix](https://leetcode.com/problems/longest-happy-prefix/)
-- **Prefix?** Substrings taken from `index[0]`, exculding the complete string.
-- **Suffix?** Substrings taken from last index, exculding the complete string.
+- **Prefix?** Substrings taken from `index[0]`, excluding the complete string.
+- **Suffix?** Substrings taken from last index, excluding the complete string.
 - Examples
 ```c++
 Example-1:
@@ -24,11 +24,12 @@ Output: ""
 ```
 
 ## [Logic](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
-- *1.* Build LPS(Longest prefix which is also suffix) array containing information of prefix and suffix. This array is build from pattern which is to be searched inside main string.
+### Step-1. Build LPSArray(Longest prefix which is also suffix)
+- **1a. What is LPSArray?** Each entry means what's length of longest prefix which is also suffix in substring `[0, presentIndex]`
 ```c++
 Example:
-  Pattern         LPS array
-  a b a b a b =>  0 0 1 2 3 4
+    String               LPS array
+  a b a b c a b d =>  0 0 1 2 0 1 2 0
 
 Explanation of LPS Array:
 Index   Value   Meaning
@@ -36,28 +37,34 @@ Index   Value   Meaning
 1       0       There is no prefix which is also suffix in subarray[0,1]
 2       1       Length of longest prefix which is also suffix in subarray[0..2] is 1. aba (ie a)
 3       2       Length of longest prefix which is also suffix in subarray[0..3] is 2. abab (ie ab)
-4       3       Length of longest prefix which is also suffix in subarray[0..4] is 3. ababa (ie aba)
-5       4       Length of longest prefix which is also suffix in subarray[0..5] is 4. ababab (ie abab)
+4       0       There is no prefix which is also suffix in subarray[0..4]  ababc
+5       1       Length of longest prefix which is also suffix in subarray[0..5] is 1. ababca (ie a)
+6       2       Length of longest prefix which is also suffix in subarray[0..6] is 2. ababcab (ie ab)
+7       0       Length of longest prefix which is also suffix in subarray[0..7] is 0. ababcabd
 ```
 
-- *1a.* Build the LPSArray(very simple)
-```c++        
- - LPSArray[0] = 0 //reason above
- - take 2 pointers, i=0,j=1. 
+- *1b.* Build the LPSArray(very simple)
+```c++
+ - Take LPSArray of same size as string. Initialize to 0 assuming there are no Prefix which matches suffix.
+ - LPSArray[0] = 0   //reason above
+ - take 2 pointers, i=0,j=1. We will check all substrings using i,j
+   - j represents substring from [0, j]
  - loop until j reaches end
-   if(s[i] == s[j])
+   if(s[i] == s[j])                      //Found prefix which is also suffix
      LPSArray[j] = i+1;
-     Make i an j to point to next position
-   if(s[i] != s[j])
-     if( i != 0)
-       Point i to Value of (i-1) from LPSArray
+     Point i,j to next position. ++i;++j
+   else
+     if (i == 0)
+       Check next substring. j++
      else
-       Make current LPSArray[j] = 0;
+       point i to lps[i-1]
 
  - You can see simply and understand it
  ```
 
-- *2.* Complexity:
+### Step-2: return substring
+
+- **Complexity**
   - Time: O(n)      //n-Length of input string
   - Space: O(n)     //Same lengthed temporary InfoArray
 
@@ -70,8 +77,7 @@ using namespace std;
 
 class Solution{
 public:
-  string longestPrefix(string s) {
-    vector<int> LPSArray(s.size(),0);
+  void GetLPSArray(string& s, vector<int>& LPSArray){
     for(int i = 0, j = 1; j < s.size();){
       if(s[j] == s[i]){
         LPSArray[j] = i + 1;
@@ -82,8 +88,14 @@ public:
          else
            i = LPSArray[i - 1];
       }
-   }//for
-   return s.substr(0, LPSArray[s.size() - 1]);
+    }//for
+  }
+
+  string longestPrefix(string s) {
+    vector<int> LPSArray(s.size(),0);
+    GetLPSArray(s, LPSArray);                   //Step-1
+
+    return s.substr(0, LPSArray[s.size() - 1]);
   }
 };
 
