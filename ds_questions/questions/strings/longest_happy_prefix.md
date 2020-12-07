@@ -24,7 +24,7 @@ Output: ""
 ```
 
 ## [Logic](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
-- *1.* Build LPS(Longest prefix which is also suffix) array containing info of prefix and suffix. This array is build from pattern to be searches inside main string.
+- *1.* Build LPS(Longest prefix which is also suffix) array containing information of prefix and suffix. This array is build from pattern which is to be searched inside main string.
 ```c++
 Example:
   Pattern         LPS array
@@ -32,7 +32,7 @@ Example:
 
 Explanation of LPS Array:
 Index   Value   Meaning
-0       0       Its always 0
+0       0       0 Because in array [0,0] there is no prefix and suffix since suffix,prefix need to exclude compelte string
 1       0       There is no prefix which is also suffix in subarray[0,1]
 2       1       Length of longest prefix which is also suffix in subarray[0..2] is 1. aba (ie a)
 3       2       Length of longest prefix which is also suffix in subarray[0..3] is 2. abab (ie ab)
@@ -42,17 +42,18 @@ Index   Value   Meaning
 
 - *1a.* Build the LPSArray(very simple)
 ```c++        
- - LPSArray[0] = 0 //Always
- - take 2 pointers, i=0,j=1. loop will j reaches end
-        if(s[i] == s[j])
-                LPSArray[j] = i+1;
-                Make i an j to point to next position
-        if(s[i]!=s[j])
-                if(i!=0){
-                  Make i=Value of (i-1) from InfoArray
-                }else{
-                  Make current LPSArray[j] =0;
-                }  
+ - LPSArray[0] = 0 //reason above
+ - take 2 pointers, i=0,j=1. 
+ - loop until j reaches end
+   if(s[i] == s[j])
+     LPSArray[j] = i+1;
+     Make i an j to point to next position
+   if(s[i] != s[j])
+     if( i != 0)
+       Point i to Value of (i-1) from LPSArray
+     else
+       Make current LPSArray[j] = 0;
+
  - You can see simply and understand it
  ```
 
@@ -69,32 +70,27 @@ using namespace std;
 
 class Solution{
 public:
-        string longestPrefix(string s) {
-                vector<int> infoA(s.size(),0);
-                for(int i = 0, j = 1; j < s.size();){
-                        if(s[j] == s[i]){
-                                infoA[j] = i + 1;
-                                i++;
-                                j++;
-                        }else{
-                                if(i == 0){
-                                        j++;
-                                }else{
-                                        i = infoA[i - 1];
-                                }
-                        }
-                }
-                return s.substr(0,infoA[s.size() - 1]);
-        }
-        
-        //Another Simple Solution
-        //https://leetcode.com/problems/longest-happy-prefix/discuss/555028/O(n)-Easy-to-understand-using-whileint.for()
+  string longestPrefix(string s) {
+    vector<int> LPSArray(s.size(),0);
+    for(int i = 0, j = 1; j < s.size();){
+      if(s[j] == s[i]){
+        LPSArray[j] = i + 1;
+        i++; j++;
+      }else{
+         if(i == 0)
+           j++;
+         else
+           i = infoA[i - 1];
+      }
+   }//for
+   return s.substr(0,infoA[s.size() - 1]);
+  }
 };
 
 int main(){
-        Solution obj;
-        string s = "leetcodeleet";
-        cout<<obj.longestPrefix(s);
+  Solution obj;
+  string s = "leetcodeleet";
+  cout<<obj.longestPrefix(s);
 }
 #./a.out
 leet
