@@ -80,10 +80,10 @@ public:
          if(i == 0)
            j++;
          else
-           i = infoA[i - 1];
+           i = LPSArray[i - 1];
       }
    }//for
-   return s.substr(0,infoA[s.size() - 1]);
+   return s.substr(0, LPSArray[s.size() - 1]);
   }
 };
 
