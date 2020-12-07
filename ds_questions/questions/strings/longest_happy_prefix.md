@@ -1,6 +1,6 @@
 ## [Longest Prefix which is also Suffix](https://leetcode.com/problems/longest-happy-prefix/)
 - **Prefix?** Substrings taken from `index[0]`, exculding the complete string.
-- **Suffix?** Substrings taken from `index[n-1]`, exculding the complete string.
+- **Suffix?** Substrings taken from last index, exculding the complete string.
 - Examples
 ```c++
 Example-1:
