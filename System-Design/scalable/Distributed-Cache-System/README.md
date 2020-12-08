@@ -9,9 +9,11 @@
 
 ## 1. Requirements
   1. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F (Scalable, Secure, SOA, Logging, Load, Latency, Cache(Invalidation, negative cache), Available, Accurate, Analyze, Authenticate, Reliable, Redundant(Using DB), Fast)
+```c  
     - Latency(The delay between last packet sent and 1st byte of 1st packet received). Do we need high latency? Yes(Because caching is done to achieve low latency)
     - Consistency/Accurate. Do we need high consistency? Yes
     - Availability? Do this system need high availability? No
+```    
   2. store recent data
   3. distributed for Google, Twitter
 
