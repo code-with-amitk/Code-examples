@@ -8,10 +8,9 @@
 ```
 
 ## 1. Requirements
-1. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F (Scalable, Secure, SOA, Logging, Load, Latency, Cache(Invalidation, negative cache), Available, Accurate, Analyze, Authenticate
-Reliable, Redundant(Using DB), Fast)
-2. store recent data
-3. distributed for Google, Twitter
+  1. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F (Scalable, Secure, SOA, Logging, Load, Latency, Cache(Invalidation, negative cache), Available, Accurate, Analyze, Authenticate, Reliable, Redundant(Using DB), Fast)
+  2. store recent data
+  3. distributed for Google, Twitter
 
 ## 2. BOE
 ### 2a. QPS(Queries Per second)
