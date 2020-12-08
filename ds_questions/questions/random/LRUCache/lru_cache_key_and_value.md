@@ -1,6 +1,5 @@
 ## Cache
-- **What is Cache**
-  - Cache is used in computers to store the pages which are most frequently used.
+- **Cache?** Cache is used in computers to store the pages which are most frequently used.
 - **Limitation of Cache**
   - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
   
