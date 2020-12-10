@@ -27,6 +27,7 @@
   - Latency: 1ms (GET or POST)
   
 ## 3. HLD
-### 3a. 1 User/Single Threaded
+### 3a. 1 User/1 Thread
+- [LRU Cache](https://github.com/amitkumar50/Code-examples/blob/master/ds_questions/questions/random/LRUCache/lru_cache_key_and_value.md)
 
 ### 3b. 100-1Lac Users
