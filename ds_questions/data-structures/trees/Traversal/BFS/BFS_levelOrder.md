@@ -12,12 +12,14 @@
 O/P -> 12 10 30 14 25 40 50
 ```
 ## Logic(Using QUEUES)
-a. Take a queue
-b. Push root in queue
-c. while(!queue.empty())
-     print(element)
-     if(left) push_left_ele_in_queue;
-     if(right) push_right_ele_in_queue;
+1. Take a queue
+2. Push root in queue
+3. while(!queue.empty())
+```
+  print(element)
+  if(left) push_left_ele_in_queue;
+  if(right) push_right_ele_in_queue;
+```
 
 ## Complexity
 - Time: O(n)
