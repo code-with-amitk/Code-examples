@@ -1,9 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<queue>
-#include<iostream>
-//using namespace std;
-/*
+## Level Order
+```c++
+
         12
        /  \
       10  30
@@ -13,8 +10,8 @@
             50
             
 O/P -> 12 10 30 14 25 40 50
-
-Logic(Using QUEUES): 
+```
+## Logic(Using QUEUES)
 a. Take a queue
 b. Push root in queue
 c. while(!queue.empty())
@@ -22,10 +19,19 @@ c. while(!queue.empty())
      if(left) push_left_ele_in_queue;
      if(right) push_right_ele_in_queue;
 
-Complexity:
-        Time: O(n)
-        Space: O(n)
- */
+## Complexity
+- Time: O(n)
+- Space: O(n)
+        
+ 
+## Code
+```c++
+#include<stdio.h>
+#include<stdlib.h>
+#include<queue>
+#include<iostream>
+//using namespace std;
+
 struct node
 {
     int data;
@@ -75,4 +81,5 @@ int main()
 
     std::cout<<"\n";
     return 0;
-}
+}        
+```
