@@ -58,7 +58,8 @@ int Solution::sqrt(int x) {
   long ans = -1, mid = -1, temp = -1;
   
   while (left <= right) {
-    mid = left + (right - left)/2;
+    //mid = left + (right - left)/2;            //4ms slower
+    mid = left + (right - left)/2;              //0ms faster
     
     temp = mid*mid;
     
