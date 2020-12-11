@@ -24,3 +24,26 @@
     }
   }
 ```
+
+- **Inserting row into 2-D vector**
+```c++
+  std::vector<std::vector<int> > vec2D;
+  std::vector<int> vec1D;
+  
+  vec1D.push_back(1); vec1D.push_back(2);
+  vec2D.push_back(vec1D); vec1D.clear();
+  
+  vec1D.push_back(3); vec1D.push_back(4);
+  vec2D.push_back(vec1D);
+  
+  for(int i = 0; i < vec2D.size(); ++i) {
+    for(int j = 0; j < vec2D[i].size(); ++j) {
+      std::cout << vec2D[i][j];
+    }
+    std::cout<<"\n";
+  }
+/*
+  1 2
+  3 4
+*/
+```
