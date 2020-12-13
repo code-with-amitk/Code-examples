@@ -1,7 +1,9 @@
 ## [Problem](https://www.pramp.com/challenge/15oxrQx6LjtQj9JK9XqA)
 - Find min cost path. Ans=7
 - Example
+
 ~[ImgURL](https://www.pramp.com/img/content/img_01.png)
+
 ```c++
       0
     / /  \
