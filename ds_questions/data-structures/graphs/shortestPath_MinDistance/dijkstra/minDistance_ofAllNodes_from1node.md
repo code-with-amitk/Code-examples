@@ -1,6 +1,6 @@
-/*    dijkstra_array_minHeap.cpp
-
-Task: Find Minimum distance of every node from Node=0.
+## dijkstra_array_minHeap.cpp
+- Task: Find Minimum distance of every node from Node=0.
+```c++  
                 [0]-10-[1]-20-[2]
                   \     |    /
                    \50  |30 /40
@@ -12,13 +12,14 @@ Node  Code
 1     10
 2     30
 3     40
+```
 
-**************Logic(very simple) O(ElogV)******************
-1. Store graph in adjacency matrix g[4][4].   Adds extra space
-
-2. Take 3 DS. Start at node=0
+## Logic(very simple) O(ElogV)
+1. Store graph in adjacency matrix `g[4][4]`.
+2. Take 3 DS.
+```c++  
     |1|0|0|0|   visited[4]
-     0 1 2 3    <-Nodes
+     0 1 2 3    <-Nodes. Start at node=0
      
     |0|INF|INF|INF| cost[4]
      0  1  2   3    <-Nodes
@@ -26,12 +27,12 @@ Node  Code
     |       |
     | |0|0| |  minHeap = priority_queue<cost,node> //minHeap.push((0,0));
     |       |
-
+```
 3. Repeat this for all nodes in graph
-    3a. Check if present_cost_of_reaching_unvisited_neighbour > cost_in_graph + selfcost
-        update cost
-    3b. Move to unvisited,leastcost neighbour
-    
+  - *3a.* Check if present_cost_of_reaching_unvisited_neighbour > cost_in_graph + selfcost
+    - update cost
+  - *3b.* Move to unvisited,leastcost neighbour
+```c++
 3. Until Heap is not empty.                                     while(!minHeap.empty()){
   3a. Extract top from heap. (cost,u=node)                        int u = minHeap.top().second;
   3b. Check unvisited neighbours of u                             for(int i=0;i<4;i++){
@@ -40,9 +41,10 @@ Node  Code
       update cost                                                       cost[i] = fl[u][i]+cost[u];
       push (cost,node) on minHeap                                       minHeap.push(mypair(fl[u][i],i));
   3c. Goto step-3                                               }
-**************************************************
-*/
+```                                                                      
 
+ ## Code
+```c++
 #include<iostream>
 #include<queue>         //Provides priority_queue
 using namespace std;
@@ -89,11 +91,10 @@ int main(){
                        };
         dijkstra_sp(fl);
 }
-
-/*Output:
+# ./a.out
 Node	Cost
 0	    0
 1	    10
 2	    30
 3	    40
-*/
+```
