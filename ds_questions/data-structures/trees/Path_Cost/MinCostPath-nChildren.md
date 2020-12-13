@@ -22,6 +22,9 @@ Paths in Tree:
 0->6->5         = 11
 Ans = 7
 ```
+## Complexity
+- Time: O(n). Since traversing all nodes
+- Space: O(h). h=height of shortest path on tree. System Stack occupied by function call.
 
 ## Code
 ```c++
