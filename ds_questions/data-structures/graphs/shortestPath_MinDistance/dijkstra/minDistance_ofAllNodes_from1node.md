@@ -16,7 +16,7 @@ Node  Code
 
 ## Logic(very simple) O(ElogV)
 1. Store graph in adjacency matrix `g[4][4]`.
-2. Take 3 DS.
+2. Take 3 Datastructures. `visited[4], cost[4], minHeap`
 ```c++  
     |1|0|0|0|   visited[4]
      0 1 2 3    <-Nodes. Start at node=0
