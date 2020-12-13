@@ -1,4 +1,4 @@
-## dijkstra_array_minHeap.cpp
+## Dijstra's Min Distance using MinHeap
 - Task: Find Minimum distance of every node from Node=0.
 ```c++  
                 [0]-10-[1]-20-[2]
