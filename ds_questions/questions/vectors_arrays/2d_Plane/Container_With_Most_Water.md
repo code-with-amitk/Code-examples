@@ -8,6 +8,8 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 area of water (blue section) the container can contain is 49.
 ```
 
+# [Self Video](https://www.youtube.com/watch?v=mqbCl4kyDmQ&t=1s)
+
 ## Logic
 1. Find Area by multiplying length with min of height.
 2. if a[left] < a[right] move left to next element
