@@ -37,7 +37,7 @@ Answer = 4
   
   
 ## Code
-```
+```c++
   struct TreeNode {
       int val;
       TreeNode *left;
