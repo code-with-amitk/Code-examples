@@ -26,6 +26,11 @@ i               j
 
 ## Code
 ```c++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 vector<char> reverseWords( const vector<char>& v1 ) {
   std::vector<char> v = v1;
   std::reverse(v.begin(), v.end());
@@ -52,5 +57,14 @@ vector<char> reverseWords( const vector<char>& v1 ) {
       }
   }
   return v;
+}
+int main(){
+  vector<char> v  = { 'p', 'e', 'r', 'f', 'e', 'c', 't', ' ',
+                'm', 'a', 'k', 'e', 's', ' ',
+                'p', 'r', 'a', 'c', 't', 'i', 'c', 'e' };
+  //vector<char> v = {'a','m','i','t',' ','k','u','m','a','r'};
+  vector<char> a = reverseWords(v);
+  for(auto i:a)
+    cout<<i;
 }
 ```
