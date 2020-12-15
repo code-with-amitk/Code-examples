@@ -8,6 +8,8 @@ input:  arr = {'a','m','i','t',' ','k','u','m','a','r'};
 output: {'k','u','m','a','r',' ','a','m','i','t'};
 ```
 
+# [Self Video](https://youtu.be/-7xCcIaCtAw)
+
 ## Logic
 1. Reverse the complete string. Using reverse() function or stack
 ```c++
