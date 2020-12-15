@@ -1,3 +1,4 @@
-`_lc` means it is leet code question
-
-`dp` means Dynamic programming
+### Does any of these helpful?
+1. Sorting
+2. Hash Table
+3. 2 Pointer(from front, back)
