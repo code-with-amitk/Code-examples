@@ -1,31 +1,28 @@
-/*      Minimum_subseq_in_Non_inc_order.cpp     
-
-https://leetcode.com/contest/weekly-contest-183/problems/minimum-subsequence-in-non-increasing-order/
-
-Task: From array obtain a subsequence of the array whose sum of elements is strictly greater
-than the sum of the non included elements in such subsequence. 
-
+## [Minimum_subseq_in_Non_inc_order](https://leetcode.com/contest/weekly-contest-183/problems/minimum-subsequence-in-non-increasing-order/)
+- Find minimum subsequence from array, whose sum of elements is strictly greater than the sum of the non included elements in such subsequence. 
+- Examples
+```c++
 Example-1:
 Input: nums = [4,3,10,9,8]
 Output: [10,9]
-Explanation: The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater 
-than the sum of elements not included, however, the subsequence [10,9] has the maximum total sum of its elements.
+Explanation: The subsequences [10,9] and [10,8] are minimal such that the sum of their elements is strictly greater than the sum of elements not included, however, the subsequence [10,9] has the maximum total sum of its elements.
 
 Example-2:
 Input: nums = [4,4,7,6,7]
 Output: [7,7,6]
-Explanation: The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater 
-than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the 
+Explanation: The subsequence [7,7] has the sum of its elements equal to 14 which is not strictly greater than the sum of elements not included (14 = 4 + 4 + 6). Therefore, the subsequence [7,6,7] is the 
 minimal satisfying the conditions. Note the subsequence has to returned in non-decreasing order.
 
 Example-3:
 Input: nums = [6]
 Output: [6]
+```
 
-*************Logic*************
-Step-1: sort 10,9,8,4,3
-Step-2: find sum = 34           //O(n)
-Step-3:
+## Logic
+1. sort 10,9,8,4,3
+2. find sum = 34           //O(n)
+3. Find sum from start, sum from end. Break when sum-from-start >= sum-from-end
+```c++
  array  10 9 8 4 3
  index  0  1 2 3 4
 
@@ -35,8 +32,10 @@ Step-3:
  1    10+9=19             8+4+3   = 24 - 9  = 15
  2    10+9+8=27           4+3     = 15 - 8  = 7
  Break when sof>=soe. This will break at 19
-*******************************     
-*/
+```
+
+## Code
+```c++
 #include<iostream>
 #include <vector>
 #include <algorithm>
@@ -79,3 +78,4 @@ int main(){
                 cout<<i<<" ";
         }
 }
+```
