@@ -1,6 +1,5 @@
-### [Problem](https://leetcode.com/problems/battleships-in-a-board/)
-- Given a 2-D board filled with `X` and `.`
-- Continous `X` represents a battle ship, `.` represents a seperation
+### [Problem Leetcode](https://leetcode.com/problems/battleships-in-a-board/)
+- Given a 2-D board filled with `X` and `.` Continous `X` represents a battle ship, `.` represents a seperation
 - Battleships can only be placed horizontally or vertically ie they can only be made of 1XN size or Nx1 size.
 - At least one horizontal or vertical cell separates between two battleships - there are no adjacent battleships.
 - Task: Count number of battleships.
