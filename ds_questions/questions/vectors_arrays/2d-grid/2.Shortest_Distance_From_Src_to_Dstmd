@@ -1,6 +1,5 @@
-### Problem/Situation/Task
-- Given a maze, where 1 represents blocked and 0 represents allowed paths.
-- Find minimum distance needed to reach from S to D. Diagonal movement is not allowed
+### Problem
+- In matrix, 1 represents blocked and 0 represents allowed paths. Find minimum distance needed to reach from S to D. Diagonal movement is not allowed
 - Example:
 ```c++
         0 1 2 3 4 5 6
