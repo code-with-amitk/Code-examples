@@ -1,9 +1,6 @@
-[Problem](https://leetcode.com/problems/minimum-path-sum/)
+## [Problem Leetcode](https://leetcode.com/problems/minimum-path-sum/)
 
-Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the 
-sum of all numbers along its path.
-
-Note: You can only move either down or right at any point in time.
+- Given mxn matrix of non-negative numbers, find a path sum from top left to bottom right which is minimum. Only down,right movement allowed.
 
 ### Example
 ```
