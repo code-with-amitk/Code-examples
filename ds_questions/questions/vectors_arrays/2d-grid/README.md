@@ -1,27 +1,21 @@
-**1. Count Number of Battleships:** BS is represented by continous 'X'. BS always seperated by '.'.
-```c++
-2 battleships             Invalid Example
-X..X                      ...X
-...X                      XXXX
-...X                      ...X
-```
-**2. Shortest Distance from src to dst:** 1=block, 0=Allowed path
-```c++
-  ShortestDis=5
-  1 1 1 1 1 1 1
-  0 0 S 0 0 0 0
-  1 1 0 1 0 1 0
-  1 1 0 1 0 D 0
-  1 1 1 1 1 0 1
-```
-
-|Question|Example|
+### Matrix of 'X' and '.'
+|Question|Explained|
 |---|---|
-|1.Maze|```c++
-  ShortestDis=5
-  1 1 1 1 1 1 1
-  0 0 S 0 0 0 0
-  1 1 0 1 0 1 0
-  1 1 0 1 0 D 0
-  1 1 1 1 1 0 1
-```|
+|1. Count Number of Battleships (Matrix of `X`' & `.`)|Continious 'X' represents BS, '.' seperates BS|
+
+### Matrix of '0' and '1'
+|Question|Explained|
+|---|---|
+|2. Shortest Distance from src(x1,y1) to dst(x2,y2))|0=Allowed path,1=block|
+|3. Lonely 1|1 is called lonely if this is only 1 in entire col and row|
+|5. Count Number of Islands|Continious '1' represents island, '0' represents water|
+
+### Matrix of non-negative integers
+|Question|Explained|
+|---|---|
+|4. Minimum Path Sum from (0,0) to (m,n) (Matrix of ints)|Find a path sum from top left to bottom right which is minimum|
+
+### Empty Matrix
+|Question|Explain|
+|---|---|
+|6. All Possible Unique Paths from 00 to end|Number of paths from (0,0) to bottom right|
