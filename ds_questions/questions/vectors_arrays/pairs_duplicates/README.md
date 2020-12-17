@@ -1,10 +1,11 @@
-## unsorted array
+## Unsorted array
 |Question|Explain|
 |---|---|
 |1. Pairs_having_Specific_difference_k | Return all pairs from Array having difference k|
-| 3. Pairs_With_Sum=X | Find all pairs in array having sum = X|
+|3. Pairs_With_Sum=X | Find all pairs in array having sum = X|
 
 ## Sorted Array
 |Question|Explain|
 |---|---|
 |1. Merge_Overlapping_Intervals | |
+|4. Pairs_Divisible_by_X | Find all pairs in array whose sum is divisible by X|
