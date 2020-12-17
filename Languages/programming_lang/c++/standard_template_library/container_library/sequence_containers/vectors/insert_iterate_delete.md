@@ -13,7 +13,7 @@
   vector<int> v; 
   v.assign(3, 10);            //10 10 10  
 ```
-- **insert(position, value)**
+- **3. insert(position, value)**
 ```c++
   vector<int> v = { 10, 20, 30, 40 }; 
   auto it = v.insert(v.begin(), 3);     //3 10 20 30 40
