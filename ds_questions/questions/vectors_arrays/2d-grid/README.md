@@ -11,10 +11,15 @@
 |5. Count Number of Islands|Continious '1' represents island, '0' represents water|
 |7. All Possible Unique Paths from 00 to end having obstacles|Number of paths from (0,0) to bottom right|
 
-#### Matrix of non-negative integers
+#### Matrix of Non Negative integers
 |Question|Explained|
 |---|---|
 |4. Minimum Path Sum from (0,0) to (m,n) (Matrix of ints)|Find a path sum from top left to bottom right which is minimum|
+
+#### Matrix of Negative Integers
+|Question|Explained|
+|---|---|
+|8. Maximum +ve Product from (0,0) to end|Find max positive product when traversed from (0,0) to end|
 
 #### Empty Matrix
 |Question|Explain|
