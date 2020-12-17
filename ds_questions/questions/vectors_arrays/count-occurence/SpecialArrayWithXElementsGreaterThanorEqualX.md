@@ -1,20 +1,15 @@
-## [Problem](https://leetcode.com/contest/weekly-contest-209/problems/special-array-with-x-elements-greater-than-or-equal-x/)
-- You are given an array nums of non-negative integers. nums is considered special if there exists a number x such that there are exactly x numbers in nums that are greater than or equal to x.
+### [Special Array With X Elements Greater Than or Equal X leetcode](https://leetcode.com/contest/weekly-contest-209/problems/special-array-with-x-elements-greater-than-or-equal-x/)
+- Given array of +ve integers. if there exists a number x such that there are exactly x numbers in array that are greater than or equal to x.
 - Notice that x does not have to be an element in nums.
-- Return x if the array is special, otherwise, return -1. It can be proven that if nums is special, the value for x is unique.
-- Examples
+- Return x if the array is special, otherwise, return -1.
+- **Examples**
 ```c
-Example-1
 Input: nums = [3,5]
-Output: 2
-Explanation: There are 2 values (3 and 5) that are greater than or equal to 2.
+Output: 2       //There are 2 values (3 and 5) that are greater than or equal to 2.
 
-Example-2
 Input: nums = [0,4,3,0,4]
-Output: 3
-Explanation: There are 3 values that are greater than or equal to 3.
+Output: 3       //There are 3 values that are greater than or equal to 3.
 
-Example-3
 Input: nums = [3,6,7,7,0]
 Output: -1
 ```
@@ -22,7 +17,7 @@ Output: -1
 ## [Self Video Explaning solution](https://youtu.be/y6WBNHY24vY)
 
 ### Logic
-- Consider this array = [0,4,3,0,4]
+- Consider this array = `[0,4,3,0,4]`
 - Create unordered_map having count of elements in array
 ```c
     |key|value|
