@@ -1,18 +1,17 @@
+## Problem= sort_an_array_0_1_2
+- Sort the array containing 0,1,2. All 0s on left, 1s in middle, 2s right
+- Example
+```c
+ input = 0 2 1 2 0
+ output = 0 0 1 2 2       //After segragating the 0s, 1s and 2s, we have 0 0 1 2 2 which shown in the output.
+```
+
+### Code
+```c
 #include<iostream>
 #include<vector>
 using namespace std;
-/*
-Problem: Sort the array containing 0,1,2. Sort array in ascending order
-Input :
-        2
-        5
-        0 2 1 2 0
-        3
-        0 1 0
-Output:
-        0 0 1 2 2       //After segragating the 0s, 1s and 2s, we have 0 0 1 2 2 which shown in the output.
-        0 0 1
-*/
+
 int main(){
         int num_of_test_cases, elements_in_array, zeros=0, ones=0, twos=0, array_element;
         int i,j,k,l, temp=0;
@@ -50,3 +49,4 @@ int main(){
         }
         return 0;
 }
+```
