@@ -7,12 +7,18 @@
     cout<<i<<" ";           //10 10 10 10 10
   v.push_back(11);          //10 10 10 10 10 11
 ```
-
 - **2. void assign( size_type count, const T& value )**
   -  Replaces the contents with count copies of value value
 ```c++
   vector<int> v; 
   v.assign(3, 10);            //10 10 10  
+```
+- **insert(position, value)**
+```c++
+  vector<int> v = { 10, 20, 30, 40 }; 
+  auto it = v.insert(v.begin(), 3);     //3 10 20 30 40
+  int i = 2; 
+  it = vec.insert(v.begin() + i, 7);      //3 10 7 20 30 40
 ```
        
 ## B. Traverse/Iterate
