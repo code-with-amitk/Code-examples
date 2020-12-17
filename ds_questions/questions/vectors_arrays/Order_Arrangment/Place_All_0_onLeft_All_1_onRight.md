@@ -1,21 +1,23 @@
-/*	segregate_0_and_1.cpp
-Given an array of 0s and 1s in random order.
-Segregate 0s on left side and 1s on right side of the array. Traverse array only once.
-
+## Problem: Segregate 0 and 1
+- Given array of 0s, 1s. Place all 0s on left side and 1s on right side of the array. Traverse array only once.
+- Example
+```c
 Input array   =  [0, 1, 0, 1, 0, 0, 1, 1, 1, 0] 
 Output array =  [0, 0, 0, 0, 0, 1, 1, 1, 1, 1] 
+```
 
-*********LOGIC***************
+### LOGIC
 a. Take left, right pointer. leftPtr=0, rightPtr=end
 b. move left pointer to right until you find 1
 c. move right pointer to left until you find 0
 d. Swap elements at left and right pointer.
 
-COMPLEXITY:
-TIME: O(n)
-Space: O(1)
-*****************************
-*/
+### COMPLEXITY:
+- TIME: O(n)
+-Space: O(1)
+
+## Code
+```c++
 #include<iostream>
 using namespace std;
 
@@ -47,3 +49,4 @@ int main(){
 	int a[]={1, 0, 1, 0, 0, 1, 1, 1, 0};
 	fun(a,sizeof(a)/sizeof(int));
 }
+```
