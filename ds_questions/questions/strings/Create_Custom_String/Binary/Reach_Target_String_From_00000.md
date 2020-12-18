@@ -1,12 +1,14 @@
-## [Problem](https://leetcode.com/problems/bulb-switcher-iv/)
+### [Bulb Switcher 4](https://leetcode.com/problems/bulb-switcher-iv/)
+- 
 
-- Read Question completely on Leet-code only.
-## Logic
+### Logic
 - Traverse string
 - On 1st `1` encountered increment count by 1.
 - Then On every change of bit ie, (0 to 1) or (1 to 0)
   - increment the counter
-```
+  
+### Code  
+```c++
 class Solution {
 public:
     int minFlips(string s) {
