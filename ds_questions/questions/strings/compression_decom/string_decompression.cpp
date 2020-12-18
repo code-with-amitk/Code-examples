@@ -1,16 +1,18 @@
-/*      string_decompression.cpp
-
-Task: Given string 2[xyz]4[a]10[c].
+### Problem
+- Decompress the string
+```c++
+ input : 2[xyz]4[a]10[c].
  Output: xyzxyzaaaacccccccccc
 
-*************Logic*****************
-a. Store numbers before '[' in string. Convert string to integer using 'x = atoi(string.c_str())'
-b. Store string between '[' and ']' into string temp
-c. using for loop append temp into 'string final_s' x times.
+### Logic
+- a. Store numbers before '[' in string. Convert string to integer using 'x = atoi(string.c_str())'
+- b. Store string between '[' and ']' into string temp
+- c. using for loop append temp into 'string final_s' x times.
 
-Complexity: O(n)
-***********************************
-*/
+### Complexity : O(n)
+
+### Code
+```c
 #include<iostream>
 #include<string>
 #include <sstream>
@@ -62,3 +64,4 @@ int main(){
 Output:
 xyzxyzaaaacccccccccc
 */
+```
