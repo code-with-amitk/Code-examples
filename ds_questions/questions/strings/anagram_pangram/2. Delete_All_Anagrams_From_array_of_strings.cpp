@@ -1,24 +1,28 @@
-/*	find_unique_anagrams.cpp
+### Anagram? 
+- This is a word or phrase formed by rearranging the letters of a different word or phrase
+### Problem
+- From array of strings, delete all anagrams, only keep 1st occurence.
+```c
+Input = {"code", "doce", "test", "testing"}. 		//code, doce are anagrams
+Output = {"code", "test", "testing"}			//deleted subsequent anagrams
+```
 
-Anagram? This is a word or phrase formed by rearranging the letters of a different word or phrase
-
-Question:
-- Given vector<string> t = {"code", "doce", "test", "testing"}. 
-- You need to return a vector only having 1st occurence of anagram. Example "code" and "doce" are anagrams.
-- Return value should be {"code", "test", "testing"}
-
-Logic:
-- Traverse through elements in vector t
-	- sort the element
+### Logic:
+1. Sort strings
+```c
+  {"cdeo", "cdeo", "estt", "eginstt"}
+```
+2. Insert element into unordered_set (if does not exist)
 	- search sorted_element in unordered_set	//O(1)
 		if(element_not_found)	
 			insert_element
 			Note the index
 
-- Create a new vector from noted_indexes and return
-*/
+3. Create a new vector from noted_indexes and return
 
 
+### Code
+```c
 #include<iostream>
 #include<vector>
 #include<string>
@@ -62,8 +66,4 @@ int main(){
 	}
 	return 0;
 }
-/*
- * Output:
-# ./a.out 
-code test testing  
- */
+```
