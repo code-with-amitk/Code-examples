@@ -1,21 +1,18 @@
-/*      valid-parentheses.cpp
-
-Input string can contain any of these '(', ')', '{', '}', '[' and ']', 
-determine if the input string is valid.
-
-An input string is valid if:
-        - Open brackets must be closed by the same type of brackets.
-        - Open brackets must be closed in the correct order.
-
-Examples:
+### Problem
+- Input string can contain any of these '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+- An input string is valid if:
+  - Open brackets must be closed by the same type of brackets.
+  - Open brackets must be closed in the correct order.
+- Examples:
+```c
 1. Input: "()"          Output: true
 2. Input: "()[]{}"      Output: true
 3. Input: "(]"          Output: false
 4. Input: "([)]"        Output: false
 5. Input: "(((((((()"   Output: false
-
-
-***************Logic******************
+```
+### Logic
+```c
 a. if 1st character is ')',']','}' return false
 b. Take a stack.
     if '(' or '[' or '{' 
@@ -28,13 +25,13 @@ b. Take a stack.
             if top=='(' && present-element != ')' 
                 //same for all elements
                 return false
-                
-COMPLEXITY:
-TIME: O(n)
-SPACE: O(n)
-******************************************
-*/
+```                
+### COMPLEXITY:
+- TIME: O(n)
+- SPACE: O(n)
 
+### Code        
+```c
 #include<iostream>
 #include<string>
 #include<stack>
@@ -88,3 +85,4 @@ int main(){
         Solution a;
         cout<<a.isValid(s);
 }
+```
