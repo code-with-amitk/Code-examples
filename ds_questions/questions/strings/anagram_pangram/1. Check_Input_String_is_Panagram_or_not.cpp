@@ -1,28 +1,28 @@
-/*      check_pangram.cpp
-
-Pangram? Sentence(or string) is a pangram if it contains every letter in the English Alphabet.
-Example:
+### Check Whether Panagram
+- **Pangram?** Sentence(or string) containing every letter in the English Alphabet.
+- Example:
+```c
 1. "The quick brown fox jumps over the lazy dog" is a Pangram [as it contains all the characters from ‘a’ to ‘z’]
 2. "The quick brown fox jumps over the dog"      is not Pangram [as it does not contian ‘l’, ‘z’, ‘y’]
+```
+- Problem: Write a function taking string and returning 'true' if string is pangram else false.
 
-Problem: Write a function taking string and returning 'true' if string is pangram else false.
-
-*************Logic(using Hash-table)****************
-a. Take a unordered_set<char>
-b. Parse every character of string.
-        
-        - if character is not present in Hash-table
-        >>>>> skip SPACE and convert all chars to lower-character <<<<
-                - insert the character.
-
+### Logic(using Hash-table)
+- a. Take a unordered_set<char>
+- b. Parse every character of string.
+  - if character is not present in Hash-table
+    - insert the character.
+```c
         if(hash-table size==26)
                 return;
+```
 
-Time Complexity: O(n)
-Space Complexity: 26
-***************************************************             
-*/
+### Complexity
+- Time Complexity: O(n)
+- Space Complexity: 26
 
+### Code
+```c
 #include<iostream>
 #include<unordered_set>
 using namespace std;
@@ -61,3 +61,4 @@ int main(){
 /*Output:
 This is pangram
 */
+```
