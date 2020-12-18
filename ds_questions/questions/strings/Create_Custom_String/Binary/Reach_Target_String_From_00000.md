@@ -1,5 +1,16 @@
 ### [Bulb Switcher 4](https://leetcode.com/problems/bulb-switcher-iv/)
-- 
+- There are n bulbs(initially all off ie 0000). You need to reach target pattern by following rules:
+  - *1.* You can turn any bulb on, All bulbs after that will change their state. Those who are on(1) will get switched off(0) and viceversa.
+- Example
+```c
+Input: target = "10111"
+Output: 3
+Explanation: Initial configuration "00000".
+flip from the third bulb:  "00000" -> "00111"
+flip from the first bulb:  "00111" -> "11000"
+flip from the second bulb:  "11000" -> "10111"
+We need at least 3 flip operations to form target.
+```
 
 ### Logic
 - Traverse string
