@@ -1,28 +1,20 @@
-/* Minimum Remove to Make Valid Parentheses
-
-https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
-
-Remove unmatching Bracket.
-
-Example 1:
+### [Minimum Remove to Make Valid Parentheses](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/)
+- Remove unmatching Bracket.
+- Examples
+```
 Input: s = "lee(t(c)o)de)"
-Output: "lee(t(c)o)de"
-Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+Output: "lee(t(c)o)de"              //"lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
 
-Example 2:
 Input: s = "a)b(c)d"
 Output: "ab(c)d"
 
-Example 3:
 Input: s = "))(("
-Output: ""
-Explanation: An empty string is also valid.
+Output: ""                      //An empty string is also valid.
 
-Example 4:
 Input: s = "(a(b(c)d)"
 Output: "a(b(c)d)"
 
-****************Logic*****************
+### Logic    
 1. Construct a stack
     - if '('    
         - Push index of '(' on stack
@@ -38,19 +30,18 @@ Output: "a(b(c)d)"
 4. Iterate through input string
         if (element != '$')
                 insert element into new string
-*****************************************
 
-COMPLEXITY:
-Time:   3O(n)
-  O(n): Creating stack
-  O(n): Traversing stack & placing '$'
-  O(n): Traversing string and creating new string
-Space:  O(n)
-  O(n): Stack   //worst case. (((((((
-  O(0): new string      //For worst case this size=0
-***************************************
-*/
+### COMPLEXITY:
+- Time:   3O(n)
+  - O(n): Creating stack
+  - O(n): Traversing stack & placing '$'
+  - O(n): Traversing string and creating new string
+- Space:  O(n)
+  - O(n): Stack   //worst case. (((((((
+  - O(0): new string      //For worst case this size=0
 
+### Code
+```c
 #include<iostream>
 #include<stack>
 using namespace std;
@@ -97,3 +88,4 @@ int main(){
         Solution s;
         cout<<s.minRemoveToMakeValid(str);
 }
+```
