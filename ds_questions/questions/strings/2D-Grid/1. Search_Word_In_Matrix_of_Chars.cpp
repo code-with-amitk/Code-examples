@@ -1,23 +1,20 @@
-/*      word-search.cpp
- https://leetcode.com/problems/word-search/
-
-Q: Given a 2D board and a word, find if the word exists in the grid.
-- The word can be constructed from letters of sequentially adjacent cell,
-where "adjacent" cells are those horizontally or vertically neighboring.
+### [Word Search](https://leetcode.com/problems/word-search/)
+- Given 2D board and a word, find if the word exists in the grid traversing horizontally & vertically
 - The same letter cell may not be used more than once.
+- Example
+```c++
+Input 
+str = {
+ {'A','B','C','E'},
+ {'S','F','C','S'},
+ {'A','D','E','E'}  };
+- word = "ABCCED", O/P true.
+- word = "SEE", O/P true.
+- word = "ABCB", O/P false.
+```
 
-board =
-[
-  ['A','B','C','E'],
-  ['S','F','C','S'],
-  ['A','D','E','E']
-]
-
-- word = "ABCCED", return true.
-- word = "SEE", return true.
-- word = "ABCB", return false.
-
-*****************Logic**********************
+### Logic
+```c++
 - Start from board[0][0]
 - if(board[i][j] == word[0])
         -> Compare neighbours (left,right,top,bottom)
@@ -26,8 +23,9 @@ board =
                 - OR word ends
         -> if alphabets keep matching replace with '#'
            so that it should not be retravelled.
-********************************************
- */
+```
+ ### Code
+ ```c++
 #include<iostream>
 #include<string>
 #include<vector>
@@ -106,3 +104,4 @@ int main()
         cout<<s.exist(v, "see");        //1
         cout<<s.exist(v, "aab");
 }
+```
