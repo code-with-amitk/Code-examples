@@ -1,14 +1,11 @@
-/*	no_of_steps_to_reduce_no_to_1.cpp
-
-https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one
-
-Task: Number "s" is given in binary representation. Return the number of steps to reduce it to 1 under the following rules:
+### [Problem](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one)
+- Number "s" is given in binary representation. Return the number of steps to reduce it to 1 under the following rules:
  - If the current number is even, you have to divide it by 2.
  - If the current number is odd, you have to add 1 to it.
-
-Example-1:
-  Input: s = "1101"
-  Output: 6
+- Example	 
+```c++
+Input: s = "1101"
+Output: 6
 Goal: make the string s=="1".
 
 Perform operation on last bit.
@@ -17,8 +14,10 @@ if last-bit=1. Indicates no is odd. Add 1.
 	{1+1 = 0(at position),1(carry)}. Assign 0 to last bit and search for 0 before last bit. 
 	If 0 is found, change that to 1 and all the characters after that 1 change to 0.
 	If 0 is not found, insert 1 at beginning of the string and all other elements will be changed to 0.
+```
 
-****************Logic********************
+### Logic
+```c++
 Number	Last Bit	Operation	Logic
 Even	0		Divide by 2	remove last bit
 Odd 	1		Add 1		1+1= 0(at position),1(carry)
@@ -26,8 +25,10 @@ Odd 	1		Add 1		1+1= 0(at position),1(carry)
 Example:
 Even: Divide by 2=remove last 0	   a. 1000/2 = 8/2 = 4(100)  b.1110/2 = 14/2 = 7(111)
 Odd: Add 1.	a. 111 + 1 = 7+1 = (8)1000	b. 1101 + 1 = 13+1 = (14)1110
+```
 
-/////////////////Code Logic////////////////////////
+### Code Logic
+```c++
 Even Number: remove last 0
 Odd Number:
 Start from End
@@ -39,8 +40,7 @@ Step-3:if 0 found in Step-2.
 Step-4:if 0 not found in Step-2
 	4a. add 1 at beginning of number
 	4b. Change all bits after this to 0
-//////////////////////////////////////////////////
-		
+	
 Example: number=1110
 Step	 Last-bit 	resulting-no
 1	    0		 111
@@ -51,9 +51,10 @@ Step	 Last-bit 	resulting-no
 3	    0		 100
 4	    0		 10
 5	    0		 1
-*****************************************
-*/
+```
 
+### Code
+```c++
 #include<iostream>
 #include<string>
 #include<cmath>
@@ -107,7 +108,6 @@ public:
 int main(){
 	Solution obj;
 //	string str = "1101";
-//	string str = "1000101011101101001100011010111111011111010110100001101110110100000011100100010010101110101010010110000111001011000011000000011010101011100111001001110010000011101";
 //	string str = "10";
 	string str = "1";
 	auto startTime = high_resolution_clock::now();
@@ -116,3 +116,4 @@ int main(){
 	auto diff = duration_cast<microseconds>(stopTime - startTime);
 	cout<<"Time taken = "<<diff.count()<<" millisec"<<endl;
 }
+```
