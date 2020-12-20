@@ -107,5 +107,8 @@ void drawHTree(int x, int y, int length, int depth){
 }
 ```
 ## Complexity
-- **Time** O(4<sup>Depth</sup>). 
+- **Time** O(4<sup>Depth</sup>)
+  - 1 recursion: 1<sup>Depth</sup>
+  - 2 recursion: 2<sup>Depth</sup>
+  - 3 recursion: 3<sup>Depth</sup>
 - **Space** O(depth). Function stacks created = Recursive function calls.
