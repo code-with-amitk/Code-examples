@@ -104,6 +104,7 @@ void drawHTree(int x, int y, int length, int depth){
   drawHTree (x0, y1, newLength, depth-1); //upper left HTree  
   drawHTree (x1, y0, newLength, depth-1); //low right HTree
   drawHTree (x1, y1, newLength, depth-1); //upper right HTree  
+}
 ```
 ## Complexity
 - **Time** O(4<sup>Depth</sup>). 
