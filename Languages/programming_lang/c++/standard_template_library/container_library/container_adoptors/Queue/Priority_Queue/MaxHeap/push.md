@@ -1,7 +1,7 @@
-## A. Push
+### A. Push/insert
 ```c++
-#include<queue>
-priority_queue<pair<int, char>> pq;
-pq.push(1,a);
-pq.push(2,b);
+  #include<queue>
+
+  std::priority_queue<std::pair<double, std::string>> maxHeap;
+  maxHeap.push(make_pair(dSpeed, strName));
 ```
