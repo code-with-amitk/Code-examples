@@ -1,9 +1,6 @@
-/*
-        trie_storage_retrieval.cpp
-
-Trie(Prefix tree/Digital search tree/Retrieval tree):  
-Data structure used for efficient storage/retrieval/deletion of strings.
-
+# Trie(Prefix tree/Digital search tree/Retrieval tree)
+- Data structure used for efficient storage/retrieval/deletion of strings.
+```c++
 Example of Storing strings:  ten,test
                                                 root    //Always empty
                                                    |
@@ -14,16 +11,20 @@ Example of Storing strings:  ten,test
                                                 n  s
                                                    |
                                                    t
-
-********1. [using Hash-table(unordered_map)]**********
+```
+# Implementations
+## 1. APPROACH-1(Using Hash-table/unordered_map)
+### Data structure
+```c++
 struct Trie{ 
     unordered_map<char, Trie*> map;
     bool isEndOfWord; 
 };
-
-Logic for storage of 'ant':
+```
+### Logic for storage of 'ant'
 - Allocate trie node.
 - At every alphabet to be stored:
+```c++
         - Check alphabet is present in hash-table
                 if(alphabet present) Go to child node
                 if(alphabet not present) allocate child
@@ -42,32 +43,18 @@ Storage of 'ant','ans':
 
         |<>|<>|isEndofWord=1|           |<>|<>|isEndofWord=1|
         0x6                             0x7
-
-Time Complexity: O(m).  //m is number of characters in word to be stored.
-Space Complexity: O(m+n) //n is number of words
-*************************************************************
-
-
-*******2. (using pointer array)***********
-Logic for storage of 'ant':
-- Allocate trie node, which contains 26 pointers and bool.
-- Caculate ascii value difference of character to be stored. eg: n-'a'=13
-- Allocate a new trie node and place address on 13th index.
-
-struct TrieNode{
-    struct TrieNode *children[ALPHABET_SIZE];           //ALPHABET_SIZE = 26;
-    bool isEndOfWord;
-};      //26 pointers present on every trie node.
-*************************************************
-
+```
+### Complexity
+  - Time Complexity: O(m).  //m is number of characters in word to be stored.
+  - Space Complexity: O(m+n) //n is number of words
+### Code
+```c++
 #include<iostream>
 #include<cstring>
 #include<unordered_map>
 using namespace std;
 
-
-//****************1. (using unordered_map)**********************//  
-struct Trie{
+  struct Trie{
     unordered_map<char, Trie*> map;
     bool isEndOfWord;
 };
@@ -110,11 +97,23 @@ bool search(Trie *root, const char key[]){
         }
 
         return (p->isEndOfWord);
-}
-//*******************************************************//
+}        
+```
 
 
-/**********2. (using pointer array) DONOT USE THIS KEPT JUST FOR REF***********
+## 2. Approach-2(using pointer array)
+- **Logic for storage of 'ant':**
+- Allocate trie node, which contains 26 pointers and bool.
+- Caculate ascii value difference of character to be stored. eg: n-'a'=13
+- Allocate a new trie node and place address on 13th index.
+```c++
+struct TrieNode{
+    struct TrieNode *children[ALPHABET_SIZE];           //ALPHABET_SIZE = 26;
+    bool isEndOfWord;
+};      //26 pointers present on every trie node.
+```
+### Code
+```c++
 #ifdef APPROACH_1
 const int ALPHABET_SIZE = 26; 
   
@@ -178,7 +177,6 @@ bool search(TRIE *root, const char key[])
     return true;
 } 
 #endif
-***********************************************************/
 int main(){
 
         bool result = false;
@@ -204,3 +202,4 @@ int main(){
 ank Not Found
 ant found
 */
+```
