@@ -1,16 +1,14 @@
-## Priority Queue/HEAP/Binary heap
+# Priority Queue/HEAP/Binary heap
 - **What**
-  - Each element is given a priority. 
-  - Higher priority element is processed before any lower priority element. 
-  - Any two elements having same priority will be accessed according to the order in which they are added in the queue.
+  - Each element is given a priority. Higher priority element is processed before any lower priority element. 
 - **Internal Implementation**
-  - This is balanced complete Binary tree. Duplicates are allowed. 
+  - Using balanced complete Binary tree. Duplicates are allowed. 
   - This is suited to be stored in array ie Heap can be implemented using arrays. If you use arrays to implement Heaps then you don't need to store pointer as done in trees and its space advantage
   
-### A. Types of Heap
-#### 1. Max Heap `(priority_queue<int>)`
+## Types of Heap
+### A. Max Heap `(priority_queue<int>)`
 - **What** Root is always greatest. Condition: parent >= child
-- **Building Max Heap from Array**
+- **1. Max Heap(key only)**
   - Traverse array and create Level-Order tree. 
   - Heapify only non-leaf nodes. Indexes of non-leaf nodes = (N/2 - 1)
     - Heapfiy a node means, exchange node with either left or right child who is greatest.
@@ -20,10 +18,36 @@
 ```
 ![ImgURL](https://i.ibb.co/vxFKzqD/max-heap.png)
 
-#### 2. Min Heap `(priority_queue <int, vector<int>, greater<int>>)`
+- **2. Max Heap of pairs<key, value>**
+  - **Unequal Keys** Elements are sorted as per key values.
+```c++
+      <5,a>
+      /   \
+    <4,b> <3,c>      
+```
+  - **Equal Keys** Elements are sorted as per values.
+  ```c++
+create:    <2,gggg> <2,bb> <2,c> <2,aaaa>
+    
+          <2,gggg>
+          /       \
+       <2,bb>     <2,c>
+       /
+    <2,a>   
+
+Insert:   <2,z>
+
+          <2,gggg>                          <2,gggg>                                   <2,z>
+          /       \                         /       \                                 /     \
+       <2,bb>     <2,c>   --Heapify z--   <2,z>     <2,c>     --Heapify gggg-->   <2,gggg>  <2,c>
+       /    \                             /   \                                   /     \
+    <2,a>   <2,z>                       <2,a> <2,bb>                            <2,a>   <2,bb>
+```
+
+### B. Min Heap `(priority_queue <int, vector<int>, greater<int>>)`
 - Root is always least. Condition: parent =< child. Heapify only non-leaf nodes.
   
-### B. Operations & Complexities
+## Operations & Complexities
 
 | |Heap|Array|Balanced BT|
 |---|---|---|---|
