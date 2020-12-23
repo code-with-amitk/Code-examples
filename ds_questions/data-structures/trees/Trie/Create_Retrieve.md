@@ -50,56 +50,73 @@ Storage of 'ant','ans':
 ### Code
 ```c++
 #include<iostream>
-#include<cstring>
+#include<string>
 #include<unordered_map>
-using namespace std;
 
-  struct Trie{
-    unordered_map<char, Trie*> map;
-    bool isEndOfWord;
+struct Node{
+  std::unordered_map<char, Node*> map;
+  bool bEndOfWord;
 };
 
-Trie* getNode(){
-        Trie *p = new Trie;
-        p->isEndOfWord = false;
-        return p;
+Node* GetNode() {
+  Node* pNode = new Node;
+  pNode->bEndOfWord = false;
+  return pNode;
 };
 
-void insert(Trie *root, const char key[]){
-        if(root == nullptr) return;
+void InsertWord(Node* pRoot, std::string strWord) {
+  if(not pRoot)
+    return;
 
-        int ascii=0;
-        Trie *p = root;
+  for(const auto& i : strWord) {
 
-        for(int i=0;i<strlen(key);i++){
+    //if character is not Found in map, Create a new node
+    if(pRoot->map.find(i) == pRoot->map.end())
+      pRoot->map[i] = GetNode();
 
-                if(p->map.find(key[i]) == p->map.end()){
-
-                        std::pair<char,Trie*>test ((char)key[i],getNode());
-                        p->map.insert(test);
-
-                }
-
-                p = p->map.at(key[i]);          //m={"first",1}. m.at("first")=1
-        }
-        p->isEndOfWord = true;
+    pRoot = pRoot->map[i];    //Move to newly created Node
+  }
+  pRoot->bEndOfWord = true;
 }
+bool SearchWord(Node* pRoot, std::string strWord) {
 
-bool search(Trie *root, const char key[]){
-        Trie *p = root;
+  for(const auto& i : strWord) {
+    if(pRoot->map.find(i) == pRoot->map.end())    //Character not in map
+      return false;
 
-        for(int i=0;i<strlen(key);i++){
-                if(p->map.find(key[i]) == p->map.end())
-                        return false;
+    //Key is found. Move to next char   map[key]=value is address of NextNode
+    pRoot = pRoot->map[i];
+  }
 
-                //Key is found. Move to next char
-                p = p->map.at(key[i]);
-        }
+  return (pRoot->bEndOfWord);
+}
+int main(){
+  Node* pRoot = GetNode();
+  InsertWord(pRoot, "can");
+  InsertWord(pRoot, "cat");
 
-        return (p->isEndOfWord);
-}        
+  if (SearchWord(pRoot, "can"))
+    std::cout << "can Found\n";
+  else
+    std::cout << "can Not Found\n";
+
+  if (SearchWord(pRoot, "cat"))
+    std::cout << "cat found\n";
+  else
+    std::cout << "cat Not found\n";
+
+  if (SearchWord(pRoot, "hello"))
+    std::cout << "hello found\n";
+  else
+    std::cout << "hello Not found\n";
+
+  return 0;
+}
+$ ./a.out
+can Found
+cat found
+hello Not found
 ```
-
 
 ## 2. Approach-2(using pointer array)
 - **Logic for storage of 'ant':**
