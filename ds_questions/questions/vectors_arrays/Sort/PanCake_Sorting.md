@@ -42,7 +42,7 @@ output: [1, 2, 3, 4, 5]
 using vi = std::vector<int>;
 
 vi& flip(vi& arr, int k){
-  std::reverse(arr.begin(),arr.begin()+k+1);
+  std::reverse(arr.begin(),arr.begin()+k+1);    //reverse[first,last).  Reverses from first to last(excluding last)
   return arr;
 }
 
@@ -51,7 +51,7 @@ vi pancakeSort( const vi& arr ) {
   int i = v.size();
 
   while (i >= 0){
-    int maxIndex = std::max_element(v.begin(), v.begin()+i) - v.begin();
+    int maxIndex = std::max_element(v.begin(), v.begin()+i) - v.begin();  //Find index of Max element in array
     flip(v, maxIndex);
     flip(v, i-1);
     --i;
