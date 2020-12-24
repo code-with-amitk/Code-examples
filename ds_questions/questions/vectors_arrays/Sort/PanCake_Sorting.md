@@ -1,21 +1,24 @@
 ## [Pan cake sorting](https://www.pramp.com/challenge/3QnxW6xoPLTNl5jX5LM1)
 - **What is Pancake sorting?** This sorting works on only 1 function ie flip or reverse(arr, position). ie reverse the array from begin to position.
-- **How pancake sorting works?** arr = [1, 5, 4, 3, 2]
-  - *1.* Find larget number in array and reverse from index=0, to index_Of_LargestElement
+- **How pancake sorting works?**
 ```c++
+arr = [1, 5, 4, 3, 2]
+
+1.  Find larget number in array and reverse from index=0, to index_Of_LargestElement
+
   index_Of_LargestElement = 1
   v = flip (arr, index_Of_LargestElement)
   v = [5, 1, 4, 3, 2]
-```
-  - *2.* Reverse array from index=0 to end. Now largest element gets at end, fix this position.
-```c++
+
+2.  Reverse array from index=0 to end. Now largest element gets at end, fix this position.
+
   v = flip(arr, 4)
   v = [2, 3, 4, 1, 5]
                    /\
                    Fixed
-```
- - *3.* Repeat steps 1 and 2 for sub array `[0, 3]`
-```c++
+
+3. Repeat steps 1 and 2 for sub array `[0, 3]`
+
   index_Of_LargestElement in [2, 3, 4, 1] = 2    //Since 5 is fixed
   v = flip (arr, index_Of_LargestElement=2)
     //v = [4, 3, 2, 1, 5]
@@ -33,7 +36,15 @@ input:  arr = [1, 5, 4, 3, 2]
 output: [1, 2, 3, 4, 5]
 ```
 
-## Code
+### Complexity
+- **Space** O(n) taking extra vector of size=input
+- **Time** O(n) * 3O(n) = 3O(n<sup>2</sup>)
+  - All inside while = O(n)
+  - Finding max = O(n)
+  - 1st Flip = O(n)
+  - 2nd Flip = O(n)
+
+### Code
 ```c++
 #include <iostream>
 #include <vector>
