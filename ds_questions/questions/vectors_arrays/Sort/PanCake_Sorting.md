@@ -30,6 +30,8 @@ arr = [1, 5, 4, 3, 2]
 -> Now 2 elements are fixed repeat this process for rest of elements.                  
 ```
 
+## [if want to understand quickly. Self youtube video](https://youtu.be/dFlxjNEVAs0)
+
 ### Input, Output
 ```c++
 input:  arr = [1, 5, 4, 3, 2]
