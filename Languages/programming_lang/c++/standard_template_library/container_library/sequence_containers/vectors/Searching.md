@@ -8,7 +8,7 @@ cout << "Index of max element=" << max_element(a.begin(), a.end()) - a.begin(); 
 ```
 
 ### Minimum Element
-```
+```c++
 vector<int> a = {1,4,5,0,6,7,2,3};
 
 cout << *min_element(a.begin(), a.end());           //0
