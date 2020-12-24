@@ -1,11 +1,17 @@
-## Finding Maximum element from vector
-```
-vector<int> a = {0,1,2,3,4,5,6,7};
-int test = *max_element(a.begin(), a.end());  //7
+### Maximum Element
+```c++
+vector<int> a = {0,1,4,5,6,7,2,3};
+
+cout << *max_element(a.begin(), a.end());         //7
+
+cout << "Index of max element=" << max_element(a.begin(), a.end()) - a.begin();    //5
 ```
 
-## Finding Minimun element from vector
+## Minimum Element
 ```
-vector<int> a = {0,1,2,3,4,5,6,7};
-int test = *min_element(a.begin(), a.end());  //0
+vector<int> a = {1,4,5,0,6,7,2,3};
+
+cout << *min_element(a.begin(), a.end());           //0
+
+cout << "Index of max element=" << min_element(a.begin(), a.end()) - a.begin();    //3
 ```
