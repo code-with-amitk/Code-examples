@@ -27,10 +27,7 @@ cout << '\n';
 
 ### 4. COPY
 - Create a new vector that is a copy of the given vector.
-```c++                                         
-Until C++11: vector( const vector& other );
-Since C++11: vector( const vector& other, const Allocator& alloc );
-
+```c++                                        
 vector<int> d (c);
 for (it = d.begin(); it != d.end(); it++)
  cout << "  " << *it;            //10 10 10 10 10
@@ -40,9 +37,6 @@ cout << '\n';
 ### 5. FIXED SIZED
 - Construct container contaning n element init to 0. No copies are made.
 ```c++                       
-Until C++14: explicit vector( size_type n );
-Since C++14: explicit vector( size_type n, const Allocator& alloc = Allocator() );
-
 vector<int> e(4);
 for (it = e.begin(); it != e.end(); it++)
  cout << "  " << *it;            //0 0 0 0 
@@ -51,10 +45,7 @@ cout << '\n';
 
 ### 6. MOVE
 - Construct the vector from 'orig' using move semantics. After the move, other is guaranteed to be empty()
-```
-Until C++17: vector( vector&& orig )
-Since C++17: vector( vector&& orig ) noexcept;
-
+```c++
 vector<int> f (5 , 10);
 vector<int> g(move(f));
 for (it = f.begin(); it != f.end(); it++)
