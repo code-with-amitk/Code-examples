@@ -1,5 +1,5 @@
 ### [Special Array With X Elements Greater Than or Equal X leetcode](https://leetcode.com/contest/weekly-contest-209/problems/special-array-with-x-elements-greater-than-or-equal-x/)
-- Given array of +ve integers. if there exists a number x such that there are exactly x numbers in array that are greater than or equal to x.
+- Given array of +ve integers. Find if there exists a number x such that there are exactly x numbers in array that are greater than or equal to x.
 - Notice that x does not have to be an element in nums.
 - Return x if the array is special, otherwise, return -1.
 - **Examples**
