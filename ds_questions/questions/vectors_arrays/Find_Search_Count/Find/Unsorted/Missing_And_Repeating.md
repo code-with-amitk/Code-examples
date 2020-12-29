@@ -18,7 +18,7 @@ Ex-2:
 ### Approach-2 (Hash Map)
 - But since question says not to use any other data structure, we cannot use
 
-### Approach-3 //A<sup>2 - B<sup>2 = (A+B)(A-B)
+### Approach-3 //A<sup>2</sup> - B<sup>2</sup> = (A+B)(A-B)
 > Input = {8,9,7,3,6,1,4,5,6}.  Repeated=A=6.    Missing=B=2
 - *1.* A - B = CurrentSum - ActualSum
 ```c
