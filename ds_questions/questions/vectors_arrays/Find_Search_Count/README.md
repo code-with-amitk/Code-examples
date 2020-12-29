@@ -1,4 +1,0 @@
-### Unsorted Array
-|Question|Explain|
-|---|---|
-
