@@ -99,3 +99,59 @@ public:
 };
 ```
   
+### Approach-2  //1 pass Binary Search
+- *1.* Left subarray is sorted. `v[mid] >= v[start]`
+  - *1a.* Element lies in left subarray
+```c  
+if (v[mid] >= ele and ele >= v[start])
+  - Search in left subarray
+else
+  - Search in right array
+```  
+  - *1b.* Element lies in right sub array 
+```c  
+if (ele >= v[mid] and ele <= v[end])
+  - Search in right subarray
+else
+  - Search in left array
+```  
+- **Complexity**
+  - **Time:** O(nlogn)
+  - **Space:** O(1)
+
+### Code-2
+```c++
+#include<iostream>
+#include<vector>
+using vec = std::vector<int>;
+
+int BinarySearch (vec& v, int start, int end, int ele){
+  int mid = (start+end)/2;
+
+  if (start > end)
+    return -1;
+
+  if (v[mid] == ele)
+    return mid;
+
+  if(v[mid] >= v[start]){                     //1
+
+    if (ele >= v[start] and ele <= v[mid])    //1a
+       mid = BinarySearch(v,start,mid-1,ele);
+
+    return BinarySearch(v,mid+1,end,ele);
+  }
+
+  if (ele >= v[mid] and ele <= v[end])          //1b
+    return BinarySearch(v, mid+1, end, ele);
+
+  return BinarySearch(v, start, end-1, ele);
+}
+
+int search(vec& v, int target){
+  int end = v.size() - 1;
+  int start = 0, mid = -1;
+
+  return BinarySearch(v, start, end, target);
+}
+```
