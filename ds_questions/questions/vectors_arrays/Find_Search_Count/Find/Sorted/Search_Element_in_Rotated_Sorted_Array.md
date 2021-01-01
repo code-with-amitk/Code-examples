@@ -137,7 +137,7 @@ int BinarySearch (vec& v, int start, int end, int ele){
   if(v[mid] >= v[start]){                     //1
 
     if (ele >= v[start] and ele <= v[mid])    //1a
-       mid = BinarySearch(v,start,mid-1,ele);
+       return BinarySearch(v,start,mid-1,ele);
 
     return BinarySearch(v,mid+1,end,ele);
   }
@@ -145,7 +145,7 @@ int BinarySearch (vec& v, int start, int end, int ele){
   if (ele >= v[mid] and ele <= v[end])          //1b
     return BinarySearch(v, mid+1, end, ele);
 
-  return BinarySearch(v, start, end-1, ele);
+  return BinarySearch(v, start, mid-1, ele);
 }
 
 int search(vec& v, int target){
