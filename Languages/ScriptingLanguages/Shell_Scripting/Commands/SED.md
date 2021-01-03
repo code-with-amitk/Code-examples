@@ -1,7 +1,6 @@
 ## SED(STREAM EDITOR) Command
 - **What** For performing file operations(Search Text, Find and replace, Insert, delete) without opening files.
 
-## Examples
 ```c++
 # cat test.txt
 unix is great os. linux is opensource. linux is free os.
@@ -16,7 +15,7 @@ $ sed 's/unix/linux/2' test.txt       //Replace 2nd occurence of unix with linux
 $ sed '3 s/unix/linux/' test.txt      //Replace occurence only on 3rd line
 $ sed '1,3 s/unix/linux/' test.txt    //Replace occurence only on 1st,3rd line
 ```
-### Deleting
+### Deleting commands
 ```c
 $ sed 'nd' test.txt                   //Delete nth line from file
 $ sed '$d' test.txt                   //Delete last line from file
