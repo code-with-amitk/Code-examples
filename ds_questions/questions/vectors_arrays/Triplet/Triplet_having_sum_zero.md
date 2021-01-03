@@ -73,7 +73,7 @@ Move a to next element [++a]
 ```
 
 ### Complexity-Code-2
-- **Time:** O(nlogn) + O(<sup>2</sup>)    //Sort + Two-while
+- **Time:** O(nlogn) + O(n<sup>2</sup>)    //Sort + Two-while
 - **Space:** 3k + Function Stack
   - k triplets exist. 3k
 
