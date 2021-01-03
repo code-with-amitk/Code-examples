@@ -9,14 +9,15 @@ learn operating system.
 unix linux which one you choose.
 unix is easy to learn.linux is a multiuser os.Learn linux .linux is a powerful.
 ```
-### Replacing
+### Replacing commands
 ```c
 $ sed 's/unix/linux/g' test.txt       //Replace all occurence of unix with linux
 $ sed 's/unix/linux/2' test.txt       //Replace 2nd occurence of unix with linux
 $ sed '3 s/unix/linux/' test.txt      //Replace occurence only on 3rd line
 $ sed '1,3 s/unix/linux/' test.txt    //Replace occurence only on 1st,3rd line
-
+```
 ### Deleting
+```c
 $ sed 'nd' test.txt                   //Delete nth line from file
 $ sed '$d' test.txt                   //Delete last line from file
 $ sed '/pattern/d' test.txt           //Delete pattern matching line
