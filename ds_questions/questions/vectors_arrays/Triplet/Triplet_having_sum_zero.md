@@ -79,6 +79,13 @@ Move a to next element [++a]
 
 ### Code-2
 ```c++
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using vec =std::vector<int>;
+using vec2d =std::vector<vec>;
+
 std::vector<vec> threeSum(vec& nums) {
   vec2d out;
 
