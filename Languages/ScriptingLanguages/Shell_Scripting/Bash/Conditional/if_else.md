@@ -2,20 +2,23 @@
 ```bash
 #!/usr/bin/env bash
 
-COLOR=$1                                //Variables are taken as caps
+COLOR=$1                                //1st Command Line parameter. Note there should be no gap between words and `=`
 
 if [ $COLOR = "blue" ]
 then
   echo "sky is blue"
 fi
 
-TEMPRATURE=$2
+TEMPRATURE=$2                       //2nd Commandline parameter.
 MAX=50
 
 if [ $TEMPRATURE -lt $MAX ]         //-lt:less than, -nt:Not equal, -gt:Greater than, -ge:Greater than or equal to
 then
   echo "it's cold"
-else
+elif [ $TEMPRATURE -gt $MAX ]       //ELSE IF
+then
+  echo "it's too cold"  
+else                                //ELSE
   echo "it's hot"
 fi 
 
