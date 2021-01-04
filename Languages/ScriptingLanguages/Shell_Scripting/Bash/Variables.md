@@ -1,6 +1,6 @@
 ## Creating/Using Variable
 - **1. Printing variable values on screen**
-```c
+```bash
 # vim hello.sh
 #!/usr/bin/env bash
 FIRST_NAME=Amit
