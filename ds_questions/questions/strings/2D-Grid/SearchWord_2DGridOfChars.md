@@ -1,6 +1,6 @@
 ### [Word Search](https://leetcode.com/problems/word-search/)
 - Given 2D board and a word, find if the word exists in the grid traversing horizontally & vertically
-- The same letter cell may not be used more than once.
+- The same letter cell cann not be used more than once.
 - Example: 
 ![ImgURL](https://assets.leetcode.com/uploads/2020/11/04/word2.jpg)
 word = "ABCCED", Output: true
