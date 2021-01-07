@@ -11,6 +11,14 @@ on 2
 ```
 
 ### Approach-1  //Hash Table. unordered_map<String, int>
+- **Logic:**
+  - *1.* Open file, read each word, fill in map<Word, count>
+  - *2.* Once file reading completes, 
+    - search map with highest value, Print Delete. Repeat 3 times.
+- **Complexity:** O(m). m:words in file
+  - Reading file,storage in hash-table:O(m)
+  - Finding top 3 words. O(1)
+- **Code:**  
 ```c++
 #include<fstream>
 #include<iostream>
@@ -69,4 +77,7 @@ character 3
 on 2
 ```
 
-### Approach-2  //Priority Queue
+### Approach-2  //Priority Queue MapHeap
+- **Logic:**
+  - Read paragraph. Push in MaxHeap<key=count, Value=Word>
+  - After reading is completed pop 3 entries.
