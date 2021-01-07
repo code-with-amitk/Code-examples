@@ -1,17 +1,9 @@
 ### [Word Search](https://leetcode.com/problems/word-search/)
 - Given 2D board and a word, find if the word exists in the grid traversing horizontally & vertically
 - The same letter cell may not be used more than once.
-- Example
-```c++
-Input 
-str = {
- {'A','B','C','E'},
- {'S','F','C','S'},
- {'A','D','E','E'}  };
-- word = "ABCCED", O/P true.
-- word = "SEE", O/P true.
-- word = "ABCB", O/P false.
-```
+- Example: 
+![ImgURL](https://assets.leetcode.com/uploads/2020/11/04/word2.jpg)
+word = "ABCCED", Output: true
 
 ### Logic
 ```c++
