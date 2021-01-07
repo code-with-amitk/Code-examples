@@ -1,10 +1,8 @@
 ## Copy Constructor
-- member function of class for creating a new object as a copy of an existing object.
-- same named function of class A.
-- Achieved using const L-value reference.
+- **What** Same named member function of class for creating a new object as a copy of an existing object. Achieved using const L-value reference.
 - **PARAMETERS**
-	- 1st parameter is A&, const A&, volatile A&, or const volatile A&
-	- Either there are no other parameters, or the rest of the parameters all have default values.
+  - 1st parameter is A&, const A&, volatile A&, or const volatile A&
+  - Either there are no other parameters, or the rest of the parameters all have default values.
 
 ### When compiler does not provide copy ctr?
 1. CC declared by user.
@@ -13,14 +11,14 @@
 4. Class has member which cannot be copied to other object(ie not copy construable) Eg: reference variable
 
 ### Syntax
-```
+```c++
 class_name ( const class_name & )
 class_name ( const class_name & ) = default;
 class_name ( const class_name & ) = delete;
 ```
 
 ### Compiler provided copy ctr
-```
+```C++
 class A{
         int a=10;
 public:
@@ -35,9 +33,8 @@ int main(){
 }
 ```
 
-
 ### Forcing compiler to generate copy ctr
-```
+```c++
 class A{
         int a=10;
 public:
@@ -55,7 +52,7 @@ int main(){
 ```
 
 ### User created copy ctr
-```
+```c++
 class A{
        int a;
 public:
@@ -63,14 +60,18 @@ public:
 
        A(const A &k){
                this->a = k.a;
+	       std::cout<<"Inside cc";
        }
        void disp(){ cout<<a<<"\n"; }
 };
 int main(){
-        A obj1(4);
-        obj1.disp();    //4
-
-        A obj2(obj1);                  //Two objects created. obj2 is copy of obj1
-        obj2.disp();    //4
+  A obj1(4);  obj1.disp();    //4
+  
+  A obj2(obj1);  obj2.disp();    //4		//Call cc
+  A obj3 = obj1;  obj3.disp();    //4		//Calls cc
 }
+$ ./a.out
+4
+Inside cc 4
+Inside cc 4
 ```
