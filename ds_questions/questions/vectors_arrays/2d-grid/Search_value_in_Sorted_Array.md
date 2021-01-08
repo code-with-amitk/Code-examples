@@ -8,7 +8,7 @@
 
 ## Approach-2  //Binary Search
 ### Logic-2
-- *1.* Check last element of row
+- *1.* Check last element of each row
 ```c
   if (target < last-element)
     target may-be present in this row, not any where else
