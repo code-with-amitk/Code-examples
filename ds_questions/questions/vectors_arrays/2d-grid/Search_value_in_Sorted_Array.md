@@ -1,6 +1,6 @@
-## [Search a 2D Matrix]
+## [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
+- Example: Given below matrix search Target=3, output=true
 ![ImgURL](https://assets.leetcode.com/uploads/2020/10/05/mat.jpg)
-- Target=3, output=true
 
 ## Approach-1  //Linear Search. O(mn)
 - Go to every element and check
