@@ -11,21 +11,16 @@ Output: false   //You can try all possible pairs to see that there is no way to 
 ```
 
 ## Logic
-  1. Let input is  ar = {2,63,3,72,9,11,13,13}  k=5
-  2. Create reminder frequency array.
-     - Calculate the reminder of ar[i]%k and store the frequency at index.
+- *1.* Create reminder frequency array.
+     - Calculate the reminder of `ar[i]%k` and store the frequency at index.
+```c++
+arr={2,63,3,72,9,11,13,13}  k=5
+  11 % 5 = 1                             freq[1]=1
+  2 % 5 = 2, 72 % 5 =2                   freq[2]=2
+  63%5=3, 3%5=3, 13%5=3, 13%5=3          freq[3]=4
+  9%5=4                                  freq[4]=1
 ```
-      11%5=1                          freq[1]=1
-      2%5=2, 72%5=2                   freq[2]=2
-      63%5=3, 3%5=3, 13%5=3, 13%5=3   freq[3]=4
-      9%5=4                           freq[4]=1
-```
-freq[]
-| 0 | 1 | 2 | 4 | 1 |
-| --- | --- | --- | --- | --- |
-| 0 | 1 | 2 | 3 | 4 |
-
-  3. Let's Understand Frequency Array.
+- *3.* Let's Understand Frequency Array.
      - **index=0** Even number present at Index=0 means There exists ***pair of numbers*** which are exactly divisible by k.
         - Example: 5,10,15,20 etc.
         - Number of pairs = freq[0]/2
