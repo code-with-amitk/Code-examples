@@ -1,23 +1,28 @@
-### Pairs with sum X
-- Find pairs with sum = 78 in array 6,7,5,1,61,50,73,77,65
-- Pairs=`[1,77] [5,73]`
+## Pairs with sum X
+- Find pairs with specific 
+```c++
+arr={6,7,5,1,61,50,73,77,65}, sum=78
+ans=[1,77] [5,73]
+```
 
-#### Logic-1(Hash Table)      O(n)      //All pair problems can be solved using HT
-- This is very simple. 
-- *1.* Iterate through the array.
-- *2.* Find difference (temp = to_find_sum - arr[i])
-- *3.* 
+### Approach (Hash Table) unordered_set
+- **Logic**
+  - Take unordered_set<int> us
+  - Iterate through array, (sum - present) in array.
+    - if found pair = (present, sum-present)
+    - if not found, insert element in us
 ```c
 if(temp is found in hash_table)
       - pair is (arr[i], temp)
     - else
       - Insert arr[i] in hashtable
 ```
-
-#### Code-Logic-1
+- **Complexity**
+  - *Space:* O(n) 
+  - *Time:* O(n)  //Traversing entire array
+- **Code**
 ```c++
-void fun(int arr[], int arr_size, int sum)
-{
+void fun(int arr[], int arr_size, int sum){
   unordered_set<int> s;
   int temp;
   for (int i = 0; i < arr_size; i++)
