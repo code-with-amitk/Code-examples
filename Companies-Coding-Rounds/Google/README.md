@@ -18,6 +18,7 @@
   - **Make your self Smart**
     - *1.* Be Creative (Ask your self lot of questions). Write down atleast 2 and try solve them.
     - *2.* Self Awareness: When going on wrong path and Correcting. MEDITATION
+    - *3.* Intensity: Feel how you would feel after passing interview. Enjoy shout at mirror and do it.
   
 ## Rounds
 
