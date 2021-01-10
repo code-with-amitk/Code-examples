@@ -9,6 +9,15 @@
   - **After Doing every question:** WRITE Down, 1 thing that would I have done/known to make this thing easier. CHANGE it and DONOT Repeat again.
     - Everytime, you Repeat Punish yourself. When done celebrate donot forget it.
   - DO LOT OF MOCK INTERVIEWS.  
+  - **Method(ASK LOT OF QUESTIONS TO YOURSELF)**
+    - *1.* Ask few set of questions to yourself. How can i implement this, what's Big-O notation, where is repetative work happening?
+    - *2.* Explain solution in plain english to yourself. (Step-by-step bullets)
+    - *3.* Pseudo code
+    - *4.* Functions
+    - *5.* implement
+  - **Make your self Smart**
+    - *1.* Be Creative (Ask your self lot of questions). Write down atleast 2 and try solve them.
+    - *2.* Self Awareness: When going on wrong path and Correcting. MEDITATION
   
 ## Rounds
 
