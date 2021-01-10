@@ -1,5 +1,5 @@
 ## Recommended Videos by Google Recruiters
-1. [Chris Jereza, How I Passed Coding Interviews at Facebook, Google, Lyft, Bloomberg](https://www.youtube.com/watch?v=lDTKnzrX6qU&feature=youtu.be)
+### 1. [Chris Jereza, How I Passed Coding Interviews at Facebook, Google, Lyft, Bloomberg](https://www.youtube.com/watch?v=lDTKnzrX6qU&feature=youtu.be)
   - Know Iteration,recursion,arrays,linked lists,queues,stacks,heap,set,hash-map,tree,binary-search,graphs,bfs,dfs,tries
   - **Sorting(Important)** Merge Sort, Quick Sort(Memorize Implementations)
   - sliding Windows
