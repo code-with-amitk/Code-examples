@@ -1,8 +1,8 @@
 ## Pipe
 - **What?** it takes output of 1 program and pass to other.
 
-### Example-1 (Function, Pipes)
-- Create 2 functions `GetFiles(), ShowFiles()`
+### Question:
+  - Create 2 functions `GetFiles(), ShowFiles()`
   - `GetFiles():` RETURNS 1st 3 files in current directory
   - `ShowFiles():` Takes files as argument(from pwd) and shows each with counter in alphabetical decending order.
 - **ls -1 | sort -r | head -3**
