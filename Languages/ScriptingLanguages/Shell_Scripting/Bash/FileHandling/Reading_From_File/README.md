@@ -11,10 +11,10 @@ baba
 ### Solution-1
 - *1. Shebang:* if present should be 1st line of bash(else it will be ignored like comment). This tell which interpreter should be used to interpret the file.
 - *2.*
-  - *a. IFS(Internal field Seperator):* How tokens are seperated in line we are reading. Here '' means tokens are seperated using space.
-  - *b. read*: This is command to read file
-  - *c. -r*: Read everything including backslashes
-  - *d. PresentLine*: Variable name that holds current line read from file.
+  - *IFS(Internal field Seperator):* How tokens are seperated in line we are reading. Here '' means tokens are seperated using space.
+  - *read*: This is command to read file
+  - *-r*: Read everything including backslashes
+  - *PresentLine*: Variable name that holds current line read from file.
 - *3.*
   - *$1* This 1st paramter passed to script, here filename=names.txt
   - *<* Redirection operator, pass names.txt as input.
