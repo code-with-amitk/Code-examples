@@ -26,6 +26,7 @@ out[]       {60,    1         1         1}  //1
 
 ### Approach-3   //Left and Right Product arrays //Space:3O(n), Time:3O(n)
 ~[ImgURL](https://leetcode.com/problems/product-of-array-except-self/Figures/238/diag-1.png)
+
 - **Logic:** 
   - Calculate left and right product arrays.
   - Output array = leftArray*RightArray
