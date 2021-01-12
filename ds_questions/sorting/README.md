@@ -2,9 +2,9 @@
 
 ||Bubble|Modified Bubble|Selection|Insertion|Merge|Quick[Best]|Heap|
 |---|---|---|---|---|---|---|---|
-|Best|O(n<sup>2</sup>)|O(n)| O(n2)| O(n)| O(n)|O(n)|O(nlogn)|
-|Worst|O(n2)| O(n2)|O(n2)| O(n2)|O(nlogn)|O(n2)|O(nlogn)|
-|Avg|O(n2)| O(n2)|O(n2)|O(n2)| O(nlogn)|O(nlogn)|O(nlogn)|
+|Best|O(n<sup>2</sup>)|O(n)| O(n<sup>2</sup>)| O(n)| O(n)|O(n)|O(nlogn)|
+|Worst|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(nlogn)|O(n<sup>2</sup>)|O(nlogn)|
+|Avg|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)| O(nlogn)|O(nlogn)|O(nlogn)|
 
 ### Space Complexity
 
