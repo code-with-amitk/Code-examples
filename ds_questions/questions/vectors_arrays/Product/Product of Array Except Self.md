@@ -1,6 +1,6 @@
 ### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self)
 - Given an array arr[] construct a Product Array prod[] (of same size) such that prod[i] is equal to the product of all the elements of arr[] except arr[i]. 
-- Solve in Time:O(n), Space:O(1)
+- **Solve in Time:O(n), Space:O(1). Without Division Operator**
 ```c
 Example-1:
   Input = {1,2,3,4}
@@ -13,7 +13,19 @@ Example-2:
 ### Approach-1(Brute-force)/Naive: O(n<sup>2</sup>)
 - Run 2 nested for() loops, Calculate the product and store in 2nd array
 
-### Approach-2    //Space:3O(n), Time:3O(n)
+### Approach-2(Using Division Operator) //But division is not allowed
+- *1.* Find product of all elements on right
+- *2.* Find `out[i] = (out[i-1]*prev-a)/present-number
+```c
+a[]   =     {2, 3, 4, 5}
+             0  1  2  3
+             
+out[]       {60,    1         1         1}  //1
+                60*2/3=40  40*3/4=30  30*4/5=24
+```
+
+### Approach-3   //Left and Right Product arrays //Space:3O(n), Time:3O(n)
+~[ImgURL](https://leetcode.com/problems/product-of-array-except-self/Figures/238/diag-1.png)
 - **Logic:** 
   - Calculate left and right product arrays.
   - Output array = leftArray*RightArray
