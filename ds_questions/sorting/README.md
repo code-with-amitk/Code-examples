@@ -1,3 +1,4 @@
+
 		Bubble		Modified Bubble		Selection	Insertion	Merge		Quick[Best]	Heap
 Time Complexity
 	Best	O(n2)           O(n)                    O(n2)           O(n)            O(n)		O(n)		O(nlogn)
