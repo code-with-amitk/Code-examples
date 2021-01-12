@@ -81,7 +81,7 @@ out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]
 ```c
 
 in		2		3		4		5
-      0   1   2   3
+      		0   		1   		2   		3
 
 out		1		1		1		1
 
@@ -91,7 +91,7 @@ from 0 to n
 out[i] = out[i-1] * in[i-1]
 
 out		1		1*2		2*3		6*4
-		  1		  2		 6		 24
+		1		  2		 6		 24
 		
 Traverse from Right to Left.              //2
  - Store running product in variable
@@ -101,16 +101,15 @@ out[i] = out[i]*var
 var = var*in[i]
 
 in		2		      3		     4		      5
-out		1		      2   		 6    		 24
+out		1		      2   	     6  	     24
 
-                                  out*var
-								                  24*1
-								        var=5
-						            6*5 //out*var
-						  var=5*4
-				      2*20  //out*var
-              
-    var=20*3
+ 							       	     24*1 //out*var
+								     var=5
+						   6*5 //out*var
+						   var=5*4
+						   
+				      2*20  //out*var          
+    				     var=20*3
 		1*60  //out*var
 		
 		60		20		30		24
