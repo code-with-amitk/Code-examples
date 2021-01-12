@@ -74,4 +74,72 @@ out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]
     }
 ```
 
-### Approach-3    //Space:3O(n), Time:3O(n)
+### Approach-4    //Space:O(n), Time:2O(n)
+- **logic:**
+  - *1.* Traverse from left to right, Find Left Product array store in output array (instead of left Array).
+  - *2.* Traverse from Right to Left, Store running product in variable and update output array.
+```c
+
+in		2		3		4		5
+      0   1   2   3
+
+out		1		1		1		1
+
+Traverse from left to right, Find Left Product array store in output array.   //1
+out[0]=1
+from 0 to n
+out[i] = out[i-1] * in[i-1]
+
+out		1		1*2		2*3		6*4
+		  1		  2		 6		 24
+		
+Traverse from Right to Left.              //2
+ - Store running product in variable
+int var = 1;
+from n to 0
+out[i] = out[i]*var
+var = var*in[i]
+
+in		2		      3		     4		      5
+out		1		      2   		 6    		 24
+
+                                  out*var
+								                  24*1
+								        var=5
+						            6*5 //out*var
+						  var=5*4
+				      2*20  //out*var
+              
+    var=20*3
+		1*60  //out*var
+		
+		60		20		30		24
+```
+- **Code**
+```c
+class Solution {
+public:
+using vec1d = std::vector<int>;
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vec1d out(nums.size(), 1);
+
+        for (int i=0;i<nums.size();++i){
+          if (i==0)
+            out[i] = 1;
+          else
+            out[i] = out[i-1]*nums[i-1];
+        }
+
+        int var = 1;
+        int j = nums.size()-1;
+        while(j>=0){
+
+            out[j] *= var;
+            var *= nums[j];
+          --j;
+        }
+
+        return out;
+    }
+};
+```
