@@ -4,7 +4,7 @@
 - **Divide phase:** Divide the problem into subproblems.
 - **Conquer phase:** Repeatedly solve each subproblem independently and combine the result to form the original problem.
 
-![](https://cdn-codespeedy.pressidium.com/wp-content/uploads/2019/07/merge-sort-in-C.jpeg | width=100)
+![](https://cdn-codespeedy.pressidium.com/wp-content/uploads/2019/07/merge-sort-in-C.jpeg = 250x250 )
 
 ### Complexity
   - **Time: O(nlogn)**
