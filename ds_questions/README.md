@@ -1,9 +1,16 @@
 ## Big O(n)
-- **Complexity**
-	- worst-case: maximum number of steps taken in any instance of size n
-	- best-case: minimum number of steps taken in any instance of size n.
-	- average-case: average number of steps over all instances of size n
-- **Rules** Ignore the difference between multiplicative constants.	f(n) = 2n and g(n) = n are identical
+### Complexity
+- **What**
+  - worst-case: maximum number of steps taken in any instance of size n
+  - best-case: minimum number of steps taken in any instance of size n.
+  - average-case: average number of steps over all instances of size n
+- **Space:**
+  - **O(1) is not Constant Space?** Constant soace means amount of space that your algorithm uses is independent of the input parameters. Say you are given an array of size n. If the amount of space your algorithm uses increases/decreases with n, then it's not constant. If your algorithm always uses a fixed amount of space everytime independent of input size, then its constant space.
+  - **Recursion?** When you use recursion, the stack also counted in space complexity.
+- **Time:** ASYMPTOTIC ANALYSIS? Used to simplify the analysis of Running-Time of algorithm.
+  - a. Drop lower level order terms+constant factors. 50nlogn => O(nlogn).
+  - b. O(nlogn) + O(n) => O(nlogn)
+
 
 ## SPEED UP PROGRAM
 - **Why** When some of test cases fail, this will lead to time improvements. Add before your class implementation
