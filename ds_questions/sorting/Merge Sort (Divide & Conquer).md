@@ -1,8 +1,10 @@
 **:heartbeat: In computer science, the mental representation for a problem is often closely related to its solution.:heartbeat:**
 
-## Merge Sort //Not inplace
+## Merge Sort
 - **Divide phase:** Divide the problem into subproblems.
 - **Conquer phase:** Repeatedly solve each subproblem independently and combine the result to form the original problem.
+
+![ImgURL](https://cdn-codespeedy.pressidium.com/wp-content/uploads/2019/07/merge-sort-in-C.jpeg)
 
 ### Complexity
   - **Time: O(nlogn)**
@@ -16,7 +18,7 @@
     - *2b.* Create a local copy, rightArr = {5}
     - *2c.* Traverse leftArr, rightArr. Whichever has smaller element merge to original array
     - *2d.* If any subarray(leftArr or rightArr) is exhausted, Merge remainining elements to original array
-### Code
+### Code  //Top Down Approach
 ```c++
 #include<iostream>
 #include<vector>
