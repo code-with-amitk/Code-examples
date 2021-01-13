@@ -1,4 +1,4 @@
-**:heart: In computer science, the mental representation for a problem is often closely related to its solution.**
+**:heartbeat: In computer science, the mental representation for a problem is often closely related to its solution.:heartbeat:**
 
 ## Merge Sort //Not inplace
 ### Complexity
@@ -7,8 +7,12 @@
     - logn: Array is divided in binary tree format.
   - **Space: O(n)** A auxillary subarrays are created and merged back to original array.
 ### Logic
-  - Keep dividing input array into 2 halves recursively, until reach array of size=1
-  - Merge back sorted subarrays in ascending order.  
+  - *1.* Keep dividing input array into 2 halves recursively(as in binary search), until reach array of size=2
+  - *2.* Pass array `{10,5} left=0,mid=0,right=0` to MergeSubArrays() function.
+    - *2a.* Create a local copy, leftArr = {10}
+    - *2b.* Create a local copy, rightArr = {5}
+    - *2c.* Traverse leftArr, rightArr. Whichever has smaller element merge to original array
+    - *2d.* If any subarray(leftArr or rightArr) is exhausted, Merge remainining elements to original array
 ### Code
 ```c++
 #include<iostream>
@@ -23,16 +27,16 @@ void MergeSubArrays(vec1d& v, int left, int mid, int right) {
   int leftArr[leftArrSize], rightArr[rightArrSize];
 
   //Fill 2 subarrays from Original array
-  for(int i=0;i<leftArrSize;++i)
+  for(int i=0;i<leftArrSize;++i)                        //2a
     leftArr[i] = v[left+i];
-  for(int i=0;i<rightArrSize;++i)
+  for(int i=0;i<rightArrSize;++i)                       //2b
     rightArr[i] = v[mid+1+i];
 
   int i,j,k;
   i=0, j=0, k=left;
 
   //Change elements of Original array
-  while(i<leftArrSize and j<rightArrSize){
+  while(i<leftArrSize and j<rightArrSize){              //2c
     if(leftArr[i] <= rightArr[j]){
       v[k] = leftArr[i];
       ++i;
@@ -43,20 +47,20 @@ void MergeSubArrays(vec1d& v, int left, int mid, int right) {
     ++k;
   }
 
-  //Merge Extra elements in left Subarray
+  //Merge Extra elements in left Subarray               //2d
   while (i<leftArrSize) {
     v[k] = leftArr[i];
     ++k; ++i;
   }
 
-  //Merge Extra elements in right Subarray
+  //Merge Extra elements in right Subarray              //2d
   while (j<rightArrSize) {
     v[k] = rightArr[j];
     ++k; ++j;
   }
 }
 
-void MergeSort(vec1d& v, int left, int right){
+void MergeSort(vec1d& v, int left, int right){            //1
   if (left>=right)
     return;
 
