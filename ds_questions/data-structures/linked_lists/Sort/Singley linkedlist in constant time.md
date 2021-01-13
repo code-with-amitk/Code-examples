@@ -6,7 +6,7 @@ Input: head = [4,2,1,3]
 Output: [1,2,3,4]
 ```
 
-<img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_1.jpg"  width="500" />
+<img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_1.jpg"  width="300" />
 
 ### Approach-1    //Time:O(n), Space:O(n)
 - Create vector from linked list.
