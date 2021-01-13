@@ -6,7 +6,7 @@ Input: head = [4,2,1,3]
 Output: [1,2,3,4]
 ```
 
-![ImgURL](https://4.bp.blogspot.com/-f3BrOBTs-8Q/XUE8CQSzOuI/AAAAAAAAGic/OfQdRosWR28o8OZY-hT8iJZIS6uvLP2qQCK4BGAYYCw/s1600/merge-sort-linked-list-recursive-stack-trace.png)
+<img src="https://assets.leetcode.com/uploads/2020/09/14/sort_list_1.jpg"  width="500" />
 
 ### Approach-1    //Time:O(n), Space:O(n)
 - Create vector from linked list.
@@ -60,3 +60,5 @@ public:
 - But quick sort has O(n<sup>2</sup>) Time complexity in case of sorted array
 
 ### Approach-3 (Merge Sort)   //Time:O(nlogn) 
+
+![ImgURL](https://4.bp.blogspot.com/-f3BrOBTs-8Q/XUE8CQSzOuI/AAAAAAAAGic/OfQdRosWR28o8OZY-hT8iJZIS6uvLP2qQCK4BGAYYCw/s1600/merge-sort-linked-list-recursive-stack-trace.png)
