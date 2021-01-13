@@ -1,6 +1,9 @@
 **:heartbeat: In computer science, the mental representation for a problem is often closely related to its solution.:heartbeat:**
 
 ## Merge Sort //Not inplace
+- **Divide phase:** Divide the problem into subproblems.
+- **Conquer phase:** Repeatedly solve each subproblem independently and combine the result to form the original problem.
+
 ### Complexity
   - **Time: O(nlogn)**
     - n: To divide the array, complete array needed to be traversed
