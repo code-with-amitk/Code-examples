@@ -3,39 +3,31 @@
 ## [Problem](https://leetcode.com/explore/featured/card/august-leetcoding-challenge/549/week-1-august-1st-august-7th/3414/)
 - Find duplicates in array in O(n) time & O(1) space complexity
 - `1 ≤ a[i] ≤ n` (n = size of array).
-
-
-### Example:
-```
-Input: [4,3,2,7,8,2,3,1]
-Output: [2,3]
+- Example
+```c
+Input: [4, 3, 2, 7, 8, 2, 3, 1]
+Output: [2, 3]
 ```
 
-### Approach-1(Array storing count of elements) (Time:O(n) Space:O(n))
+### Approach-1    //Store count   //Time:O(n) Space:O(n)
+- Traverse array store count in seperate array
+```c
+Input:        4   3   2   7   8   2   3   1
 
-**Array(size=8)**
-| elements-> | 4 | 3 | 2 | 7 | 8 | 2 | 3 | 1 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Indexes-> | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+Count Arr:    1   2   2   1   0   0   1   1   0  
+index         0   1   2   3   4   5   6   7   8
+-> index=0 store freq of number 1
+-> index=1 store freq of number 2
+```
 
-**Count Array**
-- Count Array can be 1 greater than input array since `a[i] ≤ n`. Array element can be equal to size.
-
-| elements-> | 0 | 1 | 2 | 2 | 1 | 0 | 0 | 1 | |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Indexes-> | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-
-
-### Approach-2(unordered_set) (Time:O(n), Space:O(n))
-- Take a hash table & a output vector.
-- Insert into:
-  - HashTable: if element is not present earlier in hashMap.
-  - Output Vector: if element exists in hashtable(it means its duplicate).
+### Approach-2    //Hash Table     //Time:O(n), Space:O(n)
+- Take a hash table.
+- Insert into HashTable: if element is not present earlier in hashMap.
+  - if element exists in hashtable(it means its duplicate). -> insert in vector
 - Complexity:
-  - Space: O(n) - noOfDuplicates
+  - Space: O(n)
   - Time: O(1)
-  
-```
+```c
     vector<int> findDuplicates(vector<int>& nums) {
       unordered_set<int> us;
       vector<int> v;
@@ -50,7 +42,7 @@ Output: [2,3]
     }
 ```
 
-### Approach-3(Time:O(n), Space:O(1))
+### Approach-3    //Time:O(n), Space:O(1)
 - We will extend Approach-1. In approach-1 we are storing count of occurences in Seperate array
   - Now we will store count of occurences of elements in input array only. `[Since we donot have extra Space]`
 - **Logic**  
