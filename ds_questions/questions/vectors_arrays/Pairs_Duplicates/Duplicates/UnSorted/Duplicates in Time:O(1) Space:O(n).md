@@ -9,7 +9,7 @@ Input: [4, 3, 2, 7, 8, 2, 3, 1]
 Output: [2, 3]
 ```
 
-### Approach-1    //Store count   //Time:O(n) Space:O(n)
+### Approach-1    //Store count   `Time:O(n) Space:O(n)`
 - Traverse array store count in seperate array
 ```c
 Input:        4   3   2   7   8   2   3   1
@@ -20,7 +20,7 @@ index         0   1   2   3   4   5   6   7   8
 -> index=1 store freq of number 2
 ```
 
-### Approach-2    //Hash Table     //Time:O(n), Space:O(n)
+### Approach-2    //Hash Table     `Time:O(n), Space:O(n)`
 - Take a hash table.
 - Insert into HashTable: if element is not present earlier in hashMap.
   - if element exists in hashtable(it means its duplicate). -> insert in vector
@@ -52,23 +52,22 @@ index         0   1   2   3   4   5   6   7   8
     - if `arr[i] > 2*sizeOfArray` it means This element(ie index) occured 2 times.
     - if `arr[i] > 3*sizeOfArray` it means This element(ie index) occured 3 times.
     - so on
+```c
+Array:    4   3   2   7   8   2   3   1
+Index:    0   1   2   3   4   5   6   7
 
-- **Understanding**
-> sizeOfArray = 8
+a[0]=4. a[4] += 2*a[0]    //Increment 8 at index 4`
 
-| elements-> | 4 | 3 | 2 | 7 | 8 | 2 | 3 | 1 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Indexes-> | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-
-*`i = 0, a[0]=4, Increment 8 at index 4`*
-`a[4] = a[4]+8`
-
-| elements-> | 4 | 3 | 2 | 7 | 8+8=16 | 2 | 3 | 1 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Indexes-> | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+Array:    4   3   2   7   8+8=16    2   3   1
+Index:    0   1   2   3     4       5   6   7
 
 *`i = 1, a[1]=3, Increment 8 at index 3`*
 `a[3] = a[3]+8`
+a[1]=3.   a[3] += 2*a[1]
+
+Array:    4   3   2   7  16   2   3   1
+Index:    0   1   2   3   4   5   6   7
+```
 
 | elements-> | 4 | 3 | 2 | 7+8=15 | 16 | 2 | 3 | 1 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
