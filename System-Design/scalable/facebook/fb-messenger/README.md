@@ -19,19 +19,22 @@
   - Fast
 
 ## 1. Requirements
-### Functional
-- (1st) User can see all of his friends and can send message to any of his friend.
-- (2nd) Chat history should be stored.  
-- (3rd) User can send message to any person on facebook provided target person has not blocked incoming messages.
+### 1A. Functional
+- *1.* User can see all of his friends and can send message to any of his friend.
+- *2.* Chat history should be stored.  
+- *3.* User can send message to any person on facebook provided target person has not blocked incoming messages.
 - These sizes can be delivered as 1 message.
   - {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
 
 ## 2. BOE Calculations
 
-|World Population=7x10<sup>9</sup> //Year 2020|InternetUsers = 40% = 2.8 Billion|FB Users= 60% of Internet users = 1.68 Billion|
-|---|---|---|
+- **People using Facebook**
 
-- **No of users sending**
+|World Population|InternetUsers(40%)|FB Users(60% of Internet users)|
+|---|---|---|
+|7x10<sup>9</sup> //Year 2020|2.8 Billion|1.68 Billion|
+
+- **Users sending Text,Audio,Video messages**
 
 |Text message/day|Audio Messages/day|Video Messages/day|
 |---|---|---|
