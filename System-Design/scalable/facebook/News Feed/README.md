@@ -24,14 +24,14 @@
 
 ## 1. Requirements
 - **1A. Functional**
-- *a.* User should see his new feed as he logs in.
-- *b.* Newsfeed should be custommizable, whatever user wants to subscribe/not.
+  - *a.* User should see his new feed as he logs in.
+  - *b.* Newsfeed should be custommizable, whatever user wants to subscribe/not.
 - **1B. Non-Functional**
-- *a.* News feed should give soothing/smiling effect to user.
-- *b.* Option for extending news feed once news feed gets over.
+  - *a.* News feed should give soothing/smiling effect to user.
+  - *b.* Option for extending news feed once news feed gets over.
 - **1C. Extended**
-- *a.* Option to hide/disable news feed.
-- *b.* AI powered user specific search items
+  - *a.* Option to hide/disable news feed.
+  - *b.* AI powered user specific search items
 
 ## 2. Back Of Envelope Calculations
 
