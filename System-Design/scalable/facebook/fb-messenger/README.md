@@ -36,7 +36,7 @@
 
 - **Users sending Text,Audio,Video messages**
 
-|Text message/day|Audio Messages/day|Video Messages/day|
+|Text message/day(aasumed 60%)|Audio Messages/day(assumed 20%)|Video Messages/day(assumed 5%)|
 |---|---|---|
 |60% = 1.68x0.6 = 1 Billion|20% = 1.68x0.2 = 336 Million|5% = 1.68x0.05 = 84 Million|
   
