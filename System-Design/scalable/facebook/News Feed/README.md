@@ -23,23 +23,26 @@
   - Fast
 
 ## 1. Requirements
-### 1A. Functional
+- **1A. Functional**
 - *a.* User should see his new feed as he logs in.
 - *b.* Newsfeed should be custommizable, whatever user wants to subscribe/not.
-### 1B. Non-Functional
+- **1B. Non-Functional**
 - *a.* News feed should give soothing/smiling effect to user.
 - *b.* Option for extending news feed once news feed gets over.
-### 1C. Extended
+- **1C. Extended**
 - *a.* Option to hide/disable news feed.
 - *b.* AI powered user specific search items
 
 ## 2. Back Of Envelope Calculations
 
 - **People using Facebook**
-  - Every person will have a news feed.
 
 |World Population|InternetUsers(40%)|FB Users(60% of Internet users)|
 |---|---|---|
 |7x10<sup>9</sup> //Year 2020|2.8 Billion|1.68 Billion|
 
+- **News Feed Usage statistics**
+  - Every person will have a news feed. 
+  - 10% are superactive, see news feed every hour. 90% see news feed once in 7 days.
+  
 ### 2A. Storage Estimates
