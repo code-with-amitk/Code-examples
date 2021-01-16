@@ -8,7 +8,7 @@ Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,
 area of water (blue section) the container can contain is 49.
 ```
 
-<img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"  width="300" />
+<img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"  width="500" />
 
 # [Self Video](https://www.youtube.com/watch?v=mqbCl4kyDmQ&t=1s)
 
