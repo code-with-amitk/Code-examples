@@ -63,9 +63,11 @@ LL of subscribed news channels =
   0x01291  abp->cnn->al jazeera
   0x28981   dd->star->espn
 ```
-- Pointer=8 byte address and 50 linked list pointers per user.  400 bytes/user.   400 x 1.68 = 672 Billion bytes = 672 GB
-- Actual LL will store Ids of names.  1 ID = 8 bytes.
+- *Storing Mapping Table* 
+  - Pointer=8 byte address and 50 linked list pointers per user.  400 bytes/user.   400 x 1.68 = 672 Billion bytes = 672 GB
+- *Storing Seperate LL per user*
+  - Actual LL will store Ids of names.  1 ID = 8 bytes.
   - 1 person has 500 friends (on average), subscribed to 100(different groups) = 600 x 8 = 4800 bytes/user. 4800 x 1.68 = 8064 Billion bytes = 8 TB
-- Overall 8 TB + .6 TB = 9 TB
+- **Overall Storage Estimate** 8 TB + .6 TB = 9 TB
 
 ### 2B. Traffic Estimates
