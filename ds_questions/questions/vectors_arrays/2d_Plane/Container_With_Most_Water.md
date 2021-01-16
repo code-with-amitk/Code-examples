@@ -1,11 +1,10 @@
-## [Problem](https://leetcode.com/problems/container-with-most-water/)
+## [1 Container having Max water](https://leetcode.com/problems/container-with-most-water/)
 - Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
 - Example
 ```c
 Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
-Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max
-area of water (blue section) the container can contain is 49.
+Explanation: In this case, the max area of water (blue section) the container can contain is 49.
 ```
 
 <img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"  width="500" />
