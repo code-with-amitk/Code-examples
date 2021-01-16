@@ -20,6 +20,9 @@ In this case, 6 units of rain water (blue section) are being trapped.
   - *2b.* Find rightMax. rightMax is maximum height of building on right.
   - *2c.* 
 ```c
+
+Example: {2,0,1,0,3,0,1,0,1}
+
 leftMax = 0
 rightMax = 0
 move until left right cross
