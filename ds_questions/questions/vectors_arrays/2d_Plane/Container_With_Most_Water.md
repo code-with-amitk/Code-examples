@@ -9,6 +9,8 @@ Explanation: In this case, the max area of water (blue section) the container ca
 
 <img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"  width="500" />
 
+## [Self Video](https://youtu.be/rH7AOvO2Hn0)
+
 ## 1. Approach-1 (2 Pointer)
 ### Logic
 - *1.* left pointer = 0, right pointer = arr.size()-1
