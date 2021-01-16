@@ -6,7 +6,8 @@
 ```c
 Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
-Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. 
+In this case, 6 units of rain water (blue section) are being trapped.
 ```
 
 ## [Self Video, Tough question](https://youtu.be/tIedNwFi0B0)
@@ -25,13 +26,13 @@ move until left right cross
 
 1st iteration
   height[left=0]=2 > height[right=8]=1    //Start from right
-							        |  |
-	  |  |					    |  |
-	  |  |		  |  |		|  |	  |  |		|   |
-	-----------------------------------------------------
-     2    0		 1	 0	 3	 0	 1	 0	  1         <---Height
-	   0	  1		 2   3	 4	 5	 6	 7	  8
-	 left										            right
+				|  |
+     |  |			|  |
+     |  |	  |  |		|  |	  |  |		|   |
+     -----------------------------------------------------
+     2       0	    1	  0	 3    0	   1	 0	  1         <---Height
+     0	     1	    2     3	 4    5	   6	 7	  8
+    left					         right
 
   if (height[8]=1 > rightMax=0)
     rightMax = 1
@@ -39,26 +40,26 @@ out = 0
 rightMax = 1
 
 2nd iteration
-							        |  |
-	  |  |					    |  |
-	  |  |		  |  |		|  |	  |  |		|   |
-	-----------------------------------------------------
-     2    0		 1	 0	 3	 0	 1	 0	  1         <---Height
-	   0	  1		 2   3	 4	 5	 6	 7	  8
-	 left										       right
+				|  |
+     |  |			|  |
+     |  |	  |  |		|  |	  |  |		|   |
+     -----------------------------------------------------
+     2       0	    1	  0	 3    0	   1	 0	  1         <---Height
+     0	     1	    2     3	 4    5	   6	 7	  8
+	 left					right
    
 if (rightMax > height[7]=0)
     out = 1                     //At index=7, area=1 water can be trapped
 rightMax = 1
 
 3rd iteration   //still lfet > right. Keep moving right
-							        |  |
-	  |  |					    |  |
-	  |  |		  |  |		|  |	  |  |		|   |
-	-----------------------------------------------------
-     2    0		 1	 0	 3	 0	 1	 0	  1         <---Height
-	   0	  1		 2   3	 4	 5	 6	 7	  8
-	 left										   right
+				|  |
+     |  |			|  |
+     |  |	  |  |		|  |	  |  |		|   |
+     -----------------------------------------------------
+     2       0	    1	  0	 3    0	   1	 0	  1         <---Height
+     0	     1	    2     3	 4    5	   6	 7	  8
+	 left				 right
    
 if (height[6]=1 is not smaller than rightMax)
     do nothing              //At index=6 no water can be trapped since max
