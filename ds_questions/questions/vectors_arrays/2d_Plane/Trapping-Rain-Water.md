@@ -71,7 +71,7 @@ rightMax = 1
 .. so on
 ```
 
-<img src="https://i.ibb.co/pvQDzsV/trapping-rain-water-1.png"  width="1500" />
+<img src="https://i.ibb.co/nQyYFMS/trapping-rain-water-1.png"  width="1500" />
 
 ### Complexity
 - **Time:** O(n)  //Only traversing 1 time
