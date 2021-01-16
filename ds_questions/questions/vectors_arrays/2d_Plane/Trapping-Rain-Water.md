@@ -68,6 +68,8 @@ rightMax = 1
 .. so on
 ```
 
+<img src="https://i.ibb.co/pvQDzsV/trapping-rain-water-1.png"  width="700" />
+
 ### Complexity
 - **Time:** O(n)  //Only traversing 1 time
 - **Space:** O(1) //no extra space used
