@@ -10,8 +10,6 @@ area of water (blue section) the container can contain is 49.
 
 <img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/07/17/question_11.jpg"  width="500" />
 
-# [Self Video](https://www.youtube.com/watch?v=mqbCl4kyDmQ&t=1s)
-
 ## Logic
 1. Find Area by multiplying length with min of height.
 2. if a[left] < a[right] move left to next element
