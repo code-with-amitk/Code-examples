@@ -60,13 +60,3 @@ int main(){
   }
 }
 ```
-
-#### Logic-2(Sort)
-  1. Sort the array.          std::sort()=>O(nlogn)
-  2. Take two index variables
-     - Initialize first to the leftmost index: l=0
-     - Initialize second  the rightmost index:  r=ar_size-1
-  3. while l < r                                        =>O(n)
-     - if (A[l] + A[r] == sum)  then return 1
-     - else if( A[l] + A[r] <  sum )  then l++
-     - else r--
