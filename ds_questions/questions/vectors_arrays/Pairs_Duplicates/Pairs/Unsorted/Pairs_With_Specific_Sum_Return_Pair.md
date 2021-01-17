@@ -1,26 +1,18 @@
 ## Pairs with sum X
 - Find pairs with specific 
 ```c++
-arr={6,7,5,1,61,50,73,77,65}, sum=78
+arr = {6,7,5,1,61,50,73,77,65}, sum=78
 ans=[1,77] [5,73]
 ```
 
-### Approach (Hash Table) unordered_set
-- **Logic**
-  - Take unordered_set<int> us
-  - Iterate through array, (sum - present) in array.
-    - if found pair = (present, sum-present)
-    - if not found, insert element in us
-```c
-if(temp is found in hash_table)
-      - pair is (arr[i], temp)
-    - else
-      - Insert arr[i] in hashtable
-```
-- **Complexity**
+## 1. Approach  //Hash Table
+### Logic
+  - *1.* Insert compelte array into unordered_set<int>
+  - *2.* iterate through array and find (sum - present) in hash table
+### Complexity
   - *Space:* O(n) 
   - *Time:* O(n)  //Traversing entire array
-- **Code**
+### Code
 ```c++
 void fun(int arr[], int arr_size, int sum){
   unordered_set<int> s;
