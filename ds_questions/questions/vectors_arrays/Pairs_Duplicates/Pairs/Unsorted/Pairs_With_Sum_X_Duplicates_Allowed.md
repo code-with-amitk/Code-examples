@@ -66,7 +66,7 @@ std::vector<int>fun(std::vector<int>& v, int target){
 }
 ```
 
-## 3. Approch-3   //Hash-Table, check while insertion    `unordered_multimap`
+## 3. Approch-3   //Hash-Table, check while insertion >> Most Optimized
 - **Logic** 
   - *1.* Take hash-table allowing duplicates. key is value of input array and value=index. Insert all elements into map
 ```c
