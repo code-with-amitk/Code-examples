@@ -16,9 +16,9 @@ on 2
   - *1.* Open file, read each word, fill in map<Word, count>
   - *2.* Once file reading completes, 
     - search map with highest value, Print Delete. Repeat 3 times.
-- **Complexity:** O(m). m:words in file
-  - Reading file,storage in hash-table:O(m)
-  - Finding top 3 words. O(1)
+- **Complexity:** m:words in file
+  - **Time** O(m). Reading file,storage in hash-table, Finding top 3 words. O(1).
+  - **Space** O(m). Creating hash map.
 - **Code:**  
 ```c++
 #include<fstream>
