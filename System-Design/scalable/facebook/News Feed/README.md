@@ -37,13 +37,11 @@
 
 - **People using Facebook**
 
-|World Population|InternetUsers(40%)|FB Users(60% of Internet users)|
+|World Population|InternetUsers(60%)|FB Users(75-80% of Internet users)|
 |---|---|---|
-|7x10<sup>9</sup> //Year 2020|2.8 Billion|1.68 Billion|
+|7x10<sup>9</sup> //Year 2020|4.2 Billion|3.5 Billion|
 
-- **News Feed Usage statistics**
-  - Every person will have a news feed. 
-  - 10% are superactive, see news feed every hour. 90% see news feed once in 7 days.
+- **News Feed Usage statistics** Every person will have a news feed. 
   
 ### 2A. Storage Estimates
 - Photos/Videos/Messages/Posts would be stored on different Object store for every user. This will not be considered as part of news feed.
@@ -64,10 +62,15 @@ LL of subscribed news channels =
   0x28981   dd->star->espn
 ```
 - *Storing Mapping Table* 
-  - Pointer=8 byte address and 50 linked list pointers per user.  400 bytes/user.   400 x 1.68 = 672 Billion bytes = 672 GB
+  - Pointer=8 byte address and 50 linked list pointers per user.  400 bytes/user.   400 x 3.5 = 1400 Billion bytes = 1400 GB = 1.4 TB
 - *Storing Seperate LL per user*
   - Actual LL will store Ids of names.  1 ID = 8 bytes.
-  - 1 person has 500 friends (on average), subscribed to 100(different groups) = 600 x 8 = 4800 bytes/user. 4800 x 1.68 = 8064 Billion bytes = 8 TB
-- **Overall Storage Estimate** 8 TB + .6 TB = 9 TB
+  - if 1 person can have Max=5000 friends and subscribed to 5000(different groups). Total 10000 ids. 10000 x 8 = 80000 bytes/user. 80000 x 3.5 Billion = 280000 Billion bytes = 1 PB
+- **Overall Storage Estimate** 1 PB + 1.4 TB = 1 BB. if limit of max friends, max subscribed channels increases this will also increase.
 
 ### 2B. Traffic Estimates
+- As soon user logs in, his news feed has to be shown with least delay. Most data is sent from server to user/browser/FB app.
+- Considering user has 5000 friends, 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over websockets.
+- Considering 75% of fb users (3.5 x 75% = 2.5 Billion) are active every moment/every second. 
+  - User/browser/FB app opens a Websocket to server as comes online. (HTTP GET size = 2KB). 2KB x 2.5 = 5k Billion Bytes = 5TB bytes/sec comes to FB servers worldwide.
+  - 193 countries in world, considering 1 data center per country(on average). 5TB/193 = 25 Giga Bytes/second (pumped into 1 data center per second)
