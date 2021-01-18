@@ -1,4 +1,5 @@
 ### Top 3 words in paragraph
+- Read paragraph, print top 2 most frequent words in paragraph.
 ```c
 Paragraph.txt
 amit hold your values. The thing to protect is your values and character. Keep building your character 
