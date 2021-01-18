@@ -1,5 +1,24 @@
 ### Problem
 - Given a file with multiple columns, print the first and the third column out and find a new value based on the values of those two columns.
+- Example
+```c
+[Input]
+# cat MultipleColumn.txt
+Coloumn1 Coloumn2 Coloumn3
+1 2 3
+4 5 6
+9.9 8.9 4.5
+10 11 12
+13 14 15 16      17 18
+
+[Output]
+Coloumn1  Coloumn3
+1  3
+4  6
+9.9  4.5
+10  12
+13  15
+```
 
 ### Logic
 - Open the file
@@ -13,15 +32,6 @@
 
 ### Code
 ```c++
-# cat MultipleColumn.txt
-Coloumn1 Coloumn2 Coloumn3
-1 2 3
-4 5 6
-9.9 8.9 4.5
-10 11 12
-13 14 15 16      17 18
-
-
 #include<iostream>
 #include<fstream>
 #include<sstream>
