@@ -13,7 +13,7 @@ void srand(unsigned seed): sets seed.
 Seed: A integer used to Initialize random number generator.
 The "seed" is a starting point for the sequence and the guarantee is that if you set same seed you will get the same sequence of numbers again and again.
 NOTE: rand() requires seededing once ie at start of program, after that all invocations of rand() will take the seed.
-
+```
 
 ### 1. Generating same seq everytime
 - **Logic** Seed rand() by same number
