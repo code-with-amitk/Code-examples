@@ -71,6 +71,21 @@ LL of subscribed news channels =
 ### 2B. Traffic Estimates
 - As soon user logs in, his news feed has to be shown with least delay. Most data is sent from server to user/browser/FB app.
 - Considering user has 5000 friends, 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over websockets.
-- Considering 75% of fb users (3.5 x 75% = 2.5 Billion) are active every moment/every second. 
-  - User/browser/FB app opens a Websocket to server as comes online. (HTTP GET size = 2KB). 2KB x 2.5 = 5k Billion Bytes = 5TB bytes/sec comes to FB servers worldwide.
-  - 193 countries in world, considering 1 data center per country(on average). 5TB/193 = 25 Giga Bytes/second (pumped into 1 data center per second)
+- Considering 75% of fb users (3.5 x 75% = 2.5 Billion) are active every moment/every second.
+  - **Data pumped into FB servers per second**
+    - User/browser/FB app opens a Websocket to server as comes online. (HTTP GET size = 2KB). 2KB x 2.5 = 5k Billion Bytes = 5TB bytes/sec comes to FB servers worldwide.
+    - 193 countries in world, considering 1 data center per country(on average). 5TB/193 = 25 Giga Bytes/second (pumped into 1 data center per second)
+  - **Data reaching browser/FB App**
+    - Considering 5000 friends, 5000 channels. On average:
+```c    
+{Friends} 2500 friends does 1 photo upload, 2000 shared a post, 500 uploaded a video. 
+Http-response{XML or JSON}. Let XML contains 5000 links(shortened URLs). Ex: https://test.com/10-characters-shortened-url
+1 URL size = Total characters = (test.com=8 + 10) = 20. Each character occupies 4 bits. 80 bits = 10 bytes.
+5000 URLs size = 50000 bytes. 50 KB.
+      
+{Channels} Every channel posted 10 Links. 5000 x 10 = 50000 links
+1 URL Size = 10 bytes
+Total size = 50000 x 10 = 500 KB
+```
+    - Data reaching user/FB App when he gets online = 550 KB.
+    
