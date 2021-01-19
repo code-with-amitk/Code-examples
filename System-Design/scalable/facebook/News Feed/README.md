@@ -90,12 +90,13 @@ Total size = 50000 x 10 = 500 KB
 ```    
 
 ## 3. High Level design
-- **2 Users, 2 channels**
-  - Each user stores 10000 Photos. each photo size = 50KB.  50KB x 10000 x 2 = 5GB
-  - Each user stores 5000 videos. each video size = 1GB. 1GB x 5000 x 2 = 1TB
+### A. 2 Users, 2 channels
+  - Each user stores 10000 Photos. Each photo size = 50KB. 50KB x 10000 x 2 = 5GB
+  - Each user stores 5000 videos. Each video size = 1GB. 1GB x 5000 x 2 = 1TB
+- **Storing Photos, Videos on Object Store**
 ```c
-  Object-Store-1(Video)
-  Hash-Table
+  1. Object-Store-1(Video)   //uses Storage-Hash-Table
+  
   |Shortened URL|Virtual Address of Video File in Memory|
   |-------------|---------------------------------------|
   | 2412as | 0x004 |
@@ -103,4 +104,38 @@ Total size = 50000 x 10 = 500 KB
   
   |meta-data|video|...|meta-data|video|
   0x004               0x505
+  
+  2. Object-store-2(Photos)
 ```
+- **How Photo/Video is linked to user**
+```c
+  User-Hash-table
+  | User-Id | Hash-Table-of-Photos |
+  |---------|----------------------|
+  | userId1 | |photo1|2412as| 
+              |photo2|aw1as2|
+
+  | userId2 | |photo1|xuyyaa| 
+              |photo1|xyoaos|
+```
+- **How friend-list is stored**
+```c
+  Friend-Hash-table
+  | User-Id | ordered_set_of_friends |      //Searching O(logn)
+  |---------|----------------------|
+  | userId1 |       sachin
+                  /      \
+                amit      ziad                 
+```
+- **How channel subscriptions are stored**
+```c
+  Friend-Hash-table
+  | User-Id | ordered_map_of_channels |      //Searching O(logn)
+  |---------|----------------------|
+  | userId1 |      <news, address-of-sports-news>
+                  /    \
+                country    sports
+```
+- **How news feed works for 2 users**
+  - UserId1 adds a new photo,video to his album.
+    - *1.* New object allocated on object store. Entry created in *Storage-Hash-Table*, *User-Hash-table*
