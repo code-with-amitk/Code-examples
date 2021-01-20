@@ -44,12 +44,11 @@
 - **News Feed Usage statistics** Every person will have a news feed. 
   
 ### 2A. Storage Estimates
-- Photos/Videos/Messages/Posts would be stored on different Object store for every user. This will not be considered as part of news feed.
-- In relational DB there will be mapping-table which holds information about friends. This is considered as part of new feed.
-  - As soon there is change in any field of mapping-table, updater service will send information to poller service, as soon user comes online poller will update his new feed.
+- Photos/Videos/Messages/Posts would be stored on different Object store DB(Eg: amazon S3, ceph) for every user. This will not be considered as part of news feed.
+- In relational DB(Eg: PostGRE or mySQL) there will be Mapping-table(Hash-Table) which holds information about friends. This is considered as part of new feed.
+  - As soon there is change in any field of Mapping-table, updater service(which keeps watch on Mapping-Table) will send information to Poller service(So Pool for user), as soon user comes online poller will update his new feed.
+  - **Mapping Table**     //on Relational DB  
 ```c
-Mapping Table     //on Relational DB
-
 | User-name | ptr to LL of Friend's | ptr to LL of subscribed news | LL of sports | LL of personalities |
 | amit | 0x5681821 | 0x01291 | none | .. |
 | vivek | 0x02100aa | none | 0x28981 | .. |
