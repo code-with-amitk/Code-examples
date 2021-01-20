@@ -50,15 +50,17 @@
   - **Mapping Table**     //on Relational DB  
 ```c
 | UserName/UserId | Ptr to LL of Friends | Ptr to LL of Subscribed news | LL of sports | LL of personalities |
+--------------------------------------------------------------------------------------------------------------
 |     amit        |       0x5681821      |        0x01291               |     none     |        ..           |
-|     vivek       |       0x02100aa      |        none                  |     0x28981  |        ..           |
-
-LL of friends =                 //Better DS will be decided
-  0x5681821   vivek -> anil -> anuj ..   
-  0x02100aa   amit -> tiware -> jv ..   
-LL of subscribed news channels = 
-  0x01291  abp->cnn->al jazeera
-  0x28981   dd->star->espn
+|     john        |       0x02100aa      |        none                  |     0x28981  |        ..           |
+     
+vivek-> anil -> anuj ..       amit -> tiware -> jv ..   
+0x5681821                     0x02100aa
+     
+abp->cnn->al jazeera          dd->star->espn
+0x01291                       0x28981
+     
+//Better DS will be decided  
 ```
 - *Storing Mapping Table* 
   - Pointer=8 byte address and 50 linked list pointers per user.  400 bytes/user.   400 x 3.5 = 1400 Billion bytes = 1400 GB = 1.4 TB
