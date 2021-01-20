@@ -7,7 +7,10 @@ Output: [1,2]
 Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 ```
 
-## 1. Approach-1 (2 for loops)  //O(n<sup>2</sup>)
+## 1. Approach-1 (2 for loops)  
+- **Complexity:** 
+  - Time: O(n<sup>2</sup>)
+  - Space: O(1)
 ```c++
   vec1d twoSum(vec1d& numbers, int target) {
     vec1d out;
@@ -24,21 +27,22 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
   }
 ```
 
-## 2. Approach-2 (Binary Search)      //O(nlogn)
+## 2. Approach-2 (Binary Search)
 - *Complexity*
   - *Time:* O(nlogn).   logn=binary search. n=Incrementing the start by 1 every time
+  - *Space:* O(1)
 ```c
 arr[] = {2,4,5,6,7,8,9,11,15}; int target=12;
   Step-1: start=2, end=15, mid(index=4)=7
   Step-2: target > (start+mid). Move to right. start=8, end=15 ..
   
   Cannot find sum. Move to next element ie start=4
-  
-  
 ```
 
-## 3. Approach-3 (2 pointer)  //O(n)
-- Time: O(n). Space: O(1)
+## 3. Approach-3 (2 pointer)
+- **Complexity**
+  - Time: O(n)
+  - Space: O(1)
 ```c++
 #include<iostream>
 #include<vector>
