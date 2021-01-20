@@ -49,9 +49,9 @@
   - As soon there is change in any field of Mapping-table, updater service(which keeps watch on Mapping-Table) will send information to Poller service(So Pool for user), as soon user comes online poller will update his new feed.
   - **Mapping Table**     //on Relational DB  
 ```c
-| User-name | ptr to LL of Friend's | ptr to LL of subscribed news | LL of sports | LL of personalities |
-| amit | 0x5681821 | 0x01291 | none | .. |
-| vivek | 0x02100aa | none | 0x28981 | .. |
+| UserName/UserId | Ptr to LL of Friends | Ptr to LL of Subscribed news | LL of sports | LL of personalities |
+|     amit        |       0x5681821      |        0x01291               |     none     |        ..           |
+|     vivek       |       0x02100aa      |        none                  |     0x28981  |        ..           |
 
 LL of friends =                 //Better DS will be decided
   0x5681821   vivek -> anil -> anuj ..   
