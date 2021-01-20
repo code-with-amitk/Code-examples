@@ -37,9 +37,9 @@
 
 - **People using Facebook**
 
-|World Population|InternetUsers(60%)|FB Users(75-80% of Internet users)|
+|World Population|InternetUsers(60%)|FB Users(80-85% of Internet users)|
 |---|---|---|
-|7x10<sup>9</sup> //Year 2020|4.2 Billion|3.5 Billion|
+|7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.8 = 3.5 Billion|
 
 - **News Feed Usage statistics** Every person will have a news feed. 
   
