@@ -1,9 +1,9 @@
 ### 6 default/Implicit function provided by Complier
 - Constructor
-  - Default ctr
-  - Copy ctr
-  - Move ctr
+  - *1.* Default ctr
+  - *2.* Copy ctr
+  - *3.* Move ctr
 - Assignment Operator
-  - Copy
-  - Move
-- Destructor  
+  - *4.* Copy
+  - *5.* Move
+- *6.* Destructor  
