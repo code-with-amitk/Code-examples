@@ -1,60 +1,45 @@
-/*
-        virtual_destructor.cpp
- 
-Virtual Destructor: 
-Same concept of virtual-function. We have base-class-pointer pointing to derived class object. 
-And we want to delete base-class-pointer then Destructor of derived class will not be called, if not virtual.
+## Virtual Destructor?
+- Same concept of virtual-function. 
+- Base-class-pointer pointing to derived class object, derv class destructor will not be calling if base class destructor is not virtual.
 
-if base class destructor is not virtual: Derv class destructor will not be called.
--> See commented example below.
-*/
+### Derv class destructor not called
+```c++
+class Base{
+public:
+  virtual void f1(){}
+  ~Base(){ cout<<"~base\n";  }
+};
 
-/*
-#include<iostream>
-using namespace std;
-class A{
-        int *a;
+class derv:public Base{
 public:
-        A(){a = new int;}                               
-        ~A(){cout<<"Destructor class A. (deleting a)"<<endl;}   <<<<< NOT VIRTUAL
+  ~derv(){ cout<<"~derv\n"; }
 };
-class B: public A{
-        int *b;
-public:
-        B(){b = new int;}
-        ~B(){cout<<"Destructor class B. (deleting b)"<<endl;}
-};
+
 int main(){
-        A *ptr = new B();
-        delete ptr;
-        return 0;
+  Base *p = new derv();
+  delete p;
 }
+# ./a.out
+~base
+```
 
-Output:
-Destructor class A. (deleting a)
-*/
+### When base destructor is virtual, derv class destructor called
+```c++
+class Base{
+public:
+  virtual void f1(){}
+  virtual ~Base(){ cout<<"~base\n";  }
+};
 
-#include<iostream>
-using namespace std;
-class A{
-        int *a;
+class derv:public Base{
 public:
-        A(){a = new int;}
-        virtual ~A(){cout<<"Destructor class A. (deleting a)"<<endl;}
+  ~derv(){ cout<<"~derv\n"; }
 };
-class B: public A{
-        int *b;
-public:
-        B(){b = new int;}
-        ~B(){cout<<"Destructor class B. (deleting b)"<<endl;}
-};
+
 int main(){
-        A *ptr = new B();
-        delete ptr;
-        return 0;
+  Base *p = new derv();
+  delete p;
 }
-/*
-Output:
-Destructor class B. (deleting b)
-Destructor class A. (deleting a)
-*/
+# ./a.out
+~base
+```
