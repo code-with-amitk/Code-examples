@@ -5,4 +5,4 @@
 heights[] = [2,1,5,6,2,3]
 Output = 10     //The largest rectangle is shown in the shaded area, which has area = 10 unit.
 ```
-<img src="https://assets.leetcode.com/uploads/2018/10/12/histogram_area.png" width=500 \>
+<img src="https://assets.leetcode.com/uploads/2018/10/12/histogram_area.png" width="500" />
