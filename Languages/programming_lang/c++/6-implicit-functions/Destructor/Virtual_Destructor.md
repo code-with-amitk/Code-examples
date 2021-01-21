@@ -7,7 +7,7 @@
 class Base{
 public:
   virtual void f1(){}
-  ~Base(){ cout<<"~base\n";  }
+  ~Base(){ cout<<"~base\n";  }      //Base class dtr not virtual
 };
 
 class derv:public Base{
