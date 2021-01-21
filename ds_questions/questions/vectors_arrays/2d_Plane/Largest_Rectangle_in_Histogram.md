@@ -7,7 +7,7 @@ Output = 10     //The largest rectangle is shown in the shaded area, which has a
 ```
 <img src="https://assets.leetcode.com/uploads/2018/10/12/histogram_area.png" width="300" />
 
-### Approach-1      //O(n<sup>2</sup>)
+### 1. Approach-1      //O(n<sup>2</sup>)
 - **Logic**
   - *1.* Take a variable max = INT_MIN
   - *2.* Find 
