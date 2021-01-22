@@ -4,4 +4,4 @@
   - *1.* We can write cross platform code, build using cmake for building console applications. Now same code(without change) will work on.
   - *2.* Games can be build in pdcurses
   
-<img src="https://imgur.com/cqmsF6e" width="250 />  
+<img src="https://imgur.com/cqmsF6e" width="250" />  
