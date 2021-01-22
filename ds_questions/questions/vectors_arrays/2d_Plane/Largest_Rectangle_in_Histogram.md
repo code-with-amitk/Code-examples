@@ -129,3 +129,118 @@ int largestRectangleArea(vector<int> &A) {
 ```
 
 ## Approach-3 //Stack   //O(n)
+### Logic
+- *1.* Take a stack to store indexes. Fill -1 to mark end of stack.
+```c
+a[] = {1, 3, 4, 5, 2, 6, 10, 1}
+       0  1  2  3  4  5   6  7 
+
+stack<int> | -1 |
+```
+- *2.* Start from index=0, keep filling indexes until we find a decreasing sequence.
+```c
+a[] = {1, 3, 4, 5, 2, 6, 10, 1}
+       0  1  2  3  4  5   6  7 
+
+stack | 3 |
+      | 2 |
+      | 1 |
+      | 0 |
+      | -1|
+```
+- *3.* Start from index=0, keep filling indexes until we find a decreasing sequence.
+```c
+a[] = {1, 3, 4, 5, 2, 6, 10, 1}
+       0  1  2  3  4  5   6  7 
+
+stack | -1| 0 | 1 | 2 | 3 |   //Found a[4] < a[3]
+      bottom            top
+```
+- *4.* On finding decreseasing sequence, start popping and find area. compare with max.
+```c
+a[] = {1, 3, 4, 5, 2, 6, 10, 1}
+       0  1  2  3  4  5   6  7 
+
+  a[3] > a[4]         (5 > 2)
+
+popped 3.   Area = a[3]x1 = 5x1 = 5
+stack | -1| 0 | 1 | 2 |
+      bottom         top  
+      
+Still a[2] > a[4]      (4 > 2)
+
+popped 2.   Area = a[2]x2 = 4x2 = 8
+stack | -1| 0 | 1 |
+      bottom     top        
+
+Still a[1] > a[4]      (3 > 2)
+
+popped 1.   Area = a[1]x3 = 3x3 = 9
+stack | -1| 0 |
+    bottom    top        
+
+Still a[0] < a[4]      (1 < 2)
+
+////////////////Donot pop, start pushing///////////////
+stack | -1| 0 | 4 |
+    bottom       top        
+
+stack | -1| 0 | 4 | 5 | 6 |
+    bottom                top        
+    
+Still a[6] > a[7]      (10 > 1)    
+
+/////////////////Start poping///////////////////////
+popped 6.   Area = a[6]x1 = 10x1 = 10
+stack | -1| 0 | 4 | 5 |
+    bottom          top        
+
+Still a[5] > a[7]    (6 > 1)
+
+popped 5.   Area = a[5]x2 = 6x2 = 12
+stack | -1| 0 | 4 |
+    bottom      top        
+
+Still a[4] > a[7]    (2 > 1)
+
+popped 5.   Area = a[5]x3 = 2x3 = 6
+stack | -1| 0 |
+    bottom   top        
+```
+- *5.* Keep updatating maxArea variable
+### Complexity
+- **Time:** O(n). How O(n)?
+  - Let's suppose `a[]=2,3,4,5,6,1`. for() reached last element O(n)
+  - Start popping stack `stack=2 3 4 5 6(top)`. This is O(n). These are not nested. Hence O(n)+O(n) = O(n)
+- **Space** O(n). Stack size
+### Code
+```c++
+class Solution {
+public:
+  int largestRectangleArea(vector<int>& A) {
+    stack<int> stIndex;
+    stIndex.push(-1);   //Marking stack bottom
+    int size = A.size();
+    int maxArea = 0;
+
+    for (int i=0; i<A.size(); ++i){
+      while (stIndex.top() != -1 and A[stIndex.top()] >= A[i]){
+        int currentHeight = A[stIndex.top()];
+        stIndex.pop();
+        int currentWidth = i - stIndex.top() - 1;
+        maxArea = std::max(currentHeight*currentWidth, maxArea);
+      }
+      stIndex.push(i);
+    }
+
+    //Still few entries left on stack
+    while(stIndex.top() != -1) {
+      int currentHeight = A[stIndex.top()];
+      stIndex.pop();
+      int currentWidth = A.size() - stIndex.top() - 1;
+      maxArea = std::max(currentHeight*currentWidth, maxArea);
+    }
+    return maxArea;        
+  }
+};
+```
