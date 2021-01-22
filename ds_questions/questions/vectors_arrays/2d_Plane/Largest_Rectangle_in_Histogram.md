@@ -55,7 +55,7 @@ int largestRectangleArea(vector<int> &A) {
 }
 ```
 
-## 2. Approach-2    //Divide & Conquer  //O(nlogn)
+## 2. Approach-2    //Divide & Conquer  //Avg:O(nlogn), Worst:O(n<sup>2</sup>)
 - **Rationale behind approach** The rectangle with maximum area will be the maximum of:
   - *1.* The widest possible rectangle with height equal to the height of the shortest bar    OR
   - *2.* The largest rectangle confined to the left of the shortest bar(subproblem).    OR
@@ -88,9 +88,12 @@ int largestRectangleArea(vector<int> &A) {
       return 6*1            return 5*1
 ```
 - **Complexity**
-  - *Time:* O(nlogn)
-    - *1.* Index of minimum element(miniIndex) is calculated at every divide for subarray whose size keep on decreasing and these for loops are not nested. = O(n). `O(n)  +   O(n-m)  + O(m)  ..`
-    - *2.* Divide array into 2 parts = logn
+  - *Time:* 
+    - Worst case: O(n<sup>2</sup>). if array is sorted either in ascending or descending order, at every step we need to go n-1 elements. `O(n) + O(n-1) + O(n-2)..1 = n(n+1)/2`    
+    - Average case: O(nlogn)
+      - *1.* Index of minimum element(miniIndex) is calculated at every divide for subarray whose size keep on decreasing and these for loops are not nested. = O(n). `O(n)  +   O(n-m)  + O(m)  ..`
+      - *2.* Divide array into 2 parts = logn
+  - *Space:* O(n). Allocation of stacks in recursion would be n times.      
 - **Code**
 ```c++
 int Divide(vector<int>& A, int low, int high){
