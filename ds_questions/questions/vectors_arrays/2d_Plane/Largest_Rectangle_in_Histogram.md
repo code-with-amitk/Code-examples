@@ -127,3 +127,5 @@ int largestRectangleArea(vector<int> &A) {
   return Divide(A, 0, A.size()-1);
 }
 ```
+
+## Approach-3 //Stack   //O(n)
