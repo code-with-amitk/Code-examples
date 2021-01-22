@@ -129,6 +129,8 @@ int largestRectangleArea(vector<int> &A) {
 ```
 
 ## Approach-3 //Stack   //O(n)
+
+<img src="https://i.ibb.co/jT6zGDg/max-area-histogram-stack.png" width="400" />
 ### Logic
 - *1.* Take a stack to store indexes. Fill -1 to mark end of stack.
 ```c
