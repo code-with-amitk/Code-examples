@@ -9,8 +9,9 @@ Output = 10     //The largest rectangle is shown in the shaded area, which has a
 
 ## 1. Approach-1      //O(n<sup>2</sup>)
 - **Logic**
-  - *1.* Take a variable max = INT_MIN
-  - *2.* Find 
+  - *1.* Start from left most bar.
+  - *2.* Find area = myHeight x 1. store max(area, maxArea)
+  - *3.* goto next bar. `height = min(a[0],a[1])` area = heightx2. store max(area, maxArea)
 ```c
 
 i = 0
@@ -131,6 +132,7 @@ int largestRectangleArea(vector<int> &A) {
 ## Approach-3 //Stack   //O(n)
 
 <img src="https://i.ibb.co/jT6zGDg/max-area-histogram-stack.png" width="400" />
+
 ### Logic
 - *1.* Take a stack to store indexes. Fill -1 to mark end of stack.
 ```c
