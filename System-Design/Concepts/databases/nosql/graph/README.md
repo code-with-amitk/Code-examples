@@ -1,13 +1,11 @@
-# A. Why Graph DB?
-- We live in a connected world with most pieces connected and data is connected
-
-# B. Graph vs Relational DB
+## Graph DB?
+- **Why?** We live in a connected world with most pieces connected and data is connected
+- **Graph vs Relational DB**
 | | Graph | Relational |
 | --- | --- | --- |
 | Computing relationships | stores connections alongside the data in the model | Using expensive JOIN operations |
 
-# C. How Data is stored in Graph
-- Storing data sometimes is called as `Property Graph model`.
+### How Data is stored in Graph
 - **Node** Entity of graph storing data.
   - **Data on Node**
     - ***Properties*** These are <key:value> pair stored on node. Node can hold any number of attributes.
