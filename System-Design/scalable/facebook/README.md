@@ -11,12 +11,12 @@
 ### Database schema
 - **Object Table**
 ```c
-  |  id(int) |  otype(string) |     data(byte)     |
-  |----------|----------------|--------------------|
-  |   567    |  user          |     kush           |
-  |   444    |  post          |     Party          |
-  |   332    |  comment       | Great Party@prasad |
-  --------------------------------------------------
+  |  id(int) |  otype(string) |                 data(byte)              |
+  |----------|----------------|-----------------------------------------|
+  |   567    |  user          |     kush  (max 50 characters)           |
+  |   444    |  post          |     Party (max 63206 characters)        |
+  |   332    |  comment       | Great Party@prasad (max 8000 characters)|
+  -----------------------------------------------------------------------
 ```
 - **Relation/Association/Edge Table**
 ```c
