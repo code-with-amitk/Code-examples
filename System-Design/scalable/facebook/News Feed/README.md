@@ -98,7 +98,7 @@ Each position of Id can have any of 62 characters.
   - *3. key-value* Considering 100 characters. 1 byte/character. 100 bytes x 12 Billion = 1TB
   - **Total bytes needed to store Edge Table = 120GB + 240GB + 1TB => 2TB**  
 
-- **Total bytes needed to store Object Table+Association Table = 24~25TB**
+**Total bytes needed to store Object Table+Association Table = 24~25TB**
 
   
 ### 2B. Traffic Estimates
