@@ -2,17 +2,16 @@
 | --- | --- | --- | --- | --- | --- |
 
 # To Cover
-
-- *1.* Requirements: 
-  - Functional(Basic functionality, should work)
-  - Non-functional(defines quality)
-  - Extended
-- *2.* Back of Envelope Calculations
+- **1. Requirements:**
+  - *1a.* Functional(Basic functionality, should work)
+  - *1b.* Non-functional(defines quality)
+  - *1c.* Extended
+- **2. Back of Envelope Calculations**
   - Storage estimates
   - Traffic estimates
-- *3.* HLD: For 2, 100, 1 lac users
-- *4.* Database schema
-- *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+- **3. HLD**:For 2, 100, 1 lac users
+- **4. Database schema**
+- **5. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F**
   - Scalable, Secure, SOA
   - Logging, Load, Latency
   - Cache(Invalidation, negative cache)
