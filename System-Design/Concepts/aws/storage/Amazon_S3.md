@@ -4,7 +4,7 @@
 
 ## Storing objects
 - Each object has Metadata(name of the object, size and date) and object itself.
-- S3 has buckets for storing the objects. each bucket can have 100's of objects.
+- S3 has buckets(there are stored as per regions) for storing the objects. each bucket can have 100's of objects.
 ```c
   |          |    |          |
   |o1 o3 o100|    |o7 o5 o239|
