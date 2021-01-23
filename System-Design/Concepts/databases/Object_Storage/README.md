@@ -1,0 +1,24 @@
+## How Object Store should be storing data?
+### 1. Storing Videos
+```c
+  1. Object-Store-1(Video)   //uses Storage-Hash-Table
+  
+  |Shortened URL|Virtual Address of Video File in Memory|
+  |-------------|---------------------------------------|
+  | 2412as      |           0x004                       |
+  | aw1as2      |           0x505                       |       
+  
+  |meta-data|video|       |meta-data|video|
+  0x004                    0x505
+```
+### 2. Storing Photos
+```c
+  User-Hash-table
+  | User-Id | Hash-Table-of-Photos |
+  |---------|----------------------|
+  | userId1 | |photo1|2412as| 
+              |photo2|aw1as2|
+
+  | userId2 | |photo1|xuyyaa| 
+              |photo1|xyoaos|
+```
