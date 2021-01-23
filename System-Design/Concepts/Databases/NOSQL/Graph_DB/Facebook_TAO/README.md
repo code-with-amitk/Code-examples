@@ -10,6 +10,10 @@
   
 ## Database(MySQL) schema?
 - Relationship between entities is stored in MySQL DB using 2 tables.
+- Data is stored across sharded databases. 
+- **FB's Optimization on DB?** 
+  - *1.* Stores Id and its association on same database, for faster and single query look up.
+  - *2.* FB developed MyRocks-DB based on Log Structure Merge (LSM) tree.
 
 - **1. Object Table**
 ```c
@@ -33,7 +37,7 @@
 
 ## How user data/posts/comments/friend list is accessed?
 #### 1. Using TAO(Distributed Data store) 
-  - **What?** Database frontend(Developed at FB), which provides APIs to RW data from databases.
+  - **What?** Database frontend(Developed at FB), which provides APIs to RW data from databases. It acts as Write-Thru cache.
   - **API Types?**
     - *1. Object access APIs:* Add/delete/query/update objects
     - *2. Edge/Association access APIs:* Add/delete/query/update associations. Example
