@@ -32,6 +32,10 @@
 - **1C. Extended**
   - *a.* Option to hide/disable news feed.
   - *b.* AI powered user specific search items
+  
+## 2. HLD
+- Before BOE, let's see How FB stores users,posts,comments? After that we can get take BOE Calculations.
+- FB uses [TAO for storing giant graph of users](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/graph/Facebook_TAO/README.md)
 
 ## 2. Back Of Envelope Calculations
 
@@ -43,7 +47,7 @@
 
 - **News Feed Usage statistics** Every person will have a news feed. 
   
-### 2A. Storage Estimates
+### 2A. Storage Estimates (24~25TB calculations below)
 - Photos/Videos would be stored on different Object store DB(Eg: amazon S3, ceph) for every user. This will not be considered as part of news feed.
 - Storing users/comments/posts is part of new feed.
  #### 2A1. Object Table  //6 billion entries.
@@ -99,20 +103,20 @@ Each position of Id can have any of 62 characters.
   - **Total bytes needed to store Edge Table = 120GB + 240GB + 1TB => 2TB**  
 
 **Total bytes needed to store Object Table+Association Table = 24~25TB**
-
   
 ### 2B. Traffic Estimates
 - As soon user logs in, his news feed has to be shown with least delay. Most data is sent from server to user/browser/FB app.
-- Considering user has 5000 friends, 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over websockets.
+- Considering user has 5000 friends(max allowed friend's limit=5000), 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over websockets. Pooler service keeps pooling for user to get online.
 - Considering 75% of fb users (3.5 x 75% = 2.5 Billion) are active every moment/every second.
   - **Data pumped into FB servers per second**
-    - User/browser/FB app opens a Websocket to server as comes online. (HTTP GET size = 2KB). 2KB x 2.5 = 5k Billion Bytes = 5TB bytes/sec comes to FB servers worldwide.
-    - 193 countries in world, considering 1 data center per country(on average). 5TB/193 = 25 Giga Bytes/second (pumped into 1 data center per second)
-  - **Data reaching browser/FB App = 550kb**
-    - Considering 5000 friends, 5000 channels.
+    - User/browser/FB app opens a Websocket to server as comes online. (HTTP GET size = 2KB). 2KB x 2.5 = 5k Billion Bytes = 5TB/sec comes to FB servers worldwide.
+    - 193 countries in world, considering 1 data center per country(on average). 5TB/193 = 25GB/sec (pumped into 1 data center per second)
+  - **Data reaching browser/FB App = 550kb(calculations below)**
 ```c
+Considering 5000 friends, 5000 channels.
+
  On average:
-{Friends} 2500 friends does 1 photo upload, 2000 shared a post, 500 uploaded a video. 
+Out of 5000 Friends, 2500 does 1 photo upload, 2000 shared a post, 500 uploaded a video. 
 Http-response{XML or JSON}. Let XML contains 5000 links(shortened URLs). Ex: https://test.com/10-characters-shortened-url
 1 URL size = Total characters = (test.com=8 + 10) = 20. Each character occupies 4 bits. 80 bits = 10 bytes.
 5000 URLs size = 50000 bytes. 50 KB.
@@ -124,42 +128,10 @@ Total size = 50000 x 10 = 500 KB
 
 ## 3. High Level design
 ### A. 2 Users, 2 channels
-  - Each user stores 10000 Photos. Each photo size = 50KB. 50KB x 10000 x 2 = 5GB
-  - Each user stores 5000 videos. Each video size = 1GB. 1GB x 5000 x 2 = 1TB
-- **Storing Photos, Videos on Object Store**
-```c
-  1. Object-Store-1(Video)   //uses Storage-Hash-Table
-  
-  |Shortened URL|Virtual Address of Video File in Memory|
-  |-------------|---------------------------------------|
-  | 2412as | 0x004 |
-  | aw1as2 | 0x505 |       
-  
-  |meta-data|video|...|meta-data|video|
-  0x004               0x505
-  
-  2. Object-store-2(Photos)
-```
-- **How Photo/Video is linked to user**
-```c
-  User-Hash-table
-  | User-Id | Hash-Table-of-Photos |
-  |---------|----------------------|
-  | userId1 | |photo1|2412as| 
-              |photo2|aw1as2|
-
-  | userId2 | |photo1|xuyyaa| 
-              |photo1|xyoaos|
-```
-- **How friend-list is stored**
-```c
-  Friend-Hash-table
-  | User-Id | ordered_set_of_friends |      //Searching O(logn)
-  |---------|----------------------|
-  | userId1 |       sachin
-                  /      \
-                amit      ziad                 
-```
+  - Each user stores 10000 Photos(limit of photos a user can store=10000). Each photo size = 50KB. 50KB x 10000 x 2 = 5GB
+  - Each user stores 5000 videos(limit of videos a user can store=5000). Each video size = 1GB. 1GB x 5000 x 2 = 1TB
+- **Storing Photos, Videos on Object Store:** See [Object-Store](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/Object_Storage/README.md)
+- **Stoing friend list?** [TAO for storing giant graph of users](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/graph/Facebook_TAO/README.md)
 - **How channel subscriptions are stored**
 ```c
   Friend-Hash-table
