@@ -1,26 +1,25 @@
-10<sup>6</sup> = Million, 10<sup>9</sup> = Billion, 10<sup>12</sup> = Trillion, 10<sup>15</sup> = Quadtrillion
+| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
+| --- | --- | --- | --- | --- | --- |
 
-RBSHD
+# To Cover
 
-1. Requirements Functional
-2. BOE
-3. System APIs
-4. HLD
-5. DB Schema
-6. Non-functional Requirements
-  - S<sup>3</sup>
-      L<sup>3</sup>
-      C<sup>2</sup>
-      A<sup>3</sup>
-      R<sup>2</sup>
-      F
-      - SOA, Secure, Scalable
-      - Load, Latency, Logging
-      - Cache(Cache invalidation, Negative cache)
-      - Available, Authentication, Analyze, 
-      - Reliable, Redundant(using DB), 
-      - Fast(Lambda)
-      
+- *1.* Requirements: 
+  - Functional(Basic functionality, should work)
+  - Non-functional(defines quality)
+  - Extended
+- *2.* Back of Envelope Calculations
+  - Storage estimates
+  - Traffic estimates
+- *3.* HLD: For 2, 100, 1 lac users
+- *4.* Database schema
+- *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+  - Scalable, Secure, SOA
+  - Logging, Load, Latency
+  - Cache(Invalidation, negative cache)
+  - Available, Accurate, Analyze, Authenticate
+  - Reliable, Redundant(Using DB)
+  - Fast
+  
 | | CDN | AWS Cloud |
 | --- | --- | --- |
 | SOA/modular | API G/W | ECS (containerized) |
