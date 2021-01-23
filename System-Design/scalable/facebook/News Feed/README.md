@@ -7,7 +7,7 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-# [To Cover](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/scalable/README.md)
+# [See-> To Cover](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/scalable/README.md)
 
 ## 1. Requirements
 - **1A. Functional**
