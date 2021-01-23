@@ -1,4 +1,4 @@
-## How Object Store should be storing data?
+## How Object Store (should) be storing data?
 ### 1. Storing Videos
 ```c
   1. Object-Store-1(Video)   //uses Storage-Hash-Table
