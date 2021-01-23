@@ -22,7 +22,7 @@
   
 ## 2. HLD
 - Before BOE, let's see How FB stores users,posts,comments? After that we can get take BOE Calculations.
-- FB uses [See-> TAO for storing giant graph of users](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/graph/Facebook_TAO/README.md)
+- FB uses [See-> TAO for storing giant graph of users(System-Design>Concepts>Databases>NOSQL>Graph_DB>Facebook_TAO>README.md)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
 ## 3. Back Of Envelope Calculations
 
@@ -118,7 +118,7 @@ Total size = 50000 x 10 = 500 KB
   - Each user stores 10000 Photos(limit of photos a user can store=10000). Each photo size = 50KB. 50KB x 10000 x 2 = 5GB
   - Each user stores 5000 videos(limit of videos a user can store=5000). Each video size = 1GB. 1GB x 5000 x 2 = 1TB
 - **Storing Photos, Videos on Object Store:** [See-> Object-Store](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/Object_Storage/README.md)
-- **Stoing friend list?** [See-> TAO for storing giant graph of users](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/graph/Facebook_TAO/README.md)
+- **Stoing friend list?** [See-> TAO for storing giant graph of users(System-Design>Concepts>Databases>NOSQL>Graph_DB>Facebook_TAO>README.md)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 - **How channel subscriptions are stored**
 ```c
   Friend-Hash-table
