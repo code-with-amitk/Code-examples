@@ -24,7 +24,7 @@
 - Before BOE, let's see How FB stores users,posts,comments? After that we can get take BOE Calculations.
 - FB uses [See-> TAO for storing giant graph of users](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/nosql/graph/Facebook_TAO/README.md)
 
-## 2. Back Of Envelope Calculations
+## 3. Back Of Envelope Calculations
 
 - **People using Facebook**
 
@@ -34,10 +34,10 @@
 
 - **News Feed Usage statistics** Every person will have a news feed. 
   
-### 2A. Storage Estimates (24~25TB calculations below)
+### 3A. Storage Estimates (24~25TB calculations below)
 - Photos/Videos would be stored on different Object store DB(Eg: amazon S3, ceph) for every user. This will not be considered as part of news feed.
 - Storing users/comments/posts is part of new feed.
- #### 2A1. Object Table  //6 billion entries.
+ #### 3A1. Object Table  //6 billion entries.
   - *1. Id:* We will use 62 different characters arranged at 6 positions.
 ```c
 if we take 3 characters(a,b,c) and 2 positions _ _. How many unique Id's can be formed?
@@ -83,7 +83,7 @@ Each position of Id can have any of 62 characters.
       - 7 bits to represent each character(consider 1 byte). 16TB   
   - **Total bytes needed to store Object Table = 30GB(ids) + 80GB(otype) + 150GB(datatype=username) + 6TB(datatype=posts) + 16TB(datatype=comments) => 22TB**
 
- #### 2A2. Edge/Association Table  //12 billion entries.
+ #### 3A2. Edge/Association Table  //12 billion entries.
   - *1. Id:* 5 bytes to store 1 id(calculated above). 12 Billion association table will have 24 billion ids. 24x5 = 120GB
   - *2. Edge-type* Considering max string length = 20 characters. 1 byte/character. 20 bytes x 12 Billion = 240GB
   - *3. key-value* Considering 100 characters. 1 byte/character. 100 bytes x 12 Billion = 1TB
@@ -91,7 +91,7 @@ Each position of Id can have any of 62 characters.
 
 **Total bytes needed to store Object Table+Association Table = 24~25TB**
   
-### 2B. Traffic Estimates
+### 3B. Traffic Estimates
 - As soon user logs in, his news feed has to be shown with least delay. Most data is sent from server to user/browser/FB app.
 - Considering user has 5000 friends(max allowed friend's limit=5000), 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over websockets. Pooler service keeps pooling for user to get online.
 - Considering 75% of fb users (3.5 x 75% = 2.5 Billion) are active every moment/every second.
@@ -113,7 +113,7 @@ Http-response{XML or JSON}. Let XML contains 5000 links(shortened URLs). Ex: htt
 Total size = 50000 x 10 = 500 KB
 ```    
 
-## 3. High Level design
+## 4. High Level design
 ### A. 2 Users, 2 channels
   - Each user stores 10000 Photos(limit of photos a user can store=10000). Each photo size = 50KB. 50KB x 10000 x 2 = 5GB
   - Each user stores 5000 videos(limit of videos a user can store=5000). Each video size = 1GB. 1GB x 5000 x 2 = 1TB
