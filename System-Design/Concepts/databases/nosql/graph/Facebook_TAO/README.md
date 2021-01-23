@@ -1,4 +1,4 @@
-## FB Datastructure(Graph)
+## Entities in Graph?
 
 [Information taken from this Article](https://medium.com/swlh/an-introduction-to-facebooks-system-architecture-47cfcf597101#:~:text=The%20Data%20Model%20For%20Social,a%20single%20giant%20social%20graph.&text=A%20node%20represents%20an%20entity,the%20relationships%20between%20the%20nodes.)
 
@@ -8,8 +8,10 @@
   
   <img src="https://i.ibb.co/9qBgMhp/fb-friends.png" width="700" />
   
-### Database schema
-- **Object Table**
+## Database(MySQL) schema?
+- Relationship between entities is stored in MySQL DB using 2 tables.
+
+- **1. Object Table**
 ```c
   |  id(int) |  otype(string) |                 data(byte)              |
   |----------|----------------|-----------------------------------------|
@@ -18,7 +20,8 @@
   |   332    |  comment       | Great Party@prasad (max 8000 characters)|
   -----------------------------------------------------------------------
 ```
-- **Relation/Association/Edge Table**
+
+- **2. Relation/Association/Edge Table**
 ```c
   |  Source-id(int) |  Dst-Id(int)  | Edge-Type(string) | key-value(Optional)(byte) |
   |-----------------|---------------|-------------------|---------------------------|
@@ -27,7 +30,8 @@
   |       444       |     332       |   Comment         |   reaction:smily emoji    |
   -----------------------------------------------------------------------------------
 ```
-### How Databases are Accessed
+
+## How user data/posts/comments/friend list is accessed?
 #### 1. Using TAO(Distributed Data store) 
   - **What?** Database frontend(Developed at FB), which provides APIs to RW data from databases.
   - **API Types?**
