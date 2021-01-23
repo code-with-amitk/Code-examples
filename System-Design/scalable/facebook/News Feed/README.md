@@ -7,20 +7,7 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-# To Cover
-- *1.* Requirements: Functional(Basic functionality, should work), Non-functional(defines quality), Extended
-- *2.* Back of Envelope Calculations
-  - Storage estimates
-  - Traffic estimates
-- *3.* HLD: For 2, 100, 1 lac users
-- *4.* Database schema
-- *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
-  - Scalable, Secure, SOA
-  - Logging, Load, Latency
-  - Cache(Invalidation, negative cache)
-  - Available, Accurate, Analyze, Authenticate
-  - Reliable, Redundant(Using DB)
-  - Fast
+# [To Cover](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/scalable/README.md)
 
 ## 1. Requirements
 - **1A. Functional**
