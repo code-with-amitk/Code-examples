@@ -1,9 +1,4 @@
-**Contents**
-- database vs datawarehouse
-- Object vs block vs file storage
-- SQL vs NoSQL DB
-
-## Database vs Datawarehouse
+## 1. Database vs Datawarehouse
 
 | | Database | Datawarehouse |
 | --- | --- | --- |
@@ -13,7 +8,7 @@
 | Uses | Online Transactional Processing (OLTP) |  Online Analytical Processing (OLAP) |
 | Modelling Techniques used | ER modeling techniques | data modeling techniques |
 
-## Object vs Block vs File storage
+## 2. Object vs Block vs File storage
 
 | | Object | Block | File |
 | --- | --- | --- | --- |
@@ -25,12 +20,7 @@
 | Use cases | Not good for transactional data(bcoz of eventual consistency |
 | Examples | [Amazon S3](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/s3.md), ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | [Amazon EBS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/ebs.md), SAN-arrays | [Amazon EFS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/efs.md), Gluster |
 
-### Every Object contains
-  - **data** anything we want to store, from a family photo to a 400,000-page manual for assembling an aircraft.
-  - **Metadata** contains contextual information about what the data is, what it should be used for Metadata can include anything from the security classification of the file within the object to the importance of the application associated with the information. 
-- **globally unique identifier** address given to the object in order for the object to be found over a distributed system
-
-## SQL vs noSQL
+## 3. SQL vs noSQL
 
 | | SQL, Relational, Structured | noSQL, nonRelational, unStructured |
 | --- | --- | --- |
