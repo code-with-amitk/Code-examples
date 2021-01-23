@@ -1,14 +1,4 @@
-## 1. Database vs Datawarehouse
-
-| | Database | Datawarehouse |
-| --- | --- | --- |
-| Purpose | Stores customer data | helps analyze data |
-| Contians | related data | historical & commutative data |
-| Orientation | application-oriented-collection of data | subject-oriented collection of data |
-| Uses | Online Transactional Processing (OLTP) |  Online Analytical Processing (OLAP) |
-| Modelling Techniques used | ER modeling techniques | data modeling techniques |
-
-## 2. Object vs Block vs File storage
+## 1. Object vs Block vs File storage
 
 | | Object | Block | File |
 | --- | --- | --- | --- |
@@ -20,7 +10,7 @@
 | Use cases | Not good for transactional data(bcoz of eventual consistency |
 | Examples | [Amazon S3](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/s3.md), ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | [Amazon EBS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/ebs.md), SAN-arrays | [Amazon EFS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/efs.md), Gluster |
 
-## 3. SQL vs noSQL
+## 2. SQL vs noSQL
 
 | | SQL, Relational, Structured | noSQL, nonRelational, unStructured |
 | --- | --- | --- |
@@ -34,3 +24,13 @@
 | Types | <ul><li>**ORDBMS(Object RDBMS)** RDBMS build on OOD. Eg: PostGreSQL</li></ul> <ul><li>**RDBMS** mySQL</li><ul> | <ul><li>**KEY-VALUE DB** Eg: redis, dynamoDB, Voldemort</li></ul> <ul><li>**WIDE-COLUMN DB:** Stores data as columns instead of rows. Eg: Cassandra, HBase</li></ul> <ul><li>**DOCUMENT DB:** data is stored in documents(XML, JSON, binary) Eg: mongoDB, dynamoDB</li></ul> <ul><li>**GRAPH DB:** Data is stored in form of graph. Eg: Neo4J, HyperGraphDB</li></ul>
   
 - Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
+
+## 3. Database vs Datawarehouse
+
+| | Database | Datawarehouse |
+| --- | --- | --- |
+| Purpose | Stores customer data | helps analyze data |
+| Contians | related data | historical & commutative data |
+| Orientation | application-oriented-collection of data | subject-oriented collection of data |
+| Uses | Online Transactional Processing (OLTP) |  Online Analytical Processing (OLAP) |
+| Modelling Techniques used | ER modeling techniques | data modeling techniques |
