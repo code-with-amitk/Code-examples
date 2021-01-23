@@ -6,7 +6,7 @@
 - **Example**
   - 4 Friends(kush,amit,prasad,arpit). Kush created a post "Party", Amit commented "Great party @Prasad"(tagged prasad), Arpit liked comment.
   
-  <img src="https://i.ibb.co/9qBgMhp/fb-friends.png" width="300" />
+  <img src="https://i.ibb.co/9qBgMhp/fb-friends.png" width="500" />
   
 ### Database schema
 - **Object Table**
