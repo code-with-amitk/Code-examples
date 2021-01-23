@@ -2,7 +2,7 @@
 - Find min cost path. Ans=7
 - Example
 
-<img src="https://www.pramp.com/img/content/img_01.png" width="500 />
+<img src="https://www.pramp.com/img/content/img_01.png" width="500" />
 
 ```c++
       0
