@@ -6,6 +6,8 @@
 - **Example**
   - 4 Friends(kush,amit,prasad,arpit). Kush created a post "Party", Amit commented "Great party @Prasad"(tagged prasad), Arpit liked comment.
   
+  <img src="https://i.ibb.co/9qBgMhp/fb-friends.png" width="300" />
+  
 ### Database schema
 - **Object Table**
 ```c
@@ -26,11 +28,11 @@
   -----------------------------------------------------------------------------------
 ```
 ### How Databases are Accessed
-#### 1. TAO(Distributed Data store) 
+#### 1. Using TAO(Distributed Data store) 
   - **What?** Database frontend(Developed at FB), which provides APIs to RW data from databases.
   - **API Types?**
-    - *1. Object APIs:* Add/delete/query/update objects
-    - *2. Association APIs:* Add/delete/query/update associations. Example
+    - *1. Object access APIs:* Add/delete/query/update objects
+    - *2. Edge/Association access APIs:* Add/delete/query/update associations. Example
 ```c
 struct/class {
   long source-id;
@@ -39,6 +41,9 @@ struct/class {
   unordered_map <key,value>;
 }Edge;
 
- Edge[] assoc_get(567, friends)    //assoc_get(id1, edge-type)   
+ Edge[] Edge_get(567, friends)    //Edge_get(id1, edge-type)   
   //Returns all edges originating from id1 and having particular edge-type
+  
+  int Edge_count(567, friends)    //Edge_count(id, edge-type)
+  //Count of All edges from id=567 having edge-type=friends
 ```
