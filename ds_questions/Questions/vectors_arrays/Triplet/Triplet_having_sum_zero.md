@@ -1,4 +1,4 @@
-### [3sum](https://leetcode.com/problems/3sum/)
+## [3sum](https://leetcode.com/problems/3sum/)
 - Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 - Examples
 ```c++
@@ -12,7 +12,7 @@ Input: nums = [0]
 Output: []
 ```
 
-### Approach-1  //3 For loops. O(n<sup>3</sup>)
+## 1. Approach-1    //3 For loops. O(n<sup>3</sup>)
 - 3 for loops check every element with each other
 ```c++
   vector<vector<int>> out;
@@ -24,16 +24,17 @@ Output: []
   return out;    
 ```
 
-### Approach-2  //Sort + 3 pointer search
-### Logic-2
+## 2. Approach-2  //Sort + 3 pointer search
+#### Logic
 ```c++
 Array = {-1,0,1,2,-1,-4}
 Step-1: Sort    {-4,-1,-1,0,1,2}    //O(nlogn)
-Step-2: Fix 1st element, iterate thru rest of array to find (Sum of 2 elements == -(First_element)
+Step-2: Fix 1st element, iterate thru rest of array to find if(Sum of 2 elements == -First_element)
   -4  -1  -1  0  1  2
    a   b            c
 Step-3:
   if (-a == (sum=b+c)){    //4 == -1+2
+    //Found triplet
   }else{
     if (sum < -a)         //1 < 4
       ++b;
@@ -72,12 +73,12 @@ Move a to next element [++a]
                  a  bc    No triplets
 ```
 
-### Complexity-Code-2
+#### Complexity
 - **Time:** O(nlogn) + O(n<sup>2</sup>)    //Sort + Two-while
 - **Space:** 3k + Function Stack
   - k triplets exist. 3k
 
-### Code-2
+#### Code
 ```c++
 #include<iostream>
 #include<vector>
