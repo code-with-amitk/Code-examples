@@ -33,7 +33,7 @@ Example:
   std::cout.precision(17);
   std::cout<<(double)b<<"\n";       //0.19999999999999996 (should be .2)
 ```
-  -*2b.* Pair of coprimes <int,int>
+  - *2b.* Pair of coprimes <int,int>: YES
     - *coprimes/relative primes?* two integers are co-primes, if and only if their greatest common divisor is 1.
 ```c
 Examples:
