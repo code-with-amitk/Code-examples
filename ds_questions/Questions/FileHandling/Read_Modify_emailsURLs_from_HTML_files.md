@@ -1,6 +1,9 @@
 ### Problem
 - Given 3 HTML files.
-- Read the files, parse email, URL from files and change them.
+- Read all 3 files and the following:
+  - parse email addresses
+  - parse URLs
+  - Change them.
 ```c++
 Email change example:
   support@test.com  --change to-->  support@fb.com
@@ -11,8 +14,7 @@ URL change example:
 ```
 
 ### Logic
-- *1.* Pass html file as command line argument.
-- *2.* open input file. Read every line
+- *1.* open input file. Read every line
   - Tokenize using space character and read the word.
   - if `@` is found in word, this is Email modify it as per above rule.
   - if `.com or .org` is found in word, this is URL modify it as per above rule.
@@ -67,34 +69,37 @@ std::string ModifyURL(std::string& strWord) {
 }
 
 int main(){
-  std::fstream file("html-file.html", std::ios::out|std::ios::in);
-  std::fstream out("TemporaryFile.html", std::ios::out);
   std::vector<std::string> vecTLD = {".com",".org",".edu"};
-  bool bWritten = false;
+  bool bWritten = false;  
+  std::string strLine, strWord, strNewWord;
 
+  //ios::out  =>  allows output (write operations) to a stream
+  //ios::in   =>  allows input (read operations) from a stream
+  std::fstream file("html-file.html", std::ios::out|std::ios::in);
   if (!file) {
     std::cout<<"File does not exist";
     return 0;
-  }
+  }  
+  
+  std::fstream out("TemporaryFile.html", std::ios::out);  
   if (!out) {
     std::cout<<"Cannot open out";
     return 0;
   }
-  std::string strLine, strWord, strNewWord;
-
+  
   while (file.eof() != 1){
     std::getline (file, strLine);   //Read a Line
 
     std::stringstream ss(strLine);  //Tokenize using space
     while (std::getline(ss, strWord, ' ')) {
 
-      if(strWord.find('@') != std::string::npos){ //Does word have @
+      if(strWord.find('@') != std::string::npos){     //Does word have @
         out << ModifyEmail(strWord);
         bWritten = true;
       }
       else{
         for (auto i:vecTLD){
-          if(strWord.find(i) != std::string::npos){ //Does word have .com
+          if(strWord.find(i) != std::string::npos){     //Does word have .com
             out << ModifyURL(strWord);
             bWritten = true;
             break;
