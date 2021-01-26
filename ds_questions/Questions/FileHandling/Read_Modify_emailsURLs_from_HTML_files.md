@@ -1,4 +1,4 @@
-### Problem
+## Problem
 - Given 3 HTML files.
 - Read all 3 files and the following:
   - parse email addresses
@@ -14,12 +14,18 @@ URL change example:
 ```
 
 ### Logic
-- *1.* open input file. Read every line
-  - Tokenize using space character and read the word.
-  - if `@` is found in word, this is Email modify it as per above rule.
-  - if `.com or .org` is found in word, this is URL modify it as per above rule.
-- *3.* Keep writing the content to a seperate file.
-- *4.* Rename the file after complete input file is read.
+- *1.* Take a vector of TLD's to be parsed from file.
+- *2.* Open input html file in read mode.
+- *3.* Open a temporary file(out) in write mode. 
+- *4.* Read every line from input HTML file, tokenize using space.
+	- keep dumping every word read into temporary file(out)
+	- if word contains `@`, Modify the word and dump in temporary file(out)
+	- if word contains `.com or .org`, Modify the word and dump in temporary file(out)
+- *5.* Rename the file after complete input file is read.
+
+### Complexity
+- **Time:** O(n). n is number of words. Reading all words and modifying email, url
+- **Space:** O(n). Creating a temporary file and rename it.
 
 ### Code
 ```c++
@@ -75,7 +81,7 @@ int main(){
 
   //ios::out  =>  allows output (write operations) to a stream
   //ios::in   =>  allows input (read operations) from a stream
-  std::fstream file("html-file.html", std::ios::out|std::ios::in);
+  std::fstream file("html-file.html", std::ios::in);
   if (!file) {
     std::cout<<"File does not exist";
     return 0;
