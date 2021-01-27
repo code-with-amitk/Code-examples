@@ -74,6 +74,3 @@ int main(){
   std::reverse(it1+1, it2);                   
 }
 ```
-
-### Complexity
-- 3O(n)
