@@ -27,9 +27,9 @@ words = {"word","world","row"}
 ```c
 order = "worldabcefghijkmnpqstuvxyz"
 
-value 5	 6	7  4			  		   	         3		       1		   	  2					           0
+value 5	 6  7  4                         3           1           2                   0
 index 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25
-	    a  b  c  d  e  f  g  h  i  j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
+      a  b  c  d  e  f  g  h  i  j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
 ```	  
 - *2.* Take 1st 2 words to check whether all characters are in lexiographical order(as per new dictionary).
 ```c
