@@ -31,86 +31,39 @@
   - **Total bytes stored for 5 years:** 12 Exa bytes/5 years
 - This is read heavy system, since much higher data is read wrt written to the system.
 
-# D. HLD/DESIGN & DB SCHEMA
-### D1. 5, 100, 10k Users Design
-  1. **Searching for users** A(normal person) want to search B(politician). 
-     - User's list is stored in `user-list.txt`. All users with name B would be shown to A.
-  2. **Adding myself as follower**
-     - After sucessful search, click on button to add myself as follower of B.
-  3. **Posting Tweet** 
-     - User-2(politician) posts the tweet. 
-     - Tweets are stored in a tweet-file, with meta data. Each user has its seperate tweet-file.
-     - Tweet+metadata is pushed to followers using above vector.
-
-| Design | Searching for User | Adding myself as follower | Posting a Tweet |
-| --- | --- | --- | --- |
-| 5 Users(A,B,C,D,E) | LL of user_info structs=5 | struct user_info (see below) | 5 files storing tweets of 5 users (see below) |
-| 100 Users | LL of user_info structs. size=1000 | vector size=1000 | 100 files |
-| 10k Users | File search is slow | Huge vector, may not handle | 10k files immposible to maintain |
+## D. HLD
+### D1. 5 Users design
+> Approach gets slow for 100, 1k users
+|Requirement|How Implemented?|
+|---|---|
+|1. Searching: user1 search user2|User's list is stored in `user-list.txt`. All users with name B would be shown to A.|
+|2. Adding Follower| After sucessful search, click on button to add myself as follower of B.|
+|3. Posting Tweet|user2 posts a tweet & stored in tweet-file+meta data. Each user has its seperate tweet-file|
 
 <img src="https://i.ibb.co/jTbD4FK/tw2.png" alt="tw1" border="0">
 
-```
-2. ADDING MYSELF AS FOLLOWER
-struct user_info{
-  vector<STRUCT followers> f;   //List of followers of this user
-  uint selfUserId;
-  string username;               //self username
-  file1 *ptr;                   //All self posted tweets
-  file2 *ptr;                   //my home timeline
-};
-f.push_back(user-1);
-
-3. POSTING THE TWEET
-  [File-B]
-    meta-data + Tweet-1
-    meta-data + Tweet-2
-    
-  [File-A]    
-```
-
 ### D2. 1 Million Users Design
-  - **Old Structure Based Design**
-    - LL size becomes 1 million. 
-      - Very slow in searching. if some user tweeted and system want to post on follower's timeline.
-    - 2 million files
-      - RW slow.
-    - if each user follows 5 people, 5 million vector space.
-  - **Migrate to New DB based design**
-    - **User Table** (Replaces LL of user_info struct)
-      - Storing user information, people they are following, all self created tweets pointer.
-    - **Tweets Table-1** (Replaces files for storing tweets)
-      - Stores the actual tweet content in varchar format.
-    - **Tweet Table-2** 
-      - Stores all tweets created by particular user.
-      
- **USER TABLE**
- 
+- **1. User DB Table** Storing user information, people they are following, all self created tweets pointer.
+
 | userID(uint) | username(varchar) | email | creationDate | lastLogin | Following(same as vector) | All created selfTweets |
 | --- | --- | --- | --- | --- | --- | --- |
 | amit1222 | amit | amit@greatest.com | <> | <> | person1,person2.. | 0x4581(takes from tweet-table-2) |
 | test56 | test | test@sandbox.com | <> | <> | personx,persony.. | 0x891 |
 
-- **Following** people can be stored on Graph Datastructure(Eg: Neoj4).
-
-
- **TWEET TABLE-1** Stores actual tweet content
-  
-| TweetId | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
-| --- | --- | --- | --- | --- | --- |
-| t5 | abcddefghij... | <> | <> | <> | 0x45912 |
-
-**Tweetid** We don’t want to store tweet creation time separately, hence `TweetId = epochTime + autoIncrementInteger`
-
-
-**TWEET TABLE-2** stores all tweet IDs created by particular user
+**2. Tweet Table** stores all tweet IDs created by particular user
 
 | UserName | Tweets //All self posted tweets | UniqueId/Address |
 | --- | --- | --- |
 | amit1222 | t1,t5,t6,t9 | 0x4581 |
 | test56 | t3, t49, t89 | 0x891 |
-  
-**Big Picture**
+
+- **3. Actual Tweet content** Can be stored on Object store.
+
+| TweetId | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
+| --- | --- | --- | --- | --- | --- |
+| t5 | abcddefghij... | <> | <> | <> | 0x45912 |
+
+**Tweetid** We don’t want to store tweet creation time separately, hence `TweetId = epochTime + autoIncrementInteger`
 
 ![ImgURL](https://i.ibb.co/XzKZ1Rj/tw3.png)  
 
