@@ -34,6 +34,7 @@
 ## D. HLD
 ### D1. 5 Users design
 > Approach gets slow for 100, 1k users
+
 |Requirement|How Implemented?|
 |---|---|
 |1. Searching: user1 search user2|User's list is stored in `user-list.txt`. All users with name B would be shown to A.|
