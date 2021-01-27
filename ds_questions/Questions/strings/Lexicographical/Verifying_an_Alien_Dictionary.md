@@ -60,31 +60,29 @@ index 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  
 ### Code
 ```c
 bool isAlienSorted(std::vector<std::string>& words, std::string order) {
-
   int* index = new int[26];
   for (int i = 0; i < order.size(); ++i)
     index[order.at(i) - 'a'] = i;
-    
   int temp = 0;
 
   for (int i = 0; i < words.size() - 1; ++i) {
-    std::string word1 = words[i];
-    std::string word2 = words[i+1];
+    std::string strWord1 = words[i];
+    std::string strWord2 = words[i+1];
     temp=1;
 
     //Compare word1, word2
-    for (int k = 0; k < std::min(word1.size(), word2.size()); ++k) {
+    for (int k = 0; k < std::min(strWord1.size(), strWord2.size()); ++k) {
 
       //Continue matching each character of word1,word2 until mismatch
       //Eg: word1 = "word", word2 = "world"
       //k=0,1,2 will not go inside if
       //k=3. Go inside if
-      if (word1.at(k) != word2.at(k)) {
+      if (strWord1.at(k) != strWord2.at(k)) {
 
         //word1.at(3)=d, word2.at(3)=l
         //index[d-a]=4 > index[l-a]=3
         //Found 2 words which are not placed lexicographicaly as per given order
-        if (index[word1.at(k) - 'a'] > index[word2.at(k) - 'a'])
+        if (index[strWord1.at(k) - 'a'] > index[strWord2.at(k) - 'a'])
           return false;
 
         temp = 0;
@@ -92,16 +90,10 @@ bool isAlienSorted(std::vector<std::string>& words, std::string order) {
        }
      }
 
-     // All characters are matched and word1 is greater than word2
-     if (temp and word1.size() > word2.size())
+     // After comparing all characters, if still word1>word2. return false
+     if (temp and strWord1.size() > strWord2.size())
       return false;
    }
    return true;
-}
-
-int main(){
-  std::vector<std::string> v = {"word","world","row"};
-  std::string s = "worldabcefghijkmnpqstuvxyz";
-  std::cout<<isAlienSorted(v, s);
 }
 ```
