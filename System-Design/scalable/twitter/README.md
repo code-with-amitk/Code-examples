@@ -66,36 +66,29 @@
 
 **Tweetid** We don’t want to store tweet creation time separately, hence `TweetId = epochTime + autoIncrementInteger`
 
-![ImgURL](https://i.ibb.co/XzKZ1Rj/tw3.png)  
+<img src="https://i.ibb.co/XzKZ1Rj/tw3.png" width="400" />
 
-# E. DATA SHARDING
+## E. Data Sharding
 - UserId is passed to hash function, which gives DB server Id on which Tweet should be stored. All tweets of particular user are co-located. This helps in fanning out tweets to followers.
-- Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned.
-- User's tweets can be stored on multiple servers.
-- ***Replication*** 
-  -  we can have multiple secondary database servers for each DB partition.
-  - Secondary servers will be used for read traffic only.
-  - All writes will first go to the primary server and then will be replicated to secondary servers. 
-  - This scheme will also give us fault tolerance, since whenever the primary server goes down we can failover to a secondary server.
+- Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned. User's tweets can be stored on multiple servers.
+## F. Replication*** 
+-  we can have multiple secondary database servers for each DB partition. Secondary servers will be used for read traffic only.
+- All writes will first go to the primary server and then will be replicated to secondary servers. This scheme will also give us fault tolerance, since whenever the primary server goes down we can failover to a secondary server.
 
-# F. USE CASES
-### F1. User storing the tweet on server
+## F. User storing the tweet on server
 ![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
 
-# G. CACHE
-### G1. Caches can be placed at:
-**1. At Database Servers** 
-  - Storing hot tweets and users. Eg: Memcached.
-  -  Application servers, before hitting database, can quickly check if the cache has desired tweets.
+## G. Cache
+- **1. Cache between Web-Server & Database Servers** 
+  - Storing hot tweets and users. Eg: Memcached. Application servers, before hitting database, can quickly check if the cache has desired tweets.
   - Based on clients’ usage patterns we can determine how many cache servers are needed.
-**2. Application servers**
-  - Most frequently used contents can be stored at this cache
+- **2. Cache at Web servers:** Most frequently used contents can be stored at this cache
 ### G2. Cache Eviction policy:
   - LRU(Least recently used) older tweets can be discarded.
 ### G3. Cache Storage policy (80-20 rule)
   - 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
   
-# H. LOAD BALANCING
+## H. Load Balancing
 ### H1. Places of adding load balancers
 1. Between client and application servers
 2. Between application servers & DB
@@ -103,7 +96,7 @@
 ### H2. Scheme of Load balancing
 - Simple round robin.
 
-# I. MONITORING
+## I. Monitoring
 - Monitoring means collecting the data to find whether system is Dead/slow/active?
 - Metrics/counters to get an understanding of the performance of our service:
   - New tweets per day/second, what is the daily peak? 
