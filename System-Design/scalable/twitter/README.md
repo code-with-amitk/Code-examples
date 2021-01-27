@@ -15,7 +15,7 @@
 ## B. System APIs
 
 |Search user|Add follower|Posting tweet|
-|---|---|---|---|
+|---|---|---|
 |pointer_to_follower_struct `*`searchUser(toBeSearched_userId)|bool addFollower(toBeFollowed_id, follower's_id)|<ul><li>string publishTweet(tweet_message, *tweet_photo, *tweet_video, userId, user_location)</li></ul><ul><li>Parameters: userLocation(optional): (Lattitude, Longitude) of user adding the tweet</li></ul><ul><li>Return: Location to stored tweet, else HTTP error.</li></ul>|
 
 ## C. BOE Calculation
