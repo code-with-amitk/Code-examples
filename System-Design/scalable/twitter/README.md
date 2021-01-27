@@ -71,7 +71,8 @@
 ## E. Data Sharding
 - UserId is passed to hash function, which gives DB server Id on which Tweet should be stored. All tweets of particular user are co-located. This helps in fanning out tweets to followers.
 - Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned. User's tweets can be stored on multiple servers.
-## F. Replication*** 
+
+## F. Replication
 -  we can have multiple secondary database servers for each DB partition. Secondary servers will be used for read traffic only.
 - All writes will first go to the primary server and then will be replicated to secondary servers. This scheme will also give us fault tolerance, since whenever the primary server goes down we can failover to a secondary server.
 
