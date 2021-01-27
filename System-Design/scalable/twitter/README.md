@@ -1,73 +1,35 @@
-## Index
-  - A. Requirements (functiona, non-functional)
-  - B. System APIs
-  - C. BOE Calculations
-  - D. HLD/DESIGN & DB SCHEMA
-  - E. Data Sharding
-  - F. Use Case
+| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
+| --- | --- | --- | --- | --- | --- |
 
-# A. REQUIREMENTS
-### 1. FUNCTIONAL
-  1. **Search**
-     - Any twitter user can search any other twitter user by name.
-  2. **Adding myself as Follower**
-     - Let's suppose user-1 searches user-2, then user-1 can add himself as follower of user-2.
-     - User-1 can see the tweets(text,videos,photos) of people he follow on their timeline.
-     - Any user can mark any tweet as favourite.
-     - User can reply to tweets.
-  3. **Posting Tweets**
-     - Any user can post tweet < 150 characters.
-     
-### 2. NON-FUNCTIONAL
-  - S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
-    - Scalable, Secure, SOA
-    - Logging, Load, Latency
-    - Cache(Invalidation, negative cache)
-    - Available, Accurate, Analyze, Authenticate
-    - Reliable, Redundant(Using DB)
-    - Fast
+# [To Cover](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/scalable)
 
-# B. SYSTEM APIs
-1. Search user
-```
-pointer_to_follower_struct *searchUser(toBeSearched_userId)
-```
+## A. Requirements
+- **A1. Functional**
+  - *1.* User can post tweet < 150 characters.
+  - *2.* Any user can search any other user by name.
+  - *3.* Any user can can Add himself as follower & can see the tweets(text,videos,photos) of followed person.
+  - *4.* Mark Tweet as favoriate.
+  - *5.* Retweets, replies.
+- **2. Non-Functional:** S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
 
-2. Add follower
-```
-successOrFail addFollower(toBeFollowed_id, follower's_id)
-```
+## B. System APIs
 
-3. Posting tweet 
-```
-string publishTweet(tweet_message, *tweet_photo, *tweet_video, userId, user_location)
-Parameters:
-  - userLocation(optional): (Lattitude, Longitude) of user adding the tweet
-Return:
-  - Location to stored tweet, else HTTP error.
-```
+|Search user|Add follower|Posting tweet|
+|---|---|---|---|
+|pointer_to_follower_struct `*`searchUser(toBeSearched_userId)|bool addFollower(toBeFollowed_id, follower's_id)|<ul><li>string publishTweet(tweet_message, *tweet_photo, *tweet_video, userId, user_location)</li></ul><ul><li>Parameters: userLocation(optional): (Lattitude, Longitude) of user adding the tweet</li></ul><ul><li>Return: Location to stored tweet, else HTTP error.</li></ul>|
 
-# C. BOE Calculations (should be done after HLD)
-  - Total world population = 8 Billion = 8x10<sup>9</sup>
-  - **Daily Active Twitter users**
-    - Out of 8 Billion 40% have internet connection = 32x10<sup>8</sup>
-    - Out of 40% only 10% active are Twitter users = 32x10<sup>7</sup> = 320 Million user
-    - Let's 10% be daily active user. 320 Million user = 32 Million users.
-  - **Storage Requirements**
-    - ***For Storage of Text Tweets***
-      - 10% of user does 1 tweet per day. 32x10<sup>5</sup>
-      - Let's each tweet has 150 characters. 1 character takes 2 bytes of storage. 300 bytes/tweet.
-      - 32x10<sup>5</sup> x 300 = 9x10<sup>8</sup> / day
-      - 9x10<sup>8</sup> x 30 x 12 x 5 = 1x10<sup>12</sup>/year = 1 TB/5 years
-    - ***For Storage of Photo Tweets***
-      - Let's assume every 5th tweet has photo on it. Photo size = 200kb
-      - Total photo tweets = 32x10<sup>5</sup> / 5 = 64x10<sup>4</sup> photo tweets per day
-      - 64x10<sup>4</sup> x 30 x 12 x 5 x 200kb= 6000 TB / 5 years = 6 Trillion bytes
-    - ***For Storage of Video Tweets***
-      - Let video takes 2MB of data and every 10th is a video tweet.
-      - Video tweets per day = 32x10<sup>4</sup> / day
-      - 32x10<sup>4</sup> x 30 x 12 x 5 x 2MB = 1 Quadtrillion = 10<sup>15</sup> bytes / 5 years
-    - This is read heavy system, since much higher data is read wrt written to the system.      
+## C. BOE Calculation
+  - World population = 8 Billion
+  - Internet users = 40% = 8 x .4 = 3.2
+  - Twitter users = 10% = 0.32 Billion 
+  
+- **Storage Estimates**
+  - 1 tweet/day. 320 x 1 = 320 Million
+  - Each Text tweet = 150 characters. 1 character takes 4 bit of storage. 75 bytes/tweet. 0.32 x 75 = 24 GB/day. 24x30x12x5 = 43 TB/5years
+  - Each Photo tweet. Size=200kB. .32 x 200k = 6.4 TB/day. 6.4x30x12x5 = 11 PB/5 years      //But users tweeting photos would be lesser.
+  - Each Video tweet. Size=2MB. .32 x 200k = 6.4 TB/day. 6.4x30x12x5 = 11 ExaBytes/5 years. //But users tweeting videos would be lesser.
+  - **Total bytes stored for 5 years:** 12 Exa bytes/5 years
+- This is read heavy system, since much higher data is read wrt written to the system.
 
 # D. HLD/DESIGN & DB SCHEMA
 ### D1. 5, 100, 10k Users Design
