@@ -8,4 +8,4 @@
 - **Addition of New Cache Server?** Now someone wants to store 7501? There is no space on existing Cache-Servers. Cache Server D is pushed and all keys from 7501 to 10000 are added on it. Other cache servers are not touched.
 - **Deleting a Cache Server?** Now server is getting less hits, decided to remove a cache server. Keys present on server-A are removed. No rehashing is required.
 
-<img src="https://i.ibb.co/DwM0CZM/Consistent-Hashing.png" width=500 />
+<img src="https://i.ibb.co/DwM0CZM/Consistent-Hashing.png" width=700 />
