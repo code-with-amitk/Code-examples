@@ -1,6 +1,6 @@
 ## Consistent Hashing / Consistent Hash Ring
-- **WHAT?** Very useful strategy for distributed caches for storing keys. When new keys are added/removed, ie new cache servers added/removed, rehashing is not required. Hence scaling up/down are fast and easy.
-- **ADVANTAGE?** Avoids rehashing.
+- **WHAT?** Very useful strategy for distributed caches for storing keys. When new keys are added/removed, ie new cache servers added/removed, [Rehashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Hash_Table.md) is not required. Hence scaling up/down are fast and easy.
+- **ADVANTAGE?** Avoids [Rehashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Hash_Table.md)
 
 ### Example: DISTRIBUTED CACHE SERVER
 - Consider 3 cache servers(A,B,C). Cache server limit = 2500 keys 
