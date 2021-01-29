@@ -1,6 +1,8 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
+**Donot Spend major time on Minor Things. Eg: BOE**
+
 # To Cover
 - **1. Requirements:**
   - *1a.* Functional(Basic functionality, should work)
