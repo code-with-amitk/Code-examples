@@ -16,7 +16,7 @@
   - **Present Day** BIOS contents are stored on flash memory so it can be rewritten without removing the chip from the motherboard.  
     
 ## VBIOS(Video BIOS)
-- (BIOS) of a graphics card or the integrated graphics controller in a computer.
+- (BIOS) of a graphics card/GPU. This initializes the GPU.
 - provides a set of video-related functions that are used by programs to access the video hardware.
 
 ## SMBIOS(System Management BIOS)
