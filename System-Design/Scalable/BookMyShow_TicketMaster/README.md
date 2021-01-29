@@ -94,7 +94,7 @@ of worldwide theaters                               User
 - *17.* Price Calculator service, calculates the cost and sends to AWS PAYGATE(payment gateway).
 - *18.* Payment gateway(Paygate) converts the dollars to INR(local currency) & sends to pay.
 
-![ImgURL](bookmyshow-hld.png)
+<img src="./bookmyshow-hld.png" width=500 />
 
 # 4. DB Schema
 
