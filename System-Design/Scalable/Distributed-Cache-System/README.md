@@ -4,7 +4,7 @@
 ## Distributed Cache 
 > Eg: [Redis](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Redis/README.md), [Memcached](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Memcached/README.md)
 - **What** Cache is faster than Hard-disk or DB, because its size is small(wrt hard disk) hence search time is less. Cache stores recent queries only.
-- **Place where cache can be placed?**
+- **Place where cache can be placed?** Consider twitter Application example.
   - *1.* Between Web server & database.
   - *2.* Before web-server, to serve recent contents.
 ```c
@@ -31,5 +31,8 @@
 ### 3a. 1 User/1 Thread
 - [LRU Cache](https://github.com/amitkumar50/Code-examples/blob/master/ds_questions/Questions/random/LRUCache/lru_cache_key_only.md)
 
-### 3b. 100-1Lac Users
+### 3b. Where Cache Fits?
+- Cache will only be used during fannout of tweets, ie updating timelines. While storing tweets to DB cache will only be updated.
 <img src="Distributed_Cache_overall.png" width="1000" />
+
+### 3c. Cache Design
