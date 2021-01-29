@@ -5,7 +5,7 @@
 
 # [To Cover](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Scalable)
 
-# 1. Requirements
+## 1. Requirements
 > When user logs into portal.. Portal should..
 - *1.* Show Movies in City. 
   - *a.* Option to select Country > State > City > Show Movies in City
@@ -21,15 +21,15 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 - *4.* After seat selection, take payment.
 - *5.* Send E-Ticket on Phone, Email.
 
-# 2. BOE Calculations
+## 2. BOE Calculations
 [Self Video](https://youtu.be/oOPEeP1gSwA)
-## *2a.* Traffic Estimates/Connections to be served/second.
+### *2a.* Traffic Estimates/Connections to be served/second.
 
 |World Population|Using internet|Booking ticket on bookmyshow/month|PerDay|PerSecond|
 |---|---|---|---|---|
 |7 x 10<sup>9</sup>|40% = 28 x 10<sup>8</sup>|1% = 28 x 10<sup>6</sup>|9 x 10<sup>5</sup>|10<sup>4</sup> / 16 = 625|
 
-## *2b.* Storage Estimates/Bytes to be stored for 5 years
+### *2b.* Storage Estimates/Bytes to be stored for 5 years
 - **Theater Data** Every theater information(name,address,number of seats) are stored inside bookmyshow.com's DB.
   - Theater will be base class. All derived classes are objects of theater base class.
   - All derived classes are created at start of Application(ie nothing created at runtime).
@@ -58,8 +58,8 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 - {For 5 years} 20 MB + 5x10<sup>9</sup> + 100x10<sup>9</sup> + 5x10<sup>13</sup> = 6 x 10<sup>13</sup> = 60 Tera Bytes / 5 years
 - At anytime website will have 1 lac photos, blogs, 50k movies. Old will be deleted and new will be added.
 
-# 3. HLD 
-## A. 1 User
+## 3. HLD 
+### A. 1 User
 ```
           Server
 Stores all seats,theater listing
@@ -68,9 +68,9 @@ of worldwide theaters                               User
                                               Prints seatno, date
 ```
 
-## B. 100-1Million Users
+### B. 100-1Million Users
 [Self Video](https://youtu.be/NIEP7wdJOMA)
-### Steps
+#### Steps
 - *1.*
   - *a.* BMS representative comes to Theater owner, creates theater layout on bookmyshow.com.
   - *b.* Provides URL to Theater Owner to which Theater Owner can login and:
@@ -94,9 +94,9 @@ of worldwide theaters                               User
 - *17.* Price Calculator service, calculates the cost and sends to AWS PAYGATE(payment gateway).
 - *18.* Payment gateway(Paygate) converts the dollars to INR(local currency) & sends to pay.
 
-<img src="./bookmyshow-hld.png" width=500 />
+<img src="./bookmyshow-hld.png" width=1000 />
 
-# 4. DB Schema
+## 4. DB Schema
 
 - **Movie-DB**
 
