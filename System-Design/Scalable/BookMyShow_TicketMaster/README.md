@@ -76,7 +76,7 @@ of worldwide theaters                               User
   - *b.* Provides URL to Theater Owner to which Theater Owner can login and:
     - Assign shows, show-timings,  Cost per seat, Book a seat(it gets update in bookmyshow DB)
 - *2.* User enters https://bms.com in browser. Browser gets IP-Address using DNS.
-- *3.* Browser opens a "Web socket" connection to IP-Address of BMS via Forward Proxy.
+- *3.* Browser opens a "[Web socket](https://github.com/amitkumar50/Code-examples/blob/master/networking/OSI-Layers/Layer5/LongPooling_WebSockets.md)" connection to IP-Address of BMS via Forward Proxy.
 - *4.* CDN provides homepage to user.
   - If user is registered and tries login, authenticated using s3 auth.
 - *5.* User selects theater,show,seat. Browser sends Theater-UniqueId, Show,seats to CDN.
