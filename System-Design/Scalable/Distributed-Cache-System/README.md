@@ -2,7 +2,7 @@
 | --- | --- | --- | --- | --- | --- |
 
 ## Distributed Cache 
-> Eg: Redis, Memcached
+> Eg: [Redis](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Redis/README.md), [Memcached](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Memcached/README.md)
 - **What** Cache is faster than Hard-disk or DB, because its size is small(wrt hard disk) hence search time is less. Cache stores recent queries only.
 - **Place where cache can be placed?**
   - *1.* Between Web server & database.
@@ -32,3 +32,4 @@
 - [LRU Cache](https://github.com/amitkumar50/Code-examples/blob/master/ds_questions/Questions/random/LRUCache/lru_cache_key_only.md)
 
 ### 3b. 100-1Lac Users
+<img src="Distributed_Cache_overall.png" width="1000" />
