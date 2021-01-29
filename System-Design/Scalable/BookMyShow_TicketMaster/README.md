@@ -3,22 +3,7 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-# To Cover
-- *1.* Requirements (functional, non-functional)
-- *2.* Back of Envelope Calculations
-  - Traffic Estimates
-  - Storage Estimates
-- *3.* HLD(High level Design)
-  - 1 user
-  - 100 users >>> 1 lac users
-- *4.* Database schema
-- *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
-  - Scalable, Secure, SOA
-  - Logging, Load, Latency
-  - Cache(Invalidation, negative cache)
-  - Available, Accurate, Analyze, Authenticate
-  - Reliable, Redundant(Using DB)
-  - Fast
+# [To Cover](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Scalable)
 
 # 1. Requirements
 > When user logs into portal.. Portal should..
