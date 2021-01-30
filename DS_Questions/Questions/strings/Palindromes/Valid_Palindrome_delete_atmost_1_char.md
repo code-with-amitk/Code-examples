@@ -9,7 +9,7 @@ Input: "abca"
 Output: True    //Explanation: You could delete the character 'c'.
 ```
 
-## 1. Approach-1  //Recursion + 2 Pointer //Better 54% Faster
+## 1. Approach-1  //Recursion + 2 Pointer //54% Faster
 > s = "xyzabcbcbabzyx"
 - **Logic**
   - *1.* Take start=0, end=s.size() - 1
@@ -74,7 +74,8 @@ int main(){
 }
 ```
 
-## 2. Approach-2    //2 Pointer, Iterative  //Slower than recursive. 30% Faster
+## 2. Approach-2    //2 Pointer, Iterative  //30% Faster
+> Slower than recursive
 - **Complexity**
   - *Time:* O(n)
   - *Space:* 2O(n)
