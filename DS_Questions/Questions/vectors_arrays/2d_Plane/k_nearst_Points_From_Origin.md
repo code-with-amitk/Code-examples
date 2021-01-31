@@ -10,7 +10,7 @@ The distance between (1, 3) and the origin is sqrt(10).
 The distance between (-2, 2) and the origin is sqrt(8).   //ans
 ```
 
-## 1. Approach-1    //Time:O(n), Space:O(n)
+## 1. Approach-1    //minHeap. Time:O(n), Space:O(n)
 - **Logic**
   - *1.* Traverse the array, find distance of every point from origin. sqrt(a^2+b^2) and store in minHeap.
     - sqrt() would be double. And we know double float/double are intrinsically inaccurate. We will store (a^2+b^2)
