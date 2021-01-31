@@ -4,7 +4,9 @@
 - **What?** Browser stores local copies of web resources for faster retrieval the next time the resource is required.
  - Eg: Once browser downloads CSS, JS files, images (for a session) there is no need again to download from same server and can be cached.
 <img src="https://i.ibb.co/svd6H2Z/werb-browser-cache.png" width="800" />
+
 - **CACHE-CONTROL HEADER** HTTP server instructs browser(http client) to cache a particular content for TTL duration in cache control header. Format: Response Header {cache-control: public, max-age: 45223}
+
 <img src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/response-headers.jpg.webp" width="700" />
 
 ### 2. Web Proxy Cache
