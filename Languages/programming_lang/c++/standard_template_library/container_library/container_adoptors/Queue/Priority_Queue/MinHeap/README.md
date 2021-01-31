@@ -9,7 +9,7 @@ using mpair = pair<long, pair<int,int>>;
 priority_queue <mpair, vector<mpair>, greater<mpair>> pq;
 ```
 
-- **2. minHeap key=int, value=int
+- **2. minHeap key=int, value=int**
 ```c++
 using mpair = pair<int, int>;
 priority_queue <mpair, vector<mpair>, greater<mpair>> pq;
