@@ -10,7 +10,13 @@ The distance between (1, 3) and the origin is sqrt(10).
 The distance between (-2, 2) and the origin is sqrt(8).   //ans
 ```
 
-## 1. Approach-1    //minHeap. Time:O(n), Space:O(n)
+## 1. Approach-1    //sort. Time:O(nlogn), Space:O(n)
+- **Logic**
+  - *1.* Traverse the 2d vector linearly, find distance of each point from origin and store in temporary array(temp). //O(n)
+  - *2.* sort the temporary array in ascending order. //O(nlogn)
+  - *3.* Find 1st k entries from array and return corresponding points. //O(k)
+  
+## 2. Approach-2    //minHeap. Time:O(n), Space:O(n)
 - **Logic**
   - *1.* Traverse the array, find distance of every point from origin. sqrt(a^2+b^2) and store in minHeap.
     - sqrt() would be double. And we know double float/double are intrinsically inaccurate. We will store (a^2+b^2)
