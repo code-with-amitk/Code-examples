@@ -1,6 +1,6 @@
 ## Places to Place cache
 
-### 1. Browser Cache
+### 1. Web Browser Cache
 
 ### 2. Web Proxy Cache
 - *1.* Web client asks content from Web-server. Request reaches Web proxy. Web proxy checks its cache, if content available serves it
