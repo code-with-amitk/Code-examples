@@ -1,13 +1,15 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-## Distributed Cache 
+## Distributed Cache / Cooperative Cache
 > Eg: [Redis](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Redis/README.md), [Memcached](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Memcached/README.md)
 - **What** Cache is faster than Hard-disk or DB, because its size is small(wrt hard disk) hence search time is less. Cache stores recent queries only.
 - **Place where cache can be placed?** Consider twitter Application example.
-  - *1.* Between Web server & database.
-  - *2.* Before web-server, to serve recent contents.
-```c
+  - *1.* Between Web client and Web Proxy
+  - *2.* Between Web server & database.
+  - *3.* Before web-server, to serve recent contents.
+  - *
+```c 
  App/Webserver --- Cache -- Database
  Loadbalabncer --- Cache -- WebServer
 ```
@@ -36,3 +38,6 @@
 <img src="Distributed_Cache_overall.png" width="1000" />
 
 ### 3c. Cache Design
+- *1.* Web client asks content from Web-server. Request reaches Web proxy. Web proxy checks its cache, if content available serves it
+- *2.* If content is not available Web Proxy checks from other web proxies over **high-speed** link.
+<img src="https://i.ibb.co/Kz5Nsx2/distributed-webproxy-cache.png" width="600" />
