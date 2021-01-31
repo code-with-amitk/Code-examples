@@ -4,7 +4,7 @@
   
 ## A. Types of Heap
 - **1. Max Heap**
-  - priority_queue<pair<key, value>> pq
+  - `priority_queue<pair<key, value>> pq`
 
 - **2. Min Heap**
-  - priority_queue <mpair, vector<mpair>, greater<mpair>> pq;
+  - `priority_queue <mpair, vector<mpair>, greater<mpair>> pq;`
