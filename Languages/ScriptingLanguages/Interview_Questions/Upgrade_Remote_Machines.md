@@ -2,8 +2,8 @@
 - Send packets to remote machines and try to upgrade the packet remotely.Troubleshooting why some of the machines are not updated.
 
 ## Approach
-- *1.* Prior to login for upgrade, We should configure passwordless login using ssh public,pvt keys
-- *2.* Take a txt file containing username and IP addresses
+- *1.* Prior to login for upgrade, We should configure [passwordless login using ssh public,pvt keys](https://github.com/amitkumar50/Code-examples/blob/master/System_Administration/RemoteLogin/PasswordLess_Login.md)
+- *2.* Take a txt file containing username@IPAddresses
 ```c
   amit@10.20.30.189
   test@10.118.161.22
