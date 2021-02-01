@@ -1,4 +1,5 @@
-## Send packets to remote machines and try to upgrade the packet remotely.Troubleshooting why some of the machines are not updated.
+## Upgrade remote machines 
+- Send packets to remote machines and try to upgrade the packet remotely.Troubleshooting why some of the machines are not updated.
 
 ## Approach
 - *1.* Prior to login for upgrade, We should configure passwordless login using ssh public,pvt keys
