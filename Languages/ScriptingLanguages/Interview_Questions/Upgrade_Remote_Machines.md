@@ -12,8 +12,9 @@
 - *4.* Call ssh and execute `yum upgrade` command on remote machine. Check the return status of `yum upgrade`
 
 ## Code
+- [shebang](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/README.md), [$1](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24.md), [$?](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/Exit_Status.md)
 ```bash
-#!/usr/bin/env bash
+#!/usr/bin/env bash                       #shebang
 
 sshRemote(){
   ssh $1 "sudo apt upgrade | grep 'success'"
