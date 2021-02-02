@@ -1,39 +1,37 @@
+
+- **[Self youtube video](https://youtu.be/mhcTL2lqwI0)**
+
 ## Cache
-- **Cache?** Cache is used in computers to store the pages which are most frequently used.
-- **Limitation of Cache**
-  - **1. Cache size is small?** if cache is huge as Hard disk, then it searching will take time and cache would not be fast.
+- **What?** Memory near to CPU wrt hard-disk and hence fast. Cache is always small in size, if cache is huge as Hard disk, then it searching will take time.
   
-### [Self youtube video](https://youtu.be/mhcTL2lqwI0)
-
-## LRUCache
-### What? 
-  - This organizes items/pages in order of use, allowing to quickly identify which item hasn't been used for the longest amount of time.
-  - Operations:
-    - When cache is full, remove least recently used Page entry.
-    - When cache is not full, insert a new Page into cache.
-  
-### LRU Cache Example
-```c++
-Cache:  {key = UniquePriority,  Value = PageAddress}
+## LRUCache   <key=priority, value=PageAddress>
+- **What?** Least recently used page(means oldest page) is deleted 1st.
+- **Operations?**
+  - if (Cache == full) remove LRU page
+  - if (Cache has place)  insert a new Page
+- **Example** Suppose cache size=5, ie only 5 `<key, Value>` pair cane be stored.
+  - *1.* Cache storing some data.
+```c
+  Most recently used                                                    Least Recently used
+  |   1, 0x10     |     2, 0x20    |     3, 0x30     |     4, 0x40     |     5, 0x50    |
+  /\                                                                                  /\
+  Head                                                                              Tail
 ```
-
-- **1.** Suppose cache has capacity to store 5 entries `<key, Value>` pair. 
-
-  |Key,Value| 1, 0x10 (MostRecentlyUsed)| 2, 0x20 | 3, 0x30 | 4, 0x40 | 5, 0x50 (LeastRecentlyUsed)|
-  |---|---|---|---|---|---|
-
-
-- **2.** Request for `<key,value> = <6,0x60>` comes in, which is cache miss. Hence LRU is deleted and entry is inserted at head.
-
-  |Key,Value| 6,0x60 MRU | 1, 0x10 | 2, 0x20 | 3, 0x30 | 4, 0x40 LRU|
-  |---|---|---|---|---|---|
-
-- **3.** Next, request for `<key,value> = <3,0x30>` comes in, which is cache hit. Hence `<3,0x30>` becomes MRU.
-
-  |Key,Value| 3, 0x30 MRU| 6,0x60 | 1, 0x10 | 2, 0x20 | 4, 0x40 LRU|
-  |---|---|---|---|---|---|
-
-### Data Structures to Implement LRUCache? 
+- *2.* Request to find`<6,0x60>` comes in. This is cache miss. LRU Deleted and entry is inserted at head.
+```c
+  Most recently used                                                    Least Recently used
+  |       6,0x60      |   1, 0x10     |     2, 0x20    |     3, 0x30     |     4, 0x40     |
+  /\                                                                                  /\
+  Head                                                                              Tail
+```
+- *3.* Request to find `<3,0x30>` comes in. Cache hit. Hence `<3,0x30>` becomes MRU.
+```c
+  Most recently used                                                    Least Recently used
+  |       3,0x30      |       6,0x60      |   1, 0x10     |     2, 0x20    |   4, 0x40   |
+  /\                                                                                  /\
+  Head                                                                              Tail
+```
+- **Data Structures to Implement LRUCache?**
 > Insert/Remove/Search time complexity = O(1)
 
 |Operation|How|DataStructure|
