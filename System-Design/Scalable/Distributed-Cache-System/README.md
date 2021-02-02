@@ -36,6 +36,7 @@
 - Cache will only be used during fannout of tweets, ie updating timelines. While storing tweets to DB cache will only be updated.
 <img src="Distributed_Cache_overall.png" width="1000" />
 
-## 3c. Places where cache fits
-### [1. Web Browser Cache](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/Places_Where_Cache_Can_Be_Placed/README.md)
-### [2. Web Proxy Cache](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/Places_Where_Cache_Can_Be_Placed/README.md)
+## 3c. [Places where cache fits](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md)
+- **1. Web Browser Cache**
+- **2. Web Proxy Cache**
+- **3. Between Application server and DB**
