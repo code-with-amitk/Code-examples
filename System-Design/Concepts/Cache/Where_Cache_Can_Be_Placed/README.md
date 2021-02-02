@@ -16,8 +16,8 @@
 
 ### 3. [Application Server](https://github.com/amitkumar50/Code-examples/blob/master/networking/OSI-Layers/Layer5/ApplicationServer_WebServer.md) and DB
 #### 1. Memcached 
- - **What** 
-  - Stores distributed Hash-Table ie <key,value>.
+- **What** 
+  - Distributed Hash-Table ie <key,value> across multiple nodes.
   - Implemented as LRU.
   - Sits on separate machine b/w Application server and DB. Multiple servers work in conjunction to act as single larger logical data cache. 
  - **Stores** User sessions, User profile, some historical data etc.
