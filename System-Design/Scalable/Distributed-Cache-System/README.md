@@ -39,12 +39,17 @@
 - **3. Distributed Cache between Application server and DB**
   
 ## 3c. [Distributed Cache:Memcached](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md)
-- **[1. Cache Purging: LRU](https://github.com/amitkumar50/Code-examples/blob/master/DS_Questions/Questions/random/LRUCache/lru_cache_key_and_value.md)**
+### [1. Cache Purging: LRU](https://github.com/amitkumar50/Code-examples/blob/master/DS_Questions/Questions/random/LRUCache/lru_cache_key_and_value.md)
   - LRU uses Doubly Linked List and Hash Table to achieve O(1) for search/insert/remove `<key=priority,value=Address>`
-- **2. Invalidating cache:** Cache should be consistent with DB. ie any data removed on DB, should be removed from cache.
+  
+### 2. Types of Cache
+  - Which method to use for cache depends on use case.
 
 |Method|What|Drawback|Adv|
 |---|---|---|---|
 |1. Write through Cache|The data is written into cache and DB at same time.|Higher Latency, since every write operation is done twice|Maintains data consistency between DB the cache|
 |2. Write Around Cache|Write goes directly to DB. Operation is complete after writing to DB|Reading recent data is cache miss and has high latency since need to be read from DB.|Cache not flooded|
 |3. Write Back Cache| Write done to cache only Cache writes the info to DB(asynchronously).|Data availability risk(cache may fail)|Low latency, High throughput|
+
+# 4. Tradeoffs/Bottlenecks
+- 
