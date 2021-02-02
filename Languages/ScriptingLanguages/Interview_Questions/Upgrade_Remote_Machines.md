@@ -5,15 +5,13 @@
 **Prior to login for upgrade, We should configure [passwordless login using ssh public,pvt keys](https://github.com/amitkumar50/Code-examples/blob/master/System_Administration/RemoteLogin/PasswordLess_Login.md)**
 
 ## 1. Approach-1  //Client-side script only
-- **Logic**
-  - *1.* Take a txt file containing username@IPAddresses
+### Logic
+  - *1.* Take username@IPAddresses in a file. Read this file line by line. call ssh and execute `yum upgrade` command on remote machine. Check the return status of `yum upgrade`.
 ```c
   amit@10.20.30.189
   test@10.118.161.22
 ```
-  - *2.* Read the text file line by line.
-  - *3.* Call ssh and execute `yum upgrade` command on remote machine. Check the return status of `yum upgrade`
-- **Code**
+### Code
   - [shebang](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/README.md), [$1](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24.md), [$?](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/Exit_Status.md), [$@](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24%40.md)
 ```bash
 #!/usr/bin/env bash                       #shebang
@@ -43,7 +41,7 @@ ReadLine $1
 ```
 
 ## 2. Approach-2    //2 sepearte scripts
-### **Logic**
+### Logic
   - *1.* Create 2 seperate scripts. 
     - Client.sh: 1. scp work.sh to server   2. Execute work.sh on server    3. Get error or normal output of execute
 ### Code
