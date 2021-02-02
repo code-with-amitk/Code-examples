@@ -1,7 +1,7 @@
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-## Distributed Cache / Cooperative Cache
+# Distributed Cache / Cooperative Cache
 > Eg: [Redis](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Redis/README.md), [Memcached](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Cache/DB_Caches/Memcached/README.md)
 - **What** Cache is faster than Hard-disk or DB, because its size is small(wrt hard disk) hence search time is less. Cache stores recent queries only.
 - **Place where cache can be placed?** Consider twitter Application example.
