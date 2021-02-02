@@ -1,24 +1,22 @@
 ## Using ssh public Pvt Key pairs
 
 ### 1. Linux to Linux
-- **SSH-Client Configuration**
+- **A. {Client} Generate ssh public pvt key pairs**
 ```c
-//1. Generate ssh public pvt key pairs
-# ssh-keygen
-  > public key: test.pub
-  > pvt key: test.pvt
-  
-//2. Configure ssh to pick pvt key
-# vim ~/.ssh/config
-Host ssh_server
-IdentityFile  ~/test1.pvt
-# service sshd restart
+# ssh-keygen -t rsa     //-t:type of key
+ > pub key: /home/amit/.ssh/id_rsa.pub
+ > pvt key: /home/amit/.ssh/id_rsa
 ```
 
-- **SSH-Server Configuration**
+- **B. {Server} Copy Public key to server and check permissions**
 ```c
-//3. Copy ssh public key to remote ssh server
-server# vim ~/.ssh/authorized_keys
-  <<<paste contents of test.pub>>
-server# service sshd restart  
+$ vim ~/.ssh/authorized_keys
+  <<paste /home/amit/.ssh/id_rsa.pub>>
+$ chmod 700 ~/.ssh
+$ chmod 640 ~/.ssh/authorized_keys
+```
+
+- **C. {Client} ssh without password**
+```c
+$ ssh user@server
 ```
