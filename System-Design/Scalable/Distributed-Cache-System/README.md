@@ -13,7 +13,7 @@
  Loadbalabncer --- Cache -- WebServer
 ```
 
-## 1. Requirements
+## 1. [Requirements](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Scalable)
 - **Functional**
   - *1.* Store recent data
   - *2.* Low latency. (Latency: Delay between last packet sent and 1st packet received)
@@ -52,4 +52,4 @@
 |3. Write Back Cache| Write done to cache only Cache writes the info to DB(asynchronously).|Data availability risk(cache may fail)|Low latency, High throughput|
 
 # 4. Tradeoffs/Bottlenecks
-- 
+- [*1.* Bottlenecks of distributed systems](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/README.md)
