@@ -39,4 +39,7 @@
 ## 3c. [Places where cache fits](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md)
 - **1. Web Browser Cache**
 - **2. Web Proxy Cache**
-- **3. Between Application server and DB**
+- **3. Distributed Cache between Application server and DB**
+  
+## 3d. [Distributed Cache:Memcached](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md)
+- **Data structure:** LRU
