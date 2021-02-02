@@ -1,7 +1,8 @@
 ## Upgrade remote machines 
 - Send packets to remote machines and try to upgrade the packet remotely.Troubleshooting why some of the machines are not updated.
 
-- Prior to login for upgrade, We should configure [passwordless login using ssh public,pvt keys](https://github.com/amitkumar50/Code-examples/blob/master/System_Administration/RemoteLogin/PasswordLess_Login.md)
+
+**Prior to login for upgrade, We should configure [passwordless login using ssh public,pvt keys](https://github.com/amitkumar50/Code-examples/blob/master/System_Administration/RemoteLogin/PasswordLess_Login.md)**
 
 ## 1. Approach-1  //Client-side script only
 - **Logic**
