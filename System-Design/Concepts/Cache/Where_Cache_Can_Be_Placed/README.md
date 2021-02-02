@@ -15,9 +15,7 @@
 <img src="https://i.ibb.co/Kz5Nsx2/distributed-webproxy-cache.png" width="800" />
 
 ### 3. [Application Server](https://github.com/amitkumar50/Code-examples/blob/master/networking/OSI-Layers/Layer5/ApplicationServer_WebServer.md) and DB
-- **Examples:** 
- - **1. Redis**
- - **2. Memcached:** Stores <key,value>. Implemented as LRU.  Sits on separate machine b/w Application server and DB. Multiple servers work in conjunction to act as single larger logical data cache. 
+ - **1. Memcached:** Stores <key,value>. Implemented as LRU.  Sits on separate machine b/w Application server and DB. Multiple servers work in conjunction to act as single larger logical data cache. 
 ```
           WebServer   App-server/DB-Client     DB-frontEnd          MEMCACHED         DB
                                   ---query table1--->    ---table1---->
@@ -25,3 +23,4 @@
                                                   --------query table1------------>
                                                 <-table1-    table1|expiry-time ------
 ```
+ - **Redis**
