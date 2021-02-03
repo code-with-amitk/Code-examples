@@ -1,4 +1,4 @@
-## DB Scaling Tecniques
+## DB Scaling Techniques
 
 ### A. Replication
   
