@@ -23,9 +23,27 @@ Input: s = "abac"
 Output: 3                   //bac
 ```
 
-## 1. Approach-1 //Naive O(n<sup>2</sup>)
+## 1. Approach-1 //Naive O(n<sup>3</sup>)
+- **Logic:** 
+  - *1.* Check all the substring one by one and see if it has no duplicate characters are present.
+  - *2.* 3 for loops would be used.
+```c
+> input = a b c b e a c
+          0 1 2 3 4 5 6
+          
+  for(i){          
+    for(j){        
+      if(s[i] == s[j])
+        for(k)      //Find substring does not have repeating character
+    }
+  }
 
-- **Logic:** Check all the substring one by one and see if it has no duplicate character by inserting into unordered_set
+i=0, j=5
+    for(k=0 k<5)  //Find any repeating characters(if yes that will not be subseq). index=1,index=3
+```
+
+## 2. Approach-2 //Naive + unordered_set O(n<sup>2</sup>)
+- **Logic:** Same approach as above but use unordered_set inplace of 3rd for(k) loop.
 ```c
 > input = a b a c
           0 1 2 3
@@ -72,6 +90,7 @@ i=1
   }
 ```
 
-## 2. Approach-2  //Sliding Window
+## 3. Approach-3  //Sliding Window
+- **Logic:** In naive approach we are comparing characters again which we have already compared.
 ```c++
 ```
