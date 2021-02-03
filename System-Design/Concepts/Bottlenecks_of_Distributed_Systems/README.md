@@ -24,5 +24,6 @@
     - Solution: Writing non-blocking applications. `fcntl(sockfd, F_SETFL, O_NONBLOCK);`
 
 ### 5. Administrative Scalability
-  - **Problem**
+  - Multiple, independent administrative domains having conflicting policies for resource usage, payment management and security.
+  - **Example:** A computational(often expensive) equipment is segregated as [Federation](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/Database_Scaling/README.md) where Program_1(Orgnization_1) can access resources of DB_2(Organization_2).
     
