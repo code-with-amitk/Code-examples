@@ -20,10 +20,10 @@
 - **Non-Functional:** Consistent, Should be distributed
 - **Extended:** S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
 
-## 2. BOE
-- Assuming Cache is deployed at twiteer. [BOE same as twitter](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/scalable/twitter/README.md)
-- **[Traffic Estimates(same as twitter)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/scalable/twitter/README.md)**
-- **[Storage Estimates](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/scalable/twitter/README.md)**
+## 2. [BOE](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Scalable/twitter/README.md)
+- Assuming Cache is deployed at twiteer. BOE same as twitter
+- **Traffic Estimates**: same as twitter
+- **Storage Estimates:**
   - 1 Machine can store 10TB to 50TB.
   - Number of machines required to build Distributed cache = (Total storage for 1 day = 300TB)/10TB = 300-400. 
 - **Latency** 1ms (GET or POST)
