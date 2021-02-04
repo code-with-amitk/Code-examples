@@ -1,4 +1,5 @@
 # Bottlenecks
+
 ## 1. Admission Control
   - Mechanism is needed to authenticate a node before allowing admission into distributed system. (using: kerberos)
   
@@ -41,3 +42,13 @@ availability, but also distributes the load between components leadning to bette
 |1.Weak consistency|After a write, reads may or may not see it. A best effort is done.|<ul><li>1.Web-client:Ok to see past 1-2 min data.</li></ul>|
 |2.Eventual consistency|After a write, reads will eventually see it (typically within milliseconds)||
 |3.Strong consistency|After a write, reads will see it. Data is replicated synchronously|<ul><li>1.Stock Exchanges or auctions</li></ul>|
+
+## 7. Developer designing Distributed system with following mindset
+- The network is reliable
+- The network is secure
+- The network is homogeneous
+- The topology does not change
+- Latency is zero
+- Bandwidth is infinite
+- Transport cost is zero
+- There is one administrator
