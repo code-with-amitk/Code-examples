@@ -51,5 +51,4 @@
 |2. Write Around Cache|Write goes directly to DB. Operation is complete after writing to DB|Reading recent data is cache miss and has high latency since need to be read from DB.|Cache not flooded|
 |3. Write Back Cache| Write done to cache only Cache writes the info to DB(asynchronously).|Data availability risk(cache may fail)|Low latency, High throughput|
 
-# 4. Tradeoffs/Bottlenecks
-- [*1.* Bottlenecks of distributed systems](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/README.md)
+# 4. [Tradeoffs/Bottlenecks and overcoming bottlenecks](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/README.md)
