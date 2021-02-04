@@ -43,7 +43,11 @@ availability, but also distributes the load between components leadning to bette
 |2.Eventual consistency|After a write, reads will eventually see it (typically within milliseconds)||
 |3.Strong consistency|After a write, reads will see it. Data is replicated synchronously|<ul><li>1.Stock Exchanges or auctions</li></ul>|
 
-## 7. Developer designing Distributed system with following mindset
+## 7. DB becoming bottleneck
+- When there are huge RW operations a shared database can easily become a performance bottleneck.
+- [Solution](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/Database_Scaling/README.md)
+
+## 8. Developer designing Distributed system with following mindset
 - The network is reliable
 - The network is secure
 - The network is homogeneous
