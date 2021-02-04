@@ -1,7 +1,7 @@
 ## Fb Problem
 - Count how many times an email address is found in file.
 - Example
-```c
+```txt
 [Input]
 # cat a.txt
 i am going to make it and that's i know soon amit@gmail.com I will prepare as per the role, vivek@gmail.com I know 
