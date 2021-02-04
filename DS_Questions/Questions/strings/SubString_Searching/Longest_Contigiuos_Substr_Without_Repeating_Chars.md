@@ -31,8 +31,8 @@ Output: 3                   //bac
 > input = a b c b e a c
           0 1 2 3 4 5 6
           
-  for(i){          
-    for(j){        
+  for(i){        //finding substr of i  
+    for(j){         //substr of i
       if(s[i] == s[j])
         for(k)      //Find substring does not have repeating character
     }
@@ -78,19 +78,120 @@ i=1
           us.insert(s.at(j));
 
           max = us.size()>max ? us.size() : max;
-
         }else{
           us.clear();
           break;
         }
-
       }
     }
     return max;
   }
 ```
 
-## 3. Approach-3  //Sliding Window
-- **Logic:** In naive approach we are comparing characters again which we have already compared.
+## 3. Approach-3  //Sliding Window using unordred_set   //O(n)
+- **Logic:**
+  - *1.* start window from index=0. left=0, right =0. 
+  - *2.* Take unordered_set to store unique elements of array.
+  - *3.* if we cannot find element_at_right in unordered_set
+    - Insert element into unordered_set.
+    - Keep sliding ie right++
+    - Longest subseq = j-i
+  - *4.* if element_at_right is found in unordered_set
+    - Delete `a[left]`
+    - Again search `a[right]` in set, if found again delete `a[left]`. Keep doing this until `a[right]` not found in array.
+```c
+input = a     b     c     b     d     e
+        0     1     2     3     4     5
+       left
+       right
+
+right      unordered_set           longest_seq 
+0             {a}                     1
+1             {a b}                   2
+2             {a b c}                 3
+3 
+             {b c} //Delete a[left++]
+             {c}  //still a[right] is in set, Delete a[left++]
+             
+3            {c b}  //a[right] not in set insert
+4            {c b d}
+5            {c b d e}
+```
+- **Complexity**
+  - **Time:** 2O(n) = O(n)
+    - O(n): Linear traversal of array 
+    - O(n): Deleting elements from unordered_set
+  - **Space:** O(n). Taking unordered_set of size=n
+- **Code**    
 ```c++
+  int lengthOfLongestSubstring(std::string s) {
+    int max=0, size=s.size(), left=0, right=0;
+    std::unordered_set<char> us;
+
+    while(left<size and right<size){
+      if (us.find(s.at(right)) == us.end()) {
+          us.insert(s.at(right++));
+          max = std::max(max, right - left);
+        }else
+          us.erase(s.at(left++));
+
+      }
+    return max;
+  }
+```
+
+## 4. Approach-4  //Optimized Sliding Window using unordered_map    //O(n)
+- **Logic:**
+  - *1.* Take `unordered_map<char, index_of_char>` storing key=char, value=index_of_char
+  - *2.* start window from index=0. left=0, right =0. 
+  - *3.* if we cannot find char_at_right in unordered_map
+    - Insert key=char_at_right, value=right+1 into map.
+    - Slide window ie right++
+    - Longest subseq = j-i+1
+  - *4.* if char_at_right is found in unordered_map
+    - Instead of deleting `a[left]`. Move to index stored in <key,value> pair ie key=a[left]. Move to its value
+    - Change value of key=char_at_right
+```c
+input = a     b     c     b     d     e
+        0     1     2     3     4     5
+       left
+       right
+
+right      unordered_map           longest_seq 
+0          [a,1]                      1
+1          [a,1][b,2]                 2
+2          [a,1][b,2][c,3]            3
+3          Now b is present in um
+
+input = a     b     c     b     d     e
+        0     1     2     3     4     5
+                  left  right
+
+           left=2 //Move to um[b]->second
+           Update um entry  [b,4]
+           [a,1][b,4][c,3]      //We skipped deletion of characters as in approach-3
+  so on..            
+```
+- **Complexity**
+  - **Time:** O(n) Linear traversal of array of size=n and 1 jump in case of finding repeating char.
+  - **Space:** O(2n) for unordered_map
+- **Code**
+```c++
+  int lengthOfLongestSubstring(std::string s) {
+    int max=0, size=s.size();
+
+                    //char, index_of_char
+    std::unordered_map<char, int> um;
+
+    for(int left=0, right=0; right<size;++right){
+
+      auto it = um.find(s.at(right));
+      if (it != um.end())
+          left = std::max(left, it->second);
+
+      max = std::max(max, right - left+1);
+      um[s.at(right)] = right+1;
+    }
+    return max;
+  }
 ```
