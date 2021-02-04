@@ -1,21 +1,17 @@
-## Bottlenecks
-### 1. Admission Control
+# Bottlenecks
+## 1. Admission Control
   - Mechanism is needed to authenticate a node before allowing admission into distributed system. (using: kerberos)
   
-### 2. Communication Control
+## 2. Communication Control
   - **1. Rekey** Node should validate(at proper intervals) before communicating with another group member or intruder. (IKE rekey)
   - **2. Group Communication:** Is node allowed to talk to other group to whom its not member of?
   
-### 3. Size Scaling
-  - In distributed systems 1 or 2 services maybe implemented to run on single server(Single Threaded). This service will become a bottleneck load increases.
-  -  Why this service will become bottleneck?
-    - *1.* limited CPU
-    - *2.* I/O transfer rate
-    - *3.* N/W between user and service
-  - **Example:**
-    - **1. {limited CPU}Google maps:** if service is single threaded and running in 1 machine(high end), it will come down on load.
-    - **2. {Slow IO}Bing:** Search engine is IO bound. SE need to match a query against an entire data set. Even with Advanced [Indexing Techniques](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Indexing/README.md) 1 machine will come down on load.
-    - **3. {N/W} youtube:** Need to stream high-quality video to multiple users. if N/W is slow and high requests hit, service becomes bottleneck.
+## 3. Size Scaling
+  In distributed systems 1 or 2 services maybe implemented to run on single server(Single Threaded). This service will become a bottleneck load increases.
+  Why this service will become bottleneck?
+    - **1. Limited CPU:** (Eg: Google maps) if service is single threaded and running in 1 machine(high end), it will come down on load.
+    - **2. I/O transfer rate** (Eg: Bing) Search engine is IO bound. SE need to match a query against an entire data set. Even with Advanced [Indexing Techniques](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Indexing/README.md) 1 machine will come down on load.
+    - **3. Network scalability:** (Eg:youtube) Need to stream high-quality video to multiple users. if N/W is slow and high requests hit, service becomes bottleneck.
     
 ### 4. Geographical Scalabilty
   - **Synchronous/Blocking Communication not good on WAN** socket is created as blocking and blocks on read()/write() system calls. client will block until reply from server.
