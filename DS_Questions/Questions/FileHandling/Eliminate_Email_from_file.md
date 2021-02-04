@@ -26,7 +26,7 @@ Send me mail at <a href="mailto:Email">support@fb.com</a>.
 - **Logic:** Read words from input file(skip email), Write words to output file. rename output file.
   - *1.* Open output file `fout` in write mode.
   - *2.* Open input file in `f` in read mode and read every line
-  - *3.* Create [list](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/containers) of email addresses from line using [regex](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/Modules/Re_RegularExpression)
+  - *3.* Create [list](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/containers) of email addresses from line using [re module](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/Modules/Re_RegularExpression)
     - Example lst = `['a@test.com', 'b@test.com']`
   - *4.* if word is not in list. Write into file
   - *5.* close both inupt, out files
