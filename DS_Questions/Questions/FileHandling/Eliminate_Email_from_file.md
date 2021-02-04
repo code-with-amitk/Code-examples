@@ -30,12 +30,14 @@ Send me mail at <a href="mailto:Email">support@fb.com</a>.
     - Example lst = `['a@test.com', 'b@test.com']`
   - *4.* if word is not in list. Write into file
   - *5.* close both inupt, out files
-- **Complexity**  
+  - *6.* Rename newly created file to old
+- **Complexity**
   - **Time:** n:words in input file. m:Emails in input file. O(mn)
-  - **Space:** O(m). m:No of emails per line
+  - **Space:** O(n+m): Creating a new file
 - **Code**
 ```python
 import re
+import os
 fout = open("html-file-new.html", "w")
 
 with open("html-file.html", "r") as f: 
@@ -47,4 +49,5 @@ with open("html-file.html", "r") as f:
     fout.write("\r\n")
 f.close()
 fout.close()        
+os.rename("html-file-new.html","html-file.html")
 ```
