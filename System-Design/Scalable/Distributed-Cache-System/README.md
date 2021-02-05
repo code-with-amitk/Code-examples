@@ -52,3 +52,5 @@
 |3. Write Back Cache| Write done to cache only Cache writes the info to DB(asynchronously).|Data availability risk(cache may fail)|Low latency, High throughput|
 
 ## 4. [Tradeoffs/Bottlenecks of Distributed systems and overcoming bottlenecks](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+
+## 5. Adjusting to changing requirements
