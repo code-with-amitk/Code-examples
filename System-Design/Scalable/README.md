@@ -3,23 +3,18 @@
 
 **Donot Spend major time on Minor Things. Eg: BOE**
 
-# To Cover
+## To Cover
 - **1. Requirements:**
   - *1a.* Functional(Basic functionality, should work)
   - *1b.* Non-functional(defines quality)
-  - *1c.* Extended
+  - *1c.* Extended:  S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F: Scalable, Secure, SOA, Logging, Load, Latency, Cache(Invalidation, negative cache), Available, Accurate, Analyze, Authenticate, Reliable, Redundant(Using DB), Fast
 - **2. Back of Envelope Calculations**
   - Storage estimates
   - Traffic estimates
 - **3. HLD**:For 2, 100, 1 lac users
 - **4. Database schema**
-- **5. S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F**
-  - Scalable, Secure, SOA
-  - Logging, Load, Latency
-  - Cache(Invalidation, negative cache)
-  - Available, Accurate, Analyze, Authenticate
-  - Reliable, Redundant(Using DB)
-  - Fast
+- **6. Tradeoffs/Bottlenecks & correction**
+- **7. Adjusting to changing requirements**
   
 | | CDN | AWS Cloud |
 | --- | --- | --- |
