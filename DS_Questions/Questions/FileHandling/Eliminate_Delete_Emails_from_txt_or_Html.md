@@ -21,6 +21,42 @@ Send me mail at <a href="mailto:Email">support@fb.com</a>.
 </HTML>
 ```
 
+## C++
+- **Logic:** Read input.html file word by word. keep dumping words into temporary file. Skip email to be dumped into temporary. Rename
+  - *1.* Open input.html file ifstream and temporary with ofstream. ie with [input stream & output streams](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/c%2B%2B/Streams) respectively.
+  - *2.* Read every line from input file, Tokenize the line for words.
+- **Complexity**
+  - **Time:** O(n+m). n:Non-Emails, m:Emails
+  - **Space:** O(n)
+- **Code**
+  - [getline](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/c++/Utility-Library/Strings/Functions), 
+```c++
+#include<iostream>
+#include<fstream>
+#include<sstream>
+
+int main(){
+  std::ifstream fin("input.html");      //1
+  std::ofstream fout("temporary");
+
+  std::string strLine, strWord;
+
+  while (fin) {
+    std::getline(fin, strLine);
+    std::stringstream oSS(strLine);
+    //Tokenize the line to read the word
+    while (std::getline(oSS, strWord, ' ')){
+      std::cout<<strWord<<" ";
+      if (strWord.find('@') == std::string::npos)
+        fout << strWord;
+    }
+    fout <<std::endl;
+  }
+  fin.close();
+  fout.close();
+}
+```
+
 ## Python
 - **Logic:** Read words from input file(skip email), Write words to output file. rename output file.
   - *0.* [Import re, os modules](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/Modules)
