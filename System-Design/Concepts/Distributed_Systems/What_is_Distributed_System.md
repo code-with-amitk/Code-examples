@@ -5,4 +5,4 @@
 - **Middleware**
   - This layer provides same interface to application running on any node. Also it hides he differences in H/W and OS from each application.
   
-<img src="https://ibb.co/Qc2GhPk.png" width=700 />  
+<img src="https://i.ibb.co/4f6xC82/distributed-system-middleware-layer.png" width=700 />  
