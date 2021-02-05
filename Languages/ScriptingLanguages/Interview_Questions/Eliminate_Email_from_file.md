@@ -1,4 +1,4 @@
-## [SED Command](Code-examples/blob/master/System_Administration/Commands/SED/README.md)
+## [SED Command](amitkumar50/Code-examples/blob/master/System_Administration/Commands/SED/README.md)
 - **File**
 ```c
 # cat input
