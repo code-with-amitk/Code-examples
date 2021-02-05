@@ -1,6 +1,5 @@
 ## Problem
 - Remove all email addresses from file
-- Example
 ```html
 <HTML>
 <HEAD>
@@ -24,6 +23,7 @@ Send me mail at <a href="mailto:Email">support@fb.com</a>.
 
 ## Python
 - **Logic:** Read words from input file(skip email), Write words to output file. rename output file.
+  - *0.* [Import re, os modules](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/Modules)
   - *1.* Open output file `fout` in write mode.
   - *2.* Open input file in `f` in read mode and read every line
   - *3.* Create [list](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/containers) of email addresses from line using [re module](https://github.com/amitkumar50/Code-examples/tree/master/Languages/programming_lang/python/Modules/Re_RegularExpression)
