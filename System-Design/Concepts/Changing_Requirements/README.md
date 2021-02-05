@@ -1,7 +1,8 @@
 ## Changing Requirements
-- Whole system should be able to act autonomously, and automatically react to changes. 
+- **What** Whole system should be able to act autonomously, and automatically react to changes. 
+- **How** Artificial intelligence. AI to handle incomplete input, quickly react to a changing environment, handle unexpected events.
 
-### Some Changing Things in Distributed System
+### 1. Some Changing Things in Distributed System
 
 |Changing Thing|Details|
 |---|---|
