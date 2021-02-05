@@ -1,16 +1,16 @@
 ## SED Command
-
-```txt
-# cat email.com
+- **File**
+```c
+# cat input
 test@tes.com hello my namd@gmail.com is amit
 fight@fgt.com and i will win
 ```
-- Command
-```bash
+- **Command**
+```c
 # sed -r 's/[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]*//g' email1.txt > output
 ```
-
-```ext
+- **Output**
+```c
 # cat output
  hello my is amit
  and i will win
