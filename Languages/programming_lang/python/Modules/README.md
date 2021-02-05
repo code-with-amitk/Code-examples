@@ -1,37 +1,35 @@
-## MODULE?
-- **What** file containing python functions, class, variables etc.
-- **Module name** Module’s name (as a string) is available as the value of the global variable __name__. 
-- **Module examples**
-  - **SYS:** provides access to some variables maintained by interpreter and to functions that interact with the interpreter.
-  - **BUILTIN:** provides access to all ‘built-in’ identifiers of Python
+## Module?
+- **What** File containing python functions, class, variables etc. Examples
+  - *sys* Access system variables, functions maintained by interpreter.
+  - *builtin* Built-in identifiers of Python
 
-## DEFINING A MODULE
-```
-# vim mult_sum.py           #Module named mult_sum is defined.
-def mult1(a,b):
-  print('Mult:',a*b)
-def sum1(a,b):
-  print('Sum:',a+b)    
+### Using modules
+- **Step-1 Define a module**
+- **Step-2 Import the module:** means including the module to use its functionality. There are 2 methods of importing a module.
+  - {Method-1} Import complete Module
+  - {Method-2} Import 1 function from Module
+```python
+###########   1. Defined module(Multiply_Sum)  ##########
+# vim Multiply_Sum.py           
+def Multiply(a,b):
+  print('Multiplies:', a*b)
+def Sum(a,b):
+  print('Sum:', a+b)  
 
-```
+########## 2. Import module  ###########
+#### 2A. Import complete module ####
+# vim test.py
+import Multiply_Sum as MS
+#OR from Multiply_Sum import *
+MS.Multiply(1,2)                    #2
+MS.SUM(4,5)                         #9
+print(MS.__name__)                   #Print the module name: Multiply_Sum
 
-## IMPORTING A MODULE? 
-- **What** means including the module to use its functionality.
-- There are 2 methods of importing a module.
 
-#### 1A. Importing complete module
-```
-import mult_sum as a
-#OR from mult_sum import *
-a.mult1(1,2)                        #2
-a.sum1(4,5)                         #9
-print(a.__name__)                   #Print the module name: mult_sum
-```
-
-#### 1B. Importing 1 function from module
-```
-from mult_sum import mult1
-mult1(2,3)                          #6
+## 2B. Import 1 function from module
+# vim test2.py
+from Multiply_Sum import Multiply
+Multiply(2,3)                         #6
 ```
 
 ## MODULES AS SCRIPTS?
