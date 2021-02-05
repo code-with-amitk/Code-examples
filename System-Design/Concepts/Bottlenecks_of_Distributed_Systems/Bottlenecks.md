@@ -4,8 +4,12 @@
   - Mechanism is needed to authenticate a node before allowing admission into distributed system. (using: kerberos)
   
 ## 2. Communication Control
-  - **1. Rekey** Node should validate(at proper intervals) before communicating with another group member or intruder. (IKE rekey)
-  - **2. Group Communication:** Is node allowed to talk to other group to whom its not member of?
+- **1. Rekey** Node should validate(at proper intervals) before communicating with another group member or intruder. (IKE rekey)
+- **2. Group Communication:** Is node allowed to talk to other group to whom its not member of?
+
+|Open Group|any node is allowed to join the distributed system|
+|---|---|
+|Closed Group| only the members of that group can communicate with each other|
   
 ## 3. Size Scaling
 - In distributed systems 1 or 2 services maybe implemented to run on single server(Single Threaded). This service will become a bottleneck as load increases.
