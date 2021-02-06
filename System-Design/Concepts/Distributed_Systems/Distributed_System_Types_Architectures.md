@@ -20,3 +20,10 @@
   - **A. IaaS(INFRASTRUCTURE AS SERVICE):**  Providing virtual machines(H/W, S/W, servers, storage) over internet. Cloud provider will give access to OS of server/Virtual Machine, you can install/remove/do anything on Server. Highest order of control.
   - **B. PaaS(PLATFORM AS SERVICE):** Dashboard is provided to you, upload button is provided you can upload your website.
   - **C. SaaS(SOFTWARE AS SERVICE):** Software hosted on Virtual machine on cloud. It is sometimes referred to as "on-demand software". SaaS is typically accessed by users using a thin client via a web browser.
+
+## Architecture of Distributed Systems
+- **1. LAYERED:** Components are organized in a layered fashion making upcall/downcall. Eg: TCP-IP Stack
+- **2. OBJECT BASED/SOA:** Each object/Node is connected using Procedure call mechanism. Client machine have proxy/stub application running which communicates with Server running on other machine.
+- **3. RESOURCE-CENTERED/REST:** Node/Resource is identified by single naming scheme. All services provide same interface. Stateless, no state maintained.
+- **4. EVENT-BASED/PUBLISH-SUBSCRIBE:** Process1 publishes a notification describing the occurrence of an event. Process2 subscribed to kind of notification gets the message.
+<img src="https://i.ibb.co/GkVPV73/architecture-types-of-distributed-systems.png" width=700 />
