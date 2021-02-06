@@ -2,14 +2,15 @@
 - **What** 
   - A distributed system is a collection of computing elements that appears to its users as a 1 system.
   - It should have single-system view means that end users should not even notice that they are dealing with processes, data and control are dispersed across the nodes.
-- **Middleware**
-  - This layer provides same interface to application running on any node. Also it hides he differences in H/W and OS from each application.  
-<img src="https://i.ibb.co/4f6xC82/distributed-system-middleware-layer.png" width=700 />
 - **ACID:** Follow ACID
   - **Atomic:** Each transaction is atomic
   - **Consistent:** Each transaction is consistent
   - **Isolated:** Concurrent transactions do not interfere with each other
-  - **Durable:** Once a transaction commits, the changes are permanent
+  - **Durable:** Once a transaction commits, the changes are permanent  
+- **Middleware**
+  - This layer provides same interface to application running on any node. Also it hides he differences in H/W and OS from each application.  
+<img src="https://i.ibb.co/4f6xC82/distributed-system-middleware-layer.png" width=700 />
+
 
 ## Types of Distributed Systems
 - **1. HIGH PERFORMANCE DISTRIBUTED COMPUTING**
