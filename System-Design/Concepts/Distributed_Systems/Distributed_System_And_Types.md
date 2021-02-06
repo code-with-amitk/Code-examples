@@ -2,7 +2,7 @@
 - **What** 
   - A distributed system is a collection of computing elements that appears to its users as a 1 system.
   - It should have single-system view means that end users should not even notice that they are dealing with processes, data and control are dispersed across the nodes.
-- **ACID:** Follow ACID
+- **ACID:** All transactions in distributed systems Follow ACID.
   - **Atomic:** Each transaction is atomic
   - **Consistent:** Each transaction is consistent
   - **Isolated:** Concurrent transactions do not interfere with each other
