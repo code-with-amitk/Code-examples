@@ -30,4 +30,4 @@
     - Actual implementations have minimum of 10 stages.
     - There are more P-boxes at start and end, called Rounds.
 
-<img src="https://i.ibb.co/548Kg1P/Encryption-at-hardware-level.png" width=700 />
+<img src="https://i.ibb.co/548Kg1P/Encryption-at-hardware-level.png" width=1000 />
