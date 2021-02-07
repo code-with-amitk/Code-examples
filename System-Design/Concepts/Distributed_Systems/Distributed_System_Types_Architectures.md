@@ -9,7 +9,8 @@
   - **Durable:** Once a transaction commits, the changes are permanent  
 - **Middleware**
   - This layer provides same interface to application running on any node. Also it hides he differences in H/W and OS from each application.  
-<img src="https://i.ibb.co/4f6xC82/distributed-system-middleware-layer.png" width=700 />
+  - **Broker** All application commnicate with each other using broker. 
+<img src="https://i.ibb.co/6rppPQF/distributed-system-middleware-layer.png" width=700 />
 
 
 ## Types of Distributed Systems
