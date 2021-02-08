@@ -1,19 +1,37 @@
-## Consistent Hashing / Consistent Hash Ring
+# Consistent Hashing / Consistent Hash Ring
 - **What?** 
   - Very useful strategy for distributed caches for storing keys. When new keys are added/removed, ie new cache servers added/removed, [Rehashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Hash_Table.md) is not required. Hence scaling up/down are fast and easy.
 - **Advantage?** 
   - Avoids [Rehashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Hash_Table.md)
 
-### Example: Distributed Cache Server
-> Consider 3 cache servers(A,B,C). Cache server limit = 2500 keys 
-- All <key,value> from 0-2500 will stored on server-B. From 2501 to 5000 on server-C so on. Now user want to store key=6000. It will be stored on Cache-server-A. A stores (5000-7500) keys.
-- **Addition of New Cache Server?** 
-  - Now someone wants to store 7501? There is no space on existing Cache-Servers. Cache Server D is pushed and all keys from 7501 to 10000 are added on it. Other cache servers are not touched.
-  - when a node joins it often contacts a well-known node to obtain a starting list in the system.
-- **Deleting a Cache Server?** Now server is getting less hits, decided to remove a cache server. Keys present on server-A are removed. No rehashing is required.
-- **Searching Node in Ring** [O(logN) DAG(Directed Acyclic Graph)](https://github.com/amitkumar50/Code-examples/tree/master/DS_Questions/Data_Structures/Graphs/DAG)
-  - Every node maintains directed shortcut to every other node.
+## Eg(Distributed Cache Server)
+> Consider 3 cache servers(A,B,C). Cache server limit = 2500 keys
+### 1. Storage of Data
+  - All <key,value> from 0-2500 will stored on server-B. From 2501 to 5000 on server-C so on. Now user want to store key=6000. It will be stored on Cache-server-A. A stores (5000-7500) keys.
 
 <img src="https://i.ibb.co/DwM0CZM/Consistent-Hashing.png" width=700 />
+
+### 2. Addition of New Cache Server
+  - Now someone wants to store 7501? There is no space on existing Cache-Servers. Cache Server D is pushed and all keys from 7501 to 10000 are added on it. Other cache servers are not touched.
+  - When a node joins it often contacts a well-known node to obtain a starting list in the system.
+
+### 3. Searching Node in Ring  (Considering 10k nodes)
+  - **Search Complexity: [O(logN) DAG(Directed Acyclic Graph)](https://github.com/amitkumar50/Code-examples/tree/master/DS_Questions/Data_Structures/Graphs/DAG)**
+    - Every node maintains directed shortcut to every other node.
+  - It's Immpractical to assume, Whole world data will be replicated on all nodes. Then cache stands no use.
+  - Suppose key-100 is requested by user and request comes to node-1, <key-100,value-100> is stored on node-100. Now node-1 need to find node storing value-100, get the value-100 & return to requestor.
+  - **Appproaches to search node storing data**
+
+|Approach|What|Disadv|
+|---|---|---|
+|1. Flooding|Node-1 floods key-100 to too connected nodes. Generates Huge traffic|Lot of traffic, TTL can be used|
+|2. Random Walk|Node-1 selects k neighbours randomly, sends key-100 to them, again those neighbours selects k neighbours||
+|3. Policy Based Search|Node keeps track of neighbours who responded positively & sends request to them again||
+
+
+  
+### 3. Deleting a Cache Server?
+  - Now server is getting less hits, decided to remove a cache server. Keys present on server-A are removed. No rehashing is required.
+
 
 
