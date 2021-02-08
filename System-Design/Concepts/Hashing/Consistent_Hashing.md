@@ -16,11 +16,11 @@
   - When a node joins it often contacts a well-known node to obtain a starting list in the system.
 
 ### 3. Searching Node in Ring  (Considering 10k nodes)
-  - **Search Complexity: [O(logN) DAG(Directed Acyclic Graph)](https://github.com/amitkumar50/Code-examples/tree/master/DS_Questions/Data_Structures/Graphs/DAG)**
-    - Every node maintains directed shortcut to every other node.
-  - It's Immpractical to assume, Whole world data will be replicated on all nodes. Then cache stands no use.
-  - Suppose key-100 is requested by user and request comes to node-1, <key-100,value-100> is stored on node-100. Now node-1 need to find node storing value-100, get the value-100 & return to requestor.
-  - **Appproaches to search node storing data**
+  - **Search Complexity: [O(logN) DAG(Directed Acyclic Graph)](https://github.com/amitkumar50/Code-examples/tree/master/DS_Questions/Data_Structures/Graphs/DAG)** Every node maintains directed shortcut to every other node.
+  - **Scenario of Data Search**
+    - It's Immpractical to assume, Whole world data will be replicated on all nodes. Then cache stands no use.
+    - Suppose key-100 is requested by user and request comes to node-1, <key-100,value-100> is stored on node-100. Now node-1 need to find node storing value-100, get the value-100 & return to requestor.
+    - **Appproaches to search node storing data**
 
 |Approach|What|Disadv|
 |---|---|---|
