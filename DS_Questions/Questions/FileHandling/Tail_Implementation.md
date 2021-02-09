@@ -102,5 +102,59 @@ int main(int argc, char* argv[]){
 
 - **2. C Code**
 ```c
+#include <iostream>
+#define BUFF_SIZE 4096
 
+FILE *openFile(const char *filePath){
+  FILE *file;
+  file= fopen(filePath, "r");
+  if(file == NULL){
+    fprintf(stderr,"Error opening file: %s\n",filePath);
+    exit(errno);
+  }
+  return(file);
+}
+
+void printLine(FILE *file, off_t startline){
+  std::cout<<"startline="<<startline<<"\n";
+  int fd;
+  fd= fileno(file);
+  int nread;
+  char buffer[BUFF_SIZE];
+  lseek(fd,(startline + 1),SEEK_SET);
+  while((nread= read(fd,buffer,BUFF_SIZE)) > 0){
+    write(STDOUT_FILENO, buffer, nread);
+  }
+}
+void walkFile(FILE *file, long nlines){
+  off_t fposition;
+  fseek(file,0,SEEK_END);
+  fposition= ftell(file);
+  std::cout<<"fposition="<<fposition<<"\n";
+  off_t index= fposition;
+  off_t end= fposition;
+  long countlines= 0;
+  char cbyte;
+
+  for(index; index >= 0; index --)
+  {
+    cbyte= fgetc(file);
+    if (cbyte == '\n' && (end - index) > 1){
+      countlines ++;
+      if(countlines == nlines)
+        break;
+     }
+    fposition--;
+    fseek(file,fposition,SEEK_SET);
+  }
+  printLine(file, fposition);
+  fclose(file);
+}
+
+int main(int argc, char *argv[]){
+  FILE *file;
+  file= openFile(argv[2]);
+  walkFile(file, atol(argv[1]));
+  return 0;
+}
 ```
