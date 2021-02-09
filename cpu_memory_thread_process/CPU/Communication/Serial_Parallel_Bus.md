@@ -15,5 +15,5 @@ Sent as digital signal
 
   ------|-------------|-------------|----- Data_line    (sd_a)
   -----||------------||------------||------- Clock_line (sd_c)
-    sender       reciever1      reciever2
+    sender/master  reciever1      reciever2
 ```
