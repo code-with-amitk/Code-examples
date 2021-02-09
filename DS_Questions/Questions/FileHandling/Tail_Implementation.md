@@ -1,5 +1,20 @@
 ## Implement Tail
 - tail shows last n lines from file, n=10(default)
+- **Example**
+```c
+# cat logfile
+#Date Timestamp host    program-that-generated  log message
+Nov 5 20:17:41 centos1 dhcpd[3022] service1 failed
+Nov 5 20:17:42 centos1 dhcpd[3022] adding default route via 192.168.0.1 metric 0
+Nov 5 20:17:43 centos1 systemd[1212] service3 failed
+Nov 5 20:17:44 centos1 copper[4556] service4 error
+Nov 5 20:17:44 centos1 copper[4556] service5 down
+
+# tail logfile 3
+Nov 5 20:17:43 centos1 systemd[1212] service3 failed
+Nov 5 20:17:44 centos1 copper[4556] service4 error
+Nov 5 20:17:44 centos1 copper[4556] service5 down
+```
 
 ### Approach/Logic
 - *1.* Program will take 3 command line arguments. if no-of-lines-tobe-displayed(default=10).
@@ -19,6 +34,7 @@
 
 ### Code
 - **1. C++ Code**
+seekg(), 
 ```c++
 class Tail {
 public:
@@ -27,12 +43,17 @@ public:
 };
 
 void Tail::DumpNLines(std::ifstream& fin, long lLines){
+  String strLine;
+  while(fin){
+    std::getline(fin, strLine);
+    std::cout<<strLine<<std::endl;
+  }
 }
 
 void Tail::MoveToNthLine(std::ifstream& fin, long lLines){
   fin.seekg(0, std::ios::end);                      //Move to end of file
 
-  int len = fin.tellg();                            //No of total characters in file
+  std::streampos len = fin.tellg();                  //No of total characters in file
 
   int currPosition = len;                           //This is last position in file
   int end = len;
@@ -63,7 +84,7 @@ int main(int argc, char* argv[]){
     return 0;
   }
 
-  std::ifstream fin(argv[1]);               //Open the file
+  std::ifstream fin(argv[1], std::ios::ate);               //Open the file
   if (not fin){
     std::cout<<"File not found"<<std::endl;
     return 0;
