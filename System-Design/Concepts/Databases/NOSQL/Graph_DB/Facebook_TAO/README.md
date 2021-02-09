@@ -4,7 +4,10 @@
 
 - FB stores all(users, comments, posts, locations) in giant graph. This graph has 5 billion+ entries.
 - **Example**
-  - 4 Friends(kush,amit,prasad,arpit). Kush created a post "Party", Amit commented "Great party @Prasad"(tagged prasad), Arpit liked comment.
+  - 4 Friends(kush,amit,prasad,arpit). 
+  - Kush created a post "Party"
+  - Amit commented "Great party @Prasad"(tagged prasad)
+  - Arpit liked comment.
   
   <img src="https://i.ibb.co/9qBgMhp/fb-friends.png" width="700" />
   
