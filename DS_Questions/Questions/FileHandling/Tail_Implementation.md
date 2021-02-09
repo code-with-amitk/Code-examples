@@ -20,7 +20,7 @@
 ### Code
 - **1. C++ Code**
 ```c++
-class Tail {
+class [Tail](test) {
 public:
   void MoveToNthLine(std::ifstream& fin, long lLines);       //Moves file pointer to nth line from End
   void DumpNLines(std::ifstream& fin, long lLines);
