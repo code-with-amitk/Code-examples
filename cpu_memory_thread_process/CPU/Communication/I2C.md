@@ -6,10 +6,15 @@
   - **Disadv:** Low bandwidth(less data can be sent), short distance, slow protocol, Max speed: 400kbps(around).
   - **Adv:** Simple
 ```c
-  Similar to Switch
+Similar to Switch
 [Central        ]-------|-----------------|----------------|---SD_a(Data line)                 //Similar to LAN
 [Microcontroller]------||----------------||---------------||---SC_l(Clock line)
-                    IC-1/SOC-1      IC-2/SOC-2        IC-3/SOC-3
+                    IC-1/SOC-1      IC-2/SOC-2        IC-3/SOC-3                //Nodes=ICs or SOCs
+                   sender/master    reciever/slave
 ```
-- **How it works**
-  - Every IC on I<sup>2</sup> bus will have unique Address. I<sup>2</sup> has its own addressing scheme.
+- **Addressing** Every IC on I<sup>2</sup> bus will have unique Address(7 bit). I<sup>2</sup> has its own addressing scheme.
+- **Packet format**
+  - Before data, device address(for whom this data is meant to be) is sent on the bus.
+```
+  [Data][Device_address]----->
+```
