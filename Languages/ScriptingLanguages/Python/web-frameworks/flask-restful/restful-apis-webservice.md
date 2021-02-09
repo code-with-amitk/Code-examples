@@ -2,8 +2,9 @@
 https://codeburst.io/this-is-how-easy-it-is-to-create-a-rest-api-8a25122ab1f3
 https://gist.github.com/leon-sleepinglion/97bfd34132394e23ca5905ec730f776a
 
-STEPS:
-********Create virtual Enviornment**********
+## STEPS
+### 1. Create virtual Enviornment
+```python
 - Every virtualenv will have its set of softwares.
 # pip install virtualenv
 # mkdir test;  
@@ -11,31 +12,35 @@ STEPS:
 # cd test; 
 # source bin/activate; 
 (test) [root@<>] # pip install flask flask_restful;
+```
 
-
-********Create & Run Web-Service***************
-1. import flask_restful
-2. Give python file as unique name
-3. Create userDB using lists
-4. Create class to define restful APIs.
+### 2. Create & Run Web-Service
+- 1. import flask_restful
+- 2. Give python file as unique name
+- 3. Create userDB using lists
+- 4. Create class to define restful APIs.
+```python
     def get():  //get particular user or all users
     def post(): //Create a new user in DB
     def put():  //Update DB, add new user
     def delete():   //delete 1 record from DB
-5.  Create a route to web service, Run in debug mode.
+```    
+- 5.  Create a route to web service, Run in debug mode.
 
-
-********Access the Restful APIs using clients*********
-1. Using client Insomnia
+### 3. Access the Restful APIs using clients
+- 1. Using client Insomnia
+```python
    - Install "Insomnia" client application to send RestAPI calls in chrome. Access it using (chrome://apps/)
         GET: 127.0.0.1:5000/user/Elvin
         POST: 127.0.0.1:5000/user/Amit 
         DELETE: 127.0.0.1:5000/user/Amit
-2. Using firefox web Browser:        http://127.0.0.1:5000/user/Elvin
-3. Using Python Code    https://www.geeksforgeeks.org/get-post-requests-using-python/
+```        
+- 2. Using firefox web Browser:        http://127.0.0.1:5000/user/Elvin
+- 3. Using Python Code    https://www.geeksforgeeks.org/get-post-requests-using-python/
 
+### Code
+```python
 """
-
 #1. import Flask class from package flask
 # API module adds functionality to flask which helps to add routes, resources
 from flask import Flask
@@ -113,5 +118,5 @@ class User(Resource):
 api.add_resource(User, "/user/<string:name>")    
 app.run(debug=True)
 
-
-# ACCESS WEBSERVICE USING METHODS PROVIDED IN DESCRIPTION.
+-> ACCESS WEBSERVICE USING METHODS PROVIDED IN DESCRIPTION.
+``` 
