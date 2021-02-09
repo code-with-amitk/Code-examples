@@ -8,3 +8,9 @@
   - *2. MOSI(Master Out/Slave In) Pin*
   - *3. SCK(Serial clock):* Output for SPI masters, input for SPI slaves
   - *4. NSS(Slave select):* optional pin to select slave device, Helps master to communicate directly with particular slave aoviding contention on SPI Bus.
+```c
+  |   board-n   |           |   board-m   |
+  | IC-1  IC-2  |           | IC-3  IC-4  |
+            /\                  /\
+            |-------------------|
+```
