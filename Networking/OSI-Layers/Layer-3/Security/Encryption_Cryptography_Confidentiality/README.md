@@ -8,6 +8,11 @@
   - **1. Substitution Cipher:** each letter or group of letters is replaced by another letter or group of letters. Eg: Caesar ciphers(b becomes E, c becomes F)
   - **2. Block Ciphers(Mostly used):** Encrypt block of characters        
   - **2. Stream Ciphers(Obsolete):** Encrypt Single character at a time
+- **Rounds?** There are more P-boxes at start and end.
+- **Whitening?** XORing a random 64-bit key with plaintext before feeding it into Encryptor and then XORing a second 64-bit key with the resulting ciphertext before transmitting it. DES uses it.
+- **Problem with Symmetric Key Algo?** AES,DES(or any) symmetric key algo have a problem that with same plaintext they will produce same ciphertext everytime.
+  - **Solution: Chaining** 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
+- **Decryption?** All steps are just run in reverse order.  
   
 ### How Encryption is performed at H/W Level?
 > ONLY POSITION OF BITS ARE CHANGED
@@ -18,7 +23,7 @@
     - Actual implementations have minimum of 10 stages.
     - There are more P-boxes at start and end, called Rounds.
 
-<img src="https://i.ibb.co/548Kg1P/Encryption-at-hardware-level.png" width=1000 />
+<img src="https://i.ibb.co/nLZb6Cq/Encryption-at-hardware-level.png" width=1000 />
 
 ### How safe is 128 bit Key?
 - The longer the key, higher work to be done by breaking algo.    {Email: 64-bit keys will do, Commercial applications: 128 bits, Govt org: 256 bits}
