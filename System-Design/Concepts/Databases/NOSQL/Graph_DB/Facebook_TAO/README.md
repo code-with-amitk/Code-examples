@@ -2,7 +2,7 @@
 
 [Information taken from this Article](https://medium.com/swlh/an-introduction-to-facebooks-system-architecture-47cfcf597101#:~:text=The%20Data%20Model%20For%20Social,a%20single%20giant%20social%20graph.&text=A%20node%20represents%20an%20entity,the%20relationships%20between%20the%20nodes.)
 
-- FB stores all(users, comments, posts, locations) in giant graph. This graph has 5 billion+ entries.
+- FB stores (users, comments, posts, locations) as Nodes in giant graph. This graph has 5 billion+ entries.
 - **Example**
   - 4 Friends(kush,amit,prasad,arpit). 
   - Kush created a post "Party"
