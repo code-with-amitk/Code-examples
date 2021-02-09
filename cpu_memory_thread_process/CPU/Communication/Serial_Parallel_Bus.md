@@ -17,3 +17,5 @@ Sent as digital signal
   -----||------------||------------||------- Clock_line (sd_c)
     sender/master  reciever1      reciever2
 ```
+- **Problem-1: Slow Slave:** some slave is slow and cannot consume data at rate produced by master.
+  - **Solution: Clock Streaching** Slave will pull the clock signal(sd_c) down when master tries to reset clock signal. Pulling down means setting. This way master will know slave is slow and master will slow down data sending over data line.
