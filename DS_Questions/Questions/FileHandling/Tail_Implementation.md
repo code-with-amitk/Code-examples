@@ -35,7 +35,7 @@ Nov 5 20:17:44 centos1 copper[4556] service5 down
 
 ### Code
 - **1. C++ Code**
-  - [seekg(), tellg(), streampos](Code-examples/blob/master/Languages/Programming_Languages/c%2B%2B/Libraries_FileHandling/Streams/File_Handling/Functions/README.md)
+  - [seekg(), tellg(), streampos](Languages/Programming_Languages/c%2B%2B/Libraries_FileHandling/Streams/File_Handling/Functions/README.md)
 ```c++
 class Tail {
 public:
