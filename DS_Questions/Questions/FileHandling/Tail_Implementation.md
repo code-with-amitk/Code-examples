@@ -10,6 +10,7 @@ Nov 5 20:17:43 centos1 systemd[1212] service3 failed
 Nov 5 20:17:44 centos1 copper[4556] service4 error
 Nov 5 20:17:44 centos1 copper[4556] service5 down
 
+////////////Output/////////////
 # tail logfile 3
 Nov 5 20:17:43 centos1 systemd[1212] service3 failed
 Nov 5 20:17:44 centos1 copper[4556] service4 error
