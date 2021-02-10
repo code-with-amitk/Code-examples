@@ -1,18 +1,49 @@
-/*	stack-frame.c
-	
-https://godbolt.org/
-https://amitkumar25nov.wordpress.com/stack-frame-example-code/
+## Example Stack Frame
+```c
+void fun (int b){
+  int c = 5;
+  printf("Hello");
+}
+int main(){
+  char t[] = "hello";
+  int a = 10;
+  fun (a);
+}
+```
 
+## Stack Frame
+ - rbp(Base pointer): points to base of stack
+ - rsp(Stack pointer): points to head of stack
+```c
 |----stack grows-----|-------------><------heap grows------
 450		   400
 rbp     	   rsp
 
-rbp: Base pointer, points to base of stack
-rsp: Stack pointer, points to head of stack
-
 .LC0:
 	.string "Hello"
 
+main:
+        push    rbp				//save rbp on stack. 	-----------
+									rbp	 rsp
+									
+        mov     rbp, rsp			//rbp=rsp		-----------
+										 rbp
+										 
+        sub     rsp, 16				//rsp = rsp -16		-----------
+										
+		
+        mov     DWORD PTR [rbp-10], 1819043176
+        mov     WORD PTR [rbp-6], 111
+        mov     DWORD PTR [rbp-4], 1
+        mov     eax, DWORD PTR [rbp-4]
+        mov     edi, eax
+        call    fun(int)
+        mov     esi, eax
+        mov     edi, OFFSET FLAT:_ZSt4cout
+        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
+        mov     eax, 0
+        leave
+        ret		
 main:
 HIGH-LEVEL  INSTR	     MEANING		Pictorial
 <<<<<<<<<<<function prolgue/premble main start>>>>>>>>>>>>>>>>>
@@ -68,16 +99,7 @@ printf     mov edi,OFFSET 1st argument of
 	   ret	   
 */
 
-#include<stdio.h>
-void f1(int b){
-	int c=5;
-    	printf("Hello");
-}
-int main(){
-	char t[]="hello";
-    	int a=10;
-    	f1(a);
-}
+
 
 /*
 https://godbolt.org/
@@ -85,3 +107,4 @@ https://godbolt.org/
 # insight RE	//insight is GDB front end on fedora
 <MIXED VIEW>
 */
+```
