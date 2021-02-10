@@ -1,110 +1,69 @@
 ## Example Stack Frame
 ```c
-void fun (int b){
-  int c = 5;
-  printf("Hello");
+int fun (int b){
+  int c;
+  c += b;
+  return c;
 }
 int main(){
-  char t[] = "hello";
-  int a = 10;
-  fun (a);
+  int a = 1;
+  cout << fun (a);
 }
 ```
 
 ## Stack Frame
  - rbp(Base pointer): points to base of stack
  - rsp(Stack pointer): points to head of stack
+ - eax/rax: stores return value of the function. Larger return types like structs are returned using the stack.
+ - edi/rdi, rsi, rdx, rcx, r8, r9: Stores 1st 6 arguments to function. If there are more than 6 parameters, then the program’s stack is used to pass in additional parameters to the function.
 ```c
 |----stack grows-----|-------------><------heap grows------
 450		   400
 rbp     	   rsp
 
-.LC0:
-	.string "Hello"
-
+								  STACK
 main:
-        push    rbp				//save rbp on stack. 	-----------
-									rbp	 rsp
+    push rbp		        //save rbp on stack. 		80--------70			//Function prologue/Preemble
+								rbp	 rsp
 									
-        mov     rbp, rsp			//rbp=rsp		-----------
-										 rbp
-										 
-        sub     rsp, 16				//rsp = rsp -16		-----------
-										
+    mov  rbp, rsp	        //rbp=rsp			----------70			//Function prologue/Preemble
+			    					         rbp
+			    							 
+    sub  rsp, 16	        //rsp = rsp - 16		----------70----------54	//Function prologue/Preemble
+			        //New stack(16 bytes) created	 	 rbp	      rsp
 		
-        mov     DWORD PTR [rbp-10], 1819043176
-        mov     WORD PTR [rbp-6], 111
-        mov     DWORD PTR [rbp-4], 1
-        mov     eax, DWORD PTR [rbp-4]
-        mov     edi, eax
-        call    fun(int)
-        mov     esi, eax
-        mov     edi, OFFSET FLAT:_ZSt4cout
-        call    std::basic_ostream<char, std::char_traits<char> >::operator<<(int)
-        mov     eax, 0
-        leave
-        ret		
-main:
-HIGH-LEVEL  INSTR	     MEANING		Pictorial
-<<<<<<<<<<<function prolgue/premble main start>>>>>>>>>>>>>>>>>
-int main()  push rbp	 save rbp on stack      ---------
-						rbp    rsp
-
-	    mov rbp,rsp	 make rbp point to rsp  ---------
-	                                               rbp
-
-	    sub rsp,16   Subtract 16 from rsp.	        --16bytes--
-	                 Means New stack created        rbp(20) rsp(10)
-			 is of 16 bytes (as of now)
-<<<<<<<<<<<function prolgue/premble main end>>>>>>>>>>>>>>>>>
-int a=10 mov dword ptr   Store 5 in rbp-4.		----------
-	   [rbp-4], 5    Since stack grows -ve	       rbp 5     rsp
-
-	 mov eax, dword  copy 1st function 
-	 ptr [rbp-4]     argument to eax=10
+    mov DWORD PTR [rbp-4], 1   //*(rbp-4) = 1			----------70--1-------54
+    			       //Copy local variable on stack		  rbp	      rsp
+			       
+    mov eax, DWORD PTR [rbp-4]  //Copy argument of fun() to eax		eax=1
+    
+    mov edi, eax		//edi=eax				edi=1
+    
+    call fun(int)
 	
-	 mov edi, eax    edi = eax = 10
-	 call f1
-	 [[[control comes from f1]]]
-	 mov eax,0	 eax=0
-	 leave
-	 ret
+fun(int):
+    push rbp			//save rbp on stack. 		----------70--1-------54	//Function prologue/Preemble
+     									  rbp	      rsp
+									  
+    mov  rbp, rsp		//rbp=rsp			----------70--1-------54	//Function prologue/Preemble
+    										     rbp
+										     
+    sub  rsp, 32		//rsp = rsp-32			----------70--1-------54------22	//Function prologue/Preemble
+    										      rbp     rsp
+										      
+    mov  DWORD PTR [rbp-20], edi  //*(rbp-20)=edi=1		----------70--1-------54--1----22
+    				  //Save function argument			      rbp      rsp
+    
+    mov  eax, DWORD PTR [rbp-20]  //eax=1
+    
+    add  DWORD PTR [rbp-4], eax	  //*(rbp-4) += eax
+    
+    mov  eax, DWORD PTR [rbp-4]	  //eax = *(rbp-4)
+    leave
+    ret
 
-f1:
-HIGH-LEVEL  INSTR	     MEANING		  Pictorial
-<<<<<<<<<<<function prolgue/premble f1 start>>>>>>>>>>>>>>>>>
-void f1()  push rbp	 save rbp on stack      
-	   mov rbp,rsp	 make rbp point to rsp  ---main()-- 
-	                                        rbp 5     rsp
-							  rbp
-	   sub rsp,16   rsp = rsp - 16	        ---main()-- -----16bytes--
-	                Means New stack        rbp 5      rsp		rsp
-							  rbp
-	   
-int b	   mov dword ptr rbp-20=10		---main()-- -----32bytes--
-	   [rbp-20] edi				rbp 5      rsp 	     10 rsp
-	   						   rbp
-
-int c=5	   mov dword ptr rbp-4=5		---main()-- -----32bytes--
-	   [rbp-4] 5	   			rbp 5      rsp 5     10 rsp
-	   						   rbp
-printf     mov edi,OFFSET 1st argument of 
-	   FLAT:LC0       printf
-	 
-	   mov eax,0	argument of
-	   		printf
-	   call	printf
-	   nop
-	   leave
-	   ret	   
-*/
-
-
-
-/*
 https://godbolt.org/
 # gcc -o RE -g
 # insight RE	//insight is GDB front end on fedora
 <MIXED VIEW>
-*/
 ```
