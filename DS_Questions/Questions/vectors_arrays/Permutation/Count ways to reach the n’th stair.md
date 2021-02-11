@@ -31,7 +31,7 @@ Ways: 5. 1111, 211, 221, 212, 122
 - *2.* To count number of ways till nth stair start from (n+1)th stair.
 ### Complexity-1
   - **Space:** O(1)
-  - **Time:** (Number-of-Recursion-funtions)<sup>n</sup>  =  O(2<sup>n</sup>)    //Since 2 recursive functions
+  - **Time:** [Recursion=O(n<sup>2</sup>)](/DS_Questions/README.md)
 ### Code-1
 ```c++
 int Ways(int a){
