@@ -4,6 +4,7 @@
 - **Torrent File:** This contains addresses of tracker servers.
 - **Tracker server:** This has list of active nodes(client-IP addresses which are downloading a file) and fragment number which is already downloaded.
 
+### Example
 > Let's suppose user-1, user-2, .. user-n wants to download a Movie-xyz or VMware(.vmdk) file sized 3-4GB.
 - *1.* All users will connect to Global Directory(well-known Web site) and requests tracker server IP.
 - *2.* Users will connect to Tracker server to get complete list of users downloading file(called swarm) and fragments they hold. Also upload/download speed of peers.
@@ -17,11 +18,11 @@
   - *SLIDING WINDOW TCP* can be implemented for flow control between slow and fast users.
 ```c
 
-    user-1  <-------------------TCP-connect--------------------------|
-                                                                     |
-            user-2 <-------------TCP-connect----------------|        |
-                                                           \/       \/
-user-n   <----------------TCP-connect------------------->  Global-Directory               //1
+    node/user-1  <-------------------TCP-connect--------------------------|
+                                                                          |
+            node/user-2 <-------------TCP-connect----------------|        |
+                                                                \/       \/
+node/user-n   <----------------TCP-connect------------------->  Global-Directory               //1
   |                                                           |- vim torrent-file
   |                                                               tracker-server 10.5.6.7 
   |                           
@@ -33,9 +34,15 @@ user-n   <----------------TCP-connect------------------->  Global-Directory     
   |  
   |  
 Downloads fragment-x
-  |---------fragment-x,Movie-xyz,Give_me_fragment_2--------> User-10                  //4
+  |---------fragment-x,Movie-xyz,Give_me_fragment_2--------> node/User-10                  //4
     <---ACK, Fragment_2---------------------------
 ```
+
+### Phases of Downloading a file
+- **1. Bootstrap phase** Node has just received its first fragment/block. Node has recieved block using optimistic unchoking
+  - *optimistic unchoking* unselfishly provide block(s) to node(s) in Neighbour set.
+- **2. Trading Phase** Enough nodes can be paired to exchange data.  This is longest and most efficient phase.
+- **3. Last download phase:** Node's NS potentially dropped to 0. Node dependents on newly arriving peers to get the last missing fragments/blocks.
 
 ## 6. Bottlenecks
 ### A. Tracker-server
@@ -44,3 +51,6 @@ Downloads fragment-x
 ### B. [Free-Riding](/Scalable/Distributed_Downloading_Systems/README.md)
   - **Solution** Node will only send packet to that whose is in his Neighbour set(NS).
     - Example: User-1 requests swarm from Tracker server. Swarm=User-2,User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
+### C. Slow Peer
+  - **Solution-1** TCP Sliding window
+  - **Solution-2** Choose peer from NS who has max upload speed.
