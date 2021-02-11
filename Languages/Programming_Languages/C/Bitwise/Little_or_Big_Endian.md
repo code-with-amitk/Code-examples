@@ -8,7 +8,7 @@
 - **Big Endian/host byte order:** 
   - LSB at higher address. 164 stored as (0 0 1 0 0 1 0 1). Eg: IBM z/Architecture processors
 
-## Code
+## 1. Code
 - *1.* Store number=1 in memory. `0000000 0000000 0000000 00000100`
 - *2.* Take char* to number.
 - *3* Print 1st byte using char ptr, if char*=1, Little else Big.
@@ -24,4 +24,10 @@ int main(){
        printf("Big endian");
    return 0;
 }
+```
+
+## 2. Macro to know Endianess
+```c
+const int i = 1;
+#define is_bigendian() ( (*(char*)&i) == 0 )
 ```
