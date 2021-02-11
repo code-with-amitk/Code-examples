@@ -38,13 +38,13 @@ This is reursive approach.
 why recursion? Because we asking same question on smaller & smaller substrings.
 ```
 
-## 1. Approach-1
+## 1. Approach-1   //Recursion. O(2<sup>n</sup>)
 - **Logic**
   - *1.* Take Dictionary into a unordered_set for searching in O(1) time.
   - *2.* Find each letter and substring in dictionary recursively.
 - **Complexity**
   - **Time:** [Recursion: O(2<sup>n</sup>)](/DS_Questions/README.md) 
-  - **Space:** O(n) //n: Number of words
+  - **Space:** O(n) //n: Length of input string
     - O(n): unordered_set
     - O(n): recursion stack
 - **Code**  
@@ -64,4 +64,40 @@ why recursion? Because we asking same question on smaller & smaller substrings.
     unordered_set<string> Dict(wordDict.begin(), wordDict.end());
     return Recursion(s, Dict, 0);
   }
+```
+
+## 2. Approach-2    //Dynamic Programming
+- **Logic**
+  - Notice some subproblems are solved again and again (Eg: t, et, e, s) etc.
+  - We will create bool dp array of size=n+1 after solving these subproblems.
+    - Each element of boolean DP Array will represent, whether substring to that index is present in Dictionary or not. if present `dp[]=1` else `dp[]=0`.
+    - We will return last element of dp array, if complete string is present in Dictionary last element would be 1 else 0.
+  - At each step, we partition substring into 2 substrings, if `dp[prev]=1` means substring is present in Dictionary.    
+```c
+input = test
+dp[]  = 0 0 0 0 0   //size=input+1
+        0 1 2 3 4
+        
+dp[0] = 0   //means "" substring is always present in wordDict.        
+```
+- **Complexity**
+  - **Time:** O(n<sup>2</sup>)
+  - **Space:** O(n)
+- **Code**
+```c++
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> Dict(wordDict.begin(), wordDict.end());
+        vector<bool> dp(s.size());
+        dp[0] = true;
+
+        for (int i = 1; i <= s.size(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] and Dict.find(s.substr(j, i - j)) != Dict.end()) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.size()];
+    }  
 ```
