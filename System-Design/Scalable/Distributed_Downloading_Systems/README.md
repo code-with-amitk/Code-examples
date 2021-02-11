@@ -4,4 +4,6 @@
   - Integrity is provided using any of Hashing algorithms. SHA3/SHA2 etc.
 - **Advantages?**
   - *1.* A low bandwidth user can download file quickly.
-  - *2.* Saves network bandwidth, redundant/lost packets are lowered.  
+  - *2.* Saves network bandwidth, redundant/lost packets are lowered.
+- **Free Riding?**  In most file-sharing systems, bigger fraction of participants only download files but send very few fragments.
+  - *Solution:* (In BitTorrent) a file can be downloaded only when the downloading client is providing content to someone else.
