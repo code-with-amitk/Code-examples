@@ -14,5 +14,6 @@ cout << "Index of max element=" << min_element(a.begin(), a.end()) - a.begin(); 
 
 ### 3. Element in vector
 ```c++
-  iterator = find(startIterator, endIterator, ItemToFind);
+  vector<string> v = {"test", "self"};
+  iterator = find(v.begin(), v.end(), "test");
 ```
