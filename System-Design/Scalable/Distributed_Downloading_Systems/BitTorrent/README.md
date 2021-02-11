@@ -4,7 +4,7 @@
 - **Torrent File:** This contains addresses of tracker servers.
 - **Tracker server:** This has list of active nodes(client-IP addresses which are downloading a file) and fragment number which is already downloaded.
 
-### Example
+### 5.1 Example
 > Let's suppose user-1, user-2, .. user-n wants to download a Movie-xyz or VMware(.vmdk) file sized 3-4GB.
 - *1.* All users will connect to Global Directory(well-known Web site) and requests tracker server IP.
 - *2.* Users will connect to Tracker server to get complete list of users downloading file(called swarm) and fragments they hold. Also upload/download speed of peers.
@@ -38,7 +38,7 @@ Downloads fragment-x
     <---ACK, Fragment_2---------------------------
 ```
 
-### Phases of Downloading a file
+### 5.2 Phases of Downloading a file
 - **1. Bootstrap phase** Node has just received its first fragment/block. Node has recieved block using optimistic unchoking
   - *optimistic unchoking* unselfishly provide block(s) to node(s) in Neighbour set.
 - **2. Trading Phase** Enough nodes can be paired to exchange data.  This is longest and most efficient phase.
