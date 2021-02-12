@@ -21,11 +21,31 @@ Similar to Switch
 R: Master reading, Slave should write
 W: Master writing, slave should read.  
 ```
-- **Flow**
+
+### Steps of Communicating with a Slave on I<sup>2</sup> Bus
+- Slave can be voltage regulator and master can be tool.
 ```c
-  Master                                Slave
+  Master/Tool                          Slave(address=43)
     -[00101001][W][Slave-address][1]--->
     <---------ACK----------------------
       ---Stop-bit----------------->
       <---------ACK-----------
+```
+- *1.* Get Slave address to which master want to send data. Eg slave_address=43.
+- *2.* write slave address at off1 = Register_Aperature + offset1
+- *3.* Enable I2C bus by setting 1 at off2 = Register_Aperature + offset2
+- *4.* Write on I2C at off3 = Register_Aperature + offset3
+- *5.* POOL for status
+  - I2C Status
+  - I2C Acknowledgement status
+```c
+  i2c_SetAddress (off1, slave_address>>1)          //2  =>  MMWrite(off1, 21)
+  i2c_Enable (off2, 1)                       //3        =>  MMWrite(off2, 1)
+  i2c_Write(off3, command=154)                 //4      =>  MMWrite(off3, 154)  
+  i2c_pollTxStatus(){
+    status = MMRead(offset4);
+    ACK or NAK = MMRead(offset5);
+  }
+  
+Physical to virtual memory is mapped at stat and write is done there.
 ```
