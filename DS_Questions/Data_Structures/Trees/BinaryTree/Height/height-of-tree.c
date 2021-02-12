@@ -32,10 +32,23 @@ Node *newnode(int a){
 }
 
 int hgt(Node *r){
-        if(!r)
-                return 0;
-        return (max(hgt(r->left), hgt(r->right))+1);
+  if(!r)
+    return 0;
+   return (max(hgt(r->left), hgt(r->right))+1);
 }
+/*
+int hgt(Node *r){
+   if (!root)
+     return 0;
+   int lchild = hgt(root->left);
+   int rchild = hgt(root->right);
+   if (lchild > rchild)
+     return lchild+1;
+   else
+     return rchild+1;
+   return 0;
+}
+*/
 
 int main(){
         Node *r = newnode(1);
