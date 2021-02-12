@@ -20,5 +20,22 @@
 <img src = "https://i.ibb.co/qmwt1XM/virtual-file-system.png" width = 500 />
 
 ## Example Flow
-- *1.On System Boot:* Root filesystem(Eg: ext2) gets regitered with VFS.
+- **1. Registration** Root or other filesystem(permanent fs) gets regitered with VFS. As any file system is mounted it gets registered with VFS.
+  - *Information provided at registration to VFS by file-system*
+    - *a.* list of callbacks which VFS should call to communicate with file system.
+- *2.* User opens are file from `/usr` which is mounted using `/ext3`, call reaches VFS
+- *3.* VFS searches [Superblock](/Operating_Systems/Linux/FileSystem/What_is_FileSystem.md) of mounted filesystems and finds root dir of mounted file system and finds `include/unistd.h` there.
+```c
+                    VFS               File-System-1(ext2)
+                     | <--Register-------|                         //1
+                     |                                 File-System-2(ext3)
+                     |<---------Register-----------------|
+     User
+open("/usr/include/unistd.h", O RDONLY)   //2
+  |
+  |-system call--> VFS
+                Search superblock of mounted filesystems      //3
+                Find root dir of mounted File system
+                Find include/unistd.h there
+```
 
