@@ -30,7 +30,7 @@
   - *4.* On everynode check returned from left child and right child. if both left and right are nonnull I am LCA.
 - **Complexity**
   - **Time:** O(n). Visting every node once
-  - **Space:** O(n). Space occupied by every stack in recursion.
+  - **Space:** [O(n)](/DS_Questions/README.md). Space occupied by every stack in recursion.
 - **Code**
 ```c
   struct TreeNode {
