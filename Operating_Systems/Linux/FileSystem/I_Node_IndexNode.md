@@ -18,7 +18,7 @@
 ```
 - **Advantage:** Whole FAT table need not to be bought into RAM. Only inode structures of files which are opened need to be bought in RAM. if k files are opened of size=n, then kn RAM is occupied.
 
-<img src="https://i.ibb.co/6FymhXC/inode.png" width=1200 />
+<img src="https://i.ibb.co/6FymhXC/inode.png" width=1400 />
 
 ## 2. Directory Inode
 - File entry inside Directory contains filename(allocated on heap) and file's inode no. 
