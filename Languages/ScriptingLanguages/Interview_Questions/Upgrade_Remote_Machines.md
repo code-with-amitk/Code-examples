@@ -2,7 +2,7 @@
 - Send packets to remote machines and try to upgrade the packet remotely.Troubleshooting why some of the machines are not updated.
 
 
-**Prior to login for upgrade, We should configure [passwordless login using ssh public,pvt keys](https://github.com/amitkumar50/Code-examples/blob/master/System_Administration/RemoteLogin/PasswordLess_Login.md)**
+**Prior to login for upgrade, We should configure [passwordless login using ssh public,pvt keys](/System_Administration/RemoteLogin/PasswordLess_Login.md)**
 
 ## 1. Approach-1  //Client-side script only
 ### Logic
@@ -12,7 +12,7 @@
   test@10.118.161.22
 ```
 ### Code
-  - [shebang](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/README.md), [$1](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24.md), [$?](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/Exit_Status.md), [$@](https://github.com/amitkumar50/Code-examples/blob/master/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24%40.md)
+  - [shebang](/Languages/ScriptingLanguages/Shell_Scripting/Bash/README.md), [$1](/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24.md), [$?](/Languages/ScriptingLanguages/Shell_Scripting/Bash/Exit_Status.md), [$@](/Languages/ScriptingLanguages/Shell_Scripting/Bash/CommandLineArguments/%24%40.md)
 ```bash
 #!/usr/bin/env bash                       #shebang
 
