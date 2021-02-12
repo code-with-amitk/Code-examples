@@ -7,6 +7,7 @@
 ## Types of Voltage Rails 
 
 |Rail Name|Description|
+|---|---|
 |1. GFX|Voltage in use while GPU is not idle|
 |2. SOC|voltage floor for rest of the the SoC(System on chip)|
 |3. HBM||
