@@ -17,7 +17,7 @@
 - All system calls(from user space eg: open(),read(),write()) relating to files are directed to the virtual file system for initial processing.
 - **VFS Interface?** VFS can make API calls to each file system to get work done. Also every file system should provide APIs to VFS
 
-<img src = "https://i.ibb.co/qmwt1XM/virtual-file-system.png" width = 600 />
+<img src = "https://i.ibb.co/qmwt1XM/virtual-file-system.png" width = 500 />
 
 ## Example Flow
 - *1.On System Boot:* Root filesystem(Eg: ext2) gets regitered with VFS.
