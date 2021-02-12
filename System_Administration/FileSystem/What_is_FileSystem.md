@@ -23,7 +23,7 @@
   - gfs(Gluster)
 - **Architecture**
 
-<img src = src="src="https://i.ibb.co/SfF0xwG/filesystem.png" width = 600 />
+<img src = src="https://i.ibb.co/SfF0xwG/filesystem.png" width = 600 />
 
     MBR(Master boot record): See kernel boot process above.
     PARTITION TABLE: Lies at end of MBR. Contains start, end address of  each partitions. 1 of partitions is marked ACTIVE.
