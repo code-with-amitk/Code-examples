@@ -3,6 +3,8 @@
   - In a PC, different components use different voltage levels, and so a power supply must take the electricity from the wall and split it into 12v, 5v, and 3.3v power. 
   - A rail is simple a wire/path inside the PSU that carries electricity of a certain voltage.
   The 12v rail provides power for GPUs and CPUs, generally the two most power-hungry components.
+- **Every GPU/CPU may have seperate voltage rails**
+  - A new GPU board often has more rails than previous.
   
 ## Types of Voltage Rails 
 
