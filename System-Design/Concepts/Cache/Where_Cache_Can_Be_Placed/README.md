@@ -7,7 +7,7 @@
 
 - **CACHE-CONTROL HEADER** HTTP server instructs browser(http client) to cache a particular content for TTL duration in cache control header. Format: Response Header {cache-control: public, max-age: 45223}
 
-<img src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/response-headers.jpg.webp" width="700" />
+<img src="https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/response-headers.jpg.webp" width="500" />
 
 ### 2. Web Proxy Cache
 - *1.* Web client asks content from Web-server. Request reaches Web proxy. Web proxy checks its cache, if content available serves it
