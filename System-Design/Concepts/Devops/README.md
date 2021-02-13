@@ -2,7 +2,7 @@
 - **What** Making development and operations(deployment) teams work together using some tools. Eg:
   - Agile
   - Deploying smallers builds frequently to production servers.
-  - - [kanban](Tools/Kanban.md)
+  - [kanban](Tools/Kanban.md)
 
 # 1. Waterfall/Traditional development model(SDLC)
 ## 1A. Problems?
