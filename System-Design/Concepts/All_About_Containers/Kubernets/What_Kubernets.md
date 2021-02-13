@@ -34,7 +34,7 @@ kubeconfig: Configured
 # minikube dashboard                           //Minikube dashboard
 ```
 
-<img src="https://i.ibb.co/MRF7WHt/Screenshot-from-2020-06-06-13-19-57.png" width=600 />
+<img src="https://i.ibb.co/MRF7WHt/Screenshot-from-2020-06-06-13-19-57.png" width=1000 />
 
 - **2. Install Minikube client & connect to server**
 ```bash
