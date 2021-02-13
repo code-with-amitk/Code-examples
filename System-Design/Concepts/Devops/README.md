@@ -1,4 +1,8 @@
 # Dev(developer), Ops(Operations or deployment)
+- **What** Making development and operations(deployment) teams work together using some tools. Eg:
+  - Agile
+  - Deploying smallers builds frequently to production servers.
+  - - [kanban](Tools/Kanban.md)
 
 # 1. Waterfall/Traditional development model(SDLC)
 ## 1A. Problems?
@@ -66,6 +70,3 @@ Dev(4 moths) --> testing(2 months) --> Production(Code Broke)
   - Maybe next to each other's desk. 
   - Each should participate in other's Stand up meetings.
   - New ideas experiments, approaches should be encouraged.
-
-# D. Tools for implementing devops
-- [**kanban**](Tools/Kanban.md)
