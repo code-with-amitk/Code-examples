@@ -13,7 +13,7 @@
 
 ### MINIKUBE
 - **1. Install & Start minikube Server** Install Virtual Box and enable Virtualization support from BIOS.
-```shell
+```c
 # vim /etc/yum.repos.d/virtualbox.repo
 [virtualbox]
 name=Fedora $releasever - $basearch - VirtualBox
@@ -37,7 +37,7 @@ kubeconfig: Configured
 <img src="https://i.ibb.co/MRF7WHt/Screenshot-from-2020-06-06-13-19-57.png" width=1000 />
 
 - **2. Install Minikube client & connect to server**
-```bash
+```c
 # curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 # chmod +x ./kubectl
 # sudo mv ./kubectl /usr/local/bin/kubectl
