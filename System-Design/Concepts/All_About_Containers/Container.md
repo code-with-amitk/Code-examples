@@ -2,20 +2,14 @@
 - Packaging software code and all its dependencies in a bundle.
 
 ## Containers
-- **What**
-  - Isolated partition of OS for 1 application/process.
-  - This OS has all libraries for application to be built/run independently and securely of other applications on system.
-  - Each container has its own network interface, its own IP address, its own file system.
-  - All containers share the kernel of the host.
+- **What?** Isolated partition of OS holding only 1 Application and all its dependent libraries. Each container has its own network interface, its own IP address, its own file system. All containers share the kernel of the host.
+- **Advantages**
+  - lightweight. Use less memory.
+  - *Secure:* Reduces the chance that malicious code present in one container impacting other containers or invade the host system.
+  - *Portable:* abstraction from the host operating system makes containerized applications portable ie able to run on any OS,VM.
+- **Disadv:** Some application may not be suited for a containerized environment. Ex: applications accessing low-level hardware information.  
 - **Issues without container**
   - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
-- **Advantages**
-  - lightweight. All containers share same kernel but donot have any overhead over machine.
-  - Reduces the chance that malicious code present in one container impacting other containers or invade the host system.
-  - Abstract from host OS
-  - Portable. abstraction from the host operating system makes containerized applications portable ie able to run on any OS,VM.
-- **Disadv of container**
-  - Some application may not be suited for a containerized environment. Ex: applications accessing low-level hardware information.
 - **Containers vs VM**
 
 |  | Containers | VM |
