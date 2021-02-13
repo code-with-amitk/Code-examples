@@ -1,8 +1,6 @@
-## Containerization 
-- Packaging software code and all its dependencies in a bundle.
-
 ## Containers
 - **What?** Isolated partition of OS holding only 1 Application and all its dependent libraries. Each container has its own network interface, its own IP address, its own file system. All containers share the kernel of the host.
+- **Containerization?** Packaging software code and all its dependencies in a bundle.
 - **Advantages**
   - lightweight. Use less memory.
   - *Secure:* Reduces the chance that malicious code present in one container impacting other containers or invade the host system.
@@ -20,7 +18,7 @@
 
 - Each container runs inside docker host.
 - This can be thought of as a VM inside base OS but this is not VM.
-![ImgUrl](https://image.slidesharecdn.com/dockerug-magnumandkolla-150628004034-lva1-app6892/95/openstacking-containers-13-638.jpg?cb=1435452205)
+<img src=https://image.slidesharecdn.com/dockerug-magnumandkolla-150628004034-lva1-app6892/95/openstacking-containers-13-638.jpg?cb=1435452205 width=700 />
 
 ## Image?
 - Container is created from image. 
