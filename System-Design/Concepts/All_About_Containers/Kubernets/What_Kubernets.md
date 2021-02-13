@@ -13,7 +13,7 @@
 
 ### MINIKUBE
 - **1. Install & Start minikube Server** Install Virtual Box and enable Virtualization support from BIOS.
-```bash
+```shell
 # vim /etc/yum.repos.d/virtualbox.repo
 [virtualbox]
 name=Fedora $releasever - $basearch - VirtualBox
