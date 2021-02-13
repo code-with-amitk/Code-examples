@@ -12,7 +12,7 @@
 ### 2. Web Proxy Cache
 - *1.* Web client asks content from Web-server. Request reaches Web proxy. Web proxy checks its cache, if content available serves it
 - *2.* If content is not available Web Proxy checks from other web proxies over **high-speed** link.
-<img src="https://i.ibb.co/Kz5Nsx2/distributed-webproxy-cache.png" width="800" />
+<img src="https://i.ibb.co/Kz5Nsx2/distributed-webproxy-cache.png" width="500" />
 
 ### 3. [Application Server](https://github.com/amitkumar50/Code-examples/blob/master/networking/OSI-Layers/Layer5/ApplicationServer_WebServer.md) and DB
 #### 1. Memcached 
