@@ -1,27 +1,16 @@
-## MICROSERVICES
-- **What** 
-  - Bigger project is broken into independent modules/processes(called microservice) running on independent VM or Docker container.
-- **Size** 
-  - Size of microservices can vary from 100 LOC to keeping complete team busy.
-- **[CD(Continous Delivery)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/CI-CD/README.md)** 
-  - Each microservice has its own continuous delivery pipeline, this provides continous delivery.
-  - CI/CD pipeline contains smaller number of tests as microservices code is small.
-- **Stateless** 
-  - Should be, because if new MS boots in to serve existing request, it should not care about states.
-- **Categorization of MS** Microservices can be developed into 2 domains
-  1. Domain-level: Writing 1 MS for a particular domain.
-  2. Technical-Level: Number of microservices based on technicalities of project.
+## Microservices
+- **What?**  Bigger project is broken into independent modules/processes(called microservice) running on independent VM or Docker container. Size of microservices can vary from 100 LOC to keeping complete team busy. Microservices are stateless because new MS boots in to serve existing request, it should not care about states.
 - **Advantages** 
-  1. Independent deployble modules. All teams can work independently of each other. Teams can make their own technology decisions.
-  2. Microservice can be brought into production at its own.
-  3. developers can employ a completely new technology stack.
-  4. Complete microservice can be re-engineered or replaced easily, without affecting other microservices.
+  - *1.* Independent deployble modules. All teams can work independently of each other. Teams can make their own technology decisions.
+  - *2.* Microservice can be brought into production at its own.
+  - *3.* developers can employ a completely new technology stack.
+  - *4.* Complete microservice can be re-engineered or replaced easily, without affecting other microservices.
 - **Disadvantages**
-  1. Increased Operation effort: MS system have many more units wrt deployment monolith hence requires larger operations efforts
-  2. High communication time: MS communicate over network, hence will take more time wrt file based communication.
-  3. Testing all microservices together is not good idea: If 1 MS fails, it blocks tests of all other microservices.
+  - *1.* Increased Operation effort: MS system have many more units wrt deployment monolith hence requires larger operations efforts
+  - *2.* High communication time: MS communicate over network, hence will take more time wrt file based communication.
+  - *3.* Testing all microservices together is not good idea: If 1 MS fails, it blocks tests of all other microservices.
   
-  ## Microservices vs Deployment Monolith
+## Microservices vs Deployment Monolith
   
   | | Microservices | Deployment Monolith |
   | --- | --- | --- |
