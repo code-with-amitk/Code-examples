@@ -1,8 +1,6 @@
-## Kubernets?
-  - Container scheduler for managing cluster of machines(physical or virtual). These hosts runs containers. 
-  - kubernets controls the resources inside multi container applications how they interconnect.
-  - **Benefits of kubernets**
-    - Zero-downtime deployments, fault tolerance, high availability, scaling, scheduling, and self-healing are in Kubernetes.
+## Kubernets
+- **What?** Container scheduler for managing cluster of machines(physical or virtual).
+- **Benefits of kubernets** Zero-downtime deployments, fault tolerance, high availability, scaling, scheduling, and self-healing are in Kubernetes.
     
 ## Options for Creating kubernets cluster
 1. create a few nodes with Vagrant (a tool for building and managing virtual machine environments in a single workflow) 
