@@ -128,7 +128,7 @@ Total size = 50000 x 10 = 500 KB
   - UserId1 adds a new photo,video to his album.
     - *1.* New object allocated on object store. Entry created in *Storage-Hash-Table*, *User-Hash-table*
     
-## [5. DB Schema/TAO]((/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
+## [5. DB Schema/TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
 ## [6. Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 
