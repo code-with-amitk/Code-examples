@@ -7,7 +7,7 @@
 Search: yahoo.com
 IP<>hostname (not found in browser cache)                                                                                                              
   - | MAC | IP | UDP destPort=53 |                                                                                                                                 
-     | DNS Query{Hdr QR:0,Question:1}{Body QName:yaho.com,Type:A,Class:IN}->     Office_DNS-srvr/ISP/Local_DNS_Server/
+     | DNS Query{Hdr QR:0,Question:1}{Body QName:yaho.com,Type:A,Class:IN} -->  Office_DNS-srvr/ISP/Local_DNS_Server/
                                                                                  Recursive_DNS_srvr(fb.com)
                                                                                  cannot find IP<>hostname
                                                                              Finds Rootname server's IP using NS record from zone file
