@@ -3,7 +3,7 @@
 - When fork() is called, complete [Process Space(SS,HS,DS,CS)](https://sites.google.com/site/amitinterviewpreparation/c-1) of parent is duplicated to child, New PCB is created for child. Code Segment is Duplicated using [COW(Copy on Write)](/cpu_memory_thread_process/processes/process_copy_on_write.c)
 - Code After if(fork){}else{} is executed by both parent and child.
 ```c
-         --------Duplicated-----------
+         -------fork() Duplicates-----
         |                            \/
  |Stack|Heap|DS|CS|              |Stack|Heap|DS|CS|
    Parent                           Child
@@ -17,49 +17,78 @@
 //Code executed by both parent and child
 ```
 
-## Code
+## Example
+- *1.* Parent process has values on stack,heap,Data segment.
+- *2.* with for() everything duplicated.
+- *3.* Child changed it's Stack, Heap, Data Segment.
+- *4.* Parent, child will have seperate values in Stack, Heap, Data Segment.
+```c
+             -------------2. fork() Duplicates----------
+             |                                         \/                  
+             PARENT                                   CHILD
+    Stack   Heap     Data Segment              Stack   Heap     Data Segment
+ 1. | pPtr | "PARN" | g_a=1, g_b=0 |          | pPtr | "PARN" | g_a=1, g_b=0 | 
+      |       /\                             
+       --------                               3. Child changes its values
+                                                Stack   Heap     Data Segment
+                                              | pPtr | "CHLD" | g_a=10, g_b=50 |
+                                                 |       /\
+                                                 -------- 
+
+ 4. 
+  PARENT pPtr=PARN, g_a=1, g_b=0
+  CHILD  pPtr=CLD, g_a=10, g_b=0
+```
+- **Code**
 ```c
 #include<unistd.h>  //fork
 #include<iostream>
 #include<cstring>
-using namespace std;
 
-//Data Segment
+//DS
 int g_a = 1;    //Initialized
 int g_b;        //Uninitialized
 
 int main(){
-  //Stack: pPtr
-  //Heap: memory allocated
-  char *pPtr = new char[5]; memset(pPtr,5,0); strcpy(pPtr,"MAIN");
-  cout << "[Before fork] g_a: " << g_a << ", g_b: " << g_b << ", pPtr: " << pPtr << endl;
+  char *pPtr = nullptr;             //Stack
+  
+  ptr = new char[5];                //Heap
+  memset(pPtr,5,0);
+  strcpy(pPtr,"PARN");
+  
+  std::cout << "[Before fork] g_a: " << g_a\
+            << ", g_b: " << g_b\
+            << ", pPtr: " << pPtr << std::endl;
 
   int k = fork();
-  if (k) {  //Parent
-    g_a = 2; strcpy(pPtr,"PARN");
-    cout << "\b\n[PARENT] g_a: " << g_a << ", g_b: " << g_b << ", pPtr: " << pPtr << endl;
-  }else{  //CHILD (k==0)
-    g_a = 3; strcpy(pPtr,"CHLD");
-    cout << "\n[CHILD] g_a: " << g_a << ", g_b: " << g_b << ", pPtr: " << pPtr << endl;
+
+  if (k==0){      //CHILD
+    g_a = 10;                        //DS
+    strcpy(pPtr,"CHLD");            //Stack
+    std::cout << "\n[CHILD] g_a: " << g_a\
+              << ", g_b: " << g_b\
+              << ", pPtr: " << pPtr << std::endl;  
+  }else{
+    std::cout << "Parent";
   }
 
-  cout << "\n[AFTER] g_a: " << g_a << ", g_b: " << g_b << ", pPtr: " << pPtr << endl;
-  cout << "Freeing pPtr" << endl;
+  std::cout << "\n[AFTER] g_a: " << g_a\
+            << ", g_b: " << g_b\
+            << ", pPtr: " << pPtr << std::endl;
+
   delete pPtr;
 
   return 0;
 }
 
 # ./a.out
-[Before fork] g_a: 1, g_b: 0, pPtr: MAIN
+[Before fork] g_a: 1, g_b: 0, pPtr: PARN
 
-[PARENT] g_a: 2, g_b: 0, pPtr: PARN
-[CHILD] g_a: 3, g_b: 0, pPtr: CHLD
+[PARENT]
+[CHILD] g_a: 10, g_b: 0, pPtr: CHLD
 
-[AFTER] g_a: 2, g_b: 0, pPtr: PARN		<<Notice Executed Twice, 1 for Parent, 1 for Child
-[AFTER] g_a: 3, g_b: 0, pPtr: CHLD
-Freeing pPtr
-Freeing pPtr
+[AFTER] g_a: 1, g_b: 0, pPtr: PARN		<<Notice Executed Twice, 1 for Parent, 1 for Child
+[AFTER] g_a: 10, g_b: 0, pPtr: CHLD
 ```
 
 ## Commands
