@@ -1,28 +1,24 @@
-## int fork()
-```c
- int k = fork();
- if (k)		//k!=0
-   cout << "Parent"";
- else          //k=0
-   cout << "Child";
-```
-
-## Basics
-- All Segments CS(COW), DS(Global, Static), HS, SS(Local Var) are duplicated in child.
+## FORK
+- **What?** System call for creating child process from parent process.
+- When fork() is called, complete [Process Space(SS,HS,DS,CS)](https://sites.google.com/site/amitinterviewpreparation/c-1) of parent is duplicated to child, New PCB is created for child. Code Segment is Duplicated using [COW(Copy on Write)](/cpu_memory_thread_process/processes/process_copy_on_write.c)
 - Code After if(fork){}else{} is executed by both parent and child.
-- Commands to get parent, child PIDs
 ```c
-//Complete Tree
-# pstree -hp |grep a.out
-  |-gnome-terminal-(4730)-+-bash(4737)---su(4886)---bash(4908)---a.out(10005)---a.out(10006)
-Parent PID=10005   Child PID=10006
-
-//PID of parent in child
-  pid_t ppid = getppid();
+         --------Duplicated-----------
+        |                            \/
+ |Stack|Heap|DS|CS|              |Stack|Heap|DS|CS|
+   Parent                           Child
+   
+ int k = fork();       //int fork()
+ if (k==0){
+   cout << "Child"";
+ }else{
+   cout << "Parent";
+ }   
+//Code executed by both parent and child
 ```
 
 ## Code
-```c++
+```c
 #include<unistd.h>  //fork
 #include<iostream>
 #include<cstring>
@@ -64,4 +60,15 @@ int main(){
 [AFTER] g_a: 3, g_b: 0, pPtr: CHLD
 Freeing pPtr
 Freeing pPtr
+```
+
+## Commands
+```c
+//Complete Tree
+# pstree -hp |grep a.out
+  |-gnome-terminal-(4730)-+-bash(4737)---su(4886)---bash(4908)---a.out(10005)---a.out(10006)
+Parent PID=10005   Child PID=10006
+
+//PID of parent in child
+  pid_t ppid = getppid();
 ```
