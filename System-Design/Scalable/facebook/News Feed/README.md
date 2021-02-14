@@ -18,8 +18,7 @@
   - *b.* AI powered user specific search items
   
 ## 2. HLD
-- Before BOE, let's see How FB stores users,posts,comments? After that we can get take BOE Calculations.
-- FB uses [See-> TAO for storing giant graph of users(System-Design>Concepts>Databases>NOSQL>Graph_DB>Facebook_TAO>README.md)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
+- Before BOE, let's see How FB stores users,posts,comments? FB uses [TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
 ## 3. Back Of Envelope Calculations
 
