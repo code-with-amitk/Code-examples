@@ -30,8 +30,8 @@
 
 - **News Feed Usage statistics** Every person will have a news feed. 
   
-### 3A. Storage Estimates (24~25TB calculations below)
-- Photos/Videos would be stored on different Object store DB(Eg: amazon S3, ceph) for every user. This will not be considered as part of news feed.
+### 3A. Storage Estimates (47~50PB)
+- Photos/Videos would be stored on different [Object store](/System-Design/Concepts/Databases/Object_Storage/README.md) DB(Eg: amazon S3, ceph) for every user. This will not be considered as part of news feed.
 - Storing users/comments/posts is part of new feed.
  #### 3A1. Object Table  //6 billion entries.
   - *1. Id:* We will use 62 different characters arranged at 6 positions.
@@ -85,7 +85,7 @@ Each position of Id can have any of 62 characters.
   - *3. key-value* Considering 100 characters. 1 byte/character. 100 bytes x 12 Billion = 1TB
   - **Total bytes needed to store Edge Table = 120GB + 240GB + 1TB => 2TB**  
 
-**Total bytes needed to store Object Table+Association Table = 24~25TB**
+**Total bytes needed to store Object Table+Association Table = 24~25TB. 25x30x12x5=47PB**
   
 ### 3B. Traffic Estimates
 - As soon user logs in, his news feed has to be shown with least delay. Most data is sent from server to user/browser/FB app.
@@ -127,3 +127,9 @@ Total size = 50000 x 10 = 500 KB
 - **How news feed works for 2 users**
   - UserId1 adds a new photo,video to his album.
     - *1.* New object allocated on object store. Entry created in *Storage-Hash-Table*, *User-Hash-table*
+    
+## [5. DB Schema/TAO]((/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
+
+## [6. Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+
+## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
