@@ -4,7 +4,7 @@
   - profile changes, upcoming events
   - news(if subscribed).
 
-## [To Cover](/System-Design/scalable/README.md)
+## [To Cover](/System-Design/Scalable/README.md)
 
 ## 1. Requirements
 - **1A. Functional**
@@ -89,7 +89,7 @@ Each position of Id can have any of 62 characters.
   
 ### 3B. Traffic Estimates
 - As soon user logs in, his news feed has to be shown with least delay. Most data is sent from server to user/browser/FB app.
-- Considering user has 5000 friends(max allowed friend's limit=5000), 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over websockets. Pooler service keeps pooling for user to get online.
+- Considering user has 5000 friends(max allowed friend's limit=5000), 5000 channels subscribed, As soon as user comes online, pooler service will send encrypted data to user over [WEBSOCKETS](/Networking/OSI-Layers/Layer5/LongPooling_WebSockets.md). Pooler service keeps pooling for user to get online.
 - Considering 75% of fb users (3.5 x 75% = 2.5 Billion) are active every moment/every second.
   - **Data pumped into FB servers per second**
     - User/browser/FB app opens a Websocket to server as comes online. (HTTP GET size = 2KB). 2KB x 2.5 = 5k Billion Bytes = 5TB/sec comes to FB servers worldwide.
@@ -113,8 +113,8 @@ Total size = 50000 x 10 = 500 KB
 ### A. 2 Users, 2 channels
   - Each user stores 10000 Photos(limit of photos a user can store=10000). Each photo size = 50KB. 50KB x 10000 x 2 = 5GB
   - Each user stores 5000 videos(limit of videos a user can store=5000). Each video size = 1GB. 1GB x 5000 x 2 = 1TB
-- **Storing Photos, Videos on Object Store:** [See-> Object-Store](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/databases/Object_Storage/README.md)
-- **Stoing friend list?** [See-> TAO for storing giant graph of users(System-Design>Concepts>Databases>NOSQL>Graph_DB>Facebook_TAO>README.md)](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
+- Storing Photos, Videos on [Object Store](/System-Design/Concepts/Databases/Object_Storage/README.md)
+- Stoing friend list? [TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 - **How channel subscriptions are stored**
 ```c
   Friend-Hash-table
