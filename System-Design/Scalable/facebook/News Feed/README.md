@@ -9,9 +9,11 @@
 ## 1. Requirements
 - **1A. Functional**
   - *a.* User should see his new feed as he logs in.
-  - *b.* Newsfeed should be custommizable, whatever user wants to subscribe/not.
+  - *b.* Newsfeed should contain posts from the people, pages, groups that a user follows.
+  - *c.* Feeds can have text, images, videos.
 - **1B. Non-Functional**
-  - *a.* News feed should give soothing/smiling effect to user.
+  - *a.* News feed should be generated on the fly. Max latency should not be more than 2 sec.
+  - *b.* News feed should give soothing/smiling effect to user.
   - *b.* Option for extending news feed once news feed gets over.
 - **1C. Extended**
   - *a.* Option to hide/disable news feed.
