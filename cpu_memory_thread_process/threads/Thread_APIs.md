@@ -14,7 +14,7 @@ pthread_cancel(pthread_t tid)    //Thread1 can terminate thread2
 
 int pthread_mutexattr_init(pthread_mutexattr_t *attr): Initialize mutex attributes
 
-int pthread_yield(void): Causes the calling thread to relinquish the CPU. relinquish means giving up.
+int pthread_yield(void): Causes the calling thread to give up CPU(ie terminate himself) voluntarily so that other threads can take CPU.
 
 pthread_exit();    //This will exit calling Thread
 ```
