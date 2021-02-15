@@ -77,6 +77,8 @@ int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
   - **Time:** log(row) x cols
     - log(row):Searching 1 in every row
     - cols: Number of cols
+  - **Space**
+    - [O(1)](/DS_Questions/README.md)
 - **Code**
 ```c++
 / * class BinaryMatrix {
