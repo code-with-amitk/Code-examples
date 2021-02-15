@@ -27,10 +27,12 @@ input = 0 0 0 1
 Output: 1     //1st col contains 1
 ```
 
+<img src="https://leetcode.com/problems/leftmost-column-with-at-least-a-one/Figures/10012/linear_search.png" width=500 />
+
 ## 1. Appraoch-1        //Linear Search
 - **Logic**
   - *1.* Traverse every row, search 1 in it.
-  - *2.* if 1 is found, note coloumn number. (out = coloumn number)
+  - *2.* if 1 is found, note coloumn number. (out = coloumn number)  //ie note minumum index
   - *3.* if in next row 1 occurs before out, out=new_col else break
 - **Complexity**
   - **Time:** O(rows*k). least number of cols after which 1 occurs = k.
@@ -69,7 +71,7 @@ int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
 
 ## 2. Approach-2      //Binary Search (Since its sorted)
 - **Logic**
-  - *1.* Search 1 in every row using binary search, note coloumn number of 1st 1 in 1st row. (out=coloumn number)
+  - *1.* Search 1 in every row using binary search, note coloumn number of 1st 1 in 1st row. (out=coloumn number) //ie note minumum index
   - *2.* Perform binary search in next row, if(coloumn of 1>out)discard else out = coloumn where 1 occurs 1st time
 - **Complexity**
   - **Time:** log(row) x cols
