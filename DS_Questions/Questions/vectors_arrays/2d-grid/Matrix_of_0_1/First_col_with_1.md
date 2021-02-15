@@ -112,3 +112,30 @@ int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
   return out == a[1]?-1:out;
 }
 ```
+
+## 3. Approach-3         //Search from top right
+- **Logic**
+- **Complexity**
+  - **Time:** O(N + M)
+  - **Space:** O(1)
+- **Code**
+```c++
+int leftMostColumnWithOne(BinaryMatrix &binaryMatrix) {
+  //a[0]=row
+  //a[1]=col
+  vector<int> a = binaryMatrix.dimensions();
+        
+  //Top right element
+  int row = a[0];
+  int col = a[1]-1;
+        
+  //Search until it goes out of matrix
+  while (row <a[0] and col >= 0){
+    if(binaryMatrix.get(row, col) == 0)
+      row++;
+    else
+      col--;
+  }        
+  return col==a[1]-1 ? -1 : col+1;
+}
+```
