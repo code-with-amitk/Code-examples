@@ -2,14 +2,9 @@
 - Data structure maintained by kernel containing file, directory information.
 
 ## 1. File Inode
-- Each file have separate inode structure containing following information of that file
-  - size
-  - change time
-  - group
-  - Permissions
-  - number of blocks
-  - each block address. 
-- Every time user writes to file, new block is stored at new disk location and addresses is added. 
+- Each file have separate inode structure containing following information of that file: size, change time, group, Permissions, number of blocks, each block address. 
+- Every time user writes to file, new block is stored at new disk location and addresses is added.
+- **What information is not in Inode?** File name, file content(stored on disk blocks).
 ```c
      struct inode File_A{
         attributes{size, change time, group, permissions, number of blocks};
