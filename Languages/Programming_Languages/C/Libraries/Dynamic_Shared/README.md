@@ -1,12 +1,11 @@
 ## Dynamic OR Shared Objects
   - `*.so`(linux)
   - `*.dll`(windows)
-  
-### What
+- **What?**
 - A dynamic library does not become part of application code. These are stored at some memory (/usr/lib64/libutil.so) and from there compiler picks them.https://www.youtube.com/watch?v=KNr4tAPvbvQ
-## Advantages of Dynamic Libraries
-- size of Binary not increased: Since only address of function is placed inside with the exe, final size of binary is not increased.
-- If changes happens in Dynamic Library provided by 3rd party, application need not to be complied
+- **Advantages of Dynamic Libraries**
+  - size of Binary not increased: Since only address of function is placed inside with the exe, final size of binary is not increased.
+  - If changes happens in Dynamic Library provided by 3rd party, application need not to be complied
 
 ### 1. Create shared object `*.so`
 - Object files for shared libraries need to be compiled as **position independent code (-fPIC)** because they are mapped to any position in the address space.
