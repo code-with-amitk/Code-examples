@@ -1,5 +1,7 @@
 ## Load Balancer
-- **What** Improves the distribution of workloads across multiple computers.
+- **What** 
+  - Improves the distribution of workloads across multiple computers.
+  - Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](Scheduling_Algo_of_Load_Balancers.md)
 - **Examples** Ngnix, Amazon ELB
 
 ### Types of Load Balancing
