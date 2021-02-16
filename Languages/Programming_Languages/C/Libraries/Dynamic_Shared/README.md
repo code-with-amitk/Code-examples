@@ -1,6 +1,6 @@
 ## Dynamic OR Shared Objects
-  - `*.so`(linux)
-  - `*.dll`(windows)
+> `*.so`(linux), `*.dll`(windows)
+
 - **What?**
 - A dynamic library does not become part of application code. These are stored at some memory (/usr/lib64/libutil.so) and from there compiler picks them.https://www.youtube.com/watch?v=KNr4tAPvbvQ
 - **Advantages of Dynamic Libraries**
