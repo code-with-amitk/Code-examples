@@ -10,7 +10,7 @@
 	1. Pre-requsites must exist, if does not exist, rules are checked to create pre-requisites.
 	2. Once pre-requisites are created, command is executed.
 
-[1. See Simple Makefile example to Understand this](/Programming_lang/C/Makefile/Examples/hello-world/simple-Makefile.md)
+[1. See Simple Makefile example to Understand this](/Languages/Programming_Languages/C/Makefile/Examples/hello-world/1. simple-Makefile.md)
 ```
 target: pre-requisite-1 pre-requisite-2 ...
 	command
