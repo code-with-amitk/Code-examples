@@ -17,7 +17,7 @@
 
 ## 2. INSTALL
 ### Install on (Linux) From source github
-```
+```c
 # git clone --recursive https://github.com/boostorg/boost.git	 //Please note RECURSIVE is most important. Time taken=45 min
 # cd boost
 # git checkout <branch-name>    //branch you want to use
@@ -34,12 +34,12 @@
 ```
 
 ### A2. (Linux) 
-```
+```c
 # yum    install    -y    boost-devel        //Now just Include header files and start using
 ```
 
 #### A2. On Windows
-```
+```c
 - Install cygwin    
 - unpack boost_1_22_0.7z, install in Windows    
 - Include Header files and start using it
