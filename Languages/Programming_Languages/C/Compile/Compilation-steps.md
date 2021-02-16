@@ -1,4 +1,4 @@
-# COMPILATION STEPS
+# Compilation Steps
 
 <img src="https://i.ibb.co/447zDgX/com-steps.png" alt="com-steps" border="0">
 
@@ -31,7 +31,7 @@ int main(){
 }
 ```    
   
-## 2. [CCL] COMPILER `(*.i → *.s)`
+## 2. [CCL] Compiler `(*.i → *.s)`
    - **What** 
     - Converts Intermediate files to Assembly language files `*.s`
     - Compiler is only bothered about ***function declaration***, it does not check definition.
@@ -57,7 +57,7 @@ int main(){
   .type main, @function  
 ```      
    
-## 3. [AS] ASSEMBLER `(*.s → *.o)`
+## 3. [AS] Assembler `(*.s → *.o)`
    - **What** Takes `*.s` as input and outputs Object files `*.o`.
    - **-c Flag** Stop after assembly stage not to run into linker.
 ```
@@ -67,7 +67,7 @@ int main(){
  úUH<89>åH<8d>=^@^@^@^@¸^@^@^@^@è^@^@^@^@¸^@^@^@^@]ÃHello^@^@GCC: (Ubuntu 9.3.0-10ubuntu2) ....
 ```
    
-## 4. [LD] LINKER `(*.o → *[.exe])`
+## 4. [LD] Linker `(*.o → *[.exe])`
   - lets you are working on project having 10 modules, each having seperate `*.c` file. All c files create object files and at end you 
    want A SINGLE EXE file. Linker does it.    
   - Also Links code from library
