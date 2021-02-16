@@ -67,7 +67,18 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *2c.* Rank these posts based on the relevance to Amit (in maxHeap).
   - *2d.* Push these feed to CDN to be posted to Amit.
   - *2e.* Fan-out feed to Amit's device. Once 1st 20 posts on feed are pushed, push next 20.
+  
 ## 4C. Feed publishing
+
+### Architecture
+- **[Web Server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md)** To maintain a connection with the user. This connection will be used to transfer data between the user and the server.
+- **[Application server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md):** Handle storing new posts in the DB servers.
+- **Metadata database and [Cache]():** To store the metadata about Users, Pages, and Groups.
+- **Databases:** [TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md) for posts. [noSQL](/System-Design/Concepts/Databases/README.md) for video,photos.
+- **News feed genreator:** To generate newsfeed and store in the cache. This service will also receive live updates and will add these newer feed items to any user’s timeline.
+- **Fanout service:** to push news feed to users on their phones.
+- **[9. MOM/SQS](/System-Design/Concepts/MOM_ESB/README.md)** Amazon SQS
+- **10.**
     
 ## [5. DB Schema/TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
