@@ -1,7 +1,5 @@
 ## Encryption / Cryptography / Confidentiality
 - **What?** Conversion of Data/Plain-text into unreadable/cipher text.
-- **Why DL layer encryption/Link Encryption is not good idea?** 
-  - With this approach packets have to be decrypted at each router, leaving them vulnerable to attacks from within the router.
 - **Cryptanalysis?** Breaking ciphers. 
 - **Kerckhoff’s principle?** Whole world should know how crypto algorithm works, All algorithms must be public. Algorithm is parameterized by key only the keys are secret
 - **CIPHER ALGORITHMS**
