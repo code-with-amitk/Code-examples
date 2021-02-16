@@ -37,7 +37,9 @@ double myPow(double x, int n) {
 }
 ```
 
-## 2. Approach-2  //[Exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring) O(logn)
+[Exponentiation by squaring](https://en.wikipedia.org/wiki/Exponentiation_by_squaring)
+## 2. Approach-2  
+### 2a. Recursive O(logn)
 - **Logic:** Use product already calculated instead of calculating again.
   - *1.* 2<sup>4</sup> is not calculated as `2*2*2*2` But `4*4`.  n=4. log4 = 2
   - *2.* 2<sup>5</sup> is not calculated as `2*2*2*2*2` But `4*4*2`.  n=5. log4 + log1 = 3
@@ -64,5 +66,29 @@ double myPow(double x, int n) {
     y = abs(y);
   }
   return power(x, y);
+}
+```
+
+### 2b. Iterative
+- **Complexity**
+  - **Time:** O(logn)
+  - **Space:** O(1)
+- **Code**
+```c++
+double myPow(double x, int n) {
+  long y = n;
+  if (y < 0) {
+    x = 1 / x;
+    y = abs(y);
+  }
+  double out = 1;
+  double current_product = x;
+  for (long i = y; i ; i /= 2) {
+    if ((i % 2) == 1)
+      out = out * current_product;
+  
+    current_product *= current_product;
+  }
+  return out;
 }
 ```
