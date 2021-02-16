@@ -1,8 +1,4 @@
-- **Contents**
-  1. GCC/G++ Compiler options
-  2. LD linker options
-
-## A. [GCC/G++]COMPILER OPTIONS
+## A. GCC/G+++ Flags
 
 ### A1. Mostly Used options
 | Option | Meaning |
@@ -12,7 +8,7 @@
 | -D name=definition | define name as definition |
 | -E | Stop after the preprocessing stage; do not run the compiler proper.|
 | -g | Produce debugging information in the operating system's native format |
-| -Ldir | Add directory dir to the list of directories to be searched for -l |
+| -L<dir> | Add directory dir to the list of directories to be searched for -l |
 | -lLibrary | <ul><li>Search the library named library when linking</li></ul> <ul><li>Option is provided in LDLIBS += lpthread</li></ul> ||
 | -o file | Place output in file file |
 | -O Optimization Options | <ul><li>-O0: optimization level 0 (no optimization, same as omitting the -O argument)</li></ul> <ul<li>-O1: Optimize More. Compilation time increases.</li></ul> |
