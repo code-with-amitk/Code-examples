@@ -60,7 +60,7 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *c.* Publishing feed to user.            //FEED PUBLISHING
   
 ### 4B. Feed Generation
-- *1.* User-1 posts text,audio,viudeo. System triggers new feed generator for all friends/followers of User-1.
+- *1.* User-1 posts text,audio,video. System triggers new feed generator for all friends/followers of User-1.
 - *2.* Amit is friend of user-1. Generating feed for Amit.
   - *2a.* Retrieve all users that Amit follows.
   - *2b.* Retrieve latest, most popular and relevant posts for those IDs. 
@@ -71,6 +71,9 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
 ## 4C. Feed publishing
 
 ### Architecture
+- *1.* Mobile/App enters facebook.com in browser. Browser gets IP address using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS/How_DNS_Works.md)
+  - Browser can have [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md) But assuming cache is stale.
+- *2.* [HTTPS](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) Packet is created by Browser `GET www.facebook.com/index.html HTTP/1.1`, sent to [Forward Proxy](/System-Design/Concepts/Proxy_Servers/README.md) server hosted by ISP/Office Server. ISP forward request to next router in internet.
 - **[Web Server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md)** To maintain a connection with the user. This connection will be used to transfer data between the user and the server.
 - **[Application server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md):** Handle storing new posts in the DB servers.
 - **Metadata database and [Cache]():** To store the metadata about Users, Pages, and Groups.
