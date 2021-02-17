@@ -1,7 +1,5 @@
-/*      observer_dp.cpp
-  
-Situation/Task: Design a Whether Display Device.
-
+## Design a Whether Display Device.
+```c
              ---------------------------
             |                           |
             |-------        ----------- |   ----------
@@ -11,22 +9,24 @@ temprature->|       |-tem->|           ||<-|Display   |
             |-------        ----------- |   ----------
             |                           |
              ----------------------------
-             
-*****Observer-pattern*****
-- Observer will register to subject
-  subject will inform observer.
-- Subject can:
-  > register observers
-  > deregister/remove observers
+```      
 
-*****Description*******
-a. Sensor: Measures the temp, humidity, pressure.
-b. Collector: Recieves information from sensor.
-c. Display-devices(observer):
- - Registers themseleves to subject.
- - Receives trigger in case of event.
+### Terms
+- **Observer?** Object that wants to receive events.
+- **Subject?** receives events and will inform observers. Subject can: register observers, deregister/remove observers.
+- **How it works?**
+  - Observer will register to subject
+  - subject will inform observer.
 
-*******Implementation********
+### Design
+- *a.* Sensor: Measures the temp, humidity, pressure.
+- *b.* Collector: Recieves information from sensor.
+- *c.* Display-devices(observer):
+  - Registers themseleves to subject.
+  - Receives trigger in case of event.
+
+### Code    
+```c++
 - sensor: Not implementing this. main() acts as sensor.
 - collector:
 - display-device:
@@ -113,3 +113,4 @@ int main(){
                         Humidity:20.5
                         Pressure:30.7
 */
+```
