@@ -20,7 +20,7 @@
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
 |World Population|InternetUsers(60%)|TinyURL Users(10-15% of Internet users)/month|
-|---|---|---|---|
+|---|---|---|
 |7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.15 = 630 Million|
 
 - **Traffic Estimates/QPS(Queries per sec)**
