@@ -54,11 +54,13 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
 
 ## 4. High Level design
 > FB stores users,posts,comments using [TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
-- There are 2 parts to design.
-  - *A.* User creating a post.
+
+ There are 3 parts to design.
+  - *A.* User creating a post, backend stores the post.		//POST STORAGE
   - *B.* Backend system generating news feed for his friends/followers.  //FEED GENERATION
   - *c.* Publishing feed to user.            //FEED PUBLISHING
 
+### Steps
 - *1.* Mobile/App enters facebook.com in browser. Browser gets IP address using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS/How_DNS_Works.md)
   - Browser can have [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md) But assuming cache is stale.
 - *2.* [HTTPS](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) Packet is created by Browser `GET www.facebook.com/index.html HTTP/1.1`, sent to [Forward Proxy](/System-Design/Concepts/Proxy_Servers/README.md) server hosted by ISP/Office Server. ISP forward request to next router in internet.
@@ -66,7 +68,7 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
 - *4.* User creates a post, upload a photo, Video. Browser creates a [HTTP POST](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) message packages post,video in JSON/XML and sends to server.
 - *5.* SSL Terminator decrypts packet and sends to Load Balancer. Before sending TCP-3-way handshake must be completed.
 - *6.* [Load Balancer](/System-Design/Concepts/Load_Balancer/What_is_LoadBalancer.md) selects Web server based on [Round Robin scheduling algo](/System-Design/Concepts/Load_Balancer/Scheduling_Algo_of_Load_Balancers.md) and sends packet.
-- **Feed Storage:**
+- **Post Storage:**
   - *7. [Web Server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md)* maintain connection-DB(struct {sockfd, ip, connection_time, expiry}) for each user and creates entry for user. This connection will be used to transfer data between the user and the server.
   - *8. [Application server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md):* Handle storing new posts in the DB servers.
   - *9. Database updater* DB Frontend which manages updating the DB. Sends acknowledgment using zookeeper.
