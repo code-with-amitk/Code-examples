@@ -1,33 +1,38 @@
-## 1: REQUIREMENT CLARIFICATION
-#### a. Functional:
-- Given a URL, our service should generate a shorter and unique alias of it
-- When users access short link, our service should redirect them to the original link.
-- Users should be able to pick a custom short link for their URL.
-- Links should expire after default time span.
-#### b. Non-Function:
-- Highly available. 
-- Minimum latency
-#### c. Extended requirements:
-- Analytics; e.g., how many times a redirection happened?
+# Tinyurl
+- **What?** This service will provide short aliases redirecting to long URLs.
+- **Why?** Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.
 
+## [To Cover](/System-Design/Scalable/README.md)
 
-## 2. BACK-OF-ENVELOPE CALCULATIONS
+## 1. Requirements
+- **a. Functional**
+  - Given a URL, service should generate a shorter and unique alias of it.
+  - When users access short link, our service should redirect them to the original link.
+  - Users should be able to pick a custom short link for their URL.
+  - Links should expire after default time span.
+- **b. Non-Functional**
+  - Highly available. 
+  - Minimum latency
+- **c. Extended**
+  - Analytics; e.g., how many times a redirection happened?
 
+## 2. BOE
 > This is read heavy application. Consider 100:1 Read/Write requests.
 
-#### Writes
+|World Population|InternetUsers(60%)|TinyURL Users(10-15% of Internet users)/month|
+|---|---|---|---|
+|7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.15 = 630 Million|
 
-10k new URL shortning requests/sec. 10k*60*60*30=1 billion requests/month
+- **Traffic Estimates/QPS(Queries per sec)**
+  - 630 / 30x24x60x60 = 240~250 Requests/sec
 
-#### Read/Redirection
+- **Storage Estimates**
+  - Long URL length=256 bytes, Short URL=6 bytes. 1 request requires 256+6=262 bytes to be stored
+  -  630 x 12x5 = 38 Billion. 38 x 262 = 10 TB to be stored for 5 years
 
-1000k reads/sec = 1 M reads/sec. 1M*60*60*30 = 100 billion reads/month.
-
-#### STORAGE Estimate
-- Let's assume long & short URLs are stored for 5 years.
-- Long URL length=256 bytes, Short URL=6 bytes. 
-    - 1 request requires 256+6=262 bytes to be stored
-    - For 5 years. Total requests = 10k/sec*60*60*30*12*5 * 262 = 10k*1.5G = 10 Tera bytes
+- **Bandwidth Estimates**
+  - **Write Requests(ie storing generate and store shorturl)** 250 Requests/sec. 1 request size=256. 64KB/sec
+  - **Read Requests(ie getting stored short URL)** 
     
 #### CACHE Estimates
  - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
