@@ -3,6 +3,7 @@
   - A object of class which overloads `operator ()`. Ex: object()
   - Remember functors are objects only, Hence can store state.
   - Compiler does not provide functors, we need to define explicitly.
+- **Why?** wrt to normal functions since functors are objects they can store state. We need to use global or static variable to hold state if we want to use function.  
  - **Types of functors in STL**
  
 | Type | Generator | Unary Functor | Binary Functor |
