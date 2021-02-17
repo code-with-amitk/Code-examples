@@ -1,9 +1,8 @@
-/*              aggregation.cpp
-  
-Aggregation:
-Contained Object can exist without container Object. Contained object can belong to different classes at same time. Contained class does not delete container class object. Owner-ship is present. Contained class have pointer to object of contained class
+## Aggregation
+- Contained Object can exist without container Object. Contained object can belong to different classes at same time. Contained class does not delete container class object. Owner-ship is present. Contained class have pointer to object of contained class
 
- */
+### Code
+ ```c++
 #include <string>
 #include <iostream>
 using namespace std;
@@ -40,3 +39,4 @@ int main(){
 palm Exists without Sunlight
 
 */
+```
