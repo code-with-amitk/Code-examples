@@ -58,19 +58,7 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *A.* User creating a post.
   - *B.* Backend system generating news feed for his friends/followers.  //FEED GENERATION
   - *c.* Publishing feed to user.            //FEED PUBLISHING
-  
-### 4B. Feed Generation
-- *1.* User-1 posts text,audio,video. System triggers new feed generator for all friends/followers of User-1.
-- *2.* Amit is friend of user-1. Generating feed for Amit.
-  - *2a.* Retrieve all users that Amit follows.
-  - *2b.* Retrieve latest, most popular and relevant posts for those IDs. 
-  - *2c.* Rank these posts based on the relevance to Amit (in maxHeap).
-  - *2d.* Push these feed to CDN to be posted to Amit.
-  - *2e.* Fan-out feed to Amit's device. Once 1st 20 posts on feed are pushed, push next 20.
-  
-## 4C. Feed publishing
 
-### Architecture
 - *1.* Mobile/App enters facebook.com in browser. Browser gets IP address using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS/How_DNS_Works.md)
   - Browser can have [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md) But assuming cache is stale.
 - *2.* [HTTPS](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) Packet is created by Browser `GET www.facebook.com/index.html HTTP/1.1`, sent to [Forward Proxy](/System-Design/Concepts/Proxy_Servers/README.md) server hosted by ISP/Office Server. ISP forward request to next router in internet.
@@ -78,16 +66,24 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
 - *4.* User creates a post, upload a photo, Video. Browser creates a [HTTP POST](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) message packages post,video in JSON/XML and sends to server.
 - *5.* SSL Terminator decrypts packet and sends to Load Balancer. Before sending TCP-3-way handshake must be completed.
 - *6.* [Load Balancer](/System-Design/Concepts/Load_Balancer/What_is_LoadBalancer.md) selects Web server based on [Round Robin scheduling algo](/System-Design/Concepts/Load_Balancer/Scheduling_Algo_of_Load_Balancers.md) and sends packet.
-- *7. [Web Server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md)* maintain connection-DB(struct {sockfd, ip, connection_time, expiry}) for each user and creates entry for user. This connection will be used to transfer data between the user and the server.
-- *8. [Application server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md):* Handle storing new posts in the DB servers.
-- *9. Database updater* DB Frontend which manages updating the DB.
-- *10. [TAO(Graph DB)](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)* stores Posts, comments, users. *[NOSQL](/System-Design/Concepts/Databases/README.md)* stores photos, videos.
-- *11. Database updater* Will also update [Message Queue(MOM)](/System-Design/Concepts/MOM_ESB/README.md) with newly added post's URL.
-- *12. Fetcher service* begin subscriber in MOM gets notification and starts fetching posts,photo,videos URL's and forwards to News Feed Generator service.
-- *13. New Feed Generator Service* Will create JSON/XML Content for HTTP message.
-- *14. Fanout Service* Will get connection information from web-server and sends HTTP message on that socket.
-  - When new connection comes in, session-id is generated and attached to user-id. Using this session-id, information can be fetched from connection-db.
-- *15. SSL Encryptor* Encrypts the message and using CDN[(write thru cache)](/System-Design/Concepts/Cache/Types_of_Distributed_Caches/README.md) sends New feed to client.
+- **Feed Storage:**
+  - *7. [Web Server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md)* maintain connection-DB(struct {sockfd, ip, connection_time, expiry}) for each user and creates entry for user. This connection will be used to transfer data between the user and the server.
+  - *8. [Application server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer/README.md):* Handle storing new posts in the DB servers.
+  - *9. Database updater* DB Frontend which manages updating the DB. Sends acknowledgment using zookeeper.
+  - *10. [TAO(Graph DB)](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)* stores Posts, comments, users. *[NOSQL](/System-Design/Concepts/Databases/README.md)* stores photos, videos.
+- **Feed Generation:** Backend system generating news feed for his friends/followers
+  - *11. Database updater* Will also update [Message Queue(MOM)](/System-Design/Concepts/MOM_ESB/README.md) with newly updated UserId's ie any userId who have newly added edges on TAO.
+  - *12. Fetcher service(subscriber in MOM)* gets notification and starts fetching edges of userId posts,photo,videos URL's and forwards to News Feed Generator service.
+  - *13. New Feed Generator Service* Will create JSON/XML Content for HTTP message.
+- **Feed Publishing:** Publishing feed to user. 
+```c 
+  - FB need to retrieve all friends of person who commented/posted.
+  - Retrieve latest, most popular and relevant posts for those IDs. Rank these posts based on the relevance to Amit (in maxHeap).
+  - Once 1st 20 posts on feed are pushed, push next 20.
+```
+  - *14. Fanout Service* Will get connection information from web-server and sends HTTP message on that socket.
+    - When new connection comes in, session-id is generated and attached to user-id. UserId stored on TAO. Using this session-id, information can be fetched from connection-db.
+  - *15. SSL Encryptor* Encrypts the message and using CDN[(write thru cache)](/System-Design/Concepts/Cache/Types_of_Distributed_Caches/README.md) sends New feed to client.
     
 ## [5. DB Schema/TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
