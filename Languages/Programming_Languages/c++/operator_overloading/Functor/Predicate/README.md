@@ -1,8 +1,6 @@
-
-# PREDICATE CLASS
+# Predicate class
 - A class that implements functor `bool object()` that returns boolean value(true or false).
 - Predicate is used with algorithms that takes container, predicate function(as input) and returns boolen result.
-
 
 ## TYPES OF PREDICATES
 | Type | Unary | Binary |
