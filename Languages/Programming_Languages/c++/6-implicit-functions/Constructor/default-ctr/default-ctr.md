@@ -1,11 +1,3 @@
-## 6 default/implicit/trivial functions provided by g++ compiler
-1. Default ctr
-2. Copy ctr
-3. Copy assignment operator
-4. Move ctr (Since C++11)
-5. Move assignment operator (Since C++11)
-6. Destructor
-
 ### Default Ctr
 - Same named function of class
 - When Compiler **provides default ctr**?
