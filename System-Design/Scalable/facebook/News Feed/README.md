@@ -92,6 +92,7 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
 ### 4b. Issues & Solutions in Design of Feed Generation Service
 
 - **Issues** 
+
 |Issue|Description|
 |---|---|
 |1.Huge Friend list|Feed Generator service performs slow for users having huge friend list|
