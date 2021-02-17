@@ -20,7 +20,7 @@
   -  If all 2<sup>32</sup> are exhausted, a new SA must be established to continue communication.
 - *5. ICV(Integrated check value)/Authentication Data:*  
   - This is HMAC(keyed Hash) calculated on complete packet (|AH|Original-IP-Hdr|TCP|Application|)
-  - **How ICV is calculated?**
+  - **How ICV is calculated?** TTL is not included in ICV since it changes at every router.
 ```c
  Shared key(k1) is established during ISAKMP phase.
     
