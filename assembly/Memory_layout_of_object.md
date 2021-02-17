@@ -28,14 +28,14 @@ int main(){
 ### Assembly
 ```asm
 main:                                               STACK
-  push rbp               //save rbp on stack. 		80--------70			//Function prologue/Preemble
-                                                  rbp	     rsp
+  push rbp               //save rbp on stack. 	80--------70			//Function prologue/Preemble
+                                                rbp      rsp
                                                   
-  mov  rbp, rsp          //rbp=rsp			           ----------70			//Function prologue/Preemble
-                                                            rbp
+  mov  rbp, rsp          //rbp=rsp		----------70			//Function prologue/Preemble
+                                                          rbp
                                                             
-  sub  rsp, 16           //rsp = rsp - 16		       ----------70----------54	//Function prologue/Preemble
-			              //New stack(16 bytes) created            rbp	      rsp
+  sub  rsp, 16           //rsp = rsp - 16	  ----------70----------54	//Function prologue/Preemble
+		//New stack(16 bytes) created               rbp	        rsp
   
   lea  rax, [rbp-8]      //Load effective address           //rax = 62
   
@@ -56,7 +56,7 @@ A::A(long):
   push rbp                                         ----------70----------54	//Function prologue/Preemble
                                                                         rsp
 
-  mov rbp, rsp                       //rbp=rsp			           ----------54-------------			//Function prologue/Preemble
+  mov rbp, rsp                       //rbp=rsp		      ----------54-------------			//Function prologue/Preemble
                                                                         rbp           rsp
 
   mov QWORD PTR [rbp-8], rdi     //store 1st argument on stack  ----------54---1-------
