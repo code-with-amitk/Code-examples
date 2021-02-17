@@ -1,24 +1,15 @@
-/* 
-******Shallow Copy**********
- - This is Compiler Provided Copy Ctr.
+## Deep and shallow
+- **Shallow Copy ctr**
+  - This is Compiler Provided Copy Ctr.
  - This does member-wise copy. If object has ptr variable, then memory pointed by pointer variable is not duplicated.
-****************************
-
-
-******Deep Copy Ctr*********
- - Does duplicate memory pointed by pointer variable.
-****************************
+- **Deep Copy Ctr**
+  - User has to write deep copy.
+  - Does duplicate memory pointed by pointer variable.
  
 Note: If user creates Copy constructor, Compiler does not provides it own.
 
-Memory Map of obj1:
-| 4 |
-0x400
-
-|a=0x400 |...
-obj1
- */
-
+### Code 
+```c++
 #include<iostream>
 using namespace std;
 
@@ -55,3 +46,4 @@ int main(){
  * a=4                  //obj1
  * a=4                  //obj2
  */
+```
