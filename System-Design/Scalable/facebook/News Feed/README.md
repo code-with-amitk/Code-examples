@@ -25,7 +25,7 @@
 |---|---|---|---|
 |7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.8 = 3.5 Billion|3.5 x .2 = 700 Million|
 
-- **Traffic Estimateds**
+- **Traffic Estimates**
   - 700 Million pulling their new feed 5 times a day. Total New feed requests = 700 x 5 = 3500 Million requests/day.
   - 3500/24x60x60 = Around 39,000 Requests/sec.
   
