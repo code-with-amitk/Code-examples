@@ -1,41 +1,21 @@
-/*	move-constructor.cpp
-WHAT? 
-  - same named function of class A
-  - Takes non-const R-value reference as parameter.
-  - Internally implemented as:
-    - For union-type(https://en.cppreference.com/w/cpp/language/union) as std::memmove()
-        void* memmove( void* dest, const void* src, std::size_t count );
-    - For non-union type(eg: class,struct) 
-        Does full member-wise move of the object's members.
+## Move
 
-WHEN MOVE CTR IS CALLED?
-  - object is initialized (by direct-initialization or copy-initialization) from rvalue
-
-WHEN MOVE CTR IS NEVER CALLED? When the initializer is a prvalue. see copy elision.  
-
-THINGS TO CONSIDER?
- - After move original object can be empty, But c++ standards says this should not be relied upon.
- - 
-
-PARAMETERS?   
+- **PARAMETERS?**
    - 1st parameter is T&& or const T&& or volatile T&& or const volatile T&&, 
    - either there are no other parameters, or the rest of the parameters all have default values.
-
-SYNTAX?
+- **SYNTAX?**
+```c
         class_name ( class_name && )
         class_name ( class_name && ) = default; 
         class_name ( class_name && ) = delete;
-
-FORCING COMPLIER TO CREATE DEFAULT ASSIGNMENT OPERATOR
+```
+- **FORCING COMPLIER TO CREATE DEFAULT ASSIGNMENT OPERATOR**
+```c
         class_name ( class_name && ) = default;
+```
 
-*/
-
-//COMPLIER PROVIDED MOVE CTR
-
-
-/*************USER CREATED MOVE CTR*****************/
-///////////////EXAMPLE-1////////////////////////////
+### USER CREATED MOVE CTR
+```c++
 struct A{
         string a;
         A() : a("test"){}
@@ -67,9 +47,10 @@ int main(){
         cout<<"obj1.a = "<<quoted(obj1.a)<<"\n";        //obj1.a = ""
         cout<<"obj2.a = "<<quoted(obj2.a)<<"\n";        //obj2.a = "test"
 }
-/*********************************************************/
+```
 
-/**********EXAMPLE-2: MOVING VECTOR USING std::move()*********/
+### EXAMPLE-2: MOVING VECTOR USING std::move()
+```c++
 void disp(vector<string> &v){
     if(!v.size())
             cout<<"Empty";
@@ -101,4 +82,4 @@ int main() {
 Empty
 one two three
 */
-/*********************************************************/
+```
