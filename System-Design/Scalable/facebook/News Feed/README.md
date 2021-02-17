@@ -86,6 +86,8 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *14. Fanout Service* Will get connection information from web-server and sends HTTP message on that socket.
     - When new connection comes in, session-id is generated and attached to user-id. UserId stored on TAO. Using this session-id, information can be fetched from connection-db.
   - *15. SSL Encryptor* Encrypts the message and using CDN[(write thru cache)](/System-Design/Concepts/Cache/Types_of_Distributed_Caches/README.md) sends New feed to client.
+
+<img src="./facebook_newsfeed.png" width=900 />
     
 ## [5. DB Schema/TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
