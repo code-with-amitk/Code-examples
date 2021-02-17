@@ -1,6 +1,6 @@
 ## Virtual Destructor?
 - Same concept of virtual-function. 
-- Base-class-pointer pointing to derived class object, derv class destructor will not be calling if base class destructor is not virtual.
+- Base-class-pointer pointing to derived class object, derv class destructor will not be called if base class destructor is not virtual.
 
 ### Derv class destructor not called
 ```c++
