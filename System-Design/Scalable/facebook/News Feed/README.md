@@ -60,7 +60,7 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *B.* Backend system generating news feed for his friends/followers.  //FEED GENERATION
   - *c.* Publishing feed to user.            //FEED PUBLISHING
 
-### Steps
+### 4a. Steps
 - *1.* Mobile/App enters facebook.com in browser. Browser gets IP address using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS/How_DNS_Works.md)
   - Browser can have [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md) But assuming cache is stale.
 - *2.* [HTTPS](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) Packet is created by Browser `GET www.facebook.com/index.html HTTP/1.1`, sent to [Forward Proxy](/System-Design/Concepts/Proxy_Servers/README.md) server hosted by ISP/Office Server. ISP forward request to next router in internet.
@@ -88,9 +88,45 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *15. SSL Encryptor* Encrypts the message and using CDN[(write thru cache)](/System-Design/Concepts/Cache/Types_of_Distributed_Caches/README.md) sends New feed to client.
 
 <img src="./facebook_newsfeed.png" width=1300 />
-    
-## [5. DB Schema/TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)
 
-## [6. Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+### 4b. Issues & Solutions in Design of Feed Generation Service
+
+- **Issues** 
+|Issue|Description|
+|---|---|
+|1.Huge Friend list|Feed Generator service performs slow for users having huge friend list|
+|2.User requested timeline generation|Suppose 1M users loads page together, feed needed to be generated, this will make system slow|
+|3.Live Updates|Feed updates for all followers. High backlog on feed generation service.|
+|4.People having 1M+ followers|if this person provides live feed, pushing feed to all his followers is huge load on system|
+|5.Feed Ranking|How can we decide which post need to be on top on news feed and which last?|
+
+- **Solutions**
+  - **1. Offline feed generator system & Storage** This system will generate feed and store on memory, serve to user as he comes online. Feed is stored for every user seperately.
+    - *Issue: How many items to be stored for particular user?* Initialy:500. Later based on user's usage statistics. if user does not comes online for long period then this might be reduced.
+  - **2. Stop Automatic fanout of celebrity users.** Since celebrity users have high number of followers, we might not push automatic updates to followers as becomes available, we can push feed once user asks for(not when user gets online).
+  - **3. Feed Items Ranking.** Ranking score can be calculated based on number of likes, comments, shares, time of the update, whether the post has images/videos, etc. 
+    
+## 5. DB Design
+- **[5a. DB Schema/TAO](/System-Design/Concepts/Databases/NOSQL/Graph_DB/Facebook_TAO/README.md)**
+- **5b. DB Queries**
+  - Fetching most recent posts from all the users/entities that User follows:
+```
+(SELECT FeedItemID(or userID) FROM FeedItem WHERE UserID in (
+    SELECT EntityOrFriendID FROM UserFollow WHERE UserID = <current_user_id> and type = 0(user))
+)
+UNION
+(SELECT FeedItemID FROM FeedItem WHERE EntityID in (
+    SELECT EntityOrFriendID FROM UserFollow WHERE UserID = <current_user_id> and type = 1(entity))
+)
+ORDER BY CreationDate DESC 
+LIMIT 100
+```
+- **5c. DB Sharding for storing Feed** similar design as discussed in Twitter.
+- **5d. DB scheme for storing Feed before fannout**
+  - We will store feed for user before it's fanned out to user.
+  - Try storing all the data of a user on one server.
+  - For future growth and replication, we must use [Consistent Hashing](/System-Design/Concepts/Hashing/Consistent_Hashing.md)
+
+## [6. Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 
 ## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
