@@ -10,6 +10,12 @@
 3. If class has virtual base class class A:virtual B{}
 4. Class has member which cannot be copied to other object(ie not copy construable) Eg: reference variable
 
+### WHEN CC IS CALLED?
+1. When compiler generates temporary object
+2. When object is created using another object of same class.
+3. When Object of class is passed to function as value.    
+4. When object of class is returned by value.
+
 ### Syntax
 ```c++
 class_name ( const class_name & )
