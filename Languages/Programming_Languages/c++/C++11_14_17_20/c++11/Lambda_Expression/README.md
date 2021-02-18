@@ -30,28 +30,17 @@
 
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
-## 1. Empty capture list, parameter list, function body
-```c++
-#include<iostream>
-using namespace std;
-int main(){
-  auto  p1  = [ ] () { } ;
-  p1();                           //Calling lambda, Nothing is printed
-```  
-
-## 2. Filled Parameter List
+- **Example:** 
+  - *1.* Filled Parameter List
 ```c++  
   auto p2 = [ ] (int a, int b) -> int { return a+b; };
   cout << p2(2,3) << endl;            //O/P 5
 ```
-
-### 3. CAPTURE LIST EXAMPLES
-#### 3A. Compilation Error. Local variable(i) should be passed in capture list
+  - *2.* Compilation Error. Local variable(i) should be passed in capture list
 ```c++
   auto p3 =  [ ]  (int a, int b)  ->  int {  return a + b + i;   };
   //Compilation error
 ```
-
 
 ### Real world examples
 #### 1. Open /dev/mem
