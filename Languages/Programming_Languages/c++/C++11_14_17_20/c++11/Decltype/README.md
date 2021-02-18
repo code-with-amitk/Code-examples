@@ -1,15 +1,11 @@
-/*      decltype.cpp
-
-https://en.cppreference.com/w/cpp/language/decltype
-WHAT? Inspects the type of an entity/expression.
-
-SYNTAX:
+## Decltype
+- **What?** Inspects the type of an entity/expression.
+- **Why use decltype?** When declaring types that are difficult or impossible to declare using standard notation, like lambda-related types or types that depend on template parameters.        
+- **SYNTAX?**
+```c++
         decltype ( expression )         //Since C++11
         decltype ( type )               //Since C++11
-
-WHY USE DECLTYPE?
-- when declaring types that are difficult or impossible to declare using standard notation,
-like lambda-related types or types that depend on template parameters.
+``
 
 A. DECLTYPE: [C++11]
    A1. Declaring variable using decltype
@@ -25,6 +21,9 @@ Similar to auto, it deduces return types while keeping their references
 and cv-qualifiers(const, volatile), while auto will not.       
 */
 
+### Code
+        
+```
 #include<iostream>
 #include<string>
 using namespace std;
@@ -82,3 +81,4 @@ auto fun(const int& i) {
 decltype(auto) fun(const int &i){
         return i;                       //Solved: Return type is `const int&`
 }
+```
