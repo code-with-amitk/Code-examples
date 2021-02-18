@@ -1,7 +1,7 @@
 ## timed_mutex_try_lock_until
 - **TIMED MUTEX?** Unlike try_lock(){Which returns immediately} this waits for specific timeout duration and returns if lock is not acquired during that time.
 - **TRY_LOCK_UNTIL()?** Waits until specified timeout duration from now() or lock is acquired.
- - Return:
+- Return:
   - true: if lock is acquired within timeout duration
   - false: if lock cannot be acquired
 
