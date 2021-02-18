@@ -1,14 +1,15 @@
 ## Designated Initializer
   - Doing designated initialization of struct, union etc
   
-### RULE-1
-  - Designator order must match declaration order
-  - If order is correct any element can be skipped from between
-```
-#include<iostream>
-using namespace std;
+### E
+  - Designator order must match declaration order, If order is correct any element can be skipped from between
+```c++
 int main(){
-  struct A {int x; int y; int z; };
+  struct A {
+    int x;
+    int y;
+    int z;
+  };
   A b{.x = 1, .z = 2};                    // ok, b.y initialized to 0
   cout<<b.z;                              //2
   
@@ -18,7 +19,7 @@ int main(){
 
 ### RULE-2 (DI for unions)
   - Only 1 initializer is valid for unions.
-```
+```c++
   union u {
     int a;
     const char* b;
