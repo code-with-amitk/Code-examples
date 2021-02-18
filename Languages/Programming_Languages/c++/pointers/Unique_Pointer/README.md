@@ -4,6 +4,9 @@
   - copy is not allowed(copy ctr, assignment operator are deleted)
   - std::move(transferring ownership) is allowed. Original pointer cannnot be accessed
   - ptr.reset(): Deletes the memory
+- **Why to use make_unique?** 
+  - *a.* Avoid use of new operator
+  -  *b.* Provides exception safety, as new and delete internally handled by compiler. 
 - **make_unique<T>()[C++14]**
   - Function defined in <memory> header for creating a unique pointer. Memory is allocated to 0.
 ### Code
