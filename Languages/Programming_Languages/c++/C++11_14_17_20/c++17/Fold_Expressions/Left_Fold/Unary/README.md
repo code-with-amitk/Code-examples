@@ -18,4 +18,9 @@ template<typename... T>
 auto mult(T... a) { 
 	return (... * a); 
 }
+
+int main(){
+	cout<<sum(1,2,5,6)<<endl;	//Output:14
+	cout<<mult(1,2,5,6)<<endl;	//Output:60
+}
 ```
