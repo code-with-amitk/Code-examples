@@ -1,7 +1,7 @@
 ## Designated Initializer
   - Doing designated initialization of struct, union etc
   
-### E
+### 1. Rule-1 Order must match
   - Designator order must match declaration order, If order is correct any element can be skipped from between
 ```c++
 int main(){
@@ -17,7 +17,7 @@ int main(){
 }  
 ```
 
-### RULE-2 (DI for unions)
+### 2. Rule-2 (DI for unions)
   - Only 1 initializer is valid for unions.
 ```c++
   union u {
