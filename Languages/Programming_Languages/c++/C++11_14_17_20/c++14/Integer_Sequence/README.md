@@ -1,6 +1,5 @@
-/*	integer_sequence.cpp
- *
-What? Represents a compile-time sequence of integers. it can be used as argument to variadic function template.
+## Integer Sequence
+- **What?** Represents a compile-time sequence of integers. it can be used as argument to variadic function template.
 
 - make_integer_sequence: Alias template fro creating integer_sequence<>
 template<class T, T N>
