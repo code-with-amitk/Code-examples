@@ -1,6 +1,5 @@
 ## What is Alignment Requirement?
-  - Every object type has a property called alignment requirement which is integer power of 2.
-  - This represents the number of bytes between successive addresses at which objects of this type can be allocated.
+  - Every complete object type has a property called alignment requirement, which is an integer representing the number of bytes between successive addresses at which objects of this type can be allocated. The valid alignment values are non-negative integral powers of two.
   - Alignment can be retrieved for class/struct/union or enumeration. Cannot be applied to function parameter or exception parameter of a catch.
   
 ### A. ALIGNOF() or ALIGNMENT_OF() returns alignment of struct,class,union,variable,enum.
