@@ -1,8 +1,8 @@
-## 3-WAY-COMPARSION OPERATOR
+## 3 Way Comparison Operator
   - (a <=> b) < 0 if lhs < rhs
   - (a <=> b) > 0 if lhs > rhs
   - (a <=> b) == 0 if lhs and rhs are equal/equivalent.
-  
+### Code  
 ```c++
     double foo = -0.0;
     double bar = 0.0;
