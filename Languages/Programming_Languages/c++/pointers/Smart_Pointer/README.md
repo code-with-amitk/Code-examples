@@ -1,23 +1,12 @@
-/*	smart_pointer.cpp
-
-WHY? Programmer may allocate memory using new() & later might forget to use delete(). 
-
-WHAT IS SMART POINTER? User-defined class that manages automatic deletion of dynamic memory. 
-Allocation is done in constructor, deletion inside destructor. Bcoz Destructors are automatically executed 
+## Smart Pointers
+- **What?** User-defined class that manages automatic deletion of dynamic memory. Allocation is done in constructor, deletion inside destructor. Bcoz Destructors are automatically executed 
 when Object goes out of scope.
+- **Why?** Programmer may allocate memory using new() & later might forget to use delete(). 
 
-*********Logic********
+### Code
 - class maintains a local pointer, memory is allocated and assigned to pointer.
 - Overloaded functions are defined for *, ->
-***********************
-*/
-#include<iostream>
-using namespace std;
-
-//Steps to Write Generic Code/Templates?
-//a. Write class for a type(Eg: int)
-//b. Replace the type with template
-
+```c++
 template <class T>		
 class smart_pointer{
 //	int *a;
@@ -46,13 +35,11 @@ int main(){
 	smart_pointer <float> obj1(new float());
 }
 
-/*
 # g++ smart_pointers
 Allocated memory
 10
 Allocated memory
 
 Destructor called, Allocated memory freed
-
 Destructor called, Allocated memory freed
-*/
+```
