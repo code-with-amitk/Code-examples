@@ -22,7 +22,7 @@ Output: "Hvh"
 - Before inserting element into string `out` check whether current character is same as prev, if yes then lower or upper if yes, remove the last element also.
 
 ### Code
-```
+```c++
   string makeGood(string s) {
     string s1;
     int size = s.size();
