@@ -1,9 +1,9 @@
 ## Uniqe Pointer
 - **What?** Introduced in C++11, Container class of raw pointer implemented as smart pointer.
 - **CHARACTERISTICS/OPERATIONS OF UP?**
- - copy is not allowed(copy ctr, assignment operator are deleted)
- - std::move(transferring ownership) is allowed. Original pointer cannnot be accessed
- - ptr.reset(): Deletes the memory
+  - copy is not allowed(copy ctr, assignment operator are deleted)
+  - std::move(transferring ownership) is allowed. Original pointer cannnot be accessed
+  - ptr.reset(): Deletes the memory
 - **make_unique<T>()[C++14]**
   - Function defined in <memory> header for creating a unique pointer. Memory is allocated to 0.
 ### Code
