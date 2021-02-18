@@ -7,3 +7,9 @@
     return a + b + i; 
   };
 ```  
+
+- **2. Capture by Value all except 1**
+- Except "i" nothing can be changed.
+```c++
+  auto p8  =  [ =, &i ]  (int a, int b)  ->  int {  i=95;  return a + b + i; };
+```
