@@ -9,25 +9,8 @@
   - The body can contain no goto statements or try blocks.
   - constexpr function return value can be collected in const variable.
     
-- **Example**    
-```c++
-/////////PBOBLEM: Function is not const because return depends on runtime////////////
-const float fun()
-{
-  int b;
-  cin>>b;                 //error: uninitialized variable ‘b’ in ‘constexpr’ function
-  return b;              //NO ERROR
-};
 
-/////////////SOLUTION////////////////////////
-constexpr float fun()
-{
-  //int b;               //error: uninitialized variable ‘b’ in ‘constexpr’ function
-  int b = 10;
-  return b;  
-};
-
-int main(){
-  const float d = fun(2);
-}
-```
+### RELAXING CONSTRAINTS ON CONSTEXPR FUNCTION(C++14)
+- In C++11, constexpr function bodies could only contain a very limited set of syntaxes, including (but not limited to): typedefs, using, and a single return statement. 
+- In C++14, the set of allowable syntaxes expands greatly to include the most common syntax such as if statements, multiple returns, loops, etc.                
+  - RETURN TYPE: C++14: Requires constexpr variables to be of literal type(the standard doesn't define a named requirement with this name. This can be scalar,reference type,array of literal type).
