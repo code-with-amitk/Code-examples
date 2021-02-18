@@ -1,19 +1,19 @@
 ## consteval
-### 1. constexpr
-- **[What is constexpr](https://github.com/amitkumar50/Code-examples/blob/master/programming_lang/c++/c++11/Constexpr/README.md)**
+### 1. [constexpr](/Languages/Programming_Languages/c%2B%2B/C%2B%2B11_14_17_20/c%2B%2B11/Constexpr)
 - **Problem with constexpr** (It's not Guranteed compile-time-constant)
-  - See the below code.
-  - A runtime variable `c` is passed to constexpr function, then how constexpr function can be compile-time gurantee?
-```
+  - Example: A runtime variable `c` is passed to constexpr function, then how constexpr function can be compile-time gurantee?
+```c++
 constexpr int fun(int a){
   return 2*a;
 }
+
 int main(){
   constexpr int b = fun(5); 
   cout<<b;    //10
   
   int c;  cin>>c;
-  int d = fun(c); cout<<d;        //c=7 d=14
+  int d = fun(c); 
+  cout<<d;        //c=7 d=14
 }
 ```
 - **Conclusion on constexpr**
@@ -27,25 +27,14 @@ int main(){
 ### 2. consteval
 - **What** Always evaluated at compile time. It provides a gurantee(unlike constexpr) that expression would be evaluated at compile time only.
 - **Example(to understand)**
-```
-#include<iostream>
-using namespace std;
-
-constexpr int fun1(int a){
+```c++
+consteval int fun(int a){
   return 2*a;
 }
-
-consteval int fun2(int a){
-  return 2*a;
-}
-
-
 int main(){
   int b = 4;
-  cout<<fun1(b);
-  //cout<<fun2(b);                  //error: the value of 'b' is not usable in a constant expression
+  cout<<fun2(b);                  //error: the value of 'b' is not usable in a constant expression
   cout<<fun2(5);                    //Ok
-  //Even making b as [const int b=4;] will also work
 }
 ```
 - **Why restricting to Compile-time**
