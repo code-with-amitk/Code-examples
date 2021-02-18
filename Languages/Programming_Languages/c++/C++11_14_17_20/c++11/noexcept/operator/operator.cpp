@@ -1,15 +1,12 @@
-/*      noexcept-operator.cpp
-  
-TYPES OF NOEXCEPT? noexcept exists in two forms since C++11: 
-  1. noexcept as specifier and
-  2. noexcept as operator
-
+## noexcept operator
+- **What?** noexcept operator checks at compile-time if an expression can throw exception or not?
 - Operator takes expression as argument.
+```c++
 noexcept(constant_expression)
+```
 
-WHAT? noexcept operator checks at compile-time if an expression can throw exception or not?
-*/
-
+### Example Code
+```c++
 #include <iostream>
 #include <array>
 #include <vector>
@@ -31,14 +28,12 @@ T fun(T const& src) noexcept(is_nothrow_copy_constructible<T>::value)
 }
 
 int main(){
-
     A a;
     B b;
-
     cout << "Array is not copy constructible: " << 	//1
                   noexcept(fun(a)) << endl;
 
     cout << "Vector is copy contructible: " <<         	//0
                   noexcept(fun(b)) << endl;
-
 }
+```
