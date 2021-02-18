@@ -2,6 +2,7 @@
   - expression is of type array
   - Number of identifiers in identifier-list must be equal to the number of elements in the array.
 - **Syntax**
+```c++
   attr(optional) cv-auto ref-operator(optional) [ identifier-list ] = expression ;
 ```  
 ### Code
