@@ -1,4 +1,4 @@
-# What is Yield?
+# Yeild
 - Consider below C++ Code. Every time fun() is called from main(), callstack of fun() is destroyed. 
 - New call of function fun() creates a new call stack.
 - **Yield**
@@ -6,7 +6,7 @@
   - Information to return to original point in called function is stored seperately.
   - Yield throws away the stack concept completely. Stop thinking of one process as the caller and the other as the callee, and start thinking of them as cooperating equals.
   - Any function that contains a yield keyword is termed as generator.
-- ***C++***  
+- **C++ Code**
 ```c++
 int fun(){
   for(int i=1;i<5;i++)        
@@ -19,7 +19,8 @@ int main(){
 # ./a.out    
 11111
 ```
-- ***python***
+
+- **Python**
 ```python
 def rangeN(a, b): 
     i = a 
