@@ -43,3 +43,5 @@ int findKthLargest(vector<int>& nums, int k) {
   return top;
 }
 ```
+
+### Approach-3    //Quick-Select  //See leetcode
