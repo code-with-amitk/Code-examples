@@ -36,10 +36,9 @@ int findKthLargest(vector<int>& nums, int k) {
   for(auto i:nums)
     pq.push(i);
 
-  while(k>0){
+  while (k-->0){
     top = pq.top();
     pq.pop();
-    k--;
   }
   return top;
 }
