@@ -15,4 +15,4 @@
 ||User Space Threads|Kernel Space Threads|
 |---|---|---|
 ||Kernel is not aware about UST|
-|Advatange|<ul><li>UST can be implemented on OS which does not support threads</li></ul><ul>Lli>Each process can have its own customizes scheduling algo</li></ul>|
+|Advatange|<ul><li>UST can be implemented on OS which does not support threads</li></ul><ul>li>Each process can have its own customizes scheduling algo</li></ul>|
