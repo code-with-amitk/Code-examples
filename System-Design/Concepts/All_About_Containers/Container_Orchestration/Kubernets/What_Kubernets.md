@@ -1,6 +1,5 @@
 ## Kubernets
-- **What?** Container scheduler for managing cluster of machines(physical or virtual).
-- **Benefits of kubernets** Zero-downtime deployments, fault tolerance, high availability, scaling, scheduling, and self-healing are in Kubernetes.
+- **What?** [Container Orhestrator](/System-Design/Concepts/All_About_Containers/Container_Orchestration)
     
 ## Options for Creating kubernets cluster
 
