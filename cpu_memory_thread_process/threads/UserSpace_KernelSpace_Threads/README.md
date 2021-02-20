@@ -9,7 +9,7 @@
   - *1.* Complete thread context switch is done in user space, call need not to go into kernel space or call trap().
   - *2.* UST can be implemented on OS which does not support threads
   - *3.* Each process can have its own customized Thread scheduling algos.
-  - *4.* [Threads are very fast](/cpu_memory_thread_process.README.md)
+  - *4.* [Threads are very fast](/cpu_memory_thread_process/README.md)
 - **Problems**
   - *1.* Suppose a process has 3 threads. Thread-1 waits on [System call](https://sites.google.com/site/amitinterviewpreparation/c-1/device-driver)(blocking read()) or on [Page Fault](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory) (In both cases mode is changed from user to kernel) then whole process will block/sleep. All other threads will also block(even if other threads are in runnable state).
     - *Solutions:* 
