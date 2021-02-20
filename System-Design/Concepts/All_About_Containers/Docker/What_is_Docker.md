@@ -6,7 +6,7 @@
 - **Docker Registry** store house of docker images. Same as github,gitlab are for source code. Eg: Nexus, Artifact.
 
 ### Docker Architecture
-< img src="https://i.ibb.co/Hz89jmJ/dc.png" width=500 />
+<img src="https://i.ibb.co/Hz89jmJ/dc.png" width=500 />
   - **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
     
 ### Docker file
