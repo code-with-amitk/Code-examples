@@ -11,7 +11,7 @@
   - *3.* Each process can have its own customized Thread scheduling algos.
   - *4.* [Threads are very fast](/cpu_memory_thread_process.README.md)
 - **Problems**
-  - *1.* If any thread within the process makes a system-call, that will make context to be switched to kernel and if system call is blocking(Eg: read()) then whole process will block/sleep. All other threads will also block(even if other threads are in runnable state).
+  - *1.* Suppose process has 3 threads. thread-1 waits on system call(blocking read()) or on [page fault](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory) (In both cases mode is changed from user to kernel) then whole process will block/sleep. All other threads will also block(even if other threads are in runnable state).
     - *Solution:* Making blocking calls as non-blocking.
 - **How it works?** Each process will need its own **Thread Table**(to keep track of threads in process). 
 ### Thread Table
