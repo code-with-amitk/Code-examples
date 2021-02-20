@@ -39,4 +39,4 @@
     - *3.* Networking, as a unique cluster IP address
     - *4.* Information about how to run each container, such as the container image version or specific ports to use
 
-<img src=./kubernets_pod_worker_node.png width=500 />
+<img src=./kubernets_pod_worker_node.png width=800 />
