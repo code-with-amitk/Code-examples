@@ -1,6 +1,6 @@
 **Threads can be implemented anywhere: user space and the kernel.**
 
-<img src=./userspace_kernelspace_threads.PNG width=700 />
+<img src=./userspace_kernelspace_threads.PNG width=500 />
 
 ## User Space Threads
 - Kernel is not aware about UST
