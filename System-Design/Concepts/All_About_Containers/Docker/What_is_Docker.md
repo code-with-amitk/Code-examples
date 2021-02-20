@@ -7,6 +7,7 @@
 
 ### Docker Architecture
 <img src="https://i.ibb.co/Hz89jmJ/dc.png" width=500 />
+
   - **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
     
 ### Docker file
