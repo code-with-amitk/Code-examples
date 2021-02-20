@@ -12,7 +12,9 @@
   - *4.* [Threads are very fast](/cpu_memory_thread_process.README.md)
 - **Problems**
   - *1.* Suppose a process has 3 threads. Thread-1 waits on [System call](https://sites.google.com/site/amitinterviewpreparation/c-1/device-driver)(blocking read()) or on [Page Fault](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory) (In both cases mode is changed from user to kernel) then whole process will block/sleep. All other threads will also block(even if other threads are in runnable state).
-    - *Solution:* Making blocking calls as non-blocking.
+    - *Solutions:* 
+      - *1.* Making blocking calls as non-blocking.
+      - *2.* [Upcall](/cpu_memory_thread_process/threads/UserSpace_KernelSpace_Threads/Upcall_Scheduler_Activation.md)
 - **How it works?** Each process will need its own **Thread Table**(to keep track of threads in process). 
 ### Thread Table
   - **What?** When thread is moved to sleep or blocked state(ie it finished its execution for moment), it state information is stored in thread-table so that later thread can come back to running state.For example thread1 waiting for input from thread2.
