@@ -1,5 +1,7 @@
 ## Docker
-- **What?** This is tool for building/deploying/managing [Containers](/System-Design/Concepts/All_About_Containers/Container.md), ie This is 1 of container implementation. Others are Rocket, Drawbridge, LXC.
+- **What?** 
+  - This is tool for building/deploying/managing [Containers](/System-Design/Concepts/All_About_Containers/Container.md), ie This is 1 of container implementation. Others are Rocket, Drawbridge, LXC.
+  - Container runtime.
 - **Docker Inc.** is the company that sells the commercial version of Docker. Docker is also available as open source to which many individuals contribute.
 - **Docker file?** Creation of Docker images is done using these.
 - **Docker Images?** File system which composes/makes a docker container is called Image. These images are stored in ***Docker registry***.
