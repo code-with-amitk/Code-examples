@@ -29,7 +29,7 @@
   
 ### Terms
 - **1. POD**
-  - This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pod Contains:
+  - This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pods run in isolated pvt enviornment. Pod Contains:
     - *1.* Container(Eg: [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md))
     - *2.* Shared storage, as Volumes
     - *3.* Networking, as a unique cluster IP address
