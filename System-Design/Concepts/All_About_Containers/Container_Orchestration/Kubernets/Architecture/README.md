@@ -1,6 +1,6 @@
 - **Kubernets cluster is 1 master and multiple worker nodes.**
 
-## Kubernets Architecture
+## Entities in Kubernets Architecture
 ### A. Master Node
 - This is responsible for Creating/destroying worker nodes/VMs. Worker nodes runs containerized applications.
 - Master node has following daemons.
@@ -15,16 +15,20 @@
   - **2. [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md):** A container runtime.
   - **3. Kubectl Proxy:** Does communication with other nodes in cluster.
 
+### C. User
+- User can only ineracts with master node using YAML(yet another markup language), which defines how many applications,replicas to be run etc.
+- 
 ### Diagram
 ```bash
 
-                                                                                                Worker-Node
-                                                                                                     /\
-                                                                                                      |
+    User(application.yaml)
+                  |                                                                            Worker-Node1
+                  |                                                                                  /\
+                 \/                                                                                   |
 <---------------Master Node---------------->              <---------Worker Node--------------->       |
   Controller   API-Service                                  kubelet     kubectl-Proxy                 |
                   /\                                            /\          /\                        |
-                   |--------------------------------------------|            |------------------------|
+                   |--------------------------------------------|            |------------------------|------>worker node2
 ```
   
 ### Terms
