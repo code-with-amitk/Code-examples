@@ -27,6 +27,7 @@
 - **Disadvantages**
   - *1.* Every thread will need some Thread-Control-block and stack space in kernel, in case of large number of threads this will become problem.
   - *2.* Every thread will make [system calls](https://sites.google.com/site/amitinterviewpreparation/c-1/device-driver) in kernel and its cost is high.
+  - *3.* Slower than user level threads.
 - **How it works**
   - When a thread wants to create/destroy an existing thread, it makes a kernel call, which then does the creation or destruction by updating the kernel thread table.
   - Now kernel will have thread-Table having same contents.
