@@ -1,13 +1,13 @@
 - **Kubernets cluster is 1 master and multiple worker nodes.**
 
 ## Kubernets Architecture
-### Master Node
+### A. Master Node
 - This is responsible for Creating/destroying worker nodes/VMs. Worker nodes runs containerized applications.
 - Master node has following daemons.
   - **1. Controller:** Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
   - **2. API Service:** Manages all communication with Worker nodes(using kubelet)
 
-### Worker Machine/Node
+### B. Worker Machine/Node
 - This is Physical or VM on which containerized applications run. Every Worker is managed by master. 
 - Master handles scheduling pods(See Below) inside worker nodes after looking at available resources on each node.
 - Worker has following daemons.
