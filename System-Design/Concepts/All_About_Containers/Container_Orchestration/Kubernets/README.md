@@ -1,0 +1,1 @@
+kubernets is opensource [Container Orhestrator](/System-Design/Concepts/All_About_Containers/Container_Orchestration) deployed more than 70% companies today. 
