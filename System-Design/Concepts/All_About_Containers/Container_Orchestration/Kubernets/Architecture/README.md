@@ -1,18 +1,18 @@
 ## Kubernets Architecture
 ### Master Node
-- master node is responsible for Creating/destroying worker nodes/VMs. 
+- This is responsible for Creating/destroying worker nodes/VMs. Worker nodes runs containerized applications.
 - Master node has following daemons.
-- **1. Controller**
-  - **What?** Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
-- **2. API Service**
-  - **What?** Manages all communication with Worker nodes(using kubectl)
-  - **Other?** This will automatically create an endpoint for each pod, based on the pod name, that is also accessible through the proxy.
+  - **1. Controller:** Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
+  - **2. API Service:** Manages all communication with Worker nodes(using kubelet)
 
-### Worker Node
-- **1. Kubectl**
-  - **What?** Daemon on worker node responsible for interating with Master node using API Service.
-- **2. Kubectl Proxy**
-  - **What?** Does communication with other nodes in cluster.
+### Worker Machine/Node
+- **What**
+  - This is Physical or VM on which containerized applications run. Every Worker is managed by master. 
+  - Master handles scheduling pods(See Below) inside worker nodes after looking at available resources on each node.
+- Worker has following daemons.
+  - **1. Kubelet:** Process for communication with master.
+  - **2. [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md):** A container runtime.
+  - **3. Kubectl Proxy:** Does communication with other nodes in cluster.
 
 ### Diagram
 ```bash
@@ -21,12 +21,16 @@
                                                                                                      /\
                                                                                                       |
 <---------------Master Node---------------->              <---------Worker Node--------------->       |
-  Controller   API-Service                                  kubectl     kubectl-Proxy                 |
+  Controller   API-Service                                  kubelet     kubectl-Proxy                 |
                   /\                                            /\          /\                        |
                    |--------------------------------------------|            |------------------------|
 ```
   
 ### Terms
 - **1. POD**
-  - This is a Complete package which Kubernets create install application on Worker Node. Pod Contains:
-    - *1.* Container(Eg: [Docker]()
+  - This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pod Contains:
+    - *1.* Container(Eg: [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md))
+    - *2.* Shared storage, as Volumes
+    - *3.* Networking, as a unique cluster IP address
+    - *4.* Information about how to run each container, such as the container image version or specific ports to use
+  
