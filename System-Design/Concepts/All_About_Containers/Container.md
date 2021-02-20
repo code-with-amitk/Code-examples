@@ -1,5 +1,9 @@
 ## Containers
-- **What?** Isolated partition of OS holding only 1 Application and all its dependent libraries. Each container has its own network interface, its own IP address, its own file system. All containers share the kernel of the host.
+- **What?** Isolated partition of OS holding only 1 Application and all its dependent libraries. Each container has its own: 
+  - Network interface
+  - its own IP address
+  - its own file system
+  - All containers share the kernel of the host.
 - **Containerization?** Packaging software code and all its dependencies in a bundle.
 - **Advantages**
   - lightweight. Use less memory.
@@ -16,7 +20,7 @@
 | Capabiity | Smaller(uses smaller resources) | bigger |
 | What | Pacakaged Software | Copy of OS |
 
-- Each container runs inside docker host.
+- Each container runs inside [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md) host.
 - This can be thought of as a VM inside base OS but this is not VM.
 
 <img src="https://image.slidesharecdn.com/dockerug-magnumandkolla-150628004034-lva1-app6892/95/openstacking-containers-13-638.jpg?cb=1435452205" width=500 />
