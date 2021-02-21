@@ -1,9 +1,7 @@
 ## HTTP (Hyper Text Transfer Protocol)
 - Layer-5 working on client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
-
-### Design Issues
-- sending large information. eg: 5gb, caching: how long fetched data is valid and when to query back?, security, slow client or server
+- [Design Issues](/Networking/OSI-Layers/README.md)
 
 ### Format
 > [Method](./HTTP_Methods.md), [Request-Header](./Request_Response_Header.md), Request-URI: Web page or resource
