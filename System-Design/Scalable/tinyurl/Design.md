@@ -66,69 +66,36 @@ createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_d
     
 deleteURL(api_dev_key, url_key)    
   url_key: String representing the shortened URL to be retrieved; a successful deletion returns ‘URL Removed’.
-```        
-        
-### Deleting short and long URL pair from DB
-```    
-    deleteURL(api_dev_key, url_key)
-      Parameters:
-        url_key: shortened URL to be retrieved & removed
-```        
-        
-## 4. DATABASE DESIGN
-> Number of tables = 2
+```
 
-#### Table-1 Stores URL mappings(long URL to short URL)
+## 5. HLD / System Design
 
-| Original_url(512) | Creation_date | Expiration_date | UserID |
-| --- | --- | --- |  --- |
-| <long-url> | timestamp | timestamp |        |
-    
-#### Table-2 Stores user’s data who created the short link
-| user_name | user_email | creationDate | lastLogin |
-| --- | --- | --- | --- |
-|    |   |   |   |
-
-####  Type of DB: noSQL
-Why? Billions of rows should be saved on noSQL
-
-
-## 5. SYSTEM DESIGN (Generating Keys)
-
-### 5.1 Method-1: Generating keys on Runtime
-ie As system gets request to generate short-url, it creates short-key and returns.
-
-#### Steps to generate keys on runtime
-
-##### Step-1: Calculate hash of long URL
-> long-url > |SHA3-Hash|  > 512bit            //We can take SHA3-Hash OR
-
-long-url > |MD5-Hash|  > 128bit             //Let's consider this
-        
-##### Step-2: Converting 128bit hash to Base-64  format
-
-> What is BASE-64 Number System?
-> Short-url can be 8 characters long. Any character from [0-9][a-z][A-Z][+/] can come in short url.
-> These are 64 different characters. So, BASE-64 number system. 64^8 = 2.8*10^14 = 280 Trillion possible strings.
-> See How to convert Hexadecimal number to base-62 on Number system page
-
+**Steps**
+- *1. to 6.* Same as [Facebook newsFeed](/System-Design/Scalable/facebook/News%20Feed/README.md)
+- *7.* Web Server will redirect request to Shortening-service(May be part of Web-server or maybe not).
+- *8.* Method by which Shortening-Service generates short-url/keys.
+  - *a.* Calculate [SHA3(512 bit) or MD5(128bit) hash](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/security).
+```c
+  long-url > |SHA3 or MD5 Hash|  > XXX
+```
+  - *b.* Convert 128bit hash to [Base-64 format](/System-Design/Concepts/Number_System). if we return 8 character short URL. Total possible combinations: 64<sup>8</sup> = 2.8 x 10<sup>14</sup> = 280 Trillion
+```c
 - Base-2 uses 2 bits to create a word : 2=2^1
 - Base-8 uses 3 bits to create word : 8=2^3
 - Base-16 uses 4 bits to create word: 16=2^4
 - Base-64 uses 6 bits to create word: 64=2^6
-- 128/6 = 21.33 = 21 characters or words. But we need only 8 characters as Output short-url.
-        
-##### Step-3: Deducing 8 character short-url from 21 characters.
-- Return 1st 8 characters from 21 characters.
-- Problem: Differnt long URL's can produce same 1st 8 characters.
-- Solution: Append timestamp or userId with longURL and then generate the short url
-        
-##### Step-4: Store short URL in DB
+  - Hash = 128 bits. 128/6 = 21.33 = 21 characters or words. But we need only 8 characters as Output short-url.
 ```
-        **client        App-server         encoder              DB**
-             -long url->    -long url->
-                                       encoded
-                                            --short url-->
+  - *c.* Deducing 8 character short-url from 21 characters.
+    - Return 1st 8 characters from 21 characters.
+    - Problem: Differnt long URL's can produce same 1st 8 characters.
+    - Solution: Append timestamp or userId with longURL and then generate the short url
+
+- *9.* Shortening service will send short-url to DB-updater, to store short url in DB via [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md).
+```c
+    Shortening-service          DB-updater   Cache     DB
+                    -short url-> 
+                                       --short url-->
                                             <-Duplicate-
                                     regenerate & store
 ```
@@ -166,6 +133,23 @@ Solution: Take replicas/standby servers of KGS, replicas can take over to genera
 
 ###### Can App-Server cache some keys from KGS
 > Yes
+
+## 5. DB Design
+> Number of tables = 2
+
+#### Table-1 Stores URL mappings(long URL to short URL)
+
+| Original_url(512) | Creation_date | Expiration_date | UserID |
+| --- | --- | --- |  --- |
+| <long-url> | timestamp | timestamp |        |
+    
+#### Table-2 Stores user’s data who created the short link
+| user_name | user_email | creationDate | lastLogin |
+| --- | --- | --- | --- |
+|    |   |   |   |
+
+####  Type of DB: noSQL
+Why? Billions of rows should be saved on noSQL
 
 
 ## 6. DB PARTIONING & REPLICATION
