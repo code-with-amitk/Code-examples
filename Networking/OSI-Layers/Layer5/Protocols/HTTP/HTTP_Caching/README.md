@@ -8,8 +8,14 @@
 
 ```http
 
-<-------------------Web Browser------------------>
-  User    front-end   Cache(Hard-Disk)
-    --page1->
-            ------
+<-------------------Web Browser------->
+  User    front-end   Cache(Hard-Disk)                
+   - page1 ->
+            --- Find page-1 ->
+                       Cache Valid?
+            <-- Page-1 ------
+                       Else                                          WEB-SERVER
+                          -------------- Conditional GET ----------> (Program)
+                          <-----------  Page Not Modified   --------
+                          <-----------  Modified Page Contents   ---
 ```
