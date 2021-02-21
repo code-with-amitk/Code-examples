@@ -17,6 +17,7 @@
 ```
 
 ### Supported Methods
+- **Method?** Operations are called methods for requesting web page or content.
 
 |Method|Description|
 |---|---|
