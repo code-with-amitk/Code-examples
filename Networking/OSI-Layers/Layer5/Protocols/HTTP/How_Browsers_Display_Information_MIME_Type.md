@@ -1,4 +1,3 @@
-  HYPERTEXT: This is a text that contains links to other Text, pictures, music, programs etc. When you select an object, you can see all the other objects that are linked to it.
 ## How Browser Display Information?
 > Using MIME Type
 - When a server returns a page, it also returns some additional information(MIME type) about the page. MIME type tells how browser should display the page.
