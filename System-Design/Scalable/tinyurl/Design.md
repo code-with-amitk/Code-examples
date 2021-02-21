@@ -72,8 +72,8 @@ deleteURL(api_dev_key, url_key)
 
 **Steps**
 - *1. to 6.* Same as [Facebook newsFeed](/System-Design/Scalable/facebook/News%20Feed/README.md)
-- *7.* Web Server will redirect request to Shortening-service(May be part of Web-server or maybe not).
-- *8.* Shortening service will generate short-url/keys (See below)
+- *7.* Web Server will redirect request to App-Server, App-Server to Shortening-service(May be part of Web-server or maybe not).
+- *8.* Shortening service will Get short-url/keys from Database. (See below)
 - *9.* Shortening service sends short-url to DB-updater, to store short url in DB via [DB-Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md).
 ```c
     Shortening-service          DB-updater   Cache     DB
