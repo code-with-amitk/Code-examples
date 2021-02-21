@@ -12,5 +12,7 @@
   - Has (16) alphanumeric values (0-9 & A-F). Every number represents with 0,1,2,3,4,5,6, 7,8,9,A,B,C,D,E, F in this number system. 
 - **5. BASE 62 NUMBER SYSTEM:** 
   - Has 62 values (a-z,A-Z,0-9) to represent a number.
+- **5. BASE 64 NUMBER SYSTEM:** 
+  - Has 62 values (a-z,A-Z,0-9) and 2 other values(!@) to represent a number.
 - **6. BASE 256:** 
   - ASCII chart defines 256 different letters alltogether.
