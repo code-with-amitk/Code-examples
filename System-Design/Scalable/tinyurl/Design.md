@@ -73,12 +73,24 @@ deleteURL(api_dev_key, url_key)
 **Steps**
 - *1. to 6.* Same as [Facebook newsFeed](/System-Design/Scalable/facebook/News%20Feed/README.md)
 - *7.* Web Server will redirect request to Shortening-service(May be part of Web-server or maybe not).
-- *8.* Method by which Shortening-Service generates short-url/keys.
+- *8.* Shortening service will generate short-url/keys (See below)
+- *9.* Shortening service sends short-url to DB-updater, to store short url in DB via [DB-Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md).
+```c
+    Shortening-service          DB-updater   Cache     DB
+                    -short url-> 
+                                       --short url-->
+                                            <-Duplicate-
+                                    regenerate & store
+```
+
+### Generating short-url/keys by shortening service
+- **Steps of Generating short-url**
   - *a.* Calculate [SHA3(512 bit) or MD5(128bit) hash](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/security).
 ```c
   long-url > |SHA3 or MD5 Hash|  > XXX
 ```
-  - *b.* Convert 128bit hash to [Base-64 format](/System-Design/Concepts/Number_System). if we return 8 character short URL. Total possible combinations: 64<sup>8</sup> = 2.8 x 10<sup>14</sup> = 280 Trillion
+  - *b.* if we return 8 character short URL. Total possible combinations: 64<sup>8</sup> = 2.8 x 10<sup>14</sup> = 280 Trillion. <<Huge Enough
+  - Now we need to Convert 128bit hash to [Base-64 format](/System-Design/Concepts/Number_System).
 ```c
 - Base-2 uses 2 bits to create a word : 2=2^1
 - Base-8 uses 3 bits to create word : 8=2^3
@@ -91,112 +103,41 @@ deleteURL(api_dev_key, url_key)
     - Problem: Differnt long URL's can produce same 1st 8 characters.
     - Solution: Append timestamp or userId with longURL and then generate the short url
 
-- *9.* Shortening service will send short-url to DB-updater, to store short url in DB via [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md).
+- **When to Generate Short url? Runtime or offline**
+  - *1.* Runtime. As we get write request, generate short-url and return
+  - *2.* Offline. Pre-generate short-urls in advance, store in Key-DB for later use.
+    - ***KGS(Key Generation Service)***: KGS will generate the 6-letter keys/short-url beforehand and keep in shorturl-DB.
+      - Size of Short-url DB? 
+        - Base-64 will have 64<sup>6</sup> = 70 Billion unique six letter short-urls.
+        - 1 key = 6 characters = 6 bytes. 2<sup>8</sup>=64. Means 8 bits can represent 64 distinct numbers.
+        - Total storage = 6 * 70B = 420B 
+      - Advantages of before hand key generation:
+        - *a.* Run Time calculations saving.
+        - *b.* Collions will be saved. We already have generated keys in place hence risk of same key generation is 0
+    - How KGS stores short-urls? Using seperate 2 databases.
 ```c
-    Shortening-service          DB-updater   Cache     DB
-                    -short url-> 
-                                       --short url-->
-                                            <-Duplicate-
-                                    regenerate & store
+  DB-1    //stores all allocated keys
+  DB-2    //stores unused keys
 ```
-        
-### 5.2 Method-2 Generate and store offline keys, use them at runtime
-**KGS(Key generation service)**
-
-KGS will generate the 6-letter keys beforehand and keep in key-DB.
-
-##### Advantages of before hand key generation:
-1. Run Time calculations saving. Hash & conversion to Base-64 will be saved.
-2. Collions will be saved. We already have generated keys in place hence risk of same key generation is 0
-
-##### Databases used by KGS
-KGS will keep keys in 2 seperate databases.
-
-| used keys DB |        //DB stores all allocated keys
-| --- |
-| xya123 |
-    
-| unused keys DB |      //DB storing unused keys
-| --- |
-| KHma45 |
-    
-###### Size of Key-DB
-Base-64 will have 2^64 = 68.7 Billion unique six letters short urls.
-
-1 key = 6 characters = 6 bytes.
-
-Total storage = 6 * 68.7 Billion = 412 GB
-
-###### Is KGS Single point of Failure? 
-Yes
-Solution: Take replicas/standby servers of KGS, replicas can take over to generate and provide keys.
-
-###### Can App-Server cache some keys from KGS
-> Yes
 
 ## 5. DB Design
-> Number of tables = 2
-
-#### Table-1 Stores URL mappings(long URL to short URL)
-
-| Original_url(512) | Creation_date | Expiration_date | UserID |
-| --- | --- | --- |  --- |
-| <long-url> | timestamp | timestamp |        |
-    
-#### Table-2 Stores user’s data who created the short link
+- **Tables in [SQL Database](/System-Design/Concepts/Databases) = 2**
+  - *Table-1: Stores URL mappings(long URL to short URL)*
+```c
+ | Long_Url(512 bytes) | Creation_date | Expiration_date | UserID |
+```
+  - *Table-2 Stores user’s data who created the short link*
+```c
 | user_name | user_email | creationDate | lastLogin |
-| --- | --- | --- | --- |
-|    |   |   |   |
+```
 
-####  Type of DB: noSQL
-Why? Billions of rows should be saved on noSQL
+- **[Replicas](/System-Design/Concepts/Databases/Database_Scaling):** For safe copy of short to long url
+- **[DB Paritioning: Range-Based](/System-Design/Concepts/Databases/Database_Scaling):** To store billions of long URL to short URL mapping, we need distributed DB.
 
+- **Cleaning/Purging of DB:** short-url to long-url mapping should be removed after 30 days or when user tells.
 
-## 6. DB PARTIONING & REPLICATION
-> To store billions of long URL to short URL mapping, we need distributed DB.
-
-#### 6.1 Range based Partitions
-DB-1 will store all short urls starting from 'A' and 'a'.
-DB-2 will store all short urls starting from 'B' and 'b'.
-..
-
-###### Drawback of this approach
-1 DB can be hugely loaded while other maybe free.
-For example, we decide to put all URLs starting with letter ‘E’ into a DB partition, but later we realize that we have too many URLs that start with the letter ‘E’.
-
-#### 6.2 Hash based Partitions
-short-url is generated. Now hash value (between 1-256) is calculated from short-url as well and based on hash one of DB servers is selected for storage of long-url to short-url mapping.
-
-###### Drawback of this approach
-Again all times only 1 hash can be generated overloading only 1 server.
-
-####### Solution
-Consistent hashing
-
-#### Cleaning/Purging of DB
-- short-url to long-url mapping should be removed after 30 days or when user tolds.
-
-## 7. CACHE
-- Frequently asked long-url to short-url mappings would be stored in cache.
-
-### How much cache memory is required
-- Let's start with 20% of traffic storage
-- **Traffic flowing in**
-  - 10k new URL shortning requests/sec
-  - 10k*60*60*24*7 = 6x10^9 = 6 billion requests/week
-- **Cache size**
-  - 1 incoming request size = 256 characters. = 256*4 = 1k bytes
-  - 1 short URL size = 6 characters = 6*6 = 36 bytes
-  - For 6 billion = 55296 billion bytes = 55 TB
-- Cache can be fitted into number of smaller machines.  
-- **Cache Eviction Policy**
-  - When the cache is full, ***LRU*** will be used.
-  
-## 8. LOAD BALANCERS  
-- Places where Load Balancers can be placed?
-  1. Between client and Application servers.
-  2. Between App-servers and cache. Since we can have 100s of cache servers, those needed load balancing.
-  3. Between cache and DB servers. Since DB servers can be upto 256 LB in front of it is good.
+## 6. [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed)
+- Frequently asked long-url to short-url mappings would be stored in cache between DB-updater service and DB.
   
 ## Final Architecture
 ![Imgur](https://i.ibb.co/rtNRtTd/tiny-url.png)
@@ -230,7 +171,9 @@ Consistent hashing
                              <--------------short url------------------          
 ```
 
-### Bottleneck & Limitations
+## [Bottleneck & Limitations](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 - **Bottlenecks**
   - *1.* A malicious user can try to consume all URL for a day or month.
     - *Solution:* Each user is only allowed to write/read(redirections) configured limit per day.
+  - **2. KGS:** KGS can be point of failure
+    - *Solution:* Take [Replicas Servers](/System-Design/Concepts/Databases/Database_Scaling) of KGS, replicas can take over to generate and provide keys.
