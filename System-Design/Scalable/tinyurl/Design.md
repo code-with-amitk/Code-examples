@@ -1,6 +1,10 @@
 # Tinyurl
-- **What?** This service will provide short aliases redirecting to long URLs.
+- **What?** This service will provide shortened aliases redirecting to long URLs. Users are redirected to longURL as they hit short URL.
 - **Why?** Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.
+
+- **This is Read Heavy Application. Read:Write=100:1**
+  - Read Request = Redirection = 100
+  - Write Request = Create shortURL = 1
 
 ## [To Cover](/System-Design/Scalable/README.md)
 
@@ -17,42 +21,51 @@
   - Analytics; e.g., how many times a redirection happened?
 
 ## 2. BOE
-> This is read heavy application. Consider 100:1 Read/Write requests.
 
-|World Population|InternetUsers(60%)|TinyURL Users(10-15% of Internet users)/month|
+|World Population|InternetUsers(60%)|TinyURL Writes(10-15% of Internet users)/month|
 |---|---|---|
 |7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.15 = 630 Million|
 
+- Writes=630M/month. Reads=630x100=63B/month
+
 - **Traffic Estimates/QPS(Queries per sec)**
-  - 630 / 30x24x60x60 = 240~250 Requests/sec
+  - Writes = 630M / 30x24x60x60 = 240~250 Requests/sec = 250
+  - Reads = 250x1000 = 250k
+  - Total = 250k/sec
 
 - **Storage Estimates**
-  - Long URL length=256 bytes, Short URL=6 bytes. 1 request requires 256+6=262 bytes to be stored
-  -  630 x 12x5 = 38 Billion. 38 x 262 = 10 TB to be stored for 5 years
+  - Writes:
+    - Long URL length=256 bytes, Short URL=6 bytes. 1 request requires 256+6=262 bytes.
+    - 630M(month) x 12x5 = 38 Billion. 38 x 262 = 10 TB to be stored for 5 years
+  - Reads: 10TBx100 = 1PB for 5 years
 
 - **Bandwidth Estimates**
-  - **Write Requests(ie storing generate and store shorturl)** 250 Requests/sec. 1 request size=256. 64KB/sec
-  - **Read Requests(ie getting stored short URL)** 
-    
-#### CACHE Estimates
+  - Writes: Incoming reuqests:250/sec. Each request size=250bytes. 250x250 = 62kB/sec
+  - Reads: 62MB/sec
+  
+- **Cache Estimates**
  - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
  - Following 80:20 rule, 20% of URLs are often hit.
-    Total requests/day. 10k*60*60 = 36 Million. 20% of 36 Million = 7.2 Million * 262 = 1.8 GB
+  - Total requests/day = 250k x 12 = 30000k = 30M
+  - We will Cache only 20%. 30M x .2 = 6M. //there will be many duplicate requests (of the same URL), our actual memory usage will be less than 6M
     
     
-## 3. SYSTEM APIs
+## 3. System APIs
 ### creating the short URL
 ```
     //REST API
-    createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)    
-      Parameters
-        api_dev_key(string): Developer key of registered account.
-        original_url(string): To be shortened
-        custom_alias(optional): Custom key for URL
-        user_name(optional): Username to be used for encoding
-        expire_date(string): Optional expiration date of URL
-      Returns
-        short_url(string)
+createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)    
+  Parameters
+    api_dev_key(string): Developer key of registered account.
+    original_url(string): To be shortened
+    custom_alias(optional): Custom key for URL
+    user_name(optional): Username to be used for encoding
+    expire_date(string): Optional expiration date of URL
+  Returns
+    short_url(string)
+    
+deleteURL(api_dev_key, url_key)    
+  url_key: String representing the shortened URL to be retrieved; a successful deletion returns ‘URL Removed’.
 ```        
         
 ### Deleting short and long URL pair from DB
@@ -232,3 +245,8 @@ Consistent hashing
                                                                 Move short-url to Used-DB
                              <--------------short url------------------          
 ```
+
+### Bottleneck & Limitations
+- **Bottlenecks**
+  - *1.* A malicious user can try to consume all URL for a day or month.
+    - *Solution:* Each user is only allowed to write/read(redirections) configured limit per day.
