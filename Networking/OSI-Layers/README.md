@@ -2,7 +2,7 @@
 
 |Layer|Design Issues|Duties|
 |---|---|---|
-|Application||User services(eg: Emails, video share etc)|
+|Application|sending large information. eg: 5gb, caching:how long fetched data is valid and when to query back?, security, slow client or server|User services(eg: Emails, video share etc)|
 |Presentation||Presentation of data(ie syntax, semantics of data received)|
 |Session||Establish sessions(eg: token management etc) b/w hosts on different machines|
 |Transport(App to App)|Services provided to upper layer|Process to process delivery, Congestion & flow Control, Error detection|
