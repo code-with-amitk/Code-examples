@@ -1,0 +1,7 @@
+## HTTP (Hyper Text Transfer Protocol)
+- Layer-5 working on client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
+- HTTP Clients: Web-browser, Any process can create socket and get information from server.
+- **Features**
+  - *1. CONNECTIONLESS:* HTTP-client(browser) initiates an HTTP request and after a request is made, the client disconnects from the server and waits for a response. server processes the request and re-establishes the connection with the client to send a response back.
+  - *2. MEDIA INDEPENDENT:* Any type of data can be sent by HTTP as long as both the client and the server know how to handle the data content.
+  - *3. STATELESS:* No session information is stored either by client or server.
