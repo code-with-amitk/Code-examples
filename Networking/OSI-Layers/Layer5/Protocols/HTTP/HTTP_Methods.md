@@ -1,4 +1,4 @@
-### Supported Methods
+## Supported Methods
 - **Method?** Operations are called methods for requesting web page or content.
 - **Safe methods?** Those which donot change state of server. Eg: GET, HEAD
 - **Read only methods?** GET, OPTIONS, HEAD
