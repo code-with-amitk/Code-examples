@@ -84,12 +84,12 @@ deleteURL(api_dev_key, url_key)
 ```
 
 ### Generating short-url/keys by shortening service
-- **Steps of Generating short-url**
-  - *a.* Calculate [SHA3(512 bit) or MD5(128bit) hash](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/security).
+#### Steps of Generating short-url
+- *a.* Calculate [SHA3(512 bit) or MD5(128bit) hash](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/security).
 ```c
   long-url > |SHA3 or MD5 Hash|  > XXX
 ```
-  - *b.* if we return 8 character short URL. Total possible combinations: 64<sup>8</sup> = 2.8 x 10<sup>14</sup> = 280 Trillion. <<Huge Enough
+- *b.* if we return 8 character short URL. Total possible combinations: 64<sup>8</sup> = 2.8 x 10<sup>14</sup> = 280 Trillion. <<Huge Enough
   - Now we need to Convert 128bit hash to [Base-64 format](/System-Design/Concepts/Number_System).
 ```c
 - Base-2 uses 2 bits to create a word : 2=2^1
@@ -98,20 +98,20 @@ deleteURL(api_dev_key, url_key)
 - Base-64 uses 6 bits to create word: 64=2^6
   - Hash = 128 bits. 128/6 = 21.33 = 21 characters or words. But we need only 8 characters as Output short-url.
 ```
-  - *c.* Deducing 8 character short-url from 21 characters.
-    - Return 1st 8 characters from 21 characters.
-    - Problem: Differnt long URL's can produce same 1st 8 characters.
-    - Solution: Append timestamp or userId with longURL and then generate the short url
+- *c.* Deducing 8 character short-url from 21 characters.
+  - Return 1st 8 characters from 21 characters.
+  - Problem: Differnt long URL's can produce same 1st 8 characters.
+  - Solution: Append timestamp or userId with longURL and then generate the short url
 
-- **When to Generate Short url? Runtime or offline**
-  - *1.* Runtime. As we get write request, generate short-url and return
-  - *2.* Offline. Pre-generate short-urls in advance, store in Key-DB for later use.
-    - ***KGS(Key Generation Service)***: KGS will generate the 6-letter keys/short-url beforehand and keep in shorturl-DB.
-      - Size of Short-url DB? 
-        - Base-64 will have 64<sup>6</sup> = 70 Billion unique six letter short-urls.
-        - 1 key = 6 characters = 6 bytes. 2<sup>8</sup>=64. Means 8 bits can represent 64 distinct numbers.
-        - Total storage = 6 * 70B = 420B 
-      - Advantages of before hand key generation:
+#### When to Generate Short url? Runtime or offline
+- *1.* Runtime. As we get write request, generate short-url and return
+- *2.* Offline: Pre-generate short-urls in advance, store in Key-DB for later use.
+  - ***KGS(Key Generation Service)***: KGS will generate the 6-letter keys/short-url beforehand and keep in shorturl-DB.
+    - Size of Short-url DB? 
+      - Base-64 will have 64<sup>6</sup> = 70 Billion unique six letter short-urls.
+      - 1 key = 6 characters = 6 bytes. 2<sup>8</sup>=64. Means 8 bits can represent 64 distinct numbers.
+      - Total storage = 6 * 70B = 420B 
+    - Advantages of before hand key generation:
         - *a.* Run Time calculations saving.
         - *b.* Collions will be saved. We already have generated keys in place hence risk of same key generation is 0
     - How KGS stores short-urls? Using seperate 2 databases.
@@ -122,13 +122,14 @@ deleteURL(api_dev_key, url_key)
 
 ## 5. DB Design
 - **Tables in [SQL Database](/System-Design/Concepts/Databases) = 2**
-  - *Table-1: Stores URL mappings(long URL to short URL)*
 ```c
- | Long_Url(512 bytes) | Creation_date | Expiration_date | UserID |
-```
-  - *Table-2 Stores user’s data who created the short link*
-```c
-| user_name | user_email | creationDate | lastLogin |
+Table-1: Stores URL mappings(long URL to short URL)
+
+  | Long_Url(512 bytes) | Creation_date | Expiration_date | UserID |
+  
+Table-2 Stores user’s data who created the short link
+
+  | user_name | user_email | creationDate | lastLogin |
 ```
 
 - **[Replicas](/System-Design/Concepts/Databases/Database_Scaling):** For safe copy of short to long url
