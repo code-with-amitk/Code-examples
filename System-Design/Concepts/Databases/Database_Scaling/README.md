@@ -31,7 +31,7 @@
                                                   --------------
 ```                                                                                           
 
-## C. SHARDING
+## C. Sharding
 - Data is distributed across the databases, so that each DB only manages subset of data.
 - **Adv:** a. Less data/DB hence more cache hits.
 - **Disadv:** a. If 1 DB goes down, replica should be up and running.    b. Complex SQL queries    c. Joining data from multiple shards is more complex.
@@ -39,9 +39,20 @@
   ------------------         ------------------        -----------------          -----------------
   | db1 Users(A-G) |         | db2 Users(F-L) |        | db3 Users(M-T) |         | db4 Users(U-Z) |
   ------------------         ------------------        ------------------         ------------------
-```                    
-## D. DENORMALIZATION
+```
+
+## D. Range Based Partitioning
+- One Database is used to store all keys starting from particular character.
+- **Problem:** Since keys are generated on the fly, 1 DB can be hugely loaded and others are free.
+  - *Solution:* [Consitent Hashing](/System-Design/Concepts/Hashing/Consistent_Hashing.md)
+```c
+  ---------------------------------     --------------------------------- 
+  | Db-1 All-Keys(starting with A) |    | Db-2 All-Keys(starting with B) |    ..
+  ----------------------------------    ----------------------------------
+```
+
+## D. Denormalization
 - Opposite to normalization, denormalization writes redundant copies to data to multiple databases. This improves reads wrt writes. Read:Write ratio increases to 1000:1.
 
-## E. SQL TUNING
+## E. SQL Tuning
 - Remove the bottlenecks of DB. Optimization those can be performed: Tighten the schema:Use CHAR for fixed length fields instead of VARCHAR, avoid storing large blobs(instead store their location addresses), 
