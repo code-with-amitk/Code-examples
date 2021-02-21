@@ -44,10 +44,10 @@
   - Reads: 62MB/sec
   
 - **Cache Estimates**
- - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
- - Following 80:20 rule, 20% of URLs are often hit.
-  - Total requests/day = 250k x 12 = 30000k = 30M
-  - We will Cache only 20%. 30M x .2 = 6M. //there will be many duplicate requests (of the same URL), our actual memory usage will be less than 6M
+  - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
+  - Following 80:20 rule, 20% of URLs are often hit.
+    - Total requests/day = 250k x 12 = 30000k = 30M
+    - We will Cache only 20%. 30M x .2 = 6M. //there will be many duplicate requests (of the same URL), our actual memory usage will be less than 6M
     
     
 ## 3. System APIs
