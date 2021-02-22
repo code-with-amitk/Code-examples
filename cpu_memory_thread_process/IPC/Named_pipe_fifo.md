@@ -1,11 +1,9 @@
-/*      named-pipe-fifo.c
+## Named Pipe (FIFO)
+- When processes exchange data via the FIFO, kernel passes all data internally without writing it to the file. Thus file name merely serves as a reference point so that processes can access the pipe using the name.
+- FIFO vs normal-file: No data is kept on FIFO, all is exchanged via kernel buffers.
 
-NAMED-PIPE(mkfifo)?
-When processes exchange data via the FIFO, kernel passes all data internally without writing it to the file. 
-Thus file name merely serves as a reference point so that processes can access the pipe using the name.
-
-FIFO vs normal-file: No data is kept on FIFO, all is exchanged via kernel buffers.
-*/
+### Code
+```c
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
@@ -55,8 +53,6 @@ int main(){
 //#gcc reader.c -o WRITER
 #endif
 
-/*
-Output
 [TERMINAL-1]
 #./WRITER
 amit
@@ -74,4 +70,4 @@ c character type special file
 l symbolic link
 p pipe
 s socket
-*/
+```
