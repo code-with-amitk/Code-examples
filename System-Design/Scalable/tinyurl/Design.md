@@ -71,7 +71,7 @@ deleteURL(api_dev_key, url_key)
 ## 5. HLD / System Design
 
 **Steps**
-- *0.* KGS will keep on generating shorturls offline and keep pushing on DB.
+- *0.* KGS will keep on generating shorturls offline and keep pushing on DB.  {See below Generating short-url by KGS}
 - *1. to 6.* Same as [Facebook newsFeed](/System-Design/Scalable/facebook/News%20Feed/README.md)
 - *7.* Web Server stores connection information in conn-db it will redirect request to App-Server.
 - *8.* App-Server puts the request on [MOM Queue]().
@@ -81,7 +81,7 @@ deleteURL(api_dev_key, url_key)
 - *12.* CDN caches the short-url to long-url for x timeout as seen in Http Header
 
 
-### Generating short-url/keys by shortening service
+### Generating short-url/keys by Short-URL-Generation/Key-Generation-Service
 #### Steps of Generating short-url
 - *a.* Calculate [SHA3(512 bit) or MD5(128bit) hash](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/security).
 ```c
