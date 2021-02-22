@@ -1,8 +1,6 @@
-/*      semaphore-example.c
-
-semaphore? This is a simple integer variable, which kernel keeps atomic. 
-if variable==1(entrance allowed in Critical section), if variable==0(Entrace blocked)
-
+## Example-1
+- **APIs**
+```c
 sem_init(): Initializes the semaphore to 1.
 sem_wait(): 
         if(semaphore == 1)
@@ -12,7 +10,10 @@ sem_wait():
         Enter & Does semaphore to 0
 
 sem_post(): does semaphore=1
+```
 
+### Code
+```c
 -> See in output without semaphore both threads enters critical section at same time.
 */
 #include <stdio.h>
@@ -23,8 +24,7 @@ sem_post(): does semaphore=1
 sem_t s;
 pthread_t t1,t2;
 
-void *fun(void* arg)
-{
+void *fun(void* arg) {
     sem_wait(&s);
 
     printf("\nThread-%d Inside Critical section..\n",pthread_self());
@@ -34,9 +34,7 @@ void *fun(void* arg)
     sem_post(&s);
 }
 
-
-int main()
-{
+int main() {
     sem_init(&s, 0, 1);
 
     pthread_create(&t1,NULL,fun,NULL);
@@ -51,7 +49,6 @@ int main()
     return 0;
 }
 
-/*
 Output without sem_wait() and sem_post()
 Thread--986036480 Inside Critical section..
 Thread--994429184 Inside Critical section..     //SEE BOTH THREADS ARE IN CS
@@ -63,4 +60,4 @@ Thread-530441984 Inside Critical section..
 Thread-530441984 Exiting...
 Thread-522049280 Inside Critical section..
 Thread-522049280 Exiting...
-*/
+```
