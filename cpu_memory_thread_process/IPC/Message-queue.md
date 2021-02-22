@@ -1,17 +1,27 @@
-/*      message_queue.c
+## Message Queues
+- This is Linked list of messages stored in Kernel.
+```c        
+        Linked list     | type=4, message="abc" | type=9, message="xyz" |...
+```        
+- **No Data Lost.** if process-1 is writing, process-2 is reading. process-2 crashes. Still data would be on queue, reader can come again and read. 
+- **TYPES OF MQ:**    
+  - *1.* Private: Between parent & child
+  - *2.* Public: Anyone knowing Queue Id.        
+- **FIFO vs MQ**
 
-MQ? This is Linked list of messages stored in Kernel.
-        |                 |
-        |type=1|text="abc"|...  
-        |                 |
+|FIFO|MQ|
+|---|---|          
+|This are simply pipe write(),read(). No notion of message|This transfers messages(type, text or struct). Receiver will wait for type of message. Several processes can send/recv messages on same queue.|
 
-Process of adding message:
+- **Process of adding message:**
 a. ftok(char *pathname, int proj_id): convert a pathname and a project identifier to a unique key
 b. msgget(): For sender(return newly created id). For reciever(returns existant id)
 c. msgsnd(): Place data on message queue
 d. msgrcv(): Retrieve message from queue
 e. msgctl(): Destroy message queue.
-*/
+
+### Code
+```c        
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
@@ -65,11 +75,10 @@ int main(){
 //#gcc reciever.c -o reciever
 #endif
 
-/*
-Output:
 # ./sender
 Write Data : amit
 Data send is : amit
+
 # ./recv
 Data Received is : amit
-*/
+```
