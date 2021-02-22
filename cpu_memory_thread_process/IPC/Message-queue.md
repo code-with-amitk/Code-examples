@@ -14,11 +14,11 @@
 |This are simply pipe write(),read(). No notion of message|This transfers messages(type, text or struct). Receiver will wait for type of message. Several processes can send/recv messages on same queue.|
 
 - **Process of adding message:**
-a. ftok(char *pathname, int proj_id): convert a pathname and a project identifier to a unique key
-b. msgget(): For sender(return newly created id). For reciever(returns existant id)
-c. msgsnd(): Place data on message queue
-d. msgrcv(): Retrieve message from queue
-e. msgctl(): Destroy message queue.
+  - a. ftok(char `*`pathname, int proj_id): convert a pathname and a project identifier to a unique key
+  - b. msgget(): For sender(return newly created id). For reciever(returns existant id)
+  - c. msgsnd(): Place data on message queue
+  - d. msgrcv(): Retrieve message from queue
+  - e. msgctl(): Destroy message queue.
 
 ### Code
 ```c        
