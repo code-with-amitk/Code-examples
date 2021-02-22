@@ -21,28 +21,22 @@
 
 ## 2. BOE Calculations
 
-- **People using Facebook**
+|World Population|Daily Internet Users(30%)|FB Users(30% of Internet users)|(Let's assume)Each user sends 50 messages/day|
+|---|---|---|---|
+|7x10<sup>9</sup>//Year 2020|2.1~2 Billion|600 Million|600M x 50 = 30 Billion messages sent/day|
 
-|World Population|InternetUsers(40%)|FB Users(60% of Internet users)|
-|---|---|---|
-|7x10<sup>9</sup> //Year 2020|2.8 Billion|1.68 Billion|
+- **Storage Estimates:**  //Compression not considered
+  - (Let's Assume) On Average Message contains=100 characters. 1 character=4 bits. 100 characters = 400 bits = 400/8 = 50 bytes.
+  - 50 x 30 B = 1500 Billion = 1.5 Tera Bytes/Day. 1.5TB x 365 days x 5 years ~= 2.7 Peta Bytes
+
+- **Bandwidth Estimates:**  //Since data need to go to users. Upload,download both = 17MB/s
+  - Incoming data/day = 1.5TB. Per second = 1.5TB/86400 ~= 17MB/s
 
 - **Users sending Text,Audio,Video messages**
 
 |Text message/day(aasumed 60%)|Audio Messages/day(assumed 20%)|Video Messages/day(assumed 5%)|
 |---|---|---|
 |60% = 1.68x0.6 = 1 Billion|20% = 1.68x0.2 = 336 Million|5% = 1.68x0.05 = 84 Million|
-  
-- **Storage Estimate(bytes to stored)**
-
-| | 1 Day storage Req(bytes) | 5 years storage Req(bytes)
-| --- | --- | --- |
-| Chat | 1 Billion(messages) x 650x8(size) = 5.2 Tera bytes | 5.2 x 30 x 12 x 5 = 9.3 peta Bytes |
-| Audio | 330Million(audio messages) x 10MB(size) = 3.3 Exa bytes | 3.3x30x12x5 = 6 Zeta bytes |
-| Video | 84Million(video messages) x 1GB(size) = 84 Exa bytes | 84x30x12x5 = 151 zeta bytes |
-
-Total space requirement for 5 years = 157 zeta bytes
-> Not considering users who deleted chat/video/audio/account permanently. Compression, new users added.
 
 - **Traffic Estimates**
 
