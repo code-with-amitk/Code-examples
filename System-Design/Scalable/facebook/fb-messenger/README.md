@@ -1,30 +1,23 @@
-| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
-| --- | --- | --- | --- | --- | --- |
+## [To Cover](/System-Design/Scalable)
 
-- Users can send text/video/audio/image messages using laptop or mobile.
-
-## To Cover
-- *1.* Requirements: Functional, Non-functional, Extended(Group chat)
-- *2.* Back of Envelope Calculations
-  - Storage estimates
-  - Traffic estimates
-- *3.* HLD: For 2, 100, 1 lac users
-- *4.* Database schema
-- *5.* S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
-  - Scalable, Secure, SOA
-  - Logging, Load, Latency
-  - Cache(Invalidation, negative cache)
-  - Available, Accurate, Analyze, Authenticate
-  - Reliable, Redundant(Using DB)
-  - Fast
+**What?**
+- This is instant messaging service where users can send text messages to each other through web and mobile.
 
 ## 1. Requirements
-### 1A. Functional
-- *1.* User can see all of his friends and can send message to any of his friend.
-- *2.* Chat history should be stored.  
-- *3.* User can send message to any person on facebook provided target person has not blocked incoming messages.
-- These sizes can be delivered as 1 message.
-  - {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
+- **Functional**
+  - *1.* user can chat 1-to-1 with his friend.
+  - *2.* Chat history should be stored.
+  - *3.* Online/Offline users should be shown to user.
+  - *4.* User can send message to any person on facebook provided target person has not blocked incoming messages.
+- **Non-Functional**
+  - *1.* Highly [Consistent](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md). User should see same data across all devices.
+  - *2.* min [Latency](/Scalable/README.md)
+  - These sizes can be delivered as 1 message.
+- **[Extended](/Scalable/README.md)** 
+  - Group chats
+  - Push notifications: Messenger should be able to notify users of new messages when they are offline.
+
+> {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
 
 ## 2. BOE Calculations
 
