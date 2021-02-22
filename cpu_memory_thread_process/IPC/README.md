@@ -10,4 +10,5 @@
 |1.Pipe|Parent to child viceversa|
 |2.Named pipes, fifo|Multiple process can communicate. Process-1 to process-2|
 |3.Message Queues|Multiprocess. Process-1 to process-2|
-|4.Shared Memory|Multiprocess. Process-1 to process-2|
+|4.Shared Memory|Multiprocess. Process-1 to process-2. Fastest(No Inherent Synchronization)|
+|5.Memory mapped files|Map a file onto process Virtual address space and do RW.|
