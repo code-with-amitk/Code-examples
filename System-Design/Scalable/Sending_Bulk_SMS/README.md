@@ -10,7 +10,8 @@
   - *a.* Group to which message need to be sent
   - *b.* Message template need to be sent
 - *8.* Message reaches web server and it forwards to [SMSC/SMS Gateway](/Networking/SS7) by calling API SMSC understands.
-- *9.* SMSC delivers messages to clients using MSC. SMPP protocol will be used here.
+- *9.* SMSC delivers messages to clients using MSC. SMPP(Short Message Peer-to-Peer) protocol will be used here.
+  - SMPP is standard messaging protocol designed to send messages using TCP/IP to wireless mobile networks such as GSM, TDMA, CDMA etc. it can send messages upto 10,000/min. 
 ```html
   Web-Browser
 7. User selects
