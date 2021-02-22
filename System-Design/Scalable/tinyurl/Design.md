@@ -70,7 +70,9 @@ deleteURL(api_dev_key, url_key)
 ## 5. HLD / System Design
 
 **Steps**
-- *0.* KGS will keep on generating shorturls offline and keep pushing on DB.  {See below Generating short-url by KGS}
+- *0.* Generating short-url for Long-url. There are 2 methods:
+  - *a.* Runtime: As we get write request, generate short-url. This makes system slow.
+  - *b. Offline(We take this):* Fast. KGS will keep generating shorturls offline and keep pushing on DB.  {See below Generating short-url by KGS}
 - *1. to 6.* Same as [Facebook newsFeed](/System-Design/Scalable/facebook/News%20Feed/README.md)
 - *7.* Web Server stores connection information in conn-db it will redirect request to App-Server.
 - *8.* App-Server puts the request on [MOM Queue](/System-Design/Concepts/MOM_ESB).
