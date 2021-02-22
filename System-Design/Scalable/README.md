@@ -7,7 +7,21 @@
 - **1. Requirements:**
   - *1a.* Functional(Basic functionality, should work)
   - *1b.* Non-functional(defines quality)
-  - *1c.* Extended:  S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F: Scalable, Secure, SOA, Logging, Load, Latency, Cache(Invalidation, negative cache), Available, Accurate, Analyze, Authenticate, Reliable, Redundant(Using DB), Fast
+  - *1c.* Extended:  S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+    - Scalable
+    - Secure
+    - SOA
+    - Logging
+    - Load
+    - Latency: The delay between last packet sent and 1st byte of 1st packet received
+    - Cache(Invalidation, negative cache)
+    - Available
+    - Accurate
+    - Analyze
+    - Authenticate
+    - Reliable
+    - Redundant(Using DB)
+    - Fast
 - **2. Back of Envelope Calculations**
   - Storage estimates
   - Traffic estimates
