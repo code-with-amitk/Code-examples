@@ -80,6 +80,7 @@ deleteURL(api_dev_key, url_key)
 - *11.* Fanout service receives notification. Gets connection information from conn-db and sends shorturl to user.
 - *12.* CDN caches the short-url to long-url for x timeout as seen in Http Header
 
+<img src="./TinyURL.jpg" width=1000 />
 
 ### Generating short-url/keys by Short-URL-Generation/Key-Generation-Service
 #### Steps of Generating short-url
@@ -137,38 +138,6 @@ Table-2 Stores user’s data who created the short link
 
 ## 6. [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed)
 - Frequently asked long-url to short-url mappings would be stored in cache between DB-updater service and DB.
-  
-## Final Architecture
-![Imgur](https://i.ibb.co/rtNRtTd/tiny-url.png)
-```
-                                        **KGS(Key Generation Service)**
-                                        - Generate 68.7 Billion short urls
-                                        
-                                        short-url > |Hash| > hash between 1-256
-                                        //Let's suppose Hash=50, store on DB50
-                                        
-                                        Store short-url into respective DB using hash
-                                        
-                                                   ---store short url->   
-                                                                        Unused
-                                                                        Key-DB1
-                                                                        Key-DB2
-                                                                        Key-DB3
-                                                                        ..
-                                                                        Key-DB256
-
-                                                   
-        **client        (APP-SERVER(s)  +  cache(s)[Memcached])            KGS
-             -long url--->        
-                            ----long url->
-                                        if mapping is found
-                            <--return short url--
-                                        else
-                                            -----------long url------>
-                                                                Map long-url to short-url
-                                                                Move short-url to Used-DB
-                             <--------------short url------------------          
-```
 
 ## [Bottleneck & Limitations](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 - **Bottlenecks**
