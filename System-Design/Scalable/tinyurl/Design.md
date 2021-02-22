@@ -74,7 +74,7 @@ deleteURL(api_dev_key, url_key)
 - *0.* KGS will keep on generating shorturls offline and keep pushing on DB.  {See below Generating short-url by KGS}
 - *1. to 6.* Same as [Facebook newsFeed](/System-Design/Scalable/facebook/News%20Feed/README.md)
 - *7.* Web Server stores connection information in conn-db it will redirect request to App-Server.
-- *8.* App-Server puts the request on [MOM Queue]().
+- *8.* App-Server puts the request on [MOM Queue](/System-Design/Concepts/MOM_ESB).
 - *9.* DB Fetcher,Updater will recieve notification and finds short-url from DB. Creates mapping in DB.
 - *10.* DB Fetcher,Updater will put long-url-id, short-url on MOM.
 - *11.* Fanout service receives notification. Gets connection information from conn-db and sends shorturl to user.
