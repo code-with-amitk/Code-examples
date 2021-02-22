@@ -15,7 +15,7 @@ sem_post(): does semaphore=1
 ### Code
 ```c
 -> See in output without semaphore both threads enters critical section at same time.
-*/
+
 #include <stdio.h>
 #include <pthread.h>
 #include <semaphore.h>
