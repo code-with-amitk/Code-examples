@@ -12,6 +12,6 @@
   - VR is connected on [I<sup>2</sup>C](/cpu_memory_thread_process/CPU/Communication/Buses/I2C.md) bus.
   - If tool want to read/write to VR, I<sup>2</sup>C read/write mechanism should be used.
 
-<img src="./voltage-regulator.png" width="600" />
+<img src="./voltage-regulator.PNG" width="600" />
 
 
