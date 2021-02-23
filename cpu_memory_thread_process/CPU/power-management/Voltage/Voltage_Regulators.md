@@ -1,7 +1,3 @@
-## Voltage
-- Electric potential difference, electric pressure or electric tension is the difference in electric potential between two points
-
-
 ## Voltage Controller/Regulator/VRM(Vol Reg Module)
 - Component steps down the voltage from input(ie system power rails 12,5,3,3V) and outputs regulated/cutted voltage(1.2V) to IC(CPU,GPU)
 - **How to communicate with VR**
