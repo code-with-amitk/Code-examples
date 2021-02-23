@@ -35,7 +35,7 @@
 # 3. HLD
 
 ### Steps
-  - *1-6* Same as facebook newsfeed.
+  - *1-6* Same as [Facebook newsfeed](/System-Design/Scalable/facebook/News%20Feed)
   - *7.* User-1 will keep a connection open with the server to receive ACK. [App/Chat-server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer) sends ack back to user-1 using zookeeper. Also pushes message on [MOM]()
   - *8.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages. Pushes message on MOM.
   - *9.* Fetcher service will recieve notification and gets message from DB. `src=user1,dst=usr2`
