@@ -23,7 +23,7 @@
 
 |World Population|Daily Internet Users(30%)|FB Users(30% of Internet users)|(Let's assume)Each user sends 50 messages/day|
 |---|---|---|---|
-|7x10<sup>9</sup>//Year 2020|2.1~2 Billion|600 Million|600M x 50 = 30 Billion messages sent/day|
+|7x10<sup>9</sup>//Year 2020|7B x .3 =~ 2 Billion|2B x .3 = 600 Million|600M x 50 = 30 Billion messages sent/day|
 
 - **Storage Estimates:**  //Compression not considered
   - (Let's Assume) On Average Message contains=100 characters. 1 character=4 bits. 100 characters = 400 bits = 400/8 = 50 bytes.
