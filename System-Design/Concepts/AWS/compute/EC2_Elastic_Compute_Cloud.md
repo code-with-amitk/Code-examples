@@ -1,10 +1,5 @@
 ## EC2(Elastic Compute Cloud)
-  - **What**
-    - a web service that provider re-sizable compute capacity in the cloud
-    - With EC2, you can boot ***new server*** in 2 minutes.
-    - It means you to quickly scale up or down, as your computing requirement change.
-    - You only need to pay for the capacity that you actually use.
-    - several tools are provided for resilient and isolate from failure scenarios
+  - **What:** This is web service for creating VMs. Helpful in scaling up/down.
   - **without EC2(Old world)**
     - if you needed an new server(app server, db server etc).
     - 1st need to write how big server is required, how many cores, purcharse, installation -> 2 months
