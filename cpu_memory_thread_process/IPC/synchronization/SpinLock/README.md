@@ -24,6 +24,7 @@ while (TRUE) {
   }
 }
 ```
-- **Problems with spinlocks?** 
-  - *1.* Consumes more CPU.
-  - *2.* When 1 process is very slow(maybe doing lot of IO) wrt other. Faster process need to wait unneccesarily.
+## Problems with spinlocks?
+- *1.* Consumes more CPU.
+- *2.* When 1 process is very slow(maybe doing lot of IO) wrt other. Faster process need to wait unneccesarily.
+  - **Solution: Peterson’s Solution**
