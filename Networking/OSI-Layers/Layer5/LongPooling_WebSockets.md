@@ -1,16 +1,30 @@
-## Long Pooling vs Web Sockets
-
-||Normal Pooling|Long Pooling|Web Sockets|
-|---|---|---|---|
-|What|<ul><li>Web client repeatedly pools web server for data</li></ul><ul><li>Implemented using XMLHttpRequest or JSON</li></ul>|<ul><li>server holds client’s connection open for as long as possible</li></ul><ul><li>Data is delivered to web client once becomes available or threshold timer expired</li></ul>|<ul><li>Full duplex bidirectional data transfer</li></ul><ul><li>Enhanced version of Http,can work over TCP</li></ul>|
-|Disadv/Adv|lot of BW and resource wastage|Fd is holded for long time, may block server|This is best alternative among others.|
+## Normal Pooling, Long Pooling, Web Sockets
 
 ### 1. Normal Pooling
 - Web client repeatedly pools web server for data. Implemented using XMLHttpRequest or JSON
-- 
+- **Diadv:** lot of BW and resource wastage	
 ```html
   Web-Client                Web-Server
     timer(){
-        -----HTTP GET----->
+        <----3-Way-Handshake-->
+        -----HTTP GET-------->
+        <------data----------          
     }
 ```
+
+### 2. Long Pooling
+- server holds client’s connection open for as long as possible. Data is delivered to web client once becomes available or threshold timer expired
+- **Disadv:** Server may run out of file descriptor
+```html
+  Web-Client                Web-Server
+        <----3-Way-Handshake-->
+          
+        -----HTTP GET-------->
+        <------data----------          
+                              
+        -----HTTP GET-------->
+        <------data----------          
+```
+
+## 3. Web Sockets
+- Full duplex bidirectional data transfer. Enhanced version of Http,can work over TCP.
