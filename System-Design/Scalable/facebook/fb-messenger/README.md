@@ -29,69 +29,23 @@
   - (Let's Assume) On Average Message contains=100 characters. 1 character=4 bits. 100 characters = 400 bits = 400/8 = 50 bytes.
   - 50 x 30 B = 1500 Billion = 1.5 Tera Bytes/Day. 1.5TB x 365 days x 5 years ~= 2.7 Peta Bytes
 
-- **Bandwidth Estimates:**  //Since data need to go to users. Upload,download both = 17MB/s
-  - Incoming data/day = 1.5TB. Per second = 1.5TB/86400 ~= 17MB/s
-
-- **Users sending Text,Audio,Video messages**
-
-|Text message/day(aasumed 60%)|Audio Messages/day(assumed 20%)|Video Messages/day(assumed 5%)|
-|---|---|---|
-|60% = 1.68x0.6 = 1 Billion|20% = 1.68x0.2 = 336 Million|5% = 1.68x0.05 = 84 Million|
-
-- **Traffic Estimates**
-
-| |1 second incoming data = 1 day/24x60x60|
-|---|---|
-|chat|60x10<sup>6</sup>|
-|Audio|70x10<sup>9</sup>|
-|Video|972x10<sup>9</sup>|
-|Total|10<sup>9</sup> = 1 Giga bytes|
-> We will need a link recieve/send(upload/download) 1GB/second.
+- **Traffic/Bandwidth Estimates:**  //Since data need to go to users. Upload,download both = 17MB/s
+  - Incoming data/day = 1.5TB. Incoming Data/second = 1.5TB/86400 ~= 17MB/s
 
 # 3. HLD
-## 3A. 2 users
-- **User-1 sending "Hi" to User-2**
-```c
-User-1                    Registrar
-Browser+FbClient            |
-  |----  Register --------->|
-  |<---200 ok---------------|
-  |                              Auth-Server+DB(Kerberos)
-  |-Login(Id/hash of password)-------->|
-  |                             check hash ok
-  |<-------------TGT-------------------|                             
-{Req-1}Open UI to see live users                   Ticket-Granting-Server
-  |---(Message=Check Live users)+TGT---------------------->|
-  |<-----Service Ticket(for Live user service)-------------|            Live-User-Checker(service-1)
-  |                                                                     Keeps list of live users/zone
-  |                                                                     using keepalive messages sent on
-  |                                                                     web sockets
-  |------------------------------------Service Ticket+Message=Check Live Users---->|
-  |                                                                      Check Live friends of User-1--------> DB or file-1(encrypted,compressed)
-  |<------------------Live friends(User ids)+Service Ticket 2----------------------|<---------------------------------|
-  |                                                                                                         File-1 contains friend list
-{Req-2}Chat with Live User  
-  |                                                                    Chat-Server
-  |-(Self userID, Friend UserId + message + scanReport + Service Ticket-2)-->|                              Queue
-  |                                                                          |--userid-1, userid-2, Message-->|
-  |                                                                                                           |
-  |                                                                               Connector <---------------->|
-  |                                                                           Read from queue
-  |                                                        Spawn new non-blocking thread to handle 1k connections
-  |                                                                             Thread-n    
-  |                                                                                  |--send/recv message------>User-2
-  |                - chat History  {Req-2} //(file-2) is maintained/userId containing all chats userId done with friends/world.
-  
-For 2 user approach
-  - A global file-3 containing all userId present on system.
-  - Each user chats can be stored in chornological order with timestamps in seperate file. 
-```
-- **Communication**
-  - **1. Online User to server**
-    - Client and server will communicate over web sockets, ie client will hold open connection with server.
-    - Server will maintain a hash table <key=userId, value=Connection-Structure>. When message comes for userId, server will search in O(1) and send message to userId.
-  - **2. Offline User**
-    - The server will store the message for a while and retry sending it once the receiver reconnects.
+
+### Steps
+- *1-6* Same as facebook newsfeed.
+- *7.* Chat-server receives the message from user-1.
+- *8.* chat server sends ack back to user-1 using zookeepr. Also pushes message on MOM
+- *9.* db-update gets notification and updates DB.
+- *10.* fannout-msg service recieves notification and sends message to user.
+- *11.* user-2 sends ack to ack-service. Ack-service places ack on MOM.
+- *12.* fannout-ack service will receives notification and sends ack to user-1.
+
+### Method by which Web client connects Application/Chat Server
+  - [Web Sockets](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods)
+
 
 ## 3B. 10Lac to 1Cr Users
 
