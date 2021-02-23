@@ -3,6 +3,9 @@
 - **What** 
   - For communication between 2 soc's or IC's on 1 board using  [2-wire Serial communication bus](/cpu_memory_thread_process/CPU/Communication/Serial_Parallel_Bus.md). 
   - ICs on seperate boards cannot be connected using I<sup>2</sup>C. Similar to nodes(ICs/SOCs) connected on 1 LAN using switch/ethernet-cable.
+- **Rules**
+  - Bus master device initiates a bus transfer between it and a single bus slave and provides the clock signals.
+  - A bus slave device can receive data provided by the master or it can provide data to the master.
 ```c
 Similar to Switch
 [Central        ]-------|-----------------|----------------|---SD_a(Data line)                 //Similar to LAN
@@ -10,7 +13,6 @@ Similar to Switch
                     IC-1/SOC-1      IC-2/SOC-2        IC-3/SOC-3                //Nodes=ICs or SOCs
                    sender/master    reciever/slave
 ```
-- **Addressing** Every IC on I<sup>2</sup> bus will have unique Addresses(7 bit). I<sup>2</sup> has its own addressing scheme. 1 device can have multiple addresses.
 - **Packet format**
 ```c  
         <-------header--------------->
