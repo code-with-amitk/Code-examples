@@ -6,11 +6,13 @@
   - *b.* Client asks data from server(page1). server sends page1 back to client and connection is closed.
   - *c.* Client asks page4 from server, which is not available at server. Unlike [Long Pooling]() server does not keep connection open, rather closes it
   - *d.* When Page4 becomes available server does websocket handshake sends data page4 to client and close() connection.
+- **How server maintains open connections?**
+  - Server will maintain hash-table <key=sockfd, value="Requested Page">
 - **Adv:**
   - Server need not to keep open file descriptor as it need to do with [Long Pooling](). Server will not run out of socket descriptors.
   - Unlike [Normal Pooling]() server does not send empty message when resource is not available and hence n/w BW is saved.
 ```html
-  Web-Client                Web-Server
+  WEB-CLIENT                  WEB-SERVER
         <--WebSocket-Handshake-->           //a
           
         -----HTTP GET(page1)-------->       //b
