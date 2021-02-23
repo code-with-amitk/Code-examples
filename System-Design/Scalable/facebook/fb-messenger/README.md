@@ -36,12 +36,14 @@
 
 ### Steps
   - *1-6* Same as facebook newsfeed.
-  - *7.* Chat-server receives the message from user-1. User-1 will keep a connection open with the server to receive ACK.
-  - *8.* chat server sends ack back to user-1 using zookeepr. Also pushes message on MOM
-  - *9.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages.
-  - *10.* fannout-msg service recieves notification and sends message to user.
+  - *7.* User-1 will keep a connection open with the server to receive ACK. [App/Chat-server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer) sends ack back to user-1 using zookeeper. Also pushes message on [MOM]()
+  - *8.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages. Pushes message on MOM.
+  - *9.* Fetcher service will recieve notification and gets message from DB. `src=user1,dst=usr2`
+  - *10.* fannout-msg service recieves notification and sends message to user-2.
   - *11.* user-2 sends ack to ack-service. Ack-service places ack on MOM.
   - *12.* fannout-ack service will receives notification and sends ack to user-1.
+
+<src img="Facebook_Messenger.jpg" width=1000 />
 
 ### Others
   - **Method by which Web client connects Application/Chat Server:** [Web Sockets](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods)
