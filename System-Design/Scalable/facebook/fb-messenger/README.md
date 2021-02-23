@@ -35,39 +35,21 @@
 # 3. HLD
 
 ### Steps
-- *1-6* Same as facebook newsfeed.
-- *7.* Chat-server receives the message from user-1.
-- *8.* chat server sends ack back to user-1 using zookeepr. Also pushes message on MOM
-- *9.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages.
-- *10.* fannout-msg service recieves notification and sends message to user.
-- *11.* user-2 sends ack to ack-service. Ack-service places ack on MOM.
-- *12.* fannout-ack service will receives notification and sends ack to user-1.
+  - *1-6* Same as facebook newsfeed.
+  - *7.* Chat-server receives the message from user-1.
+  - *8.* chat server sends ack back to user-1 using zookeepr. Also pushes message on MOM
+  - *9.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages.
+  - *10.* fannout-msg service recieves notification and sends message to user.
+  - *11.* user-2 sends ack to ack-service. Ack-service places ack on MOM.
+  - *12.* fannout-ack service will receives notification and sends ack to user-1.
 
 - **Method by which Web client connects Application/Chat Server:** [Web Sockets](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods)
 - **Number of Application/Chat servers?** 600 Million users daily sending messages. 1 server can handle 60k connection. 600M/60k = 10k servers
 - **[Load Balancer](/System-Design/Concepts/Load_Balancer)** Can maintain hash of userID to serverId and redirect message to appropriate chat server.
 - **What happens when server crashes:** Master-Slave Replicas should be maintained.
 
-
-## 3B. 10Lac to 1Cr Users
-
-- **1. Get Friend List of user**
-
-![ImgURL](fb-get-friendlist.png)
-
-- **2. Get list of Live users**
-
-![ImgURL](fb-get-live-friends.png)
-
-- **3. User sending "Hi" to friend**
-
-![ImgURL](fb-messenger-send-hi.png)
-
-
-
-
-## 4. DB Requirements
-- **1. Which DB is better in this usecase SQL or noSQL**
+## 4. DB Design
+- **1. Which to use SQL or noSQL**
 
 ||RDBMS(mongoDB,MySQL)|NoSQL(HBase)|
 |---|---|---|
