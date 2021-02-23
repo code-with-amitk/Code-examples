@@ -43,18 +43,17 @@
   - *11.* user-2 sends ack to ack-service. Ack-service places ack on MOM.
   - *12.* fannout-ack service will receives notification and sends ack to user-1.
 
-- **Method by which Web client connects Application/Chat Server:** [Web Sockets](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods)
-- **Number of Application/Chat servers?** 600 Million users daily sending messages. 1 server can handle 60k connection. 600M/60k = 10k servers
-- **[Load Balancer](/System-Design/Concepts/Load_Balancer)** Can maintain hash of userID to serverId and redirect message to appropriate chat server.
-- **What happens when server crashes:** Master-Slave Replicas should be maintained.
+### Others
+  - **Method by which Web client connects Application/Chat Server:** [Web Sockets](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods)
+  - **Number of Application/Chat servers?** 600 Million users daily sending messages. 1 server can handle 60k connection. 600M/60k = 10k servers
+  - **[Load Balancer](/System-Design/Concepts/Load_Balancer)** Can maintain hash of userID to serverId and redirect message to appropriate chat server.
+  - **What happens when server crashes:** Master-Slave Replicas should be maintained.
 
 ## 4. DB Design
-- **1. Which to use SQL or noSQL**
+### Will use [NoSQL(HBase)](/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/HBase/README.md). Not [SQLDB](/System-Design/Concepts/Databases)
+  - **Why not SQL?** SQL databases are not good for small frequent updates, Since users will send small frequent messages, Because in RDBMS complete row needs to Read/Written(which is heavy operation).
+  - **Why noSQL/HBase?** noSQL database can store multiple values against 1 key. HBase does not writes small chunks of data but write all data at once.
 
-||RDBMS(mongoDB,MySQL)|NoSQL(HBase)|
-|---|---|---|
-|Fit for this usecase|<ul><li>No</li></ul><ul><li>SQL databases are not good for small frequent updates, Since users will send small frequent messages</li></ul><ul><li>Because in RDBMS complete row needs to Read/Written(which is heavy operation)</li></ul>|<ul><li>Yes</li></ul><ul><li>Because noSQL database can store multiple values against 1 key</li></ul><ul><li>|
-  
 - **2. How many HBase databases required?**
   - Assuming 1 HBase-DB can store 10 TB. `157 zeta bytes / 10 TB  = 10pow9`
   - That's high number of Databases, we need to compress or deploy method to increase storage capacity on databases.
