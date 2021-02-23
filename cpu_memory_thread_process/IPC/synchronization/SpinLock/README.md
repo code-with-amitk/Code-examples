@@ -1,5 +1,6 @@
 ## Spin lock
 - **What?** Thread-2 keeps checking the lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.
+- **Applications?** Critical sections in ISR(Interrupt service routines){ISRs are defined inside kernel} are implemented using spinlocks.
 - **Example Code**
   - Processes wait on shared variable (shared_var)
   - *Process-1* enters Critical section when shared_var=0
@@ -23,3 +24,6 @@ while (TRUE) {
   }
 }
 ```
+- **Problems with spinlocks?** 
+  - *1.* Consumes more CPU.
+  - *2.* When 1 process is very slow(maybe doing lot of IO) wrt other. Faster process need to wait unneccesarily.
