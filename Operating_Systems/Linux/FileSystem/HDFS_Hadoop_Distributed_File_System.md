@@ -1,0 +1,2 @@
+## Hadoop Distributed File System
+Hadoop stores data in HDFS(derived from GFS-google file system). default block size=64MB. (xfs block size=4kb)  Blocks are replicated on multiple nodes. Eg: Block-1 on Node1, Node2. Block2 on Node1, Node3. Hence provides replication in case of failure without data loss. Cluster has single nameNode(manages metadata) and multiple dataNodes communicating using TCP/IP
