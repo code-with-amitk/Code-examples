@@ -1,11 +1,7 @@
 
 ## [I<sup>2</sup>C/I2C (Inter-Interconnected Circuit Bus)](https://www.youtube.com/watch?v=U5CDf4TNARE)
 - **What** 
-  - Developed by Philips, For communication between 2 soc's or IC's on 1 board using  [2-wire Serial communication bus](/cpu_memory_thread_process/CPU/Communication/Serial_Parallel_Bus.md). ICs on seperate boards cannot be connected using I<sup>2</sup>. Similar to nodes(ICs/SOCs) connected on 1 LAN using switch/ethernet-cable.
-  - I2C supports multiple master, but usually 1 master is present
-  - **Components which can be connected** sensors, clocks, EEPROM
-  - **Disadv:** Low bandwidth(less data can be sent), short distance, slow protocol, Max speed: 400kbps(around).
-  - **Adv:** Simple
+  - For communication between 2 soc's or IC's on 1 board using  [2-wire Serial communication bus](/cpu_memory_thread_process/CPU/Communication/Serial_Parallel_Bus.md). ICs on seperate boards cannot be connected using I<sup>2</sup>. Similar to nodes(ICs/SOCs) connected on 1 LAN using switch/ethernet-cable.
 ```c
 Similar to Switch
 [Central        ]-------|-----------------|----------------|---SD_a(Data line)                 //Similar to LAN
