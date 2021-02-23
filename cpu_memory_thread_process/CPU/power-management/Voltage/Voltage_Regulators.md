@@ -6,5 +6,10 @@
 
 <img src="https://i.ibb.co/VMHLZdg/voltage-regulator.png" width="600" />
 
-## SVI(Serial VID Interface) Controller/Regulator
--  Allows dynamic adjustment of the Core and Northbridge output voltages independently and in combination from 0.500V to 1.55V
+- **Flow**
+  - *1.* On system startup, VR is enabled 1st then CPU.
+  - *2.* VD sends VDD_plane_strap signal to CPU to know hoe many lines/planes CPU supports.
+  - *3.* Response from CPU is recieved on input pins.
+
+- **Domains/Channels/Lines**
+  - Each VR have 2 channels or domains or lines.
