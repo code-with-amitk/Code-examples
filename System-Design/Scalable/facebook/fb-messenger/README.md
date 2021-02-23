@@ -36,7 +36,7 @@
 
 ### Steps
   - *1-6* Same as facebook newsfeed.
-  - *7.* Chat-server receives the message from user-1.
+  - *7.* Chat-server receives the message from user-1. User-1 will keep a connection open with the server to receive ACK.
   - *8.* chat server sends ack back to user-1 using zookeepr. Also pushes message on MOM
   - *9.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages.
   - *10.* fannout-msg service recieves notification and sends message to user.
@@ -52,11 +52,10 @@
 ## 4. DB Design
 ### Will use [NoSQL(HBase)](/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/HBase/README.md). Not [SQLDB](/System-Design/Concepts/Databases)
   - **Why not SQL?** SQL databases are not good for small frequent updates, Since users will send small frequent messages, Because in RDBMS complete row needs to Read/Written(which is heavy operation).
-  - **Why noSQL/HBase?** noSQL database can store multiple values against 1 key. HBase does not writes small chunks of data but write all data at once.
-
-- **2. How many HBase databases required?**
-  - Assuming 1 HBase-DB can store 10 TB. `157 zeta bytes / 10 TB  = 10pow9`
-  - That's high number of Databases, we need to compress or deploy method to increase storage capacity on databases.
+  - **Why noSQL/HBase?** 
+    - noSQL database can store multiple values against 1 key. 
+    - HBase does not writes small chunks of data but write all data at once.
+      - How many HBase databases required? Assuming 1 HBase-DB can store 10 TB. 2.7PB/10TB = 1000
 
 - **3. Group-Chat**
   - Database can store a seperate coloumn for group-chat(Identified by GroupChat-ID)
