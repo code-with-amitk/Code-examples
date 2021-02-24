@@ -8,6 +8,8 @@
 |Network||Cloudfront,VPC, Direct Connect, Load Balancing, Route 53|
 |Security,Identity,Compliance||IAM,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,WAF(Web Application Firewall),Sheild,Artifact|
 
+- Security
+```
  a. IAM (Identity and Access Management)
     - manage users and their levels of access to the AWS resources.
   b. Cognition
@@ -31,3 +33,4 @@
     - Prevents DDoS Attacks. Can be used with load balancers, cloud front, as well as Route 53
   j. Artifact: 
     - Is used for compliance and audit
+```
