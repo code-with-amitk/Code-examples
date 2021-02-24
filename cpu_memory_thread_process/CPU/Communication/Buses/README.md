@@ -1,9 +1,13 @@
 ## Comparison
 
-|Bus>|I<sup>2</sup>C(2 wire bus)|SMBus(2 wire bus)|PMBus|
+|Bus>|I<sup>2</sup>C|SMBus(System Management Bus)|PMBus(Power Management Bus)|
 |---|---|---|---|
-|Developed by|Philips(1982)|Intel(1995)||
-|What|Oldest|Superset of I<sup>2</sup>C|Superset of SMBus|
+|Developed by|Philips(1982)|Intel(1995)|Intel|
+|Wire|2|2|2|
+|Latest Rev||SMBus 2.0|PMBus 3.1(2018)|
+|What|Oldest|Superset of I<sup>2</sup>C|Superset of SMBus. Defines domain specific commands|
+|Max Speed||100Khz|400KHz|
+|Max Block Size||32 Bytes|255 Bytes|
 |Compared to OSI Layer|Physical Layer|Phy+DL+N/W|Phy+DL+N/W+Transport Layer|
 |Addresses|7 bit(1 device can have multiple addresses)|same as I2C||
 |Components to connect|sensors, clocks, EEPROM|||
