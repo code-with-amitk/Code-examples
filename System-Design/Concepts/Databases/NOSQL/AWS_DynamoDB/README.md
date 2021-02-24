@@ -4,6 +4,5 @@
 - **Stored on** SSD
 - **Spreads across** 3 geographically distinct data centers
 - Read consistent by default. Consistency across all copies of data is usually reached within a second
-
 ### Data model
-![ImgUrl](https://i.ibb.co/pf7hw2f/dynamodb.png)
+<img src="dynamodb.png" width=600 />
