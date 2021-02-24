@@ -15,15 +15,15 @@ R: Master reading, Slave should write
 W: Master writing, slave should read.  
 ```
 
-### Steps of Communicating with a Slave on I<sup>2</sup> Bus
+### Master communicating with slave
+- *1.* Master if(SCL=high){ Pulls SDA to low. send low on SDA. }
+- *2.* Master sends address byte(consists of 7 bit slave address)+RW bit.
+- *3.* Slave . ok this is my address. if(SCL=high){ Pulls SDA to low. send low on SDA on 9th clock Signal}  //called Acknowledgement
+- *4.* All other devices remains silent.
+- *5.* Slave waits to data to be RW using its Shift_Registers.
 - Slave can be voltage regulator and master can be tool.
-```c
-  Master/Tool                          Slave(address=43)
-    -[00101001][W][Slave-address][1]--->
-    <---------ACK----------------------
-      ---Stop-bit----------------->
-      <---------ACK-----------
-```
+
+**Steps on Tool**
 - *1.* Get Slave address to which master want to send data. Eg slave_address=43.
 - *2.* write slave address at off1 = Register_Aperature + offset1
 - *3.* Enable I2C bus by setting 1 at off2 = Register_Aperature + offset2
