@@ -26,5 +26,5 @@ while (TRUE) {
 ```
 ## Problems with spinlocks?
 - *1.* Consumes more CPU.
-- *2.* When 1 process is very slow(maybe doing lot of IO) wrt other. Faster process need to wait unneccesarily.
-  - **Solution: Peterson’s Solution**
+- *2.* Slow and fast processes in spin lock. Consider Process-1 is fast, Process-2 is slow. As Process-2 enters critical section, CPU schedules process-2 for IO. Now Process-1 need to wait until process-1's IO(slow operations) does not complete.
+  - **Solution: [Peterson’s Solution](Peterson_Solution.md)**
