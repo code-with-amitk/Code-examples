@@ -1,5 +1,3 @@
-- *Remove*
-
 |Question|Explain|
 |---|---|
 |Remove Adjacent Upper Lower CaseLetters|Input=`leEeetcode`, Output=`leetcode`|
