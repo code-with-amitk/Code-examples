@@ -1,0 +1,5 @@
+- **PC Power Management?** Feature that turns off the power or switches of system to a low-power state when inactive. This is built around a standard called ACPI.
+- **Why Power Management?** Reduce energy consumption, Prolong battery life, Reduce cooling requirements, Reduce noise, Reduce operating costs for energy and cooling
+- **How Achieved?** Power Management can be done on whole CPU or on specific component (as main memory or cache)
+  - *1. DVFS(Dynamic voltage scaling/dynamic frequency scaling)*
+  - *2. Clock Gating, Power Gating*
