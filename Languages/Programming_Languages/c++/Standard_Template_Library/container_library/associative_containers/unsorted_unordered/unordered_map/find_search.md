@@ -17,7 +17,6 @@ if (it != um.end()) {                            //Found Key
 }
 ```
 -  **2. Pair having smallest `key`**
-  - Considering map in bullet-1, smallest key=1 and pair=<1,2>
 ```c++
   unordered_map<int,int>::iterator it;
   it = min_element(um.begin(), um.end());
@@ -25,7 +24,6 @@ if (it != um.end()) {                            //Found Key
 ```
 
 - **3. Pair having smallest `value`**
-  - Considering map in bullet-1, smallest value pair = `<4,1>`
 ```c++
   static bool comp(pair<int,int> i, pair<int, int> j)
     return i.second < j.second;
