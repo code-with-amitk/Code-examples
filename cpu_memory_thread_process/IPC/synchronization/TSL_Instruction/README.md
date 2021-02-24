@@ -11,11 +11,11 @@
     Lock already acquired, loop until lock==0
 ``` 
 ### Code
-**Steps**
+#### Steps
   - *1.* Read variable into register
   - *2.* if (register==0){ Set register and enter CS}
   - *3.* if (register==1){Someone in CS, wait in loop}
-**Code**
+#### Code
 ```c
 enter_region:
   TSL REGISTER, Shared_Lock_Variable    //reg=Shared_Lock_Variable; Shared_Lock_Variable=1  Read Shared_Lock_Variable and set to 1
