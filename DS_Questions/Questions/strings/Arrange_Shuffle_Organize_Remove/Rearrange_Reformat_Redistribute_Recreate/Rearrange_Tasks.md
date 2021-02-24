@@ -1,0 +1,121 @@
+## [Task Scheduler](https://leetcode.com/problems/task-scheduler/)
+- Given a array of tasks, representing the tasks a CPU needs to do, where each letter represents a different task. Each task is done in one unit of time. For each unit of time.
+- There is a non-negative integer n that represents the cooldown period between two same tasks (the same letter in the array), that is that there must be at least n units of time between any two same tasks.
+- Return the least number of units of times that the CPU will take to finish all the given tasks.
+- Examples
+```c
+Input: tasks = ['A','B','A'], n=2
+Output = 4
+A B idle A        //A can only be scheduled after 2 sec of cooling period
+
+Input: tasks = ['A','A','A','B','B','B'], n = 2
+Output: 8
+A B idle A B idle A B     //A and B both can only be scheduled after 2 sec of cooling period
+
+Example 2:
+Input: tasks = ["A","A","A","B","B","B"], n = 0
+Output: 6
+A B A B A B           //no cooling needed
+
+Example 3:
+Input: tasks = ["A","A","A","A","A","A","B","C","D","E","F","G"], n = 2
+Output: 16
+A B C A D E A F G A idle idle A idle idle A
+```
+
+## 1. Approach-1
+> tasks = `['A','A','A','B','B','C']`, n = 2
+
+  - *1.* Find task having max freq and create a imaginary array seperated by cooling period and task
+```c
+  task frequency
+    A     3
+    B     2
+    C     1    
+    
+    A _ _ A _ _ A   //idle_time = 4.  Remove A from list since its already schedueled
+    
+  task frequency
+    B     2
+    C     1
+```
+  - *2.* Fill idle time with next task having max frequency.
+```c
+  A B _ A B _ A         //idle_time = 2. Remove B from list, since its scheduled.
+  
+  task frequency
+    C     1
+```
+  - *3.* Repeat process until task list is not empty.
+```c
+  A B C A B _ A         //idle_time = 1. Remove C from list, since its scheduled.  
+```
+  - *4.* return idle_time + task.size()
+
+### Logic
+  - *1.* Create unordered_map of frequency. key=char, value=freq
+```c
+  |B,2|A,3|C,1|
+```
+  - *2.* Create maxHeap of key=frequency, value=char
+```c
+    |A,3|
+    /   \
+ |B,2|  |C,1|
+```
+  - *3.* Find maximum idle time based on cooling period and task having max freqeuncy. Assumed max freq task already scheduled.
+```c
+  A _ _ A _ _ A
+    |B,2|
+        \
+        |C,1|
+```
+  - *4.* Place other tasks on schedule array until tasks becomes empty and reduce idle_time
+```c
+  A B _ A B _ A         //idle_time = 2. Remove B from list, since its scheduled.
+A B C A B _ A         //idle_time = 1. Remove C from list, since its scheduled.    
+```
+### Code
+```c++
+int leastInterval(std::vector<char>& tasks, int n) {
+  if (not n)
+    return tasks.size();
+    
+  int top=0;
+  std::unordered_map<char,int> um;
+  std::priority_queue<std::pair<int,char>> pq;
+
+  //{{B,2},{A,3},{D,1}}
+  for(auto ch:tasks)                //1
+    um[ch]++;
+
+  //{{3,A},{2,B},{1,D}}
+  for (auto [i,j]:um)               //2
+    pq.push(std::make_pair(j,i));
+
+  int idle_time = 0, max_ele = 0;
+  top = pq.top().first; pq.pop();
+  max_ele = top;
+  idle_time = (max_ele - 1)*n;        //3
+
+  while (pq.empty() != 1 && idle_time){
+    top = pq.top().first; pq.pop();
+    idle_time -=  std::min(max_ele-1, top);   //4
+  }
+
+  idle_time = std::max(0, idle_time);
+  return idle_time + tasks.size();
+}
+int main(){
+  std::vector<char> c = {'A','A','A','B','B','B'};  int n=2;
+  std::cout<<s.leastInterval(c,n);
+}  
+```
+### Complexity
+- **Time:** O(n)
+  - O(n): Creating unordered_map
+  - O(n): Creating maxHeap
+  - O(n): Traversing maxHeap  //Considering all non-repeating tasks 
+- **Space** O(n)
+  - O(n): unordered_map
+  - O(n): maxHeap
