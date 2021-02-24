@@ -1,6 +1,6 @@
 ## Comparison
 
-|Bus>|I<sup>2</sup>C|SMBus(System Management Bus)|PMBus(Power Management Bus)|
+|Bus|I<sup>2</sup>C|SMBus(System Management Bus)|PMBus(Power Management Bus)|
 |---|---|---|---|
 |Developed by|Philips(1982)|Intel(1995)|Intel|
 |Wire|2|2|2|
