@@ -4,7 +4,7 @@
 |---|---|---|---|
 |Developed by|Philips(1982)|Intel(1995)|Intel|
 |Wire|2|2|2|
-|Latest Rev||SMBus 2.0|PMBus 3.1(2018)|
+|Latest Rev||SMBus 3.1(2018)|PMBus 1.3|
 |What|Oldest|Superset of I<sup>2</sup>C|Superset of SMBus. Defines domain specific commands|
 |Max Speed||100Khz|400KHz|
 |Max Block Size||32 Bytes|255 Bytes|
