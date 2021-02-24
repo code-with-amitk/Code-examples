@@ -1,5 +1,6 @@
 ## Graph DB?
-- **Why?** We live in a connected world with most pieces connected and data is connected
+- **Why?** We live in a connected world with most pieces connected and data is connected.
+- **[GraphDB use cases](/System-Design/Concepts/Databases/NOSQL/Graph_DB/AWS_Neptune)**
 - **Graph vs Relational DB**
 
 | | Graph | Relational |
