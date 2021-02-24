@@ -1,18 +1,12 @@
 
-## [I<sup>2</sup>C/I2C (Inter-Interconnected Circuit Bus)](https://www.youtube.com/watch?v=U5CDf4TNARE)
+## [I<sup>2</sup>C/I2C (Inter-Interconnected Circuit Bus)](https://www.i2c-bus.org/specification/)
 - **What** 
-  - For communication between 2 soc's or IC's on 1 board using  [2-wire Serial communication bus](/cpu_memory_thread_process/CPU/Communication/Serial_Parallel_Bus.md). 
-  - ICs on seperate boards cannot be connected using I<sup>2</sup>C. Similar to nodes(ICs/SOCs) connected on 1 LAN using switch/ethernet-cable.
+  - For communication between 2 soc's or IC's on 1 board using  [2-wire Serial communication bus](/cpu_memory_thread_process/CPU/Communication/Serial_Parallel_Bus.md), ICs on seperate boards can also be connected using I<sup>2</sup>C. Similar to nodes(ICs/SOCs) connected on 1 LAN using switch/ethernet-cable.
 - **Rules**
   - Bus master device initiates a bus transfer between it and a single bus slave and provides the clock signals.
   - A bus slave device can receive data provided by the master or it can provide data to the master.
-```c
-Similar to Switch
-[Central        ]-------|-----------------|----------------|---SD_a(Data line)                 //Similar to LAN
-[Microcontroller]------||----------------||---------------||---SC_l(Clock line)
-                    IC-1/SOC-1      IC-2/SOC-2        IC-3/SOC-3                //Nodes=ICs or SOCs
-                   sender/master    reciever/slave
-```
+ 
+
 - **Packet format**
 ```c  
         <-------header--------------->
