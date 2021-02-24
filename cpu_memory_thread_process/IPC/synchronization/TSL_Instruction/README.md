@@ -1,7 +1,7 @@
 ## TSL Instruction (Test and Set Lock)
 > TSL Register, Shared_Lock_Variable
 
-- **What?** Similar to other Synchronization methods, But here shared_lock_variable is read into register(TSL) which is gurantted atomic. 
+- **What?** Similar to other Synchronization methods, But here shared_lock_variable is read into register using TSL instruction which is guranteed atomic. 
   - if (Shared_Lock_Variable == 0)      //no one in critical section. set lock to 1 and enter CS
   - else if (Shared_Lock_Variable != 0) //Lock already acquired, loop until lock==0
 - **Example**
