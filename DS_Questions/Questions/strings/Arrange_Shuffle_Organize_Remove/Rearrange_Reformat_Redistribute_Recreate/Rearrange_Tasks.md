@@ -23,7 +23,7 @@ Output: 16
 A B C A D E A F G A idle idle A idle idle A
 ```
 
-## 1. Approach-1
+## 1. Approach-1    //Intution. Time:O(n), Space:O(n)
 > tasks = `['A','A','A','B','B','C']`, n = 2
 
   - *1.* Find task having max freq and create a imaginary array seperated by cooling period and task
@@ -59,16 +59,16 @@ A B C A D E A F G A idle idle A idle idle A
 ```
   - *2.* Create maxHeap of key=frequency, value=char
 ```c
-    |A,3|
+    |3,A|
     /   \
- |B,2|  |C,1|
+ |2,B|  |1,C|
 ```
   - *3.* Find maximum idle time based on cooling period and task having max freqeuncy. Assumed max freq task already scheduled.
 ```c
   A _ _ A _ _ A
-    |B,2|
+    |2,B|
         \
-        |C,1|
+        |1,C|
 ```
   - *4.* Place other tasks on schedule array until tasks becomes empty and reduce idle_time
 ```c
