@@ -14,7 +14,7 @@
   - *2.* min [Latency](/Scalable/README.md)
 - **[Extended](/Scalable/README.md)** 
   - Group chats
-  - Push notifications: Messenger should be able to notify users of new messages when they are offline.
+  - Messenger should be able to notify users of new messages when they are offline.
 
 > {text < 650 characters} {audio < 1 min/10 MB}   {video < 45min/1 GB}
 
@@ -51,14 +51,15 @@
   - **What happens when server crashes:** Master-Slave Replicas should be maintained.
 
 ## 4. DB Design
-### Will use [NoSQL(HBase)](/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/HBase/README.md). Not [SQLDB](/System-Design/Concepts/Databases)
+### 4a. Use [NoSQL(HBase)](/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/HBase/README.md). Not [SQLDB](/System-Design/Concepts/Databases)
   - **Why not SQL?** SQL databases are not good for small frequent updates, Since users will send small frequent messages, Because in RDBMS complete row needs to Read/Written(which is heavy operation).
   - **Why noSQL/HBase?** 
     - noSQL database can store multiple values against 1 key. 
     - HBase does not writes small chunks of data but write all data at once.
       - How many HBase databases required? Assuming 1 HBase-DB can store 10 TB. 2.7PB/10TB = 1000
+### 4b. Storing chats on DB
+  - [Sharding based on userId](/System-Design/Concepts/Databases/Database_Scaling/README.md)
 
-- **3. Group-Chat**
-  - Database can store a seperate coloumn for group-chat(Identified by GroupChat-ID)
-  - This entry will contain all userId's who are part of group chat.
-  - Once a message is sent on group, Message is copied to data-stores of respective user Id's.
+## 5. Extended Req
+- **1. Group-Chat**
+  - Create a seperate table/Object called GroupChat. Each groupchat will have GroupChatId and will contain userIds which are part of GroupChat.
