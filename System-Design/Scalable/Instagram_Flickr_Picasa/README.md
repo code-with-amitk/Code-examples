@@ -19,3 +19,10 @@
   - Commenting on photos
 
 ## BOE
+
+|World Population|Daily Internet Users(30%)|Instagram Users(20% of Internet users)|(1%)Active users Daily|Each upload 1 photo daily|Photos/sec|
+|---|---|---|---|---|---|
+|7x10<sup>9</sup>//Year 2020|7B x .3 =~ 2 Billion|2B x .2 = 400 Million|4 Million|4M Photos uploaded daily|4M/24 x 60 x 60 = 4Photos/sec|
+
+- **Storage Estimates:** 1 Photo size=200KB. 1 day = 4M x 200KB = 800 GB. 5 years = 800G x30x12x5 = 1440TB
+- **Traffic Estimates:** 
