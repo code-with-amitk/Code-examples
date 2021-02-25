@@ -1,5 +1,11 @@
 ## SMTP Message Transfer
 > Note all messages in SMTP are 4 characters Eg: HELO, MAIL RCPT etc.
+- **Sending Message from User-1 to User-2:** Message is sent as Envelope+Body
+  - *1. Envelope:*  It contains all the information needed for transporting the message, such as the destination address, priority, and security level etc.
+  - *2. Body:* Actual message.  It consists of 2 parts:
+    - *2a. Header:*  contains control information for the user agents
+    - *2b. Body:* For human reciepients 
+
 
 **Steps**
 - *1.* client connects on port=25 and sends HELO.
