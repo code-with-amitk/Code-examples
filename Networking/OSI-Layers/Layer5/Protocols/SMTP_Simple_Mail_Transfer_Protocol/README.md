@@ -8,6 +8,7 @@
 ## Entities/Nodes in SMTP
 > There are 2 entities in SMTP
 <img src="smtp-architecture.JPG" width=600 />
+
 - **1. User Agent/Email Reader(Outlook/Gmail/Thunderbird etc):** Allows people to read/send/compose/search mail.
 - **2. Message Transfer Agent:** 
   - Transfers messages from source to destination.
