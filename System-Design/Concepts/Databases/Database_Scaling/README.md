@@ -33,9 +33,6 @@
 
 ## C. Sharding
 - **What?** Data is distributed across the databases, so that each DB only manages subset of data.
-- **Types of sharding?**
-  - *a.* Based on userId/username
-  - *b.* Based on messageId
 - **Adv:** a. Less data/DB hence more cache hits.
 - **Disadv:** a. If 1 DB goes down, replica should be up and running.    b. Complex SQL queries    c. Joining data from multiple shards is more complex.
 ```c
