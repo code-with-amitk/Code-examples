@@ -12,7 +12,6 @@
 - **Non-Functional**
   - *1.* Highly [Consistent](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md). User should see same data across all devices.
   - *2.* min [Latency](/Scalable/README.md)
-  - These sizes can be delivered as 1 message.
 - **[Extended](/Scalable/README.md)** 
   - Group chats
   - Push notifications: Messenger should be able to notify users of new messages when they are offline.
