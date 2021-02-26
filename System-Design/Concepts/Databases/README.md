@@ -20,7 +20,7 @@
 | Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
 | Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 | Schema | fixed | not fixed. defining schema for unstructured data is very tough |
-| Examples | Amazon S3, MySQL, postgre | <ul><li>**SEMI**: Amazon S3, Apache Cassandra, dynamoDB</li></ul> <ul><li>**UNSTRU**: Amazon S3, Apache CouchDB, MongoDB</li></ul> |
+| Examples | Amazon S3, MySQL, postgre | <ul><li>**SEMI**: Amazon S3, Apache Cassandra, [dynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB/README.md)</li></ul> <ul><li>**UNSTRU**: Amazon S3, Apache CouchDB, MongoDB</li></ul> |
 | Types | <ul><li>**ORDBMS(Object RDBMS)** RDBMS build on OOD. Eg: PostGreSQL</li></ul> <ul><li>**RDBMS** mySQL</li><ul> | <ul><li>**KEY-VALUE DB** Eg: redis, dynamoDB, Voldemort</li></ul> <ul><li>**WIDE-COLUMN DB:** Stores data as columns instead of rows. Eg: Cassandra, HBase</li></ul> <ul><li>**DOCUMENT DB:** data is stored in documents(XML, JSON, binary) Eg: mongoDB, dynamoDB</li></ul> <ul><li>**GRAPH DB:** Data is stored in form of graph. Eg: Neo4J, HyperGraphDB</li></ul>
   
 - Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
