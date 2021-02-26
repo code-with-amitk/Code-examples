@@ -18,7 +18,7 @@ Then 4 is the first bad version.
   - *1.* if mid is bad and (mid-1) is good then mid is the item which we are searching for.
 - **Complexity**
   - Time: O(logn) //Binary Search
-  - Space: O(logn)  //n recursion stacks
+  - Space: [O(1)](/DS_Questions)
 - **1. Code(Binary Search using recursion)**
 ```c
 int BinarySearch(long low, long high){
