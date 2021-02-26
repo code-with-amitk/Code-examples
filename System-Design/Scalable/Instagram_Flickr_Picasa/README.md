@@ -29,7 +29,34 @@
 
 ## 3. HLD
 
-**Steps: User uploading his photos**
+**Steps: User-1 uploading his photos, user-2 watching user-1's photos**
 - *1-6.* Same as [Facebook news feed](/System-Design/Scalable/facebook/News%20Feed).
 - *7.* Application server will forward photos to DB Updater(in some other Datacenter).
-- *8.* Photos will be stored on [Object Store DB](/System-Design/Concepts/Databases)
+- *8.* Photos will be stored on [Object Store DB](/System-Design/Concepts/Databases), also on [Replicas](/System-Design/Concepts/Databases/Database_Scaling)(loosing photo is not allowed).
+  - We will have dedicated servers for reads and different servers for writes to ensure that uploads don’t hog the system
+
+## 4. DB
+- **1. Storing Photo information:** 
+  - Photos on [HDFS](/Operating_Systems/Linux/FileSystem/HDFS_Hadoop_Distributed_File_System.md) or [S3](/System-Design/Concepts/Databases/Object_Storage/Amazon_S3.md)
+  - All tables stored on [noSQL key-value-DB](/System-Design/Concepts/Databases) (Eg: [DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB/README.md))
+```html
+User-Table
+  | userid | username(varchar) | Email | DOB | creationDate(datetime) | lastlogin_time | 
+  |--------|-------------------|-------|-----|------------------------|----------------|
+  |   999  |  amit             |   --  | --- |      ---               |   --           |
+
+Photo-Table
+   | Photoid(int) | userId(uint64_t) | photoPath(varchar)      | creationDate(datetime) | 
+  -|--------------|------------------|-------------------------|------------------------|-------
+   |  8919        |   999            |/srv/path/ (HDFS or S3)  |   ---                  |
+
+Meta-Data-Table: Key=photoID                                            //Information where photo-object,user-object are stored
+   | PhotoID | value(Location of userObject, photoObject) |
+---|---------|--------------------------------------------|
+   |  8919   |                                            |
+
+User-follow                         //Information about the users which this user is following
+  | Userid | Following |
+  |--------|-----------|
+  | 8991   | 9,2,3     |
+```
