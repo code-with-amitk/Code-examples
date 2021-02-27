@@ -40,7 +40,7 @@
   - Photos on [HDFS](/Operating_Systems/Linux/FileSystem/HDFS_Hadoop_Distributed_File_System.md) or [S3](/System-Design/Concepts/Databases/Object_Storage/Amazon_S3.md)
   - All tables stored on [noSQL key-value-DB](/System-Design/Concepts/Databases) (Eg: [DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB/README.md))
   - Will store all photos of 1 userid on 1 server [Shard](/System-Design/Concepts/Databases/Database_Scaling). UserID % 10 to find shard server.
-- **[2. Generating news feed for users]()**
+- **[2. Generating news feed for users](/Scalable/facebook/News%20Feed/README.md):** same as fb news feed
 
 ```html
 User-Table
