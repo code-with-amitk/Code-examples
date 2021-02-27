@@ -1,7 +1,7 @@
 ## Interrupt?
 - This is signal sent by IO device(Eg: keyboard) to Interrupt Controller(IC) when I/O device want CPU to do some task. 
   - Ex: User is watching a video(CPU using Video Memory), copying from network(CPU using NIC card). User presses key on keyboard, Interrupt is generated & sent to CPU.
-- IC forwards Interrupt to CPU, CPU stops what it is doing and start doing requested task(based on priority). After completing the task resumes it again.
+- IC forwards Interrupt to CPU, CPU stops what it is doing, finds [ISR(Interrupt Service Routine/Interrupt Handler)](ISR_Interrupt_Service_Routine.md) from [IVT(Interrupt Vector Table)](IVT_Interrupt_Vector_Table.md), executes ISR. After completing the ISR resumes the task what it was doing.
   - **INTERRUPT CONTROLLER?** Chip present on motherboard, which detects and forwards interrupt to CPU on address bus. Older computers might not have this, there devices need to talk with CPU directly.
 
 <img src="./interrupt.PNG" width=500 />
