@@ -1,6 +1,5 @@
 ## IVT(Interrupt Vector Table)
 - Contains ISR(Interrupt service routine)/Handler/Address to which CPU jumps at occurrence of interrupt. present in 1st 1K of physical memory
-- All devices are identified at boot time and respective ISRs are filled in IVT.
 - Interrupt number is used as index in IVT.  CPU goes to IVT's index, gets Program counter and starts Interrupt service procedure. Once CPU starts ISP, Device Acks Interrupt controller
 ```c
             | 0x420932 ISR of Int0 |      |     |     |
