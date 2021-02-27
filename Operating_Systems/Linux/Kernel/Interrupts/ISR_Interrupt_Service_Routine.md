@@ -1,5 +1,5 @@
 ## ISR(Interrupt Service Routine) / Interrupt Handler
-- ISR is function/process that processes the interrupt. Every device has seperate ISR.
+- ISR is function/process that processes the interrupt. ie this process is executed when interrupt is received. Every device has seperate ISR.
 - Registering ISR.
 ```c
 int request_irq(unsigned int irq,		                      //1
