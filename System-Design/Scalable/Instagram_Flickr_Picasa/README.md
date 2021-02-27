@@ -32,13 +32,16 @@
 **Steps: User-1 uploading his photos, user-2 watching user-1's photos**
 - *1-6.* Same as [Facebook news feed](/System-Design/Scalable/facebook/News%20Feed).
 - *7.* Application server will forward photos to DB Updater(in some other Datacenter).
-- *8.* Photos will be stored on [Object Store DB](/System-Design/Concepts/Databases), also on [Replicas](/System-Design/Concepts/Databases/Database_Scaling)(loosing photo is not allowed).
+- *8.* Photos will be stored on [Object Store DB](/System-Design/Concepts/Databases)
   - We will have dedicated servers for reads and different servers for writes to ensure that uploads don’t hog the system
 
 ## 4. DB
 - **1. Storing Photo information:** 
   - Photos on [HDFS](/Operating_Systems/Linux/FileSystem/HDFS_Hadoop_Distributed_File_System.md) or [S3](/System-Design/Concepts/Databases/Object_Storage/Amazon_S3.md)
   - All tables stored on [noSQL key-value-DB](/System-Design/Concepts/Databases) (Eg: [DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB/README.md))
+  - Will store all photos of 1 userid on 1 server [Shard](/System-Design/Concepts/Databases/Database_Scaling). UserID % 10 to find shard server.
+- **[2. Generating news feed for users]()**
+
 ```html
 User-Table
   | userid | username(varchar) | Email | DOB | creationDate(datetime) | lastlogin_time | 
@@ -60,3 +63,16 @@ User-follow                         //Information about the users which this use
   |--------|-----------|
   | 8991   | 9,2,3     |
 ```
+
+## 5. Where Load Balancers will be placed?
+
+## [6. Tradeoffs, Bottlenecks & Correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+- **1. Can Shard on userId Fail?** Yes, if load is high on 1 shard.
+  - *Solution:* Shard based on PhotoID. Each photo will have associated photoid. Which can be generated as done in [tinyurl](/System-Design/Scalable/tinyurl/Design.md)
+- **2. Scaling DB for future?**
+  - *Solution?* We will make multiple logical partitions on same Physical server. Initially only 1 partition will be occupied, as load increases other will fill gradually.
+- **3. Loosing photo/videos of user?** Yes, if DB fails
+  - *Solution:* [Replicas](/System-Design/Concepts/Databases/Database_Scaling)(loosing photo is not allowed).
+- **[4. Run time news feed generation: Solution](System-Design/Scalable/facebook/News%20Feed/README.md)**
+
+## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
