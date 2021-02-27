@@ -1,6 +1,6 @@
 ## IMAP (Internet Message Access Protocol)  / Port 143 / RFC 3501
-- Protocol for delivery of Email messages from Message Transfer Agent to Receiver User Agent(in [SMTP](/Networking/OSI-Layers/Layer5/Protocols/SMTP_Simple_Mail_Transfer_Protocol)).
-- IMAP is an improvement [POP3 protocol](/Networking/OSI-Layers/Layer5/Protocols/POP3_Post_Office_Protocol_v3/README.md)
+- Protocol for delivery of Email messages from Message Transfer Agent to Receiver User Agent(in [SMTP](/Networking/OSI-Layers/Layer5/Protocols/Email/SMTP_Simple_Mail_Transfer_Protocol)).
+- IMAP is an improvement [POP3 protocol](/Networking/OSI-Layers/Layer5/Protocols/Email/POP3_Post_Office_Protocol_v3/README.md)
 - **How it works?** Mail server runs an IMAP server that listens to port 143, user agent runs an IMAP client
   - Client connects to server and begin 
 ```html
