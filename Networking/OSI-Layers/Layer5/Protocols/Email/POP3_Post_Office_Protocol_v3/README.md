@@ -1,6 +1,6 @@
 ## POP3 / Post Office Protocol, version 3 / RFC 1939
-- POP3 is used for delivery of Email messages from Message Transfer Agent to Receiver User Agent in [SMTP](/Networking/OSI-Layers/Layer5/Protocols/SMTP_Simple_Mail_Transfer_Protocol).
-- [IMAP](/Networking/OSI-Layers/Layer5/Protocols/IMAP_Internet_Message_Access_Protocol/README.md) is improvement over POP3.
+- POP3 is used for delivery of Email messages from Message Transfer Agent to Receiver User Agent in [SMTP](/Networking/OSI-Layers/Layer5/Protocols/Email/SMTP_Simple_Mail_Transfer_Protocol).
+- [IMAP](/Networking/OSI-Layers/Layer5/Protocols/Email/IMAP_Internet_Message_Access_Protocol) is improvement over POP3.
 
 ||POP3|IMAP|
 |---|---|---|
