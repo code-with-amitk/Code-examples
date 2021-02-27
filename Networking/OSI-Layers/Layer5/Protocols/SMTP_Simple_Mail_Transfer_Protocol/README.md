@@ -1,5 +1,5 @@
-## SMTP (Simple Mail Transfer Protocol) / Port:25
-- RFC 5321 Protocol for sending mails and reporting back delivery status/errors.
+## SMTP (Simple Mail Transfer Protocol) / Port:25 / RFC 5321
+- Protocol for sending mails and reporting delivery status/errors.
 - [SMTP Terms](Terms.md)
 - [SMTP Server client Exchange, Packet Flow](Packet_Flow.md)
 - **Disadv:** No authentication, SMTP sends ASCII data, sends message as clear text(no Encryption).
