@@ -4,7 +4,7 @@
   - **1. User Agent/Email Reader(Outlook/Gmail/Thunderbird etc):** Allows people to read/send/compose/search mail.
   - **2. Message Transfer Agent:** Transfers messages from source to destination. Runs on  mail server machines. Uses SMTP to send mail from sender to reciever.
 
-<img src="smtp-architecture.JPG" width=600 />
+<img src="SMTPArchitecture.JPG" width=600 />
 
 - [SMTP Terms](Terms.md)
 - [SMTP Server client Exchange, Packet Flow](Packet_Flow.md)
