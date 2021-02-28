@@ -9,8 +9,10 @@
 ```
 
 - **2. ICMP Redirect?**
-  - Suppose host-1,router-1, router-2 lies on same LAN(ie connected using switch) and Host-1 want to send packet to Host-2. Host-1's Routing table shows route to reach Host-2 is using Router-2. But actually Router-1 need to send packet to Router-2 to send packet to internet since router-1 does not have nay interface connected to internet.
-  Host-1 sends packet to router-1 to send packet to host-2. Router-1 will send pkt to  router-2 and ICMP_Redirect to host-1, telling route to Host-2 is shorter from mine.
+  - When Router tells the host that there is a less costly path to reach destination other than mine, its sent using ICMP_redirect.
+  - *Example*
+    - Suppose host-1,router-1, router-2 lies on same LAN(ie connected using switch). host-1 want to send packet to host-2.
+    - Host-1 sends packet to router-1. Router-1 will send pkt to  router-2 and ICMP_Redirect to host-1, telling route to Host-2 is shorter from mine.
 ```html
             Router-1            Router-2 -----------internet---------Host-2       
       -|--------|-------------------|------
