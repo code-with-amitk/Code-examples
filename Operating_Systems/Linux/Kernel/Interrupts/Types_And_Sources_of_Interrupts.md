@@ -1,6 +1,6 @@
 ## Types of Interrupts
 - **1. Hardware, Software Interrupt**
-- 
+
 ||Hardware|Software|
 |---|---|---|
 |What|Caused by signal from H/W|Interrupt that originates in software(process in user mode), CPU need to switch to kernel mode|
@@ -15,12 +15,13 @@
 ```        
 
 - **2. Vectored & Non Vectored**
-- *1. Vectored?* The interrupts which have fixed address location ie ISR to be executed on occurence of Interrupt.
-- *2. Non Vectored?* The interrupts which does not have fixed address location for ISR to be executed at occurence
+  - *a. Vectored?* The interrupts which have fixed address location ie ISR to be executed on occurence of Interrupt.
+  - *b. Non Vectored?* The interrupts which does not have fixed address location for ISR to be executed at occurence
 
 - **3. Maskable & Non Maskable Interrupts**
-- *1. Maskable?* Interrupts which can be ignored by CPU.
-- *2. Non Maskable?* Interrupts which cannot be ignored by CPU.
+  - *a. Maskable?* Interrupts which can be ignored by CPU.
+  - *b. Non Maskable?* Interrupts which cannot be ignored by CPU.
 
 ## Source of Interrupt
 - **1. IO Device:**
+  
