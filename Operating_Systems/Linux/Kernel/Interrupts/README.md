@@ -2,7 +2,7 @@
 - **What?** Interrupt is sort of signal sent to CPU, to perform some high priority than currently what CPU is doing. 
 - [Type and Sources of Interrupts](Types_And_Sources_of_Interrupts.md).
 - **Example of Hardware Interrupt:**  
-  - User is watching a movie and presses key on keyboard(hardware device). Hardware device generates H/W Interrupt sends to [Interrupt Controller(IC) 8952](). IC sends to CPU on [INTR(Interrupt) PIN].
+  - User is watching a movie and presses key on keyboard(hardware device). Hardware device generates H/W Interrupt sends to [Interrupt Controller-8952 on IR0-IR7 lines](/Motherboard/8952_PIC/README.md). IC forwards to CPU on [CPU's INTR(Interrupt) PIN](/Motherboard/CPU/8086/PIN_Diagram.md).
   - CPU stops what it is doing and [Saves state](Things_CPU_does_after_getting_Interrupt.md).
   - Finds [ISR(Interrupt Service Routine/Interrupt Handler)](ISR_Interrupt_Service_Routine.md) from [IVT(Interrupt Vector Table)](IVT_Interrupt_Vector_Table.md), executes ISR. After completing the ISR resumes the task what it was doing.
 
