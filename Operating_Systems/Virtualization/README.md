@@ -1,7 +1,7 @@
 ## Virtualization
 - **What?** 1 computer hosting multiple virtual machines, each VM running different operating systems.
-- [Advatanges of Virtualization]()
-- **[History of Virtualization](History_of_Virtualization.md)** 
+- [Advatanges of Virtualization](Advantages_of_Virtualization.md), [History of Virtualization](History_of_Virtualization.md)
+- **How Virtulization works?** [VMM/Virtual Machine Monitor](VMM_Virtual_Machine_Monitor.md)
 - **Major Hypervisors?**
   - *1. XEN:* Open source Linux based type-1. 
   - *2. VMWARE ESXI:* 
