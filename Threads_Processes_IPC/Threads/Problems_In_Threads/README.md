@@ -6,7 +6,7 @@
     - *b.* Each thread its own private global variables. This will create new problem of accessing other thread's global variables.
     - *c.* Every thread allocates its own variables on heap & hence getting seperate copy. `struct* var = new new(struct var)`
 
-### 2. Many library functions are not [Rentrant](/cpu_memory_thread_process/threads/Terms)
+### 2. Many library functions are not [Rentrant](/Threads_Processes_IPC/Threads/Terms/)
 
 ### 3. Signal Handling by Threads
 - *a.* Signals like keyboard interrupt(Cntrl^C), are not thread specific. if 10 threads are there which thread should handle it?
