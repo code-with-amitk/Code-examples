@@ -1,5 +1,6 @@
 ## Types of Interrupts
 - **1. Hardware, Software Interrupt**
+- 
 ||Hardware|Software|
 |---|---|---|
 |What|Caused by signal from H/W|Interrupt that originates in software(process in user mode), CPU need to switch to kernel mode|
