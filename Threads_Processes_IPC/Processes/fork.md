@@ -1,6 +1,6 @@
 ## FORK
 - **What?** System call for creating child process from parent process.
-- When fork() is called, complete [Process Space(SS,HS,DS,CS)](https://sites.google.com/site/amitinterviewpreparation/c-1) of parent is duplicated to child, New PCB is created for child. Code Segment is Duplicated using [COW(Copy on Write)](/cpu_memory_thread_process/processes/process_copy_on_write.c)
+- When fork() is called, complete [Process Space(SS,HS,DS,CS)](https://sites.google.com/site/amitinterviewpreparation/c-1) of parent is duplicated to child, New PCB is created for child. Code Segment is Duplicated using [COW(Copy on Write)](/Threads_Processes_IPC/Processes/process_copy_on_write.c)
 - Code After if(fork){}else{} is executed by both parent and child.
 ```c
          -------fork() Duplicates-----
