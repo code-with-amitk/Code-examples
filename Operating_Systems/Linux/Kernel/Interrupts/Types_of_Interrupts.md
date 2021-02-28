@@ -1,5 +1,6 @@
 ## Types of Interrupts
 
+### 1. Hardware, Software Interrupt
 ||Hardware|Software|
 |---|---|---|
 |What|Caused by signal from H/W|Interrupt that originates in software(process in user mode), CPU need to switch to kernel mode|
@@ -12,3 +13,11 @@
   mov rcx,arg2
   int 0x80        ;Call S/W Interrupt. Just call int function with Interrupt number.    //As int is called Control Reaches IVT, Interrupt Vector table
 ```        
+
+### 2. Vectored & Non Vectored
+- **Vectored?** The interrupts which have fixed address location ie ISR to be executed on occurence of Interrupt.
+- **Non Vectored?** The interrupts which does not have fixed address location for ISR to be executed at occurence
+
+### 3. Maskable & Non Maskable Interrupts
+- **Maskable?** Interrupts which can be ignored by CPU.
+- **Non Maskable?** Interrupts which cannot be ignored by CPU.
