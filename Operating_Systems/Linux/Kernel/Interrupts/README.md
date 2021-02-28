@@ -1,5 +1,6 @@
 ## Interrupt?
-- **What?** This is signal sent by IO device(Eg: keyboard) to Interrupt Controller(IC) when I/O device want CPU to do some task. 
+- **What?** Interrupt is sort of signal sent to CPU, to perform some high priority than currently what CPU is doing. [Type and Sources of Interrupts](Types_And_Sources_of_Interrupts.md).
+  -  This is signal sent by IO device(Eg: keyboard) to Interrupt Controller(IC) when I/O device want CPU to do some task. 
   - Ex: User is watching a movie(CPU using Video Memory) and presses key on keyboard(hardware device) to pause it, Interrupt is generated & sent to CPU on Interrupt line.
     - *Interrupt Lines(IL):* Every device is connected to IC on IL, these are 15-16 in total. These are shared between devices. IL should not be reserved by 1 device.
 - **How?** 
