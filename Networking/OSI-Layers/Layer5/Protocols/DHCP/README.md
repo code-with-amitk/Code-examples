@@ -37,3 +37,5 @@
 ### Use cases of DHCP
 - **1. Used by ISPs.** DHCP is used by ISPs to set the parameters of devices over the Internet access link, so that customers do not need to phone their ISPs to get things done.
 - **2. Companies.**
+
+## [Advantages and Disadvatages of DHCP](Advantages_Disadv_of_DHCP.md)
