@@ -1,0 +1,19 @@
+Country, City, Street, HouseNumber, Num_Resident_Age_0, Num_Resident_Age_1,Num_Resident_Age_2, Num_Resident_Age_3
+
+India,Mumbai,Street01,34,1,1,2,0
+
+India,Delhi,Street02,54,0,0,0,2
+
+Bangladesh,Dhaka,Street03,98,2,0,1,0
+
+China,Bejing,Street01,67,0,0,4,0
+
+India,Mumbai,Street01,54,0,0,0,2
+
+Shrilanka,Kolambo,Street05,112,0,0,5,0
+
+USA,California,Street01,214,0,0,1,0
+
+USA,New York,Street07,98,0,0,0,2
+
+UK,London,Street05,78,0,0,3,0
