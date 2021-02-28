@@ -5,6 +5,6 @@
 - **TCP UDP Port?** No TCP or UDP port number is associated with ICMP packets as these numbers are associated with the transport layer.
 - **Commands using ICMP?** ping, [traceroute](Trace_Route.md).
 - **[ICMP packet format?](ICMP_Header.md)**
-- **[Terms?](ICMP_Terms.md)** Ping Sweep, ICMP Redirect
+- **[Terms?** Ping Sweep, ICMP Redirect](ICMP_Terms.md)
 
 - COMMON FLAWS IN ICMP: See ICMP Vulnerabilities.
