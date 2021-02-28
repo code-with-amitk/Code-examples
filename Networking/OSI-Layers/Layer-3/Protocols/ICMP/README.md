@@ -1,14 +1,16 @@
-## INTERNET CONTROL MESSAGE PROTOCOL
+## ICMP / Internet Control Message Protocol
 - **Why?** 
-  - Used by network devices(eg routers) to send Messages(Error, informational) indicating(Success or failure) when communicating with another IP address. On receiving ICMP message, ICMP error message need to be delivered to application responsible for transmitting the IP packet. No TCP or UDP port number associated with ICMP packets as these numbers are associated with the transport layer.
-Commands using ICMP? ping, traceroute.
+  - Used by network devices(eg routers) to send Messages(Error, informational) indicating(Success or failure) when communicating with another IP address.
+  - On receiving ICMP message, ICMP error message need to be delivered to application responsible for transmitting the IP packet. 
+- **TCP UDP Port?** No TCP or UDP port number is associated with ICMP packets as these numbers are associated with the transport layer.
+- **Commands using ICMP?** ping, traceroute.
+- **ICMP packet format?**
 
-### ICMP packet format?     
-> | MAC | IP | ICMP-pkt |
-```c
-    <----------------------             ICMP HEADER            -------------------------><---------------------                        DATA        --------------------------------------->
-    |                                                                                                                      |
-    | Type(1 byte) | Code(1 byte) | Checksum(2 byte) | Rest of header(4 bytes) |  Copy-of-entire-IPv4-Header | (8 to 576 bytes) of IPv4 packet that caused error |
+```html
+| MAC | IP | ICMP-pkt |
+
+<--------------------- ICMP header -------------------------------><---------------          Data --------------------------------------------->
+|Type(1 byte)|Code(1 byte)|Checksum(2 byte)|Rest of header(4 bytes)|Copy-of-entire-IPv4-Header|(8 to 576 bytes) of IPv4 packet that caused error|
 ```
 - **ICMP HEADER**
 ```
