@@ -8,4 +8,6 @@
 |Bandwidth consumption|More|Less. Less headers are sent|Even less|
 
 ### Problems in HTTP-2
+- **1. Sending Multiple requests in 1 packet:** if you send req-1(page1), req-2(page2), req-3(page3) in 1 packet and that packet is lost. None of page can be loaded, Everything comes to halt. We need to send whole packet again. This is called HEAD OF LINE BLOCKING.
+  - *Solution:* HTTP-3 using UDP. Every packet on different UDP.
 
