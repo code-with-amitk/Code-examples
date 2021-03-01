@@ -8,3 +8,5 @@
       - *b. Country TLD:* For specific country
   - *2. 2nd-Level-Domain:* Companies registers for 2LD. Example: company-name.com. 2nd-level-domain is sold by registrars of ICANN. Eg: cisco.com
   - *3. 3rd-Level-Domain:* Example: contact.cisco.com    These are often used to represent host server. Each domain will keep record of sundomains under it.
+
+<img src=domain-names.png width=800 />
