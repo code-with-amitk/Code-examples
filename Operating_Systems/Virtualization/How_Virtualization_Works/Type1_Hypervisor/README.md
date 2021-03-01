@@ -10,3 +10,5 @@
   - Ring 1: Guest OS Kernel is placed
   - Ring 3: User space of Guest OS
 - **Executing system call in Guest OS User space:** Call reaches guest OS kernel mode which trap to the hypervisor. The hypervisor does some sanity checks and then performs the instructions on the guest’s behalf.
+
+<img src=How_Type1_Hypervisor_works.jpg width=600 />
