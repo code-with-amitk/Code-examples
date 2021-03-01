@@ -32,3 +32,4 @@
        aperatureStartAddress = 0000_0000_c000_0000
     }
 ```
+## [Reading/Writing GPU Registers](Reading_Writing_GPU_Registers.md)
