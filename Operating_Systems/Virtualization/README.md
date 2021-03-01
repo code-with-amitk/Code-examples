@@ -9,3 +9,4 @@
   - *3. HYPER-V:* Hypervisor by Microsoft.
     - *3A. AZURE* Runs on customized version of Hyper V. Its hardened and stripped down.
   - *4. KVM:* Open source Linux based. Used in RHEV(Redhat Enterprise Virtualization).
+- **How it works?**
