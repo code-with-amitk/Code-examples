@@ -3,7 +3,7 @@
 - **A. PCI(Peripheral Component Interconnect)?** A standard that describes how to connect the peripheral components/devices of a system together in a structured and controlled way.
 - **B. PCI-Bridges?** These are used to connect more than 1 PCI bus to the system. Bridges joins the PCI buses.
 - **C. PCI Bus Architecture?** Overall layout of a PCI system is a tree where each bus is connected to an upper-layer bus, up to bus 0 at the root of the tree.
-```c++
+```html
    -------CPU-----------
   |           Registers |
   | CU        ========  |
@@ -27,6 +27,7 @@
                                                                          
 > MAX BUSES can be 256 supported by any motherboard
 This is for future, presently you will see max 20-30 devices on PCI Bus.
+Huge Boards can have higher number of PCI buses
 
 1 PCI Domain:     
 256 Buses > 32 PCI devices/Bus > 8 functions/Device.        
