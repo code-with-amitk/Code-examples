@@ -8,7 +8,7 @@
     - Table-1: How many times each block is present in a file
     - Table-2: how often each block is present in the free list
 
-<img src="filesystem-consistency-check.jpg" width=500 />
+<img src="filesystem-consistency-check.jpg" width=800 />
 
 - **2. Findings from Tables**
   - *table-a.* CONSISTENT_FILESYSTEM. if filesystem is consistent each block will have a 1 either in the first table or in the second table.
