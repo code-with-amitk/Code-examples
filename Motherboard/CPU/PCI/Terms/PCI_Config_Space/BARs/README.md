@@ -15,8 +15,9 @@
 |5|0x24|<ul><li>Memory Mapped Register Space or Register Base Address or GPU Register Access = REGBASE</li></ul><ul><li>if we want to read beyond memory mapped by BAR5. Place offset on RSMU_Index_Register(0x50) and read data from RSMU_Data_Register(0x54)</li></ul>|
 
 - **Reading BAR Registers:** How BIOS discover what's sizeof MMIO Range is needed by PCI Device(Eg:GPU). Sizeof MMIO Range means memory needed to map this device configuration space.
-- **1. (BAR0 << 32) + BAR1 Video Frame Buffer**
 ```c
+ (BAR0 << 32) + BAR1 Video Frame Buffer
+ 
     BIOS						BAR0(c000_000c)
        ----Read BAR5 in uint32_t--->
        <---read(bn, dn, offset=0x10, &dword=c000_000c)---
