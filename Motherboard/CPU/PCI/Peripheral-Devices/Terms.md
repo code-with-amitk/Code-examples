@@ -24,6 +24,10 @@
                                                                         |        0000:03:07.6.40 | 
                                                                         -------------------------- 
                                                                          //Domain:0,Bus:3,Device:7,Function:6,Register:40
+                                                                         
+> MAX BUSES can be 256 supported by any motherboard
+This is for future, presently you will see max 20-30 devices on PCI Bus.
+
 1 PCI Domain:     
 256 Buses > 32 PCI devices/Bus > 8 functions/Device.        
 Functions or PCI Configuration Space Registers: 256 bytes(PCI), 4096 bytes(PCIe)
