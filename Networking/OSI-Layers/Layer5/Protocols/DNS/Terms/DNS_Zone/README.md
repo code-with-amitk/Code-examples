@@ -4,6 +4,8 @@
 - **Why dns zone?** 
   - if whole information of 1 domain lies on 1 single machine(eg: for com domain lies on 1 machine), then TLD machines would be hugely overloaded and failure of 1 machine will make whole domain down.
 
+<img src=dns-zones.PNG width=800 />
+
 ## TYPES OF ZONES
 - **A. PRIMARY ZONE** Methods of storing DNS information/DNS DB:    
   - *1. locally in .txt file:* 
