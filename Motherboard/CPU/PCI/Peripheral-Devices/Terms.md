@@ -39,31 +39,6 @@ Functions or PCI Configuration Space Registers: 256 bytes(PCI), 4096 bytes(PCIe)
 ```
 ![ImgURL](https://i.ibb.co/SK8BKzH/pci.png)
 
-### D. Peripheral/PCI Device
-- **What?** Device used to put/get information into/from computer eg: I/O devices. Devices that is connected to PCI Bus.
-- **PCI Device Examples?**  *Input*:Mouse,keyboard,webcam  *Output*: Monitor,printer,headphones *I/O*: Network cards, Bus controllers USB, PCMCIA, Sound cards, Graphics cards
-- **PCI Device types**
-  1. *End point device(Type 0)* That does not spawn another bus behind it. Example: VGA, LAN card
-  2. *Bridge Device(Type-1)* Which can spawn another bus behind it.
-- **Locating PCI Device:** PCI device can be reached at Bus:Device:Function
-  - Each PCI device is represented using: 
-    - *Bus No* Bus on which PCI device is connected
-    - *Device Number (5 bit)* Each device is given a number by vendor.
-    - *Function number(3 bit)* Each device can have upto 8 functions.
-- **Listing all PCI devices on system**
-```c
-# lspci                    //Enumerates all PCI devices
-Bus:Device.Function
-  03:00:0          VGA Controller(GPU)
-  03.00.1          Audio Device
-# lspci -x										//Lists PCI configuration space for each device
-.........
-00:07.0	ISA Bridge: Intel Corporation 823171AB/EB/MB PIIX4 ISA (rev 01)
-00: 86 80 10 81 07 00 00 02 01 00 01 06 00 00 80 00
-10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
-20: 00 00 00 00 00 00 00 00 00 00 00 00 14 14 00 00
-30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-.........
 
 ```
 - *SYSFS File System* sysfs file system is automatically mounted at /sys by kernel contains information of PCI devices on system.
