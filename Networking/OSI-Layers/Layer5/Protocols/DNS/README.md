@@ -9,4 +9,5 @@
   - [Domain/Domain Name](/Terms/Domain_Name): TLD(Top Level Domain)
   - [Nameservers](Terms/Name_Server): Primary, Secondary
   - [Resource Records](/Terms/Resource_Records)
+- **[Advantages_Disadv_of_DNS](Advantages_Disadv_of_DNS)**
  
