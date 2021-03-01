@@ -7,9 +7,12 @@
 - **Architecture**
 ```c
     | PBS |  File Table | Root Dir | Clusters |
-```    
-  - PBS(Parititon Boot Sector)/MBR: Location of BIOS, other OS details(sector size, ptr to file table)
-  - File Table: ptrs to clusters. OS uses clusters to store files.    Root Dir: Metadata of files stores in each directory.    Clusters: Actual data storage
+    
+  PBS(Parititon Boot Sector)/MBR: Location of BIOS, other OS details(sector size, ptr to file table)
+  File Table: ptrs to clusters. OS uses clusters to store files.    
+  Root Dir: Metadata of files stores in each directory.    
+  Clusters: Actual data storage    
+```
         
 ## 2. Linux File System 
 - **Examples:** Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
