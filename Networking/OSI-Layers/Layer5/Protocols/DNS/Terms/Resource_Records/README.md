@@ -3,12 +3,11 @@
 - **FORMAT:**
 ```c
 DOMAINNAME    TIMETOLIVE(sec)    CLASS(IN:for internet)    TYPE_OF_RR    VALUE
-```
-  - DOMAINNAME: Domain to which this RR applies. Each domain can have RRs of multiple domains. This filed is primary search key for search.
-  - TTL: How stable RR is. Eg: 86400(1 day)
-  - VALUE: Value of RR can be Number, domain name or string.
-  - TYPE OF RR: What kind of RR is. 
-```c
+
+DOMAINNAME: Domain to which this RR applies. Each domain can have RRs of multiple domains. This filed is primary search key for search.
+TTL: How stable RR is. Eg: 86400(1 day)
+VALUE: Value of RR can be Number, domain name or string.
+TYPE OF RR: What kind of RR is. 
     A. SOA(Start of Authority): value 6. Provides name of primary source of information about name server’s zone. Eg(Email of admin etc).    # host -v -t SOA example.com
     B. A Record: 4byte-IP to hostname mapping. Every internet have 1 or more IP addresses. All are returned.     # host A google.com;  dig hostname;  nslookup hostname
     C. AAAA RECORD: 128bit-IPv6 to hostname map.  (google.com, 2404:6800:4003:c00::65)
