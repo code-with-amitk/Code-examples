@@ -9,4 +9,12 @@
   - *2. 2nd-Level-Domain:* Companies registers for 2LD. Example: company-name.com. 2nd-level-domain is sold by registrars of ICANN. Eg: cisco.com
   - *3. 3rd-Level-Domain:* Example: contact.cisco.com    These are often used to represent host server. Each domain will keep record of sundomains under it.
 
-<img src=domain-names.png width=1200 />
+<img src=domain-names.png width=1500 />
+
+- **1.168.192.in-addr.arpa. is reverse DNS** for 192.168.1 Class C( Means this reverse DNS Zone will handle reverse DNS for IPs 192.168.1.1 - 192.168.1.256)
+  - A leaf domain may contain a single host, or it may represent a company and contain thousands of hosts
+
+- CyberSquatting: Selling a domain to interested party at much higher price.
+
+- HOSTNAME/Fully Qualified Domain Name[FQDN]? Complete name of resource/machine. Example:windows2012-1.infra.cisco.com.
+  - Why FQDN? IP address is assigned to a machine its very difficult to remember. so these IP addresses are converted to name using DNS.
