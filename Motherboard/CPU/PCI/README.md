@@ -1,4 +1,5 @@
-```
+- [PCI Devices] can be plugged on PCI slots present on mother board and connected to CPU using PCI-Buses.
+```c
    -------CPU-----------
   |           Registers |
   | CU        ========  |
