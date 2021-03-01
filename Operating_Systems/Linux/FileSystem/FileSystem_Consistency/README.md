@@ -6,5 +6,5 @@ an inconsistent state.
   - *Unix:* fcsk
   - *Windows:* sfc
 - **Methods of Checking Consistency**
-  - *1.* Block Consistency Check
+  - *1.* [Block Consistency Check](Block_Consistency_Check.md)
   - *2.* File Consistency Check
