@@ -1,6 +1,7 @@
 ## Peripheral/PCI Device
 - **What?** 
-  - Any I/O device that plugs directly into a PCI slot on a computer’s motherboard. Each PCI Device is represented using **4096bytes Function**.
+  - Any I/O device that plugs directly into a PCI slot on a computer’s motherboard.
+  - Each PCI Device is represented using **4096bytes Function**.
   - Each Function present at (Segment>Bus>Device>Function) has {Header 64bytes}+{Memory Area 4032bytes}
 - **Examples of PCI devices?** Modem, Network card, Sound card, Video card, Wireless adapter, GPU, bridges etc
 - **PCI Device types**
