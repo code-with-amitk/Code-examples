@@ -2,6 +2,7 @@
  - **What?** The process of looking up a hostname and finding corresponding IP address.
 
 ### 1. Forward Lookup (hostname to IP conversion)
+- [DNS Query](../DNS_Messages), [Recursive DNS Server](../Terms/DNS_Queries/), [Root_Nameserver](../Terms/Name_Server), [Authoritative_NameServer](../Terms/Name_Server)
 <img src=forward-lookup.JPG width=1000 />
 
 ### 2. Reverse Lookup (IP to hostname)
