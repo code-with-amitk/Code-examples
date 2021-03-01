@@ -1,5 +1,5 @@
  ## Domain Name
- - **What?** An area/URL owned/controlled by organization or a manager. Example: cisco.com
+ - **Domain Name/Domain?** An area/URL owned/controlled by organization or a manager. Example: cisco.com
  - **Subdomain?** Domain created inside main domain. Eg: sales.cisco.com
  - **Levels of Domain?**
   - *1. TOP LEVEL(around 250):* TLDs are run by registrars appointed by ICANN(Internet Corporation for Assigned Names and Numbers). ICANN manages TLDs. Some domains are restricted. Eg: xxx
