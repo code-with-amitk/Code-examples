@@ -34,3 +34,10 @@
  mmap 256MB from MCFGTable-base address to process memory
  4096bytes Config Space per function
 ``` 
+
+
+### Communication b/w CPU & PCI Device
+- **Method-1 MMIO(Memory Mapped IO)**
+  - At system boot, kernel send/recv messages with each PCI-device & maps PCI-device control registers([PCI Config Space registers](/Terms/PCI_Config_Space)) into the address space of the processor, this address space is called MCFG-SPACE(256 MB).
+  - When device driver accesses the PCI device, its memory and I/O regions have already been mapped into the processor’s address space.
+- **Method-2 (Special I/O instructions)**
