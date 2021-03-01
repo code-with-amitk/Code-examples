@@ -26,3 +26,23 @@ Bus:Device.Function
 # lspci | grep bridge | wc - l      //Lots of Bridges
 67
 ```
+- PCI Device
+```html
+-----PCI-Bus-n---|
+                 |
+------------PCI Device------------------------------------------------------
+| PCI Config Space OR                                                       |
+| Configuration Registers <===================256 bytes===================> |
+|                                                                           |
+|                                                                           |
+----------------------------------------------------------------------------
+
+Upto 65535 PCI Domain(or PCI Segment Group). Most systems have only 1 PCI Domain/Segment Group(number=0).
+1 PCI Domain:
+=> 256 Buses
+=> 32 PCI devices/Bus
+=> 8 functions/Device
+=> Config Space Register/function
+ - 256 (PCI)
+ - 4096 (PCIe)
+```
