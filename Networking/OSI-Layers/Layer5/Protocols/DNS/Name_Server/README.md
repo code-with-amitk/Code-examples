@@ -1,5 +1,5 @@
- ## Name server / Nameserver
- - Computer responsible for a particular domain, ie responding to that domain queries. One zone can have 1 or more name servers. Types of NS
+## Name server / Nameserver
+- Computer responsible for a particular domain, ie responding to that domain queries. One zone can have 1 or more name servers. Types of NS
   - 1. Primary NS? Zone have 1 primary name server which gets its information from DNS zone file on its disk.
   - 2. Secondary NS? Get their information from the primary name server, maybe internet facing.
   - 3. Root NS? Server which have IP-Addresses of nameservers handling TLDs. eg: .com, .org
