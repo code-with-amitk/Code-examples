@@ -1,5 +1,7 @@
-- [PCI Devices](/Terms/PCI_Device) can be plugged on PCI slots present on mother board and connected to CPU using PCI-Buses.
-```c
+## PCI system Architecture
+  - [PCI Devices](/Terms/PCI_Device) can be plugged on PCI slots present on mother board and connected to CPU using PCI-Buses, buses are connected using [PCI-Bridges](Terms/PCI_Bridge).
+  - Layout of a PCI system is a tree where each bus is connected to an upper-layer bus, up to bus 0 at the root of the tree.
+```html
    -------CPU-----------
   |           Registers |
   | CU        ========  |
@@ -32,13 +34,3 @@
  mmap 256MB from MCFGTable-base address to process memory
  4096bytes Config Space per function
 ``` 
-## Contents
-  - **Peripheral-Devices.md**
-    - Peripheral Devices?
-    - PCB & configuration registers
-    - PCI Device Addresses
-    - How PCI devices are detected
-  - **PCI_PCIBus_PCIDomain.md**
-    - PCI?
-    - PCI Bridges
-    - PCI Domain
