@@ -1,4 +1,4 @@
-- [Machine Not Reachable]()
+- [Machine Not Reachable](Machine_Not_Rechable)
   - *1.* Is server Pingable(ping command)?
   - *2.* Can remote port be connected (telnet command)?
   - *3.* Do src have route to dst (traceroute command)?
