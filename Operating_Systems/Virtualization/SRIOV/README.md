@@ -12,3 +12,5 @@ Application[open/read/write/close]  <>  Device-File  <> Device-Driver        Har
 ### Physical and Virtual Functions
 - **Physical Function?** PFs are full PCIe functions ie access to complete PCIe space. This is not available to Guest OS.
 - **Virtual Function?** VFs provide to virtual devices.
+
+<img src=./sriovarchitecture.png width=800 />
