@@ -1,6 +1,6 @@
-# Compiler
+## Compiler
   
-```
+```c
         source-code                                  expanded-code                  
                                  ------------------                          ---------------------------------------------------------COMPILER---------------------------------------------------------------   assembly-code
             a.c            -> | Pre-processor |     - a.i ->             | lexical-analyzer > syntax-analyzer > semantic-analyzer > intermediate-code-generator > code-optimizer > code-generator  | - a.s ->
