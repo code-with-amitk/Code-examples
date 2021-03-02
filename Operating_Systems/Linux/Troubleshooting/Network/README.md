@@ -1,1 +1,5 @@
 - [Machine Not Reachable]()
+  - *1.* Is server Pingable(ping command)?
+  - *2.* Can remote port be connected (telnet command)?
+  - *3.* Do src have route to dst (traceroute command)?
+  - *4.* Does kernel routing table have route to dst (route command)?
