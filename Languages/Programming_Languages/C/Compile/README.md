@@ -48,7 +48,7 @@ int main(){
 ```      
    
 ### 3. `[AS]` Assembler `(*.s → *.o)`
-  - Takes `*.s` as input and outputs [Object files](Object_File_Format.md) `*.o`.
+  - Takes `*.s` as input and outputs [Object files](Object_File) `*.o`.
   - **-c Flag** Stop after assembly stage not to run into linker.
 ```c
   # gcc -c test.c
