@@ -6,6 +6,8 @@
   - *-n:* show Numeric
   - *-t:* tcp
   - *-u:* udp
+
+### Commands
 - *1. Show TCP/UDP statistics of all interfaces:* `# netstat  -plunt`
 - *2. Get number of active connections:* `# netstat -ant | awk '{print $NF}' | grep -v '[a-z]' | sort | uniq -c`
 - *3. Get number of connections per ip address:* `# netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n`
