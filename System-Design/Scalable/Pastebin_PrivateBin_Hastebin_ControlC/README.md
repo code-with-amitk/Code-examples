@@ -40,7 +40,7 @@
 
 ## 3. System APIs
 - SOAP or REST APIs to expose the functionality of our service.
-```html
+```c
 string WritePaste(api_dev_key, paste_data, custom_url(optional) string user_name, string paste_name(optional), string expire_date(optional))
   api_dev_key (string): The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota.
   paste_data (string): Textual data of the paste.
@@ -57,7 +57,7 @@ getPaste(api_dev_key, api_paste_key)
 
 ## 4. DB Design
 - Use 2 Tables, 1 for storing Pastes & other for user's data.
-```js
+```html
 TABLE-1
 | userID | Location of paste | shortURL(key)(varchar) | creationDate(dateime) | expirationTime(datetime) |
 |--------|-------------------|------------------------|-----------------------|--------------------------|
