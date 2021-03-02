@@ -27,8 +27,8 @@ int main(){
 }
 ```    
   
-### 2. [`CCL` Compiler `(*.i → *.s)`](compiler.md)
-  - Converts Intermediate files to Assembly language files `*.s`
+### 2. [`CCL` Compiler `(*.i → *.o)`](compiler.md)
+  - Generates Object files. Only when told compiler generates asm files. Converts Intermediate files to object files.
   - Compiler is only bothered about ***function declaration***, it does not check definition.
   - Linking definition to function is task of ***Linker***. Linker gives `undefined reference` error if it cannot find definition inside `*.obj` OR  `*.so`  OR  `*.a`
   - **Functions** Lexical Analysis, parsing, Semantic Analysis, Verify code syntax
