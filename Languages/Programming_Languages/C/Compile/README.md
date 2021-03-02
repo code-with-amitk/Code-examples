@@ -1,4 +1,4 @@
-# Compilation Steps
+## Compilation Steps
 
 <img src="https://i.ibb.co/447zDgX/com-steps.png" alt="com-steps" border="0">
 
