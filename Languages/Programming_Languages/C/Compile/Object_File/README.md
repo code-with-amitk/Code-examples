@@ -67,5 +67,5 @@ typedef struct {
 - .data, .data1: Initialized data that contribute to the program's memory image.
 - .dynamic: Dynamic linking information
 - .rodata, .rodata1: Read-only data that typically contribute to a non-writable segment in the process image
-- .symtab: Symbol table
+- .symtab: [Symbol table](Sections/Symbol_Table.md)
 - .text: The text or executable instructions of a program.
