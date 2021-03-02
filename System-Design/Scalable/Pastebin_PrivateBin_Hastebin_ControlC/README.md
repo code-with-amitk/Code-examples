@@ -57,7 +57,7 @@ getPaste(api_dev_key, api_paste_key)
 
 ## 4. DB Design
 - Use 2 Tables, 1 for storing Pastes & other for user's data.
-```html
+```js
 TABLE-1
 | userID | Location of paste | shortURL(key)(varchar) | creationDate(dateime) | expirationTime(datetime) |
 |--------|-------------------|------------------------|-----------------------|--------------------------|
