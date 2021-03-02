@@ -1,6 +1,6 @@
 ## Compilation Steps
 
-<img src=Complilation-Steps.jpg width=600 />
+<img src=Complilation-Steps.jpg width=1000 />
 
 Source
 ```
