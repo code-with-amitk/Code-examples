@@ -1,4 +1,5 @@
 ## Reading Capabilites of Device
+- *1.* Push all devices which are SRIOV capable on vector.
 ```c
 class CPCI_EE_SRIOVCaps : CPCI_caps {
   uint16 caps_offset;
