@@ -4,4 +4,4 @@
   - *1.* systemd can start multiple services parallely(while init cannot) which reduces boot time of a system.
   - *2.* Ability to remove unneccessary services.
   - *3.* systemd itself takes less booting time wrt init.
-- **Units in systemd**
+- **[Units in systemd](Units)**
