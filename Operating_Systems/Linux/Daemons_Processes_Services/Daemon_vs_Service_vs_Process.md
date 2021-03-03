@@ -14,3 +14,27 @@ root    904  0.0  0.0  129492  8589   ?    Ss    2020  1:11  /usr/lib/systemd/sy
 
 ## Process
 - 1 or more threads of execution together. Converting process to service(See systemd section below)?
+- **Converting Process to service?**
+```c
+# g++ test.cpp -o AmitService -std=c++11
+int main(){        
+    cout<<"Sleeping for 9 sec";    
+    this::thread::sleep_for(chrono::microseconds(9*10pow6));    
+    cout<<"Awake";    
+}
+# vim /etc/systemd/system/AmitService.service
+    [Unit]
+    Description=Test Service
+    After=network.target
+    StartLimitIntervalSec=0
+    [Service]
+    Type=simple
+    Restart=always
+    RestartSec=1
+    User=amit
+    ExecStart=/usr/bin/env /home/amit/code/test.cpp
+    [Install]
+    WantedBy=multi-user.target
+# systemctl start|enable|status|disable AmitService
+# cat /var/log/message                        //Check Logs
+```
