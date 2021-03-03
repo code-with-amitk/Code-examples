@@ -114,4 +114,23 @@ here> 1         //Ok value is between 2 and 1
   - **Space:** O(1)
 - **Code**
 ```c++
+int closestValue(TreeNode* root, double target) {
+  int val=0;
+  int closest = root->val;
+  while (root != nullptr) {
+    val = root->val;
+      
+    //Keep noting closet value to target.
+    if (abs(val - target) < abs(closest - target))
+      closest = val;
+      
+      
+    //Move on left or right
+    if(target < root->val)            //root =  target < root->val ? root->left : root->right;
+      root = root->left;
+    else
+      root = root->right;
+  }
+  return closest;
+}
 ```
