@@ -33,7 +33,7 @@
 ## 3. HLD
 > User creates gmail account, 15GB space is reserved for him, once he logs in dashboard is provided to user.
 
-- **3.1 New File Creation**
+- **1 New File Creation**
   - *a.* User creates a file. A client Application running on user's machine sends following information (userId, fileId, file content, hash of file)
   - *b.* Server stores text/photo/video on [Object-DB]() and following on meta-data SQL server.
 ```c
@@ -42,27 +42,23 @@ File's Metadata table:
 | userId | uniqueFileID (uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocation (PtrOnDB) | Directory structure | Shared-With |
 ```
 
-- **3.2 Updating Existing File**
+- **2 Updating Existing File**
   - Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
     - *a.* User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
     - *b.* User erases last 100 lines and adds new 200 lines. File size is changed.
       - **Hash based solution:** We will pre-divide whole file into chunks. Chunk-1{0-100 lines=10kb}, Chunk-2, Chunk-3 and so on.
       - Client will store hash of chunks. Whenever user writes to file, Client Application will recalculate the hashes for chunk. Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
  
-#### Modules of Client Application
+### 3.1 Modules of Client Application
 > We can create different modules inside Client-Application doing above task.
   - **1. Internal Metadata Database** Stores this information: all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks.
 ```c
-| fileUniqueID | No of chunks | sizeofChunk | fileStartPointer | fileEndPointer | ptrTo_hash_structure | version |
-| --- | --- | --- | --- | --- | --- | --- |
+| fileID | No of chunks | sizeofChunk | fileStartPtr | fileEndPtr | ptrTo_hash_structure | version |
 | 0x8129 | 4 | 200 bytes | 0x45 | 0x789 | 0x492m | 4 |
-                                               |
-                                               | 
                                               \/
-                                        | hashOf-Chunk1 | hashOf-Chunk2 | hashOf-Chunk3 | hashOf-Chunk4 |
+                                        | hashOf-Chunk1 | .... | hashOf-Chunk4 |
                                           hashOf_chunkStructure
 ```
-
   - **2. Watcher** This will keep watch on workspace for any changes made by user. When user changes file.
      - It will notify chunker about the change. This also implements *select()/poll()/epoll()* API, it listens for communication from drop-box server.
   - **3. Chunker** Module doing all processing about chunks. Fills/updates *Internal Metadata database*.
@@ -75,7 +71,7 @@ File's Metadata table:
       - New Hash of chunk        //If data is modified in transit, server can detect data is malformed.
       - Actual data of chunk     //To be stored on object store
       - **On server on reception of chunks:** Actual file content/chunk is updated on object store. For userId, fileId, oldHash is replaced with newHash.
- ![ImgURL](https://i.ibb.co/TMDWjLr/dropbox-client-application.png)
+ <img src=dropbox-client-application.png width=600 />
 
 #### Modules of Application Server
 - **1. Communication Server**
