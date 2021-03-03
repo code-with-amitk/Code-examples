@@ -71,7 +71,7 @@ File's Metadata table:
       - New Hash of chunk        //If data is modified in transit, server can detect data is malformed.
       - Actual data of chunk     //To be stored on object store
       - **On server on reception of chunks:** Actual file content/chunk is updated on object store. For userId, fileId, oldHash is replaced with newHash.
- <img src=dropbox-client-application.png width=600 />
+ <img src=dropbox-client-application.PNG width=600 />
 
 #### Modules of Application Server
 - **1. Communication Server**
