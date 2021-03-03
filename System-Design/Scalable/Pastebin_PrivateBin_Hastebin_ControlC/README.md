@@ -71,7 +71,14 @@ TABLE-2: User Table
 - *1-6.* Same as [facebook newsfeed](/System-Design/Scalable/facebook/News%20Feed).
 - *7.* [Application Server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer) will store connection information and direct the paste,userid,timestamp to DB Updater service using [MOM](/System-Design/Concepts/MOM_ESB).
 - *8.* DB Updater will recieve notification. It will store paste on [Object Store](/System-Design/Concepts/Databases), update Paste-table with pasteLocation(ie URL) and send userId and timestamp on MOM.
-- *9.* Picker shortURL service will get notification, it will fetch shortURL from shortURL-DB which is filled by KGS and update Paste-Table with shortURL. Picker will push shortURL, userId to shortURL sender service.
+- *9.* Picker shortURL service will get notification, it will fetch shortURL from shortURL-DB which is filled by [KGS](/System-Design/Scalable/tinyurl/Design.md) and update Paste-Table with shortURL. Picker will push shortURL, userId to shortURL sender service.
 - *10.* shorturl sender service will recieve notification from MOM, find connection info from DB and send shortURL to user using SSL Terminator & [CDN](/System-Design/Concepts/CDN).
 
 <img src=Pastebin.jpg width=900 />
+
+- **[Where load balancers can be placed?](/System-Design/Concepts/Load_Balancer)**
+- **[Where Caches can be placed](/System-Design/Concepts/Cache)**
+
+## 6. [Bottleneck Tradeoffs and correction](/System-Design/Scalable/tinyurl)
+
+## 7. [Changing Requrirements](/System-Design/Concepts/Changing_Requirements)
