@@ -53,7 +53,7 @@ File's Metadata table:
  
 ### 3.1 Modules of Client Application
 > We can create different modules inside Client-Application doing above task.
-  - **1. Internal Metadata Database** Stores this information: all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks.
+  - **1. Internal Metadata Database** Stores this information: all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks. Client will store meta data information locally as well.
 ```c
 | fileID | No of chunks | sizeofChunk | fileStartPtr | fileEndPtr | ptrTo_hash_structure | version |
 | 0x8129 | 4 | 200 bytes | 0x45 | 0x789 | 0x492m | 4 |
@@ -72,28 +72,35 @@ File's Metadata table:
       - Old Hash of chunk        //Dropbox server is also storing hashes,server will find this hash in its DB and know this field needs updation
       - New Hash of chunk        //If data is modified in transit, server can detect data is malformed.
       - Actual data of chunk     //To be stored on object store
-      - **On server on reception of chunks:** Actual file content/chunk is updated on object store. For userId, fileId, oldHash is replaced with newHash.
+      - **On Server on reception of chunk:** Sending and updating data using Hash and Chunk is called **DATA DECUPLICATION**.
+```c
+  if (recieved_HASH == stored_Hash) 
+    Discard Chunk.
+  else
+    Update Original File content, Hash of chunk
+```
  <img src=dropbox-client-application.PNG width=600 />
 
+## 4. DB
+- **Data Partitioning?** We can use Hash based [Sharding](/System-Design/Concepts/Databases/Database_Scaling). Take hash of fileId. Hashes from 1-100 goes to DB-server1, 100-200 goes to DB-server2 and so on.
+  - Sharding based on Hash of fileId can fail on overloaded environment, We should use [Consistent hashing](/System-Design/Concepts/Hashing)
+- **[Caching](/System-Design/Concepts/Cache)?** Before Meta-data-DB: Memcached
 
+## 5. Load Balancers
+- [Where Load Balancer can be placed](/System-Design/Concepts/Load_Balancer)? 
+  - *a.* B/W client application & Application server. 
+  - *b.* B/W client application & meta data sever
 
-## D. METADATA SERVER PARTIONING
-### Hash Based Partioning
-- Take hash of userID. Hashes from 1-100 goes to DB-server1, 100-200 goes to DB-server2 and so on.
-- Still this approach can get overloaded.
-- We should use **consistent hashing**.
+## 6. [Overall Tradeoffs/Bottlenecks & correction]((/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+- *1.* if 2 users are viewing same file at a time, how consistent view can be provided?
+  - *Solution:* 
+    - Introduce a synchronization server will read meta-data server and will provide info to users.
+    - Instead of transmitting entire files from clients to the server or vice versa, we can just transmit the difference between two versions of a file
+- *2.* If high number of clients are connected system may respond slow.
+  - *Solution:*
+    - Provide MOM between Application server & clients which will queue client requests.
+    - Provide MOM between synchronization server & clients. MOM can queue millions of requests.
+- *3.* Sharding based on Hash of fileId can fail on overloaded environment.
+  - Solution: Consistent hashing
 
-## E. CACHING
-### 1. Chunk cacher
-- Stores frequently accessed chunks of files by particular user.
-- **memcached** is fit for solution.
-- **LRU** can be used as cache replacement policy.
-
-## F. LOAD BALANCEER
-- LB can be placed at 2 places.
-### 1. B/W client application & Dropbox reciver component
-### 2. B/W client application & meta data sever
-- Client application later on will interact directly with meta data server after proper end point are discoverd.
-
-
-  
+## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
