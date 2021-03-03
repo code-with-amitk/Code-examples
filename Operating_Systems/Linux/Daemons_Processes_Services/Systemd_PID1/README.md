@@ -5,3 +5,4 @@
   - *2.* Ability to remove unneccessary services.
   - *3.* systemd itself takes less booting time wrt init.
 - **[Units in systemd](Units)**
+- **[Booting up with systemd](Booting_up_With_systemd.md)**
