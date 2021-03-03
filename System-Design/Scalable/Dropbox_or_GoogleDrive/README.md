@@ -33,6 +33,7 @@
 ## 3. HLD
 > User creates gmail account, 15GB space is reserved for him, once he logs in dashboard is provided to user.
 
+### 3.1 Use Cases
 - **1 New File Creation**
   - *a.* User creates a file. A client Application running on user's machine sends following information (userId, fileId, file content, hash of file)
   - *b.* Server stores text/photo/video on [Object-DB]() and following on meta-data SQL server.
@@ -49,9 +50,16 @@ File's Metadata table:
       - **Hash based solution:** We will pre-divide whole file into chunks. Chunk-1{0-100 lines=10kb}, Chunk-2, Chunk-3 and so on.
       - Client will store hash of chunks. Whenever user writes to file, Client Application will recalculate the hashes for chunk. Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
 
+### 3.2 Flow
+- *1-6.* Same as [Facebook newsfeed]()
+- *7.* Application server stores connection info in conn_db. Push file Content, MetaData recieved from client on [MOM]().
+- *8.* Updater will receive notification, stores file Content on [Object Store]() and meta data on [SQL DB]().
+- *9.* Pooler service keeps on pooling for changed row from Meta-data server and recieves notification, it Reads newly/changed added row. Read userId, fileId and pushes on MOM.
+- *10.* Acknowledgement service will recieve notification from MOM, gets connection information from conn-DB and sends ACK to userId for FileID.
 
- 
-### 3.1 Modules of Client Application
+<img src=Dropbox.jpg width=1000 />
+
+### 3.3 Modules of Client Application
 > We can create different modules inside Client-Application doing above task.
   - **1. Internal Metadata Database** Stores this information: all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks. Client will store meta data information locally as well.
 ```c
