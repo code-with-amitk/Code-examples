@@ -99,7 +99,7 @@ File's Metadata table:
   - *a.* B/W client application & Application server. 
   - *b.* B/W client application & meta data sever
 
-## 6. [Overall Tradeoffs/Bottlenecks & correction]((/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+## 6. [Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 - *1.* if 2 users are viewing same file at a time, how consistent view can be provided?
   - *Solution:* 
     - Introduce a synchronization server will read meta-data server and will provide info to users.
