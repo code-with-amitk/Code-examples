@@ -4,6 +4,6 @@
   - **Why?** Due to rapid growth of number of Internet users(Eg: PCs, printer, router specially mobile devices) IPv4 address depletion has started. IPv4 address is assigned to each interface.
   - All 5 RIRs have already depleted their IP Addresses. These RIRs still allocate recovered addresses or addresses reserved for a special purpose.
   - **Solutions**
-    - [NAT](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/routing)
+    - [NAT](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/routing). Permenent solution is IPv6 only.
     - [CIDR](https://sites.google.com/site/amitinterviewpreparation/networking/layer3)
     - IPv6
