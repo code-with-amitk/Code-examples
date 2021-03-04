@@ -1,4 +1,5 @@
 - **Twitter?** Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc.
+  - This is read heavy system.
 
 ## [To Cover](/System-Design/scalable)
 
@@ -40,7 +41,7 @@ post_new_tweet(api_dev_key, tweet_data, tweet_location, user_location, media_ids
   user_location (string): Optional location (longitude, latitude) of the user adding the tweet.
   media_ids (number[]): Optional list of media_ids to be associated with the Tweet. (all the media photo, video, etc. need to be uploaded separately).
   
-pointer_to_follower_struct `*`searchUser(toBeSearched_userId)
+pointer_to_follower_struct *searchUser(toBeSearched_userId)
 
 bool addFollower(toBeFollowed_id, follower's_id)
 ```
@@ -82,35 +83,26 @@ bool addFollower(toBeFollowed_id, follower's_id)
 
 <img src="https://i.ibb.co/XzKZ1Rj/tw3.png" width="400" />
 
-## E. Data Sharding
-- UserId is passed to hash function, which gives DB server Id on which Tweet should be stored. All tweets of particular user are co-located. This helps in fanning out tweets to followers.
-- Tweet is stored on DB server got in above step and address/pointer of stored tweet is returned. User's tweets can be stored on multiple servers.
+## 5. DB Design
+- **Storing Tweets(text,photos,videos):** can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
+  - *a.* As mentioned in [Shard-DB Disadv point-a](/System-Design/Concepts/Databases/Database_Scaling).
+  - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
+    - We can create tweetID = timestamp+tweetid = xxx 0001
+- **[Replication](/System-Design/Concepts/Databases/Database_Scaling):** Master slave
+- **Cache**
+  - [Where Cache can be placed?](/System-Design/Concepts/Cache) 
+  - [Cache Eviction LRU](/DS_Questions/Questions/Random/LRUCache)
+  - Cache Storage policy (80-20 rule): 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
 
-## F. Replication
--  we can have multiple secondary database servers for each DB partition. Secondary servers will be used for read traffic only.
-- All writes will first go to the primary server and then will be replicated to secondary servers. This scheme will also give us fault tolerance, since whenever the primary server goes down we can failover to a secondary server.
-
-## F. User storing the tweet on server
-![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
-
-## G. Cache
-- **1. Cache between Web-Server & Database Servers** 
-  - Storing hot tweets and users. Eg: Memcached. Application servers, before hitting database, can quickly check if the cache has desired tweets.
-  - Based on clients’ usage patterns we can determine how many cache servers are needed.
-- **2. Cache at Web servers:** Most frequently used contents can be stored at this cache
-### G2. Cache Eviction policy:
-  - LRU(Least recently used) older tweets can be discarded.
-### G3. Cache Storage policy (80-20 rule)
-  - 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
-  
-## H. Load Balancing
-### H1. Places of adding load balancers
+## 6. Load Balancers
+  - [Where Load Balancer can be placed?](/System-Design/Concepts/Load_Balancer)
 1. Between client and application servers
 2. Between application servers & DB
 3. Between Aggregation servers & cache servers.
-### H2. Scheme of Load balancing
-- Simple round robin.
 
+## F. User storing the tweet on server
+![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
+  
 ## I. Monitoring
 - Monitoring means collecting the data to find whether system is Dead/slow/active?
 - Metrics/counters to get an understanding of the performance of our service:
