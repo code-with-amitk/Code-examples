@@ -5,8 +5,14 @@
 - Listing units commands
 ```c
 # systemctl -t help                             //List all available units of systemd
+
+//SERVICE UNIT
 # systemctl --all list-units | grep .service    //lists all available units in the type service.
-abrt-ccpp.service
-abrt-ops.service
-abrt-vmcore.service
+  abrt-ccpp.service
+  abrt-ops.service
+  abrt-vmcore.service
+#systemctl list-unit-files                      //list the status of systemd units at startup
+
+//SOCKET UNIT
+#systemctl list-unit-files | grep .socket       //status of socket units
 ```
