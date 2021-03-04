@@ -1,6 +1,7 @@
 ## Unit?
 - **What?** This is systemd specific Object that perform/control particular task. systemd unit have Name,Type,unit-file(ini/configuration file).
 - **Example:** consider systemd as a bus driver and the units such as gear, clutch, lever, brake, accelerator, etc. Bus driver uses controllers to drive/control bus, systemd uses units to control the system processes and services.
+- [Command to List all units, 1 type of units](/Operating_Systems/Linux/Administration/Commands/systemctl)
 
 ### Types of Units
 |Type|Extension|Description|
