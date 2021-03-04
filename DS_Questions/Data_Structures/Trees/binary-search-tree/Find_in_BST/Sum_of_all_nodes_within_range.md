@@ -18,7 +18,7 @@ Output: 32    //7+10+15
   - if node->val > high, move to left
 - **Complexity:**
   - **Time:** O(logn)
-  - **Space:** O(logn)  //Recursion Stack
+  - **Space:** [O(logn)](/DS_Questions)  //Recursion Stack
 ```c++
 class Solution {
 public:
@@ -36,6 +36,52 @@ public:
     
     int rangeSumBST(TreeNode* root, int low, int high) {
         return BinarySearch(root,low,high);
+    }
+};
+```
+
+### Approach-2 //DFS using Iteration
+- **Logic** DFS uses stack. Touch every node in path to reach deepest node and come back, instead of reaching all neighbours.
+  - *1.* Take stack`<TreeNode*>`. push root on it
+  - *2.* Pop top and perform this this till stack is not empty.
+```c
+  if popped->val lies between low and high
+    count += popped->val
+  else if popped->val < low
+    move right
+  else if popped->val > high
+    move left
+  else
+    move left and right both
+ ```
+- **Complexity**
+  - **Time:** O(logn)
+  - **Space:** [O(logn)](/DS_Questions)
+- **Code**
+```c++
+class Solution {
+public:
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        int count=0;
+        stack<TreeNode*> st;
+        st.push(root);
+        
+        while(!st.empty()){
+            TreeNode* t = st.top(); st.pop();
+            if (t){
+                if (t->val >= low && t->val <= high)
+                    count += t->val;
+                if (t->val < low)
+                    st.push(t->right);
+                else if (t->val > high)
+                    st.push(t->left);
+                else{
+                    st.push(t->left);
+                    st.push(t->right);
+                }
+            }
+        }
+        return count;
     }
 };
 ```
