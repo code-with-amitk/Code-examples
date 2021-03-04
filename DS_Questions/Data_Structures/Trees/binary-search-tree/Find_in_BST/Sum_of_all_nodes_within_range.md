@@ -11,7 +11,7 @@ Output: 32    //7+10+15
       3   7       18
 ```
 
-### Approach-1 //Binary Search + Recursion.
+### Approach-1 //[DFS](https://sites.google.com/site/amitinterviewpreparation/data-structures) using Binary Search + Recursion.
 - **Logic**
   - At every node check, if node->val is within [low,high] include in sum.
   - if node->val < low, Move to right
