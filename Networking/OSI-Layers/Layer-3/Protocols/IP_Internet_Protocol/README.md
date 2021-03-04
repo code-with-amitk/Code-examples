@@ -4,7 +4,7 @@
 |---|---|---|
 |IP_Address|32bit = 4 byte|128 bit = 16bytes|
 |No of Distinct Addresses| 2<sup>32</sup> = 4294967296 = 4x10^9 = 4 Billion | 2<sup>128</sup> = 340 trillion trillion trillion |
-||[Addresses getting exhausted](IPv4/IPv4_Disadvantages_Problems/)|Will never Exhaust|
+||[Addresses getting exhausted](IPv4/IPv4_Disadvantages_Problems/)|[Will never Exhaust](IPv6/IPv6_Characteristics)|
 |Bytes seperation represented by| Dot . | Colon : |
 |Header | IPv4 Header, MaxLen=60bytes | IPv6 Header, MaxLen=39bytes |
 |Checksum | Header has checksum feild | Does not have |
