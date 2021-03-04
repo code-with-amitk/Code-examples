@@ -1,37 +1,51 @@
-| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
-| --- | --- | --- | --- | --- | --- |
+- **Twitter?** Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc.
 
-# [To Cover](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/scalable)
+## [To Cover](/System-Design/scalable)
 
-## A. Requirements
-- **A1. Functional**
-  - *1.* User can post tweet < 150 characters.
+## 1. Requirements
+- **Functional**
+  - *1.* User can post tweet text < 150 characters, photos, videos.
   - *2.* Any user can search any other user by name.
   - *3.* Any user can can Add himself as follower & can see the tweets(text,videos,photos) of followed person.
   - *4.* Mark Tweet as favoriate.
   - *5.* Retweets, replies.
-- **2. Non-Functional:** S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+- **Non-Functional:** S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+- **Extended:** Searching tweets, tagging other users, AI powered suggestion(whom to follow)
 
-## B. System APIs
+## 2. BOE Calculation //Near to grooking
 
-|Search user|Add follower|Posting tweet|
-|---|---|---|
-|pointer_to_follower_struct `*`searchUser(toBeSearched_userId)|bool addFollower(toBeFollowed_id, follower's_id)|<ul><li>string publishTweet(tweet_message, *tweet_photo, *tweet_video, userId, user_location)</li></ul><ul><li>Parameters: userLocation(optional): (Lattitude, Longitude) of user adding the tweet</li></ul><ul><li>Return: Location to stored tweet, else HTTP error.</li></ul>|
-
-## C. BOE Calculation
-  - World population = 8 Billion
-  - Internet users = 40% = 8 x .4 = 3.2
-  - Twitter users = 10% = 0.32 Billion 
+|World Population|InternetUsers(60%)|Twitter users(50%)|Daily Active users(10~12%)|Only 50% users Tweet(text) daily|
+|---|---|---|---|---|
+|7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.5 = 2 Billion |2 x .12 = 240 Million|240 x .5 = 120 Million Tweets/daily|
   
-- **Storage Estimates**
-  - 1 tweet/day. 320 x 1 = 320 Million
-  - Each Text tweet = 150 characters. 1 character takes 4 bit of storage. 75 bytes/tweet. 0.32 x 75 = 24 GB/day. 24x30x12x5 = 43 TB/5years
-  - Each Photo tweet. Size=200kB. .32 x 200k = 6.4 TB/day. 6.4x30x12x5 = 11 PB/5 years      //But users tweeting photos would be lesser.
-  - Each Video tweet. Size=2MB. .32 x 200k = 6.4 TB/day. 6.4x30x12x5 = 11 ExaBytes/5 years. //But users tweeting videos would be lesser.
-  - **Total bytes stored for 5 years:** 12 Exa bytes/5 years
-- This is read heavy system, since much higher data is read wrt written to the system.
+- **Storage Estimates:** 1 text Tweet=150 characters. 2 bytes to store 1 char. 1 Tweet=300 bytes.
+  - Daily Text Tweets = 120M x 300 = 36GB. For 5 years = 36 x 30 x 12 x 5 = 64TB
+  - (Audio=200KB, Video=2MB). 5% does photo Tweet. 1% does video tweet
+    - Daily Audio Tweet = 240M x .05 = 12M. 12M x 200KB = 2.4GB
+    - Daily Video Tweet = 240M x .01 = 2.4M. 2.4M x 200KB = 4.8GB
 
-## D. HLD
+- **Bandwidth Estimates:** 
+  - Writes/Incoming data. Daily Text=36GB, Audio=2.4GB, Video=4.8GB ~= 45GB. IncomingData/sec = 45/24x60x60 = 520KB/sec
+  - Reads/Outgoing data. 
+    - Assume user visits his timeline 2 times/day and watches 5 other people timelines and 10 tweets on their timelines. Total timelines viewed
+      - 240M x (5+2) x 10 = 16800M = 17 Billion Tweets viewed/day. 1 tweet=300bytes. 17B x 300 ~= 5PB/day. 5PB / 24x60x60 = 57MB/sec
+
+## 3. System APIs
+- SOAP or REST APIs to expose the functionality of service.
+```c
+post_new_tweet(api_dev_key, tweet_data, tweet_location, user_location, media_ids)
+  api_dev_key (string): The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota.
+  tweet_data (string): The text of the tweet, typically up to 140 characters.
+  tweet_location (string): Optional location (longitude, latitude) this Tweet refers to.
+  user_location (string): Optional location (longitude, latitude) of the user adding the tweet.
+  media_ids (number[]): Optional list of media_ids to be associated with the Tweet. (all the media photo, video, etc. need to be uploaded separately).
+  
+pointer_to_follower_struct `*`searchUser(toBeSearched_userId)
+
+bool addFollower(toBeFollowed_id, follower's_id)
+```
+
+## 4. HLD
 ### D1. 5 Users design
 > Approach gets slow for 100, 1k users
 
