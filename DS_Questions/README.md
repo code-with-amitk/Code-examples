@@ -1,3 +1,5 @@
+## :heart: I love problems. This is Awesome. :heart:
+
 ## Big O Notation, Complexity Calculations
 - **What**
   - worst-case: maximum number of steps taken in any instance of size n
