@@ -22,7 +22,10 @@
 ## B. Federation/Functional Parition
 - Splitting DB by functions. 
 - **Adv:** a. Less RW to individual DB    b. Less data in DB leads to more cache hits
-- **Disadv:** a. Useless if schema requires huge tables.    b. Extra application logic required to determine which DB to be RW    c. Joining data from 2 DBs is complex.
+- **Disadv:** 
+  - *a.* Useless if schema requires huge tables.
+  - *b.* Extra application logic required to determine which DB to be RW
+  - *c.* Joining data from 2 DBs is complex.
 ```c
                                                  ----------------
                         |--user query-->         |   User-DB    |
@@ -34,7 +37,11 @@
 ## C. Sharding
 - **What?** Data is distributed across the databases, so that each DB only manages subset of data.
 - **Adv:** a. Less data/DB hence more cache hits.
-- **Disadv:** a. If 1 DB goes down, replica should be up and running.    b. Complex SQL queries    c. Joining data from multiple shards is more complex.
+- **Disadv:** 
+  - *a.* if 1 user or some users becomes hot, then a DB will become hugely loaded and other will remain empty.
+  - *b.* If 1 DB goes down, replica should be up and running.
+  - *c.* Complex SQL queries
+  - *d.* Joining data from multiple shards is more complex.
 ```c
   ------------------         ------------------        -----------------          -----------------
   | db1 Users(A-G) |         | db2 User(F-L) |        | db3 Users(M-T) |         | db4 Users(U-Z) |
