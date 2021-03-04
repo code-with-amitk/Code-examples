@@ -11,15 +11,18 @@
 
 - *VERSION:* 4 for IPv4, 6 for IPv6
 - *HEADER LEN:* Stores Length of IP Header EXCLUDING Data packet(TCP Header+AppData). Calculation: [Header Length Field*4=Length of IP header]
-    - Q-Why max length of IP header can be 60 bytes?              Ans- 4bit, can max represent number 15. 15*4=60 bytes(Including IP Options). 
-    - Q-What is default value in this header Field?              Ans- Default value in this field is 5. 5*4=20 bytes(Without IP Options) 
+    - Q- Why max length of IP header can be 60 bytes?              
+      - Ans- 4bit, can max represent number 15. 15*4=60 bytes(Including IP Options). 
+    - Q-What is default value in this header Field?              
+      - Ans- Default value in this field is 5. 5*4=20 bytes(Without IP Options) 
 - *TYPE OF SERVICE*  
 ```c
 | PB | PB | PB | MIN-DELAY | MAX-THROUGHPUT | MAXIMIZE-RELIABILITY | MINIMIZE-MONTERAY-COST | UNUSED |
         PB(Precedence bit): 1st 3 Bits are Precedence bits & Ignored as of Today
 ```        
 - *TOTAL LENGTH:* It represents total length of  IP Datagram.  [IP Header+L4 Header+L5 Header+L5 Data]
-  - Q-What can be Maximum Length of IP Datagram?        Ans- 16Bit. 216=65535 bytes
+  - Q-What can be Maximum Length of IP Datagram?        
+    - Ans- 16Bit. 2^16=65535 bytes
 - *IDENTIFICATION:* This is Kind of Seq-No. This is field is incremented every time packet is sent from source to destination. 
 - *FLAGS:*    
 ```c
