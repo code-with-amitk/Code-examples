@@ -7,7 +7,7 @@
 # ls -ltr test.txt
 - rw- --- ---
 # chmod u+s test.txt
-- rwS --- ---
+- rwS --- ---         //If file does not have execute permissions Upper case S. else s
 ```
 
 ### File setuid
