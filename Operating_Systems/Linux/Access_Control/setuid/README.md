@@ -9,10 +9,10 @@
 ```c
 amit@server$ pwd
 /home/amit
-amit@server$ cat test.tet
+amit@server$ cat test.txt
 hello
 amit@server$ ls -ltr
-- rw- --- ---     amit    amit    test.txt
+- rw- --- ---     user=amit    group=amit    test.txt
 ```
   - *2.* User=ram want to read the file. He cannot.
 ```c
@@ -21,7 +21,8 @@ ram@server$ pwd
 ram@server$ vim /home/amit/test.txt
   Permissions denied
 ```
-  - *3.* How can all users be granted read permissions if they access file using `vim`. setuid of vim. This means this process `/usr/bin/vim` can be executed by other users using Permissions of Owner=amit.
+  - *3.* How can all users be granted read permissions if they access file using `vim`? 
+    - setuid of vim. This means process `/usr/bin/vim` can be executed by other users using Permissions of Owner=amit.
 ```c
 # chmod u+s /usr/bin/vim
 ram@server$ vim /home/amit/test.txt
