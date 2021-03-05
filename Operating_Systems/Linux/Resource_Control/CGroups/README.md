@@ -12,4 +12,4 @@
     - [Creating transient cgroup using systemd-run command](/Operating_Systems/Linux/Administration/Commands/systemd-run). 
   - **2. Persistant/Permanent:**
     - Changes are permanent and not lost after reboot.
-    - Edit unit file of [systemd's service unit](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1).
+    - [Creating persistant cgroup using unit files](Persistant_cgroups)
