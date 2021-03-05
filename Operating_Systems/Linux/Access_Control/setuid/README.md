@@ -1,7 +1,14 @@
-## setuid / (u+s)/4XXX / Set user id
+## setuid / (u+s)/4XXX / Set user id / Execute Permission
 - This is special user's permission
-- **(On Files)** File executes as the user that owns the file, not the user that ran the file. 
+- **(On Files)** File executes as the user that owns/created the file, not the user that ran the file. 
 - **(On Dir)** No effect
+- This is execute permission, ie execute bit is set to `s`.
+```
+# ls -ltr test.txt
+- rw- --- ---
+# chmod u+s test.txt
+- rwS --- ---
+```
 
 ### File setuid
 - **Example-1: setuid vim**
