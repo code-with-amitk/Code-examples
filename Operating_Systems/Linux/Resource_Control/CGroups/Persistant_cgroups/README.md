@@ -1,5 +1,5 @@
 ## Creating Persistant cgroup
-- *1.* Open and add [Resource Control parameter(s)]() to Unit file.
+- *1.* Open and add [Resource Control parameter(s)](../Resource_Control_Parameters) to Unit file.
 ```c
 # vim /etc/systemd/system/sshd.service
 ...
@@ -10,4 +10,8 @@ CPUShares=1500
 ```c
 # systemctl daemon-reload
 # systemctl restart httpd.service
+```
+- *3.* Monitor the usage of the processor 
+```c
+# systemd-cgtop
 ```
