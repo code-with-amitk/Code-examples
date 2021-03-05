@@ -47,12 +47,13 @@ bool addFollower(toBeFollowed_id, follower's_id)
 ```
 
 ## 4. HLD
-- *1-6.* Same as [Facebook news feed]().
-- *7.* Webserver will provide UI to user and Application server will search DB Updater and push on its [MOM]().
+- *1-6.* Same as [Facebook news feed](/System-Design/Scalable/facebook/News%20Feed).
+- *7.* Webserver will provide UI to user and Application server will search DB Updater and push on its [MOM](/System-Design/Concepts/MOM_ESB).
 - *8.* DB Updater will store Tweet on Object store and update UserTable on meta-data server SQL. DB Updater will push on userId, timestamp on ACK Sender service MOM.
   - Meta-data is data about data. Eg: For each tweet meta-data can be Userid, timestamp, tweetid.
 - *9.* ACK sender service will get connection information from conn_db and send ACK to Application.
 
+<img src=Twitter.jpg width=1000 />
 
 ## 5. DB 
 - **DB Tables**
@@ -70,7 +71,7 @@ bool addFollower(toBeFollowed_id, follower's_id)
   - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
     - We can create tweetID = timestamp+tweetid = xxx 0001
 - **[Replication](/System-Design/Concepts/Databases/Database_Scaling):** Master slave
-- **Cache**
+- **Cache:** Application servers, before hitting database, can quickly check if the cache has desired tweets. Memcache
   - [Where Cache can be placed?](/System-Design/Concepts/Cache) 
   - [Cache Eviction LRU](/DS_Questions/Questions/Random/LRUCache)
   - Cache Storage policy (80-20 rule): 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
@@ -89,6 +90,13 @@ bool addFollower(toBeFollowed_id, follower's_id)
 - *2.* Sharding based on Hash of tweetid/userid can fail on overloaded environment.
   - Solutions: 
     - Consistent hashing
-    - Monitoring the load using AI based models, New tweets per day/second, what is the daily peak, Timeline delivery stats, how many tweets per day/second our service is delivering, Average latency that is seen by the user to refresh timelin
+    - Monitoring the load using AI based models, New tweets per day/second, what is the daily peak, Timeline delivery stats, how many tweets per day/second our service is delivering, Average latency that is seen by the user to refresh timeline.
+  - *3.* Efficient timeline generation system
+    - *Solution:* fb news feed timeline generation
+  - *4.* Effective tweet ranking solution?
+  - *5.* Suggestion to user for Whom to follow? 
+    - This feature will improve user engagement. We can suggest friends of people someone follows, Famous people for the suggestions, people having more followers. As only a few suggestions can be made at any time, use Machine Learning (ML) to shuffle and re-prioritize
+  - *6.* How to show top news? 
+    - Use crawler to search (news, support, financial, entertainment, etc.) use [ML – supervised learning or Clustering]().
 
 ## [8. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
