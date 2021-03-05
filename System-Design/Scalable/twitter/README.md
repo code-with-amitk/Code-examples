@@ -90,13 +90,13 @@ bool addFollower(toBeFollowed_id, follower's_id)
 - *2.* Sharding based on Hash of tweetid/userid can fail on overloaded environment.
   - Solutions: 
     - Consistent hashing
-    - Monitoring the load using AI based models, New tweets per day/second, what is the daily peak, Timeline delivery stats, how many tweets per day/second our service is delivering, Average latency that is seen by the user to refresh timeline.
+    - Monitoring the load using [Artificial Intelligence](https://sites.google.com/site/amitinterviewpreparation/machine-learning) based models, New tweets per day/second, what is the daily peak, Timeline delivery stats, how many tweets per day/second our service is delivering, Average latency that is seen by the user to refresh timeline.
   - *3.* Efficient timeline generation system
     - *Solution:* fb news feed timeline generation
   - *4.* Effective tweet ranking solution?
   - *5.* Suggestion to user for Whom to follow? 
     - This feature will improve user engagement. We can suggest friends of people someone follows, Famous people for the suggestions, people having more followers. As only a few suggestions can be made at any time, use Machine Learning (ML) to shuffle and re-prioritize
   - *6.* How to show top news? 
-    - Use crawler to search (news, support, financial, entertainment, etc.) use [ML – supervised learning or Clustering]().
+    - Use crawler to search (news, support, financial, entertainment, etc.) use [ML – supervised learning or Clustering](https://sites.google.com/site/amitinterviewpreparation/machine-learning).
 
 ## [8. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
