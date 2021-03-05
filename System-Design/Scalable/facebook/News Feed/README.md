@@ -60,7 +60,7 @@ Returns: (JSON) Returns a JSON object containing a list of feed items.
   - *c.* Publishing feed to user.            //FEED PUBLISHING
 
 ### 4a. Steps
-- *1.* Mobile/App enters facebook.com in browser. Browser gets IP address using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS/How_DNS_Works.md)
+- *1.* Mobile/App enters facebook.com in browser. Browser gets IP address using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS/Name_Resolution)
   - Browser can have [Cache](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md) But assuming cache is stale.
 - *2.* [HTTPS](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) Packet is created by Browser `GET www.facebook.com/index.html HTTP/1.1`, sent to [Forward Proxy](/System-Design/Concepts/Proxy_Servers/README.md) server hosted by ISP/Office Server. ISP forward request to next router in internet.
 - *3.* [CDN](/System-Design/Concepts/CDN/README.md) will be hosting homepage, periodically updating the page from Web Server. CDN renders the home page.
