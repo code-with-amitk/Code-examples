@@ -63,3 +63,7 @@
 ## 5. Extended Req
 - **1. Group-Chat**
   - Create a seperate table/Object called GroupChat. Each groupchat will have GroupChatId and will contain userIds which are part of GroupChat.
+
+## [6. Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+
+## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
