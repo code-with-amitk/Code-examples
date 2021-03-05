@@ -47,35 +47,22 @@ bool addFollower(toBeFollowed_id, follower's_id)
 ```
 
 ## 4. HLD
-### D1. 5 Users design
-> Approach gets slow for 100, 1k users
+- *1-6.* Same as [Facebook news feed]().
+- *7.* Webserver will provide UI to user and Application server will search DB Updater and push on its [MOM]().
+- *8.* DB Updater will store Tweet on Object store and update UserTable on meta-data server SQL. DB Updater will push on userId, timestamp on ACK Sender service MOM.
+  - Meta-data is data about data. Eg: For each tweet meta-data can be Userid, timestamp, tweetid.
+- *9.* ACK sender service will get connection information from conn_db and send ACK to Application.
 
-|Requirement|How Implemented?|
-|---|---|
-|1. Searching: user1 search user2|User's list is stored in `user-list.txt`. All users with name B would be shown to A.|
-|2. Adding Follower| After sucessful search, click on button to add myself as follower of B.|
-|3. Posting Tweet|user2 posts a tweet & stored in tweet-file+meta data. Each user has its seperate tweet-file|
-
-<img src="https://i.ibb.co/jTbD4FK/tw2.png" alt="tw1" border="0">
 
 ## 5. DB 
 - **DB Tables**
 ```c
-1. User DB Table: Storing user information, people they are following, all self created tweets pointer.
+1. User Table: Storing user information, people they are following, all self created tweets.
+  - Self created tweets would be stored in map<key=timestamp, value=<pointer where tweets is stored on object store, tweetid>
 
-| userID(uint) | username(varchar) | email | creationDate | lastLogin | Following(same as vector) | All created selfTweets |
-| t1222        |              amit | amit@greatest.com | <> | <>      | person1,person2..         | 0x4581(takes from tweet-table-2) |
+|userID| username(varchar)|email| creationDate | lastLogin | Following | All selfcreated Tweets |
+| 111  |  amit | amit@test.com | <> | <>       | person1,person2..     | map<timestamp, <pointer_to_object_stored_tweet, tweet_id>> |
 
-2. Tweet Table:  Storeing all tweet IDs created by particular user
-
-| UserName | Tweets //All self posted tweets | UniqueId/Address |
-| amit1222 | t1,t5,t6,t9                     | 0x4581 |
-| test56   | t3, t49, t89                    | 0x891 |
-
-3. Actual Tweet content: On Object Store
-
-| TweetId | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
-|   t5    | abcddefghij...         | <> | <> | <>                                 | 0x45912 |
 ```
 
 - **Storing Tweets(text,photos,videos):** can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
@@ -94,12 +81,14 @@ bool addFollower(toBeFollowed_id, follower's_id)
 2. Between application servers & DB
 3. Between Aggregation servers & cache servers.
 
-## F. User storing the tweet on server
-![ImgURL](https://i.ibb.co/rsZvt8F/twitter1.png)
-  
-## I. Monitoring
-- Monitoring means collecting the data to find whether system is Dead/slow/active?
-- Metrics/counters to get an understanding of the performance of our service:
-  - New tweets per day/second, what is the daily peak? 
-  - Timeline delivery stats, how many tweets per day/second our service is delivering
-  - Average latency that is seen by the user to refresh timeline. 
+## 7. [Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+- *1.* If high number of clients are connected system may respond slow.
+  - *Solution:*
+    - Provide MOM between Application server & clients which will queue client requests.
+    - Provide MOM between synchronization server & clients. MOM can queue millions of requests.
+- *2.* Sharding based on Hash of tweetid/userid can fail on overloaded environment.
+  - Solutions: 
+    - Consistent hashing
+    - Monitoring the load using AI based models, New tweets per day/second, what is the daily peak, Timeline delivery stats, how many tweets per day/second our service is delivering, Average latency that is seen by the user to refresh timelin
+
+## [8. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
