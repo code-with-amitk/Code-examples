@@ -8,7 +8,7 @@
 amit@server$ ls -ltr test.txt
 - rw- --- ---   amit    amit
 amit@server$ chmod g+s test.txt
-- rw- --S ---   amit    amit
+- rw- --S ---   amit    amit        //If file does not have execute permissions. Upper case S else s
 ```
 
 ### Directory setgid
