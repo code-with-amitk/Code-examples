@@ -1,7 +1,7 @@
 - **Twitter?** Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc.
   - This is read heavy system.
 
-## [To Cover](/System-Design/scalable)
+## [To Cover](/System-Design/Scalable)
 
 ## 1. Requirements
 - **Functional**
