@@ -58,32 +58,26 @@ bool addFollower(toBeFollowed_id, follower's_id)
 
 <img src="https://i.ibb.co/jTbD4FK/tw2.png" alt="tw1" border="0">
 
-### D2. 1 Million Users Design
-- **1. User DB Table** Storing user information, people they are following, all self created tweets pointer.
+## 5. DB 
+- **DB Tables**
+```c
+1. User DB Table: Storing user information, people they are following, all self created tweets pointer.
 
 | userID(uint) | username(varchar) | email | creationDate | lastLogin | Following(same as vector) | All created selfTweets |
-| --- | --- | --- | --- | --- | --- | --- |
-| amit1222 | amit | amit@greatest.com | <> | <> | person1,person2.. | 0x4581(takes from tweet-table-2) |
-| test56 | test | test@sandbox.com | <> | <> | personx,persony.. | 0x891 |
+| t1222        |              amit | amit@greatest.com | <> | <>      | person1,person2..         | 0x4581(takes from tweet-table-2) |
 
-**2. Tweet Table** stores all tweet IDs created by particular user
+2. Tweet Table:  Storeing all tweet IDs created by particular user
 
 | UserName | Tweets //All self posted tweets | UniqueId/Address |
-| --- | --- | --- |
-| amit1222 | t1,t5,t6,t9 | 0x4581 |
-| test56 | t3, t49, t89 | 0x891 |
+| amit1222 | t1,t5,t6,t9                     | 0x4581 |
+| test56   | t3, t49, t89                    | 0x891 |
 
-- **3. Actual Tweet content** Can be stored on Object store.
+3. Actual Tweet content: On Object Store
 
 | TweetId | tweet-content(varchar) | creationDate | userlattitude | userLongitude | ptr-to-Tweet |
-| --- | --- | --- | --- | --- | --- |
-| t5 | abcddefghij... | <> | <> | <> | 0x45912 |
+|   t5    | abcddefghij...         | <> | <> | <>                                 | 0x45912 |
+```
 
-**Tweetid** We don’t want to store tweet creation time separately, hence `TweetId = epochTime + autoIncrementInteger`
-
-<img src="https://i.ibb.co/XzKZ1Rj/tw3.png" width="400" />
-
-## 5. DB Design
 - **Storing Tweets(text,photos,videos):** can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
   - *a.* As mentioned in [Shard-DB Disadv point-a](/System-Design/Concepts/Databases/Database_Scaling).
   - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
