@@ -1,6 +1,6 @@
 ## IPv4 vs IPv6
 
-||IPv4|IPv6|
+||IPv4|IPv6(not backward compatible with IPv4)|
 |---|---|---|
 |IP_Address|32bit = 4 byte|128 bit = 16bytes|
 |No of Distinct Addresses| 2<sup>32</sup> = 4294967296 = 4x10^9 = 4 Billion | 2<sup>128</sup> = 340 trillion trillion trillion |
