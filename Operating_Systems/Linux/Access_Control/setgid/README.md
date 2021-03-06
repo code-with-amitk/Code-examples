@@ -1,6 +1,6 @@
 ## setgid / (g+s)/2XXX /Execute Permission
 - This Special Group Permissions
-- Read setuid 1st in order to understand this.
+- Read [setuid](../setuid) 1st in order to understand this.
 - **(On Files)** File executes as the group that owns the file. 
 - **(On dir)** Files newly created in the directory have their group owner set to match the group owner of the directory. 
 - This is ie execute bit is set to s.
