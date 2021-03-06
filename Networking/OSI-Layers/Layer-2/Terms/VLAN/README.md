@@ -1,7 +1,7 @@
-## VLAN
+## VLAN(Virtual LAN)
 - This is virtual [Broadcast Domain](../Broadcast_Domain)
 - It may be sometime not required by All devices in Broadcast domain to receive all broadcast traffic. 
-- Hence Devices creates smaller Broadcast Domains inside Bigger Broadcast domain of Switch. 
+- Creating smaller Broadcast Domains inside Bigger Broadcast domain of Switch. 
 - Group of devices on one or more LANs that are configured to communicate as if they were attached to the same wire, when in fact they are located on a number of different LAN segments.
 - **How to Achieve?**  Lets suppose a switch has 21 ports.
   - VLAN-1(Port 1-7): If packet comes on port 2. It will be forwarded on 1,3,4,5,6 only.    
