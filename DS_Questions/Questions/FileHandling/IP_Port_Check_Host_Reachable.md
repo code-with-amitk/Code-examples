@@ -2,14 +2,14 @@
 - Provided list of IPs and ports check if the host is accessible on that particular port?
 - addresses.txt
 ```c
-IP      Port
-192.168.0.1 22
-192.168.0.2 22
+    IP      Port
+192.168.0.1  22
+192.168.0.2  22
 ```
 
 ## Approach
 - **Logic**
-  - *1.* Read IP, Port from file
+  - *1.* Read IP, Port from file.
   - *2.* TCP Connect to IP, port. if connect() returns 0 means success, if connect() returns -1 means failure.
 - **Complexity**
   - **Time:** O(n+k). n=Number of lines inside addresses.txt. k=Time taken for RTT in TCP connect
