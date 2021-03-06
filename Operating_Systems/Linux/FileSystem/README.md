@@ -24,7 +24,7 @@
 - **PARTITION TABLE:** Lies at end of MBR. Contains start, end address of each partitions. 1 of partitions is marked ACTIVE.
 - **STORING DATA?** Disk stores MBR(Master Boot Record contains bootloader), PARTITION TABLE() and Actual Partitions itself.
 - **Partition(Only 1 is marked Active):** Each partition has separate OS installed. 
-  - Boot Block: Contains program to load OS present on this partition
+  - Boot Block: Contains program to load OS(**ie Bootloader**) present on this partition.
   - Superblock: Contains all key parameters about file system
   - Free Blocks: Array of pointers pointing to free blocks
   - [I-Nodes(info about files)](I_Node_IndexNode.md): array of structure (1 per file) containing all info of file
