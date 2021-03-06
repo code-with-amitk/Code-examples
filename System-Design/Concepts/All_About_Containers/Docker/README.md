@@ -5,6 +5,7 @@
 - **Docker Images?** File system which composes/makes a docker container is called Image. These images are stored in ***Docker registry***.
 - **Docker Registry** store house of docker images. Same as github,gitlab are for source code. Eg: Nexus, Artifact.
 - **[Docker Compose](Docker_Compose)**
+- **[Advantages, Disadvantages of Docker](Advantages_Disadv_of_Docker.md)**
 
 <img src="https://i.ibb.co/Hz89jmJ/dc.png" width=500 />
 
