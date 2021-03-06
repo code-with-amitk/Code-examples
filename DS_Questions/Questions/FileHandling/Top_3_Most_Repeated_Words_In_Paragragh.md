@@ -13,7 +13,7 @@ on 2
 
 ### Approach-1  //Hash Table. unordered_map<String, int>
 - **Logic:**
-  - *1.* Open file, read each word, fill in map<Word, count>
+  - *1.* Open file, read each word, fill in unordered_map<Word, count>
   - *2.* Once file reading completes, 
     - search map with highest value, Print Delete. Repeat 3 times.
 - **Complexity:** m:words in file
@@ -21,64 +21,53 @@ on 2
   - **Space** O(m). Creating hash map.
 - **Code:**  
 ```c++
-#include<fstream>
 #include<iostream>
+#include<fstream>
 #include<sstream>
-#include<unordered_map>
+#include<string>
 #include<algorithm>
-using String = std::string;
-using UM = std::unordered_map<String, int>;
+#include<unordered_map>
 
-static bool comp(std::pair<String, int> i, std::pair<String, int> j){
-  return i.second < j.second;
+using String = std::string;
+using Pair = std::pair<String, int>;
+
+static bool comparator(Pair p1, Pair p2){
+    return p1.second < p2.second;
 }
 
 int main(){
-  std::fstream file("Paragraph.txt");
-  UM um;
-  if (not file){
-    std::cout<<"Cannot find file";
+  std::ifstream iFile("Paragraph.txt");
+
+  if (!iFile) {
+    std::cout << "File not present\n";
     return 0;
   }
-  while (file.eof() != 1){
-    std::cout<<"Reading file";
-    String strLine, strWord;
-    while(std::getline(file, strLine)){
-      //std::cout<<strLine<<"\n";
 
-      //Tokenize based on space
-      for(const char& i:strLine)  {
-        if(i != ' ')
-          strWord += i;
-        else{
-          um[strWord]++;
-          strWord.clear();
-        }
-      }
-      um[strWord]++;
-    }
-    for(const auto i:um)
-      std::cout<<i.first<<" "<<i.second<<"\n";
-    std::cout<<"\n";
+  String strLine, strWord;
+  std::unordered_map<String, int> um;   //<Word, count>
 
-    //Find Max Value in um
-    UM::iterator it;
-    int i=0;
-    while ( i<3 ) {
-      it = std::max_element(um.begin(), um.end(), comp);
-      std::cout<<it->first<<" "<<it->second<<"\n";
-      um.erase(it);
-      ++i;
+  //Open the file
+  while (iFile.eof() != 1){
+
+    //Read the line
+    std::getline (iFile, strLine);
+
+    //Tokenize the line based on space
+    std::stringstream oSS(strLine);
+    while(std::getline(oSS, strWord, ' ')){
+      um[strWord]++;          //Create <key=String, value=count>
     }
   }
-}
-$ ./a.out
-your 6
-character 3
-on 2
-```
+  
+//  for (auto [i,j]:um){
+//    std::cout <<i<<","<<j << "\n";
+//  }
 
-### Approach-2  //Priority Queue MapHeap
-- **Logic:**
-  - Read paragraph. Push in MaxHeap<key=count, Value=Word>
-  - After reading is completed pop 3 entries.
+  std::unordered_map<String, int>::iterator it;
+  for (int i=0;i<3;++i){
+    it = std::max_element(um.begin(), um.end(), comparator);
+    std::cout << it->first <<"," << it->second <<"\n";
+    um.erase(it);
+  }
+}  
+```
