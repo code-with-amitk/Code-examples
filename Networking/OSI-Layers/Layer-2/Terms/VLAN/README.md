@@ -15,6 +15,7 @@ Typical VLAN uses 12 bits of Tag, Making 4096 VLANs present at a time
   Inter-Frame-Gap | Dst_MAC_Addr | Src_MAC_Addr | 802.11Q Tag(4byte) | Ether type|IPHdr|
 ```
 <img src=VLAN.jpg width=900 />
+
 - **Types of Ports on VLAN Switch?**
   - *1. Access Ports:* This belongs to 1 VLAN. Nodes/devices in 1 VLAN are connected using this
   - *2. Trunk Port:* They carry data b/w VLAN Switches. Each VLAN sets different value in 802.1Q, means each VLAN is identified by different 802.1Q. 
