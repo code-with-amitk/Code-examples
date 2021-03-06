@@ -12,6 +12,9 @@
     DISADVANTAGE: If bus is busy, Free carrier is not sensed & node has to wait for long time, performance drops drastically. It is estimated that network traffic must be less than 40 percent of the bus capacity for the network to operate efficiently. If distances are long, time lags occur that may result in inappropriate carrier sensing, and hence collisions
 - **2. CSMA/CA(Collision Avoidance)/Used in Wireless Networks:** 
   - Used in 802.11 wireless Networks. Here collision cannot be detected, by its avoided by sending Frame (Request to send) before starting data transmission
+  - **Disadvantages:**  
+    - *1.* Overhead is huge here to avoid collision, which reduces performance. 
+    - *2.* (Hidden Station Problem) if both A & C sends signal to B, there it will collide. A&C will not know about collision
   - **How it works**
     - RTS, CTS is called MACA protocol
   
