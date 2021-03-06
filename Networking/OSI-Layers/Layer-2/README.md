@@ -3,4 +3,4 @@
 - **Layer2 Protocols?** ATM, ARP, IS-IS, SDLC, HDLS, SLIP, GFP, PLIP, 802.2, L2TP, 802.3(ethernet), Frame relay, PPP
 - **Parts of DL Layer?**
 
-<img src=data-link-layer.png width=500 />
+<img src=data-link-layer.png width=800 />
