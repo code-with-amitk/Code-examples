@@ -1,5 +1,5 @@
 ## Problem
-- Given 3 HTML files.
+- Given HTML files.
 - Read all 3 files and the following:
   - parse email addresses
   - parse URLs
@@ -13,21 +13,19 @@ URL change example:
   test.org  --changed to-->  test.fb.org
 ```
 
-### Logic
-- *1.* Take a vector of TLD's to be parsed from file.
-- *2.* Open input html file in read mode.
-- *3.* Open a temporary file(out) in write mode. 
-- *4.* Read every line from input HTML file, tokenize using space.
-	- keep dumping every word read into temporary file(out)
-	- if word contains `@`, Modify the word and dump in temporary file(out)
-	- if word contains `.com or .org`, Modify the word and dump in temporary file(out)
-- *5.* Rename the file after complete input file is read.
-
-### Complexity
-- **Time:** O(n). n is number of words. Reading all words and modifying email, url
-- **Space:** O(n). Creating a temporary file and rename it.
-
-### Code
+- **Logic**
+  - *1.* Take a vector of TLD's `vecTLD = {".com",".org",".edu"};` to be parsed from file.
+  - *2.* Open input html file in read mode.
+  - *3.* Open a temporary file(out) in write mode. 
+  - *4.* Read every line from input HTML file, tokenize using space.
+    - keep dumping every word read into temporary file(out)
+    - {Found Email} if word contains `@`, Modify the word and dump in temporary file(out)
+    - {Found URL} if word contains `.com or .org`, Modify the word and dump in temporary file(out)
+  - *5.* Rename the file after complete input file is read.
+- **Complexity**
+  - **Time:** O(n). n is number of words. Reading all words and modifying email, url
+  - **Space:** O(n). Creating a temporary file and rename it.
+- **Code**
 ```c++
 #include<iostream>
 #include<fstream>
