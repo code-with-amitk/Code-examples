@@ -1,5 +1,5 @@
 ## Fb Problem
-- Count how many times an email address is found in file.
+- Count how many times A Single email address is found in file.
 - Example
 ```txt
 [Input]
