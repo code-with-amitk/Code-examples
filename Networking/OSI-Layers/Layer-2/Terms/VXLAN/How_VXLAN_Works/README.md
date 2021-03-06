@@ -28,9 +28,9 @@
                                                   New MAC dstMAC=directly connected Router
                                                Performs Lookup for NextHop to forward for VTEP-3.                                                      
 
-                                                                    -|srcMAC=--, dstMAC=-- | srcIP=.31, dstIP=.33 | UDP | VXLAN hdr | ORIGINAL |-> [ROUTER-1]
-                                                                                                                                                 Changes src, dst MAC --> [VTEP-3]
-                                                                                                                                                                        Decapsulates Pkt &
-                                                                                                                                                                        Forwards to VM-3 --> [VM3]                                                                                
-                                                                                                                                                                                                                                                            
+ <-|srcMAC=--, dstMAC=-- | srcIP=.31, dstIP=.33 | UDP | VXLAN hdr | ORIGINAL |-
+[ROUTER-1] 
+Changes src, dst MAC
+         -->          [VTEP-3]
+                   Decapsulates Pkt & Forwards to VM-3 --> [VM3]                                                                
 ```
