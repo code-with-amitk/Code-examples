@@ -1,6 +1,6 @@
 ## Sticky Bit / 1XXX / chmod o+t / chmod 1--- `<dir>`
 - **(On Files)** No effect    
-- **(On Dir)** Setted on directory, Only file owner and root can delete files within directory. What?    If setted on Directory, it tells all users can read other user's Files, but cannot DELETE the files. Eg: /tmp. Only root & owner of file can delete the files regardless who has RX permissions. This is very useful for Shared Spaces.
+- **(On Dir)** Setted on directory, Only file owner and root can delete files within directory regardless who has RX permissions. Other users can read files. Eg: /tmp. Only root & owner of file can delete the files. This is very useful for Shared Spaces.
 - **Example-1**
   - *1.* user=amit has directory=test(permissions 777(group=other=rwx)) and file=test(permissions 770(group=rwx))
 ```c
