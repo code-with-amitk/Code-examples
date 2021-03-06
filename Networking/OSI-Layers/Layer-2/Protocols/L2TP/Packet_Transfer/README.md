@@ -6,4 +6,4 @@
   - After the user is authenticated, the LAC initiates an L2TP tunnel to the LNS.
   - The tunnel end points, LAC and LNS, authenticate each other before the tunnel is created.
   - Once the tunnel is established, an L2TP session is created for the dialup user. Encryption is done using IPSec.
-<img src=L2TP.jpg width=500 />
+<img src=L2TP.jpg width=900 />
