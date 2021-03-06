@@ -86,6 +86,7 @@ int main(int argc, char* argv[]){
     return 0;
   }
 
+//ios::ate sets the initial position to end of the file, but you are free to seek thereafter.
   std::ifstream fin(argv[1], std::ios::ate);               //Open the file
   if (not fin){
     std::cout<<"File not found"<<std::endl;
