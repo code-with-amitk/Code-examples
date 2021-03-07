@@ -1,6 +1,6 @@
 ## Containers
 - **What?** 
-  - Another process on machine that's isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) from other processes.
+  - Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
   - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, its own IP address, its own file system, All containers share the kernel of the host.
 - **Containerization?** Packaging software code and all its dependencies in a bundle.
 - **[Advantages, Disadvantages of Containers](Advantages_Disadv_of_Containers.md)**
