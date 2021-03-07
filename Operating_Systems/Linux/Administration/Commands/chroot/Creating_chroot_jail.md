@@ -26,5 +26,6 @@
 ```c
   $ sudo chroot $HOME/jail /bin/bash
 ```
+- *8.* Create file in root it will created in `$HOME/jail`.
 
 <img src=chroot-jail.png width=600 />
