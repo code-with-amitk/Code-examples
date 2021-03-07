@@ -6,6 +6,12 @@
   - Party sending the Final ACK waits for 2MSL(around 4 minutes, Default MSL=2minutes) before entering CLOSE State.
   - MSL is max segment lifetime(time for packet to remain in n/w at Max). 
   - Remember still Client is in 1/2 close mode, ie it can accept any delayed packets for this connection till 2MSL.
+- shutdown vs close
+
+|| shutdown() | close(sock_fd) |
+|---|---|---|
+|What|0=No Receive, 1=NoSend, 2=like close()|Closes data in both directions. Party calling close can neither send/recv data.|
+|||(Sending)if tried to send.. Client will receive error. (Receiving) If server tries to send, It will receive error|
 
 ### Flow
 ```html
