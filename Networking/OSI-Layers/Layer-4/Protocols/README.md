@@ -8,4 +8,8 @@
 |Ordering| Yes, Seq Numbers| No ordering, Duplicates can be there|
 |Error checking|Yes in TCP, Checksum in Header | performed at App Layer|
 |Applications|TCP_Applications|UDP_Applications|
+|Delay|More wrt UDP|Less|
+|Retransmissions|Yes|No|
+|Multicast support|No|Yes|
+|Network BW|Consumes More, Bigger Header.More ACKS|Less|
 
