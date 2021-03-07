@@ -1,6 +1,7 @@
 ## Docker Compose
-- **What** [Microservices](/System-Design/Concepts/MicroServices/What_is_Microservice.md) can contact other microservice using DC. DC uses yaml configuration file named *docker-compose.yml*. VMs are too heavy for microservices.
+- **What** [Microservices](/System-Design/Concepts/MicroServices/What_is_Microservice.md) can contact other microservice using DC. DC uses yaml configuration file.
  ```bash
+ # cat docker-compose.yml
  version: '3'
 services:
   common:                                   // is a web application that is supposed to deliver common artifacts.
