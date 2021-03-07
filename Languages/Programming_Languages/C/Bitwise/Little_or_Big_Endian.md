@@ -5,6 +5,7 @@
 ```
 - **Little Endian/Network byte order:** 
   - MSB At Higher Address, LSB at Lower Address. 164 is stored as (1 0 1 0 0 1 0 0). Eg: Intel x86, x86_64 
+  - 0x4321 gets stored as 0x21, then 0x43
 - **Big Endian/host byte order:** 
   - LSB at higher address. 164 stored as (0 0 1 0 0 1 0 1). Eg: IBM z/Architecture processors
 - **Biendian:** Can be configured to understand any endianess. Examples: Intel Itanium, Alpha, MIPS. 
