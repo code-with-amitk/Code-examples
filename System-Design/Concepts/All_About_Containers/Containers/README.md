@@ -1,5 +1,5 @@
 ## Containers
-- **What?** Isolated partition of OS holding only 1 Application and all its dependent libraries. Each container has its own: 
+- **What?** Another process on machine that's isolated from other processes. Only 1 Application can run container and all its dependent libraries. Each container has its own: 
   - Network interface, its own IP address, its own file system, All containers share the kernel of the host.
 - **Containerization?** Packaging software code and all its dependencies in a bundle.
 - **[Advantages, Disadvantages of Containers](Advantages_Disadv_of_Containers.md)**
