@@ -7,6 +7,8 @@
   - MSB At Higher Address, LSB at Lower Address. 164 is stored as (1 0 1 0 0 1 0 0). Eg: Intel x86, x86_64 
 - **Big Endian/host byte order:** 
   - LSB at higher address. 164 stored as (0 0 1 0 0 1 0 1). Eg: IBM z/Architecture processors
+- **Biendian:** Can be configured to understand any endianess. Examples: Intel Itanium, Alpha, MIPS. 
+
 
 ## 1. Code
 - *1.* Store number=1 in memory. `0000000 0000000 0000000 00000100`
