@@ -7,7 +7,7 @@
 - **Issues without container?** When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 - **[Container Image?](../Docker/Docker_Images)** Container is created from image. Image describes everything that's needed to create a container; it is a template for containers.
 - **[Container Registry?](../Docker/Registry)** Images are stored in a registries
-- 
+- [Creating, Running Container and Running Application in Container](../Docker/InstallDocker_RunContainer)
 - **[Containers vs VM](Container_vs_VM.md)**
 
 <img src=TraditionalOS_vs_Containers.jpg width=500 />
