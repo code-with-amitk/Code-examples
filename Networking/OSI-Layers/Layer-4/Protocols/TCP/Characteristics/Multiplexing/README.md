@@ -9,4 +9,4 @@ Transport       22    25      23
                  -----|--------
 IP                200.1.1.2
 ```
-<img src=TCP_Multiplexing.png width=400 />
+<img src=TCP_Multiplexing.JPG width=400 />
