@@ -7,7 +7,7 @@
 |Reliabilty| Reliable (have ACKs)|Unreliable (no ACKS)|
 |Ordering| Yes, Seq Numbers| No ordering, Duplicates can be there|
 |Error checking|Yes in TCP, Checksum in Header | performed at App Layer|
-|Applications|TCP_Applications|UDP_Applications|
+|Applications|[TCP_Applications](TCP)|[UDP_Applications](UDP)|
 |Delay|More wrt UDP|Less|
 |Retransmissions|Yes|No|
 |Multicast support|No|Yes|
