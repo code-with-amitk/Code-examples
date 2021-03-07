@@ -13,3 +13,4 @@
 |9. Quality of service||
 |10. Full duplex server|it can perform roles of both receiver and sender|
 |11.Multiplexing|Using Port Numbers|
+|12.Crash Recovery|Using SEQ Nos|
