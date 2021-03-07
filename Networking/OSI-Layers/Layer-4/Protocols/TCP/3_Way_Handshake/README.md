@@ -1,5 +1,11 @@
 ## 3 Way Handshake
+- **PIGGYBACKING:** ACK's are piggybacked with normal traffic. Eg: 2nd Packet in 3way-handshake. It is used to synchronize sequence numbers. Fields Filled in 3 Way H: Seq no, Control bit, Options(MSS)
+- **Why ISN is random in SYN?**
+    - Bcoz of security. Prevent spoofing/man in middle attack. Sender generates a random no between (0 & 4294967295) bcoz sizeof ISN=32 bit.
+    - Consider if all were generating seqno=0. It would be so easy for hacker to generate seno & sit in between & spoof connection.
+- **Simultaneous Open:** Both sides sends SYN(to open connection) to other.
 
+### Flow
 ```html
     TCP-Client                                                    TCP-Server
 state: CLOSED                                                    state: CLOSED
