@@ -8,3 +8,5 @@
   - Server receives Duplicate ACK1. Realizes Segment2 is missed. Server watches SACK TCP Option saying it has received 3-4.
   - Server sends Segment-2 again. Client acknowledges.
 
+<img src=TCP_SACK.png width=700 />
+
