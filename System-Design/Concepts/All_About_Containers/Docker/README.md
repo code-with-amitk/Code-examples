@@ -5,6 +5,6 @@
   - **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
 - **[Advantages, Disadvantages of Docker](Advantages_Disadv_of_Docker.md)**
 - **[Docker Architecture](Docker_Architecture)**
-- *[Installing Docker](Installing_Docker)*
+- *[Installing Docker and Running Container](InstallDocker_RunContainer)*
 
 
