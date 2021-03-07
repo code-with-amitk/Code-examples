@@ -26,3 +26,5 @@
 ```c
   $ sudo chroot $HOME/jail /bin/bash
 ```
+
+<img src=chroot-jail.png width=600 />
