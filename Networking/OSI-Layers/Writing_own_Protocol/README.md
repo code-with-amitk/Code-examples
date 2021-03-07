@@ -1,8 +1,6 @@
 ## Writing Own Protocol
 - **Protocol?** Collection of agreements allowing two or more devices and/or applications to communicate with each other.
-
-- Handshake and Message Exchange.
-- Decide on [Endianess](/Languages/Programming_Languages/C/Bitwise) to be used stay to it. or Header can include endianess information.
+  - it contains Handshake, Message Exchange, tear down
 
 **Pre-requisites**
 - *1.* Get the use case why I need to design a network protocol, which features are missing in existing protocol?
@@ -14,3 +12,4 @@
 - *5.* Depending on How protocol interacts with OS, we may need to look into assembly as well.
   - For LINUX. Understand Unix OS.
   - For WINDOWS. Understand Winsock(it is a technical specification that defines how Windows network software should access network services, especially TCP/IP)
+- *6.* Decide on [Endianess](/Languages/Programming_Languages/C/Bitwise) to be used stay to it. or Header can include endianess information. 
