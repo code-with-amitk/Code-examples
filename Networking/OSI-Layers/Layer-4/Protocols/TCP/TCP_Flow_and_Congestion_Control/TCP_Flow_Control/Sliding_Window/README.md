@@ -9,3 +9,22 @@
 - Two Operations on Window:     
   - *a.* Sliding(Slide Window to Indicated position).    
   - *b.* Setting Window Size(Set window size to value advertised in ACK).
+
+```html
+    Receiver/Web Client                                         Server/Web Server
+I can receive 4096 bytes at a time
+          ---| TCP-Header SEQNO=90 Window-size=4096 |---->   ok sending 4 segments. 1024 each
+                                                             1   2   3   4   5   6   7   8   9   10
+                                                             |   window  |
+           <---| TCP-Header SEQNO=1| +  | data=1024 |---- 
+           <---| TCP-Header SEQNO=2| +  | data=1024 |---- 
+           <---| TCP-Header SEQNO=3| +  | data=1024 |----  
+           <---| TCP-Header SEQNO=4| +  | data=1024 |----  
+
+  Don't send any packets  
+           ---| TCP-Header  ACK=0 window-size=0 |--->          ok waiting for ACKS
+           ---| TCP-Header  ACK=4 window-size=2048 |-->      1   2   3   4   5   6   7   8   9   10
+                                                                             |win|
+           <---| TCP-Header SEQNO=6| +  | data=1024 |---- 
+           <---| TCP-Header SEQNO=7| +  | data=1024 |---- 
+```
