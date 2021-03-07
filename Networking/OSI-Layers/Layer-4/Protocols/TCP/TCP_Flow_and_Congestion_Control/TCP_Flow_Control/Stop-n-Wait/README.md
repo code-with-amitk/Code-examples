@@ -3,4 +3,4 @@
 - **Disadv:** 
   - a. Slow Transmission  
   - b. Transmission speed(Depends on (N/W Speed, Speed of Receiver sending ACKs))
-- *Solution:* Sliding window 
+- *Solution:* [Sliding window](../)
