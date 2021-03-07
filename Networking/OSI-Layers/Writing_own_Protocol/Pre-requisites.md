@@ -1,6 +1,6 @@
 ## Pre-requisites
-- *1.* Get the use case why I need to design a network protocol, which features are missing in existing protocol?
-- *2.* Decide the layer for which protocol needs to be written and [Layer's Design Issues & Duties](../).
+- *1.* Understand the use case why I need to design a network protocol, which features are missing in existing protocol?
+- *2.* Decide the layer for which protocol needs to be written and [Layer's Design Issues & Duties](../../).
 - *3.* If its similiar to any(Eg: HTTP)
   - Read its RFC.
   - Intercept network traffic using wireshark and investigate.
