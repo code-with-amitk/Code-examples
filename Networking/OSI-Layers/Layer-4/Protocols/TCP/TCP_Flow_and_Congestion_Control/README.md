@@ -1,4 +1,6 @@
-- **Why?** Network devices operate at different data rates because of various factors like CPU and available bandwidth. It may happen a sending device to send data at a much faster rate than the receiver can handle. 
+- **Why Flow, Congestion Control?**
+  - Network devices operate at different data rates because of various factors like CPU and available bandwidth.
+  - It may happen a sending device to send data at a much faster rate than the receiver can handle. 
 
 || FLOW CONTROL(receiver side) | CONGESTION CONTROL(sending side) |
 |---|---|---|
