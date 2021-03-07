@@ -1,0 +1,11 @@
+## Reliable 
+- TCP recovers lost, duplicated, corrupted packets.
+- **How it works?**
+  - *Sender* TCP provides Seq no to every packet. Sends the packet. Expects its ACK within timer, If does not receives, re transmits
+  - *Receiver* Arranges all TCP segments using seq no, knows about duplicate or lost packets
+- **How Duplicate packets are generated?**
+  - *a.* If a sending host thinks a packet is not transmitted correctly because of a PacketLoss, it might Retransmit that packet. The receiving host might already got the first packet, and will receive a second one, which is a duplicated packet
+  - *b.* Sometimes defective Hardware/Software also generates the duplicate packets.
+- **How TCP Handles Duplicates?**
+  - ConnectionOrientedProtocols such as TCP will detect duplicate packets, and will ignore them completely.
+  - ConnectionlessProtocols such as UDP won't detect duplicate packets.
