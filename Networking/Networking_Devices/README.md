@@ -6,4 +6,5 @@
 |Where it sits|At gate of organization in DMZ Zone|Bridges 2 networks|Within network|
 
 <img src=Firewall_Gateway_Router.jpg width=800 />
+
 - **Bridge?** This is a Link Layer device which forwards traffic between network-1 and network-2. This can be hardware or Software.
