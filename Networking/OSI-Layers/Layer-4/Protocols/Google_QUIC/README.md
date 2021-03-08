@@ -10,4 +10,4 @@
   TCP             UDP
   IP              IP
 ```
-- [QUIC Features/Characteristics](Features_Characteristics)
+- **[Improvements over TCP](Features_Characteristics)**
