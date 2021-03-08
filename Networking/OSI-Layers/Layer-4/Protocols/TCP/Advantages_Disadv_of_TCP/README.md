@@ -1,0 +1,11 @@
+## Disadvantages
+- *1.* Transport semantics are not application specific and finally application has to bear burden of solving them. Examples:
+  - Application-1 want to send message with unlimited boundaries.
+  - Application-2 want to send message with preserved boundaries.
+  - Application-3 want better control over network path. May be error recovery per 10 hopes etc.
+- *2.* Congestion Control is based on packet losses as a signal of congestion. More packets getting lost we need congestion control.
+  - This maybe a not good Congestion signal and can be replaced by anything else. Eg:
+    - Packet Transmission error rate
+  - Since networks are getting faster and faster, Developers are revisting Congestion control.
+- *3.* Slow Start
+  - The process of TCP is always slow at the beginning. Only after a certain period of time the speed will get accelerated. This can be especially disadvantageous when downloading larger streams of data. 
