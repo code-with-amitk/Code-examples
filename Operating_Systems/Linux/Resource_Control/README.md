@@ -5,3 +5,4 @@
 
 ### Methods of Resource Control
 - *1.* [cgroups(Control Groups)](CGroups)
+- *2.* Kernel Namespaces
