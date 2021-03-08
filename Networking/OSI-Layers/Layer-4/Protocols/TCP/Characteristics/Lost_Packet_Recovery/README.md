@@ -1,6 +1,6 @@
 ## Recovering lost packet / TCP IR Option
 - **How?**
-  - Done using TCP-IR(Instant Recovery) Option.
+  - Done using [TCP-IR(Instant Recovery) Option](../../TCP_Header).
   - Usage of IR is to inject a small number of checksum or XOR segments into TCP's stream so that a receiver can immediately recover lost segment(s) without the need for retransmissions.
 - **Flow?**
   - *1.* Client,server exchanges TCP-IR option in 3 way handshake.
