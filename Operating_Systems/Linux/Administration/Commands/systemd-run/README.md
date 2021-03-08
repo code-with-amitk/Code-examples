@@ -2,7 +2,7 @@
 - **What?** systemd-run may be used to create and start a transient systemd [`*.service` or `*.scope` unit](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) and run the specified COMMAND in it.
 
 ### Steps
-- *1.* Create [Transient cgroup](/Operating_Systems/Linux/Resource_Control/CGroups)
+- *1.* Create [Transient cgroup](/Operating_Systems/Linux/Kernel_Namespaces/cgroup/RHEL_Provided_cgroup)
 ```c
 //Create a new group called group1. Run top command inside that group. Name of command=amit_top.service
 # sudo systemd-run --unit=amit_top --slice=group1 top -b
