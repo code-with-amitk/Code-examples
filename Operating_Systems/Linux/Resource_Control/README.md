@@ -3,6 +3,5 @@
 - **Why?** Increase overall system efficiency of system.
 - **How?** On RHEL7 resource management settings are moved from the process level to the application level.
 
-### Methods of Resource Control
-- *1.* [cgroups(Control Groups)](CGroups)
-- *2.* Kernel Namespaces
+### Method of Resource Control
+- *1.* Kernel Namespaces
