@@ -12,7 +12,7 @@
 - Master handles scheduling pods(See Below) inside worker nodes after looking at available resources on each node.
 - Worker has following daemons.
   - **1. Kubelet:** Process for communication with master.
-  - **2. [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md):** A container runtime.
+  - **2. [Docker](/System-Design/Concepts/All_About_Containers/Docker):** A container runtime.
   - **3. Kubectl Proxy:** Does communication with other nodes in cluster.
 
 ### C. User
@@ -34,7 +34,7 @@
 ### Terms
 - **1. POD**
   - This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pods run in isolated pvt enviornment. Pod Contains:
-    - *1.* Container(Eg: [Docker](/System-Design/Concepts/All_About_Containers/Docker/What_is_Docker.md))
+    - *1.* Container(Eg: [Docker](/System-Design/Concepts/All_About_Containers/Docker))
     - *2.* Shared storage, as Volumes
     - *3.* Networking, as a unique cluster IP address
     - *4.* Information about how to run each container, such as the container image version or specific ports to use
