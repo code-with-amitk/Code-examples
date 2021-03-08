@@ -1,4 +1,4 @@
-## Kernel Namespaces
+## [Kernel Namespaces](https://medium.com/@saschagrunert/demystifying-containers-part-i-kernel-space-2c53d6979504)
 - **What?** Group of processes given isolated instance of resource.
 - **9 Namespaces?** mnt, pid, net, ipc, uts, user and cgroup, time, syslog
 ```c
