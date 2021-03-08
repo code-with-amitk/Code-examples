@@ -1,4 +1,4 @@
-## QUIC / Quick UDP Internet Connections 
+## [QUIC / Quick UDP Internet Connections](https://upcommons.upc.edu/bitstream/handle/2117/121934/136386.pdf?sequence=1&isAllowed=y#:~:text=The%20main%20performance%20improvement%20of,to%20negotiate%20the%20TLS%20connection.)
 - In 2012, Google started developing QUIC. 2014 QUIC is used on all Google services, Chrome, and mobile apps.
 - QUIC takes
   - Reliablilty from TCP.
