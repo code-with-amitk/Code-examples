@@ -8,4 +8,17 @@
     - Packet Transmission error rate
   - Since networks are getting faster and faster, Developers are revisting Congestion control.
 - *3.* Slow Start
-  - The process of TCP is always slow at the beginning. Only after a certain period of time the speed will get accelerated. This can be especially disadvantageous when downloading larger streams of data. 
+  - During [TCP-3-way handshake](../State_Transition_Diagram) window size exchanged is relatively small, cannot be Max.
+  - In [Flow control(Sliding Window)](../Characteristics/Flow_and_Congestion_Control/TCP_Flow_Control/Sliding_Window) window size shrinks to smallest.
+  - This can be especially disadvantageous when downloading larger streams of data. 
+- *4.* Image, Stream Blockings
+  - Consider webpage has 2 images, image-1 is lost while image-2 is recieved. TCP will try getting image-1 and block. 
+  - Similar problem will be seen when streaming video using TCP. Once the Segment is lost, the TCP will try retrieving even if other Segments of the video are watchable.
+- *5.* 3 Way Handshake can take large time on large latency devices, low BW Network. Eg:
+  - Web server connecting to slow mobile device.
+- *6.* TCP may not work faster in LAN, its designed for WAN.
+- *7.* Cannot distinguish between Packet lost and retransmission in wireless network.
+  - In wireless network packet losses are there(more wrt to wired).
+
+## [Advantages](../Characteristics)
+- Same as characeristics
