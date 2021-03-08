@@ -12,7 +12,7 @@
   - In [Flow control(Sliding Window)](../Characteristics/Flow_and_Congestion_Control/TCP_Flow_Control/Sliding_Window) window size shrinks to smallest.
   - This can be especially disadvantageous when downloading larger streams of data. 
     - GOOGLE PROPOSED SOLUTION: [QUIC](../../Google_QUIC)
-- *4.* Image, Stream Blockings
+- **4. Image, Stream Blockings / Head of Line Blocking Issue**
   - Consider webpage has 2 images, image-1 is lost while image-2 is recieved. TCP will try getting image-1 and block. 
   - Similar problem will be seen when streaming video using TCP. Once the Segment is lost, the TCP will try retrieving even if other Segments of the video are watchable.
 - *5.* 3 Way Handshake can take large time on large latency devices, low BW Network. Eg:
