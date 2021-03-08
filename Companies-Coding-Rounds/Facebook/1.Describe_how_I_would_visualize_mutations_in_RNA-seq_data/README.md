@@ -18,18 +18,18 @@
     - Selection of different RNA-Seq data source.
     - GENE LIST & Selecting gene from list to display information.
       - Also capabilities of predicting Ansectors, Gene Families
-
-<img src="https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2Fs12864-016-2389-8/MediaObjects/12864_2016_2389_Fig2_HTML.gif?as=webp" width=500 />
   
 - **2. DB backend**
   - *[a. MYSQL or NoSQL DB](/System-Design/Concepts/Databases):* Whole information is stored is on DB and can be customoized based on user input.
 
+<img src=https://i.ibb.co/hmTQdw3/RNA-SEQ.jpg width=600 />
 
 - **3. Using ML**
   - *[a. AI powered datasets](https://sites.google.com/site/amitinterviewpreparation/machine-learning):* Datasets will help tool to mature.
   - *[b. Will use multidimensional array from numpy](/Languages/ScriptingLanguages/Python/numpy)*
   - *[c. scikit-learn to process and study data from different sources](/Languages/ScriptingLanguages/Python/scikit-learn)*
   - *[d. Deep Learning using Neural Networks](https://sites.google.com/site/amitinterviewpreparation/machine-learning)* to study gene pattern.
-
+  - *[e. Tensors(vectors) and tensor flow for numerical computation and large-scale ML](https://sites.google.com/site/amitinterviewpreparation/machine-learning)
+  - *[f. Opencv for image processing](/Languages/ScriptingLanguages/Python/machine_learning/tensor_flow/opencv)* Capability to click picture and study his genome
 
 - **4. Tool should be scalable and customizable**
