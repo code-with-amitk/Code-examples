@@ -7,4 +7,8 @@ nb
 # hostname new-hostname
 # hostname
 new-hostname
+
+//Look at the system level nothing has changed, hooray:
+> hostname
+nb
 ```
