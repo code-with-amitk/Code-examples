@@ -22,7 +22,7 @@
 - **2. DB backend**
   - *[a. MYSQL or NoSQL DB](/System-Design/Concepts/Databases):* Whole information is stored is on DB and can be customoized based on user input.
 
-<img src=https://i.ibb.co/hmTQdw3/RNA-SEQ.jpg width=1000 />
+<img src=https://i.ibb.co/hmTQdw3/RNA-SEQ.jpg width=1200 />
 
 - **3. Using ML**
   - *[a. AI powered datasets](https://sites.google.com/site/amitinterviewpreparation/machine-learning):* Datasets will help tool to mature.
