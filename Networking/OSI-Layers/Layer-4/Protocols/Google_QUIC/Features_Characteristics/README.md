@@ -9,7 +9,9 @@
   - Clients those have previously communicated with a server can start a new session without a three-way handshake, using limited state stored at clients and servers.
   - This happens 75% the time
 - **[3. Head of line blocking issue in TCP](../../TCP/Advantages_Disadv_of_TCP)*
-- **4. Connection handling done by QUIC:** Since UDP is connectionless, all connections are handled by QUIC.
-- **5. Improved Congestion control wrt TCP**
-  - Congestion control is provided per packet.
-- *4.* Improved Forward Error Correction.
+- **[4. Improved Connection Control wrt TCP](../../TCP/Characteristics/Flow_and_Congestion_Control):** 
+  - Since UDP is connectionless, all connections are handled by QUIC.
+  - QUIC implements Congestion control Algos without going to kernel.
+- **5. Does not use TCP's SACK for lost packets**
+  - QUIC uses Packet number for packet ordering. 
+  - Each Packet Number is strictly incremented, so if Packet-4 is lost and Packet-5 arrives. Reciever knows Packet-4 is lost.
