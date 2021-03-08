@@ -12,4 +12,5 @@
 |Retransmissions|Yes|No|
 |Multicast support|No|Yes|
 |Network BW|Consumes More, Bigger Header.More ACKS|Less|
+|Focus on|Relaibilty|Packet Delivery|
 
