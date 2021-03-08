@@ -51,4 +51,9 @@ Control Bits: URG ACK PSH RST SYN FIN
       - This field must only be sent in the initial connection request (i.e., in segments with the SYN control bit set). If this option is not used, any segment size is allowed. This value cannot be changed When connection is Established.
     - *2. Window Scalar factor*
     - *3. SACK permitted*
+    - *4. IR(Instant Recovery)* Used to distinguish encoded/XOR packets from regular packets.
+      - [Encoding Type](https://tools.ietf.org/id/draft-flach-tcpm-fec-00.html#types): 0:Undefined, 1:Basic XOR, 2:Interleaved XOR, 3-255:Undefined
+```html
+  | kind=TBD | Len = 1 | Encoding Type |
+```
 - **PADDING:** Header must be padded with 0(ZERO) to make 4 byte aligned.
