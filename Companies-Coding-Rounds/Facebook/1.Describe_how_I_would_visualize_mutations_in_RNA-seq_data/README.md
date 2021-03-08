@@ -4,8 +4,8 @@
 - **[Terms](Terms.md)**
 
 ## [Tool Design](https://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2389-8)
-- **1. Front end Browser**
-  - *a. 3D GUI Browser:* We will have a GUI for displaying mutation, gene expression, alternative splicing frequency simulteneously.
+- **1. Front end Browser / GUI **
+  - *a. 3D View* We will have a GUI for displaying mutation, gene expression, alternative splicing frequency simulteneously.
   - *b. PHP scripts* allowing the user to submit requests to the database to be displayed in the browser
   - *c. Main page to sub pages:* Main page will display primary view of user data which is broken deeper onto pathways that are either predefined or added by users. 
   - *Others:*
