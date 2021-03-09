@@ -3,17 +3,6 @@
 ```
 # Virtual Memory & Physical Memory
 
-||Virtual Memory = Hard Disk|Physical Memory = RAM|
-|---|---|---|
-|What|This is Hard Disk|This is RAM|
-|Size|Always Bigger|Smaller from HD|
-|Contains|**Pages** inside Virtual Table|**Frames** inside Page Table. Pages & Frames are of same size.|
-|Memory Allocation|Contigous|Contigous|
-
-- **Why VM needed?** Now-a-days programs are RAM hungry. every other program(eg: adobe photoshop, microsoft teams) need more RAM. if 10 such processes want to run simultaneously then 10GB RAM is needed which is not available. VM is illusion to program that it has complete access to RAM.
-- **Paging** Process of dividing Hard-Disk to equal-sized blocks is called paging.
-- **MMU(Memory Management unit)** Takes Virtual address(of Virtual Memory) as Input provides Physical Address(of RAM) as output ie translate virtual to physical address.
-
 # A. Understating Virtual Memory on 16 bit System
 - 16 Bit System means Bus Size=16 Bit. 16 bit=2 byte bus can access 2 bytes from (216 = 65535 = 64KB) memory. To address 65536 17 bits are needed.
 - On 16 bit system you can plug huge Hard disk but that will be no use, since in 1 go Only 2 bytes can be accessed.
