@@ -2,7 +2,7 @@
 - **What?** Protocol for converting hostname to IP address and viceversa. 
   - [Forward Lookup](Name_Resolution): Converting Hostname to IP
   - [Reverse Lookup](Name_Resolution): Converting IP Address to hostname
-- **Port=53** (udp and tcp both)Use udp by default, fall back to tcp if on udp cannot communicate.
+- **Use udp by default** fall back to tcp if on udp cannot communicate.
 - **Terms:**
   - [DNS Queries(Recursive, Iterative)](Terms/DNS_Queries)
   - [DNS Zones](Terms/DNS_Zone): Primary, Secondary, Stub
