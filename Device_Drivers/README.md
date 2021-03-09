@@ -5,7 +5,7 @@
   <----------------------user space----------------->        <--kernel space->
   Application [open/read/write/close]  <>  Device-File   <>   Device-Driver     <>     Physical-Device(Terminal, Speakers, HD, keyboard, Tape, Memory)
 ```
-<img src=device-driver.jpg width=700 />
+<img src=device-driver.jpg width=1000 />
 
   - *Window's Device Driver*
 ```c
