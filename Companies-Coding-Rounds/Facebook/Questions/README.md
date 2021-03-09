@@ -1,4 +1,16 @@
 ### 1. What options do you have, nefarious or otherwise, to stop people on a wireless network you are also on (but have no admin rights to) from hogging bandwidth by streaming videos?
+#### Solution-1
+- Since you know "people are streaming video", politely ask each person to refrain from streaming video in order that the the WiFi network can be used for other purposes.
+
+#### Solution-2
+- Contact the network owners / administrators about increasing capacity on the WiFi network (and related uplinks.)
+
+### Solution-3
+- Try forging RST packets and get the sender to abort the connection. 
+- Or try man-in-the-middle attack against the downloader, divert their internet connection to something you control, and substitute alternative less interesting videos.
+- Or just do a denial-of-service attack against the downloaders to degrade their connection so that they give up and move to another network.
+
+#### Solution-4
 - We need to attack wireless router(AP) by sending a fake packets so that AP disconnects connected devices and wait for re-authentication,authorization.
 - We will do this by writing User-Space application such as [aircrack-ng](https://www.aircrack-ng.org/) which will ask Wireless network card plugged into our PC using its [device driver](/Device_Drivers/Linux).
 ```c
