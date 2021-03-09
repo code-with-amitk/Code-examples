@@ -1,30 +1,26 @@
-# Character Device Driver
-- Rename this file as **ebbchar.c**
-- Take Soure part only and compile. [Source](http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device)
+- **[Source Code](http://derekmolloy.ie/writing-a-linux-kernel-module-part-2-a-character-device)**
+  - Rename this file as **ebbchar.c**
 
 ## Steps 
 
-**Driver Creation Steps**
-1. Declare Headers
-2. License, Author, Description, Version
-3. Declare Global variables
-4. Declare the prototype of functions those whould be invoked using callbacks.
-5. **file_operations structure** Provides callback functions that needed to be called from user space. It is not necessary to implement all functions. If function is not implemented corresponding pointer = 0
-6. Define the function to be called at time of device driver initialization. This function is passed as parameter to module_init().
-	 - Create device file from device driver dynamically using `register_chrdev`.
-	 - Register device class
-	 - Register the device driver
-7. Define function to be called at module_exit() ie doing clean up tasks.
-8. Provide Function to be called from user space applications.
-	 - dev_open(): called each time device file is opened
- 	 - dev_read(): called when device file is read from user space
- 		 - copy_to_user(): function to send the buffer string to the user and captures any errors
- 	- dev_write(): called when device file is written from user space i.e. data is sent to the device from the user.
- 	- dev_release(): Called when user space calls close() on device file
-9. Provide Initialization, cleanup functions to module_init(), module_exit()
+**Write Drive Source**
+- *1.* Declare Headers, License, Author, Description, Version, Declare Global variables, Declare the prototype of functions those whould be invoked using callbacks.
+- *2.* **file_operations structure** Provides callback functions that needed to be called from user space. It is not necessary to implement all functions. If function is not implemented corresponding pointer = 0
+- *3.* Define the function to be called at time of device driver initialization. This function is passed as parameter to module_init().
+  - Create device file from device driver dynamically using `register_chrdev`.
+  - Register device class
+  - Register the device driver
+- *4.* Define function to be called at module_exit() ie doing clean up tasks.
+- *5.* Provide Function to be called from user space applications.
+  - dev_open(): called each time device file is opened
+  - dev_read(): called when device file is read from user space
+  - copy_to_user(): function to send the buffer string to the user and captures any errors
+  - dev_write(): called when device file is written from user space i.e. data is sent to the device from the user.
+  - dev_release(): Called when user space calls close() on device file
+- *6.* Provide Initialization, cleanup functions to module_init(), module_exit()
 ```c
 # vim ebbchar.c
- linux/init.h:		Provides mark up functions e.g. __init __exit			//1
+ linux/init.h:		Provides mark up functions e.g. __init __exit          //1
  linux/module.h:	Loads LKMs into the kernel
  linux/device.h: 	Header to support the kernel Driver Model
  linux/kernel.h:        Contains types, macros, functions for the kernel
@@ -34,101 +30,92 @@
  DEVICE_NAME "ebbchar"    The device will appear at /dev/ebbchar
  CLASS_NAME  "ebb"        The device class -- this is a character device driver
 
-MODULE_LICENSE("GPL");																							//2
+MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Amit Kumar");
-MODULE_DESCRIPTION("A simple Linux char driver for the BBB");			//This will be seen in modinfo
-MODULE_VERSION("0.1");																						//For user information purpose
+MODULE_DESCRIPTION("A simple Linux char driver for the BBB");         //This will be seen in modinfo
+MODULE_VERSION("0.1");
 
-//3
-static int    majorNumber;										//Stores the device number -- determined automatically											
-static char   message[256] = {0};							//String that is passed from userspace
-static short  size_of_message;								//size of the string stored
-static int    numberOpens = 0;								//Counts the number of times the device is opened
-static struct class*  ebbcharClass  = NULL;		//Driver class struct pointer
-static struct device* ebbcharDevice = NULL;		//Driver device struct pointer
+static int    majorNumber;                                            //Stores the device number -- determined automatically
+static char   message[256] = {0};                                     //String that is passed from userspace
+static short  size_of_message;                                        //size of the string stored
+static int    numberOpens = 0;                                        //Counts the number of times the device is opened
+static struct class*  ebbcharClass  = NULL;                           //Driver class struct pointer
+static struct device* ebbcharDevice = NULL;                          //Driver device struct pointer
 
-//4
 static int     dev_open(struct inode *, struct file *);			
 static int     dev_release(struct inode *, struct file *);
 static ssize_t dev_read(struct file *, char *, size_t, loff_t *);
 static ssize_t dev_write(struct file *, const char *, size_t, loff_t *);
 
-//5
-static struct file_operations fops =
-{
+static struct file_operations fops = {                               //2
    .open = dev_open,
    .read = dev_read,
    .write = dev_write,
    .release = dev_release,
 };
 
-//6
-	static int __init ebbchar_init(void){
-		printk(KERN_INFO "Initializing the EBBChar LKM\n");
+static int __init ebbchar_init(void){                                              //3
+  printk(KERN_INFO "Initializing the EBBChar LKM\n");
 
-   	//Use alloc_chrdev_region() instead
-		if( (majorNumber = register_chrdev(0, DEVICE_NAME, &fops)) < 0){											//6a
-      		printk(KERN_ALERT "EBBChar failed to register a major number\n");
-      		return majorNumber;
-   	}
+  //Use alloc_chrdev_region() instead
+  if( (majorNumber = register_chrdev(0, DEVICE_NAME, &fops)) < 0){                  //3a
+    printk(KERN_ALERT "EBBChar failed to register a major number\n");
+    return majorNumber;
+  }
 
-   	printk(KERN_INFO "EBBChar: registered with major number %d\n", majorNumber);
+  printk(KERN_INFO "EBBChar: registered with major number %d\n", majorNumber);
 
-   	ebbcharClass = class_create(THIS_MODULE, CLASS_NAME);																	//6b
-   	if (IS_ERR(ebbcharClass))
-	{
-      		unregister_chrdev(majorNumber, DEVICE_NAME);
-	      	printk(KERN_ALERT "Failed to register device class\n");
-	      	return PTR_ERR(ebbcharClass);
-   	}
+  ebbcharClass = class_create(THIS_MODULE, CLASS_NAME);                              //3b
+  if (IS_ERR(ebbcharClass)) {
+    unregister_chrdev(majorNumber, DEVICE_NAME);
+    printk(KERN_ALERT "Failed to register device class\n");
+    return PTR_ERR(ebbcharClass);
+  }
 
-   	ebbcharDevice = device_create(ebbcharClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);	//6c
-   	if (IS_ERR(ebbcharDevice))
-      		class_destroy(ebbcharClass);
-      		unregister_chrdev(majorNumber, DEVICE_NAME);
-      		printk(KERN_ALERT "Failed to create the device\n");
-      		return PTR_ERR(ebbcharDevice);
-   	}
-   	printk(KERN_INFO "EBBChar: device class created correctly\n");
-   	return 0;
-}
-
-static void __exit ebbchar_exit(void)																				//7
-{
-	device_destroy(ebbcharClass, MKDEV(majorNumber, 0));    
-   	class_unregister(ebbcharClass);                          
-   	class_destroy(ebbcharClass);                            
-   	unregister_chrdev(majorNumber, DEVICE_NAME);            
-   	printk(KERN_INFO "EBBChar: Goodbye from the LKM!\n");
-}
-
-static int dev_open(struct inode *inodep, struct file *filep){												//8
-	numberOpens++;
-	printk(KERN_INFO "EBBChar: Device has been opened %d time(s)\n", numberOpens);
+  ebbcharDevice = device_create(ebbcharClass, NULL, MKDEV(majorNumber, 0), NULL, DEVICE_NAME);   //3c
+  if (IS_ERR(ebbcharDevice)) {
+    class_destroy(ebbcharClass);
+    unregister_chrdev(majorNumber, DEVICE_NAME);
+    printk(KERN_ALERT "Failed to create the device\n");
+    return PTR_ERR(ebbcharDevice);
+  }
+  printk(KERN_INFO "EBBChar: device class created correctly\n");
   return 0;
 }
 
-static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset){
-	int error_count = 0;
-   	//copy_to_user has the format ( * to, *from, size) and returns 0 on success
-   	error_count = copy_to_user(buffer, message, size_of_message);
-
-   	if (error_count==0)
-   	{
-      		printk(KERN_INFO "EBBChar: Sent %d characters to the user\n", size_of_message);
-      		return (size_of_message=0);  //clear the position to the start and return 0
-   	}else 
-	{
-      		printk(KERN_INFO "EBBChar: Failed to send %d characters to the user\n", error_count);
-      		return -EFAULT;              //-14
-   	}
+static void __exit ebbchar_exit(void){                                       //4
+  device_destroy(ebbcharClass, MKDEV(majorNumber, 0));    
+  class_unregister(ebbcharClass);                          
+  class_destroy(ebbcharClass);                            
+  unregister_chrdev(majorNumber, DEVICE_NAME);            
+  printk(KERN_INFO "EBBChar: Goodbye from the LKM!\n");
 }
 
-static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){
-	sprintf(message, "%s(%zu letters)", buffer, len);   //appending received string with its length
-   	size_of_message = strlen(message);                 //store the length of the stored message
-   	printk(KERN_INFO "EBBChar: Received %zu characters from the user\n", len);
-   	return len;
+static int dev_open(struct inode *inodep, struct file *filep){                 //5a
+  numberOpens++;
+  printk(KERN_INFO "EBBChar: Device has been opened %d time(s)\n", numberOpens);
+  return 0;
+}
+
+static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *offset){     //5b
+  int error_count = 0;
+  //copy_to_user has the format ( * to, *from, size) and returns 0 on success
+  error_count = copy_to_user(buffer, message, size_of_message);
+
+  if (error_count==0){
+    printk(KERN_INFO "EBBChar: Sent %d characters to the user\n", size_of_message);
+    return (size_of_message=0);  //clear the position to the start and return 0
+  } else {
+    printk(KERN_INFO "EBBChar: Failed to send %d characters to the user\n", error_count);
+    return -EFAULT;              //-14
+  }
+}
+
+static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){      //5c
+  sprintf(message, "%s(%zu letters)", buffer, len);   //appending received string with its length
+  size_of_message = strlen(message);                 //store the length of the stored message
+  printk(KERN_INFO "EBBChar: Received %zu characters from the user\n", len);
+  return len;
 }
 
 static int dev_release(struct inode *inodep, struct file *filep){
@@ -136,28 +123,28 @@ static int dev_release(struct inode *inodep, struct file *filep){
    	return 0;
 }
 
-module_init(ebbchar_init);																															//9
+module_init(ebbchar_init);                                    //6
 module_exit(ebbchar_exit);
 ```
 
-10. Build driver ebbchar.ko
+- *7.* Build driver ebbchar.ko
 ```c
 # make; 
 # ls 
-	ebbchar.ko
+  ebbchar.ko
 ```
 
-11. Insert/Register Device Driver, Verify driver & Device file being created
+- *8.* Insert/Register Device Driver, Verify driver & Device file being created
 ```c
 # insmod ebbchar.ko	
 # dmesg
-# lsmod |grep ebb									  //Check listing of driver
-# ls -ltr /dev/ebb*								  //Device file
-	crw-------- 1 root root 238,0 	  //238 major no is automatically assigned by kernel
+# lsmod |grep ebb                     //Check listing of driver
+# ls -ltr /dev/ebb*                   //Device file
+  crw-------- 1 root root 238,0      //238 major no is automatically assigned by kernel
 ```
-12. Write/compile/Test user application to communicate with driver.
-	  - Note, User space application should be aware of Device file `/dev/ebbchar`.
-		- User space application will open this device and do RW operation on it
+- *9.* Write/compile/Test user application to communicate with driver.
+  - Note, User space application should be aware of Device file `/dev/ebbchar`.
+  - User space application will open this device and do RW operation on it
 ```c
 # vim testebbdriver.c
 ..
@@ -168,7 +155,7 @@ read(fd, receive, BUFFER_LENGTH);
 # ./test
 ```
 
-13. Remove the driver.
+- *10.* Remove the driver.
 ```c
 # rmmod ebbchar
 ```
