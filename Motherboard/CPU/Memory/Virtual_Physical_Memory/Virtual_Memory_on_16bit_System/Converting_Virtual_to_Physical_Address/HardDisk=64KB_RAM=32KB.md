@@ -4,7 +4,7 @@
 
 > Page Size = 4KB = 4`*`1024 = 4096 Bytes. In Real systems Page sizes might be as large as 64KB.
 
-<img src=https://i.ibb.co/pbTrjFn/virtual-physical.png width=600 />
+<img src=https://i.ibb.co/pbTrjFn/virtual-physical.png width=300 />
                                                        
 - **Ex1. MOV REG 0**
   - Program tries to access virtual address 0. Virtual address is sent to MMU for translation. 
