@@ -1,20 +1,15 @@
 ### Object file
 - **What?** Created during [Compliation process](../).
 - **Object File Types**
-
-||Used for|Mandatory Sections|
-|---|---|---|
-|1.Relocatable Object File|Linking with other object files to create exe, Shared Objects|Code,Data|
-|2.Executable Object File|Ready to execute||
-|3.Shared Object File|Combined with other `*.o` or relocatable objects||
-
-## Object File Format
-- Compiler generates assembly code then assembler generates Object code.
-- **Linking View**
+  - *1. Relocatable Object File:* Used for Linking with other object files to create exe, Shared Objects. 
+  - *2. Executable Object:* File Ready to execute
+  - *3. Shared Object File:* Combined with other `*.o` or relocatable objects 
+- **Object File Format?**
+- *Linking View*
 ```c
 |ELF-Header|Program-Header-Table(Optional)|<section_header> Section-1|...|<section_header> Section-n|...|Special-Sections|...|Section-Header-Table|
 ```
-- **Execution View**
+- *Execution View*
 ```c
 |ELF-Header|Program-Header-Table|Segment-1|Segment-2|...|Section-Header-Table(optional)|
 ```
