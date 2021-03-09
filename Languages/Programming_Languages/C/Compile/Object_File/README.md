@@ -1,4 +1,6 @@
-## Object File Types
+### Object file
+- **What?** Created during [Compliation process](../).
+- **Object File Types**
 
 ||Used for|Mandatory Sections|
 |---|---|---|
