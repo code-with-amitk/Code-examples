@@ -5,10 +5,10 @@
 #### Solution-2
 - Contact the network owners / administrators about increasing capacity on the WiFi network (and related uplinks.)
 
-### Solution-3
+#### Solution-3
 - Try forging RST packets and get the sender to abort the connection. 
 - Or try man-in-the-middle attack against the downloader, divert their internet connection to something you control, and substitute alternative less interesting videos.
-- Or just do a denial-of-service attack against the downloaders to degrade their connection so that they give up and move to another network.
+- Or just do a [denial-of-service attack](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/security) against the downloaders to degrade their connection so that they give up and move to another network.
 
 #### Solution-4
 - We need to attack wireless router(AP) by sending a fake packets so that AP disconnects connected devices and wait for re-authentication,authorization.
