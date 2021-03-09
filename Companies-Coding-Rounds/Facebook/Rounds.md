@@ -14,7 +14,10 @@
 - *4.* How system call goes from user from kernel space?
 
 ### Round-4 //Coding
+- *1.* mindsweeper grid design
+- *2.* Can array is split into 2 halves
 
 ### Round-5 //Design
+- *1.* Design botnet. botnet can exploit 10000 low end machines to run code. All machines need to crawl webpage and return result. No machine should crawl page again.
 
 ### Round-6 //Networking
