@@ -1,8 +1,8 @@
 ### Medium Of Unguided Communication = Waves
 
-<img src=Type_of_waves.jpg width=700 />
+<img src=Type_of_waves.jpg width=500 />
 
-||omnidirectional|Penetrate Buildings|
+|Means of Communication|omnidirectional|Penetrate Buildings|
 |---|---|---|
 |1.Radio|yes|yes|
 |2.Microwaves|yes|yes|
