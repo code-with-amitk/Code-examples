@@ -1,11 +1,5 @@
 ## Unguided
-- **How it works?** 
-  - When electrons move, they create electromagnetic waves that can propagate through space (even in a vacuum).
-  - When an antenna is attached to an electrical circuit, the electromagnetic waves can be broadcast efficiently and received by a receiver some distance away.
-    - In vaccum EM waves travel at speed of light = 3 x 10<sup>8</sup>. //The speed of light is the ultimate speed limit. No object or signal can ever move faster than it.
-  - Amount of information that a signal such as an electromagnetic wave can carry depends on the received power and is proportional to its bandwidth.
-- **Waves?** 
-  - Radio, microwave, infrared, and visible light portions of the spectrum can all be used for transmitting information by modulating the amplitude, frequency, or phase of the waves
-  - UV light, X-rays, gamma rays are even better, due to their higher frequencies, but they are hard to produce and modulate, do not propagate well through buildings, and are dangerous to living things.
+- **[How unguided Communication works?](How_it_works.md)** 
+- **[Medium Of Unguided Communication = Waves](Type_of_Waves.md)**
 - **Frequency hopping spread spectrum** 
   - the transmitter hops from frequency to frequency hundreds of times per second. It is popular for military communication because it makes transmissions hard to detect and next to impossible to jam.
