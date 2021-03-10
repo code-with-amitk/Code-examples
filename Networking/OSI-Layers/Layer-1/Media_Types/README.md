@@ -1,6 +1,6 @@
 - **Guided**
-  - Twisted Pair
-  - Coaxial Cable(Copper wire)
+  - Twisted Pair(Eg Ethernet)
+  - Coaxial Cable /Copper wire (Eg: Cable TV)
   - Fiber Optic
   - Fiber Cable
 - **Unguided(Through Air)**
@@ -8,4 +8,4 @@
   - lasers
   - Radiowave, Microwave, infrared
 
-- **Twisted Pair:** Eg Ethernet
+- **Twisted Pair:** 
