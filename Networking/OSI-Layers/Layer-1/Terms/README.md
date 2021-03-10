@@ -7,4 +7,5 @@
 - **Frequency?** The number of oscillations per second of a wave. Measured in Hz (in honor of Heinrich Hertz)
 - **Wavelength?** The distance between two consecutive maxima (or minima) is called the wavelength, which is designated by the Greek letter λ (lambda)
 - **SNR/Signal-to-Noise Ratio?** The amount of thermal noise present. If we denote the signal power by S and the noise power by N, the signal-to-noise ratio is S/N The units of this log scale are called decibels (dB).
+- **Path loss?** Detoriation of power with distance from the source.
 
