@@ -4,6 +4,8 @@
   - Information: 
     - 1 Bit: pulse of light.
     - 0 Bit: Absence of light.
-  - Trasmittion Medium: ultra-thin fiber of glass
+  - Trasmittion Medium: ultra-thin fiber of glass(less than 1 mm thick)
   - Reciever(Detector): Generates an electrical pulse(1) when light falls on it.
   - Sender: Light source
+- **How effective?** Single-mode fibers currently can transmit data at 100 Gbps for 100 km without amplification.
+- **Chromatic dispersion?** Light pulses sent down a fiber spread out in length as they propagate.
