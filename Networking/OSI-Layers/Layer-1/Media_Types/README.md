@@ -1,3 +1,3 @@
-|Guided|UnGuided|
+|Guided|UnGuided(Through Air)|
 |---|---|
-|copper wire, Fiber Optic, Twisted Pair|Satellite, lasers through the air|
+|copper wire, Fiber Optic, Twisted Pair|Satellite, lasers, Radiowave, Microwave, infrared|
