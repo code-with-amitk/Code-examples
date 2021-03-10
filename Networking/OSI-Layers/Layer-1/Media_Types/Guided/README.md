@@ -7,3 +7,5 @@
 |Used in|Offices to make LAN|Cable TV|||
 |Losses|High(without sheild)|Less wrt TP|No loss(least)||
 |Repeaters||Every 5km|Every 50km(Big cost saving)||
+
+<img src=Guided-Media.jpg width=800 />
