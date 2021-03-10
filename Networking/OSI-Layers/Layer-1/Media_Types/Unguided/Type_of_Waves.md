@@ -4,4 +4,4 @@
   - These are even better, due to their higher frequencies
   - But they are hard to produce and modulate, do not propagate well through buildings, and are dangerous to living things.
 
-<img src=Type_of_waves.jpg width=400 />
+<img src=Type_of_waves.jpg width=700 />
