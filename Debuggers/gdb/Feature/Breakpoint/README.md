@@ -30,3 +30,8 @@ fun(){
     - does 1 step
     - reinsert illegal instruction for trap()
     - continue
+
+### Breakpoints cannot be set on code in ROM
+- Because ROM is read only and setting breakpoints will need to write in program source
+
+### Code 
