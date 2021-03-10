@@ -1,1 +1,7 @@
-test
+- **Why Twisting is done?** 
+  - Waves from different twists cancel out, so radiations are less.
+  - Signal = difference in voltage between the two wires in pair. This provides better immunity to external noise because the noise affects both wires the same, leaving the differential unchanged.
+- **Analog or Digital?** Twisted pairs can transmit either analog or digital information. 
+- **Bandwidth?** Depends on thickness of the wire and the distance traveled. 5-10MB/sec for 2-3kms.
+- **Advantage?** Low cost
+- **[Types of Twisted Pair Cables?](Types_of_Twisted_Pair)**
