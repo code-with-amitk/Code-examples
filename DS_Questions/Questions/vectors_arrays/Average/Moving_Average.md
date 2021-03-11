@@ -27,13 +27,14 @@ movingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3
 movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3
 ```
 
-### Approach-1    //Vector
+### Approach-1    //Traverse from start
 - **Logic**
   - *1.* Take a vector or doubles. Keep inserting elements at end
 ```c
 if (number of elements < Window size)
   calculate average and return
 else if (number of elements > Window size)
+  skip element from front and reach end.
   Calculate averge over window and return
 ```
 - **Complexity** m: Window size
@@ -80,3 +81,14 @@ public:
  * double param_1 = obj->next(val);
  */
 ```
+
+### Approach-2    //Traverse from end
+- **Logic**
+  - *1.* Take a vector or doubles. Keep inserting elements at end
+```c
+if (number of elements < Window size)
+  calculate average and return
+else if (number of elements > Window size)
+  Calculate averge over window by traversing from end
+```
+- **Time:** O(n)  //n:window size
