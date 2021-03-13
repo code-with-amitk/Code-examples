@@ -1,6 +1,6 @@
 ## Cmake
-- **What** Cmake is NOT a build system but build-system generator. It generates `Makefiles` which can be used for compile the project.
-- **Features** cross-platform, open-source, compiler-independent method.
+- **What** Cmake(opensource) is NOT a build system but build-system generator. It generates `Makefiles` which can be used for compile the project.
+- **Why?** Platform neutral code(same code can be compiled on both Windows & Unix)
 
 ### Steps of Building with cmake
   - **1. Create CMakeList.txt**
