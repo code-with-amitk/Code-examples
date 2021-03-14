@@ -25,6 +25,7 @@ void nextPermutation(vector<int>& nums) {
 ## Approach-2
 - **Logic**
 ```c
+Example
 Input: 1 5 8 4 7 6 5 3 1
 
 Next Greater Permutation of above number would be:  1 5 8 5 7 6 4 3 1
@@ -67,6 +68,13 @@ Next Greater Permutation of above number would be:  1 5 8 5 7 6 4 3 1
         |     |
         
   1 5 8 5 1 3 4 6 7   //This is next larger permutation
+```
+- Example2
+```c
+Input: [3 2 1]   //No decreasing sequence. This means this is largest number and question says:
+If such an arrangement is not possible, it must rearrange it as the lowest possible order (i.e., sorted in ascending order).
+
+Output: [1 2 3]
 ```
 - **Complexity**
   - **Time:** O(n) = O(n) + O(n)
