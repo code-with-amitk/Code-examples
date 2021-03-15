@@ -1,5 +1,4 @@
-## [Problem Leetcode](https://leetcode.com/problems/minimum-path-sum/)
-
+## [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)
 - Given mxn matrix of non-negative numbers, find a path sum from top left to bottom right which is minimum. Only down,right movement allowed.
 
 ### Example
