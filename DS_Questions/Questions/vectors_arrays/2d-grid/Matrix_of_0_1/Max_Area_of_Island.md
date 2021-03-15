@@ -31,11 +31,11 @@ Ouput: 6
     //  W       E
     //      S
 
-int check(vec2d& grid, int r, int c){
-  if (r<0 || r>=grid.size() || c<0 ||c>=grid[0].size() || grid[r][c]==0)
+int check(vec2d& grid, int r, int c){                           //1a
+  if (r<0 || r>=grid.size() || c<0 ||c>=grid[0].size() || grid[r][c]==0)            
     return 0;
 
-  grid[r][c] = 0;
+  grid[r][c] = 0;                                       //2
 
   int ret = 1;
   ret += check(grid,r+1,c);
