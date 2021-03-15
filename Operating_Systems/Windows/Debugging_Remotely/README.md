@@ -3,8 +3,10 @@
 - *1.* Copy "Visual Studio Remote machine debugger" to remote machine and run `msvsmon.exe` locally.
 ```c
   a. Copy c:/Program filesx(x86)/Microsoft Visual Studio 11.0/Common7/IDE/Remote Debugger/x64  to remote machine
-  b. Run msvsmon.mon present at above path on local machine
-      |- Tool > Options > No Authentication. Maximum idle time: 0
+  b. Run msvsmon.mon present at above path on local machine & Remote Machine Both
+      |- Tool > Options >
+        > Allow any user to debug
+        > No Authentication. Maximum idle time: 0
 ```
 - *2.* Build exe in debug mode and place on remote machine
 ```c
