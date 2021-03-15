@@ -15,6 +15,7 @@
 ```c
   Project_Property > Debugging > Remote Windows Debugger
     |- Remote Command: C:/amit/test.exe               //Place test.exe in c:/amit on Remote machine
+    |- Remote server name: Remote IP Address
     |- Remote Command Arguments:  -i
     |- Working Directory: C:/amit
     |- Connection:        Remote with no authentication
