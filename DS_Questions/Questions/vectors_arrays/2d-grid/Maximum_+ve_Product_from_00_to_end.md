@@ -1,4 +1,4 @@
-### [Problem leetcode](https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/)
+### [Maximum non negative product in a matrix](https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/)
 - Start from (0,0) and reach bottom right. Find the path with the maximum non-negative/Positive product.
 - Return the maximum non-negative product modulo 109 + 7. If the maximum product is negative return -1.
 - **Examples**
