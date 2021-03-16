@@ -32,7 +32,7 @@
       - *a.* Candidate is not into system design, not aware about designing Large systems.
       - *b.* Did not came up with final design
       - *c.* I have not written code
-      - *d.* They need someone with greater exposure to System Design for this position.
+      - *d.* They need someone with greater exposure to System Design for this position. <<And should be
 
 - **Round-4 //Networking**
   - *1.* What's your fav protocol(ipsec)?
