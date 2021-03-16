@@ -9,7 +9,7 @@ nitu singh
 baba
 ```
 ### Solution-1
-- *1. [Shebang](..)*
+- *1. [Shebang](../..)*
 - *2.*
   - *IFS(Internal field Seperator):* How tokens are seperated in line we are reading. Here '' means tokens are seperated using space.
   - *read*: This is command to read file
