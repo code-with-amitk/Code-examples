@@ -4,3 +4,4 @@
   - **[Purpose of botnets?](Purpose_of_botnet.md)**
   - **[How to prevent botnet attack?](Preventing_Botnet_attacks.md)**
   - **Communication between bots?** Using any protocols, such as IRC, HTTP and P2P.
+  - **[Characteristics of machine to be choosen as bot?](Bot_Characteristics.md)**
