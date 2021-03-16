@@ -9,7 +9,7 @@ nitu singh
 baba
 ```
 ### Solution-1
-- *1. Shebang:* if present should be 1st line of bash(else it will be ignored like comment). This tell which interpreter should be used to interpret the file.
+- *1. [Shebang](..)*
 - *2.*
   - *IFS(Internal field Seperator):* How tokens are seperated in line we are reading. Here '' means tokens are seperated using space.
   - *read*: This is command to read file
