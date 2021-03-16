@@ -1,6 +1,7 @@
 ## if
+- [shebang](../)
 ```bash
-#!/usr/bin/env bash           # Shebang. if present should be 1st line of bash(else it will be ignored like comment). Tell which interpreter should be used to interpret the file
+#!/usr/bin/env bash           # Shebang
 
 COLOR=$1                                #1st Command Line parameter. Note there should be no gap between words and `=`
 
