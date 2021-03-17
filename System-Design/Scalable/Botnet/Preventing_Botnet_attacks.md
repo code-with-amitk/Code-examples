@@ -11,3 +11,7 @@
   - *a.* Understanding DNS pattern of bots. bots communicates with botmaster using dynamic DNS. See [Connection & Rally Phase-3](Bot_Lifecycle)
   - *b.* Understanding File exchange patterns. Bot-master sends code files to bots during upgrade. See [Maintainence & Upgrading Phase-5](Bot_Lifecycle)
 
+- **4. Hoynets to capture bots / Intrusion Detection systems (IDSs)**
+  - Collect information from bots. After collecting information, it is possible to reach bot-master.
+  - Get bot binaries, inflate them with information and reach bot-master.
+
