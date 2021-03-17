@@ -15,3 +15,5 @@
 - **Phase-4 Malicious Activities:** After establishing the C&C channel, the bot waits for commands from C&C to perform malicious activities.
 
 - **Phase-5 Maintainence & Upgrading:** Updating codes of bots by botmaster. This involves file exchanges.
+
+<img src=lifecycle-of-bot.JPG width=500 />
