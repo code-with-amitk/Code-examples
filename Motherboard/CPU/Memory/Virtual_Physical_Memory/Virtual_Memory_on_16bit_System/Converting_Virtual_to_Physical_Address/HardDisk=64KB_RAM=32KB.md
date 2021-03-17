@@ -6,8 +6,7 @@
 
 <img src=https://i.ibb.co/pbTrjFn/virtual-physical.png width=300 />
                                                        
-- **Ex1. MOV REG 0**
-  - Program tries to access virtual address 0. Virtual address is sent to MMU for translation. 
+- **Ex1. MOV REG 0:** Program tries to access virtual address 0. Virtual address is sent to MMU for translation. 
 ```c
 Code-Segment    
   MOV REG 0 ----> CPU
@@ -15,7 +14,7 @@ Code-Segment
                    <--Physical Address 8192-  Page-0 maps to Frame-2
 //MMU has mapped all virtual addresses between 0-4095 onto physical addresses 8192-12287.                   
 ```                   
-- **Ex2. MOV REG 8192**
+- **Ex2. MOV REG 8192:**
 ```c
 Code-Segment    
   MOV REG 8192 -> CPU
