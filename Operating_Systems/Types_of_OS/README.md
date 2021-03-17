@@ -10,3 +10,4 @@
 |6.Embedded OS|Runs in ROM, new software cannot be installed|microwave ovens, TV sets, cars, DVD recorders|Embedded Linux, QNX, VxWorks|
 |7.Sensor Node OS|Network of sensors communicating with eachother & base using wireless communication|Guard national borders, detect fires in forests, measure temperature & precipitation|TinyOS|
 |[8.RTOS(Real Time OS)](..)|||eCos|
+|9.Smart card OS|Smart cards have chip and can run a OS|Credit cards,User auth cards|[Examples](https://github.com/OpenSC/OpenSC)|
