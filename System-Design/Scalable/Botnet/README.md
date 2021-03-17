@@ -7,5 +7,6 @@
   - **[Characteristics of machine to be choosen as bot?](Bot_Characteristics.md)**
 
 ### [Architecture](Botnet_Architecture)
+  - *[Drawbacks in C&C Architecture](Botnet_Architecture/Drawbacks.md)
 
 ### [Life cycle of Bot](Bot_Lifecycle)
