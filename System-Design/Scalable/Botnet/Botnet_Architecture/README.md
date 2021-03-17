@@ -4,4 +4,4 @@
 - **Command-and-control infrastructure (C&C)** This is control entity that can be either centralized or decentralized. One or more communication protocols
 are used by the botmaster(s) to command slave computers and coordinate their actions.
 
-<img src=Botnet_Architecture.JPG width=600 />
+<img src=Botnet_Architecture.JPG width=400 />
