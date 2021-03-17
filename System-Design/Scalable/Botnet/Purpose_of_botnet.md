@@ -5,3 +5,4 @@
     - distribution of malicious software (Trojan horses, spyware, keyloggers)
     - software piracy, information harvesting, extortion
     - identity theft and manipulating online games or surveys
+    - cyber war
