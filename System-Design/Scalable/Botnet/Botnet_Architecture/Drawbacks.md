@@ -1,4 +1,4 @@
-## Drawbacks of [Architecture](..)
+## Drawbacks of [Architecture](./README.md)
   - **a. Centralized C&C is point of failure**
     - Solution-1: Decentralized C&C
       - Unstructured P2P Overlay. Random toplogies with different degrees of distribution.
