@@ -10,7 +10,7 @@ Output: 1
 ```
 
 ### Approach-1  //Min Heap
-- **Logic**
+#### Logic
   - *1.* if only 1 interval is given return 1, min 1 meeting room is needed.
   - *2a.* if more than 1 interval is given, Sort the intervals vector
 ```c
@@ -37,16 +37,17 @@ count=2. 2 meeting rooms needed.
     [30, 0]  
 count=2. 2 meeting rooms needed.
 ```
-- **Complexity** n: Total intervals in input array.
-  - **Space:** O(n)
-    - Min Heap:
-      - O(n): Addition to min Heap. Worst case of all elements are same, we keep on adding same as linked list.
-  - **Time:** O(nlogn)
-    - O(nlogn): Sorting of array of n elements.
+#### Complexity 
+>n: Total intervals in input array.
+- **Space:** O(n)
+  - Min Heap:
+    - O(n): Addition to min Heap. Worst case of all elements are same, we keep on adding same as linked list.
+- **Time:** O(nlogn)
+  - O(nlogn): Sorting of array of n elements.
     - Min Heap:
       - O(n): Addition to min Heap. Worst case of all elements are same, we keep on adding same as linked list.
       - O(n): popping top of min Heap.
-- **Code**
+#### Code
 ```c
 int minMeetingRooms(vector<vector<int>>& intervals) {
   int count = 1;
