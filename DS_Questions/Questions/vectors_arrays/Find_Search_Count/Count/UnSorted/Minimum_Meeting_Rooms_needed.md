@@ -37,9 +37,15 @@ count=2. 2 meeting rooms needed.
     [30, 0]  
 count=2. 2 meeting rooms needed.
 ```
-- **Complexity** n: Total intervals in input array. m: Unique meeting rooms
-  - **Space:** O(m)
-  - **Time:** O(n)
+- **Complexity** n: Total intervals in input array.
+  - **Space:** O(n)
+    - Min Heap:
+      - O(n): Addition to min Heap. Worst case of all elements are same, we keep on adding same as linked list.
+  - **Time:** O(nlogn)
+    - O(nlogn): Sorting of array of n elements.
+    - Min Heap:
+      - O(n): Addition to min Heap. Worst case of all elements are same, we keep on adding same as linked list.
+      - O(n): popping top of min Heap.
 - **Code**
 ```c
 int minMeetingRooms(vector<vector<int>>& intervals) {
