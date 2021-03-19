@@ -9,7 +9,7 @@ Input: intervals = [[7,10],[2,4]]
 Output: 1
 ```
 
-### Approach-1  //Min Heap
+### Approach-1  //Sort+Min Heap. Time:O(nlogn), Space:O(n)
 #### Logic
   - *1.* if only 1 interval is given return 1, min 1 meeting room is needed.
   - *2a.* if more than 1 interval is given, Sort the intervals vector
@@ -81,5 +81,52 @@ int main(){
   //vector<vector<int>> v = {{7,10},{2,4}};
   vector<vector<int>> v = {{1,10},{2,7},{3,19},{8,12},{10,20},{11,30}};
   cout<<minMeetingRooms(v);
+}
+```
+
+### Approach-2  //Seperation+MinHeap. Time:O(n), Space:2O(n)=O(n)
+- **Logic:**
+  - We are only bothered starting all meetings, if meeting room is available and will count number of meeting rooms required for starting all the meetings.
+  - Seperate the input array into 2 seperate Min Heaps.
+    - *a. MeetingStartTimes* 
+    - *b. MeetingEndTimes* 
+```c
+input = {{2,7},{1,10},{3,19},{8,12},{10,20},{11,30}}
+startTimes = {1,2,3,8,10,11}      //MinHeap
+endTimes = {7,10,12,19,20,30}     //MinHeap
+```
+  - Iterate over StartTimes array. And check top of endTimes Array
+    - if top of endTimes meeting is getting ended, donot increment meeting room count
+    - else increment meeting room count
+- **Complexity:**
+  - **Time:** O(n)
+    - O(n): Creating min heaps
+    - O(n): In traversing startTimes minHeap
+  - **Space:** O(n). 2 min heaps.
+- **Code:**
+```c++
+int minMeetingRooms(vector<vector<int>>& intervals) {
+  int count = 0;
+
+  priority_queue<int, vector<int>,greater<int>> pqStart, pqEnd;   //MinHeaps
+
+  if(intervals.size() == 1)
+    return ++count;
+
+  //Created Seperate Min Heaps for start and end times
+  for (auto i=0;i<intervals.size();++i){
+    pqStart.push(intervals[i][0]);
+    pqEnd.push(intervals[i][1]);
+  }
+
+  //We are only bothered about Starting all Meetings
+  while(pqStart.empty() != 1){
+    int top = pqStart.top();  pqStart.pop();
+      if (pqEnd.top() <= top)             //if meeting is ending before starting new meeting, no need to increment meeting room count
+        pqEnd.pop();                        
+      else                                //we need a new meeting room
+        ++count;
+  }
+  return count;
 }
 ```
