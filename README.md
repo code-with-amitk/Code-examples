@@ -1,1 +1,2 @@
-## :heart: I Love Problems, Get Excited and Laugh a Lot! :heart_eyes: :heart:
+ - :heart: I Love Problems, Get Excited and Laugh a Lot! :heart_eyes: :heart:
+ - 💝 I welcome These Big, Powerful, Complicated Problems. In them lies Oppurtunities to change My Life 😍
