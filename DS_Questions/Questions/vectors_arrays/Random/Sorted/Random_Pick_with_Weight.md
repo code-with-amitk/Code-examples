@@ -64,6 +64,10 @@ public:
 
 ### Approach-2  //PrefixSum, Binary Search
 - **Logic:** Same as approach-1, just we will search index using binary search
+```c
+  Iterator upper_bound (Iterator first, Iterator last, const val) 
+  upper_bound returns an iterator pointing to the first element in the range `[first,last)` which has a value greater than ‘val’. 
+```
 - **Complexity:**
   - **Time:** O(logn)
   - **Space:** O(n)
