@@ -1,4 +1,4 @@
-# AMD(ADVANCED MICRO DEVICES) vs Intel
+## AMD(ADVANCED MICRO DEVICES) vs Intel
 | | Intel | AMD |
 | --- | --- | --- |
 | Estb | 1968 | 1969 |
@@ -21,9 +21,8 @@
 ## 2. PRODUCTS
   - embedded processors 
   - Graphics processors for servers, workstations, PCs and embedded system applications.
-  - APU(Accelrated Processing Unit): 64 bit microprocessor from AMD designed to act as a 
-     central processing unit (CPU) and graphics processing unit (GPU) on a single die.  
-  - Processors/Microprocessors/CPUs
+  - APU(Accelrated Processing Unit): 64 bit CPU from AMD designed to act as a CPU & GPU on a single die.  
+  - Processors/CPUs
     - k5(1995),k6(1997-2001),K7(1999-2005),K8,k10(2007-2013)
     - Bulldozer CPU(2011-2017) for desktop & servers. Bulldozer is designed from scratch,
         not a development of earlier processors.
@@ -34,7 +33,7 @@
 
 ## 3. WHY YOU WANT TO JOIN AMD?
  - I am electronics Engineer, fond of semiconductor devices.
- - AMD is working on high end microprocessors which can process Big data/high performance computing. Machine learning.
+ - AMD is working on high end processors which can process Big data/high performance computing. Machine learning.
  - Fascinating products AMD is designing:
       a. Medical: improve image quality of internal organs.
       b. Education: virtual reality in the classrooms.
