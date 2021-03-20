@@ -1,17 +1,1 @@
-## Content in pages
-- **asic_fpga.md**
-  - ASIC
-    - CAIL(Common ASIC Initialization Library)
-  - fpga
-  - ATI Technologies
-- **bios_vbios.md**
-  - ROM/BIOS
-  - VBIOS
-  - Boot loader/Bootstrap loader
-- **ACPI**
-  - ACPI(Advanced Configuration and Power Interface)
-  - Processor Power Management Technologies
-    - P-State(Execution Power Saving states)
-    - C-State(Idle Power Saving states)
-    - PC-State(Pacakge Idle States)
-    - T-State(Throttling State)
+
