@@ -5,7 +5,7 @@ CPU-Registers  L1-Cache/SRAM   L2-Cache/SRAM   L3-Cache/DRAM    Physical_Memory/
 ```
 > Program only runs when its in RAM.
 
-<img src=Memory.jpg width=900/>
+<img src=Memory_types.jpg width=900/>
 
 - **1. CPU Registers**
 - **2. Caches:** L1, L2, L3
