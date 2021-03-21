@@ -5,5 +5,10 @@
 - [Virtual Memory vs Physical Memory](VirtualMem_vs_PhysicalMem.md)
 - [Page, Paging, Demand Paging, Pure Demand Paging, Page Table, Frame, MMU, Page Fault, Page Eviction](Terms.md)
 - **Max Virtual Memory?**
-  - 32 Bit system. Hard Disk = 4GB. Physical Memory=1GB, Virtual Memory=3GB
-  - [64 Bit System](/Operating_Systems/Linux/Protection_Rings/What_is_Protection_Ring.md)
+
+||Hard Disk|Physical Mem|Virtual Mem|
+|---|----|---|---|
+|32 Bit|4GB|1GB|3GB|
+|64 Bit(/Operating_Systems/Linux/Protection_Rings/What_is_Protection_Ring.md)|1TB|4GB|966GB|
+
+- **[Converting Virtual to Physical Address](Convert_Virtual_to_Physical_Address)**
