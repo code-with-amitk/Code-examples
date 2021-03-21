@@ -1,1 +1,0 @@
-- **[Types of Memory](Types-of-memory.md)**
