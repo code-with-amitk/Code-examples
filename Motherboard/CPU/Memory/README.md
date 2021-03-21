@@ -1,6 +1,6 @@
 ## Memory Types
 ```html
-CPU-Registers    L1-Cache/SRAM      L2-Cache/SRAM      L3-Cache/DRAM     Physical_Memory/RAM/Main Memory    Hard_Disk/Secondary_Memory
+CPU-Registers  L1-Cache/SRAM   L2-Cache/SRAM   L3-Cache/DRAM    Physical_Memory/RAM/Main Memory  Hard_Disk/Secondary_Memory
     <------------------[Speed, Cost increases]   [Size Decreases]-----------------------------
 ```
 > Processor can only Run the program If it is on the RAM
