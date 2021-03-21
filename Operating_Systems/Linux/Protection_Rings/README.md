@@ -4,4 +4,4 @@
   - *1.* zoom(User program in Ring 3) wants to turn on camera should take permission from Ring 1(device drivers)
   - *2.* Web browsers(Ring 3) should take permission from Ring 1(Network device drivers).
 
-<img src="protection_rings.JPG" width=800 />
+<img src="protection_rings-area.JPG" width=800 />
