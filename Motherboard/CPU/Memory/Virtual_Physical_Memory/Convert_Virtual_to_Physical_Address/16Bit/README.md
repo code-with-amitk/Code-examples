@@ -1,8 +1,6 @@
-## 16 bit system
-- Virtual Memory/Hard Disk = 64KB. 64k/4k = 16 Pages  
-- Physical Memory/RAM = 32 KB. 32k/4k = 8 Frames
-
-> Page Size = 4KB = 4`*`1024 = 4096 Bytes. In Real systems Page sizes might be as large as 64KB.
+## [16 bit system / 8086](/Motherboard/CPU/Microprocessors)
+- Hard Disk = 64KB. 64k/4k = 16 Pages. Page Size = 4KB = 4`*`1024 = 4096 Bytes. In Real systems Page sizes might be as large as 64KB.
+- RAM = 32 KB. 32k/4k = 8 Frames
 
 <img src=https://i.ibb.co/pbTrjFn/virtual-physical.png width=300 />
                                                        
