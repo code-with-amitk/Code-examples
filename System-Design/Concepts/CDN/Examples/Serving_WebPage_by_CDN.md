@@ -1,9 +1,9 @@
 ## CDN serving web page to Browser
   - *1.* Client requests web page from origin server/web server.
   - *2.* Origin server responds with Page and references to embedded documents(ie hostnames of servers having ref docs)
-  - *3.* Browser finds IP of Authoritative DNS servers using regular [DNS lookup](/Networking/OSI-Layers/Layer5/Protocols/DNS/How_DNS_Works.md).
+  - *3.* Browser finds IP of Authoritative DNS servers using regular [DNS lookup](/Networking/OSI-Layers/Layer5/Protocols/DNS/Name_Resolution).
   - *4.* Browser sends DNS Query to CDN-DNS-Server, which responds with IP address of nearst,best matching DNS server to client.
-  - *5.* Browser sends [HTTP GET](/Networking/OSI-Layers/Layer5/Protocols/HTTP/GET_Document.md) for reference document
+  - *5.* Browser sends [HTTP GET](/Networking/OSI-Layers/Layer5/Protocols/HTTP) for reference document
   - *6.* CDN Server checks if he has reference documents sends the docs, if not asks web server, caches the docs and then sends to client.
   ```html
     [Client/Web-Browser]                          [Origin-Server]
