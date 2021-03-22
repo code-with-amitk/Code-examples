@@ -22,7 +22,11 @@ v.push_back(a);
 ```
 
 ## Convert
-#### A. String to int
+#### A. char to int
+```c++
+  int a = static_cast<int>(char) - 48;
+```
+#### B. String to int
 **1. istringstream**
 ```c++
   string a ="12";
