@@ -6,14 +6,14 @@
 - Nodes would be classified as **[Strong,Weak](/System-Design/Concepts/Hashing)**
 - In addition, skype network will also have Skype Super nodes.
 ```c
-  Skype-node-1(weak)        Skype-node-3(weak)        Skype-node-n(strong)USER-a
-           |                    |                               |
-           |--------------------|-------------------------------|
-                                                                |
-                                                                |
-          USER-b-Skype-node-m(Strong)  ----------------- Skype-Super-Node
-                                                                |
-                              Skype-node-2(weak)----------------|
+                                      Skype-node-n(strong)USER-a
+                                                      |
+                                                      |
+    USER-b-Skype-node-m(Strong)  ----------------- Skype-Super-Node   -------Skype-node-3(weak)
+                                                    /     |
+                                  Skype-node-2(weak)      |
+                                                          |
+                                                     Skype-node-1(weak)
 
 ```
 
