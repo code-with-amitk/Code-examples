@@ -1,7 +1,10 @@
-## P2P / Peer to Peer / Overlay Network / Peer-to-Peer
+## Overlay Network 
 - **What?** 
-  - A P2P overlay network is a computer network built on top of an existing underlay network(TCP/IP or Internet).
+  - A Overlay network is a computer network built on top of an existing underlay network(TCP/IP or Internet).
   - Most overlay networks are **built in the application layer** on top of the TCP/IP networking suite.
-  - P2P overlay networks enable participating peers to find the other peers not by the IP addresses but by the specific logical identifiers known to all peers. 
-  - Systems consists of equal peers cooperating with each other acting as client and server both. Eg: Bittorrent
-- *[Architecture](Architecture)*, *[Advatanges](Advantages.md)*, *[Disadvatanges](Disadvatanges_of_overlay.md)*
+  - overlay networks enable participating peers to find the other peers not by the IP addresses but by the specific logical identifiers known to all peers. 
+- *[Architecture](Architecture)*, *[Advatanges](Advantages.md)*, *[Disadvatanges](Disadvatanges_of_overlay.md)*, *[Types of Overlay Network](Types_of_Overlay_Network)*
+
+## P2P / Peer to Peer / Peer-to-Peer
+- Systems consists of equal peers cooperating with each other acting as client and server Both. Eg: Bittorrent
+
