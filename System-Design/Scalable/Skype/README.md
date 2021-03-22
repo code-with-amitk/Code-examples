@@ -2,8 +2,8 @@
 
 ## 5. HLD
 - Nodes would be distributed across internet.
-- **[Broker](/System-Design/Concepts/Distributed_Systems/Distributed_System_Types_Architectures.md)** will part of middleware, all applications will communicate using broker.
-- Nodes would be classified as **[Strong,Weak](/System-Design/Concepts/Hashing/Consistent_Hashing.md)**
+- **[Broker](/System-Design/Concepts/Distributed_Systems/Architecture)** will part of middleware, all applications will communicate using broker.
+- Nodes would be classified as **[Strong,Weak](/System-Design/Concepts/Hashing)**
 - In addition, skype network will also have Skype Super nodes.
 ```c
   Skype-node-1(weak)        Skype-node-3(weak)        Skype-node-n(strong)USER-a
