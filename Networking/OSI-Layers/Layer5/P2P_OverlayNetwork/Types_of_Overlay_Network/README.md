@@ -1,6 +1,7 @@
 ## Types of Overlay Network
-- *a. Router based:* Employ [IP Multicast](/Networking/IP_Address_Types) or IP Anycast.
-- *b. No Router based:* ie Implemented on top of underlay TCP/IP network. Types:
-  - Infrastructure-centric(CDNs)
-  - End-Systems with End-systems only
-  - Infrastructure support
+
+||Structured overlay/2nd Generation|Unstructured overlay/1st Generation|Hybrid|
+|---|---|---|---|
+|What|Network is Tightly controlled by P2P system|Do not have tightl controlled structure|Combination of Unstructured and Structured|
+|Techniques Utilized||Flooding, opportunistic techniques, such as random walks and expanding-ring time-to-live(TTL) search||
+|Example Protocol||BitTorrent||
