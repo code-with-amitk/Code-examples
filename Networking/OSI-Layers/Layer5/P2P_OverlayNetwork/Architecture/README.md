@@ -12,4 +12,4 @@
 - *Layer-d*
   - *Applications, Services* Actual applications, services that are executed on top of the layered overlay architecture.
 
-<img src=Overlay_Network.jpg width=500 />
+<img src=Overlay_Network.jpg width=300 />
