@@ -5,4 +5,5 @@
   - P2P overlay networks enable participating peers to find the other peers not by the IP addresses but by the specific logical identifiers known to all peers. 
   - Systems consists of equal peers cooperating with each other acting as client and server both. Eg: Bittorrent
 - *[Architecture of Overlay Network?](Architecture)*
-- *[Advatanges of Overlay Network](Advantages.md)*
+- *[Advatanges](Advantages.md)*
+- *[Disadvatanges](Disadvatanges_of_overlay.md)*
