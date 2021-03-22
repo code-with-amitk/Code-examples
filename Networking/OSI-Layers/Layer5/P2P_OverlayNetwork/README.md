@@ -4,6 +4,4 @@
   - Most overlay networks are **built in the application layer** on top of the TCP/IP networking suite.
   - P2P overlay networks enable participating peers to find the other peers not by the IP addresses but by the specific logical identifiers known to all peers. 
   - Systems consists of equal peers cooperating with each other acting as client and server both. Eg: Bittorrent
-- *[Architecture of Overlay Network?](Architecture)*
-- *[Advatanges](Advantages.md)*
-- *[Disadvatanges](Disadvatanges_of_overlay.md)*
+- *[Architecture](Architecture)*, *[Advatanges](Advantages.md)*, *[Disadvatanges](Disadvatanges_of_overlay.md)*
