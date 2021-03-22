@@ -1,4 +1,4 @@
-## Architecture / Advatanges of Overlay Network
+## Architecture of Overlay Network
 - *Layer-a*
   - *Routing:* Pertains to the process of building and maintaining routing tables. 
   - *Forwarding:* is the process of sending messages toward their destination.
