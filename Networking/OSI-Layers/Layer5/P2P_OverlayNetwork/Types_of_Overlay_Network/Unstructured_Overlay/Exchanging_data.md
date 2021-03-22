@@ -1,5 +1,14 @@
 ## Methods of Exchanging data
-- **1. Central index**
+- **1. Central index:** Napster uses it.
   - When a node joins, it sends a list of locally available files to the index server. Also asks for some files.
   - Index server performs query on behalf of clients.
   - When some client has requested files, the peer that sent the query receives a list of the peers that have the actual data file available.
+  - *Drawback:* Index server is single point of failure.
+- **2. Flooding**
+  - Every node maintains index of files its sharing with network.
+  - Query is sent in the network by peers, and peers that have matching data items send the result directly to the node that initiated the query.
+  - *Drawback:* Huge traffic
+- **3. Heuristic key-based routing:** Freenet uses it.
+  - Each file is associated with a key, and files with similar keys are clustered together.
+  - Queries then are forwarded to a cluster instead of flooding the network.
+  - *Drawback:* network does not guarantee all matching data items are found.
