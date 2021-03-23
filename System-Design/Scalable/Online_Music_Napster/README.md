@@ -8,7 +8,7 @@
   - *2.* Once there is a match for a peer’s query, server forwards the address of the peer that stores the data item that matched the query
   - *3.* The peer that issued the matching query can directly contact the peer that has the data.
   
-<img src="napster.jpg" width=400 />  
+<img src="napster.JPG" width=400 />  
 
 - **Advatanges**
   - *a.* Transfer of the file lists does not require much bandwidth.
