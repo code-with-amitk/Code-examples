@@ -30,11 +30,10 @@ int MySum(int a, int b){
 
 ### 3. Linking Static library with Application
 - *1.* Open a new Console Application. Visual Studio 2019 > File > New > Project > C++ > Name(test)
-- *2.* Include Header file
-```html
-  Project Properties > C/C++ > General > Additional Include Directories
-```
-- *3.* Link the Library
-```html
- Project Properties > Linker > library Depdencies (Provide complete path of StaticLib1.lib)
+- *2.* Choose Platform, Include Header Files, Link Static Library
+```c
+Project Properties 
+  - Configuration: Active(Debug)    Platform: Win32
+  - C/C++ > General > Additional Include Directories                         //Include Header file
+  - Linker > library Depdencies (Provide complete path of StaticLib1.lib)    //Link the Library
 ```
