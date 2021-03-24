@@ -1,0 +1,3 @@
+- **Gnutella?** 
+  - 
+  - Distributes both the search and download capabilities amongst peers.
