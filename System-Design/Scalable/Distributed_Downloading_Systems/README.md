@@ -5,3 +5,11 @@
 - **Advantages?**
   - *1.* A low bandwidth user can download file quickly.
   - *2.* Saves network bandwidth, redundant/lost packets are lowered.
+- **Examples**
+
+|[P2P Networks](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork)|What|How|
+|---|---|---|
+|Napster|Music online service sharing digital audio files(mp3)|Centralized lookup|
+|Gnutella||Flooding queries|
+|Freenet, Chord||Routed Queries|
+|Bittorrent|||
