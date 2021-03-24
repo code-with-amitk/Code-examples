@@ -1,10 +1,5 @@
-# BOOST Installation
 
-## 1. TERMS
-### **1A. (B2 = Boost.Build) Build system**
-#### **What** 
-- This is compiler & platform-independent build system. B2 supports many compilers.
-- Boost does not know anything by himself, everything is written into jam files.
+- Boost is compiler & platform-independent build system. B2 supports many compilers. Boost does not know anything by himself, everything is written into jam files.
 
 #### **** .JAM FILE *** Configuration file for b2
 - Create a Configuration file telling where to find source files
@@ -15,8 +10,8 @@
     1. b2 starts. Looks for `boost-build.jam` in pwd. 
     2. Searches `jamroot.jam` until root boost directory.
 
-## 2. INSTALL
-### Install on (Linux) From source github
+## INSTALL
+### On (Linux) From source
 ```c
 # git clone --recursive https://github.com/boostorg/boost.git	 //Please note RECURSIVE is most important. Time taken=45 min
 # cd boost
@@ -31,14 +26,12 @@
 //Install
 # mkdir ./install-dir
 # ./b2 install ./install-dir
-```
 
-### A2. (Linux) 
-```c
+OR
 # yum    install    -y    boost-devel        //Now just Include header files and start using
 ```
 
-#### A2. On Windows
+#### On Windows
 ```c
 - Install cygwin    
 - unpack boost_1_22_0.7z, install in Windows    
