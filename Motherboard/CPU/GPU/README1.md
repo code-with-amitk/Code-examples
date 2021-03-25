@@ -4,18 +4,14 @@
   - It has different components that work altogether for graphics processing.
   
 ## Components of Graphics Card
-![ImgURL](https://i.ibb.co/rykQ0bJ/graphics-card-components.jpg)  
+<img src=https://i.ibb.co/rykQ0bJ/graphics-card-components.jpg width=500 />
+
 - **GPU** See GPU.md page
-- **VRAM(Video RAM)** 
-  - All the graphics data and game textures are stored for processing by the GPU
-  - Faster memory can really increase the graphics card performance to a certain level.
-  - Graphics card memory includes DDR3, GDDR5, GDDR5X, HBM, and HBM2 RAM. DDR3 is the oldest and slowest of all.
-- **VRM(Voltage Regulator Module)/(PPM)Processor Power Module/Voltage Regulator**
-  - The main circuitry that powers the GPU. 
-  - It converts 12V to around 1V to 1.5V (approx) which is normally the voltage level at which GPU operates.
-  - No of VRMs on a graphics card varies from card to card. 
-  - VRMs can get very hot & require good cooling to keep the graphics card from shutting down.
-- **Cooler**
+- [VRAM(Video RAM)](/Motherboard/CPU/Memory/RAM)
+- **VRM(Voltage Regulator Module)/(PPM)Processor Power Module/Voltage Regulator:**
+  - This gives power to the GPU. It converts 12V to around 1V to 1.5V (approx) which is normally the voltage level at which GPU operates.
+  - No of VRMs on a graphics card varies from card to card. VRMs can get very hot & require good cooling to keep the graphics card from shutting down.
+- **Cooler:** 
   - Every graphics card comes with Cooler to keep the temperature of GPU, VRAM, and VRM down to safer levels.
   - Some of the high-end graphics cards also come with Liquid / Water Cooling or Hybrid Cooling Solution      
   - Coolers can be either active or passive.
