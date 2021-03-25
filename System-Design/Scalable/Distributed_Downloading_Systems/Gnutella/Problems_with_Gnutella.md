@@ -8,4 +8,4 @@
   - Again when node goes down, leaf and ultra nodes information is lost.
   - *Solution:* Saving list of leaf nodes and ultra nodes that it was actively connected to, peer addresses obtained from pong packets.
 - **4. Flooding:** 
-  - *Solution:* Random Walk
+  - *[Solution: Random Walk](/System-Design/Concepts/Hashing)*
