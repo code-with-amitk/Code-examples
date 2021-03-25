@@ -11,8 +11,5 @@
     - QUERYHit message is sent back when file is found.
   - **Part-2(Download):** Transfer actual file from the peer using HTTP over UDP. [Advantages of HTTP over UDP](/Networking/OSI-Layers/Layer-4/Protocols/Google_QUIC/FeaturesCharacteristics_Improvements_Over_TCP).
 - **[Message Types](Message_Types.md)**
-- **Problems in Gnutella**
-  - *1.* QueryHit is sent on same path as Query message.
-    - [Solution: Push Proxy](Node_Types.md)
-  - *2.* Traversing firewalls, NAT
-    - [Solution: Push Message](Message_Types.md)
+- **[Problems in Gnutella](Problems_with_Gnutella.md)**
+
