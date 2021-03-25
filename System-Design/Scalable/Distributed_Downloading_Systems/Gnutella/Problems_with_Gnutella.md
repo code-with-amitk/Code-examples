@@ -7,3 +7,5 @@
   - Bootstraping means when node comes up online, it need to collect the information of peers, ultra nodes and on which node data is available. This makes sending lot of packets on n/w(flooding).
   - Again when node goes down, leaf and ultra nodes information is lost.
   - *Solution:* Saving list of leaf nodes and ultra nodes that it was actively connected to, peer addresses obtained from pong packets.
+- **4. Flooding:** 
+  - *Solution:* Random Walk
