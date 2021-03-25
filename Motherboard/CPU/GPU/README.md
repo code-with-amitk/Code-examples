@@ -2,8 +2,6 @@
 - **What**
   - Used in gaming PC or a professional high-performance PC for graphic processing.
   - It has different components that work altogether for graphics processing.
-  
-## Components of Graphics Card
 <img src=https://i.ibb.co/rykQ0bJ/graphics-card-components.jpg width=500 />
 
 - [GPU](GPU.md)
