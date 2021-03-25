@@ -3,7 +3,7 @@
 
 ## HLD
 - **[Gnutella Nodes:](Node_Types.md)** Leaf, Ultra Nodes, Push Proxies
-<img src=Gnutella.jpg width=500 />
+<img src=Gnutella.jpg width=700 />
 
 - **How Gnutella works?**
   - **Part-1(Search):** Locate the peers that have desired data items.
