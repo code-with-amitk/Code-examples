@@ -8,4 +8,6 @@
   - Again when node goes down, leaf and ultra nodes information is lost.
   - *Solution:* Saving list of leaf nodes and ultra nodes that it was actively connected to, peer addresses obtained from pong packets.
 - **4. [Flooding:](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)** 
-  - *[Solution: Random Walk](/System-Design/Concepts/Hashing)*
+  - *[Solution: Random Walk](/System-Design/Concepts/Hashing)* + proactive data replication
+- **5. Huge data is sent using QRT**
+  - Solution: Sending hash of file data using Bloom Filter.
