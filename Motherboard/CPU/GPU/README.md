@@ -6,7 +6,7 @@
 ## Components of Graphics Card
 <img src=https://i.ibb.co/rykQ0bJ/graphics-card-components.jpg width=500 />
 
-- **GPU** See GPU.md page
+- [GPU](GPU.md)
 - [VRAM(Video RAM)](/Motherboard/CPU/Memory/RAM)
 - **VRM(Voltage Regulator Module)/(PPM)Processor Power Module/Voltage Regulator:**
   - This gives power to the GPU. It converts 12V to around 1V to 1.5V (approx) which is normally the voltage level at which GPU operates.
