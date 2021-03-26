@@ -1,4 +1,5 @@
-- **Kernel?** Heart of Linux OS. Kernel is chunk of code doing following tasks:
+## Kernel
+- **What is kernel?** Heart of Linux OS. Kernel is chunk of code doing following tasks:
   - *1. Process management:* Creation/Destruction of processes, IPC(using signals, pipes etc) is handled by kernel.
   - *2. Memory Management:* virtual addressing space for all processes is provided by kernel.
   - *3. File System management:*  kernel builds a structured filesystem on top of unstructured hardware
