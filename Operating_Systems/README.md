@@ -1,1 +1,2 @@
-- **[Types of OS](Types_of_OS)**
+- [Types of Operating Systems](Types_of_OS)
+- [Operating System Design Goals](Design_Goals.md)
