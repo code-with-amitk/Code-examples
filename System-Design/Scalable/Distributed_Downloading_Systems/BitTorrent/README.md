@@ -1,8 +1,11 @@
-# Bit Torrent
+## Bit Torrent
+- **What?**
+  - P2P file-sharing protocol downloading large amounts of data. 
+  - Very popular, According to some estimates, roughly 35% of all Internet traffic uses bittorrent. 
+  - Designed by Bram Cohen in 2001.
+- **[Terms](Terms.md)** Torrent file, Tracker server
+- **[Bit-torrent vs HTTP](Bittorrent_vs_http.md)**
 
-## 5. HLD
-- **Torrent File:** This contains addresses of tracker servers.
-- **Tracker server:** This has list of active nodes(client-IP addresses which are downloading a file) and fragment number which is already downloaded.
 
 ### 5.1 Example
 > Let's suppose user-1, user-2, .. user-n wants to download a Movie-xyz or VMware(.vmdk) file sized 3-4GB.
