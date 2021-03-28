@@ -11,5 +11,9 @@
 - **Seeder:**
   - Peer that provide a complete file with all of its pieces.
   - This file contains information about the data, including the pieces and their hashes.
+- **Leecher** All others clients in the swarm are known as leechers, who have some fragment of file.
+- **Fragment size** configurable default 256KB.
+- **Block**  The unit of data transfer between two peers is that of a block, default 16 Kbyte.
 - **Seed:** Peer that provides a file, maybe a portion of file.
 - **Swarm:** Group of peers involved in downloading and sharing files.
+- **Neighbour Set:** Neighbours in swarm.
