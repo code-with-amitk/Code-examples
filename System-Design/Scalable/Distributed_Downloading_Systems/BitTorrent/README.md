@@ -1,11 +1,10 @@
 ## Bit Torrent
 - **What?**
-  - P2P file-sharing protocol downloading large amounts of data. 
-  - Very popular, According to some estimates, roughly 35% of all Internet traffic uses bittorrent. 
-  - Designed by Bram Cohen in 2001.
-- **[Terms](Terms.md)** Torrent file, Tracker server
-- **[Bit-torrent vs HTTP](Bittorrent_vs_http.md)**
-
+  - [P2P(Peer to Peer)](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/) file-sharing protocol downloading large amounts of data, designed by Bram Cohen in 2001.
+  - According to some estimates, roughly 35% of all Internet traffic uses bittorrent.
+- [Terms: Torrent file, Tracker server](Terms.md)
+- *[Bit-torrent vs HTTP](Bittorrent_vs_http.md)*
+- [Advantages, Disadvantages of Bittorrent](Advantages_Disadv_of_Bittorrent.md)
 
 ### 5.1 Example
 > Let's suppose user-1, user-2, .. user-n wants to download a Movie-xyz or VMware(.vmdk) file sized 3-4GB.
