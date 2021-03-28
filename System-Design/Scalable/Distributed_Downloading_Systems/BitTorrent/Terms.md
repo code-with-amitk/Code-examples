@@ -1,11 +1,12 @@
 ## Terms
-- **Tracker/Coordinator Server/Web Server:** 
+- **Torrent Server/Coordinator Server/Web Server:** 
   - Centralized server having list of active nodes(client-IP addresses which are downloading a file) and fragment number which is already downloaded.
+  - This is a Web server accepting HTTP or HTTPS GET requests and provides torrent files.
   - Tracker has following information:
     - List of active clients/peers inside swarm.
     - Fragments each client/peer hold.
     - Upload/Download speed of peers.
-  - The tracker is a Web server accepting HTTP or HTTPS GET requests and provides torrent files.
+- **Tracker** Maintains status of a torrent (for example, the peers and information about the pieces they have).
 - **Torrent File:** This contains addresses of tracker servers.
 - **Peer/Client:** (who wants file to be downloaded) should find tracker and downloaded torrent
 - **Seeder:**
