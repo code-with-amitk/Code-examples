@@ -1,5 +1,5 @@
 ## Advantages
-- *1. Better Resistance to Flash Crowd than standard web server:* Because peers assist each other in downloading files.
+- *1. Better Resistance to [Flash Crowd](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/) than standard web server:* Because peers assist each other in downloading files.
 - *2. Integrity check using SHA-1:* Peers check integrity of file before download using SHA1.
 
 ## Disadvantages
