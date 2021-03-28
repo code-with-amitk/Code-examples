@@ -33,9 +33,10 @@ Output: "abccdcdcdxyz"
                    /\
                    top
 ```
-  - *2.* if character = `]`. Start popping and recreating stack
+  - *2.* if character = `]`. Start popping(create tempString) until a number is encountered. Ignore `[`.
+    - Once number is seen, Push tempString those many times again on stack.
 ```c
-  //Keep noting string
+  //Create string after popping
   strLast = c,        stack = 3 [ a 2 [ 
   
   //Ignore [
@@ -100,4 +101,109 @@ Output: "abccdcdcdxyz"
     }
     return strOut;
   }
+```
+
+### Approach-2  //Using 2 stacks
+- **Logic:** Push all numbers on NumberStack and characters from input string on stringStack.
+```c
+input = 3[a2[c]]
+```
+  - *1.* if input character is number, copy on iNum.
+```c
+iNum = 3
+```
+  - *2.* if input character is `[`. Push iNum on NumberStack, currentString on StringStack. Make iNum=0,currString=""
+  ```c
+  stNumber    3
+  stString    
+  iNum=0
+  currString = ""
+  ```
+  - *3.* if input character is character, create currString.
+  ```c
+  strCurr = a
+  ```
+   - *4.* Input character is number. Repeat step-1.
+```c
+stNumber    3
+stString    
+iNum = 2
+currString = a
+```
+  - *5.* Input character is `[`. Repeat step-2.
+```c
+stNumber    3   2
+               top
+stString    a
+iNum=0
+currString = ""
+```
+  - *6.* Input charcter is char. Repeat step-3.
+```c
+stNumber    3   2
+               top
+stString    a
+iNum=0
+currString = c
+```
+  - *7.* Input character `]`. Start decoding the string
+    - Create a temporary string = (strString + Repeat currString 2 times(ie stNumber.top())
+    - Copy temporay string to currString
+```c
+strTemp = a + cc = acc
+
+stNumber    3 
+stString    
+iNum=0
+currString = acc
+
+```
+- **Complexity:** length of input string=n. Max number of nested strings = k.
+  - **Time:** O(max_of_k x n)
+  - **Space:** O(m +n). m=Number of letters from (a-z). n=Digits from (0-9).
+- **Code**
+```c
+string decodeString(string s) {
+  stack<int> stNumber;
+  stack<string> stString;
+  
+  string strCurr;
+  int iNum = 0;  
+  
+   for (auto ch : s) {
+
+      if (isdigit(ch))  //if digit create number
+        iNum = iNum * 10 + ch - '0';
+
+      else if (ch == '[') {
+
+        stNumber.push(iNum);  //Push created number on NumberStack
+
+        stString.push(strCurr); //Push created string on StringStack
+
+        strCurr.clear();
+        iNum = 0;
+
+      } else if (ch == ']') {
+
+        string strTemp = stString.top();
+
+        stString.pop();
+
+        //Create string using number from stNumber
+        for (int i = stNumber.top(); i > 0; --i)
+          strTemp += strCurr;
+
+        stNumber.pop();
+        strCurr = strTemp;
+
+      }
+
+      else          //Keep appending characters from input to string
+        strCurr += ch;
+
+    }//for()
+
+    return strCurr;
+  }  
 ```
