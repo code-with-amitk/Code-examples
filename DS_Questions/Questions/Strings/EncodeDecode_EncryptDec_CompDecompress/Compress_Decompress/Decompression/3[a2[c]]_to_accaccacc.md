@@ -103,7 +103,7 @@ Output: "abccdcdcdxyz"
   }
 ```
 
-### Approach-2  //Using 2 stacks
+### Approach-2  //Using 2 stacks. Faster than 100%
 - **Logic:** Push all numbers on NumberStack and characters from input string on stringStack.
 ```c
 input = 3[a2[c]]
