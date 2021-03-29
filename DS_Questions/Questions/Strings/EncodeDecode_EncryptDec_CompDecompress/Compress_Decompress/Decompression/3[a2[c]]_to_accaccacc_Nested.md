@@ -207,3 +207,47 @@ string decodeString(string s) {
     return strCurr;
   }  
 ```
+
+### Approach-3  //Using recursion stack
+- **Logic:**
+  - *1.* Iterate whole string until we find `]` character.
+  - *2.* if digit is seen construct the number.
+  - *3.* Call the recursive function again to calculate string part of input string.
+```c
+  strStringPart = s[index++];
+```
+- **Complexity:** n is the length of the string s.
+  - **Time:** O(maxK x n)  //As in approach-2
+  - **Space:** O(n). Space used by internal stack for recursion.
+Space Complexity: \mathcal{O}(n)O(n). This is the space used to store the internal call stack used for recursion. As we are recursively decoding each nested pattern, the maximum depth of recursive call stack would not be more than nn
+- **Code:**
+```c++
+  string Iterate(string& s, int& index){
+    string strOut;
+
+    while (index < s.length() && s[index] != ']'){
+      if (isdigit(s[index])) {
+        int iNum = 0;
+
+        //Create Number from continious numerals
+        while (index < s.length() && isdigit(s[index]))
+          iNum = iNum*10 + s[index++] - '0';
+
+        ++index;
+
+        string strDecoded = Iterate(s, index);
+        ++index;
+
+        while(iNum-- > 0)
+          strOut += strDecoded;
+      }else
+        strOut += s[index++];
+    }
+    return strOut;
+  }
+
+  string decodeString(string s) {
+    int index=0;
+    return Iterate(s, index);
+  }
+```
