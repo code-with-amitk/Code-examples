@@ -1,5 +1,10 @@
 ### Example
-> Let's suppose user-1, user-2, .. user-n wants to download a Movie-xyz or VMware(.vmdk) file sized 3-4GB.
+> Let's suppose user-1, user-2, .. user-n wants to download a MovieX or VMware(.vmdk) file sized 3-4GB.
+
+- *1.* [Seeder](Terms.md) provides a [torrent file](Terms.md) to a [torrent server](Terms.md).
+- *2.* Torrent server uploads Torrent file to Web server for clients to search torrent file.
+- *3.* Seeder uploads torrent file to [Tracker](Terms.md).
+- *4.* 
 - *1.* All users will connect to Global Directory(well-known Web site) and requests [Tracker Server](Terms.md) IP.
 - *2.* After getting tracker IP, will connect to Tracker server(over HTTP) and gets complete list of clients downloading files/fragments(ie Swarm).
 - *3.* User-n will only connect with user-m from [Neighbour set](Terms.md).
