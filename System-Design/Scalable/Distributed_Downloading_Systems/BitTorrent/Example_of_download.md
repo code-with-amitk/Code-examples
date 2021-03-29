@@ -8,4 +8,4 @@
 - *5.* After getting tracker IP, Client connects to Tracker server(over HTTP) and gets complete list of clients downloading files/fragments(ie Swarm).
 - *6.* client-n downloads fragment-1, connect to client-m, provide fragment-1 & gets fragment-2.
 
-<img src=Bittorrent_Architecture.jpg width=400 />
+<img src=Bittorrent_Architecture.jpg width=600 />
