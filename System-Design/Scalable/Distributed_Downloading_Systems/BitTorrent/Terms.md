@@ -7,7 +7,7 @@
     - Fragments each client/peer hold.
     - Upload/Download speed of peers.
 - **Tracker** Maintains status of a torrent (for example, the peers and information about the pieces they have).
-- **Torrent File:** This contains addresses of tracker servers.
+- **Torrent File:** Contains information about file chunks and their hashes.
 - **Peer/Client:** (who wants file to be downloaded) should find tracker and downloaded torrent
 - **Seeder:**
   - Peer that provide a complete file with all of its pieces.
