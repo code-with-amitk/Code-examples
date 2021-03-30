@@ -6,6 +6,5 @@
   - *2. Broker* All application commnicate with each other using broker. 
 <img src="https://i.ibb.co/6rppPQF/distributed-system-middleware-layer.png" width=700 />
 
-- **[Types of Distributed Systems](Types_of_distributed_Systems)**
-
-- **[Architectures of DS](Architecture)** Layered, Object, Resource, Event Based
+- **[Types of Distributed Systems:** Cluster Computing, Grid Computing, IaaS, PaaS, SaaS](Types_of_distributed_Systems)
+- **[Architectures of DS** Layered, Object, Resource, Event Based](Architecture)
