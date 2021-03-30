@@ -6,14 +6,5 @@
 - **[Bit-torrent vs HTTP](Bittorrent_vs_http.md)**
 - **[Advantages, Disadvantages of Bittorrent](Advantages_Disadv_of_Bittorrent.md)**
 - **[Example of downloading a file](Example_of_download.md)**
+- **[Bottlenecks](Bottlenecks_of_Bittorrent.md)**
 
-## 6. Bottlenecks
-### A. Tracker-server
-  - Tracker server can come down when huge number of clients connect
-  - **Solution** User machines/Participating nodes becoming Tracker-servers for small number of files in DHT(Distributed Hash Table) approach.
-### B. [Free-Riding](/Scalable/Distributed_Downloading_Systems/README.md)
-  - **Solution** Node will only send packet to that whose is in his Neighbour set(NS).
-    - Example: User-1 requests swarm from Tracker server. Swarm=User-2,User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
-### C. Slow Peer
-  - **Solution-1** TCP Sliding window
-  - **Solution-2** Choose peer from NS who has max upload speed.
