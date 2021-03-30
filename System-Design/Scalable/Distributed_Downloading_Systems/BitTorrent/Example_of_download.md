@@ -9,3 +9,9 @@
 - *6.* client-n downloads fragment-1, connect to client-m, provide fragment-1 & gets fragment-2.
 
 <img src=Bittorrent_Architecture.jpg width=600 />
+
+- **Phases of Downloading the file**
+  - *1. Bootstrap phase* Node has just received its first fragment/block. Node has recieved block using [optimistic unchoking](/System-Design/Concepts/Terms)
+  - *2. Trading Phase* Enough nodes can be paired to exchange data. This is longest and most efficient phase.
+  - *3. Last download phase:* Node's NS potentially dropped to 0. Node dependents on newly arriving peers to get the last missing fragments/blocks.
+
