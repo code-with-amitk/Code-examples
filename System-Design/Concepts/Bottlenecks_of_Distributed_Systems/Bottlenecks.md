@@ -16,16 +16,16 @@
 - Why this service will become bottleneck?
   - **1. Limited CPU:** (Eg: Google maps) if service is single threaded and running in 1 machine(high end), it will come down on load.
     - **Solution:** Vertical Scaling. Increasing memory, upgrading CPUs, or replacing network modules
-  - **2. I/O transfer rate** (Eg: Bing) Search engine is IO bound. SE need to match a query against an entire data set. Even with Advanced [Indexing Techniques](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Indexing/README.md) 1 machine will come down on load.
+  - **2. I/O transfer rate** (Eg: Bing) Search engine is IO bound. SE need to match a query against an entire data set. Even with Advanced [Indexing Techniques](/System-Design/Concepts/Indexing) 1 machine will come down on load.
     - **Solutions:**
       - Writing async applications
       - Doing majority of task on client side(If application cannot be written asyncrounsly). Eg: submitting form to web server.
   - **3. Network scalability:** (Eg:youtube) Need to stream high-quality video to multiple users. if N/W is slow and high requests hit, service becomes bottleneck.
     - **Solutions:**
       - *a. Paritioning & Distribution.* (Eg: DNS as nameservers distribute work.) Do not keep all work at 1 node, paritition & distribute across multiple nodes.
-      - *[b. Replication](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/Databases/Database_Scaling):* Replication increases
+      - *[b. Replication](/System-Design/Concepts/Databases/Database_Scaling):* Replication increases
 availability, but also distributes the load between components leadning to better performance.
-      - *[c. Caching](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed):* Placing data near to client.
+      - *[c. Caching](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed):* Placing data near to client.
     
 ## 4. Geographical Scalabilty
   - **Synchronous/Blocking Communication not good on WAN** socket is created as blocking and blocks on read()/write() system calls. client will block until reply from server.
@@ -35,7 +35,7 @@ availability, but also distributes the load between components leadning to bette
 
 ## 5. Administrative Scalability
   - Multiple, independent administrative domains having conflicting policies for resource usage, payment management and security.
-  - **Example:** A computational(often expensive) equipment is segregated as [Federation](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/Database_Scaling/README.md) where Program_1(Orgnization_1) can access resources of DB_2(Organization_2).
+  - **Example:** A computational(often expensive) equipment is segregated as [Federation](/System-Design/Concepts/Databases/Database_Scaling) where Program_1(Orgnization_1) can access resources of DB_2(Organization_2).
     
 ## 6. Consistency/Accuracy Problem
 - With multiple copies of data maintained between (master & replicas) OR (web server and cache). Every read receives the most recent write or not?
@@ -49,7 +49,7 @@ availability, but also distributes the load between components leadning to bette
 
 ## 7. DB becoming bottleneck
 - When there are huge RW operations a shared database can easily become a performance bottleneck.
-- [Solution](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Databases/Database_Scaling/README.md)
+- [Solution](/System-Design/Concepts/Databases/Database_Scaling)
 
 ## 8. Developer designing Distributed system with following mindset
 - The network is reliable
@@ -61,8 +61,7 @@ availability, but also distributes the load between components leadning to bette
 - Transport cost is zero
 - There is one administrator
 
-## 9. Flash Crowd
-- **What?** Legitimate sudden burst in requests for a specific Web document or website. Eg: on New year wishes sent on facebook.
+## 9. [Flash Crowd](/System-Design/Concepts/Terms/)
 - **Solutions**
   - *1.* Replicate the web document across multiple servers, as no requests increase, redirect to the replicas to offload the master. This is **overprovisioning** which is not good.
   - *2.*  dynamically create replicas when demand goes up.
