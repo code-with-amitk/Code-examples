@@ -6,7 +6,9 @@
     - List of active clients/peers inside swarm.
     - Fragments each client/peer hold.
     - Upload/Download speed of peers.
-- **Tracker** Maintains status of a torrent (for example, the peers and information about the pieces they have).
+- **Tracker** Maintains
+  - Status of a torrent (List of peers & information about the pieces they have).
+  - Active peers in swarm.
 - **Torrent File:** Contains 
   - Information about file chunks and their hashes
   - IP Address of tracker server.
