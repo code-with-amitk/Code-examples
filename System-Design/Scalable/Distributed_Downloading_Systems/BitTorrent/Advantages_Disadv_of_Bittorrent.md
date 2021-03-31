@@ -3,3 +3,4 @@
 - *2. Integrity check using SHA-1:* Peers check integrity of file before download using SHA1.
 
 ## Disadvantages
+- *1.* Bittorrent is Oblivious(not aware) about underlying protocols(underlay) hence cannot take advantage of it.
