@@ -4,6 +4,7 @@
   - *Solution:* Finds a better peer than any of the current ones.
 - **Bandwidth Throttling:** Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
   - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
+- **Biased Neighbour Selection?** BitTorrent peer chooses most of its neighbors from the local ISP and only a few peers from other ISPs reducing traffic.
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 - **Flash Crowd:** Legitimate sudden burst in requests for a specific Web document or website. Eg: on New year wishes sent on facebook.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
