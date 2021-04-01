@@ -22,3 +22,4 @@
     |- Working Directory: C:/amit
     |- Connection:        Remote with no authentication
 ```
+- *4.* Press F5 on local system to start debugging.
