@@ -5,3 +5,7 @@
 
 ## Disadvantages
 - *1.* Bittorrent is Oblivious(not aware) about underlying protocols(underlay) hence cannot take advantage of it.
+- *2.* As size of Bittorrent increases, more peers gets added, Malicious peers may also get added(since there is no check on mailicous peers). These malicious peers may generate DDOS attack.
+- *[3. Free Riding](/System-Design/Concepts/Terms)*
+- *4.* Peer can provide Fragment based on number of fragments recieved. This will lead to chocking at some point.
+  - *Solution:* Good fair treatment for peers having balaced send/recv ratio.
