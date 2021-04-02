@@ -7,10 +7,10 @@
   - *2.* Saves network bandwidth, redundant/lost packets are lowered.
 - **[UnStructured P2P Network Examples](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork)**
 
-|P2P Networks|What|How|
-|---|---|---|
-|Napster|Music online service sharing digital audio files(mp3)|[Centralized lookup](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|
-|Gnutella|File Sharing|[Flooding queries](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|
-|Freenet, Chord||Routed Queries|
-|Bittorrent|||
-|Freenet|Strong anonymity(user kept anonymous) protection,freedom of speech||
+|P2P Networks|What|How|Adv|DisAdv|
+|---|---|---|---|---|
+|Napster|Music online service sharing digital audio files(mp3)|[Centralized lookup](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|||
+|Gnutella|File Sharing|[Flooding queries](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|||
+|Freenet, Chord||Routed Queries|||
+|Bittorrent|||See BT|See BT|
+|Freenet|Strong anonymity(user kept anonymous) protection,freedom of speech||See Freenet||
