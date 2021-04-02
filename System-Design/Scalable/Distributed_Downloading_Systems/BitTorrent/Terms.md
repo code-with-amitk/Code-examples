@@ -1,17 +1,12 @@
 ## Terms
 - **Torrent Server/Coordinator Server/Web Server:** 
-  - Centralized server having list of active nodes(client-IP addresses which are downloading a file) and fragment number which is already downloaded.
-  - This is a Web server accepting HTTP or HTTPS GET requests and provides torrent files.
+  - Clients uploads torrent files on Torrent server and torrent server places it on Web Server.
+  - TS provides torrent file to requesting clients on HTTP.
   - Tracker has following information:
     - List of active clients/peers inside swarm.
     - Fragments each client/peer hold.
     - Upload/Download speed of peers.
-- **Tracker** Maintains
-  - Status of a torrent (List of peers & information about the pieces they have).
-  - Active peers in swarm.
-- **Torrent File:** Contains 
-  - Information about file chunks and their hashes
-  - IP Address of tracker server.
+- **Torrent File:** Contains information about file chunks and their hashes and IP Address of tracker server.
 ```c
 # cat torrent_file
 Creation Date: <>
@@ -22,6 +17,9 @@ Name of file: <>
     1           xxx
     3           yyy
 ```
+- **Tracker** Stores
+  - Fragments/pieces/chunks of files.
+  - Status of peers/clients in swarm and pieces/fragments clients have with them.
 - **Peer/Client:** (who wants file to be downloaded) should find tracker and downloaded torrent
 - **Seeder:**
   - Peer that provide a complete file with all of its pieces.
