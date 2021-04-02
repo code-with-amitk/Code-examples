@@ -1,7 +1,8 @@
 ### Example
 > Let's suppose user-1, user-2, .. user-n wants to download a MovieX or VMware(.vmdk) file sized 3-4GB.
 
-- *1.* [Seeder](Terms.md) provides a [torrent file](Terms.md) to a [torrent server](Terms.md).
+- *1.* [Seeder](Terms.md) provides a [torrent file](Terms.md) to a [torrent server](Terms.md)
+  - Any client/user who wants to download the file 1st creates a [torrent file](Terms.md) and uploads to server.
 - *2.* Torrent server uploads Torrent file to Web server for clients to search torrent file.
 - *3.* Seeder uploads torrent file to [Tracker](Terms.md).
 - *4.* Clients gets torrent file from Web-server using [HTTP GET](/Networking/OSI-Layers/Layer5/Protocols/HTTP/). Client gets Tracker server IP inside torrent file.
