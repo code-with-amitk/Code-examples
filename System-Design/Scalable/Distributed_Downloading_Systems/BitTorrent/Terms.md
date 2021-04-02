@@ -16,12 +16,11 @@
 # cat torrent_file
 Creation Date: <>
 Length: <>
+IP_Address_of_Torrent: <>
 Name of file: <>
   fragment-no   hash
     1           xxx
     3           yyy
-
-IP_Address_of_Torrent 10.45.3.13
 ```
 - **Peer/Client:** (who wants file to be downloaded) should find tracker and downloaded torrent
 - **Seeder:**
