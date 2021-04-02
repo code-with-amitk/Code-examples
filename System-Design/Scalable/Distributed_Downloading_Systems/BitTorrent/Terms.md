@@ -14,9 +14,12 @@
   - IP Address of tracker server.
 ```c
 # cat torrent_file
-  chunk-no  hash
-    1       xxx
-    3       yyy
+Creation Date: <>
+Length: <>
+Name of file: <>
+  fragment-no   hash
+    1           xxx
+    3           yyy
 
 IP_Address_of_Torrent 10.45.3.13
 ```
@@ -24,7 +27,7 @@ IP_Address_of_Torrent 10.45.3.13
 - **Seeder:**
   - Peer that provide a complete file with all of its pieces.
   - This file contains information about the data, including the pieces and their hashes.
-- **Leecher** All others clients in the swarm are known as leechers, who have some fragment of file.
+- **Leecher** All others clients in the swarm are known as leechers, who have some fragment of file but want more fragments.
 - **Fragment size** Configurable default 256KB. Varies from  64 KB to 4 MB.
 - **Block**  The unit of data transfer between two peers is that of a block, default 16 Kbyte.
 - **Seed:** Peer that provides a file, maybe a portion of file.
