@@ -5,6 +5,6 @@
 - [**Terms**: Torrent file, Tracker server, Seeder, Leecher, Swarm, Seed](Terms.md)
 - **[Bit-torrent vs HTTP](Bittorrent_vs_http.md)**
 - *[Advantages, Disadvantages of Bittorrent](Advantages_Disadv_of_Bittorrent.md)*
-- **[Example of downloading a file](Example_of_download.md)**
+- **[Architecture / Example of downloading a file](Example_of_download.md)**
 - *[Bottlenecks of Bittorrent](Bottlenecks_of_Bittorrent.md)*
 
