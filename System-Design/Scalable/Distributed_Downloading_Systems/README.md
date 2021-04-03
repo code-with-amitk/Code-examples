@@ -13,4 +13,4 @@
 |Gnutella|File Sharing|[Flooding queries](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|||
 |Freenet, Chord||Routed Queries|||
 |Bittorrent|||See BT|See BT|
-|Freenet|Strong anonymity(user kept anonymous) protection,freedom of speech||See Freenet||
+|Freenet|Distributed Storage/Retrieval system||See Freenet||
