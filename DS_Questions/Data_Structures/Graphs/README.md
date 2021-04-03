@@ -1,5 +1,5 @@
 ## Graph
-- **What?** Collection of nodes/vertices with edges between some/all of them. Examples: Internet, City map, Person's Social Network, State machines
+- **What?** Collection of nodes/vertices with edges between some/all of them. Examples: Internet, City map, Person's Social Network, State machines. [Representation of Graphs: Adjacency Matrix, Adjacency List, Edge List](creation-represention)
 ```c
     0 ------- 1        //Nodes: 0,1,2,3
     |         |        //Edges ={01, 12, 23, 03}
@@ -12,4 +12,4 @@
   - Topological Sorting
   - Vertex, Edge
   - Weighted Graph
-- [Representation: Adjacency Matrix, Adjacency List, Edge List](creation-represention)
+- 
