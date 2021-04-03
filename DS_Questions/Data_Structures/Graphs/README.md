@@ -9,7 +9,8 @@
   - Cyclic/Acyclic
     - DAG(Directed Acyclic Graph)
   - Directionality(Bidirectional,Unidirectional)
-  - Topological Sorting
-  - Vertex, Edge
+  - Edge,Vertex.
+  - Spanning Tree: Minimum Spanning Tree(Kruskal's, Prim's Algorithms)
+  - Topological Sorting: Kahn Algorithm
   - Weighted Graph
 - 
