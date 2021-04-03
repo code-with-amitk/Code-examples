@@ -5,7 +5,7 @@
     |         |        //Edges ={01, 12, 23, 03}
     3 ------- 2    
 ```
-- **[Terms?](Terms.md)** 
+- **[Terms?](Terms)** 
   - Cyclic/Acyclic
     - DAG(Directed Acyclic Graph)
   - Directionality(Bidirectional,Unidirectional)
