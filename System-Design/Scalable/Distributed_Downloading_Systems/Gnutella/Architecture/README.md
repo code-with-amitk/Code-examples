@@ -1,4 +1,5 @@
 ## Architecture / How Gnutella works
+- *Part-0:* Node enters in Gnutella network using [Bootstraping](/System-Design/Concepts/Terms).
 - *Part-1(Search):* Locate the peers that have desired data items.
   - QUERY message is sent(with TTL)
   - When peer recieves the query(fileId), it checks its own database for particular, if cannot find forwards to next node.
