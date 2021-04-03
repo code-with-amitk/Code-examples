@@ -1,28 +1,27 @@
- ## Min Spanning Tree
- - A ST where total weight of all edges is minimum. Has n-1 edges.
- 
- ### How to find
-  - Start from min weight edge
-  - Go on connecting all min weight edges. 
-  - Donot connect any edge that creates a cycle. We cannot connect cb.
- ```
-    a --5-- b                                         b       a        
-   3|   /4  |3                                        |3     3|         
+ ## Minimum Spanning Tree
+   - A ST where total weight of all edges is minimum. Has n-1 edges.
+   - **Finding Min Spanning Tree?**
+    - Start from min weight edge
+    - Go on connecting all min weight edges. 
+    - Donot connect any edge that creates a cycle. We cannot connect cb.
+ ```c
+    a --5-- b                         b               b       a        
+   3|   /4  |3                        |3              |3     3|         
     c --1-- d        c --1-- d        c --1-- d       c --1-- d                                    
 ```
 
-### Algorithms
+### Algorithms for finding Min Spanning Tree
 
 | Algo | Kruskal's | Prim's |
 | --- | --- | --- |
 | Time Complexity | O(E log V) | O(E + V log V) //slow |
 | When to use | | Works faster in graph with many more edges than vertices |
 
-#### A. PRIM's Algorithm  [Time Complexity = O(E + V log V) //slow wrt kruskal's]
+#### A. PRIM's Algorithm  //Time Complexity = O(E + V log V) //slow wrt kruskal's
 - 1. Choose arbitrary vertex to start
 - 2. Choose min weight edge that is not in(output mst), note that in mst.  
 - 3. Repeat step-2 until all edges are in mst.
-```
+```c
    ---            
   |   \/Loop                              [0] -2- [1] -4- [2]            [0] -2- [1]         
   --- [0] -2- [1] -4- [2]                  3\    4|       /2                                                                                                                                              /2
@@ -36,10 +35,10 @@ Step-2    [0] -2- [1] -4- [3]           [0] -2- [1] -4- [3]
                                        d. Choose min weighted edge going from [1] or [0] or [3]
 ```
 
-#### B. KRUSKAL'S Algorithm [Time Complexity = O(E log V)]
+#### B. KRUSKAL'S Algorithm //Time Complexity = O(E log V)
 - Keep including minimum edges, as long as no cycles are formed. Once all vertices are covered, stop.
 - Example
-```
+```c
   -----
   |   \/Loop
   --- a ---------  b                        a --6---b                       a    b
