@@ -8,5 +8,5 @@
 |Segment Register|Holds segment addresses|CS,DS,SS,ES|
 |Special Purpose||RBP|
 |Instruction Pointer / Program Counter|Address of the next machine instruction to be executed|EIP, RIP|
-|Control Registers||IP Flags|
+|Control Registers||IP Flags(Status Register)|
 
