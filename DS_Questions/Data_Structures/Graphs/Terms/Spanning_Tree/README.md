@@ -1,16 +1,14 @@
 ## Spanning Tree
-### **What** 
-- Subgraph derived from Graph satisfying these conditions:  
-  - There are no cycles(ie it is acyclic), Since it a tree
+- **What?** Subgraph derived from Graph satisfying these conditions:
+  - No cycles(ie it is acyclic), Since it a tree
   - Should connect all vertices with minimum number of edges.
-
-### Properties of ST
-- 1 graph can have many spanning trees.
-- Graph can be weighted or unweighted
-- Every connected and undirected Graph G has at least 1 ST.
-- A disconnected graph does not have any ST, as it cannot be spanned to all its vertices.
-- Number of Spanning Trees, for graph having `n` vertices = n<sup>n-2</sup>
-- Number of edges, for graph having `n` vertices = n - 1
+- **Properties of ST**
+  - 1 graph can have many spanning trees.
+  - Graph can be weighted or unweighted
+  - Every connected and undirected Graph G has at least 1 ST.
+  - A disconnected graph does not have any ST, as it cannot be spanned to all its vertices.
+  - Number of Spanning Trees, for graph having `n` vertices = n<sup>n-2</sup>
+  - Number of edges, for graph having `n` vertices = n - 1
 
 ### Example
 ```
