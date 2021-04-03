@@ -1,5 +1,6 @@
   ## Terms
-  
+  - **Cyclic:** If graph has cycle.  
+  - **ACcyclic:** No cycles in graph. When following the graph from node to node, you will never visit the same node twice.
   - **Directionality** 
     - Undirected/1 way: 1 side know other but viceversa not true. `[1] --> [2] --> [3]`
       - Ex: a. Fans knows celebrity but other side does not. b.  On Facebook the graph of friends is undirected.
