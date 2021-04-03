@@ -6,9 +6,10 @@
     3 ------- 2    
 ```
 - **[Terms?](Terms.md)** 
-  - Directionality(Bidirectional,Unidirectional)
-  - Vertex, Edge
   - Cyclic/Acyclic
     - DAG(Directed Acyclic Graph)
+  - Directionality(Bidirectional,Unidirectional)
   - Topological Sorting
+  - Vertex, Edge
+  - Weighted Graph
 - [Representation: Adjacency Matrix, Adjacency List, Edge List](creation-represention)
