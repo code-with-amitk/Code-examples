@@ -3,5 +3,5 @@
 - [Type and Sources of Interrupts](Types_And_Sources_of_Interrupts)
 - **[How Interrupt Reach CPU from H/W Device](Interrupt_from_HWDevice_to_CPU)**
 - [High Number of Interrupts](High_No_of_Interrupts.md)
-- **Interrupt Numbers?** 256 types of Interrupts(0-255). Examples: 0: Pointer Divide Error    1: Pointer single Step    2: Pointer Non-maskable    3: Pointer I-Byte NIT Instruction    4: Pointer Overflow    5-31: Reserved for future use
+- [Interrupt Numbers](Interrupt_Numbers.md)
 - [/proc/interrupts and /proc/stat](/Operating_Systems/Linux/FileSystem/FileSystem_Tree/proc/): How many interrupts have been delivered to each CPU. Total interrupts received on System.
