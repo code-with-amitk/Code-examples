@@ -12,3 +12,5 @@
 - *5.* E sends request to F. F does not know any other nodes and responds with a failure.
 - *11.* E to contact D, which has the requested file. The ENCRYPTED file is then sent back to Avia E and B.
 - At each step the validity of the file is checked by intermediate nodes, and they may cache the file.
+
+<img src=freenet_message_flow.jgp width=500 />
