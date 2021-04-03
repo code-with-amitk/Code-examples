@@ -8,3 +8,4 @@
 |Send Data|Request for file/data|
 |Request Insert|A request to insert resource/file into freenode network|
 |Reply NotFound|File/Resource search or insert transaction failed|
+|Announcement Message|Broadcast message sent(with TTL) to nodes when new node want to join freenet network|
