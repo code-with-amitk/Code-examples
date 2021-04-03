@@ -5,5 +5,9 @@
     |         |        //Edges ={01, 12, 23, 03}
     3 ------- 2    
 ```
-- [**Terms?** Directionality(Bidirectional,Unidirectional), Vertex, Edge](Terms.md)
+- [**Terms?](Terms.md)** 
+  - Directionality(Bidirectional,Unidirectional)
+  - Vertex, Edge
+  - DAG(Directed Acyclic Graph)
+  - Topological Sorting
 - [Representation: Adjacency Matrix, Adjacency List, Edge List](creation-represention)
