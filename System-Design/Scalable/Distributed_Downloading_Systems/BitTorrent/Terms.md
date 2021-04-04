@@ -8,6 +8,7 @@
     - Upload/Download speed of peers.
 - **Torrent File:** Contains information about file chunks and their hashes and IP Address of tracker server.
 ```c
+//Suppose node-1 has fragments 1,3. Node 1 creates this torrent file
 # cat torrent_file
 Creation Date: <>
 Length: <>
