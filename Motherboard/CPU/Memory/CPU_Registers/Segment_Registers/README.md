@@ -1,6 +1,6 @@
 ## Segment Registers(16 bit)
 - Holds segment addresses. 
-- 
+
 ### Types
   - *CS/CODE SEGMENT:* Contains address of the code segment of the currently executing instruction
   - *DS/DATA SEGMENT:*  Contains address of that data segment which belongs to Current Program.
