@@ -1,3 +1,5 @@
+## Fundamental Data types
+
 |Type|Size(bytes)|
 |---|---|
 |Byte|1|
