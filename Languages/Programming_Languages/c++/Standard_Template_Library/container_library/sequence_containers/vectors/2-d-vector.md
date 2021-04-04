@@ -1,25 +1,26 @@
 ## 2D Vector
 - This is 2-D Array but of arbitary size.
 ### 1. Initialization of 2d vector
-- **1. Varaible size**
+- **1. Initialization list**
 ```c++
   vector<vector<int>> vec = {
     {1,2,3},
     {4,5,6}
   };
-  for (int i = 0; i < vec.size(); ++i) {
-    for (int j = 0; j < vec[0].size(); ++j){
-      cout<< vec[i][j]<< " "; //1 2 3 4 5 6
-    }
-  }  
 ```
-- **2. Fixed size**
+- **2. m row, n col**
 ```c++
   int row=2,col=3;
-  vector<vector<int>> vec1(row, vector<int>(col,0));
-  for (int i = 0; i < row; ++i)
-    for (int j = 0; j < col; ++j)
-      cout<< vec1[i][j]<< " "; //0 0 0 0 0 0  
+  vector<vector<int>> vec(row, vector<int>(col,0));    //vec[2][3] initialized to 0
+```
+- **3. m rows, variable cols**
+```c++
+  int row=2;
+  vector<vector<int>> vec(row);
+  vec[0][0] = 1;
+  vec[0][1] = 1;
+  vec[0][2] = 1;
+  vec[1][0] = 2;
 ```
 
 ## 2. Inserting row into 2-D vector
