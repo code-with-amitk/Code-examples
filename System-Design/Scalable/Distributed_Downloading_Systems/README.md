@@ -1,6 +1,6 @@
 ## Distributed/Collaborative Downloading Systems
 - **What?** 
-  - n number of users(in nearby area) downloads chunks of Huge file(Eg: Movie video, TV Serial Video) and share fragment among them. User-1 downloads fragment-1, user-2=fragment-2 so on and share with each other to complete the file.
+  - n number of users(in nearby area/Domain) downloads a Huge file(Eg: Movie video, TV Serial Video) collaborativly by sharing fragment among them. User-1 downloads fragment-1, user-2=fragment-2 so on and share with each other to complete the file.
   - Integrity is provided using any of Hashing algorithms. SHA3/SHA2 etc.
 - **Advantages?**
   - *1.* A low bandwidth user can download file quickly.
