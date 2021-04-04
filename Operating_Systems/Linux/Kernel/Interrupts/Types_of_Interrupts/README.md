@@ -24,7 +24,7 @@
 
 - **4. Precise & Imprecise Interrupts**
   - *a. Precise?* This interrupt that leaves the machine in a well-defined state. 4 properties of precise interrupts:
-    - *1.* The [PC (Program Counter)](/Motherboard/CPU/Memory/CPU_Registers/User_Accessible_Registers/) is saved in a known place and PC is made to point to new ISR.
+    - *1.* The [PC (Program Counter)](/Motherboard/CPU/Memory/CPU_Registers/User_Accessible_Registers) is saved and PC is made to point to new ISR. [PSW](/Motherboard/CPU/Memory/CPU_Registers/User_Accessible_Registers) must not be modified.
     - *2.* All instructions before the one pointed to by the PC have completed.
     - *3.* No instruction beyond the one pointed to by the PC has finished.
     - *4.* The execution state of the instruction pointed to by the PC is known.
