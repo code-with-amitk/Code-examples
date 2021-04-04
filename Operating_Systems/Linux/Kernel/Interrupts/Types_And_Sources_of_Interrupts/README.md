@@ -22,7 +22,10 @@
   - *a. Maskable?* Interrupts which can be ignored by CPU.
   - *b. Non Maskable?* Interrupts which cannot be ignored by CPU.
 
-## Source of Interrupt
-- **1. Hardware / IO Devices:** 8259(PIC) sends interrupt signal on NMI or INTR inupt pins of 8086.
-- **2. Software / Special Intruction in Software:** int(interrupt instruction) in program. See above.
-- **3. Software / Condition produced in program:** some condition produced in the program by the execution of an instruction. Eg: Divide by 0.  
+- **4. Precise & Imprecise Interrupts**
+  - *a. Precise?* This interrupt that leaves the machine in a well-defined state. 4 properties of precise interrupts:
+    - *1.* The [PC (Program Counter)](/Motherboard/CPU/Memory/CPU_Registers/User_Accessible_Registers/) is saved in a known place.
+    - *2.* All instructions before the one pointed to by the PC have completed.
+    - *3.* No instruction beyond the one pointed to by the PC has finished.
+    - *4.* The execution state of the instruction pointed to by the PC is known.
+  - *b. Imprecise?* Interrupts have completed in parts.
