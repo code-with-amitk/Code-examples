@@ -29,3 +29,9 @@
     - *3.* No instruction beyond the one pointed to by the PC has finished.
     - *4.* The execution state of the instruction pointed to by the PC is known.
   - *b. Imprecise?* Interrupts have completed in parts.
+    - *Disadvantages of Imprecise Interrupts:*
+      - *1.* The code for handling imprecise is exceedingly complex.
+      - *2.* Huge stacks are created contaning information of all states.
+      - *3.* Slow system, saving a large amount of information to memory on every interrupt makes interrupts slow and recovery even worse.
+
+<img src=precise_imprecise_interrupts.JPG width=500 />
