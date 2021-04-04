@@ -1,47 +1,39 @@
-/*
-        dfs_depth_first_search_iterative.cpp
-        
-Depth First Traversal: Reach to deepest node, instead of reaching all neighbors.
-
+## Depth First Traversal
+- Reach to deepest node, instead of reaching all neighbors.
+```c
         0 -- 1 -- 2
          \   |   /
            \ | /
              3
-
-Starting node=2, dfs=2 1 0 3
-
-We can store graph using 2 methods
-Method-1: Adjacency Matrix:
-         0   1   2   3
-        --------------
-      0 |0   1   0   1
-      1 |1   0   1   1
-      2 |0   1   0   1
-      3 |1   1   1   0
-
-Method-2: Adjacency-list        //USED HERE
+                
+Graph Storage: Adjacency-list
         0 -> 1,3
         1 -> 0,2,3
         2 -> 1,3
         3 -> 0,1,2
 
-***********************Logic**********************
-1. Store the graph nodes in Adjacency List: Take vector array to store Adjacency list.
+Starting node=2, dfs=2 1 0 3
+```
+
+- **Logic**
+  - *1.* Store the graph nodes in Adjacency List.
+```
         vector<int> v[4];
-
-2. For Depth 1st Search
- - Take a boolen array for marking visitedNodes. visited[4]
- - Take a stack. push startingnode on it.
- - Perform these operations until stack is empty
-        - Pop top of stack. store value in u.
-        - Print and mark this node as visited
-        - Find unvisited neighbours of this node. //Iterate through vector
-                push_on_stack
-                break;
-**************************************************
-
-*/
-
+```
+  - *2.* Take following datastructures:
+    - `bool visited[4]` //Storing all visited nodes
+    - Stack for DFS Traversal.
+    - Perform these operations until stack is empty
+```c
+ Push 1st element on stack
+ Pop top. store value in u.
+ Print and mark this node as visited
+ Find unvisited neighbours of this node. //Iterate through vector
+   push_on_stack
+   break;
+```
+- **Code**
+```c++
 #include<iostream>
 #include<stack>
 #include<vector>
@@ -95,3 +87,4 @@ Starting node=2
 Depth first Traversal
 2 1 0 3
 */
+```
