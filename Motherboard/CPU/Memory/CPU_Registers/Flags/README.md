@@ -1,14 +1,31 @@
-## Control Registers / IP Flags
-- **What?** Around 10 Control registers. IP flags which modify basic behavior of CPU.
-- Length = 4byte(32 bit OS), 8byte(64 bit OS).
-- IP FLAGS:   Flag Bits are 1 bit.
-  - Overflow Flag (OF): indicates the overflow of a high-order bit (leftmost bit) of data after a signed arithmetic operation.
-  - Direction Flag (DF): determines left or right direction for moving or comparing string data. When the DF value is 0, the string operation takes left-to-right direction and when the value is set to 1, the string operation takes right-to-left direction.
-  - Interrupt Flag (IF): determines whether the external interrupts like keyboard entry, etc., are to be ignored or processed. It disables the external interrupt when the value is 0 and enables interrupts when set to 1.
-  - Trap Flag (TF): allows setting the operation of the processor in single-step mode. The DEBUG program we used sets the trap flag, so we could step through the execution one instruction at a time.
-  - Sign Flag (SF): shows the sign of the result of an arithmetic operation. This flag is set according to the sign of a data item following the arithmetic operation. The sign is indicated by the high-order of leftmost bit. A positive result clears the value of SF to 0 and negative result sets it to 1. In assembly you dont have "less than", "greater than" operators, You just subtract and check the results.
-  - Zero Flag (ZF): indicates the result of an arithmetic or comparison operation. A nonzero result clears the zero flag to 0, and a zero result sets it to 1.
-  - Auxiliary Carry Flag (AF): contains the carry from bit 3 to bit 4 following an arithmetic operation; used for specialized arithmetic. The AF is set when a 1-byte arithmetic operation causes a carry from bit 3 into bit 4.
-  - Parity Flag (PF): indicates the total number of 1-bits in the result obtained from an arithmetic operation. An even number of 1-bits clears the parity flag to 0 and an odd number of 1-bits sets the parity flag to 1.
-  - Carry Flag (CF): contains the carry of 0 or 1 from a high-order bit (leftmost) after an arithmetic operation. It also stores the contents of last bit of a shift or rotate operation
-  - EFLAGS register:    This is collection of named bits.
+## RFLAGS Register (64 Bits)
+- **What?** There are 64 bits in this register each bit representing:
+  - status of results of logical and arithmetic operations.
+  - System control bits(used by OS)
+
+```c
+Bit     Name            Symbol      Use
+0     Carry Flag          CF      Status
+1     Reserved                      1
+2     Parity Flag         PF      Status
+3     Reserved                      0
+4  Auxiliary Carry Flag   AF      Status
+5     Reserved                      0
+6     Zero Flag           ZF      Status
+7   Sign Flag             SF      Status
+8   Trap Flag             TF      System
+9   Interrupt Enable Flag IF      System
+10  Direction Flag        DF      Control
+11  Overflow Flag         OF      Status
+12  I/O Privilege Level Bit 0   IOPL System
+13 I/O Privilege Level Bit 1    IOPL System
+14 Nested Task           NT       System
+15    Reserved                      0
+16    Resume Flag        RF       System
+17  Virtual 8086 Mode    VM       System
+18  Alignment Check      AC       System
+19  Virtual Interrupt Flag VIF    System
+20  Virtual Interrupt Pending VIP System
+21  ID Flag             ID        System
+22 - 31 Reserved 0
+```
