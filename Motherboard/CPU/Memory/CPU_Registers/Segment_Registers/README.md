@@ -1,5 +1,6 @@
 ## Segment Registers(16 bit)
 - Holds segment addresses. 
+- Segment register initialization and management is normally handled by the operating system.
 
 ### Types
   - *CS/CODE SEGMENT:* Contains address of the code segment of the currently executing instruction
