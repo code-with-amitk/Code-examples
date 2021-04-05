@@ -67,3 +67,12 @@ Representing in Hex
 1011 1110 0000 0000 0000 0000 0000 0000
   B   E     0   0     0   0     0   0     =>    BE00 0000
 ```
+
+### 64 bit Representation
+- 1 bit: sign
+- 52 bits: Fraction
+- 11 bits: Exponent
+```
+63    62    52         51              0
+s     Exponent         fraction/Mantissa
+```
