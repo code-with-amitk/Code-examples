@@ -7,4 +7,4 @@
 |Type|Where|What|Size|Access Delay|
 |---|---|---|---|---|
 |L1|Always inside CPU|Holds decoded instructions of CPU|16KB Each|None|
-|L2|Have x MB of memory data||1-2 clock cycles|
+|L2|Have x MB of memory data|||1-2 clock cycles|
