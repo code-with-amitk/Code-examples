@@ -1,6 +1,7 @@
 ## Memory Types
 ```html
-CPU-Registers  L1-Cache/SRAM   L2-Cache/SRAM   L3-Cache/DRAM    Physical_Memory/RAM/Main Memory  Hard_Disk/Secondary_Memory
+CPU-Registers  L1-Cache/   L2-Cache/   L3-Cache/    Physical_Memory/  Hard_Disk/Secondary_Memory  Tertiary_Memory/
+                SRAM         SRAM        DRAM        RAM/Main Memory    SSD                        remote_storge
     <------------------[Speed, Cost increases]   [Size Decreases]-----------------------------
 ```
 > Program only runs when its in RAM.
