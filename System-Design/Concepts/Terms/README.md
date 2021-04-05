@@ -16,5 +16,7 @@
   - Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
 - **Optimistic Unchoking:** Unselfishly provide block(s) to node(s) in Neighbour set.
   - Node uses a part of its available bandwidth for sending data to random peers, so that neighbours donot fall in tit for tat problem.
+- **Path Folding / Location Swapping:** During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
+  - *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
 - **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
 
