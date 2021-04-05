@@ -2,7 +2,7 @@
 - **1. Files are identified using keys**
   - Upon receiving a request for an unknown key, node forwards the request to another node that has keys closer to the requested key.
   - A node will most likely download files with similar keys
-- **Routing?** Each node only knows the its immediate neighbors.
+- **[Routing?](Routing)**
 
 ### Message Flow
 > Node enters into Freenet network using [Bootstraping](/System-Design/Concepts/Terms).
