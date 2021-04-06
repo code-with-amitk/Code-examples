@@ -10,14 +10,14 @@
 - **What** Each cell keeps how two nodes are connected. For unweighted graph values are `1`. For weighted graph values are cost/weights.
 - **Advantages** Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
 > a=0, b=1, c=2, d=3
-  
-| |  | 0 | 1 | 2 | 3 |
-| --- | --- | --- | --- | --- | --- |
-| a-> | 0 | 0 | 0 | 1 | 1 |
-| b-> | 1 | 0 | 0 | 0 | 1 |
-| c-> | 2 | 0 | 0 | 0 | 1 |
-| d-> | 3 | 0 | 0 | 0 | 0 |
-  
+```c
+   a   b   c   d
+a  0   0   1   1    
+b  0   0   0   a
+c  0   0   0   1
+d  0   0   0   0
+```
+
 ### 2. Adjacency List
 - **What** Each node keeps list of neighbors. Data structures can be Arrays, vectors, ll etc.
 - **Advantages** Save space, only stores connected nodes, while AM stores 0 if edge is not present.
@@ -36,13 +36,9 @@ Representation using AdjList: represented using array of vectors.      vector<in
   AdjList[2] => 0        //node2
   AdjList[3] => 0, 4     //node3
   AdjList[4] => 3        //node4
-
-  for (int i = 0; i < input.size(); ++i)
-        AdjList[i].push_back(input[i]);
-        AdjList[input[i]].push_back(i);
 ```
   
-#### 3. Edge List
+### 3. Edge List
 ```c++
    v[0] |2|3|		//a(0) has c(2),d(3) as edges
    v[1] |3|
