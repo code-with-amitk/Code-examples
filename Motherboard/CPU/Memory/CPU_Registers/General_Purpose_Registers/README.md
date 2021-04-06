@@ -19,3 +19,7 @@
   - RCX = 4th argument. Also used for loop counter
   - R8 = 5th argument
   - R9 = 6th argument
+
+#### Volative, Non Volatile Registers
+- **Non-Volatile Registers: (rdi,rsi,rdx,rcx)** Means they store function arguments & must be preserved.
+- **Volatile Registers: (rax, rdx, rcx)** Means these store intermidiate calculation and must be preserved.
