@@ -13,7 +13,7 @@ int main(){
 
 ## Stack Frame
  - [rbp(Base pointer), rsp(Stack pointer), rax/eax(Accumulator)](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers)
- - [edi/rdi, rsi, rdx, rcx, r8, r9](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers): Stores 1st 6 arguments to function. 
+ - [edi/rdi, rsi, rdx, rcx, r8, r9](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers): Arguments to function are copied to registers.
 ```c
 |----stack grows-----|------------->
 450		   400
