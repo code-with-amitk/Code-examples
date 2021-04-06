@@ -1,5 +1,5 @@
 ## Butterfly Network
-- **What?** This is a technique to link multiple computers into a high-speed network.
+- **What?** This is a technique to link multiple computers into a high-speed network. Butterfly contains a binary tree with root in the first level.
 - **Formula?**
   - n = 2<sup>d</sup>   //n:Processors/Computers, d:depth
   - s = n(logn+1)       //s:switches
