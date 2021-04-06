@@ -18,7 +18,7 @@ int main(){
 - **Steps:**
   - *1.* Push old rbp/ebp on stack. Function Prologue/Premble
   - *2.* Copy arguments on stack in reverse order. rdi=1st arg, rsi=2nd argument
-  - *3.* Copy arguments from stack to Registers. rdx=1st arg, rax=2nd arg
+  - *3.* Copy arguments from stack to Registers. rax=1st arg, rdx=2nd arg
   - *4.* Add contents of registers and store on register.
   - *5.* Store return value from rax register to stack.
 - **Overall:** 3 copies.
@@ -45,8 +45,8 @@ fun(long, long):
  mov  QWORD PTR [rbp-32], rsi         |-main stack-|old rbp|   |   |  1  | 2 |    //2
                                                           rbp  8   16   24  32
 							  
- mov  rdx, QWORD PTR [rbp-24]         rdx = 1                                     //3
- mov  rax, QWORD PTR [rbp-32]         rax = 2
+ mov  rax, QWORD PTR [rbp-24]         rax = 1                                     //3
+ mov  rdx, QWORD PTR [rbp-32]         rdx = 2
  
  add  rax, rdx                        rax = rdx+rax = 3                            //4
  
