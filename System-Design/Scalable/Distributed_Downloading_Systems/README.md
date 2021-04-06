@@ -10,4 +10,7 @@
 |P2P Network|Napster|Gnutella|Freenet|Bittorrent|
 |---|---|---|---|---|
 |What|Music online service sharing digital audio files(mp3)|File Sharing|File Sharing|Downloading File|
-|How|[Centralized lookup](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|[Flooding queries](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|Routed Queries||
+|How|[Centralized lookup](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|[Flooding queries](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|Routed Queries|[Centralized lookup](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)|
+|Performance||Search until Time-To-Live expires|Search based on Hop-To-Live, no gurantee to locate data|Guarantee to locate data, good performance for popular data|
+|Routing State||Constant|With small world property O(log n<sup>2</sup>)|Constant, choking may occur|
+|Reliability||Performance degrades when the number of peers grow|No central point of failure|Tracker keeps track of the peers and pieces|
