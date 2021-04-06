@@ -18,3 +18,11 @@ int request_irq(unsigned int irq,		                      //1
 5. For shared Interrupt line. if interrupt is not shared. dev_id=NULL. But it a good idea anyway to use this item
   to point to the device structure
 ```
+
+### Divison of ISR
+- ISR is divided into two parts:
+  - **1. Top-half or First-Level Interrupt Handler (FLIH):** Executed immediately at occurance of interrupt. Example:
+    - Acknowledging interrupt
+    - Resetting hardware(if needed)
+    - Recording any information ie only available at time of interrupt. 
+  - **2. Bottom-half or Second-Level Interrupt Handlers (SLIH):** Non-critical processing is deferred for this.
