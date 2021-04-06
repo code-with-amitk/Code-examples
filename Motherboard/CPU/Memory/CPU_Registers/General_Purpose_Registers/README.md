@@ -9,6 +9,6 @@
 - RCX: loop counter
 - RDX: Divide & Multiply
 - RSI: String instruction source pointer, index register
-- RSP: Stack pointer
-- RBP: Stack frame base pointer
+- RSP(stack pointer): points to head of stack
+- RBP(base pointer): points to base of stack
 - AVX(Advanced Vector Extensions): 64 byte Registor present in Intel and AMD.
