@@ -2,12 +2,13 @@
 - CPU is executing a function1() and interrupt occured.
   - *a.* CPU saves following on current function1()'s [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1):
     - Input_parameters, Return_address, Local_variables of function1()
-    - Registers [CS, IP(Program Counter)](/Motherboard/CPU/Memory/CPU_Registers)
-      - Saved IP points to the first instruction which will be loaded into the processor after the interrupt handler completes.
-    - Intermidiate results of calculations which are present [Registers(Accumulator), PSW](/Motherboard/CPU/Memory/CPU_Registers) to Stack.
-  - *b.* Create [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1) for interrupt routine.
-    - Copies arguments, local variables to ISR stack.
-  - *c.* IP now points to address of interrupt routine.
-  - *d.* Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
-  - *e.* ACK interrupt controller
-  - *f.* Jumps to [ISR(Interrupt service routine)](ISR) after looking from [IVT(Interrupt Vector Table)](IVT).
+    - Registers:
+      - [PC(Program Counter) = rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Saved IP points to the first instruction which will be loaded into the processor after the interrupt handler completes.
+      - [Accumulator(rax), PSW](/Motherboard/CPU/Memory/CPU_Registers) holding Intermidiate results of calculations.
+      - [rflags](/Motherboard/CPU/Memory/CPU_Registers/) holding arithematic logical operation results.
+  - *b.* Get [ISR(Interrupt service routine)](ISR) from [IVT(Interrupt Vector Table)](IVT).
+  - *c.* Create [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1) for interrupt routine. Copy arguments, local variables to ISR stack.
+  - *d.* IP now points to address of interrupt routine.
+  - *e.* Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
+  - *f.* ACK interrupt controller
+  - *g.* Jumps to [ISR(Interrupt service routine)](ISR) after looking from [IVT(Interrupt Vector Table)](IVT).
