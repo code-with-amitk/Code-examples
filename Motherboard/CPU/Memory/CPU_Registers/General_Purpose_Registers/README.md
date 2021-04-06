@@ -15,5 +15,4 @@
 - RSP(stack pointer): points to head of stack
 - RBP(base pointer): points to base of stack
 - AVX(Advanced Vector Extensions): 64 byte Registor present in Intel and AMD.
-
 - **edi/rdi, rsi, rdx, rcx, r8, r9:** Stores 1st 6 arguments to function. If there are more than 6 parameters, then the program’s stack is used to pass in additional parameters to the function.
