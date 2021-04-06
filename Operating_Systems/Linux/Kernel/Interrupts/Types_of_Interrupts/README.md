@@ -20,8 +20,8 @@
   - *b. Non Vectored?* The interrupts which does not have fixed address location for ISR to be executed at occurence
 
 - **3. Maskable & Non Maskable Interrupts**
-  - *a. Maskable?* Interrupts which can be ignored by CPU.
-  - *b. Non Maskable?* Interrupts which cannot be ignored by CPU.
+  - *a. Maskable?* Interrupt handling can be delayed by CPU for some time. Eg: H/W device generating a interrupt.
+  - *b. Non Maskable(NMI)?* Interrupts which cannot be ignored by CPU and need to be processed immediately. Eg: Hardware error.
 
 - **4. Precise & Imprecise Interrupts**
   - *a. Precise?* This interrupt that leaves the machine in a well-defined state. 4 properties of precise interrupts:
