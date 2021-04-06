@@ -1,10 +1,11 @@
 ## Types of Interrupts
 - **1. Hardware, Software Interrupt**
-
-||Hardware|Software|
-|---|---|---|
-|What|Caused by signal from H/W|Interrupt that originates in software(process in user mode), CPU need to switch to kernel mode|
-|Examples|Key press on keyboard, mouse movement, timers|System calls: open(), socket()|
+  - *a. Hardware?* Caused by signal from H/W.
+    - Examples: Key press on keyboard, mouse movement, timers
+  - *b. Software?* Originated in software(process in user mode), CPU need to switch to kernel mode. Generated using system calls: 
+    - open(), socket()
+    - trap() //also used by gdb
+    - abort(): Program error eg: divide by 0, access invalid memory address.
 
 - *Making software Interrupt?*
 ```asm
