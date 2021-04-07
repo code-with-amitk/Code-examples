@@ -11,3 +11,9 @@
   - *d.* Perform [Context Switch](https://sites.google.com/site/amitinterviewpreparation/c-1/max-threads-opened-by-webserver):
     - Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
   - *e.* ACK interrupt controller
+  - *f.* Finishes ISR routine execution.
+  - *g. Resumption:* Means resuming the interrupted task which CPU has left inbetween.
+    - iret instruction executed.
+      - clear ISR stack.
+      - clear [rflags, rip registers](/Motherboard/CPU/Memory/CPU_Registers).
+      - Control goes back to interrupted process stack.
