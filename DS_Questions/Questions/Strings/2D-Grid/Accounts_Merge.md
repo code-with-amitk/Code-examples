@@ -24,7 +24,7 @@ Explanation:
  - Second John and Mary are different people as none of their email addresses are used by other accounts.
 ```
 
-### Approach-1  //Graph
+### Approach-1  //Graph + DFS
 #### Logic
 - *1.* We can assume emails as nodes of graph and hence emails of same person are connected. Nodes which are not connected form a disjoint graph and will be present in our graph data structure.
 ```c
@@ -120,7 +120,7 @@ public:
             
                 if(visited[accounts[i][j]] == false){
                 
-                    set<string> emailSet; // collect all associated unique emails
+                    set<string> emailSet;
                     dfs(accounts[i][j], emailSet);
                     
                     vector<string> tmp(emailSet.begin(), emailSet.end());
