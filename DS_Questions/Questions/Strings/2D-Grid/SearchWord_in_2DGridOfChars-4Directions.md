@@ -2,7 +2,7 @@
 - Given 2D board and a word, find if the word exists in the grid traversing horizontally & vertically
 - The same letter cell cann not be used more than once.
 - Example: 
-![ImgURL](https://assets.leetcode.com/uploads/2020/11/04/word2.jpg)
+<img src=https://assets.leetcode.com/uploads/2020/11/04/word2.jpg width=300 />
 word = "ABCCED", Output: true
 
 ### Logic
