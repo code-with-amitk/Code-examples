@@ -14,10 +14,10 @@ int main(){
 ## Stack Frame
  - [rbp(Base pointer), rsp(Stack pointer), rax/eax(Accumulator)](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers)
  - [rdi/edi, rsi, rdx, rcx, r8, r9](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers): Arguments to function are copied to registers.
-
 - **Steps:**
   - *1.* Push old rbp/ebp on stack. Function Prologue/Premble
   - *2.* move arguments on stack in reverse order. rdi=1st arg, rsi=2nd argument
+    - HOME AREA / SPACE: This is uninitialized space between allocation of arguments on stack and rbp. This can be used for allocation of transient values.
   - *3.* move arguments from stack to Registers. rax=1st arg, rdx=2nd arg. Add contents of registers and store on register.
   - *4.* move (result=return value) from rax register to stack.
   - *5.* move return result from stack to register.
