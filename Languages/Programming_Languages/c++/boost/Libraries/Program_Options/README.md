@@ -1,4 +1,4 @@
 ### program_options library
-- **What** Getting program options ie (name, value) pairs using:
+- **What** Reading (name value) pairs from:
   - command line OR
   - config file
