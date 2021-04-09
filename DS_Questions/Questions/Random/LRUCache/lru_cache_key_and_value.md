@@ -1,5 +1,5 @@
 
-- **[Self youtube video](https://youtu.be/mhcTL2lqwI0)**
+**[Self youtube video](https://youtu.be/mhcTL2lqwI0)**
 
 - **What is Cache?** Memory on CPU chip. Faster wrt hard-disk. Cache is always small in size, if cache is huge as Hard disk, then it searching will take time.
   
