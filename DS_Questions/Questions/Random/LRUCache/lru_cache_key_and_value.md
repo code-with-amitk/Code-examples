@@ -1,8 +1,7 @@
 
 - **[Self youtube video](https://youtu.be/mhcTL2lqwI0)**
 
-## Cache
-- **What?** Memory near to CPU wrt hard-disk and hence fast. Cache is always small in size, if cache is huge as Hard disk, then it searching will take time.
+- **What is Cache?** Memory on CPU chip. Faster wrt hard-disk. Cache is always small in size, if cache is huge as Hard disk, then it searching will take time.
   
 ## LRUCache   <key=priority, value=PageAddress>
 - **What?** Least recently used page(means oldest page) is deleted 1st.
