@@ -4,7 +4,7 @@
   - Remember functors are objects only, Hence can store state.
   - Compiler does not provide functors, we need to define explicitly.
 - **Why?** wrt to normal functions since functors are objects they can store state. We need to use global or static variable to hold state if we want to use function.  
- - **Types of functors in STL**
+- **Types of functors in STL**
   - *1.Generator?* Functor that can be called with no argument. Eg: print_it
   - *2. Unary Functor?* Functor called with 1 argument
   - *3. Binary Functor?* Functor called with 2 arguments.
