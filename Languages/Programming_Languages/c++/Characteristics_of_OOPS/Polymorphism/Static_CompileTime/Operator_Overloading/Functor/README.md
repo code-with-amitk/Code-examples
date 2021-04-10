@@ -5,12 +5,9 @@
   - Compiler does not provide functors, we need to define explicitly.
 - **Why?** wrt to normal functions since functors are objects they can store state. We need to use global or static variable to hold state if we want to use function.  
  - **Types of functors in STL**
- 
-| Type | Generator | Unary Functor | Binary Functor |
-| --- | --- | --- | --- |
-| What | Functor that can be called with no argument | Functor called with 1 argument | With 2 arguments |
-| Examples | <ul><li>print_it</li></ul> | | |
-
+  - *1.Generator?* Functor that can be called with no argument. Eg: print_it
+  - *2. Unary Functor?* Functor called with 1 argument
+  - *3. Binary Functor?* Functor called with 2 arguments.
 -  **Functor vs Normal Function**
 
 | | NORMAL-FUNCTION | FUNCTOR |
