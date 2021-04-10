@@ -1,4 +1,6 @@
 ## Two Options: help and Compression
+- *1.* Create object of [class options_description](/Languages/Programming_Languages/c++/boost/Libraries/Program_Options/Library/).
+- *2.* 
 ```c++
 #include<iostream>
 #include<boost/program_options.hpp>
@@ -14,7 +16,7 @@ int main(int ac, char **av){
 
   po::options_description desc("Allowed options");              //1
   
-  desc.add_options()
+  desc.add_options()                                            //2
     ("help", "help message")
     ("compression", po::value<int>(), "set compression level");
 ```
