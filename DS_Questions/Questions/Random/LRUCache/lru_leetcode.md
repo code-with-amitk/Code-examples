@@ -1,4 +1,4 @@
-## [LRU]()
+## [LRU](https://leetcode.com/problems/lru-cache/)
 - Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
 - get and put in O(1) time complexity
 - Implement the LRUCache class:
