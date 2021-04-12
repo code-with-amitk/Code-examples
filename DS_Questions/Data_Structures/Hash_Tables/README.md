@@ -6,3 +6,4 @@
   key -> |Hash Function| -> index of array/table
 ```
   - [Hash Collision and Solutions](Hash_Collision_And_Solutions.md)
+  - **[Rehashing](Rehashing.md)**
