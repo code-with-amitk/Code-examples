@@ -9,6 +9,7 @@
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 - **Flash Crowd:** Legitimate sudden burst in requests for a specific Web document or website. Eg: on New year wishes sent on facebook.
+- **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
     - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
@@ -18,5 +19,7 @@
   - Node uses a part of its available bandwidth for sending data to random peers, so that neighbours donot fall in tit for tat problem.
 - **Path Folding / Location Swapping:** During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
   - *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
+- **Policy Based Search:** Node keeps track of neighbours who responded positively & sends request to them again
+- **Random Walk?** Node selects k neighbours randomly, sends key-100(data to searched) to them, again those neighbours selects k neighbours.
 - **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
 
