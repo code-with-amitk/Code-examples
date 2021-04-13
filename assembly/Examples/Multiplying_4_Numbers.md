@@ -10,23 +10,35 @@ int main() {
 }
 ```
 ### Stack Frame & assembly
+- *0.* 4 arguments are passed to function fun() using [rdi,rsi,rdx,rcx](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers)
+- *1.* Push old rbp on stack, move rbp to rsp.
+- *2.* Move arguments from registers to stack of function fun.
+- *3.* Perform multiplication by moving values to register rax.
+- *4.* Move result of multiplication to [HOME AREA](..)
 ```c
+--------------------------
+rbp                     rsp
+
 fun(long, long, long, long):
-  push    rbp
-  mov     rbp, rsp
-  mov     QWORD PTR [rbp-24], rdi
-  mov     QWORD PTR [rbp-32], rsi
-  mov     QWORD PTR [rbp-40], rdx
-  mov     QWORD PTR [rbp-48], rcx
-  mov     rax, QWORD PTR [rbp-24]
-  imul    rax, QWORD PTR [rbp-32]
-  imul    rax, QWORD PTR [rbp-40]
-  mov     rdx, QWORD PTR [rbp-48]
-  imul    rax, rdx
-  mov     QWORD PTR [rbp-8], rax
+  push rbp                                  //1. Function Premable/Prologue
+  mov  rbp, rsp
+  mov  QWORD PTR [rbp-24], rdi              //2
+  mov  QWORD PTR [rbp-32], rsi
+  mov  QWORD PTR [rbp-40], rdx
+  mov  QWORD PTR [rbp-48], rcx               |   |   |  1 | 2 | 3 | 4 |
+                                            rbp  8  16   24  32  40  48                rsp
+                                            
+  mov  rax, QWORD PTR [rbp-24]              //3.  rax=1
+  imul rax, QWORD PTR [rbp-32]              //rax=rax*2 = 2
+  imul rax, QWORD PTR [rbp-40]              //rax=rax*3 = 6
+  mov  rdx, QWORD PTR [rbp-48]              //rdx=4
+  imul rax, rdx                             //rax=rax*rdx = 24
+  
+  mov  QWORD PTR [rbp-8], rax               //4
   nop
-  pop     rbp
+  pop  rbp
   ret
+
 main:
   push    rbp
   mov     rbp, rsp
