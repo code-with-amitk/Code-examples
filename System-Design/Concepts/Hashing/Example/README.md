@@ -13,7 +13,7 @@
 ### 3. Searching Node in Ring  (Considering 10k nodes)
   - Every node maintains directed shortcut to every other node forming [DAG(Directed Acyclic Graph)](/DS_Questions/Data_Structures/Graphs/Terms) complexity O(nlogn)
   - **Search:** Suppose key-100 is requested by user and request comes to node-1, <key-100,value-100> is stored on node-100. Now node-1 need to find node storing value-100, get the value-100 & return to requestor. 
-    - [Appproaches to search node storing data:](/System-Design/Concepts/Terms) Flooding, Random Walk, Policy Based Search, Broker/Super Peers.
+    - [Appproaches to search node storing data: Flooding, Random Walk, Policy Based Search, Broker/Super Peers](/System-Design/Concepts/Terms)
 
 ### 4. Deleting a Cache Server?
   - Now server is getting less hits, decided to remove a cache server. Keys present on server-A are removed. No rehashing is required.
