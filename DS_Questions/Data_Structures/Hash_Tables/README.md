@@ -1,5 +1,6 @@
 ## Hash Table
-  - **What** Search complexity = O(1){Average Case}. O(n){Worst case}
+  - **What** 
+    - Data structure that associates keys with values and supports constant time lookups ie Search complexity = O(1){Average Case}. O(n){Worst case}
   - [Advantages Disadv of HashTables](Advantages_Disadv_of_HashTables.md)
   - *Hash Function?* Hash function maps a big number or string to a small integer that can be used as index in hash table. 
 ```c
