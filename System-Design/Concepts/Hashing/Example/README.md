@@ -2,6 +2,7 @@
 > Consider 3 cache servers(A,B,C). Cache server limit = 2500 keys
 
 <img src="Consistent Hashing.png" width=500 />
+
 - **1. Storage of Data:** All <key,value> from 0-2500 will stored on server-B. From 2501 to 5000 on server-C so on. Now user want to store key=6000. It will be stored on Cache-server-A. A stores (5000-7500) keys.
 - **2. Addition of New Cache Server:** Now someone wants to store 7501? There is no space on existing Cache-Servers. Cache Server D is pushed and all keys from 7501 to 10000 are added on it. Other cache servers are not touched.
   - When a node joins it often contacts a well-known node to obtain a starting list in the system.
