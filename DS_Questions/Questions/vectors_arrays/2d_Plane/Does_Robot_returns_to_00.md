@@ -27,7 +27,7 @@ Output: true
 Explanation: The robot moves from (0, 0) -> (0, 1) -> (-1, 1) -> (-1, 0) -> (0, 0) -> ...
 ```
 
-### Limit Cycle Trajectory?
+#### Limit Cycle Trajectory?
 - **What?** A limit cycle is a closed trajectory in phase space having the property that at least one other trajectory spirals into it either as time approaches infinity.
 - **Conditions for LCT?**
   - If robot returns to the initial point(0,0) after one cycle, that's the limit cycle trajectory.
