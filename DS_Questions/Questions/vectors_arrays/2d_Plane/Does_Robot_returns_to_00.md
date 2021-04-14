@@ -27,57 +27,63 @@ Output: true
 Explanation: The robot moves from (0, 0) -> (0, 1) -> (-1, 1) -> (-1, 0) -> (0, 0) -> ...
 ```
 
-### Limit cycle trajectory?
+### Limit Cycle Trajectory?
 - **What?** A limit cycle is a closed trajectory in phase space having the property that at least one other trajectory spirals into it either as time approaches infinity.
-- **How to identify?**
-  - If robot returns to the initial point after one cycle, that's the limit cycle trajectory.
+- **Conditions for LCT?**
+  - If robot returns to the initial point(0,0) after one cycle, that's the limit cycle trajectory.
   - If the robot does not face north at the end of the first cycle, that's the limit cycle trajectory.
 
 ### Approach    //Identify Limit Cycle Trajectory
 - **Logic**
+  - *1.* Take 4 points identifying the directions N=(0,1), E=(1,0), S=(0,-1), W=(-1,0)
+  - *2.* Take variable `face` which tells about position of robot. N=0,E=1,S=2,W=3
+  - *3.* Take x=0,y=0 identifying the position of robot. Initially at 0,0.
+  - *4.* Iterate through input string and change x,y coordinates as per values in input string.
+- **Complexity?**
+  - **Time:** O(n). Passing thru string only once
+  - **Space:** [O(1)](/DS_Questions). We have allocated 4x4 vector and using it all times.
 - **Code**
 ```c++
-    bool isRobotBounded(string instructions) {
+bool isRobotBounded(string instructions) {
 /*
               N(0,1)
     W(-1,0)    0,0     E(1,0)
               S(0,-1)
 */
-        vector<vector<int>> direction = {
-            {0,1},  //N
-            {1,0},  //E
-            {0,-1}, //S
-            {-1,0}  //W
-        };
-        
-        int x = 0, y = 0;       //Initial position of robot
-        
+  vector<vector<int>> direction = {                             //1
+    {0,1},  //N
+    {1,0},  //E
+    {0,-1}, //S
+    {-1,0}  //W
+  };
 /*
-                N(face=0)
-    W(face=3)               E(face=1)
-                S(face=2)
+             N(face=0)
+   W(face=3)           E(face=1)
+             S(face=2)
 */
-        int face = 0;           //Robot Facing North
+  int face = 0;           //Robot Facing North                 //2
+  
+  int x = 0, y = 0;       //Initial position of robot          //3
         
-        for (auto i : instructions) {
-            if (i == 'L')
-                face = (face + 3) % 4;
-            else if (i == 'R')
-                face = (face + 1) % 4;
-            else {
-                x += direction[face][0];
-                y += direction[face][1];   
-            }    
-        }
+  for (auto i : instructions) {                                //4
+    if (i == 'L')
+      face = (face + 3) % 4;
+    else if (i == 'R')
+      face = (face + 1) % 4;
+    else {
+      x += direction[face][0];
+      y += direction[face][1];   
+    }    
+  }
         
-        //After 1 cycle, robot returned to 0,0
-        if(x == 0 && y == 0)
-            return true;
+  //After 1 cycle, robot returned to 0,0
+  if(x == 0 && y == 0)
+    return true;
         
-        //After 1 cycle, robot does not face north
-        if(face != 0)
-            return true;
+  //After 1 cycle, robot does not face north
+  if(face != 0)
+    return true;
         
-        return false;
-    }
+  return false;
+}
 ```
