@@ -7,7 +7,8 @@
 - **RAX(64 bit)accumulator** can be read as EAX(32 bit), AX(16 bit), AH(8 bit), AL(8 bit). Each register is divided into 16bit, 8bits parts.
   - **Usages:**
     - *a.* Stores intermidiate sum,subtract,divide within the function
-    - *b.* Store return values of function. Larger return types like structs are returned using the stack.
+    - *b.* {Return value} rax stored return value of function. Larger return types like structs are returned using the stack.
+    - *c.* {Division Operation} rax = quotient, rdx = reminder
 - RBX: Memory pointer, base register
 - RSP(stack pointer): points to head of stack
 - RBP(base pointer): points to base of stack
