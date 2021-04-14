@@ -3,7 +3,7 @@
 
 ### How it works
 - *1.* Create a validator structure/class which stores the value to be validated.
-- *2.* Define a `validate()` method. This is templated overloaded method.
+- *2.* Define a `validate()` method. This is templated overloaded method, will be defined seperately for every commandline option.
   - *Parameters:*
     - 1st,2nd,4th arguments are always fixed.
     - 3rd argument is pointer to Validator structure
