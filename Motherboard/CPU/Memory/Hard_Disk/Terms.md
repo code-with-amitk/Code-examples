@@ -3,3 +3,5 @@
   - *Track?* 1 circle is called track
   - *Sector?* Each track is divided into some number of sectors, typically 512 byte/sector.
   - *Cylinder?* All tracks above each other are called cylinder.
+
+<img src=hard_disk.JPG width=400/>
