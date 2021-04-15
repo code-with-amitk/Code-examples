@@ -1,6 +1,5 @@
 ## Hard Disk / Magnetic Disk
-- **[Terms](Terms)**
-- (Plate or Platters or disks) rotate at 5400, 7200, 10,800 rpm or more.
+- **[Terms](Terms):** Platter, sector, track
 - Information is written onto the disk in concentric circles on disks.
 - **How Read Happens?**
   - *1. Move the RW to track-2 (1 msec).* Suppose platters has 500 tracks.
