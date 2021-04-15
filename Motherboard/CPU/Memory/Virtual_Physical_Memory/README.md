@@ -9,6 +9,6 @@
 ||Hard Disk|Physical Mem|Virtual Mem|
 |---|----|---|---|
 |32 Bit|4GB|1GB|3GB|
-|[64 Bit](/Operating_Systems/Linux/Protection_Rings/What_is_Protection_Ring.md)|1TB|4GB|966GB|
+|[64 Bit](/Operating_Systems/Linux/Protection_Rings)|1TB|4GB|966GB|
 
 - **[Converting Virtual to Physical Address](Convert_Virtual_to_Physical_Address)**
