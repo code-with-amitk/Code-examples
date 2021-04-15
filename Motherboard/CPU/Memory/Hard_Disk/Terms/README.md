@@ -4,4 +4,4 @@
   - *Sector?* Each track is divided into some number of sectors, typically 512 byte/sector.
   - *Cylinder?* All tracks above each other are called cylinder.
 
-<img src=hard_disk1.png width=400/>
+<img src=hard_disk1.png width=700/>
