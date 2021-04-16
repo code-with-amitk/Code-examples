@@ -11,6 +11,8 @@
     - *2a, 2b* are fixed. Mandatory checks
     - *2c.* Converting strValue to type which is stroed by Validator Structure.
     - *2d.* Do the checks, if check fails throw exception else, pass value as boost variable.
+- *3.* Create Object of [class option_description](/Languages/Programming_Languages/c++/boost/Libraries/Program_Options/Library).
+- *4.* [add_options()](/Languages/Programming_Languages/c++/boost/Libraries/Program_Options/Library/) returns a object that defines the [functor operator ()](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Operator_Overloading/Functor)
 ### Code
 ```c++
 #include<iostream>
@@ -51,8 +53,8 @@ void validate(boost::any &v,                                            //2
 int main(int ac, char **av){
 
   try {
-    po::options_description desc("Allowed options");
-    desc.add_options()
+    po::options_description desc("Allowed options");                  //3
+    desc.add_options()                                                //4
     ("help", "produce help message")
     ("compression,c",
       po::value<RangeValidator>(),        
