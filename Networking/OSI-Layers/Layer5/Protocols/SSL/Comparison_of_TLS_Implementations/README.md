@@ -7,7 +7,8 @@
 |License|MPL 2.0|OpenSSL-SSLeay dual-license|
 |Written|C, assembly|C, assembly|
 |Recent Version|3.62|1.1.1k|
+|Supports PKCS#11(Smart card tokens)|Yes|No|
 
 - **Other open source TLS Implementation**
-  - Boring SSL(by Google) written in C, C++, Go, assembly
-  - GNUTLS(By GnuTLS project)
+  - **Boring SSL(by Google)** written in C, C++, Go, assembly
+  - **GNUTLS(By GnuTLS project)**
