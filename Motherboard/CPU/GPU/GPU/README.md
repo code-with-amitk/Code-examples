@@ -2,11 +2,8 @@
 - *What* 
   - This is specialized electronic circuit created for manipulating images rapidly. ie Specialized in Graphics & Image processing.
   - In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.
-- *[Applications/Usages?](Applications.md]*
-  - Used in mobile phones, PCs, workstations, game consoles, In parallel computing.
-  - Create high resolution images, videos
-  - In machine training, deep learning neural networks, GPUs can be 250 times faster than CPUs.
-  - Complex mathematical calculations, financial simulations and risk modeling
+- *[Applications/Usages?](Applications.md)*
+
 - **CPU vs GPU**  
 
 |  | CPU | GPU |
