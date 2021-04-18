@@ -1,12 +1,8 @@
 ## Multicore
-- **What?** CPU chip having 4, 8, or more complete processors/CPU's(mini chips) on them. These independent processors are called cores.
-- **Max cores?** Intel Xeon Phi supports 60 cores/processor. Each core can have AT-MAXIMUM 2 threads. Total threads = 120
-- **Terms?** 
-  - *Dual Core?* 2 CPU's on  Single CPU Chip
-  - *Wuad Core?* 4 CPU's on Single CPU Chip
-  - *Octa Core?* 8 CPU's on Single CPU Chip.
-- *Are More cores better?* Think core as hands of a person. octa-cored(8 core/hand) person can work fast wrt dual-core. But if 2 hands(cores) are more powerful then they can complete task faster wrt 8 weak hands.
-- *When to choose multi core?* Does task really require PARALLEL processing. Eg: Hadoop(good fit for multi-core)
-- *Caches?* Each core has its own L1 cache, it also has its own registers. L2 Cache is shared between all cores.
-  - CACHE COHERENCY PROBLEM: core-1 read variable(x=3) from main-memory and loads in its L1-cache and registers. core-2 also reads x=3 from RAM and stores in its cache/registers. Now core-1 modifies the value to x=5, core-2 will have stale value. caches are not coherent.
-  - SOLUTION TO CCP: When (shared variable)var-1 is changed then values present at other caches should be changed. 
+  - **What?** 
+    - CPU chip having 4, 8, or more complete processors/CPU's(mini chips) on them. **[GPU](/Motherboard/CPU/GPU)** can have 1000's of tiny cores on them.
+  - **Max cores?** Intel Xeon Phi supports 60 cores/processor. Each core can have AT-MAXIMUM 2 threads. Total threads = 120
+  - **[Terms?](Terms.md)**
+  - [Applications](/Motherboard/CPU/GPU/GPU/Applications_Advantages_Disadv.md)
+  - *Are More cores better?* Think core as hands of a person. octa-cored(8 core/hand) person can work fast wrt dual-core.
+  - [Cache](Cache)
