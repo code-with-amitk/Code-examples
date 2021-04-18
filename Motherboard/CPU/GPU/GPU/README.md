@@ -3,14 +3,8 @@
   - This is specialized electronic circuit created for manipulating images rapidly. ie Specialized in Graphics & Image processing.
   - In 2018 AMD/ATI(33%) & Nvidia(66%) captured 100% of GPU market.
 - *[Applications/Usages?](Applications.md)*
+- *[CPU vs GPU](CPU_vs_GPU.md)*
 
-- **CPU vs GPU**  
-
-|  | CPU | GPU |
-| --- | --- | --- |
-| Cores | 4 |<ul><li>Nvidia's GeForce:4000</li></ul><ul><li>AMD's Radeon: 2500</li></ul><ul><li>Intel's HD 500: 1100</li></ul>|
-| works on | | Parallelism |
-| Tasks | varied: open spreadsheets, DB queries | To computation intensive tasks only |
   
 
 ## GPU Architecture
