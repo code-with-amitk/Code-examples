@@ -1,10 +1,6 @@
-## Graphics Card / Graphics Adapter
-- **What**
-  - Used in gaming PC or a professional high-performance PC for graphic processing.
-  - It has different components that work altogether for graphics processing.
-<img src=graphics-card-components.jpg width=500 />
-
-- [GPU](GPU.md)
+## GPU
+- *[Graphics Card/Graphics Adapter](Graphics_Adapter)*
+- [GPU](GPU)
 - [VRAM(Video RAM)](/Motherboard/CPU/Memory/RAM)
 - **VRM(Voltage Regulator Module)/(PPM)Processor Power Module/Voltage Regulator:**
   - This gives power to the GPU. It converts 12V to around 1V to 1.5V (approx) which is normally the voltage level at which GPU operates.
