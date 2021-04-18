@@ -1,6 +1,6 @@
 ## Multicore
-- **What?** CPU chip having 4, 8, or more complete processors/CPU's on them. These independent processors are called cores.
-- **Max cores?** Intel Xeon provides 24 cores/processor. Each core can have AT-MAXIMUM 2 threads. Total threads = 48
+- **What?** CPU chip having 4, 8, or more complete processors/CPU's(mini chips) on them. These independent processors are called cores.
+- **Max cores?** Intel Xeon Phi supports 60 cores/processor. Each core can have AT-MAXIMUM 2 threads. Total threads = 120
 - **Terms?** 
   - *Dual Core?* 2 CPU's on  Single CPU Chip
   - *Wuad Core?* 4 CPU's on Single CPU Chip
