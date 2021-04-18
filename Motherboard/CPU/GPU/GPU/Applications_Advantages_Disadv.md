@@ -12,3 +12,4 @@
   - Create high resolution images, videos.
   - In machine training, deep learning neural networks, GPUs can be 250 times faster than CPUs.
   - Complex mathematical calculations, financial simulations and risk modeling
+  - Hadoop (good fit for multi-core) using GPUs.
