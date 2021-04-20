@@ -10,7 +10,7 @@
  # make
  # sudo make install
 ```
-### With Additional Components
+### 2. With Additional Components
  - Install [cyrus-SASL](https://www.cyrusimap.org/sasl/sasl/installation.html)
 ```html
  //Install cyrus sasl
