@@ -12,4 +12,7 @@
  //Install openldap
  # wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.58.tgz
  # ./configure --with-cyrus-sasl
+ # make depend
+ # make
+ # sudo make install
 ```
