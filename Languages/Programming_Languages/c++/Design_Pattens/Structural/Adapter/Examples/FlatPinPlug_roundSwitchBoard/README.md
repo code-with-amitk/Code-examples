@@ -2,14 +2,6 @@
   - FlatPinPlug want to interact with roundSwitchBoard.
   - We need adapter in between.
 - **How it works?** Adapter will have pointer to object of target class.
-```html
+<img src=adapter-dp.JPG width=600/>
 
-                Plug    //Abstract-class                switchBoard//Abstract Class
-                /\ /\                                   /\      /\
-                |   |                                   --      |
- ---------------    -------------------   ---------------       --------
-|Genralization          Genralization |   |Aggregation                  |Genralization
-|                                     |   |                             |
-flatPinPlug                          Adapter                            flatSwitchBoard
-```
 - **[Code](Code)**
