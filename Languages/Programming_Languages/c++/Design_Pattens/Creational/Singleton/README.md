@@ -8,4 +8,5 @@
   - *2.* Static variable to save Object address, since only 1 static variable exists/class.
   - *3.* Static Method to create Objects, static variables can be manipulated inside static methods.
   - *4.* Call static method from main(), to create Object.
+- [Code](Code)
 - [if 2 threads run this code it will creates two objects for singleton.How to solve?](MultiThreaded_Singleton)
