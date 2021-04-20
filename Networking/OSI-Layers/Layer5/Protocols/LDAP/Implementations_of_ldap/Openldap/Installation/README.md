@@ -6,6 +6,10 @@
  //Install openldap
  # wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.58.tgz
  # ./configure; make depend; make; sudo make install
+ 
+ //Run
+ # sudo ln -s /usr/local/lib/libsasl2.so.3 /usr/lib/
+ # /usr/local/libexec/slapd -d 255 -f /usr/local/etc/openldap/slapd.conf
 ```
 ### 2. With Additional Components
  - Install [cyrus-SASL](https://www.cyrusimap.org/sasl/sasl/installation.html)
