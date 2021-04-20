@@ -1,8 +1,5 @@
-## TASK
-  - FlatPinPlug want to interact with roundSwitchBoard.
-  - We need adapter in between.
-  
-## HOW
-   - (Step-1) Adapter is plugged onto Flat Pin Plug.
-   - (Step-2) Adpter is plugged onto round switch board.
+## Adapter / Wrapper
+- **What?** This pattern converts the interface of 1 class to another which clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.  
+
+- **[Examples](Examples)**
   
