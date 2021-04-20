@@ -10,4 +10,4 @@
   - [General purpose registers](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers): Stores results of calculations done by process in Memory segment.
   - list of open files, list of open devices. This all information is called PROCESS CONTEXT.
 
-<img src=pcb.png width=400 />
+<img src=pcb.png width=600 />
