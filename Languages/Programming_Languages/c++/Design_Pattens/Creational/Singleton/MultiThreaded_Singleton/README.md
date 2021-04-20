@@ -1,10 +1,10 @@
 ## Multithreaded
-- [This code](/Languages/Programming_Languages/c++/Design_Pattens/Creational/Singleton/Code/Lazy_Initialization) is not thread-safe. if 2 threads run this code it will creates two objects for singleton.
-- *Solution*
-  - *1.* Making fun() as synchronized (In Java)
+- **Problem?** [This code](/Languages/Programming_Languages/c++/Design_Pattens/Creational/Singleton/Code/Lazy_Initialization) is not thread-safe. if 2 threads run this code it will creates two objects for singleton.
+  - *Solution*
+    - *1.* Making fun() as synchronized (In Java)
 ```java
-            public static synchronized test fun(){        //Adding synchronized makes every thread to wait for its turn.    
-            }
+  public static synchronized test fun(){        //Adding synchronized makes every thread to wait for its turn.    
+  }
 ```
   - *2.* Using Mutexes (In Linux)
     
@@ -18,7 +18,7 @@
                         static test fun(){  return obj;  }
             }
 ```
-*2. Check the variable before locking mutex//Double-Checking Locking*
+  - *2. Check the variable before locking mutex//Double-Checking Locking*
 ```java
         class test{
                 volatile test obj;
