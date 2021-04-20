@@ -1,0 +1,11 @@
+## Singleton DP / Single Object
+- **What?** Only 1 object of class can be created. And provides Global point of access to it.
+- **How Singleton is Achieved?**
+  - *1.* Block all Object creation methods: 
+	  - Make default ctr pvt
+	  - Make copy ctr pvt
+	  - Make Assignment operator pvt
+  - *2.* Static variable to save Object address, since only 1 static variable exists/class.
+  - *3.* Static Method to create Objects, static variables can be manipulated inside static methods.
+  - *4.* Call static method from main(), to create Object.
+- [if 2 threads run this code it will creates two objects for singleton.How to solve?](MultiThreaded_Singleton)
