@@ -2,7 +2,7 @@
 
 |Name|What|Applications|
 |---|---|---|
-|[Adapter/Wrapper](Adapter)|||
+|[Adapter/Wrapper](Adapter)||Socket on Wall: Connecting new adapter to socket|
 |Bridge|To decouple Abstraction from its Implementation so that 2 can vary Independently|House hold switch for On/Off the light|
 |Composite|Treats Group of Objects same as Single Object|Arithmetic Expressions evaluation: 2+3 and (2+3) + (4x6)|
 |[Decorator](Decorator)|Adding new functionality to existing Object without altering its structure(older code). New object acts as wrapper to existing object|Coffee House Design|
