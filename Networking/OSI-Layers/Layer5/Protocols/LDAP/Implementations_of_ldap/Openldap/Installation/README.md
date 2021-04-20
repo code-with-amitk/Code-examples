@@ -5,10 +5,7 @@
  
  //Install openldap
  # wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.58.tgz
- # ./configure --with-cyrus-sasl
- # make depend
- # make
- # sudo make install
+ # ./configure; make depend; make; sudo make install
 ```
 ### 2. With Additional Components
  - Install [cyrus-SASL](https://www.cyrusimap.org/sasl/sasl/installation.html)
@@ -18,4 +15,9 @@
  # cd cyrus-sasl
  # ./configure; make; make install
  # ln -s /usr/local/lib/sasl2 /usr/lib/sasl2    //Create symbolic link
+
+ //Install openldap
+ # wget https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.58.tgz
+ # ./configure --with-cyrus-sasl
+ # make depend; make; sudo make install
 ```
