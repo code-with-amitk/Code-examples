@@ -1,5 +1,5 @@
 ## [On Linux](https://www.openldap.org/doc/admin24/OpenLDAP-Admin-Guide.pdf)
-- **1. Without any additional components**
+### 1. Without any additional components
 ```c
  # sudo apt install db4-devel   //Install berkley DB
  
@@ -10,7 +10,7 @@
  # make
  # sudo make install
 ```
-- **2. With cyrus sasl**
+### With Additional Components
  - Install [cyrus-SASL](https://www.cyrusimap.org/sasl/sasl/installation.html)
 ```html
  //Install cyrus sasl
