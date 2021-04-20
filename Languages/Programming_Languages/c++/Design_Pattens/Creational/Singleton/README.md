@@ -8,5 +8,7 @@
   - *2.* Static variable to save Object address, since only 1 static variable exists/class.
   - *3.* Static Method to create Objects, static variables can be manipulated inside static methods.
   - *4.* Call static method from main(), to create Object.
+- **Can't task of Singleton is done by Global variable?**   
+  - Ans- No, Global needs to be created at start of program & exist till end, But singleton creates object when its required.
 - [Code](Code)
 - [if 2 threads run this code it will creates two objects for singleton.How to solve?](MultiThreaded_Singleton)
