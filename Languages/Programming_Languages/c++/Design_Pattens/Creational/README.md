@@ -9,5 +9,5 @@
 |Flyweight|To reduce number of Objects of created.  It uses already existing Objects and only creates new whenever no matching object is found|PSTN Network|
 |Prototype|It creates Duplicate Objects{creates clone} while keeping Performance in Mind||
 |Proxy|This class represents functionality of other class|Cheque or DD: These can be used in places of cash| 
-|[Singleton](Singleton)| Only 1 instance/object of class can be created|Office of President, PM|
+|[Singleton](Singleton)| Only 1 instance/object of class can be created|Office of President, Printer Queue(only 1 job run at a time), Only 1 DB object should be created per system & make connection, Duplicate connections may consume resources & slow down system|
 |Visitor|Separation of Data Structures from Data||
