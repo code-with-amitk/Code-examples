@@ -18,12 +18,15 @@ wordlist = {"aaaaaa","bbbbbb", "cccccc", "dddddd", "eeeeee", "ffffff", "gggggg",
 Let secret word = "kkkkkk"
 guess("aaaaaa") return 0
 guess("gggggg") return 0
-guess("kkkkkk") return 6  //11th call to guess()
+guess("kkkkkk") return 6  //11th call to guess(). 
+
+Answer: Either you took too many guesses, or you did not find the secret word.
+Expected: Either you took too many guesses, or you did not find the secret word.
 ```
 
 ### Approach  //Elimination
-- **Logic**
-  - *1.* sort wordlist and create a temporary datastructure maybe doubly linked list.
+#### Logic
+- *1.* sort wordlist and create a temporary datastructure maybe doubly linked list.
 ```html
 wordlist = {"aaaaaa","aaaccc","bbbbbb", "bbbddd", "eeeeee", "ffffff", "gggggg", "hhhhhh", "iiiiii", "jjjjjj", "kkkkkk"}
 
@@ -49,3 +52,61 @@ doublyLL = "bbbbbb" <> "bbbddd" <> "eeeeee" <> "ffffff" <> "gggggg" <> "hhhhhh" 
 -> All other words in doublyLL does not have any character matching with "aaaaaaa"
 ```
 - *4.* Pass next word from doublyLL to guess() and find matching words, repeat steps-2,3 for rest for words.
+
+#### Complexity
+- **Time:** O(n<sup>2</sup>)
+  - [sort(): O(nlogn)](/Languages/Programming_Languages/c++/Standard_Template_Library/Algorithm-library/sort)
+  - 2 while loops: O(n<sup>2</sup>)
+    - for loop iterates 6 times, so it will be O(6n<sup>2</sup>)
+- **Space:** O(n)
+  - Creating doublyLL: O(n)
+#### Code
+```c++
+class Solution {
+public:
+    
+    //How many characters match with word passed to guess() function
+    int Score(string& strPassedToGuess, string& strWordFromList) {
+        int iMatchedCharacters = 0;
+        for (int i=0; i<6; ++i) {
+            if(strPassedToGuess[i] == strWordFromList[i]) 
+                ++iMatchedCharacters;
+        }
+        return iMatchedCharacters;
+    }
+    
+    void findSecretWord(vector<string>& wordlist, Master& master) {
+        int iNoOfMatchingCharacters = 0;
+        
+        //Sort, Convert to Doubly Linked List                   //1
+        sort(wordlist.begin(),wordlist.end());
+        list<string> doublyLL(wordlist.begin(), wordlist.end());
+        
+        //Secret will have matchingCharacters=6.
+        //Keep traversing the list until secret is found
+        while(iNoOfMatchingCharacters < 6) {
+
+            //At start of doubly LL
+            auto it = *doublyLL.begin();
+            auto it1 = doublyLL.begin();
+            
+            //Number of matching characters of word with secret
+            iNoOfMatchingCharacters = master.guess(*doublyLL.begin());      //2
+            
+            while(it1 != doublyLL.end()) {
+                
+                //Remove all words from doublyLL which have matching
+                //characters with recently passed word to guess()
+                if(Score(it,*it1) != iNoOfMatchingCharacters) {       //3
+                    auto tmp = next(it1);
+                    doublyLL.erase(it1); 
+                    it1 = tmp;
+                }
+                else
+                    ++it1;
+            }
+        }
+        return;
+    }
+};
+```
