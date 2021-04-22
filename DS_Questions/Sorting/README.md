@@ -1,6 +1,6 @@
 ### Time Complexity
 
-||Bubble|Modified Bubble|Selection|Insertion|Merge|Quick|Heap|[Intro Sort](IntroSort)|
+||Bubble|Modified Bubble|Selection|Insertion|Merge|Quick|Heap|[Intro Sort](Hybrid_Sorting_Algo)|
 |---|---|---|---|---|---|---|---|---|
 |Best|O(n<sup>2</sup>)|O(n)| O(n<sup>2</sup>)| O(n)| O(n)|O(n)|O(nlogn)|O(nlogn)
 |Worst|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(nlogn)|O(n<sup>2</sup>)//When arr is sorted|O(nlogn)|O(nlogn)|
