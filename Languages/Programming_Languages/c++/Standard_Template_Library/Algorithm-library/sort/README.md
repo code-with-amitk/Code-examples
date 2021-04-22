@@ -1,0 +1,2 @@
+## sort()
+- `sort()` uses [IntroSort]().
