@@ -1,10 +1,10 @@
 ### Time Complexity
 
-||Bubble|Modified Bubble|Selection|Insertion|Merge|Quick|Heap|
-|---|---|---|---|---|---|---|---|
-|Best|O(n<sup>2</sup>)|O(n)| O(n<sup>2</sup>)| O(n)| O(n)|O(n)|O(nlogn)|
-|Worst|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(nlogn)|O(n<sup>2</sup>)//When arr is sorted|O(nlogn)|
-|Avg|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)| O(nlogn)|O(nlogn)|O(nlogn)|
+||Bubble|Modified Bubble|Selection|Insertion|Merge|Quick|Heap|[Intro Sort](IntroSort)|
+|---|---|---|---|---|---|---|---|---|
+|Best|O(n<sup>2</sup>)|O(n)| O(n<sup>2</sup>)| O(n)| O(n)|O(n)|O(nlogn)|O(nlogn)
+|Worst|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(nlogn)|O(n<sup>2</sup>)//When arr is sorted|O(nlogn)|O(nlogn)|
+|Avg|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)|O(n<sup>2</sup>)| O(nlogn)|O(nlogn)|O(nlogn)|O(nlogn)|
 
 ### Space Complexity
 
