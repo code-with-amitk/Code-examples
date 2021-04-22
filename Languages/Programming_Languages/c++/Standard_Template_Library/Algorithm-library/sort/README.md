@@ -1,2 +1,2 @@
 ## sort()
-- `sort()` uses [IntroSort]().
+- `sort()` uses [IntroSort](/DS_Questions/Sorting/Hybrid_Sorting_Algo).
