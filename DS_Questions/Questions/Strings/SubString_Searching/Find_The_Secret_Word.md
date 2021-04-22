@@ -24,8 +24,8 @@ Answer: Either you took too many guesses, or you did not find the secret word.
 Expected: Either you took too many guesses, or you did not find the secret word.
 ```
 
-### Approach  //Elimination
-#### Logic
+## Approach  //Elimination
+### Logic
 - *1.* sort wordlist and create a temporary datastructure maybe doubly linked list.
 ```html
 wordlist = {"aaaaaa","aaaccc","bbbbbb", "bbbddd", "eeeeee", "ffffff", "gggggg", "hhhhhh", "iiiiii", "jjjjjj", "kkkkkk"}
@@ -53,14 +53,14 @@ doublyLL = "bbbbbb" <> "bbbddd" <> "eeeeee" <> "ffffff" <> "gggggg" <> "hhhhhh" 
 ```
 - *4.* Pass next word from doublyLL to guess() and find matching words, repeat steps-2,3 for rest for words.
 
-#### Complexity
+### Complexity
 - **Time:** O(n<sup>2</sup>)
   - [sort(): O(nlogn)](/Languages/Programming_Languages/c++/Standard_Template_Library/Algorithm-library/sort)
   - 2 while loops: O(n<sup>2</sup>)
     - for loop iterates 6 times, so it will be O(6n<sup>2</sup>)
 - **Space:** O(n)
   - Creating doublyLL: O(n)
-#### Code
+### Code
 ```c++
 class Solution {
 public:
