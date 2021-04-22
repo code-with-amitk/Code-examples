@@ -4,7 +4,7 @@
 - **ROM Chip?** ROM is present on ROM Chip on motherboard. Motherboard can have 1 or more ROM chips.
 
 ### Types of ROM
-### 1. SPIROM
+#### 1. SPIROM
   - AMD's SPIROM contains these: PSP bootloader, MP1, MP2, MPM, VBL, ABL, IFWI(Integrated Firmware Image). IFWI initializes Memory. HW can access GPU memory. Provides security. 
 #### 2. EEPROM(Electronically erasable programmable)
   - These ROMs can be electrically erased/re-programmed, but possible only certain number of times.
