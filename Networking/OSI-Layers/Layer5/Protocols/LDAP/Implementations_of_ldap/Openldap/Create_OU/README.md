@@ -1,6 +1,6 @@
 ## Creating OU and Group
-- *1. Create ldif file*
 ```html
+//Create ldif file
 # cat ou-people.ldif
 dn: dc=amit,dc=com
 objectClass: top
@@ -21,9 +21,8 @@ ou: People
 dn: ou=Group,dc=amit,dc=com
 objectClass: organizationalUnit
 ou: Group
-```
-- *2. Run ldapadd*
-```html
+
+//Add OU and Group
 $ sudo ldapadd -x -W -D "cn=Manager,dc=amit,dc=com" -f ou-people.ldif -d 2
 //See password from slapd.conf
 ```
