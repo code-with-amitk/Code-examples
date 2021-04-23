@@ -1,4 +1,4 @@
-### Find/Search
+### 1. Find/Search
 - **1. Key in unordered map<key,value>**
 ```c++
 class Command{ ... };
@@ -33,14 +33,12 @@ if (it != um.end()) {                            //Found Key
   cout<<it->first<<" " <<it->second;          //4 1
 ```
 
-### Count Number of occurences from of value inside array
+### 2. Count Number of occurences from of value inside array
 - Let's suppose an array `{4,3,1,1,3,3,2}` is present we need to create a map
-
-|key->|4|3|1|2|
-|---|---|---|---|---|
-|NoOfOccurences->|1|3|2|1|
-
 ```c++
+key ->            4 3 1 2
+NoOfOccurences -> 1 3 2 1
+
   vector<int>& arr = {4,3,1,1,3,3,2};
   unordered_map<int,int> um;           //<key=element, value=count>
   
