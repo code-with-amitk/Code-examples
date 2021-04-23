@@ -1,4 +1,4 @@
-## Connect to openldap server using client
+## Connect to openldap server using LdapExplorer
 ```html
 server: 127.0.0.1
 server port: 389
