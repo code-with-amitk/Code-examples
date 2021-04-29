@@ -50,6 +50,7 @@
 # g++ main.cpp -L/home/amit/amit-code -ltotal -o TEST      //Step-4: -L<path-to-shared-lib-dir>  -l<named of shared library without .so>
 # ls
   TEST  libtotal.so  main.cpp  total.cpp
+# ln -s /home/amit/amit-code/libtotal.so /usr/lib
 ``` 
 
 ### 4. Listing all `*.so` linked to exe
