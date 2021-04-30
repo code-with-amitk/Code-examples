@@ -1,3 +1,3 @@
 ||Xalan Library|Xerces Library|
 |---|---|---|
-|What|[XSLT](/Languages/Markup_Language/XML) processor for transform XML documents into HTML, text, or other XML document types|Parse, Validate, Manipulate [XML](/Languages/Markup_Language/XML) documents|
+|What|<ul><li>[XSLT](/Languages/Markup_Language/XML) processor for transforming XML documents into HTML, text, or other XML document types</li></ul><ul><li>It works with xerces</li></ul>|Parse, Validate, Manipulate [XML](/Languages/Markup_Language/XML) documents|
