@@ -4,3 +4,5 @@
 ```c
 # ./configure; make; make install
 ```
+- **Examples:**
+  - [Parsing elements from XML File](/XPath/Examples)
