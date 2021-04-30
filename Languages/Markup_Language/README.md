@@ -10,4 +10,4 @@
 |---|---|---|
 |What|Used for creating webpages|Use for storing structured data|
 |Tags|Uses predefined tags|Uses custom tags to define elements|
-|Tag Examples|<head>,<body>,<div> define sections of the page. <table>,<form>,<image>,<a> define elements within the page|
+|Tag Examples|`<head>,<body>,<div>` define sections of the page. `<table>,<form>,<image>,<a>` define elements within the page||
