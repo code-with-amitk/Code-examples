@@ -1,6 +1,6 @@
 ## Compilation Steps
 
-<img src=Compilation-Steps.jpg width=1000 />
+<img src="Compilation-Steps.jpg" width=1000 />
 
 ```c
 # cat test.c
