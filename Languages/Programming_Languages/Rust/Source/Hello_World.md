@@ -1,5 +1,5 @@
 ## Hello World
-```rs
+```rust
 # vim helloworld.rs
 fn main() {
     println!("Hello, world!");
