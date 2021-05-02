@@ -1,7 +1,7 @@
 ## Variables
 - **Mutable?** Whose value can be changed. 
   - By default variables are **immutable**(ie cannot be changed after creation).
-  - **Example, x is immutable**
+- **1. Example: Default variable is immutable**
 ```rust
 fn main() {
     let x = 5;
