@@ -1,4 +1,4 @@
-## ATOMIC OPERATION(Uninterrupted Operation)
+## Atomic Operation(Uninterrupted Operation)
   - Operation which guarantees is completed without intervention of CPU. ie result at end of AO is predictable and correct.
   - Example: Let's function is incrementing a global/static variable.
     - Thread-1 is executing the fun() fetched count value(say 2). At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
