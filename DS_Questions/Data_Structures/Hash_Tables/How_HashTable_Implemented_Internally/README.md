@@ -5,7 +5,8 @@
   - Lets consider student data to be stored in hash table.
   - Each student data is stored in seperate file and File pointers are stored in Buckets (Similar to [Inode](/Operating_Systems/Linux/FileSystem/I_Node_IndexNode.md))
   - Hash Function generates bucket number as output with enrollment number(key) as input.
-```c
+  - Clients maintain views to the global system state.
+```html
   | Name | Roll-No | Class | Sub-1 | Sub-2 | Sub-3 | .. | Enrollment No(Unique Key) |
   | Amit |   5     | 10    | Math  | Sci   | Eng   |    | 12345                     | <- File-1
   | Ram  |   35    | 10    | Math  | Sci   | Eng   |    | 23241                     | <- File-2
