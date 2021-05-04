@@ -1,11 +1,18 @@
 ## How Hash Table is implemented internally
+> LH* Network
+
 - Files are organized into buckets(Size is power of 2) stored either in RAM or disk or distributed servers.
 - Hash function generates the bucket number which stores the key.
 - **Example:**
   - Lets consider student data to be stored in hash table.
   - Each student data is stored in seperate file and File pointers are stored in Buckets (Similar to [Inode](/Operating_Systems/Linux/FileSystem/I_Node_IndexNode.md))
   - Hash Function generates bucket number as output with enrollment number(key) as input.
-  - Clients maintain views to the global system state.
+  - **Split Coordinator**
+    - Once buckets on server gets full, splitting is done using SC. Making buckets/keys to half.
+    - SC also supports the merging of buckets.
+    - SC can be seen as [Super-Peer](/System-Design/Concepts/Terms) in P2P terminology.
+  - *Dsiadvantage?* 
+    - Clients maintain views to the global system state, ie overall bucket information.
 ```html
   | Name | Roll-No | Class | Sub-1 | Sub-2 | Sub-3 | .. | Enrollment No(Unique Key) |
   | Amit |   5     | 10    | Math  | Sci   | Eng   |    | 12345                     | <- File-1
