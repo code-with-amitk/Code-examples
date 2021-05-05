@@ -3,8 +3,8 @@
   - Replaces current running process with a new process. PCB of new process replaces old.
 
 ### Types
-- **int execvp (file, args)**
-  - file is Executable name which need to started in my place.    (github: execvp.c)
+- **[int execvp (file, args)](execvp.c)**
+  - file is Executable name which need to started in my place.
 - **int execv(path, argv[])**    
   - path: should point to the path of the file being executed
 - **int execlp(file, arg,...`/* (char  *) NULL */`):**    
