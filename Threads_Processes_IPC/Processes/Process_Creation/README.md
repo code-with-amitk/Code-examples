@@ -2,26 +2,22 @@
 - **Process?**
   - Running instance of program. All processes are decedents of swapper process(PID=0)
   - Both(threads, processes) are independent sequence of operations
-- **API for Process Creation**
+- **fork():** Creates a new process(called child process), Called once, returns twice. fork() is internally implemented as using clone().
 ```c
 pid_t fork(void)        //typedef int pid_t;
- - Creates a new process(called child process), Called once, returns twice. fork() is internally implemented as using clone().
  
                 pid_t ret = fork()
       ----ret==0-----|-----ret!=0--
       |                           |
-   Child(pid=176)             Parent(pid=175)
+   Child                       Parent
 |CS|DS|SS|HS|               |CS|DS|SS|HS|        
-```
-- **COW(Copy On Write)**
-  - CS, DS, SS, HS all are shared between parent & child Initially. If any one of them Modifies, New page is created & modified data is copied
-- **Other APIs**
-```c
+
 getppid(): To get Parent's ProcessID.    
 getpid(): Get self PID
 int wait(int *status): Parent process to wait for child to terminate. returns pid of terminated child, sets term_status in status. 
 This blocks parent if it has any unterminated child, else returns immediately.
-```  
+```
+- **[COW(Copy On Write):](process_copy_on_write.c)** CS, DS, SS, HS all are shared between parent & child Initially. If any one of them Modifies, New page is created & modified data is copied
 
 ## Code
 ```c
