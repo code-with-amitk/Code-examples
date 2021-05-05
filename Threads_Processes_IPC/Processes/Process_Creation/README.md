@@ -1,8 +1,8 @@
 ## Process Creation
-- **What**
+- **Process?**
   - Running instance of program. All processes are decedents of swapper process(PID=0)
   - Both(threads, processes) are independent sequence of operations
-- **API for creation**
+- **API for Process Creation**
 ```c
 pid_t fork(void)        //typedef int pid_t;
  - Creates a new process(called child process), Called once, returns twice. fork() is internally implemented as using clone().
