@@ -1,6 +1,10 @@
 ## Exec Family of function?
-- **What?**
-  - Replaces current running process with a new process. PCB of new process replaces old.
+- **What?** Replaces current running process with a new process. PCB of new process replaces old.
+- **Fork vs Exec**
+
+||fork(starts new process)|exec(replaces original process)|
+|---|---|---|
+|Control|Control returns to parent process|Control never returns back until issues in exec() call itself|
 
 ### Types
 - **[int execvp (file, args)](execvp.c)**
