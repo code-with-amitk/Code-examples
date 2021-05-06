@@ -1,6 +1,5 @@
 ## Variables
-- **Mutable?** Whose value can be changed. 
-  - By default variables are **immutable**(ie cannot be changed after creation).
+- **Immutable/const?** Whose value cannot be changed after creation. By default variables are immutable.
 - **1. Example: Default variable is immutable**
 ```rust
 fn main() {
@@ -14,10 +13,10 @@ $ cargo run
  |     ^^^^^ cannot assign twice to immutable variable
 error: aborting due to previous error
 ```
-- **2. Example, Making x a mutable using mut keyword**
+- **2. Example, Making x a mutable**
 ```rust
 fn main() {
-    let mut x = 5;
+    let mut x = 5;        //Making variable mutable using mut keyword
     println!("x: {}", x);
     x = 6;
 }
