@@ -13,7 +13,7 @@
 - [6 Constraints for Application to be Restful](Restful_Constraints)
 - [Why Restful](Why_Restful.md)
 - [Restful Methods/APIs/Verbs](Methods_API)
-- [Code Implementation](/Languages/ScriptingLanguages/Python/web-frameworks/flask-restful)
+- **[Code Implementation using Python flask-restful](/Languages/ScriptingLanguages/Python/web-frameworks/flask-restful)**
 - [REST vs SOAP](REST_vs_SOAP)
 - [REST_vs_HTTP](REST_vs_HTTP)
 
