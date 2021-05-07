@@ -3,7 +3,7 @@
 ```json
 nameValue.json
 {
- "conference": "OSCON",              //Name:conference
+ "conference": "OSCON",              #Name:conference
  "speechTitle": "JSON at Work",
  "track": "Web APIs"
 }
@@ -35,5 +35,4 @@ jsonArray.json
     "track": "Web APIs"
   }
 }
-
 ```
