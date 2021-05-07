@@ -18,7 +18,7 @@ return its length 5.
 4. Do these until queue is not empty
   - *4a.* Pop Queue's front (word = hit)
   - *4b.* Replace each alphabet in word & check in unordered_set
-```c++  
+```html  
                 i=0 Replace h  ait,bit,cit,dit...
                 i=1 Replace i  hat,hbt,hct,...hot //Push on queue, remove from set
                 i=2 Replace t  hia, hib,hic..
@@ -46,7 +46,7 @@ return its length 5.
         2O(mn)
 ```
 
-## Logic
+## Code
 ```c++
 #include<iostream>
 #include<vector>
