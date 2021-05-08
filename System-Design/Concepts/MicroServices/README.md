@@ -5,6 +5,9 @@
   - Microservices are stateless because new MS boots in to serve existing request, it should not care about states.
 - [Advantages, Disadvantages of MS](Adv_Disadv_of_Microservices.md)
 - [Microservices vs Deployment Monolith](Microservices_vs_DeploymentMonolith)
+- [Migrating from Depolyment Monolith to microservices](migrating_to_microservices.md)
+- [Architecture](Architecture)
+
 
   
   
