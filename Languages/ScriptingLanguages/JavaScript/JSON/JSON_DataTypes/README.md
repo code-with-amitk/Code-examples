@@ -1,17 +1,15 @@
 ## Core Data Types
 - **1. Name (or Key)/value pair:** Consists of a key (a data attribute) and a value.
 ```json
-nameValue.json
-{
- "conference": "OSCON",              #Name:conference
+nameValue.json {
+ "conference": "OSCON",
  "speechTitle": "JSON at Work",
  "track": "Web APIs"
 }
 ```
 - **2. Object:** An unordered collection of name/value pairs.
 ```json
-simpleJsonObject.json
-{
+simpleJsonObject.json {
  "address" : {
  "line1" : "555 Any Street",
  "city" : "Denver",
@@ -23,8 +21,7 @@ simpleJsonObject.json
 ```
 - **3. Array:** A collection of ordered values. Array is enclosed using `[ ]`
 ```json
-jsonArray.json
-{
+jsonArray.json {
   "presentations": [            
   {
     "title": "JSON at Work: Overview and Ecosystem",
