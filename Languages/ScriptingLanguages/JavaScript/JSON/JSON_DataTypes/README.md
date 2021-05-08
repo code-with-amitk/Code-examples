@@ -1,5 +1,6 @@
 ## Core Data Types
 - **1. Name (or Key)/value pair:** Consists of a key and a value.
+ - Valid value types: Object, array, string, number, boolean, null
 ```json
 nameValue.json {
  "name": "amit",                  //Value type: String
