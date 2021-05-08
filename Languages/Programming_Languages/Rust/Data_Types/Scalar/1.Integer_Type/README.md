@@ -15,6 +15,7 @@
 - **Writing Integer Literals**
 
 |Number literals|	Example|
+|---|---|
 |Decimal can be written as|98_222|
 |Hex	|0xff|
 |Octal	|0o77|
