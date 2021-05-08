@@ -5,6 +5,7 @@
 ![ImgUrl](https://i.ibb.co/9vYXjLz/macro-micro.png)
 
   - Table shows the typical micro and macro architecture decisions:
+
 | Micro or Macro | Micro | Macro |
 | --- | --- | --- |
 | Programming Language | Continuous Delivery Pipeline	| Communication Protocol |
