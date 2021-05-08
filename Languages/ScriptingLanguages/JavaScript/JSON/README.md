@@ -3,6 +3,6 @@
 - [Why JSON?](Why_JSON)
 - [JSON Comments](Comments.md)
 - [Datatypes](JSON_DataTypes): CoreDatatypes: Name(or Key)/value pair, Object, Array
-- [Creating JSON Server, Accessing test.json using Browser](Restful_JSONServer)
+- [Creating JSON Server, Accessing test.json using Browser, Postman](Restful_JSONServer)
 
   
