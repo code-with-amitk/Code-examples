@@ -12,4 +12,4 @@
 |32	|i32	|u32|
 |64	|i64	|u64|
 |128	|i128	|u128|
-|arch	|isize	|usize|
+|arch (Depends on computer architecture. 32bit on 32bit Arch. 64bit on 64bit Arch)	|isize	|usize|
