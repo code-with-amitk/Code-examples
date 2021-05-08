@@ -9,5 +9,5 @@
   let c:u32 = "42".parse().expect("Not a number!");            //Type Annotation u32
 ```
 - **Data Types in Rust**
-  - *[1. Scalar:](Scalar)* int, float, bool, char
-  - *2. Compund:* Tuple, Array
+  - *[1. Scalar: int, float, bool, char](Scalar)*
+  - *[2. Compund: Tuple, Array](Compund)*
