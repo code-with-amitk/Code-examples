@@ -1,5 +1,5 @@
 ## Branch SRX
 
-|Series|Speed|
-|---|---|
-|SRX100|[10/100](/Networking/OSI-Layers/Layer-1/Media_Types/Guided/Twisted_Pair/Types_of_Twisted_Pair)|
+|Series|Speed|DHCP Server|VPN, IPS, antivirus|TCP Connections/Sec(CPS)|
+|---|---|---|---|---|
+|SRX100|650 Mbps|Yes|Yes|2000|
