@@ -4,6 +4,13 @@
 |---|---|---|
 |What|Designed for small to large offices consisting of few individuals to 100 of employees|Deployed at Data center and the service provider. Provides services at scale.|
 |Where|Firewall is deployed at the edge of network, separating users from the Internet||
+|URL Filtering|Yes|No|
+|Antispam|Yes|No|
+|SSL VPN|Yes|No|
+|Wireless Connectivity Features|Yes|No|
+|WAN Interfaces(ie NIC to connect WAN)|Yes|No|
+
+- **URL Filtering:**  URL filtering allows the administrator to limit what categories of websites can be accessed.
 
 ### Branch SRX Series
 #### 1. SRX100   //Deployed at Small Branch office.
