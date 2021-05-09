@@ -8,8 +8,5 @@
     - Scalar: int, float, bool, char
     - Compound: tuple, array
   - [Functions](Functions): Statements & expressions
-  - [Control Flow](Control_Flow)
-    - if statement
-    - for loop = loop
-    - while
+  - [Control Flow](Control_Flow): if Expression, for loop = loop, while
 
