@@ -7,6 +7,6 @@
   - [DataTypes](Data_Types):
     - Scalar: int, float, bool, char
     - Compound: tuple, array
-  - [Functions](Functions): Statements & expressions
-  - [Control Flow](Control_Flow): if Expression, for loop = loop, while
+  - [Functions, Statements & expressions](Functions)
+  - [Control Flow: if Expression, for loop = loop, while](Control_Flow)
 
