@@ -1,4 +1,4 @@
-### Types of Twisted Pair
+## Types of Twisted Pair
 ### 1. CAT5 / Category5 / LAN / Ethernet
   - Deployed in many office buildings.
   - (100 Mbps) Uses two (out of the four) pairs, one pair for each direction.
