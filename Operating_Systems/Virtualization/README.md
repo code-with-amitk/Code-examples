@@ -1,6 +1,7 @@
 ## Virtualization
 - **What?** 1 computer hosting multiple virtual machines, each VM running different operating systems.
-- [Advatanges of Virtualization](Advantages_of_Virtualization.md), [History of Virtualization](History_of_Virtualization.md)
+- [History of Virtualization](History_of_Virtualization.md)
+- [Advatanges of Virtualization](Advantages_Disadv.md)
 - [VMM/Virtual Machine Monitor/Type1, Type2 Hypervisors](VMM_Virtual_Machine_Monitor.md)
 - [Types of Virtualization](Types_of_Virtualization.md): Full Virtualization, Para Virtualization
 - **Major Hypervisors?**
