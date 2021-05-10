@@ -22,3 +22,5 @@
 |ExpressCard slot|||Yes|can be plugged in USB|Yes|||
 |UTM(Unified Threat Detection)||||||Yes|Yes|
 |Services & Routing Engine (SRE)|||||||Yes|
+
+<img src=srx-series.png width=500 />
