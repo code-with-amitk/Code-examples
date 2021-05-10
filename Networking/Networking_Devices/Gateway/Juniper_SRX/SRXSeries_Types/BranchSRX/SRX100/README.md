@@ -7,10 +7,10 @@
 
 ### SRX100 vs SRX110
 
-||SRX100|SRx110|
-|---|---|---|
-|VDSL/ADSL2+(integrated WAN port)|No|Yes|
-|Memory Model|High memory & Low memory both|Only High Memory|
+||VDSL/ADSL2+(integrated WAN port)|Memory Model|Ethernet Ports
+|---|---|---|---|
+|SRX100|No|Both Low and High|8|
+|SRX110|Yes|Only High|8|
 
 ### Memory Model
 - **Low Memory:** 512 MB
