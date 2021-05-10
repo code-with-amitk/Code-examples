@@ -12,6 +12,8 @@
 |Max firewall policies|384|512|4096|7256|8912|
 |Max concurrent users|Unlimited|Unlimited|Unlimited|Unlimited|Unlimited|
 
+<img src=srx-series.png width=500 />
+
 ||SRX100|SRX110|SRX210|SRX220|SRX240|SRX550|SRX650|
 |---|---|---|---|---|---|---|---|
 |Ethernet Ports|8(512MBps)|8|8: 6(512 MBps), 2(1 GBps)|8(1 GBps)|16(1 GBps)|10||
@@ -22,5 +24,3 @@
 |ExpressCard slot|||Yes|can be plugged in USB|Yes|||
 |UTM(Unified Threat Detection)||||||Yes|Yes|
 |Services & Routing Engine (SRE)|||||||Yes|
-
-<img src=srx-series.png width=500 />
