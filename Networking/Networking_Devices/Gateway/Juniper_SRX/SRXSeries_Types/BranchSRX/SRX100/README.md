@@ -9,9 +9,5 @@
 
 ||VDSL/ADSL2+(integrated WAN port)|Memory Model|Ethernet Ports
 |---|---|---|---|
-|SRX100|No|Both Low and High|8|
+|SRX100|No|Both Low(512 MB) and High(1 GB)|8|
 |SRX110|Yes|Only High|8|
-
-### Memory Model
-- **Low Memory:** 512 MB
-- **High Memory:** 1 GB
