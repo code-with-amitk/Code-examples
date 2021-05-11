@@ -2,7 +2,7 @@
   - **a. Centralized C&C is point of failure**
     - Solution-1: Decentralized C&C
       - Unstructured P2P Overlay. Random toplogies with different degrees of distribution.
-      - Structured P2P Overlay. [DHT(Distributed Hash Table) approach](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent)
+      - Structured P2P Overlay.
       - Superpeer Overlays. All peers are not equal, some are selected as [superpeers](/System-Design/Scalable/Skype).
     - Solution-2: Random model C&C 
       - Bots does not contact bot-master or other bots. Instead, it waits for connection from botmaster.
