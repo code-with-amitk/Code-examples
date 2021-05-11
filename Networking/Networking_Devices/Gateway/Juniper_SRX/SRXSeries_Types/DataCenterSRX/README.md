@@ -1,8 +1,8 @@
 ## DataCenter SRX
-- Datacenter SRX contains SPC(Services Processing Card)[SPC].
+- Datacenter SRX contains [SPC(Services Processing Card)](SPC).
 
 ### SPC / 
-- 1 SPC contains 1 or more SPUs. **SPU)** ..
+- 1 SPC contains 1 or more SPUs. **SPU)**.
 - **NG-SPC available in SRX5000** offers 2 times the number of processors & offer more advanced performance.
 
 #### Modes of Operation of SPC
