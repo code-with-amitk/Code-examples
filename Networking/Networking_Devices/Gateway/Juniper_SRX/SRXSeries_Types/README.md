@@ -9,8 +9,10 @@
 |SSL VPN|Yes|No|
 |Wireless Connectivity Features|Yes|No|
 |WAN Interfaces(ie NIC to connect WAN)|Yes|No|
+|Inline tap mode|No|Yes|
 
 - **URL Filtering:**  URL filtering allows the administrator to limit what categories of websites can be accessed.
+- **Inline tap mode:** Copy any of session as they go thru SRX device.
 
 ### Branch SRX Series
 #### 1. SRX100   //Deployed at Small Branch office.
