@@ -1,14 +1,29 @@
 ## NPU / Network Processing Unit
-- NPU is similar to SPU.
-- NPU resides on its own Network Processing Card (NPC), NPC is similar to NIC.
-
-### How it works
-- The NPU takes each packet and balances it to the correct SPU that is handling that session.
-- In the event that there is not a matching session on the NPU, it forwards the packet to the CP to figure out what to do with it.
+- NPU is similar to SPU, resides on NIC or IOC(Input/output card).
 - Each NPU can process about 
   - 6.5 million packets per second inbound 
   - 16 million packets outbound.
-- The method the NPU uses to match a packet to a session is based on matching the packet to its wing table.
+
+```c
+          10 GB NIC/IOC
+         -----------------           |- SPU1 (Handle Session)
+ -pkt-> | NPC   |   NPU   | ---------|- SPU2
+         -----------------           |- SPU3
+```
+### Purpose/How it works
+  - NPU finds to which SPU to send incoming packet to(based on matching session). if no session is found packet is sent to CP. 
+  - NPU decides what needed to be done on packet using Wing Table/Routing Table.
+  - Wing Table can contain 5 million entries expires in 5 min(if no packet passed thru the flow).
+```c
+      NPU
+    Look at wing table
+    if (matching session)
+        -forward to SPU---------->SPU-1
+                       ---------->SPU-2
+                       ---------->SPU-3
+    else  //no matching session
+      Forward to CP
+```
 
 ### NPU Bundling
 - Upto 16 NPUs can be bundled together.
