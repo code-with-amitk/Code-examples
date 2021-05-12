@@ -1,5 +1,5 @@
 ## Exec Family of function?
-- Replaces current running process with a new process. PCB of new process replaces old.
+- Replaces current running process with a new process. [PCB](/Threads_Processes_IPC/Processes/Process_Table) of new process replaces old.
 - **When exec() fails?** Exec can fail if the file name given does not exist or is not a valid executable file.
 - **Fork vs Exec**
 
