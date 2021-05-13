@@ -1,7 +1,7 @@
 ## execvp(file,args)
 - Process which calls this API stops itself and get replaced by file=EXE.
 
-- **Program-1**
+### Program-1
 ```c
 # include <unistd.h>
 void main() {
@@ -10,7 +10,7 @@ void main() {
 # gcc prog1.c -o PROG1
 ```
 
-- **Program-2**
+### Program-2
 ```c
 # include <unistd.h>
 void main(){
