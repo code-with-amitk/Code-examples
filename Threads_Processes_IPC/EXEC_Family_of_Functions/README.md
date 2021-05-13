@@ -1,5 +1,6 @@
-## Exec Family of function?
+## execXX Family of function?
 - Replaces current running process with a new process. [PCB](/Threads_Processes_IPC/Processes/Process_Table) of new process replaces old.
+- There are 6 different execXX function calls. The differences between them is how the program is found, how the arguments are specified, and what are environment variables.
 - **When exec() fails?** Exec can fail if the file name given does not exist ie not a valid executable file.
 - **Fork vs Exec**
 
@@ -8,13 +9,12 @@
 |Control|Control returns to parent process|Control never returns back until issues in exec() call itself|
 
 ### Types
-- **[int execvp (file, args)](execvp.c)**
-  - file is Executable name which need to started in my place.
-- **int execv(path, argv[])**    
-  - path: should point to the path of the file being executed
-- **int execlp(file, arg,...`/* (char  *) NULL */`):**    
-  - file:  file name associated with the file being executed
-- **int execl(path, arg,...`/* (char  *) NULL */`)**
-- **int execvpe(file, argv[],char `*const envp[]`):**    
-  - `char* const envp[]`: allow the caller to specify the environment of the executed program via the argument envp. 
-- **int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)**
+
+|Suffix|Function|Description|
+|---|---|---|
+|v `argv[]`|int execv(path, `argv[]`)|path: should point to the path of the file being executed|
+||int execvpe(file, argv[],char `*const envp[]`)|`char* const envp[]`: allow the caller to specify the environment of the executed program via the argument envp|
+||[int execvp (file, args)](execvp.md)|file is Executable name which need to started in my place|
+|l variable-length argument list|int execl(path, arg,...`/* (char  *) NULL */`)|
+||int execlp(file, arg,...`/* (char  *) NULL */`)|file:  file name associated with the file being executed|
+|e extra argument|int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)||
