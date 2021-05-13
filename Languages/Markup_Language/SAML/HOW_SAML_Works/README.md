@@ -14,16 +14,5 @@
   - *2. Attribute statements:* principal is associated with certain attributes (name/value pairs).
   - *3. Authorization decision statements:* principal is permitted to perform action A on resource R given evidence E.
 
-### Flow
-```html
-Principal/User                SP(service Provider)
-    ---Give access to cloud service-->                        IdP(Identity Provider)
-                                      -----Authenticate user------->
-
-    <-------------------  Login   ----------------------------------
-    --------------------  Password  ------------------------------->
-      
-                                      <----- SAML Assertion --------
-    <------- Response ----------------
-```
+### [Message Exchange](Message_Exchange)
 
