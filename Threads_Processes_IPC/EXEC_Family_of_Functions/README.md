@@ -14,7 +14,7 @@
 |---|---|---|
 |v `argv[]`|int execv(path, `argv[]`)|path: should point to the path of the file being executed|
 ||int execvpe(file, argv[],char `*const envp[]`)|`char* const envp[]`: allow the caller to specify the environment of the executed program via the argument envp|
-||[int execvp (file, args)](execvp.md)|file is Executable name which need to started in my place|
+||[execvp(const char `*file`, char `*const argv[]`)](execvp)||
 |l variable-length argument list|int execl(path, arg,...`/* (char  *) NULL */`)|
 ||[int execlp(file, arg,...`/* (char  *) NULL */`)](execlp)|file:  file name associated with the file being executed|
 |e Enviornment Variable|int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)||
