@@ -16,6 +16,6 @@
 |v `argv[]`|[int execv(const char `*path`, char `*const argv[]`)](execv)|wrt execvp, execv does not search the PATH. Instead, the full path to the new executable must be specified|Yes|
 |p PATH|[execvp(const char `*file`, char `*const argv[]`)](execvp)|File can specified locally or it will searched in PATH variable|Yes|
 |e env will be taken from caller's env, else env is taken from parent's env|int execvpe(const `char*` file, `char* const argv[]`, `char* const envp[]`)|`char* const envp[]`: allow the caller to specify the environment of the executed program via the argument envp|No|
-|l variable-length argument list|int execl(path, arg,...`/* (char  *) NULL */`)|Yes|
+|l variable-length argument list|int execl(path, arg,...`/* (char  *) NULL */`)||Yes|
 ||[int execlp(file, arg,...`/* (char  *) NULL */`)](execlp)|file:  file name associated with the file being executed|Yes|
 |e Enviornment Variable|int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)||Yes|
