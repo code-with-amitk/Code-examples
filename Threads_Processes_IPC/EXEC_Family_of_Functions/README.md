@@ -12,9 +12,9 @@
 
 |Suffix|Function|Description|
 |---|---|---|
-|v `argv[]`|int execv(path, `argv[]`)|path: should point to the path of the file being executed|
+|v `argv[]`|[int execv(const char `*path`, char `*const argv[]`)](execv)|wrt execvp, execv does not search the PATH. Instead, the full path to the new executable must be specified.|
 ||int execvpe(file, argv[],char `*const envp[]`)|`char* const envp[]`: allow the caller to specify the environment of the executed program via the argument envp|
-||[execvp(const char `*file`, char `*const argv[]`)](execvp)||
+||[execvp(const char `*file`, char `*const argv[]`)](execvp)|file can specified locally or it will searched in PATH variable.|
 |l variable-length argument list|int execl(path, arg,...`/* (char  *) NULL */`)|
 ||[int execlp(file, arg,...`/* (char  *) NULL */`)](execlp)|file:  file name associated with the file being executed|
 |e Enviornment Variable|int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)||
