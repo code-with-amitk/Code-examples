@@ -17,4 +17,4 @@
 ||[int execvp (file, args)](execvp.md)|file is Executable name which need to started in my place|
 |l variable-length argument list|int execl(path, arg,...`/* (char  *) NULL */`)|
 ||int execlp(file, arg,...`/* (char  *) NULL */`)|file:  file name associated with the file being executed|
-|e extra argument|int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)||
+|e Enviornment Variable|int execle(path, arg, `.../*, (char *) NULL, char * const envp[] */`)||
