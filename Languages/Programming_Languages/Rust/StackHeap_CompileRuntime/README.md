@@ -6,7 +6,7 @@
   string a = "hello"; //String literal whose value is fixed
 ```  
 
-||Stack|Heap|
+||Stack(compile time)|Heap(runtime)|
 |---|---|---|
 |What|All data stored on the stack must have a known, fixed size|Data with an unknown size at compile time stored on the heap|
 |Type of data stored|int,float,char,string literal|Which can change at run time. Eg: String|
