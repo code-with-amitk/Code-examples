@@ -1,4 +1,4 @@
-### Deep copy, shallow Copy, Move
+## Deep copy, Shallow Copy, Move
 - For String its always shallow copy. 
 - Consider a code where string s2 is created from s1. s1 and s2 both points to same memory.
 ```rust
@@ -17,7 +17,7 @@ In Memory
     - *1.* At runtime, copying memory is avoided, which is costly affair.
     - *2.* When s2 goes out of scope, its memory is freed, no tracking needed for s1.
 
-#### Doing Deep copy using clone()
+### Doing Deep copy using clone()
 - Deep copy is costly operation and explicitly done using `clone()`.
 ```rust
     let s1 = String::from("hello");
@@ -26,7 +26,7 @@ In Memory
     println!("s1 = {}, s2 = {}", s1, s2);   //s1 = hello, s2 = hello
 ```
 
-#### Data on stack is always Deep copied
+### Data on stack is always Deep copied
 - The data whose size of known at compile time, Eg: int, float, char. Its 2 copies are created always.
 - Or there is no difference in deep and shallow copy here.
 ```rust
