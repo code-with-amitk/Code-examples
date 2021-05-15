@@ -1,7 +1,7 @@
 ## Shell
 - **What?** Computer program which exposes OS services to User or programs.
 
-<img src=shell.jpg width=500 />
+<img src=shell.PNG width=500 />
 
 ### Types of shells?    
 - **a. Bash shell:** Comes with .bash_profile.
