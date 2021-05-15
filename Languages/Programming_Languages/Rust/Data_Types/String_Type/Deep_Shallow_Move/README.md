@@ -4,20 +4,18 @@
 ```rust
   let s1 = String::from("hello");
   let s2 = s1;
-  
+  println!("{}, world!", s1);       //Compiler Error
+
 In Memory
   s1 ---------->  hello 
                   /\
   s2--------------|
 ```  
-- Now if we want to print s1? This is compile time error.
-  - *Why?* Rust invalidates the first variable(s1), ie when 2nd variable is created from 1st. 1st is invalidated. it’s known as a **move**.
+- **Compile time error?**
+  - *Why?* Rust invalidates the first variable(s1), ie when 2nd variable is created from 1st. It’s known as a **move**.
   - *How Move is Good?* 
     - *1.* At runtime, copying memory is avoided, which is costly affair.
     - *2.* When s2 goes out of scope, its memory is freed, no tracking needed for s1.
-```rust
-  println!("{}, world!", s1);
-```
 
 #### Doing Deep copy using clone()
 - Deep copy is costly operation and explicitly done using `clone()`.
