@@ -13,3 +13,4 @@
     - Non-Shell login? You have already logged onto machine, now you open a new terminal window using xterm, vnc, KDE bashrc is executed.
 
 ### [How shell works](How_Shell_Works)
+- Program puts arguments on register, Switches context from user to kernel mode using [TRAP instruction](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
