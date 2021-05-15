@@ -1,5 +1,5 @@
 ## Ownership
-- For variable allocated on Heap ([Datatype String](../Data_Types/String_Type) variable is moved.
+- For variable allocated on Heap ([Datatype String](../Data_Types/String_Type)) variable is moved.
 - For variable allocated on Stack (Eg: int, float) variable is copied.
 ```rust
 fn main() {
