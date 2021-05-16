@@ -15,4 +15,4 @@ fn fun(s:&String){
 }
 ```
 
-- **(Mutable References)[Mutable_References]**
+- **[Mutable References](Mutable_References)**
