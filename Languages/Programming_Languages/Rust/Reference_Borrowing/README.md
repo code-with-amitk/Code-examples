@@ -12,10 +12,4 @@ fn fun(s: &String) -> usize {
 }
 ```
 
-- **Borrowing?**
-  - Ownership of value is kept by function when variable is passed by value.
-  - When variable is passed by reference, we dont need to return values since we dont have ownership.
-  - We cannot modify Reference variable ie variable which is borrowed.
-```rust
-
-```
+- **[Borrowing](Borrowing)**
