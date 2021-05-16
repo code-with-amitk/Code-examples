@@ -9,4 +9,9 @@
     - Compound: tuple, array
   - [Functions, Statements & expressions](Functions)
   - [Control Flow: if Expression, Infinite loop = loop, while](Control_Flow)
+  - [Stack=CompileTime=Fast, Heap=Runtime=Slow](StackHeap_CompileRuntime)
+    - On Stack: int,float,char,string literal
+    - On Heap: String(resizable string)
+  - [Ownership=call by value](Ownership_and_Functions)
+  - [References, Borrowing, Mutable References](Reference_Borrowing)
 
