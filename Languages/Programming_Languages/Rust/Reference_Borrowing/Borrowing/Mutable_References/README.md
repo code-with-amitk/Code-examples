@@ -1,5 +1,5 @@
 ## Mutable References
-### A. Can be modified
+- **1. Can be modified**
   - *1.* Declare mutable variable
   - *2.* Create mutable Reference using `&mut`
   - *3.* Accept mutable reference using `some_string: &mut String`
@@ -18,4 +18,4 @@ fn fun(s: &mut String){                         //3
 # test.exe
 ```
 
-- **[Scope of Mutable References](Scope_of_Mut_Refs)**
+- **2. [Scope of Mutable References](Scope_of_Mut_Refs)**
