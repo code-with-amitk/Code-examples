@@ -3,7 +3,7 @@
 - [Cargo](Source/Cargo): Rust’s build system and package manager
 - [Source Examples](Source): Hello world, Guessing game
 - **About Language**
-  - [Variables: Mutable,Immutable. Shadowing](Variables)
+  - [Variables: Mutable,Immutable. Shadowing](Variables): Immutable means which cannot be changed. Variables are immutable by default.
   - [DataTypes](Data_Types):
     - Scalar: int, float, bool, char
     - Compound: tuple, array
