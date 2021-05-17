@@ -17,12 +17,24 @@ W: Master writing, slave should read.
 ```
 
 ### Master communicating with slave
-- *1.* Master if(SCL=high){ Pulls SDA to low. send low on SDA. }
-- *2.* Master sends address byte(consists of 7 bit slave address)+RW bit.
-- *3.* Slave . ok this is my address. if(SCL=high){ Pulls SDA to low. send low on SDA on 9th clock Signal}  //called Acknowledgement
-- *4.* All other devices remains silent.
-- *5.* Slave waits to data to be RW using its Shift_Registers.
-- Slave can be voltage regulator and master can be tool.
+- *1.* Master 
+```c
+  if (SCL=high) {
+    Pulls SDA to low ie send low on SDA. 
+  }
+  - Master sends address byte: 
+    (7 bit slave address)+RW bit.
+```
+- *2.* Slave 
+```c
+  - ok this is my address. 
+    if(SCL=high){ 
+      Pulls SDA to low. 
+      send low on SDA on 9th clock Signal}  //called Acknowledgement
+```
+- *3.* All other devices remains silent.
+- *4.* Slave waits to data to be RW using its Shift_Registers.
+  - Slave can be voltage regulator and master can be tool.
 
 **Steps on Tool**
 - *1.* Get Slave address to which master want to send data. Eg slave_address=43.
