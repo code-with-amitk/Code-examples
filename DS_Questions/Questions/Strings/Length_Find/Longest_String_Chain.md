@@ -14,7 +14,7 @@ Input: words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]
 Output: 5
 ```
 
-### Approach-1    //Graph DFS
+### Approach-1    //Graph DFS, Recursion
 - **Logic**
   - Create a graph where each node differs from its neighbour by 1 character.
   - From each node, find its neighbour by removing each character and checking whether word exists or not.
@@ -45,4 +45,74 @@ Input = {"a","b","ba","bca","bda","bdca", "dca"}
     - O(N): We create a `unordered_set<string>` of words for fast searching.
     - O(N): Iterate thru each word to find neighbour
     - O(L): Find next connected word for each word
-- **Space:** O(N) ie creating unordered_set of words
+  - **Space:** O(N) ie creating unordered_set of words
+- **Code**
+   - *Step-1.* Create `unordered_set<string>` and insert all words into it for fast access in O(1) time.
+   - *Step-2.* Perform DFS on words.
+   - *Step-3.* Create a subWord from word. Example: word = "xbc". subWords: bc, xc, xb. 
+     - Search subWord in unordered_set, if subWord is found, take word=subWord and perform DFS on subWord.
+     - Note maxLength variable when subWord is found.
+  - *Step-4.* Once all subwords of word are searched, update `unordered_map<string=word, int=count>`
+  - *Step-5.* DFS() returns 1 when any of subWord is not found in word, else returns number of words traversed.
+  - *Step-6.* if word is found inunordered_map, Return count of this word(ie longest possible string chain length) of this word.
+```c++
+#include<string>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<unordered_set>
+#include<unordered_map>
+using namespace std;
+using vec = vector<string>;
+using US = unordered_set<string>;
+
+//This map will store the length of the longest possible word sequence where the key is the last word in the sequence.
+                      //word, length_of_longest_possible_word_sequence_ending_at_word
+using UM = unordered_map<string, int>;
+
+class Solution {
+    UM um;
+    US usWords;
+private:
+
+  int DFS(string word) {
+  
+    if (um.find(word) != um.end())                             //Step-6
+      return um[word];      
+
+    int maxLength = 1;  
+    
+    for (int i = 0; i < word.length(); ++i) {                  //Step-3
+    
+      string subWord = word.substr(0, i) + word.substr(i + 1);
+
+      if (usWords.find(subWord) != usWords.end()) {           //subWord found in unordered_set
+        int len = 1 + DFS(subWord);
+        maxLength = max(maxLength, len);
+      }
+    }
+    um[word] = maxLength;                                   //Step-4
+    return maxLength;                                       //Step-5
+  }
+  
+public :
+  int longestStrChain(vec &words) {
+
+    for (const auto &i : words)           //Step-1
+      usWords.insert(i);
+
+    int iOut = 0;
+
+    for (const auto &i : words)          //Step-2
+      iOut = max(iOut, DFS(i));
+
+    return iOut;
+  }
+};
+
+int main(){
+  vec v = {"xbc","pcxbcf","xb","cxbc","pcxbc"};
+  Solution s;
+  cout<<s.longestStrChain(v);
+}
+```
