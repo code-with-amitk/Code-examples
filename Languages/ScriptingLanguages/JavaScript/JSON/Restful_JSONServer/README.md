@@ -6,7 +6,7 @@
 ```c
   a. Install nvm-setup.zip from https://github.com/coreybutler/nvm-windows/releases. 
       It sets up NVM_HOME, NVM_SYMLINK in env varaible.
-  b. Open cmd prompt and install latest Node.js
+  b. Open Windows cmd prompt and install latest Node.js
     cmd> nvm install v16.1.0
        > nvm use 16.1.0
 ```
