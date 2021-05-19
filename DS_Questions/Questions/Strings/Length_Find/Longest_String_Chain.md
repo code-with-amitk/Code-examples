@@ -52,7 +52,20 @@ Input = {"a","b","ba","bca","bda","bdca", "dca"}
    - *Step-3.* Create a subWord from word. Example: word = "xbc". subWords: bc, xc, xb. 
      - Search subWord in unordered_set, if subWord is found, take word=subWord and perform DFS on subWord.
      - Note maxLength variable when subWord is found.
-  - *Step-4.* Once all subwords of word are searched, update `unordered_map<string=word, int=count>`
+  - *Step-4.* `unordered_map<string=word, int=count>` stores longest string chain with present word as end.
+```console
+  key=string   value=length_of_string_chain
+   a             1
+   b             1
+   ba            2      ba ----- b
+                         |------ a
+                         
+   bca           3      bca ------ ba -------- b   //Since ba,b,a are present in words
+                                    |--------- a
+                                    
+   bda           3      bca ------ ba -------- b
+                                    |--------- a
+```
   - *Step-5.* DFS() returns 1 when any of subWord is not found in word, else returns number of words traversed.
   - *Step-6.* if word is found inunordered_map, Return count of this word(ie longest possible string chain length) of this word.
 ```c++
