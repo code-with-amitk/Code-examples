@@ -17,4 +17,4 @@
   - Mother Vertex Kosaraju
   - Graph Transpose
   - Directed Graph
-  - **[Traversals](Questions/Traversals):** BFS, DFS, Shortest Path(Dijkstra, Floyd)
+  - **[Traversals](/DS_Questions/Algorithms/Traversals):** BFS, DFS, Shortest Path(Dijkstra, Floyd)
