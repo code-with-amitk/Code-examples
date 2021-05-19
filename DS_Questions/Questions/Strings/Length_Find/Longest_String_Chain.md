@@ -14,11 +14,11 @@ Input: words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]
 Output: 5
 ```
 
-### Approach-1    //[Graph DFS](/DS_Questions/Algorithms/Traversals), Recursion
+### Approach-1    //[Graph DFS](/DS_Questions/Algorithms/Traversals), Recursion, Memoization(using unordered_map)
 - **Logic**
   - Create a graph where each node differs from its neighbour by 1 character.
   - From each node, find its neighbour by removing each character and checking whether word exists or not.
-```c
+```console
 Input = {"a","b","ba","bca","bda","bdca", "dca"}
        bdca ---- dca 
        /   \
@@ -53,6 +53,7 @@ Input = {"a","b","ba","bca","bda","bdca", "dca"}
      - Search subWord in unordered_set, if subWord is found, take word=subWord and perform DFS on subWord.
      - Note maxLength variable when subWord is found.
   - *Step-4.* `unordered_map<string=word, int=count>` stores longest string chain with present word as end.
+   - Advantage: When we 1st find a word `ba` we will store the value 2 for key=ba. The next time we encounter ba, we will simply return the value stored against it in the map instead of going through the entire subtree again. //This is called **MEMOIZATION**
 ```console
   key=string   value=length_of_string_chain
    a             1
