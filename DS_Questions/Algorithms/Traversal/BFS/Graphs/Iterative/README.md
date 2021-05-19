@@ -1,8 +1,8 @@
 ## Breadth 1st Search (uses Queue)
 ```console
 Graph: 	0 -- 1 -- 2		//4 Nodes, 5 edges
-	       \   |	 /
-	           3
+         \   |	 /
+	     3
 Traversal 0 1 3 2             
 ```
 ### Logic
