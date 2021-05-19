@@ -14,7 +14,7 @@ Input: words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]
 Output: 5
 ```
 
-### Approach-1    //Graph DFS, Recursion
+### Approach-1    //[Graph DFS](/DS_Questions/Algorithms/Traversals), Recursion
 - **Logic**
   - Create a graph where each node differs from its neighbour by 1 character.
   - From each node, find its neighbour by removing each character and checking whether word exists or not.
