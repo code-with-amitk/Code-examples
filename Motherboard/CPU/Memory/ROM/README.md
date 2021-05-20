@@ -3,6 +3,7 @@
 - **ROM Stores?** [BIOS](BIOS), PSP Bootloader, MP1, MP2, MPM, VBL, ABL, IFWI(Integrated Firmware Image).
 - **SPIROM / SPI-ROM / [Serial Peripheral Interface](/Motherboard/CPU/Communication/Buses/SPI_Serial_Peripheral_Interface_Bus.md) ROM:** ROM and SPIROM both are same. ROM access over [SPI Bus](/Motherboard/CPU/Communication/Buses/SPI_Serial_Peripheral_Interface_Bus.md) is called SPIROM.
 - **ROM Chip?** ROM is present on ROM Chip on motherboard. Motherboard can have 1 or more ROM chips.
+- **BootROM?** Small Flash memory inside [Microprocessor chip](/Motherboard/CPU/Microprocessors). This points to ROM and is the 1st code executed by processor.
 
 ### Types of ROM
 #### 1. EEPROM(Electronically erasable programmable)
