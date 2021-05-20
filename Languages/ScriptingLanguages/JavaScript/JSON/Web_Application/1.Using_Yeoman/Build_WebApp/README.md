@@ -1,12 +1,17 @@
 ## [Building small Web Application using Yeoman](https://yeoman.io/codelab/)
 
-### Setup development env
-- **Linux**
+### 1. Setup development env
+- **Window**
 ```console
-# apt install nodejs            //npm(package manager) is installed with nodejs
-# apt install npm
-# npm --version
-# npm install --global yo       //Install yeoman using npm
-# yo --version
-# npm install --global generator-fountain-webapp    //Install generator webapp
+//Install nodejs on windows, npm(package manager) is installed with nodejs
+> npm --version
+> npm install --global yo       //Install yeoman using npm
+> yo --version
+> npm install --global generator-fountain-webapp    //Install generator webapp
+```
+### 2. Access Generators via yo
+```console
+//Create Directory C:/Users/amit/yo-proj/
+> cd C:/Users/amit/yo-proj/
+> yo
 ```
