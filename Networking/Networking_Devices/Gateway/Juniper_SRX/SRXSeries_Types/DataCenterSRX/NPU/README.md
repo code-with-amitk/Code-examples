@@ -14,6 +14,7 @@
   - NPU finds to which SPU to send incoming packet to(based on matching session). if no session is found packet is sent to CP. 
   - NPU decides what needed to be done on packet using **Wing Table/Routing Table**.
   - Wing Table can contain 5 million entries expires in 5 min(if no packet passed thru the flow).
+  - SRX device can have Ingress and exgress NPU. Each NPU having its Wing Table.
 ```c
       NPU
     Look at wing table
