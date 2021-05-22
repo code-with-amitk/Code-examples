@@ -23,3 +23,4 @@
 |Byte (u8 only)|	b'A'|
 
 - **[Integer Overflow](Integer_Overflow)**
+- **[Array Slice](Array_Slice)**
