@@ -22,5 +22,6 @@
   - *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
 - **Policy Based Search:** Node keeps track of neighbours who responded positively & sends request to them again
 - **Random Walk?** Node selects k neighbours randomly, sends key-100(data to searched) to them, again those neighbours selects k neighbours.
+- **Throughput:** Rate of production or the rate at which something is processed.
 - **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
 
