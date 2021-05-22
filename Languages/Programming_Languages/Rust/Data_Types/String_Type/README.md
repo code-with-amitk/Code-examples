@@ -10,5 +10,6 @@
   println!("{}", s);                      //This will print `hello, world!`
 ```
 
-### [Deep copy, Shallow copy, move](Deep_Shallow_Move)
-### [String Slice](String_Slice)
+- **[Deep copy, Shallow copy, move](Deep_Shallow_Move)**
+- **[String Slice](String_Slice)**
+- **[String vs str](String_vs_str)**
