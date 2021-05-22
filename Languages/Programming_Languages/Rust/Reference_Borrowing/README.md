@@ -14,6 +14,7 @@ fn fun(s: &String) -> usize {
     s.len()
 }
 ```
+- **[Dangling Reference](Dangling_Reference)**
 
 ### Borrowing
   - Ownership = passed by value.
