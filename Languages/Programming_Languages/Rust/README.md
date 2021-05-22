@@ -6,6 +6,7 @@
   - [Variables: Mutable,Immutable. Shadowing](Variables): Immutable means which cannot be changed. Variables are immutable by default.
   - [DataTypes](Data_Types):
     - Scalar: int, float, bool, char
+      - Array Slice
     - Compound: tuple, array
     - String
       - Deep copy, Shallow copy, Move
