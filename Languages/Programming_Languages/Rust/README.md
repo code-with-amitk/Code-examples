@@ -7,6 +7,10 @@
   - [DataTypes](Data_Types):
     - Scalar: int, float, bool, char
     - Compound: tuple, array
+    - String
+      - Deep copy, Shallow copy, Move
+      - String Slice
+      - String vs str
   - [Functions, Statements & expressions](Functions)
   - [Control Flow: if Expression, Infinite loop = loop, while](Control_Flow)
   - [Stack=CompileTime=Fast, Heap=Runtime=Slow](StackHeap_CompileRuntime)
