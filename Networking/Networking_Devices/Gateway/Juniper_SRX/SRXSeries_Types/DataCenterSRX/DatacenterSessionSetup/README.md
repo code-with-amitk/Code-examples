@@ -1,6 +1,7 @@
 ## Data Center SRX Session Setup
 - There are 2 NIC's containing seperate [NPU's](../NPU). NIC-1 for Ingress and NIC-2 for exgress traffic. 
 - [CP](/SPC/SPU), [SPU](/SPC), [Wing Table](../NPU)
+- Seperate NPU,SPU allows SRX to scale
 ```console
     ------------Data Ceter SRX-------
     |  Ingress                       |
@@ -43,8 +44,8 @@
  a pkt, it creates entry
  in wing table 
 ```
-### 2. [TCP Data transfer](/Networking/OSI-Layers/Layer-4/Protocols/TCP) begin
-```console
+### 2. TCP Data transfer begin
+```html
         [INGRESS-NPU]
 --Data Pkt-->
    Check wing table, forwards
@@ -58,6 +59,18 @@
 <--ACK-----------               
 ```
 ### 3. [TCP Tear Down](/Networking/OSI-Layers/Layer-4/Protocols/TCP) begin
-```console
-
+```html
+--FIN-->        
+<--ACK--
+<--FIN--
+--ACK-->[INGRESS-NPU]
+                ------Pkts----> [SPU]
+                           Processed finished pkts
+                           Delete wing for session
+                                ----close session--->[CP]
+                                |
+        [INGRESS-NPU]<----------|------------------->[EXGRESS-NPU]
+                        Wait for 8 sec for everything 
+                        to close properly
+        
 ```
