@@ -1,7 +1,8 @@
 ## References
 - **What?** 
   - Reference to an object is opposite of taking ownership of the value.
-  - We cannot change reference, Why? See borrowing below
+  - Reference cannot be changed, Why? See borrowing below
+    - To change reference: **[Mutable References](Mutable_References)**
 ```rust
 fn main() {
     let s1 = String::from("hello");             //String allocated on heap can be resized.
@@ -30,6 +31,4 @@ fn fun(s:&String){
   println!("{}", s);
 }
 ```
-
-- **[Mutable References](Mutable_References)**
 
