@@ -6,7 +6,7 @@
 - **Simultaneous Open:** Both sides sends SYN(to open connection) to other.
 
 ### Flow
-```html
+```console
     TCP-Client                                                    TCP-Server
 state: CLOSED                                                    state: CLOSED
     socket()                                                     socket()
