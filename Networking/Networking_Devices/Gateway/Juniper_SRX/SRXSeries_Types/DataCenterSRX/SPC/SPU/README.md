@@ -1,5 +1,6 @@
 ## SPU / Services Processing Units
 - SPU is the processor that handles all of the services on the data center SRX Series.
+- Every SPU has a associated weighted.
 
 ### Modes in which SPU can operate
 - **1. Central point**
