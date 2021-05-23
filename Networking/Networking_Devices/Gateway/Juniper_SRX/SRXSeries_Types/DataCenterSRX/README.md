@@ -13,3 +13,5 @@
 |Max concurrent sessions(Million)|1.5|3|20|
 |Max firewall policies|40k|40k|80k|
 |Max concurrent users|Unlimited|Unlimited|Unlimited|
+
+<img src=./srx-datacenter.png width=500 />
