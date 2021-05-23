@@ -4,7 +4,7 @@
   - *2.* [NPU(Network Processing Unit)](NPU)
 - [Data center SRX session-setup](DatacenterSessionSetup)
 
-|Device|CPS(Connections per sec)|Max firewall throughput(Gbps)|Max IPS throughput(Gbps)|Max VPN throughput(GBps)Max concurrent sessions(Million)|Max firewall policies|Max concurrent users|
+|Device|CPS(Connections per sec)|Max firewall throughput(Gbps)|Max IPS throughput(Gbps)|Max VPN throughput(GBps)|Max concurrent sessions(Million)|Max firewall policies|Max concurrent users|
 |---|---|---|---|---|---|---|---|
 |SRX1400|90k|20|4|4|1.5|40k|Unlimited|
 |SRX3400|3lac|20|6|6|3|40k|Unlimited|
