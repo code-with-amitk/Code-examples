@@ -1,6 +1,6 @@
 ## Creating RBT
 > Create RBT using `1,2,3,4,5,6,7,8`. 
-- *a.* [Check these Rules](../Rules_to_Check_RBT_or_not) on inserted node.
+- Node is inserted based on bst `if (node>root) right else left`. After insertion [Rules](Rules_to_Check_RBT_or_not) are checked to see Tree is still RBT
 - **b. Rules of Insertion**
   - *1.* If tree is empty add a black node.
   - *2.* Insert new leaf node as Red.
