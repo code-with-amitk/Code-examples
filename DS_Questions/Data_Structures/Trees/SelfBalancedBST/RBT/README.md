@@ -12,4 +12,4 @@
       |item|color|*left|*parent|*right|
                   /                 \
 ```
-- [Rules to check RBT or Not](Rules_to_check_RBT_or_Not)
+- [Rules to check RBT or Not](Rules_to_Check_RBT_or_not)
