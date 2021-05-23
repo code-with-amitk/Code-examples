@@ -1,5 +1,12 @@
 ## Branch SRX
 
+|Series|Description|
+|---|---|
+|SRX100|At Small Branch office|
+|SRX200|<ul><li>SRX100 with WAN capabilities, ie connecting branch office to Head office. Can connect Upto 50 devices</li></ul><ul><li>*SRX220:* Can do dual WAN interfaces for ISP redundancy</li></ul><ul><li>*SRX240:* Can provide stateful firewalling, Intrusion protection services (IPS) for the Web and email services, including antivirus services for email</li></ul>|
+|SRX500|Twice as powerful as the SRX240|
+|SRX600 Series|<ul><li>Large Branch office. Upto 250 clients.</li></ul><ul><li>*SRX650:* Provides HA pairs</li></ul>|
+
 ||SRX100|SRX210|SRX240|SRX550|SRX650|
 |---|---|---|---|---|---|
 |CPS(Connections per sec)|1800|2200|8500|27000|30000|
