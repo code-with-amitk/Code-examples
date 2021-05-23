@@ -1,4 +1,4 @@
-## Insertion
+## Correcting Rule Voilation
 - **Rules of Insertion**
   - *1.* If tree is empty add a black node.
   - *2.* Insert new leaf node as Red. 
