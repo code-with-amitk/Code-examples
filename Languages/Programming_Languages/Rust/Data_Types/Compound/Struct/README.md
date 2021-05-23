@@ -9,4 +9,4 @@ struct Employee {
 }
 ```
 - [Initializing struct](Initializing_struct.md)
-- [Changing value in Mutable struct:](Mutable_Struct)
+- [Changing struct feild in Mutable struct:](Mutable_Struct)
