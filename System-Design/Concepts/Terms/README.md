@@ -2,8 +2,9 @@
 
 - **Antisnubbing:** snub means ignoring someone or something. Time to time, a BitTorrent peer becomes choked/blocked by all peers from which it was receiving fragments because of poor download/upload capacity or absesnce of required fragments. 
   - *Solution:* Finds a better peer than any of the current ones.
-- **Bandwidth Throttling:** Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
-  - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
+- **Bandwidth:** Theoritical maximum at which data can be tranferred over link. Practical is Throughput. 
+  - *Bandwidth Throttling:* Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
+    - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
 - **Biased Neighbour Selection?** BitTorrent peer chooses most of its neighbors from the local ISP and only a few peers from other ISPs reducing traffic, this is assisted by [Tracker](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). 
   - Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
@@ -22,6 +23,8 @@
   - *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
 - **Policy Based Search:** Node keeps track of neighbours who responded positively & sends request to them again
 - **Random Walk?** Node selects k neighbours randomly, sends key-100(data to searched) to them, again those neighbours selects k neighbours.
-- **Throughput:** Rate of production or the rate at which something is processed.
+- **Throughput:**
+  - Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
+  - Measured in Bits/sec(bps), data packets per second (p/s or pps).
 - **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
 
