@@ -1,6 +1,6 @@
 ## Struct
 - Defining struct
-```c
+```rust
 struct Employee {
   name: String,
   email: String,
@@ -9,7 +9,7 @@ struct Employee {
 }
 ```
 - Initializing struct
-```c
+```rust
 struct amit = Employee {
   name: String::from("Amit"),
   email: String::from("amit@test.com"),
