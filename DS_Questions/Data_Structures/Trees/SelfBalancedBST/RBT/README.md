@@ -13,3 +13,4 @@
                   /                 \
 ```
 - [Rules to check RBT or Not](Rules_to_Check_RBT_or_not)
+- [Insertion_in_RBT](Insertion)
