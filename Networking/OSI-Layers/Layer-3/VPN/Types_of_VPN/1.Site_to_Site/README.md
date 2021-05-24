@@ -4,7 +4,7 @@
 ### Types of Site to site VPN
 - *1. Hub & Spoke*
 - *2. Full Mesh*
-- *3. *
+- *3. Partial Mesh or MultiPoint*
 
 > if n is number of VPNs, or remote sites.
 
