@@ -1,7 +1,13 @@
 ## Site to Site
-- **What?** Connects two sites of an organization together.
+- **What?** Connects two sites of an organization together. Maybe branch office to head/Corporate office.
 
-#### Types of 
-- *1a. Hub & spoke:*Connects branch offices to the corporate office in an enterprise network
-  - *1b. Full Mesh:**
-  - *1c. Multipoint VPN:*
+### Types of Site to site VPN
+
+- if n is number of VPNs, or remote sites.
+||Hub and Spoke|Full Mesh|
+|---|---|---|---|
+|Number of VPN Tunnels|n|n(n-1)/2|
+
+
+- **1b. Full Mesh:**
+- **1c. Multipoint VPN:**
