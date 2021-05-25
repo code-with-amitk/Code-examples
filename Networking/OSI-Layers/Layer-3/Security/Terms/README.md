@@ -1,5 +1,5 @@
 ## Terms
-- **Cryptanalysis?** Breaking ciphers. 
+- **[Cryptanalysis?](Cryptanalysis)** Breaking ciphers. 
 - **Decryption?** All steps are run in reverse order of encryption.
 - **Kerckhoff’s principle?** Whole world should know how crypto algorithm works, All algorithms must be public. Algorithm is parameterized by key only the keys are secret
 - **Rounds?** There are more P-boxes at start and end.
