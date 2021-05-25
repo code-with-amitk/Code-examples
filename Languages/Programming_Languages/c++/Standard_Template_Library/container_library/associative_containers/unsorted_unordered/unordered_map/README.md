@@ -5,9 +5,5 @@
 ```c++
   |bucket-1|  |bucket-2|..... |bucket-n|
   elements are stored in buckets based on hash value.
-```  
-
-### Files
-- constructor_insert.md  1. Constructors: default, copy, fill, range, move.   2. insert() make_pair()   3. printing
-- count_update_find.md    1. find pair having smallest key  2. find pair having smallest value
+```
     
