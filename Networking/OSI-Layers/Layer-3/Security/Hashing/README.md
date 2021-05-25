@@ -17,5 +17,5 @@ YYYY > |Decrypt| > XX > |Decrypt| > message
           /\                /\
        Self Pvt Key    Alice Public Key
 ```
-- **[2. Digital Signature](Digital_Signature)
+- **[2. Digital Signature](Digital_Signature)**
     
