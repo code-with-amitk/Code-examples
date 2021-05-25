@@ -20,7 +20,7 @@ inputs = [[],
 Explanation:
 ```
 
-### Approach-1  //map Seperate Chaining, Linear search
+### Approach-1  //map Seperate Chaining, Linear search, O(nm)
 - **Logic**
   - *1.* Create map having all <value, timestamp> of same key chained together(Seperate Chaining), if more than 1 key to be inserted having different `<value,timestamp>`.
 ```c
@@ -74,7 +74,7 @@ int main(){
 }  
 ```
 
-### Approach-2  //map Seperate Chaining, Binary search
+### Approach-2  //map Seperate Chaining, Binary search, O(nlogm)
 - **Logic**
   - *1.* Create map having all <value, timestamp> of same key chained together(Seperate Chaining), if more than 1 key to be inserted having different `<value,timestamp>`.
 ```c
