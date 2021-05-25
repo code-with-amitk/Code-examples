@@ -1,5 +1,10 @@
 ## Terms
 - **[Cryptanalysis?](Cryptanalysis)** Breaking ciphers. 
+- **Confusion:** Each bit of ciphertext should depend on several parts of the key. 
+  - Advantages: Cipher text cannot be found inside the key and increases confusion for Man in Middle.
+- **Difussion:** Used to hide relationship between the ciphertext and the plain text.
+  - If we change 1 bit of plaintext, then 1/2 of bits of cipher text should change.
+  - Also, If we change 1 bit of ciphertext, then 1/2 of bits of plain text should change.
 - **Decryption?** All steps are run in reverse order of encryption.
 - **Kerckhoff’s principle?** Whole world should know how crypto algorithm works, All algorithms must be public. Algorithm is parameterized by key only the keys are secret
 - **Rounds?** There are more P-boxes at start and end.
