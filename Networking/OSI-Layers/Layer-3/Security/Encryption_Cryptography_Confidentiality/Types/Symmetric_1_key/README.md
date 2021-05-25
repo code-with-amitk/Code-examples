@@ -4,7 +4,7 @@
                 \/  Key-1                      \/ Key-1
     Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
 ```
-- **Algorithms**
+### Comparison
 
 |Algorithm|Key-Size(bits)|Input-Size(bits)|Stages
 |---|---|---|---|
@@ -12,5 +12,7 @@
 |Triple-DES|168|||                                                                                                                                                                  |AES(Advanced Encryption Standard)|128,192,256|128,192,256(block-size)|10,12,14|
 |RC4||||
 
-- **Problem with Symmetric Key Algo?** AES,DES(or any) symmetric key algo have a problem that with same plaintext they will produce same ciphertext everytime.
-  - **Solution: Chaining** 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
+### Problem with Symmetric Key Algo(AES,DES or any)
+- With same plaintext they will produce same ciphertext everytime.
+- **[Solution: Chaining](/Networking/OSI-Layers/Layer-3/Security/Encryption_Cryptography_Confidentiality/HowEncryptionIsPerformedAtHardware)** 
+  - 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
