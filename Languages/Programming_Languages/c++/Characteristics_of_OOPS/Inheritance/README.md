@@ -1,4 +1,4 @@
-## Inheritance 
+## Inheritance / Is-A Relationship
 - **What?** Creating new class(decendent/derived) from existing class(ansector/base).
 
 ### Rules of Inheritance?
