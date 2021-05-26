@@ -1,4 +1,4 @@
-## sockfd = socket(int domain, int type, int protocol)         
+## int sockfd = socket(int domain, int type, int protocol)         
 - **Return value?** -1 on failure, sets errorno. Fd on success
 - By default creates Blocking socket.
 
