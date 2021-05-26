@@ -1,11 +1,6 @@
 ## [TCP Server](TCPServer)
-- System calls
-```c
-socket(), bind(), listen(), accept(), recv(), send(), close()
-```
+- [System calls: socket(), bind(), listen(), accept(), recv(), send(), close()](../APIs_Structures/APIs/)
 
 ## [TCP Client](TCPClient)
-- System calls
-```c
-socket(), connect(), send(), recv(), close()
-```
+- [System calls: socket(), connect(), send(), recv(), close()](../APIs_Structures/APIs/)
+
