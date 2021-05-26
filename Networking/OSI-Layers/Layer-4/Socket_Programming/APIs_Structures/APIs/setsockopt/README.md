@@ -1,4 +1,4 @@
-##  SETSOCKOPT(fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int))
+###  SETSOCKOPT(fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int))
 - Used to set socket options.
 - **Socket options:**
   - *A. SO_REUSEADDR:* 
