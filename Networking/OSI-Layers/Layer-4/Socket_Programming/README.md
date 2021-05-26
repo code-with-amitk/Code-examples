@@ -10,4 +10,4 @@
 - **[Blocking(Means sleep)/Non Blocking](Blocking_NonBlocking/):** By default all server-side socket API's are Blocking. socket(), read(), readfrom(), accept()
   - How to make API non-blocking? select(), fcntl()
   - Multichat server
-- **[APIs:** accept(), bind(), close(), connect(), fcntl(), gethostname(), getpeername(), listen(), recv(), recvfrom(), select(), send(), sendto(), setsockopt(), shutdown(), socket()](APIs_Structures)
+- [**APIs:** accept(), bind(), close(), connect(), fcntl(), gethostname(), getpeername(), listen(), recv(), recvfrom(), select(), send(), sendto(), setsockopt(), shutdown(), socket()](APIs_Structures)
