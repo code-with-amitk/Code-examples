@@ -15,8 +15,6 @@
 - **KERNEL MELTDOWN/SPECTRE (1/Mar/18):** 
   - Race condition(between memory access and privilege checking during instruction processing) present in CPU of Intel x86 microprocessors.
   - An unauthorized process can read data from any address that is mapped to the current process's memory space
-- **[Replay/Playback Attack](Replay_Attack)
-- **[Samba Bugs](Samba_Bugs)**
-  - Wannacry/Ransomeware
-  - Badlock
-  - SMB Signing disabled
+- **[Replay/Playback Attack](Replay_Attack)**
+- **[Samba Bugs](Samba_Bugs):** Wannacry/Ransomeware, Badlock, SMB Signing disabled
+- **[SSL Vulnerabilities](/Networking/OSI-Layers/Layer5/Protocols/Encryption_Authentication/SSL_TLS)**
