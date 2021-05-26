@@ -6,9 +6,6 @@
   - Any data object can be searched in O(log N) where N is the number of nodes in the system.
 
 ### DHT Implementations
-- [Chord](Chord)
-
-### Comparison
 
 |DHT Implementations|CAN|[Chord](Chord)|[Kademlia](Kademlia)|Koorde|[Pastry](Pastry)|Tapestry|Viceroy|
 |---|---|---|---|---|---|---|---|
