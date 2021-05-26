@@ -4,3 +4,19 @@
     - *1. Dictionary attack:* attacker works through a dictionary of possible passwords and tries them all.
     - *2. Credential Recycling:* Reusing usernames and passwords from other data breaches to try to break into other systems
 - **[DOS(DENIAL OF SERVICE)](DOS)**
+- **DDOS(DISTRIBUTED DOS)/BOTNET:** 
+  - Same as DOS, its objective is also to overwhelm the server. 
+  - Here attack traffic originates from multiple nodes(distributed over the network) maybe 1000s of devices overwhelming the server at same time. 
+  - This can be achieved using malware installed on compromised machines.
+- **IDENTITY ATTACKS** 
+  - Attacker portraying someone else's identity and entering the system. Example:
+    - *1. Weak/stolen passwords:* Can be obtained using social engineering, phishing email campaigns. Targeting only 2-3 employees with indepth analysis.
+    - *2. MIMA:* The attacker makes independent connections with the A&B and relays messages between them to make them believe they are talking directly to each other over a private connection. He intercepts and injects his packets. EXAMPLE An attacker within reception range of an unencrypted Wi-Fi wireless access point can insert himself as a man-in-the-middle.
+- **KERNEL MELTDOWN/SPECTRE (1/Mar/18):** 
+  - Race condition(between memory access and privilege checking during instruction processing) present in CPU of Intel x86 microprocessors.
+  - An unauthorized process can read data from any address that is mapped to the current process's memory space
+- **[Replay/Playback Attack](Replay_Attack)
+- **[Samba Bugs](Samba_Bugs)**
+  - Wannacry/Ransomeware
+  - Badlock
+  - SMB Signing disabled
