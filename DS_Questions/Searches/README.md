@@ -1,3 +1,3 @@
-Complexities
-	- Search: O(n) = n
-	- Binary: O(n) = logn
+## Complexities
+  - Linear Search: O(n)
+  - Binary Search: O(logn)
