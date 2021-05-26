@@ -86,6 +86,7 @@ set()
   - *2.* `get(key)`
     - if key has associated chain, Eg: key1, Perform binary search on chain
     - if key does not have associated chain, send value back. Eg: key3
+  - *3.* if timestamp is not found return "", else return prev to present iterator->first. Since [upper_bound()](/DS_Questions/Searches/BinarySearch/C++_STL) return ForwardIterator ie +1 to upper index.
 - **Complexity**
   - **Time:** O(nlogm)
     - n: Total Number of keys
@@ -108,13 +109,10 @@ public:
     
     string get(string key, int timestamp) {
       vector<ValueTimestamp>& vecChain = um[key];                   //2
-      if (vecChain.size() == 1){
-        auto it = vecChain.begin();
-        return it->first;
-      }
 
-      //upper_bound (ForwardIterator first, ForwardIterator last, const T& val, Compare comp);
-      //Returns an iterator pointing to 1st element in the range [first,last) which compares greater than val
+      //See upper_bound() from above link.
+      //Why comparator is required?
+        //Because we need to search only 2nd value in vector<pair> and ignore 1st value.
       auto out = upper_bound(vecChain.begin(),
                              vecChain.end(),
                              ValueTimestamp ("", timestamp),
@@ -122,7 +120,7 @@ public:
                                 return a.second < b.second;
                              }
                             );
-      return  (--out)->first;
+      return  out == vecChain.begin() ? "" : (--out)->first;        //3
     }
 };
 int main(){
