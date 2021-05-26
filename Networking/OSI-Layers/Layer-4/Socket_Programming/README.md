@@ -5,5 +5,5 @@
   - This is an integer associated with an open file.
   - file can be a n, or just about anything else.
 - **Socket?** Is a file descriptor used for communication.
-- [Types of Sockets](Types_of_sockets.md)
+  - [Types of Sockets](Types_of_sockets.md)
 
