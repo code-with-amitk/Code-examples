@@ -10,10 +10,11 @@
 
 ### Comparison
 
-|DHT Implementations|CAN|Chord|Kademlia|Koorde|Pastry|Tapestry|Viceroy|
+|DHT Implementations|CAN|[Chord](Chord)|[Kademlia](Kademlia)|Koorde|[Pastry](Pastry)|Tapestry|Viceroy|
 |---|---|---|---|---|---|---|---|
-|Based on|Multi-dimensional space (dimensional torus)|Circular space(hypercube)|XOR Metric|De Bruijn graph|Plaxton-style mesh (hypercube)|Plaxton-style mesh (hypercube)|Butterfly network|
+|Based on|Multi-dimensional space (dimensional torus)|Circular space(hypercube)|XOR Metric|[De Bruijn graph](/Data_Structures/Graphs/Terms/Directed_Undirected/Directed/De_Bruijn_Graph/)|Plaxton-style mesh ([hypercube](/Data_Structures/Graphs/Terms/Directed_Undirected/Hypercube/))|Plaxton-style mesh (hypercube)|[Butterfly network](/DS_Questions/Data_Structures/Trees/BinaryTree/Types_Variants/Butterfly_Network)|
 |Routing Function|Maps (key, value) pairs to coordinate space|Matching key and nodeID|Matching key and nodeID|Matching key and nodeID|Matching key and prefix in nodeID|Suffix matching|Routing using levels of tree,vicinity search|
+|Routing Performance|O(dN)|O(logn)|O(logN)+small constant|Between O(log logN) & O(logn)|O(logn)|O(logn)|O(logn)|
 
 
 
