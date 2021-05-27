@@ -1,35 +1,19 @@
-## References
-- **What?** 
-  - Reference to an object is opposite of taking ownership of the value.
-  - Reference cannot be changed, Why? See borrowing below
-    - To change reference: **[Mutable References](Mutable_References)**
+## References = Borrowing
+- **Ownership = passed by value**
+- **Borrowing?** 
+  - When variable is passed by reference(ie borrowed), we dont have ownership, hence variable cannot be changed.
+  - Borrowing is opposite of taking ownership of the value.
 ```rust
+use std::{io, string};      
 fn main() {
-    let s1 = String::from("hello");             //String allocated on heap can be resized.
-    let len = fun(&s1);                         //fun() taking reference
-    println!("The length of '{}' is {}.", s1, len);
-}
-
-fn fun(s: &String) -> usize {
-    s.len()
-}
-```
-- **[Dangling Reference](Dangling_Reference)**
-
-### Borrowing
-  - Ownership = passed by value.
-  - When variable is passed by reference, we dont need to return values since we dont have ownership.
-  - **Reference variable cannot be modified, Why?**
-    - Since reference variables are borrowed and you cannot change the borrowed thing.
-```rust
-use std::{io, string};
-fn main() {
-  let s = String::from("test");
-  fun(&s);
+  let s = String::from("test");   //String allocated on heap can be resized.
+  fun(&s);                        //fun() taking reference
 }
 fn fun(s:&String){
-  s.push_str("Hello");        //Compilation Error. References cannot be changed.
+  s.push_str("Hello");           //Compilation Error. References(borrowed objects) cannot be changed.
   println!("{}", s);
 }
 ```
+- **[Mutable References](Mutable_References):** To change borrowed objects(ie references)
+- **[Dangling Reference](Dangling_Reference)**
 
