@@ -1,7 +1,8 @@
 ### number_of_file_desc_setted  = select(int maxfd+1, fd_set `*readfds`, fd_set `*writefds`, fd_set `*exceptfds`, struct timeval `*timeout`)
-- **What?** 
-  - We are a server and want to listen for incoming connections as well as keep read/write on existing connections we already have.
- - With select() we can monitor several sockets at same time using FD_ISSET(). Other Macros: FD_ZERO(), FD_SET(), FD_CLR(), FD_ISSET()
+- **What?** We are a Single-Threaded server and want to listen for incoming connections as well as keep read/write on existing connections.
+- **[Disadv](Disadvantages_of_select)**
+- **[Adv](Adv_of_select)**
+  - With select() we can monitor several sockets at same time using FD_ISSET().
 ```c
   FD_SET(int fd, fd_set *set)               //Add fd to the set.        
   FD_CLR(int fd, fd_set *set)               //Remove fd from the set.        
