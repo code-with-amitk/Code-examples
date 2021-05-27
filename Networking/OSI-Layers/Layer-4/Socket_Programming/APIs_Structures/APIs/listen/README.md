@@ -6,3 +6,4 @@
   - 0 on success, or -1 on error
   - ECONNREFUSED returned to client If server queue is full.
 - In [TCP State Diagram](/Networking/OSI-Layers/Layer-4/Protocols/TCP) server is moved to LISTEN state.
+- **[How it works Internally?](How_listen_works_internally)**
