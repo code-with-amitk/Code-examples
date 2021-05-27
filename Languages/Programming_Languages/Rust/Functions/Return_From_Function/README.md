@@ -12,4 +12,5 @@ fn fun(x:i32) -> i32{              //a
   6                                 //b
 }
 ```
-- **[Function returning a structure](Function_Returning_struct)**
+- *[Function returning a structure](Function_Returning_struct)*
+- *[Function Taking struct as argument](Function_taking_struct)*
