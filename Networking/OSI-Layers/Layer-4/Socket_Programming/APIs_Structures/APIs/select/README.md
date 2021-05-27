@@ -1,5 +1,6 @@
 ### number_of_file_desc_setted  = select(int maxfd+1, fd_set `*readfds`, fd_set `*writefds`, fd_set `*exceptfds`, struct timeval `*timeout`)
-- **What?** 
+- **What?**
+  - This is Polling Mechanism. 
   - We are a Single-Threaded server and want to listen for incoming connections as well as keep read/write on existing connections.
   - With select() we can monitor several sockets at same time using FD_ISSET().
 ```c
