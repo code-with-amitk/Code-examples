@@ -44,9 +44,52 @@ Run generator
       package.json    //configuration and dependencies
 ```
 
-### 3. Start & Access http server
+### 4. Start & Access http server
 ```console
 # cd C:/Users/amit/yo-proj/
 > npm run serve
 //Access Web Application via Browser      http://localhost:3000
 ```
+
+### 5. Change and see live loading
+```console
+# vim yo-project/src/app/components/Header.spec.js
+  //placeholder="What needs to be done?"
+  placeholder="In becoming T11"
+  
+Content of http://localhost::3000 changes automatically. This live loading is done by gulp 
+
+> Kill the server with Cntrl^C
+```
+
+### 6. Test Web service using Karma or Jasmine
+- **Karma/Jasmine:** These are JavaScript test runner that tests framework.
+```console
+cmd> cd yo-project
+cmd> npm test
+
+Test cases are created in: src/app/reducers/todos.spec.js
+```
+
+### 7. Optimize files for Production
+- For making code production ready, we need to:
+  - *1.* concatenate and minify our scripts and styles to save on those network requests
+  - *2.* compile the output of any preprocessors we’re using, and generally make our application really lean.
+```js
+> npm run build
+```
+  - *3.* Production ready app is avialble in: `c:\users\amit\yo-project\dist`.
+```js
+> ls c:\users\amit\yo-project\dist
+app-ID.js
+index.html
+index-ID.css
+vendor-ID.js
+```
+  - *4.* Test production app by running
+```js
+> npm run serve:dist
+
+//Access using web brower http://localhost::3000
+```
+  - *5.* Files inside `dist` can be put on your server using FTP or any other deployment service.
