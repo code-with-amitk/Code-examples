@@ -1,13 +1,10 @@
 ## Socket Programming
 - **File:** Everything is File(Network connection, a FIFO, a pipe, a terminal, a real on-the-disk file) Eg: & every file has a File Descriptor associated with it. 
 - **File descriptor:** This is an integer associated with an open file. File can be a n, or just about anything else.
-- **Socket?** Is a file descriptor used for communication.
-  - [Types of Sockets](Types_of_sockets.md)
-- **Code**
-  - [TCP Server, Client](TCP_ServerClient)
-  - [UDP Server, Client](UDP_ServerClient)
-  - [Raw Socket](Raw_Socket)
+- **Socket?** Is a file descriptor used for communication. [Types of Sockets](Types_of_sockets.md)
+- **Code:** [TCP Server, Client](TCP_ServerClient), [UDP Server, Client](UDP_ServerClient), [Raw Socket](Raw_Socket)
 - **[Blocking(Means sleep)/Non Blocking](Blocking_NonBlocking/):** By default all server-side socket API's are Blocking. socket(), read(), readfrom(), accept()
   - How to make API non-blocking? select(), fcntl()
   - Multichat server
 - [**APIs:** accept(), bind(), close(), connect(), fcntl(), gethostname(), getpeername(), listen(), recv(), recvfrom(), select(), send(), sendto(), setsockopt(), shutdown(), socket()](APIs_Structures)
+- **[Terms](Terms):** Byte Order, inaddr_any
