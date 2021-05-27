@@ -3,8 +3,9 @@
 int poll(struct pollfd *fds, nfds_t nfds, int timeout)
 int ppoll(struct pollfd *fds, nfds_t nfds, const struct timespec *tmo_p, const sigset_t *sigmask);
 ```
-- Newer than [select](../..)
-- **Why?** For high performance networking server. It is much better designed and doesn’t suffer from most of the problems which select has.
+- **Why?** 
+  - Newer than [select](../..) hence better designed fixes much of select problems.
+  - For high performance networking server.
 - **Code**
 ```c
     struct pollfd fds[2];
