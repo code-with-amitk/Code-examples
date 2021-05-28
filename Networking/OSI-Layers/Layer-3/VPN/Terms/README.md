@@ -15,9 +15,9 @@
   - IKEv1-Phase-1 derives DH-keys to encrypt data exchange. But it may happen that Peers again initiate DH-key-exchange with encrypted traffic using keys derived in phase-1.
   - This way completely new DH-keys are formed in IKEv1-Phase-2. New keys are generated using new Nonces exchanged between the peers. 
 - **[SA(Security Association)](Security_Association)**
-- **SAD: Security Association DB**
+  - *SAD(Security Association DB)* Stored SAs
 - **SP(SECURITY POLICY):** Policies to be enforced on Traffic crossing IPSec boundaries
-- **SPD: Security policy Database**
+  - *SPD: Security policy Database*
 - **[SPI(SECURITY PARAMETER INDEX)](SPI)**
 - **IPSec(Over TCP):** IPSec is set of open standards for ensuring secure private communication over Internet. IPSec does not support broadcast & multicast. Parts of IPSec:
   - Part-1: Key Exchange for Data Encryption + Peer Authentication. Eg: IKE
