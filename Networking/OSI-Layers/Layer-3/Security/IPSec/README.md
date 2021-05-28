@@ -11,3 +11,5 @@
 |IPv6 support|no|Yes|
 |Encryption|No|Yes|
 
+- **[Packet Flow:](Packet_Flow)** IPSec packet comes to interface, goes out
+
