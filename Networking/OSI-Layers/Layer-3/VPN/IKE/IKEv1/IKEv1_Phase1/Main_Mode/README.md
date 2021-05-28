@@ -1,5 +1,5 @@
 ## IKEv1 Main Mode
-```html
+```c
 Peer-1                                                                                                            Peer-2
                                 //1st 4 Messages are not Encrypted
       -- Message-1{I propose SA-proposal-1, SA-proposal-2, SA-proposal-3. Sends 1 or more SA-proposal-payloads}-->
