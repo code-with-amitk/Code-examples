@@ -1,0 +1,18 @@
+## Openvpn
+- **What?** 
+  - open source VPN solution for: remote access, site-to-site VPNs, Wi-Fi security, and enterprise-scale remote access solutions with load balancing, failover,
+  - and fine-grained access-controls. You can use tcp or udp.
+- **Terms?**    a. OpenVPN Access Server (OAS): OpenVPN server with management GUI.
+- **Authentication Types?**
+  - *1. TLS*  uses SSL/TLS + certificates for authentication and key exchange.
+  - *2. Static key*  uses a pre-shared Static key. Can only be used between two peers.
+- **Type of connection?**
+  - *a. TUN(Tunnel):* simulates a network layer device and it operates with layer 3 packets like IP packets. TUN is used for routing and connecting multiple clients to a single server.
+  - *b. TAP(Bridged):* simulates a link layer device and it operates with layer 2 packets like Ethernet frames. TAP is used for creating a network bridge between two Ethernet segments in different locations.
+- **Encryption modes**
+  - *1. Static encryption*
+    - No PFS(Perfact forward secrecy). Good for proof of concept case. Only from 1 client to 1 server.
+    - Only 1 key is configured b/w client and server. Key should be configured statically and if this is compromised all vpn data can be seen.
+    -  If you want to change the key, it must be changed on all clients. Last of all, static encryption also only allows a single connection to your server.
+    - Secret key must be exchanged using a pre-existing secure channel
+  - *2. Dynamic encryption/Public Key Infrastructure (PKI):*
