@@ -8,8 +8,9 @@
 
 |Algorithm|KeySize(bits)|InputSize(bits)|Stages|
 |---|---|---|---|
-|DES(Data encryption standard)(Broken in 1999)|56|64|19|
-|Triple-DES(Broken)|168| | |                                                                                                                                                        |AES|128,192,256|128,192,256(block-size)|10,12,14|
+|DES. Broken in 1999|56|64|19|
+|Triple-DES. Broken|168| | |
+|AES|128,192,256|128,192,256(block-size)|10,12,14|
 |RC4||||
 
 ### Problem with Symmetric Key Algo(AES,DES or any)
