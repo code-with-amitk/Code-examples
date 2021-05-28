@@ -5,7 +5,7 @@
  
  ### Types of SAs
 - **a. IKE SA:** Both participating peers establish their own IKE SA.
- - [IKE SA Example](IKE_SA_Example.md):
+  - [IKE SA Example](IKE_SA_Example.md):
 ```c
 Brief:
   Authentication-method:           MD5
