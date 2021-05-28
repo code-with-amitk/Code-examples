@@ -15,12 +15,10 @@
   - IKEv1-Phase-1 derives DH-keys to encrypt data exchange. But it may happen that Peers again initiate DH-key-exchange with encrypted traffic using keys derived in phase-1.
   - This way completely new DH-keys are formed in IKEv1-Phase-2. New keys are generated using new Nonces exchanged between the peers. 
 - **[SA(Security Association)](Security_Association)**
-6. SAD: Security Association DB
-7. SP(SECURITY POLICY): Policies to be enforced on Traffic crossing IPSec boundaries
-8. SPD: Security policy Database
-9. SPI(SECURITY PARAMETER INDEX) eg:7C123A9C. This tag helps the Peers to distinguish between two IPSec streams. For Example: if there were 2 different IPSEC flows between 2 peers, each using a different secret key, the SPI would allow each peer to determine which key to use on each packet. 
-Can SPI be same as cookie? Yes can be same as cookie exchanged in phase-1
-Where is used? It should be present in IPSec SA. An SPI has only local significance, since it is defined by the creator of the SA
-10. IPSec(Over TCP): IPSec is set of open standards for ensuring secure private communication over Internet. IPSec does not support broadcast & multicast. Parts of IPSec:
-    Part-1: Key Exchange for Data Encryption + Peer Authentication. Eg: IKE
-    Part-2: Encrypting the data with Keys exchanged in part-1. Eg: AH, ESP
+- **SAD: Security Association DB**
+- **SP(SECURITY POLICY):** Policies to be enforced on Traffic crossing IPSec boundaries
+- **SPD: Security policy Database**
+- **[SPI(SECURITY PARAMETER INDEX)](SPI)**
+- **IPSec(Over TCP):** IPSec is set of open standards for ensuring secure private communication over Internet. IPSec does not support broadcast & multicast. Parts of IPSec:
+  - Part-1: Key Exchange for Data Encryption + Peer Authentication. Eg: IKE
+  - Part-2: Encrypting the data with Keys exchanged in part-1. Eg: AH, ESP
