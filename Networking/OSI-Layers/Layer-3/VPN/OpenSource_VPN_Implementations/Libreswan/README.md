@@ -1,6 +1,4 @@
-## Open source VPN
-
-### 1. Libreswan / strongswan
+## Libreswan / strongswan
 - **What?** 
   - This is continuation of openswan. Under active development for over 15 years, going back to The FreeS/WAN Project.
   - Uses NSS crypto library. IKE protocol uses UDP(500, 4500). Encryption/Decryption happens in kernel.
