@@ -14,6 +14,7 @@
 - **PFS(Perfect Forward Secrecy)** 
   - IKEv1-Phase-1 derives DH-keys to encrypt data exchange. But it may happen that Peers again initiate DH-key-exchange with encrypted traffic using keys derived in phase-1.
   - This way completely new DH-keys are formed in IKEv1-Phase-2. New keys are generated using new Nonces exchanged between the peers. 
+  - If PFS is enabled in [IKE Phase-2](..). Then New Key is generated in Phase-2 
 - **[SA(Security Association)](Security_Association)**
   - *SAD(Security Association DB)* Stored SAs
 - **SP(SECURITY POLICY):** Policies to be enforced on Traffic crossing IPSec boundaries
