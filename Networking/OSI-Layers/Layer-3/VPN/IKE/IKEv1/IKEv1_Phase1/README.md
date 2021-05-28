@@ -3,7 +3,7 @@
   - [Main Mode (6 Messages)](Main_Mode) OR
   - [Aggressive Mode (4 Messages)](Aggressive_Mode)
 - Negotiate IKE SA to protect Phase-2 Traffic.
-  - [IKE SA Example](../../Terms/Security_Association/)
+  - [IKE SA Example](../../../Terms/Security_Association/)
 
 ||Main Mode|Aggressive Mode|
 |---|---|---|
