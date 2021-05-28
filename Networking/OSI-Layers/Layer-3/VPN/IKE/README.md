@@ -1,18 +1,13 @@
 ## IKE / Internet Key Exchange
 > UDP src,dst port:500
-- **What?** Hybrid protocol made from 3 protocols:
-  - *1. Oakley:* Defines series of Key Exchanges
-  - *2. SKEME(Secure Key Exchange Mechanism for Internet)*. Provides Anonymity, Repudity, Key refreshment
-  - *3. ISAKMP (Internet Security Association and Key Management Protocol)* ISAKMP protocol is a framework for exchanging encryption keys and security association payloads.
-- **Why IKE?** For establishment of [Security Association (SA)](../Terms). 
+- **What?** Protocol used for establishment of [Security Association (SA)](../Terms). 
+- **[IKE comprises of 3 protocols](Oakley_SKEME_ISAKMP.md):** Oakley, SKEME, ISAKMP
 - [IKE Headers and Payloads](IKE_Headers_Payloads)
-
-### IKE Phases
-- **Phase-1/IKE-SA:** For Authentication, Estb of Pvt Keys. These keys will be used to encrypt Phase-2 keys.
-- **Phase-2/IPSec-SA:** Establish Keys using Keys established in Phase-1. Keys will encrypt data traffic.
-
-### IKE Versions
-- [IKEv1 vs IKEv2](IKEv1_vs_IKEv2)
-- **[IKEv1 Explained](IKEv1)**
-- **[IKEv2 Explained](IKEv2)**
+- **IKE Versions:** IKE has 2 versions IKEv1 and IKEv2.
+  - [IKEv1 vs IKEv2](IKEv1_vs_IKEv2)
+  - *[IKEv1 Explained](IKEv1)*
+  - *[IKEv2 Explained](IKEv2)*
+- **IKE Phases:** IKE Key exchange happens in 2 phases.
+  - *Phase-1/IKE-SA:* Keys exchanges in Phase-1 are used to encrypt Phase-2 keys.
+  - *Phase-2/IPSec-SA:* Keys exchanges in Phase-1 are used to encrypt actual data traffic.
 
