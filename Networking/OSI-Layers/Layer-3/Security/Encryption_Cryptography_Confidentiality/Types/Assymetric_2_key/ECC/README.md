@@ -9,3 +9,13 @@
   - Calculating keys for following: Key agreement, Digital Signature, Pseudo-random generators.
   - ECCs can be used after combining with Symmetric encryption schemes.
   - [Ecliptic Curve based Diffie Hellman / ECDH](ECDH)
+
+### Comparison
+
+|Symmetric|Asymmetric|ECC|
+|---|---|---|
+|80 bit|1024 bit|160 bit|
+|112|2048|224|
+|128|3072|256|
+|192|7680|384|
+|256|15260|521|
