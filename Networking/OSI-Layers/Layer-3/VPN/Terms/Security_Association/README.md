@@ -4,8 +4,10 @@
  - Since there are 2 stages in establishing IPSec tunnel there are 2 types of SAs.   
  
  ### Types of SAs
-- **a. IKE SA:** Both participating peers establish their own IKE SA. IKE SA Example:
+- **a. IKE SA:** Both participating peers establish their own IKE SA.
+ - [IKE SA Example](IKE_SA_Example.md):
 ```c
+Brief:
   Authentication-method:           MD5
   Encryption method:               3DES
   DH group used:                   2
