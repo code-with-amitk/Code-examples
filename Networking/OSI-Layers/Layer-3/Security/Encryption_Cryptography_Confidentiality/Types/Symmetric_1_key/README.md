@@ -6,10 +6,10 @@
 ```
 ### Comparison
 
-|Algorithm|Key-Size(bits)|Input-Size(bits)|Stages|
+|Algorithm|KeySize(bits)|InputSize(bits)|Stages|
 |---|---|---|---|
 |DES(Data encryption standard)(Broken in 1999)|56|64|19|
-|Triple-DES(Broken)|168|||                                                                                                                                                         |AES(Advanced Encryption Standard)|128,192,256|128,192,256(block-size)|10,12,14|
+|Triple-DES(Broken)|168| | |                                                                                                                                                        |AES|128,192,256|128,192,256(block-size)|10,12,14|
 |RC4||||
 
 ### Problem with Symmetric Key Algo(AES,DES or any)
