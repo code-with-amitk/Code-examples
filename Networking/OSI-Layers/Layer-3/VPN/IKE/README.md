@@ -4,7 +4,7 @@
 - **[IKE comprises of 3 protocols](Oakley_SKEME_ISAKMP.md):** Oakley, SKEME, ISAKMP
 - [IKE Headers and Payloads](IKE_Headers_Payloads)
 - **IKE Versions:** IKE has 2 versions IKEv1 and IKEv2.
-  - [IKEv1 vs IKEv2](IKEv1_vs_IKEv2)
+  - [IKEv1 vs IKEv2, Advatanges of IKEv2 over IKEv1](IKEv1_vs_IKEv2)
   - *[IKEv1 Explained](IKEv1)*
   - *[IKEv2 Explained](IKEv2)*
 - **IKE Phases:** IKE Key exchange happens in 2 phases.
