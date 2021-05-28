@@ -1,4 +1,4 @@
-## AES
+## AES / Rijndael
 - There are 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
 
 ```c
