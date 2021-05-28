@@ -17,7 +17,7 @@
   - If PFS is enabled in [IKE Phase-2](..). Then New Key is generated in Phase-2 
 - **[SA(Security Association)](Security_Association)**
   - *SAD(Security Association DB)* Stored SAs
-- **SP(SECURITY POLICY):** Policies to be enforced on Traffic crossing IPSec boundaries
+- **[SP(SECURITY POLICY):](SP)** Policies to be enforced on Traffic crossing IPSec boundaries
   - *SPD: Security policy Database*
 - **[SPI(SECURITY PARAMETER INDEX)](SPI)**
 - **IPSec(Over TCP):** IPSec is set of open standards for ensuring secure private communication over Internet. IPSec does not support broadcast & multicast. Parts of IPSec:
