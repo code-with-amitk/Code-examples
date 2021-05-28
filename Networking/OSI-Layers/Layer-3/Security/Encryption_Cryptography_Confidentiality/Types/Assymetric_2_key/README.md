@@ -6,7 +6,7 @@
 Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
 ```
 - **[Example Alice and Bob communication](ExampleAlice&BobCommunication.md)**
-- **Example**
+- **Algorithms**
   - [RSA (Ronald Rivest, Adi Shamir, Len Adleman)](RSA.md)
   - [Diffe-Helman](Diffe_Helman.md)
   - Crammer-shoup
