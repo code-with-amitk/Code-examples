@@ -1,12 +1,12 @@
 ## VPN Terms
 - **Cookie** 
   - This is [MAC(not hash)](../../Security) which is generated during IKE Phase-1 (IKE SA) exchange. 
-  - This protects the Peers from DoS & reply Attacks. How cookie is generated:
+  - Initiator Generates {Initiator SPI = Initiator Cookie}
+  - Responder generates {Responder Cookie = Responder SPI}
+  - This protects the Peers from DoS & reply Attacks.
 ```c
     [Src-IP] [Dst-IP] [Src-Port-UDP] [Dst-Port-UDP] + [Secret Random Key] --->   | Hash Function |  -->  Cookie or SPI
 ```    
-  - Initiator Generates {Initiator SPI = Initiator Cookie}
-  - Responder generates {Responder Cookie = Responder SPI}
 - **DOI(Domain on Interpretation)** 
   - IPsec DOI is a document containing definitions for all the security parameters required for the successful negotiation of a VPN tunnel
   - All the attributes required for SA and IKE negotiations. 
