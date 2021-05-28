@@ -3,3 +3,4 @@
 - **[Types of VPN](Types_of_VPN)**
   - *1.* Site to Site
   - *2.* Remote Access
+- **[Terms](Terms):** Cookie, DOI(Domain on Interpretation), Nonce, PFS(Perfect Forward Secrecy), SA(Security Association), SP(Security Policy), SPI(Security Parameter Index)
