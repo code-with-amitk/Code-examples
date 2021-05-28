@@ -9,7 +9,7 @@
 - **[Phase-1 / IKE-SA:](IKEv1_Phase1)** 
   - Negotiate IKE SA to protect Phase-2 Traffic.
   - [IKE SA Example](../../Terms/Security_Association/)
-- **Phase-2 / IPSec SA:](IKEv1_Phase2)**
+- **[Phase-2 / IPSec SA:](IKEv1_Phase2)**
   - Message exchanges in phase-2 are protected by encryption keys derived in phase-1. 
   - Each IPSec SA has atleast two SAs. Inbound & Outbound
-  - 
+  - [IPSec SA Example](../../Terms/Security_Association/)
