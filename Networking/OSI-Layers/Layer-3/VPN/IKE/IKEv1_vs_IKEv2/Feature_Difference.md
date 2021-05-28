@@ -14,3 +14,4 @@
 |DOS Protection|Not Supported|Anti-Reply function supported, 'Cookies' supported for mitigating flooding attacks, Many vulnerabilities of ikev1 fixed|
 |Reliable|less than ikev2|More. Procedure to Delete SA defined, Procedure to re-transmit message is defined|
 |Extensions|Poor|Useful extensions are present|
+|[Latency](/System-Design/Concepts/Terms)|High(Because [IKEv1 has 9 messages](..))|Low(Because [IKEv2 has 4 messages](..))|
