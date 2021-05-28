@@ -1,6 +1,6 @@
 ## Comparison
 
-||Symmetric(1-key)|Asymmetric(2-key)|
+||Symmetric/Secret/Private Key/1-Key|Asymmetric/Public Key/2-Key|
 |---|---|---|
 |Speed|Faster(Since encryption process is less complicated)|Slow. Big Calculations are required to Generate a public-Pvt Key Pair|
 |Risk|Distribution of keys||
