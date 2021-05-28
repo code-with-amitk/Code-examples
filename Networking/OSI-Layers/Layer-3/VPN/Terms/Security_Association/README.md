@@ -5,9 +5,10 @@
  
  ### Types of SAs
 - **a. IKE SA:** Both participating peers establish their own IKE SA.
-  - [IKE SA Example](IKE_SA_Example.md):
+  - [IKE SA Example:](IKE_SA_Example.md)
 ```c
-Brief:
+BRIEF:
+
   Authentication-method:           MD5
   Encryption method:               3DES
   DH group used:                   2
@@ -19,8 +20,10 @@ Brief:
     - *a.* Privacy(Through Encryption)  
     - *b.* Content Integrity(By data Authentication)  
     - *c.* Sender's Authentication(using Certificates)
-  - IPSec SA Example:
+  - [IPSec SA Example:](IPSec_SA_Example.md)
 ```c
+BRIEF:
+
   Destination-address:        192.168.x.x
   SPI:                        7C123A9C
   Protocol:                   (ESP or AH)
