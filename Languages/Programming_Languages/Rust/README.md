@@ -19,4 +19,5 @@
     - On Heap: String(resizable string)
   - [Ownership=call by value](Ownership_and_Functions)
   - [References, Borrowing, Mutable References](Reference_Borrowing)
+  - [Methods and Associated Functions](Methods_AssociatedFunctions)
 
