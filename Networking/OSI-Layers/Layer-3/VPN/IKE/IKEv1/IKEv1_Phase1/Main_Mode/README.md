@@ -1,50 +1,86 @@
 ## [IKEv1 Main Mode](https://www.cloudshark.org/captures/ff740838f1c2)
 ```c
-Peer-1                                                                                                            Peer-2
+GPH: Generic Payload Header
+SAP: SA-Payload
+PP: Proposal Payload
+TP: Transform Payload
+VP: Vendor Payload
+KEP: Key exchange Payload (contains Public Key)
+NoP: Nonce Payload
+
+Re: Reserved, NP: Next Payload, PL: Payload Length
+
+Peer-1                                                                                                Peer-2
                                 //1st 4 Messages are not Encrypted
-      -- Message-1{I propose SA-proposal-1, SA-proposal-2, SA-proposal-3. Sends 1 or more SA-proposal-payloads}-->
-        |MAC|IP|UDP|
-        IKE Hdr {Initiator SPI=e19218, Responder SPI=0, Next payload=SA, Version=1, Exchange-type=2, Flags=0, MessageID=0, Len=168}  
-        Generic Payload Header{Next Payload=Vendor ID(13), Reserved=0, Payload Length=60} + SA-Payload  {DOI: IPSec, Situation: 1}                                    
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=48} + Proposal-Payload: {Proposal-no: 1, Protocol-ID=ISAKMP, SPI-Size=0, Number-of-transforms=1}
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=40} + Transform-Payload: {Transform-no: 1, Tranform-ID=KEY_IKE, Reserved=0, encryption-Algo=AES-CBC, Key-Length=128, Hash-Algo=SHA, Authentication-Method=Pre-shared Key, Life-type=Seconds, Life-Duration=86400}
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=40} + Vendor-Payload {Vendor-id=knasjnao912knka} 
 
-      <----Message-2 {Peer-2 selects 1 SA-proposal-1 from list of SA-proposals received}----------
-        |MAC|IP|UDP|
-        IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, Next payload=SA, Version=1, Exchange-type=2, Flags=0MessageID=0, Len=108}
-        Generic Payload Header{Next Payload=Vendor ID(13), Reserved=0, Payload Length=48} +  SA-Payload  {DOI: IPSec, Situation: 1 (Identity Only:1, Secrecy:0, Integrity:0}} 
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=48} + Proposal-Payload: {Proposal-no: 1, Protocol-ID=ISAKMP, SPI-Size=0, Number-of-transforms=1}
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=40} + Transform-Payload: {Transform-no: 1, Tranform-ID=KEY_IKE, Reserved=0, encryption-Algo=AES-CBC, Key-Length=128, Hash-Algo=SHA, Authentication-Method=Pre-shared Key, Life-type=Seconds, Life-Duration=86400}
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=20} + Vendor-Payload {Vendor-id=knasjnao912knka} 
-        Generic Payload Header{Next Payload=None, Reserved=0, Payload Length=60} +
+//////(Message-1) Initiator proposes Encryption & Authentication algorithms(in 2 TP)//////////////////
+--|MAC|IP|UDP|
+  IKE Hdr{Initiator SPI=e19218, Responder SPI=0, NP=SA, Version=1, Exchange-type=2, Flags=0, MessageID=0, Len=168}  
+  GPH{NP=PP, Res=0, PL=60} + SAP{DOI: IPSec, Situation: 1}
+  GPH{NP=VP, Res=0, PL=48} + PP{Proposal-no: 1, Protocol-ID=ISAKMP, SPI-Size=0, Number-of-transforms=1}
+  GPH{NP=TP, Res=0, PL=40} + VP{Vendor-id=knasjnao912knka}
+  GPH{NP=TP, Res=0, PL=40} + TP{Transform-no: 1, Tranform-ID=KEY_IKE, Res=0,
+                                  encryption-Algo=AES-CBC, Key-Length=128, Hash-Algo=SHA2,
+                                  Authentication-Method=Pre-shared Key, Life-type=Seconds, 
+                                  Life-Duration=86400}
+  GPH{NP=None, Res=0, PL=40} + TP{Transform-no: 2, Tranform-ID=KEY_IKE, Res=0,
+                                  encryption-Algo=3DES, Key-Length=128, Hash-Algo=SHA3,
+                                  Authentication-Method=Pre-shared Key, Life-type=Seconds, 
+                                  Life-Duration=86400} ---------->
 
-        ----Message-3 {I propose key-exchange-algorithms(DH, RSA ...) and nonce}------------>
-        |MAC|IP|UDP|
-        IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, Next payload=4, Version=1, Exchange-type=2, Flags=0, MessageID=0, Len=284}
-        Generic Payload Header{Next Payload=10, Reserved=0, Payload Length=132} +  Key-exchange-payload  {key-exchange-data=asdae123123as515nn} 
-        Generic Payload Header{Next Payload=13, Reserved=0, Payload Length=24} +  nounce-payload  {nonce-data=asdae123123as515nn} 
-        Generic Payload Header{Next Payload=20(NAT-D), Reserved=0, Payload Length=20} +  vendor-id-payload  {nonce-data=faknjas19231ka} 
-        Generic Payload Header{Next Payload=12, Reserved=0, Payload Length=20} +  natd-payload  {hash-of-address-and-port=kskf1928398ajsdiahs} 
 
-        <--Message-4 {Select key-exchange-algorithm(DH) and [Let's take=Prime-no+Integer], nonce}------------
-          |MAC|IP|UDP| IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, Next payload=4, Version=1, Exchange-type=2, Flags=0, MessageID=0, Len=304}
-          Generic Payload Header{Next Payload=10, Reserved=0, Payload Length=132} +  Key-exchange-payload  {key-exchange-data=asdae123123as515nn} 
-          Generic Payload Header{Next Payload=13, Reserved=0, Payload Length=24} +  nounce-payload  {nonce-data=asdae123123as515nn} 
-          Generic Payload Header{Next Payload=20(NAT-D), Reserved=0, Payload Length=20} +  vendor-id-payload  {nonce-data=faknjas19231ka} 
-          Generic Payload Header{Next Payload=12, Reserved=0, Payload Length=20} +  natd-payload  {hash-of-address-and-port=kskf1928398ajsdiahs} 
+//////(Message-2) Responder accept the proposal(ie Encryption, Auth) in TP/////////////////////
+ <--|MAC|IP|UDP|
+    IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, NP=SA, Ver=1, Exchange-type=2, Flags=0, MsgID=0, Len=108}
+    GPH{NP=PP, Res=0, PL=48} + SAP{DOI: IPSec, Situation: 1 (Identity Only:1, Secrecy:0, Integrity:0}} 
+    GPH{NP=TP, Res=0, PL=48} + PP{Proposal-no: 1, Protocol-ID=ISAKMP, SPI-Size=0, Number-of-transforms=1}
+    GPH{NP=VP, Res=0, PL=40} + TP{Transform-no: 1, Tranform-ID=KEY_IKE, Res=0,
+                                  encryption-Algo=AES-CBC, Key-Length=128, Hash-Algo=SHA2,
+                                  Authentication-Method=Pre-shared Key, Life-type=Seconds, 
+                                  Life-Duration=86400}
+    GPH{NP=None, Res=0, PL=20} + VP{Vendor-id=knasjnao912knka} 
 
-Peer-1 Calculates: DH Secret Key, key2, key3                                                                                                                                                            Peer-2 Calculates: DH Secret Key, key2, key3
-Identification payload + Hash payload -> |Encrypt| -> XXX
-These authenticate Peer to other Peer
+Peer-1: Calculates PUBLIC KEY
+  Random-no=r=3
+  Prime=p=13
+  Integer=q=6
+  Public-Key=qPow(r)modp=XX
 
-          -------Message-5 {Identification + Hash payload XXX}------------>
-            |MAC|IP|UDP| 
-            IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, Next payload=5, Version=1, Exchange-type=2, Flags=1, MessageID=0, Len=108} + XXX
-                                                                                                                                                                                                                            YYY < |Encrypt| < Identification payload + Hash payload
-          <-------Message-6 {Identification + Hash payload YYY}------------
-            |MAC|IP|UDP|
-            IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, Next payload=5, Version=1, Exchange-type=2, Flags=1, MessageID=0, Len=108} + YYY
+////////(Message-3) Initiator starts DH Key Exchange Process. Send its Public-Key+Nonce(Random no)////////////////
+                    Initiator can ask Responder to select Key exchange algo (DH, RSA other..)
+  --|MAC|IP|UDP|
+    IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, NP=, Version=1, Exchange-type=2, Flags=0, MessageID=0, Len=284}
+    GPH{NP=NoP, Res=0, PL=132} + KEP{Public-Key = XX}
+    GPH{NP=None, Res=0, PL=24} + NoP{nonce(random no) = 3}
 
-                          IKE SA Established  [DH Key Pair] [Encryption Algo] [Hash Algo]
+                                                                          Peer-2: Calculates PUBLIC KEY
+                                                                            Random-no=r=10
+                                                                            Prime=p=13
+                                                                            Integer=q=6
+                                                                            Public-Key=qPow(r)modp=YY
+
+//////////(Message-4) Responder responds with his Public-key/////////////////////////////
+ <--|MAC|IP|UDP|
+    IKE Hdr {Initiator SPI=e19218, Responder SPI=a0089b, NP=4, Version=1, Exchange-type=2, Flags=0, MsgID=0, Len=304}
+    GPH{NP=NoP, Res=0, PL=132} +  KEP{Public-Key = YY} 
+    GPH{NP=VP, Res=0, PL=24} +  NoP{nonce(random no) = 10} 
+    GPH{NP=NAT-D, Res=0, PL=20} + VP{nonce-data=faknjas19231ka} 
+    GPH{NP=12, Res=0, PL=20} +  natd-payload{hash-of-address-and-port=kskf1928398ajsdiahs} 
+
+Peer-1: Calculates PVT KEY                                               Peer-2: Calculates PVT KEY
+              Now Both Communicates over Encrypted Channel
+
+/////////(Message-5) Initiator sends responder its IKE identity to authenticate itself/////////
+ --|MAC|IP|UDP| 
+  IKE Hdr {InitiatorSPI=e19218, ResponderSPI=a0089b, NP=Identification, Version=1, Exchange-type=2, Flags=1, MessageID=0, Len=108}
+  GPH{NP=HP, Res=0, PL=132} + Encrypted[Identification-Payload{...}]
+  GPH{NP=None, Res=0, PL=132} + Encrypted[HashPayload{...}]
+
+/////////(Message-6) Responder sends its IKE identity to authenticate itself/////////
+ <--|MAC|IP|UDP| 
+  IKE Hdr {InitiatorSPI=e19218, ResponderSPI=a0089b, NP=Identification, Version=1, Exchange-type=2, Flags=1, MessageID=0, Len=108}
+  GPH{NP=HP, Res=0, PL=132} + Encrypted[Identification-Payload{...}]
+  GPH{NP=None, Res=0, PL=132} + Encrypted[Hash-Payload{...}]
+
+                   IKE SA Established  [DH Key Pair] [Encryption Algo] [Hash Algo]
 ```                                                                 
