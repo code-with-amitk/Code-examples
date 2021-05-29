@@ -31,8 +31,9 @@
 
 - **5. KEY EXCHANGE PAYLOAD:** Supports different Key exchange mechanisms. Eg: Oakley, Diffie-Hellman, Enhanced Diffie-Hellman, RSA based.
 ```c
-    |- Key-exchange-data(variable): Data required to generate session key.  The interpretation of this data is specified by DOI and associated Key Exchange algorithm.     
-        [For Example for DH-Key-exchange: This will be prime no+Integer]
+    |- Key-exchange-data(variable): Data required to generate session key.  
+        The interpretation of this data is specified by DOI and associated Key Exchange algorithm.     
+        [For Example for DH-Key-exchange: This will be public key of Initiator]
 ```
 
 - **6. NONCE PAYLOAD**
