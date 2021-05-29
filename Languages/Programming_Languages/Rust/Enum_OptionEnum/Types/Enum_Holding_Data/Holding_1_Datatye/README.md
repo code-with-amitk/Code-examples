@@ -3,7 +3,7 @@
 - *2.* Enum variable can store string data.
 - *3.* Creating enum variable having string data(192.0.0.1)
 - *4.* Passing enum variable to function and printing.
-```rs
+```rust
 use std::{string::String, u32};
 
 #[derive(Debug)]                //1
