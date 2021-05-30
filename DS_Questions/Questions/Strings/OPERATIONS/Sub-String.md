@@ -4,8 +4,9 @@
   - len: number of characters in a substring
 
 ```c++
-  string s="Fall in Love with Work, Money will follow";
-  cout<<s.substr(5,17)<<endl;
+  std::string a = "Hello T11";
+                 //012345678
+  std::cout << a.substr(1, 2); //From pos=1, Len=2
   
-  /*O/P: in Love with Work */
+//O/p: el
 ```
