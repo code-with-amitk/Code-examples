@@ -1,2 +1,2 @@
 ## Generating JSON Schema
-- _1. [Using URL JSONSchma.net](JSONSchema.net)_
+- _1. [Using URL JSONSchma.net](JSONSchema)_
