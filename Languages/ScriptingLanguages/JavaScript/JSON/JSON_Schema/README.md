@@ -7,4 +7,4 @@
   - _1. Security_ 
     - _a._ Web Services should validate their payloads by using a Schema.
     - _b._ Where producer and consumer are on far apart, it important to validate using schema else it will be wastage of time for consumer.
-- **Generating JSON Schema**[Generating_JSON_Schema](url)
+- **[Generating JSON Schema](Generating_JSON_Schema)**
