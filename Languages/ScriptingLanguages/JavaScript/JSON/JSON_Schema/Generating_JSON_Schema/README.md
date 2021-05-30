@@ -1,5 +1,7 @@
 ## Generating JSON Schema
-- **a. Generate using any**
-  - _1. [Using URL JSONSchma.net](JSONSchma)_
-- **b. Validate schema**
-  - _1. http://jsonvalidate.com/_
+- **Two steps**
+  - _a. Generate using any_
+    - _1. [Using URL JSONSchma.net](JSONSchma)_
+  - _b. Validate schema_
+    - _1. http://jsonvalidate.com/_
+- **[JSON Schema Keywords](JSON_Schema_Keywords)**
