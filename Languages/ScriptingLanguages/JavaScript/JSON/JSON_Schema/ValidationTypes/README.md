@@ -14,4 +14,4 @@ cmd> jsonlint test.json
 
 //We can also do semantic Validation using jsonlint
 ```
-- **2. [Semantic Validation](Semantic_Validation)**
+- **2. [Semantic Validation](SemanticValidation)**
