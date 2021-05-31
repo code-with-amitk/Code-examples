@@ -23,6 +23,7 @@ Input: s = "((()))()"
 Output: 8
 Explanation: nested paraenthses are considered valid
 ```
+- **Longest Continious Valid Substrgin will always have Even Length**
 
 ### Approach-1    //Brute Force, O(n<sup>3</sup>), Time Limit Exceed
 - **Logic:** 
