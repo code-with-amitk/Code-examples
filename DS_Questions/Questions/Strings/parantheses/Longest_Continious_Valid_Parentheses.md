@@ -23,7 +23,10 @@ Input: s = "((()))()"
 Output: 8
 Explanation: nested paraenthses are considered valid
 ```
-- **Longest Continious Valid Substrgin will always have Even Length**
+
+### Rule
+- LCVSS(logest continious Valid Sub String) will always have Even Length
+- LCVSS will always start from `(` and end at `)`. Sub-String starting with `)` or ending with `(` are invalid.
 
 ### Approach-1    //Brute Force, O(n<sup>3</sup>), Time Limit Exceed
 - **Logic:** 
@@ -79,3 +82,61 @@ public:
   }
 };
 ```
+
+### Approach-2        //Stack. O(n)
+- **Logic**
+  - *1.* Take a `stack<int>` to store indexes of elements of incoming string. Push `-1` on stack initially.
+  - _2._ if element == `(` 
+    - push index on stack
+  - _3._ if element == `)`
+    - Pop
+    - if (stack !empty)
+      - maxlen = max(maxlen, currentIndex - top)
+    - else
+      - push current index on stack
+```c
+input string = "()))()()"
+                01234567
+
+index  Element    stack         maxlen
+                   -1             0
+0       (          -1 0         
+1       )          -1            1 - -1 = 2
+2       )           2
+3       )           2 3
+4       (           2 3 4
+5       )           2 3 4       5 - 3 = 2
+                    2 3
+..                    
+```
+- **Complexity**
+  - **Time:** O(n)
+  - **Space:** O(n)
+- **Code**
+```c++
+int longestValidParentheses(string A) {
+  stack<int> st;                        //1
+  st.push (-1);
+  int maxlen = 0;
+  for (int i=0; i<A.size(); ++i) {
+    if (A[i] == '(')                    //2
+      st.push(i);
+    else {                              //3
+      if (!st.empty())
+        st.pop();
+      if (!st.empty())
+        maxlen = max(maxlen, i - st.top());
+      else
+        st.push(i);
+    }
+  }
+  return maxlen;
+}
+```
+
+### Approach-3        //Dynamic Programming. O(n)
+- **Logic**
+  - *1.* Take dp array, where ith element represents length of longest valid continious substring(lvcss) ending at index=i. Initialize to 0.
+    - 2. Donot calculate lvcss if string ends at `(`, since lvcss cannot end at `(`
+- **Complexity**
+- **Code**
