@@ -83,7 +83,7 @@ public:
 };
 ```
 
-### Approach-2        //Stack. O(n)
+### Approach-2        //Stack. Time:O(n), Space:O(n)
 - **Logic**
   - *1.* Take a `stack<int>` to store indexes of elements of incoming string. Push `-1` on stack initially.
   - _2._ if element == `(` 
@@ -134,9 +134,74 @@ int longestValidParentheses(string A) {
 }
 ```
 
-### Approach-3        //Dynamic Programming. O(n)
+### Approach-3        //2 pass solution, Time:O(n). Space: O(1)
+- **Logic**
+  - Take 2 counters left & right. 
+  - Traverse the string from the left to right 
+    - if `A[i] == (` ++left 
+    - if `A[i] == )` ++right 
+    - if (left == right) 
+      - Calculate the length of the current valid string and keep track of maximum length substring found so far. 
+    - If right > left
+      - left = 0, right = 0  
+  - Traverse string from right to left and similar procedure is applied.
+- **Complexity**
+  - **Time:** O(n)
+  - **Space:** O(1)
+- **Code**
+```c++
+int longestValidParentheses(String s) {
+  int left = 0, right = 0, maxlen = 0;
+  for (int i = 0; i < s.size(); ++i) {
+    if (s[i] == '(')
+      left++;
+    else
+      right++;
+
+    if (left == right)
+      maxlen = max(maxlen, 2 * right);
+    else if (right >= left)
+      left = right = 0;  
+  }
+
+  //Same process from right
+  left = right = 0;
+  
+  for (int i = s.size() - 1; i >= 0; --i) {
+    if (s.charAt(i) == '(')
+      left++;
+    else
+      right++;
+    if (left == right)
+      maxlen = max(maxlen, 2 * left);
+    else if (left >= right)
+      left = right = 0;
+  }
+  return maxlen;
+}
+```
+
+### Approach-4        //Dynamic Programming. Time:O(n), Space:O(n)
 - **Logic**
   - *1.* Take dp array, where ith element represents length of longest valid continious substring(lvcss) ending at index=i. Initialize to 0.
     - 2. Donot calculate lvcss if string ends at `(`, since lvcss cannot end at `(`
-- **Complexity**
 - **Code**
+```c++
+int longestValidParentheses(string A) {
+  int maxlen = 0;
+  vector<int> dp(A.size(), 0);
+
+  for (int i=0; i<A.size(); ++i) {
+    if (A[i] == ')') {
+      if (A[i-1] == '('){
+        dp[i] = (i >= 2 ? dp[i - 2] : 0) + 2;
+      }
+      else if (i - dp[i-1] > 0 && A[i - dp[i-1] -1] == '('){
+        dp[i] = dp[i - 1] + ((i - dp[i - 1]) >= 2 ? dp[i - dp[i - 1] - 2] : 0) + 2;
+      }
+    }
+    maxlen = max(maxlen, dp[i]);
+  }
+  return maxlen;
+}
+```
