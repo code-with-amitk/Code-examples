@@ -1,4 +1,12 @@
 ## DH (Diffe Helman)
+- DH Keys can be of following sizes:
+
+|Group|No of Bits|Combinations|Strong|
+|---|---|---|---|
+|1|768|2<sup>768</sup>||
+|2|1024|||
+|5|1536||Strongest|
+
 ```html
     Host-A                                        Host B 
         ----------Prime=p=13, Integer=q=6------->      //p is prime of min 600 digits
