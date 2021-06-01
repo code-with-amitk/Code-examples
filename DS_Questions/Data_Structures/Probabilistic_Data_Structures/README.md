@@ -12,3 +12,5 @@
 
 ### Commonly Used PDS
   - _[1. Bloom Filter](Bloom_Filter)_
+  - _2. HyperLogLog_
+  - _3. Count-Min Sketch_
