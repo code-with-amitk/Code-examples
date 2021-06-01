@@ -4,5 +4,5 @@
     - Main Mode(6 Messages)  OR
     - Aggressive Mode(3 Messages)
 - **[Phase-2 / Create IPSec SA](IKEv1_Phase2):** Purpose of Phase-2 is to exchange keys to protect actual data traffic.
-  - Phase-2 is carried out only in 1 mode
+  - Phase-2 is carried out **only in 1 mode** ie
     - Quick Mode(3 Messages)
