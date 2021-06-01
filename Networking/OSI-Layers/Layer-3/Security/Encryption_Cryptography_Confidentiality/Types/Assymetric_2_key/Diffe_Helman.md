@@ -7,6 +7,7 @@
 |2|1024|||
 |5|1536||Strongest|
 
+- **Algorithm**
 ```html
     Host-A                                        Host B 
         ----------Prime=p=13, Integer=q=6------->      //p is prime of min 600 digits
