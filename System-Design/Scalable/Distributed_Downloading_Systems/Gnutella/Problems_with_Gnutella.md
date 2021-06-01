@@ -10,4 +10,4 @@
 - **4. [Flooding:](/Networking/OSI-Layers/Layer5/P2P_OverlayNetwork/Types_of_Overlay_Network/Unstructured_Overlay/Exchanging_data.md)** 
   - *[Solution: Random Walk](/System-Design/Concepts/Hashing)* + proactive data replication
 - **5. Huge data is sent using QRT**
-  - Solution: Sending hash of file data using Bloom Filter.
+  - Solution: Sending hash of file data using [Bloom Filter](/DS_Questions/Data_Structures/Probabilistic_Data_Structures).
