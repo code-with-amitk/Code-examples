@@ -1,14 +1,16 @@
 ## [Aggressive Mode](https://www.cloudshark.org/captures/e51f5c8a6b24)
-- [Main Mode](..)
+- See [Main Mode](..)
 ```c
-     Peer-1                                                                         Peer-2
-        ---Message-1 SA-Proposals(same as Message-1 Main-mode) 
-        + Key-exchange-payload+nonce+Identification+Hash(Same as Message-3,5)----->
+  Peer-1(Initiator)                                                           Peer-2(Responder)
+      --(Message-1) 
+        a. Proposes SA's in Transform Payload(Same as Main Mode Message-1)
+        b. Starts DH Key Exchange Process    (Same as Main Mode Message-3)
+        c. Sends Identification,Hash payload (Same as Main Mode Message-5) -->
         
-Peer-1 Calculates: DH Secret Key, key2, key3                                  Peer-2 Calculates: DH Secret Key, key2, key3                
+  Calculates Public,Pvt Key          //Same as Main Mode//                  Calculates Public,Pvt Key
 
-        <--Message-2 Selected SA-Proposal(same as Message-2 Main-mode) 
-          + Key-exchange-payload+nonce+Identification+Hash(Same as Message-4,6)---
-          
-          ---Message-3 Encrypted Hash Payload--->
+        <--  Message-2 
+         a. Selected SA-Proposal (same as Main-mode Message-2) 
+         b. Calculated Public Key(same as Main-mode Message-4)
+         c. Identification,Hash payload (Same as Main Mode Message-6)  -------
 ```
