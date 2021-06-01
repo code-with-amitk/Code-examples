@@ -13,5 +13,5 @@ Index:      0 1 2 3 4 5 6     n-1
 Insert(x).   x ->|Hash Function|-> 3(array index)
 BF:         0 1 0 1 1 0 1 ... 1
 ```
-
 - **[Characteristics of BF](Characteristics_of_BF)**
+- **Example Implementations:** Google Guava library uses Murmur hash algorithm.
