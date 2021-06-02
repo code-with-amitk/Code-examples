@@ -7,7 +7,7 @@
   - [DataTypes](Data_Types):
     - Scalar: int, float, bool, char
       - Array Slice
-    - Compound: tuple, array
+    - Compound: tuple, array, struct
     - String
       - Deep copy, Shallow copy, Move
       - String Slice
