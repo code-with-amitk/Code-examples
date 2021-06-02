@@ -10,9 +10,8 @@ public:
   friend ostream& operator<<(ostream& os, const Date& dt);
 };
 
-/*Equivalent
-return-type function(var = cout, o = obj)
-*/
+//Equivalent
+//return-type function(var = cout, o = obj)
 ostream& operator<<(ostream& var, const Date& o) { 
   var << o.date << '/' << o.month << '/' << o.year;         //Each call to << passes data to 'cout' which dumps on stdout
   return var;
@@ -21,10 +20,9 @@ ostream& operator<<(ostream& var, const Date& o) {
 int main(){
   Date obj(31, 7, 2012);                        //Creates object obj (date=31, month=7, year=2013)
 
-  /*Equivalent    
-    object.function(hidden-self-address, Object-on-which-operation-to-applied)
-    cout.(operator<<)(this, obj)
-  */
+  //Equivalent    
+  //  object.function(hidden-self-address, Object-on-which-operation-to-applied)
+  //  cout.(operator<<)(this, obj)
   cout << obj;                                //Output:   31/7/2012
 }
 
