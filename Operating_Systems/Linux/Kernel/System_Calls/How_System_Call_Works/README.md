@@ -31,4 +31,5 @@ count = read(fd, buffer, nbytes);
                                                     -----------------------> HARD DISK
                                                     <----------data-------------
                                      <- Copied on Pvt Buffer-               
+User process cleans stack                                     
 ```
