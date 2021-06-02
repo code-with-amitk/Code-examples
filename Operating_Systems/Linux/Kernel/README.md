@@ -1,2 +1,7 @@
 - **What is kernel?** Heart of Linux OS. Kernel is chunk of code doing following [TASKS](Tasks_of_Kernel.md)
-- **[User Mode vs Kernel Mode](UserMode_vs_KernelMode)**
+- *[User Mode vs Kernel Mode](UserMode_vs_KernelMode)*
+- _[Interrupts](Interrupts)_
+  - Sources of Interrupts, Types of Interrupts, How Interrupt travels from HWDevice to CPU
+- _[Shell](Shell)_
+  - How Shell Works, Working code
+- _[Types of IO](/Types_of_IO):_ Polling,	Interrupt Driven IO, DMA(Direct Memory Access) Based IO 
