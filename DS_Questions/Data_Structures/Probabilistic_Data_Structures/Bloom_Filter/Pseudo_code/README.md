@@ -1,6 +1,8 @@
 ## Pseudo Code
 - BF is bit array contaning 0 and 1s.
-- **Insert a element in BF**
+- All [hash functions](/Networking/OSI-Layers/Layer-3/Security) should be member of same class so that range can be defined and all hash functions generate key within that range.
+
+### Insert a element in BF
 ```c
 Element to be inserted: x
 
