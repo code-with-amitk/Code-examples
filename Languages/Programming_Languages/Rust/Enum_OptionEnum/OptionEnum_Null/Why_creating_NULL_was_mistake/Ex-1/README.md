@@ -17,7 +17,7 @@ Got Null ptr reference
 Segmentation Fault
 ```
 - **How Rust avoid it?**
-  - _1._ Whichever variable can have NULL or other value, Rust asks to declare it as [Option<T>]()
+  - _1._ Whichever variable can have NULL or other value, Rust asks to declare it as [Option`<T>`]()
   - _2._ Rust does not allow creating structure object without initializing its members.
     - It can be initialized with Some or None. This is how rust avoids NULL crashes.
 ```rust
