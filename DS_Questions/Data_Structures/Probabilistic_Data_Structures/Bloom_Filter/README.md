@@ -15,5 +15,5 @@ BF:         0 1 0 1 1 0 1 ... 1
   - _1. [False Positive](False_Positive):_ A test result wrongly indicating particular condition is set/present.
   - _2. False Negative:_ A test result wrongly indicating particular condition is absent.
 - **[Characteristics/Properties of BF](Characteristics_of_BF)**
-- [Pseudo code for insert, search element](Pseudo_code)
+- [Operations: Insert, search element, Union of 2 Bloom Filters](Operations_Insert_Delete_Union)
 - **Example Implementations:** Google Guava library uses Murmur hash algorithm.
