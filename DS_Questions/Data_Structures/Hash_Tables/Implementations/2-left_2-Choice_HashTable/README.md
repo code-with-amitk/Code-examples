@@ -4,7 +4,7 @@
   -> Table1, Table2
   -> Hash1, Hash2
 ```
-<img src="2-left-hashing.JPG" width=500 />
+<img src="2-left-hashing.JPG" width=300 />
 
 - **Inserting key into table**
   - Always keep Table1 loaded, key is inserted into Table2 only when too many collisions happen on Table1.
