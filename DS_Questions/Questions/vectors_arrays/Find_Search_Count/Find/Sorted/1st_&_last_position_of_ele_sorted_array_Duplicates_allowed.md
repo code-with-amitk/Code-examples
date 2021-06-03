@@ -27,7 +27,7 @@ a = [5,7,7,8,8,8,8,8,8,10], target = 8
 ```c++
 class Solution {
   using vec = vector<int>;    
-  int Find(vec& a, int index, bool& isFirst){
+  int Find(vec& a, int index, bool isFirst){
     if (isFirst) {
       while (index > 0 && a[index] == a[index-1])
         --index;
@@ -59,7 +59,7 @@ public:
       o.push_back(0);
     }else if (a.size() > 1){
       o.push_back(search(a, 0, a.size()-1, ele, true));
-      o.push_back(search(a, 0, a.size()-1, ele, false));
+      o.push_back(Find(a, o[0], false));
     }else {
       o.push_back(-1);
       o.push_back(-1);
