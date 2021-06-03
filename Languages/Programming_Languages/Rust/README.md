@@ -13,7 +13,7 @@
       - String Slice
       - String vs str
   - [Functions, Statements & expressions](Functions)
-  - [Control Flow: if Expression, Infinite loop = loop, while](Control_Flow)
+  - [Control Flow: if Expression, Infinite loop=loop, while, match=switch](Control_Flow)
   - [Stack=CompileTime=Fast, Heap=Runtime=Slow](StackHeap_CompileRuntime)
     - On Stack: int,float,char,string literal
     - On Heap: String(resizable string)
