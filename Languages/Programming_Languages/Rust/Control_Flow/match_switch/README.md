@@ -17,6 +17,7 @@ fn color_value(var:Color) -> u8 {
         }
         Color::Black => 2,
         Color::White => 3,
+        //if we forget to define all match enum variables, Rust gives compile time error
     }
 }
 fn main() {
