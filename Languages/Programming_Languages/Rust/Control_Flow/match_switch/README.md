@@ -26,3 +26,4 @@ fn main() {
 ```
 - **[Patterns that Bind to Values](Patterns_that_Bind_to_Values)**
 - **[Matching with Option`<T>`](Matching_OptionT)**
+- **[Default statement in match](Default_Statement_in_match)**
