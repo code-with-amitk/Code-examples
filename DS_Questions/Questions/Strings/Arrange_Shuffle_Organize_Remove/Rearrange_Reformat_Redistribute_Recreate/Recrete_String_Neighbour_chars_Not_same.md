@@ -53,14 +53,15 @@ string = ab
 ## Complexity
 - Creating Hash Table = O(n)
 - Creating priority Queue using Hash table
-  -  Since heap is balanced BT, nodes are inserted using level order traversal. Insertion=O(1) but balance=O(logn)
+  -  Since heap is balanced BT, nodes are inserted using level order traversal. Insertion=O(1) but balance=O(log26). Since only 26 unique elements are present.
 - Remove top1, top2 = O(1)  
-- Re-Insert = O(logn).
+- Re-Insert = O(log26).
   - If all elements are unique reinsertion will not happen only pop top will happen O(1).
   - if half elements are same as other half. Eg: aaaaabbbbb. Then n/2 insertions will happen. 
 - **Complexity** 
+  - **Time:**
 ```diff
- O(n) + n/2*O(logn)
+ O(n) + n/2*O(log26) = O(n)
 ```
   
 ## Code  
