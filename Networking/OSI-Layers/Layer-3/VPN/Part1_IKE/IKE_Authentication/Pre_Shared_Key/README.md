@@ -14,3 +14,4 @@ Peer-1                                          Peer-2
         
                                                             //abc matches stored psk. Peer-1 authentic
 ```
+- [Advantages, Disadvantages of PSK](Adv_Disadv_psk.md)
