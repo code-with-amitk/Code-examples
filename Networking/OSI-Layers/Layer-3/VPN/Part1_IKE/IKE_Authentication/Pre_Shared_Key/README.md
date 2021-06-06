@@ -8,9 +8,9 @@ Peer-1                                          Peer-2
           
         <-----------Authenticate-----------------
         
-	psk > |encrypt| >	XX	     internet          XX >	|decrypt| > psk(abc)
-			    /\						                            /\
-			  Peer-1 DH Pvt key                       Peer-1 DH Public key
+  psk > |encrypt| >	XX	     internet          XX >  |decrypt| > psk(abc)
+           /\                                                  /\
+        Peer-1 DH Pvt key                                  Peer-1 DH Public key
         
-                                                //abc matches stored psk. Peer-1 authentic
+                                                            //abc matches stored psk. Peer-1 authentic
 ```
