@@ -5,6 +5,6 @@
   - [IKEv1 vs IKEv2, Advatanges of IKEv2 over IKEv1](IKEv1_vs_IKEv2)
 - **IKE Phases:**
 
-|Phase-1/IKE-SA|Keys exchanges in Phase-1 are used to encrypt Phase-2 keys|
+|Phase-1/IKE-SA|Phase-2/IPSec-SA|
 |---|---|
-|Phase-2/IPSec-SA|Keys exchanges in Phase-1 are used to encrypt actual data traffic|
+|Keys exchange to encrypt Phase-2 keys|Keys exchanges to encrypt actual data traffic|
