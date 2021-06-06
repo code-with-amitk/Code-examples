@@ -8,3 +8,5 @@
 |Phase-1/IKE-SA|Phase-2/IPSec-SA|
 |---|---|
 |Keys exchange to encrypt Phase-2 keys|Keys exchanges to encrypt actual data traffic|
+
+- [IKE Authentication](IKE_Authentication): Pre-shared keys, Certificates
