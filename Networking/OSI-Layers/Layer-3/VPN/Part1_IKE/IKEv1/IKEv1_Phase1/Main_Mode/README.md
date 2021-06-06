@@ -1,4 +1,5 @@
 ## [IKEv1 Main Mode](https://www.cloudshark.org/captures/ff740838f1c2)
+- Authentication is done using [Pre-shared-keys or Certificates](/Networking/OSI-Layers/Layer-3/VPN/Part1_IKE)
 ```c
 GPH: Generic Payload Header
 SAP: SA-Payload
