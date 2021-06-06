@@ -1,5 +1,6 @@
 ## IKEv2 Phase2 / CHILD_SA
 - Authenticates Previous Messages. Exchange certificates(Optional)
+- Authentication is done using [Pre-shared-keys or Certificates](/Networking/OSI-Layers/Layer-3/VPN/Part1_IKE)
 ```c
   Peer-1(Initiator)                                                            Peer-2(Responder)
   
