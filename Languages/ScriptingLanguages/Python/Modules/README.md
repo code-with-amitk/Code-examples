@@ -1,36 +1,9 @@
 ## Module?
-- **What** File containing python functions, class, variables etc. Examples
+- **What?** This is a File containing python functions, class, variables etc. Examples
   - *sys* Access system variables, functions maintained by interpreter.
   - *builtin* Built-in identifiers of Python
+- [Creating, Importing/using Module](Creating_Using_Module)
 
-### Using modules
-- **Step-1 Define a module**
-- **Step-2 Import the module:** means including the module to use its functionality. There are 2 methods of importing a module.
-  - {Method-1} Import complete Module
-  - {Method-2} Import 1 function from Module
-```python
-###########   1. Defined module(Multiply_Sum)  ##########
-# vim Multiply_Sum.py           
-def Multiply(a,b):
-  print('Multiplies:', a*b)
-def Sum(a,b):
-  print('Sum:', a+b)  
-
-########## 2. Import module  ###########
-#### 2A. Import complete module ####
-# vim test.py
-import Multiply_Sum as MS
-#OR from Multiply_Sum import *
-MS.Multiply(1,2)                    #2
-MS.SUM(4,5)                         #9
-print(MS.__name__)                   #Print the module name: Multiply_Sum
-
-
-## 2B. Import 1 function from module
-# vim test2.py
-from Multiply_Sum import Multiply
-Multiply(2,3)                         #6
-```
 
 ## MODULES AS SCRIPTS?
 - Means passing command line arguments to module. This code needed to be added at end of module:
