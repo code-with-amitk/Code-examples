@@ -14,4 +14,6 @@
 u --> a --> b --> x --> e --> f --> v
   \        /             \        /
     c -- d                   g
+If a node x lies in the shortest path from a source node u to destination node v then the shortest path from 
+u to v is combination of shortest path from u to x and shortest path from x to v.    
 ```
