@@ -1,5 +1,6 @@
 ## Cargo
 - **What?** Rust’s build system and package manager. It downloads dependencies,libraries from `crates.io`(public repo for libraries).
+  - Rust can also be build using cmake.
 
 ## Working with cargo
 - **a. Create Project with Cargo**
