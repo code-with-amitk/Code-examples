@@ -1,7 +1,7 @@
 ## [PCI Registers / PCI Configuration Space](https://wiki.osdev.org/PCI#PCI_Device_Structure)
 - **What?**
   - [PCI Devices](../PCI_Device) can be read/written/configured using PCI configuration space registers(which are present on PCI devices only) and need to be mapped to System Memory so that Device Driver/BIOS can read them.
-- **[Locating PCI Config Space]():** RDP-PTR > RDSP-struct{xsdt-struct-address} > XSDT-struct{64bit-mcfg-struct-address} > MCFG-struct{contains MCFG_BaseAddress} > Store Mapping to PCIConfig Spac
+- **[Locating PCI Config Space](Locating_PCI_Config_Space.md):** RDP-PTR > RDSP-struct{xsdt-struct-address} > XSDT-struct{64bit-mcfg-struct-address} > MCFG-struct{contains MCFG_BaseAddress} > Store Mapping to PCIConfig Spac
 - [BARS](./BARs)
 - [Capabilites](./Capabilites)
 
