@@ -3,34 +3,19 @@
   - *sys* Access system variables, functions maintained by interpreter.
   - *builtin* Built-in identifiers of Python
 - [Creating, Importing/using Module](Creating_Using_Module)
+- [Modules as scripts](Modules_as_scripts)
 
 
-## MODULES AS SCRIPTS?
-- Means passing command line arguments to module. This code needed to be added at end of module:
-```
-    # vim mult_sum.py
-        def mult1(a,b):
-            print('Mult:',a*b)
-        def sum1(a,b):
-            print('Sum:',a+b)    
-        if __name__ == "__main__":
-            import sys
-            mult1(int(sys.argv[1]),int(sys.argv[2]))
-
-    # python3.6 mult_sum.py 2 3         #6
-```
-
-
-## dir() function
-```
+- **dir() function**
+```python
 print(dir(a))       #['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', 
 '__package__', '__spec__', 'mult1', 'sum1']
 ```
 
 
-## MODULE EXAMPLES
-### A. sys module
-```
+### Module Examples
+- **A. sys module**
+```python
 import sys
 print(sys.path)     #['/root/amit-code/python', '/usr/lib64/python36.zip', '/usr/lib64/python3.6', 
 '/usr/lib64/python3.6/lib-dynload', '/root/.local/lib/python3.6/site-packages', '/usr/local/lib64/python3.6/site-packages', 
@@ -38,8 +23,8 @@ print(sys.path)     #['/root/amit-code/python', '/usr/lib64/python36.zip', '/usr
 '/usr/lib64/python3.6/site-packages', '/usr/lib/python3.6/site-packages']
 ```
 
-### B. builtins module
-```
+- **B. builtins module**
+```python
 import builtins
 print(dir(builtins)) #['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 
 'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 
