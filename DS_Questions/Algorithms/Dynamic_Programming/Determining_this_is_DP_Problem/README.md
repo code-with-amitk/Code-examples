@@ -10,5 +10,8 @@
 ### Case-2: Optimal Substructure
 - Shortest path of graph has this property. In given graph if we want to find shortest path from u to v.
 ```c
+
 u --> a --> b --> x --> e --> f --> v
+  \        /             \        /
+    c -- d                   g
 ```
