@@ -8,3 +8,8 @@
 - _2._ [Shared queue among threads](Sharing a queue among three threads)
 - _3._ move constructor, how its internally implemented?
 - _4._ Implementing own strtok()
+
+### Round-3
+- _1._ Design dropbox client application. 
+  - What are issues in calculating chunks if user keeps on editing and saving small changes.
+  - How do you know which chunk has changed, if user adds in mid then at front, your design will resend all chunks again.
