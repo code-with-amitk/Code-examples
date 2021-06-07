@@ -7,16 +7,18 @@
 ```
 - **commit:**    This is not Central Repo. but this is final local copy
 ```c
-        # git rev-list -n 1 sssd-1_16_4_21                                                                                //finding commit-id of version
-        # git log;   git commit --amend    # git push origin branch -f                                    //Changing commit message
+  # git rev-list -n 1 sssd-1_16_4_21      //finding commit-id of version
+  # git log;   
+  # git commit --amend    
+  # git push origin branch -f     //Changing commit message
 ```
 - **fetch:**    Download objects and refs from another repository
 - **log:**    Shows commit logs.
 ```c
-        # git log --graph
-        # git log --grep 'openldap' --oneline
-        # git log --since='<date>' --until='<date>' --pretty=oneline --grep openldap                //Look for commits between dates
-        # git log commit-id-1 commit-id-2  --pretty=oneline                                                    //Look for commits between commit-ids
+  # git log --graph
+  # git log --grep 'openldap' --oneline
+  # git log --since='<date>' --until='<date>' --pretty=oneline --grep openldap     //Look for commits between dates
+  # git log commit-id-1 commit-id-2  --pretty=oneline                       //Look for commits between commit-ids
 ```
 - **show** To see code changes that particular commit did
 ```c
