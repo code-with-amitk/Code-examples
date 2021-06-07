@@ -1,15 +1,15 @@
-## CLONE
+## clone
 
-- Open Linux terminal which can ping git server and configure following
-```
+- _1._ Open Linux terminal, Configure url, user, email
+```c
 # git config --global url "ssh://gerritgitmaster/".pushInsteadof "ssh://gerritgit/"
 # git config --global user.name "Amit Kumar"
 # git config --global user.email "name@company.com"
 # git config --global pull.rebase true
 ```
 
-- Generate ssh keys and upload on gerrit server
-```
+- _2._ Generate ssh keys and upload on gerrit server
+```console
 # ssh-keygen -t rsa -C 'emailID'
 # cat ~/.ssh/id_rsa.pub
 <<<<<<<<<<<<Add this key to gerrit server>>>>>>>>>>>>>>>
@@ -26,7 +26,7 @@ Host gerritgitmaster        //This is master server.
 # chmod 0600 ~/.ssh/config  
 ```
 
-- Test connection
+- _3._ Test connection
 ```
 # ssh gerritgitmaster       //ssh master
 ..sucess message
@@ -34,7 +34,7 @@ Host gerritgitmaster        //This is master server.
 --success message
 ```
 
-- Use **Mirror** for Clone/Fetch/Pull
+- _4._ Use **Mirror** for Clone/Fetch/Pull
 ```
 # git clone ssh://gerritgit-mirror/repo-name
 ```
