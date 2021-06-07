@@ -1,16 +1,19 @@
-## Process Creation
-- **Process?**
-  - Running instance of program. All processes are decedents of swapper process(PID=0)
-  - Both(threads, processes) are independent sequence of operations
-- **fork():** Creates a new process(called child process), Called once, returns twice. fork() is internally implemented as using clone().
+## fork()
+- Creates a new process(called child process). Parent has `|CS|DS|SS|HS|` in memory, on fork 1 more copy is created and processor is allocated to each randomly.
+- fork() is internally implemented as using clone().
 ```c
 pid_t fork(void)        //typedef int pid_t;
  
-                pid_t ret = fork()
-      ----ret==0-----|-----ret!=0--
-      |                           |
-   Child                       Parent
-|CS|DS|SS|HS|               |CS|DS|SS|HS|        
+<---------------- Memory ------------------------->
+ Parent's|CS|DS|SS|HS| -----
+                           |            Child's
+              fork()  ----copies --> |CS|DS|SS|HS|
+                 
+ 
+ main() {   //Parent    
+  if (fork() == 0)    //Child
+  else               //Parent
+ }
 
 getppid(): To get Parent's ProcessID.    
 getpid(): Get self PID
