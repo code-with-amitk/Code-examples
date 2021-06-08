@@ -20,11 +20,13 @@
 - It will notify chunker about the change. This also implements *select()/poll()/epoll()* API, it listens for communication from drop-box server.
 
 ### 3. Chunker 
-- Module doing all processing about chunks. Fills/updates *Internal Metadata database*.
-- Decide chunk-size on the fly based on directions from dropbox server.
-- On reception of message from watcher, Calculate hash of all the chunks.
-- Compare oldHashes with newHash deciding on which chunk to be transmitted.
-- This module is also responsible for recreation of file on reception of **chunks**.
+- **Chunker Functions**
+  - Module doing all processing about chunks. Fills/updates *Internal Metadata database*.
+  - Decide chunk-size on the fly based on directions from dropbox server.
+  - On reception of message from watcher, Calculate hash of all the chunks.
+  - Compare oldHashes with newHash deciding on which chunk to be transmitted.
+  - This module is also responsible for recreation of file on reception of **chunks**.
+- **[Questions about chunks](Questions_about_chunks)**
 
 ### 4. Transmitter 
 - Module sending the changed chunk to dropbox server. Chunker will provide this information to transmitter:
