@@ -1,5 +1,5 @@
 ## VPN Terms
-- *Cookie*
+- **Cookie**
   - This is [MAC(not hash)](../../Security) which is generated during IKE Phase-1 (IKE SA) exchange. 
   - Initiator Generates {Initiator SPI = Initiator Cookie}
   - Responder generates {Responder Cookie = Responder SPI}
