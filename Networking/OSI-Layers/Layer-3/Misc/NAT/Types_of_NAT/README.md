@@ -17,16 +17,8 @@
 - Private Address Space/Pool has corresponding Public Address Space/Pool. 
 - Every computer on the network must be allocated a single dedicated routable IP address.
 
-### B. Dynamic NAT 
-- Pool of Public IP Addresses is reserved at beginning. 
-- And at run-time Router picks up the IP Address from Pool for address translation.
+### [B. Dynamic NAT](Dynamic_NAT)
 
-### C. PAT(Port Address Translation)
-> Also called IP Masquerading/ NAPT(N/W address & Port Translation)/ NAT Overloading
-- Router will use only Single Public IP Address. Example
 
-|Inside Local IP:Port| Inside Global IP:Port |	Outside Global IP:Port |
-|---|---|---|
-|10.0.0.3: 1650 |	179.2.2.80: 1650|213.31.80.2: 80|
-10.0.0.4: 1722|179.2.2.80: 1722|213.31.80.2: 80|
+### C. [PAT(Port Address Translation)](PAT)
 
