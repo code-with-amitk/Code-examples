@@ -11,6 +11,7 @@
 - **DOI(Domain on Interpretation)**
   - IPsec DOI is a document containing definitions for all the security parameters required for the successful negotiation of a VPN tunnel
   - All the attributes required for SA and IKE negotiations. 
+- **[NAT Traversal](VPN_NAT_Traversal)**
 - **Nounce:** Random generated number by initiator. This protects against reply attacks
 - **[PFS(Perfect Forward Secrecy)](PFS)**
 - **[Pre Shared Keys](Part1_IKE/IKE_Authentication)**
@@ -22,3 +23,7 @@
 - **IPSec(Over TCP):** IPSec is set of open standards for ensuring secure private communication over Internet. IPSec does not support broadcast & multicast. Parts of IPSec:
   - Part-1: Key Exchange for Data Encryption + Peer Authentication. Eg: IKE
   - Part-2: Encrypting the data with Keys exchanged in part-1. Eg: AH, ESP
+- **XAuth:** 
+  - XAuth takes place between [IKE-Phase 1 and Phase 2](../Part1_IKE)
+  - In [remote-access vpn](../Types_of_VPN) client is asked for additional authentication(Eg: from Active Directory)
+  - It can be used between two gateways also.
