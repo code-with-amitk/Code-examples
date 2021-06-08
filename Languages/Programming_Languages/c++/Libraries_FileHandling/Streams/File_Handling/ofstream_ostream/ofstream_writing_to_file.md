@@ -1,4 +1,4 @@
-## Code
+## ofstream writing to file
 ```c++
 #include <iostream>
 #include <fstream>
