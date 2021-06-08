@@ -3,14 +3,16 @@
 <img src=dropbox-client-application.PNG width=600 />
 
 ### 1. Internal Metadata Database
-- Stores this information: all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks. 
+- Stores this information: fileIds of filess user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks. 
+- Internal DB will not store user files.
 - Client will store meta data information locally as well.
 ```c
-| fileID | No of chunks | sizeofChunk | fileStartPtr | fileEndPtr | ptrTo_hash_structure | version |
-| 0x8129 | 4 | 200 bytes | 0x45 | 0x789 | 0x492m | 4 |
-                                              \/
-                                        | hashOf-Chunk1 | .... | hashOf-Chunk4 |
-                                          hashOf_chunkStructure
+| fileID | No of chunks | sizeofChunk | fileStartPtr | fileEndPtr | ptrTo_chunk_hash_ll | version |
+| 0x8129 |       4      | 200 bytes   | 0x45         |     0x789  |      0x9999         |    4    |
+
+
+| hashOf-Chunk1 | .... | hashOf-Chunk4 |
+0x9999
 ```
 
 ### 2. Watcher 
