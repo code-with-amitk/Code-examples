@@ -80,7 +80,14 @@ index=4, We cannot jump from here and its not last index.               //Index=
 index=5, Good
 index=6, This is last index and not jump is needed.                     //Index=6 is bad
 ```
-  - *2.* Modify backtracking algorithm, such that the recursive step first checks if the index is known (GOOD / BAD). If it is known then return True / False. Otherwise perform the backtracking steps as before. Once value of the current index is determined, store in dpArray.
+  - *2.* Modify backtracking algorithm, such that the recursive step first checks if the index is known (GOOD / BAD). 
+    - If it is known then return True / False. Otherwise perform the backtracking steps as before. 
+    - Once value of the current index is determined, store in dpArray.
+- **Complexity**
+  - **Time:** O(n<sup>2</sup>) 
+    - For every element in the array, we are looking at the next `a[i]` elements to its right which is GOOD index. 
+    - `a[i]` can be at most n, where n is the length of array a.
+  - **Space:** O(2n)=O(n). First n originates from recursion. Second n comes from the usage of the dpArray table.
 - **Code**
 ```c++
 class Solution {
@@ -121,4 +128,3 @@ int main() {
   cout<<s.canJump(a);
 }
 ```
- 
