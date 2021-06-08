@@ -1,6 +1,7 @@
 ## Module
 - **What?** Same as [python module](/Languages/ScriptingLanguages/Python/Modules). File containing functions, class, variables etc. Modules can be used side-by-side of header files, see difference below.
 - **Why?** Modules help divide large amounts of code into logical parts.
+- *[How modules are different from Shared, Static Library](Modules_vs_Libraries)*
 - [Creating and using modules(In C++)](Creating_using_Modules)
 
 ### Modules vs Header Files
