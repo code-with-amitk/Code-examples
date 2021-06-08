@@ -13,4 +13,4 @@ chunk  1      2     3     4     5
  111 abcde ghijk lmnop 222 qrstu wvw333xy
 ```
 ### Answer-1
-- *1. How fopen determines offset while reading file?*
+- *1. [How fopen keeps track of offset while reading file?](/Operating_Systems/Linux/Kernel/System_Calls/APIs)*
