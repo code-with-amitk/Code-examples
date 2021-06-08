@@ -1,5 +1,6 @@
 ## Client Application
 - We can create different modules inside Client-Application doing above task. Eg:
+<img src=dropbox-client-application.PNG width=600 />
 
 ### 1. Internal Metadata Database
 - Stores this information: all files user have, no of chunks, versions, start, endPtr, pointer to structure storing hash of chunks. 
@@ -35,4 +36,3 @@
   else
     Update Original File content, Hash of chunk
 ```
- <img src=dropbox-client-application.PNG width=600 />
