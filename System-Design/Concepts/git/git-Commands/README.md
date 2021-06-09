@@ -1,9 +1,11 @@
 ## git commands
 - **add:**    This adds files onto staging area, ie in-between cache
-- **checkout:**    Switch branches or restore working tree files
+- **checkout:**
+  - _1._ When we want to create a new branch OR
+  - _2._ When we want to go onto existing branch.
 ```c
-  git checkout <branch>:  Work on older branch
-  git checkout -b <branch>:  Creating a new branch
+  git checkout <branch>           //1. Work on older branch
+  git checkout -b <branch>        //2. Creating a new branch
 ```
 - **clone:** Used to create a clone/copy of the target repository.
 - **commit:**    This is not Central Repo. but this is final local copy
