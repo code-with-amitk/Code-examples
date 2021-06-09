@@ -28,4 +28,7 @@
 - **push:**    Pushing the changes onto main branch
 - **pull:**    Synching with latest branch code
 - **status:**    tells what's modified by you, what's not modified on local repo
-- **rebase:**    Reapply commits on top of another base tip, When we should not use git rebase.
+- **rebase:** Reapply commits on top of another base tip. When we have merge conflicts we do
+```c
+# git rebase master
+```
