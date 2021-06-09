@@ -19,4 +19,14 @@ fn main(){
     crate::module_a::module_b::module_c::fun_c();   //Absolute path
     //module_a::module_b::fun();          //Relative path
 }
+
+////////Similar to filesystem///////////
+crate
+ └── module_a
+     ├── fun_a
+     └── module_b      <-------
+         ├── fun_b              |
+         └── module_c          super can reach parent (../)
+             └── fun_c          |
+             └── super ---------
 ```
