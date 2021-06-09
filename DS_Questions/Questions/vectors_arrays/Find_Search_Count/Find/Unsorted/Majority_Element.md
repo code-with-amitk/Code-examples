@@ -37,22 +37,5 @@ public:
 };
 ```
 
-### Approach-2          //[Boyer-Moore Voting Algorithm](/DS_Questions/Algorithms). Time:O(n), Space:O(1)
-- **Code**
-```c++
-class Solution {
-    
-public:
-    int majorityElement(vector<int>& nums) {
-        int Count = 0, MajorityElement = 0;
-        
-        for (auto i:nums){
-            if (Count == 0)
-                MajorityElement = i;
-            
-            Count += (i == MajorityElement) ? 1 : -1;
-        }
-        return MajorityElement;
-    }
-};
-```
+### Approach-2          //[Boyer Moore Voting Algorithm](/DS_Questions/Algorithms). Time:O(n), Space:O(1)
+- Problem is solved there, see code there
