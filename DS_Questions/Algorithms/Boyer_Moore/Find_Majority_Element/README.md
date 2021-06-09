@@ -1,3 +1,5 @@
+## [Self Video](https://youtu.be/ZF__nZQoAoc)
+
 ## Find Majority Element
 - **Majority element** is the element that appears more than `n / 2` times. Examples
 ```c
