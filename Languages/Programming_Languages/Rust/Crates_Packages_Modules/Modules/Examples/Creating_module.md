@@ -6,14 +6,24 @@
 ```rust
 mod module_a {
     pub mod module_b {              //1. module_b made public
-        pub fn fun() {              //1. fun() made public
+        pub fn fun1() {              //1. fun() made public
             print!("fun");
         }
+        fn fun2(){}
     }
 }
 
 fn main(){
-    crate::module_a::module_b::fun();   //2. Absolute path
-    module_a::module_b::fun();          //2. Relative path
+    crate::module_a::module_b::fun1();   //2. Absolute path
+    module_a::module_b::fun1();          //2. Relative path
+    
+    module_a::module_b::fun2();         //Error, cannot access private
 }
+
+////////Similar to filesystem///////////
+crate
+ └── module_a
+     |── module_b
+         ├── fun1
+         └── fun2
 ```
