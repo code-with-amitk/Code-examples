@@ -1,2 +1,3 @@
 ## Process Table
-- **What?** Kernel maintained array of structure pointers pointing to [PCB(Process Control Block)](PCB) each process.
+- **What?**
+  - Information of every process is stored in `struct task_struct` which is called [Process Control Block](PCB).
