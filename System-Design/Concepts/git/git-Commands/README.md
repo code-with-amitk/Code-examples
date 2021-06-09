@@ -5,6 +5,7 @@
   git checkout <branch>:  Work on older branch
   git checkout -b <branch>:  Creating a new branch
 ```
+- **clone:** Used to create a clone/copy of the target repository.
 - **commit:**    This is not Central Repo. but this is final local copy
 ```c
   # git rev-list -n 1 sssd-1_16_4_21      //finding commit-id of version
