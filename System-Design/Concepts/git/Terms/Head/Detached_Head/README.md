@@ -11,20 +11,3 @@ You are in 'detached HEAD' state.
 HEAD is now at 4cd80c9 test2
 ```
 - **[How to merge changes done in detached head to master or branch?](Merge_Commits_From_Detached_Head)**
-```c
-
-$ git rev-list --left-right --count master...branch2
-6       0
-
-# Create temporary branch for your detached head
-git branch tmp
-
-# Go to master
-git checkout master
-
-# Merge in commits from previously detached head
-git merge tmp
-
-# Delete temporary branch
-git branch -d tmp
-```
