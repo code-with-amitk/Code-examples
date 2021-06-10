@@ -12,4 +12,4 @@
 ### Round-3
 - _1._ Design dropbox client application. 
   - What are issues in calculating chunks if user keeps on editing and saving small changes.
-  - How do you know which chunk has changed, if user adds in mid then at front, your design will resend all chunks again.
+  - [How do you know which chunk has changed, if user adds in mid then at front, your design will resend all chunks again](/System-Design/Scalable/Dropbox_or_GoogleDrive)
