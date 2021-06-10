@@ -97,7 +97,7 @@ class Solution {
     Unknown
   };
 public:
-  bool fun(int position, vec& a, vector<State>& dpArray){
+  bool CanJumpFromPosToEnd(int position, vec& a, vector<State>& dpArray){
     if (dpArray[position] != State::Unknown)
       return dpArray[position] == State::Good ? true : false;
 
@@ -106,7 +106,7 @@ public:
     int jump = std::min(position + a[position], size - 1);
 
     for (int nextJump=position+1; nextJump<=jump; ++nextJump) {
-      if (fun(nextJump, a, dpArray)) {
+      if (CanJumpFromPosToEnd(nextJump, a, dpArray)) {
         dpArray[position] = State::Good;
         return true;
       }
@@ -119,7 +119,7 @@ public:
     vector<State> dpArray(a.size(), State::Unknown);
     dpArray[a.size()-1] = State::Good;       //Last index can always reach itself
 
-    return fun(0, a, dpArray);
+    return CanJumpFromPosToEnd(0, a, dpArray);
   }
 };
 int main() {
