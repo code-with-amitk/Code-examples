@@ -31,7 +31,7 @@ a = 3  2  1  0  4
 ```c++
 class Solution {
 public:
-    bool fun(int position, vec& a) {
+    bool CanJumpFromPosToEnd(int position, vec& a) {
         int size = a.size();
         if (position == size - 1)
             return true;
@@ -39,14 +39,14 @@ public:
         int jump = std::min(position + a[position], size - 1);
 
         for (int i = position + 1; i <= jump; ++i) {
-            if (fun(i, a))
+            if (CanJumpFromPosToEnd(i, a))
                 return true;
         }
         return false;
     }
 
     bool canJump(vec& a) {
-        return fun(0, a);
+        return CanJumpFromPosToEnd(0, a);
     }
 };
 int main() {
