@@ -13,7 +13,7 @@ file  abc xdef hij
 ```
 - _b._ Also drop-box does saves every small edit, will client application recalculate whole file's hash, resend whole file again?
 ### Answer-1
-- *[How fopen keeps track of offset while reading file?](/Operating_Systems/Linux/Kernel/System_Calls/APIs)*
+> *[How fopen keeps track of offset while reading file?](/Operating_Systems/Linux/Kernel/System_Calls/APIs)*
 - _1._ Chunker will calculate newly added characters.
 - _2._ Chunker will start calculating hash from start_of_file based on chunk size
   - _2a._ When new hash matches old, move on
