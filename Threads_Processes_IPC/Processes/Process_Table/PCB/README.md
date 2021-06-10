@@ -3,8 +3,8 @@
 ```c
 struct task_struct {
   long                 priority;
-  struct task_struct   *next_task, *prev_task;					  //DOUBLY LL
-  int                  pid;		          								  //PID
+  struct task_struct   *next_task, *prev_task;            //DOUBLY LL
+  int                  pid;                               //PID
   int                  pgrp;									            //Process Group
   struct task_struct   *p_opptr, *p_pptr, *p_cptr,        //Pointers to parent, youngest child, silbilings etc
   unsigned short       uid,suid,gid,sgid..;               //UID,GID
