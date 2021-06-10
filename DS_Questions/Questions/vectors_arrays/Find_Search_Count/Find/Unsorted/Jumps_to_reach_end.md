@@ -80,7 +80,7 @@ index=4, We cannot jump from here and its not last index.               //Index=
 index=5, Good
 index=6, This is last index and not jump is needed.                     //Index=6 is bad
 ```
-  - *2.* Modify backtracking algorithm, such that the recursive step first checks if the index is known (GOOD / BAD). 
+  - *2.* Modify above backtracking algorithm, such that the recursive step first checks if the index is known (GOOD / BAD). 
     - If it is known then return True / False. Otherwise perform the backtracking steps as before. 
     - Once value of the current index is determined, store in dpArray.
 - **Complexity**
