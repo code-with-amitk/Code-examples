@@ -1,9 +1,9 @@
 ## Thread1 Signalling Thread2 to enter Critical Section, when Thread1 is done
-- _1._ 2 Threads created.
+- _1._ Two Threads created.
 - _2._ Thread1 goes into Critical Section, does processing
-  _3._ Thread1 informs Thread2, that Thread1 is out of Critical Section
-  _4._ Thread2 enters Critical Section
-*/
+- _3._ Thread1 informs Thread2, that Thread1 is out of Critical Section
+- _4._ Thread2 enters Critical Section
+
 ```c++
 #include<iostream>
 #include<thread>
@@ -38,4 +38,13 @@ int main(){
   t1.join();
   t2.join();
 }
+
+# .a/out
+Thread1 inside Critical section
+
+Thread2 inside Critical section
+
+Thread1 inside Critical section
+
+Thread2 inside Critical section
 ```
