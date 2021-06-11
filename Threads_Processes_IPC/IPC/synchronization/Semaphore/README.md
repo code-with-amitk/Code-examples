@@ -1,9 +1,9 @@
 ## Semaphore
 - **What?** A integer whose [atomicity](/Threads_Processes_IPC/Terms) is maintained by kernel.
 ```c
-  if (variable==1)
+  if (variable==1)            //sem_post
     //Entrance allowed into Critical section 
-  if (variable==0)
+  if (variable==0)            //sem_wait
     //Entrace blocked. Wait
 ```
 - **How?** 
