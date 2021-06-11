@@ -11,6 +11,21 @@ mod module_a {
 use crate::module_a::module_b;
 
 pub fn fun1() {
-    module_b::fun();
+    module_b::fun();                        //Now module_b becomes a valid Name(as defined in crate scope)
+}
+```
+
+## use as keywords
+- Defining shorter name for path.
+```rust
+use std::fmt::Result as FmtResult;
+use std::io::Result as IoResult;
+
+fn function1() -> FmtResult {
+    // --snip--
+}
+
+fn function2() -> IoResult<()> {
+    // --snip--
 }
 ```
