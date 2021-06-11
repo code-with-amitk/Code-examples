@@ -17,6 +17,6 @@ Q: Find whether a process is IO Bound or CPU Bound?
 - **[Deadlock](Deadlock)**
 - **Pareto Principle** 90% of CPU cycles are spent in 10% of code. Means we have to focus & parallelly implement this 10% of code
 - **Race Condition?** 2 or more threads/processes are accessing/writing same shared resource(file, global variables etc) then at end result is unpredictable or wrong.
-- **[Reentrant](/Threads_Processes_IPC/Threads/Terms/)**
+- **[Reentrant](Reentrant)**
 
 
