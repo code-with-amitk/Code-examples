@@ -4,6 +4,7 @@
 - _3._ Thread1 informs Thread2, that Thread1 is out of Critical Section
 - _4._ Thread2 enters Critical Section
 
+[sem_wait(), sem_post()](../../../../APIs)
 ```c++
 #include<iostream>
 #include<thread>
