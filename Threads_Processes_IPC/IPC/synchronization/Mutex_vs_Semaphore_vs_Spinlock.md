@@ -5,7 +5,5 @@
 |---|---|---|---|
 |What|Puts thread-2 in sleep/blocked state|Signalling mechanism|Thread-2 keeps checking the lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.|
 |IPC|Yes|Yes||
-|Critical Section|Only 1 thread can be in|n threads can enter CS||
-|Acquire-Release|Holded and released by same thread|1 can acquire other can release. Suitable for producer-consumer problem.|
 |CPU Intensive?| No, sleeping thread does not consume CPU|more wrt mutex|more wrt mutex|
 |Implemented|On top of kernel futex() {Mutual exclusion}||
