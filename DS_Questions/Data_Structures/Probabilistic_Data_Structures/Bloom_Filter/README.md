@@ -14,4 +14,7 @@ BF:               1
   - _1. [False Positive](False_Positive):_ A test result wrongly indicating particular condition is set/present.
   - _2. False Negative:_ A test result wrongly indicating particular condition is absent.
 - **[Characteristics/Properties of BF](Characteristics_of_BF)**
-- **Example Implementations:** Google Guava library uses Murmur hash algorithm.
+- **[Implementations](Implementations)**
+  - Google Guava library uses Murmur hash algorithm.
+  - Compressed Bloom Filter
+  - 
