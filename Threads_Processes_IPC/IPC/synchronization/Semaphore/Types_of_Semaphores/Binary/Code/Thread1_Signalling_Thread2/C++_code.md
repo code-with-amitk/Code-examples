@@ -4,7 +4,7 @@
 - _3._ Thread1 informs Thread2, that Thread1 is out of Critical Section
 - _4._ Thread2 enters Critical Section
 
-[sem_wait(), sem_post()](../../../../APIs)
+[sem_wait(), sem_post(), sem_init(), sem_t](/Threads_Processes_IPC/IPC/synchronization/Semaphore/APIs_DataStructure)
 ```c++
 #include<iostream>
 #include<thread>
