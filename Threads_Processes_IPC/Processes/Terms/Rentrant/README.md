@@ -1,4 +1,4 @@
-###Reentrant
+### Reentrant
 - **What?** Making second call same function while a previous call has not yet finished.
 - *Example:*
   - Suppose 2 threads can excute same function `fun()`.
