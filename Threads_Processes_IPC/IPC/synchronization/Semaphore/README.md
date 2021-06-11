@@ -1,5 +1,5 @@
 ## Semaphore
-- **What?** A integer whose atomicity is maintained by kernel.
+- **What?** A integer whose [atomicity](/Threads_Processes_IPC) is maintained by kernel.
 ```c
   if (variable==1)
     //Entrance allowed into Critical section 
