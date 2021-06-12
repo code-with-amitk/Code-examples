@@ -3,7 +3,7 @@
 - find the largest rectangle containing only 1's and return its area.
 - Example
 
-<img src=https://assets.leetcode.com/uploads/2020/09/14/maximal.jpg width=400 />
+<img src=https://assets.leetcode.com/uploads/2020/09/14/maximal.jpg width=300 />
 
 ```c
   1 0 1 0 0
