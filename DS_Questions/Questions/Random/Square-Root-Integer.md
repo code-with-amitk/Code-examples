@@ -1,22 +1,20 @@
-## [Problem](https://leetcode.com/problems/sqrtx/)
-- Given an integar x, Compute and return the square root of x.
-- If A is not a perfect square, return floor(sqrt(A)).
+## [Square root](https://leetcode.com/problems/sqrtx/)
+- Given an integar x, Compute and return the square root of x. If A is not a perfect square, return floor(sqrt(A)).
 - DO NOT USE SQRT FUNCTION FROM STANDARD LIBRARY
 - Examples
 ```c
-Example 1:
 Input: x = 4
 Output: 2
 Example 2:
 
-Input: x = 8
-Output: 2
-Explanation: The square root of 8 is 2.82842..., and since the decimal part is truncated, 2 is returned.
+Input: x = 10
+Output: 3
+Explanation: The square root of 10 is 3.10..., and since the decimal part is truncated, 3 is returned.
 ```
 
-### Method-1 (not recommended)
-- Calculate i*i and check whether smaller or equal to no.
-```c
+### Approach-1    //not recommended
+- Calculate `i*i` and check whether smaller or equal to no.
+```c++
 int Solution::sqrt(int a) {
   if(a==1 || a==2 || a==3)
     return 1;
@@ -33,13 +31,18 @@ int Solution::sqrt(int a) {
 }
 ```
 
-### Method-2 (Binary Search logn)
-1. Assuming square root of num is always smaller than (num/2+1). We can always search sqrt(num) between 1 and (num/2+1). Hence take left=1, right=num/2+1 for binary search.
-```c++
-sqrt(5) = 2 < (5/2 + 1)
-sqrt(16) = 4 < (16/2 + 1)
+### Approach-2          //Binary Search O(logn)
+- **Logic**
+  - _1._ Square root of num is always smaller than (num/2)+1. 
+  - _2._ We can always search sqrt(num) between 1 and (num/2+1). 
+```c
+num = 10. sqrt(10) = 3.11.  (num/2)+1=6.  Sqrt is always smaller than 6
+sqrt(5) = 2 < (5/2 + 1) = 3
+sqrt(16) = 4 < (16/2 + 1) = 9
 ```
-2. Find mid = left + right-left/2
+- _3._ Binary Search
+  - left=1, right=(num/2)+1 
+  - Find mid = left + right-left/2
 ```c++
   if (num == mid*mid)  
     //Found exact no
@@ -48,7 +51,7 @@ sqrt(16) = 4 < (16/2 + 1)
   else
     //shift search window between (left and mid-1)
 ```
-#### Code
+- **Code**
 ```c++
 int Solution::sqrt(int x) {
   if(x==1 || x==2 || x==3)
