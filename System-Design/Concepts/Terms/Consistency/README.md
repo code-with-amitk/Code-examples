@@ -1,6 +1,9 @@
 ## Consistency / Accuracy
 - With multiple copies of data maintained between master and replicas. Every read receives the most recent write or an error.
-- **Consistency patterns:**
+- **Consistency Problem?**
+  - With mutiple databases doing sync(master slave etc), client should be returned accurate and most recent information.
+
+## Consistency patterns
 
 |Type|What|Use case|
 |---|---|---|
