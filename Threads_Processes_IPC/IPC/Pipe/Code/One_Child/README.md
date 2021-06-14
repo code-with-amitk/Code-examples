@@ -27,7 +27,6 @@ int main(){
   else if (pid == 0) {                              //Child
     close(fd[0]);                                   //Close read end
     write(fd[1], "Test", 4);                        //Writes on pipe
-    printf("Inside child recieved buf[%s]\n",buf);
   } else {                                         //Parent
     close(fd[1]);                                  //close write
     waitpid(-1);                                   //Parent will wait for child
