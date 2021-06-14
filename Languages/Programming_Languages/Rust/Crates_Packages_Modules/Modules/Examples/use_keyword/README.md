@@ -15,17 +15,5 @@ pub fn fun1() {
 }
 ```
 
-## use as keywords
-- Defining shorter name for path.
-```rust
-use std::fmt::Result as FmtResult;
-use std::io::Result as IoResult;
-
-fn function1() -> FmtResult {
-    // --snip--
-}
-
-fn function2() -> IoResult<()> {
-    // --snip--
-}
-```
+### [use as](use_as)
+### [Re-Exporting / pub use](pub_use)
