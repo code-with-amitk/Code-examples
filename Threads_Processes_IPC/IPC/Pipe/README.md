@@ -14,6 +14,11 @@ Parent reading{
 Child Writing{  
   close(fd[0])          //close read end
 }
-```        
+```
 
-- **[Code](Code)**
+### [Code](Code)
+- See Code 1st
+- **Case-1:** Parent waiting read() on pipe from child, child Dies.
+  - Write end of pipe is closed, parent will exit
+- **Case-2:** Parent waiting read() on pipe from child, and child closes write close(`fd[1]`)
+  - Still child has not exited hence parent will wait on waitpid() for child to exit.
