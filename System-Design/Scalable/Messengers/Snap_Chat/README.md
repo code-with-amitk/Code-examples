@@ -13,7 +13,7 @@
   - _d._ Normal filters on video,image provided to sender
   - _e._ Unique userId is provided to users and all users are searched on basis of userId not phone numbers.
   - _f._ Once snap is delivered to reciever, it should be deleted from snapchat server.
-  - _g._ Thumbnail to be shown to reciever.
+  - _g._ **[Thumbnail](/System-Design/Scalable/Common_Features)** to be shown to reciever.
 - **Non-Functional**
   - _a._ User-A can add any user as his friend based on userid and send snap.
 - **Extended**
