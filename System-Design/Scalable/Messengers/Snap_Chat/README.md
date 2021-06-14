@@ -1,2 +1,40 @@
 ## Snap Chat
-- This messenger sends Text with Video or Image. Plain text cannot be sent or send very rarely.
+- This messenger sends snaps. Plain text cannot be sent or send very rarely.
+  - snap = Text + Video OR 
+  - snap = Text + Image. 
+- [See How snapchat is different from whatsapp](..)
+
+## [To Cover](/System-Design/Scalable)
+## 1. Requirements
+- **Functional**
+  - _a._ User-A can send snap to user-B.
+  - _b._ Support multimedia(video, images).
+  - _c._ Snapchat service should hold the message for 24 hours, if in case user is not online and snap cannot be delivered instantly. Eg: User is Flight, once user comes online snap gets delivered to him, then snapchat server can delete from its DB.
+  - _d._ Normal filters on video,image provided to sender
+  - _e._ Unique userId is provided to users and all users are searched on basis of userId not phone numbers.
+  - _f._ Once snap is delivered to reciever, it should be deleted from snapchat server.
+- **Non-Functional**
+  - _a._ User-A can add any user as his friend based on userid and send snap.
+- **Extended**
+  - _a._ Blocking the users
+
+## 2. BOE
+> snapchat revleaved in 2018 that number of snaps sent per day = 4 Billion. Assumed in 2021 = 10 Billion
+- **QPS(Queries per second)**
+  - 10 Billion / 86400 = 10<sup>10</sup> / 10<sup>5</sup> = 10<sup>5</sup> = 1 lac queries per second
+- **Storage Estimates:** Will try overestimate
+```c
+App Message: Metadata:75 bytes, Video:1MB
+  Dst_user_id(10 bytes)   Allowed 20 characters. 1 character:4 bytes
+  self_user_id(10 bytes)  Apart from IP address, client will send its unique user id
+  timestamp(4 bytes)      Time elapsed from epoch(1 Jan 1970) in seconds
+  Text(50 bytes)          Text sent with vieo or image
+  Video(1 MB)             Video message
+
+|App message|TCP(20 bytes)|IP(20 bytes)|DL(18 bytes)|         
+//Note TCP,IP,DL Headers are not stored, these are used by router not snapchat.
+
+                    1 day         //Assuming snapchat stores offline user data for 24 hours only
+Metadata  = 75B x 10 Billion = 750 Billion  = .7 TB   //1 High end computer having 1 TB Hard disk
+Videos    = 1MB x 10 Billion = 10 pow 15    = 1 PB    //1000 High end computers having 1 TB Hard disk
+```
