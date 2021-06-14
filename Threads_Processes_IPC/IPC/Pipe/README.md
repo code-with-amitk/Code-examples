@@ -1,25 +1,13 @@
 ## Pipe
 - System call create a pipe for one-way communication between parent and child
-```c
-int fd[2];
-pipe(fd)                            //Makes this array as pipe. fd[0]:read end, fd[1]:write end
-Parent's |CS|DS|SS fd[2]|ptr_to_heap|
-
-Parent's |CS|DS|SS fd[2]|ptr_to_heap| --fork() duplicates--> Child |CS|DS|SS fd[2]|ptr_to_heap|
-//Now Two fd[2] exists after fork.
-
-Parent reading{ 
-  close(fd[1])          //close write end
-}
-Child Writing{  
-  close(fd[0])          //close read end
-}
-```
+- **[How Pipe works?](How_pipe_works.md)**
+- **[Advantages of pipes over files](Advantages_of_Pipes)**
 
 ### [Code](Code)
-- See Code 1st
+### Cases
+> See code 1st
 
-|Case|Result
+|Case|Result|
 |---|---|
 |Process reading from empty pipe|read() blocks until data is available|
 |Process attempts to write to full pipe|write() blocks until sufficient data has been read from pipe|
