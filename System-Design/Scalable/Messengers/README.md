@@ -1,4 +1,9 @@
 ||FB-Messenger|Whatsapp|Snapchat|
 |---|---|---|---|
-|Mostly used for|Text|Text+Image+Videos|Snap=Image+Text or Video+Text. Snaps are sent|
-|Message Storage|months or years|-|Server stores message until its read by reciever. Once reciever reads it server deletes from its DB|
+|Creating Groups|y|y|n|
+|Encryption|y|y|n|
+|Media|Images/video/documents/audio|same as fb-msg|Images/video|
+|Location sharing|y|y|n|
+|Storage/Backup|images,text gets stored in gallery|same as fb-msg|not allowed|
+|Automatic Deletion on Images|n|n|yes in 24 hours|
+|Use case|-|messaging & sharing important documents|For entertainment|
