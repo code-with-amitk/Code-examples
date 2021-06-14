@@ -1,4 +1,4 @@
-## 2 Mutable references are not allowed in particular scope
+## 2 Mutable references are not allowed in same scope
   - *Why?* To avoid data race conditions. Race condition occurs when any of 3 behaviours happen:
     - Two or more pointers access the same data at the same time.
     - At least one of the pointers is being used to write to the data.
