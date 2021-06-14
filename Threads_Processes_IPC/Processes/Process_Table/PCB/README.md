@@ -1,5 +1,5 @@
 ## PCB / Process Control Block / Process Context
-- **What?** PCB of `struct task_struct` is Data structure for storing all information of a process.
+- **What?** PCB is Data structure for storing all information of a process. [struct task_struct](https://www.cs.fsu.edu/~baker/opsys/examples/task_struct.html)
 ```c
 struct task_struct {
   long                 priority;
