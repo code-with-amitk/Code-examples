@@ -13,6 +13,7 @@
   - _d._ Normal filters on video,image provided to sender
   - _e._ Unique userId is provided to users and all users are searched on basis of userId not phone numbers.
   - _f._ Once snap is delivered to reciever, it should be deleted from snapchat server.
+  - _g._ Thumbnail to be shown to reciever.
 - **Non-Functional**
   - _a._ User-A can add any user as his friend based on userid and send snap.
 - **Extended**
@@ -37,4 +38,27 @@ App Message: Metadata:75 bytes, Video:1MB
                     1 day         //Assuming snapchat stores offline user data for 24 hours only
 Metadata  = 75B x 10 Billion = 750 Billion  = .7 TB   //1 High end computer having 1 TB Hard disk
 Videos    = 1MB x 10 Billion = 10 pow 15    = 1 PB    //1000 High end computers having 1 TB Hard disk
+```
+
+## 3. API Design
+- All API's should be extensible, ie if in future want to add new parameters that can be added). [Variadic Templates C++](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Templates/Variadic)
+- **1. Sender call these APIs**
+```c
+sendMessage (string dst_user_id, string src_user_id, uint32_t timestamp, string text, uint8_t video)
+```
+- **2. Reciever call these APIs:** Reciever will get snaps from server in 2 ways:
+  - _a. PUSH:_ Whenever reciever comes online, server pushes the pending messages.
+  - _b. PULL:_ Whenever reciever want to get messages it refreshes and takes message from server.
+```c
+struct Message_details {
+  string text,
+  string video_url_on_object_store,
+  string src_user_id
+}
+GetMessages (string self_user_id,        //Pull API
+             uint32_t get_messages_after_timestamp,
+             Message_details[]
+)
+
+PushAllMessages (Message_details[])    //Push API
 ```
