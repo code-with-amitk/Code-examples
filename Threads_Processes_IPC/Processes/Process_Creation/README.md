@@ -5,8 +5,8 @@
 pid_t fork(void)        //typedef int pid_t;
  
 <---------------- Memory ------------------------->
- Parent's|CS|DS|SS|HS| -----
-                           |            Child's
+ Parent's|CS|DS|SS|HS| 
+                |                      Child's
               fork()  ----copies --> |CS|DS|SS|HS|
                  
  
