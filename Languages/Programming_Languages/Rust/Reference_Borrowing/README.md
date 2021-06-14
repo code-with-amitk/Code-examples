@@ -1,4 +1,4 @@
-## References = Borrowing
+## Borrowing = References
 - **Ownership = passed by value**
 - **Borrowing?** 
   - When variable is passed by reference(ie borrowed), we dont have ownership, hence variable cannot be changed.
