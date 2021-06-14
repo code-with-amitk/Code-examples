@@ -1,8 +1,8 @@
 ### Code
 - Child writing, parent reading
 ```c  
-fd[0]     //read end
-fd[1]     //write end
+//fd[0]     //read end
+//fd[1]     //write end
 
 #include <unistd.h>
 #include <stdio.h>
