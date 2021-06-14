@@ -20,4 +20,6 @@
   - [Ownership=call by value](Ownership_and_Functions)
   - [References, Borrowing, Mutable References](Reference_Borrowing)
   - [Methods and Associated Functions](Methods_AssociatedFunctions)
+  - [Crates,Modules,use keyword, super keyword, use as, pub use](Crates_Packages_Modules)
+  - [Collections](Collections)
 
