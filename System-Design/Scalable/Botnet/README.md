@@ -8,4 +8,4 @@
   - [Life cycle of Bot](Bot_Lifecycle)
 
 ### [Architecture](Botnet_Architecture)
-  - *[Drawbacks in C&C Architecture](Botnet_Architecture/Drawbacks.md)
+  - [Drawbacks in C&C Architecture](Botnet_Architecture/Drawbacks.md)
