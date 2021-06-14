@@ -10,8 +10,8 @@
   - *3.* Online/Offline users should be shown to user.
   - *4.* User can send message to any person on facebook provided target person has not blocked incoming messages.
 - **Non-Functional**
-  - *1.* Highly [Consistent](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md). User should see same data across all devices.
-  - *2.* min [Latency](/Scalable/README.md)
+  - *1.* Highly [Consistent](/System-Design/Terms). User should see same data across all devices.
+  - *2.* min [Latency](/System-Design/Terms)
 - **[Extended](/Scalable/README.md)** 
   - Group chats
   - Messenger should be able to notify users of new messages when they are offline.
@@ -34,7 +34,7 @@
 # 3. HLD
 
 ### Steps
-  - *1-6* Same as [Facebook newsfeed](/System-Design/Scalable/facebook/News%20Feed)
+  - *1-6* Same as [Facebook newsfeed](/System-Design/Scalable/Facebook/News%20Feed)
   - *7.* User-1 will keep a connection open with the server to receive ACK. [App/Chat-server](/Networking/OSI-Layers/Layer5/ApplicationServer_WebServer) sends ack back to user-1 using zookeeper. Also pushes message on [MOM](/System-Design/Concepts/MOM_ESB)
   - *8.* db-update gets notification and updates DB(with Message and timestamp). Timestamp will maintain ordering of messages. Pushes message on MOM.
   - *9.* Fetcher service will recieve notification and gets message from DB. `src=user1,dst=usr2`
@@ -58,12 +58,12 @@
     - HBase does not writes small chunks of data but write all data at once.
       - How many HBase databases required? Assuming 1 HBase-DB can store 10 TB. 2.7PB/10TB = 1000
 ### 4b. Storing chats on DB
-  - [Sharding based on userId](/System-Design/Concepts/Databases/Database_Scaling/README.md)
+  - [Sharding based on userId](/System-Design/Concepts/Databases/Database_Scaling)
 
 ## 5. Extended Req
 - **1. Group-Chat**
   - Create a seperate table/Object called GroupChat. Each groupchat will have GroupChatId and will contain userIds which are part of GroupChat.
 
-## [6. Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+## [6. Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems)
 
-## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
+## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements)
