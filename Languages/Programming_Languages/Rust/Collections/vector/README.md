@@ -3,4 +3,5 @@
 - **Operations**
   - [Creating a Vector](Creating)
   - [Initializing a vector](Initializing)
+  - [Updating a vector](Updating)
   - [Accessing a vector](Accessing)
