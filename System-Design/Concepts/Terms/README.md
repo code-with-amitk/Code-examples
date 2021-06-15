@@ -12,6 +12,7 @@
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
 - **[Consistency / Accuracy](Consistency)**
 - **[CAP Theorem](CAP_Theorem)**
+- **Deduplication:** Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 - **[Flash Crowd](FLash_Crowd)**
 - **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
