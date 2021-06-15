@@ -71,9 +71,29 @@ PushAllMessages (Message_details[])    //Push API
 ```
 
 ## 4. HLD
-- _1. to 6._ Same as [FB News Feed](/System-Design/Scalable/Facebook)
+- _1. to 3._ Same as [FB News Feed](/System-Design/Scalable/Facebook)
+- _4._ User-A creates a snap(Video+Text), searches User-B and sends to App-Server using ISP
 ```console
-                Application-Server                                            User-A
-                                  <-src=UserA_id, dst=UserB_id, timestammp
-                                    text, Video, messageId
+App-Server                                                                                  User-A
+      <- HTTPS(UserA_id, dst=UserB_id, timestamp, text, Video, messageId) | TCP | IP | DL |-
+```
+- _5._ HTTPS message is decrypted using SSL Terminators.
+- _6._ [Load Balancer](/System-Design/Concepts/Load_Balancer) selects App server based on [Least Response Time Scheduling algo](/System-Design/Concepts/Load_Balancer) and sends packet.
+- _7._ Application-Server will send User_B_id, timestamp, messageId to DBFinder service.
+- **8. DBFinder:** 
+  - *Purpose of DBFinder?* 
+    - Find and searches DB which stores table of User_B, that messageId exists or not?  //See User's Table
+    - Respond to AppServer, if messageId exits its duplicate else not
+  - *Avoiding Deduplication?*
+    - Every user's snaps are stored in DB until he reads them. Eg: When User_A sends snap to User_B. This snap is stored in User_B's table in DB.
+    - AppServer will check User_B's SQL Database table that `messageId` exists in table or not?
+      - Worldwide all snapchat clients But once message is delivered, AppServer will inform clients to reuse/reset the messageId
+    - if messageId exists then its duplicate message, drop it.
+
+## 5. DB Schema
+- **User's Table**
+```
+| UserID | messageID | TextURL | VideoURL | Timestamp | src_UserID |
+| ------ | --------- | ------- | -------- | --------- | ---------- |
+| User_B | kanskna   | <>      |  <>      | 123       | User_A     |
 ```
