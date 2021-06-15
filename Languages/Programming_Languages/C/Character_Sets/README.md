@@ -10,5 +10,5 @@
 
 ||[ASCII](ASCII)|[Unicode](Unicode)|[UTF-8](UTF-8)|
 |---|---|---|---|
-|Bits|7. Can represent (2<sup>7</sup>=0-127) characters.|21 bits. Can represent 2<sup>21</sup> characters.||
-|Characters|0=48,1=49,A=65,B=66,..a=97||
+|Bits|7. Can represent (2<sup>7</sup>=0-127) characters.|21 bits. Can represent 2<sup>21</sup> characters.|8 Bits. (0-255) |
+|Characters|0=48,1=49,A=65,B=66,..a=97||Used 97% worldwide now|
