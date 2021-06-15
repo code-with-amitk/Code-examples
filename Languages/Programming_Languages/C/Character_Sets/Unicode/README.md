@@ -1,8 +1,11 @@
 ## Unicode
-- Came to resolve issues of ASCII in 1980's.
-- Unicode has 1lac 10k points to represent 1lac 10k different characters.
-  - `0 - 127` are same as [ASCII](..)
-  - `128-255` contains currency symbols and other common signs.
-  - `256-799` Accented characters.
-  - `880-` Greek letters, then Cyrillic, Hebrew, Arabic, Indic scripts, and Thai. 
-  - `11904-` Chinese, Japanese and Korean start from 11904.
+- **What?**
+  - Came to resolve issues of ASCII in 1980's.
+  - Unicode has (1lac 10k points= 21bits) to represent 1lac 10k different characters.
+    - `0 - 127` are same as [ASCII](..)
+    - `128-255` contains currency symbols and other common signs.
+    - `256-799` Accented characters.
+    - `880-` Greek letters, then Cyrillic, Hebrew, Arabic, Indic scripts, and Thai. 
+    - `11904-` Chinese, Japanese and Korean start from 11904.
+- **Drawbacks?**
+  - Computers read write at 8 bit boundary, we can send Unicode characters but not much use.
