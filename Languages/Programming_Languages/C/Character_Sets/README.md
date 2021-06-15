@@ -9,6 +9,6 @@
 - Way of representing and transmitting information
 
 ||ASCII(American Standard Code of Information Exchange|Unicode|UTF-8|
-|---|---|---|
+|---|---|---|---|
 |Bits|7 (0-127)|huge 2<sup>21</sup>||
 |Characters|0=48,1=49,A=65,B=66,..a=97||
