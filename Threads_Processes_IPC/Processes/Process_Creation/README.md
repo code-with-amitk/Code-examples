@@ -20,9 +20,11 @@ getpid(): Get self PID
 int wait(int *status): Parent process to wait for child to terminate. returns pid of terminated child, sets term_status in status. 
 This blocks parent if it has any unterminated child, else returns immediately.
 ```
-- **[COW(Copy On Write):](process_copy_on_write.c)** CS, DS, SS, HS all are shared between parent & child Initially. If any one of them Modifies, New page is created & modified data is copied
 
 ## [Code](Code)
- - _1._ Creating 1 child of parent
- - _2._ Creating 2 children of parent
+- **Creating n children of parent**
+   - _1._ 1 child of parent
+   - _2._ 2 children of parent
+- **COW(Copy On Write):** 
+  - CS, DS, SS, HS all are shared between parent & child Initially. If any one of them Modifies, New page is created & modified data is copied
 
