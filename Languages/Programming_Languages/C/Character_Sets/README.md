@@ -8,7 +8,7 @@
 ### Encoding Formats
 - Way of representing and transmitting information
 
-||[ASCII](ASCII)|Unicode|UTF-8|
+||[ASCII](ASCII)|[Unicode](Unicode)|[UTF-8](UTF-8)|
 |---|---|---|---|
-|Bits|7 (0-127)|huge 2<sup>21</sup>||
+|Bits|7. Can represent (2<sup>7</sup>=0-127) characters.|21 bits. Can represent 2<sup>21</sup> characters.||
 |Characters|0=48,1=49,A=65,B=66,..a=97||
