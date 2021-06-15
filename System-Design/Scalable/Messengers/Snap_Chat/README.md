@@ -71,7 +71,7 @@ PushAllMessages (Message_details[])    //Push API
 ```
 
 ## 4. HLD
-- _1. to 6._ Same as [FB News Feed](/System-Design/Scalable/Facebook/News Feed)
+- _1. to 6._ Same as [FB News Feed](/System-Design/Scalable/Facebook)
 ```console
                 Application-Server                                            User-A
                                   <-src=UserA_id, dst=UserB_id, timestammp
