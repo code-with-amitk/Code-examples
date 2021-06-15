@@ -41,7 +41,7 @@ Videos    = 1MB x 10 Billion = 10 pow 15    = 1 PB    //1000 High end computers 
 ```
 
 ## 3. API Design
-- All API's should be extensible, ie if in future want to add new parameters that can be added). [Variadic Templates C++](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Templates/Variadic)
+- All API's should be extensible, ie if in future want to add new parameters that can be added). [Variadic Templates C++](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Templates/Variadic), kwargs in python, va_list in c
 - **1. Sender call these APIs**
 ```c
 sendMessage (string dst_user_id, string src_user_id, uint32_t timestamp, string text, uint8_t video)
@@ -61,4 +61,12 @@ GetMessages (string self_user_id,        //Pull API
 )
 
 PushAllMessages (Message_details[])    //Push API
+```
+
+## 4. HLD
+- _1. to 6._ Same as [FB News Feed](/System-Design/Scalable/Facebook/News Feed)
+```console
+                Application-Server                                            User-A
+                                  <-src=UserA_id, dst=UserB_id, timestammp
+                                    text, Video
 ```
