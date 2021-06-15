@@ -4,4 +4,4 @@
   - `128-192` as the key to be shifted
   - `192-247` as Shift keys
 
-<img url=utf-8.png width=400 />
+<img src=utf-8.png width=400 />
