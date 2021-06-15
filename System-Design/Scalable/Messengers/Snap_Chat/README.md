@@ -42,11 +42,18 @@ Videos    = 1MB x 10 Billion = 10 pow 15    = 1 PB    //1000 High end computers 
 
 ## 3. API Design
 - All API's should be extensible, ie if in future want to add new parameters that can be added). [Variadic Templates C++](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Templates/Variadic), kwargs in python, va_list in c
-- **1. Sender call these APIs**
+### A. Sender call these APIs
+- **[Deduplication](/System-Design/Concepts/Terms) is avoided using messageId.** if server finds messageId already in DB, it will consider message as duplicate and discard it.
 ```c
-sendMessage (string dst_user_id, string src_user_id, uint32_t timestamp, string text, uint8_t video)
+sendMessage ( string dst_user_id,
+              string src_user_id,
+              uint32_t timestamp,           //sec elapsed from Epoch(1/1/1970)
+              string text,                  //
+              uint8_t video, 
+              uint32_t messageId)           //Identifies every message Uniquely.
 ```
-- **2. Reciever call these APIs:** Reciever will get snaps from server in 2 ways:
+### B. Reciever call these APIs 
+- Reciever will get snaps from server in 2 ways:
   - _a. PUSH:_ Whenever reciever comes online, server pushes the pending messages.
   - _b. PULL:_ Whenever reciever want to get messages it refreshes and takes message from server.
 ```c
@@ -68,5 +75,5 @@ PushAllMessages (Message_details[])    //Push API
 ```console
                 Application-Server                                            User-A
                                   <-src=UserA_id, dst=UserB_id, timestammp
-                                    text, Video
+                                    text, Video, messageId
 ```
