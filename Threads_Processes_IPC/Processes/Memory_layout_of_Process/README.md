@@ -10,4 +10,4 @@
 2. **[Data Segment](Data_Segment):** Also contains Pointer to heap
 3. **[Stack Segment](Stack)**
 
-<img src=memory-layout-of-process.PNG width=400/>
+<img src=memory-layout-of-process.PNG width=700/>
