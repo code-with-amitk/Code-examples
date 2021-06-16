@@ -6,4 +6,5 @@
                    |  ----->                                                                             <--RW--><--RO-->              0x0000|
                    |                                                                                                                         |
 ```
-1. **[Code Segment](Code_Segment)**
+1. **[Code / Text Segment](Code_Segment)**
+2. **[Data Segment](Data_Segment)**
