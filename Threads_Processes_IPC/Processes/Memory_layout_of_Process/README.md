@@ -1,5 +1,5 @@
 ## Memory Layout of Process
-```c
+```console
                    |                                                                                                                         |
                    |                                       <-------DATA SEGMENT (static, global) ---------------------->                     |
 [Kernel] Process-2 | [STACK] shared_libraries [PTR-To-HEAP] {Uninitialized_BSS(Block Started by Symbol)} {Initialized DS} [TEXT/CODE SEGMENT]|
