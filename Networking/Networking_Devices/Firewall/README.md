@@ -7,4 +7,4 @@
 ```  
 - **DMZ (DeMilitarized Zone)?** Part of company, here Public-facing servers can be placed. Eg: Web servers(with minumum and none secure information)
   - *Why?* Outsiders can contact Web-server(hosting company website) and no internal machine is compromised.
-- **Stateful Firewalls?** Map packets to connections and use TCP/IP header fields to keep track of connections.
+- [Types of Firewalls](Types_of_firewalls)
