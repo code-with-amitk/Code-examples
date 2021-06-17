@@ -94,4 +94,65 @@ if (input array == '1')
 2  1 2 3 4 5    
 3  1 0 0 1 0
 ```
-2. 
+_2._ Now Traverse up(onto coloumn) from given point in dpArray which is > 1 and find max height.
+  - For particular row, we already know its max length, as we traverse up maxlen=min(maxlen,lenHere)
+```c
+   0 1 2 3 4
+0  1 0 1 0 0
+1  1 0 1 2 3     
+2  1 2 3 4 5    
+3  1 0 0 1 0
+
+ row col  maxlen=min(maxlen,lenHere)  Height currArea
+  0         
+  1   0       min(1,1) = 1               1       1
+      2       min(1,1) = 1               2       2
+  2   0       min(1,1) = 1               3       3
+      1       min(2,0) = 0               0       0
+      2       min(1,3) = 1               2       2
+      
+maxLen = min(maxLen,widthHere)
+curArea = maxLen * (currentRow - originalRow + 1)
+maxArea = max(maxArea, curArea)
+```
+- **Complexity**
+  - **Time:** O(n<sup>2</sup>m)
+    - O(n*m): Creating dp array
+    - O(n): Traversing coloums upwards.
+  - **Space:**
+- **Code**
+```c++
+class Solution {
+  using vecC = std::vector<char>;
+  using vecVecC = std::vector<vecC>;
+  using vecI = std::vector<int>;
+  using vecVecI = std::vector<vecI>;    
+public:
+  int maximalRectangle(vector<vector<char>>& a) {
+    if (!a.size())        
+        return 0;
+    int cols = a[0].size();
+    int rows = a.size();
+    int maxArea = 0;
+    vecVecI dp(rows, vecI(cols,0));     //vec(row, vector<int>(col,0))
+
+    for (int i=0; i<rows; ++i){
+      for (int j=0; j<cols; ++j){
+
+        if (a[i][j] == '1') {
+          dp[i][j] = j==0 ? 1 : dp[i][j-1]+1;              //Step-1. Creating dpArray
+
+          int maxLen = dp[i][j];
+
+          for (int k=i; k>=0; --k) {                      //Step-2: Traversing upward from col
+            len = min(maxLen, dp[k][j]);
+            maxArea = max(maxArea, maxLen * (i-k+1));
+          }
+        }
+      }
+    }
+
+    return maxArea;        
+  }
+};
+```
