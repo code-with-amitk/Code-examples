@@ -1,6 +1,6 @@
 ## Devices
 
-||Network Firewall|Application Firewall|IPS(Intrusion Prevention System)|IDS(Intrusion Detection System)|UTM(Unified Threat Management)|
+||[Network Firewall](/Networking/OSI-Layers/Layer-3)|Application Firewall|IPS(Intrusion Prevention System)|IDS(Intrusion Detection System)|UTM(Unified Threat Management)|
 |---|---|---|---|---|---|
 |Sits on Layer|3,4|7|7|7|7|
 |What|Has rules to filter TCP, IP Packets||Inspects packet, detects attack & prevents|Same as IPS but does not take preventive action.Generates Alerts||
