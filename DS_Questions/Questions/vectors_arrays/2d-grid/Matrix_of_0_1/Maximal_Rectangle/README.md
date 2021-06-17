@@ -73,9 +73,10 @@ Max Area: 6
 3  1 0 0 1 0
 ```
 - **Logic**
-  - _1._ Calculate maximum width of a rectangle that ends at a given coordinate.
-    - Take dp array of same size as input array
-    - Initialize to 0.
+- _1._ Calculate maximum length at this point that ends at a given coordinate.
+  - Take dp array of same size as input array. Initialize to 0.
+  - if (value==`1`)
+    - dp`[present]` = 1 + dp`[prev_row]`
 ```c
 dp[4][5]
    0 1 2 3 4
@@ -87,10 +88,10 @@ dp[4][5]
 if (input array == '1')
   dp[i][j] = dp[i][j-1] + 1
 
-dp[4][5]
-   0 1 2 3 4
+   0 1 2 3 4             //Maximum length at any point rectangle can have
 0  1 0 1 0 0
 1  1 0 1 2 3     
 2  1 2 3 4 5    
 3  1 0 0 1 0
 ```
+2. 
