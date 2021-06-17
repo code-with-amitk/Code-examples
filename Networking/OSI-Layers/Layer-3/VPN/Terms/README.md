@@ -1,4 +1,5 @@
 ## VPN Terms
+- **[Anti Replay Protections](Anti_Replay_Protection)**
 - **Cookie**
   - This is [MAC(not hash)](../../Security) which is generated during IKE Phase-1 (IKE SA) exchange. 
   - Initiator Generates {Initiator SPI = Initiator Cookie}
