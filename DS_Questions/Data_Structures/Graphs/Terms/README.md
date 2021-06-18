@@ -4,3 +4,9 @@
 - *Radius:* Minimum eccentricity of any vertex.
 - **[Topological Sorting](Topological_Sorting)**
 - *Vertex/Node:* Interconnected objects are called vertices.
+- **Connected Components?** Here 3
+```c
+1---2    4--5   6
+    |
+    3
+```
