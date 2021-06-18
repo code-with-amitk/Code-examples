@@ -6,7 +6,7 @@
 |[Command](Command)||
 |Interpreter|To evaluate Grammar & Expression of Language|Musicians: They read musical notes for pitch of sound and duration|
 |[Iterator](Iterator)||
-|Mediator|Decouples of objects by introducing a layer in between|<ul><li>Online Auction System</li></ul>|
+|[Mediator](Mediator)|Decouples of objects by introducing a layer in between|<ul><li>Online Auction System</li></ul><ul><li>Air Traffic Controller</li></ul>|
 |[Observer](Observer)||
 |State|Object can change its behavior when internal state changes|Vending Machine: it has states depending on inventory, amount of currency deposited, item selected etc|
 |[Strategy/Policy](Strategy)|Class can change algorithm/strategy at run time, Choose between 2 or more.|Modes of transport to Airport: Several options are present: Driving own car, taking taxi, City bus etc., Duck Behavior: 1st Example Head 1st Design Patterns|
