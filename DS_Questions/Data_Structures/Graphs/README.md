@@ -6,12 +6,13 @@
     3 ------- 2     5
 ```
 - **[Terms?](Terms)** 
+  - Directionality(Bidirectional,Unidirectional)
+  - Edge, Vertex
+  - Topological Sorting: Kahn Algorithm
+- **[Types of Graphs](Types_of_Graphs)**
   - Cyclic/Acyclic
     - DAG(Directed Acyclic Graph)
-  - Directionality(Bidirectional,Unidirectional)
-  - Edge,Vertex.
   - Spanning Tree: Minimum Spanning Tree(Kruskal's, Prim's Algorithms)
-  - Topological Sorting: Kahn Algorithm
   - Weighted Graph
 - **[Questions](Questions)**
   - Mother Vertex Kosaraju
