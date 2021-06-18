@@ -5,15 +5,8 @@
     |         |               //Edges ={01, 12, 23, 03}
     3 ------- 2     5
 ```
-- **[Terms?](Terms)** 
-  - Directionality(Bidirectional,Unidirectional)
-  - Edge, Vertex
-  - Topological Sorting: Kahn Algorithm
-- **[Types of Graphs](Types_of_Graphs)**
-  - Cyclic/Acyclic
-    - DAG(Directed Acyclic Graph)
-  - Spanning Tree: Minimum Spanning Tree(Kruskal's, Prim's Algorithms)
-  - Weighted Graph
+- **[Terms?](Terms)** Directionality(Bidirectional,Unidirectional), Edge, Vertex, Topological Sorting: Kahn Algorithm
+- **[Types of Graphs](Types_of_Graphs)** Cyclic/Acyclic, DAG(Directed Acyclic Graph), Spanning Tree: Minimum Spanning Tree(Kruskal's, Prim's Algorithms), Weighted/Unweighted
 - **[Questions](Questions)**
   - Mother Vertex Kosaraju
   - Graph Transpose
