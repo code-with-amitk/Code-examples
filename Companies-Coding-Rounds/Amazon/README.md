@@ -1,8 +1,22 @@
-## 2/23/2020 Dublin
+### 2/23/2020 Dublin
 - **Round-1, Online Assesement. 4 Questions**
   - _1._ Drone flight planner
 
 
-## 6/18/2021  Bangalore
-- **Round-1. Online Assesment. 2 Questions**
-  - 1. Cloudfront caching problem. Finding connected components in graph.
+### 6/18/2021  Bangalore
+#### Round-1. Online Assesment. 2 Questions
+- 1. Modified [Finding connected components in disjoint set in graph](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Number_of_Connected_Components.md) called Cloudfront caching problem. 
+  - Find total cealing of all nodes in disjoint set of connected components. Cealing is defined as square root of number of elements in connected component.
+```c
+1 -- 2    4   6  7
+     |    |
+     3    5
+                       ___
+Cealing of {1,2,3} = \/ 3   = 2.23 = rounded off 3
+                     __
+Cealing of {4,5} = \/ 2   = 1.41 = rounded off 2
+Cealing of 6 = 1
+Cealing of 7 = 1
+
+Answer: 7
+```
