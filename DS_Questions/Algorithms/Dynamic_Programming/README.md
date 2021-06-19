@@ -1,4 +1,6 @@
-## Dynamic Programming
-- This is a algorithmic paradigm that solves a complex problem by breaking it into sub-problems and stores the results of sub-problems to avoid computing the same results again.
+## Dynamic Programming / Tabular Method
+- **Applicable?** When subproblems overlap.
+- **How?** DP algorithm solves each subsubproblem just once and then saves its answer in a table, thereby avoiding the work of recomputing the answer every time.
+- **Applicable?** To optmization problems.
 - [Determining this is DP Problem](Determining_this_is_DP_Problem)
 - [Algorithms used in DP](Algo_in_DP): Memoization (Top Down), Tabulation (Bottom Up)
