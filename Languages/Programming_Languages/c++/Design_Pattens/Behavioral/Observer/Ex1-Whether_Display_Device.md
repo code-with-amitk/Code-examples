@@ -1,29 +1,23 @@
 ## Design a Whether Display Device.
+- Whether display device is wall mounted and will diplay temp, pressure, humidity.
+- **Design**
+  - _1._ Sensor: Measures the temp, humidity, pressure.
+  - _2._ Collector(Subject): Recieves information from and processes it for display.
+  - *c.* Display-devices(Observer):
+    - Registers themseleves to subject.
+    - Receives trigger in case of event.
+
 ```c
-             ---------------------------
-            |                           |
-            |-------        ----------- |   ----------
-temprature->|       |-tem->|           ||<-|Display   |
-  Humidity->|Sensor |-Hum->| Collector ||->|Device    |
-  Pressure->|       |-Prr->| (subject) ||  |(observer)|
-            |-------        ----------- |   ----------
-            |                           |
-             ----------------------------
-```      
-
-### Terms
-- **Observer?** Object that wants to receive events.
-- **Subject?** receives events and will inform observers. Subject can: register observers, deregister/remove observers.
-- **How it works?**
-  - Observer will register to subject
-  - subject will inform observer.
-
-### Design
-- *a.* Sensor: Measures the temp, humidity, pressure.
-- *b.* Collector: Recieves information from sensor.
-- *c.* Display-devices(observer):
-  - Registers themseleves to subject.
-  - Receives trigger in case of event.
+              ------------Whether Display Device----------------------- 
+              |                                                        |
+              |     -------             Subject            Observer    |
+temprature->  |    |        | -tem->  -------------      ------------  |    User
+  Humidity->  |    | Sensor | -Hum->  | Collector | --> |Display Unit| |     0
+  Pressure->  |    |        | -Prr->  | (subject) |      ------------  |    /|\
+              |     -------            -----------                     |    /|\
+              |                                                        |
+               --------------------------------------------------------
+```
 
 ### Code    
 ```c++
