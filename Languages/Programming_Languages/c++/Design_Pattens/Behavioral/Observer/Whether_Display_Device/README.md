@@ -18,6 +18,14 @@ temprature->  |    |        | -tem->  -------------      ------------  |    User
               |                                                        |
                --------------------------------------------------------
 ```
+- **Logic**
+  - _1._ Collector(Subject) initializes 1st.
+    - Collector will keep a vector of DisplayUnits `vector <DisplayIntf *> observers;` to notify observers when event occurs. This is filled in `SetObservers()`.
+  - _2._ DisplayUnit(Observer) will intialize after Collector.
+    - DisplayUnit will call SetObserver() method of Collector class using self this pointer.
+
+### UML Diagram
+<img src=observer-dp-whether-display-device.JPG width=500/>
 
 ### Code    
 ```c++
