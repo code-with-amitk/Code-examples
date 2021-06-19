@@ -15,7 +15,7 @@
 - **[NAT Traversal](VPN_NAT_Traversal)**
 - **Nounce:** Random generated number by initiator. This protects against reply attacks
 - **[PFS(Perfect Forward Secrecy)](PFS)**
-- **[Pre Shared Keys](Part1_IKE/IKE_Authentication)**
+- **[Pre Shared Keys](../Part1_IKE/IKE_Authentication)**
 - **[SA(Security Association)](Security_Association)**
   - *SAD(Security Association DB)* Stored SAs
 - **[SP(SECURITY POLICY):](SP)** Policies to be enforced on Traffic crossing IPSec boundaries
