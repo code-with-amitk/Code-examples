@@ -1,6 +1,6 @@
 ## SAML / Security Assertion Markup Language
 - **What?** 
-  - XML based protocol for user authentication, limited user authorization. More advanced authorization is suggested to use [XACML](https://en.wikipedia.org/wiki/XACML).
+  - Security based XML protocol for user authentication, limited user authorization. More advanced authorization is suggested to use [XACML](https://en.wikipedia.org/wiki/XACML).
   - SAML It helps in achieving SSO(Single Sign On).
 - **SAML uses:**
   - *XML Digital Signature* for authentication and Integrity.
