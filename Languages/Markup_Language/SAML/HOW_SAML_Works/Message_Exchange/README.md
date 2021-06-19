@@ -8,7 +8,8 @@ Principal/User                SP(service Provider)
     --------------------  Password  ------------------------------->
       
                                       <----- SAML Assertion --------
-    <------- Response ----------------
+    <------- Given Access ---- Access
+    ------------------------------------Access Service ----------------------------> Cloud-Service
 ```
 
 ### 3 types of SAML Queries
