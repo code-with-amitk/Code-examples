@@ -1,6 +1,6 @@
 ## IKE Authentication
 - Any of IKE identity can be used for IKE Authentication. Examples:
-  - _[1. PSK](Pre_Shared_Key)_
+  - _[1. PSK](/Networking/OSI-Layers/Layer-3/Security/AAA_Authentication_Authorization_Accounting/Authentication/Type_Of_Authentication)_
   - _2. [Certificates](Certificates)_
   - _3. IP address:_ For site-to-site VPNs, end system's(not gateway) IP Address.
   - _4. hostname:_ End system's hostnames.
