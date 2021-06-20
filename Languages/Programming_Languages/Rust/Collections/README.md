@@ -3,3 +3,4 @@
 - Collections are **always allocated on Heap**.
 - Types
   - [vector](vector)
+  - [string](string)
