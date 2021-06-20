@@ -84,7 +84,7 @@ App-Server                                                                      
 - _7._ Application-Server will send User_B_id, timestamp, messageId to DBFinder service.
 - **8. DBFinder:** 
   - *Purpose of DBFinder?* 
-    - Find and searches DB which stores table of User_B, that messageId exists or not, if not updates DB  //See User's Table
+    - Find and searches DB which stores table of User_B, that messageId exists or not, if not updates DB  //See DB Design
     - Respond to AppServer, if messageId exits its duplicate else not
   - *Avoiding Deduplication?*
     - Every user's snaps are stored in DB until he reads them. Eg: When User_A sends snap to User_B. This snap is stored in User_B's table in DB.
