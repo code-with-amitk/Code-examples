@@ -16,6 +16,7 @@
   - _a._ User-A can add any user as his friend based on userid and send snap.
   - _b._ **[Thumbnail](/System-Design/Scalable/Common_Features)** to be shown to reciever.
   - _c._ Normal filters on video,image provided to sender
+  - _d._ System should be [Eventual consistent & Highly available](/System-Design/Concepts/Terms)
 - **Extended**
   - _a._ Blocking the users
 
@@ -71,6 +72,7 @@ PushAllMessages (Message_details[])    //Push API
 ```
 
 ## 4. HLD
+> Requirement-1: Covered in Steps: 7-10
 - _1. to 3._ Same as [FB News Feed](/System-Design/Scalable/Facebook)
 - _4._ User-A creates a snap(Video+Text), searches User-B and sends to App-Server using ISP
 ```console
@@ -82,15 +84,25 @@ App-Server                                                                      
 - _7._ Application-Server will send User_B_id, timestamp, messageId to DBFinder service.
 - **8. DBFinder:** 
   - *Purpose of DBFinder?* 
-    - Find and searches DB which stores table of User_B, that messageId exists or not?  //See User's Table
+    - Find and searches DB which stores table of User_B, that messageId exists or not, if not updates DB  //See User's Table
     - Respond to AppServer, if messageId exits its duplicate else not
   - *Avoiding Deduplication?*
     - Every user's snaps are stored in DB until he reads them. Eg: When User_A sends snap to User_B. This snap is stored in User_B's table in DB.
     - AppServer will check User_B's SQL Database table that `messageId` exists in table or not?
       - Worldwide all snapchat clients But once message is delivered, AppServer will inform clients to reuse/reset the messageId
     - if messageId exists then its duplicate message, drop it.
+- _9._ Video,text,images are stored in different Databases(See DB Design), user-B,timestamp are pushed on MOM, user is acknowledged using zookeeper.
+- _10._ **Sender Service** will be subscriber to MOM and recieves (userB, timestamp). It will read DB_userB and send video,image,text to userB.
 
-## 5. DB Schema
+> Requirement-2: Holding & Deleting snap
+- _11._ After sender service receives ACK from user that message is read, it will push MessageId, userId on MOM.
+- _12._ **Deletor service** gets notifcation, reads messageID,userID from MOM, checks same in DB and deletes promptly.
+  - cronjob would be running on Database to delete the contents if age>24 hours.
+
+> Requirement-3: Searching the user
+- Application server will delegate task to DB-Finder to search userB database, if database is not found this means user is not present.
+
+## 5. DB Design
 - **User's Table**
 ```
 | UserID | messageID | TextURL | VideoURL | Timestamp | src_UserID |
