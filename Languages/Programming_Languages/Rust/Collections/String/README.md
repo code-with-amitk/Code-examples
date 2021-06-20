@@ -10,4 +10,4 @@
   let a:i32 = 5;
   let b = a;                                  //Data on stack is always deep copied
 ```
-- *[String Operations](Operations):* Creating, appending
+- *[String Operations](Operations):* Create, Concatenate/Append
