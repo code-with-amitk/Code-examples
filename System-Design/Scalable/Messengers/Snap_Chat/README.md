@@ -102,6 +102,6 @@ App-Server                                                                      
 > Requirement-3: Searching the user
 - Application server will delegate task to DB-Finder to search userB database, if database is not found this means user is not present.
 
-<img src=snapchat.jpg width=900 />
+<img src=snapchat.jpg width=1100/>
 
 ## [5. DB Design](DB_Design)
