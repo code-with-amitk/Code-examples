@@ -1,6 +1,4 @@
 ## Dynamic Programming / Tabular Method
-- [Algorithms used in DP](Algo_in_DP): Memoization (Top Down), Tabulation (Bottom Up)
-
 - **Applicable?**
   - When subproblems is calculated again & again  ie when Recursive solution solves the same subproblems repeatedly. Eg: Fibonacci series
 - **How?**
