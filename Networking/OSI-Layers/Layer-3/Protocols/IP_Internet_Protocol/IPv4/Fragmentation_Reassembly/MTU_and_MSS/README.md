@@ -6,7 +6,7 @@
 |Default value|1500| 536|
 |Related to|IPv4|	TCP|
 |When decided|Routing|3-way handshake|
-|Aftermaths 	If (packet size > MTU) {fraagmentation}|	if (TCP_packet_size > MSS) {Discard Packet}|
+|When|If (packet size > MTU) {fraagmentation}|	if (TCP_packet_size > MSS) {Discard Packet}|
 
 - If i dont want fragmentation? Increase MTU size, Use helper protocols [PMTUD]
 - Different Networks may have different MTU's. As per IEEE:
