@@ -12,6 +12,9 @@
 - **DOI(Domain on Interpretation)**
   - IPsec DOI is a document containing definitions for all the security parameters required for the successful negotiation of a VPN tunnel
   - All the attributes required for SA and IKE negotiations. 
+- **Key Lifetime?**
+  - 86400 sec = Phase-1 (IKEv1 or IKEv2)
+  - 3600 sec  = Phase-2 (IPsec data excahnge keys)
 - **[NAT Traversal](VPN_NAT_Traversal)**
 - **Nounce:** Random generated number by initiator. This protects against reply attacks
 - **[PFS(Perfect Forward Secrecy)](PFS)**
