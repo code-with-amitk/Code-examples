@@ -1,12 +1,12 @@
 ## String
 - **string literal, string type, string slice**
   - *1. string literal:* Are stored in the program’s exe(ie stack), these are also string slices.
-  - *2. String type:* Allocated on heap and can grow. String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
+  - *2. String type:* **Allocated on heap and can grow**. String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
   - *3. string slice:* Reference to part of a String taken as `string[starting_index, ending_index)`
 ```rust
   let lit:string = "test";                //1. STRING LITERAL
   
-  let mut s = String::from("hello");      //2. STRING TYPE
+  let mut s = String::from("hello");      //2. STRING TYPE. 
   s.push_str(", world!");                 //push_str() appends to string
   println!("{}", s);                      //hello, world!
   
@@ -38,4 +38,13 @@ fn main() {
 fn fun(s:&String) -> &str {                               //Function returning String Slice
     &s[0..4]
 }
+```
+- string allocated on heap is shallow copy
+```rust
+  let s1:String = String::from("test");
+  //let s2 = s1;                                //Shallow copy, ie s2,s1 both point to same memory. COMPLIER ERROR
+  let s2 = s1.clone();                          //Deep Copy. Deep copy is costly operation.
+  
+  let a:i32 = 5;
+  let b = a;                                  //Data on stack is always deep copied
 ```
