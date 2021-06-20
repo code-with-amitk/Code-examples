@@ -42,5 +42,3 @@ Primary Key: photo ID
 | userA     | key=photo-1, Value=Object<Location_of_photo, timestamp, size > |
             | key=photo-2, ...                                               |
 ```
-- **Follower Table**
-  - 
