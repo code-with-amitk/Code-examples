@@ -13,5 +13,5 @@ App/Webserver <--->[Cache]<-->[Database]
 |How internally implemented|Slab Allocator|encapsulated version of the malloc/free|
 |Scaling|Multi-threaded. Scales vertically. Give more cores, more memory|Single Threaded. Scales horizontally|
 |Replication||2 slave nodes with master|
-|Purging policy|LRU|6 different policies|
+|Cache Eviction policies|Only 1(LRU)|6 different policies|
 |Speed|less|more(since it supports different datatypes)|
