@@ -6,9 +6,20 @@
 if (bids < MinCostToSell) 
   - Will not sell item
 ```
-- **3. Bidders:** Will be notified about auction by mediator            //Observer Design Pattern
+- **3. Bidders:** Will be notified about auction by mediator
 - **4. External Product: autobidder** This can autobid on behalf of bidder. Bidder need to purchase it.
   - if bidder is online, autobidder should be disabled.
 ```uml
 
+```
+
+### Design Patterns
+  - [Observer] 
+    - Applies between Seller & Mediator.
+    - Applies between Mediator & Bidder.
+  - Mediator: Seller and Bidder will talk using mediator
+```c
+Seller(Subject) --> Mediator(Observer)
+                      |
+                    (Subject)------------> Bidder(Observer)
 ```
