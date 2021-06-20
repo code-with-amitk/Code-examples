@@ -7,7 +7,7 @@
 |If i dont want fragmentation?|Increase MTU size, Use helper protocols:PMTUD||
 |Network & respective MTUs(bytes)|802.3(Ethernet):1500, 4Mb token ring:4464, 16Mb token ring:17914||
 
-- MTU
+- MTU = 1500 bytes
 ```c
 | IP(20 bytes) | TCP(20 bytes) | App (1460 bytes) |
 ```
