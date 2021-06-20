@@ -3,8 +3,8 @@
 App/Webserver <--->[Cache]<-->[Database]
 ```
 
-### Comparison
-||Memcached|Redis|
+### Memcached vs Redis
+||Memcached|Redis(recommended bcoz of speed)|
 |---|---|---|
 |Key-value pair| y (key<250B, value<1MB)| y (key<512MB, value<512MB)|
 |Overhead|less. It does not have any inbuilt datatypes|More. Bcoz it supports datatypes as(string,hash,list,set)|
