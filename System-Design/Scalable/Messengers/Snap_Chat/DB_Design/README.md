@@ -1,5 +1,7 @@
 ## DB Design
-### SQL DB Design
+- We can store information in SQL or noSQL database.
+
+### 1. SQL DB Design
 - **User's Table**
   - Has one-to-many relationship with photo table, since 1 user can have multiple photos.
 ```c
@@ -30,7 +32,7 @@ Primary Key: photo ID
 | UserB    | UserA          |
 ```
 
-### NoSQL DB Design
+### 2. NoSQL DB Design
 - We can store same data in [noSQL Databases(Eg: dynamoDB, Cassandra)](/System-Design/Concepts/Databases) since noSQL are highly scalable, hence highly available and low latency.
 - **Photo Table (Key, value)**
   - Key would photoId and value would be object containing all metadata related to photo(Eg: location/url, timestamp, size etc)
