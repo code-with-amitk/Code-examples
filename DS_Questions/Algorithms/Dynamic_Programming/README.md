@@ -1,6 +1,21 @@
 ## Dynamic Programming / Tabular Method
-- **Applicable?** When subproblems overlap.
-- **How?** DP algorithm solves each subsubproblem just once and then saves its answer in a table, thereby avoiding the work of recomputing the answer every time.
-- **Applicable?** To optmization problems.
-- [Determining this is DP Problem](Determining_this_is_DP_Problem)
 - [Algorithms used in DP](Algo_in_DP): Memoization (Top Down), Tabulation (Bottom Up)
+
+- **Applicable?**
+  - When subproblems is calculated again & again  ie when Recursive solution solves the same subproblems repeatedly. Eg: Fibonacci series
+**How?**
+  - DP algorithm solves each subproblem just once and then saves its answer in a table, thereby avoiding the work of recomputing the answer every time.
+  - Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
+**Identifying this problem can be solved using DP?** 2 main properties of a problem that suggests that the given problem can be solved using DP.
+  - _1. Overlapping Subproblems_
+    - When recursive algorithm for the problem solves the same subproblems over and over again, we say that the optimization problem has overlapping subproblems.
+  - _2. Optimal Substructure_
+- **Methods of DP?**
+  - _1. Top Down / Memoization:_
+    - We write the procedure recursively in a natural manner.
+    - But saves the result of each subproblem (usually in an array or hash table).
+    - Now first checks to see whether it has previously solved this subproblem
+    - If solved, return the saved value, saving further computation at this level
+  - _2. Bottom up:_
+    - Sort subproblems by size and solve them in size order, smallest first.
+    - Save solutions of subproblems and refer before recalculating same as Top Down.
