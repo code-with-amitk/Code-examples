@@ -7,15 +7,15 @@
 ## [To Cover](/System-Design/Scalable)
 ## 1. Requirements
 - **Functional**
-  - _a._ User-A can send snap to user-B.
-  - _b._ Support multimedia(video, images).
-  - _c._ Snapchat service should hold the message for 24 hours, if in case user is not online and snap cannot be delivered instantly. Eg: User is Flight, once user comes online snap gets delivered to him, then snapchat server can delete from its DB.
-  - _d._ Normal filters on video,image provided to sender
-  - _e._ Unique userId is provided to users and all users are searched on basis of userId not phone numbers.
-  - _f._ Once snap is delivered to reciever, it should be deleted from snapchat server.
-  - _g._ **[Thumbnail](/System-Design/Scalable/Common_Features)** to be shown to reciever.
+  - _a. Sending snaps:_ User-A can send snap(Video, images, text) to user-B.
+  - _b. Holding & Deleting snaps:_ 
+    - Snapchat service should hold the message for 24 hours, if in case user is not online and snap cannot be delivered instantly. Eg: User is Flight, once user comes online snap gets delivered to him, then snapchat server can delete from its DB.
+    - if user is online, service will deliver message and delete snap instantly from DB.
+  - _c. Searching a user:_ Unique userId is provided to users and all users are searched on basis of userId not phone numbers.
 - **Non-Functional**
   - _a._ User-A can add any user as his friend based on userid and send snap.
+  - _b._ **[Thumbnail](/System-Design/Scalable/Common_Features)** to be shown to reciever.
+  - _c._ Normal filters on video,image provided to sender
 - **Extended**
   - _a._ Blocking the users
 
