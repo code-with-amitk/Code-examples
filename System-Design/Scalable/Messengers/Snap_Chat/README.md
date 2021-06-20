@@ -92,7 +92,7 @@ App-Server                                                                      
     - AppServer will check User_B's SQL Database table that `messageId` exists in table or not?
       - Worldwide all snapchat clients But once message is delivered, AppServer will inform clients to reuse/reset the messageId
     - if messageId exists then its duplicate message, drop it.
-  - We will place a [Cache(Eg: Redis, Memcached)](/System-Design/Concepts/Cache) between Application server and DB.
+  - We will place a [Cache(Eg: Redis or Memcached). Redis preferred](/System-Design/Concepts/Cache) between Application server and DB.
 - _9._ Video,text,images are stored in different Databases(See DB Design), user-B,timestamp are pushed on MOM, user is acknowledged using zookeeper.
 - _10._ **Sender Service** will be subscriber to MOM and recieves (userB, timestamp). It will read DB_userB and send video,image,text to userB.
 
@@ -104,6 +104,6 @@ App-Server                                                                      
 > Requirement-3: Searching the user
 - Application server will delegate task to DB-Finder to search userB database, if database is not found this means user is not present.
 
-<img src=snapchat.jpg width=1300/>
+<img src=snapchat1.jpg width=1300/>
 
 ## [5. DB Design](DB_Design)
