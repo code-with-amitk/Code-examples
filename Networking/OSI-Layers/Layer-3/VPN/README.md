@@ -7,4 +7,5 @@
 - **2 Parts**
   - _[Part-1 IKE:](Part1_IKE)_ Establish encryption keys which is used to secure data sent on VPN tunnel.
   - *[Part-2 IPSec:](Part2_IPSec)* Encrypt data & send in [Tunnel or Transport mode](Part2_IPSec/Modes_Tunnel_Transport).
+- [key lifetimes](Terms)
 - **[Packet Flow:](Part2_IPSec/Packet_Flow)** IPSec packet comes to interface, goes out
