@@ -1,4 +1,4 @@
-## ssstr
+## str
 - str is [Immutable Reference](/Languages/Programming_Languages/Rust/Reference_Borrowing). Immutable means which cannot be changed
 ```rust
     let a = "T11 is Consistency";
