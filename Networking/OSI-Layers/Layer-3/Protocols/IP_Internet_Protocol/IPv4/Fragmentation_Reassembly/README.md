@@ -1,10 +1,10 @@
 ## Fragmentation Reassembly
-- **Why?** Frag & Reassembly only happens If (Packet Size > MTU(Maximum Transmission Unit). 
+- **Why?** Frag & Reassembly only happens If (Packet Size > [MTU(Maximum Transmission Unit)](MTU_and_MSS))
 - **Fields which change during Frag, Reassembly?**
   - Identification Number: Used that of Original Frame. Remains same for all IP Fragments.
   - Flags: DF, MF
   - Fragment Offset
-- **HOW PACKET IS BROKEN TO FRAGMENTS?** Every fragment will have IP Header
+- **How packet is broken into fragments?** Every fragment will have IP Header
 ```c
     Larger Datagram: | len=4000 | ID = x | fragFlag = 0 | offset = 0 |
     
