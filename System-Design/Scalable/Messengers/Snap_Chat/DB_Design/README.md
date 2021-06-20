@@ -1,5 +1,6 @@
 ## DB Design
 - We can store information in SQL or noSQL database.
+- [Taken DB Design from](https://medium.com/double-pointer/system-design-interview-instagram-or-a-similar-app-snapchat-flickr-picasa-design-52ab03f5f2ea)
 
 ### 1. SQL DB Design
 - **User's Table**
