@@ -19,6 +19,7 @@
   - _d._ System should be [Eventual consistent & Highly available](/System-Design/Concepts/Terms)
 - **Extended**
   - _a._ Blocking the users
+  - _b._ [Following a user](DB_Design)
 
 ## 2. BOE
 > snapchat revleaved in 2018 that number of snaps sent per day = 4 Billion. Assumed in 2021 = 10 Billion
@@ -91,6 +92,7 @@ App-Server                                                                      
     - AppServer will check User_B's SQL Database table that `messageId` exists in table or not?
       - Worldwide all snapchat clients But once message is delivered, AppServer will inform clients to reuse/reset the messageId
     - if messageId exists then its duplicate message, drop it.
+  - We will place a [Cache(Eg: Redis, Memcached)](/System-Design/Concepts/Cache) between Application server and DB.
 - _9._ Video,text,images are stored in different Databases(See DB Design), user-B,timestamp are pushed on MOM, user is acknowledged using zookeeper.
 - _10._ **Sender Service** will be subscriber to MOM and recieves (userB, timestamp). It will read DB_userB and send video,image,text to userB.
 
