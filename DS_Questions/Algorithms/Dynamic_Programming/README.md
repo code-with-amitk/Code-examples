@@ -3,10 +3,10 @@
 
 - **Applicable?**
   - When subproblems is calculated again & again  ie when Recursive solution solves the same subproblems repeatedly. Eg: Fibonacci series
-**How?**
+- **How?**
   - DP algorithm solves each subproblem just once and then saves its answer in a table, thereby avoiding the work of recomputing the answer every time.
   - Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
-**Identifying this problem can be solved using DP?** 2 main properties of a problem that suggests that the given problem can be solved using DP.
+- **Identifying this problem can be solved using DP?** 2 main properties of a problem that suggests that the given problem can be solved using DP.
   - _1. Overlapping Subproblems_
     - When recursive algorithm for the problem solves the same subproblems over and over again, we say that the optimization problem has overlapping subproblems.
   - _2. Optimal Substructure_
