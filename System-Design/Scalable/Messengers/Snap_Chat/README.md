@@ -72,7 +72,7 @@ PushAllMessages (Message_details[])    //Push API
 ```
 
 ## 4. HLD
-> Requirement-1: Covered in Steps: 7-10
+> Requirement-1: Sending snap from UserA to UserB Steps(7-10)
 - _1. to 3._ Same as [FB News Feed](/System-Design/Scalable/Facebook)
 - _4._ User-A creates a snap(Video+Text), searches User-B and sends to App-Server using ISP
 ```console
@@ -94,7 +94,7 @@ App-Server                                                                      
 - _9._ Video,text,images are stored in different Databases(See DB Design), user-B,timestamp are pushed on MOM, user is acknowledged using zookeeper.
 - _10._ **Sender Service** will be subscriber to MOM and recieves (userB, timestamp). It will read DB_userB and send video,image,text to userB.
 
-> Requirement-2: Holding & Deleting snap
+> Requirement-2: Holding & Deleting snap (Steps 11,12)
 - _11._ After sender service receives ACK from user that message is read, it will push MessageId, userId on MOM.
 - _12._ **Deletor service** gets notifcation, reads messageID,userID from MOM, checks same in DB and deletes promptly.
   - cronjob would be running on Database to delete the contents if age>24 hours.
