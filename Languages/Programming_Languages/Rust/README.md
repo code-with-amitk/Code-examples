@@ -8,10 +8,6 @@
     - Scalar: int, float, bool, char
       - Array Slice
     - Compound: tuple, array, struct
-    - String
-      - Deep copy, Shallow copy, Move
-      - String Slice
-      - String vs str
   - [Functions, Statements & expressions](Functions)
   - [Control Flow: if Expression, Infinite loop=loop, while, match=switch](Control_Flow)
   - [Stack=CompileTime=Fast, Heap=Runtime=Slow](StackHeap_CompileRuntime)
@@ -21,5 +17,5 @@
   - [References, Borrowing, Mutable References](Reference_Borrowing)
   - [Methods and Associated Functions](Methods_AssociatedFunctions)
   - [Crates,Modules,use keyword, super keyword, use as, pub use](Crates_Packages_Modules)
-  - [Collections](Collections)
+  - [Collections](Collections): vector, String
 
