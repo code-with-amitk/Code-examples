@@ -2,7 +2,7 @@
 
 - [Heading1](#heading)
   - [subHeading](#subheading)
-- [Heading2](#heading)
+- [Heading2](#heading2)
 
 # Heading
 - k
@@ -214,7 +214,7 @@ g
 
 
 
-## Heading 2
+## Heading2
 - h
 - h
 - h
