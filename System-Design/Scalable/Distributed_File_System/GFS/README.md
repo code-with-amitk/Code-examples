@@ -26,21 +26,34 @@
 - GFS cluster consists of a 1 master and multiple chunkservers and is accessed by multiple clients
 ```c
     docx, xls
-  [Drop-box]GFS-Client1 <---->      Chunkserver(linux)  ---hb-----------
+  [Drop-box]GFS-Client1 <---->      Chunkserver1(linux)  ---hb-----------
                                                                         |
-                                    Chunkserver(linux)  --heartbeat -- GFS-Master
+                                    Chunkserver2(linux)  --heartbeat -- GFS-Master
                                                                         |
-        client2	 <---->             Chunkserver(linux)	----hb----------
+        client2	 <---->             Chunkserver3(linux)	----hb----------
+          |
+          | --------------which chunkserver to contact for file-x----------->
+          | <--------------------- chunkserver3 ----------------------------
+          | <------- RW ----------------->
+          
 ```
 ### Chunks
   - Files are divided into fixed-size chunks
   - Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
   - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
 ### GFS_Master
-  - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
-  - Does chunk management eg: garbage collection of orphaned chunks, chunkmigration between chunkservers.
+  - **Stores**
+    - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
+  - **Does Tasks**
+    - _1. Chunk management_
+      - Garbage collection of orphaned chunks, chunkmigration between chunkservers.
+      - Replication decisions using global knowledge
+      - Sophisticated chunk placement
+  - **Does not:**
+    - Involve in reads and writes with clients, so that it does not become a bottleneck.
 ### GFS_Client
   - GFS client is linked to each Client application implements the file system API and communicates with the master and chunkservers.
+  - Only interacts with GFS master to know which chunkserver to contact for RW, RW is done using chunkserver.
 ### Chunk_Servers
   -  Stores chunks as local files. No caching is needed here.
 
