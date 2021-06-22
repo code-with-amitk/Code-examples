@@ -1,10 +1,6 @@
 ## Docker Networking
 - [What_is_Docker_Networking](#What_is_Docker_Networking)
 - [Types_of_Docker_Networking](#Types_of_Docker_Networks)
-  - [Bridge](#Bridge)
-
-  - [Host_Networking](#Host_Networking)
-  - [None_Networking](#None_Networking)
 
 
 ## What_is_Docker_Networking
