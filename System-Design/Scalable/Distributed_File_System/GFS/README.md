@@ -1,12 +1,11 @@
 # GFS / Google File System
 
 - [1. Requirements](#Requirements)
-  - [subHeading](#subheading)
-- [Heading2](#get)
+  - [Functional](#Functional)
+- [2. Architecture](#Architecture)
 
-## Requirements
-**Functional**
-
+## 1. Requirements
+### Functional
 - _1._ The system is built from many inexpensive commodity components that often fail. 
   - It must constantly monitor itself and detect, tolerate, and recover promptly from component failures on a routine basis. 
 - _2._ System stores 1-100GB sized millions of files.
@@ -17,67 +16,9 @@
   - _a._ Small writes at arbitrary positions in a file are supported but do not have to be efficient
   - _b._ mutliple clients concurrently append to same file
     - Need atomicity with min synchronization overhead.
-- k
-- k
-- k
-- k
-- k
-- k
-- kkkk
-- k
-- k
-- kkk
-- k
-- k
-- k
-- k
-- v
-- k
-- k
-- k
-- k
-- k
-- k
-- k
-- k
-- kvk
-- a
-- a
-- a
-- a
-- a
-- a
-- a
-- a
-- a
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Subheading
+## Architecture
 - g
 - g
 - g
@@ -226,32 +167,3 @@ g
 
 
 
-## get
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
-- h
