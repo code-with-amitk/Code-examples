@@ -1,14 +1,23 @@
-Million=10^6. Billion=10^9. Trillion=10^12, Quadtrillion=10^15
+- [Requirements](#Requirements)
+  - [Functional](#Functional)
+- [BOE](#BOE)
+- [API_Design](#API_Design)
+- [HLD](#HLD)
+  - [Uploading_Video](#Uploading_Video)
+  - [Playing_Video](#Playing_Video)
+- [DB_Schema](#DB_Schema)
+  - [Video_Metadata_DB](#Video_Metadata_DB)
+- [Load_Balancing](#Load_Balancing)
+- [Cache](#Cache)
 
-## 1. REQUIREMENT COLLECTION
-  - **Functional**
-    - Users can upload, view, search
-    - Service can do stat collection: no of vistors, views, likes, dislikes.
-    - User can like/dislike the videos.
+## Requirements
+### Functional
+  - Video: Upload, search, Comment, like, dislike, share
+  - Channel: Can create, Statistics(Views, comments etc)
+  - Subscribe
+  - Support ads
 
-- Place these nodes in design.
-
-## 2. CAPACITY ESTIMATIONS/BOE CALCULATIONS
+## BOE
   - ***Read/Write*** or View/Upload = 200/1
     - Read = Views: 50k/sec
     - Uploads = 250/sec. 15000/min = 15k/min. 900k/hour. 27 Million/month. 9 Billion/Year. 50 Billion/5 years.
@@ -18,9 +27,9 @@ Million=10^6. Billion=10^9. Trillion=10^12, Quadtrillion=10^15
     - 5 year = 50*10^9*10^6 = 50*10^15 = 50 Quadtrillion bytes
       - But this will change when video compression is done at storage
 
-## 3. SYSTEM APIs
+## API_Design
 - Upload API
-```
+```c
 uploadVideo(api_dev_key, video_title, vide_description, tags[], category_id, default_language, 
                         recording_details, video_contents)
 Parameters:                        
@@ -37,9 +46,8 @@ Returns: (string)
 - A successful upload will return HTTP 202 (request accepted)
 - once the video encoding is completed the user is notified by email with a link to access the video. 
 ```
-
 - Search API
-```
+```c
 searchVideo(api_dev_key, search_query, user_location, maximum_videos_to_return, page_token)
 Parameters:
 api_dev_key (string): The API developer key of a registered account of our service.
@@ -52,9 +60,8 @@ Returns(JSON)
 A JSON containing information about the list of video resources matching the search query. 
 Each video resource will have a video title, a thumbnail, a video creation date, and a view count.
 ```
-
 - Stream video
-```
+```c
 streamVideo(api_dev_key, video_id, offset, codec, resolution)
 api_dev_key (string): The API developer key of a registered account of our service.
 video_id (string): A string to identify the video.
@@ -65,8 +72,8 @@ Returns: (STREAM)
 A media stream (a video chunk) from the given offset.
 ```
 
-## 4. HIGH LEVEL DESIGN
-### UPLOADING VIDEO/WRITE OPERATION
+## HLD
+### Uploading_Video
 - Thumbnails
   - Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
 - Metadata of video:
@@ -103,8 +110,9 @@ User                App-server
     3. [Appraoch-3] Consistent Hashing (will follow)
         - CH is used to balance load among servers.
 - Less popular videos (1-20 views per day) that are not cached by CDNs can be served by our servers in various data centers.      
-### PLAYING VIDEO/READ OPERATION
-```
+
+### Playing_Video
+```c
   user        
     -videoID->  CDN                     [Cache]==[App-server]         <<<DB-servers>>       
             video not here                      |                         |
@@ -117,31 +125,28 @@ User                App-server
       
 - **DETECTING DUPLICATE VIDEOS**
   - At time of uploading the videos, a service can run video matching algorithms (e.g., Block Matching, Phase Correlation, etc.) to find duplications.
-      
 
-
-## 5. DATABASE SCHEMA
-### 5.1 Video-Metadata-DB(MySQL)
+## DB_Schema
+### 5.1 Video_Metadata_DB
+- MySQL DB
+```c
 - ***Table for each video***
-
 | VideoID | Title | Description | Size | thumbnail | Uploader | No of Likes | Dislikes | Views |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 - ***Table for each video comment***
-
 | CommentID | VideoID | UserID | Comment | TimeOfCreation |
 | --- | --- | --- | --- | --- |
 
 - ***User table, storing user information***
-
 | UserID | Name | email | Age| Registration detials |
 | --- | --- | --- | --- | --- |
+```
 
-
-## 6. LOAD BALANCING
+## Load_Balancing
 - Load between cache servers is balanced using ***[Consistent Hashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Consistent_Hashing.md)***
 
-## 7. CACHE
+## Cache
 - memcached in front of 'App-servers'.
 - Cache Eviction Policy: LRU. Discard least recently viewed contents from cache.
 
