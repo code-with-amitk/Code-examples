@@ -21,6 +21,11 @@
   - Live Stream
 
 ## BOE
+> 7 Billion world population. 20% use youtube => 140 Million users / day. 
+
+- **Bandwidth Estimates**
+  - 
+- **Storage Estimates**
   - ***Read/Write*** or View/Upload = 200/1
     - Read = Views: 50k/sec
     - Uploads = 250/sec. 15000/min = 15k/min. 900k/hour. 27 Million/month. 9 Billion/Year. 50 Billion/5 years.
