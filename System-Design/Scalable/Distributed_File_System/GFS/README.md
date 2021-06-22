@@ -5,7 +5,7 @@
 - [Architecture](#Architecture)
   - [Chunks](#Chunks)
   - [GFS_Master](#GFS_Master)
-  - [Client Application / GFS Client](#Client Application / GFS Client)
+  - [Client-Application/GFS-Client](#Client-Application/GFS-Client)
 
 ## Requirements
 ### Functional
