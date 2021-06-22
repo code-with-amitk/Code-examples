@@ -1,6 +1,7 @@
 ## Docker
 - [What_is_Docker](#What_is_Docker)
-- [Docker_Architecture](#Docker_Architecture)
+  - [Docker_Architecture](#Docker_Architecture)
+  - [Advantages](#Advantages)
 - [Docker_Terms](#Docker_Terms)
   - [Docker_Host](#Docker_Host)
   - [Docker_Image](#Docker_Image)
@@ -15,7 +16,7 @@
 - Others are Rocket, Drawbridge, LXC. Docker is Container runtime. 
 - **Docker Inc.** is the company that sells the commercial version of Docker. Docker is also available as open source.
 
-## Docker_Architecture
+#### Docker_Architecture
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
 - **Docker client / docker?** Users interact with docker client.
 ```
@@ -23,9 +24,13 @@
 $ docker run -----> [Docker Client]
                              -----------------> [Docker Daemon/dockerd]
 ```
+#### Advantages
+- *1. Nothing break at client side due to mistached libraries* All developers work and deliver in standardized and freezed enviornment. Same libraries and build is delivered to client.
+- *2. No special hardware requirements* Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.
+- *3. Running more workloads at same hardware.* 2 builds can run parallely on 2 containers on same host.
+
 
 ## Docker_Terms
-
 ### Docker_Host 
 - Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
 
