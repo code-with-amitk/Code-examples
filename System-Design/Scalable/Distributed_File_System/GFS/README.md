@@ -37,5 +37,5 @@
 #### GFS_Master
   - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
   - Does chunk management eg: garbage collection of orphaned chunks, chunkmigration between chunkservers.
-#### Client Application / GFS Client
+#### Client-Application/GFS-Client
   - GFS client is linked to each application implements the file system API and communicates with the master and chunkservers.
