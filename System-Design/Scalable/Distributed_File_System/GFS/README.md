@@ -5,7 +5,9 @@
 - [Architecture](#Architecture)
   - [Chunks](#Chunks)
   - [GFS_Master](#GFS_Master)
-  - [Client-Application/GFS-Client](#Client-Application/GFS-Client)
+  - [GFS_Client](GFS_Client)
+  - [Chunk_Servers](Chunk_Servers)
+- [Caching](#Caching) 
 
 ## Requirements
 ### Functional
@@ -37,5 +39,14 @@
 #### GFS_Master
   - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
   - Does chunk management eg: garbage collection of orphaned chunks, chunkmigration between chunkservers.
-#### Client-Application/GFS-Client
-  - GFS client is linked to each application implements the file system API and communicates with the master and chunkservers.
+#### GFS_Client
+  - GFS client is linked to each Client application implements the file system API and communicates with the master and chunkservers.
+#### Chunk_Servers
+  -  Stores chunks as local files. No caching is needed here.
+
+## Caching
+- **Caching File Data:** Neither on client nor the chunkserver. 
+  - Client caches offer little benefit because most applications stream huge files or have working sets too large.
+  - It also creates cache coherance problems.
+- **Caching meta data:** Yes
+to be cached.
