@@ -18,6 +18,7 @@
   - Channel: Can create, Statistics(Views, comments etc)
   - Subscribe
   - Support ads
+  - Live Stream
 
 ## BOE
   - ***Read/Write*** or View/Upload = 200/1
