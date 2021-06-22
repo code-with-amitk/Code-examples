@@ -1,8 +1,8 @@
 ## Google File System
 
-- [Heading1](#heading)
+- [Heading1](#)
   - [subHeading](#subheading)
-- [Heading2](#heading2)
+- [Heading2](#get)
 
 # Heading
 - k
@@ -214,7 +214,7 @@ g
 
 
 
-## Heading2
+## get
 - h
 - h
 - h
