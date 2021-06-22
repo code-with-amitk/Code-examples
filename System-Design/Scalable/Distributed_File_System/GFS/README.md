@@ -4,7 +4,7 @@
   - [Functional](#Functional)
 - [Architecture](#Architecture)
   - [Chunks](#Chunks)
-  - [GFS Master](#GFS Master)
+  - [GFS_Master](#GFS_Master)
   - [Client Application / GFS Client](#Client Application / GFS Client)
 
 ## Requirements
@@ -34,7 +34,7 @@
   - Files are divided into fixed-size chunks
   - Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
   - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
-#### GFS Master
+#### GFS_Master
   - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
   - Does chunk management eg: garbage collection of orphaned chunks, chunkmigration between chunkservers.
 #### Client Application / GFS Client
