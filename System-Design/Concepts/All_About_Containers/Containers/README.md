@@ -4,8 +4,8 @@
 - [Containerization](#Containerization)
 - [Advantages_Disadv_of_Containers](#Advantages_Disadv_of_Containers)
 - [Container_vs_VM](#Container_vs_VM)
-- [Contianer_Related](#Contianer_Related)
-  - [Contianer_Image](#Contianer_Image)
+- [Container_Related](#Container_Related)
+  - [Container_Image](#Container_Image)
   - [Container_Registry](#Container_Registry)
   - [Create_Run_Container](#Create_Run_Container)
   - [How_Containers_Communicate_With_Each_Other](#How_Containers_Communicate_With_Each_Other)
@@ -16,14 +16,14 @@
 
 <img src=TraditionalOS_vs_Containers.jpg width=500 />
 
-### Issues_without_Container 
+### Issues_Without_Containers 
   - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. 
   - If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 
 ### Containerization
   - Packaging software code and all its dependencies in a bundle.
 
-### Advantages, Disadvantages of Containers
+### Advantages_Disadv_of_Containers
 **Advantages**
 
 - *1. lightweight* Use less memory. 
@@ -45,8 +45,8 @@
 - Each container runs inside [Docker](../Docker) host.
 - This can be thought of as a VM inside base OS but this is not VM.
 
-## Contianer_Related
-### [Contianer_Image](../Docker/Docker_Images) 
+## Container_Related
+### [Container_Related](../Docker/Docker_Images) 
 - Container is created from image. Image describes everything that's needed to create a container; it is a template for containers.
 
 ### [Container_Registry](../Docker/Registry) 
