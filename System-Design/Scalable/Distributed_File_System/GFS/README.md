@@ -1,8 +1,9 @@
 # GFS / Google File System
 
 - [1. Requirements](#Requirements)
-  - [Functional](#Functional). Achitecture](#Architecture)
-- [2.1 Chunks](#Chunks)
+  - [Functional](#Functional)
+- [2. Achitecture](#Architecture)
+  - [2.1 Chunks](#Chunks)
 
 ## 1. Requirements
 ### Functional
