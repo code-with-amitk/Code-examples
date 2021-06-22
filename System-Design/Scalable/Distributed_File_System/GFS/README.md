@@ -5,8 +5,8 @@
 - [Architecture](#Architecture)
   - [Chunks](#Chunks)
   - [GFS_Master](#GFS_Master)
-  - [GFS_Client](GFS_Client)
-  - [Chunk_Servers](Chunk_Servers)
+  - [GFS_Client](#GFS_Client)
+  - [Chunk_Servers](#Chunk_Servers)
 - [Caching](#Caching) 
 
 ## Requirements
@@ -32,16 +32,16 @@
                                                                         |
         client2	 <---->             Chunkserver(linux)	----hb----------
 ```
-#### Chunks
+### Chunks
   - Files are divided into fixed-size chunks
   - Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
   - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
-#### GFS_Master
+### GFS_Master
   - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
   - Does chunk management eg: garbage collection of orphaned chunks, chunkmigration between chunkservers.
-#### GFS_Client
+### GFS_Client
   - GFS client is linked to each Client application implements the file system API and communicates with the master and chunkservers.
-#### Chunk_Servers
+### Chunk_Servers
   -  Stores chunks as local files. No caching is needed here.
 
 ## Caching
