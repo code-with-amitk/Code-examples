@@ -1,5 +1,5 @@
 ## Docker Compose
-- **What** [Microservices](/System-Design/Concepts/MicroServices/What_is_Microservice.md) can contact other microservice using DC. DC uses yaml configuration file.
+- **What** [Microservices](/System-Design/Concepts/MicroServices) can contact other microservice using DC. DC uses yaml configuration file.
  ```bash
  # cat docker-compose.yml
  version: '3'
