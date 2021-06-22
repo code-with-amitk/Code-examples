@@ -14,6 +14,6 @@
     - But saves the result of each subproblem (usually in an array or hash table).
     - Now first checks to see whether it has previously solved this subproblem
     - If solved, return the saved value, saving further computation at this level
-  - _2. Bottom up:_
+  - _2. Bottom up / Tabulation:_
     - Sort subproblems by size and solve them in size order, smallest first.
     - Save solutions of subproblems and refer before recalculating same as Top Down.
