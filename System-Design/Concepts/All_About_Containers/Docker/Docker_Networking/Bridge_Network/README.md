@@ -16,4 +16,4 @@
 - This is created by default, but its better to use user defined bridge.
 - Can only connect using IP Address.
 - Isolation is not better.
-- **Configuration Example](Examples/Default_Bridge):** Run 2 different Alpine containers on same docker host and commmunicate between them.
+- **[Configuration Example](Examples/Default_Bridge):** Run 2 different Alpine containers on same docker host and commmunicate between them.
