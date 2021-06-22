@@ -1,11 +1,11 @@
 # GFS / Google File System
 
-- [Requirements](#Requirements)
+- [1.Requirements](#1.Requirements)
   - [Functional](#Functional)
-- [Achitecture](#Architecture)
-  - [Chunks](#Chunks)
+- [2.Architecture](#2.Architecture)
+  - [2.1Chunks](#2.1Chunks)
 
-## 1. Requirements
+## 1.Requirements
 ### Functional
 - _1._ The system is built from many inexpensive commodity components that often fail. 
   - It must constantly monitor itself and detect, tolerate, and recover promptly from component failures on a routine basis. 
@@ -18,7 +18,7 @@
   - _b._ mutliple clients concurrently append to same file
     - Need atomicity with min synchronization overhead.
 
-## 2. Architecture
+## 2.Architecture
 - GFS cluster consists of a 1 master and multiple chunkservers and is accessed by multiple clients
 ```
 	Client1	<---->			chunkserver(linux)
@@ -27,7 +27,7 @@
 							
 	client2	<---->			chunkserver(linux)	
 ```
-### 2.1 Chunks
+### 2.1Chunks
 - **What?** Files are divided into fixed-size chunks
 	- Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
 - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
