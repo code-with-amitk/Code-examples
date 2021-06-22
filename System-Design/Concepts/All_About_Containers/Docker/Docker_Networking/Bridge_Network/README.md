@@ -1,8 +1,7 @@
 ## Bridge Networking
 - [What](#What)
 - [Types_of_Bridge_Networking](#Types_of_Bridge_Networking)
--     - [User_defined_Bridge_and_Default_Bridge](#User_defined_Bridge_and_Default_Bridge)
-    - [Default_Bridge_Configuration](#Default_Bridge_Configuration)
+
 
 ### What
 - This is default network driver. Used when multiple containers want to communicate on the **same Docker host**.
