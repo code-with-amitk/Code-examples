@@ -59,3 +59,8 @@
 
 <img src=connected_security.JPG width=700/>
 
+<a name="OnCloud"></a>
+### 3.2 Flow On Cloud
+- All company infra is moved to cloud.
+- Perimeter firewall(vSRX) runs inside cloud on VM protecting company infra and users.
+- Juniper Cloud ATP, policy enforcer all runs on cloud.
