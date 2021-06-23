@@ -16,6 +16,7 @@
 - Thread safety
   - No data races: No 2 threads doing same thing to shared resource Wow!!
 - Memory and ownership checking     //Borrow checker
+- No need to call delete(),free(). Rust knows when memory is not used.
 
 <a name="Rustcpp"></a>
 ### 1.2 Rust vs C++
