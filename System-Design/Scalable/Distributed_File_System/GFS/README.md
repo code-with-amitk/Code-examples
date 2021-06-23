@@ -3,7 +3,7 @@
 - [Requirements](#Requirements)
   - [Functional](#Functional)
 - [Architecture](#Architecture)
-  - [Chunks](#Chunks)
+  - [1Chunks](#1Chunks)
   - [GFS_Master](#GFS_Master)
   - [GFS_Client](#GFS_Client)
   - [Chunk_Servers](#Chunk_Servers)
