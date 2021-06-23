@@ -2,7 +2,8 @@
 - [2. Components of CS](#Pillars)
   - [2.1 Threat Detection Engine](#TDE)
   - [2.2 Policy Engine](#PE)
-- [3. Flow CS](#Flow)
+- [3. Flow](#Flow)
+  - [3.1 Flow On Premisis](#OnPremisis)
 
 <a name="What"></a>
 ## 1. What is Connected Security?
@@ -31,7 +32,7 @@
 - **D. Switches/Routers** On these devices policies are enforced.
 
 <a name="TDE"></a>
-### 2.1 Threat Detection Engine
+### 2.1 Threat Detection Engine / ATP
 - _a. Threat Feed:_ 
 - _b. Ondemand detection engine:_ Takes feed does anlysis/sandboxing/ML and says provides verdict that it's a threat or not.
 - _c. Mitigation:_ Gives verdict that these devices are botnets.
@@ -42,25 +43,19 @@
 
 <a name="Flow"></a>
 ## 3. Flow
+
+<a name="OnPremisis"></a>
+### 3.1 Flow On Premisis
 - _1._ User inside secured network sends request to download a file(malware).
-- _2._ When actual file comes to Perimeter-firewall, it forwards it to ATP(Threat Engine).
-- 3. ATP detects it as malware and forward to policy enforcer(Policy Engine)
-- 4. Policy engine pushes policies based on RADIUS protocol.
+- _2,3._ When actual file comes to Perimeter-firewall, it forwards it to ATP(Threat Engine). 
+  - ATP detects it as malware.
+  - ATP provides file to Policy engine.
+- _4._ ATP instructs perimeter firewall to drop packet
+- _5._ Perimeter firewall drops packet, blocks user downloading the file.
   - User-A is pushed into seperate VLAN.
   - User-A's port is blocked, so that malware is not spread to other devices.
-```c
-//CS is not a devie its a architecture
+- _6._ Policy engine pushes policies to other switches/routers inside secured network so that all devices are aware, if user moves to someother port its not allowed to access internet, malware from there.
+  - Policy enforcement is done based on RADIUS protocol.
 
-    Company-network           
-user-A   ----switch-1
-         ------|
-Download a.txt  //1 ------------------------------------------ PERIMETER-FIREWALL -----  internet  --------> Malware
-                                                                          <----------------- a.txt --------------
-                                                               Forwards to ATP  //2
-                                          ATP(THREAT ENGINE)<-a.txt-                 
-                                          a.txt is malware    //3
-                          POLICY-ENGINE<-a.txt-
-         swtich-2 <--pushes policy-- //4
-```
-
+<img src=connected_security.JPG width=700/>
 
