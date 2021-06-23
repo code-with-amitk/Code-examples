@@ -2,7 +2,7 @@
 
 - [1. Requirements](#Requirements)
   - [1.1 Functional](#Functional)
-- [Architecture](#Architecture)
+- [2. Architecture](#Architecture)
   - [1.Chunks](#1.Chunks)
   - [GFS_Master](#GFS_Master)
   - [GFS_Client](#GFS_Client)
@@ -11,7 +11,6 @@
 
 <a name="Requirements"></a>
 ## 1. Requirements
-
 <a name="Functional"></a>
 ### 1.1 Functional
 - _1._ The system is built from many inexpensive commodity components that often fail. 
@@ -25,7 +24,8 @@
   - _b._ mutliple clients concurrently append to same file
     - Need atomicity with min synchronization overhead.
 
-## Architecture
+<a name="Architecture"></a>
+## 2. Architecture
 - GFS cluster consists of a 1 master and multiple chunkservers and is accessed by multiple clients
 ```c
     docx, xls
