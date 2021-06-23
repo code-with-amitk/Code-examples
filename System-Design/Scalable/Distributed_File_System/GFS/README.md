@@ -6,7 +6,7 @@
   - [2.1 Chunks](#Chunks)
   - [2.2 GFS Master](#GFS_Master)
   - [2.3 GFS Client](#GFS_Client)
-    - [2.3.1 Case-1: Read Operation: User Reading a File)(#Read_File)
+    - [2.3.1 Case-1: Read Operation: User Reading a File](#Read_File)
   - [2.4 Chunk Servers](#Chunk_Servers)
 - [3. Caching](#Caching) 
 
