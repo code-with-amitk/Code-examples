@@ -3,7 +3,7 @@
 - [Requirements](#Requirements)
   - [Functional](#Functional)
 - [Architecture](#Architecture)
-  - [1Chunks](#1Chunks)
+  - [1Chunks](#1.Chunks)
   - [GFS_Master](#GFS_Master)
   - [GFS_Client](#GFS_Client)
   - [Chunk_Servers](#Chunk_Servers)
@@ -37,7 +37,7 @@
           | <------- RW ----------------->
           
 ```
-### Chunks
+### 1.Chunks
   - Files are divided into fixed-size chunks
   - Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
   - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
