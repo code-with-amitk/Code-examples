@@ -1,5 +1,5 @@
 - [What is Connected Security](#What)
-- [Pillars of CS](#Pillars)
+- [How CS Works](#Pillars)
 
 <a name="What"></a>
 ## What is Connected Security?
@@ -19,7 +19,7 @@
   - Turns routing devices(routers, switches) into security devices(eg: firewall, IPS etc).
 
 <a name="Pillars"></a>
-## Pillars of Connected Security
+## How Connected Security Works
 - **1. See** ie routing devices(routers, switches) detects the threat.
 - **2. Automate/Threat Engine/Policy Engine** Solution(Software/hardware) that selects Policy to executed. Selects policy and informs firewalls to enforce/execute policy.
 - **3. Protect/Firewall/IPS** Enforcement of policies at network (eg: firewalls, IPS etc) takes policies from Threat engine and execute/enforces policies, blocks the threat.
