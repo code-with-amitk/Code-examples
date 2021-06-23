@@ -17,6 +17,8 @@
 
 <a name="Rustcpp"></a>
 ### 1.2 Rust vs C++
+- No implicit copies as in C++
+- No invisible copy constructors, move operators etc (as in c++). Whatever is runtime cost that's visible in code.
 - Safe parallelism wrt C++
 - Pacakge Repository (crates) better
 - Compiler Errors are more informative
@@ -28,4 +30,3 @@
   - No double frees
   - No dangling pointers
   - No uninitialized variables
-- No implicit copies as in C++
