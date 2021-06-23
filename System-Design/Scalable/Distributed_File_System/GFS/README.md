@@ -1,6 +1,6 @@
 # GFS / Google File System
 
-1. [ Description. ](#desc)
+- [1. Requirements](#desc)
   - [Functional](#Functional)
 - [Architecture](#Architecture)
   - [1.Chunks](#1.Chunks)
@@ -10,7 +10,7 @@
 - [Caching](#Caching) 
 
 <a name="desc"></a>
-## 1. Description
+## 1. Requirements
 ### Functional
 - _1._ The system is built from many inexpensive commodity components that often fail. 
   - It must constantly monitor itself and detect, tolerate, and recover promptly from component failures on a routine basis. 
