@@ -3,11 +3,11 @@
 - [1. Requirements](#Requirements)
   - [1.1 Functional](#Functional)
 - [2. Architecture](#Architecture)
-  - [1.Chunks](#1.Chunks)
-  - [GFS_Master](#GFS_Master)
-  - [GFS_Client](#GFS_Client)
-  - [Chunk_Servers](#Chunk_Servers)
-- [Caching](#Caching) 
+  - [2.1 Chunks](#Chunks)
+  - [2.2 GFS Master](#GFS_Master)
+  - [2.3 GFS Client](#GFS_Client)
+  - [2.4 Chunk Servers](#Chunk_Servers)
+- [3. Caching](#Caching) 
 
 <a name="Requirements"></a>
 ## 1. Requirements
@@ -40,11 +40,14 @@
           | <------- RW ----------------->
           
 ```
-### 1.Chunks
+<a name="Chunks"></a>
+### 2.1 Chunks
   - Files are divided into fixed-size chunks
   - Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
   - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
-### GFS_Master
+
+<a name="GFS_Master"></a>
+### 2.2 GFS Master
   - **Stores**
     - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
   - **Does Tasks**
@@ -54,13 +57,18 @@
       - Sophisticated chunk placement
   - **Does not:**
     - Involve in reads and writes with clients, so that it does not become a bottleneck.
-### GFS_Client
+
+<a name="GFS_Client"></a>
+### 2.3 GFS Client
   - GFS client is linked to each Client application implements the file system API and communicates with the master and chunkservers.
   - Only interacts with GFS master to know which chunkserver to contact for RW, RW is done using chunkserver.
-### Chunk_Servers
+
+<a name="Chunk_Servers"></a>
+### 2.4 Chunk Servers
   -  Stores chunks as local files. No caching is needed here.
 
-## Caching
+<a name="Caching"></a>
+## 3. Caching
 - **Caching File Data:** Neither on client nor the chunkserver. 
   - Client caches offer little benefit because most applications stream huge files or have working sets too large.
   - It also creates cache coherance problems.
