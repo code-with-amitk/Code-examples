@@ -4,6 +4,7 @@
   - [2.2 Policy Engine](#PE)
 - [3. Flow](#Flow)
   - [3.1 Flow On Premisis](#OnPremisis)
+  - [3.2 Flow On Cloud](#OnCloud)
 
 <a name="What"></a>
 ## 1. What is Connected Security?
