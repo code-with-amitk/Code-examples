@@ -1,7 +1,9 @@
 ## Terms
+
 - **[Cryptanalysis?](Cryptanalysis)** Breaking ciphers. 
 - **Confusion:** Each bit of ciphertext should depend on several parts of the key. 
   - Advantages: Cipher text cannot be found inside the key and increases confusion for Man in Middle.
+- [Connected Security](Connected_Security)
 - **Difussion:** Used to hide relationship between the ciphertext and the plain text.
   - If we change 1 bit of plaintext, then 1/2 of bits of cipher text should change.
   - Also, If we change 1 bit of ciphertext, then 1/2 of bits of plain text should change.
