@@ -1,3 +1,4 @@
+[Rust vs all languages, Rust vs C++](/Languages/Programming_Languages/Rust)
 
 |C|C++|Java|Python|goLang|
 |---|---|---|---|---|
