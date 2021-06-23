@@ -5,7 +5,7 @@
 - [3. Flow CS](#Flow)
 
 <a name="What"></a>
-## What is Connected Security?
+## 1. What is Connected Security?
 - **Presently day scenario:** All security devices work indivisually ie seperately protects the orgnization. Works in phylo.
 ```c
 <--------------------------- 1 Orgnization ------------------------->
