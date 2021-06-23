@@ -1,7 +1,10 @@
 - [1. What/Why Rust](#What)
   - [1.1 Rust vs All Languages](#All)
   - [1.2 Rust vs C++](#Rustcpp)
-- [2. Ownership & Borrowing](#bow)
+- [2. Ownership & Borrowing](#owbo)
+  - [2.1 Ownership](#own)
+  - [2.2 Reference = Borrowing](#bow)
+    - [2.2.a Mutable Reference](#mutref)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -45,7 +48,46 @@ fn main() {
 }
 ```
 
-<a name="bow"></a>
+<a name="owbo"></a>
 ## 2. Ownership & Borrowing
-- **Ownership?** Means code/variable owns a memory and is allowed to free it.
-  - How Rust Handles it? Rust keeps track of things, who owns what and you cannot free a memory which you donot own.
+
+<a name="owo"></a>
+### 2.1 Ownership
+- **What?** Means code/variable owns a memory and is allowed to free it.
+- How Rust Handles it? Rust keeps track of things, who owns what and you cannot free a memory which you donot own.
+  
+<a name="bow"></a> 
+### 2.2 Borrowing = Reference (&var)
+- **What?** Means passing the reference of a variable. Borrowing means that needed to be returned(we cannot change).
+```rust
+fn print( a : &Vec<i32>) {
+  println!("{}"a.len());            //1
+  //a.push(2);                      //Compilation error. We cannot change borrowed. Changing immutable
+}
+fn main() {
+  let mut v = Vec::new();
+  v.push(1);
+  print(&v);                         //Borrowed not moved
+  println!("{}", v[0]);              //1
+}
+```
+
+<a name="mutref"></a>
+#### 2.2.a Mutable Reference
+- We know a borrowed item cannot be changed, but mutable reference can be changed.
+  - *1.* Declare mutable variable
+  - *2.* Create mutable Reference using `&mut`
+  - *3.* Accept mutable reference using `some_string: &mut String`
+```rust
+fn print( a : &mut Vec<i32>) {        //3
+  a.push(2);
+}
+fn main() {
+  let mut v = Vec::new();             //1
+  v.push (1);
+  print (&mut v);                     //2
+  println! ("{}", v[0]);
+}
+# rustc test.rs
+# test.exe
+```
