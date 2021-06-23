@@ -1,6 +1,7 @@
 - [1. What/Why Rust](#What)
   - [1.1 Rust vs All Languages](#All)
   - [1.2 Rust vs C++](#Rustcpp)
+- [2. Ownership & Borrowing](#bow)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -14,6 +15,7 @@
   - improves code quality, security, no runtime errors
 - Thread safety
   - No data races: No 2 threads doing same thing to shared resource Wow!!
+- Memory and ownership checking     //Borrow checker
 
 <a name="Rustcpp"></a>
 ### 1.2 Rust vs C++
@@ -22,7 +24,6 @@
 - Safe parallelism wrt C++
 - Pacakge Repository (crates) better
 - Compiler Errors are more informative
-- Memory and ownership checking     //Borrow checker
 - Memory safety                    
   - No segfaults(no segfault reported in last 5 years)
   - No Memory leaks
@@ -30,3 +31,20 @@
   - No double frees
   - No dangling pointers
   - No uninitialized variables
+- Default in rust is move not copy
+```rust
+fn print(a:Vec<i32>) {
+  println!("{}"a.len());
+}
+fn main() {
+  let mut v = Vec::new();
+  v.push(1);
+  print(v);                               //Now v is moved not copied.
+  //println!("{}", v[0]);                 //Compiler error
+}
+```
+
+<a name="bow"></a>
+## 2. Ownership & Borrowing
+- **Ownership?** Means code/variable owns a memory and is allowed to free it.
+  - How Rust Handles it? Rust keeps track of things, who owns what and you cannot free a memory which you donot own.
