@@ -1,6 +1,6 @@
 - [Information Security](#information_security)
 - [Terms](#Terms)
-- [Security Vulnerabilities)(#Security_Vulnerabilities)
+- [Security Vulnerabilities](#Security_Vulnerabilities)
 
 <a name="information_security"></a>
 ## Information Security
