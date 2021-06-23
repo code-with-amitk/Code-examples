@@ -5,6 +5,9 @@
   - [2.1 Ownership](#own)
   - [2.2 Reference = Borrowing](#bow)
     - [2.2.a Mutable Reference](#mutref)
+      - [Mutable & immutable References in same scope not allowed](#MutImmutable)
+      - [2 Mutable references are not allowed in same scope](#MutMut)
+      - [Mutable References are allowed in seperate scope](#MutSep)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -90,4 +93,40 @@ fn main() {
 }
 # rustc test.rs
 # test.exe
+```
+
+<a name="MutImmutable"></a>
+#### Mutable & immutable References in same scope not allowed
+```rust
+    let mut v = vec![1, 2, 3, 4, 5];
+    let first = &v[0];
+    v.push(6);                                    //Compilation Error
+    println!("first:{}", first);
+```
+*Compilation Error Why?*
+  - The code might look like should work. 
+  - This error is due to the way vectors work. adding a new element onto the end of the vector might require allocating new memory and copying the old elements to the new space. 
+  - if there isn’t enough room to put all the elements next to each other where the vector currently is. In that case, the reference to the first element would be pointing to deallocated memory. 
+  - The borrowing rules prevent programs from ending up in that situation.
+
+<a name="MutMut"></a>
+#### 2 Mutable references are not allowed in same scope
+- *Why?* To avoid data race conditions. Race condition occurs when any of 3 behaviours happen:
+    - Two or more pointers access the same data at the same time.
+    - At least one of the pointers is being used to write to the data.
+    - There’s no mechanism being used to synchronize access to the data.
+```rust
+  let mut s = String::from("hello");
+  let r1 = &mut s;
+  let r2 = &mut s;                            //Compilation Error
+  println!("{}, {}", r1, r2);
+```
+<a name="MutSep"></a>
+#### Mutable References are allowed in seperate scope
+```rustc
+  let mut s = String::from("hello");
+  {
+    let r1 = &mut s;
+  } // r1 goes out of scope here, so we can make a new reference with no problems.
+  let r2 = &mut s;
 ```
