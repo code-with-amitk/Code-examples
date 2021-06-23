@@ -1,7 +1,7 @@
 # GFS / Google File System
 
 - [1. Requirements](#Requirements)
-  - [Functional](#Functional)
+  - [1.1 Functional](#Functional)
 - [Architecture](#Architecture)
   - [1.Chunks](#1.Chunks)
   - [GFS_Master](#GFS_Master)
@@ -11,7 +11,9 @@
 
 <a name="Requirements"></a>
 ## 1. Requirements
-### Functional
+
+<a name="Functional"></a>
+### 1.1 Functional
 - _1._ The system is built from many inexpensive commodity components that often fail. 
   - It must constantly monitor itself and detect, tolerate, and recover promptly from component failures on a routine basis. 
 - _2._ System stores 1-100GB sized millions of files.
