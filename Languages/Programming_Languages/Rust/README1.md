@@ -4,7 +4,8 @@
 - [2. Ownership & Borrowing](#owbo)
   - [2.1 Ownership](#own)
   - [2.2 Reference = Borrowing](#bow)
-    - [2.2.a Mutable Reference](#mutref)
+    - [2.2.a Dangling Reference](#danglingref)
+    - [2.2.b Mutable Reference](#mutref)
       - [Mutable & immutable References in same scope not allowed](#MutImmutable)
       - [2 Mutable references are not allowed in same scope](#MutMut)
       - [Mutable References are allowed in seperate scope](#MutSep)
@@ -75,8 +76,47 @@ fn main() {
 }
 ```
 
+<a name="danglingref"></a>
+#### 2.2.a Dangling Reference
+- **Dangling pointer?** Pointer points to memory, memory is freed and pointer is used.
+- **Dangling reference?** Similar to Dangling pointer, when reference to a value is used, value is freed and reference is used after that.
+- **C++:**
+  - Problem: Since b is local variable and is freed as fun() goes out of scope.
+```c++
+int& fun() {    //Function returning reference
+  int b = 10;
+  return b;
+}
+
+int main() {
+  int &a = fun();       //a is reference variable pointing to b, which does not exist
+  cout << a;            
+}
+# g++ test.cpp        //No compile error
+# ./a.out
+  Segmentation Fault
+```
+- **Rust:** Complier does not allow DR.
+```rust
+fn fun() -> &i32 {
+  let b = 10;
+  &b                        //Reference is returned
+}
+fn main() {
+  let a = fun();
+}
+# rustc test.rs
+Compilation error
+
+Solution: Return by value = Transfer ownership
+fn fun() -> i32 {
+  let b = 10;
+  b                        
+}
+```
+
 <a name="mutref"></a>
-#### 2.2.a Mutable Reference
+#### 2.2.b Mutable Reference
 - We know a borrowed item cannot be changed, but mutable reference can be changed.
   - *1.* Declare mutable variable
   - *2.* Create mutable Reference using `&mut`
