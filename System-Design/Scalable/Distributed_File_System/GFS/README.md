@@ -1,6 +1,6 @@
 # GFS / Google File System
 
-- [1. Requirements](#desc)
+- [1. Requirements](#Requirements)
   - [Functional](#Functional)
 - [Architecture](#Architecture)
   - [1.Chunks](#1.Chunks)
@@ -9,7 +9,7 @@
   - [Chunk_Servers](#Chunk_Servers)
 - [Caching](#Caching) 
 
-<a name="desc"></a>
+<a name="Requirements"></a>
 ## 1. Requirements
 ### Functional
 - _1._ The system is built from many inexpensive commodity components that often fail. 
