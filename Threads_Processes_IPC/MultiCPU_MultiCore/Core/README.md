@@ -13,7 +13,7 @@
 - *Threads?* 1 core can have 2 threads.
 - [Applications](/Motherboard/CPU/GPU/GPU/Applications_Advantages_Disadv.md)
 
-<a name="multicore"></a>
+<a name="cache"></a>
 ## Caches with core
 - **What?** Each core has its own L1 instr, L1 data cache, own L2 cache and shared L3 cache.
 - **Cache Coherency Problem?** core-1 read variable(x=3) from main-memory and loads in its L1-cache and registers. core-2 also reads x=3 from RAM and stores in its cache/registers. Now core-1 modifies the value to x=5, core-2 will have stale value. caches are not coherent.
