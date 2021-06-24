@@ -1,10 +1,11 @@
 ## struct
 
-- [1. Defining struct](#Defining_struct)
-
+- [Defining struct](#Defining_struct)
+- [Initialize struct](#initialize)
+- [Mutable struct](#mutable)
 
 <a name=Defining_struct></a>
-## 1. Defining_struct
+## Defining struct
 - name 1st followed by type
 ```rust
 struct Employee {
@@ -13,6 +14,32 @@ struct Employee {
   salary: f64,
   empID: u32,
 }
+```
+
+<a name=initialize></a>
+## Initialize struct
+```rust
+let amit = Employee {
+  name: String::from("Amit"),
+  email: String::from("amit@test.com"),
+  salary: 12.00
+  empID: 52
+}
+```
+
+<a name=mutable></a>
+## Mutable struct
+- immutable: which cannot be changed.
+- Means struct whose values can be changed.
+- Entire struct has to be mutable, Rust does not allow only some feilds to be mutable.
+```rust
+let mut champ = Employee {
+  name: String::from("Champ")
+  email: String::from("champ@gmail.com")
+  salary: 50.00
+  empID: 56
+};
+champ.name = String::from("Big Champ");     //Changing name of struct
 ```
 
 
