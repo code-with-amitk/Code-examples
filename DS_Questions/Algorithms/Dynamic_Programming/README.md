@@ -29,7 +29,7 @@
   - Think how we can divide the problem for case N into subproblems. 
 
 <a name="fibonacci"></a>
-## Fibonacci Series
+## Fibonacci Series //Just write recursion stack on copy
 - **Recursion**
 ```c
 1 2 3 5 8 13 21 34
