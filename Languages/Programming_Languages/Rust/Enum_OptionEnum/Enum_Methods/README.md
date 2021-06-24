@@ -1,4 +1,0 @@
-## Enum Methods
-```rust
-
-```
