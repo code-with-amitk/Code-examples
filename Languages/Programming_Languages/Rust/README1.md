@@ -237,7 +237,7 @@ IPv4(
 ```
 
 <a name=enumholdingmultiple></a>
-## Enum Holding Multiple Datatypes
+#### 4.2.2 Enum Holding Multiple Datatypes
 ```rust
 use std::{string::String, u32};
 
