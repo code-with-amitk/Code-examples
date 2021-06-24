@@ -4,7 +4,7 @@
 - [Initializing struct](#initialize)
 - [Mutable struct](#mutable)
 - [Dumping struct variables using println](#dump)
-- [Associated Function: Returning a struct object/instance from function](#return)
+- [Associated Function](#return)
 
 
 
@@ -77,37 +77,36 @@ dimen {                         //2
 ```
 
 <a name=return></a>
-### Associated Function: Returning a struct object/instance from function
-- **What?** Defined inside impl block, But do not take self as argument. As name depicts, they are associated with datatype.
-- **Usage?** For returning object of type.
-- Example
-  - *1.* Declared associated function returning Object with specific value.
-  - *2.* To call associated function :: is used.
+### Associated Function
+- **What?** 
+  - Defined inside impl block. As name depicts, they are associated with datatype.
+  - All datatype associated functionality is done inside these functions.
 ```rust
 use std::{string::String, u32};
-
 #[derive(Debug)]
-struct Rectangle {
-    len:u32,
-    width:u32
+
+struct Rectangle{
+    length: u32,
+    width: u32,   
 }
-impl Rectangle{
-    fn fun(len:u32) -> Rectangle{     //1
+impl Rectangle {
+    fn area(&self) -> u32 {                     //Function returning u32
+        self.width * self.length
+    }
+    fn returnObject(len:u32,wid:u32) -> Rectangle {   //Returning Object itself
         Rectangle {
-            len,
-            width:len
+            length : len,
+            width : wid,
         }
     }
 }
 
 fn main() {
-    println!("{:#?}",Rectangle::fun(10));       //2
-}
-
-# rustc test.rs
-# ./test.exe
-Rectangle {
-    len: 10,
-    width: 10,
-}
+    let a = Rectangle {
+        length:10,
+        width:20,
+    };
+    println!("{:#?}",a.area());
+    println!("{:#?}",Rectangle::returnObject(10,20));
+}    
 ```
