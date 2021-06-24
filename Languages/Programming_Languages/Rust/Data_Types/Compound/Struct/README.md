@@ -78,8 +78,11 @@ dimen {                         //2
 
 <a name=return></a>
 ### Associated Function: Returning a struct object/instance from function
-- *1.* Declared associated function returning Object with specific value.
-- *2.* To call associated function :: is used.
+- **What?** Defined inside impl block, But do not take self as argument. As name depicts, they are associated with datatype.
+- **Usage?** For returning object of type.
+- Example
+  - *1.* Declared associated function returning Object with specific value.
+  - *2.* To call associated function :: is used.
 ```rust
 use std::{string::String, u32};
 
