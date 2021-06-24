@@ -4,7 +4,7 @@
 - [Identify whether this problem is DP?](#identify)
 - [Methods in DP?](#methods)
 - [Examples](#examples)
- - [Fibonacci Series](#fibonacci)
+  - [Fibonacci Series](#fibonacci)
 
 <a name="when"></a>
 ## When to apply
