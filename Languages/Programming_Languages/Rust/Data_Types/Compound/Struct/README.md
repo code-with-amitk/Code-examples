@@ -1,11 +1,14 @@
 ## struct
 
 - [Defining struct](#Defining_struct)
-- [Initialize struct](#initialize)
+- [Initializing struct](#initialize)
 - [Mutable struct](#mutable)
+- [Dumping struct variables using println](#dump)
+
+
 
 <a name=Defining_struct></a>
-## Defining struct
+### Defining struct
 - name 1st followed by type
 ```rust
 struct Employee {
@@ -17,7 +20,7 @@ struct Employee {
 ```
 
 <a name=initialize></a>
-## Initialize struct
+### Initialize struct
 ```rust
 let amit = Employee {
   name: String::from("Amit"),
@@ -42,9 +45,39 @@ let mut champ = Employee {
 champ.name = String::from("Big Champ");     //Changing name of struct
 ```
 
+<a name=dump></a>
+### Dumping struct variables using println
+- **Code**
+  - *A.* To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for particular struct.
+```rust
+#[derive(Debug)]            //A
+struct dimen {
+    len:u32,
+    width:u32
+}
 
-- [Initializing struct](Initializing_struct.md)
-- [Changing struct feild in Mutable struct:](Mutable_Struct)
+fn main() {
+    let a = dimen {
+        len:10,
+        width:20
+    };
+    println!("{:?}",a);      //1
+    
+    println!("{:#?}",a);      //2. # is Trait.
+}
+
+# main.exe
+dimen { len: 10, width: 20 }    //1
+
+dimen {                         //2
+    len: 10,
+    width: 20,
+}
+```
+
+
+
+
+
 - [Function returning a struct instance](/Languages/Programming_Languages/Rust/Functions/Return_From_Function)
 - [Creating Instance2 from Instance1](Creating_Instance2_from_Instance1.md)
-- [Printing struct variables using println](Dumping_Struct_Variables)
