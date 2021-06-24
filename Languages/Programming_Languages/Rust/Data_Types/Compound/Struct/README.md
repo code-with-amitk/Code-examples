@@ -4,6 +4,7 @@
 - [Initializing struct](#initialize)
 - [Mutable struct](#mutable)
 - [Dumping struct variables using println](#dump)
+- [Function returning a struct instance](#return)
 
 
 
@@ -75,9 +76,6 @@ dimen {                         //2
 }
 ```
 
-
-
-
-
+<a name=return></a>
+### Function returning a struct instance
 - [Function returning a struct instance](/Languages/Programming_Languages/Rust/Functions/Return_From_Function)
-- [Creating Instance2 from Instance1](Creating_Instance2_from_Instance1.md)
