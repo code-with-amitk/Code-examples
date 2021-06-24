@@ -337,7 +337,7 @@ fn main() {
 }
 ```
 
-<a name=#oe></a>
+<a name=oe></a>
 ### 4.3.2 Option Enum
 - This is another kind of enum in rust which takes either of 2 values: Some or None
 ```rust
