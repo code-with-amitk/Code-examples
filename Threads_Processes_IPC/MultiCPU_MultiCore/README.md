@@ -1,6 +1,6 @@
 - [1. Core / Multicore](#multicore)
   - [1.1 Caches with Core?](#cache)
-- [2. Multicpu](#multicpu)
+- [2. MultiCPU](#multicpu)
 
 <a name="multicore"></a>
 ## 1.1 Core / Multicore
