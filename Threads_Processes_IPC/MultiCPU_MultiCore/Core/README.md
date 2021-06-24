@@ -1,13 +1,14 @@
+## Mutlicores
 - [Core?](#multicore)
 - [Caches with Core?](#cache)
 
 <a name="multicore"></a>
 ## Core
-- **What?** Miniprocessor(mini chip) on CPU chip which can act as complete processor by itself. 1 CPU chip can have 4, 8, or more cores on them. **[GPU](/Motherboard/CPU/GPU)** can have 1000's of tiny cores on them.
+- **What?** Miniprocessor(mini chip) on CPU chip which can act as complete processor by itself. 1 CPU chip can have 4, 8, or more cores on them. *[GPU](/Motherboard/CPU/GPU)* can have 1000's of tiny cores on them.
   - *Dual Core?* 2 CPU's on  Single CPU Chip
   - *Wuad Core?* 4 CPU's on Single CPU Chip
   - *Octa Core?* 8 CPU's on Single CPU Chip.
-- **Max cores?** Intel Xeon Phi supports 60 cores/processor. Each core can have AT-MAXIMUM 2 threads. Total threads = 120
+- *Max cores?* Intel Xeon Phi supports 60 cores/processor. Each core can have AT-MAXIMUM 2 threads. Total threads = 120
 - *Are More cores better?* Think core as hands of a person. octa-cored(8 core/hand) person can work fast wrt dual-core.
 - *Threads?* 1 core can have 2 threads.
 - [Applications](/Motherboard/CPU/GPU/GPU/Applications_Advantages_Disadv.md)
