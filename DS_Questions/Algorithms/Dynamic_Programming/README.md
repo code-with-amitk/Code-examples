@@ -1,4 +1,4 @@
-**Dynamic Programming / Tabular Method  <== VERY EASY**
+## Dynamic Programming / Tabular Method  <== VERY EASY
 
 - [What and How DP Works](#when)
 - [Identify whether this problem is DP?](#identify)
