@@ -162,3 +162,4 @@ fn main() {
 
 <a name="structdatatype"></a>
 ### [2.3 Struct Type](Compound)
+- associated functions
