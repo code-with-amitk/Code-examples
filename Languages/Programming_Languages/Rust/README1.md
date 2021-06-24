@@ -15,8 +15,9 @@
   - [4.2  Enum holding data](#enumholding)
     - [4.2.1 Enum holding 1 datatype](#enumholdingone)
     - [4.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
-
-
+  - [4.3 Option Enum = NULL](#optionenum) 
+    - [4.3.1 Why creating NULL was mistake?](#nullmistake)
+    - [4.3.2 Option Enum](#oe)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -290,4 +291,83 @@ IPv6 IPv6(
     "::1",
 )
 Disconnected NoIP
+```
+
+<a name=optionenum></a>
+## 4.3 Option Enum = NULL
+
+<a name=nullmistake></a>
+### 4.3.1 Why creating NULL was mistake?
+- Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
+  - If we try using NULL value as non-NULL value. Eg: derefercing NULL ptr.
+  - Problem is not in NULL but at places this get misused.
+  - There are multiple situations, where crash is caused due to NULL. 
+- Ex-1. NULL References when derefrenced will cause crash
+- **C/C++ crashing code**
+```c++
+int fun(struct A*& p){              //Funtion taking NULL reference
+  if (p == nullptr)
+    cout<<"Got Null ptr reference\n";
+  cout << p->a;
+}
+int main(){
+  struct A* p = nullptr;
+  fun(p);
+}
+$ ./a.out
+Got Null ptr reference
+Segmentation Fault
+```
+- **How Rust avoid Null ptr?**
+  - _1._ Whichever variable can have NULL or other value, Rust asks to declare it as `Option<T>`
+  - _2._ Rust does not allow creating structure object without initializing its members.
+    - It can be initialized with Some or None. This is how rust avoids NULL crashes.
+```rust
+fn fun(obj:&A){
+    println!("a:{:#?}",obj.a);
+}
+struct A{
+    a:Option<i32>,              //1
+}
+fn main() {
+    let obj = A{
+        a:None                  //2
+    };
+    fun(&obj);
+}
+```
+
+<a name=#oe></a>
+### 4.3.2 Option Enum
+- This is another kind of enum in rust which takes either of 2 values: Some or None
+```rust
+enum Option<T> {          //T is template which can take any type: i32, i64 etc
+    Some(T),
+    None,
+}
+```
+- **Example**
+- *1. Initializing and using Option<`T`>*
+```
+fn main() {
+    let a:Option<i32>= Some(2);
+    let b:Option<i32>= None;
+
+    println!("a:{:#?}",a);
+    println!("b:{:#?}",b);
+}    
+$ main.exe
+a:Some(
+    2,
+)     
+b:None
+```
+- *2. We cannot add Option<`T`> to non Option<`T`>*
+```rust
+fn main() {
+    let x: i8 = 5;
+    let y: Option<i8> = Some(5);
+
+    let sum = x + y;                //Compliation Error
+}    
 ```
