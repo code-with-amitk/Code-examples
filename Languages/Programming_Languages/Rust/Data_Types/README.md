@@ -7,8 +7,9 @@
     - [1.1.c bool](#booldatatype)
     - [1.1.d char](#chardatatype)
 
+
 <a name="datatypes"></a>
-# 1. Data Types
+# Data Types
 - *Type Annotation?*  When many types are possible. Eg: String converted to a int using parse(), we must add a type annotation to tell type to complier.
 ```rust
   let a = 1;        //a inferred int
