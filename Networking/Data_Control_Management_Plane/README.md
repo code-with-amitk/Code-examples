@@ -1,4 +1,4 @@
-## Data, Control, Management Plane
+## Data, Control, Management, Service Plane
 - **What is Plane?** Conceptual model used by routers and switches. Planes describe how packets travel to, from, and through a device.
 - **Why router is seperated in planes?**
   - If everything is done by 1 software only, things might get messed/mixed at high load.
