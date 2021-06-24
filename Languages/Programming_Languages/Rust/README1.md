@@ -11,6 +11,13 @@
       - [Mutable References are allowed in seperate scope](#MutSep)
 - [3. Data Types](Data_Types)
   - Associated Functions
+- [4. Enum](#enum)
+  - [4.1. Enum Not Holding data](#enumnotholding)
+  - [4.2  Enum holding data](#enumholding)
+    - [4.2.1 Enum holding 1 datatype](#enumholdingone)
+    - [4.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
+
+
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -171,4 +178,116 @@ fn main() {
     let r1 = &mut s;
   } // r1 goes out of scope here, so we can make a new reference with no problems.
   let r2 = &mut s;
+```
+
+<a name=enum></a>
+## 4. Enum
+- Similar to other languages, Enums are User defined data type which can be assigned some limited values. 
+- In rust enum variable can or cannot hold the data (Eg: String). 
+
+<a name=enumnotholding></a>
+### 4.1. Enum not Holding data / Same as enum class in C++
+```rust
+#[derive(Debug)]            //1. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for enum.
+enum Color{                 //2. Declare enum same
+    Red,
+    Blue,
+    Green
+}
+
+fn fun (a:Color) {          //4. Print enum after passing to function
+    println!("{:#?}",a);
+}
+
+fn main() {
+    let a:Color = Color::Red; //3. Initialize variable with enum value
+    fun(a);
+}
+```
+
+<a name=enumholding></a>
+### 4.2. Enum Holding the data
+
+<a name=enumholdingone></a>
+#### 4.2.1 Enum holding 1 datatype
+- *2.* 
+- *3.* 
+- *4.* 
+```rust
+use std::{string::String, u32};
+
+#[derive(Debug)]
+enum Address{                     //1. Enum variable can store string data
+    IPv4(String),
+    IPv6(String),
+}
+
+fn fun (addr:&Address) {          //3. Passing enum variable to function and printing.
+    println!("{:#?}",addr);
+}
+
+fn main() {
+    let router1:Address = 
+      Address::IPv4(String::from("192.168.1.1"));   //2. Creating enum variable having string data(192.0.0.1)
+    fun(&router1);
+}
+
+# rustc test.rs
+# .test.exe
+IPv4(
+    "192.168.1.1",
+)
+```
+
+<a name=enumholdingmultiple></a>
+## Enum Holding Multiple Datatypes
+```rust
+use std::{string::String, u32};
+
+#[derive(Debug)]                
+enum Address{                   //1. Enum data structure holding 3 variables
+    NoIP,                       //NoIP does not hold any data
+    IPv4(u8,u8,u8,u8),          //IPv4 holding 4 u8 types
+    IPv6(String),               //IPv6 holding String type
+}
+
+/*THIS IS EQUIVALENT TO:
+struct NoIP;
+struct IPv4 {
+    a: i32,
+    b: i32,
+    c: i32,
+    d: i32,
+}
+struct IPv6 {
+    e:String
+}    
+*/
+
+fn fun (addr1:&Address,addr2:Address, addr3:Address) {         //3. Printing enum variables
+    println!("IPv4 {:#?}",addr1);
+    println!("IPv6 {:#?}",addr2);
+    println!("Disconnected {:#?}",addr3);
+}
+
+fn main() {
+    let router1:Address = 
+      Address::IPv4(10,11,12,13);               //2. Router1 variable created of type IPv4, router2 of IPv6, disconnectedIP of no ip
+    let router2:Address = Address::IPv6(String::from("::1"));
+    let disconnectedDevice:Address = Address::NoIP;
+    fun(&router1,router2);
+}
+
+# rustc test.rs
+# .\test.exe
+IPv4 IPv4(
+    10,
+    11,
+    12,
+    13,
+)
+IPv6 IPv6(
+    "::1",
+)
+Disconnected NoIP
 ```
