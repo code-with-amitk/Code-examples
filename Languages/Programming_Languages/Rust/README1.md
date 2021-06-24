@@ -9,7 +9,7 @@
       - [Mutable & immutable References in same scope not allowed](#MutImmutable)
       - [2 Mutable references are not allowed in same scope](#MutMut)
       - [Mutable References are allowed in seperate scope](#MutSep)
-- [3. Data Types](#datatypes)
+- [3. Data Types](Data_Types)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -171,6 +171,3 @@ fn main() {
   } // r1 goes out of scope here, so we can make a new reference with no problems.
   let r2 = &mut s;
 ```
-
-<a name="datatypes"></a>
-## [3. Data Types](Data_Types)
