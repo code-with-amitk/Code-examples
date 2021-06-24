@@ -4,7 +4,7 @@
 - [Initializing struct](#initialize)
 - [Mutable struct](#mutable)
 - [Dumping struct variables using println](#dump)
-- [Function returning a struct instance](#return)
+- [Associated Function: Returning a struct object/instance from function](#return)
 
 
 
@@ -77,5 +77,34 @@ dimen {                         //2
 ```
 
 <a name=return></a>
-### Function returning a struct instance
-- [Function returning a struct instance](/Languages/Programming_Languages/Rust/Functions/Return_From_Function)
+### Associated Function: Returning a struct object/instance from function
+- *1.* Declared associated function returning Object with specific value.
+- *2.* To call associated function :: is used.
+```rust
+use std::{string::String, u32};
+
+#[derive(Debug)]
+struct Rectangle {
+    len:u32,
+    width:u32
+}
+impl Rectangle{
+    fn fun(len:u32) -> Rectangle{     //1
+        Rectangle {
+            len,
+            width:len
+        }
+    }
+}
+
+fn main() {
+    println!("{:#?}",Rectangle::fun(10));       //2
+}
+
+# rustc test.rs
+# ./test.exe
+Rectangle {
+    len: 10,
+    width: 10,
+}
+```
