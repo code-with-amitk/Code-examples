@@ -9,8 +9,7 @@
       - [Mutable & immutable References in same scope not allowed](#MutImmutable)
       - [2 Mutable references are not allowed in same scope](#MutMut)
       - [Mutable References are allowed in seperate scope](#MutSep)
-- [3. Data Types](Data_Types)
-  - Associated Functions
+- [3. Data Types](#datatypes)
 - [4. Enum](#enum)
   - [4.1. Enum Not Holding data](#enumnotholding)
   - [4.2  Enum holding data](#enumholding)
@@ -179,6 +178,10 @@ fn main() {
   } // r1 goes out of scope here, so we can make a new reference with no problems.
   let r2 = &mut s;
 ```
+
+<a name=datatypes></a>
+## [3. Data Types](Data_Type)
+  - Associated Functions
 
 <a name=enum></a>
 ## 4. Enum
