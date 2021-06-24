@@ -10,6 +10,7 @@
       - [2 Mutable references are not allowed in same scope](#MutMut)
       - [Mutable References are allowed in seperate scope](#MutSep)
 - [3. Data Types](Data_Types)
+  - Associated Functions
 
 <a name="What"></a>
 ## 1. What/Why Rust
