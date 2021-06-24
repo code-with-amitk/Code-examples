@@ -210,9 +210,6 @@ fn main() {
 
 <a name=enumholdingone></a>
 #### 4.2.1 Enum holding 1 datatype
-- *2.* 
-- *3.* 
-- *4.* 
 ```rust
 use std::{string::String, u32};
 
