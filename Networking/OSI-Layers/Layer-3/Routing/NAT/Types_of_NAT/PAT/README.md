@@ -1,2 +1,0 @@
-### PAT(Port Address Translation)
-
