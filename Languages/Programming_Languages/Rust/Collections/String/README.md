@@ -4,6 +4,7 @@
 - [4. Operations](#operations)
   - [4.1 Create](#create)
   - [4.2 Concatenate](#concatenate)
+- [5. How strings are stored internally](#internal)
 
 <a name=lts></a>
 ## 1. string literal, String type, String slice
@@ -99,3 +100,6 @@ fn fun(s:&String) -> &str {                               //Function returning S
     let s3 = format!("{} {}",s1,s2);            //Test Foo  
 ```
 
+<a name=internal></a>
+## 5. How strings are stored internally
+- A String is a wrapper over a `Vec<u8>`
