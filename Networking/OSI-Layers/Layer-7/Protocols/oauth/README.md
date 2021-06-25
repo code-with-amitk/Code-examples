@@ -1,5 +1,6 @@
 - [What is oauth](#what)
 - [Terminology](#term)
+- [Actors in oauth](#actors)
 
 <a name=what></a>
 ## oauth / okta Authorization
@@ -11,3 +12,10 @@
 ## Terminology
 - **Federated Authentication** Although many applications have their own DB storing(user,pass) but some applications rely on other services to verify the identity of users, this is called federated authentication. Protocols for federated authentication: openid.
 - **Delegated Authorization** Granting access to another user or application to perform actions on your behalf. Eg: When you drive your car to a classy hotel, they may offer valet parking. You then authorize the valet attendant to drive your car by handing him the key in order to let him perform actions on your behalf. OAuth works similarly—a user grants access to an application to perform actions on the user’s behalf and the application can only perform the authorized actions.
+
+<a name=actors></a>
+## Actors in oauth
+- **1. Resource server:** The server hosting user-owned resources(photos, videos, contacts etc) eg: google.
+- **2. Resource owner / User:** He has the ability to grant access to their own data hosted on the resource server.
+- **3. Client:** An application who want to perfom actions on user Resources(on behalf of users) with its authorization, does API requests to Resource server.
+- **4. Authorization server:** This gets consent from the resource owner and issues access tokens to client.
