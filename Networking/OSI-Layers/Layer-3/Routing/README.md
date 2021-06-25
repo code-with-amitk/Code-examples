@@ -36,13 +36,13 @@
 <a name=example></a>
 ### 2.2 Example Routing Table
 ```c
- [D](18)--------172.16.1.0----------(1)[A](1)----------172.16.2.0----------(2)[B](1)---------192.168.1----------(2)[C]172.16.4.1    
+ [D](18)--------172.16.1.0----------(1)[A](1)----------172.16.2.0----------(2)[B](1)---------192.168.1----------(2)[C]172.16.4.1
  
 N/W Destination 	N/W Mask 	Next Hop/Gateway 	Interface 	Metric/Cost 	Protocol 	 
-  0.0.0.0           /0      172.16.2.1        1           46 	 	                    //DEFAULT ROUTE.Send Pkt to G/W If no specific Next Hop is Listed in Table.
-255.255.255.255     /32     172.16.2.1        1           296           Direct 	                  //BROADCAST
-  127.0.0.1         /32     127.0.0.1 	      127.0.0.0.1 4531          Local 	    //LOOPBACK 
-  172.16.4.0        /24     192.168.1.2 	    0           30            STATIC 	    //This is Manually Configured 
+  0.0.0.0           /0      172.16.2.1        1           46                   //DEFAULT ROUTE.Send Pkt to G/W If no specific Next Hop is Listed in Table.
+255.255.255.255     /32     172.16.2.1        1           296           Direct //BROADCAST
+  127.0.0.1         /32     127.0.0.1         127.0.0.0.1 4531          Local   //LOOPBACK 
+  172.16.4.0        /24     192.168.1.2 	    0           30            STATIC  //This is Manually Configured 
   172.16.2.1       /24      172.16.2.1 	      1           30            OSPF 	 
   172.16.1.18      /24      172.16.2.1 	      172.16.2.2  92            OSPF 	 
 ```
