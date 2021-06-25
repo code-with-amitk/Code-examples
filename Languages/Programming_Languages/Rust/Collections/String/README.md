@@ -56,11 +56,16 @@ fn fun(s:&String) -> &str {                               //Function returning S
 - string is growable, mutable, owned, UTF-8 encoded string type. string allocated on heap is shallow copy
 ```rust
   let s1:String = String::from("test");
-  //let s2 = s1;                                //Shallow copy, ie s2,s1 both point to same memory. COMPLIER ERROR
-  let s2 = s1.clone();                          //Deep Copy. Deep copy is costly operation.
+  //let s2 = s1;                              //Shallow copy, ie s2,s1 both point to same memory. COMPLIER ERROR
+  let s2 = s1.clone();                        //Deep Copy. Deep copy is costly operation.
   
   let a:i32 = 5;
   let b = a;                                  //Data on stack is always deep copied
+```
+- Its not allow to index into a String to get a character is that indexing operations because its tough to know sizeof UTF-8 character.
+```rust
+  let hello = "Здравствуйте";                 //Complilation error
+  let answer = &hello[0];  
 ```
 
 <a name=string></a>
