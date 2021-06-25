@@ -1,6 +1,8 @@
 - [Terminology](#terms)
   - NAT
 - [1. Router](#router)
+  - [1.1 Feilds changed before forwarding](#feilds)
+  - [1.2 Drawbacks of traditional Routers](#drawback)
 - [2. Routing table](table)
   - [2.1 Associated Terms](#terms)
   - [2.2 Example Routing Table](#example)
@@ -13,9 +15,17 @@
 <a name=router></a>
 ## 1. Router
 - Router is a networking device that forwards packets into n/w. When packet comes to a router it reads dstIP & finds on which interface packet should be sent.
-- Router changes following feilds before forwarding.
+- **Packet Processing** stateless, promiscuous
+
+<a name=feilds></a>
+### 1.1 Feilds changed before forwarding
   - TTL: Decremented by 1
   - Checksum: To check header has error or not.
+
+<a name=#drawback></a>
+### 1.2 Drawbacks of traditional Routers
+- _1. Does not recognize security attacks/threats:_ Plain layer-3 devices, just forwards packet based on dstIP, hence network is very vunerable to threats.
+- _2. Seperate firewall for security need to be added_
 
 <a name=table></a>
 ## 2. Routing Table/Routing inforamtion base(RIB)
