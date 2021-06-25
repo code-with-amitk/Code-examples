@@ -2,6 +2,7 @@
 - [cmake commands](#cmds)
 - [3. Examples](#exp)
   - [3.1 Simple 1 file](#simp)
+  - [3.2 Example having folder hierarchies](#folder)
 
 <a name=what></a>
 ## Cmake
@@ -63,4 +64,17 @@ $ make
 Open command prompt
 cmd> cd C:\go-here\Code\Sum_of_2_Numbers\
 cmd> cmake -G "Visual Studio 16 2019" .      //This creates VS Project files to build
+```
+
+<a name=folder></a>
+## [3.2 Folder hierarchies]
+```c
+ - driver
+    |- main.cpp
+ - library1
+    |- src
+          |- test1.cpp
+    |- inc
+          |- test1.h
+	
 ```
