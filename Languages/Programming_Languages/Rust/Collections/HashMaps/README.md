@@ -1,6 +1,9 @@
 - [Hashmap](#what)
 - [2. Operations](#opr)
   - [2.1 Create](#create)
+  - [2.2 Insert](#insert)
+  - [2.3 Search](#search)
+  - [2.4 Print](#print)
 
 <a name=what></a>
 ## Hashmap<K, V> 
