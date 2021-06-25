@@ -32,7 +32,7 @@
 <a name=zone></a>
 ## Zones in firewall
 
-<a name=zone></a>
+<a name=dmz></a>
 ### DMZ (DeMilitarized Zone) 
 - Part of company, here Public-facing servers can be placed. Eg: Web servers(with minumum and none secure information)
   - *Why?* Outsiders can contact Web-server(hosting company website) and no internal machine is compromised.
