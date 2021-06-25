@@ -5,6 +5,7 @@
 - [2. Architecture](#Architecture)
   - [2.1 Chunks](#Chunks)
   - [2.2 GFS Master](#GFS_Master)
+    - [2.2.a Stores meta-data, Operation Logs](#stores)
   - [2.3 GFS Client](#GFS_Client)
     - [2.3.1 Case-1: Read Operation: User Reading a File](#Read_File)
   - [2.4 Chunk Servers](#Chunk_Servers)
@@ -55,12 +56,23 @@
 
 <a name="GFS_Master"></a>
 ## 2.2 GFS Master
-- **Stores**
-  - All meta-data: Stores in Memory(ie RAM). Keeps 64bytes of meta data for each 64MB chunk.
-    - chunk namespace(think similar to c++ namespaces), Mapping from files to chunks  //These 2 are stored persistant using [long Mutations](/System-Design/Terms)
-    - Current location of each chunk's replica, access control information.
-      - Chunk location is asked by gfs-master from chunkservers at startup, after that master will updates its DB since all chunkplacement is done by master with regular HeartBeat messages to chunkservers.
-  - All logs. In case master crashes this will help in recuprating master again.
+
+<a name="stores"></a>
+### 2.2.a GFS Master Stores
+#### A. All meta-data 
+- Keeps 64bytes of meta data for each 64MB chunk.
+  - chunk namespace(think similar to c++ namespaces), Mapping from files to chunks  //These 2 are stored persistant using [long Mutations](/System-Design/Terms)
+  - Current location of each chunk's replica, access control information.
+    - Chunk location is asked by gfs-master from chunkservers at startup, after that master will updates its DB since all chunkplacement is done by master with regular HeartBeat messages to chunkservers.
+#### B. Operation Logs 
+- These are stored on gfs-master disk and remotely both.
+- *Purpose?*
+  - Stores time of creation of Files, chunks, their versions.
+  - In case master crashes this will help in recuprating master again.
+    - We will keep **checkpoints**(Maintained as compact [B-Tree](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/B+Tree/)) in log file, so that when master need to recover it does not read whole file and take lot of time.
+    - New checkpoint is created in seperate thread every minute or so for cluster containing 1-10 Million files.
+    - After new checkpoint is created, older checkpoints can be deleted, some can be kept to guard against catastrophes.
+
 - **Tasks Performed**
   - _1. Chunk management_
     - Garbage collection of orphaned chunks, chunkmigration between chunkservers.
