@@ -46,7 +46,7 @@ int sum(int a,int b){
   return a+b + VAR;
 }
 ```
-- _B. Build and run_
+- _B. Build and run using Makefile_
 ```c
 $ pwd
 Sum_of_2_Numbers
@@ -55,7 +55,7 @@ $ cd Build
 $ cmake ../
 $ make
 ```
-- _C. Generate `*.sln` files for Visual Studio_
+- _C. Generate `*.sln` files for Visual Studio 2019_
   - Install cmake-3.20.0-rc4-windows-x86_64.zip from [Windows x64 ZIP](https://cmake.org/download/)
   - Extract cmake in any Directory `C:\go-here\cmake`
   - Set PATH enviornment variable to `C:\go-here\cmake\bin`
