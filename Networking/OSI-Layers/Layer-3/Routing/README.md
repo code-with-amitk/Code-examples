@@ -38,7 +38,7 @@
 ```c
  [D](18)--------172.16.1.0----------(1)[A](1)----------172.16.2.0----------(2)[B](1)---------192.168.1----------(2)[C]172.16.4.1
  
-N/W Destination 	N/W Mask 	Next Hop/Gateway 	Interface 	Metric/Cost 	Protocol 	 
+N/W Destination    N/W Mask Next Hop/Gateway  Interface   Metric/Cost   Protocol 	 
   0.0.0.0           /0      172.16.2.1        1           46                   //DEFAULT ROUTE.Send Pkt to G/W If no specific Next Hop is Listed in Table.
 255.255.255.255     /32     172.16.2.1        1           296           Direct //BROADCAST
   127.0.0.1         /32     127.0.0.1         127.0.0.0.1 4531          Local   //LOOPBACK 
