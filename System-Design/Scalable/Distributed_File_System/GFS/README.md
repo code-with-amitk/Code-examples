@@ -43,21 +43,31 @@
 ```
 <a name="Chunks"></a>
 ## 2.1 Chunks
-  - Files are divided into fixed-size chunks
-  - Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
-  - For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
+- Files are divided into fixed-size chunks
+- Each chunk is identified by an immutable(non-changable) and globally unique 64 bit chunk. Assigned by the master at the time of chunk creation.
+- For reliability, each chunk is replicated on multiple chunkservers(By default, 3 replicas)
+
+### 2.1.a Chunk size = 64MB
+- **Advantages of large chunk?**
+  - Only 1st time client need to contact gfs-master to get chunk-replica-ip-address. //See Read operation below
+  - On a large chunk, gfs-client can perform many operations, it reduces network overhead.
+  - It reduces the size of the metadata stored on the master.
 
 <a name="GFS_Master"></a>
 ## 2.2 GFS Master
-  - **Stores**
-    - Maintains all meta-data. Meta-data: namespace, access control information, Mapping from files to chunks, current location of chunks.
-  - **Does Tasks**
-    - _1. Chunk management_
-      - Garbage collection of orphaned chunks, chunkmigration between chunkservers.
-      - Replication decisions using global knowledge
-      - Sophisticated chunk placement
-  - **Does not:**
-    - Involve in reads and writes with clients, so that it does not become a bottleneck.
+- **Stores**
+  - All meta-data: Stores in Memory(ie RAM). Keeps 64bytes of meta data for each 64MB chunk.
+    - chunk namespace(think similar to c++ namespaces), Mapping from files to chunks  //These 2 are stored persistant using [long Mutations](/System-Design/Terms)
+    - Current location of each chunk's replica, access control information.
+      - Chunk location is asked by gfs-master from chunkservers at startup, after that master will updates its DB since all chunkplacement is done by master with regular HeartBeat messages to chunkservers.
+  - All logs. In case master crashes this will help in recuprating master again.
+- **Tasks Performed**
+  - _1. Chunk management_
+    - Garbage collection of orphaned chunks, chunkmigration between chunkservers.
+    - Replication decisions using global knowledge
+    - Sophisticated chunk placement
+- **Does not:**
+  - Involve in reads and writes with clients, so that it does not become a bottleneck.
 
 <a name="GFS_Client"></a>
 ## 2.3 GFS Client
