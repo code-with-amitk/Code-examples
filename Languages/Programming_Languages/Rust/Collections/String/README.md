@@ -4,6 +4,7 @@
 - [4. Operations](#operations)
   - [4.1 Create](#create)
   - [4.2 Concatenate](#concatenate)
+  - [4.3 Print](#print)
 - [5. How strings are stored internally](#internal)
 
 <a name=lts></a>
@@ -62,10 +63,12 @@ fn fun(s:&String) -> &str {                               //Function returning S
   let a:i32 = 5;
   let b = a;                                  //Data on stack is always deep copied
 ```
-- Its not allow to index into a String to get a character is that indexing operations because its tough to know sizeof UTF-8 character.
+- Its not allow to index into a String to get a character is that indexing operations because some [UTF-8](/Languages/Programming_Languages/C/Character_Sets/) characters are formed more than 1 byte. Eg: characters from 127-159 are used for creating characters using shift,cntrl keys. With string rust cannot determine exact sizeof string.
 ```rust
-  let hello = "Здравствуйте";                 //Complilation error
-  let answer = &hello[0];  
+  let hello = "Здравствуйте";                 
+  let answer = &hello[0];                   //Complilation error
+  
+  let answer = &hello[0..4];                //Allowed
 ```
 
 <a name=string></a>
@@ -103,6 +106,35 @@ fn fun(s:&String) -> &str {                               //Function returning S
     let s2 = String::from("Foo");
 
     let s3 = format!("{} {}",s1,s2);            //Test Foo  
+```
+
+<a name=print></a>
+### 4.3 Printing
+- _chars():_ returns char types
+```rust
+    let hello = "Здравствуйте";
+    for a in hello.chars() {
+        println!("{}",a)
+    }
+```
+- _bytes():_ returns raw bytes. Remember valid Unicode scalar values may be made up of more than 1 byte.
+```rust
+    let hello = "Здрав";
+    for a in hello.bytes() {
+        println!("{}",a)
+    }
+    
+$ test.exe    
+208
+151
+208
+180
+209
+128
+208
+176
+208
+178
 ```
 
 <a name=internal></a>
