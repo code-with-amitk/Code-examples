@@ -2,6 +2,7 @@
 - [2. Why JSON](#why)
 - [3. Datatypes](#datatypes)
 - [4. JSON Schema](#schema)
+- [5. RESTFul JSON Server](#restful)
 
 <a name=what></a>
 ## JSON / JavaScript Object Notation
@@ -59,6 +60,32 @@ Array.json {
 <a name=schema></a>
 ## [4. JSON Schema](JSON_Schema)
 
-- [Creating JSON Server, Accessing test.json using Browser, Postman](Restful_JSONServer)
+<a name=schema></a>
+## 5. RESTFul JSON Server
+- [What is REST](/Networking/OSI-Layers/Layer5/WebServer_WebClient_WebService/WebClient_Connecting_WebServer). 
+- **Steps:**
+  - _a. Install & Start JSON Server_
+    - Install Node.js on Windows**
+```c
+  a. Install nvm-setup.zip from https://github.com/coreybutler/nvm-windows/releases. 
+      It sets up NVM_HOME, NVM_SYMLINK in env varaible.
+  b. Open Windows cmd prompt and install latest Node.js
+    cmd> nvm install v16.1.0
+       > nvm use 16.1.0
+```
+- *b. Install & start json-server.* Download [speakers.json](https://github.com/tmarrs/json-at-work-examples/blob/master/chapter-1/speakers.json)
+```c
+  cmd> npm install -g json-server
+  >json-server -p 5000 ./speakers.json
+```
+- _c. Access JSON from Clients_
+```c
+From Web Browser
+  - `http://localhost:5000/speakers`. This will issue GET request to json-server.
+  - `http://localhost:5000/speakers/0`. Will give 1st speaker
+OR From Postman: 
+  Provides the ability to fully test a RESTful API.
+```
+
 
   
