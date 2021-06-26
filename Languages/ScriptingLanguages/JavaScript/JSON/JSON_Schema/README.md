@@ -1,6 +1,9 @@
 - [1. What is JSON Schema](#what)
+  - [1.1 Example of JSON Schema](#example)
 - [2. JSON Doc Validation Types](#val)
   - [2.1 Syntactic Validation](#syntactic)
+  - [2.2 Semantic Validation](#semantic)
+
 
 <a name=what></a>
 ## 1. JSON Schema
@@ -9,7 +12,9 @@
 - *Why JSON Schema for security*
   - _a._ Web Services should validate their payloads by using a Schema.
   - _b._ Where producer and consumer are on far apart, it important to validate using schema else it will be wastage of time for consumer. 
-- **Example of JSON Schema**
+
+<a name=example></a>
+### 1.1 Example of JSON Schema
 - *1.* Schema specifies that a document can have three fields (email, firstName, lastName) each one is a string.
 ```json
 $ cat basic-schema.json
@@ -61,5 +66,4 @@ cmd> jsonlint test.json
 ### 2.2 Semantic Validation
 - Validating the meaning of the data, not just the syntax. Eg: Validating format of a phone number, date/time, postal code, email address, or a credit card number etc.
 
-- [Validation Types](ValidationTypes): Syntactic, Semantic Validation
-- **[Generating JSON Schema](Generating_JSON_Schema)**
+
