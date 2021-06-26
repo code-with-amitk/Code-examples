@@ -3,6 +3,7 @@
 - [3. Datatypes](#datatypes)
 - [4. JSON Schema](#schema)
 - [5. RESTFul JSON Server](#restful)
+- [6. Building Web Application using Yeoman](#webapp)
 
 <a name=what></a>
 ## JSON / JavaScript Object Notation
@@ -87,5 +88,7 @@ OR From Postman:
   Provides the ability to fully test a RESTful API.
 ```
 
+<a name=webapp></a>
+## [6. Building Web Application using Yeoman](Web_Application)
 
   
