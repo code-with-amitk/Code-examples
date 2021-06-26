@@ -1,2 +1,0 @@
-## Example JSON Schemas
-
