@@ -7,8 +7,9 @@
   - [2.2 GFS Master](#GFS_Master)
     - [2.2.a Stores meta-data, Operation Logs](#stores)
   - [2.3 GFS Client](#GFS_Client)
-    - [2.3.1 Case-1: Read Operation: User Reading a File](#Read_File)
-    - [2.3.2 Case-2: Write Operation: User Writing to File](#write)
+    - [2.3.1 Read Operation: User Reading a File](#Read_File)
+    - [2.3.2 Write Operation: User Writing to File](#write)
+    - [2.3.3 User creates snapshot of workspace](#snapshot)
   - [2.4 Chunk Servers](#Chunk_Servers)
 - [3. Caching](#Caching) 
 
@@ -117,8 +118,8 @@
 
 <a name="write"></a>
 ### 2.3.2 Write Operation: User writing to a File
-- 1. User opens dropbox space, opens a file and writes on some index.
-- 2. GFS Client asks which chunk-replica holds ownership/lease of current chunk. if noone has lease master assigns lease to one and returns all 
+- _1._ User opens dropbox space, opens a file and writes on some index.
+- _2._ GFS Client asks which chunk-replica holds ownership/lease of current chunk. if noone has lease master assigns lease to one and returns all 
   - _Chunk Ownership/LEASE:_ Every chunk would be owned by 1 of chunk-replica for specific time. This lease is assigned by master to chunk-replica.
 - _3._ Master returns chunkserver-replicas ip address to GFS Client.
 - _4._ GFS Client will push data to primary chunk-replica. Primary chunk-replica will forward data to its NEAREST chunk replica-b. Chunk-replica-b will forward data to its nearst chunk-replica. This way N/W Bandwidth is saved, latency is minimized. 1MB is roughly stored/distributed in 80ms.
@@ -143,6 +144,34 @@
                                                       <---- ACK ----
                                                                       --- data-y --> chunk-replica-c
                                                                       <---- ACK ----
+```
+
+<a name=snaphot></a>
+### 2.3.3 User creates snapshot of workspace
+- **snaphot?** Makes a copy of a file or a directory tree (the “source”) almost instantaneously, without affecting any ongoing mutations/write operations.
+- _1._ User opens dropbox space, and presses button for snapshot.
+- _2._ When the gfs-master receives a snapshot request, it 1st revokes any outstanding leases on the chunks in the files it is about to snapshot. This ensures that any subsequent writes to these chunks will require an interaction with the master to find the lease holder. gfs-master creates new copy of chunk 1st.
+  - _Chunk Ownership/LEASE:_ Every chunk would be owned by 1 of chunk-replica for specific time. This lease is assigned by master to chunk-replica
+- _3._ Master writes changes to operation log.
+- _4._ Makes snapshot's file-1 point to file-1 in same workspace of client. Newly created snapshot files point to the same chunks as the source files.
+- _5._ GFS Client writes new chunk-x to old file-y in snaphot, it sends request to gfs-master to find chunk-replica.
+- _6._ GFS-master creates chunk-x on chunk-replica that holds file-y. This ensures data is copied locally(no network based writes), now its same as 2.3.1
+```console
+Dropbox-space/GFS-Client
+  Take snapshot   //1
+   
+        -------------------------->   GFS-Master
+                                  Revoke outstanding leases   //2
+                                  Logs data to operation log  //3
+                                  Makes newly created snapshot point to old data //4
+                      
+  GFS-Client
+add chunk-x to old file-y on snaphot  //5
+        -----------Find chunk-replica------>
+                                  Creates chunk-x on chunk-replica  //6
+                                  that holds the file-y
+                                          ------------- Create chunk-x ----------> chunk-replica
+                                //Same as writing to chunk
 ```
 
 <a name="Chunk_Servers"></a>
