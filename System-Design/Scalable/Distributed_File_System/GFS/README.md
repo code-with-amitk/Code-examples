@@ -8,6 +8,7 @@
     - [2.2.a Stores meta-data, Operation Logs](#stores)
   - [2.3 GFS Client](#GFS_Client)
     - [2.3.1 Case-1: Read Operation: User Reading a File](#Read_File)
+    - [2.3.2 Case-2: Write Operation: User Writing to File](#write)
   - [2.4 Chunk Servers](#Chunk_Servers)
 - [3. Caching](#Caching) 
 
@@ -112,6 +113,36 @@
           connects to nearest replica 
                   ----------chunk_handle, start_offset, end_offset-------> Replica
                   <--------- chunk.. ---------------------------------------
+```
+
+<a name="write"></a>
+### 2.3.2 Write Operation: User writing to a File
+- 1. User opens dropbox space, opens a file and writes on some index.
+- 2. GFS Client asks which chunk-replica holds ownership/lease of current chunk. if noone has lease master assigns lease to one and returns all 
+  - _Chunk Ownership/LEASE:_ Every chunk would be owned by 1 of chunk-replica for specific time. This lease is assigned by master to chunk-replica.
+- _3._ Master returns chunkserver-replicas ip address to GFS Client.
+- _4._ GFS Client will push data to primary chunk-replica. Primary chunk-replica will forward data to its NEAREST chunk replica-b. Chunk-replica-b will forward data to its nearst chunk-replica. This way N/W Bandwidth is saved, latency is minimized. 1MB is roughly stored/distributed in 80ms.
+- _5._ Primary Chunk-replica, ie to which lease was provided by master assigns serial number to chunks written.
+- _6._ In case of any error in write, its communicated to GFS-Client. In case of failure in writing chunk, particular data block would not been assigned serial number by chunk-replica and its possibly lost or in inconsistent state. Client will retry rewriting the data ie failed mutations.
+```console
+  Dropbox-space
+  - User opens a.txt at offset=1000 and writes data-y  //1
+    a.txt,offset=1000 = chunk-x
+    
+              GFS-CLIENT
+              Get chunk-server holding lease //2
+            
+                  ----------------- chunk-x ---------->   GFS-Master
+                  <----chunkserver-replicas list----            //3
+                      
+              Push data to all replicas //4
+                  ------------ data-y ----------> chunk-replica-a   //5
+                  <-------- ACK ----------------
+                  
+                                                      --- data-y --> chunk-replica-b
+                                                      <---- ACK ----
+                                                                      --- data-y --> chunk-replica-c
+                                                                      <---- ACK ----
 ```
 
 <a name="Chunk_Servers"></a>
