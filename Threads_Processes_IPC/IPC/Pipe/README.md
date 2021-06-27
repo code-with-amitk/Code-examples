@@ -3,6 +3,7 @@
 - [How pipe works](#work)
 - [Code](#code)
   - [1. One Child. Parent reading child writing](#one)
+- [How pipes are internally implemented](#internal)
 - [Read/Write Cases](#cases)
 
 <a name=what></a>
@@ -77,6 +78,23 @@ int main(){
 
 # ./a.out 
 Read from child: Test
+```
+
+<a name=internal></a>
+## Internal implementation of pipes
+- using [dup2()](/Operating_Systems/Linux/Kernel/System_Calls)
+- [compelte description](https://toroid.org/unix-pipe-implementation)
+```c
+$ strace -qf -e execve,pipe,dup2,read,write \
+    sh -c 'echo hello | wc -c'
+execve("/bin/sh", ["sh", "-c", "echo hello | wc -c"], …)
+pipe([3, 4])                            = 0
+[pid 2604795] dup2(4, 1)                = 1
+[pid 2604795] write(1, "hello\n", 6)    = 6
+[pid 2604796] dup2(3, 0)                = 0
+[pid 2604796] execve("/usr/bin/wc", ["wc", "-c"], …)
+[pid 2604796] read(0, "hello\n", 16384) = 6
+[pid 2604796] write(1, "6\n", 2)        = 2
 ```
 
 <a name=cases></a>
