@@ -22,7 +22,7 @@
 - **Latency:** Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
 - **Local Rarest First for Piece Selection**
   - Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
-- **Mutation?** How this dataset is different/diversity from previously stored data set. 
+- **Mutation?** Writing data from client to server's memory/disk. Specifically mutation is an operation that changes the contents or metadata of a data. Example: Write, append in distributed file system is a mutation.
   - _Long Mutation:_ Not changing the data set longer time. Keeping data persistant for longer time.
 - **Optimistic Unchoking:** Unselfishly provide block(s) to node(s) in Neighbour set.
   - Node uses a part of its available bandwidth for sending data to random peers, so that neighbours donot fall in tit for tat problem.
