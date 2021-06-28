@@ -14,6 +14,7 @@
 - **[CAP Theorem](CAP_Theorem)**
 - **Deduplication:** Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
+- **Fault Tolerance:** In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
 - **[Flash Crowd](FLash_Crowd)**
 - **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
