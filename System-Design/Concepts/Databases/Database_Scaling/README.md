@@ -1,27 +1,50 @@
 # DB Scaling Techniques
 
-## A. Replication
-### Types of Replication
-- **1. Master Slave:** Client does RW operations with master DB, master writes data to replicas/slaves. If master goes down slaves serve as RO DB. Slaves can also replicate among themselves.
-  - **Disadv:**    a. Logic is required to promote slave to master    b. If high number of slaves, more write operations can lead to replication lag.
+- [1. Replication](#repl)
+  - [1.1 Master Slave](#ms)
+  - [1.2 Master Master](#mm)
+  - [1.3 Consistency problems in replication](#cp)
+- [2. Federation](#fed)
+- [3. Sharding](#shard)
+- [4. Range Based Partitioning](#rbp)
+
+<a name=repl></a>
+## 1. Replication
+- Types of Replication
+
+<a name=ms></a>
+### 1.1 Master Slave
+- Client does RW operations with master DB, master writes data to replicas/slaves. If master goes down slaves serve as RO DB. Slaves can also replicate among themselves.
+- **Disadv:**    
+  - _a._ Logic is required to promote slave to master    
+  - _b._ If high number of slaves, more write operations can lead to replication lag.
 ```c
                                |-----Write-------->  RO-SlaveReplica-DB-1
   client  <----RW------->  MasterDB                            
                                |-----Write---------> RO-SlaveReplica-DB-2
 ```
 
-- **2. Master-Master:** All databases in master-master can RW with client.
-  - **Disadv:** a. Load balancer maybe required in front to configure client where to send the requests.    b. conflicts becomes more and more as more write nodes comes into picture.
+<a name=mm></a>
+### 1.2 Master-Master
+- All databases in master-master can RW with client.
+- **Disadv:** 
+  - _a._ Load balancer maybe required in front to configure client where to send the requests.    
+  - _b._ conflicts becomes more and more as more write nodes comes into picture.
 ```c
   client-1  <----RW------->    MasterDB
                                   |RW
   client-2  <----RW-------->  masterReplica-DB-1
 ```
-### [Consistency Problem in Replication](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 
-## B. Federation/Functional Parition
+<a name=cp></a>
+### [1.3 Consistency Problem in Replication](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+
+<a name=fed></a>
+## 2. Federation/Functional Parition
 - Splitting DB by functions. 
-- **Adv:** a. Less RW to individual DB    b. Less data in DB leads to more cache hits
+- **Adv:** 
+  - _a._ Less RW to individual DB    
+  - _b._ Less data in DB leads to more cache hits
 - **Disadv:** 
   - *a.* Useless if schema requires huge tables.
   - *b.* Extra application logic required to determine which DB to be RW
@@ -34,8 +57,9 @@
                                                   --------------
 ```                                                                                           
 
-## C. Sharding
-- **What?** Data is distributed across the databases, so that each DB only manages subset of data.
+<a name=shard></a>
+## 3. Sharding
+- Data is distributed across the databases, so that each DB only manages subset of data.
 - **Adv:** a. Less data/DB hence more cache hits.
 - **Disadv:** 
   - *a.* if 1 user or some users becomes hot, then a DB will become hugely loaded and other will remain empty.
@@ -48,7 +72,8 @@
   ------------------         ------------------        ------------------         ------------------
 ```
 
-## D. Range Based Partitioning
+<a name=rbp></a>
+## 4. Range Based Partitioning
 - One Database is used to store all keys starting from particular character.
 - **Problem:** Since keys are generated on the fly, 1 DB can be hugely loaded and others are free.
   - *Solution:* [Consitent Hashing](/System-Design/Concepts/Hashing/Consistent_Hashing.md)
