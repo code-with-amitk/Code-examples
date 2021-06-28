@@ -10,8 +10,10 @@
     - [2.3.1 Read Operation: User Reading a File](#Read_File)
     - [2.3.2 Write Operation: User Writing to File](#write)
     - [2.3.3 User creates snapshot of workspace](#snapshot)
+    - [2.3.4 Deleting a file & Garbage Collection](#delete)
   - [2.4 Chunk Servers](#Chunk_Servers)
-- [3. Caching](#Caching) 
+- [3. Caching](#Caching)
+- [4. Fault Tolerance)(#tolerance)
 
 <a name="Requirements"></a>
 # 1. Requirements
@@ -174,6 +176,15 @@ add chunk-x to old file-y on snaphot  //5
                                 //Same as writing to chunk
 ```
 
+<a name=delete></a>
+### 2.3.4 Deleting a file, Lazy Claiming. Distributed Garbage Collection.
+- _1._ User deletes a file in its namespace.
+- _2._ Delete request goes to master, master does not immediattely goes to replica deletes/reclaims the space. Instead master marks deleted file as `hidden`.
+  - Hidden file remains on filesystem for 3(comfigurable) days, if user tries to restore he can.
+  - After 3 days, during regular scan of filesystem of chunk-servers by master. File and its meta-data are deleted.
+  - During this scan only if master finds orphaned chunks, it reclaims their spaces also deletes their meta-data.
+- This is done when master is relatively free.
+
 <a name="Chunk_Servers"></a>
 ## 2.4 Chunk Servers
   -  Stores chunks as local files. No caching is needed here.
@@ -185,3 +196,16 @@ add chunk-x to old file-y on snaphot  //5
   - It also creates cache coherance problems.
 - **Caching meta data:** Yes
 to be cached.
+
+<a name="tolerance"></a>
+# [4. Fault Tolerance](/System-Design/Concepts/Terms)
+- Among hundreds of servers in a GFS cluster, some are bound to be unavailable at any given time. System is kept highly available using these strategies.
+
+<a name="fastr"></a>
+## 4.1 Fast recovery 
+- _1._ GFS-master and chunkservers are designed such that, if they fail/terminated, they can restart quickly and restore their state in few seconds.
+
+<a name="replication"></a>
+## 4.2 Chunk replication
+- _1._ Each chunk is replicated on multiple chunkservers on different racks(so that if 1 rack fails all chunkservers should not go down).
+- 2. Redundancy schemes between replicas: parity or erasure codes.
