@@ -67,6 +67,7 @@ fn main() {
 <a name=orinsert></a>
 #### 2.2.3 Inserting (key,value) only when entry does not exist
   - Function entry() only inserts into hashmap only when entry is not present in hashtable, if entry is present function does nothing.
+  - or_insert() method returns a [mutable reference](/Languages/Programming_Languages/Rust) to the value of key if that key exists, and if not, inserts (key,value) & returns a mutable reference to the new value. 
 ```rust
 use std::collections::HashMap;
 fn main() {
