@@ -13,7 +13,7 @@
     - [2.3.4 Deleting a file & Garbage Collection](#delete)
   - [2.4 Chunk Servers](#Chunk_Servers)
 - [3. Caching](#Caching)
-- [4. Fault Tolerance)(#tolerance)
+- [4. Fault Tolerance](#tolerance)
 
 <a name="Requirements"></a>
 # 1. Requirements
