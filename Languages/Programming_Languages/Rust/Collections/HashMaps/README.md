@@ -1,12 +1,15 @@
 - [Hashmap](#what)
 - [2. Operations](#opr)
   - [2.1 Create](#create)
-  - [2.2 Insert](#insert)
+  - [2.2 Insert/Update](#insert)
+    - [2.2.1 Insert new (key,value) to hashmap](#insertnew)
+    - [2.2.2 Overwriting existing value](#overwrite)
+    - [2.2.3 Inserting (key,value) only when entry does not exist](#orinsert)
   - [2.3 Search](#search)
   - [2.4 Print](#print)
 
 <a name=what></a>
-## Hashmap<K, V> 
+## Hashmap<Key, Value> 
 - stores a mapping of keys of type K to values of type V and created on heap.
 - Like vectors, hash maps are homogeneous
   - all of the keys must have the same type, and all of the values must have the same type.
@@ -29,8 +32,10 @@ fn main() {
 ```
 
 <a name=insert></a>
-### 2.2 Insert
-- _1._ using HashMap::new()
+### 2.2 Insert/Update
+<a name=insertnew></a>
+#### 2.2.1 Insert new (key,value) to hashmap
+  - using HashMap::new()
 ```rust
 use std::collections::HashMap;
 fn main() {
@@ -42,6 +47,42 @@ fn main() {
     
     color.insert(var, 3);            //var is moved into hashmap and now hashmap becomes the owner
 }   
+```
+<a name=overwrite></a>
+#### 2.2.2 Overwriting existing value
+  - if key already exists in map and we insert (key,value) with existing key and new value, then it old value would be updated.
+```rust
+use std::collections::HashMap;
+fn main() {
+    let mut color = HashMap::new();
+    color.insert(String::from("Green"), 2);
+    color.insert(String::from("yellow"), 3);
+
+    color.insert(String::from("yellow"), 4);    //Updating existing (key,value)
+    for (a,b) in &color {
+        println!("{},{}",a,b);
+    }
+}   
+```
+<a name=orinsert></a>
+#### 2.2.3 Inserting (key,value) only when entry does not exist
+  - Function entry() only inserts into hashmap only when entry is not present in hashtable, if entry is present function does nothing.
+```rust
+use std::collections::HashMap;
+fn main() {
+    let mut color = HashMap::new();
+    color.insert(String::from("Red"), 1);
+    //color.insert(String::from("Green"), 2);
+    color.entry(String::from("Green")).or_insert(50);
+
+
+    for (a,b) in &color {
+        println!("{},{}",a,b);
+    }
+}  
+$ test.exe
+Red,1
+Green,50
 ```
 
 <a name=search></a>
