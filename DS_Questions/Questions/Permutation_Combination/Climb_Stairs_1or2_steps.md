@@ -1,7 +1,8 @@
 ### [Climbing Stairs / Jumping Stairs](https://leetcode.com/problems/climbing-stairs/)
 - There are n stairs, a person standing at the bottom wants to reach the top. 
 - The person can climb either 1 stair or 2 stairs at a time. Count the number of ways, the person can reach the top.
-<img src=https://media.geeksforgeeks.org/wp-content/uploads/nth-stair.png width=300/>
+<img src=https://media.geeksforgeeks.org/wp-content/uploads/nth-stair.png width=200/>
+
 ```c
 Example-1:
 Stairs = 2
