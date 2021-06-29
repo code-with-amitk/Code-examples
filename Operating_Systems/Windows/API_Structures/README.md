@@ -4,6 +4,8 @@
   - [2.1 WinMain](#WinMain)
   - [2.2 RegisterClassEx](#RegisterClassEx)
   - [2.3 CreateWindow](#CreateWindow)
+  - [2.4 ShowWindow](#ShowWindow)
+  - [2.5 UpdateWindow](#UpdateWindow)
 
 <a name=st></a>
 ## 1. Structures
