@@ -69,3 +69,5 @@ int f(int n)
   return a[n];
 }  
 ```
+- **Directly finding nth fibonacci series number**
+<img src=nth-fibonacci.JPG width=400/>
