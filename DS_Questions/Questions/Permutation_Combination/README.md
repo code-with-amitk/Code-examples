@@ -1,0 +1,2 @@
+- **Permutation/Arragement?** counting the number of arrangements from n objects.
+- **Combination?** counting of selections that we make from n objects.
