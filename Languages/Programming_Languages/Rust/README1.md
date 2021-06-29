@@ -1,23 +1,22 @@
 - [1. What/Why Rust](#What)
   - [1.1 Rust vs All Languages](#All)
   - [1.2 Rust vs C++](#Rustcpp)
-- [2. Ownership & Borrowing](#owbo)
-  - [2.1 Ownership](#own)
-  - [2.2 Reference = Borrowing](#bow)
-    - [2.2.a Dangling Reference](#danglingref)
-    - [2.2.b Mutable Reference](#mutref)
-      - [Mutable & immutable References in same scope not allowed](#MutImmutable)
-      - [2 Mutable references are not allowed in same scope](#MutMut)
-      - [Mutable References are allowed in seperate scope](#MutSep)
-- [3. Data Types](#datatypes)
-- [4. Enum](#enum)
-  - [4.1. Enum Not Holding data](#enumnotholding)
-  - [4.2  Enum holding data](#enumholding)
-    - [4.2.1 Enum holding 1 datatype](#enumholdingone)
-    - [4.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
-  - [4.3 Option Enum = NULL](#optionenum) 
-    - [4.3.1 Why creating NULL was mistake?](#nullmistake)
-    - [4.3.2 Option Enum](#oe)
+- [2. Ownership](#own)
+- [3.Reference = Borrowing](#bow)
+  - [3.1 Dangling Reference](#danglingref)
+  - [3.2 Mutable Reference](#mutref)
+    - [Mutable & immutable References in same scope not allowed](#MutImmutable)
+    - [2 Mutable references are not allowed in same scope](#MutMut)
+    - [Mutable References are allowed in seperate scope](#MutSep)
+- [4. Data Types](#datatypes)
+- [5. Enum](#enum)
+  - [5.1. Enum Not Holding data](#enumnotholding)
+  - [5.2  Enum holding data](#enumholding)
+    - [5.2.1 Enum holding 1 datatype](#enumholdingone)
+    - [5.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
+  - [5.3 Option Enum = NULL](#optionenum) 
+    - [5.3.1 Why creating NULL was mistake?](#nullmistake)
+    - [5.3.2 Option Enum](#oe)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -61,16 +60,13 @@ fn main() {
 }
 ```
 
-<a name="owbo"></a>
-## 2. Ownership & Borrowing
-
-<a name="owo"></a>
-### 2.1 Ownership
+<a name="own"></a>
+## 2. Ownership
 - **What?** Means code/variable owns a memory and is allowed to free it.
 - How Rust Handles it? Rust keeps track of things, who owns what and you cannot free a memory which you donot own.
   
 <a name="bow"></a> 
-### 2.2 Borrowing = Reference (&var)
+## 3. Borrowing = Reference (&var)
 - **What?** Means passing the reference of a variable. Borrowing means that needed to be returned(we cannot change).
 ```rust
 fn print( a : &Vec<i32>) {
@@ -86,7 +82,7 @@ fn main() {
 ```
 
 <a name="danglingref"></a>
-#### 2.2.a Dangling Reference
+### 3.1 Dangling Reference
 - **Dangling pointer?** Pointer points to memory, memory is freed and pointer is used.
 - **Dangling reference?** Similar to Dangling pointer, when reference to a value is used, value is freed and reference is used after that.
 - **C++:**
@@ -125,7 +121,7 @@ fn fun() -> i32 {
 ```
 
 <a name="mutref"></a>
-#### 2.2.b Mutable Reference
+### 3.2 Mutable Reference
 - We know a borrowed item cannot be changed, but mutable reference can be changed.
   - *1.* Declare mutable variable
   - *2.* Create mutable Reference using `&mut`
@@ -145,7 +141,7 @@ fn main() {
 ```
 
 <a name="MutImmutable"></a>
-#### Mutable & immutable References in same scope not allowed
+### Mutable & immutable References in same scope not allowed
 ```rust
     let mut v = vec![1, 2, 3, 4, 5];
     let first = &v[0];
@@ -159,7 +155,7 @@ fn main() {
   - The borrowing rules prevent programs from ending up in that situation.
 
 <a name="MutMut"></a>
-#### 2 Mutable references are not allowed in same scope
+### 2 Mutable references are not allowed in same scope
 - *Why?* To avoid data race conditions. Race condition occurs when any of 3 behaviours happen:
     - Two or more pointers access the same data at the same time.
     - At least one of the pointers is being used to write to the data.
@@ -171,7 +167,7 @@ fn main() {
   println!("{}, {}", r1, r2);
 ```
 <a name="MutSep"></a>
-#### Mutable References are allowed in seperate scope
+### Mutable References are allowed in seperate scope
 ```rustc
   let mut s = String::from("hello");
   {
@@ -181,16 +177,16 @@ fn main() {
 ```
 
 <a name=datatypes></a>
-## [3. Data Types](Data_Type)
+## [4. Data Types](Data_Type)
   - Associated Functions
 
 <a name=enum></a>
-## 4. Enum
+## 5. Enum
 - Similar to other languages, Enums are User defined data type which can be assigned some limited values. 
 - In rust enum variable can or cannot hold the data (Eg: String). 
 
 <a name=enumnotholding></a>
-### 4.1. Enum not Holding data / Same as enum class in C++
+### 5.1. Enum not Holding data / Same as enum class in C++
 ```rust
 #[derive(Debug)]            //1. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for enum.
 enum Color{                 //2. Declare enum same
@@ -210,10 +206,10 @@ fn main() {
 ```
 
 <a name=enumholding></a>
-### 4.2. Enum Holding the data
+### 5.2. Enum Holding the data
 
 <a name=enumholdingone></a>
-#### 4.2.1 Enum holding 1 datatype
+#### 5.2.1 Enum holding 1 datatype
 ```rust
 use std::{string::String, u32};
 
@@ -241,7 +237,7 @@ IPv4(
 ```
 
 <a name=enumholdingmultiple></a>
-#### 4.2.2 Enum Holding Multiple Datatypes
+#### 5.2.2 Enum Holding Multiple Datatypes
 ```rust
 use std::{string::String, u32};
 
@@ -294,10 +290,10 @@ Disconnected NoIP
 ```
 
 <a name=optionenum></a>
-## 4.3 Option Enum = NULL
+## 5.3 Option Enum = NULL
 
 <a name=nullmistake></a>
-### 4.3.1 Why creating NULL was mistake?
+### 5.3.1 Why creating NULL was mistake?
 - Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
   - If we try using NULL value as non-NULL value. Eg: derefercing NULL ptr.
   - Problem is not in NULL but at places this get misused.
@@ -338,7 +334,7 @@ fn main() {
 ```
 
 <a name=oe></a>
-### 4.3.2 Option Enum
+### 5.3.2 Option Enum
 - This is another kind of enum in rust which takes either of 2 values: Some or None
 ```rust
 enum Option<T> {          //T is template which can take any type: i32, i64 etc
