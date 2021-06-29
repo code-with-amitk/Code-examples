@@ -1,9 +1,9 @@
 - [1. What is Shell](#what)
 - [2. Types of Shells](#types)
 - [3. How shell works](#how)
-  - [3.1 Working Code](comp)
-    - [3.1.1 C++ Shell](#cpp)
-    - [3.1.2 C Code](#cc)
+- [4. Working Code](comp)
+  - [4.1 C++ Shell](#cpp)
+  - [4.2 C Code](#cc)
 
 <a name=what></a>
 ## 1. Shell
@@ -40,8 +40,11 @@ main() {
 }
 ```
 
+<a name=work></a>
+## 4. Working code
+
 <a name=cpp></a>
-### 3.1.1 C++ Shell
+### 4.1 C++ Shell
 - *1.* Display prompt
 - *2.* Take command from keyboard into string
 - *3.* Tokenize command and place into `vector<string>`
@@ -103,4 +106,4 @@ int main(){
 ```
 
 <a name=cc></a>
-### [3.1.2 C Code](https://github.com/brenns10/lsh/tree/407938170e8b40d231781576e05282a41634848c)
+### [4.2 C Code](https://github.com/brenns10/lsh/tree/407938170e8b40d231781576e05282a41634848c)
