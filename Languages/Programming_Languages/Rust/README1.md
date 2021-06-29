@@ -160,17 +160,14 @@ fn fun() -> i32 {
 <a name="mutref"></a>
 ### 3.2 Mutable Reference
 - We know a borrowed item cannot be changed, but mutable reference can be changed.
-  - *1.* Declare mutable variable
-  - *2.* Create mutable Reference using `&mut`
-  - *3.* Accept mutable reference using `some_string: &mut String`
 ```rust
-fn print( a : &mut Vec<i32>) {        //3
+fn print( a : &mut Vec<i32>) {        //3. Accept mutable reference using `some_string: &mut String`
   a.push(2);
 }
 fn main() {
-  let mut v = Vec::new();             //1
+  let mut v = Vec::new();             //1. Declare mutable variable
   v.push (1);
-  print (&mut v);                     //2
+  print (&mut v);                     //2.Create mutable Reference using `&mut`
   println! ("{}", v[0]);
 }
 # rustc test.rs
