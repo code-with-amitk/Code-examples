@@ -11,6 +11,48 @@
 ## 2. Code
 - [APIs, Structures]()
 ```c++
+#include <windows.h>
+#include <stdlib.h>
+#include <string.h>
+#include <tchar.h>
+
+HINSTANCE hInst;
+
+//  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  PURPOSE:  Processes messages for the main window.
+//  WM_PAINT    - Paint the main window
+//  WM_DESTROY  - post a quit message and return
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    PAINTSTRUCT ps;
+    HDC hdc;
+    TCHAR greeting[] = _T("Hello, Windows desktop!");
+
+    switch (message)
+    {
+    case WM_PAINT:
+        hdc = BeginPaint(hWnd, &ps);
+
+        // Here your application is laid out.
+        // For this introduction, we just print out "Hello, Windows desktop!"
+        // in the top left corner.
+        TextOut(hdc,
+            5, 5,
+            greeting, _tcslen(greeting));
+        // End application-specific layout section.
+
+        EndPaint(hWnd, &ps);
+        break;
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
+    default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+        break;
+    }
+
+    return 0;
+}
 
 static TCHAR szWindowClass[] = _T("DesktopApp");
 static TCHAR szTitle[] = _T("Windows Desktop Guided Tour Application");
@@ -18,8 +60,8 @@ static TCHAR szTitle[] = _T("Windows Desktop Guided Tour Application");
 void FillWNDCLASSEX(WNDCLASSEX& wcex, _In_ HINSTANCE& hInstance) {
     wcex.cbSize = sizeof(WNDCLASSEX);
     wcex.style = CS_HREDRAW | CS_VREDRAW;
-    wcex.lpfnWndProc = WndProc;
-    wcex.cbClsExtra = 0;
+    wcex.lpfnWndProc = WndProc;                         //7. Provide implementation of it
+    wcex.cbClsExtra = 0; 
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
     wcex.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
@@ -96,6 +138,6 @@ int CALLBACK WinMain(                    //1. Every Win32 Application starts fro
         DispatchMessage(&msg);
     }
 
-    return (int)msg.wParam;    
+    return (int)msg.wParam;
 }
 ```
