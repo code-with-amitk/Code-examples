@@ -1,7 +1,7 @@
 - [1. What is Shell](#what)
 - [2. Types of Shells](#types)
 - [3. How shell works](#how)
-- [4. Working Code](comp)
+- [4. Working Code](#work)
   - [4.1 C++ Shell](#cpp)
   - [4.2 C Code](#cc)
 
