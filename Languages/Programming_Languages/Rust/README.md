@@ -13,7 +13,6 @@
   - [Stack=CompileTime=Fast, Heap=Runtime=Slow](StackHeap_CompileRuntime)
     - On Stack: int,float,char,string literal
     - On Heap: String(resizable string)
-  - [Ownership=call by value](Ownership_and_Functions)
   - [Methods and Associated Functions](Methods_AssociatedFunctions)
   - [Crates,Modules,use keyword, super keyword, use as, pub use](Crates_Packages_Modules)
   - [Collections](Collections): vector, String
