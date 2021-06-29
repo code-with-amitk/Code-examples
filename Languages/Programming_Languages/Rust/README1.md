@@ -67,7 +67,6 @@ fn main() {
   - _1._ Some languages have garbage collection(java,python,ruby) that constantly looks for no longer used memory as the program runs 
   - _2._ C,C++ the programmer must explicitly allocate and free the memory.
   - _3._ Rust memory is managed through ownership with a set of rules that the compiler checks at compile time.
-### 
   
 <a name="bow"></a> 
 ## 3. Borrowing = Reference (&var)
