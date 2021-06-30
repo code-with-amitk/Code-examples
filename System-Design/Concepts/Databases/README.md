@@ -1,3 +1,8 @@
+- [1. Object, Block, File Storage](#obf)
+- [2. SQL vs NoSQL](#sn)
+- [3. Database vs Datawarehouse](#dd)
+
+<a name=obf></a>
 ## 1. Object vs Block vs File storage
 
 | | Object | Block | File |
@@ -10,6 +15,7 @@
 | Use cases | Not good for transactional data(bcoz of eventual consistency |
 | Examples | [Amazon S3](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/s3.md), ceph, openstack swift, Google cloud, Microsoft Azure, Blackblaze | [Amazon EBS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/ebs.md), SAN-arrays | [Amazon EFS](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/aws/storage/efs.md), Gluster |
 
+<a name=sn></a>
 ## 2. SQL vs noSQL
 
 | | SQL, Relational, Structured | noSQL, nonRelational, unStructured |
@@ -25,6 +31,7 @@
   
 - Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
 
+<a name=dd></a>
 ## 3. Database vs Datawarehouse
 
 | | Database | Datawarehouse |
