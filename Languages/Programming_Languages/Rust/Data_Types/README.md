@@ -49,7 +49,11 @@ Octal	                      0o77
 Binary	                    0b1111_0000
 Byte (u8 only)            	b'A'
 ```
-
+- **Functions**
+```rust
+let a = 1;
+a.to_string();             //Convert to string
+```
 <a name="intoverflow"></a>
 ### 1.1.1 Integer Overflow
 - Assigning value outside of allowed range. Example:
