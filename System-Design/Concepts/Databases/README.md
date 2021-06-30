@@ -2,6 +2,7 @@
   - [1.1 Object, Block, File Storage](#obf)
   - [1.2 SQL vs NoSQL](#sn)
   - [1.3 Database vs Datawarehouse](#dd)
+- [2. IMDB / In Memory DB](#imdb)
 
 <a name=comp></a>
 ### 1. Comparisons
@@ -44,3 +45,11 @@
 | Orientation | application-oriented-collection of data | subject-oriented collection of data |
 | Uses | Online Transactional Processing (OLTP) |  Online Analytical Processing (OLAP) |
 | Modelling Techniques used | ER modeling techniques | data modeling techniques |
+
+<a name=imdb></a>
+### 2. IMDB(In Memory DB) / MMDB(Main Memory DB)
+- Stores all data in main memory/RAM not on hard-disk.
+- **Advantages**
+  - Faster. Since disk access is always slower than RAM
+- **Applications?** Where response time is critical. Eg: Telecom equiments, Jet communications etc
+<a name=prob></a> 
