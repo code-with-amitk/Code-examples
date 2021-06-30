@@ -6,8 +6,10 @@
 
 <a name=what></a>
 ## 1. Cache
-- Mostly used, less frequently changing data is stored in cache.
-- Cache lies near to requester so that requester need not to go hard-disk to retrieve data. This reduces latency.
+- **What data should be cached?** 
+  - Mostly used, less frequently changing data is stored in cache. (Eg: Metadata, configuration data, Historical data sets for reports)
+  - Cache lies near to requester so that requester need not to go hard-disk to retrieve data. This reduces latency.
+- **What should not be cached?** Data that is frequently/actively changing.
 ```c
 App/Webserver <--->[Cache]<-->[Database]
 ```
