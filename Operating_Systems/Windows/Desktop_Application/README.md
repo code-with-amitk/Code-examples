@@ -61,7 +61,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdShow
 
     HWND hwnd = CreateWindowEx(                                                     //3
         0,                              // Optional window styles.
-        CLASS_NAME,                     // Window class
+        L"Sample Window Class",                     // Window class
         L"Learn to Program Windows",    // Window text
         WS_OVERLAPPEDWINDOW,            // Window style
 
