@@ -1,9 +1,11 @@
-## Location
-```c
-App/Webserver <--->[Cache]<-->[Database]
-```
+- [1. Caches](#cac)
+  - [1.1 Memcached vs Redis](#comp)
+  
+<a name=cac></a>
+## 1. Caches
 
-### Memcached vs Redis
+<a name=comp></a>
+### 1.1 Memcached vs Redis
 ||Memcached|Redis(recommended bcoz of speed)|
 |---|---|---|
 |Key-value pair| y (key<250B, value<1MB)| y (key<512MB, value<512MB)|
