@@ -6,6 +6,8 @@
   - [2.1 Problem with IMDB = Availability,Expensive](#prob)
   - [2.2 What data should be stored on IMDB](#dataimdb)
   - [2.3 IMDB vs DBCache](#imdb_vs_cache)
+  - [2.4 Why Redis is cache & imdb both?](#whyredis)
+
 
 <a name=comp></a>
 ### 1. Comparisons
@@ -51,7 +53,8 @@
 
 <a name=imdb></a>
 ### 2. IMDB(In Memory DB) / MMDB(Main Memory DB)
-- Stores all data in main memory/RAM not on hard-disk.
+- Stores all data in main memory/RAM not on hard-disk. 
+- **Examples** VoltDB, [Redis](/System-Design/Concepts/Cache)
 - **Advantages**
   - Faster. Since disk access is always slower than RAM
 - **Applications?** Where response time is critical. Eg: Telecom equiments, Jet communications etc
@@ -74,6 +77,10 @@
 - Most frequently accessed data.
 
 <a name=imdb_vs_cache></a>  
-### 2.2 IMDB vs [DBCache](/System-Design/Concepts/Cache)
+### 2.3 IMDB vs [DBCache](/System-Design/Concepts/Cache)
 - DBCache stores: Mostly used, less frequently changing data is stored in cache.
 - IMDB stores: Frequently changing data.
+
+<a name=whyredis></a>  
+### 2.4 Why Redis is cache & imdb both?
+- Redis has features of a Cache plus processing/querying capabilities. Redis supports multiple data structures and you can query the data in the Redis (examples like get last 10 accessed items, get the most used item etc).
