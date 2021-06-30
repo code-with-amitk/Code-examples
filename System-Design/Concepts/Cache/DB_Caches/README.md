@@ -3,6 +3,10 @@
   
 <a name=cac></a>
 ## 1. Caches
+- Examples:
+  - Redis
+  - Memcached
+  - AWS Elastic Cache
 
 <a name=comp></a>
 ### 1.1 Memcached vs Redis
