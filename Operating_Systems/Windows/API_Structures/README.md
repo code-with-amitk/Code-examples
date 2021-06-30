@@ -4,8 +4,8 @@
 - [2. API](#api)
   - [2.1 wWinMain](#wWinMain)
   - [2.2 WinMain](#WinMain)
-  - [2.3 RegisterClassEx](#RegisterClassEx)
-  - [2.4 CreateWindow](#CreateWindow)
+  - [2.3 RegisterClass or RegisterClassEx](#RegisterClassEx)
+  - [2.4 CreateWindow or CreateWindowEx](#CreateWindow)
   - [2.5 ShowWindow](#ShowWindow)
   - [2.6 UpdateWindow](#UpdateWindow)
 
@@ -73,15 +73,17 @@ Return:
 ```
 <a name=RegisterClassEx></a>
 ### 2.3 RegisterClassEx
-- Register the struct WNDCLASSEX with Windows so that it knows about your window and how to send messages to it. 
+- Register the struct WNDCLASS or WNDCLASSEX with Windows so that it knows about your window and how to send messages to it. 
 ```c++
+ATOMRegisterClass(constWNDCLASS* lpWndClass);
+
 ATOM RegisterClassExW(
   const WNDCLASSEXW *unnamedParam1    //A pointer to a WNDCLASSEX structure.
 );
 ```
 
 <a name=CreateWindow></a>
-### 2.4 CreateWindow
+### 2.4 CreateWindow or CreateWindowEx
 - Creates an overlapped, pop-up, or child window.
 ```c
 void CreateWindowW(
