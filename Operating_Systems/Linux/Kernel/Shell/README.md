@@ -45,13 +45,7 @@ main() {
 
 <a name=cpp></a>
 ### 4.1 C++ Shell
-- *1.* Display prompt
-- *2.* Take command from keyboard into string
-- *3.* Tokenize command and place into `vector<string>`
-- *4.* Execute Command
-  - *a.* Create array of `char*` containing command and its arguments, since [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions) takes `char*` array.
-  - *b.* [fork()](/Threads_Processes_IPC/Processes/Process_Creation) a child, run execvp replacing child process's [PCB](/Threads_Processes_IPC/Processes/Process_Table) with command to be executed.
-  - *c.* Wait in parent on [waitpid()](https://linux.die.net/man/2/waitpid) for child.
+- [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions), [fork()](/Threads_Processes_IPC/Processes/Process_Creation),  [PCB](/Threads_Processes_IPC/Processes/Process_Table), [waitpid()](https://linux.die.net/man/2/waitpid)
 ```c++
 #include<iostream>
 #include<string>
@@ -66,16 +60,19 @@ using VectorString = vector<string>;
 
 bool process (VectorString& vecInput) {                   //4
   int status;
-  
+
+//4a. Create array of `char*` containing command and its arguments
+//
   char *arr[vecInput.size() + 1];
   for (auto i=0; i<vecInput.size(); ++i)
     arr[i] = const_cast<char*>(vecInput[i].c_str());
   arr[vecInput.size()] = NULL;
   
-  if (fork() == 0)    //Child                            //a
+
+  if (fork() == 0)    //Child                   //4b. fork a child run execvp replacing child process's
     execvp (arr[0], arr);
-  else                                                  //b
-    waitpid (-1, &status, 0);
+  else                                          
+    waitpid (-1, &status, 0);                   //4c. wait in parent for child to finish
     
   return true;    
 }
@@ -84,18 +81,18 @@ int main(){
   string strInput;
   VectorString vec;
   while (1) {
-    cout << "> ";                               //1
-    getline (cin, strInput);                    //2
+    cout << "> ";                               //1. Display prompt
+    getline (cin, strInput);                    //2. Take command from keyboard into string
     boost::algorithm::trim (strInput);
     if (strInput == "q") {
       cout << "Bye!!\n";
       exit (0);
     }
-    tokenizer tok(strInput, sep);               //3
+    tokenizer tok(strInput, sep);               //3. Tokenize command and place into `vector<string>`
     for (const auto& t:tok) 
       vec.push_back(t);
 
-    process (vec);              
+    process (vec);
     vec.clear();
   }
 }
