@@ -1,11 +1,12 @@
 - [1. Structures](#st)
   - [WNDCLASSEX](#WNDCLASSEX)
 - [2. API](#api)
-  - [2.1 WinMain](#WinMain)
-  - [2.2 RegisterClassEx](#RegisterClassEx)
-  - [2.3 CreateWindow](#CreateWindow)
-  - [2.4 ShowWindow](#ShowWindow)
-  - [2.5 UpdateWindow](#UpdateWindow)
+  - [2.1 wWinMain](#wWinMain)
+  - [2.2 WinMain](#WinMain)
+  - [2.3 RegisterClassEx](#RegisterClassEx)
+  - [2.4 CreateWindow](#CreateWindow)
+  - [2.5 ShowWindow](#ShowWindow)
+  - [2.6 UpdateWindow](#UpdateWindow)
 
 <a name=st></a>
 ## 1. Structures
@@ -32,8 +33,14 @@ typedef struct tagWNDCLASSEXW {
 
 <a name=api></a>
 ## 2. APIs
+
+<a name=wWinMain></a>
+### 2.1 wWinMain
+```c
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow);
+```
 <a name=WinMain></a>
-### 2.1 WinMain
+### 2.2 WinMain
 - Just as every C/C++ application must have a main(), every Windows desktop application must have a WinMain function.
 ```c++
 int CALLBACK WinMain(
@@ -48,7 +55,7 @@ Return:
   error: 0
 ```
 <a name=RegisterClassEx></a>
-### 2.2 RegisterClassEx
+### 2.3 RegisterClassEx
 - Register the struct WNDCLASSEX with Windows so that it knows about your window and how to send messages to it. 
 ```c++
 ATOM RegisterClassExW(
@@ -57,7 +64,7 @@ ATOM RegisterClassExW(
 ```
 
 <a name=CreateWindow></a>
-### 2.3 CreateWindow
+### 2.4 CreateWindow
 - Creates an overlapped, pop-up, or child window.
 ```c
 void CreateWindowW(
@@ -76,7 +83,7 @@ void CreateWindowW(
 ```
 
 <a name=ShowWindow></a>
-### 2.4 ShowWindow
+### 2.5 ShowWindow
 - Sets the specified window's show state.
 ```c
 BOOL ShowWindow(
@@ -86,7 +93,7 @@ BOOL ShowWindow(
 ```
 
 <a name=UpdateWindow></a>
-### 2.5 UpdateWindow
+### 2.6 UpdateWindow
 - The UpdateWindow function updates the client area of the specified window by sending a WM_PAINT message to the window
 ```c
 BOOL UpdateWindow(
