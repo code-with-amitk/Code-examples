@@ -1,4 +1,0 @@
-  ## Types of Caches
-  
-a
-                                 
