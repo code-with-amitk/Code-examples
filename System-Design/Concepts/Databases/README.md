@@ -3,6 +3,7 @@
   - [1.2 SQL vs NoSQL](#sn)
   - [1.3 Database vs Datawarehouse](#dd)
 - [2. IMDB / In Memory DB](#imdb)
+  - [2.1 Problem with IMDB = Availability,Expensive](#prob)
 
 <a name=comp></a>
 ### 1. Comparisons
@@ -52,4 +53,17 @@
 - **Advantages**
   - Faster. Since disk access is always slower than RAM
 - **Applications?** Where response time is critical. Eg: Telecom equiments, Jet communications etc
+
 <a name=prob></a> 
+### 2.1 Problems
+#### A. RAM is volatile = [Availability](/System-Design/Concepts/Terms) 
+- Means data is lost as power is gone or some failure.
+- **How imdb solves this?**
+  - _1._ Snapshot files, or, checkpoint images, which record the state of the database at a given moment in time.
+  - _2._ Transaction logging, which records changes to the database in a journal file
+  - _3._ Non-Volatile DIMM (NVDIMM)
+  - _4._ Non-volatile random-access memory (NVRAM)
+  - _5._ Replication
+#### B. Expensive
+- RAM is always costlier than Disk, Huge amounts cannot be stored here.
+- _Which data should be stored?_ Most frequently used data/ frequently changing data.
