@@ -5,7 +5,10 @@
   - [4.1 Create](#create)
   - [4.2 Concatenate](#concatenate)
   - [4.3 Print](#print)
+  - [4.4 Convert](#convert)
+  - [4.5 Reverse](#reverse)
 - [5. How strings are stored internally](#internal)
+
 
 <a name=lts></a>
 ## 1. string literal, String type, String slice
@@ -71,7 +74,7 @@ fn fun(s:&String) -> &str {                               //Function returning S
   let answer = &hello[0..4];                //Allowed
 ```
 
-<a name=string></a>
+<a name=operations></a>
 ## 4. Operations
 
 <a name=create></a>
@@ -136,6 +139,24 @@ $ test.exe
 208
 178
 ```
+
+<a name=convert></a>
+### 4.4 Convert
+- **int to string**
+```rust
+let mut strA = a.to_string();
+```
+- **string to int**
+```rust
+let a = my_string.parse::<i32>().unwrap()
+```
+
+<a name=rev></a>
+### 4.5 Reversing a string
+```rust
+strA = strA.chars().rev().collect::<String>();
+```
+
 
 <a name=internal></a>
 ## 5. How strings are stored internally
