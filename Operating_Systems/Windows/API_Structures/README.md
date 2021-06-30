@@ -1,4 +1,5 @@
 - [1. Structures](#st)
+  - [WNDCLASS](#WNDCLASS)
   - [WNDCLASSEX](#WNDCLASSEX)
 - [2. API](#api)
   - [2.1 wWinMain](#wWinMain)
@@ -10,10 +11,26 @@
 
 <a name=st></a>
 ## 1. Structures
-<a name=WNDCLASSEX></a>
-### WNDCLASSEX
+<a name=WNDCLASS></a>
+### WNDCLASS
 - To create window, we need to populate this structure. it contains information about the window: 
   - the application icon, background color of the window, name to display in the title bar, a function pointer to your window procedure. 
+```c
+typedef struct _WNDCLASS {
+ UINT style; 
+ WNDPROC lpfnWndProc; 
+ int cbClsExtra; 
+ int cbWndExtra; 
+ HANDLE hInstance; 
+ HICON hIcon; 
+ HCURSOR hCursor; 
+ HBRUSH hbrBackground; 
+ LPCTSTR lpszMenuName; 
+ LPCTSTR lpszClassName; 
+ } WNDCLASS ;
+```
+<a name=WNDCLASSEX></a>
+### WNDCLASSEX
 ```c++
 typedef struct tagWNDCLASSEXW {
   UINT      cbSize;
