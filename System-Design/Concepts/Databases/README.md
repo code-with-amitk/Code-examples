@@ -4,6 +4,8 @@
   - [1.3 Database vs Datawarehouse](#dd)
 - [2. IMDB / In Memory DB](#imdb)
   - [2.1 Problem with IMDB = Availability,Expensive](#prob)
+  - [2.2 What data should be stored on IMDB](#dataimdb)
+  - [2.3 IMDB vs DBCache](#imdb_vs_cache)
 
 <a name=comp></a>
 ### 1. Comparisons
@@ -56,7 +58,7 @@
 
 <a name=prob></a> 
 ### 2.1 Problems
-#### A. RAM is volatile = [Availability](/System-Design/Concepts/Terms) 
+#### A. [RAM is volatile = Availability](/System-Design/Concepts/Terms) 
 - Means data is lost as power is gone or some failure.
 - **How imdb solves this?**
   - _1._ Snapshot files, or, checkpoint images, which record the state of the database at a given moment in time.
@@ -66,4 +68,12 @@
   - _5._ Replication
 #### B. Expensive
 - RAM is always costlier than Disk, Huge amounts cannot be stored here.
-- _Which data should be stored?_ Most frequently used data/ frequently changing data.
+
+<a name=dataimdb></a>
+### 2.2 Which data should be stored?
+- Most frequently accessed data.
+
+<a name=imdb_vs_cache></a>  
+### 2.2 IMDB vs [DBCache](/System-Design/Concepts/Cache)
+- DBCache stores: Mostly used, less frequently changing data is stored in cache.
+- IMDB stores: Frequently changing data.
