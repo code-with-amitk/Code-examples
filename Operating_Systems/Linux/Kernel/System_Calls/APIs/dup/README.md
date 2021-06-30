@@ -8,8 +8,8 @@
 <a name=what></a>
 ## [1. dup() / Duplicate](https://man7.org/linux/man-pages/man2/dup2.2.html)
 - All dup() system calls create copy of file descriptor.
-- After a successful return of API, the old and new file descriptors may be used interchangeably.
-  - Both refers to same open file description and thus share file offset and file status flags; 
+- Input:0, Output:1, Error:2
+- After a successful return of API, the old and new file descriptors may be used interchangeably. Both refers to same open file description and thus share file offset and file status flags
 
 <a name=what></a>
 ## 2. dup() APIs
@@ -20,11 +20,12 @@
 
 <a name=dup2></a>
 ### 2.2 int dup2(int oldfd, int newfd)
-- dup2() also creates copy of oldfd, but instead of using the lowest-numbered unused file descriptor (as dup()), it uses the file descriptor number specified in newfd.
+- dup2() also creates copy of oldfd, it uses the file descriptor number specified in newfd.
 - If newfd **was already opened, it is silently closed and reused**. Closing and reusing the file descriptor done atomically.
 
 <a name=impl></a>
 #### 2.2.1 Example: Implementing redirection `$ cat a>b`
+- Note: printf("str") writes the string to STDOUT(fd=0).
 ```c
 #include<unistd.h>
 int main(){
