@@ -1,4 +1,4 @@
-## [Minimum number of jumps to reach end / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
+## [Can we reach end / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
 - Array of non-negative integers, which represents max JUMPS from that position. We are initially positioned at the 0th index of the array, Determine can we reach LAST index?
 - Each element in the array represents **maximum jump/ladder length** from that position, we can choose smaller jump from that position also.
 - **Examples**
@@ -56,7 +56,7 @@ int main() {
 }
 ```
 
- ### Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms/Dynamic_Programming)
+ ### Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 - **Logic**
   - 1. Create a bool dpArray which tells whether we can reach end particular index or not.
     - if end can be reached from index. `dp[index] = true`
