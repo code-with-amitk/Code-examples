@@ -20,9 +20,18 @@ which makes it impossible to reach the last index.
 ```c
 a = 3  2  1  0  4
     0  1  2  3  4
+                        [0]                     //From index 0. 3 possible jumps.
+                0/      1|       2\
+               [1]      [2]       [3]       //From index=1. 2 possible jumps. 
+              /  \       |         |        //From index=2. 1 possible jump.
+            [2]  [3]    [3]       No        //From index=3. No possible jump. Cannot reach end.
+             |           |
+            [3]          No
+             |
+            No
+//See calculation of [2]->[3]->No gets repeated.            
 ```
-- **Logic**
-  - _1._ Jump from position 0 to 4, 0 to 3, 0 to 2, 0 to 1. if no jump is possible return false.
+- **Logic:** Jump from position 0 to 4, 0 to 3, 0 to 2, 0 to 1. if no jump is possible return false.
 - **Complexity**
   - **Time:** O(2<sup>n</sup>)
     -  There are 2<sup>n</sup> ways of jumping from the first position to the last, n is the length of input array.
@@ -58,16 +67,16 @@ int main() {
 
  ### Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 - **Logic**
-  - 1. Create a bool dpArray which tells whether we can reach end particular index or not.
+  - 1. Create a bool dpArray which tells whether we can reach end from particular index or not.
     - if end can be reached from index. `dp[index] = true`
     - if end cannot be reached from index. `dp[index] = false`
     - Initially all elements of dpArray are Bad `vector<bool> dpArray(array.size()-1, false);`
     - Last element of dpArray is always good. Since element can reach itself always.
+    - This array is calculated in reverse(ie from last to 1st). if 1st index is good, we can reach end.
 ```c
 array	2	4	2	1	0	2	0
 Indexes	0	1	2	3	4	5	6
-
-dpArray	1(G)	1(G)	0(B)	0(B)	0(B)	1(G)	1(G)    //G=Good, B=Bad
+dpArray	1	1	0	0	0	1	1    //Good=1, Bad=0
 vector<bool> dpArray(array.size()-1, false);    //Initially all dpArray is bad 
 
 index=0, We can reach end.  index=0 --> index=1 --> index=5 --> end     //Index=0 is good
@@ -78,7 +87,7 @@ index=2, We cannot reach end.
 index=3, Bad
 index=4, We cannot jump from here and its not last index.               //Index=4 is bad
 index=5, Good
-index=6, This is last index and not jump is needed.                     //Index=6 is bad
+index=6, This is last index and not jump is needed.                     //Index=6 is good
 ```
   - *2.* Modify above backtracking algorithm, such that the recursive step first checks if the index is known (GOOD / BAD). 
     - If it is known then return True / False. Otherwise perform the backtracking steps as before. 
