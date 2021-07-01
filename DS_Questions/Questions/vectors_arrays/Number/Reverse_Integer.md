@@ -57,3 +57,44 @@ public:
     }
 };
 ```
+
+### Approach-2    //Get digits,push on queue, Create number
+- **Code**
+```c++
+class Solution {
+public:
+  int reverse(int a) {
+    if (a <= -2147483648)
+      return 0;
+    bool neg = false;
+    if (a<0) {
+      neg = true;
+      a *= -1;
+    }
+
+    queue<int> q;
+    while (a>=10) {
+      q.push(a%10);
+      a /= 10;
+    }
+    q.push(a);
+
+    int k = q.size()-1;
+    int out=0;
+    while (k>0) {
+      int t = q.front(); q.pop();
+      out += pow(10,k) * t;
+      --k;
+      if (out >= 2147483647)
+        return 0;
+    }
+    out += q.front();
+    if (out >= 2147483647)
+      return 0;
+    if (neg)
+      out *= -1;
+        
+    return out;
+    }
+};
+```
