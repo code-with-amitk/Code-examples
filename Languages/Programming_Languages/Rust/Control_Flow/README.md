@@ -2,7 +2,7 @@
 - [2. Infinite loop = loop](#loop)
 - [3. for](#for)
 - [4. while](#while)
-- [5. match](#match)
+- [5. match_switch](#match)
 
 <a name=ifexp></a>
 ## 1. if expression
@@ -139,4 +139,4 @@ a:1
 ```
 
 <a name=match></a>
-## [5. match](match)
+## [5. match_switch](match)
