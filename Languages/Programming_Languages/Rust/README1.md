@@ -19,7 +19,6 @@
     - [6.3.1 Why creating NULL was mistake?](#nullmistake)
     - [6.3.2 Option Enum](#oe)
 - [7. Error Handling](#eh)
-  - [7.1 Recoverable Errors with Result](#recerrors)
 
 <a name="What"></a>
 ## 1. What/Why Rust
