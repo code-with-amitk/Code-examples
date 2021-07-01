@@ -410,25 +410,4 @@ fn main() {
 ```
 
 <a name=eh></a>
-## 7. Error Handling
-
-<a name=recerrors></a>
-### 7.1 Recoverable Errors with Result
-- rust defines few of functions to return `enum Result<T,E>` when error happens.
-```rust
-enum Result<T, E> {
-    Ok(T),              //T: Type of value returned in Success case
-    Err(E),             //E: Type of error returned in failure case
-}
-```
-- **Example-1: open() for opening a file** 
-```rust
-use std::fs::File;
-fn main() {
-    let f = File::open("hello.txt");        //f would be bt type Result<T, E>
-    let f = match f {
-        Ok(file) => file,
-        Err(error) => panic!("Problem opening the file: {:?}", error),
-    };
-}
-```
+## 7. [Error Handling](Error_Handling)
