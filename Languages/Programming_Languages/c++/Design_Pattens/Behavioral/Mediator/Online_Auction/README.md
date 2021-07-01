@@ -9,9 +9,8 @@ if (bids < MinCostToSell)
 - **3. Bidders:** Will be notified about auction by mediator
 - **4. External Product: autobidder** This can autobid on behalf of bidder. Bidder need to purchase it.
   - if bidder is online, autobidder should be disabled.
-```uml
 
-```
+<img src=online_auction.jpg width=500/>
 
 ### Design Patterns
   - [Observer] 
