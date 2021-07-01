@@ -9,14 +9,17 @@
     - [2 Mutable references are not allowed in same scope](#MutMut)
     - [Mutable References are allowed in seperate scope](#MutSep)
 - [4. Data Types](#datatypes)
-- [5. Enum](#enum)
-  - [5.1. Enum Not Holding data](#enumnotholding)
-  - [5.2  Enum holding data](#enumholding)
-    - [5.2.1 Enum holding 1 datatype](#enumholdingone)
-    - [5.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
-  - [5.3 Option Enum = NULL](#optionenum) 
-    - [5.3.1 Why creating NULL was mistake?](#nullmistake)
-    - [5.3.2 Option Enum](#oe)
+- [5. Control Flow](#controlflow)
+- [6. Enum](#enum)
+  - [6.1. Enum Not Holding data](#enumnotholding)
+  - [6.2  Enum holding data](#enumholding)
+    - [6.2.1 Enum holding 1 datatype](#enumholdingone)
+    - [6.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
+  - [6.3 Option Enum = NULL](#optionenum) 
+    - [6.3.1 Why creating NULL was mistake?](#nullmistake)
+    - [6.3.2 Option Enum](#oe)
+- [7. Error Handling](#eh)
+  - [7.1 Recoverable Errors with Result](#recerrors)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -214,13 +217,17 @@ fn main() {
 ## [4. Data Types](Data_Type)
   - Associated Functions
 
+<a name=controlflow></a>
+## [5. Control Flow](Control_Flow)
+  - for, loop, while, match=switch, if
+
 <a name=enum></a>
-## 5. Enum
+## 6. Enum
 - Similar to other languages, Enums are User defined data type which can be assigned some limited values. 
 - In rust enum variable can or cannot hold the data (Eg: String). 
 
 <a name=enumnotholding></a>
-### 5.1. Enum not Holding data / Same as enum class in C++
+### 6.1. Enum not Holding data / Same as enum class in C++
 ```rust
 #[derive(Debug)]            //1. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for enum.
 enum Color{                 //2. Declare enum same
@@ -240,10 +247,10 @@ fn main() {
 ```
 
 <a name=enumholding></a>
-### 5.2. Enum Holding the data
+### 6.2. Enum Holding the data
 
 <a name=enumholdingone></a>
-#### 5.2.1 Enum holding 1 datatype
+#### 6.2.1 Enum holding 1 datatype
 ```rust
 use std::{string::String, u32};
 
@@ -271,7 +278,7 @@ IPv4(
 ```
 
 <a name=enumholdingmultiple></a>
-#### 5.2.2 Enum Holding Multiple Datatypes
+#### 6.2.2 Enum Holding Multiple Datatypes
 ```rust
 use std::{string::String, u32};
 
@@ -324,10 +331,10 @@ Disconnected NoIP
 ```
 
 <a name=optionenum></a>
-## 5.3 Option Enum = NULL
+## 6.3 Option Enum = NULL
 
 <a name=nullmistake></a>
-### 5.3.1 Why creating NULL was mistake?
+### 6.3.1 Why creating NULL was mistake?
 - Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
   - If we try using NULL value as non-NULL value. Eg: derefercing NULL ptr.
   - Problem is not in NULL but at places this get misused.
@@ -368,7 +375,7 @@ fn main() {
 ```
 
 <a name=oe></a>
-### 5.3.2 Option Enum
+### 6.3.2 Option Enum
 - This is another kind of enum in rust which takes either of 2 values: Some or None
 ```rust
 enum Option<T> {          //T is template which can take any type: i32, i64 etc
@@ -400,4 +407,28 @@ fn main() {
 
     let sum = x + y;                //Compliation Error
 }    
+```
+
+<a name=eh></a>
+## 7. Error Handling
+
+<a name=recerrors></a>
+### 7.1 Recoverable Errors with Result
+- rust defines few of functions to return `enum Result<T,E>` when error happens.
+```rust
+enum Result<T, E> {
+    Ok(T),              //T: Type of value returned in Success case
+    Err(E),             //E: Type of error returned in failure case
+}
+```
+- **Example-1: open() for opening a file** 
+```rust
+use std::fs::File;
+fn main() {
+    let f = File::open("hello.txt");        //f would be bt type Result<T, E>
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => panic!("Problem opening the file: {:?}", error),
+    };
+}
 ```
