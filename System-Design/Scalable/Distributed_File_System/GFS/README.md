@@ -5,7 +5,7 @@
 - [2. Architecture](#Architecture)
   - [2.1 Chunks](#Chunks)
   - [2.2 GFS Master](#GFS_Master)
-    - [2.2.a Stores meta-data, Operation Logs](#stores)
+    - [2.2.a Stores metadata, Operation Logs](#stores)
   - [2.3 GFS Client](#GFS_Client)
     - [2.3.1 Read Operation: User Reading a File](#Read_File)
     - [2.3.2 Write Operation: User Writing to File](#write)
@@ -14,6 +14,8 @@
   - [2.4 Chunk Servers](#Chunk_Servers)
 - [3. Caching](#Caching)
 - [4. Fault Tolerance](#tolerance)
+- [5. Data Integrity](#di)
+- [6. BOE](#boe)
 
 <a name="Requirements"></a>
 # 1. Requirements
@@ -63,11 +65,13 @@
 
 <a name="stores"></a>
 ### 2.2.a GFS Master Stores
-#### A. All meta-data 
-- Keeps 64bytes of meta data for each 64MB chunk.
+#### A. All metadata 
+- Keeps 64bytes of metadata for each 64MB chunk.
   - chunk namespace(think similar to c++ namespaces), Mapping from files to chunks  //These 2 are stored persistant using [long Mutations](/System-Design/Terms)
   - Current location of each chunk's replica, access control information.
     - Chunk location is asked by gfs-master from chunkservers at startup, after that master will updates its DB since all chunkplacement is done by master with regular HeartBeat messages to chunkservers.
+- metadata is stored in [IMDB, In memory database](/System-Design/Concepts/Databases).
+
 #### B. Operation Logs 
 - These are stored on gfs-master disk and remotely both.
 - *Purpose?*
@@ -194,7 +198,7 @@ add chunk-x to old file-y on snaphot  //5
 - **Caching File Data:** Neither on client nor the chunkserver. 
   - Client caches offer little benefit because most applications stream huge files or have working sets too large.
   - It also creates cache coherance problems.
-- **Caching meta data:** Yes
+- **Caching metadata:** Yes
 to be cached.
 
 <a name="tolerance"></a>
@@ -209,3 +213,17 @@ to be cached.
 ## 4.2 Chunk replication
 - _1._ Each chunk is replicated on multiple chunkservers on different racks(so that if 1 rack fails all chunkservers should not go down).
 - 2. Redundancy schemes between replicas: parity or erasure codes.
+
+<a name=di></a>
+## 5. Data Integrity
+- Each chunkserver uses checksum(32 bit) to ensure chunk is not corrupted. Each 64MB chunk is broken into 64KB blocks. As metadata, checksum is also stored in-memory(ie [IMDB](/System-Design/Concepts/Databases)).
+- if we try to fetch checksum from other cuhnkservers it would lead to lot of traffic, so each chunkserver will maintain its own checksum record.
+- If a block does not match the recorded checksum, the chunkserver returns an error to the requestor and reports the mismatch to the master.
+  - Now requestor will read from other replica and master will clone chunk from other replica.
+
+<a name=boe></a>
+## 6. BOE
+- Considering test env as:
+  - 1 master, 2 master replicas, 16 chunkservers, 16 clients.
+  - Memory for every machine: RAM=2GB, Harddisk=80GBx2
+  - 
