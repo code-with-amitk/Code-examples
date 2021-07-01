@@ -1,7 +1,10 @@
 - [1. What](#what)
   - [1.1 Recoverable Errors with Result](#recerrors)
-    - [1.1.1 open() a file](#open)
+    - [1.1.1 open() a file and read content](#open)
     - [1.1.2 Providing error cases in open()](#err)
+    - [1.1.3 Returning `enum Result<T,E>` from function / Propagating Errors](#ret)
+      - [1.1.3.1 ? operator](#operator)
+  - [1.2 UnRecoverable Errors with panic = assert](#panic)
 
 <a name=what></a>
 # 1. Error Handling in Rust
@@ -68,4 +71,72 @@ fn main() {
         },
     };
 }
+```
+
+<a name=ret></a>
+### 1.1.3 Returning `enum Result<T,E>` from function / Propagating Errors
+- _1._ Function returning `enum Result<T,E>`
+```rust
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn main() {
+  read_username_from_file().unwrap();      
+}
+    
+fn read_username_from_file() -> Result<String, io::Error> {    //1
+  let f = File::open("hello.txt");
+    
+  let mut f = match f {
+    Ok(file) => file,
+    Err(e) => return Err(e),
+  };
+    
+  let mut s = String::new();
+    
+  match f.read_to_string(&mut s) {
+    Ok(_) => Ok(s),
+    Err(e) => Err(e),
+  }
+}
+```
+
+<a name=operator></a>
+#### 1.1.3.1 A Shortcut for Propagating Errors: the ? Operator
+- This pattern of propagating errors is so common in Rust that Rust provides the question mark operator ? to make this easier.
+- _1._ If the value of the Result is an Ok, the value inside the Ok will get returned from this expression, and the program will continue.
+  - If the value is an Err, the Err will be returned from the whole function as if we had used the return keyword.
+- _2._ Same concept applies here
+```rust
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("hello.txt")?;                      //1
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;                                 //2
+    Ok(s)
+    
+//OR shorter way:
+//    let mut s = String::new();
+//    File::open("hello.txt")?.read_to_string(&mut s)?;
+
+}
+```
+
+<a name=panic></a>
+# 1.2 UnRecoverable Errors with panic = assert
+- When some kind of bug is detected and it’s not clear to the programmer how to handle it, Rust has the panic! macro for it.
+```rust
+fn main() {
+  let a = 10;
+  if a > 5 {
+    panic!("crash and burn");
+  }
+}
+$ ./test.exe
+thread 'main' panicked at 'crash and burn', .\main.rs:16:17
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
