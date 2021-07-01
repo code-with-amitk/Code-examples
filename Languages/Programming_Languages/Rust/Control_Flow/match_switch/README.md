@@ -1,13 +1,18 @@
-## match 
+- [1. match](#what)
+  - [1.1 Default Statement in match](#default)
+  - [1.2 Patterns that Bind to Values](#patval)
+  - [1.3 Matching Option`<T>`](#opt) 
+
+<a name=what></a>
+## 1. match
 - This is similar to (switch + enum class) of c++.
-- **match Example**
+- **Rules**
   - _1._ match is followed by expression to be evaluated
-  - _2._ This is called _match arm_. `pattern => code`. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
+  - _2._ `pattern => code`. This is called _match arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
 ```rust
 enum Color{
     Red,
     Black,
-    White,
 }
 fn color_value(var:Color) -> u8 {
     match var{                        //1
@@ -15,8 +20,6 @@ fn color_value(var:Color) -> u8 {
             print!("Red");
             1
         }
-        Color::Black => 2,
-        Color::White => 3,
         //if we forget to define all match enum variables, Rust gives compile time error
     }
 }
@@ -24,6 +27,89 @@ fn main() {
     println!("{:#?}",color_value(Color::Red));
 }
 ```
-- **[Patterns that Bind to Values](Patterns_that_Bind_to_Values)**
-- **[Matching with Option`<T>`](Matching_OptionT)**
-- **[Default statement in match](Default_Statement_in_match)**
+
+<a name=default></a>
+### 1.1 Default Statement in match
+- default statement in rust is represented by underscore `_`.
+  - _a._ Switch is defined using match
+  - _b._ Default case is represented using `_`. For everything except 1 this will be executed.
+```rust
+//#[derive(Debug)]
+fn find(var:u8) -> u8 {
+    match var{                          //a
+        1 => {println!("one");
+            1
+        },
+        _ => {println!("default");        //b
+            255
+        }
+    }
+}
+fn main() {
+    println!("{:#?} ",find(3));
+}
+$ rustc test.rs
+$ test.exe
+default
+255
+```
+
+<a name=patval></a>
+### 1.2 Patterns that Bind to Values
+- _1._ Created enum.
+- _2._ Binded a value(enum) to enum
+- _3._ `pattern => code` pattern is binded to value, which's printed.
+```rust
+#[derive(Debug)]
+enum Food{
+    Pizza,
+    Pulses,
+}
+enum Week{                  //1
+    Mon,
+    Wed,
+    Fri(Food),              //2
+}
+
+fn find(var:Week) -> u8 {
+    match var{
+        Week::Mon => {
+            print!("Nothing Special");
+            1
+        }
+        Week::Wed => 2,
+        Week::Fri(var_food) => {                          //3
+            print!("Today's Food {:#?}",var_food);
+            3
+        },
+    }
+}
+fn main() {
+    println!("{:#?} ",find(Week::Fri(Food::Pizza)));
+}
+```
+
+<a name=opt></a>
+### 1.3 Matching Option`<T>`
+- [What is Option`<T>`](../../../Enum_OptionEnum/OptionEnum_Null/) This is called Option Enum which is replacement of NULL in rust.
+- **Example**
+  - _1._ Defined function taking Option`<T>` and returning Option`<T>`.
+  - _2._ `pattern => code`. pattern can be some or None only.
+```rust
+fn find(var:Option<i32>) -> Option<i32> {         //1
+    match var{
+        Some(i) => Some(i+1),                     //2
+        None => None
+    }
+}
+fn main() {
+    println!("{:#?} ",find(Some(5)));
+    println!("{:#?} ",find(None));
+}
+
+$ .\main.exe
+Some(
+    6,
+)
+None  
+```
