@@ -4,6 +4,7 @@
   - [2.2 Initialize](#init)
   - [2.3 Update](#update)
   - [2.4 Accessing the vector](#access)
+  - [2.5 length of vector](#len)
 - [3. Storing enum in vector](enumvec)
 
 
@@ -55,20 +56,34 @@ OR
 
 <a name=access></a>
 ### 2.4 Accessing a vector
+- **A. Sequential access**
 ```rust
 fn main() {
     let mut v:Vec<i32> = vec![1,2,3];
-
     for a in v.iter() {
         print!("{} ", a);             //1 2 3
     }
-    
     print!("{} ", v[0]);              //1
-    //print!("{} ", v[10]);           //Seg Fault on runtime. Since Collections are stored on heap
-
     print!("{:#?}",v.get(1));         //Some(4,)
-
     print!("{:#?}",v.get(10));        //None. Does not crash
+```
+- **B. Accessing vector using i32**
+  - _Complier Error: type `[{integer}]` cannot be indexed by `i32`?_
+    - Means Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types)
+    - _Solutions:_ 1. Typecast  2. Keep indexing variable seperate from normal variables.
+```rust
+fn main() {
+    let mut v:Vec<i32> = vec![1,2,3];
+    let mut i:i32 = 0;
+    //println("{}", v[i]);        //Complier Error: type `[{integer}]` cannot be indexed by `i32`
+    println("{}", v[i as usize]); //Fix: Typecast i to usize.
+```
+
+<a name=len></a>
+### 2.5 Length of vector
+```rust
+let v = vec![1,2,3];
+v.len();        //3
 ```
 
 <a name=enumvec></a>
