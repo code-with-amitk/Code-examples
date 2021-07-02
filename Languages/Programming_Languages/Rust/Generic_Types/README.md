@@ -8,4 +8,14 @@
 <a name=genst></a>
 ### 1.1 Generic Structure
 ```rust
+struct  point<T,U> {
+    x:T,
+    y:U,
+}
+fn main() {
+    let test = point  {
+        x:10,
+        y:'c',
+    };
+}
 ```
