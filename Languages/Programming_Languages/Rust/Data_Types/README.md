@@ -30,7 +30,10 @@
 - Integers can be signed(-ve, +ve  both) and unsigned(takes +ve values). Signed Number are stored using [2's Compliment](/Languages/Programming_Languages/C/Bitwise/Representation_of_Numbers). 
 - _Signed:_ i8, i16, i32, i64, i128
 - _unsigned:_ u8, u16, u32, u64, u128
-- _isize, usize:_ Pointer sized signed, unsigned integer type. Depends on computer architecture. 32bit on 32bit Arch. 64bit on 64bit Arch
+- _isize, usize:_ Pointer sized signed, unsigned integer type. Depends on computer architecture. 
+  - _How usize is different from u32/u64?_ 
+    - u32/u64 are always 4/8 bytes, But usize(sizeof pointer) depends on complier ie for 32Bit(its 32), for 64Bit(its 64).
+    - So it makes great sense to access array variables using address only, bcoz it can change with architecture!! Cool
 - _f32, f64_
 - **Writing Integer Literals**
 ```c
