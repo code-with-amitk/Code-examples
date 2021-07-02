@@ -37,6 +37,7 @@ a = 3  2  1  0  4
     -  There are 2<sup>n</sup> ways of jumping from the first position to the last, n is the length of input array.
   - **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
 - **Code** 
+  - **C++**
 ```c++
 class Solution {
   using vec = vector<int>;
@@ -66,6 +67,37 @@ int main() {
     vec a = { 3,2,1,0,4 };
     Solution s;
     cout << s.canJump(a);
+}
+```
+  - **Rust**
+```rust
+fn fun(v:&Vec<i32>, i:i32) -> bool {
+    let size = v.len() as i32;
+    if i >= (size -1) {
+        return true;
+    }
+
+    for j in i+1..v[i as usize]+i+1 {
+        if fun (v, j) {
+            return true;
+        }
+    }
+    false
+}
+
+fn can_jump(v:&Vec<i32>) -> bool {
+    fun(v, 0)
+}
+
+
+fn main() {
+    let v = vec![3,2,1,0,4];
+    if can_jump(&v) == true {
+        print!("Yes");
+    }
+    else{
+        print!("No");
+    }
 }
 ```
 
