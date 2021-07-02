@@ -1,6 +1,6 @@
 - [1. What is Generic Type](#gen)
   - [1.1 Generic Structure & Generic impl block](#genst)
-- [2. Generic Internal Implementation](#internal)
+- [2. Monomorphization / Generic Internal Implementation](#internal)
 
 
 <a name=gen></a>
