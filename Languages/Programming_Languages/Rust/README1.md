@@ -19,6 +19,7 @@
     - [6.3.1 Why creating NULL was mistake?](#nullmistake)
     - [6.3.2 Option Enum](#oe)
 - [7. Error Handling](#eh)
+- [8. Generic Types/Templates](#temp)
 
 <a name="What"></a>
 ## 1. What/Why Rust
@@ -410,3 +411,6 @@ fn main() {
 
 <a name=eh></a>
 ## 7. [Error Handling](Error_Handling)
+
+<a name=temp></a>
+## [8. Generic Types/Templates](Generic_Types)
