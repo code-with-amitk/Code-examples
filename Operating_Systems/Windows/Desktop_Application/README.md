@@ -1,5 +1,5 @@
-- [1. Get Started](#get)
-- [2. Code](#code)
+- [1. Install & Get Started](#get)
+- [2. Create and show blank Window](#create)
 
 <a name=get></a>
 ## 1. Install & Get Started.
@@ -8,8 +8,8 @@
 - Application Type(exe), empty Project. Ok
 - Add a new cpp file.
 
-<a name=code></a>
-## 2. Code
+<a name=create></a>
+## 2. Create and show blank Window
 - [Traditional Style Windows Application](traditional_Windows_app.md)
 - [API, Structures](/Operating_Systems/Windows/API_Structures)
 - **Logic**
