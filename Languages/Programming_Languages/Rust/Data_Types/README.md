@@ -1,5 +1,5 @@
 - [Type Annotation](#type)
-- [1. Scalar Data Type](#scalardatatypes)
+- [1. Scalar / Primitive Data Type](#scalardatatypes)
   - [1.1 int](#intdatatype)
     - [1.1.1 int overflow](#intoverflow)
     - [1.1.2 Array slice](#arrayslice)
@@ -22,24 +22,16 @@
 ```
 
 <a name="scalardatatypes"></a>
-# 1. Scalar Data Type
+# 1. Scalar / Primitive Data Type
 - A scalar type represents a single value. Rust has 4 primary scalar types: int, float, bool, char
 
 <a name="intdatatype"></a>
 ## 1.1 int
-- Integers can be signed(-ve, +ve  both) and unsigned(takes +ve values).
-- Signed Number are stored using [2's Compliment](/Languages/Programming_Languages/C/Bitwise/Representation_of_Numbers). 
-- **Size of Integers:**
-```c
-Length(bits)	Signed	            Unsigned
-  8           	i8 (-128 to 127)	u8(0 to 255)
-  16	          i16	              u16
-  32	          i32	              u32
-  64	          i64	              u64
-  128   	      i128	            u128
-  arch 	        isize	            usize
-//arch: Depends on computer architecture. 32bit on 32bit Arch. 64bit on 64bit Arch
-```
+- Integers can be signed(-ve, +ve  both) and unsigned(takes +ve values). Signed Number are stored using [2's Compliment](/Languages/Programming_Languages/C/Bitwise/Representation_of_Numbers). 
+- _Signed:_ i8, i16, i32, i64, i128
+- _unsigned:_ u8, u16, u32, u64, u128
+- _isize, usize:_ Pointer sized signed, unsigned integer type. Depends on computer architecture. 32bit on 32bit Arch. 64bit on 64bit Arch
+- _f32, f64_
 - **Writing Integer Literals**
 ```c
 Number literals 	          Example
@@ -49,11 +41,7 @@ Octal	                      0o77
 Binary	                    0b1111_0000
 Byte (u8 only)            	b'A'
 ```
-- **Functions**
-```rust
-let a = 1;
-a.to_string();             //Convert to string
-```
+
 <a name="intoverflow"></a>
 ### 1.1.1 Integer Overflow
 - Assigning value outside of allowed range. Example:
