@@ -1,2 +1,0 @@
-## Initializing a vector
-
