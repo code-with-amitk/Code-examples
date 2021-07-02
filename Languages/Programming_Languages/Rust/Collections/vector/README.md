@@ -25,7 +25,7 @@ OR
 ```
 
 <a name=init></a>
-## 2.2 Initializing a vector
+### 2.2 Initializing a vector
 ```rust
     let v:Vec<i32> = [1,2,3].to_vec();
 OR
@@ -37,7 +37,7 @@ OR
 ```
 
 <a name=update></a>
-## 2.3 Updating a vector
+### 2.3 Updating a vector
 - Since variables in rust is [immutable by default](/Languages/Programming_Languages/Rust), we need to make them mutable to update.
 ```rust
     let mut v = Vec::new();
@@ -54,7 +54,7 @@ OR
 ```
 
 <a name=access></a>
-## 2.4 Accessing a vector
+### 2.4 Accessing a vector
 ```rust
 fn main() {
     let mut v:Vec<i32> = vec![1,2,3];
