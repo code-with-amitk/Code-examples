@@ -1,2 +1,0 @@
-## Storing enum in vector
-
