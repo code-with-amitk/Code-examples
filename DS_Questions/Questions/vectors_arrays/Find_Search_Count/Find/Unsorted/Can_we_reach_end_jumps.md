@@ -69,15 +69,17 @@ int main() {
     cout << s.canJump(a);
 }
 ```
-  - **Rust**
+- **Rust**
+  - _1._ vector.len() return usize `pub fn len(&self) -> usize` should be typecasted
+  - _2._ Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types), typecasted
 ```rust
 fn fun(v:&Vec<i32>, i:i32) -> bool {
-    let size = v.len() as i32;
+    let size = v.len() as i32;                  //1
     if i >= (size -1) {
         return true;
     }
 
-    for j in i+1..v[i as usize]+i+1 {
+    for j in i+1..v[i as usize]+i+1 {         //2
         if fun (v, j) {
             return true;
         }
