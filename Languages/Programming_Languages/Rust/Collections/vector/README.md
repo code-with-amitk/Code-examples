@@ -69,8 +69,10 @@ fn main() {
 ```
 - **B. Accessing vector using i32**
   - _Complier Error: type `[{integer}]` cannot be indexed by `i32`?_
-    - Means Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types)
-    - _Solutions:_ 1. Typecast  2. Keep indexing variable seperate from normal variables.
+    - Means Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types). 
+    - _Solutions:_ 
+      - _1._ Typecast          //Not recommended
+      - _2._ Keep indexing variable seperate from normal variables.
 ```rust
 fn main() {
     let mut v:Vec<i32> = vec![1,2,3];
