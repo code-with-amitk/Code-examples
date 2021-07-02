@@ -17,7 +17,7 @@
   - _2._ Program fills & registers the structure(WNDCLASS) telling about window characteristics, function pointer of window to interact with main program(ie user).
   - _3._ Program creates a overlapped, pop-up, or child window and gets a unique handle of window and shows the window.
   - _4._ After successful window creation, program enters while() loop and remains in while() until user closes/exits the application.
-    - _4a._ Main program communicates with Application windows using `WindowProc()` method by passing series of messages.
+    - _4a._ Main program communicates with Application windows using `[WindowProc()](/Operating_Systems/Windows/API_Structures)` method by passing series of messages.
     - _4b._ `DispatchMessage()` causes Windows to invoke the WindowProc function, once for each message.
 ```cpp
 #ifndef UNICODE
