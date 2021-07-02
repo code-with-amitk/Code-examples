@@ -8,6 +8,7 @@
   - [2.4 CreateWindow or CreateWindowEx](#CreateWindow)
   - [2.5 ShowWindow](#ShowWindow)
   - [2.6 UpdateWindow](#UpdateWindow)
+  - [2.7 WindowProc](#WindowProc)
 
 <a name=st></a>
 ## 1. Structures
@@ -117,5 +118,18 @@ BOOL ShowWindow(
 ```c
 BOOL UpdateWindow(
   HWND hWnd                    //Handle to the window to be updated.
+);
+```
+
+<a name=WindowsProc></a>
+### 2.7 WindowProc
+- The DispatchMessage() calls the window procedure of the window.
+- A typical window procedure is a large switch statement that switches on the message code. Add cases for each message that you want to handle.
+```c
+LRESULT CALLBACK WindowProc(
+  HWND hwnd,                //hwnd is a handle to the window.
+  UINT uMsg,                //This is the message code; for example, the WM_SIZE message indicates the window was resized.
+  WPARAM wParam,            //wParam,lParam contains additional data that pertains to the message. 
+  LPARAM lParam
 );
 ```
