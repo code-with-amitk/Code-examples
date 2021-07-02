@@ -39,24 +39,28 @@ a = 3  2  1  0  4
 - **Code** 
 ```c++
 class Solution {
+  using vec = vector<int>;
 public:
-    bool CanJumpFromPosToEnd(int position, vec& a) {
-        int size = a.size();
-        if (position == size - 1)
-            return true;
+  
+  bool fun(vec& a, int i){     //i=index
+    int size = a.size();
 
-        int jump = std::min(position + a[position], size - 1);
+    //Reached last index or beyond
+    if (i >= size -1)
+      return true;
 
-        for (int i = position + 1; i <= jump; ++i) {
-            if (CanJumpFromPosToEnd(i, a))
-                return true;
-        }
-        return false;
+    //Jump from present+1 index
+    for (int j = i+1; j < a[i]+i+1; ++j) {
+       if (fun(a, j))
+          return true;
     }
+    return false;
+  }
 
-    bool canJump(vec& a) {
-        return CanJumpFromPosToEnd(0, a);
-    }
+  bool canJump(vec& a) {
+    //Start jump from index=0
+    return fun(a, 0);
+  }
 };
 int main() {
     vec a = { 3,2,1,0,4 };
