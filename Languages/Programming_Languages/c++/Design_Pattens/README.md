@@ -55,7 +55,7 @@ Observer
 State                        1. Vending Machine: Amount of currency deposited, item selected. State defined.
 Strategy                     1. Modes of transport to Airport: Several options are present: 
                              Driving own car, taking taxi, City bus etc., Duck Behavior: 1st Example Head 1st Design Patterns
-Template
+Template                     1. Beverage Maker Machine
 Visitor
 ```
 
