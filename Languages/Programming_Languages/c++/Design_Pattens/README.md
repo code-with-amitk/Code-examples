@@ -31,36 +31,33 @@ Visitor
 <a name=str></a>
 ### [2.2 Structural](Structural)
 - How objects are composed? Is 1 object composed of other, is there inheritance relation etc? This is about structure. They Identify relationship between objects. Types:
-  - Adapter/Wrapper
-    - _1. Socket on Wall:_ Connecting new adapter to socket
-  - Bridge
-    - _1._ House hold switch for On/Off the light
-  - Composite
-    - Arithmetic Expressions evaluation: 2+3 and (2+3) + (4x6)
-  - Decorator
-    - _1. Coffee House Design_
-  - Filter/Criteria
-  - Proxy
+```console
+Adapter/Wrapper       1. Socket on Wall: Connecting new adapter to socket
+Bridge                1. House hold switch for On/Off the light
+Composite             1. Arithmetic Expressions evaluation: 2+3 and (2+3) + (4x6)
+Decorator             1. Coffee House Design
+Filter/Criteria
+Proxy
+```
 
 <a name=beh></a>
 ### [2.3 Behavioral](Behavioral)
-- Communication/Interaction with other classes/objects. Types
-  - Chain of Responsibility
-  - Command
-    - _1._ Home automation system, using remote control
-  - Interpretor
-  - Iterator.
-    - _1. Musicians:_ They read musical notes for pitch of sound and duration
-  - Mediator
-    - _1._ Online Auction
-    - _2._ Air traffic Control
-  - Observer
-  - State
-    - _1. Vending Machine:_ it has states depending on inventory, amount of currency deposited, item selected etc
-  - Strategy
-    - _1. Modes of transport to Airport:_ Several options are present: Driving own car, taking taxi, City bus etc., Duck Behavior: 1st Example Head 1st Design Patterns
-  - Template
-  - Visitor
+- Communication/Interaction with other classes/objects. Types:
+```console
+  DP                            Applications
+Chain of Responsibility
+Command                      1. Home automation system, using remote control
+Interpretor
+Iterator                     1. Musicians: They read musical notes for pitch of sound and duration
+Mediator                     1. Online Auction
+                             2. Air traffic Control
+Observer
+State                        1. Vending Machine: Amount of currency deposited, item selected. State defined.
+Strategy                     1. Modes of transport to Airport: Several options are present: 
+                             Driving own car, taking taxi, City bus etc., Duck Behavior: 1st Example Head 1st Design Patterns
+Template
+Visitor
+```
 
 <a name=dp></a>
 ## 3. Design Principles(CREATE DIFFERENT OBJECTS FOR MINUTE THINGS)
