@@ -62,6 +62,7 @@
 
 <a name=dp></a>
 ## 3. Design Principles(CREATE DIFFERENT OBJECTS FOR MINUTE THINGS)
+> FIL: Favour Comp over Inheritance, Interface, Loose coupling
 - _a._ Identify aspect of application that varies and separate it from what remains same.
 - **b. Program to Interface:** Always create a base class(ie class containing Pure Virtual function) and override in derived classes. Even when you think there is no specific functionality for derv just create a wrapper.
 - **c. Favor Composition(HAS-A) over Inheritance:** Composition/Aggregation can create objects dynamically(add new behavior) while Inheritance does static.
