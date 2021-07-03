@@ -26,7 +26,7 @@
 ## 1. What/Why Rust
 <a name="All"></a>
 ### 1.1 Rust vs All Languages
-- No Garbage collector               //Garbage collector is runtime heavy
+- No Garbage collector(Java,python has garbage collectors)               //Garbage collector is runtime heavy
 - No monolithic runtime.
 - Statically typed(with type inference), Catching the bugs at compile time reduces runtime crashes. Compiler does lot of heavy lifting.
   - No Type confusion
