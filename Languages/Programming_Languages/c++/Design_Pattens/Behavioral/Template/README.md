@@ -1,14 +1,38 @@
-### Definition of Template DP
-  - This deﬁnes the skeleton of an algorithm in a method, deferring some steps to subclasses. 
-  - Template Method lets subclasses to redeﬁne certain steps of an algorithm without changing the algorithm’s structure.
+- [1. What is Template Method DP](#what)
+  - [1.1 Template?](temp) 
+- [2. Examples](#exm)
+  - [2.1 Beverage Maker Machine](#bev)
 
-### What is template?
+<a name=what></a>
+## 1. Template Method DP
+- This deﬁnes fixed skeleton of an algorithm. ie some methods are kept in base class(cannot be overridden in derv), some are kept to be overridden in derv classes.
+- Template Method lets subclasses to redeﬁne certain steps of an algorithm without changing the algorithm’s structure.
+```
+class base{
+public:
+	//virtual: Not required, since I will not override & access with same ptr
+  virtual void template() final     //derv class cannot override fun1,fun2
+  {
+    fun1();
+    fun2();
+  }
+  void fun3();               //derv class can override fun3
+  virtual void fun4()=0;     //derv class must override fun4
+}  
+```
+
+<a name=temp></a>
+### 1.1 What is template?
   - Method present in base class, which defines algorithms of steps(functions called in specific order).
   - Some algorithms are kept intact(should not be overriden), while others allowed to be overridden.
   
-### PROBLEM/TASK: Create a generic Beverage Maker machine (Coffee,Tea etc)
-#### Steps for Making beverage:
+<a name=exm></a>  
+## 2. Examples
 
+<a name=bev></a>
+### 2.1 Generic Beverage Maker machine (Coffee,Tea etc)
+- **Steps for Making beverage:**
+```
 | Step | Coffee | Tea |
 | --- | --- | --- |
 |	1 | boilWater() |	boilWater() |
@@ -20,8 +44,9 @@
   - `COMMON STEPS`: boilWater, pourInCup
 - Some steps are unique to beverage.  
   - `UNIQUE STEPS`: addBase(), addCondiments()
-
-#### Logic
+```
+- **Logic**
+```c
   1. Create a `TEMPLATE METHOD` which contains all methods/algorithms to be used.
 		 - Template method is creted `final`, so that it should not be overridden in derv class
   2. Make common methods as `CONCRETE`.
@@ -33,12 +58,5 @@
   Java		C++
   abstract = Pure Virtual Functions
   final	
-
-### In Code
-- `Final function` cannot be inherited in derived class
-
-|  | Java | C++ |
-| --- | --- | --- |
-| equals | abstract method | Pure Virtual function |
-  
+```  
   
