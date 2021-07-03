@@ -17,6 +17,8 @@
   - Abstract Factory
   - Factory method/ Factory Pattern
     - _1. Toy Factory:_ In toy factory toys are made by injecting plastic into molds of desired shape.
+    - _2. Pizza store_
+    - _[3. Logistics Management](https://refactoring.guru/design-patterns/factory-method)_
   - Flyweight
     - _1. PSTN Network_
   - Prototype
@@ -28,7 +30,7 @@
   - Visitor
 
 <a name=str></a>
-### [2.1 Structural](Structural)
+### [2.2 Structural](Structural)
 - How objects are composed? Is 1 object composed of other, is there inheritance relation etc? This is about structure. They Identify relationship between objects. Types:
   - Adapter/Wrapper
     - _1. Socket on Wall:_ Connecting new adapter to socket
