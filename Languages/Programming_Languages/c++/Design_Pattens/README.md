@@ -48,6 +48,7 @@
 - Communication/Interaction with other classes/objects. Types
   - Chain of Responsibility
   - Command
+    - _1._ Home automation system, using remote control
   - Interpretor
   - Iterator.
     - _1. Musicians:_ They read musical notes for pitch of sound and duration
