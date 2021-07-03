@@ -12,58 +12,61 @@
 - Function is declared in trait, for different types function is overridden
 ```rust
 pub trait CompanyDB {                         //1. Trait declaring a function taking self, returning bool
-    fn add_to_db(&self) -> bool;
+    fn add_to_db(&self);
 }
 pub struct Employee{                          //2. Type "Employee struct"
     pub name:String,
     pub emp_id:u32,
 }
-pub struct Contractor{                        //3. Type "Contractor struct"
-    pub name:String,
-    pub contract_id:u32,
+pub struct Contractor{                        //3. Type "Contractor struct". See datatypes different from Employee
+    pub contractor_name:String,
 }
 
 //impl  TRAIT  for   TYPE
-impl CompanyDB for Employee{                 //4. Implement trait for Type="Employee struct"
-    fn add_to_db(&self) -> bool {
-        println!("{} {}", self.name, self.emp_id);
-        true
+impl CompanyDB for Employee{                  //4. Implement trait for Type="Employee struct"
+    fn add_to_db(&self) {
+        println!("Added {} {}", self.name, self.emp_id);
     }
 }
-impl CompanyDB for Contractor{               //5. Implement trait for Type="Contractor struct"
-    fn add_to_db(&self) -> bool {
-        println!("{} {}", self.name, self.contract_id);
-        true
+impl CompanyDB for Contractor{                //5. Implement trait for Type="Contractor struct"
+    fn add_to_db(&self) {
+        println!("Added {}", self.contractor_name);
     }
 }
 
 fn main() {
-    let amit = Employee {                    //6. Created Employee variable
+    let amit = Employee {                     //6. Created Employee variable
         name:String::from("Amit"),
         emp_id:34,
     };
-    if amit.add_to_db() == true{             //7. Called trait's function for type
-        println!("Added")
-    }
-    else{
-        println!("Failed")
-    }
+    amit.add_to_db()                         //7. Called trait's function for type
 }
 $ ./test.exe
-Amit 34
-Added
+Added Amit 34
 ```
 
 <a name=default></a>
 ### 1.2 Default function definition inside Trait
 - To use default implementation of trait just implement type as {}
 ```rust
-pub trait CompanyDB {
-    fn add_to_db(&self) -> bool {
-        println!("Default");
-        false
+//Considering Above Example
+
+pub trait CompanyDB {                         //1. Defined  trait with default definition
+    fn add_to_db(&self) {
+        println!("Default Implementation");
     }
 }
-impl CompanyDB for CleaningStaff {
+struct cleaning_staff {                       //2. Type "cleaning_staff struct"
+    pub cleaner_name:String,
 }
+impl CompanyDB for cleaning_staff {}          //3. Defined impl to use default impl
+
+fn main() {                                   
+  let raj = cleaning_staff {                  //4. Created cleaning_staff variable
+      cleaner_name:String::from("Raj") 
+  };
+  raj.add_to_db();                            //5. Called trait's function for type
+}
+$ ./test.exe
+Default Implementation
 ```
