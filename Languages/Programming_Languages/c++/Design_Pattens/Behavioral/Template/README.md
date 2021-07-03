@@ -7,7 +7,7 @@
 ## 1. Template Method DP
 - This deﬁnes fixed skeleton of an algorithm. ie some methods are kept in base class(cannot be overridden in derv), some are kept to be overridden in derv classes.
 - Template Method lets subclasses to redeﬁne certain steps of an algorithm without changing the algorithm’s structure.
-```
+```c
 class base{
 public:
 	//virtual: Not required, since I will not override & access with same ptr
@@ -32,7 +32,7 @@ public:
 <a name=bev></a>
 ### 2.1 Generic Beverage Maker machine (Coffee,Tea etc)
 - **Steps for Making beverage:**
-```
+```c
 | Step | Coffee | Tea |
 | --- | --- | --- |
 |	1 | boilWater() |	boilWater() |
