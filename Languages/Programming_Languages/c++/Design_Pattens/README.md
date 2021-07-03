@@ -9,7 +9,7 @@
 ## 2. Creational, Structural, Behavioral
 
 <a name=cre></a>
-### 2.1 Creational
+### [2.1 Creational](Creational)
 - Provides way for creating Objects, while hiding creation Logic. Types
   - Builder
     - _1. Domino's/McD to create Children Meals:_ Meal consists of {Main Item, side Item, Drink, Toy}
@@ -28,7 +28,7 @@
   - Visitor
 
 <a name=str></a>
-### 2.1 Structural
+### [2.1 Structural](Structural)
 - How objects are composed? Is 1 object composed of other, is there inheritance relation etc? This is about structure. They Identify relationship between objects. Types:
   - Adapter/Wrapper
     - _1. Socket on Wall:_ Connecting new adapter to socket
@@ -42,7 +42,7 @@
   - Proxy
 
 <a name=beh></a>
-### 2.3 Behavioral
+### [2.3 Behavioral](Behavioral)
 - Communication/Interaction with other classes/objects. Types
   - Chain of Responsibility
   - Command
