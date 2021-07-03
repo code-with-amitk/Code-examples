@@ -11,23 +11,22 @@
 <a name=cre></a>
 ### [2.1 Creational](Creational)
 - Provides way for creating Objects, while hiding creation Logic. Types
-  - Builder
-    - _1. Domino's/McD to create Children Meals:_ Meal consists of {Main Item, side Item, Drink, Toy}
-  - Facade
-  - Abstract Factory
-  - Factory method/ Factory Pattern
-    - _1. Toy Factory:_ In toy factory toys are made by injecting plastic into molds of desired shape.
-    - _2. Pizza store_
-    - _[3. Logistics Management](https://refactoring.guru/design-patterns/factory-method)_
-  - Flyweight
-    - _1. PSTN Network_
-  - Prototype
-  - Proxy
-  - Singleton
-    - _1. Office of President_
-    - _2. Printer Queue(only 1 job run at a time)_
-    - _3. Only 1 DB object_ should be created per system & make connection, Duplicate connections may consume resources & slow down system
-  - Visitor
+```console
+  DP                  Applications
+Builder           Domino's/McD to create Children Meals
+Facade
+Abstract Factory
+Factory method    1. Toy Factory: In toy factory toys are made by injecting plastic into molds of desired shape.
+                  2. Pizza store
+                  3. Logistics Management: (https://refactoring.guru/design-patterns/factory-method
+Flyweight         PSTN Network
+Prototype
+Proxy
+Singleton         1. Office of President
+                  2. Printer Queue(only 1 job run at a time)_
+                  3. Only 1 DB object should be created per system
+Visitor
+```
 
 <a name=str></a>
 ### [2.2 Structural](Structural)
