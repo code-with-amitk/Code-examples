@@ -1,0 +1,1 @@
+- Object can change its behavior when internal state changes
