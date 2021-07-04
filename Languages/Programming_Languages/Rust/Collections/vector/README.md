@@ -2,9 +2,10 @@
 - [2. Operations](#opr)
   - [2.1 Creating](#create)
   - [2.2 Initialize](#init)
-  - [2.3 Update](#update)
-  - [2.4 Accessing the vector](#access)
-  - [2.5 length of vector](#len)
+  - [2.3 Create & Initialize)](#ci)
+  - [2.4 Update](#update)
+  - [2.5 Accessing the vector](#access)
+  - [2.6 length of vector](#len)
 - [3. Storing enum in vector](enumvec)
 
 
@@ -31,14 +32,20 @@ OR
     let v:Vec<i32> = [1,2,3].to_vec();
 OR
     let v2:Vec<i32> = vec![14,25,35];
-
     for a in v2.iter() {
         println!("{} ", a);         //14 25 35
-    }
+    }    
+```
+
+<a name=ci></a>
+### 2.3 Create & Initialize
+```rust
+                  //init_value,size
+  let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0
 ```
 
 <a name=update></a>
-### 2.3 Updating a vector
+### 2.4 Updating a vector
 - Since variables in rust is [immutable by default](/Languages/Programming_Languages/Rust), we need to make them mutable to update.
 ```rust
     let mut v = Vec::new();
@@ -55,7 +62,7 @@ OR
 ```
 
 <a name=access></a>
-### 2.4 Accessing a vector
+### 2.5 Accessing a vector
 - **A. Sequential access**
 ```rust
 fn main() {
@@ -82,7 +89,7 @@ fn main() {
 ```
 
 <a name=len></a>
-### 2.5 Length of vector
+### 2.6 Length of vector
 ```rust
 let v = vec![1,2,3];
 v.len();        //3
