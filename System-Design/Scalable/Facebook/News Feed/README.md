@@ -149,7 +149,7 @@ LIMIT 100
   - For future growth and replication, we must use [Consistent Hashing](/System-Design/Concepts/Hashing/Consistent_Hashing.md)
 
 <a name=overall></a>
-## 6. Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+## [6. Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 
 <a name=issues></a>
 #### 6.1 Issues in Feed Generation Service
