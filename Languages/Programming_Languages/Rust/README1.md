@@ -215,7 +215,7 @@ fn main() {
 ```
 
 <a name=datatypes></a>
-## [4. Data Types](Data_Type)
+## [4. Data Types](Data_Types)
   - Associated Functions
 
 <a name=controlflow></a>
