@@ -138,7 +138,9 @@ index=6, This is last index and not jump is needed.                     //Index=
 - **Code**
 ```c++
 class Solution {
-  enum class State{
+  //We have to take 3 states, bcoz if we take dpArray as bool array, i cannot distinguish
+  //which indexes are calculated, since only after calculation we should set dp[i]=false
+  enum class State{                                 
     Good,
     Bad,
     Unknown
@@ -147,6 +149,11 @@ class Solution {
   using vecI = vector<int>;
 public:
   bool fun(int i, vecI& a, vecS& dp){
+  
+//if this is replaced with below. Then we will not consider skipping Bad indexes.
+//if(dp[i])
+//   return true;
+
     if (dp[i] != State::Unknown)
       return dp[i] == State::Good ? true : false;
 
