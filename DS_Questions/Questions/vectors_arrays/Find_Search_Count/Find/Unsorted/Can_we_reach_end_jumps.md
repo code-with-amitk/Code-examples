@@ -116,7 +116,7 @@ fn main() {
 ```
 
 <a name=apr2></a>
-### Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
+### 2. Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 - **Logic**
   - 1. Create a bool dpArray which tells whether we can reach end from particular index or not.
     - if end can be reached from index. `dp[index] = true`
