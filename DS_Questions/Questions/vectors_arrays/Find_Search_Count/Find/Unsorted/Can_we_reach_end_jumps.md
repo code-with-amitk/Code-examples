@@ -143,30 +143,32 @@ class Solution {
     Bad,
     Unknown
   };
+  using vecS = vector<state>;
+  using vecI = vector<int>;
 public:
-  bool CanJumpFromPosToEnd(int position, vec& a, vector<State>& dpArray){
-    if (dpArray[position] != State::Unknown)
-      return dpArray[position] == State::Good ? true : false;
+  bool calc(int i, vecI& a, vecS& dp){
+    if (dp[i] != State::Unknown)
+      return dp[i] == State::Good ? true : false;
 
     int size = a.size();
 
-    int jump = std::min(position + a[position], size - 1);
+    int jump = std::min(i + a[i], size - 1);
 
-    for (int nextJump=position+1; nextJump<=jump; ++nextJump) {
-      if (CanJumpFromPosToEnd(nextJump, a, dpArray)) {
-        dpArray[position] = State::Good;
+    for (int j=i+1; j<=jump; ++j) {
+      if (calc(j, a, dp)) {
+        dp[i] = State::Good;
         return true;
       }
     }
-    dpArray[position] = State::Bad;
+    dp[i] = State::Bad;
     return false;
   }
 
   bool canJump(vec& a) {
-    vector<State> dpArray(a.size(), State::Unknown);
-    dpArray[a.size()-1] = State::Good;       //Last index can always reach itself
+    vecS dp(a.size(), State::Unknown);
+    dp[a.size()-1] = State::Good;       //Last index can always reach itself
 
-    return CanJumpFromPosToEnd(0, a, dpArray);
+    return calc(0, a, dp);
   }
 };
 int main() {
