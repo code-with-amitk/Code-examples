@@ -2,7 +2,7 @@
 - [1. Approach-1. Backtracking. O(2<sup>n</sup>)](#apr1)
   - [1.1 C++](#apr1cpp)
   - [1.2 Rust](#apr1rust)
-- [2. Approach-2. DP, Top Down.](#apr2)
+- [2. Approach-2. DP, Top Down. O(n<sup>2</sup>)](#apr2)
   - [2.1 C++](#apr2cpp)
   - [2.2 Rust](#apr2rust)
 
