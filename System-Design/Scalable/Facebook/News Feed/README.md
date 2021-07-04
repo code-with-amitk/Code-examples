@@ -17,7 +17,7 @@
 - [5. DB Design](#dbdes)
 
 <a name=what></a>
-## 1. What is FB News Feed
+## What is FB News Feed
 - Whenever someone logs into account. He finds content posted on his network using new feed.
   - friend activities(status updates, photos, videos etc)
   - profile changes, upcoming events
