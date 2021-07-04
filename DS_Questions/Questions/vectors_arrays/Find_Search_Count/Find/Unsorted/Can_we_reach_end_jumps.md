@@ -196,3 +196,36 @@ int main() {
   cout<<s.canJump(a);
 }
 ```
+<a name=apr2rust></a>
+### 2.2 Rust
+```rust
+impl Solution {  
+    pub fn fun(v:&Vec<i32>, i:i32, dp:&mut Vec<i32>) -> bool {
+    if dp[i as usize] != 2 {
+        if dp[i as usize] == 1 {
+            return true;
+        } 
+        else 
+        {
+            return false;
+        }
+    }
+
+    for j in i+1 .. v[i as usize]+i+1 {
+        if Solution::fun(&v,j, dp) {
+            dp [i as usize] = 1;
+            return  true;
+        }
+    }
+    dp [i as usize] = 0;
+    false
+    }      
+    
+    pub fn can_jump(v: Vec<i32>) -> bool {
+    //let dp = vec![state::unknown; v.len()];
+    let mut dp = vec![2; v.len()];
+    dp [v.len() - 1] = 1;       //Last index is reachable
+    Solution::fun (&v, 0, &mut dp)       
+    }
+}
+```
