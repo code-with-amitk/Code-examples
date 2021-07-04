@@ -146,7 +146,7 @@ class Solution {
   using vecS = vector<state>;
   using vecI = vector<int>;
 public:
-  bool calc(int i, vecI& a, vecS& dp){
+  bool fun(int i, vecI& a, vecS& dp){
     if (dp[i] != State::Unknown)
       return dp[i] == State::Good ? true : false;
 
@@ -155,7 +155,7 @@ public:
     int jump = std::min(i + a[i], size - 1);
 
     for (int j=i+1; j<=jump; ++j) {
-      if (calc(j, a, dp)) {
+      if (fun (j, a, dp) ) {
         dp[i] = State::Good;
         return true;
       }
@@ -168,7 +168,7 @@ public:
     vecS dp(a.size(), State::Unknown);
     dp[a.size()-1] = State::Good;       //Last index can always reach itself
 
-    return calc(0, a, dp);
+    return fun(0, a, dp);
   }
 };
 int main() {
