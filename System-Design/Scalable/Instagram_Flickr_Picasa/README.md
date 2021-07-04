@@ -30,7 +30,7 @@
 ## 3. HLD
 
 **Steps: User-1 uploading his photos, user-2 watching user-1's photos**
-- *1-6.* Same as [Facebook news feed](/System-Design/Scalable/facebook/News%20Feed).
+- *1-6.* Same as [Facebook news feed](/System-Design/Scalable/Facebook).
 - *7.* Application server will forward photos to DB Updater(in some other Datacenter).
 - *8.* Photos will be stored on [Object Store DB](/System-Design/Concepts/Databases)
   - We will have dedicated servers for reads and different servers for writes to ensure that uploads don’t hog the system
