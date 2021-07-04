@@ -2,7 +2,7 @@
 - [2. Operations](#opr)
   - [2.1 Creating](#create)
   - [2.2 Initialize](#init)
-  - [2.3 Create & Initialize)](#ci)
+  - [2.3 Create & Initialize](#ci)
   - [2.4 Update](#update)
   - [2.5 Accessing the vector](#access)
   - [2.6 length of vector](#len)
