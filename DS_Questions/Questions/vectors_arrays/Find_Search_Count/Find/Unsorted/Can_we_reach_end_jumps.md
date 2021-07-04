@@ -150,11 +150,7 @@ public:
     if (dp[i] != State::Unknown)
       return dp[i] == State::Good ? true : false;
 
-    int size = a.size();
-
-    int jump = std::min(i + a[i], size - 1);
-
-    for (int j=i+1; j<=jump; ++j) {
+    for (int j=i+1; j<=a[i]+i+1; ++j) {
       if (fun (j, a, dp) ) {
         dp[i] = State::Good;
         return true;
