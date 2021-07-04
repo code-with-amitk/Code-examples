@@ -1,3 +1,12 @@
+- [Question](#ques)
+- [1. Approach-1. Backtracking. O(2<sup>n</sup>)](#apr1)
+  - [1.1 C++](#apr1cpp)
+  - [1.2 Rust](#apr1rust)
+- [2. Approach-2. DP, Top Down.](#apr2)
+  - [2.1 C++](#apr2cpp)
+  - [2.2 Rust](#apr2rust)
+
+<a name=ques></a>
 ## [Can we reach end / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
 - Array of non-negative integers, which represents max JUMPS from that position. We are initially positioned at the 0th index of the array, Determine can we reach LAST index?
 - Each element in the array represents **maximum jump/ladder length** from that position, we can choose smaller jump from that position also.
@@ -16,15 +25,8 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum jump 
 which makes it impossible to reach the last index.
 ```
 
-- [Approach-1. Backtracking. O(2<sup>n</sup>)](#apr1)
-  - [C++](#apr1cpp)
-  - [Rust](#apr1rust)
-- [Approach-2. DP, Top Down.](#apr2)
-  - [C++](#apr2cpp)
-  - [Rust](#apr2rust)
-
 <a name=apr1></a>
-### Approach-1  //[Backtracking](/DS_Questions/Algorithms)  //O(2<sup>n</sup>), Time limit exceed
+### 1. Approach  //[Backtracking](/DS_Questions/Algorithms)  //O(2<sup>n</sup>), Time limit exceed
 ```c
 a = 3  2  1  0  4
     0  1  2  3  4
@@ -46,7 +48,7 @@ a = 3  2  1  0  4
   - **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
 - **Code** 
 <a name=apr1cpp></a>
-#### C++
+#### 1.1 C++
 ```c++
 class Solution {
   using vec = vector<int>;
@@ -79,7 +81,7 @@ int main() {
 }
 ```
 <a name=apr1rust></a>
-#### Rust
+#### 1.2 Rust
   - _1._ vector.len() return usize `pub fn len(&self) -> usize` should be typecasted
   - _2._ Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types), typecasted
 ```rust
@@ -113,7 +115,8 @@ fn main() {
 }
 ```
 
- ### Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
+<a name=apr2></a>
+### Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 - **Logic**
   - 1. Create a bool dpArray which tells whether we can reach end from particular index or not.
     - if end can be reached from index. `dp[index] = true`
@@ -146,6 +149,9 @@ index=6, This is last index and not jump is needed.                     //Index=
     - `a[i]` can be at most n, where n is the length of array a.
   - **Space:** O(2n)=O(n). First n originates from recursion. Second n comes from the usage of the dpArray table.
 - **Code**
+
+<a name=apr2cpp></a>
+#### 2.1 C++
 ```c++
 class Solution {
   //We have to take 3 states, bcoz if we take dpArray as bool array, i cannot distinguish
