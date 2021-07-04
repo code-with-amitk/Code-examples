@@ -12,7 +12,7 @@
 - [4. HLD](#hld)
   - [4.1 Steps](#steps)
     - [4.1.1 Post Storage](#postst)
-    - [4.1.2 Feed Generation](#postgen) 
+    - [4.1.2 Feed Generation](#feedgen) 
     - [4.1.3 Feed Publishing](#feedpub)
 - [5. DB Design](#dbdes)
 
