@@ -26,7 +26,7 @@ which makes it impossible to reach the last index.
 ```
 
 <a name=apr1></a>
-### 1. Approach  //[Backtracking](/DS_Questions/Algorithms)  //O(2<sup>n</sup>), Time limit exceed
+## 1. Approach  //[Backtracking](/DS_Questions/Algorithms)  //O(2<sup>n</sup>), Time limit exceed
 ```c
 a = 3  2  1  0  4
     0  1  2  3  4
@@ -48,7 +48,7 @@ a = 3  2  1  0  4
   - **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
 - **Code** 
 <a name=apr1cpp></a>
-#### 1.1 C++
+### 1.1 C++
 ```c++
 class Solution {
   using vec = vector<int>;
@@ -81,7 +81,7 @@ int main() {
 }
 ```
 <a name=apr1rust></a>
-#### 1.2 Rust
+### 1.2 Rust
   - _1._ vector.len() return usize `pub fn len(&self) -> usize` should be typecasted
   - _2._ Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types), typecasted
 ```rust
@@ -116,7 +116,7 @@ fn main() {
 ```
 
 <a name=apr2></a>
-### 2. Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
+## 2. Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 - **Logic**
   - 1. Create a bool dpArray which tells whether we can reach end from particular index or not.
     - if end can be reached from index. `dp[index] = true`
@@ -151,7 +151,7 @@ index=6, This is last index and not jump is needed.                     //Index=
 - **Code**
 
 <a name=apr2cpp></a>
-#### 2.1 C++
+### 2.1 C++
 ```c++
 class Solution {
   //We have to take 3 states, bcoz if we take dpArray as bool array, i cannot distinguish
