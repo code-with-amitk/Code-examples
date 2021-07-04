@@ -16,6 +16,14 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum jump 
 which makes it impossible to reach the last index.
 ```
 
+- [Approach-1. Backtracking. O(2<sup>n</sup>)](#apr1)
+  - [C++](#apr1cpp)
+  - [Rust](#apr1rust)
+- [Approach-2. DP, Top Down.](#apr2)
+  - [C++](#apr2cpp)
+  - [Rust](#apr2rust)
+
+<a name=apr1></a>
 ### Approach-1  //[Backtracking](/DS_Questions/Algorithms)  //O(2<sup>n</sup>), Time limit exceed
 ```c
 a = 3  2  1  0  4
@@ -37,7 +45,8 @@ a = 3  2  1  0  4
     -  There are 2<sup>n</sup> ways of jumping from the first position to the last, n is the length of input array.
   - **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
 - **Code** 
-  - **C++**
+<a name=apr1cpp></a>
+#### C++
 ```c++
 class Solution {
   using vec = vector<int>;
@@ -69,7 +78,8 @@ int main() {
     cout << s.canJump(a);
 }
 ```
-- **Rust**
+<a name=apr1rust></a>
+#### Rust
   - _1._ vector.len() return usize `pub fn len(&self) -> usize` should be typecasted
   - _2._ Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types), typecasted
 ```rust
