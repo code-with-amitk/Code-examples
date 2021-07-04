@@ -164,7 +164,7 @@ public:
     return false;
   }
 
-  bool canJump(vec& a) {
+  bool canJump(vecI& a) {
     vecS dp(a.size(), State::Unknown);
     dp[a.size()-1] = State::Good;       //Last index can always reach itself
 
