@@ -20,7 +20,7 @@
     - [6.3.2 Option Enum](#oe)
 - [7. Error Handling](#eh)
 - [8. Generic Types/Templates](#temp)
-- [9. Trait = Interface = Virtual (not pure virtual)](Trait_Interface)
+- [9. Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
 
 <a name="What"></a>
 ## 1. What/Why Rust
