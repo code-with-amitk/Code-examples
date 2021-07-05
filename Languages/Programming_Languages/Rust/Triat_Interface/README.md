@@ -2,6 +2,12 @@
   - [1.1 Function in trait](#fun)
     - [1.1.1 Function declaration in Trait](#dec)
     - [1.1.2 Function definition in Trait](#def)
+  - [1.2 Passing Triat as argument to function](#arg)
+  - [1.3 Trait Bound](#tb)
+    - [1.3.1 Multiple Trait Bounds //Friend Function](#multb)
+      - [1.3.1.1 Using +](#usingplus)
+      - [1.3.1.2 Using where clause](#usingplus)
+
 
 <a name=what></a>
 ## 1. Trait = virtual Function (Not pure virtual)
@@ -10,7 +16,6 @@
 
 <a name=fun></a>
 ### 1.1 Functions in trait
-
 <a name=dec></a>
 #### 1.1.1 Function declaration in Trait
 - 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type
@@ -73,4 +78,50 @@ fn main() {
 }
 $ ./test.exe
 Default Implementation
+```
+
+<a name=arg></a>
+### 1.2 Passing Triat as argument to function
+- Above we have implemented a Trait(called CompanyDB), we can pass trait as parameter to function.
+```rust
+pub fn test (param: &impl CompanyDB) {          //1. Function taking trait as parameter          //1.2.A
+  println!("{}", param.add_to_db());            //2. Using parameter we can call function declared/defined in trait
+}
+
+fn main() {
+  let amit = Employee {                         //3. Created "Employee struct" Type object.
+    name:String::from("Amit"),
+    emp_id:34,  
+  };
+  test (&amit);                                 //4. Called Function, passed instance of Type implementing triat
+}
+```
+<a name=tb></a>
+### 1.3 Trait Bound
+- Above function(1.2.A) can be written as below, also called Trait bound.
+```rust
+         //<T: Trait> (parameter: &T)
+pub fn test<T: CompanyDB> (param: &T) {         //Trait Bound
+  ..
+}
+```
+<a name=multb></a>
+#### 1.3.1 Multiple Trait Bounds 
+<a name=usingplus></a>
+###### 1.3.1.1 Using +   //Friend Function
+- There can be a function which takes 2 or more traits(virtual function).
+```rust
+pub fn test<T: Trait1 + Trait2> (param: &T) {
+OR
+pub fn test (param: &(impl Trait1 + Trait2) {
+```
+<a name=usingplus></a>
+###### 1.3.1.2 Using where clause   //Friend Function
+```rust
+pub fn test<T: Trait1 + Triat2, U: Triat2 + Triat2>(t: &T, u: &U) -> i32 {
+OR
+pub fn test<T, U>(t: &T, u: &U) -> i32
+    where T: Triat2 + Triat2
+          U: Triat2 + Triat3
+{
 ```
