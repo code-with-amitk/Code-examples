@@ -7,6 +7,7 @@
   - [4.1 Multiple Trait Bounds //Friend Function](#multb)
       - [4.1.1 Using +](#usingplus)
       - [4.1.2 Using where clause](#usingplus)
+- [5. Returning Triats from Function](#ret)
 
 
 <a name=what></a>
@@ -124,4 +125,18 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
     where T: Triat2 + Triat2
           U: Triat2 + Triat3
 {
+```
+
+<a name=ret></a>
+## 5. Returning Triats from Function
+- Function which returns (impl Trait) returns any of type that implements the trait.
+- In below example it returns Type "Employee" but calling function does not know that.
+```rust
+                //impl Trait
+pub fn fun ( ) -> impl CompanyDB {      //This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
+  Employee {                            //Created "Employee struct" Type object.
+    name:String::from("Amit"),
+    emp_id:34,  
+  };
+}
 ```
