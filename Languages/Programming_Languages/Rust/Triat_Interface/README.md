@@ -1,12 +1,12 @@
 - [1. What is Trait](#what)
-  - [1.1 Function in trait](#fun)
-    - [1.1.1 Function declaration in Trait](#dec)
-    - [1.1.2 Function definition in Trait](#def)
-  - [1.2 Passing Triat as argument to function](#arg)
-  - [1.3 Trait Bound](#tb)
-    - [1.3.1 Multiple Trait Bounds //Friend Function](#multb)
-      - [1.3.1.1 Using +](#usingplus)
-      - [1.3.1.2 Using where clause](#usingplus)
+- [2. Function in trait](#fun)
+  - [2.1 Function declaration in Trait](#dec)
+  - [2.2 Function definition in Trait](#def)
+- [3. Passing Triat as argument to function](#arg)
+- [4. Trait Bound](#tb)
+  - [4.1 Multiple Trait Bounds //Friend Function](#multb)
+      - [4.1.1 Using +](#usingplus)
+      - [4.1.2 Using where clause](#usingplus)
 
 
 <a name=what></a>
@@ -15,9 +15,9 @@
 - These functions can be implemented on type, ie overridden.
 
 <a name=fun></a>
-### 1.1 Functions in trait
+## 2. Functions in trait
 <a name=dec></a>
-#### 1.1.1 Function declaration in Trait
+### 2.1 Function declaration in Trait
 - 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type
 ```rust
 pub trait CompanyDB {                         //1. Declared a function inside trait
@@ -55,7 +55,7 @@ Added Amit 34
 ```
 
 <a name=def></a>
-#### 1.1.2 Function definition in Trait / Default Implementation
+### 2.2 Function definition in Trait / Default Implementation
 - To use default implementation of trait just implement type as {}
 ```rust
 //Considering Above Example
@@ -81,7 +81,7 @@ Default Implementation
 ```
 
 <a name=arg></a>
-### 1.2 Passing Triat as argument to function
+## 3. Passing Triat as argument to function
 - Above we have implemented a Trait(called CompanyDB), we can pass trait as parameter to function.
 ```rust
 pub fn test (param: &impl CompanyDB) {          //1. Function taking trait as parameter          //1.2.A
@@ -97,7 +97,7 @@ fn main() {
 }
 ```
 <a name=tb></a>
-### 1.3 Trait Bound
+## 4. Trait Bound
 - Above function(1.2.A) can be written as below, also called Trait bound.
 ```rust
          //<T: Trait> (parameter: &T)
@@ -106,9 +106,9 @@ pub fn test<T: CompanyDB> (param: &T) {         //Trait Bound
 }
 ```
 <a name=multb></a>
-#### 1.3.1 Multiple Trait Bounds 
+### 4.1 Multiple Trait Bounds 
 <a name=usingplus></a>
-###### 1.3.1.1 Using +   //Friend Function
+#### 4.1.1 Using +   //Friend Function
 - There can be a function which takes 2 or more traits(virtual function).
 ```rust
 pub fn test<T: Trait1 + Trait2> (param: &T) {
@@ -116,7 +116,7 @@ OR
 pub fn test (param: &(impl Trait1 + Trait2) {
 ```
 <a name=usingplus></a>
-###### 1.3.1.2 Using where clause   //Friend Function
+#### 4.1.2 Using where clause   //Friend Function
 ```rust
 pub fn test<T: Trait1 + Triat2, U: Triat2 + Triat2>(t: &T, u: &U) -> i32 {
 OR
