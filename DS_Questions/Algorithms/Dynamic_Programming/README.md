@@ -70,7 +70,7 @@ int main() {
 <a name="dp"></a>
 #### 4.1.2 Dynamic Programming
 <a name="cpp"></a>
-##### 4.1.2.1
+##### 4.1.2.1 C++ Code
 ```c
 int a[n+1];
 class Solution {
@@ -96,7 +96,7 @@ public:
 };
 ```
 <a name="rust"></a>
-##### 4.1.2.2
+##### 4.1.2.2 Rust Code
 ```rust
 impl Solution {
     pub fn fib(n: i32) -> i32 {
