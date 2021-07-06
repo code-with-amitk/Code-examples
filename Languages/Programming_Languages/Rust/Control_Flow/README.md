@@ -92,15 +92,17 @@ fn main() {
 
 <a name=for></a>
 ## 3. for
-```rust
-fn main() {
+```rs
   let a = [1, 2];
   for b in a.iter() {
-    println!("val: {}", b);
-  }
-}
-val: 1
-val: 2
+    println!("{}", b);      //1,2 
+
+OR 
+
+  let a:i32 = 3;
+  for i in 0..a {         //[start..end)
+    println!("{}", i);    //0, 1, 2
+    
 ```
 - **Reversing the range**
 ```rust
