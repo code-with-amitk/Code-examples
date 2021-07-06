@@ -99,8 +99,7 @@ fn main() {
 
 OR 
 
-  let a:i32 = 3;
-  for i in 0..a {         //[start..end)
+  for i in 0..3 {         //for (i=0; i<3; ++i)
     println!("{}", i);    //0, 1, 2
     
 ```
