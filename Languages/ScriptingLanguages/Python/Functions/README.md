@@ -13,7 +13,7 @@
   - Dunder/Magic, `__ITER__()`, `__CONTAINS__`, `__REPR__()`, `__STR__()`, `__doc__`
 - [5. Mostly used Functions](Mostly_Used_Functions)
   - split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)
-- [6. filter(), map(), reduce()](#filter_map_reduce)
+- [6. filter(), map(), reduce()](filter_map_reduce)
 
 <a name=fun></a>
 ## 1. Functions
