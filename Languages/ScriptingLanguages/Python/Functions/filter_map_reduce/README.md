@@ -1,12 +1,12 @@
-- [1. Filter](#filter)
+- [1. filter()](#filter)
   - [1.1 Ex: Return iterable from filter function containing vowels only](#vowel)
-- [2. map](#map)
+- [2. map()](#map)
   - [2.1 Ex:Double values in list using map()](#mapex)
-- [3. reduce](#reduce)
+- [3. reduce()](#reduce)
   - [3.1 Ex:Function reduce() to add all values](#reduceex)
 
 <a name=filter></a>
-## 1. filter
+## 1. filter()
 - Pass a iterable(list, tuple etc) to function, if condition inside function is true for elements in list, function will return new list contianing elements.
 ```py
 filter(function, iterable)
@@ -18,7 +18,7 @@ Iterable: elements passed to function
 Return value: Iterable list which satifies the condition
 ```
 <a name=vowel></a>
-### 1.1 Return iterable from filter function containing vowels only.
+#### 1.1 Return iterable from filter function containing vowels only.
 ```py
 def fun(var):
   l = ['a', 'e', 'i', 'o', 'u']
@@ -64,7 +64,7 @@ print(list(res))          //(2,4,6,8)
   reduce(function, sequence`[, initial]`)
 ```
 <a name=reduceex></a>
-### 3.1 Example: Function reduce() to add all values
+#### 3.1 Example: Function reduce() to add all values
 ```py
 from functools import reduce
 
