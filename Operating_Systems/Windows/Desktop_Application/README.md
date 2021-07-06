@@ -1,6 +1,7 @@
 - [1. Install & Get Started](#get)
 - [2. Create and show blank Window](#create)
 - [3. Painting the Window](#paint)
+- [4. Closing the Window](#close)
 
 <a name=get></a>
 ## 1. Install & Get Started.
@@ -20,7 +21,8 @@
   - _4._ After successful window creation, program enters while() loop and remains in while() until user closes/exits the application.
     - _4a._ Main program communicates with Application windows using [WindowProc()](/Operating_Systems/Windows/API_Structures) method by passing series of messages.
     - _4b._ `DispatchMessage()` causes Windows to invoke the WindowProc function, once for each message.
-  - _5._ See below
+  - _5._ See Section "Paiting the Window"
+  - _6._ See Section "Closing the Window"
 ```cpp
 #ifndef UNICODE
 #define UNICODE
@@ -85,7 +87,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdShow
     while (GetMessage(&msg, NULL, 0, 0))                                        //4
     {
         TranslateMessage(&msg);
-        DispatchMessage(&msg);
+        DispatchMessage(&msg);                                                  //6a
     }
 
     return 0;
@@ -101,3 +103,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdShow
   - _5a._ Fill the [structure PAINTSTRUCT](/Operating_Systems/Windows/API_Structures).
   - _5b._ Update region with a single color, using the system-defined window background color (COLOR_WINDOW). actual color indicated by COLOR_WINDOW depends on the user's current color scheme.
   - _5c._ After paiting is done, EndPaint function is called which clears the update region & also signals to Windows that the window has completed painting itself.
+
+<a name=close></a>
+## 4. Closing the Window
+- _6a._ User can close an application window by clicking the Close button or keyboard shortcut. Window will receive a WM_CLOSE message. DestroyWindow function does it
