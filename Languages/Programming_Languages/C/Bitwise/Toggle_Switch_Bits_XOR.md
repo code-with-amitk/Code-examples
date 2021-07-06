@@ -1,4 +1,9 @@
-## 1. Reverse/Toggle all bits
+- [1. Toggle All Bits](#all)
+- [2. Toggle nth Bit](#nth)
+- [3. Toggle nth to mth Bit(Both inclusive)](#ntom)
+
+<a name=all></a>
+### 1. Reverse/Toggle all bits
 - [PrintBinary()](/Languages/Programming_Languages/C/Bitwise/Print_Binary_Representation.md)
 ```c
 void ToggleReverseAll(int a){
@@ -7,7 +12,8 @@ void ToggleReverseAll(int a){
 }
 ```
 
-## 2. Toggle nth bit
+<a name=nth></a>
+### 2. Toggle nth bit
 > Input a = 1 = 1000000000000000000000000000000, n=3
 - **Logic**
   - *1.* Create a number `b` by shifting 1 to nth place.
@@ -30,7 +36,8 @@ void Toggle_nth_Bit(int a, int n){
 }
 ```
 
-## 3. Toggle nth to mth bit(Both inclusive)
+<a name=ntom></a>
+### 3. Toggle nth to mth bit(Both inclusive)
 - **Logic**
   - Let's suppose input number=4 and we need to toggle 2nd to 5th bit(both inclusive)
 ```c
