@@ -2,6 +2,7 @@
   - [1.1 Extract mth to nth bits of number](#exmton)
   - [1.1 Extract last 4 bits](#last4)
 - [2. Turn on mth to nth bit of a number](#turnon)
+- [3. Toggle 1 or more bits](Toggle_Switch_Bits_XOR.md)
 
 <a name=extract></a>
 ## 1.1 Extract Bits
