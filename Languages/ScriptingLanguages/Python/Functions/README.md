@@ -2,6 +2,7 @@
   - [1.1 Function used as Object](#obj)
   - [1.2 Function passed as arguments to other function](#arg)
   - [1.3 Functions as Mutable Objects](#mut)
+  - [1.4 Variable no of Arguments](#var)
 - [2. Types of Functions](#types)
   - [2.1 Inner, function inside function](#func)
 - [3. Function Arguments](#funarg)
@@ -19,6 +20,11 @@
   - [5.1 split() & rsplit()](#split_r)
     - [5.1.1 split() example](#split)
     - [5.1.2 rsplit() example](#rsplit)
+  - [5.2 string.strip(`[char]`)](#strip)
+  - [5.3 type()](#type)
+  - [5.4 format()](#format)
+  - [5.5 range()](#range)
+  - [5.6 input(str)](#input)
 
 <a name=fun></a>
 ## 1. Functions
@@ -50,6 +56,17 @@ def fun2(a, L=[]):
 print(fun2(1))     #[1]
 print(fun2(2))     #[1,2]
 print(fun2(3))     #[1,2,3]
+```
+<a name=var></a>
+### 1.4 Variable no of arguments
+```py
+def fun(*arg):
+    for var in arg:
+        print(var)
+        return
+fun ( 10, 20, 30 )
+fun ( 1, 2 )
+fun ( 'te', 90 )
 ```
 
 <a name=types></a>
@@ -225,4 +242,51 @@ print(li)                    #['Amit', 'will', 'achieve']   //Same as 1
 
 l2 = word.rsplit(', ',1)      #['Amit, will', 'achieve']    //Different from 2
 print(l2)
+```
+<a name=strip></a>
+### 5.2 string.strip(`[char]`)
+- Removes characters from both left and right based on the argument (a string specifying the set of characters to be removed)
+```py
+def test(gpLink):
+    ret = []
+    if gpLink.strip() == "":
+        print("gpLink is empty")
+        return 4;
+    return;
+print("value=",test(" "))        #gpLink is empty=4
+```
+<a name=type></a>
+### 5.3 type()
+- returns type of Object being passed  
+```py
+print(type(3))                                #<class 'int'>
+print(type(['foo', 'bar', 'baz']))       #<class 'list'>
+#print(type(1, 2, 3))                #<class 'tuple'>
+class X:
+    pass
+print(type(X))
+```  
+<a name=format></a>
+### 5.4 format()
+- Helps in positional and value formatting of string. string.format()
+```python
+print ('The {} who says {}'.format('person','Hello')) #The person who says Hello.
+print ('The {0} who says {1}'.format('person', 'Hello'))   #The person who says Hello
+print ('The {1} who says {0}.'.format("person",'Hello')) #The Hello who says Person
+```
+<a name=range></a>
+### 5.5 range()
+- produces continuous sequence
+```python
+print(list(range(5,8)))         #5,6,7
+print(list(range(5,10,2)))      #5,7,9      #3rd argument tells interval of sequence
+```
+<a name=input></a>
+### 5.6 input(str)
+- The input() function allows user input until new line is pressed.
+- *raw_input()* This was older function replaced by input()
+- **Returns** string
+```
+r = float(input('Enter radius'))
+print('Area=' + 3.14*r**2)                                     //** is Exponetial. ie x^y
 ```
