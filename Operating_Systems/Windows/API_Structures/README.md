@@ -1,6 +1,7 @@
 - [1. Structures](#st)
   - [WNDCLASS](#WNDCLASS)
   - [WNDCLASSEX](#WNDCLASSEX)
+  - [PAINTSTRUCT](#PAINTSTRUCT)
 - [2. API](#api)
   - [2.1 wWinMain](#wWinMain)
   - [2.2 WinMain](#WinMain)
@@ -9,6 +10,7 @@
   - [2.5 ShowWindow](#ShowWindow)
   - [2.6 UpdateWindow](#UpdateWindow)
   - [2.7 WindowProc](#WindowProc)
+  - [2.8 BeginPaint()(#beginp)
 
 <a name=st></a>
 ## 1. Structures
@@ -48,7 +50,19 @@ typedef struct tagWNDCLASSEXW {
   HICON     hIconSm;                //A handle to a small icon that is associated with the window class.
 } WNDCLASSEXW, *PWNDCLASSEXW, *NPWNDCLASSEXW, *LPWNDCLASSEXW;
 ```
-
+<a name=PAINTSTRUCT></a>
+### PAINTSTRUCT
+- Contains information to paint the client area of a window.
+```c
+typedef struct tagPAINTSTRUCT {
+  HDC  hdc;
+  BOOL fErase;
+  RECT rcPaint;   //A RECT structure. upper left and lower right corners of the rectangle in which the painting is requested, 
+  BOOL fRestore;
+  BOOL fIncUpdate;
+  BYTE rgbReserved[32];
+} PAINTSTRUCT, *PPAINTSTRUCT, *NPPAINTSTRUCT, *LPPAINTSTRUCT;
+```
 <a name=api></a>
 ## 2. APIs
 
@@ -131,5 +145,15 @@ LRESULT CALLBACK WindowProc(
   UINT uMsg,                //This is the message code; for example, the WM_SIZE message indicates the window was resized.
   WPARAM wParam,            //wParam,lParam contains additional data that pertains to the message. 
   LPARAM lParam
+);
+```
+
+<a name=beginp></a>
+### 2.8 BeginPaint
+- It prepares the specified window for painting and fills a PAINTSTRUCT structure with information about the painting.
+```c
+HDC BeginPaint(
+  HWND          hWnd,           //Handle to the window to be repainted.
+  LPPAINTSTRUCT lpPaint         //Pointer to the PAINTSTRUCT structure that will receive painting information
 );
 ```
