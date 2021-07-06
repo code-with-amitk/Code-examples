@@ -5,6 +5,8 @@
   - [4.1 Fibonacci Series](#fibonacci)
     - [4.1.1 Recursion](#recur)
     - [4.1.2 Dynamic Programming](#dp)
+      - [4.1.2.1 C++](#cpp)
+      - [4.1.2.2 Rust](#rust)
     - [4.1.3 Directly finding nth fibonacci series number](direct)
 
 
@@ -67,7 +69,8 @@ int main() {
 ```
 <a name="dp"></a>
 #### 4.1.2 Dynamic Programming
-- **C++**
+<a name="cpp"></a>
+##### 4.1.2.1
 ```c
 int a[n+1];
 class Solution {
@@ -91,6 +94,36 @@ public:
         return f(n, dp);    
     }
 };
+```
+<a name="rust"></a>
+##### 4.1.2.2
+```rust
+impl Solution {
+    pub fn fib(n: i32) -> i32 {
+        if n == 0 {
+            return 0;
+        }
+        if n == 1 || n == 2 {
+            return 1;
+        }
+
+        let k:usize = n as usize;
+        let mut dp = vec![-1; k+1];
+        dp[0 as usize] = 0; dp[1 as usize] = 1;
+        dp[2 as usize] = 1;   
+
+        pub fn fun(k: usize, dp:&mut Vec<i32>) -> i32{
+            if dp[k] != -1 {
+                return dp[k];
+            }
+
+            dp[k] = fun(k-1,dp) + fun(k-2,dp);
+            dp[k]
+        }
+
+        fun(k, &mut dp)        
+    }
+}
 ```
 <a name=direct></a>
 #### 4.1.3 Directly finding nth fibonacci series number
