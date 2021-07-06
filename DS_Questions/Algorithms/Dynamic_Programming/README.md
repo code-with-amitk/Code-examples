@@ -1,25 +1,29 @@
-## Dynamic Programming / Tabular Method  <== VERY EASY
+- [1. What and How DP Works](#when)
+- [2. Identify whether this problem is DP?](#identify)
+- [3. Methods in DP?](#methods)
+- [4. Examples](#examples)
+  - [4.1 Fibonacci Series](#fibonacci)
+    - [4.1.1 Recursion](#recur)
+    - [4.1.2 Dynamic Programming](#dp)
+    - [4.1.3 Directly finding nth fibonacci series number](direct)
 
-- [What and How DP Works](#when)
-- [Identify whether this problem is DP?](#identify)
-- [Methods in DP?](#methods)
-- [Examples](#examples)
-  - [Fibonacci Series](#fibonacci)
+
 
 <a name="when"></a>
-## When to apply
-- In recursive algorithm, when subproblems is calculated again & again we cache those for future recursive calls. Eg: Fibonacci series
-- You have to study recursive algorithm and cache prev results into array or hash.
-- Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
+## 1. Dynamic Programming / Tabular Method  <== VERY EASY
+- **When to apply**
+  - In recursive algorithm, when subproblems is calculated again & again we cache those for future recursive calls. Eg: Fibonacci series
+  - You have to study recursive algorithm and cache prev results into array or hash.
+  - Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
 
 <a name="identify"></a>
-## Identify whether this problem is DP?
- - **1. Overlapping Subproblems**
+## 2. Identify whether this problem is DP?
+- **A. Overlapping Subproblems**
   - When recursive algorithm for the problem solves the same subproblems over and over again, we say that the optimization problem has overlapping subproblems.
-- **2. Optimal Substructure**
+- **B. Optimal Substructure**
 
 <a name="methods"></a>
-## Methods in DP
+## 3. Methods in DP
 - __1. Bottom up / Tabulation:__ Steps
   - Think how to solve the problem for a simple case(eg: list with 1 element). 
   - Think how to solve the problem for 2 elements, then for 4 elements, and so on
@@ -28,9 +32,12 @@
 - __2. Top Down / Memoization:__
   - Think how we can divide the problem for case N into subproblems. 
 
+<a name="examples"></a>
+## 4. Examples
 <a name="fibonacci"></a>
-## Fibonacci Series //Just write recursion stack on copy
-- **Recursion**
+### 4.1 Fibonacci Series //Just write recursion stack on copy
+<a name="recur"></a>
+#### 4.1.1 Recursion
 ```c
 1 2 3 5 8 13 21 34
 0 1 2 3 4 5  6  7
@@ -58,16 +65,33 @@ int main() {
  f1           f0
   ret 1        ret 0
 ```
-- **DP**
+<a name="dp"></a>
+#### 4.1.2 Dynamic Programming
+- **C++**
 ```c
 int a[n+1];
-a[0]=0,a[1]=1,a[2]=2;
-int f(int n)
-  if (a[n] != -1)
-    return a[n];
-  a[n] = f(n-1) + f(n-2);
-  return a[n];
-}  
+class Solution {
+public:
+    int f(int n, vector<int>& dp) {
+        if (dp[n] != -1)
+            return dp[n];
+        dp[n] = f(n-1, dp) + f(n-2, dp);
+        return dp[n];        
+    }
+    
+    int fib(int n) {
+        if (n==0)
+            return 0;
+        if (n==1 || n==2)
+            return 1;
+        
+        vector<int> dp(n+1, -1);
+        dp[0] = 0, dp[1] = dp[2] = 1;
+        
+        return f(n, dp);    
+    }
+};
 ```
-- **Directly finding nth fibonacci series number**
+<a name=direct></a>
+#### 4.1.3 Directly finding nth fibonacci series number
 <img src=nth-fibonacci.JPG width=400/>
