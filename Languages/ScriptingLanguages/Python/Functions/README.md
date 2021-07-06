@@ -10,7 +10,9 @@
   - [3.2 kwarg, keyword Arguments](#kwarg)
   - [3.3 Special Parameters](#special)
 - [4. Built in methods](Builtin_Methods)
+  - Dunder/Magic, `__ITER__()`, `__CONTAINS__`, `__REPR__()`, `__STR__()`, `__doc__`
 - [5. Mostly used Functions](Mostly_Used_Functions)
+  - split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)
 
 <a name=fun></a>
 ## 1. Functions
