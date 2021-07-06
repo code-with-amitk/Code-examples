@@ -4,6 +4,7 @@
   - [2.1 Ex:Double values in list using map()](#mapex)
 - [3. reduce()](#reduce)
   - [3.1 Ex:Function reduce() to add all values](#reduceex)
+- [4. filter() vs map() vs reduce()](#comp)
 
 <a name=filter></a>
 ## 1. filter()
@@ -75,7 +76,8 @@ list = [2, 4, 7, 3]
 print(reduce(add, list))                #16
 ```
 
-## Comparison
+<a name=comp></a>
+## 4. Comparison
 
 ||filter()|map()|reduce()|
 |---|---|---|---|
