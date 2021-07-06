@@ -94,16 +94,13 @@ fn main() {
 ## 3. for
 ```rust
 fn main() {
-  let a = [1, 2, 3, 4, 5];
+  let a = [1, 2];
   for b in a.iter() {
     println!("val: {}", b);
   }
 }
 val: 1
 val: 2
-val: 3
-val: 4
-val: 5
 ```
 - **Reversing the range**
 ```rust
