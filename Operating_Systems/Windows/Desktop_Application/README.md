@@ -1,5 +1,6 @@
 - [1. Install & Get Started](#get)
 - [2. Create and show blank Window](#create)
+- [3. Painting the Window](#paint)
 
 <a name=get></a>
 ## 1. Install & Get Started.
@@ -19,6 +20,7 @@
   - _4._ After successful window creation, program enters while() loop and remains in while() until user closes/exits the application.
     - _4a._ Main program communicates with Application windows using [WindowProc()](/Operating_Systems/Windows/API_Structures) method by passing series of messages.
     - _4b._ `DispatchMessage()` causes Windows to invoke the WindowProc function, once for each message.
+  - _5._ See below
 ```cpp
 #ifndef UNICODE
 #define UNICODE
@@ -37,15 +39,13 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hwnd, &ps);
-
             // All painting occurs here, between BeginPaint and EndPaint.
-            FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
-            EndPaint(hwnd, &ps);
+            HDC hdc = BeginPaint(hwnd, &ps);                                    //5a
+            FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));             //5b
+            EndPaint(hwnd, &ps);                                               //5c
         }
         return 0;
     }
-
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
@@ -91,3 +91,13 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdShow
     return 0;
 }
 ```
+
+<a name=paint></a>
+## 3. Painting the Window
+- We have created a window, Now we want to show something inside it. In Windows terminology, this is called painting the window.
+- Sometime you paint yourself, othertimes OS asks to paint by sending WM_PAINT message. The portion of the window that must be painted is called the update region.
+- The first time a window is shown, the entire client area of the window must be painted. Hence we will always receive at least one WM_PAINT message when we show window.
+- **Understading Concepts:** See WindowProc() function above
+  - _5a._ Fill the [structure PAINTSTRUCT](/Operating_Systems/Windows/API_Structures).
+  - _5b._ Update region with a single color, using the system-defined window background color (COLOR_WINDOW). actual color indicated by COLOR_WINDOW depends on the user's current color scheme.
+  - _5c._ After paiting is done, EndPaint function is called which clears the update region & also signals to Windows that the window has completed painting itself.
