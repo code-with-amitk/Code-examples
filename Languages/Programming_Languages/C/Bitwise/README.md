@@ -3,8 +3,7 @@
   - [1.1 Extract last 4 bits](#last4)
 - [2. Turn on Bits](#turnon)
 - [3. Toggle bits](Toggle_Switch_Bits_XOR.md)
-- [4. Count On Bits](#count)
-  - [4.1 Iterative Approach](#iterative)
+- [4. Count On Bits](Count_on_Bits)
 
 
 <a name=extract></a>
@@ -93,19 +92,3 @@ int main() {
 }
 ```
 
-<a name=count></a>
-## 4. Count On Bits
-<a name=iterative></a>
-### 4.1 Iterative Approach
-```c
-    int CountOnes(int a){
-        int i = 1, k = 1;
-        int ones = 0;
-        while (k++ != sizeof(int)*8) {
-            if (a & i)
-                ones++;
-            i = i<<1;
-        }
-        return ones;
-    }
-```
