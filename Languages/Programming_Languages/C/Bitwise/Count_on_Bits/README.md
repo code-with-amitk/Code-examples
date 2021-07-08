@@ -1,7 +1,10 @@
 - [1. Count ON Bits](#count)
   - [1.1 Check every bit using left shift One. 32 Iterations](#check)
-    - [1.1.1 C++](#cpp)
-    - [1.1.2 Rust](#rust)
+    - [1.1.1 Logic](#logic1)
+    - [1.1.2 Complexity](#comp)
+    - [1.1.3 Code](#code1)
+      - [1.1.3.1 C++](#cpp)
+      - [1.1.3.2 Rust](#rust)
   - [1.2 Bit Manipulation Trick](#trick)
     - [1.2.1 Logic](#logic)
     - [1.2.2 Complexity](#bcomp)
@@ -17,13 +20,18 @@
 
 <a name=check></a>
 ### 1.1 Check every bit using left shift 1
+<a name=logic1></a>
+### 1.1.1 Logic
 - Check each of the 32 bits of the number. If the bit is 1, we add one to the number of 1-bits.
 - All times 32 iterations.
-- **Complexity**
+<a name=comp></a>
+### 1.1.2 Complexity
   - **Time:** O(1)
   - **Space:** O(1)
+<a name=code1></a>
+### 1.1.3 Code
 <a name=cpp></a>
-#### 1.1.1 C++
+#### 1.1.3.1 C++
 ```c
     int CountOnes(uint32_t a){
         uint32_t i = 1, k = 1;
@@ -37,7 +45,7 @@
     }
 ```
 <a name=rust></a>
-#### 1.1.2 Rust
+#### 1.1.3.2 Rust
 ```rs
 use std::mem;
 impl Solution {
@@ -117,7 +125,7 @@ public:
 };
 ```
 <a name=brust></a>
-#### 1.2.3.2 Rus
+#### 1.2.3.2 Rust
 ```rs
 impl Solution {
     pub fn hammingWeight (n: u32) -> i32 {
