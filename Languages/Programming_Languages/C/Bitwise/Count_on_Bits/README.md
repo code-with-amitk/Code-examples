@@ -13,7 +13,6 @@
       - [1.2.3.2 Rust](#brust)
 
 
-
 <a name=count></a>
 ## 1. Count ON Bits
 - Number of On bits in number is also called its Hamming Weight.
