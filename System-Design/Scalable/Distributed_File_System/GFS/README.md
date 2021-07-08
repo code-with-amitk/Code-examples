@@ -1,4 +1,4 @@
-# GFS / Google File System
+# [GFS / Google File System](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/035fc972c796d33122033a0614bc94cff1527999.pdf)
 
 - [1. Requirements](#Requirements)
   - [1.1 Functional](#Functional)
@@ -224,6 +224,18 @@ to be cached.
 <a name=boe></a>
 ## 6. BOE
 - Considering test env as:
-  - 1 master, 2 master replicas, 16 chunkservers, 16 clients.
-  - Memory for every machine: RAM=2GB, Harddisk=80GBx2
-  - 
+  - 1 master, 2 master replicas, 16 chunkservers, 16 clients. Memory for every machine: RAM=2GB, Harddisk=80GBx2
+  - All machines are connected to each other using switch.
+```console
+                |----------------1 Gbps cable------------------------|
+            switch-1(100 Mbps)                                  switch-2(100Mbps)
+               |                                                    |
+  |------|--------------|--------|                    |--------|-----------|--------|
+master  replica-1 replica-2 16-chunkservers       client1   client2   client3   client4
+```
+<a name=boereads></a>
+### 6.1 Reads
+- Max reads limits on provided 1Gbps line and 100Mbps switch
+  - 1 Gbps Line. 10<sup>9</sup> / 16 = 62.5 Mbps
+  - 100 Mbps switch. 100<sup>6</sup> / 16 = 6.25 Mbps
+- From 16 readers, 1 reader's Read limit = 6Mbps. This will drop further when readers increases.
