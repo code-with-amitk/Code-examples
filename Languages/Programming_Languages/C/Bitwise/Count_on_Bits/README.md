@@ -11,8 +11,8 @@
 <a name=cpp></a>
 #### 1.1.1 C++
 ```c
-    int CountOnes(int a){
-        int i = 1, k = 1;
+    int CountOnes(uint32_t a){
+        uint32_t i = 1, k = 1;
         int ones = 0;
         while (k++ != sizeof(int)*8) {
             if (a & i)
