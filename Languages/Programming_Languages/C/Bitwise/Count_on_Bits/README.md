@@ -99,7 +99,7 @@ B.
 C. 
 ones=1
 ```
-<img src=counting_on_bits.png width=500/>
+<img src=counting_on_bits.png width=300/>
 
 <a name=bcomp></a>
 ### 1.2.2 Complexity
