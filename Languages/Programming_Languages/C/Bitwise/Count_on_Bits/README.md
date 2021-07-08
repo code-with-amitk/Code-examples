@@ -4,9 +4,10 @@
     - [1.1.2 Rust](#rust)
   - [1.2 Bit Manipulation Trick](#trick)
     - [1.2.1 Logic](#logic)
-    - [1.2.2 Code](#bcode)
-      - [1.2.2.1 C++](#bcpp)
-      - [1.2.2.2 Rust](#brust)
+    - [1.2.2 Complexity](#bcomp)
+    - [1.2.3 Code](#bcode)
+      - [1.2.3.1 C++](#bcpp)
+      - [1.2.3.2 Rust](#brust)
 
 
 
@@ -93,10 +94,15 @@ ones=1
 ```
 <img src=counting_on_bits.png width=500/>
 
+<a name=bcomp></a>
+### 1.2.2 Complexity
+- **Time** Depends on the number of 1-bits in number. In the worst case, all bits in n are 1-bits. In case of a 32-bit integer, the run time is O(1).
+- **Space** O(1), since no additional space is allocated
+
 <a name=bcode></a>
-### 1.2.2 Code
+### 1.2.3 Code
 <a name=bcpp></a>
-#### 1.2.2.1 C++
+#### 1.2.3.1 C++
 ```c
 class Solution {
 public:
@@ -111,7 +117,7 @@ public:
 };
 ```
 <a name=brust></a>
-#### 1.2.2.2 Rus
+#### 1.2.3.2 Rus
 ```rs
 impl Solution {
     pub fn hammingWeight (n: u32) -> i32 {
