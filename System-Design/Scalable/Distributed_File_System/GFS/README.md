@@ -16,6 +16,9 @@
 - [4. Fault Tolerance](#tolerance)
 - [5. Data Integrity](#di)
 - [6. BOE](#boe)
+  - [6.1 Reads](#boereads)
+
+
 
 <a name="Requirements"></a>
 # 1. Requirements
@@ -235,7 +238,8 @@ master  replica-1 replica-2 16-chunkservers       client1   client2   client3   
 ```
 <a name=boereads></a>
 ### 6.1 Reads
-- Max reads limits on provided 1Gbps line and 100Mbps switch
+- Max reads limits on provided [1Gbps ethernet cable](/Networking/OSI-Layers/Layer-1/Media_Types) and 100Mbps switch
   - 1 Gbps Line. 10<sup>9</sup> / 16 = 62.5 Mbps
   - 100 Mbps switch. 100<sup>6</sup> / 16 = 6.25 Mbps
 - From 16 readers, 1 reader's Read limit = 6Mbps. This will drop further when readers increases.
+- Limit can be increased by using [CAT7 ethernet cable](/Networking/OSI-Layers/Layer-1/Media_Types).
