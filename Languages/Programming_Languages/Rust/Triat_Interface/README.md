@@ -8,6 +8,9 @@
       - [4.1.1 Using +](#usingplus)
       - [4.1.2 Using where clause](#usingplus)
 - [5. Returning Triats from Function](#ret)
+  - [5.1 Function returning trait](#ret-t)
+  - [5.2 Function cannot implement 2 traits internally](#invalid-t)
+
 
 
 <a name=what></a>
@@ -129,14 +132,33 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 
 <a name=ret></a>
 ## 5. Returning Triats from Function
+<a name=ret-t></a>
+### 5.1 Function returning trait
 - Function which returns (impl Trait) returns any of type that implements the trait.
-- In below example it returns Type "Employee" but calling function does not know that.
 ```rust
+//This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
                 //impl Trait
-pub fn fun ( ) -> impl CompanyDB {      //This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
+pub fn fun ( ) -> impl CompanyDB {      
   Employee {                            //Created "Employee struct" Type object.
     name:String::from("Amit"),
     emp_id:34,  
   };
+}
+```
+<a name=invalid-t></a>
+### 5.2 Function cannot implement 2 traits internally
+- Returning either or trait(ie Employee or contractor) is not supported by complier.
+```rust
+pub fn fun (test:bool) -> impl CompanyDB {      
+  if test {
+    Employee {
+      name:String::from("Amit"),
+      emp_id:34,  
+    }
+  } else {
+    Contractor {
+      name:String::from("Rishu"),
+    }
+  }
 }
 ```
