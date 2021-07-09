@@ -101,7 +101,7 @@ fn fun2(a_string: String) -> String {
 ```
 
 <a name=bow></a>
-## [3. Data Types](References_and_Borrowing)
+## [3. Reference = Borrowing](References_and_Borrowing)
   - Associated Functions
   - Dangling Reference
   - Mutable Reference
