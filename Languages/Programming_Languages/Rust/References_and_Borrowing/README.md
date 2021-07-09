@@ -4,6 +4,7 @@
   - [3.1 Mutable & immutable References in same scope not allowed](#MutImmutable)
   - [3.2 Two Mutable references are not allowed in same scope](#MutMut)
   - [3.3 Mutable References are allowed in seperate scope](#MutSep)
+- [4. Borrow Checker](#bc)
 
 
 <a name="bow"></a> 
@@ -111,4 +112,47 @@ fn main() {
     let r1 = &mut s;
   } // r1 goes out of scope here, so we can make a new reference with no problems.
   let r2 = &mut s;
+```
+
+<a name=bc></a>
+## 4. Borrow Checker
+- Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.
+- _Lifetimes_
+  - a is main()'s block
+  - b is Block-1
+```rs
+fn main() {
+  let a = 10;
+  {                   //Block-1
+    let mut b = &a;
+  }
+  println!("{}",b);   //Compile Error, Borrow=Reference of variable goes out of scope and used.
+}
+```
+<a name=genericlt></a>
+### 4.1 Generic Lifetimes
+- **Example**: longest() takes Reference which is [String Slice](/Languages/Programming_Languages/Rust/Collections/String).
+  - This function throws Compliation Error. Why?
+    - Its not certain Return value (&str) is reference of x or reference of y.
+```rs
+fn longest(x: &str, y: &str) -> &str {                                         //2. Taking reference of string slice
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+fn main() {
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+    println!("The longest string {}", longest(string1.as_str(), string2));       //1. Passing string slice
+}
+$ cargo run                 //Compilation error
+   Compiling 
+error[E0106]: missing lifetime specifier
+ --> src/test.rs:9:33
+  |
+9 | fn longest(x: &str, y: &str) -> &str {
+  |               ----     ----     ^ expected named lifetime parameterr
+
 ```
