@@ -11,6 +11,7 @@
     - [1.2.3 Code](#bcode)
       - [1.2.3.1 C++](#bcpp)
       - [1.2.3.2 Rust](#brust)
+  - [1.3 `__builtin_popcount()`](#popcount)
 ## [Self Youtube Video](https://www.youtube.com/watch?v=qB-7AH1pRO4)
 
 
@@ -137,5 +138,19 @@ impl Solution {
         }
         ones
     }
+}
+```
+
+## 1.3 `__builtin_popcount()`
+### 1.3.1 C++
+- This function uses CPU specific instructions, which will always be orders of magnitude faster than any algorithm you manage to come up with.
+```cpp
+#include <stdio.h>
+int main()
+{
+    int n = 5;
+      
+    printf("Count of 1s in binary of %d is %d ",
+           n, __builtin_popcount(n));
 }
 ```
