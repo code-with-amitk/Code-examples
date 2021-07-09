@@ -11,6 +11,7 @@
     - [1.2.3 Code](#bcode)
       - [1.2.3.1 C++](#bcpp)
       - [1.2.3.2 Rust](#brust)
+- **[Self Youtube Video](https://www.youtube.com/watch?v=qB-7AH1pRO4)**
 
 
 <a name=count></a>
