@@ -5,6 +5,9 @@
   - [3.2 Two Mutable references are not allowed in same scope](#MutMut)
   - [3.3 Mutable References are allowed in seperate scope](#MutSep)
 - [4. Borrow Checker](#bc)
+  - [4.1 Generic / Named Lifetimes](#genericlt)
+    - [4.1.1 Function will return smaller of both lifetimes](#smaller)
+
 
 
 <a name="bow"></a> 
@@ -131,15 +134,13 @@ fn main() {
 ```
 <a name=genericlt></a>
 ### 4.1 Generic / Named Lifetimes
-- **Example**: longest() takes Reference which is [String Slice](/Languages/Programming_Languages/Rust/Collections/String).
-Compliation Error. Why?
-  - Its not certain Return value (&str) is reference of x or reference of y.
+- **Compliation Error. Why?** rustc cannot ascertain Return value (&str) is reference of a or reference of b.
 ```rs
-fn largest(a:&str, b:&str) -> &str{
-    if a > b {
-        a
+fn largest(x:&str, y:&str) -> &str{
+    if x.len() > y.len() {
+        x
     } else {
-        b
+        y
     }
 }
 fn main() {
@@ -153,3 +154,46 @@ error[E0106]: missing lifetime specifier
 9 | fn largest(x: &str, y: &str) -> &str {
   |               ----     ----     ^ expected named lifetime parameterr
 ```
+- **Solution: Generic lifetime parameter `'a`** 
+  - Prefix every parameter with `'a`. Apostrophe a (`'a`) denotes reference has generic lifetime. This is also called _Lifetime Annotation Syntax_.
+  - Lifetime of references still does not change. 
+  - Lifetime annotations only need to be declared in function parameters, it does not goes inside body of function.
+  - Examples
+```rs
+&i32        // a reference
+&'a i32     // a reference with an explicit lifetime
+&'a mut i32 // a mutable reference with an explicit lifetime
+```
+- Fixed code
+```rs
+fn largest<'a>(x:&'a str, y:&'a str) -> &'a str{           //Need to declare generic lifetime parameters inside <> before parameter list.
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+fn main() {
+    println!("{}", largest(&String::from("abcd"), &String::from("xyz")));
+}
+$ cargo run
+$ test.exe
+abcd
+```
+
+<a name=smaller></a>
+#### 4.1.1 Function will return smaller of both lifetimes
+```rs
+fn main() {                           //Block-1
+    let x = String::from("abcd");
+    let result;
+    {                                 //Block-2
+        let y = String::from("xyz");
+        result = largest(x, y);
+    }
+    println!("{}", result);           //Printing string which is out of scope
+}
+```
+Compliation Error Why?
+- largest() will return smaller lifetime from x and y. y has smaller lifetime(ie Block-2).
+- largest() will return y, which goes out of scope and we try printing string which is out of scope
