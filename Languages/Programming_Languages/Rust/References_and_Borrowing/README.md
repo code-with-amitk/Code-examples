@@ -130,29 +130,26 @@ fn main() {
 }
 ```
 <a name=genericlt></a>
-### 4.1 Generic Lifetimes
+### 4.1 Generic / Named Lifetimes
 - **Example**: longest() takes Reference which is [String Slice](/Languages/Programming_Languages/Rust/Collections/String).
-  - This function throws Compliation Error. Why?
-    - Its not certain Return value (&str) is reference of x or reference of y.
+Compliation Error. Why?
+  - Its not certain Return value (&str) is reference of x or reference of y.
 ```rs
-fn longest(x: &str, y: &str) -> &str {                                         //2. Taking reference of string slice
-    if x.len() > y.len() {
-        x
+fn largest(a:&str, b:&str) -> &str{
+    if a > b {
+        a
     } else {
-        y
+        b
     }
 }
 fn main() {
-    let string1 = String::from("abcd");
-    let string2 = "xyz";
-    println!("The longest string {}", longest(string1.as_str(), string2));       //1. Passing string slice
+    println!("{}", largest(String::from("abcd"), String::from("xyz")));
 }
 $ cargo run                 //Compilation error
    Compiling 
 error[E0106]: missing lifetime specifier
  --> src/test.rs:9:33
   |
-9 | fn longest(x: &str, y: &str) -> &str {
+9 | fn largest(x: &str, y: &str) -> &str {
   |               ----     ----     ^ expected named lifetime parameterr
-
 ```
