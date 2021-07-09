@@ -241,5 +241,9 @@ master  replica-1 replica-2 16-chunkservers       client1   client2   client3   
 - Max reads limits on provided [1Gbps ethernet cable](/Networking/OSI-Layers/Layer-1/Media_Types) and 100Mbps switch
   - 1 Gbps Line. 10<sup>9</sup> / 16 = 62.5 Mbps
   - 100 Mbps switch. 100<sup>6</sup> / 16 = 6.25 Mbps
-- From 16 readers, 1 reader's Read limit = 6Mbps. This will drop further when readers increases.
+- 1 reader's Read limit = 6.25Mbps(ie lower of above two). This will drop further when readers increases.
 - Limit can be increased by using [CAT7 ethernet cable](/Networking/OSI-Layers/Layer-1/Media_Types).
+<a name=appends></a>
+### 6.2 Appends
+- let us consider all clients tries to append to 1 file, for 1 writer = 6.25 Mbps.
+- Considering collisions on network, packet drops append/client reduces to 4.8Mbps.
