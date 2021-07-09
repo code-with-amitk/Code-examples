@@ -51,6 +51,7 @@
           | <------- RW ----------------->
           
 ```
+
 <img src=gfs_arhitecture.JPG width=500/>
 
 <a name="Chunks"></a>
