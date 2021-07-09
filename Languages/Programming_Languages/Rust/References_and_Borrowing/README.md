@@ -26,8 +26,7 @@ fn main() {
 ## 2. Dangling Reference
 - **Dangling pointer?** Pointer points to memory, memory is freed and pointer is used.
 - **Dangling reference?** Similar to Dangling pointer, when reference to a value is used, value is freed and reference is used after that.
-- **C++:**
-  - Problem: Since b is local variable and is freed as fun() goes out of scope.
+- **C++ Problem:** Since b is local variable and is freed as fun() goes out of scope.
 ```c++
 int& fun() {    //Function returning reference
   int b = 10;
