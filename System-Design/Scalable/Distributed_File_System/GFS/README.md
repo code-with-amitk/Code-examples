@@ -52,7 +52,7 @@
           
 ```
 
-<img src=gfs_arhitecture.JPG width=500/>
+<img src=gfs_architecture.JPG width=500/>
 
 <a name="Chunks"></a>
 ## 2.1 Chunks
