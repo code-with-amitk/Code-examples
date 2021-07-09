@@ -141,6 +141,7 @@ impl Solution {
 }
 ```
 
+<a name=popcount></a>
 ## 1.3 `__builtin_popcount()`
 ### 1.3.1 C++
 - This function uses CPU specific instructions, which will always be orders of magnitude faster than any algorithm you manage to come up with.
