@@ -2,6 +2,7 @@
 - [Types of Message Queue](#types)
 - [FIFO vs MQ](#comp)
 - [MQ Code](#code)
+- [Enterprise Class Message Queues = MOM(Kafka)](/System-Design/Concepts/MOM_ESB/)
 
 <a name=what></a>
 ## Message Queue
