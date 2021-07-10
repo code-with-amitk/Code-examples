@@ -1,14 +1,14 @@
-- [1. What is JSON Schema](#what)
-  - [1.1 Example of JSON Schema](#example)
-- [2. JSON Doc Validation Types](#val)
-  - [2.1 Syntactic Validation](#syntactic)
-  - [2.2 Semantic Validation](#semantic)
-- [3. Generating & Validating JSON Schema](#generate)
-- [4. JSON Schema Keywords](#keywords)
+- [What is JSON Schema](#what)
+  - [1. Example of JSON Schema](#example)
+- [JSON Doc Validation Types](#val)
+  - [1. Syntactic Validation](#syntactic)
+  - [2. Semantic Validation](#semantic)
+- [Generating & Validating JSON Schema](#generate)
+- [JSON Schema Keywords](#keywords)
 
 
 <a name=what></a>
-## 1. JSON Schema
+## JSON Schema
 - This tells about JSON document's content, structure, format. 
 - A JSON Schema validates a JSON document.
 - *Why JSON Schema for security*
@@ -16,7 +16,7 @@
   - _b._ Where producer and consumer are on far apart, it important to validate using schema else it will be wastage of time for consumer. 
 
 <a name=example></a>
-### 1.1 Example of JSON Schema
+### 1. Example of JSON Schema
 - *1.* Schema specifies that a document can have three fields (email, firstName, lastName) each one is a string.
 ```json
 $ cat basic-schema.json
@@ -45,10 +45,10 @@ $ cat document_complying_to_schema.json
 ```
 
 <a name=val></a>
-## 2. Validation Types
+## Validation Types
 
 <a name=syntactic></a>
-### 2.1 Syntactic Validation
+### 1. Syntactic Validation
 - When we validate a JSON document without Schema, we're validating only the syntax of the document. Eg: matching braces, double quotes for keys etc.
 - *Tools for doing so:* JSONLint, JSON parsers for each platform.
 ```json
@@ -65,11 +65,11 @@ cmd> jsonlint test.json
 ```
 
 <a name=semantic></a>
-### 2.2 Semantic Validation
+### 2. Semantic Validation
 - Validating the meaning of the data, not just the syntax. Eg: Validating format of a phone number, date/time, postal code, email address, or a credit card number etc.
 
 <a name=generate></a>
-## 3. Generating & Validating JSON Schema
+## Generating & Validating JSON Schema
 - _1._ Generate schema using JSONSchma.net. JSONSchema.net is a online tool to generate schema. We need to provide JSON Doc it generates schema for us.
 ```json
 ////Submit JSON doc in URL/////
@@ -135,7 +135,7 @@ cmd> jsonlint -V test.json test_schema.json
 ```
 
 <a name=keywords></a>
-## 4. JSON Schema Keywords
+## JSON Schema Keywords
 - **properties:** Specifies the fields for an object. It contains type information.
 - **$schema:** Tells JSON Schema (spec) version.
 ```json
