@@ -1,5 +1,5 @@
 - [What is Kafka](#what)
-- [Terms](#terms)
+- [Terms: Producer, Consumer, Topic, Broker, Offset](#terms)
 - [Kafka Application/Use Cases](#usecases)
   - [1. MOM](#mom)
   - [2. Analysis & Stream Processing](#analysis)
