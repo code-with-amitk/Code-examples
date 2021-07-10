@@ -1,4 +1,5 @@
 - [What is Kafka](#what)
+- [Terms](#terms)
 - [Kafka Application/Use Cases](#usecases)
   - [1. MOM](#mom)
   - [2. Analysis & Stream Processing](#analysis)
@@ -8,9 +9,16 @@
 ## Kafka
 - Kafka(written in Java) is open source project
 
+<a name=terms></a>
+## Terms
+- _Producer_ Publishes messages to a Topic.
+- _Consumer_ Registers/Subscribes to a Topic and reads messages as they become available.
+- _Topic_ A named channel/queue.
+- _Broker_ A Kafka server that manages one or more Topics.
+- _Offset_ A unique ID for a message within a Partition. This is how Kafka maintains the ordering and sequencing of messages.
+
 <a name=usecases></a>
 ## Kafka Application/Use Cases
-
 <a name=usecases></a>
 ### 1. Messaging
 Kafka can working as MOM
