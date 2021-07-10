@@ -29,7 +29,6 @@ Linked list
 - _c._ msgsnd(): Place data on message queue
 - _d._ msgrcv(): Retrieve message from queue
 - _e._ msgctl(): Destroy message queue
-
 - **Sender**
 ```c
 #include <stdio.h>
