@@ -2,6 +2,7 @@
 - [Why JSON](#why)
 - [Datatypes](#datatypes)
 - [JSON Schema](#schema)
+- [JSON Transform, Converting JSON to HTML,XML,JSON](#transform)
 - [RESTFul JSON Server](#restful)
 - [Building Web Application using Yeoman](#webapp)
 
@@ -60,6 +61,22 @@ Array.json {
 
 <a name=schema></a>
 ## [JSON Schema](JSON_Schema)
+
+<a name=transform></a>
+## JSON Transform, Converting JSON to HTML,XML,JSON
+- We have couple of 3rd party libraries for doing the conversion.
+**JSON to HTML Transform**
+  - [Mustache](http://mustache.github.io/)
+  - [Handlebars](https://handlebarsjs.com/): Extension of Mustache
+**JSON to JSON Transform**
+  - JSON Patch
+  - JSON-T
+  - [Mustache](http://mustache.github.io/)
+  - [Handlebars](https://handlebarsjs.com/): Extension of Mustache
+  - Jolt: Only for java env
+**JSON to XML Transform**
+  - Badgerfish
+  - Parker
 
 <a name=schema></a>
 ## RESTFul JSON Server
