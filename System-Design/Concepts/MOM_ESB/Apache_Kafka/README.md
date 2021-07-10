@@ -19,7 +19,7 @@
 
 <a name=usecases></a>
 ## Kafka Application/Use Cases
-<a name=usecases></a>
+<a name=mom></a>
 ### 1. Messaging
 Kafka can working as MOM
 
