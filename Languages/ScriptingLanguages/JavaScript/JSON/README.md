@@ -1,9 +1,9 @@
-- [1. What is JSON](#what)
-- [2. Why JSON](#why)
-- [3. Datatypes](#datatypes)
-- [4. JSON Schema](#schema)
-- [5. RESTFul JSON Server](#restful)
-- [6. Building Web Application using Yeoman](#webapp)
+- [What is JSON](#what)
+- [Why JSON](#why)
+- [Datatypes](#datatypes)
+- [JSON Schema](#schema)
+- [RESTFul JSON Server](#restful)
+- [Building Web Application using Yeoman](#webapp)
 
 <a name=what></a>
 ## JSON / JavaScript Object Notation
@@ -15,14 +15,14 @@
   - Removing comments simplified and enabled cross-platform JSON support.
 
 <a name=why></a>
-## 2. Why JSON
+## Why JSON
 - *1.* [RESTful Web Applications](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods/REST) can communicate using JSON.
 - *2.* The simplicity of JSON’s basic data structures
 - *3.* The increasing popularity of JavaScript
 - *4.* Thousands of RESTful APIs leverage JSON. Eg: LinkedIn, Twitter, Facebook, Salesforce, GitHub, DropBox, Tumblr, Amazon Web Services (AWS).
 
 <a name=datatypes></a>
-## 3. JSON datatypes
+## JSON datatypes
 ### Core Data Types
 - **1. Name (or Key)/value pair:** Consists of a key and a value.
   - Valid value types: Object, array, string, number, boolean, null
@@ -59,10 +59,10 @@ Array.json {
 ```
 
 <a name=schema></a>
-## [4. JSON Schema](JSON_Schema)
+## [JSON Schema](JSON_Schema)
 
 <a name=schema></a>
-## 5. RESTFul JSON Server
+## RESTFul JSON Server
 - [What is REST](/Networking/OSI-Layers/Layer5/WebServer_WebClient_WebService/WebClient_Connecting_WebServer). 
 - **Steps:**
   - _a. Install & Start JSON Server_
@@ -89,6 +89,6 @@ OR From Postman:
 ```
 
 <a name=webapp></a>
-## [6. Building Web Application using Yeoman](Web_Application)
+## [Building Web Application using Yeoman](Web_Application)
 
   
