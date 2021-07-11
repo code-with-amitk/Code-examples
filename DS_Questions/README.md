@@ -1,22 +1,41 @@
 - **:heart: I love problems. This is Awesome. :heart:**
+- [Big O Notation](#bigo)
+  - [1. Space Complexity](#space) 
+    - [1.1 O(1) is not Constant Space](#o1)
+    - [1.2 Recursion = O(2<sup>n</sup>)](#recurs)
+  - [2. Time Complexity](#time) 
+    - [2.1 What is Asymtotic Analysis](#asym) 
+    - [2.1 Recursion = O(2<sup>n</sup>)](#recurt)
+- [Speed up the program](#speed)
 
+<a name=bigo></a>
 ## Big O Notation, Complexity Calculations
-- **What**
-  - worst-case: maximum number of steps taken in any instance of size n
-  - best-case: minimum number of steps taken in any instance of size n.
-  - average-case: average number of steps over all instances of size n
-### Space
-- **O(1) is not Constant Space?** 
-  - Constant soace means amount of space that your algorithm uses is independent of the input parameters. Say you are given an array of size n. If the amount of space your algorithm uses increases/decreases with n, then it's not constant. If your algorithm always uses a fixed amount of space everytime independent of input size, then its constant space.
-- **Recursion?** When you use recursion, the stack also counted in space complexity.
-### Time
-- **ASYMPTOTIC ANALYSIS?** Used to simplify the analysis of Running-Time of algorithm.
-  - a. Drop lower level order terms+constant factors. 50nlogn => O(nlogn).
-  - b. O(nlogn) + O(n) => O(nlogn)
-- **Recursion: O(2<sup>n</sup>)** Recursion has space complexity of O(2<sup>n</sup>)
+- worst-case: maximum number of steps taken in any instance of size n
+- best-case: minimum number of steps taken in any instance of size n.
+- average-case: average number of steps over all instances of size n
+
+<a name=space></a>
+### 1. Space Complexity
+<a name=space></a>
+#### 1.1 O(1) is not Constant Space?
+ - Constant space means amount of space that your algorithm uses is independent of the input parameters. Say you are given an array of size n. If the amount of space your algorithm uses increases/decreases with n, then it's not constant. If your algorithm always uses a fixed amount of space everytime independent of input size, then its constant space.
+<a name=recurs></a>
+#### 1.2 Recursion = O(2<sup>n</sup>)
+- When you use recursion, the stack also counted in space complexity.
+
+<a name=time></a>
+### 2. Time Complexity
+<a name=time></a>
+#### 2.1 Asymtotic Analysis
+- Used to simplify the analysis of Running-Time of algorithm.
+  - _a._ Drop lower level order terms+constant factors. 50nlogn => O(nlogn).
+  - _b._ O(nlogn) + O(n) => O(nlogn)
+<a name=recurt></a>
+#### 2.2 Recursion: O(2<sup>n</sup>)
   - Given a string of length of length n (eg:ab), there are n+1 ways(a,b,ab) to split it into two parts. At each step, we have a choice: to split or not to split. In the worse case, when all choices are to be checked, that results in 2<sup>n</sup>.
 
-## SPEED UP PROGRAM
+<a name=speed></a>
+## Speed up the program
 - **Why** When some of test cases fail, this will lead to time improvements. Add before your class implementation
 - **How**
 	- **1.** Disable synchornization b/w C and C++ stream after each IO operation.
