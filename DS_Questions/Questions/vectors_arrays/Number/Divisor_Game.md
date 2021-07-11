@@ -44,23 +44,22 @@ Input n=4
 ```c++
 bool divisorGame(int no, bool A) {
 
-	  if (no == 1 or no == 3)         //if number=1 or 3 then player Bob wins
-		  return false;
+  if (no == 1 or no == 3)         //if number=1 or 3 then player Bob wins
+    return false;
 
-	  if (no == 2)                  //if number=2 Alice wins
-		  return true;
+  if (no == 2)                  //if number=2 Alice wins
+    return true;
 
-	  int ans = (A == 1) ? 0 : 1;          //If its Alice's Chance. Take ans=0
+  int ans = (A == 1) ? 0 : 1;          //If its Alice's Chance. Take ans=0
 
-	  for (int i = 1; i * i <= no; i++) {       //Traverse all divisors of number, which are less than no
+  for (int i = 1; i * i <= no; i++) {       //Traverse all divisors of number, which are less than no
 
-		  if (no % i == 0) {                       //if Current value of i is divisor of Number
-
-			  if (A)                                		//if it's Alice's turn, then we need at least one true
- 				  ans |= divisorGame(no - i, 0);          //Next turn of Bob
-			  else
-	 			  ans &= divisorGame(no - i, 1);     //if it's Bob's turn, we need at least one false
-		  }
+    if (no % i == 0) {                       //if Current value of i is divisor of Number
+      if (A)                                		//if it's Alice's turn, then we need at least one true
+        ans |= divisorGame(no - i, 0);          //Next turn of Bob
+      else
+	ans &= divisorGame(no - i, 1);     //if it's Bob's turn, we need at least one false
+    }
   }
   return false;
 }
@@ -68,10 +67,10 @@ bool divisorGame(int no, bool A) {
 int main() {
   int no = 4;
 
-	 if (divisorGame(N, 1) == true)
-		  cout << "Player A wins";
-	 else
-		  cout << "Player B wins";
+  if (divisorGame(N, 1) == true)
+    cout << "Player A wins";
+  else
+    cout << "Player B wins";
 
   return 0;
 }
