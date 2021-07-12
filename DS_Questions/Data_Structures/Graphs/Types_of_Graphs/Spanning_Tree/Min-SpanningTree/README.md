@@ -1,2 +1,0 @@
- ## Minimum Spanning Tree
-
