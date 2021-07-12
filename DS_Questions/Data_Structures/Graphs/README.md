@@ -87,16 +87,16 @@ Representation using AdjList: represented using array of vectors.      vector<in
 <a name=terms></a>
 ## Terms
 <a name=dia></a>
-### 1. Diameter/Eccentricity
+#### 1. Diameter/Eccentricity
 Greatest distance between any pair of vertices.
 <a name=edge></a>
-### 2. Edge/Arc/Line
+#### 2. Edge/Arc/Line
 Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
 <a name=radius></a>
-### 3. Radius 
+#### 3. Radius 
 Minimum eccentricity of any vertex.
 <a name=ts></a>
-### 4. Topological Sort / Topological Order
+#### 4. Topological Sort / Topological Order
   - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. TS is only possible for DAG. because DAGs don't have cycles and are directed.
   - in-degree: In directed graph number of incoming edges is called in-degree.
   - out-degree: number of outgoing edges.
@@ -107,10 +107,10 @@ Minimum eccentricity of any vertex.
         2 --> 3 --> 1
 ```        
 <a name=vertex></a>
-### 5. Vertex/Node
+#### 5. Vertex/Node
 Interconnected objects are called vertices.
 <a name=cc></a>
-### 6. Connected Components? 
+#### 6. Connected Components? 
 Here 3
 ```c
 1---2    4--5   6
