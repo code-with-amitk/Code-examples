@@ -4,6 +4,12 @@
   - [2. Adjacency List](#adjl)
   - [3. Edge List](#edgelist)
 - [Terms](#terms)
+  - [1. Diameter/Eccentricity](#dia)
+  - [2. Edge/Arc/Line](#edge)
+  - [3. Radius](#radius)
+  - [4. Topological Sort / Topological Order](#ts)
+  - [5. Vertex/Node](#vertex)
+  - [6. Connected Components](#cc)
 - [Types of Graphs](#types)
   - [1. Cyclic/Acyclic](cyclic)
     - [1.1 DAG/Directed Acyclic Graph](#dag)
@@ -80,10 +86,17 @@ Representation using AdjList: represented using array of vectors.      vector<in
 
 <a name=terms></a>
 ## Terms
-- **Diameter/Eccentricity:** Greatest distance between any pair of vertices.
-- **Edge/Arc/Line:** Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
-- **Radius:** Minimum eccentricity of any vertex.
-- **Topological Sort / Topological Order**
+<a name=dia></a>
+### 1. Diameter/Eccentricity
+Greatest distance between any pair of vertices.
+<a name=edge></a>
+### 2. Edge/Arc/Line
+Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
+<a name=radius></a>
+### 3. Radius 
+Minimum eccentricity of any vertex.
+<a name=ts></a>
+### 4. Topological Sort / Topological Order
   - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. TS is only possible for DAG. because DAGs don't have cycles and are directed.
   - in-degree: In directed graph number of incoming edges is called in-degree.
   - out-degree: number of outgoing edges.
@@ -93,8 +106,12 @@ Representation using AdjList: represented using array of vectors.      vector<in
         \/         \/
         2 --> 3 --> 1
 ```        
-- **Vertex/Node:** Interconnected objects are called vertices.
-- **Connected Components?** Here 3
+<a name=vertex></a>
+### 5. Vertex/Node
+Interconnected objects are called vertices.
+<a name=vcc></a>
+### 6. Connected Components? 
+Here 3
 ```c
 1---2    4--5   6
     |
@@ -215,11 +232,3 @@ minimum edges        next min edges       next min edges
  10|        |20
    3 --50-- 2
 ```
-
-- **[Terms?](Terms)** Directionality(Bidirectional,Unidirectional), Edge, Vertex, Topological Sorting: Kahn Algorithm
-
-- **[Questions](Questions)**
-  - Mother Vertex Kosaraju
-  - Graph Transpose
-  - Directed Graph
-  - **[Traversals](/DS_Questions/Algorithms/Traversals):** BFS, DFS, Shortest Path(Dijkstra, Floyd)
