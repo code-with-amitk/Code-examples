@@ -1,27 +1,27 @@
-- [1. What is Trait](#what)
-- [2. Function in trait](#fun)
-  - [2.1 Function declaration in Trait](#dec)
-  - [2.2 Function definition in Trait](#def)
-- [3. Passing Triat as argument to function](#arg)
-- [4. Trait Bound](#tb)
-  - [4.1 Multiple Trait Bounds //Friend Function](#multb)
-      - [4.1.1 Using +](#usingplus)
-      - [4.1.2 Using where clause](#usingplus)
-- [5. Returning Triats from Function](#ret)
-  - [5.1 Function returning trait](#ret-t)
-  - [5.2 Function cannot implement 2 traits internally](#invalid-t)
+- [What is Trait](#what)
+- [Function in trait](#fun)
+  - [1. Function declaration in Trait](#dec)
+  - [2. Function definition in Trait](#def)
+- [Passing Triat as argument to function](#arg)
+- [Trait Bound](#tb)
+  - [1. Multiple Trait Bounds //Friend Function](#multb)
+      - [1.1 Using +](#usingplus)
+      - [1.2 Using where clause](#usingplus)
+- [Returning Triats from Function](#ret)
+  - [1. Function returning trait](#ret-t)
+  - [2. Function cannot implement 2 traits internally](#invalid-t)
 
 
 
 <a name=what></a>
-## 1. Trait = virtual Function (Not pure virtual)
+## Trait = virtual Function (Not pure virtual)
 - Similar to interfaces in other languages, we can declare or define function in trait.
 - These functions can be implemented on type, ie overridden.
 
 <a name=fun></a>
-## 2. Functions in trait
+## Functions in trait
 <a name=dec></a>
-### 2.1 Function declaration in Trait
+### 1. Function declaration in Trait
 - 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type
 ```rust
 pub trait CompanyDB {                         //1. Declared a function inside trait
@@ -59,7 +59,7 @@ Added Amit 34
 ```
 
 <a name=def></a>
-### 2.2 Function definition in Trait / Default Implementation
+### 2. Function definition in Trait / Default Implementation
 - To use default implementation of trait just implement type as {}
 ```rust
 //Considering Above Example
@@ -85,7 +85,7 @@ Default Implementation
 ```
 
 <a name=arg></a>
-## 3. Passing Triat as argument to function
+## Passing Triat as argument to function
 - Above we have implemented a Trait(called CompanyDB), we can pass trait as parameter to function.
 ```rust
 pub fn test (param: &impl CompanyDB) {          //1. Function taking trait as parameter          //1.2.A
@@ -101,7 +101,7 @@ fn main() {
 }
 ```
 <a name=tb></a>
-## 4. Trait Bound
+## Trait Bound
 - Above function(1.2.A) can be written as below, also called Trait bound.
 ```rust
          //<T: Trait> (parameter: &T)
@@ -110,9 +110,9 @@ pub fn test<T: CompanyDB> (param: &T) {         //Trait Bound
 }
 ```
 <a name=multb></a>
-### 4.1 Multiple Trait Bounds 
+### 1. Multiple Trait Bounds 
 <a name=usingplus></a>
-#### 4.1.1 Using +   //Friend Function
+#### 1.1 Using +   //Friend Function
 - There can be a function which takes 2 or more traits(virtual function).
 ```rust
 pub fn test<T: Trait1 + Trait2> (param: &T) {
@@ -120,7 +120,7 @@ OR
 pub fn test (param: &(impl Trait1 + Trait2) {
 ```
 <a name=usingplus></a>
-#### 4.1.2 Using where clause   //Friend Function
+#### 1.2 Using where clause   //Friend Function
 ```rust
 pub fn test<T: Trait1 + Triat2, U: Triat2 + Triat2>(t: &T, u: &U) -> i32 {
 OR
@@ -131,9 +131,9 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 ```
 
 <a name=ret></a>
-## 5. Returning Triats from Function
+## Returning Triats from Function
 <a name=ret-t></a>
-### 5.1 Function returning trait
+### 1. Function returning trait
 - Function which returns (impl Trait) returns any of type that implements the trait.
 ```rust
 //This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
@@ -146,7 +146,7 @@ pub fn fun ( ) -> impl CompanyDB {
 }
 ```
 <a name=invalid-t></a>
-### 5.2 Function cannot implement 2 traits internally
+### 2. Function cannot implement 2 traits internally
 - Returning either or trait(ie Employee or contractor) is not supported by complier.
 ```rust
 pub fn fun (test:bool) -> impl CompanyDB {      
