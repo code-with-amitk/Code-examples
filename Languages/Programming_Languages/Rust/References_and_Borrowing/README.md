@@ -208,5 +208,11 @@ Compliation Error Why?
 ### 5.1 How compiler determines Lifetime
 - Compiler uses 3 rules to figure out what lifetimes references have when there aren’t explicit annotations. If the compiler gets to the end of the three rules and there are still references for which it can’t figure out lifetimes, the compiler will stop with an error.
 - _Rule-1:_ Each parameter that is a reference gets its own lifetime parameter. 
-- _Rule-2:_ 
-- 
+```rs
+fn longest<'a, 'b>(x: &'a str, y: &'b str) -> &str {
+```
+- _Rule-2:_ if there is exactly one input lifetime parameter, that lifetime is assigned to all output lifetime parameters.
+```rs
+fn foo<'a>(x: &'a i32) -> &'a i32.
+```
+- _Rule-3:_ If there are multiple input lifetime parameters, but one of them is `&self` or `&mut self`, the lifetime of self is assigned to all output lifetime parameters.
