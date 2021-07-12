@@ -7,6 +7,7 @@
 - [4. Borrow Checker](#bc)
   - [4.1 Generic / Named Lifetimes](#genericlt)
     - [4.1.1 Function will return smaller of both lifetimes](#smaller)
+- [5. Lifetime Elision](#lifee)
 
 
 
@@ -197,3 +198,15 @@ fn main() {                           //Block-1
 Compliation Error Why?
 - largest() will return smaller lifetime from x and y. y has smaller lifetime(ie Block-2).
 - largest() will return y, which goes out of scope and we try printing string which is out of scope
+
+<a name=lifee></a>
+## 5. Lifetime Elision
+- The patterns programmed into Rust complier which applies lifetime rules in desired situtation.
+- **Input lifetimes:** Lifetimes on function or method parameters.
+- **Output Lifetimes:** lifetimes on return values.
+<a name=how></a>
+### 5.1 How compiler determines Lifetime
+- Compiler uses 3 rules to figure out what lifetimes references have when there aren’t explicit annotations. If the compiler gets to the end of the three rules and there are still references for which it can’t figure out lifetimes, the compiler will stop with an error.
+- _Rule-1:_ Each parameter that is a reference gets its own lifetime parameter. 
+- _Rule-2:_ 
+- 
