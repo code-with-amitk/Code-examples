@@ -109,7 +109,7 @@ Minimum eccentricity of any vertex.
 <a name=vertex></a>
 ### 5. Vertex/Node
 Interconnected objects are called vertices.
-<a name=vcc></a>
+<a name=cc></a>
 ### 6. Connected Components? 
 Here 3
 ```c
