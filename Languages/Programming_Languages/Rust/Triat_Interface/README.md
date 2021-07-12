@@ -14,8 +14,8 @@
 
 
 <a name=what></a>
-## Trait = virtual Function (Not pure virtual)
-- Similar to interfaces in other languages, we can declare or define function in trait.
+## Trait
+- Abstract interface having Virtual Functions(not pure Virtual). Similar to interfaces in other languages, we can declare or define function in trait.
 - These functions can be implemented on type, ie overridden.
 
 <a name=fun></a>
