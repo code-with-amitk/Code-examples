@@ -108,7 +108,8 @@ fn fun2(a_string: String) -> String {
     - Mutable & immutable References in same scope not allowed
     - 2 Mutable references are not allowed in same scope
     - Mutable References are allowed in seperate scope
-  - Lifetimes
+  - Borrow checker
+  - Lifetimes: lifetime elision
 
 <a name=datatypes></a>
 ## [Data Types](Data_Types)
