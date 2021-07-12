@@ -1,20 +1,20 @@
-- [1. Reference = Borrowing](#bow)
-- [2. Dangling Reference](#danglingref)
-- [3. Mutable Reference](#mutref)
-  - [3.1 Mutable & immutable References in same scope not allowed](#MutImmutable)
-  - [3.2 Two Mutable references are not allowed in same scope](#MutMut)
-  - [3.3 Mutable References are allowed in seperate scope](#MutSep)
-- [4. Borrow Checker](#bc)
-  - [4.1 Generic / Named Lifetimes](#genericlt)
-    - [4.1.1 Function will return smaller of both lifetimes](#smaller)
-- [5. Lifetime Elision](#lifee)
-  - [5.1 How compiler determines Lifetime](#how)
-- [6. Lifetime for structs](#struct)
-- [7. Static lifetime](#static)
+- [Reference = Borrowing](#bow)
+- [Dangling Reference](#danglingref)
+- [Mutable Reference](#mutref)
+  - [1. Mutable & immutable References in same scope not allowed](#MutImmutable)
+  - [2. Two Mutable references are not allowed in same scope](#MutMut)
+  - [3. Mutable References are allowed in seperate scope](#MutSep)
+- [Borrow Checker](#bc)
+  - [1. Generic / Named Lifetimes](#genericlt)
+    - [1.1 Function will return smaller of both lifetimes](#smaller)
+- [Lifetime Elision](#lifee)
+  - [1. How compiler determines Lifetime](#how)
+- [Lifetime for structs](#struct)
+- [Static lifetime](#static)
 
 
 <a name="bow"></a> 
-## 1. Borrowing = Reference (&var)
+## Borrowing = Reference (&var)
 - **What?** Means passing the reference of a variable. Borrowing means that needed to be returned(we cannot change).
 ```rust
 fn print( a : &Vec<i32>) {
@@ -30,7 +30,7 @@ fn main() {
 ```
 
 <a name="danglingref"></a>
-## 2. Dangling Reference
+## Dangling Reference
 - **Dangling pointer?** Pointer points to memory, memory is freed and pointer is used.
 - **Dangling reference?** Similar to Dangling pointer, when reference to a value is used, value is freed and reference is used after that.
 - **C++ Problem:** Since b is local variable and is freed as fun() goes out of scope.
@@ -68,7 +68,7 @@ fn fun() -> i32 {
 ```
 
 <a name="mutref"></a>
-## 3. Mutable Reference
+## Mutable Reference
 - We know a borrowed item cannot be changed, but mutable reference can be changed.
 ```rust
 fn print( a : &mut Vec<i32>) {        //3. Accept mutable reference using `some_string: &mut String`
@@ -85,7 +85,7 @@ fn main() {
 ```
 
 <a name="MutImmutable"></a>
-### 3.1 Mutable & immutable References in same scope not allowed
+### 1. Mutable & immutable References in same scope not allowed
 ```rust
     let mut v = vec![1, 2, 3, 4, 5];
     let first = &v[0];
@@ -99,7 +99,7 @@ fn main() {
   - The borrowing rules prevent programs from ending up in that situation.
 
 <a name="MutMut"></a>
-### 3.2 Two Mutable references are not allowed in same scope
+### 2. Two Mutable references are not allowed in same scope
 - *Why?* To avoid data race conditions. Race condition occurs when any of 3 behaviours happen:
     - Two or more pointers access the same data at the same time.
     - At least one of the pointers is being used to write to the data.
@@ -111,7 +111,7 @@ fn main() {
   println!("{}, {}", r1, r2);
 ```
 <a name="MutSep"></a>
-### 3.3 Mutable References are allowed in seperate scope
+### 3. Mutable References are allowed in seperate scope
 ```rustc
   let mut s = String::from("hello");
   {
@@ -121,7 +121,7 @@ fn main() {
 ```
 
 <a name=bc></a>
-## 4. Borrow Checker
+## Borrow Checker
 - Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.
 - _Lifetimes_
   - a is main()'s block
@@ -136,7 +136,7 @@ fn main() {
 }
 ```
 <a name=genericlt></a>
-### 4.1 Generic / Named Lifetimes
+### 1. Generic / Named Lifetimes
 - **Compliation Error. Why?** rustc cannot ascertain Return value (&str) is reference of a or reference of b.
 ```rs
 fn largest(x:&str, y:&str) -> &str{
@@ -185,7 +185,7 @@ abcd
 ```
 
 <a name=smaller></a>
-#### 4.1.1 Function will return smaller of both lifetimes
+#### 1.1 Function will return smaller of both lifetimes
 ```rs
 fn main() {                           //Block-1
     let x = String::from("abcd");
@@ -202,12 +202,12 @@ Compliation Error Why?
 - largest() will return y, which goes out of scope and we try printing string which is out of scope
 
 <a name=lifee></a>
-## 5. Lifetime Elision
+## Lifetime Elision
 - The patterns programmed into Rust complier which applies lifetime rules in desired situtation.
 - **Input lifetimes:** Lifetimes on function or method parameters.
 - **Output Lifetimes:** lifetimes on return values.
 <a name=how></a>
-### 5.1 How compiler determines Lifetime
+### 1. How compiler determines Lifetime
 - Compiler uses 3 rules to figure out what lifetimes references have when there aren’t explicit annotations. If the compiler gets to the end of the three rules and there are still references for which it can’t figure out lifetimes, the compiler will stop with an error.
 - _Rule-1:_ Each parameter that is a reference gets its own lifetime parameter. 
 ```rs
@@ -220,7 +220,7 @@ fn foo<'a>(x: &'a i32) -> &'a i32.
 - _Rule-3:_ If there are multiple input lifetime parameters, but one of them is `&self` or `&mut self`, the lifetime of self is assigned to all output lifetime parameters.
 
 <a name=struct></a>
-## 6. Lifetime variables for structs
+## Lifetime variables for structs
 ```rs
 struct test<'a> {                       //struct having 1 member having lifetime
     part: &'a str,
@@ -232,7 +232,7 @@ impl<'a> test<'a> {                     //impl need to be declared with lifetime
 }
 ```
 <a name=static></a>
-## 7. Static lifetime
+## Static lifetime
 - This reference can live for the entire duration of the program. All string literals have the 'static lifetime. 
 - The text of this string is stored directly in the program’s binary, which is always available
 ```rs
