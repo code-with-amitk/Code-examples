@@ -8,7 +8,9 @@
   - [4.1 Generic / Named Lifetimes](#genericlt)
     - [4.1.1 Function will return smaller of both lifetimes](#smaller)
 - [5. Lifetime Elision](#lifee)
-
+  - [5.1 How compiler determines Lifetime](#how)
+- [6. Lifetime for structs](#struct)
+- [7. Static lifetime](#static)
 
 
 <a name="bow"></a> 
@@ -216,3 +218,23 @@ fn longest<'a, 'b>(x: &'a str, y: &'b str) -> &str {
 fn foo<'a>(x: &'a i32) -> &'a i32.
 ```
 - _Rule-3:_ If there are multiple input lifetime parameters, but one of them is `&self` or `&mut self`, the lifetime of self is assigned to all output lifetime parameters.
+
+<a name=struct></a>
+## 6. Lifetime variables for structs
+```rs
+struct test<'a> {                       //struct having 1 member having lifetime
+    part: &'a str,
+}
+impl<'a> test<'a> {                     //impl need to be declared with lifetime var,
+    fn fun(&self) -> i32 {
+        3
+    }
+}
+```
+<a name=static></a>
+## 7. Static lifetime
+- This reference can live for the entire duration of the program. All string literals have the 'static lifetime. 
+- The text of this string is stored directly in the program’s binary, which is always available
+```rs
+let s: &'static str = "test";
+```
