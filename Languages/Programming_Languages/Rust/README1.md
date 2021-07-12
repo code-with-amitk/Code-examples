@@ -1,26 +1,26 @@
-- [1. What/Why Rust](#What)
-  - [1.1 Rust vs All Languages](#All)
-  - [1.2 Rust vs C++](#Rustcpp)
-- [2. Ownership](#own)
-- [3.Reference = Borrowing](#bow)
-- [4. Data Types](#datatypes)
-- [5. Control Flow](#controlflow)
-- [6. Enum](#enum)
-  - [6.1. Enum Not Holding data](#enumnotholding)
-  - [6.2  Enum holding data](#enumholding)
-    - [6.2.1 Enum holding 1 datatype](#enumholdingone)
-    - [6.2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
-  - [6.3 Option Enum = NULL](#optionenum) 
-    - [6.3.1 Why creating NULL was mistake?](#nullmistake)
-    - [6.3.2 Option Enum](#oe)
-- [7. Error Handling](#eh)
-- [8. Generic Types/Templates](#temp)
-- [9. Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
+- [What/Why Rust](#What)
+  - [1. Rust vs All Languages](#All)
+  - [2. Rust vs C++](#Rustcpp)
+- [Ownership](#own)
+- [Reference = Borrowing](#bow)
+- [Data Types](#datatypes)
+- [Control Flow](#controlflow)
+- [Enum](#enum)
+  - [1. Enum Not Holding data](#enumnotholding)
+  - [2.  Enum holding data](#enumholding)
+    - [2.1 Enum holding 1 datatype](#enumholdingone)
+    - [2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
+  - [3 Option Enum = NULL](#optionenum) 
+    - [3.1 Why creating NULL was mistake?](#nullmistake)
+    - [3.2 Option Enum](#oe)
+- [Error Handling](#eh)
+- [Generic Types/Templates](#temp)
+- [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
 
 <a name="What"></a>
-## 1. What/Why Rust
+## What/Why Rust
 <a name="All"></a>
-### 1.1 Rust vs All Languages
+### 1. Rust vs All Languages
 - No Garbage collector(Java,python has garbage collectors)               //Garbage collector is runtime heavy
 - No monolithic runtime.
 - Statically typed(with type inference), Catching the bugs at compile time reduces runtime crashes. Compiler does lot of heavy lifting.
@@ -33,7 +33,7 @@
 - No need to call delete(),free(). Compiler will insert free()/delete() knows when memory is not used.
 
 <a name="Rustcpp"></a>
-### 1.2 Rust vs C++
+### 2. Rust vs C++
 - No implicit copies as in C++
 - No invisible copy constructors, move operators etc (as in c++). Whatever is runtime cost that's visible in code.
 - Safe parallelism wrt C++
@@ -60,7 +60,7 @@ fn main() {
 ```
 
 <a name="own"></a>
-## 2. Ownership
+## Ownership
 - Means code/variable owns a memory and is allowed to free it.
 - **Memory management approaches**
   - _1._ Some languages have garbage collection(java,python,ruby) that constantly looks for no longer used memory as the program runs 
@@ -101,29 +101,30 @@ fn fun2(a_string: String) -> String {
 ```
 
 <a name=bow></a>
-## [3. Reference = Borrowing](References_and_Borrowing)
+## [Reference = Borrowing](References_and_Borrowing)
   - Associated Functions
   - Dangling Reference
   - Mutable Reference
     - Mutable & immutable References in same scope not allowed
     - 2 Mutable references are not allowed in same scope
     - Mutable References are allowed in seperate scope
+  - Lifetimes
 
 <a name=datatypes></a>
-## [4. Data Types](Data_Types)
+## [Data Types](Data_Types)
   - Associated Functions
 
 <a name=controlflow></a>
-## [5. Control Flow](Control_Flow)
+## [Control Flow](Control_Flow)
   - for, loop, while, match=switch, if
 
 <a name=enum></a>
-## 6. Enum
+## Enum
 - Similar to other languages, Enums are User defined data type which can be assigned some limited values. 
 - In rust enum variable can or cannot hold the data (Eg: String). 
 
 <a name=enumnotholding></a>
-### 6.1. Enum not Holding data / Same as enum class in C++
+### 1. Enum not Holding data / Same as enum class in C++
 ```rust
 #[derive(Debug)]            //1. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for enum.
 enum Color{                 //2. Declare enum same
@@ -143,10 +144,10 @@ fn main() {
 ```
 
 <a name=enumholding></a>
-### 6.2. Enum Holding the data
+### 2. Enum Holding the data
 
 <a name=enumholdingone></a>
-#### 6.2.1 Enum holding 1 datatype
+#### 2.1 Enum holding 1 datatype
 ```rust
 use std::{string::String, u32};
 
@@ -174,7 +175,7 @@ IPv4(
 ```
 
 <a name=enumholdingmultiple></a>
-#### 6.2.2 Enum Holding Multiple Datatypes
+#### 2.2 Enum Holding Multiple Datatypes
 ```rust
 use std::{string::String, u32};
 
@@ -227,10 +228,10 @@ Disconnected NoIP
 ```
 
 <a name=optionenum></a>
-## 6.3 Option Enum = NULL
+## 3. Option Enum = NULL
 
 <a name=nullmistake></a>
-### 6.3.1 Why creating NULL was mistake?
+### 3.1 Why creating NULL was mistake?
 - Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
   - If we try using NULL value as non-NULL value. Eg: derefercing NULL ptr.
   - Problem is not in NULL but at places this get misused.
@@ -271,7 +272,7 @@ fn main() {
 ```
 
 <a name=oe></a>
-### 6.3.2 Option Enum
+### 3.2 Option Enum
 - This is another kind of enum in rust which takes either of 2 values: Some or None
 ```rust
 enum Option<T> {          //T is template which can take any type: i32, i64 etc
@@ -306,7 +307,7 @@ fn main() {
 ```
 
 <a name=eh></a>
-## 7. [Error Handling](Error_Handling)
+## [Error Handling](Error_Handling)
 
 <a name=temp></a>
-## [8. Generic Types/Templates](Generic_Types)
+## [Generic Types/Templates](Generic_Types)
