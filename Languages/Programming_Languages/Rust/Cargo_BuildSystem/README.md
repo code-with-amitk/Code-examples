@@ -2,6 +2,7 @@
 - [Working with Cargo](#work)
   - [1. Create Project using cargo](#create)
   - [2. Build project with cargo](#build)
+- [Cargo Commands](Cargo_Commands)
 
 <a name=what></a>
 ## Cargo
