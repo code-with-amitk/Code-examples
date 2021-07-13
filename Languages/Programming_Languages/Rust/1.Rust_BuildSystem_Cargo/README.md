@@ -1,6 +1,7 @@
 - [What is Cargo](#what)
 - [Working with Cargo](#work)
   - [1. Create Project using cargo](#create)
+  - [2. Build project with cargo](#build)
 
 <a name=what></a>
 ## Cargo
