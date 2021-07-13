@@ -3,6 +3,7 @@
   - [1. Function returning a value](#return_val)
   - [2. Function returning struct](#return_struct)
   - [3. Function Taking struct as argument](#take_struct)
+- [Rust defined Functions, Inbuilt Functions](Inbuilt_Functions)
 
 <a name=what></a>
 ## Functions
