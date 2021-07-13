@@ -23,7 +23,7 @@ o/p: wertf
 <a name=logic></a>
 ### 1. Logic
 
-<a name=step-1></a>
+<a name=step1></a>
 #### Extract information about lexiographical order of letters from input string
 - Only find 1st difference between adjacent words.
 
