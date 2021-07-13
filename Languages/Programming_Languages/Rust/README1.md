@@ -2,10 +2,12 @@
   - [1. Rust vs All Languages](#All)
   - [2. Rust vs C++](#Rustcpp)
 - [Cargo, Rust Build System](Cargo_BuildSystem)
+- [Statements & Expressions](#statements)
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
 - [Data Types](#datatypes)
 - [Control Flow](#controlflow)
+- [Functions](#Functions)
 - [Crates, Packages, Modules](#cpm)
 - [Enum](#enum)
   - [1. Enum Not Holding data](#enumnotholding)
@@ -59,6 +61,24 @@ fn main() {
   v.push(1);
   print(v);                               //Now v is moved not copied.
   //println!("{}", v[0]);                 //Compiler error
+}
+```
+
+<a name=statements></a>
+## Statements & Expressions
+- **Statements:** These are instructions that perform some action and do not return a value. Example
+```rs
+  let y = 6;
+```
+- **Expressions:** Returns a value. Examples
+```rs
+fn main(){
+  let x = fun();
+}
+fn fun() -> i32 {
+  let y = 5;
+  y + 1                   //Expression returning a value.
+  //y + 1;                   //When ; is placed it becomes statement and will not return a value
 }
 ```
 
@@ -121,6 +141,12 @@ fn fun2(a_string: String) -> String {
 <a name=controlflow></a>
 ## [Control Flow](Control_Flow)
   - for, loop, while, match=switch, if
+
+<a name=Functions></a>
+## Functions
+- What is Function
+- Returning from Function: A value, struct, Function Taking struct as argument
+- Rust defined Functions, inbuilt functions
 
 <a name=cpm></a>
 ## [Crates, Packages, Modules](#Crates_Packages_Modules)
