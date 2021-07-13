@@ -1,6 +1,2 @@
 ## Modules
-- Similar to [namespaces, modules in c++](/Languages/Programming_Languages/c++) & [modeules in python](/Languages/ScriptingLanguages/Python/).
-- Modules organizes code within a crate into groups for ease of use.
-- Code inside module can be functions, enums, structs etc.
-- By default Functions within modules are private ie to access function and we need to make it public by placing `pub` in front of it.
-- **[Code Examples](Examples):** super keyword, use keyword, Defining structs enums inside module
+
