@@ -18,6 +18,7 @@
 - [Error Handling](#eh)
 - [Generic Types/Templates](#temp)
 - [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
+- [Writing Automated Tests](#tests)
 
 <a name="What"></a>
 ## What/Why Rust
@@ -324,3 +325,6 @@ fn main() {
 
 <a name=temp></a>
 ## [Generic Types/Templates](Generic_Types)
+
+<a name=tests></a>
+## [Writing Automated Tests](Automated_Tests)
