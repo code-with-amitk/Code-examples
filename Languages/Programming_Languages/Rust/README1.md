@@ -6,6 +6,7 @@
 - [Reference = Borrowing](#bow)
 - [Data Types](#datatypes)
 - [Control Flow](#controlflow)
+- [Crates, Packages, Modules](#cpm)
 - [Enum](#enum)
   - [1. Enum Not Holding data](#enumnotholding)
   - [2.  Enum holding data](#enumholding)
@@ -119,6 +120,16 @@ fn fun2(a_string: String) -> String {
 <a name=controlflow></a>
 ## [Control Flow](Control_Flow)
   - for, loop, while, match=switch, if
+
+<a name=cpm></a>
+## [Crates, Packages, Modules](#Crates_Packages_Modules)
+- Crates, Packages
+- Modules
+  - _1._ Creating a module & accessing its function
+  - _2._ super keyword
+  - _3._ struct inside module
+  - _4._ enum inside module
+  - _5._ use keyword: use as, pub use / Reexporting
 
 <a name=enum></a>
 ## Enum
