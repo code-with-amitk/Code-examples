@@ -1,5 +1,9 @@
+- [Question](#ques)
+- [Approach-1](#apr1)
+
+<a name=ques></a>
 ## [Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/)
-- In an alien language, surprisingly they also use english lowercase letters, but possibly in a different order.
+- Alien language also use english lowercase letters, but in a different order.
 - Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographicaly in this alien language.
 - Examples:
 ```c
@@ -14,50 +18,36 @@ Output: false
 Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅',
 ```
 
-## Approach
+<a name=apr1></a>
+## Approach-1
 - Check each character of words in input array whether in lexicographical order or not by going to each character of input array.
-
-### Logic
-- Example
+- **Logic**
+  - *1.* Create a array containing positions of characters as per order
+  - *2.* Take 1st 2 words to check whether all characters are in lexiographical order(as per new dictionary) by Iterating till smaller word's length(word1's len=4)
+  - _3._ if length of word1>word2 return false
 ```c
 order = "worldabcefghijkmnpqstuvxyz"
 words = {"word","world","row"}
-```
-- *1.* Create a array containing positions of characters as per order
-```c
-order = "worldabcefghijkmnpqstuvxyz"
 
-value 5	 6  7  4                         3           1           2                   0
+value 5	 6  7  4                         3           1           2                   0                //Step-1
 index 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25
       a  b  c  d  e  f  g  h  i  j   k   l   m   n   o   p   q   r   s   t   u   v   w   x   y   z
-```	  
-- *2.* Take 1st 2 words to check whether all characters are in lexiographical order(as per new dictionary).
-```c
-	word1 = "word"	//len=4
-	word2 = "world" //len=5
-```
-3. Iterate till smaller word's length(word1's len=4)
-```c
-	if (characters at position match)
-		do nothing
-	else	//character do not match	i=3. d,l
-		if(Check whether 2 characters are in lexiographical order as per dictionary?)
-			//PlaceValue of d=4, PlaceValue of l=3. this is not.
-			//return false
-			
-		break
-```
-4. if length of word1>word2
-```c
-	return false
-```	
-5. Compare next 2 words ie word2, word3	
-		
-### Complexity
-- **Time:** O(n). n=Total count of characters in words.
-- **Space:** O(1). Size of created index array is always contant ie 26.
 
-### Code
+word1 = "word"	//len=4
+word2 = "world" //len=5
+
+if (characters at position match)                           //Step-2
+  do nothing
+else	//character do not match	i=3. d,l
+  if(Check whether 2 characters are in lexiographical order as per dictionary?)
+    //PlaceValue of d=4, PlaceValue of l=3. this is not.
+	//return false			
+   break
+```
+- **Complexity**
+  - *Time:* O(n). n=Total count of characters in words.
+  - *Space:* O(1). Size of created index array is always contant ie 26.
+- **Code**
 ```c
 bool isAlienSorted(std::vector<std::string>& words, std::string order) {
   int* index = new int[26];
