@@ -6,6 +6,7 @@
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
 - [Data Types](#datatypes)
+- [Class in Rust](#class)
 - [Control Flow](#controlflow)
 - [Functions](#Functions)
 - [Crates, Packages, Modules](#cpm)
@@ -137,6 +138,12 @@ fn fun2(a_string: String) -> String {
 <a name=datatypes></a>
 ## [Data Types](Data_Types)
   - Associated Functions
+  - Compound: struct
+
+<a name=class></a>
+## [Class in Rust](Class)
+- Constructor inside class
+- Functions inside class
 
 <a name=controlflow></a>
 ## [Control Flow](Control_Flow)
