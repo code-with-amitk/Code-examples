@@ -111,6 +111,26 @@ output = u,v,i,h,a,f,e,b,r
 
 <a name=code></a>
 ### 2. Code
-- _a._ Extract relationship from input string and create a Adjacency list.
-- _b._ Identify which letters have no incoming links (ie in-degree=0).
-- _c._ 
+- _a._ Extract relationship from input string and create a [Adjacency list](/DS_Questions/Data_Structures/Graphs).
+  - Finding all nodes whose [indgree](/DS_Questions/Data_Structures/Graphs) is 0,because these will be placed ahead in alien dictionary. Let's suppose finding for a.
+    - Search whether a is present in any of node's adjacency matrix. This means checking all 26 alphabet's adjacency list.
+    - This might be ok for dictionary having 26 characters, But what if alien dictionary has 1 million unique characters? This approach will have huge time complexity.
+    - _How to do better:_ While building adjacency list, we will Keep count of how many incoming edges each letter has. count=0 means indegree=0.
+```c
+vector<int> al[26];   //0:a, 1:b, 2:c, 3:d, 4:e, 5:f, 15:o,.. 19:u, 20:v
+al[19].push_back(0);  u->a
+al[20].push_back(5);  v->f
+al[15].push_back(0);  o->a
+
+al[19] | 0 |
+al[20] | 5 |
+al[15] | 0 |
+
+```
+- _b._ Do BFS using Queue
+  - Put all letters whose indegree=0 to queue.
+  - Pop letter, 
+    - place in output string.
+    - Check letters connected to this node, whether has indegree=0, if so place on queue.
+- _c._ Check all letters are placed on queue or not?
+  - if not, this must be cycle, DAG cannot have, even question says return "" if cycle.
