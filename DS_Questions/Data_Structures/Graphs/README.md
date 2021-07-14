@@ -49,7 +49,7 @@ c  0   0   0   1
 d  0   0   0   0
 ```
 
-<a name=adjlist></a>
+<a name=adjl></a>
 ### 2. Adjacency List
 - Each node keeps list of neighbors. Data structures can be Arrays, vectors, ll etc.
 - *Advantages* Save space, only stores connected nodes, while AM stores 0 if edge is not present.
