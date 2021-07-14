@@ -48,6 +48,7 @@ b  0   0   0   a
 c  0   0   0   1
 d  0   0   0   0
 ```
+
 <a name=adjlist></a>
 ### 2. Adjacency List
 - Each node keeps list of neighbors. Data structures can be Arrays, vectors, ll etc.
@@ -57,22 +58,21 @@ Graph:
    1 -- 0 -- 3 -- 4
         |
         2  
-vector<int> input = [-1, 0, 0, 0, 3]    //size=5
-
-Representation using AdjList: represented using array of vectors.      vector<int> AdjList[5]
-  AdjList[0].push_back(1);
-  AdjList[0].push_back(2);
-  AdjList[0].push_back(3); => 1,2,3    //node0
-
-  AdjList[1].push_back(0);             //node1
+  vector<int> al[5];      //5 vectors of int
   
-  AdjList[2].push_back(0);             //node2
+  al[0].push_back(1); al[0].push_back(2); al[0].push_back(3); => 1,2,3    //node0
+  al[1].push_back(0);                                                     //node1
+  al[2].push_back(0);                                                     //node2
+  al[3].push_back(0); al[3].push_back(4);                                 //node3
+  al[4].push_back(3);                                                     //node4
   
-  AdjList[3].push_back(0);         
-  AdjList[3].push_back(4);             //node3
-
-  AdjList[4].push_back(3);             //node4
+al[0]   | 1 | 2 | 3 |
+al[1]   | 0 |
+al[2]   | 0 |
+al[3]   | 0 | 4 |
+al[4]   | 3 |
 ```
+
 <a name=edgelist></a>
 ### 3. Edge List
 ```c++
