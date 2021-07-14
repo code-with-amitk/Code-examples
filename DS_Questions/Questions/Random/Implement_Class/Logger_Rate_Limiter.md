@@ -21,7 +21,8 @@ bool shouldPrintMessage(int timestamp, string message):
 - Example
 ```c
 Input
-["Logger", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage"]
+["Logger", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", "shouldPrintMessage", 
+"shouldPrintMessage", "shouldPrintMessage"]
 [[], [1, "foo"], [2, "bar"], [3, "foo"], [8, "bar"], [10, "foo"], [11, "foo"]]
 Output
 [null, true, true, false, false, false, true]
