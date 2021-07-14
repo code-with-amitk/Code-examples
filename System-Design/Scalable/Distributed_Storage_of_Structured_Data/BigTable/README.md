@@ -1,7 +1,8 @@
 - [What is BigTable](#what)
 - [Data Model](#datamodel)
-  - [1. Row Range](#rr)
+  - [1. Row Range = Tablets](#rr)
   - [2. How read operation is faster](#faster)
+  - [3. Colomn Keys = Colomn Families](#family)
 
 <a name=what></a>
 ## BigTable
@@ -26,9 +27,11 @@ Example: Storing webpage
 ```
 
 <a name=rr></a>
-### 1. Row Range
+### 1. Row Range = Tablets
 - n rows are grouped together to form a **tablet**, which is the unit of distribution and load balancing.
 
 <a name=faster></a>
 ### 2. How read operation is faster
+- For example, in Webtable, pages in the same domain are grouped together into contiguous rows by reversing the hostname components of the URLs.
+- Eg: store `maps.google.com/index.html` under the key `com.google.maps/index.html`. Storing pages from the same domain near each other makes some host and domain analyses more efficient.
 
