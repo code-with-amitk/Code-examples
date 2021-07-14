@@ -4,7 +4,7 @@
   - [2. Complexity](#comp)
   - [3. Code](#code)
     - [3.1 C++](#cpp)
-    - [Rust](#rust)
+    - [3.2 Rust](#rust)
 
 <a name=ques></a>
 ## [Logger Rate Limiter](https://leetcode.com/problems/logger-rate-limiter/)
@@ -57,7 +57,7 @@ logger.shouldPrintMessage(11, "foo"); // 11 >= 11, return true, next allowed tim
 - **3. Code**
 
 <a name=cpp></a>
-  - **C++**
+**3.1 C++**
 ```c++
 class Logger {
                 //message,timestamp
@@ -83,4 +83,5 @@ public:
     }
 };
 ```
-- **3.2 Rust**
+<a name=rust></a>
+**3.2 Rust**
