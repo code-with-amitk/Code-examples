@@ -86,3 +86,31 @@ public:
 ```
 <a name=rust></a>
 **3.2 Rust**
+```rs
+use std::collections::HashMap;
+struct Logger {                   //Struct storing 1 variable ie HashMap
+    var : HashMap<String, i32>,   //Variable of type Hashmap
+}
+impl Logger {
+
+    fn new() -> Self {           //Constructor
+        Logger {                  //Creating variable of type struct logger
+            var: HashMap::<String, i32>::new() 
+        }
+    }
+    
+    fn should_print_message(&mut self, timestamp: i32, message: String) -> bool {
+        if self.var.contains_key(&message) {                        //if entry exists
+            let old = self.var.get_mut(&message).unwrap();
+            if timestamp - *old >= 10 {
+                *old = timestamp;
+                return true;
+            }
+        } else {                                                //Entry does not exist insert
+            self.var.insert(message, timestamp);
+            return true;
+        }
+        false        
+    }
+}
+```
