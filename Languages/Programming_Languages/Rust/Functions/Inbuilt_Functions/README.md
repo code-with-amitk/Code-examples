@@ -1,6 +1,7 @@
-- [asserts](#asserts)
+- [assert Functions](#asserts)
 
 <a name=asserts></a>
+## assert Functions
 ```rs
        Function          desc                   Expects
 -------------------|------------------------|------------
