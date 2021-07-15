@@ -7,14 +7,16 @@
 <a name=what></a>
 ## BigTable
 - This is distributed storage system that scales to large size(Petabytes) and distributed over 1000's of comodity servers.
+- if any of our datastructure(eg: stack,queue etc) contains millions of entries, those should be stored here.
 - Projects storing data in BigTable: web indexing, Google Earth, and Google Finance.
 
 <a name=datamodel></a>
 ## Data Model
-- BigTable stores data in Multidimensinal sorted Map `<Key,value>`. Map is indexed using (row key + coloumn key + timestamp), value = Array of bytes.
+- BigTable stores data in Multidimensinal sorted Map`<Key,value>`(ie HashTable). This is Google's Implementation of [Distributed Hash Table](/System-Design/Scalable)
+- Map is indexed using (row key + coloumn key + timestamp), value = Array of bytes.
 - Stores data in lexicographic order by row key.
 ```c
-(rowKey:string(64kb), column:string, time:int64) → string
+(rowKey:string(64kb), column:string(64kb), time:int64) → string
 
 Example: Storing webpage
 
