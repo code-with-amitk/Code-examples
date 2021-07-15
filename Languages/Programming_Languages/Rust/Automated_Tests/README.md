@@ -50,7 +50,6 @@ impl rect {
 
 mod all_tests {
     use super::*;                          //2
-
     [#test]                                //1
     fn test_fun () {
         let var1 = rect {
@@ -61,8 +60,8 @@ mod all_tests {
             len:3,
             bre:3
         };
-        
         assert_eq!(var1.can_hold(&var2), false);       //can_hold(self=var1, var=var2)
     }
 }
+$ cargo test
 ```
