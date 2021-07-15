@@ -83,6 +83,11 @@ public:
         return false;
     }
 };
+int main(){
+  Logger l;
+  cout<<l.shouldPrintMessage(1,"foo");
+  cout<<l.shouldPrintMessage(2,"foo");
+}
 ```
 <a name=rust></a>
 **3.2 Rust**
