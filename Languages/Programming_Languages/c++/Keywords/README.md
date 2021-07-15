@@ -122,7 +122,10 @@ int main() {
 
 <a name=this></a>
 ## this pointer
-- Every Function call passes the address of Object which calls it. Which Actual Implementation stores in this pointer.
+- This pointer holds address of current active object
+- this pointer is stored on stack, heap, DS(based on implementation)
+- We know only every object has seperate data members, But All objects have same member functions in Code segment. So How a function knows which object is calling it to set/get the variables => Using this pointer.
+- `(*this):` returns address of current object.
  ```c++
 class A{
   int a;
