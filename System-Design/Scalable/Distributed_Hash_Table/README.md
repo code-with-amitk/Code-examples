@@ -1,11 +1,16 @@
+- [Distributed Hash Table](#what)
+- [DHT Implementations](#impl)
+
+<a name=what></a>
 ## Distributed Hash Table
+- Hash table contaning millions of entries distributed over cluster of nodes.
 - **How it works**
   - Each node maintains a pointer to its successor and predecessor node. Each node maintains Routing/Finger Table.
   - Message is forwarded to nearest node in routing table.
-- **Search**
-  - Any data object can be searched in O(log N) where N is the number of nodes in the system.
+- **Search:** Any data object can be searched in O(log N) where N is the number of nodes in the system.
 
-### DHT Implementations
+<a name=impl></a>
+## DHT Implementations
 
 |DHT Implementations|CAN|[Chord](Chord)|[Kademlia](Kademlia)|Koorde|[Pastry](Pastry)|Tapestry|Viceroy|
 |---|---|---|---|---|---|---|---|
