@@ -98,7 +98,7 @@ struct Logger {                   //Struct storing 1 variable ie HashMap
 }
 impl Logger {
 
-    fn new() -> Self {           //Constructor
+    fn ctr() -> Self {           //Constructor
         Logger {                  //Creating variable of type struct logger
             var: HashMap::<String, i32>::new() 
         }
@@ -117,5 +117,9 @@ impl Logger {
         }
         false        
     }
+}
+fn main() {
+  let mut var = Logger::ctr();                      //Allocates HashMap on Heap
+  var.should_print_message(1, String::from("foo")); //Call function on already allocated HashMap
 }
 ```
