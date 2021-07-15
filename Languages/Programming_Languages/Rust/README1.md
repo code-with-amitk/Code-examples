@@ -156,7 +156,7 @@ fn fun2(a_string: String) -> String {
 - Rust defined Functions, inbuilt functions
 
 <a name=cpm></a>
-## [Crates, Packages, Modules](#Crates_Packages_Modules)
+## [Crates, Packages, Modules](Crates_Packages_Modules)
 - Crates, Packages
 - Modules
   - _1._ Creating a module & accessing its function
