@@ -2,7 +2,7 @@
 - [Comparison](#comp)
   - [1. Modules vs Header files](#modh)
   - [2. Modules vs Libraries](#modl)
-- [Create & use module[(#createuse)
+- [Create & use module](#createuse)
 
 <a name=what></a>
 ## Module
