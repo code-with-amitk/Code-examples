@@ -13,7 +13,8 @@
 
 <a name=ctr></a>
 ## Constructors
-- There are no Copy, Default, Assignment, Move, or whatever constructors in rust
+- There are no [Copy, Default, Assignment, Move ctrs as in c++](/Languages/Programming_Languages/c++).
+- Also ctrs in rust might not be same named.
 - **Assignment, Move constructors** Does not exist because move semantics are the only semantics in Rust.  x = y just moves the bits of y into the x variable
 - **Copy Constructor** Using clone() or copy()
 - We can consider ctr as normal function defined inside a namespace scope, accessed using namespace::ctr_name()
