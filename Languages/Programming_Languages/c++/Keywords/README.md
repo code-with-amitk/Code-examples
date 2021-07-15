@@ -2,16 +2,20 @@
   - [implicit conversion](#impl)
 - [final keyword](#final)
 - [static](#what)
-  - [1. Static member variable of class](#variable)
+  - [1. static variable](#variable)
   - [2. static member function](#func)
+  - [3. static class](#sclass)
 
 <a name=what></a>
 ## static
 - it has different meaning in different contexts.
 
 <a name=variable></a>
-### 1. Static member variable of class
-- These member variables are shared among all Objects of class. Only 1 copy of variables is created.
+### 1. static variable in class
+- static variables are shared among all Objects of class. Only 1 copy of variables is created.
+- Since we cannot have multiple copies of static variable hence cannot be initialized inside constructor.
+- _Initialization:_ at compile-time.
+- _Calling:_ Without creation of class object, ie shared among objects. All objects wil
 - Java does not support Static Local variables
 ```c++
 class A{
@@ -37,6 +41,8 @@ int main(){
 <a name=func></a>
 ### 2. Static member function of class
 - Can be called without class object.
+- SMF can access: Static Data Members, Static Member Function, non-static functions from outside class.
+- Do not have access to this pointer or super.
 ```c++
 class A{
 public:
@@ -47,6 +53,18 @@ public:
 int main(){
   A::fun();         //fun
 }
+```
+
+<a name=sclass></a>
+### 3. static class
+- Only present in Java. Way of grouping classes in Java. Only Inner(Nested classes) can be created static. But its not necessary that all nested classes needs to be static. 
+```java
+public class test{
+    public static class InnerStatic{
+        public InnerStatic(){    System.out.println("InnerTest");    }
+    };
+    public test(){    System.out.println("test");    }    
+};
 ```
 
 <a name=final></a>
