@@ -2,6 +2,7 @@
 - [Comparison](#comp)
   - [1. Modules vs Header files](#modh)
   - [2. Modules vs Libraries](#modl)
+- [Create & use module[(#createuse)
 
 <a name=what></a>
 ## Module
@@ -25,5 +26,26 @@
   - Write `fun()` compile. create library. include header
   - Compilation Time: High wrt modules
 
+<a name=createuse></a>
+## Create and Use module
+- [C++20 compiler wandbox](https://wandbox.org/)
+- _1. Creating Module:_ Create a module with export statement.
+```c++
+# vim hello.cpp     
+export module module1;                                //module name
+import <iostream>;         
+ 
+export void hello() {                       
+  std::cout << "Hello world!\n";
+}
+```
 
+- _2. Using module:_ Use module in other file
+```c++
+# vim main.cpp 
+import module1;          //import declaration
+int main() {
+  hello();
+}
+```
 
