@@ -5,6 +5,7 @@
   - [1. static variable](#variable)
   - [2. static member function](#func)
   - [3. static class](#sclass)
+- [this](#this)
 
 <a name=what></a>
 ## static
@@ -116,5 +117,23 @@ class A {
 };
 int main() {
   fun (A(3));
+}
+```
+
+<a name=this></a>
+## this pointer
+- Every Function call passes the address of Object which calls it. Which Actual Implementation stores in this pointer.
+ ```c++
+class A{
+  int a;
+public:
+  void fun(int x){        //Implemented as void fun(const test *this, int x)
+    a = x;                //this->a=x
+   }
+};
+
+int main(){
+    A obj
+    obj.fun(10);                //obj.fun(&obj, 10);
 }
 ```
