@@ -1,8 +1,20 @@
-## [GoogleTest](https://github.com/google/googletest)
+- [What is GoogleTest / gtest](#what)
+- [Installation](#install)
+  - [1. Ubuntu](#ubuntu)
+  - [1. CentOS/Fedora/RedHat](#centos)
+- [Using gtest](#using)
+  - [1. Testcases for class](#class)
 
-### 1. Installation
-#### 1A. Ubuntu
-```c++
+<a name=what></a>
+## [GoogleTest / gtest](https://github.com/google/googletest)
+- This is unit testing library for the C++ programming language.
+
+<a name=install></a>
+## Install
+
+<a name=ubuntu></a>
+#### 1. Ubuntu
+```c
 # sudo apt-get install libgtest-dev               //1. Install gtest source files
 # sudo apt-get install cmake
 
@@ -11,19 +23,21 @@
 
 # sudo cp *.a /usr/lib                            //3. copy or symlink libgtest.a and libgtest_main.a to your /usr/lib folder
 ```
-#### 1B. CentOS/Fedora/RedHat
+<a name=centos></a>
+#### 2. CentOS/Fedora/RedHat
 ```c++
 # yum install gtest -y
 ```
 
-### 2. Using Googletest Examples
-#### Example-1 {Testing class}
-- **Code**
+<a name=using></a>
+## Using Googletest
+<a name=class></a>
+#### 1. Testcases for class
 ```c++
 class A{                              //test.cpp
 public:
   int fun(int a, int b) {
-    return (a/b);
+    return a/b;
   }
 };
 
