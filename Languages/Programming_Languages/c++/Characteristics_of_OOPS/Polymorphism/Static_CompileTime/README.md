@@ -50,7 +50,6 @@ typeid
 //return_type operator_keyword  Operator_to_overload (arguments)
 //const A          operator              *           (class object)
 
-//Code
 #include<iostream>
 class A {
   int a;
@@ -79,9 +78,7 @@ int main() {
 - *Assignment operator* is called when an already initialized object is assigned a new value from another existing object.
 - **Code**
 ```c++
-#include<iostream>
-#include<cstring>
-constexpr int arr= 10
+constexpr int arr = 10;
 
 class A{
   int *p;
