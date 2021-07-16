@@ -101,6 +101,6 @@ s socket
 ```
 
 <a name=cases></a>
-## [Read Write Scenario](../Pipe)
+## [Read Write Scenario](/Threads_Processes_IPC/IPC/Pipe)
 - The only difference between pipes and FIFOs is the manner in which they are created and opened. Once opened, I/O on pipes and FIFOs has exactly the same.
 - See Pipe cases
