@@ -1,6 +1,6 @@
 - Types of Static Polymorhism
   - [1. Operator Overloading / Adhoc Polymorhism](#oo)
-    - [Operators which can be overloaded](can)
+    - [Operators which can be overloaded](#can)
     - [Operators which cannot be overloaded](#cannot)
     - Examples
       - [1.1 Overload `*`](#overloadstar)
