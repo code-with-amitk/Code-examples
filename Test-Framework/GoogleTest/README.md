@@ -31,6 +31,7 @@
 
 <a name=using></a>
 ## Using Googletest
+
 <a name=class></a>
 #### 1. Testcases for class
 ```c++
@@ -46,12 +47,16 @@ public:
 #include <gtest/gtest.h>
 
 TEST(DivideTest, TestCase1) {
-             //(Expected_Output, function call)
-    ASSERT_EQ(5, obj.fun(10,2));
-//    ASSERT_EQ(6, fun(10,2));
-//    ASSERT_EQ(18.0, squareRoot(324.0));
-//    ASSERT_EQ(25.4, squareRoot(645.16));
-//    ASSERT_EQ(0, squareRoot(0.0));
+  Solution obj;
+         //(Expected_Output, function call)
+  ASSERT_EQ(5, obj.fun(100,2));                         //Function returning int
+
+  vector<int> input       = {5,10,-5};
+  vector<int> ExpectedOut = {5,10};
+  vector<int> ActualOut   = obj.asteroidCollision(v);   //Function taking vector and returning vector
+  for (int i=0; i < ExpecedtOut.size(); ++i){
+    EXPECT_EQ (ActualOut[i], ExpectedOut[i]);
+  }
 }
 
 int main(int argc, char **argv) {
@@ -61,8 +66,6 @@ int main(int argc, char **argv) {
 
 # vim CMakeLists.txt
 cmake_minimum_required(VERSION 2.6)
-
-# Locate GTest
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
