@@ -6,7 +6,8 @@
       - [1.1 Overload `*`](#overloadstar)
       - [1.2 Overload =](#overloadass)
       - [1.3 Overload +](#overloadplus)
-      - [1.4 Overload <<](#overloadstream) 
+      - [1.4 Overload <<](#overloadstream)
+      - [1.5 Overload operator() / Functor](Operator_Overloading/Functor)
   - [2. Templates/ Generic Programming](#temp)
     - [Template Types](#tempt)
 
