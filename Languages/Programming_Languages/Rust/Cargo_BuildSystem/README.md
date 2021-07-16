@@ -1,5 +1,5 @@
 - [What is Cargo](#what)
-- [Working with Cargo](#work)
+- Working with Cargo
   - [1. Create Project using cargo](#create)
   - [2. Build project with cargo](#build)
 - [Cargo Commands](Cargo_Commands)
@@ -9,9 +9,8 @@
 Rust’s build system and package manager. It downloads dependencies,libraries from `crates.io`(public repo for libraries).
 Rust can also be build using cmake.
 
-<a name=work></a>
-## Working with cargo
 
+## Working with cargo
 <a name=create></a>
 ### 1. Create Project with Cargo
 - Create a project using cargo. It creates `*.toml` and src directory
