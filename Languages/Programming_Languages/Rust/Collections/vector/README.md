@@ -1,24 +1,26 @@
-- [1. What](#what)
-- [2. Operations](#opr)
-  - [2.1 Creating](#create)
-  - [2.2 Initialize](#init)
-  - [2.3 Create & Initialize](#ci)
-  - [2.4 Update](#update)
-  - [2.5 Accessing the vector](#access)
-  - [2.6 length of vector](#len)
-- [3. Storing enum in vector](enumvec)
+- [What](#what)
+- Operations
+  - [1. Create](#create)
+  - [2. Initialize](#init)
+  - [3. Create & Initialize](#ci)
+  - [4. Update](#update)
+  - [5. Accessing the vector](#access)
+  - [6. length of vector](#len)
+  - _7. last element_
+    - [7a. Print](#plast)
+    - [7b. Pop](#pop)
+    - [7c. Append push](#push)
+- [Store enum in vector](enumvec)
 
 
 <a name=what></a>
-## 1. Vector
+## Vector
 - Same as in C++, Storing more than 1 value of same type contigously in memory.
 
-<a name=opr></a>
-## 2. Operations
-
+## Operations
 <a name=create></a>
-### 2.1 Creating a Vector
-```rust
+#### 1. Create
+```rs
   let v:Vec<i32>;               //vector to hold values of type i32
 OR  
   let mut v1 = Vec::new();      //Allocating vector on heap
@@ -27,8 +29,8 @@ OR
 ```
 
 <a name=init></a>
-### 2.2 Initializing a vector
-```rust
+#### 2. Initiale
+```rs
     let v:Vec<i32> = [1,2,3].to_vec();
 OR
     let v2:Vec<i32> = vec![14,25,35];
@@ -38,16 +40,16 @@ OR
 ```
 
 <a name=ci></a>
-### 2.3 Create & Initialize
-```rust
+#### 3. Create & Initialize
+```rs
                   //init_value,size
   let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0
 ```
 
 <a name=update></a>
-### 2.4 Updating a vector
+#### 4. Update
 - Since variables in rust is [immutable by default](/Languages/Programming_Languages/Rust), we need to make them mutable to update.
-```rust
+```rs
     let mut v = Vec::new();
     v.push(5);
     v.push(6);
@@ -62,9 +64,9 @@ OR
 ```
 
 <a name=access></a>
-### 2.5 Accessing a vector
+#### 5. Accessing a vector
 - **A. Sequential access**
-```rust
+```rs
 fn main() {
     let mut v:Vec<i32> = vec![1,2,3];
     for a in v.iter() {
@@ -89,14 +91,39 @@ fn main() {
 ```
 
 <a name=len></a>
-### 2.6 Length of vector
-```rust
+#### 6. Length
+```rs
 let v = vec![1,2,3];
 v.len();        //3
 ```
 
+<a name=plast></a>
+#### 7a. Print Last element of vector
+- Returns the last element of the slice, or None if it is empty.
+```rs
+pub const fn last(&self) -> Option<&T>
+if v.last() > Some(&0) {
+  println!("{}", v.last());
+}
+```
+
+<a name=pop></a>
+#### 7b. Remove last element
+- Removes the last element from a vector and returns it, or None if it is empty.
+```rs
+pub fn pop(&mut self) -> Option<T>
+v.pop()
+```
+
+<a name=push></a>
+#### 7c. Push at end
+- Appends an element to the back of a collection
+```rs
+vec.push(3);
+```
+
 <a name=enumvec></a>
-## 3. Storing enum in vector
+## Storing enum in vector
 - As mentioned above, vector is primarily used to store element of same type but we can store elements of different types in vector by storing enums.
 - if we want to store elements of different types in vector, store [enum](/Languages/Programming_Languages/Rust) in vector.
 ```rust
