@@ -7,7 +7,8 @@
       - [1.2 Overload =](#overloadass)
       - [1.3 Overload +](#overloadplus)
       - [1.4 Overload <<](#overloadstream)
-      - [1.5 Overload operator() / Functor](Operator_Overloading/Functor)
+      - [1.5 Overload ++prefix](#overloadprefix)
+      - [1.6 Overload operator() / Functor](Operator_Overloading/Functor)
   - [2. Templates/ Generic Programming](#temp)
     - [Template Types](#tempt)
 
@@ -171,6 +172,23 @@ int main(){
 
 $ a.out
 31/7/2012
+```
+
+<a name=overloadprefix></a>
+#### 1.5 Overloading ++prefix
+```cpp
+class A{
+  int a;
+public:
+  A(int x):a(x){}
+  const A& operator ++() {
+    ++this->a;
+  }
+};
+int main(){
+  A obj(1);
+  ++obj;
+}
 ```
 
 <a name=temp></a>
