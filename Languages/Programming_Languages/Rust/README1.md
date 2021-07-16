@@ -361,3 +361,4 @@ fn main() {
 
 <a name=tests></a>
 ## [Writing Automated Tests](Automated_Tests)
+- Unit test, Integration tests
