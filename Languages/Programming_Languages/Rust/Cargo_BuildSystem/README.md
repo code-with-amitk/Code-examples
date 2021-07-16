@@ -16,7 +16,7 @@ Rust can also be build using cmake.
 - Create a project using cargo. It creates `*.toml` and src directory
   - toml((Tom’s Obvious, Minimal Language)) is Cargo's configuration format.
   - src directory contains source code
-```rs
+```toml
 $ cargo new hello_cargo             //1. Create a project named hello_cargo
 $ cd hello_cargo; dir
   <File>  Cargo.toml
