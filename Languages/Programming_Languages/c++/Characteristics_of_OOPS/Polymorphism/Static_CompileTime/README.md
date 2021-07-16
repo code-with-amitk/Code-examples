@@ -3,7 +3,10 @@
     - [Operators which can be overloaded](can)
     - [Operators which cannot be overloaded](#cannot)
     - Examples
-      - [1.1 Overloading `*`](#overloadstar)
+      - [1.1 Overload `*`](#overloadstar)
+      - [1.2 Overload =](#overloadass)
+      - [1.3 Overload +](#overloadplus)
+      - [1.4 Overload <<](#overloadstream) 
   - [2. Templates/ Generic Programming](#temp)
     - [Template Types](#tempt)
 
@@ -67,6 +70,109 @@ int main() {
   A obj = obj10*obj20;		//Equivalent to 	obj10.operator*(obj20); 
   obj.disp();				//200
 }
+```
+
+<a name=overloadass></a>
+#### 1.2 Overloading =
+- *Copy constructor* is called when a new object is created from an existing object, as a copy of the existing object.
+- *Assignment operator* is called when an already initialized object is assigned a new value from another existing object.
+- **Code**
+```c++
+#include<iostream>
+#include<cstring>
+constexpr int arr= 10
+
+class A{
+  int *p;
+public:
+  A(){}
+  A(int a):p(new int()){
+    *p = a;
+  }  
+  A& operator = (const A &k) {
+    int *t = new int;
+    t = k.p;                //Deep copy
+    return *this;
+  }
+};
+
+int main(){
+  A obj1(1);
+  //A obj2 = obj1;      //This will call COPY CTR, since new object is getting created from existing object.
+  
+  A obj2;
+  obj2 = obj1;          //obj2.operator=(obj1)  //This calls assignment operator
+}
+```
+
+<a name=overloadplus></a>
+#### 1.3 Overloading +
+- `A& operator+(const A& obj)` ie `Operator+()` cannot return reference.
+  - Because we are creating a local object(A t) in function and that needed to be copied in `A obj3`.
+  - If i return reference `A& operator+(const A& obj)`, local object will get destroyed as function call end and coredump.
+- Code
+```c++
+class A{
+  int a;
+  string s;
+  public:
+    A(int b, string s1):a(b),s(s1){}    //Constructor Initialization list: For initializing member variables of class.
+    A(){}
+    A operator+ (const A& obj){        //A& operator+(const A& obj) will not work, see above
+      A t;
+      t.a = this->a + obj.a;
+      t.s = this->s + obj.s;
+      return t;
+    }
+    void disp(){
+      std::cout<<a;
+      std::cout<<s;
+    }
+};
+
+int main(){
+  A obj1 (1,"test");
+  A obj2 (2,"now");
+  A obj3 = obj1 + obj2;   //obj2.operator+(obj1)
+  obj3.disp();
+}
+```
+
+<a name=overloadstream></a>
+#### 1.4 Overloading <<
+- *What is Output Stream?* Stream used to provide output to Printer, Monitor etc. **cout** is object of output stream class.
+- *Usecase* Dumping Object in Cutomized manner by passing to `<<`. Eg: `cout<<obj`.
+- *Why overloaded operator is friend?* operator overloading function a friend of the class because it would be called without creating an object.
+- _Code:_ Printing Month Date Year in Customized manner
+```c++
+#include <iostream>
+using namespace std;
+
+class Date{
+  int month, date, year;
+public:
+  Date(int m, int d, int y):month(m),date(d),year(yr) {}
+  friend ostream& operator<<(ostream& os, const Date& dt);
+};
+
+//Equivalent
+//return-type function(var = cout, o = obj)
+ostream& operator<<(ostream& var, const Date& o) { 
+  var << o.date << '/' << o.month << '/' << o.year;         //Each call to << passes data to 'cout' which dumps on stdout
+  return var;
+}
+
+int main(){
+  Date obj(31, 7, 2012);                        //Creates object obj (date=31, month=7, year=2013)
+
+  //Equivalent    
+  //  object.function(hidden-self-address, Object-on-which-operation-to-applied)
+  //  cout.(operator<<)(this, obj)
+  cout << obj;                                //Output:   31/7/2012
+}
+
+$ a.out
+31/7/2012
 ```
 
 <a name=temp></a>
