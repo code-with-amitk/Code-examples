@@ -6,9 +6,11 @@
 - [How pipes are internally implemented](#internal)
 - Read Write Scenarios/cases for Pipe/FIFO
   - Write
-    - [1. Write on unopened pipe/fifo](#case1)
+    - [1.1 Write on closed pipe/fifo](#case11)
+    - [1.2 Write to full pipe/fifo](#case12)
   - Read
-    - [2. Read from unopened pipe/fifo](#case2)
+    - [2.1 Read from empty pipe/fifo](#case21)
+    - [2.2 Read when write end closed](#case22)
   - Died
     - [3. Parent reading, child die](#case3)
     - [4. Parent reading, child closes write end of pipe/fifo](#case4)
@@ -107,15 +109,27 @@ pipe([3, 4])                            = 0
 
 ## Read Write Scenarios/cases for Pipe/FIFO
 - **Note pipe is for Parent to child, FIFO for unrelated process also.**
+
 ### Write
-<a name=case1></a>
-#### 1. Write on unopened pipe/fifo
-- SIGPIPE is sent to process.
+<a name=case11></a>
+#### 1.1 Write on closed pipe/fifo
+- Since multiple processes can be associated with 1 FIFO. 
+- If all file descriptors referring to the read end of a pipe have been closed, then a write(2) will cause a SIGPIPE signal to be generated for the calling process.
+  - If the calling process ignores this signal, then write(2) fails with the error EPIPE.
+
+<a name=case12></a>
+#### 1.1 Write to full pipe/fifo
+- If a process attempts to write to a full pipe, then write(2) blocks until sufficient data has been read from the pipe, allowing some space to write. 
 
 ### Read
-<a name=case2></a>
-#### 2. Read from unopened pipe/fifo
-- Parent reading from empty pipe: read() blocks until data is available
+<a name=case21></a>
+#### 2.1 Read from empty pipe/fifo
+- Parent/Process reading from empty pipe: read() blocks until data is available
+
+<a name=case22></a>
+#### 2.2 Read when write end closed
+- Since multiple processes can be associated with 1 FIFO. 
+- If all file descriptors referring to the write end of a pipe/fifo are closed, then an attempt to read() from the pipe will see end-of-file (read() will return 0).
 
 ### Died
 <a name=case3></a>
