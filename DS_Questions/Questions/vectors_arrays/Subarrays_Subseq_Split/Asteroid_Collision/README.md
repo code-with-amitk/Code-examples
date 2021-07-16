@@ -3,7 +3,9 @@
   - [Why Stack](#why)
   - [Logic](#logic)
   - [Complexity](#comp)
-  - [Code](#code)
+  - Code
+    - [C++](#cpp)
+    - [Rust](#rust)
 
 <a name=what></a>
 ## [Asteroid Collision](https://leetcode.com/problems/asteroid-collision/)
@@ -61,8 +63,10 @@ Explanation: -2 moving towards left. 1 towards right. -1 towards left. (1,-1) co
 1,1,1,1,1,1
 ```
 
-<a name=code></a>
 #### Code
+
+<a name=cpp></a>
+#### C++
 ```c++
 class Solution {
 public:
@@ -97,4 +101,41 @@ public:
 };
 
 //Tested using googleTest
+```
+
+<a name=rust></a>
+#### Rust
+```rs
+impl Solution {
+    pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {
+        let mut stack: Vec<i32> = Vec::new();
+        let mut blow:bool;
+
+        for i in asteroids.iter() {
+            blow = false;
+            while stack.len() != 0 && i < &0 && stack.last() > Some(&0) {
+                if stack.last() < Some(&i.abs()) {
+                    stack.pop();
+                    continue;
+                }
+                else if stack.last() == Some(&i.abs()){
+                    stack.pop();
+                }
+                blow = true;
+                break;
+            }//while
+            if !blow {
+                stack.push(*i);
+            }
+        }//for
+        stack        
+    }
+}
+fn main() {
+    let v = vec![-2,1,-1,-2];
+    let out = Solution::asteroid_collision(v);
+    for i in out.iter() {
+        println!("{}",i);
+    }
+}
 ```
