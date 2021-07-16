@@ -4,6 +4,9 @@
   - [2. All tests inside module](#mod)
   - [3. Running tests by name](#byname)
   - [4. Ignoring some tests, ie should not be run](#ignore)
+- Unit Tests, Integration Tests
+  - [1. Unit Tests](#unit)
+  - [2. Integration Tests](#int)
 
 <a name=what></a>
 ## Automated Tests
@@ -14,7 +17,7 @@
 ## Test Examples
 
 <a name=sim></a>
-### 1. Simple function
+#### 1. Simple function
 - _1._ Functions preceded by attribute `#[test]` is a test function. On running [cargo test](/Languages/Programming_Languages/Rust/Cargo_BuildSystem) Rust builds a test runner binary that runs the all functions annotated with the test attribute
 - [assert!(), assert_eq!(), assert_ne!()](/Languages/Programming_Languages/Rust/Functions)
 ```rs
@@ -34,7 +37,7 @@ $ cargo test
 ```
 
 <a name=mod></a>
-### 2. All tests inside module
+#### 2. All tests inside module
 - _2._ Inside all_tests module outside code cannot be seen, we use glob here so anything we define in the outer module is available to this all_tests module.
 ```rs
 struct rect {
@@ -69,7 +72,7 @@ $ cargo test
 ```
 
 <a name=byname></a>
-### 3. Running tests by name
+#### 3. Running tests by name
 ```rs
 pub fn add_two(a: i32) -> i32 {
     a + 2
@@ -100,7 +103,7 @@ $ cargo test one                        //Will run all test cases having one in 
 ```
 
 <a name=ignore></a>
-### 4. Ignoring some tests, ie should not be run
+#### 4. Ignoring some tests, ie should not be run
 - ignore attribute will not run the test.
 ```rs
 #[test]
@@ -116,4 +119,25 @@ fn expensive_test() {
 
 $ cargo test
 $ cargo test -- --ignored             // If we want to run only the ignored tests
+```
+
+## Unit Tests, Integration Tests
+<a name=unit></a>
+### 1. Unit Tests
+- These tests are placed in same src file where source code is placed.
+- The convention is to create a module named **tests** in each file to contain the test functions and to annotate the module with cfg(test).
+- `#[cfg(test)]` annotation on the tests module only runs with `cargo test` command not with `cargo build`, saving Compile time.
+- Also tests module annotated with `#[cfg(test)]` is not included in compiled artifact hence space not increased.
+
+<a name=int></a>
+### 2. Integration Tests
+- These are placed in DIFFERENT DIRECTORY. These don’t need the `#[cfg(test)]` annotation.
+- These tests use our library in the same way any other code would, which means they can only call functions that are part of your library’s public API. ie `pub fn fun()..`
+- We need to create a tests directory at the top level of our project directory, next to src. We can then make as many test files as we want to in this directory, and Cargo will compile each of the files as an individual crate.
+```rs
+project
+  |- src
+  |- tests      //Cargo will look for integration test files in this directory
+      |- test1
+      |- test2
 ```
