@@ -4,13 +4,13 @@
 - [HTTP Message Format](#format)
 
 <a name=what></a>
-## HTTP (Hyper Text Transfer Protocol)
+### What is HTTP (Hyper Text Transfer Protocol)
 - Protocol working client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
 - [Design Issues](/Networking/OSI-Layers/README.md)
 
 <a name=2v3></a>
-## HTTPv1 vs HTTPv2 vs HTTPv3
+### HTTPv1 vs HTTPv2 vs HTTPv3
 ||Http-1.1|Http-2|Http-3|
 |---|---|---|---|
 |Year|1997|2015|2019|
@@ -23,7 +23,7 @@
     - *Solution:* HTTP-3 using UDP. Every packet on different UDP.
 
 <a name=adv></a>
-## Advatanges, Disadvatanges/pitfalls of HTTP
+### Advatanges, Disadvatanges/pitfalls of HTTP
 - **Advantages of HTTP**
   - *1. Flexible.* Whenever there are additional capabilities needed by an application, HTTP has the capability to extend. These can include Flash players and Acrobat reader.
   - *2. Less connections.* With HTTP2 and HTTP3 multiple requests can be sent in 1 packet.
@@ -35,7 +35,7 @@
   - *3.* HTTPv2 does not offer reliable exchange (without retry logic).
 
 <a name=format></a>
-## Format
+### Format
 > [Method](./HTTP_Methods.md), [Request-Header](./Request_Response_Header.md), Request-URI: Web page or resource
 ```html
   METHOD space REQUEST_HEADER space REQUEST_URI space HTTP_VERSION crlf
