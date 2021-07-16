@@ -1,11 +1,41 @@
+- [What is HTTP](#what)
+- [HTTPv1 vs HTTPv2 vs HTTPv3](#2v3)
+- [Advatanges, Disadvatanges/pitfalls of HTTP](#adv)
+- [HTTP Message Format](#format)
+
+<a name=what></a>
 ## HTTP (Hyper Text Transfer Protocol)
-- Layer-5 working on client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
+- Protocol working client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
 - [Design Issues](/Networking/OSI-Layers/README.md)
-- [HTTP Versions](HTTPv1_v2_v3.md)
-- [Advatanges, Disadvatanges/pitfalls of HTTP](Advantages_Disadv_of_HTTP.md)
 
-### Format
+<a name=2v3></a>
+## HTTPv1 vs HTTPv2 vs HTTPv3
+||Http-1.1|Http-2|Http-3|
+|---|---|---|---|
+|Year|1997|2015|2019|
+|Transport Protocol|TCP|TCP|UDP|
+|Connections|HTTP client(Browser) makes different connection for every request with server|Sends multiple requests on 1 connection only|Sends packets over UDP|
+|Bandwidth consumption|More|Less. Less headers are sent|Even less|
+
+- **Problems in HTTP-2**
+  - *1. Sending Multiple requests in 1 packet:* if you send req-1(page1), req-2(page2), req-3(page3) in 1 packet and that packet is lost. None of page can be loaded, Everything comes to halt. We need to send whole packet again. This is called HEAD OF LINE BLOCKING.
+    - *Solution:* HTTP-3 using UDP. Every packet on different UDP.
+
+<a name=adv></a>
+## Advatanges, Disadvatanges/pitfalls of HTTP
+- **Advantages of HTTP**
+  - *1. Flexible.* Whenever there are additional capabilities needed by an application, HTTP has the capability to extend. These can include Flash players and Acrobat reader.
+  - *2. Less connections.* With HTTP2 and HTTP3 multiple requests can be sent in 1 packet.
+  - *3. Network BW:* Less dues to less connections as HTTP2, HTTP3 sends multiple requests in 1 connection.
+  - *4. Error reporting:* Reports errors without closing the TCP connection.
+- **Disadvantages of HTTP**
+  - *1.* Can only be used for point to point connection.
+  - *2.* Does not have push capabilities as in [Long Pooling or server sent Events](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods).
+  - *3.* HTTPv2 does not offer reliable exchange (without retry logic).
+
+<a name=format></a>
+## Format
 > [Method](./HTTP_Methods.md), [Request-Header](./Request_Response_Header.md), Request-URI: Web page or resource
 ```html
   METHOD space REQUEST_HEADER space REQUEST_URI space HTTP_VERSION crlf
