@@ -104,6 +104,8 @@ public:
 <a name=rust></a>
 #### Rust
 ```rs
+struct Solution{}      //Since impl is associated with struct
+
 impl Solution {
     pub fn asteroid_collision(asteroids: Vec<i32>) -> Vec<i32> {
         let mut stack: Vec<i32> = Vec::new();
@@ -129,6 +131,24 @@ impl Solution {
         stack        
     }
 }
+
+#[cfg(test)]                               //Automated tests run with `cargo test`
+mod all_tests {
+    use super::*;
+
+    #[test]
+    fn test1 () {
+        let mut v = vec![5,10];
+        assert_eq!(v, Solution::asteroid_collision([5,10,-5].to_vec()));
+        v = [10].to_vec();
+        assert_eq!(v, Solution::asteroid_collision([10,2,-5].to_vec()));
+        v = [-2,-1,-2].to_vec();
+        assert_eq!(v, Solution::asteroid_collision([-2,-1,1,-2].to_vec()));
+        v = [-2,-2].to_vec();
+        assert_eq!(v, Solution::asteroid_collision([-2,1,-1,-2].to_vec()));
+    }
+}
+
 fn main() {
     let v = vec![-2,1,-1,-2];
     let out = Solution::asteroid_collision(v);
@@ -136,4 +156,10 @@ fn main() {
         println!("{}",i);
     }
 }
+
+$ cargo test
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+$ cargo build
+./main.rs
 ```
