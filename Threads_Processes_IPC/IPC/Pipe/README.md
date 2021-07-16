@@ -1,14 +1,21 @@
 - [What is pipe](#what)
 - [Advantages of pipes](#adv)
 - [How pipe works](#work)
-- [Code](#code)
+- Code
   - [1. One Child. Parent reading child writing](#one)
 - [How pipes are internally implemented](#internal)
-- [Read/Write Cases](#cases)
+- Read Write Scenarios/cases for Pipe/FIFO
+  - Write
+    - [1. Write on unopened pipe/fifo](#case1)
+  - Read
+    - [2. Read from unopened pipe/fifo](#case2)
+  - Died
+    - [3. Parent reading, child die](#case3)
+    - [4. Parent reading, child closes write end of pipe/fifo](#case4)
 
 <a name=what></a>
 ## Pipe
-- **What?** System call create a pipe for one-way communication between parent and child
+- System call create a pipe for one-way communication between parent and child
 
 <a name=adv></a>
 ## Advantages of pipes
@@ -35,9 +42,8 @@ Child Writing{
 }
 ```
 
-<a name=code></a>
-## Code
 
+## Code
 <a name=one></a>
 ### 1. One Child. Parent reading child writing
 ```c  
@@ -97,12 +103,25 @@ pipe([3, 4])                            = 0
 [pid 2604796] write(1, "6\n", 2)        = 2
 ```
 
-<a name=cases></a>
-## Cases
-- **Read**
-  - _Parent reading from empty pipe:_ read() blocks until data is available
-  - _Parent waiting on read()_
-    - _1. child dies:_ Write end of pipe is closed, parent will exit
-    - _2. child closes write close(`fd[1]`):_ Still child has not exited hence parent will wait on waitpid() for child to exit
-- **Write**
-  - _Process attempts to write to full pipe:_ write() blocks until sufficient data has been read from pipe
+## Read Write Scenarios/Cases for Pipe/FIFO
+
+## Read Write Scenarios/cases for Pipe/FIFO
+- **Note pipe is for Parent to child, FIFO for unrelated process also.**
+### Write
+<a name=case1></a>
+#### 1. Write on unopened pipe/fifo
+- SIGPIPE is sent to process.
+
+### Read
+<a name=case2></a>
+#### 2. Read from unopened pipe/fifo
+- Parent reading from empty pipe: read() blocks until data is available
+
+### Died
+<a name=case3></a>
+#### 3. Parent reading, child die
+- Write end of pipe is closed, parent will exit.
+
+<a name=case4></a>
+#### 4. Parent reading, child closes write end of pipe/fifo
+- child closes write end close(`fd[1]`) Still child has not exited hence parent will wait on waitpid() for child to exit.
