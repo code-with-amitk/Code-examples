@@ -4,6 +4,8 @@
   - [2. fifo is blocking](#block)
 - [FIFO vs Pipe](#comp)
 - [Code](#code)
+- [Read Write Scenarios/Cases](#cases)
+  
 
 <a name=what></a>
 ## Named Pipe (FIFO)
@@ -97,3 +99,8 @@ l symbolic link
 p pipe
 s socket
 ```
+
+<a name=cases></a>
+## [Read Write Scenario](../Pipe)
+- The only difference between pipes and FIFOs is the manner in which they are created and opened. Once opened, I/O on pipes and FIFOs has exactly the same.
+- See Pipe cases
