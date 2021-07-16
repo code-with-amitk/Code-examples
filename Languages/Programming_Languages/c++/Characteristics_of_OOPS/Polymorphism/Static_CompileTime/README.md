@@ -8,7 +8,8 @@
       - [1.3 Overload +](#overloadplus)
       - [1.4 Overload <<](#overloadstream)
       - [1.5 Overload ++prefix](#overloadprefix)
-      - [1.6 Overload operator() / Functor](Operator_Overloading/Functor)
+      - [1.6 Overload postfix++](#overloadpostfix)
+      - [1.7 Overload operator() / Functor](Operator_Overloading/Functor)
   - [2. Templates/ Generic Programming](#temp)
     - [Template Types](#tempt)
 
@@ -188,6 +189,24 @@ public:
 int main(){
   A obj(1);
   ++obj;
+}
+```
+
+<a name=overloadpostfix></a>
+#### 1.6 Overloading postfix++
+- The compiler uses the int argument to distinguish between the prefix and postfix increment operators.
+```cpp
+class A{
+  int a;
+public:
+  A(int x):a(x){}
+  const A& operator ++(int) {
+    ++this->a;
+  }
+};
+int main(){
+  A obj(1);
+  obj++;
 }
 ```
 
