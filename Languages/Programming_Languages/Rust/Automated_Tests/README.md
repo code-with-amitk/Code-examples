@@ -2,6 +2,8 @@
 - [Test Examples](#ex)
   - [1. Simple function](#sim)
   - [2. All tests inside module](#mod)
+  - [3. Running tests by name](#byname)
+  - [4. Ignoring some tests, ie should not be run](#ignore)
 
 <a name=what></a>
 ## Automated Tests
@@ -64,4 +66,54 @@ mod all_tests {
     }
 }
 $ cargo test
+```
+
+<a name=byname></a>
+### 3. Running tests by name
+```rs
+pub fn add_two(a: i32) -> i32 {
+    a + 2
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn add_two_and_two() {
+        assert_eq!(4, add_two(2));
+    }
+
+    #[test]
+    fn add_three_and_two() {
+        assert_eq!(5, add_two(3));
+    }
+
+    #[test]
+    fn one_hundred() {
+        assert_eq!(102, add_two(100));
+    }
+}
+
+$ cargo test add_three_and_two          //Will only run test=add_three_and_two
+$ cargo test one                        //Will run all test cases having one in them
+```
+
+<a name=ignore></a>
+### 4. Ignoring some tests, ie should not be run
+- ignore attribute will not run the test.
+```rs
+#[test]
+fn it_works() {
+    assert_eq!(2 + 2, 4);
+}
+
+#[test]
+#[ignore]
+fn expensive_test() {
+    ..
+}
+
+$ cargo test
+$ cargo test -- --ignored             // If we want to run only the ignored tests
 ```
