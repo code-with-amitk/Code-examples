@@ -17,7 +17,7 @@
 ## Vector
 - Same as in C++, Storing more than 1 value of same type contigously in memory.
 
-## Operations
+## [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
 <a name=create></a>
 #### 1. Create
 ```rs
