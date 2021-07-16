@@ -1,5 +1,5 @@
 - [Asteroid Collision](#what)
-- [Approach-1, Stack](#apr1)
+- Approach-1, Stack
   - [Why Stack](#why)
   - [Logic](#logic)
   - [Complexity](#comp)
@@ -32,9 +32,7 @@ Ouput: {-2,-2};
 Explanation: -2 moving towards left. 1 towards right. -1 towards left. (1,-1) collide and both vanished. -2,-2 both moving towards left will never collide.
 ```
 
-<a name=apr1></a>
 ### Approach-1. Stack
-
 <a name=why></a>
 #### Why Stack?
 - Questions where we have to move backward while moving forward in array should be dealt with stack.
