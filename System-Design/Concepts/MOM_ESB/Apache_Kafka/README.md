@@ -36,7 +36,7 @@ Kafka could be used in front of Logstash to receive large data volumes and allow
 
 ## Configuring kafka to communicate over JSON
 <a name=install></a>
-### 1. Install kafka and zookeeper
+### 1. Install kafka and [zookeeper](/System-Design/Concepts/Zookeeper)
 ```c
 # tar -zxf ZooKeeper-3.4.9.tar.gz
 export PATH=$PATH:$<Zookeeper-Install-Path>/zookeeper-3.4.9/bin
