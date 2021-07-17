@@ -1,6 +1,6 @@
 - [What is Kafka](#what)
 - [Terms: Producer, Consumer, Topic, Broker, Offset](#terms)
-- [Kafka Application/Use Cases](#usecases)
+- Kafka Application/Use Cases
   - [1. MOM](#mom)
   - [2. Analysis & Stream Processing](#analysis)
   - [3. Log Aggregation](#la)
@@ -17,7 +17,6 @@
 - _Broker_ A Kafka server that manages one or more Topics.
 - _Offset_ A unique ID for a message within a Partition. This is how Kafka maintains the ordering and sequencing of messages.
 
-<a name=usecases></a>
 ## Kafka Application/Use Cases
 <a name=mom></a>
 ### 1. Messaging
