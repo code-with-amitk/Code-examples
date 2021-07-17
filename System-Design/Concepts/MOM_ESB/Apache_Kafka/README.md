@@ -4,10 +4,12 @@
   - [1. MOM](#mom)
   - [2. Analysis & Stream Processing](#analysis)
   - [3. Log Aggregation](#la)
+- Configuring kafka to communicate over JSON
+  - [1. Install kafka and zookeeper](#install)
 
 <a name=what></a>
 ## Kafka
-- Kafka(written in Java) is open source project
+- Kafka(written in Java) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB).
 
 <a name=terms></a>
 ## Terms
@@ -30,4 +32,14 @@ Apache Spark reads messages from the various topics, transforms the data (map/re
 <a name=la></a>
 ### 3. Log Aggregation
 Application provides logs to Kafka topics, which sends them to log management applications(eg ElasticSearch, Logstash, Kibana). 
-Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages
+Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages.
+
+## Configuring kafka to communicate over JSON
+<a name=install></a>
+### 1. Install kafka and zookeeper
+```c
+# tar -zxf ZooKeeper-3.4.9.tar.gz
+export PATH=$PATH:$<Zookeeper-Install-Path>/zookeeper-3.4.9/bin
+# tar -zxf kafka_2.11-0.10.1.1.tgz			//
+export PATH=$PATH:<Kafka-Install-Path>/zookeeper-3.4.9/bin
+```
