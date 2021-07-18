@@ -1,3 +1,0 @@
-## Modes of Data Exchange
-
-
