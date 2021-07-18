@@ -1,5 +1,6 @@
 - IKEv2 Phases
-  - [IKEv2 Phase1 / IKE_SA](#phase1)
+  - [Phase1 / IKE_SA](#phase1)
+  - [Phase2 / CHILD_SA](#phase2)
 
 ## IKEv2 Phases
 - IKEv2 comprises of 2 phases
@@ -15,7 +16,7 @@
   - Allows the peers to perform some housekeeping functions, including peer liveliness detection, removing SA relationships, and reporting error messages.
 
 <a name=phase1></a>
-### IKEv2 Phase1 / IKE_SA
+### Phase1 / IKE_SA
 - Creation of IKE_SA, IKE SA is used to protect Phase-2 Negotiations. 
 - [Payloads](../../IKEv1/IKEv1_Phase1/Main_Mode/)
 ```c
@@ -44,7 +45,7 @@ From SKEYSEED Encryption, Authentication Keys are generated
 ```
 
 <a name=phase2></a>
-### IKEv2 Phase2 / CHILD_SA
+### Phase2 / CHILD_SA
 - Authenticates Previous Messages. Exchange certificates(Optional)
 - Authentication is done using [Pre-shared-keys or Certificates](/Networking/OSI-Layers/Layer-3/VPN/Part1_IKE)
 ```c
