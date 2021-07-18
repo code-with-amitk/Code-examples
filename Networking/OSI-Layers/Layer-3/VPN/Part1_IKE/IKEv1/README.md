@@ -1,7 +1,7 @@
 - [IKEv1 Phases](#phases)
 - IKEv1 Phase-1
   - [Main Mode](#mm)
-  - [or Aggressive Mode](#am)
+  - OR [Aggressive Mode](#am)
 
 <a name=phases></a>
 ## IKEv1 Phases
