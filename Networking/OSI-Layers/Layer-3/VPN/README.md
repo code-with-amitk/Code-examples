@@ -2,9 +2,7 @@
 - [Terms](#terms)
 - [Types of VPN](Types_of_VPN)
 - [Opensource VPN Implementations](#os)
-- Establishment of VPN Tunnel
-  - [Part-1 IKE](#part1)
-  - [Part-2 IPSec](#part2)
+- [Establishment of VPN Tunnel](#estb)
 
 
 <a name=what></a>
@@ -20,14 +18,11 @@ Cookie, DOI(Domain on Interpretation), Nonce, PFS(Perfect Forward Secrecy), SA(S
 Libreswan/strongswan, openvpn
 
 
+<a name=estb></a>
 ## Establishment of VPN Tunnel
-<a name=part1></a>
-### [Part-1 IKE](Part1_IKE) 
-Establish encryption keys which is used to secure data sent on VPN tunnel.
-
-<a name=part2></a>
-### [Part-2 IPSec](Part2_IPSec)
-- Encrypt data & send in Tunnel or Transport mode.
+- VPN tunnel is established in 2 parts.
+  - **[Part-1 IKE](Part1_IKE):** Establish encryption keys which is used to secure data sent on VPN tunnel.
+  - **[Part-2 IPSec](Part2_IPSec):** Encrypt data & send in Tunnel or Transport mode.
 
 - [key lifetimes](Terms)
 - **[Packet Flow:](Part2_IPSec/Packet_Flow)** IPSec packet comes to interface, goes out
