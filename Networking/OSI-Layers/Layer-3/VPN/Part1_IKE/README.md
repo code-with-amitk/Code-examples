@@ -1,4 +1,4 @@
-- [What is IKE](#what)
+- IKE / Internet Key Exchange (UDP src,dst port:500)
 - [IKE Authentication Methods](#auth)
 - [IKE Headers and Payloads](IKE_Headers_Payloads)
 - [Disadvantages of IKE](#dis)
@@ -8,13 +8,13 @@
 - [IKEv1](IKEv1)
 - [IKEv2](IKEv2)
 
-<a name=what></a>
-## IKE / Internet Key Exchange (UDP src,dst port:500)
-- Protocol used for establishment of [Security Association (SA)](../Terms).
+## IKE
+- Protocol used for establishment of [Security Association (SA)](/Networking/OSI-Layers/Layer-3/VPN/Terms).
 - IKE comprises of 3 protocols:
   - *1. Oakley:* Defines series of Key Exchanges
   - *2. SKEME(Secure Key Exchange Mechanism for Internet)*. Provides Anonymity, Repudity, Key refreshment
   - *3. ISAKMP (Internet Security Association and Key Management Protocol)* ISAKMP protocol is a framework for exchanging encryption keys and security association payloads.
+- [IKE Key Lifetimes](/Networking/OSI-Layers/Layer-3/VPN/Terms)
 
 <a name=auth></a>
 ## IKE Authentication Methods
