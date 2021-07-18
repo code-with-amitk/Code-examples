@@ -1,6 +1,7 @@
 - [IKEv1 Phases](#phases)
 - IKEv1 Phase-1
   - [Main Mode](#mm)
+  - [or Aggressive Mode](#am)
 
 <a name=phases></a>
 ## IKEv1 Phases
@@ -12,7 +13,15 @@
 |Purpose|Exchange keys to protect Phase-2 Traffic|<ul><li>Negotiates encryption & authentication algorithms to be used to encrypt data traffic</li></ul> <ul><li>Neogitates method to be used to encrypt the data traffic:ESP or AH</li></ul><ul><li>Negotiates **[Proxy IDs](ProxyID)** that identify the traffic to be encrypted</li></ul><ul><li>Optional [Perfect Forward Secrecy (PFS)](../../Terms), is negotiated</li></ul>|
 
 ## IKEv1 Phase-1
-- This is carried either in main mode or aggressive mode
+- This is carried either in main mode or aggressive mode. [IKE SA Example](../../../Terms/Security_Association/)
+```console
+          |    Main Mode(Recommended)                   |   Aggressive Mode
+          |---------------------------------------------|-----------------------------------             
+Bandwidth | Contains 6 Messages. Consumes more BW       | Contains 3 messages. Quicker than Main Mode
+Secure    |More. Identification payloads sent encrypted | Identification payloads sent unecrypted
+Use case  |                                             | building VPNs from client workstations to VPN gateways
+```
+
 <a name=mm></a>
 ### [IKEv1 Main Mode](https://www.cloudshark.org/captures/ff740838f1c2)
 - Authentication is done using [Pre-shared-keys or Certificates](/Networking/OSI-Layers/Layer-3/VPN)
@@ -101,3 +110,28 @@ Peer-1: Calculates PVT KEY                                               Peer-2:
 
                    IKE SA Established  [DH Key Pair] [Encryption Algo] [Hash Algo]
 ```                                                                 
+
+<a name=am></a>
+### [Aggressive Mode](https://www.cloudshark.org/captures/e51f5c8a6b24)
+- See Main Mode
+- Authentication is done using [Pre-shared-keys or Certificates](/Networking/OSI-Layers/Layer-3/VPN/Part1_IKE)
+```c
+  Peer-1(Initiator)                                                                 Peer-2(Responder)
+      --(Message-1) 
+        a. Proposes Encryption,Auth Algos in Transform Payload(Same as Main Mode Message-1)
+        b. Starts DH Key Exchange Process, random no          (Same as Main Mode Message-3)
+        c. Sends Identification,Hash payload   //IKE Identity (Same as Main Mode Message-5) -->
+                                                                            Authenticated Peer-1
+  Calculates Public,Pvt Key          //Same as Main Mode//                  Calculates Public,Pvt Key
+
+        <--  Message-2 
+         a. Selected Encryption,Auth Algos in Transform Payload (Same as Main-mode Message-2) 
+         b. Calculated Public Key                               (Same as Main-mode Message-4)
+         c. Identification,Hash payload   //IKE Identity        (Same as Main Mode Message-6) --
+         
+  Authenticated Peer-2
+  
+       --(Message-3) Encrypted[I confirms the exchange] --------------------------->
+   
+    IKE SA Established for securing Phase-2 [DH Key Pair] [Encryption Algo] [Hash Algo]
+```
