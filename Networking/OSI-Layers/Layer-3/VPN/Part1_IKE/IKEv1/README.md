@@ -1,4 +1,4 @@
-- [IKEv1 Phases](#phases)
+- IKEv1 Phases
 - IKEv1 Phase-1
   - [Main Mode](#mm)
   - OR [Aggressive Mode](#am)
@@ -6,7 +6,6 @@
   - [Quick Mode](#qm)
 
 
-<a name=phases></a>
 ## IKEv1 Phases
 - IKEv1 is carried in 2 phases
 
