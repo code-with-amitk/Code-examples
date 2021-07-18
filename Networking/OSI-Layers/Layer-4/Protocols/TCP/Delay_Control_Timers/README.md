@@ -1,2 +1,0 @@
-## Delay Control Timers
-
