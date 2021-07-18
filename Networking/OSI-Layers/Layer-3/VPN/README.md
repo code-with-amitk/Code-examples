@@ -1,4 +1,5 @@
 - [What is VPN](#what)
+- [Terms](#terms)
 - Types of VPN
   - [1. Policy Based](#pb)
   - [2. Route Based](#rb)
@@ -7,13 +8,18 @@
     - [3.2 Full Mesh](#fm)
     - [3.3 Partial Mesh or MultiPoint](#pm)
   - [4. Remote Access](#ra)
+- [Opensource VPN Implementations](#os)
+
 
 <a name=what></a>
 ## VPN / Virtual Private Network
 - Encrypted connection over the Internet between devices. Eg: An employee working from home connects securely to his office servers.
 
-## Types of VPN
+<a name=terms></a>
+## [Terms](Terms)
+Cookie, DOI(Domain on Interpretation), Nonce, PFS(Perfect Forward Secrecy), SA(Security Association), SP(Security Policy), SPI(Security Parameter Index), NAT Traversal, XAuth
 
+## Types of VPN
 <a name=pb></a>
 ### 1. Policy-Based VPN
 - Policy is defined (Eg: based on source IP, destination IP, application, and respective to- and from-zones).
@@ -94,9 +100,10 @@ HomeUser3   -----------------------
   - *1. IPSec VPN:* Establishes Layer3 Tunnel between Host and Office. Does encryption.
   - *2. SSL VPN:* Layer-5 browser is secured using SSL.
 
+<a name=os></a>
+## [Opensource VPN Implementations](OpenSource_VPN_server_Clients)
+Libreswan/strongswan, openvpn
 
-- **[Terms](Terms):** Cookie, DOI(Domain on Interpretation), Nonce, PFS(Perfect Forward Secrecy), SA(Security Association), SP(Security Policy), SPI(Security Parameter Index), NAT Traversal, XAuth
-- **[Opensource VPN Implementations](OpenSource_VPN_server_Clients):** Libreswan/strongswan, openvpn
 ### Establishment of VPN Tunnel
 - **2 Parts**
   - _[Part-1 IKE:](Part1_IKE)_ Establish encryption keys which is used to secure data sent on VPN tunnel.
