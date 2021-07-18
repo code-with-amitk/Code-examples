@@ -1,4 +1,5 @@
 - [What is IKE](#what)
+- [IKE Authentication Methods](#auth)
 - [IKE Headers and Payloads](IKE_Headers_Payloads)
 - [Disadvantages of IKE](#dis)
 - IKEv1 vs IKEv2
@@ -14,6 +15,15 @@
   - *1. Oakley:* Defines series of Key Exchanges
   - *2. SKEME(Secure Key Exchange Mechanism for Internet)*. Provides Anonymity, Repudity, Key refreshment
   - *3. ISAKMP (Internet Security Association and Key Management Protocol)* ISAKMP protocol is a framework for exchanging encryption keys and security association payloads.
+
+<a name=auth></a>
+## IKE Authentication Methods
+- Any of IKE identity can be used for IKE Authentication. Examples:
+  - _[1. PSK, 2. Certificates](/Networking/OSI-Layers/Layer-3/Security/AAA_Authentication_Authorization_Accounting/Authentication/Type_Of_Authentication)_
+  - _3. IP address:_ For site-to-site VPNs, end system's(not gateway) IP Address.
+  - _4. hostname:_ End system's hostnames.
+  - _5. Distinguished name:_ Full name that is used in certificates to identify a unique user. Example “CN=user, DC=company, DC=com”
+  - _6. IKE-ID:_ Either a shared or group IKE ID that can be used among many different peers.
 
 <a name=dis></a>
 ## Disadvantages of IKE
@@ -51,14 +61,3 @@
 - **IKEv2** Total: 4 messages
   - Phase-1(2 messages)
   - Phase-2(2 messages)
-
-
-- **IKE Versions:** IKE has 2 versions **[IKEv1](IKEv1)** and **[IKEv2](IKEv2)**.
-  - [IKEv1 vs IKEv2, Advatanges of IKEv2 over IKEv1](IKEv1_vs_IKEv2)
-- **IKE Phases:**
-
-|Phase-1/IKE-SA|Phase-2/IPSec-SA|
-|---|---|
-|Keys exchange to encrypt Phase-2 keys|Keys exchanges to encrypt actual data traffic|
-
-- [IKE Authentication](IKE_Authentication): Pre-shared keys, Certificates
