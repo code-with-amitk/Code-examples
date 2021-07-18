@@ -23,6 +23,3 @@ Libreswan/strongswan, openvpn
 - VPN tunnel is established in 2 parts.
   - **[Part-1 IKE](Part1_IKE):** Establish encryption keys which is used to secure data sent on VPN tunnel.
   - **[Part-2 IPSec](Part2_IPSec):** Encrypt data & send in Tunnel or Transport mode.
-
-- [key lifetimes](Terms)
-- **[Packet Flow:](Part2_IPSec/Packet_Flow)** IPSec packet comes to interface, goes out
