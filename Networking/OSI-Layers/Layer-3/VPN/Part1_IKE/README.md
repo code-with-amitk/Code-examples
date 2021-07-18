@@ -1,10 +1,11 @@
 - [What is IKE](#what)
 - [IKE Headers and Payloads](IKE_Headers_Payloads)
+- [Disadvantages of IKE](#dis)
 - IKEv1 vs IKEv2
   - [Feature Differences](#fd)
   - [Difference in Number of Messages](#nom)
 - [IKEv1](IKEv1)
-- [IKEv1](IKEv2)
+- [IKEv2](IKEv2)
 
 <a name=what></a>
 ## IKE / Internet Key Exchange (UDP src,dst port:500)
@@ -13,6 +14,12 @@
   - *1. Oakley:* Defines series of Key Exchanges
   - *2. SKEME(Secure Key Exchange Mechanism for Internet)*. Provides Anonymity, Repudity, Key refreshment
   - *3. ISAKMP (Internet Security Association and Key Management Protocol)* ISAKMP protocol is a framework for exchanging encryption keys and security association payloads.
+
+<a name=dis></a>
+## Disadvantages of IKE
+- _1. Setting 1000's of VPN's/sec takes times, consumes resources_
+  - Although 1 IKE negotiation might not require too many resources
+- _2. If orgnization does not want keys to expire_
 
 ## IKEv1 vs IKEv2
 <a name=fd></a>
