@@ -6,6 +6,9 @@
 - IPSec Packet Headers
   - [Authentication Header / AH](#ah)
   - OR [ESP(Encapsulating Security Payload)](#esp)
+- Packet Flow
+  - [Inbound](#in)
+  - [Outbound](#out)
 
 <a name=what></a>
 ## IPSec
@@ -93,9 +96,33 @@ Magic No2 > |XOR| > bbb
   - **Why ICV is placed at end?**
     - Advantage in a hardware implementation: HMAC can be calculated as the bits are going out over the network interface and appended to the end. This is why Ethernet and other LANs have their CRCs in a trailer, rather than in a header.
     - With AH, the packet has to be buffered and the signature computed before the packet can be sent, potentially reducing the number of packets/sec that can be sent.
-  
 
-
-
-- **[Packet Flow:](Packet_Flow)** IPSec packet comes to interface, goes out
+## Packet Flow
+<a name=in></a>
+#### Inbound Packet Flow: IPSec pkt comes in from n/w
+```c
+    if(proto == IPPROTO_AH | IPPROTO_ESP){
+        //Check SPI & Get matching SA
+        if(SA == transport){
+            //Decrypt Send to N/w Layer
+        }else{
+            //Remove Outer IP Header
+            //Decrypt.    send to N/W
+        }
+    } 
+```
+<a name=out></a>
+#### Outbound: IPSec pkt comes on interface to be routed
+```c
+    if (IPSec){
+        Check Src & Dst in SP for outgoing Interface.
+        If (IPSec_none)    By Pass    
+        if(SP=IPSec_discard)    Drop
+        if(Apply_IPSec){
+            //Get SA
+            if(mode == Tunnel){    //Paste New IP Hdr    }
+            else if(mode==Transport)
+        }
+    } 
+```
 
