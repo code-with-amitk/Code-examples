@@ -8,7 +8,7 @@
 - [IKEv1](IKEv1)
 - [IKEv2](IKEv2)
 
-## IKE
+### IKE
 - Protocol used for establishment of [Security Association (SA)](/Networking/OSI-Layers/Layer-3/VPN/Terms).
 - IKE comprises of 3 protocols:
   - *1. Oakley:* Defines series of Key Exchanges
@@ -17,7 +17,7 @@
 - [IKE Key Lifetimes](/Networking/OSI-Layers/Layer-3/VPN/Terms)
 
 <a name=auth></a>
-## IKE Authentication Methods
+### IKE Authentication Methods
 - Any of IKE identity can be used for IKE Authentication. Examples:
   - _[1. PSK, 2. Certificates](/Networking/OSI-Layers/Layer-3/Security/AAA_Authentication_Authorization_Accounting/Authentication/Type_Of_Authentication)_
   - _3. IP address:_ For site-to-site VPNs, end system's(not gateway) IP Address.
@@ -26,14 +26,14 @@
   - _6. IKE-ID:_ Either a shared or group IKE ID that can be used among many different peers.
 
 <a name=dis></a>
-## Disadvantages of IKE
+### Disadvantages of IKE
 - _1. Setting 1000's of VPN's/sec takes times, consumes resources_
   - Although 1 IKE negotiation might not require too many resources
 - _2. If orgnization does not want keys to expire_
 
-## IKEv1 vs IKEv2
+### IKEv1 vs IKEv2
 <a name=fd></a>
-### Feature Differences
+#### Feature Differences
 
 ||IKEv1/IPSec-SA|IKEv2/Child-SA(Simple)|
 |---|---|---|
@@ -52,7 +52,7 @@
 |[Latency](/System-Design/Concepts/Terms)|High(Because [IKEv1 has 9 messages](..))|Low(Because [IKEv2 has 4 messages](..))|
   
 <a name=nom></a>
-### Difference in Number of Messages
+#### Difference in Number of Messages
 - **IKEv1** Main Mode:9 Messages. Aggressive Mode: 6 Messages
   - Phase-1(Main or Aggressive mode)
     - Main Mode: 6 messages
