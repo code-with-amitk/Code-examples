@@ -1,9 +1,9 @@
  - [Why TCP](#why)
  - [TCP Characteristics](#char)
  - State Transition Diagram
-  - [1. Connection Establishment: 3 way handshake](#estb)
-  - _2. Data Flow_
-  - [3. Connection Tear Down](#tear)
+   - [1. Connection Establishment: 3 way handshake](#estb)
+   - _2. Data Flow_
+   - [3. Connection Tear Down](#tear)
  
  <a name=why></a>
  ## TCP / Transmission Control Protocol
