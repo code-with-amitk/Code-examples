@@ -1,14 +1,14 @@
 - Operations
-  - [1. Create](#create)
-  - [2. Initialize](#init)
-  - [3. Create & Initialize](#ci)
-  - [4. Update](#update)
-  - [5. Accessing the vector](#access)
-  - [6. length of vector](#len)
-  - _7. last element_
-    - [7a. Print](#plast)
-    - [7b. Pop](#pop)
-    - [7c. Append push](#push)
+  - [Create](#create)
+  - [nitialize](#init)
+  - [Create & Initialize](#ci)
+  - [Update](#update)
+  - [Accessing the vector](#access)
+  - [length of vector](#len)
+  - _last element_
+    - [1. Print](#plast)
+    - [2. Pop](#pop)
+    - [3. Append push](#push)
 - [Store enum in vector](enumvec)
 
 
@@ -16,7 +16,7 @@
 - Same as in C++, Storing more than 1 value of same type contigously in memory.
 
 <a name=create></a>
-#### 1. Create
+#### Create
 ```rs
   let v:Vec<i32>;               //vector to hold values of type i32
 OR  
@@ -26,7 +26,7 @@ OR
 ```
 
 <a name=init></a>
-#### 2. Initiale
+#### Initiale
 ```rs
     let v:Vec<i32> = [1,2,3].to_vec();
 OR
@@ -37,14 +37,14 @@ OR
 ```
 
 <a name=ci></a>
-#### 3. Create & Initialize
+#### Create & Initialize
 ```rs
                   //init_value,size
   let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0
 ```
 
 <a name=update></a>
-#### 4. Update
+#### Update
 - Since variables in rust is [immutable by default](/Languages/Programming_Languages/Rust), we need to make them mutable to update.
 ```rs
     let mut v = Vec::new();
@@ -61,7 +61,7 @@ OR
 ```
 
 <a name=access></a>
-#### 5. Accessing a vector
+#### Accessing a vector
 - **A. Sequential access**
 ```rs
 fn main() {
@@ -88,14 +88,14 @@ fn main() {
 ```
 
 <a name=len></a>
-#### 6. Length
+#### Length
 ```rs
 let v = vec![1,2,3];
 v.len();        //3
 ```
 
 <a name=plast></a>
-#### 7a. Print Last element of vector
+#### 1. Print Last element of vector
 - Returns the last element of the slice, or None if it is empty.
 ```rs
 pub const fn last(&self) -> Option<&T>
@@ -105,7 +105,7 @@ if v.last() > Some(&0) {
 ```
 
 <a name=pop></a>
-#### 7b. Remove last element
+#### 2. Remove last element
 - Removes the last element from a vector and returns it, or None if it is empty.
 ```rs
 pub fn pop(&mut self) -> Option<T>
@@ -113,7 +113,7 @@ v.pop()
 ```
 
 <a name=push></a>
-#### 7c. Push at end
+#### 3. Push at end
 - Appends an element to the back of a collection
 ```rs
 vec.push(3);
