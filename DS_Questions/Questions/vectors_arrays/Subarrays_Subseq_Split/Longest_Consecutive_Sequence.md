@@ -3,9 +3,14 @@
   - [Logic](#logic1)
   - [Complexity](#complexity1)
   - [Code](#code1)
+- Approach-2, Sort
+  - [Logic](#logic2)
+  - [Complexity](#complexity2)
+  - Code
+    - [C++](#cpp2)
 
 ## [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence)
-- Given an unsorted array of integers, return the length of the longest consecutive elements sequence.
+- Given an unsorted array of integers, return the length of the longest consecutive elements sequence, Ignore Duplicates.
 - Elements in the subsequence are consecutive integers, the consecutive numbers can be in any order(ie does not need to be ascending or decending).
 - Examples
 ```c
@@ -75,4 +80,92 @@ public:
     return long_cons_seq;
   }
 };
+```
+
+### Approach-2, Sort the array
+<a name=logic2></a>
+#### Logic
+- _1._ Sort the array
+- _2._ Start from index=1. 
+  - Check if Prev_elem != present_elem   //Ignore duplicate
+    - if present_elem == prev_elem+1
+      - increment present_long_cont_seq
+    - if present_ele != prev
+      - store count into long_con_seq
+```c
+{1, 9, 3, 1, 10, 4, 20, 2}
+
+1,1,2,3,4,9,10,20                     //1   O(nlogn)
+0 1 2 3 4 5 6 6 7
+
+i=1   v[0]==v[1]  //move to next ele
+i=2   v[2]!=v[1]                  present_cont_seq
+        v[2] = v[1]+1               2
+i=3     v[3] = v[2]+1               3
+...     
+```
+<a name=complexity2></a>
+#### Complexity
+- Time: O(nlogn) + O(n)
+- Space: O(1)
+
+#### Code
+<a name=cpp2></a>
+- **C++**
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& v) {
+        
+    if (!v.size() || v.size()==1)
+      return v.size();
+        
+    int long_cons_seq = 1, present_long_cons_seq=1;        
+        
+    sort (v.begin(), v.end());
+
+    for (int i = 1; i < v.size(); i++) {
+        if (v[i] != v[i-1]) {
+            if (v[i] == v[i-1]+1) {
+                present_long_cons_seq++;
+            } else {
+                long_cons_seq = max(long_cons_seq, present_long_cons_seq);
+                present_long_cons_seq = 1;
+            }
+        }//if
+    }//for
+    long_cons_seq = max(long_cons_seq, present_long_cons_seq);
+    return long_cons_seq;        
+    }
+};
+
+//main.cpp
+#include"test.cpp"
+#include <gtest/gtest.h>
+
+TEST(Collision, case1) {
+             //(Expected_Output, function call)
+  Solution obj;
+  vector<int> input = {-100,9,7,5,8,6,100};  EXPECT_EQ(5, obj.longestConsecutive(input));
+  input = {100,4,200,1,3,2};        EXPECT_EQ(4, obj.longestConsecutive(input));
+  input = {0,3,7,2,5,8,4,6,0,1};    EXPECT_EQ(9, obj.longestConsecutive(input));
+  input = {1, 9, 3, 10, 4, 20, 2};  EXPECT_EQ(4, obj.longestConsecutive(input));
+  input = {};                       EXPECT_EQ(0, obj.longestConsecutive(input));
+  input = {1};                      EXPECT_EQ(1, obj.longestConsecutive(input));
+  input = {1,10};                   EXPECT_EQ(1, obj.longestConsecutive(input));
+  input = {0,-1};                   EXPECT_EQ(2, obj.longestConsecutive(input));
+}
+int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+
+//CMakeLists.txt
+cmake_minimum_required(VERSION 2.6)
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+add_executable(runTests main.cpp)
+target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+
+# cmake .; make; runTests
 ```
