@@ -1,6 +1,6 @@
 - Operations
   - [Create](#create)
-  - [nitialize](#init)
+  - [Initialize](#init)
   - [Create & Initialize](#ci)
   - [Update](#update)
   - [Accessing the vector](#access)
