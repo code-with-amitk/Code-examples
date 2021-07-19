@@ -1,4 +1,3 @@
-- [What](#what)
 - Operations
   - [1. Create](#create)
   - [2. Initialize](#init)
@@ -13,11 +12,9 @@
 - [Store enum in vector](enumvec)
 
 
-<a name=what></a>
-## Vector
+## [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
 - Same as in C++, Storing more than 1 value of same type contigously in memory.
 
-## [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
 <a name=create></a>
 #### 1. Create
 ```rs
