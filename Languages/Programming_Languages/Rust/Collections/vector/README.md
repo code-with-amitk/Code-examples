@@ -94,6 +94,7 @@ let v = vec![1,2,3];
 v.len();        //3
 ```
 
+#### Last Element
 <a name=plast></a>
 #### 1. Print Last element of vector
 - Returns the last element of the slice, or None if it is empty.
