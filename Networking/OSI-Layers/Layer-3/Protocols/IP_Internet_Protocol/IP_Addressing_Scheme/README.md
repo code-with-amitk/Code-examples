@@ -102,4 +102,4 @@ _Why gaps in subnet mask not valid?_
 192.168.7.11000000 -> 192.168.7.192/26
 192.168.7.00000000 -> 192.168.7.0/26
 ```
-<img src=subnetting.png width=500></a>
+<img src=subnetting.png width=900></a>
