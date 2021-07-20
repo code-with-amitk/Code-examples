@@ -1,9 +1,12 @@
 - Map
-  - [1. insert](#mins)
-  - [2. erase](#merase)
+  - Operations
+    - [1. insert](#mins)
+    - [2. erase](#merase)
 - Set
-  - [1. Create / Constructors](#scre)
-  - [2. Insert](#sins)
+  - Operations
+    - [1. Create / Constructors](#scre)
+    - [2. Insert](#sins)
+  - [Implementing set](set)
 
 
 
