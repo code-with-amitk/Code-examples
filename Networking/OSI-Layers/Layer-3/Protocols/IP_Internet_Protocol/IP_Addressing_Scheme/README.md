@@ -2,10 +2,10 @@
 - Types of IP Addressing
   - [1. Classful Addressing](#ful)
   - [2. Classless Addressing](#les)
-    - 2.1 Terms
-      - [1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix](#cidr)
-      - [2. Network ID / Network Address](#nidr)
-      - [3. Broadcast Address](#baddr)
+    - [1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix](#cidr)
+    - [2. Network ID / Network Address](#nidr)
+    - [3. Broadcast Address](#baddr)
+    - [Finding Network,Broadcast Address using Prefix](#nid)
 
 ## IPV4 Addressing Scheme
 - This is used to identify Host and network part from an IP address.
@@ -33,16 +33,31 @@ Suitable For    Large Org              Medium Org          Small Org
 <a name=les></a>
 ## 2. Classless Addressing
 - No portion for n/w & hosts is separated. Subnet mask/netmask is used to get n/w and host parts
-### 2.1 Terms
+
 <a name=cidr></a>
-#### 1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix: 
+### 1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix
 - Number of ON bits in 32  bit address going from left to right. Eg:
-```c
+```console
   11111111.11111111.11111111.00000000    =   255.255.255.0   =    /24   called CIDR/Netmask/subnet Mask/Prefix
 ```
+
 <a name=nidr></a>
-#### 2. Network ID / Network Address 
+### 2. Network ID / Network Address 
 - Address that identifies subnet or host.  Used to refer all hosts on that n/w. Eg: 46.0.0.0
+
 <a name=baddr></a>
-#### 3. Broadcast Address 
+### 3. Broadcast Address 
 - This is an IP Address that allows information to be sent to all machines ON THAT SUBNET rather than specific host. All hosts are members of this group. Eg: 46.255.255.255
+
+<a name=nid></a>
+#### Finding Network,Broadcast Address using Prefix
+- N/W Address = IPAddress & Prefix
+- Broadcast Address = IPAddress | ~Prefix
+```console
+  IP Address          CIDR            N/W Part     This Host    No of possible hosts   Broadcast Address
+192.165.5.130   255.255.255.0(/24)   192.165.5.0     130          2pow8 = 256          192.165.5.130 | 0.0.0.255 = 192.165.5.255
+192.168.1.15    255.255.254.0(/23)   192.168.0.0     15           2pow9 = 512          192.168.1.15 | 0.0.1.255 = 192.168.1.255
+192.168.0.3     255.255.255.1(/25)   192.168.0.0     3            2pow7 = 128          192.168.0.3 | 0.0.0.127 = 192.168.0.127
+             192 .168 .0   .00000011
+             1111.1111.1111.10000000
+```
