@@ -12,7 +12,14 @@
     - [Finding Network,Broadcast Address using Prefix](#nid)
 - [Subnetting](#subnetting)
 - [Supernetting /Prefix Aggregation/ Route Aggregation/ Route Summarization](#supernetting)
-
+- Address Types
+  - [A. Inside Network](#inside)
+	  - [Why my Home Router IP is 192.168.0.1?](#hrouter)
+	  - [Inside Local IP Address](#inlocal)
+	  - [Inside Global IP Address](#inglobal)
+  - [B. Outside Network](#outside)	
+	  - [Inside Global Address](#insideg)	
+	  - [Outside Global Address](#outsideg)
 
 ## IPV4 Addressing Scheme
 - This is used to identify Host and network part from an IP address.
@@ -131,3 +138,32 @@ _Why gaps in subnet mask not valid?_
 11111111.11111111.
 11111100.00000000
 ```
+
+## Address Types
+<a name=inside></a>
+### A. Inside Network
+- IETF decided to give 192.168.x.x to nodes on private/closed networks. These IPs cannot be public because 2<sup>32</sup> = 4294967296 addresses would soon deplete if given to Public IPs.
+- Class C can have 2<sup>16</sup> hosts = 65536 IP Addresses. 
+
+<a name=hrouter></a>
+#### Why my Home Router IP is 192.168.0.1? 
+- In home less than even 50 devices are connected. Most broadband devices are connected on n/w {192.168.0.0 - 192.168.0.254} means you can connect upto 254 devices.
+
+<a name=inlocal></a>
+#### Inside Local IP Address
+- IP address assigned to Computer on Inside network
+
+<a name=inglobal></a>
+#### Inside Global IP Address
+- IP address that is provided as a result of the translation process on the router and it represents the inside local or the range of inside local addresses.
+
+<a name=outside></a>
+### B. Outside Network
+- All Network outside Private Network scope.
+
+<a name=outsidel></a>
+#### Outside Local Address 
+- Translated address that is placed on packet in outside network.
+<a name=outsideg></a>
+#### Outside Global Address 
+- IP address assigned to a host on the outside network by the host owner as a result of translation and comes from a globally routable address range.
