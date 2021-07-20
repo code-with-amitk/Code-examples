@@ -4,6 +4,10 @@
 - IPV4 Addressing Scheme
   - [1. Classful Addressing](#ful)
   - [2. Classless Addressing](#les)
+    - 2.1 Terms
+      - [1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix](#cidr)
+      - [2. Network ID / Network Address](#nidr)
+      - [3. Broadcast Address](#baddr)
 
 ### [IPv4](IPv4)
 
@@ -44,9 +48,12 @@
 ### 2. Classless Addressing
 - No portion for n/w & hosts is separated. Subnet mask/netmask is used to get n/w and host parts
 #### 2.1 Terms
-- **1. CIDR(CLASSLESS INTERDOMAIN ROUTING) or NETMASK or SUBNET MASK or PREFIX:** Number of ON bits in 32  bit address going from left to right. Eg:
+<a name=cidr></a>
+- **1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix:** Number of ON bits in 32  bit address going from left to right. Eg:
 ```c
   11111111.11111111.11111111.00000000    =   255.255.255.0   =    /24   called CIDR/Netmask/subnet Mask/Prefix
 ```
-- **2. NETWORK ID or NETWORK ADDRESS:** Address that identifies subnet or host.  Used to refer all hosts on that n/w. Eg: 46.0.0.0
-- **3. BROADCAST ADDRESS:** This is an IP Address that allows information to be sent to all machines ON THAT SUBNET rather than specific host. All hosts are members of this group. Eg: 46.255.255.255
+<a name=nidr></a>
+- **2. Network ID / Network Address:** Address that identifies subnet or host.  Used to refer all hosts on that n/w. Eg: 46.0.0.0
+<a name=baddr></a>
+- **3. Broadcast Address:** This is an IP Address that allows information to be sent to all machines ON THAT SUBNET rather than specific host. All hosts are members of this group. Eg: 46.255.255.255
