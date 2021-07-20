@@ -2,7 +2,8 @@
 - Types of IP Addressing
   - [1. Classful Addressing](#ful)
   - [2. Classless Addressing](#les)
-    - [1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix](#cidr)
+    - [1. Subnet Mask / Prefix / CIDR(Classless Interdomain Routing) / Netmask](#cidr)
+      - [Classes(A,B,C) & their Subnet masks](#csub)
     - [2. Network ID / Network Address](#nidr)
     - [3. Broadcast Address](#baddr)
     - [Finding Network,Broadcast Address using Prefix](#nid)
@@ -32,25 +33,35 @@ Suitable For    Large Org              Medium Org          Small Org
 
 <a name=les></a>
 ## 2. Classless Addressing
-- No portion for n/w & hosts is separated. Subnet mask/netmask is used to get n/w and host parts
+- No portion for n/w & hosts is separated. Subnet mask/netmask is used to get n/w and host parts. 
+- It means with subnet mask decides how many hosts are possible on a network.
 
 <a name=cidr></a>
-### 1. CIDR(Classless Interdomain Routing) / Netmask / Subnet mask / Prefix
-- Number of ON bits in 32  bit address going from left to right. Eg:
+### 1. Subnet Mask / Prefix / CIDR(Classless Interdomain Routing) / Netmask
+- This defines Number of available hosts on a network.
+- Number of ON bits in 32 bit address going from left to right. ON bits represents N/W Part. 
 ```console
-  11111111.11111111.11111111.00000000    =   255.255.255.0   =    /24   called CIDR/Netmask/subnet Mask/Prefix
+11111111.11111111.11111111.00000000    =   255.255.255.0   =    /24   called CIDR/Netmask/subnet Mask/Prefix
+```
+<a name=csub></a>
+- **Classes & their Subnet masks**
+```c
+Class                 A                 B                 C                 D       E
+Possible Hosts      2pow24            2pow16            2pow8               NA      NA
+Subnet mask       255.0.0.0(/8)   255.255.0.0(/16)    255.255.255.0(/24)
+Network part      1st 8 bits        1st 16 bits         1st 24 bits
 ```
 
 <a name=nidr></a>
 ### 2. Network ID / Network Address 
-- Address that identifies subnet or host.  Used to refer all hosts on that n/w. Eg: 46.0.0.0
+- Address that identifies subnet.  Used to refer all hosts on that n/w. Eg: 46.0.0.0
 
 <a name=baddr></a>
 ### 3. Broadcast Address 
 - This is an IP Address that allows information to be sent to all machines ON THAT SUBNET rather than specific host. All hosts are members of this group. Eg: 46.255.255.255
 
 <a name=nid></a>
-#### Finding Network,Broadcast Address using Prefix
+#### Finding Network, Broadcast Address using Prefix
 - N/W Address = IPAddress & Prefix
 - Broadcast Address = IPAddress | ~Prefix
 ```console
