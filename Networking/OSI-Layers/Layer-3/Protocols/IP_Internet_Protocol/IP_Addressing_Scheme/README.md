@@ -4,7 +4,8 @@
   - [1. Classful Addressing](#ful)
     - [Valid IPv4 Addresses](#ip4valid)
   - [2. Classless Addressing](#les)
-    - [1. Subnet Mask / Prefix / CIDR(Classless Interdomain Routing) / Netmask](#cidr)
+    - [1. Subnet Mask / Prefix / Netmask](#submask)
+      - [CIDR(Classless Interdomain Routing) Notation](#cidr)
       - [Classes(A,B,C) & their Subnet masks](#csub)
       - [Valid Subnet masks](#valid)
     - [2. Network ID / Network Address](#nidr)
@@ -59,13 +60,20 @@ Suitable For    Large Org              Medium Org          Small Org
 - No portion for n/w & hosts is separated. Subnet mask/netmask is used to get n/w and host parts. 
 - It means with subnet mask decides how many hosts are possible on a network.
 
-<a name=cidr></a>
-### 1. Subnet Mask / Prefix / CIDR(Classless Interdomain Routing) / Netmask
-- This defines Number of available hosts on a network.
-- Number of ON bits in 32 bit address going from left to right defines n/w address. 0's defines host.
+<a name=submask></a>
+### 1. Subnet Mask / Prefix / Netmask
+Number of ON bits in 32 bit address going from left to right defines n/w address. 1's defines network and 0's defines host.
 ```console
-11111111.11111111.11111111.00000000    =   255.255.255.0   =    /24   called CIDR/Netmask/subnet Mask/Prefix
+11111111.11111111.11111111.00000000    =   255.255.255.0   
 ```
+
+<a name=cidr></a>
+#### CIDR(Classless Interdomain Routing) Notation
+Representation in which address is written with a suffix indicating number of on bits in subnet mask
+```c
+11111111.11111111.11111111.00000000    =   255.255.255.0   =    /24   called CIDR notation
+```
+
 <a name=csub></a>
 #### Classes & their Subnet masks
 ```c
