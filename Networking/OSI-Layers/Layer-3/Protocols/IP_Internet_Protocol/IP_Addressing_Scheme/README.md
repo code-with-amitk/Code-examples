@@ -9,6 +9,7 @@
     - [3. Broadcast Address](#baddr)
     - [Finding Network,Broadcast Address using Prefix](#nid)
 - [Subnetting](#subnetting)
+- [Supernetting /Prefix Aggregation/ Route Aggregation/ Route Summarization](#supernetting)
 
 
 ## IPV4 Addressing Scheme
@@ -91,7 +92,7 @@ _Why gaps in subnet mask not valid?_
 - **How?** Take some bits from host part & make them into n/w. 
 ```c
     IP              Network-Part    Host Part       Number of Hosts
- 192.168.7.0/24       24 Bits         8 bits      2pow8 = 255-2 = 253
+ 192.168.7.0/24       24 Bits        8 bits       2pow8 = 255-2 = 253
  
 - Take 2 bits from Host Part, and include in n/w part
 
@@ -103,3 +104,18 @@ _Why gaps in subnet mask not valid?_
 192.168.7.00000000 -> 192.168.7.0/26
 ```
 <img src=subnetting.png width=900></a>
+
+<a name=supernetting></a>
+## Supernetting
+- Taking bits from network part and creating Larger number of hosts.
+- **Why?** Most of class A, B addresses are given out. And in class C number of available hosts are limited 28=256.
+```c
+    IP              Network-Part    Host Part       Number of Hosts
+ 192.168.64.0/24       24 Bits        8 bits      2pow8 = 255-2 = 253
+ 
+- Take 2 bits from Network Part, and include in host part 
+ 
+ 192.168.64.0/22       22 Bits        10 bits      2pow10 = 1024-2 = 1022
+11111111.11111111.
+11111100.00000000
+```
