@@ -1,7 +1,7 @@
 ## SET <KEY>
 
 ```
-/usr/include/c++/8/profile/set.h
+
 namespace std _GLIBCXX_VISIBILITY(default){
     namespace __profile{
 
