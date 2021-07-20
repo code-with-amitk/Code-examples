@@ -1,33 +1,30 @@
-- [Terminology](#terms)
+- Terminology
   - NAT
-- [1. Router](#router)
-  - [1.1 Feilds changed before forwarding](#feilds)
-  - [1.2 Drawbacks of traditional Routers](#drawback)
-- [2. Routing table](table)
-  - [2.1 Associated Terms](#terms)
-  - [2.2 Example Routing Table](#example)
+- Router
+  - [1. Feilds changed before forwarding](#feilds)
+  - [1. Drawbacks of traditional Routers](#drawback)
+- Routing table
+  - [2. Associated Terms](#terms)
+  - [2. Example Routing Table](#example)
 
 
-<a name=terms></a>
 ## Terminology
   - [NAT](NAT)
 
-<a name=router></a>
-## 1. Router
+## Router
 - Router is a networking device that forwards packets into n/w. When packet comes to a router it reads dstIP & finds on which interface packet should be sent.
 - **Packet Processing** stateless, promiscuous
 
 <a name=feilds></a>
-### 1.1 Feilds changed before forwarding
+### 1. Feilds changed before forwarding
   - TTL: Decremented by 1
   - Checksum: To check header has error or not.
 
 <a name=drawback></a>
-### 1.2 Drawbacks of traditional Routers
+### 2. Drawbacks of traditional Routers
 - _1. Does not recognize security attacks/threats:_ Plain layer-3 devices, just forwards packet based on dstIP, hence network is very vunerable to threats.
 - _2. Seperate firewall for security need to be added_
 
-<a name=table></a>
 ## 2. Routing Table/Routing inforamtion base(RIB)
 - This contains the routes to particular network destinations & metrics(distances) associated with those routes.
 - Atleast RT will contain these 3 coloumns:
@@ -36,7 +33,7 @@
   - next hop/gateway: Address of the next router to which the packet is to be sent.
 
 <a name=terms></a>
-### 2.1 Terms associated with Routing Table
+### 1. Terms associated with Routing Table
 - **Metric/Cost/Distance:** This field is filled by routing protocol. Route with lowest Metric should be chosen. Factors for calculation of Metric: Number of Hops, Speed of Path, Packet Loss, Link Utilization, Latency, BW, Throughput, Load etc.
 - **Route Type**
   - Static Route: Administrator adds routes to Routing table.    To Add Static route of Cisco ASA:           #ip  route   dest_ip     n/w_mask           next_hop       
@@ -44,7 +41,7 @@
   - Dynamic Route: Networking Protocols populate these routes to routing table.
 
 <a name=example></a>
-### 2.2 Example Routing Table
+### 2. Example Routing Table
 ```c
  [D](18)--------172.16.1.0----------(1)[A](1)----------172.16.2.0----------(2)[B](1)---------192.168.1----------(2)[C]172.16.4.1
  
