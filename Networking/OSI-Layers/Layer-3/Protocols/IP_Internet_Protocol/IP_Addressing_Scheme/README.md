@@ -1,6 +1,8 @@
+- [Good Mircosoft Article](https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting)
 - IP Addressing Scheme
 - Types of IP Addressing
   - [1. Classful Addressing](#ful)
+    - [Valid IPv4 Addresses](#ip4valid)
   - [2. Classless Addressing](#les)
     - [1. Subnet Mask / Prefix / CIDR(Classless Interdomain Routing) / Netmask](#cidr)
       - [Classes(A,B,C) & their Subnet masks](#csub)
@@ -19,8 +21,7 @@
 ## Types of IP Addressing
 <a name=ful></a>
 ## 1. Classful Addressing
-- Each IP Address is assigned to a class
-- 0.0.0.0 - Invalid Address(N/W ID), 255.255.255.255 - Broadcast Address
+- Each IP Address is assigned to a class.
 - class A, B addresses are exhausted. Class C addresses are given to new organizations
 ```console
   Class        A                       B                   C                D(MULTICAST)      E(experimental)
@@ -34,6 +35,17 @@ Start Address   0.0.0.0                128.0.0.0           192.0.0.0       224.0
 End Address     127.255.255.255        191.255.255.255     223.255.255.255 239.255.255.255     255.255.255.255
 Suitable For    Large Org              Medium Org          Small Org
 ```
+<a name=ip4valid></a>
+#### Valid IPv4 Addresses
+- First and last address in any network or subnet can't be assigned to any individual host. Eg: 192.168.123.0 and 192.168.123.255
+- Because binary addresses with a host portion of all ones and all zeros are invalid.
+  - 0 address is invalid bcoz it's specifies a network not host. 192.168.123.0 is N/W not host
+  - 255 address is invalid bcoz it's used to broadcast a message to every host on a network. 192.168.123.255 is broadcast address
+```c
+0.0.0.0 Invalid Address(N/W ID)
+255.255.255.255 - Broadcast Address
+```
+  - 
 
 <a name=les></a>
 ## 2. Classless Addressing
