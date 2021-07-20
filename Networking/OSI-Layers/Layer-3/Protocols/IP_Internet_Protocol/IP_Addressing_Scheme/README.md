@@ -18,13 +18,16 @@
 - 0.0.0.0 - Invalid Address(N/W ID), 255.255.255.255 - Broadcast Address
 - class A, B addresses are exhausted. Class C addresses are given to new organizations
 ```console
-    Class             A                       B                   C               D(MULTICAST)              E(experimental)
-  N/W part            a                       a.b                 a.b.c           224.0.0.0-239.255.255.255
-  Host part           b.c.d                   c.d                 d
-    Range           0-127.x.x.x               128-191.x.x.x       192-223.x.x.x   224-239.x.x.x             240-255.x.x.x     
-  No of hosts      2pow24=1677716-2           2pow16=65536-2      2pow8=256-2
-                  N/W ID,broadcast removed
-  Suitable For      Large Org                 medium Org          Small Org
+  Class        A                       B                   C                D(MULTICAST)      E(experimental)
+N/W part       a                       a.b                 a.b.c            NA                 NA
+Host part      b.c.d                   c.d                 d                NA                 NA
+Range          0-127.x.x.x             128-191.x.x.x       192-223.x.x.x    224-239.x.x.x      240-255.x.x.x     
+No of hosts    2pow24=1677716-2        2pow16=65536-2      2pow8=256-2      NA                 NA
+               N/W-ID,broadcast removed
+Start Bits      0                      10                  110             1110                1111
+Start Address   0.0.0.0                128.0.0.0           192.0.0.0       224.0.0.0           240.0.0.0
+End Address     127.255.255.255        191.255.255.255     223.255.255.255 239.255.255.255     255.255.255.255
+Suitable For    Large Org              Medium Org          Small Org
 ```
 
 <a name=les></a>
