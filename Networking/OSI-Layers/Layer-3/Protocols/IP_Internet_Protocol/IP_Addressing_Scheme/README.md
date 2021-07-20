@@ -8,7 +8,7 @@
     - [2. Network ID / Network Address](#nidr)
     - [3. Broadcast Address](#baddr)
     - [Finding Network,Broadcast Address using Prefix](#nid)
-- Subnetting
+- [Subnetting](#subnetting)
 
 
 ## IPV4 Addressing Scheme
@@ -102,4 +102,4 @@ _Why gaps in subnet mask not valid?_
 192.168.7.11000000 -> 192.168.7.192/26
 192.168.7.00000000 -> 192.168.7.0/26
 ```
-<img src=subnetting></a>
+<img src=subnetting.png width=500></a>
