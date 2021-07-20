@@ -8,6 +8,8 @@
     - [2. Network ID / Network Address](#nidr)
     - [3. Broadcast Address](#baddr)
     - [Finding Network,Broadcast Address using Prefix](#nid)
+- Subnetting
+
 
 ## IPV4 Addressing Scheme
 - This is used to identify Host and network part from an IP address.
@@ -82,3 +84,22 @@ _Why gaps in subnet mask not valid?_
              192 .168 .0   .00000011
              1111.1111.1111.10000000
 ```
+
+<a name=subnetting></a>
+## Subnetting
+- Breaking big network into smaller sub networks.
+- **How?** Take some bits from host part & make them into n/w. 
+```c
+    IP              Network-Part    Host Part       Number of Hosts
+ 192.168.7.0/24       24 Bits         8 bits      2pow8 = 255-2 = 253
+ 
+- Take 2 bits from Host Part, and include in n/w part
+
+ 192.168.7.0/26       26 Bits         8 bits      2pow6 = 64 -2 = 62
+//From taken 2 bits we can create 4 new sub networks. 
+192.168.7.01000000 -> 192.168.7.64/26
+192.168.7.10000000 -> 192.168.7.128/26
+192.168.7.11000000 -> 192.168.7.192/26
+192.168.7.00000000 -> 192.168.7.0/26
+```
+<img src=subnetting></a>
