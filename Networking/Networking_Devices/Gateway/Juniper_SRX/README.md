@@ -1,5 +1,4 @@
-## Juniper SRX
-
+**Juniper SRX**
 - [History](#history)
 - [Terminology](#Terminology)
 - [SRX Series](#series)
