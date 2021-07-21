@@ -1,5 +1,4 @@
-## Application Level Gateway
-- **What** 
+**Application Level Gateway** 
   - More advanced Firewall. Gateway can look into Application layer's packet.
   - Gateway can see which inside the HTTP packet. For Eg:
     - *1.* HTTP is used for Web browsing(allow this)
