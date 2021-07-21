@@ -8,6 +8,9 @@ STL / Standard template library
     - [1.2 Container Adopters](#adop)
     - [1.3 Associative Sorted/Ordered](#or)
     - [1.4 Associative UnSorted/Unordered](#unor)
+  - [2. Algorithms](#algo)
+  - [3. Iterators](#itr)
+  - [4. Functors](#func)
 
 ## STL
 <a name=what></a>
@@ -38,28 +41,23 @@ Data structures for storing data.
 - These are not full container classes, but classes that provide a specific interface relying on an object of one of the container classes. Ex:	
   - stack, queue, priority_queue
 
-<a name=seq></a>
+<a name=or></a>
 #### 1.3 Associative Sorted/Ordered, Complexity:O(nlogn)
 - Implemented using Self-Balanced RBT. All elements are always sorted means All elements are in order(ascending/descending). Ex:
   - `set<key>, multiset<key>, map<key,value>, multimap<key,value>`
 
-<a name=seq></a>
+<a name=unor></a>
 #### 1.4 Associative unsorted/unordered, Complexity:Best O(1), Worst O(n)
 - Implemented using Hash tables. Means elements are not stored in any order(ascending or descending). Only fast insert/delete/search operations matter. Ex:
   - `unordered_set<key>, unordered_multiset<key>, unordered_map<key,value>, unordered_multimap<key,value>`
 
-
-|Type|Information|Example|Complexity|
-|---|---|---|---|
-|**1.Seqeunce Containers**|Elements stored contigiuosly, accessed sequentially. Provides better cache locality.|vectors, deque, list, forward_list, array|O(n)|
-|**2.Container Adopters**|These are not full container classes, but classes that provide a specific interface relying on an object of one of the container classes|stack, queue, priority_queue|Depends on use case|
-|**3a.Associative Sorted/Ordered**|<ul><li>Implemented using Self-Balanced RBT.</li></ul><ul><li>All elements are always sorted means All elements are in order(ascending/descending)</li></ul>|`set<key>, multiset<key>, map<key,value>, multimap<key,value>`|O(logn)|
-|**3b.Associative UnSorted/Unordered**|<ul><li>Implemented using Hash tables</li></ul><ul><li>Means elements are not stored in any order(ascending or descending). Only fast insert/delete/search operations matter.</li></ul>|`unordered_set<key>, unordered_multiset<key>, unordered_map<key,value>, unordered_multimap<key,value>`|Best:O(1), Worst:O(n)|
-
-### 2. Algorithms: 
+<a name=algo></a>
+### 2. Algorithms
 - This is logic to work on containers. algorithms works via iterators over containers
 
+<a name=itr></a>
 ### 3. Iterators
 - This is interface to iterate through containers.
 
+<a name=func></a>
 ### 4. Functors/Function Objects
