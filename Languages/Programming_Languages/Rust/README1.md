@@ -24,6 +24,7 @@
 - [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
 - [Writing Automated Tests](#tests)
 - [Custom Programs](#custom)
+- [Design Guidelines](#dg)
 
 <a name="What"></a>
 ## What/Why Rust
@@ -372,3 +373,6 @@ fn main() {
 <a name=custom></a>
 ## [Custom Programs](Custom_Programs)
 - minigrep, 
+
+<a name=dg></a>
+## [Design Guidelines](Design_Guidelines)
