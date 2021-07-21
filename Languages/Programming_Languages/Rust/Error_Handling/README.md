@@ -1,21 +1,19 @@
-- [1. What](#what)
-  - [1.1 Recoverable Errors with Result](#recerrors)
-    - [1.1.1 open() a file and read content](#open)
-    - [1.1.2 Providing error cases in open()](#err)
-    - [1.1.3 Returning `enum Result<T,E>` from function / Propagating Errors](#ret)
-      - [1.1.3.1 ? operator](#operator)
-  - [1.2 UnRecoverable Errors with panic = assert](#panic)
+- [1. Recoverable Errors with Result](#recerrors)
+  - [1.1 open() a file and read content](#open)
+  - [1.2 Providing error cases in open()](#err)
+  - [1.3 Returning `enum Result<T,E>` from function / Propagating Errors](#ret)
+    - [1.3.1 ? operator](#operator)
+- [2. UnRecoverable Errors with panic = assert](#panic)
 
-<a name=what></a>
-# 1. Error Handling in Rust
+# Error Handling in Rust
 - Rust considers every error in 2 categories.
   - _a._ Recoverable Errors with Result
   - _b._ Unrecoverable Errors with panic
 
 <a name=recerrors></a>
-## 1.1 Recoverable Errors with Result
+## 1. Recoverable Errors with Result
 - rust defines few of functions to return `enum Result<T,E>` when error happens.
-```rust
+```rs
 enum Result<T, E> {
     Ok(T),              //T: Type of value returned in Success case
     Err(E),             //E: Type of error returned in failure case
@@ -23,12 +21,12 @@ enum Result<T, E> {
 ```
 
 <a name=open></a>
-### 1.1.1 open() for opening a file
+### 1.1 open() for opening a file
 - _1._ res would be of type Result<T, E>
 - _2._ Check file exists or not using `match` 
 - _3._ **unwrap()** provides same functionality as match check(ie in 2). it unwraps the panic macro
 - _4._ **expect()** expect provides a good error messages can convey your intent
-```rust
+```rs
 use std::fs::File;
 fn main() {
     let res = File::open("hello.txt");        //1
@@ -47,12 +45,12 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
 
 <a name=err></a>
-### 1.1.2 Providing error cases in open()
+### 1.2 Providing error cases in open()
   - _1._ Open the file. Match the result
   - _2._ if error occurred in opening the file
     - _2.1_ Error=file not found. Create the file and again check for error
     - _2.2_ For all other errors just panic
-```rust
+```rs
 use std::fs::File;
 use std::io::ErrorKind;
 
@@ -74,9 +72,9 @@ fn main() {
 ```
 
 <a name=ret></a>
-### 1.1.3 Returning `enum Result<T,E>` from function / Propagating Errors
+### 1.3 Returning `enum Result<T,E>` from function / Propagating Errors
 - _1._ Function returning `enum Result<T,E>`
-```rust
+```rs
 use std::fs::File;
 use std::io;
 use std::io::Read;
@@ -103,7 +101,7 @@ fn read_username_from_file() -> Result<String, io::Error> {    //1
 ```
 
 <a name=operator></a>
-#### 1.1.3.1 A Shortcut for Propagating Errors: the ? Operator
+#### 1.3.1 A Shortcut for Propagating Errors: the ? Operator
 - This pattern of propagating errors is so common in Rust that Rust provides the question mark operator ? to make this easier.
 - _1._ If the value of the Result is an Ok, the value inside the Ok will get returned from this expression, and the program will continue.
   - If the value is an Err, the Err will be returned from the whole function as if we had used the return keyword.
@@ -127,7 +125,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 ```
 
 <a name=panic></a>
-# 1.2 UnRecoverable Errors with panic = assert
+# 2. UnRecoverable Errors with panic = assert
 - When some kind of bug is detected and it’s not clear to the programmer how to handle it, Rust has the panic! macro for it.
 ```rust
 fn main() {
