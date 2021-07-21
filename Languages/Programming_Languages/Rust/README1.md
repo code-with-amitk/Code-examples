@@ -6,6 +6,7 @@
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
 - [Data Types](#datatypes)
+- [Collections](#collections)
 - [Class in Rust](#class)
 - [Control Flow](#controlflow)
 - [Functions](#Functions)
@@ -139,6 +140,10 @@ fn fun2(a_string: String) -> String {
 ## [Data Types](Data_Types)
   - Associated Functions
   - Compound: struct
+
+<a name=collections></a>
+## [Collections](Collections)
+- HashMap, HashSet, vector, string
 
 <a name=class></a>
 ## [Class in Rust](Class)
