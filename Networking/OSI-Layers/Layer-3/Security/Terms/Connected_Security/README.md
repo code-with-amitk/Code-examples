@@ -1,13 +1,14 @@
-- [1. What is Connected Security](#What)
-- [2. Components of CS](#Pillars)
-  - [2.1 Threat Detection Engine](#TDE)
-  - [2.2 Policy Engine](#PE)
-- [3. Flow](#Flow)
-  - [3.1 Flow On Premisis](#OnPremisis)
-  - [3.2 Flow On Cloud](#OnCloud)
+- [Connected Security](#What)
+- [Components of CS](#Pillars)
+  - [1. Threat Detection Engine](#TDE)
+  - [2. Policy Engine](#PE)
+- Flow
+  - [1. Flow On Premisis](#OnPremisis)
+  - [2. Flow On Cloud](#OnCloud)
+
 
 <a name="What"></a>
-## 1. What is Connected Security?
+## Connected Security
 - **Presently day scenario:** All security devices work indivisually ie seperately protects the orgnization. Works in phylo.
 ```c
 <--------------------------- 1 Orgnization ------------------------->
@@ -24,7 +25,7 @@
   - Turns routing devices(routers, switches) into security devices(eg: firewall, IPS etc).
 
 <a name="Pillars"></a>
-## 2. Components of Connected Security
+## Components of Connected Security
 - **A. Perimeter Firewall** ie Front-end firewalls, which recieves the packets from internet.
 - **B. Automate/Threat Engine/Policy Engine** 
   - Looks into packet forwared by perimeter firewall, decides whether its Threat/malware if yes informs Policy Engine.
@@ -33,20 +34,18 @@
 - **D. Switches/Routers** On these devices policies are enforced.
 
 <a name="TDE"></a>
-### 2.1 Threat Detection Engine / ATP
+### 1. Threat Detection Engine / ATP
 - _a. Threat Feed:_ 
 - _b. Ondemand detection engine:_ Takes feed does anlysis/sandboxing/ML and says provides verdict that it's a threat or not.
 - _c. Mitigation:_ Gives verdict that these devices are botnets.
 
 <a name="PE"></a>
-### 2.2 2.2 Policy Engine
+### 2. Policy Engine
 - Checks whether packet is malware or not, enforces policies on routers/switches to block the user downloading malware.
 
-<a name="Flow"></a>
-## 3. Flow
-
+## Flow
 <a name="OnPremisis"></a>
-### 3.1 Flow On Premisis
+### 1. Flow On Premisis
 - _1._ User inside secured network sends request to download a file(malware).
 - _2,3._ When actual file comes to Perimeter-firewall, it forwards it to ATP(Threat Engine). 
   - ATP detects it as malware.
@@ -61,7 +60,7 @@
 <img src=connected_security.JPG width=700/>
 
 <a name="OnCloud"></a>
-### 3.2 Flow On Cloud
+### 2. Flow On Cloud
 - All company infra is moved to cloud.
 - Perimeter firewall(vSRX) runs inside cloud on VM protecting company infra and users.
 - Juniper Cloud ATP, policy enforcer all runs on cloud.
