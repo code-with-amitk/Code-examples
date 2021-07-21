@@ -23,6 +23,7 @@
 - [Generic Types/Templates](#temp)
 - [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
 - [Writing Automated Tests](#tests)
+- [Custom Programs](#custom)
 
 <a name="What"></a>
 ## What/Why Rust
@@ -367,3 +368,7 @@ fn main() {
 <a name=tests></a>
 ## [Writing Automated Tests](Automated_Tests)
 - Unit test, Integration tests
+
+<a name=custom></a>
+## [Custom Programs](Custom_Programs)
+- minigrep, 
