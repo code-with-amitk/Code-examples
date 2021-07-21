@@ -2,7 +2,7 @@
 - Create
   - [From vector](#vec)
 - [Iterate](#itr)
-- [Searching](#search)
+- [Search a key](#search)
 
 ### Create
 <a name=vec></a>
