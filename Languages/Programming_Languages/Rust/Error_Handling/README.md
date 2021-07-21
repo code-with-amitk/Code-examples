@@ -4,6 +4,8 @@
   - [1.3 Returning `enum Result<T,E>` from function / Propagating Errors](#ret)
     - [1.3.1 ? operator](#operator)
 - [2. UnRecoverable Errors with panic = assert](#panic)
+- Functions on `Result<T,E>`
+  - [unwrap_or_else](#ue)
 
 # Error Handling in Rust
 - Rust considers every error in 2 categories.
@@ -138,3 +140,8 @@ $ ./test.exe
 thread 'main' panicked at 'crash and burn', .\main.rs:16:17
 note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 ```
+
+## Function on Result`<T,E>`
+<a name=ue></a>
+### [unwrap_or_else](https://doc.rust-lang.org/std/result/enum.Result.html#method.unwrap_or_else)
+- allows us to define some custom, non-panic! error handling
