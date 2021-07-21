@@ -13,6 +13,7 @@
   - [Complexity](#complexity3)
   - Code
     - [C++](#cpp3)
+    - [Rust](#rust)
 
 <a name=ques></a>
 ## [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence)
@@ -158,8 +159,8 @@ public:
 #### Complexity
 - _Time:_ O(n) for creating unordered_set. O(n) for iterating all elements. O(1) for searching (value+1) element.
 - _Space:_ O(n), we are storing elements in unordered_set.
-<a name=cpp3></a>
 #### Code
+<a name=cpp3></a>
 **C++**
 ```cpp
 class Solution {
@@ -220,4 +221,61 @@ add_executable(runTests main.cpp)
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 
 # cmake .; make; runTests
+```
+
+<a name=rust></a>
+**Rust**
+```rs
+use std::cmp;
+use std::collections::HashSet;
+
+struct Solution{}
+
+impl Solution {
+    pub fn longest_consecutive(v: Vec<i32>) -> i32 {
+        let size:i32 = v.len() as i32;
+        if size == 0 || size == 1 {
+            return size;
+        }
+
+        let hash_set: HashSet<i32> = v.into_iter().collect();
+
+        let mut long_cons_seq = 1; 
+
+        for j in &hash_set {                    //Borrow is done to avoid move
+            if hash_set.contains(&(j+1)) &&  !hash_set.contains(&(j-1)){    //value is borrow to avoid copy
+                let mut current = *j;
+                let mut current_long_cont_seq = 1;
+
+                while hash_set.contains(&(current+1)) {
+                    current += 1;
+                    current_long_cont_seq += 1;
+                }
+                long_cons_seq = cmp::max(long_cons_seq, current_long_cont_seq);
+            }
+        }
+        long_cons_seq
+    }
+}
+
+#[cfg(test)]
+mod all_tests {
+    use super::*;
+
+    #[test]
+    fn test_fn() {
+        assert_eq!(5, Solution::longest_consecutive([-100,9,7,5,8,6,100].to_vec()));
+        assert_eq!(4, Solution::longest_consecutive([100,4,200,1,3,2].to_vec()));
+        assert_eq!(2, Solution::longest_consecutive([0,-1].to_vec()));
+    }
+}
+
+fn main(){                //For Debugging 
+    let v = vec![100,4,200,1,3,2];
+    let a = Solution::longest_consecutive(v);
+    println!("{}",a);
+}
+
+$ cargo run
+$ cargo test
 ```
