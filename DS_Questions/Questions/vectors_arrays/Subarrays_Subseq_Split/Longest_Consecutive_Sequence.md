@@ -154,11 +154,11 @@ public:
   - _1._ Store all elements in unordered_set`<int>`
   - _2._ Iterate thru unordered_set.
     - if (value+1) is found in set, (value-1) is not found in set. Search for all (value+1).
-<a name=comp3></a>
+<a name=complexity3></a>
 #### Complexity
 - _Time:_ O(n) for creating unordered_set. O(n) for iterating all elements. O(1) for searching (value+1) element.
 - _Space:_ O(n), we are storing elements in unordered_set.
-<a name=code3></a>
+<a name=cpp3></a>
 #### Code
 **C++**
 ```cpp
