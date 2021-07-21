@@ -8,6 +8,12 @@
   - [Complexity](#complexity2)
   - Code
     - [C++](#cpp2)
+- Approach-3, HashSet
+  - [Logic](#logic3)
+  - [Complexity](#complexity3)
+  - Code
+    - [C++](#cpp3)
+
 
 ## [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence)
 - Given an unsorted array of integers, return the length of the longest consecutive elements sequence, Ignore Duplicates.
@@ -137,6 +143,52 @@ public:
     long_cons_seq = max(long_cons_seq, present_long_cons_seq);
     return long_cons_seq;        
     }
+};
+```
+
+### Approach-3, HashSet
+<a name=logic3></a>
+#### Logic
+- Search continious increasing Sequence in unordered_set in O(1) time. input=3,5,2,1
+- We will search 1,2,3 only ie if we found ele+1 in unordered_set then we keep on searching its higher elements, we will not search 3,2,1(ie decreasing seq).
+  - _1._ Store all elements in unordered_set`<int>`
+  - _2._ Iterate thru unordered_set.
+    - if (value+1) is found in set, (value-1) is not found in set. Search for all (value+1).
+<a name=comp3></a>
+#### Complexity
+- _Time:_ O(n) for creating unordered_set. O(n) for iterating all elements. O(1) for searching (value+1) element.
+- _Space:_ O(n), we are storing elements in unordered_set.
+<a name=code3></a>
+#### Code
+**C++**
+```cpp
+class Solution {
+public:
+  int longestConsecutive(vec& v) {
+    unordered_set<int> us;
+
+    if (!v.size() || v.size()==1)
+      return v.size();
+
+    for (int i : v)                 //1
+      us.insert(i);
+
+    int long_cont_seq = 1;
+
+    for (auto i:us) {
+      if (us.find(i+1) != us.end() && us.find(i-1) == us.end()) {        //2
+        int curr = i;
+        int current_long_cont_seq = 1;
+
+        while (us.find(curr+1) != us.end()) {
+          curr += 1;
+          current_long_cont_seq += 1;
+        }
+        long_cont_seq = max(long_cont_seq, current_long_cont_seq);
+      }
+    }
+    return long_cont_seq;
+  }
 };
 
 //main.cpp
