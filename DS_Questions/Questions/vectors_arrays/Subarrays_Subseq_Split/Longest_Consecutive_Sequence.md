@@ -1,4 +1,4 @@
-- Question
+- [Longest Consecutive Sequence](#ques)
 - Approach-1, Brute Force
   - [Logic](#logic1)
   - [Complexity](#complexity1)
@@ -14,7 +14,7 @@
   - Code
     - [C++](#cpp3)
 
-
+<a name=ques></a>
 ## [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence)
 - Given an unsorted array of integers, return the length of the longest consecutive elements sequence, Ignore Duplicates.
 - Elements in the subsequence are consecutive integers, the consecutive numbers can be in any order(ie does not need to be ascending or decending).
