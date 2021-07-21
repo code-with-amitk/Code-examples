@@ -17,7 +17,7 @@
 - _3._ With IP address(device),username, and group relationship information, JIMS generates a report and sends it to the SRX Series devices. if CSO is present report is sent to that as well.
 - _4._ Each SRX Series device receives the report(IP address(device),username,user group relationship information) and generates authentication entries that are used to enforce user-based and group-based security policy control over access to protected corporate resources and the Internet.
 <img src=JIMS_SRX.JPG width=700/>
-<img src=JIMS.jpg width=500/>
+<img src=JIMS.jpg width=700/>
 
 <a name=clients></a>
 ### JIMS Clients
