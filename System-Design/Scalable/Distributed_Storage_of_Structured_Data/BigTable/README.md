@@ -12,11 +12,10 @@
 
 <a name=datamodel></a>
 ## Data Model
-- BigTable stores data in Multidimensinal sorted Map`<Key,value>`(ie HashTable). This is Google's Implementation of [Distributed Hash Table](/System-Design/Scalable)
-- Map is indexed using (row key + coloumn key + timestamp), value = Array of bytes.
-- Stores data in lexicographic order by row key.
+- BigTable stores data lexicographically in Multidimensinal sorted Map`<Key,value>`(ie [map`<key,value>`](/Languages/Programming_Languages/c++/Standard_Template_Library/) which stores data in RBT, it not Hash Table, because HTs are not sorted). This is Google's Implementation of [Distributed Hash Table](/System-Design/Scalable)
 ```c
-(rowKey:string(64kb), column:string(64kb), time:int64) → string
+  row key(string(64kb)) + coloumn key(64kb) + timestamp(int64) -> {Hash_Function} -> Key 
+  value = Array of bytes.
 
 Example: Storing webpage
 
