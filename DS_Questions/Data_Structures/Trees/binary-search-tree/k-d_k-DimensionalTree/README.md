@@ -22,12 +22,12 @@
 > (3, 6), (17, 15), (13, 15), (6, 12), (9, 1), (2, 7), (10, 19)
 - On level 0,2,4 x corrdinate is compared. On levels 1,3,5 y corrdinate is compared.
 - _1._ Since tree is empty insert (3,6) at root
-- _2._ (17,15). 17>3 goto right and insert.
-- _3._ (13,15). 13>3,go right. 15=15, go right.
-- _4._ (6,12). 6>3,go right. 15>12,go left.
-- _5._ (9,1). 9>3,go right. 15>1,go left. 9>6,go right
-- _6._ (2,7). 3>2,go left
-- _7._ (10,19). 10>3,go right. 19>15,go right. 13>10,go left.
+- _2._ (17,15). {Compare (3,6) & (17,15)} 17>3,go right and insert.
+- _3._ (13,15). {Compare (3,6) & (13,15) 13>3,go right}, {Compare (17,15) & (13,15) 15=15,go right and insert}
+- _4._ (6,12). {Compare (3,6) & (6,12) 6>3,go right} {Compare (17,15) & (6,12) 15>12,go left and insert}
+- _5._ (9,1). {Compare (3,6) & (9,1) 9>3,go right}, {Compare (17,15) & (9,1) 15>1,go left}, {Compare (6,12) & (9,1) 9>6,go right, insert}
+- _6._ (2,7). {Compare (3,6) & (2,7) 3>2,go left and insert}
+- _7._ (10,19). {Compare (3,6) & (10,19) 10>3,go right}, {Compare (17,15) & (10,19) 19>15,go right} {Compare (13,15)&(10,19) 13>10,go left and insert}
 ```c
       [3,6]                     ........X       //1
       /   \
@@ -37,6 +37,7 @@
          \         /
          [9,1]  [10,19]         ........Y       //5,7
 ```
+## [Good Video from Geeksfgeeks](https://www.geeksforgeeks.org/k-dimensional-tree/)
 
 <a name=impl></a>
 #### 2. Implementation
