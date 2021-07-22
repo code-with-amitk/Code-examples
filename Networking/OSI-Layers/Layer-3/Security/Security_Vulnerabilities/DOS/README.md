@@ -1,10 +1,15 @@
-## DOS / DENIAL OF SERVICE: 
-- **What?** 
-  - Intentional flooding/Overwhelming Web-Server's particular port. 
-  - This is similar to Jamming gate of shop by Unwanted people, restricting genuine/Original customers from entering into shop. 
+- [What is DOS](#what)
+- [Examples of DOS](#ex)
 
+<a name=what></a>
+## DOS / Denial of Service
+- Intentional flooding/Overwhelming Web-Server's particular port. 
+- This is similar to Jamming gate of shop by Unwanted people, restricting genuine/Original customers from entering into shop. 
+
+<a name=ex></a>
 ## Examples of DDOS
-- **A. ICMP FLOOD/PING FLOOD**
+<a name=icmp></a>
+- **A. ICMP Flood/Ping Flood**
   - Overwhelming the server with ECHO_REQ messages from multiple devices(ddos). Server will respond and its CPU, resources consumed.
   - *How to Avoid Ping Flood?* 
     - *a.* Drop incoming ICMP packets.  OR  
@@ -21,3 +26,4 @@
   - Slow Read attack sends legitimate application layer requests but reads responses very slowly, thus trying to exhaust the server's connection pool. 
   - Slow reading is achieved by advertising a very small number for the TCP Receive Window size and at the same time by emptying clients' TCP receive buffer slowly. 
   - That naturally ensures a very low data flow rate.
+- **9. Ping of Death**
