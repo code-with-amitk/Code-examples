@@ -1,6 +1,7 @@
 - [What is powershell](#what)
 - Examples
-  - [Services](#ser)
+  - [Services list](#ser)
+- [Functions](#fun)
 
 <a name=what></a>
 ## Powershell
@@ -29,4 +30,16 @@ Name                      MemberType    Definition
 ----                      ----------    ----------
 Close                     Method        void Close()
 Continue                  Method        void Continue()
+```
+
+<a name=fun></a>
+## Functions
+```ps1
+PS C:\Users\amitk> function add
+>> {
+>> $var = 3+2
+>> write-output $var
+>> }
+PS C:\Users\amitk> add
+5
 ```
