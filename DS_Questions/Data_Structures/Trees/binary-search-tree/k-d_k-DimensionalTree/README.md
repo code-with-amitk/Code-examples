@@ -1,8 +1,10 @@
 - [What is k-d Tree](#what)
 - Variants
-  - [2-d Tree](2d)
+  - [2-d Tree](#2d)
     - [1. Creating 2-d Tree](#create)
     - [2. Implementation](#impl)
+  - [3-d Tree](#3d)
+    - [1. Create 3-d Tree](#3create)
 
 <a name=what></a>
 ## K-d Tree / k-Dimensional Tree
@@ -10,10 +12,10 @@
 - A non-leaf node in K-D tree divides the coordinate space into two parts. [See Explanations at geekfgeeks](https://www.geeksforgeeks.org/k-dimensional-tree/)
 
 ## Variants
+
 <a name=2d></a>
 ### 2-d Tree
 - For sake of simplicity let's understand 2-d tree. Every node contains 2 values.
-
 <a name=create></a>
 #### 1. Create
 - Consider following points in a 2-D plane to be inserted into k-d tree:
@@ -77,4 +79,24 @@ Node *insertRec(Node *root, int point[], unsigned depth) {
 Node* insert(Node *root, int point[]) {         //Inserting new node in kd tree
     return insertRec(root, point, 0);
 }
+```
+
+<a name=3d></a>
+### 3-d Tree
+- Every node contains 3 values, ie every point can be represented on 3-d plane.
+<a name=3create></a>
+#### 1. Create
+- _1._ Since tree is empty insert root node there.
+- _2._ Inserting (10,2,12) 10>6,go right
+- _3._ Inserting (4,12,6) 6>4,go left. Since nothing there insert node.
+- _4._ Inserting (9,6,2) 9>6,go right. 6>2,go right. 
+```c
+Create 3-d tree from points:
+(6,8,9), (10,2,12), (4,12,6), (9,6,2)
+
+              (6,8,9)             ........X axis  //1
+               /   \
+         (4,12,6)  (10,2,12)      ........Y axis  //2,3
+                      \
+                     (9,6,2)      ........Z axis  //4
 ```
