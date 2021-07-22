@@ -21,4 +21,12 @@ $ get-service   -name   "*.net"   //Get all service name ending with net
 <a name=ser></a>
 ### Services
 ```ps
+$ get-service                                           //List all services on system
+$ get-service | where-object {$_.status -eq "stopped"}  //All stopped services
+$ PS C:\Users\amitk> get-service | get-member           //Get all methods avilable on services
+
+Name                      MemberType    Definition
+----                      ----------    ----------
+Close                     Method        void Close()
+Continue                  Method        void Continue()
 ```
