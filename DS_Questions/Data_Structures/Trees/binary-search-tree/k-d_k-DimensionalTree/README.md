@@ -3,6 +3,7 @@
   - [2-d Tree](#2d)
     - [1. Creating 2-d Tree](#create)
     - [2. Implementation](#impl)
+    - [if not clear, Good Video from Geeksfgeeks](https://www.geeksforgeeks.org/k-dimensional-tree/)
   - [3-d Tree](#3d)
     - [1. Create 3-d Tree](#3create)
 
@@ -37,7 +38,6 @@
          \         /
          [9,1]  [10,19]         ........Y       //5,7
 ```
-## [Good Video from Geeksfgeeks](https://www.geeksforgeeks.org/k-dimensional-tree/)
 
 <a name=impl></a>
 #### 2. Implementation
