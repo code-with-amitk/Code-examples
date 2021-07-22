@@ -2,6 +2,7 @@
 - Examples
   - [Services list](#ser)
 - [Functions](#fun)
+- [ISE, Integrated Script env, GUI](#ise)
 
 <a name=what></a>
 ## Powershell
@@ -42,4 +43,15 @@ PS C:\Users\amitk> function add
 >> }
 PS C:\Users\amitk> add
 5
+```
+
+<a name=ise></a>
+## ISE, Integrated Script ENV
+- This is GUI of powershell. It has builtin intellisence which brings all commands as we type in.
+```ps1
+$ ise
+it will open a GUI
+
+New >
+get-<it 
 ```
