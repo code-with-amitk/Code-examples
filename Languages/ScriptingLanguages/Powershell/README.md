@@ -6,7 +6,7 @@
 ## Powershell
 - This is command-line shell, a scripting language, and a configuration management framework. PowerShell runs on Windows, Linux, and macOS.
 - This is case-insensitive.
-```ps
+```ps1
 /////Syntax(is natural english language)////////
 $ get-service   -name   "*.net"   //Get all service name ending with net
   /\    /\        Parameters
@@ -20,7 +20,7 @@ $ get-service   -name   "*.net"   //Get all service name ending with net
 ## Examples
 <a name=ser></a>
 ### Services
-```ps
+```ps1
 $ get-service                                           //List all services on system
 $ get-service | where-object {$_.status -eq "stopped"}  //All stopped services
 $ PS C:\Users\amitk> get-service | get-member           //Get all methods avilable on services
