@@ -15,6 +15,10 @@
   # git commit --amend    
   # git push origin branch -f     //Changing commit message
 ```
+- **diff**
+```c
+$ git diff --output file        //Output in file
+```
 - **fetch:**    Download objects and refs from another repository
 - **log:**    Shows commit logs.
 ```c
