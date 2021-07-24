@@ -3,7 +3,10 @@
 - [Insert](#ins)
 - [Traverse/Iterate](#trav)
 - [Erase/Delete/Remove](#erase)
-- 
+  - Delete Last: pop_back()
+  - [Any Element](#any)
+  - [Delete Range](#range)
+  - [Erase all](#erase)
 
 <a name=what></a>
 ## Vector
@@ -58,27 +61,21 @@ cout<<v.at(3);            //terminate called after throwing an instance of 'std:
 ```
 
 ### Erase/Delete/Remove
-- **1. iterator erase( const_iterator pos );**   //Since C++11
-  - Remove element at position
-```c++
+<a name=any></a>
+#### iterator erase(const_iterator pos)
+- Remove element at position
+```cpp
   v.erase(v.begin());
-  for(auto i:v)
-    cout<<i<<" ";           //10 10 10 10 11
 ```
-
-- **2. iterator erase( const_iterator first, const_iterator last );**  //Since C++11
-  - Remove in range
-```c++
+<a name=range></a>
+#### iterator erase(const_iterator first, const_iterator last )
+- Remove in range
+```cpp
   v.erase(v.begin()+1, v.end()-1);
-  for(auto i:v)
-    cout<<i<<" ";           //10 11
 ```
-
-- **3. void clear() noexcept;**  //Since C++11
-  - Erases all elements from the container. After this call, size() returns 0
-  - Complexity: Linear in the size of the container, i.e., the number of elements.  
-  - parameters: None. Return values: None
-```c++
+<a name=erase></a>
+#### void clear() noexcept
+- Erases all elements from the container. After this call, size() returns 0. 
+```cpp
   v.clear();
-  cout<<v.size();                 //0
 ```
