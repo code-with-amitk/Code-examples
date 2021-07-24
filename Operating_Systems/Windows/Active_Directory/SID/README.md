@@ -1,7 +1,10 @@
 - [What is SID](#what)
 - [SID Format](#format)
 - [Well known SIDs](#well)
+- [SID History Attribute](#his)
 - [Commands to See SID](#cmd)
+
+
 
 <a name=what></a>
 ## SID / Security Identifier
@@ -49,7 +52,8 @@ Examples:
 
 <a name=his></a>
 ## SID history
-- Let's say a user-account moves from Domain-A(sid-a) to Domain-B, it will receive a new SID(sid-b). After you have a new SID, you need a mechanism to access all the resources that you used to access with your old SID. The mechanism is a SID-History attribute.
+- Let's say a user-account moves from Domain-a(sid-a) to Domain-B(sid-b). sid-b want to access resources that were associated with sid-a. This is achiveived using SID-History attribute.
+- When account is moved, AD makes a copy of your old SID and stores it in another attribute of your user object before it generates your new SID.
 
 <a name=cmds></a>
 ## Commands to See SID
