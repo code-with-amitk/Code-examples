@@ -7,6 +7,11 @@
   - [Any Element](#any)
   - [Delete Range](#range)
   - [Erase all](#erase)
+- Search
+  - [Min Element](#min)
+  - [Max Element](#max)
+  - [Any](#any)
+- [Reverse](#reverse)
 
 <a name=what></a>
 ## Vector
@@ -78,4 +83,35 @@ cout<<v.at(3);            //terminate called after throwing an instance of 'std:
 - Erases all elements from the container. After this call, size() returns 0. 
 ```cpp
   v.clear();
+```
+
+### Search
+<a name=max></a>
+#### Max Element
+```cpp
+vector<int> a = {4,5,2};
+cout << *max_element(a.begin(), a.end());
+cout << "Index of max element=" << max_element(a.begin(), a.end()) - a.begin();
+```
+<a name=min></a>
+#### Min Element
+```cpp
+vector<int> a = {4,2,5};
+cout << *min_element(a.begin(), a.end());
+cout << "Index of max element=" << min_element(a.begin(), a.end()) - a.begin();
+```
+<a name=any></a>
+#### Any Element
+```cpp
+vector<string> v = {"test", "self"};
+iterator = find(v.begin(), v.end(), "test");
+```
+
+<a name=reverse></a>
+### `reverse[first, last)`
+- Reverses from first to last. Including first and excluding last.
+```cpp
+  vector<int> v = {1, 2, 3};
+  reverse (v.begin(), v.end());
+  reverse (v.begin(), v.begin()+3);    //reverse From [0, 2)
 ```
