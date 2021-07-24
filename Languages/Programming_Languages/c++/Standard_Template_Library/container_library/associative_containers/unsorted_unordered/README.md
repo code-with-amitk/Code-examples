@@ -84,8 +84,14 @@ um.insert(test.begin(),test.end());
 <a name=umprint></a>
 ### Print
 ```cpp
-  for (auto i:um)
-    cout<<i.first<<","<<i.second<<"\n";
+for (auto i:um)                               //auto()
+  cout<<i.first<<","<<i.second<<"\n";
+
+for (auto i=um.begin(); i!=um.end(); ++i)    //begin(), end()
+    cout<<i->first<<","<<i->second<<"\n";
+    
+for (unordered_map<int,string>::iterator i=um.begin(); i!=um.end(); ++i)          //iterator
+    cout<<i->first<<" "<<i->second<<"\n";
 ```
 
 ## Find
