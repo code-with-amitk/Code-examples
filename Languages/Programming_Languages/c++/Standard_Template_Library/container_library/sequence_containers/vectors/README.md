@@ -12,6 +12,7 @@
   - [Max Element](#max)
   - [Any](#any)
 - [Reverse](#reverse)
+- [Convert to min_heap, max_heap](#conv)
 
 <a name=what></a>
 ## Vector
@@ -65,7 +66,7 @@ cout<<v.at(2);            //3
 cout<<v.at(3);            //terminate called after throwing an instance of 'std::out_of_range' coredumped
 ```
 
-### Erase/Delete/Remove
+## Erase/Delete/Remove
 <a name=any></a>
 #### iterator erase(const_iterator pos)
 - Remove element at position
@@ -85,7 +86,7 @@ cout<<v.at(3);            //terminate called after throwing an instance of 'std:
   v.clear();
 ```
 
-### Search
+## Search
 <a name=max></a>
 #### Max Element
 ```cpp
@@ -114,4 +115,12 @@ iterator = find(v.begin(), v.end(), "test");
   vector<int> v = {1, 2, 3};
   reverse (v.begin(), v.end());
   reverse (v.begin(), v.begin()+3);    //reverse From [0, 2)
+```
+
+<a name=conv></a>
+## Convert to min_heap, max_heap
+```cpp
+  vector<int> a = {2,3,4,1};
+  make_heap(a.begin(), a.end(), greater<int>());    //To min_Heap
+  make_heap(a.begin(), a.end());                    //To max_heap
 ```
