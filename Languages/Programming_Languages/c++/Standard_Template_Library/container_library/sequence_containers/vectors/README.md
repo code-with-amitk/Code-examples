@@ -1,6 +1,8 @@
 - [Vector, How vector works](#what)
   - [Arraylist vs Vector](#vs)
-- [Insert](#ins)
+- Insert
+  - [At end: `push_back(), emplace_back()`](#emp)
+  - [At any place `insert(position, value)`](#any)
 - [Traverse/Iterate](#trav)
 - [Erase/Delete/Remove](#erase)
   - Delete Last: pop_back()
@@ -22,22 +24,28 @@
 #### Arraylist vs vector
 - Vectors are synchronized by default but ArrayLists are not. Means if multiple threads accesses vectors then no synchronization needed but required in AL.    
 
-<a name=insert></a>
 ## Insert
-- _void push_back(T&& value)_
+<a name=emp></a>
+#### Insert At end `[push_back(), emplace_back()]`
+- _void push_back(T&& value), void emplace_back(T&& value)_
+  - push_back() allocates element somewhere else then insert into vector at back.
+  -  emplace() also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy
 ```c++
   vector<int> v(2,10);      //size=5, Each element value=10
   v.push_back(11);          //10 10 11
+  
+  v.emplace_back(11);       //10 10 11
 ```
-- *2. void assign(size, val):*  Replaces the contents with count copies of value
+<a name=any></a>
+#### Insert At any place `insert(position, value)`
+```cpp
+  vector<int> v = { 1, 2, 3};
+  it = vec.insert(v.begin() + 2, 7);      //1 2 7 3
+```
+- *void assign(size, val):*  Replaces the contents with count copies of value
 ```c++
   vector<int> v;
   v.assign(3,10);            //10 10 10  
-```
-- *3. insert(position, value)*
-```c++
-  vector<int> v = { 1, 2, 3};
-  it = vec.insert(v.begin() + 2, 7);      //1 2 7 3
 ```
 
 <a name=trav></a>
