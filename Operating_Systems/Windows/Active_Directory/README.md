@@ -1,9 +1,11 @@
 - [What is Active Directory](#what)
-- AD Objects
+- **AD Objects**
   - [1. Container Objects](#con)
   - [2. Leaf Objects](#leaf)
-- [Trust](#trust)
+- **Trust**
+  - [Transitity](#tran)
   - [Directions](#dir)
+  - [Types](#types)
 
 
 <a name=what></a>
@@ -39,9 +41,37 @@ x1.x.abc.com
 
 ## Trust
 - Suppose Company-x has AD-1 and AD-2. Trust relationship can be established b/w 2 ADs. Users on AD-1 can access resources joined on AD-2.
+
+<a name=tran></a>
+### Transitivity
+#### Transitive
+- Dictionary Meaning: if A > B and B > C, then A > C.
+- If Domain-a trusts Domain-b, then All child domains of a and b will trust eachother. All parent-child trusts in AD forest are 2-way and transitive.
+```c
+        Domain-a      <----Transitive Trust-->   Domain-b
+        /     \                                   /
+Domain-a1   Domain-a2                          Domain-b1
+
+//a1 will trust b1
+```
+#### Non-Transitive
+- Only domain-a trusts domain-b, none of their child domains will trust
+
 <a name=dir></a>
 ### Directions
 #### 1 way
-- unidirectional authentication path created between two domains (trust flows in one direction, and access flows in the other). This means that in a one-way trust between a trusted domain and a trusting domain, users or computers in the trusted domain can access resources in the trusting domain. However, users in the trusting domain cannot access resources in the trusted domain
+- Unidirectional authentication path created between two domains (trust flows in one direction, and access flows in the other). This means that in a one-way trust between a trusted domain and a trusting domain, users or computers in the trusted domain can access resources in the trusting domain. However, users in the trusting domain cannot access resources in the trusted domain.
 #### 2 way
-- the trusting and trusted domains both trust each other (trust and access flow in both directions). This means that authentication requests can be passed between the two domains in both directions. All domain trusts in an Active Directory forest are two-way, transitive trusts. When a new child domain is created, a two-way, transitive trust is automatically created between the new child domain and the parent domain.
+- The trusting and trusted domains both trust each other (trust and access flow in both directions). This means that authentication requests can be passed between the two domains in both directions. All domain trusts in an Active Directory forest are two-way, transitive trusts. When a new child domain is created, a two-way, transitive trust is automatically created between the new child domain and the parent domain.
+
+<a name=types></a>
+### Types of trust
+- **External Trust:** Created when resources are located in different AD forests.
+- **Realm Trust:** Always created b/w AD forests and non-Windows Kerberos Directories as eDirectory, Unix Directory etc.
+- **Forest trust:** For sharing resources in AD forests.
+- **Shortcut trusts:** For creating trust b/w domains of same AD forest. Useful for improving User login experience.
+```c
+Trust       External      Realm             Forest    Shortcut
+Transitive    n       both(tran & non)        y          y
+1 or 2 way    y             y                 y          y
+```
