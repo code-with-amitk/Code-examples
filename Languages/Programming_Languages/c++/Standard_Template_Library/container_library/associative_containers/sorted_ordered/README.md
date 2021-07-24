@@ -1,42 +1,31 @@
-- Map
-  - Operations
-    - [1. insert](#mins)
-    - [2. erase](#merase)
-- Set
-  - Operations
-    - [1. Create / Constructors](#scre)
-    - [2. Insert](#sins)
+- **Map**
+  - Inserting element
+    - [insert()](#mins)
+    - [emplace()](#emp)
+  - [erase](#merase)
+- **Set**
+  - [1. Create / Constructors](#scre)
+  - [2. Insert](#sins)
   - [Implementing set](set)
 
 
 
 ## Map<key, value>
-- All elements are always sorted means All elements are in order(ascending/descending). 
-- Some operations does not make sense Eg: push_back(), push_front().
+- All elements are always sorted means All elements are in order(ascending/descending). Some operations does not make sense Eg: push_back(), push_front().
 
 <a name=mins></a>
-### 1. insert
-- **insert()**
-  - Used for inserting element into stl. Creates object somewhere else, copies objects into the vector
-- **emplace()** //Preferred over insert()
-  - same, used for inserting elements into stl. But constructs elements inside the vector only.
-  - *Adv:* Does in place insertion, avoids unneccessary copy
-
-#### insert()
+### `<iterator, bool>` insert(const val_type& val)
+- For inserting element into stl. Creates object somewhere else, copies objects into the vector
 ```cpp
-pair<iterator,bool> insert (const value_type& val);
-template <class P> pair<iterator,bool> insert (P&& val);
-
 map< char, int > m;
 m.insert(make_pair('a', 1));
 ```
-#### emplace
-```cpp
-template <class... Args>
-  pair<iterator,bool> emplace (Args&&... args);
-  
+<a name=emp></a>
+### `<iterator,bool>` emplace(Args&.. args)   //Preferred over insert()
+- same, used for inserting elements into stl. But constructs elements inside the stl only.
+- *Adv:* Does in place insertion, avoids unneccessary copy
+```cpp  
 m.emplace('b', 2);
-
 for (auto i:m)
   cout << i;                    //a 1   b 2
 ```
