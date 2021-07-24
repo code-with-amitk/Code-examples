@@ -6,6 +6,11 @@
   - [Transitity](#tran)
   - [Directions](#dir)
   - [Types](#types)
+- [Computer Object](Computer_Object)
+- [GPO(Group Policy Object)](GPO)
+- [SID(Security Identifier)](SID)
+- [SOM(Scope of Management)](#som)
+- [sysvol / System Volume](#sysvol)
 
 
 <a name=what></a>
@@ -75,3 +80,12 @@ Trust       External      Realm             Forest    Shortcut
 Transitive    n       both(tran & non)        y          y
 1 or 2 way    y             y                 y          y
 ```
+
+<a name=som></a>
+## SOM / Scope of Management
+- Site, domain, or OU container are called SOM. SOMs are associated with GPO.
+
+<a name=sysvol></a>
+## sysvol(System Volume)
+- Shared directory that stores the server's copy of the domain's public files for DOMAIN which resides on local hard-disk.(C:/Windows/SYSVOL/)
+- Information is replicated to all Domain controllers by the File Replication service (FRS).
