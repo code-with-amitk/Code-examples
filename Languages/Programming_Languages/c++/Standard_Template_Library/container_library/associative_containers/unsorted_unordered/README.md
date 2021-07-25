@@ -3,21 +3,21 @@
   - [Set of pairs](#screate)
 - Find
   - [const_iterator find(key)](#find)
+  - [random key with same probability in O(1)]
 - Remove Delete
-  - Delete a key in O(1)
 - [Count](#count1)
 
 **unordered_map`<key, value>`**
 - [Create](#uminsert)
 - [Insert](#uminsert)
 - [Print](#umprint)
+  - [random (k,v) with same probability in O(1)]
 - Find/Search
   - [key in um](#keyum)
   - [Pair having smallest `key`](#smllestk)
   - [Pair having smallest `value`](#smallestv)
   - [Count Number of occurences of value inside array](#count)
 - [Remove/Delete](#erase)
-  - [Delete a (k,v) in O(1) time]
 - [Count](#count1)
 
 
