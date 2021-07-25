@@ -63,6 +63,7 @@ x1.x.abc.com
   - Storing logon scripts (for example, logon.bat).
   - Storing system policies (ntconfig.pol or config.pol files).
   - When a client wants to access the netlogon share on Windows AD domain, after authentication applying the logon scripts from mentioned above.
+
 **netlogon service** 
 - Authenticates users and other services within a domain. it runs continuously in background, unless it is stopped manually. Started after workstation service.
 - If it stopped? Domain users can not log in to their accounts.
