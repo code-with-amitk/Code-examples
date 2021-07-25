@@ -9,6 +9,8 @@
   - [Types](#types)
 - [Computer Object](Computer_Object)
 - [Commands in AD](#commands)
+- [Global Catalog /GC](#gc)
+- [Groups](#groups)
 - [GPO(Group Policy Object)](GPO)
 - [netlogon](#netlogon)
 - [SID(Security Identifier)](SID)
@@ -20,6 +22,10 @@
 <a name=what></a>
 ## AD
 - Centralized DB/Repository of Objects(Users, Groups, Resources, Services). Resources: Print Server, File Servers(Shared Folders), Mail server.
+- **ADDC(AD Domain Controller):** Server storing users,groups,objects.
+- **ADDS(AD Domain services):** Provides Authentication services.
+- **RODC(RO Domain controller):** DC that hosts read-only partitions of the AD.
+- **AD Schema:**  Template/Master doc describing: a. What attributes Objects will have. b. How objects are related etc. AD refers to this before creating object.
 <a name=struct></a>
 ### Structure of AD
 - Forest > Tree > Domain > OU. Forest contains Trees, Trees contains Domains, Domains contains OU, OU contains users(on which policies are applied) 
@@ -125,6 +131,18 @@ New-ADGroup -Name group$i -GroupScope Global -GroupCategory Security -Path "OU=a
 PS> SetExecutionPolicy RemoteSigned
 PS> ./test.ps1
 ```
+
+<a name=gc></a>
+## Global Catalog / GC
+- Consider there are 2 domains in 1 AD forest. user-1(domain-1) want to see what users are present in domain-2, this can be achieved using GC.
+- Any AD can be configured as GC and contains information of users,groups in all domains across forest. GC is not full record of Object, it is only subset of each object data.
+
+<a name=groups></a>
+## Groups
+**Types of Groups**
+- _1. Universal Group:_ Security or distribution group that contains users, groups, computers from any domain.
+- _2. Global Group:_ Global group can contain user accounts that are only from its own domain.
+- _3. Domain Local Group:_  It contains Universal groups, global groups, other domain local groups and accounts from any domain in the forest.
 
 <a name=som></a>
 ## SOM / Scope of Management
