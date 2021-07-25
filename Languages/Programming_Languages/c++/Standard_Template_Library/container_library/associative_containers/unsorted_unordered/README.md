@@ -3,6 +3,9 @@
   - [Set of pairs](#screate)
 - Find
   - [const_iterator find(key)](#find)
+- Remove Delete
+  - Delete a key in O(1)
+- [Count](#count)
 
 **unordered_map`<key, value>`**
 - [Create](#uminsert)
@@ -13,8 +16,9 @@
   - [Pair having smallest `key`](#smllestk)
   - [Pair having smallest `value`](#smallestv)
   - [Count Number of occurences of value inside array](#count)
-- [Remove/Delete elememt](#erase)
-
+- [Remove/Delete](#erase)
+  - [Delete a (k,v) in O(1) time]
+- [Count](#count)
 
 
 
@@ -95,6 +99,7 @@ for (unordered_map<int,string>::iterator i=um.begin(); i!=um.end(); ++i)        
 ```
 
 ## Find
+- [count()](#count) can also be used in place of find().
 <a name=keyum></a>
 #### key in um
 ```c++
@@ -161,4 +166,12 @@ Method-2:
   um.erase(const iteratorStart, const iteratorEnd);   //Range Delete
   
   um.erase(const key);              //Using Key
+```
+
+<a name=count></a>
+## size_type count ( const key_type& k ) const;
+- Searches key and returns the number of elements found. Because unordered_map,unordered_set do not allow for duplicate keys, this means that the function returns 1 if an key  exists in the container, and zero otherwise.
+- **find() vs count()**  equal performance, choice depends on the semantics in your code.
+```cpp
+  cout << um.count(1);
 ```
