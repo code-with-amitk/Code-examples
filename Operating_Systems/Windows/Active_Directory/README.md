@@ -8,8 +8,9 @@
   - [Directions](#dir)
   - [Types](#types)
 - [Computer Object](Computer_Object)
+- [Commands in AD](#commands)
 - [GPO(Group Policy Object)](GPO)
-- [netlogon folder/netlogon share](#netlogon)
+- [netlogon](#netlogon)
 - [SID(Security Identifier)](SID)
 - [SOM(Scope of Management)](#som)
 - [sysvol / System Volume](#sysvol)
@@ -44,27 +45,30 @@ These can contain other objects inside them. Examples
 - Cannot contain other objects inside them. Eg: User, computers, printers
 ```c
 <---------------------------Forest------------------------------------------>
-             Tree-1 Root                            Tree-2 Root  
+             Tree-1 Root                            Tree-2 Root
               abc.com           <---trust---->      inktank.com
-       /                \                         /                \                      
+       /                \                         /                \
 {Parent Domain}  {Parent Domain}                /                    \
-x.abc.com        y.abc.com                      brno.inktank.com   us.inktank.com  
-  /                                                                                                                                       
-{Child/Sub Domain}                                                                                                          
+x.abc.com        y.abc.com                      brno.inktank.com   us.inktank.com
+  /
+{Child/Sub Domain}
 x1.x.abc.com
 ```
 
 <a name=netlogon></a>
 ## netlogon
+**netlogon folder**
 - This folder stores scripts. Location `(%SystemRoot%\system32\repl\import\scripts)`. This folder is used by the NetLogon service for the following purposes:
   - Storing a default user profile for users. If a user without a local profile logs in, the default user profile is used.
   - Storing logon scripts (for example, logon.bat).
   - Storing system policies (ntconfig.pol or config.pol files).
   - When a client wants to access the netlogon share on Windows AD domain, after authentication applying the logon scripts from mentioned above.
+**netlogon service** 
+- Authenticates users and other services within a domain. it runs continuously in background, unless it is stopped manually. Started after workstation service.
+- If it stopped? Domain users can not log in to their accounts.
 
 ## Trust
 - Suppose Company-x has AD-1 and AD-2. Trust relationship can be established b/w 2 ADs. Users on AD-1 can access resources joined on AD-2.
-
 <a name=tran></a>
 ### Transitivity
 #### Transitive
@@ -97,6 +101,28 @@ Domain-a1   Domain-a2                          Domain-b1
 Trust       External      Realm             Forest    Shortcut
 Transitive    n       both(tran & non)        y          y
 1 or 2 way    y             y                 y          y
+```
+
+<a name=commands></a>
+## Commands in AD
+- Creating Users
+```ps
+ps> Import System modules.    OR    PS> import-module activedirectory
+PS> New-ADUser -Name "amitk7" -Path "OU=amit-ou,DC=atest,DC=com" -AccountPassword (ConvertTo-SecureString "Test@123" -AsPlainText -Force) -AccountExpirationDate 0:0:0 -ChangePasswordAtLogon 0 -SamAccountName "amitk7"    //working
+```
+- Creating Groups
+```ps
+ps> Import System modules.    OR    PS> import-module activedirectory
+PS> New-ADGroup -Name "group1" -GroupScope Global -GroupCategory Security -Path "OU=amit-ou,DC=atest,DC=com"        //Create 1 Group
+```
+- Creating 100 Groups
+```ps
+Step-1: Create File name test.ps1 on Desktop
+for ($i=2;$i -lt 100;$i++){
+New-ADGroup -Name group$i -GroupScope Global -GroupCategory Security -Path "OU=amit-ou,DC=atest,DC=com"
+}
+PS> SetExecutionPolicy RemoteSigned
+PS> ./test.ps1
 ```
 
 <a name=som></a>
