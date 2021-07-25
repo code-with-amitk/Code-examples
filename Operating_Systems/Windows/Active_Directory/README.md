@@ -1,4 +1,5 @@
 - [What is Active Directory](#what)
+  - [Structure of AD](#struct)
 - **AD Objects**
   - [1. Container Objects](#con)
   - [2. Leaf Objects](#leaf)
@@ -8,15 +9,24 @@
   - [Types](#types)
 - [Computer Object](Computer_Object)
 - [GPO(Group Policy Object)](GPO)
+- [netlogon folder/netlogon share](#netlogon)
 - [SID(Security Identifier)](SID)
 - [SOM(Scope of Management)](#som)
 - [sysvol / System Volume](#sysvol)
+- [UUID/GUID](UUID)
 
 
 <a name=what></a>
-## AD? 
-- Centralized DB/Repository of Objects(Users, Groups, Resources, Services).     
-- Resources: Print Server, File Servers(Shared Folders), Mail server
+## AD
+- Centralized DB/Repository of Objects(Users, Groups, Resources, Services). Resources: Print Server, File Servers(Shared Folders), Mail server.
+<a name=struct></a>
+### Structure of AD
+- Forest > Tree > Domain > OU. Forest contains Trees, Trees contains Domains, Domains contains OU, OU contains users(on which policies are applied) 
+  - Forest? Biggest Container object
+  - Tree? Collection of domains. Top level domain is called Parent Domain. This contains child domains. This should have same namespace.
+  - Domain? Dictionary:This is region that controlled by Authority. In AD Terms:This is logical group of Objects that uses Windows AD.
+  - OU? Smallest Container Object. This is used for applying security policies.
+<img src=structure-of-ad.PNG width=500>
 
 ## AD Objects
 <a name=con></a>
@@ -43,6 +53,14 @@ x.abc.com        y.abc.com                      brno.inktank.com   us.inktank.co
 {Child/Sub Domain}                                                                                                          
 x1.x.abc.com
 ```
+
+<a name=netlogon></a>
+## netlogon
+- This folder stores scripts. Location `(%SystemRoot%\system32\repl\import\scripts)`. This folder is used by the NetLogon service for the following purposes:
+  - Storing a default user profile for users. If a user without a local profile logs in, the default user profile is used.
+  - Storing logon scripts (for example, logon.bat).
+  - Storing system policies (ntconfig.pol or config.pol files).
+  - When a client wants to access the netlogon share on Windows AD domain, after authentication applying the logon scripts from mentioned above.
 
 ## Trust
 - Suppose Company-x has AD-1 and AD-2. Trust relationship can be established b/w 2 ADs. Users on AD-1 can access resources joined on AD-2.
