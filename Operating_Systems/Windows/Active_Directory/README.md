@@ -26,7 +26,7 @@
   - Tree? Collection of domains. Top level domain is called Parent Domain. This contains child domains. This should have same namespace.
   - Domain? Dictionary:This is region that controlled by Authority. In AD Terms:This is logical group of Objects that uses Windows AD.
   - OU? Smallest Container Object. This is used for applying security policies.
-<img src=structure-of-ad.PNG width=500>
+<img src=structure-of-ad.png width=500>
 
 ## AD Objects
 <a name=con></a>
