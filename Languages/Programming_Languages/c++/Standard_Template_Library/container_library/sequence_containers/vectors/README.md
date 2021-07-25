@@ -9,10 +9,11 @@
   - [Any Element](#any)
   - [Delete Range](#range)
   - [Erase all](#erase)
-- Search
+- Search/Print
   - [Min Element](#min)
   - [Max Element](#max)
   - [Any](#any)
+  - [Last](#last)
 - [Reverse](#reverse)
 - [Convert to min_heap, max_heap](#conv)
 
@@ -114,6 +115,11 @@ cout << "Index of max element=" << min_element(a.begin(), a.end()) - a.begin();
 ```cpp
 vector<string> v = {"test", "self"};
 iterator = find(v.begin(), v.end(), "test");
+```
+<a name=last></a>
+#### last element
+```cpp
+cout << v.back();
 ```
 
 <a name=reverse></a>
