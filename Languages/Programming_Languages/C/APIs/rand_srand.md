@@ -1,5 +1,9 @@
 - [rand()](#rand)
+  - [rand() considered harmful](#harm)
 - [srand()](#srand)
+- [Generate same seq everytime](#gens)
+- [Generating Different Sequence](#gend)
+- [Pseudo Random Number Generator (PRNG)](#prng)
 
 
 <a name=rand></a>
@@ -12,16 +16,23 @@ RAND_MAX
   64 bit system:    2^64-1 = 18446744073709551615
 ```		
 
+<a name=harm></a>
+### [rand() considered harmful](https://channel9.msdn.com/Events/GoingNative/2013/rand-Considered-Harmful)
+- Instead use C++ provided random generator
+```cpp
+#include<random>
+default_random_engine seed;
+return vec[uniform_int_distribution<> (0, 100)(seed)];     //Generate random b/w 0 to 100
+```
+
 <a name=srand></a>
 ## void srand(uint seed)
 - sets the seed. Seed is and int used to initialize random number generator. The "seed" is a starting point for the sequence and the guarantee is that if you set same seed
 you will get the same sequence of numbers again and again.
 
-
-### 1. Generating same seq everytime
-- **Logic** Seed rand() by same number
-- **Use case** 2 seperate programs want to generate same random number everytime.
-- **Code**
+<a name=gens></a>
+## Generate same seq everytime
+- Seed rand() by same number
 ```c
 #include<iostream>
 using namespace std;
@@ -36,10 +47,9 @@ int main(){
 //# ./a.out	3	2	1	3	1
 //# ./a.out	3	2	1	3	1
 ```
-### 2. Generating Different Sequence
-- **Logic** rand() can be called without calling seed(), it will return random no everytime.
-- **Usecase** Carom game or so where everytime its required to generate random number equals to points scored.
-- **Code**
+<a name=gend></a>
+## Generating Different Sequence
+- rand() can be called without calling seed(), it will return random no everytime.
 ```c
 #include<iostream>
 using namespace std;
@@ -53,7 +63,8 @@ int main(){
 //3	2	1	3	3
 ```
 
-### 3. Pseudo Random Number Generator (PRNG)
+<a name=prng></a>
+## Pseudo Random Number Generator (PRNG)
 - **What** This is an algorithm that uses mathematical formulas to produce sequences of random numbers. 
 ```c	
 num = (a*num + b) mod c
