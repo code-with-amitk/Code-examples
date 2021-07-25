@@ -3,7 +3,7 @@
   - [Set of pairs](#screate)
 - Find
   - [const_iterator find(key)](#find)
-  - [random key with same probability in O(1)]
+  - [random key with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
 - Remove Delete
 - [Count](#count1)
 
@@ -11,7 +11,7 @@
 - [Create](#uminsert)
 - [Insert](#uminsert)
 - [Print](#umprint)
-  - [random (k,v) with same probability in O(1)]
+  - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
 - Find/Search
   - [key in um](#keyum)
   - [Pair having smallest `key`](#smllestk)
