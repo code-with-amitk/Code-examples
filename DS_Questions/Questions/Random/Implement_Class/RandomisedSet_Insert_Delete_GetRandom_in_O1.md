@@ -1,5 +1,5 @@
 - [Insert Delete GetRandom O(1)](#ques)
-- Approach unordered_set+vector
+- Approach unordered_map+vector
   - [Logic](#logic)
   - [Complexity](#comp)
   - Code
@@ -13,7 +13,7 @@
   - bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false otherwise.
   - int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.
 
-## Approach unordered_set+vector
+## Approach unordered_map+vector
 <a name=logic></a>
 ### Logic
 - insert(): can be carried in O(1)
