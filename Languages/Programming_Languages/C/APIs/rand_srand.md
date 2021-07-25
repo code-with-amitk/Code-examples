@@ -1,22 +1,22 @@
-## Important Functions
-- **1. rand()**
-```c
-int rand(void): returns a random number in the range of 0 to RAND_MAX.
-RAND_MAX
-        16 bit system:    2^15-1 = 32767
-        32 bit system:    2^32-1 = 4294967295
-        64 bit system:    2^64-1 = 18446744073709551615
-```		
-- **2. srand()**
-```c
-void srand(unsigned seed): sets seed. 
-Seed: A integer used to Initialize random number generator. The "seed" is a starting point for the sequence and the guarantee is that if you set same seed
-you will get the same sequence of numbers again and again.
-NOTE: rand() requires seededing once ie at start of program, after that all invocations of rand() will take the seed.
+- [rand()](#rand)
+- [srand()](#srand)
 
-seeding rand() with srand(time(0)). 
- - time_t time(time_t* arg): returns current time. seed(time(0)): time() returns a time_t value which vary everytime
-```
+
+<a name=rand></a>
+## int rand(void)
+- returns a random number in the range of 0 to RAND_MAX.
+```c
+RAND_MAX
+  16 bit system:    2^15-1 = 32767
+  32 bit system:    2^32-1 = 4294967295
+  64 bit system:    2^64-1 = 18446744073709551615
+```		
+
+<a name=srand></a>
+## void srand(uint seed)
+- sets the seed. Seed is and int used to initialize random number generator. The "seed" is a starting point for the sequence and the guarantee is that if you set same seed
+you will get the same sequence of numbers again and again.
+
 
 ### 1. Generating same seq everytime
 - **Logic** Seed rand() by same number
