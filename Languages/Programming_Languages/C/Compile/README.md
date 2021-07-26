@@ -1,6 +1,9 @@
 **Compilation Steps**
 - [1. Preprocessor](#pre)
 - [2. Compiler](#comp)
+  - [2.1 Compilation Errors](#cerr)
+    - [qmake command not found](#cerr1)
+    - [<CL/opencl.h> no such file or directory](#cerr2)
 - [3. Assembler](#asm)
 - [4. Linker](#link)
   - [4.1 Steps for building executable](#steps)
@@ -47,18 +50,32 @@ int main(){
   - **Functions** Lexical Analysis, parsing, Semantic Analysis, Verify code syntax
   - **-S Flag** Stop after the stage of compilation proper; do not assemble
 ```c
-  # gcc -S test.c
-  
-  # cat test.s
+# gcc -S test.c
+# cat test.s
   .file "test.c"
   .text
   .section  .rodata
-.LC0:
+ .LC0:
   .string "Hello"
   .text
   .globl  main
   .type main, @function  
-```      
+```
+<a name=cerr></a>
+### 2.1 Complier Errors
+<a name=cerr1></a>
+**1. qmake command not found**
+```c
+# update-alternatives --install /usr/bin/qmake qmake /usr/bin/qmake-qt4 10
+# update-alternatives --set qmake /usr/bin/qmake-qt4
+```
+<a name=cerr2></a>
+**2. <CL/opencl.h> no such file or directory**
+```c
+[CentOS]# yum install epel-release; yum provides '*/libOpenCL.so'; yum install ocl-icd-devel; yum install ocl*
+[Ubuntu]# apt install --fix-broken -y; apt install opencl-headers -y
+```
+
 <a name=asm></a>
 ## 3. `[AS]` Assembler `(*.s → *.o)`
   - Takes `*.s` as input and outputs [Object files](Object_File) `*.o`.
