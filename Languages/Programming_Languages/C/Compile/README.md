@@ -8,11 +8,11 @@
 - [4. Linker](#link)
   - [4.1 Steps for building executable](#steps)
   - [4.2 Linker Errors](#lerr)
-    - [a. linker input file unused because linking not done](#lerr1)
-    - [b. Undefined Reference](#lerr2)
-      - [b1. No Definition Provided For Object](#reason1)
-      - [b2. Wrong/Mismatched Definition](#reason2)
-      - [b3. Object files not linked properly](#reason3)
+    - [4.2.1 linker input file unused because linking not done](#lerr1)
+    - [4.2.2 Undefined Reference](#lerr2)
+      - [1. No Definition Provided For Object](#reason1)
+      - [2. Wrong/Mismatched Definition](#reason2)
+      - [3. Object files not linked properly](#reason3)
 
 # Compilation Steps
 <img src="Compilation-Steps.jpg" width=8000 />
@@ -100,10 +100,11 @@ int main(){
 
 <a name=lerr></a>
 ### 4.2 Linker Errors
-- These errors which occurs at linking stage. This means Compiler compiles the program successfully, which linker(Finding actual definition in CS) finds error.
+- These errors which occurs at linking stage. At compilation, it simply assumes that that symbol was defined somewhere, but it doesn't yet care where. 
+- The linking phase is responsible for finding the symbols and correctly linking them.
 
 <a name=lerr1></a>
-#### a. linker input file unused because linking not done
+#### 4.2.1 linker input file unused because linking not done
 ```c
 $ g++ -Wall -c -I. -I(include-path) -O2 -std=c++11 -fpic -o test.o archive.a main.o
 g++: warning: archive.a: linker input file unused because linking not done
@@ -111,12 +112,12 @@ g++: warning: archive.a: linker input file unused because linking not done
 Solution: g++ -c means `compile the source file`. If you meant to link it, remove -c from the command line.
 ```
 <a name=lerr2></a>
-#### b. Undefined Reference
+#### 4.2.2 Undefined Reference
   - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
   - *Linker* cannot find the definition of a linked object.
 
 <a name=reason1></a>
-**No Definition Provided For Object:** The programmer has forgotten to define the object.
+**1. No Definition Provided For Object:** The programmer has forgotten to define the object.
 ```cpp
 int fun();
 int main() {
@@ -131,7 +132,7 @@ Solution: Provide definition of fun()
 ```
 
 <a name=reason2></a>
-**Wrong/Mismatched Definition:** Definition of function is different from what's declared.
+**2. Wrong/Mismatched Definition:** Definition of function is different from what's declared.
   - In Example below, declaration of function does not contain parameter, while definition does.
 ```cpp
 int fun();
@@ -147,7 +148,7 @@ collect2: error: ld returned 1 exit status
 ```
 
 <a name=reason3></a>
-**Object files not linked properly:** We have more than 1 source file and those are compiled independently. While linking, object files are not linked properly.
+**3. Object files not linked properly:** We have more than 1 source file and those are compiled independently. While linking, object files are not linked properly.
 - Example: function `fun()` is declared in main.cpp & defined in `test.cpp`. 
   - When main.c is compiled seperately. We get -> undefined Reference
   - When both files are compiled together. No Error.
