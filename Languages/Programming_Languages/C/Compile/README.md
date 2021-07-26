@@ -3,13 +3,13 @@
 <img src="Compilation-Steps.jpg" width=1000 />
 
 ```c
-# cat test.c
+//cat test.c
 #include<stdio.h>
 int main(){
   printf("Hello");
 }
 ```
-### 1. `CPP` PRE-PROCESSOR `(*.c → *.i)`
+### 1. `CPP` Pre-processor `(*.c → *.i)`
   - Converts source-code `*.c` to Intermidiate files `*.i`.
   - **Functions:** Remove comments from code. Expands include statements, macros. Expands anything else with `#`
   - **-E Flag** Stop after the preprocessing stage; do not run the compiler proper.
