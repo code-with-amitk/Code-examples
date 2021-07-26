@@ -6,6 +6,7 @@
   - [4. Insert (key,value) only when entry does not exist](#orinsert)
   - [5. Search / Find](#search)
   - [6. Print](#print)
+  - [7. Remove / Delete / Erase](#remove)
 - [HashMap inside Struct](#struct)
 
 <a name=what></a>
@@ -117,6 +118,10 @@ $ test.ext
 Red,1
 Green,2
 ```
+
+<a name=remove></a>
+#### 7. Remove
+
 
 <a name=struct></a>
 ## HashMap inside Struct
