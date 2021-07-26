@@ -4,6 +4,7 @@
   - [Complexity](#comp1)
   - Code
     - [C++](#cpp1)
+- Approach-2. BFS (queue). Seek leetcode
 
 ## [Count Good Nodes](https://leetcode.com/problems/count-good-nodes-in-binary-tree/)
 - In binary tree root, a node X in the tree is good if in the path from root to X there are no nodes with a value greater than X.
