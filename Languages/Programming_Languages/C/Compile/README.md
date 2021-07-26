@@ -144,11 +144,11 @@ int fun(int);
 int main(){
   cout<<fun(1);
 }
-$ g++ main.c                                      <<<<<<<<<<<<<<<<Error when main.cpp is compiled seperately ie definition is not found
+$ g++ main.c              <<<<<<<<<Error when main.cpp is compiled seperately ie definition is not found
 /usr/bin/ld: /tmp/ccugsclC.o: in function `main':
 main.c:(.text+0xe): undefined reference to `fun(int)'
 collect2: error: ld returned 1 exit status
 
-$ g++ test.c main.c                               <<<<<<<<<<<<< No Error
+$ g++ test.c main.c       <<<<<<<<<<<<< No Error
 $
 ```
