@@ -1,12 +1,15 @@
 - [Hashmap](#what)
 - Operations
-  - [1. Create](#create)
-  - [2. Insert new (key,value) to hashmap](#insertnew)
-  - [3. Overwrite existing value](#overwrite)
-  - [4. Insert (key,value) only when entry does not exist](#orinsert)
-  - [5. Search / Find](#search)
-  - [6. Print](#print)
-  - [7. Remove / Delete / Erase](#remove)
+  - [Create](#create)
+  - Insert
+    - [1. New <key,value>](#insertnew)
+    - [2. Overwrite](#overwrite)
+    - [3. Insert only when entry does not exist](#orinsert)
+  - Search / Find
+    - [1. get(key)](#get)
+    - [2. get_mut(key)](#getm)
+  - [Print](#print)
+  - [Remove / Delete / Erase](#remove)
 - [HashMap inside Struct](#struct)
 
 <a name=what></a>
@@ -18,7 +21,7 @@
 ## Operations
 
 <a name=create></a>
-#### 1. Create
+### Create
 - _1._ using iterators and collect() method
   - `HashMap<_, _>` is needed type annotation.
 ```rust
@@ -31,8 +34,9 @@ fn main() {
 } 
 ```
 
+### Insert 
 <a name=insertnew></a>
-#### 2. Insert new (key,value) to hashmap
+#### 1. New (key,value) to hashmap
 ```rs
 use std::collections::HashMap;
 fn main() {
@@ -40,8 +44,9 @@ fn main() {
     var.insert(String::from("Red"), 1);           //Call insert() on HashMap
 }   
 ```
+
 <a name=overwrite></a>
-#### 3. Overwriting existing value
+#### 2. Overwriting existing value
   - if key already exists in map and we insert (key,value) with existing key and new value, then it old value would be updated.
 ```rust
 use std::collections::HashMap;
@@ -56,7 +61,7 @@ fn main() {
 }   
 ```
 <a name=orinsert></a>
-#### 4. Insert (key,value) only when entry does not exist
+#### 3. Insert (key,value) only when entry does not exist
   - Function entry() only inserts into hashmap only when entry is not present in hashtable, if entry is present function does nothing.
   - or_insert() method returns a [mutable reference](/Languages/Programming_Languages/Rust) to the value of key if that key exists, and if not, inserts (key,value) & returns a mutable reference to the new value. 
 ```rust
@@ -77,18 +82,15 @@ Red,1
 Green,50
 ```
 
-<a name=search></a>
-#### 5. Search
-- Using `pub fn get<Q>(&self, k: &Q) -> Option<&V>`
-```rust
-use std::string;
-use std::collections::HashMap;
-fn main() {
-    let mut var = HashMap::new();
-    var.insert(String::from("Red"), 1);  var.insert(String::from("Green"), 2);   
-    //Hashmap Red:1, Green:2
+### Search
+<a name=get></a>
+#### 1. pub fn get`<Q>`(&self, k: &Q) -> Option`<&V>`
+```rs
+{
+  let mut var = HashMap::new();
+  var.insert(String::from("Red"), 1);  var.insert(String::from("Green"), 2);   //Hashmap Red:1, Green:2
     
-    println!("{:?}",var.get(&String::from("yellow")));    //takes reference bcoz function expects ref
+  println!("{:?}",var.get(&String::from("yellow")));    //takes reference bcoz function expects ref
 } 
 $ test.exe
 Some(3)                 //if value is not present, return None
@@ -100,9 +102,20 @@ if um.get(&3) == None {
 }
 ```
 
+<a name=getm></a>
+#### 2. fn get_mut`<Q: ?Sized>`(&mut self, k: &Q) -> Option`<&mut V>`
+- Returns a mutable reference to the value corresponding to the key
+```rs
+let mut map = HashMap::new();
+map.insert(1, "a");
+if let Some(x) = map.get_mut(&1) {
+    *x = "b";
+}
+```
+
 <a name=print></a>
-#### 6. Print
-```rust
+### Print
+```rs
 use std::string;
 use std::collections::HashMap;
 fn main() {
@@ -120,7 +133,7 @@ Green,2
 ```
 
 <a name=remove></a>
-#### 7. Remove
+### Remove
 
 
 <a name=struct></a>
