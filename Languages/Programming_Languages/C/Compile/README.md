@@ -1,18 +1,16 @@
-- [Compilation Steps](#what)
-  - [1. Preprocessor](#pre)
-  - [2. Compiler](#comp)
-  - [3. Assembler](#asm)
-  - [4. Linker](#link)
-    - [4.1 Steps for building executable](#steps)
-    - [4.2 Linker Errors](#lerr)
-      - [a. linker input file unused because linking not done](#lerr1)
-      - [b. Undefined Reference](#lerr2)
-        - [b1. No Definition Provided For Object](#reason1)
-        - [b2. Wrong/Mismatched Definition](#reason2)
-        - [b3. Object files not linked properly](#reason3)
+**Compilation Steps**
+- [1. Preprocessor](#pre)
+- [2. Compiler](#comp)
+- [3. Assembler](#asm)
+- [4. Linker](#link)
+  - [4.1 Steps for building executable](#steps)
+  - [4.2 Linker Errors](#lerr)
+    - [a. linker input file unused because linking not done](#lerr1)
+    - [b. Undefined Reference](#lerr2)
+      - [b1. No Definition Provided For Object](#reason1)
+      - [b2. Wrong/Mismatched Definition](#reason2)
+      - [b3. Object files not linked properly](#reason3)
 
-<a name=what></a>
-## Compilation Steps
 <img src="Compilation-Steps.jpg" width=8000 />
 
 ```c
@@ -23,7 +21,7 @@ int main(){
 }
 ```
 <a name=pre></a>
-### 1. `CPP` Pre-processor `(*.c → *.i)`
+## 1. `CPP` Pre-processor `(*.c → *.i)`
   - Converts source-code `*.c` to Intermidiate files `*.i`.
   - **Functions:** Remove comments from code. Expands include statements, macros. Expands anything else with `#`
   - **-E Flag** Stop after the preprocessing stage; do not run the compiler proper.
@@ -41,7 +39,7 @@ int main(){
 }
 ```    
 <a name=comp></a>
-### 2. [`CCL` Compiler `(*.i → *.o)`](compiler.md)
+## 2. [`CCL` Compiler `(*.i → *.o)`](compiler.md)
   - Generates Object files. Only when told compiler generates asm files. Converts Intermediate files to object files.
   - Compiler is only bothered about ***function declaration***, it does not check definition.
   - Linking definition to function is task of ***Linker***. Linker gives `undefined reference` error if it cannot find definition inside `*.obj` OR  `*.so`  OR  `*.a`
@@ -61,7 +59,7 @@ int main(){
   .type main, @function  
 ```      
 <a name=asm></a>
-### 3. `[AS]` Assembler `(*.s → *.o)`
+## 3. `[AS]` Assembler `(*.s → *.o)`
   - Takes `*.s` as input and outputs [Object files](Object_File) `*.o`.
   - **-c Flag** Stop after assembly stage not to run into linker.
 ```c
