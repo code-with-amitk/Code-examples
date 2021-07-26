@@ -1,24 +1,23 @@
 - [Hashmap](#what)
-- [2. Operations](#opr)
-  - [2.1 Create](#create)
-  - [2.2 Insert new (key,value) to hashmap](#insertnew)
-  - [2.3 Overwrite existing value](#overwrite)
-  - [2.4 Insert (key,value) only when entry does not exist](#orinsert)
-  - [2.5 Search](#search)
-  - [2.6 Print](#print)
+- Operations
+  - [1. Create](#create)
+  - [2. Insert new (key,value) to hashmap](#insertnew)
+  - [3. Overwrite existing value](#overwrite)
+  - [4. Insert (key,value) only when entry does not exist](#orinsert)
+  - [5. Search / Find](#search)
+  - [6. Print](#print)
 - [HashMap inside Struct](#struct)
 
 <a name=what></a>
-## Hashmap<Key, Value> 
+## Hashmap<Key, Value> //https://doc.rust-lang.org/std/collections/struct.HashMap.html
 - stores a mapping of keys of type K to values of type V and created on heap.
 - Like vectors, hash maps are homogeneous
   - all of the keys must have the same type, and all of the values must have the same type.
 
-<a name=opr></a>
-## 2. Operations
+## Operations
 
 <a name=create></a>
-#### 2.1 Create
+#### 1. Create
 - _1._ using iterators and collect() method
   - `HashMap<_, _>` is needed type annotation.
 ```rust
@@ -32,7 +31,7 @@ fn main() {
 ```
 
 <a name=insertnew></a>
-#### 2.2 Insert new (key,value) to hashmap
+#### 2. Insert new (key,value) to hashmap
 ```rs
 use std::collections::HashMap;
 fn main() {
@@ -41,7 +40,7 @@ fn main() {
 }   
 ```
 <a name=overwrite></a>
-#### 2.3 Overwriting existing value
+#### 3. Overwriting existing value
   - if key already exists in map and we insert (key,value) with existing key and new value, then it old value would be updated.
 ```rust
 use std::collections::HashMap;
@@ -56,7 +55,7 @@ fn main() {
 }   
 ```
 <a name=orinsert></a>
-#### 2.4 Insert (key,value) only when entry does not exist
+#### 4. Insert (key,value) only when entry does not exist
   - Function entry() only inserts into hashmap only when entry is not present in hashtable, if entry is present function does nothing.
   - or_insert() method returns a [mutable reference](/Languages/Programming_Languages/Rust) to the value of key if that key exists, and if not, inserts (key,value) & returns a mutable reference to the new value. 
 ```rust
@@ -78,26 +77,30 @@ Green,50
 ```
 
 <a name=search></a>
-#### 2.5 Search
+#### 5. Search
 - Using `pub fn get<Q>(&self, k: &Q) -> Option<&V>`
 ```rust
 use std::string;
 use std::collections::HashMap;
 fn main() {
     let mut var = HashMap::new();
-    var.insert(String::from("Red"), 1);
-    var.insert(String::from("Green"), 2);   
+    var.insert(String::from("Red"), 1);  var.insert(String::from("Green"), 2);   
     //Hashmap Red:1, Green:2
     
     println!("{:?}",var.get(&String::from("yellow")));    //takes reference bcoz function expects ref
 } 
-  
 $ test.exe
 Some(3)                 //if value is not present, return None
+
+///////
+let mut um = HashMap <i32, i32>::new();
+if um.get(&3) == None {
+  
+}
 ```
 
 <a name=print></a>
-#### 2.6 Print
+#### 6. Print
 ```rust
 use std::string;
 use std::collections::HashMap;
