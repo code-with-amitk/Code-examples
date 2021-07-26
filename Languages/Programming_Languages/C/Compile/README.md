@@ -112,8 +112,9 @@ Solution: g++ -c means `compile the source file`. If you meant to link it, remov
 ```
 <a name=lerr2></a>
 #### b. Undefined Reference
-- *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
-- *Linker* cannot find the definition of a linked object.
+  - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
+  - *Linker* cannot find the definition of a linked object.
+
 <a name=reason1></a>
 - **No Definition Provided For Object:** The programmer has forgotten to define the object.
 ```cpp
