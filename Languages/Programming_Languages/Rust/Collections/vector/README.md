@@ -6,9 +6,11 @@
   - [Accessing the vector](#access)
   - [length of vector](#len)
   - _last element_
-    - [1. Print](#plast)
+    - [1. last() -> Option<&T>](#plast)
     - [2. Pop](#pop)
     - [3. Append push](#push)
+  - Print
+    - [Any Element](#any)
 - [Store enum in vector](enumvec)
 
 
@@ -16,7 +18,7 @@
 - Same as in C++, Storing more than 1 value of same type contigously in memory.
 
 <a name=create></a>
-#### Create
+### Create
 ```rs
   let v:Vec<i32>;               //vector to hold values of type i32
 OR  
@@ -26,7 +28,7 @@ OR
 ```
 
 <a name=init></a>
-#### Initiale
+### Initialize
 ```rs
     let v:Vec<i32> = [1,2,3].to_vec();
 OR
@@ -37,14 +39,14 @@ OR
 ```
 
 <a name=ci></a>
-#### Create & Initialize
+### Create & Initialize
 ```rs
                   //init_value,size
   let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0
 ```
 
 <a name=update></a>
-#### Update
+### Update
 - Since variables in rust is [immutable by default](/Languages/Programming_Languages/Rust), we need to make them mutable to update.
 ```rs
     let mut v = Vec::new();
@@ -61,7 +63,7 @@ OR
 ```
 
 <a name=access></a>
-#### Accessing a vector
+### Accessing a vector
 - **A. Sequential access**
 ```rs
 fn main() {
@@ -94,13 +96,12 @@ let v = vec![1,2,3];
 v.len();        //3
 ```
 
-#### Last Element
+### Last Element
 <a name=plast></a>
-#### 1. Print Last element of vector
+#### 1. const fn last(&self) -> Option`<&T>`
 - Returns the last element of the slice, or None if it is empty.
 ```rs
-pub const fn last(&self) -> Option<&T>
-if v.last() > Some(&0) {
+if v.last() != None {
   println!("{}", v.last());
 }
 ```
@@ -118,6 +119,13 @@ v.pop()
 - Appends an element to the back of a collection
 ```rs
 vec.push(3);
+```
+
+### Print
+<a name=any></a>
+#### 1. Any element
+```rs
+let mut a = v[v.len()-1];
 ```
 
 <a name=enumvec></a>
