@@ -64,13 +64,13 @@ int main(){
 <a name=cerr></a>
 ### 2.1 Complier Errors
 <a name=cerr1></a>
-**1. qmake command not found**
+**qmake command not found**
 ```c
 # update-alternatives --install /usr/bin/qmake qmake /usr/bin/qmake-qt4 10
 # update-alternatives --set qmake /usr/bin/qmake-qt4
 ```
 <a name=cerr2></a>
-**2. <CL/opencl.h> no such file or directory**
+**<CL/opencl.h> no such file or directory**
 ```c
 [CentOS]# yum install epel-release; yum provides '*/libOpenCL.so'; yum install ocl-icd-devel; yum install ocl*
 [Ubuntu]# apt install --fix-broken -y; apt install opencl-headers -y
@@ -115,7 +115,7 @@ Solution: g++ -c means `compile the source file`. If you meant to link it, remov
 - *Compiler* can find reference of object (class, function, variable, etc.).    //Compilation Ok
 - *Linker* cannot find the definition of a linked object.
 <a name=reason1></a>
-- **b1. No Definition Provided For Object:** The programmer has forgotten to define the object.
+- **No Definition Provided For Object:** The programmer has forgotten to define the object.
 ```cpp
 int fun();
 int main() {
@@ -130,7 +130,7 @@ Solution: Provide definition of fun()
 ```
 
 <a name=reason2></a>
-- **b2. Wrong/Mismatched Definition:** Definition of function is different from what's declared.
+- **Wrong/Mismatched Definition:** Definition of function is different from what's declared.
   - In Example below, declaration of function does not contain parameter, while definition does.
 ```cpp
 int fun();
@@ -146,17 +146,17 @@ collect2: error: ld returned 1 exit status
 ```
 
 <a name=reason3></a>
-- **b3. Object files not linked properly:** We have more than 1 source file and those are compiled independently. While linking, object files are not linked properly.
+- **Object files not linked properly:** We have more than 1 source file and those are compiled independently. While linking, object files are not linked properly.
 - Example: function `fun()` is declared in main.cpp & defined in `test.cpp`. 
   - When main.c is compiled seperately. We get -> undefined Reference
   - When both files are compiled together. No Error.
 ```cpp
-/////////////test.cpp////////////////
+//test.cpp
 void fun(int a){
   cout<<a;
 }
 
-////////////main.cpp////////////////
+//main.cpp
 int fun(int);
 int main(){
   cout<<fun(1);
