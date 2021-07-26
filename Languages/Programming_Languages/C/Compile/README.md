@@ -11,6 +11,7 @@
       - [b2. Wrong/Mismatched Definition](#reason2)
       - [b3. Object files not linked properly](#reason3)
 
+# Compilation Steps
 <img src="Compilation-Steps.jpg" width=8000 />
 
 ```c
