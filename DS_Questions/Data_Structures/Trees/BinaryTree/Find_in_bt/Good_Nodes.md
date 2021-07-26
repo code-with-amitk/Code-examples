@@ -9,6 +9,7 @@
 - In binary tree root, a node X in the tree is good if in the path from root to X there are no nodes with a value greater than X.
 - Return the number of good nodes in the binary tree.
 - Examples
+<img src=https://assets.leetcode.com/uploads/2020/04/02/test_sample_1.png width=500 />
 ```c
 Ex-1:
     3
@@ -101,4 +102,8 @@ include_directories(${GTEST_INCLUDE_DIRS})
 # Link runTests with what we want to test and the GTest and pthread library
 add_executable(runTests main.cpp)
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+
+$ cmake .
+$ make
+$ ./runtests
 ```
