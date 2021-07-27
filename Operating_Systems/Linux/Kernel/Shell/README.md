@@ -5,7 +5,7 @@
   - [Kcsh](#kcsh)
 - [How shell works](#how)
 - **Code**
-  - [1. C++: Execite commands, Redirect](#cpp)
+  - [1. C++: Execute commands, Redirection](#cpp)
   - [2. C](#cc)
 
 <a name=what></a>
