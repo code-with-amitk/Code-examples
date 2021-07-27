@@ -1,15 +1,15 @@
 ## struct
 
-- [Defining struct](#Defining_struct)
-- [Initializing struct](#initialize)
+- [Define struct](#Defining_struct)
+- [Initiale struct](#initialize)
 - [Mutable struct](#mutable)
-- [Dumping struct variables using println](#dump)
+- [Dump struct variables using println](#dump)
 - [Associated Function](#return)
 
 
 
 <a name=Defining_struct></a>
-### Defining struct
+### Define struct
 - name 1st followed by type
 ```rust
 struct Employee {
