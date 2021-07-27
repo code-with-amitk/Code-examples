@@ -1,28 +1,33 @@
-- [1. What is Shell](#what)
-- [2. Types of Shells](#types)
-- [3. How shell works](#how)
-- [4. Working Code](#work)
-  - [4.1 C++ Shell](#cpp)
-  - [4.2 C Code](#cc)
+- [Shell](#what)
+- **Types of Shells**
+  - [Bash](#bash)
+  - [Ksh](#ksh)
+  - [Kcsh](#kcsh)
+- [How shell works](#how)
+- **Code**
+  - [1. C++: Execite commands, Redirect](#cpp)
+  - [2. C](#cc)
 
 <a name=what></a>
-## 1. Shell
+## Shell
 - Computer program which exposes OS services to User or programs.
 
 <img src=shell.PNG width=400/>
 
-<a name=types></a>
-## 2. Types of shells
+## Types of shells
+<a name=bash></a>
 - **a. Bash shell:** Comes with .bash_profile.
   - `~/.bash_profile?` Executed for shell Logins. 
     - Shell Login? When you are at remote machine, Login via ssh(type username/password) Before 1st time Command prompt arrives, bash_profile is executed
+<a name=ksh></a>
 - **b. ksh/bourne shell(Default):** comes with .profile file.   
+<a name=kch></a>
 - **c. kcsh shell:** comes with .login file
   - `~/.bashrc?` Executed for non-shell logins.
     - Non-Shell login? You have already logged onto machine, now you open a new terminal window using xterm, vnc, KDE bashrc is executed.
 
 <a name=how></a>
-## 3. How shell works
+## How shell works
 - Program puts arguments on register, Switches context from user to kernel mode using [TRAP instruction](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
 - When user types a command line, the shell extracts the first word from it. Assumes this as program. Finds, forks a child.Child runs the program. shell waits on waitpid().
 - **Example Code:**
@@ -40,12 +45,23 @@ main() {
 }
 ```
 
-<a name=work></a>
-## 4. Working code
-
+## Code
 <a name=cpp></a>
-### 4.1 C++ Shell
-- [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions), [fork()](/Threads_Processes_IPC/Processes/Process_Creation),  [PCB](/Threads_Processes_IPC/Processes/Process_Table), [waitpid()](https://linux.die.net/man/2/waitpid)
+### 1. C++ Shell
+- This code can: Execute commands, redirect output to a file.
+> [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions), [fork()](/Threads_Processes_IPC/Processes/Process_Creation),  [PCB](/Threads_Processes_IPC/Processes/Process_Table), [waitpid()](https://linux.die.net/man/2/waitpid)
+- **Steps**
+  - _1._ Display shell prompt
+  - _2._ Read command from keyboard into string and trim leading, trailing spaces.
+  - _3._ if input command is "q" exit.
+  - _4._ Tokenize the command and place into `vector<string>` with sepeartor space " ".
+  - _5._ if input contains ">" jump to Redirect() function to process redirection.
+    - _5a._ Create file into which output needed to be redirected
+    - _5b._ [dup2()](/Operating_Systems/Linux/Kernel/System_Calls) stdout as newly created file descriptor. so STDOUT,new file both point to new file.
+    - _5c._ Remove file name, `>` from input string and pass string to execute function.
+  - _6._ if input does not contain ">", excute the command.
+    - _6a._ Create array of `char*` containing command and its arguments
+    - _6b._ execute the command in child process and wait in parent
 ```c++
 #include<iostream>
 #include<string>
@@ -58,41 +74,53 @@ using tokenizer = boost::tokenizer <boost::char_separator<char>>;
 boost::char_separator<char> sep(" ");
 using VectorString = vector<string>;
 
-bool process (VectorString& vecInput) {                   //4
+void Execute (VectorString& vecInput) {                         //6              
   int status;
-
-//4a. Create array of `char*` containing command and its arguments
-//
-  char *arr[vecInput.size() + 1];
+  
+  char *arr[vecInput.size() + 1];                               //6a
   for (auto i=0; i<vecInput.size(); ++i)
     arr[i] = const_cast<char*>(vecInput[i].c_str());
   arr[vecInput.size()] = NULL;
-  
 
-  if (fork() == 0)    //Child                   //4b. fork a child run execvp replacing child process's
+  if (fork() == 0)    //Child                                    //6b
     execvp (arr[0], arr);
   else                                          
-    waitpid (-1, &status, 0);                   //4c. wait in parent for child to finish
-    
-  return true;    
+    waitpid (-1, &status, 0);
 }
 
-int main(){
+void Redirect (VectorString& vecStr) {
+  //Considering last as file name
+  int oldfd = creat (vecStr[vecStr.size() - 1].c_str(), 0644);    //5a
+  dup2 (oldfd, STDOUT_FILENO);                                    //5b
+  vecStr.pop_back();      //Remove filename                       //5c
+  vecStr.pop_back();      //Remove redirection symbol >
+  Execute (vecStr);
+  close (oldfd);
+}
+
+int main() {
   string strInput;
-  VectorString vec;
+  VectorString vecStr;
+  
   while (1) {
-    cout << "> ";                               //1. Display prompt
-    getline (cin, strInput);                    //2. Take command from keyboard into string
+    cout << "> ";                               //1
+    getline (cin, strInput);                    //2
     boost::algorithm::trim (strInput);
-    if (strInput == "q") {
+    
+    if (strInput == "q") {                      //3
       cout << "Bye!!\n";
       exit (0);
     }
-    tokenizer tok(strInput, sep);               //3. Tokenize command and place into `vector<string>`
+    
+    tokenizer tok(strInput, sep);               //4
     for (const auto& t:tok) 
-      vec.push_back(t);
+      vecStr.push_back(t);
 
-    process (vec);
+    if (count(vecStr.begin(), vecStr.end(), ">"))   //5
+      Redirect(vecStr);
+    else                                          //6
+      Execute (vecStr);
+      
     vec.clear();
   }
 }
@@ -103,4 +131,4 @@ int main(){
 ```
 
 <a name=cc></a>
-### [4.2 C Code](https://github.com/brenns10/lsh/tree/407938170e8b40d231781576e05282a41634848c)
+### [2. C Code](https://github.com/brenns10/lsh/tree/407938170e8b40d231781576e05282a41634848c)
