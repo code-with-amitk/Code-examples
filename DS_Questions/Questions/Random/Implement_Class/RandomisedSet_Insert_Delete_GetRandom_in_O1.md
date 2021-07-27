@@ -138,6 +138,7 @@ target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 ```
 <a name=rust></a>
 - **Rust**
+[rand, thread_rng](/Languages/Programming_Languages/Rust/Crates_Packages_Modules)
 ```rs
 use std::{collections::HashMap, convert::TryInto};
 use rand::{thread_rng, Rng};
