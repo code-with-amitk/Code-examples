@@ -1,4 +1,5 @@
 - [Crates](#crate)
+  - [1. rand](#rand)
 - [Packages](#Packages)
 - [Modules](#Modules)
   - [Creating a module & accessing its function](#create)
@@ -12,6 +13,21 @@
 <a name=crates></a>
 ## Crates 
 crate is a binary(executable file having main()) or library(shared or static library) in rust.
+
+<a name=rand></a>
+### rand
+Rust library for random number generation.
+- **Using rand crate**
+```rs
+$ Cargo.toml
+[dependencies]
+rand = "0.8.0"    //Add rand library as dependency, cargo will download from crates.io
+```
+- **Public Functions in rand**
+```rsp
+//https://docs.rs/rand/0.8.4/rand/fn.thread_rng.html
+pub fn thread_rng() -> ThreadRng                  //Get thread-local random number generator, seeded by the system.
+```
 
 <a name=Packages></a>
 ## Packages
