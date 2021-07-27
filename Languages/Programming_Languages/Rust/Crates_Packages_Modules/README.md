@@ -15,7 +15,7 @@
 crate is a binary(executable file having main()) or library(shared or static library) in rust.
 
 <a name=rand></a>
-### rand
+### 1. rand
 Rust library for random number generation.
 - **Using rand crate**
 ```rs
@@ -23,10 +23,9 @@ $ Cargo.toml
 [dependencies]
 rand = "0.8.0"    //Add rand library as dependency, cargo will download from crates.io
 ```
-- **Public Functions in rand**
+- [thread_rng()](//https://docs.rs/rand/0.8.4/rand/fn.thread_rng.html): Generate random number
 ```rsp
-//https://docs.rs/rand/0.8.4/rand/fn.thread_rng.html
-pub fn thread_rng() -> ThreadRng                  //Get thread-local random number generator, seeded by the system.
+thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub fn thread_rng() -> ThreadRng
 ```
 
 <a name=Packages></a>
