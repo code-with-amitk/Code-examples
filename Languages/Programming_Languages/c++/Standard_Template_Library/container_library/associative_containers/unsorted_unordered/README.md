@@ -14,8 +14,8 @@
   - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
 - Find/Search
   - [key in um](#keyum)
-  - [Pair having smallest `key`](#smllestk)
-  - [Pair having smallest `value`](#smallestv)
+  - [Smallest `key`](#smllestk)
+  - [Smallest `value`](#smallestv)
   - [Count Number of occurences of value inside array](#count)
 - [Remove/Delete](#erase)
 - [Count](#count1)
