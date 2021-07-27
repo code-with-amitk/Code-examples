@@ -1,13 +1,13 @@
 - [Crates](#crate)
 - [Packages](#Packages)
 - [Modules](#Modules)
-  - [1. Creating a module & accessing its function](#create)
-  - [2. super keyword](#super)
-  - [3. struct inside module](#struct)
-  - [4. enum inside module](#enum)
-  - [5. use keyword](#use)
-    - [5.1 use as](#use_as)
-    - [5.2 pub use / Reexporting](#pub_use)
+  - [Creating a module & accessing its function](#create)
+  - [super keyword](#super)
+  - [struct inside module](#struct)
+  - [enum inside module](#enum)
+  - [1. use keyword](#use)
+    - [1. use as](#use_as)
+    - [2. pub use / Reexporting](#pub_use)
 
 <a name=crates></a>
 ## Crates 
@@ -24,7 +24,7 @@ crate is a binary(executable file having main()) or library(shared or static lib
 - By default Functions within modules are private ie to access function and we need to make it public by placing `pub` in front of it.
 
 <a name=create></a>
-### 1. Creating a module & accessing its function
+### Creating a module & accessing its function
 - _1._ Complete Hierarchy has to be made expilicitly public ie module_b & fun(). By default everything is private and cannot be accessed.
 - _2._ functions can be accessed either using Absolute or relative path.
   - Absoulte path: starts from crate
@@ -55,7 +55,7 @@ crate
 ```
 
 <a name=super></a>
-### 2. super keyword
+### super keyword
 - With keyword `super`, We can construct relative paths that begin in the parent module. This is like starting a filesystem path with the `..` syntax
 ```rs
 mod module_a {
@@ -89,7 +89,7 @@ crate
 ```
 
 <a name=struct></a>
-### 3. struct inside module
+### struct inside module
 - _1._ To access structure has to declared public, but still all feilds of struct remains private.
 - _2._ To access any field, that feild has to be made public.
 - _3._ We need to define a implementation fo access fields in `module_a::st` since there is a private member.
@@ -119,7 +119,7 @@ pub fn fun1 {
 ```
 
 <a name=enum></a>
-### 4. enum inside module
+### enum inside module
 - Unlike structure in module, if [enum](/Languages/Programming_Languages/Rust) is public all its variants are also public. We need to explicitly make every enum variant as public as in struct.
 ```rs
 mod module_a {
@@ -135,7 +135,7 @@ pub fn fun() {
 ```
 
 <a name=use></a>
-### 5. use keyword
+### use keyword
 - Similar to [type alias/using keyword in c++](/Languages/Programming_Languages/c++/C++11_14_17_20/c++11/), use is used to bring Paths into Scope.
 ```rs
 mod module_a {
@@ -152,7 +152,7 @@ pub fn fun1() {
 ```
 
 <a name=use_as></a>
-#### 5.1 use as
+#### 1. use as
 - Defining shorter name for path.
 ```rs
 use std::fmt::Result as FmtResult;
@@ -168,7 +168,7 @@ fn function2() -> IoResult<()> {
 ```
 
 <a name=pub_use></a>
-#### 5.2 pub use / Reexporting
+#### 2. pub use / Reexporting
 - After bringing a name into scope with the use keyword, the name available in the new scope is private, To use it we combine pub and use. 
 - This technique is called **re-exporting** because we’re bringing an item into scope but also making that item available for others to bring into their scope.
 ```rs
