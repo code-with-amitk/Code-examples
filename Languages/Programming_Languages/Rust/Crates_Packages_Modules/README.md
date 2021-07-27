@@ -11,9 +11,7 @@
 
 <a name=crates></a>
 ## Crates 
-crate is a binary or library in rust.
-  - Binary: executable file having main()
-  - Library: shared or static library.
+crate is a binary(executable file having main()) or library(shared or static library) in rust.
 
 <a name=Packages></a>
 ## Packages
