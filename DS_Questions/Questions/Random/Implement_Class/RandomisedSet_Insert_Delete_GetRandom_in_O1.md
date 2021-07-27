@@ -136,3 +136,74 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(runTests main.cpp)
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 ```
+
+- **Rust**
+```rs
+use std::{collections::HashMap, convert::TryInto};
+use rand::{thread_rng, Rng};
+
+struct RandomizedSet {
+    um : HashMap <i32, i32>,
+    v: Vec<i32>,
+}
+
+impl RandomizedSet {
+    fn new() -> Self {
+        Self {
+            v: vec![],
+            um: HashMap::new()
+        }
+    }
+    
+    fn insert(&mut self, val: i32) -> bool {
+        match self.um.get(&val) {
+            Some(_) => false,
+            None => {
+                self.v.push(val);
+                self.um.insert(val, (self.v.len()-1).try_into().unwrap());
+                true
+            }
+        }
+    }
+    
+    fn remove(&mut self, val: i32) -> bool {
+        return match self.um.get(&val){     //Get value of key
+            None => false,
+            Some(index) => {
+                self.v[*index as usize] = self.v[self.v.len()-1]; //Copy last 
+                self.um.insert(self.v[self.v.len()-1], *index);
+                self.v.pop();
+                self.um.remove(&val);
+                true
+            }
+        }
+    }
+    
+    fn get_random(&self) -> i32 {
+        self.v[thread_rng().gen_range(0..self.v.len())]
+    }
+}
+
+#[cfg(test)]                               //Automated tests run with `cargo test`
+mod all_tests {
+    use super::*;
+
+    #[test]
+    fn test1 () {
+        let mut obj = RandomizedSet::new();
+        assert_eq!(true, obj.insert(1));
+        assert_eq!(false, obj.remove(2));
+        assert_eq!(true, obj.insert(2));
+        assert_eq!(1, obj.get_random());
+        assert_eq!(true, obj.remove(1));
+        assert_eq!(false, obj.insert(2));
+        assert_eq!(2, obj.get_random());
+        assert_eq!(2, obj.get_random());
+    }
+}
+
+fn main(){
+    let mut obj = RandomizedSet::new();
+    println!("{}", obj.insert(1));
+}
+```
