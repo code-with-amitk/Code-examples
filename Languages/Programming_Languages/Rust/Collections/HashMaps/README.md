@@ -10,7 +10,7 @@
     - [2. get_mut(key)](#getm)
   - [Print](#print)
   - [Remove / Delete / Erase](#remove)
-- [HashMap inside Struct](#struct)
+- [HashMap,vector inside Struct](#struct)
 
 <a name=what></a>
 ## Hashmap<Key, Value> //https://doc.rust-lang.org/std/collections/struct.HashMap.html
@@ -138,32 +138,39 @@ Green,2
 
 <a name=struct></a>
 ## HashMap inside Struct
-- _1._ struct containing HashMap variable
+- _1._ struct containing HashMap, vector variable.
 - _2._ functions to operate on struct are defined inside impl.
-  - _2a._ [Constructor in Rust](/Languages/Programming_Languages/Rust). Inside ctr memory for HashMap is allocated.
-  - _2b._ For inserting into struct{HashMap}, self is passed ie insert into obj which calls the function.
+  - _2a._ [Constructor in Rust](/Languages/Programming_Languages/Rust). Inside ctr memory for HashMap, vector allocated on heap.
+  - _2b._ For inserting into struct{HashMap}, self is passed because we allocate object 1st then call functions on object.
 - _3._ Object of class is created by calling ctr of class. This allocates HashMap inside struct Test on Heap.
 - _4._ Using class object function is called.
 ```rs
 struct Test               //On Heap
 | HashMap allocated ... | 
-```
-- **Code**
-```rs
+
+
 using std::{collections::HashMap, hash::Hash};
-
-struct Test {                                   //1
-  a : HashMap <String, i32>,
+struct Test {                                     //1
+    v: Vec<i32>,
+    um : HashMap <String, i32>,
 }
 
-impl Test {                                     //2
-  fn ctr() -> Self {                            //2a
-    h : HashMap::<String, i32>::new()
-  }
-  fn insert (&mut self, a:String, b:i32) {      //2b
-    self.h.insert (a, b);
-  }
-}
+impl Test {                                       //2
+    fn ctr() -> Self {                            //2a
+        v: vec![],
+        um: HashMap::new()
+    }
+    
+    fn insert (&mut self, key:String, val:i32) -> bool {      //2b
+        match self.um.get (&key) {
+            Some(_) => false,                       //if key is present donot insert
+            None => {
+              self.um.insert (key, val);
+              self.v.push(val);
+              true
+            }
+        }
+    }
 
 fn main() {
   let mut obj = Test::ctr();                    //3
