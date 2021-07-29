@@ -7,10 +7,11 @@
       - [Characteristics](#ch)
       - [Why to use make_unique?](#make)
       - [Code](ucode)
-    - _2. SHARED Pointer_ 
+    - _2. SHARED Pointer shared_ptr_ 
       - [Characteristics](#sch)
       - [Copy Initialization not allowed on shared_ptr](#cint)
       - [Code](#spcode)
+    - _3. WEAK POINTER weak_ptr_
 
 <a name=raw></a>
 ## Raw/Normal pointer 
