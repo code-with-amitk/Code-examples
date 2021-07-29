@@ -1,15 +1,14 @@
-- [1. What is Generic Type](#gen)
-  - [1.1 Generic Structure & Generic impl block](#genst)
-- [2. Monomorphization / Generic Internal Implementation](#internal)
+**Generic Types**
+- [Generic Structure & Generic impl block](#genst)
+- [Monomorphization / Generic Internal Implementation](#internal)
 
 
-<a name=gen></a>
-## 1. Generic Type
+## Generic Type
 - Same as templates, used to handle the duplicate data types,code.
 
 <a name=genst></a>
-### 1.1 Generic Structure & Generic impl block
-```rust
+## Generic Structure & Generic impl block
+```rs
 #[derive(Debug)]
 struct  point<T,U> {
     x:T,
@@ -39,7 +38,7 @@ fn main() {
 ```
 
 <a name=internal></a>
-## 2. Generic Internal Implementation
+## Generic Internal Implementation
 - Rust replaces generic code into specific-type code by filling in the concrete types that are used when compiled. This is called monomorphization.
 - How `Option<T> enum` is implemented?
 ```rust
