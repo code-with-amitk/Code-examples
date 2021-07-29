@@ -5,6 +5,7 @@
 - [Statements & Expressions](#statements)
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
+- [Smart Pointers](#smart)
 - [Data Types](#datatypes)
 - [Collections](#collections)
 - [Class in Rust](#class)
@@ -137,6 +138,9 @@ fn fun2(a_string: String) -> String {
     - Mutable References are allowed in seperate scope
   - Borrow checker
   - Lifetimes: lifetime elision
+
+<a name=smart></a>
+## [Smart Pointers](Smart_Pointers)
 
 <a name=datatypes></a>
 ## [Data Types](Data_Types)
