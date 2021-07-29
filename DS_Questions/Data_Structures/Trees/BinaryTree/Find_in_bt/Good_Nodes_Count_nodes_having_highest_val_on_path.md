@@ -1,4 +1,4 @@
-- [Good Nodes](#ques)
+- Good Nodes
 - Approach-1. DFS
   - [Logic](#logic1)
   - [Complexity](#comp1)
