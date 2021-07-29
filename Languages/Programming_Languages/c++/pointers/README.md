@@ -1,7 +1,7 @@
 **Pointers**
 - [Raw](#raw)
 - [Smart](#smart)
-  - [Code](#code)
+  - [Code](#smartcode)
   - **Types of Smart Pointers**
     - _1. UNIQUE Pointer_
       - [Characteristics](#ch)
@@ -26,7 +26,7 @@ int *p = new int();         //p is raw pointer.
 when Object goes out of scope.
 - These are useful when Programmer may allocate memory using new() & later might forget to use delete(). 
 
-<a name=code></a>
+<a name=smartcode></a>
 - **Code**
   - class maintains a local pointer, memory is allocated and assigned to pointer.
   - Overloaded functions are defined for *, ->
