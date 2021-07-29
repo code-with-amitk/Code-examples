@@ -32,40 +32,38 @@ when Object goes out of scope.
   - Overloaded functions are defined for *, ->
 ```cpp
 template <class T>		
-class smart_pointer{
-//	int *a;
-	T *a;
+class A{                    //This class is Smart pointer
+  //int *a;
+  T *a;
 public:
-//	smart_pointer(int *r):a(r){
-	smart_pointer(T *r):a(r){
-		cout<<"Allocated memory\n";
-	}
-	~smart_pointer(){
-		cout<<"\nDestructor called, Allocated memory freed\n";
-		delete a;
-	}
-//	int &operator *(){	//& returns a only, does not create new copy
-	T &operator *(){
-		return *a;
-	}
+//A(int *r):a(r){
+  A(T *r):a(r){ cout << "Allocated\n"; }
+  ~A(){
+    delete a;
+    cout << "Freed\n";
+  }
+//int &operator *(){	//& returns a only, does not create new copy
+  T &operator *(){
+    return *a;
+  }
 };
 
 int main(){
-	//Automatic template type deduction => Provided in C++17
-	smart_pointer <int> obj(new int());	//obj is my pointer now. I can carry all pointer operations
-	*obj = 10;
-	cout<<*obj<<"\n";
+  //Automatic template type deduction => Provided in C++17
+  A <int> obj(new int());	//obj is my pointer now. I can carry all pointer operations
+  *obj = 10;
+  cout<<*obj<<"\n";
 
-	smart_pointer <float> obj1(new float());
+  A <float> obj1(new float());
 }
 
 # g++ smart_pointers
-Allocated memory
+Allocated
 10
-Allocated memory
+Allocated 
 
-Destructor called, Allocated memory freed
-Destructor called, Allocated memory freed
+Freed
+Freed
 ```
 
 ### 1. Unique Pointer //In C++11
