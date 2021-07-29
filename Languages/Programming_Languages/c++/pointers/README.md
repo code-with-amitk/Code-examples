@@ -6,7 +6,7 @@
     - _1. UNIQUE Pointer_
       - [Characteristics](#ch)
       - [Why to use make_unique?](#make)
-      - [Code](ucode)
+      - [Code](#code)
     - _2. SHARED Pointer shared_ptr_ 
       - [Characteristics](#sch)
       - [Copy Initialization not allowed on shared_ptr](#cint)
