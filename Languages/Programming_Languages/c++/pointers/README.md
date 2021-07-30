@@ -3,6 +3,7 @@
 - [Smart](#smart)
   - [Code](#smartcode)
   - **Types of Smart Pointers**
+    - [Unique ptr vs Shared ptr](#vs)
     - _1. UNIQUE Pointer_
       - [Characteristics](#ch)
       - [Why to use make_unique?](#make)
@@ -65,6 +66,35 @@ Allocated
 Freed
 Freed
 ```
+
+## Types of Smart Pointers
+<a name=vs></a>
+### Unique Ptr vs Shared Ptr
+_Both are smart pointers_
+  - That means that they automatically deallocates the object that they point to when that object is no longer referenced.
+  - _shared_ptr:_ Multiple pointers to the same resource.
+  - _unique_ptr:_ Only 1 pointer to an object that can be moved not copied.
+
+_Unique ptr_
+  - There can be only one unique_ptr to any resource, any attempt to make a copy of a unique_ptr will cause a compile-time error.
+```c
+unique_ptr<T> ptr(new T);       // Okay
+unique_ptr<T> cptr = ptr;       // Error: Can't copy unique_ptr
+```
+- unique_ptr can be moved using the new move semantics
+```c
+unique_ptr<T> ptr(new T);             // Okay
+unique_ptr<T> cptr = std::move(ptr);  // Okay, resource now stored in cptr
+```
+
+_shared_ptr_
+- On the other hand, allows for multiple pointers to point at a given resource.
+```c
+shared_ptr<T> ptr(new T);       // Okay
+shared_ptr<T> cptr = ptr;       // Okay
+```
+- Internally, shared_ptr uses [reference counting](https://en.wikipedia.org/wiki/Reference_counting) to track how many pointers refer to a resource, Once all references goes away resource is deleted. So we need to be careful not to introduce any reference cycles.
+
 
 ### 1. Unique Pointer //In C++11
 <a name=ch></a>
