@@ -6,7 +6,7 @@
     - [Unique ptr vs Shared ptr](#vs)
     - _1. UNIQUE Pointer_
       - [Characteristics](#ch)
-      - [Allocating up using make_unique?](#make)
+      - [Allocating unique pointer using make_unique?](#make)
     - _2. SHARED Pointer shared_ptr_ 
       - [Characteristics](#sch)
       - [Copy Initialization not allowed on shared_ptr](#cint)
@@ -101,7 +101,7 @@ shared_ptr<T> cptr = ptr;       // Okay
 #### Characteristics of UP
   - copy is not allowed(copy ctr, assignment operator are deleted)
   - std::move(transferring ownership) is allowed. Original pointer cannnot be accessed. ptr.reset(): Deletes the memory
-<a name=makep></a>
+<a name=make></a>
 #### `make_unique<T>()`?
   - *a.* Avoid use of new operator
   - *b.* Provides exception safety, as new and delete internally handled by compiler. 
