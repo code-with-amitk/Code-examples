@@ -87,11 +87,11 @@ unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());     //Range ctr
 |key="a"|value=pointer_to_struct|  
 
     using stData = struct data {
-        unique_ptr <vector<int>> pVec;
+        unique_ptr<vector<int>> pVec;
         int val;
     };
     
-    unordered_map <string, stData> um;    
+    unordered_map <string, unique_ptr<stData> > um;    
 ```
 
 <a name=uminsert></a>
