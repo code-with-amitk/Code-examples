@@ -6,8 +6,7 @@
     - [Unique ptr vs Shared ptr](#vs)
     - _1. UNIQUE Pointer_
       - [Characteristics](#ch)
-      - [Why to use make_unique?](#make)
-      - [Code](#ucode)
+      - [Allocating up using make_unique?](#make)
     - _2. SHARED Pointer shared_ptr_ 
       - [Characteristics](#sch)
       - [Copy Initialization not allowed on shared_ptr](#cint)
@@ -97,66 +96,57 @@ shared_ptr<T> cptr = ptr;       // Okay
 
 
 ### 1. Unique Pointer //In C++11
+- [What is UP](#vs)
 <a name=ch></a>
 #### Characteristics of UP
   - copy is not allowed(copy ctr, assignment operator are deleted)
-  - std::move(transferring ownership) is allowed. Original pointer cannnot be accessed
-  - ptr.reset(): Deletes the memory
+  - std::move(transferring ownership) is allowed. Original pointer cannnot be accessed. ptr.reset(): Deletes the memory
 <a name=makep></a>
-#### Why to use `make_unique<T>()`?
+#### `make_unique<T>()`?
   - *a.* Avoid use of new operator
   - *b.* Provides exception safety, as new and delete internally handled by compiler. 
   - Function defined in `<memory>` header for creating a unique pointer. Memory is allocated to 0.
-<a name=ucode></a>
-#### Code
 ```cpp
 #include <memory>
 int main(){
-        /*Creating UP, Allocate *int, provide value=5*/ 
-        unique_ptr<int> p(new int(5));
+        unique_ptr<int> p(new int(5));          //Create UP, Allocate int, provide value=5
         cout<<*p;                               //5
 
-        /*C1. copy of UP is not allowed*/
-        //unique_ptr<int> p1 = p;               //error: use of deleted function
+        //unique_ptr<int> p1 = p;               //error: use of deleted function. copy of UP is not allowed
 
-        /*C2. Moving ownership*/
-        unique_ptr<int> p2 = std::move(p);
+        unique_ptr<int> p2 = std::move(p);      //Moving ownership
         cout<<*p2;                              //5
         //cout<<*p;                             //Segmentation Fault
 
-        /*C3. reset() function*/
         p2.reset();
 
-        /*B. Creating unique_ptr using make_unique()*/
-        unique_ptr<int> p1 = make_unique<int>();
-        cout<<*p1<<endl;                       //0
+        unique_ptr<int> p1 = make_unique<int>();  //Create UP using make_unique()
+        cout<<*p1<<endl;                          //0
 }
 ```
 
 ### 2. Shared Pointer
-```c
+- [What is SP](#vs)
+```cpp
 shared_ptr<int> p   =   int* p          //We can think like this
 ```
 <a name=sch></a>
 #### Characteristics of shared pointer
-  - Maintains reference count/ownership of its contained pointer. 
-  - Once count reaches 0, allocated memory is deleted.
+Maintains reference count/ownership of its contained pointer. Once count reaches 0, allocated memory is deleted.
 
 <a name=cint></a>
 #### Copy Initialization not allowed on shared_ptr
-*Copy Initialization?* 
-- When we initialise with `=`, we invoke copy-initialisation.
+*Copy Initialization?* When we initialise with `=`, we invoke copy-initialisation.
 ```c++
 int main() {
-  shared_ptr <int> a = new int;                 //Copy Initialization
+  shared_ptr<int> a = new int;                 //Copy Initialization
 }  
 # g++ test.cpp
   conversion from 'int*' to non-scalar type 'std::shared_ptr' requested
 ```
-*Why CI not allowed?* 
-- Because shared_ptr constructor is explicit and a explicit construtor is not copy-assignable.
+*Why CI not allowed?* Because shared_ptr constructor is explicit and a explicit construtor is not copy-assignable.
 ```cpp
-//shared_ptr <int> a = new int; is equivalent to:
+//shared_ptr<int> a = new int; is equivalent to:
 int* b = new int;
 shared_ptr<int> a = b;
 
@@ -172,19 +162,16 @@ shared_ptr<int> a = make_shared<int>();
 
 <a name=spcode></a>
 #### Code
-- Pointing shared_ptr to int
-  - _1._ ptr is pointer to integer having value=5
-  - _2._ ptr,ptr1 now points to same memory.
 ```cpp
 int main(){
-  shared_ptr <int> ptr (new int(5));         //1
-  shared_ptr <int> ptr1 = ptr;               //2
+  shared_ptr<int> ptr (new int(5));          //Allocated int, made shared_ptr point to it
+  shared_ptr <int> ptr1 = ptr;               //ptr,ptr1 now points to same memory
 
   cout << *ptr;                             //Ouput:5
   cout<<*ptr1;                              //Output:5
 
   ptr.reset();                               //Deleting ptr
-  cout << *ptr1;                             //5   But ptr1 still points to memory
+  cout << *ptr1;                             //5 But ptr1 still points to memory
 
   ptr1.reset();                               //Deleting ptr1
   //cout<<*ptr;                              //Segmentation Fault
