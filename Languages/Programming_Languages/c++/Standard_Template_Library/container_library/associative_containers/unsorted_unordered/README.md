@@ -1,4 +1,4 @@
-**unordered_set`<key>`**
+### unordered_set`<key>`
 - Create
   - [Set of pairs](#screate)
 - Find
@@ -7,8 +7,10 @@
 - Remove Delete
 - [Count](#count1)
 
-**unordered_map`<key, value>`**
-- [Create](#uminsert)
+### unordered_map`<key, value>`
+- Create
+  - [Constructors](#umctr)
+  - [Value is Structure](#umstruct)
 - [Insert](#uminsert)
 - [Print](#umprint)
   - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
@@ -56,22 +58,40 @@ S.insert(std::make_pair(0, 1));
 
 # unordered_map`<key, value>`
 - `<key,value>` pair with unique keys. *Complexity* Amortized: O(1), Worst case: O(n)
-<a name=createum></a>
+
 ### Create
+<a name=umctr></a>
+#### Constructors
 ```cpp
 unordered_map<string, int> um;
-
 unordered_map<int, std::string> m2 = {     //List ctr
   {1, "foo"},
-  {3, "bar"},
   {2, "baz"}, 
 }; 
-
 unordered_map<int, std::string> um1 = um2;     //Copy Ctr
-
 unordered_map<int, std::string> m4 = std::move(m2);    //Move ctr
-
 unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());     //Range ctr
+```
+
+<a name=umstruct></a>
+#### Value is Structure
+- Value is pointer to structure containing vector. [Code: Underground Station]
+```cpp
+            | | | | | | vector
+            /\
+            |
+          |pVec| val |
+          struct data
+          /\
+          |
+|key="a"|value=pointer_to_struct|  
+
+    using stData = struct data {
+        unique_ptr <vector<int>> pVec;
+        int val;
+    };
+    
+    unordered_map <string, stData> um;    
 ```
 
 <a name=uminsert></a>
