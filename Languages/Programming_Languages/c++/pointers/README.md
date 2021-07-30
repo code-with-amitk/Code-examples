@@ -96,7 +96,7 @@ shared_ptr<T> cptr = ptr;       // Okay
 
 
 ### 1. Unique Pointer //In C++11
-- [What is UP](#vs)
+[What is UP](#vs)
 <a name=ch></a>
 #### Characteristics of UP
   - copy is not allowed(copy ctr, assignment operator are deleted)
@@ -126,7 +126,7 @@ int main(){
 ```
 
 ### 2. Shared Pointer
-- [What is SP](#vs)
+[What is SP](#vs)
 ```cpp
 shared_ptr<int> p   =   int* p          //We can think like this
 ```
