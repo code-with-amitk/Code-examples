@@ -1,2 +1,0 @@
-## Purpose of botnet
-
