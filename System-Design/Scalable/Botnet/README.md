@@ -42,7 +42,7 @@ Phase-2 Secondary Injection: 1st phase should be completed successfully.
 
 Phase-3 Connection or Rally: Establishing a connection with the [C&C](#arch)
 - This phase is scheduled every time the host is restarted to ensure the botmaster that the bot are able to receive commands to perform malicious activities.
-- Bots contact C&C server using [DNS](/Networking/OSI-Layers/Layer5/Protocols/DNS), some complex bots may run DNS algo internally to compute dynamic DNS.
+- Bots contact C&C server using [DNS](/Networking/OSI-Layers/Layer-7/Protocols), some complex bots may run DNS algo internally to compute dynamic DNS.
 
 Phase-4 Malicious Activities: 
 - After establishing the C&C channel, the bot waits for commands from C&C to perform malicious activities.
@@ -77,8 +77,8 @@ _1. Reactive:_ 1st detect malicious activity and then react to the attack by red
   - *b. Timing:* By the time its detected, system is already under attack(some percent of it).
 _2. Preventive:_ Taking preventive measures before attack can happen. Detecting machines involved in the preparation of an attack, and deactivating them. Example by forcing users to be authenticated
 _3. Others:_
-  - *a.* Understanding DNS pattern of bots. bots communicates with botmaster using [dynamic DNS](#ddns). See [Connection & Rally Phase-3](Bot_Lifecycle)
-  - *b.* Understanding File exchange patterns. Bot-master sends code files to bots during upgrade. See [Maintainence & Upgrading Phase-5](Bot_Lifecycle)
+  - *a.* Understanding DNS pattern of bots. bots communicates with botmaster using dynamic DNS. See [Connection & Rally Phase-3](#life)
+  - *b.* Understanding File exchange patterns. Bot-master sends code files to bots during upgrade. See [Maintainence & Upgrading Phase-5](#life)
 _4. Hoynets to capture bots / Intrusion Detection systems (IDSs)_
   - Collect information from bots. After collecting information, it is possible to reach bot-master.
   - Get bot binaries, inflate them with information and reach bot-master.
