@@ -75,10 +75,14 @@ Centralized C&C is point of failure
 _1. Reactive:_ 1st detect malicious activity and then react to the attack by reducing malicious traffic to acceptable levels. Disadvantages:
   - *a.* Need large infra/AI to judge the mailicious activity and adjustable network to work as per situation.
   - *b. Timing:* By the time its detected, system is already under attack(some percent of it).
-_2. Preventive:_ Taking preventive measures before attack can happen. Detecting machines involved in the preparation of an attack, and deactivating them. Example by forcing users to be authenticated
+
+_2. Preventive:_ 
+- Taking preventive measures before attack can happen. Detecting machines involved in the preparation of an attack, and deactivating them. Example by forcing users to be authenticated
+
 _3. Others:_
   - *a.* Understanding DNS pattern of bots. bots communicates with botmaster using dynamic DNS. See [Connection & Rally Phase-3](#life)
   - *b.* Understanding File exchange patterns. Bot-master sends code files to bots during upgrade. See [Maintainence & Upgrading Phase-5](#life)
+
 _4. Hoynets to capture bots / Intrusion Detection systems (IDSs)_
   - Collect information from bots. After collecting information, it is possible to reach bot-master.
   - Get bot binaries, inflate them with information and reach bot-master.
