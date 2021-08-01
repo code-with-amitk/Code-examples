@@ -3,6 +3,7 @@
   - [Characteristics of Machine choosen by botmaster](#ch)
 - [Phases to become botnet / Lifecycle](#life)
 - [Architecture](#arch)
+  - [Drawbacks of this arch](#draw)
 - [Preventing Botnet Attacks](#pre)
 
 <a name=what></a>
@@ -57,6 +58,17 @@ Command-and-control infrastructure (C&C)
 - Centralized or decentralized control entity. One or more communication protocols are used by the botmaster(s) to command slave computers and coordinate their actions.
 
 <img src=Botnet_Architecture.JPG width=400 />
+
+<a name=draw></a>
+#### Drawbacks of this Arch
+Centralized C&C is point of failure
+- Solution-1: Decentralized C&C
+  - Unstructured P2P Overlay. Random toplogies with different degrees of distribution.
+  - Structured P2P Overlay.
+  - Superpeer Overlays. All peers are not equal, some are selected as [superpeers](/System-Design/Scalable/Skype).
+- Solution-2: Random model C&C 
+  - Bots does not contact bot-master or other bots. Instead, it waits for connection from botmaster.
+  - This is Easy to implement, no communication protocol between bots and botmaster making it harder to detect.
 
 <a name=pre></a>
 ## Preventing Botnet attacks
