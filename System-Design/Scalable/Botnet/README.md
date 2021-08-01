@@ -60,7 +60,7 @@ Command-and-control infrastructure (C&C)
 <img src=Botnet_Architecture.JPG width=400 />
 
 <a name=draw></a>
-#### Drawbacks of this Arch
+### Drawbacks of this Arch
 Centralized C&C is point of failure
 - Solution-1: Decentralized C&C
   - Unstructured P2P Overlay. Random toplogies with different degrees of distribution.
