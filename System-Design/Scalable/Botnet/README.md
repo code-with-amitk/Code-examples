@@ -86,5 +86,3 @@ _3. Others:_
 _4. Hoynets to capture bots / Intrusion Detection systems (IDSs)_
   - Collect information from bots. After collecting information, it is possible to reach bot-master.
   - Get bot binaries, inflate them with information and reach bot-master.
-
-
