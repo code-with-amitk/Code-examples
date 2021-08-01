@@ -2,6 +2,7 @@
   - [Purpose](#pur)
   - [Characteristics of Machine choosen by botmaster](#ch)
 - [Phases to become botnet / Lifecycle](#life)
+- [Architecture](#arch)
 - [Preventing Botnet Attacks](#pre)
 
 <a name=what></a>
@@ -48,7 +49,14 @@ Phase-4 Malicious Activities:
 Phase-5 Maintainence & Upgrading:
 - Updating codes of bots by botmaster. This involves file exchanges.
 
-<img src=lifecycle-of-bot.JPG width=500 />
+<img src=lifecycle-of-bot.JPG width=400 />
+
+<a name=arch></a>
+## Architecture
+Command-and-control infrastructure (C&C) 
+- Centralized or decentralized control entity. One or more communication protocols are used by the botmaster(s) to command slave computers and coordinate their actions.
+
+<img src=Botnet_Architecture.JPG width=400 />
 
 <a name=pre></a>
 ## Preventing Botnet attacks
@@ -64,5 +72,3 @@ _4. Hoynets to capture bots / Intrusion Detection systems (IDSs)_
   - Get bot binaries, inflate them with information and reach bot-master.
 
 
-### [Architecture](Botnet_Architecture)
-  - [Drawbacks in C&C Architecture](Botnet_Architecture/Drawbacks.md)
