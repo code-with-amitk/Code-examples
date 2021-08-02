@@ -6,13 +6,12 @@
 
 <a name=what></a>
 ## BigTable
-- This is distributed storage system that scales to large size(Petabytes) and distributed over 1000's of comodity servers.
-- if any of our datastructure(eg: stack,queue etc) contains millions of entries, those should be stored here.
-- Projects storing data in BigTable: web indexing, Google Earth, and Google Finance.
+- Any DS(stack,queue etc) when gets big is stored on BT. Projects storing data in BigTable: web indexing, Google Earth, and Google Finance.
+- BT can scale to size(Petabytes) and distributed over 1000's of comodity servers.
 
 <a name=datamodel></a>
 ## Data Model
-- BigTable stores data lexicographically in Multidimensinal sorted Map`<Key,value>`(ie [map`<key,value>`](/Languages/Programming_Languages/c++/Standard_Template_Library/) which stores data in RBT, it not Hash Table, because HTs are not sorted). This is Google's Implementation of [Distributed Hash Table](/System-Design/Scalable)
+- BT stores data lexicographically in Multidimensinal sorted [Map`<Key,value>`](/Languages/Programming_Languages/c++/Standard_Template_Library/) ie RBT.
 ```c
   row key(string(64kb)) + coloumn key(64kb) + timestamp(int64) -> {Hash_Function} -> Key 
   value = Array of bytes.
@@ -28,8 +27,8 @@ Example: Storing webpage
 ```
 
 <a name=rr></a>
-### 1. Row Range = Tablets
-- n rows are grouped together to form a **tablet**, which is the unit of distribution and load balancing.
+### 1. Row Range = Tablets. 
+1 tablet is n rows grouped together.
 
 <a name=faster></a>
 ### 2. How read operation is faster
