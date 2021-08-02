@@ -31,11 +31,31 @@ $ git diff --output file        //Output in file
 ```c
   # git show commit
 ```
-- **merge:**    Merge 2 or more development histories together.
-- **push:**    Pushing the changes onto main branch
-- **pull:**    Synching with latest branch code
-- **status:**    tells what's modified by you, what's not modified on local repo
-- **rebase:** Reapply commits on top of another base tip. When we have merge conflicts we do
+- **stash:** 
+Dictionary meaning: store (something) safely in a hidden or secret place. git stash temporarily saves changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on.
+```git
+$ git status
+On branch main
+Changes to be committed:
+    new file:   style.css
+
+$ git stash
+Saved WIP: 5002d47 our new homepage HEAD is now at 5002d47 our new homepage
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+```
+- **merge:**    
+Merge 2 or more development histories together.
+- **push:**    
+Pushing the changes onto main branch
+- **pull:**    
+Synching with latest branch code
+- **status:**    
+tells what's modified by you, what's not modified on local repo
+- **rebase:** 
+Reapply commits on top of another base tip. When we have merge conflicts we do
 ```c
 # git rebase master
 ```
