@@ -4,11 +4,8 @@
 - [Syntax](#syn)
 - Examples
   - [Empty capture list, parameter list, function body](#emp)
-  - [Pass By Value using Capture list](#value)
-    - [1. Passing 1 outside variable to lambda](#value1)
-    - [2. Passing all outside variables to lambda](#valueall)
-    - [3. Outside Variable cannot be modified in lambda](#notmod)
-  - [Pass by Reference(&) RW](#ref) 
+  - [Pass By Value(RO) using Capture list, outside var cannot modified](#value)
+  - [Pass by Reference(&) RW, can modify outside variables](#ref) 
 
 <a name=what></a>
 ## Lambda Expression(C++11)
@@ -19,14 +16,14 @@
   - _2._ Complete Logic of function can be written as argument to function.
 
 <a name=ex></a>
-### Example
+- **Example**
 ```cpp
 Example-1
   auto p2 = [ ] (int a, int b) -> int { return a+b; };
   cout << p2(2,3) << endl;            //O/P 5
 ```
 <a name=vs></a>
-### Lambda vs Functor
+- **Lambda vs Functor**
 - *1.* Lambdas are more of writing compact/inline code Basically for 1 time only.
 - *2.* Functors store state of object can be called again and again and provide added advantage over functions.
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
@@ -58,27 +55,29 @@ int main(){
 ```
 
 <a name=value></a>
-### Pass By Value using Capture list
-- Passing outside variables into lambda using capture list. Pass by value variable are RO, cannot be modified lambda.
-<a name=value1></a>
-#### 1. Passing 1 outside variable to lambda
+### Pass By Value
+Passing outside variables into lambda using capture list. Pass by value variable are RO, cannot be modified lambda.
 ```cpp
+  //1. Passing 1 outside variable to lambda
   int i = 1;
-  auto p =  [ i ]  (int a, int b)  ->  int {  return a + b + i;   };
+  auto p =  [ i ]  (int a, int b)  ->  int {
+    return a + b + i;   
+  };
   cout << p(2,3) << endl;            //6
-```  
-<a name=valueall></a>
-#### 2. Passing all outside variables to lambda
-```c++
+
+  //2. Passing all outside variables to lambda
   int i = 1, j = 2;
-  auto p =  [ = ]  (int a, int b)  ->  int {  return a + b + i + j;   };
+  auto p =  [ = ]  (int a, int b)  ->  int {
+    return a + b + i + j;   
+  };
   cout << p(3,4) << endl;            //10
-```  
-<a name=notmod></a>
-#### 3. Outside Variable cannot be modified in lambda
-```c++
+
+  //3. Outside Variable cannot be modified in lambda
   int i = 1;
-  auto p =  [ = ]  (int a, int b) -> int { i = 6;  return a + b + i;   };   //Compilation error: assignment of read-only variable ‘i’
+  auto p =  [ = ]  (int a, int b) -> int {
+    i = 6;                        //Compilation error: assignment of read-only variable ‘i’
+    return a + b + i;   
+  };   
   cout << p4(2,3) << endl;
 ```  
 
