@@ -6,6 +6,7 @@
   - [Empty capture list, parameter list, function body](#emp)
   - [Pass By Value(RO) using Capture list, outside var cannot modified](#value)
   - [Pass by Reference(&) RW, can modify outside variables](#ref) 
+  - [Pass by ref and val in capture list](#refval)
 
 <a name=what></a>
 ## Lambda Expression(C++11)
@@ -81,15 +82,6 @@ Passing outside variables into lambda using capture list. Pass by value variable
   cout << p4(2,3) << endl;
 ```  
 
-#### 1. Open /dev/mem
-```c++
-int main(){
-  int fd;
-  if((fd=[]()->int{return open("./hello.txt", O_RDWR);}()) != -1)
-    cout<<fd;
-}
-```
-
 <a name=ref></a>
 ### Pass by Reference(&) RW
 - Passing outside variables into lambda. Variables passed can be modified inside lambda.
@@ -109,3 +101,30 @@ int main(){
   };
   cout << p(3,4);    //10
 ```
+
+<a name=refval></a>
+### Pass by ref and val in capture list
+Capture by reference all except 1
+  - Except "j" everything else is captured as reference(ie can be changed). Just "j" cannot be changed
+```cpp
+  auto p7  =  [ &, j ]  (int a, int b)  ->  int {
+    i=7;
+    return a + b + i; 
+  };
+```  
+Capture by Value all except 1
+  - Except "i" nothing can be changed.
+```cpp
+  auto p8  =  [ =, &i ]  (int a, int b)  ->  int {  i=95;  return a + b + i; };
+```
+
+#### 1. Open /dev/mem
+```c++
+int main(){
+  int fd;
+  if((fd=[]()->int{return open("./hello.txt", O_RDWR);}()) != -1)
+    cout<<fd;
+}
+```
+
+
