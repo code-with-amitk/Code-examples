@@ -1,6 +1,7 @@
 **constexpr**
 - [constexpr vs macro](#vs)
-- [const vs constexpr](#vs1)
+- [const vs constexpr variable](#vs1)
+  - [constexpr char`*`](#char)
 - [constexpr function](#fun)
   - [RELAXING CONSTRAINTS ON CONSTEXPR FUNCTION](#relax)
 
@@ -17,21 +18,30 @@ When to use |if no other solution is possible| wherever you want |
 ```
 
 <a name=vs1></a>
-### const vs constexpr
+### const vs constexpr variable
 - const: Whose value remains same through out the program
 - constexpr: variable whose value is derived at compile-time & initialized
 ```cpp
+/////////const variable/////////
 int main(){
- ///////////PROBLMATIC CODE////////////
  int a;
  cin >> a;
  const int b = a;   //Problem: How b is const if its value can be changed at runtime?
+}
  
- /////////SOLUTION: constexpr//////////
- //constexpr int c = a;  //error: uninitialized const ‘c’ [-fpermissive
- //constexpr int c;      // error: uninitialized const ‘c’ [-fpermissive]
+////////constexpr variable///////
+int main() {
+ //constexpr int c = a;  //error: uninitialized const ‘c’
+ //constexpr int c;      // error: uninitialized const ‘c’
  constexpr int c = 1;
 }
+```
+<a name=char></a>
+#### constexpr char`*`
+constexpr variable need to be initialized by constexpr function. Since constexpr variable's value should be derived at compile time.
+```cpp
+  constexpr char* p = new char(5);  //Compilation error. ‘void* operator new(std::size_t)’ is non-constexpr function
+  constexpr char a[] = "amit";      //Ok
 ```
 
 <a name=fun></a>
