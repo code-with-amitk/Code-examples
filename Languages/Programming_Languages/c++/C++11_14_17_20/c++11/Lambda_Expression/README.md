@@ -1,4 +1,5 @@
-- [What is Lambda Function](#what)
+**Lambda Function**
+  - [Why](#why)
   - [Example](#ex)
   - [Lambda vs Functor](#vs)
 - [Syntax](#syn)
@@ -8,25 +9,29 @@
   - [Pass by Reference(&) RW, can modify outside variables](#ref) 
   - [Pass by ref and val in capture list](#refval)
 
-<a name=what></a>
 ## Lambda Expression(C++11)
-- Function that does not have a name, can be defined inside other function. Returns value using function pointers. Lambda should be closed using Semicolon.
-- *Why lambda?* For some logic/code to be used for only 1 time, function is not a good idea.  
-- *Advantages*  
+Function that does not have a name, can be defined inside other function. Returns value using function pointers. Lambda should be closed using Semicolon.
+
+<a name=why></a>
+#### Why lambda?
+- _1._ For some logic/code to be used for only 1 time, function is not a good idea.
+- _2._ If some logic/function need to be called again and again, then function call is not good(stack creation/destroy). Store in variable(pointer).
+
+*Advantages*  
   - _1._ Can defined inside other function.   
   - _2._ Complete Logic of function can be written as argument to function.
 
 <a name=ex></a>
-- **Example**
+**Example**
 ```cpp
 Example-1
   auto p2 = [ ] (int a, int b) -> int { return a+b; };
   cout << p2(2,3) << endl;            //O/P 5
 ```
 <a name=vs></a>
-- **Lambda vs Functor**
-- *1.* Lambdas are more of writing compact/inline code Basically for 1 time only.
-- *2.* Functors store state of object can be called again and again and provide added advantage over functions.
+**Lambda vs Functor**
+  - *1.* Lambdas are more of writing compact/inline code Basically for 1 time only.
+  - *2.* Functors store state of object can be called again and again and provide added advantage over functions.
 [Youtube](https://www.youtube.com/watch?v=uk0Ytomv0wY)    
 
 <a name=syn></a>
@@ -84,7 +89,7 @@ Passing outside variables into lambda using capture list. Pass by value variable
 
 <a name=ref></a>
 ### Pass by Reference(&) RW
-- Passing outside variables into lambda. Variables passed can be modified inside lambda.
+Passing outside variables into lambda. Variables passed can be modified inside lambda.
 ```cpp
   //Passing 1 outside variable inside lambda
   int i = 1;
