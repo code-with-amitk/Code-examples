@@ -1,31 +1,16 @@
-- [What is named pipe](#what)
+**Named Pipe / FIFO**
+- [FIFO vs Pipe](#comp)
 - Properties
   - [1. fifo is not normal file](#notn)
   - [2. fifo is blocking](#block)
-- [FIFO vs Pipe](#comp)
 - [Code](#code)
 - [Read Write Scenarios/Cases](#cases)
   
 
-<a name=what></a>
 ## Named Pipe (FIFO)
-- IPC mechanism for exchange of data b/w processes. Multiple processes can exchange data b/w them.
-
-<a name=w></a>
-### Properties
-<a name=notn></a>
-#### 1. Fifo is not normal file
-- kernel passes all data internally without writing it to the file. Thus file name merely serves as a reference point so that processes can access the pipe using the name.
-
-<a name=block></a>
-#### 2. fifo is Blocking 
-- The FIFO must be opened on both ends (reading and writing) before data can be passed.
-  - Writer Process: Until process has not opened file for reading.
-  - Reader Process: If we start reader 1st, it will block indefinitely until writer opens for writing
-
-<a name=comp></a>
-### Fifo vs pipe
-```console
+IPC mechanism for exchange of data b/w processes. Multiple processes can exchange data b/w them.
+- **Fifo vs pipe**
+```c
                           Fifo          |     Pipe
     --------- |-------------------------|---------------         
 Name          | Have specific name      | These are unnamed
@@ -33,9 +18,20 @@ Communication | Any unrelated processes | B/w child & its parent
 Existence     | exists in filesystem    | They vanish as process dies
 ```
 
+### Properties
+<a name=notn></a>
+#### 1. Fifo is not normal file
+kernel passes all data internally without writing it to the file. Thus file name merely serves as a reference point so that processes can access the pipe using the name.
+
+<a name=block></a>
+#### 2. fifo is Blocking 
+The FIFO must be opened on both ends (reading and writing) before data can be passed.
+  - Writer Process: Until process has not opened file for reading.
+  - Reader Process: If we start reader 1st, it will block indefinitely until writer opens for writing
+
 <a name=code></a>
 ### Code
-- **Reader**
+**Reader**
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -65,7 +61,7 @@ int main(){
 #./READER
 Read: amit
 ```
-- **Writer**
+**Writer**
 ```c
 int main(){
     int fd;
