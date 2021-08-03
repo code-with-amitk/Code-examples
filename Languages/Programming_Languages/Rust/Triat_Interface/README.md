@@ -1,7 +1,7 @@
 **Trait**
 - Functions in trait
-  - [Declaration in Trait](#dec)
-  - [Definition in Trait](#def)
+  - [Function Declaration in Trait](#dec)
+  - [Function Definition in Trait](#def)
 - [Passing Triat as argument to function](#arg)
 - **Trait Bound**
   - _1._ Multiple Trait Bounds //Friend Function
@@ -18,7 +18,7 @@
 
 ## Functions in trait
 <a name=dec></a>
-### 1. Function declaration in Trait
+### Function declaration in Trait
 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type
 ```rust
 pub trait CompanyDB {                         //1. Declared a function inside trait
@@ -56,7 +56,7 @@ Added Amit 34
 ```
 
 <a name=def></a>
-### 2. Function definition in Trait / Default Implementation
+### Function definition in Trait / Default Implementation
 To use default implementation of trait just implement type as {}
 ```rust
 //Considering Above Example
