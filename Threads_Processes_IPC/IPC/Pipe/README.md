@@ -1,10 +1,10 @@
-- [What is pipe](#what)
-- [Advantages of pipes](#adv)
+**Pipe**
+- [Advantages](#adv)
 - [How pipe works](#work)
-- Code
+- **Code**
   - [1. One Child. Parent reading child writing](#one)
-- [How pipes are internally implemented](#internal)
-- Read Write Scenarios/cases for Pipe/FIFO
+- [Pipe internal implementation](#internal)
+- **Read Write Scenarios/cases for Pipe/FIFO**
   - Write
     - [1.1 Write on closed pipe/fifo](#case11)
     - [1.2 Write to full pipe/fifo](#case12)
@@ -15,19 +15,17 @@
     - [3. Parent reading, child die](#case3)
     - [4. Parent reading, child closes write end of pipe/fifo](#case4)
 
-<a name=what></a>
 ## Pipe
-- System call create a pipe for one-way communication between parent and child
+System call create a pipe for one-way communication between parent and child
 
 <a name=adv></a>
-## Advantages of pipes
-- **1. Over plain/regular files**
-  - With a regular file also, a process could write all its output and hand it over to the next process.
-  - But processes has to lock and then signal(like a semaphore) to let each other know when they were done reading or writing.
-  - Pipes eliminate all this complexity, kernel does all internally.
+### Advantages of pipes over plain/regular files
+- With a regular file also, a process could write all its output and hand it over to the next process.
+- But processes has to lock and then signal(like a semaphore) to let each other know when they were done reading or writing.
+- Pipes eliminate all this complexity, kernel does all internally.
 
 <a name=work></a>
-## How pipe works
+### How pipe works
 ```c
 int fd[2];
 pipe(fd)                            //Makes this array as pipe. fd[0]:read end, fd[1]:write end
@@ -43,7 +41,6 @@ Child Writing{
   close(fd[0])          //close read end
 }
 ```
-
 
 ## Code
 <a name=one></a>
@@ -89,7 +86,7 @@ Read from child: Test
 ```
 
 <a name=internal></a>
-## Internal implementation of pipes
+### Internal implementation of pipes
 - using [dup2()](/Operating_Systems/Linux/Kernel/System_Calls)
 - [compelte description](https://toroid.org/unix-pipe-implementation)
 ```c
@@ -104,8 +101,6 @@ pipe([3, 4])                            = 0
 [pid 2604796] read(0, "hello\n", 16384) = 6
 [pid 2604796] write(1, "6\n", 2)        = 2
 ```
-
-## Read Write Scenarios/Cases for Pipe/FIFO
 
 ## Read Write Scenarios/cases for Pipe/FIFO
 - **Note pipe is for Parent to child, FIFO for unrelated process also.**
