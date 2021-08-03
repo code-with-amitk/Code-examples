@@ -1,15 +1,20 @@
-- [What is Function](#what)
+**Function**
 - [Returning from Function](#return)
   - [1. Function returning a value](#return_val)
   - [2. Function returning struct](#return_struct)
   - [3. Function Taking struct as argument](#take_struct)
 - [Rust defined Functions, Inbuilt Functions](Inbuilt_Functions)
+- [Closure / Lambda](#closure)
+  - [Why](#why)
+  - Properties
+    - [Curly brackets are optional](#op)
+    - [Types are locked](#lock)
 
-<a name=what></a>
+<a name=fun></a>
 ## Functions
 - Function definition starts with fn. Coding convention followed in Rust is snake case ie underscores.
 - See another_fun() is defined after main() that means only function definition is required, place(above or below main()) does not matter.
-- **Parameters in function:** Type Annotation is mandatory in function parameters.
+- Type annotation is mandatory.
 ```rs
 fn main() {
   println!("Main\n");
@@ -27,7 +32,7 @@ fn another_fun(x:i32, y:i32){               //Type annotation mandatory
 - _b._ Last statement in function(without semicolon) is the return value.
 
 <a name=return_val></a>
-### 1. Function returning a value
+#### 1. Function returning a value
 ```rs
 fn main() {
   let y:i32 = fun (5);
@@ -40,7 +45,7 @@ fn fun(x:i32) -> i32{              //a
 ```
 
 <a name=return_struct></a>
-### 2. Function returning struct
+#### 2. Function returning struct
 - [How Struct is defined, initialized in rust](/Languages/Programming_Languages/Rust)
 ```rs
 struct User {
@@ -74,7 +79,7 @@ fn fun(name:String, id:i32) -> User {
 ```
 
 <a name=take_struct></a>
-### 3. Function Taking struct as argument
+#### 3. Function Taking struct as argument
 - *1.* Passing Structure as Reference ie [BORROWING not taking ownership](/Languages/Programming_Languages/Rust)
 - *2.* Accepting function as Reference
 ```rust
@@ -93,5 +98,50 @@ fn main() {
 
 fn area(b:&dimen) -> u32 {      //2
     b.len*b.width
+}
+```
+
+<a name=closure></a>
+## Closure / [Lambda Function](/Languages/Programming_Languages/c++/C++11_14_17_20/c++11/Lambda_Expression)
+- Anonymous functions(ie with no name) which can be saved in a variable or and then this variable can be passed as argument to other functions.
+- Unlike normal functions, [Type annotation](#fun) of parameters is not required. complier can infer on his own.
+
+<a name=why></a>
+#### Why Closure
+If some logic/function need to be called n times, then n function call is not good(stack creation/destroy). Call function only once and Store result in variable.
+```rs
+fn main() {
+    let a = 4;
+    let b = 5;
+    let var = |a,b| {       //Closure stored in variable var. a,b are parameters to closure
+        a+b
+    };                      //semicolon neeced to complete let statement.
+    println!("{}", var(a,b));
+}
+$ cargo run
+9
+```
+
+### Properties of closure
+<a name=op></a>
+#### Curly brackets are optional
+```rs
+fn main() {
+    let a = 4;
+    let b = 5;
+    let var = |a,b| a+b;    //Closure returning sum
+    println!("{}", var(a,b));
+}
+```
+
+<a name=lock></a>
+#### Types are locked
+First time we call var with the String, compiler infers the type of x, return type(as string) and locks into closure. We get type error if we try to use a different type on same closure.
+```rs
+fn main() {
+    let var = |x| x;
+
+    let s = var(String::from("hello"));
+    let n = var(5);                    //Compilation error. Type error
 }
 ```
