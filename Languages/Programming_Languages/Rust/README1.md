@@ -162,9 +162,9 @@ fn fun2(a_string: String) -> String {
 
 <a name=Functions></a>
 ## Functions
-- What is Function
 - Returning from Function: A value, struct, Function Taking struct as argument
 - Rust defined Functions, inbuilt functions
+- Closures
 
 <a name=cpm></a>
 ## [Crates, Packages, Modules](Crates_Packages_Modules)
