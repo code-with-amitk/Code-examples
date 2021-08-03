@@ -7,7 +7,7 @@
   - [Parse element from XML](#parse)
 
 ## Xerces
-- XML parsing/manipulating/validating library written in C++ using the DOM, SAX, and SAX2 APIs.
+XML parsing/manipulating/validating library written in C++ using the DOM, SAX, and SAX2 APIs.
 
 ## Download, Install
 <a name=linux></a>
