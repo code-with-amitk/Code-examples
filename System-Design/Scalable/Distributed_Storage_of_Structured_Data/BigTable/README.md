@@ -1,23 +1,26 @@
-- [What is BigTable](#what)
+**BigTable**
 - [Data Model](#datamodel)
   - [1. Row Range = Tablets](#rr)
   - [2. How read operation is faster](#faster)
   - [3. Colomn Keys = Colomn Families](#family)
 
-<a name=what></a>
 ## BigTable
 - Any DS(stack,queue etc) when gets big is stored on BT. Projects storing data in BigTable: web indexing, Google Earth, and Google Finance.
 - BT can scale to size(Petabytes) and distributed over 1000's of comodity servers.
 
 <a name=datamodel></a>
 ## Data Model
-- BT stores data lexicographically in Multidimensinal sorted [Map`<Key,value>`](/Languages/Programming_Languages/c++/Standard_Template_Library/) ie RBT.
+- BT stores data lexicographically in [Multidimensinal map`<key, map<key, value>>`](/Languages/Programming_Languages/c++/Standard_Template_Library) ie RBT.
 ```c
-  row key(string(64kb)) + coloumn key(64kb) + timestamp(int64) -> {Hash_Function} -> Key 
+  key <= {Hash Function} <= row key(string(64kb)) + coloumn key(64kb) + timestamp(int64)
   value = Array of bytes.
 
-Example: Storing webpage
-
+Example: Storing webpages
+  Row key = url(abc.com)
+  coloumn key = any 1 aspect of of web page
+  timestamp = time when page is fetched
+  value = contents of webpage
+  
           col0 = Content            col1=Anchor  col2=Anchor
  0 | abc_t1 - def_t2 - hij_t3    |  cnn.com    | test.com   |
  
