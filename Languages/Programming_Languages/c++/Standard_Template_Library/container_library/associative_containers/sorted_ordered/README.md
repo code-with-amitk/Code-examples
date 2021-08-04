@@ -1,29 +1,29 @@
-- **Map**
-  - Inserting element
-    - [insert()](#mins)
-    - [emplace()](#emp)
-  - [erase](#merase)
-- **Set**
-  - [1. Create / Constructors](#scre)
-  - [2. Insert](#sins)
-  - [Implementing set](set)
+**Map**
+- Inserting element
+  - [insert()](#mins)
+  - [emplace()](#emp)
+- [erase](#merase)
+**Set**
+- [Create / Constructors](#scre)
+- [Insert](#sins)
+- [Implementing set](set)
 
 
 
 ## Map<key, value>
 - All elements are always sorted means All elements are in order(ascending/descending). Some operations does not make sense Eg: push_back(), push_front().
 
+### Insert
 <a name=mins></a>
-### `<iterator, bool>` insert(const val_type& val)
-- For inserting element into stl. Creates object somewhere else, copies objects into the vector
+#### `<iterator, bool>` insert(const val_type& val)
+For inserting element into stl. Creates object somewhere else, copies objects into the vector
 ```cpp
 map< char, int > m;
 m.insert(make_pair('a', 1));
 ```
 <a name=emp></a>
-### `<iterator,bool>` emplace(Args&.. args)   //Preferred over insert()
-- same, used for inserting elements into stl. But constructs elements inside the stl only.
-- *Adv:* Does in place insertion, avoids unneccessary copy
+#### `<iterator,bool>` emplace(Args&.. args)   //Preferred over insert()
+Same, used for inserting elements into stl. But constructs elements inside the stl only. Does in place insertion, avoids unneccessary copy.
 ```cpp  
 m.emplace('b', 2);
 for (auto i:m)
@@ -31,50 +31,35 @@ for (auto i:m)
 ```
 
 <a name=merase></a>
-### `2. erase(const key_type& k)`
-- Finding key and erase.
+### erase(const key_type& k)
+Find key and erase.
 ```cpp
-template < typename K, typename V >
-class mymap {
-  std::map < K, V > m;
-public:
-  void assign ( K const& key, V const& value ) {
-    m.insert ( std::pair <K, V> (key, value) );
-  }
-  
   void find ( K key ) {
     if ( (m.find (key)) != m.end() )   //key found
       m.erase (key);
   }
-  
-};
-
-int main() {
-  std::map <
-}
 ```
 
 ## Set ///usr/include/c++/8/profile/set.h
 <a name=scre></a>
-### 1. Create/Constructors
-#### a. Default ctr
-  - Constructs empty container
+### Create/Constructors
+#### Default ctr
+Constructs empty container
 ```cpp
   set<string> a;
   a.insert("dog");  a.insert("horse");  a.insert("cat");
 ```
 
-#### b. Range ctr
-- Constructs the container from range `[first, last)`. 
-- If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
+#### Range ctr
+Constructs the container from range `[first, last)`. If multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted.
 ```cpp
   set<string> b(a.find("dog"), a.end());
   for(auto i: b)
     cout << i << ' ';               //dog horse
 ```
 
-#### c. Copy ctr: Since C++11
-- Constructs the container with the copy of the contents of other.
+#### Copy ctr //Since C++11
+Constructs the container with the copy of the contents of other.
 ```cpp
   set<string> c(a);
   c.insert("another horse");              //another horse cat dog horse
@@ -83,8 +68,8 @@ int main() {
   cout << endl;
 ```
 
-#### d. Move ctr: Since C++11
-- Constructs the container with the contents of other using move semantics.
+#### Move ctr     //Since C++11
+Constructs the container with the contents of other using move semantics.
 ```cpp
   set<string> d(move(a));
   for(auto i : d)
@@ -96,9 +81,8 @@ int main() {
   cout << endl;
 ```
 
-#### e. Initializer list : Since C++11
-- Constructs the container with the contents of the initializer list init. 
-- if multiple elements in the range have keys that compare equivalent, it is unspecified which element is inserted
+#### Initializer list : Since C++11
+Constructs container with contents of the initializer list.
 ```cpp
   set<string> e {"one", "two", "three", "five", "eight"};
   for(auto i: e)
@@ -107,9 +91,9 @@ int main() {
 ```
 
 <a name=sins></a>
-### 2. Insert
-- **Inserting Pair**
+### Insert
 ```cpp
+/////Inserting Pair////////
   set<pair<int,int>> s;                       //Create a set of pairs
   s.insert(make_pair(x,y));                   //Insert
   
