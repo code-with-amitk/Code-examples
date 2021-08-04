@@ -3,6 +3,7 @@
   - [insert()](#mins)
   - [emplace()](#emp)
 - [erase](#merase)
+- [Multidimentional Maps](#mdm)
 
 **Set**
 - [Create / Constructors](#scre)
@@ -39,6 +40,13 @@ Find key and erase.
     if ( (m.find (key)) != m.end() )   //key found
       m.erase (key);
   }
+```
+
+<a name=mdm></a>
+## Multidimentional Maps
+Map inside map
+```cpp   
+map<int, map<string, string>>
 ```
 
 ## Set ///usr/include/c++/8/profile/set.h
