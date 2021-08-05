@@ -130,23 +130,32 @@ for (unordered_map<int,string>::iterator i=um.begin(); i!=um.end(); ++i)        
 ```
 
 ## Find
-- [count()](#count1) can also be used in place of find().
+
 <a name=keyum></a>
 #### key in um
-```c++
+```cpp
+/////////1. Index///////////            {PREFERRED}
+    std::unordered_map<int, pair<int,int>> um;
+    um[1] = { 10,100 };
+
+    auto it = um [1];
+    cout << it.first << it.second;    //10,100
+    it = um [3];
+    cout << it.first << it.second;    //0,0
+    
+///////////2. count()///////////
+
+//////////3. find()/////////////
 class cmd{ ... };
 class cmd1 : public cmd { ... };
-
 unordered_map<string, cmd *> um;
-
 um["cmd1"] = new cmd1();                  //Created unorderd_map
 um["cmd2"] = new cmd2();
-
 auto it = um.find ("cmd1");                   //Finding Key
-if (it != um.end()) {                         //Found Key
-  cout << it->second->fun();                  //Call method of class
-}
+if (it != um.end())
+  cout << it->second->fun();
 ```
+
 <a name=smllestk></a>
 #### Pair having smallest `key`
 ```cpp
@@ -154,6 +163,7 @@ if (it != um.end()) {                         //Found Key
   it = min_element(um.begin(), um.end());
   cout<<it->first<<" " <<it->second;          //1 2
 ```
+
 <a name=smallestv></a>
 #### Pair having smallest `value`
 ```cpp
@@ -164,6 +174,7 @@ if (it != um.end()) {                         //Found Key
   it = min_element(um.begin(), um.end(),compare_func);
   cout<<it->first<<" " <<it->second;          //4 1
 ```
+
 <a name=count></a>
 #### Count Number of occurences of value inside array
 - Let's suppose an array `{4,3,1,1,3,3,2}` is present we need to create a map
