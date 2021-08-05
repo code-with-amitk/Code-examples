@@ -10,7 +10,8 @@
 ### unordered_map`<key, value>`
 - Create
   - [Constructors](#umctr)
-  - [Value is Structure](#umstruct)
+  - [Map of Structures](#umstruct)
+  - [Map of Maps](#mapmap)
 - [Insert](#uminsert)
 - [Print](#umprint)
   - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
@@ -74,7 +75,7 @@ unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());     //Range ctr
 ```
 
 <a name=umstruct></a>
-#### Value is Structure
+#### Map of Structures
 - Value is pointer to structure containing vector. [Code: Underground Station]
 ```cpp
             | | | | | | vector
@@ -92,6 +93,16 @@ unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());     //Range ctr
     };
     
     unordered_map <string, unique_ptr<stData> > um;    
+```
+
+<a name=mapmap></a>
+#### Map of Maps
+```cpp
+    using map1 = unordered_map<uint32_t, uint32_t>;
+    using map2 = unordered_map <string, map1>;
+    map2 um;
+    map1 temp = { { 1,2 } };
+    um[A] = temp;    
 ```
 
 <a name=uminsert></a>
