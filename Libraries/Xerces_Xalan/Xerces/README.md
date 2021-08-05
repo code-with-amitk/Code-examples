@@ -13,11 +13,20 @@ XML parsing/manipulating/validating library written in C++ using the DOM, SAX, a
 <a name=linux></a>
 **Linux**
 ```c
+# git clone https://github.com/apache/xerces-c.git
 # ./configure; make; make install
 ```
 <a name=win></a>
 **Windows**
-
+```c
+Install cmake
+$ git clone https://github.com/apache/xerces-c.git
+$ cd xerces; mkdir build; cd build
+$ cmake ..
+$ cmake --build . --config Debug --target install
+cd ..
+cd ..
+```
 
 ## Examples
 <a name=parse></a>
