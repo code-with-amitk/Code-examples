@@ -1,22 +1,25 @@
-- [1. What](#what)
-- [2. cmake commands](#cmds)
-- [3. Examples](#exp)
-  - [3.1 Simple 1 file](#simp)
-  - [3.2 Example having folder hierarchies](#folder)
+**cmake**
+- Install
+- [cmake commands](#cmds)
+- Examples
+  - [1. Simple 1 file](#simp)
+  - [2. Example having folder hierarchies](#folder)
 
-<a name=what></a>
-## 1. Cmake
-- Cmake(opensource) is NOT a build system but build-system generator. It generates `Makefiles` which can be used for compile the project.
+## Cmake
+- Cmake(opensource BSD License) is NOT a build system but build-system generator. It generates `Makefiles` which can be used for compile the project.
 - It generates Platform neutral code(same code can be compiled on both Windows & Unix)
 
+## Install
+```c
+Windows > kitware provides msi package
+```
+
 <a name=cmds></a>
-## [2. cmake commands](Commands)
+## [cmake commands](Commands)
 
-<a name=exmp></a>
-## 3. Examples
-
+## Examples
 <a name=simp></a>
-### 3.1 Simple 1 file
+### 1. Simple 1 file
 - _A. Generate Makefile on Linux and build_
 ```c
 # vim CMakeLists.txt
@@ -67,7 +70,7 @@ cmd> cmake -G "Visual Studio 16 2019" .      //This creates VS Project files to 
 ```
 
 <a name=folder></a>
-### [3.2 Folder hierarchies](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Mediator/Online_Auction/)
+### [2. Folder hierarchies](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Mediator/Online_Auction/)
 ```c
  - driver
     |- main.cpp
