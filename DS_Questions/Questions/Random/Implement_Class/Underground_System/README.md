@@ -34,34 +34,72 @@ double getAverageTime(string startStation, string endStation)
     |4,40
 ```
 We will maintain 2 hashmaps to get the average time of travel between 2 stations.
-- checkInData HashMap to be populated at checkIn() method.
+- checkInMap HashMap to be populated at checkIn() method.
 ```c
                 //id    stationName,checkInTime
     unordered_map<int, pair<string,int>> checkInData;
     
 | 1,<A,10> | 2,<B,20> | 3,<C,30> | 4,<D,40> |
 ```
-- journeyData HashMap about journey to be populated at checkout()
+- checkOutMap HashMap about journey to be populated at checkout()
 ```c
                 //ss->es    TotalTime,NoOfTrips
-    unordered_map<string, pair<double,double>> journeyData;
+    unordered_map<string, pair<double,double>> checkOutMap;
     
 checkout (id=1, es=B, t=50) {
-  //Find start station for id=1. ss=A. key becomes startStation->endStation = A->B
+  //Find start station for id=1. ss=A. key becomes startStation_endStation = A_B
+  it's always certain that we will find the key(customer_id which checkedin), so we can directly goto value in Map
   
-  if (key(ss->es) is not found journeyData HashMap) {
-    //totalTime = t-checkInTime = 50-10 = 40
-    //NoOfTrips = 1. if same Id have travelled once
-    |A->B, <40, 1>|
-  }
-  else
-    increment old totalTime by (t-startTime)
-    increment NoOfTrips by 1.
+  goto value of key=ss_es
+  TotalTime += checkoutTime - startTime   //Keep adding total times
+  NoOfTrips += 1;                         //Total trips from startStation to EndStation
   
+  //Also delete id from checkInMap since its not needed now and reduces space complexity
 }
 ```
-- Using these 2 hashMaps we will find 
+- Using these 2 hashMaps we will find average
 ```c
+  getAverage(startStation, endStation)
+    Find key (ss_es) in checkout Map
+    Return value.first/value.second;
 ```
 
+<a name=comp></a>
+#### Complexity
+- **Time** O(1)
+- **Space** O(P+S<sup>2</sup>)
+  - S:number of stations
+  - P:no of passengers
+
+<a name=code></a>
 #### Code
+```cpp
+class UndergroundSystem {
+                //id    stationName,checkInTime
+    unordered_map<int, pair<string,int>> checkInMap;
+
+                //ss->es    TotalTime,NoOfTrips
+    unordered_map<string, pair<double,double>> checkOutMap;
+public:
+    UndergroundSystem() {
+    }
+
+    void checkIn(int id, string stationName, int t) {
+        checkInMap[id] = { stationName,t };
+    }
+
+    void checkOut(int id, string stationName, int t) {
+        auto itr = checkInMap[id];
+        string ss_es = itr.first + "_" + stationName;
+        checkOutMap[ss_es].first += t - itr.second;         //TotalTime
+        checkOutMap[ss_es].second += 1;                     //TotalTrips from ss to es
+        checkInMap.erase(id);
+    }
+
+    double getAverageTime(string startStation, string endStation) {
+        string ss_es = startStation + "_" + endStation;
+        auto itr = checkOutMap[ss_es];
+        return (double)itr.first / itr.second;
+    }
+};
+```
