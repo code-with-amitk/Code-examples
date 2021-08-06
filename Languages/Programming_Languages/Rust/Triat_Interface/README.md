@@ -13,8 +13,7 @@
 
 
 ## Trait
-- Abstract interface having Virtual Functions(not pure Virtual). Similar to interfaces in other languages, we can declare or define function in trait.
-- These functions can be implemented(overridden) on type.
+Abstract interface/class having Virtual Functions(not pure Virtual). We declare or define function in trait. These functions are implemented(overridden) on type.
 
 ## Functions in trait
 <a name=dec></a>
