@@ -17,7 +17,7 @@ Abstract interface/class having Virtual Functions(not pure Virtual). We declare 
 
 ## Functions in trait
 <a name=dec></a>
-### Function declaration in Trait
+#### Function declaration in Trait
 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type
 ```rust
 pub trait CompanyDB {                         //1. Declared a function inside trait
@@ -55,7 +55,7 @@ Added Amit 34
 ```
 
 <a name=def></a>
-### Function definition in Trait / Default Implementation
+#### Function definition in Trait / Default Implementation
 To use default implementation of trait just implement type as {}
 ```rust
 //Considering Above Example
@@ -96,6 +96,7 @@ fn main() {
   test (&amit);                                 //4. Called Function, passed instance of Type implementing triat
 }
 ```
+
 ## Trait Bound
 Above function(1.2.A) can be written as below, also called Trait bound.
 ```rs
