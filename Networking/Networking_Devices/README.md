@@ -1,13 +1,13 @@
-Networking Devices
+**Networking Devices**
+- [Firewall vs Gateway vs Router](#comp)
 - Types
   - [Firewall](#fw)
   - [Gateway](#gw)
   - [Router](#rtr)
-- [Firewall vs Gateway vs Router](#comp)
 
 
 <a name=comp></a>
-## Comparison
+## Firewall vs Gateway vs Router
 
 ||Firewall(Layer3,4)|SWG(Secure Web Gateway) / Gateway(3,4,5)|Router(Layer 3)|
 |---|---|---|---|
@@ -31,7 +31,7 @@ Bridges 2 networks. Can look into application level packet contents. Eg:
 
 **Real world SWG**
 - [Juniper SRX Series](Gateway/Juniper_SRX)
-- Fiiire-Storrm
+- Fiiire-Storrm (see pvt reasearch)
 
 <a name=rtr></a>
 ### Router
