@@ -30,7 +30,7 @@ Node sitting in front of 1 or more web servers. User requests will reach Reverse
     User-Computer-2 --->                                                                        Origin/Web-Server-3
 ```
 <a name=whyr></a>
-#### Why reverse Proxy needed?**
+#### Why reverse Proxy needed?
 - *a. Load Balancing:* A website receiving millions of connections need to distribute load among different backend servers, reverse proxy can provide a load balancing solution
 - *b. Attack Protection:* Origin server's IP addresses are not exposed to attackers, making it difficult to intrude. Eg: DDOS attacks
 - *c. Caching:* RP can cache data, resulting in faster performance.
