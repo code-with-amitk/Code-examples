@@ -9,7 +9,7 @@
   - Properties
     - [Curly brackets are optional](#op)
     - [Types are locked](#lock)
-  - [Store Closure in struct](#st)
+  - [Closure inside struct](#st)
 
 <a name=fun></a>
 ## Functions
@@ -148,11 +148,14 @@ fn main() {
 ```
 
 <a name=st></a>
-### Store Closure in struct
+### Closure inside struct
 To store closure inside struct, we need to:
 1. Define type of closure(because anything to be stored inside struct has to have type). Hence struct is implemented as Generc (T).
-2. And Closure has to implement any of these traits [Fn, FnMut, or FnOnce](/Languages/Programming_Languages/Rust)
+2. And Closure has to implement any of these [traits Fn, FnMut, or FnOnce](/Languages/Programming_Languages/Rust)
   - Add return type to trait. In this case closure has parameter of u32 and returns u32.
+3. [Trait](/Languages/Programming_Languages/Rust) is implemented as Generic
+4. Instead of calling the closure directly, we will call fun(), This method checks whether we already have a return value in self.ret_value in a Some; if we do, we return the value within the Some without executing the closure again.
+5. If ret_value does not have a value(None) then we will call closure_fun() and save result in ret_value.
 ```rs
 struct test<T>              //1
 where
@@ -160,5 +163,25 @@ where
 {
     closure_fun: T,             //Closure
     ret_value: Option<u32>,     //Return value of closure
+}
+
+impl<T> test<T>                     //3
+where 
+    T: Fn(u32) -> u32,
+{
+    fn closure_fun(var:u32){
+        var
+    }
+    
+    fn fun(&mut self, var:u32) -> u32 {       
+        match self.ret_value {
+            Some(v) => v,                           //4
+            None => {                               //5
+                let v = self.closure_fun(arg);
+                self.ret_value = Some(v);
+                v
+            }
+        }
+    }
 }
 ```
