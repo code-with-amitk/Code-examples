@@ -8,8 +8,8 @@
       - [1.1 Using +](#usingplus)
       - [1.2 Using where clause](#usingplus)
 - **Returning Triats from Function**
-  - [1. Function returning trait](#ret-t)
-  - [2. Function cannot implement 2 traits internally](#invalid-t)
+  - [Function returning trait](#ret-t)
+  - [Function cannot implement 2 traits internally](#invalid-t)
 
 
 ## Trait
