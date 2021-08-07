@@ -10,6 +10,7 @@
     - [Curly brackets are optional](#op)
     - [Types are locked](#lock)
   - [Closure inside struct](#st)
+  - [Capture Env variables](#cap)
 
 <a name=fun></a>
 ## Functions
@@ -186,5 +187,22 @@ where
             }
         }
     }
+}
+```
+
+<a name=cap></a>
+### Capture Env Variables in closure
+```rs
+fn main() {
+    let a = 4;
+    let var = |b| b == a;     //Closure capturing a from env
+}
+```
+#### Taking ownership of env variable
+if we want closure to take ownership of env variable, prefix move in front of parameter list
+```rs
+fn main() {
+    let a = 4;
+    let var = move |b| b == a;
 }
 ```
