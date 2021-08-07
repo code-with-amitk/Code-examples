@@ -9,6 +9,7 @@
   - Properties
     - [Curly brackets are optional](#op)
     - [Types are locked](#lock)
+  - [Store Closure in struct](#st)
 
 <a name=fun></a>
 ## Functions
@@ -143,5 +144,21 @@ fn main() {
 
     let s = var(String::from("hello"));
     let n = var(5);                    //Compilation error. Type error
+}
+```
+
+<a name=st></a>
+### Store Closure in struct
+To store closure inside struct, we need to:
+1. Define type of closure(because anything to be stored inside struct has to have type). Hence struct is implemented as Generc (T).
+2. And Closure has to implement any of these traits [Fn, FnMut, or FnOnce](/Languages/Programming_Languages/Rust)
+  - Add return type to trait. In this case closure has parameter of u32 and returns u32.
+```rs
+struct test<T>              //1
+where
+    T: Fn(u32) -> u32,      //2
+{
+    closure_fun: T,             //Closure
+    ret_value: Option<u32>,     //Return value of closure
 }
 ```
