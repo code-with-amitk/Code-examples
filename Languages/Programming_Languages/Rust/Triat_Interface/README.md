@@ -10,6 +10,8 @@
 - **Returning Triats from Function**
   - [Function returning trait](#ret-t)
   - [Function cannot implement 2 traits internally](#invalid-t)
+- **Traits provided by Standard library**
+  - Fn, FnMut, or FnOnce
 
 
 ## Trait
