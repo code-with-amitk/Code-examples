@@ -129,7 +129,7 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 ## Returning Triats from Function
 <a name=ret-t></a>
 #### Function returning trait
-- Function which returns (impl Trait) returns any of type that implements the trait.
+Function which returns (impl Trait) returns any of type that implements the trait.
 ```rust
 //This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
                 //impl Trait
@@ -142,7 +142,7 @@ pub fn fun ( ) -> impl CompanyDB {
 ```
 <a name=invalid-t></a>
 #### Function cannot implement 2 traits internally
-- Returning either or trait(ie Employee or contractor) is not supported by complier.
+Returning either or trait(ie Employee or contractor) is not supported by complier.
 ```rust
 pub fn fun (test:bool) -> impl CompanyDB {      
   if test {
