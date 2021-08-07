@@ -162,27 +162,23 @@ fn fun2(a_string: String) -> String {
 
 <a name=datatypes></a>
 ## [Data Types](Data_Types)
-  - Associated Functions
-  - Compound: struct
+Associated Functions, Compound: struct
 
 <a name=collections></a>
 ## [Collections](Collections)
-- HashMap, HashSet, vector, string
+HashMap, HashSet, vector, string
 
 <a name=class></a>
 ## [Class in Rust](Class)
-- Constructor inside class
-- Functions inside class
+Constructor inside class, Functions inside class
 
 <a name=controlflow></a>
 ## [Control Flow](Control_Flow)
-  - for, loop, while, match=switch, if
+for, loop, while, match=switch, if
 
 <a name=Functions></a>
-## Functions
-- Returning from Function: A value, struct, Function Taking struct as argument
-- Rust defined Functions, inbuilt functions
-- Closures
+## [Functions](Functions)
+Returning (value or struct) from function. Function Taking struct as argument. Inbuilt functions, Closures
 
 <a name=cpm></a>
 ## [Crates, Packages, Modules](Crates_Packages_Modules)
@@ -201,7 +197,7 @@ fn fun2(a_string: String) -> String {
 
 <a name=enumnotholding></a>
 ### 1. Enum not Holding data / Same as enum class in C++
-```rust
+```rs
 #[derive(Debug)]            //1. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for enum.
 enum Color{                 //2. Declare enum same
     Red,
