@@ -1,6 +1,8 @@
-- [What/Why Rust](#What)
-  - [1. Rust vs All Languages](#All)
-  - [2. Rust vs C++](#Rustcpp)
+- What/Why Rust
+  - [Rust vs All Languages](#All)
+  - [Rust vs C++](#Rustcpp)
+- [Install on linux/windows](#install)
+- [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
 - [Cargo, Rust Build System](Cargo_BuildSystem)
 - [Statements & Expressions](#statements)
 - [Ownership](#own)
@@ -27,10 +29,9 @@
 - [Custom Programs](#custom)
 - [Design Guidelines](#dg)
 
-<a name="What"></a>
 ## What/Why Rust
 <a name="All"></a>
-### 1. Rust vs All Languages
+#### Rust vs All Languages
 - No Garbage collector(Java,python has garbage collectors)               //Garbage collector is runtime heavy
 - No monolithic runtime.
 - Statically typed(with type inference), Catching the bugs at compile time reduces runtime crashes. Compiler does lot of heavy lifting.
@@ -43,7 +44,7 @@
 - No need to call delete(),free(). Compiler will insert free()/delete() knows when memory is not used.
 
 <a name="Rustcpp"></a>
-### 2. Rust vs C++
+#### Rust vs C++
 - No implicit copies as in C++
 - No invisible copy constructors, move operators etc (as in c++). Whatever is runtime cost that's visible in code.
 - Safe parallelism wrt C++
@@ -57,7 +58,7 @@
   - No dangling pointers
   - No uninitialized variables
 - Default in rust is move not copy
-```rust
+```rs
 fn print(a:Vec<i32>) {
   println!("{}"a.len());
 }
@@ -67,6 +68,23 @@ fn main() {
   print(v);                               //Now v is moved not copied.
   //println!("{}", v[0]);                 //Compiler error
 }
+```
+
+<a name=install></a>
+## Install
+#### [Linux](https://doc.rust-lang.org/book/ch01-01-installation.html)
+```c
+$ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+...
+Rust is installed now. Great!   <<Rust Installed successfully
+```
+
+#### [Windows](https://www.rust-lang.org/tools/install)
+- *a.* Download installer & install. Rust is installed in `C:\Users\amitk\.cargo`
+- *b.* Open cmd prompt & check PATH variable is configured correctly or not.
+```c
+> C:\Users\amitk>rustc --version
+rustc 1.51.0 (2fd73fabe 2021-03-23)
 ```
 
 <a name=statements></a>
