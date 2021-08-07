@@ -11,6 +11,7 @@
     - [Types are locked](#lock)
   - [Closure inside struct](#st)
   - [Capture Env variables](#cap)
+    - [Taking ownership of env variable](#own)
 
 <a name=fun></a>
 ## Functions
@@ -198,6 +199,7 @@ fn main() {
     let var = |b| b == a;     //Closure capturing a from env
 }
 ```
+<a name=own></a>
 #### Taking ownership of env variable
 if we want closure to take ownership of env variable, prefix move in front of parameter list
 ```rs
