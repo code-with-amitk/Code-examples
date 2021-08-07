@@ -154,7 +154,7 @@ To store closure inside struct, we need to:
 2. And Closure has to implement any of these [traits Fn, FnMut, or FnOnce](/Languages/Programming_Languages/Rust)
   - Add return type to trait. In this case closure has parameter of u32 and returns u32.
 
-Implementing trait for closure
+Implementing trait for closure:
 3. [Trait](/Languages/Programming_Languages/Rust) is implemented as Generic
 4. Instead of calling the closure directly, we will call fun(), This method checks whether we already have a return value in self.ret_value in a Some; if we do, we return the value within the Some without executing the closure again.
 5. If ret_value does not have a value(None) then we will call closure_fun() and save result in ret_value.
