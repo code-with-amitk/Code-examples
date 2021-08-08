@@ -1,4 +1,4 @@
-- [Hashmap](#what)
+**Hashmap**
 - Operations
   - [Create](#create)
   - Insert
@@ -12,17 +12,15 @@
   - [Remove / Delete / Erase](#remove)
 - [HashMap,vector inside Struct](#struct)
 
-<a name=what></a>
 ## Hashmap<Key, Value> //https://doc.rust-lang.org/std/collections/struct.HashMap.html
 - stores a mapping of keys of type K to values of type V and created on heap.
-- Like vectors, hash maps are homogeneous
-  - all of the keys must have the same type, and all of the values must have the same type.
+- Like vectors, hash maps are homogeneous(all of the keys must have the same type, and all of the values must have the same type).
 
 ## Operations
 
 <a name=create></a>
 ### Create
-- _1._ using iterators and collect() method
+1. using iterators and collect() method
   - `HashMap<_, _>` is needed type annotation.
 ```rust
 use std::collections::HashMap;
@@ -47,7 +45,7 @@ fn main() {
 
 <a name=overwrite></a>
 #### 2. Overwriting existing value
-  - if key already exists in map and we insert (key,value) with existing key and new value, then it old value would be updated.
+  if key already exists in map and we insert (key,value) with existing key and new value, then it old value would be updated.
 ```rust
 use std::collections::HashMap;
 fn main() {
