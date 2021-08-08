@@ -155,8 +155,10 @@ struct Test {                                     //1
 
 impl Test {                                       //2
     fn ctr() -> Self {                            //2a
-        v: vec![],
-        um: HashMap::new()
+        Test {
+            v: vec![],
+            um: HashMap::new()
+        }
     }
     
     fn insert (&mut self, key:String, val:i32) -> bool {      //2b
