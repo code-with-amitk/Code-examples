@@ -1,42 +1,42 @@
 **Enum**
-- [1. Enum Not Holding data](#enumnotholding)
-- [2.  Enum holding data](#enumholding)
-    - [2.1 Enum holding 1 datatype](#enumholdingone)
-    - [2.2 Enum Holding Multiple Datatypes](#enumholdingmultiple)
-  - [3 Option Enum = NULL](#optionenum) 
-    - [3.1 Why creating NULL was mistake?](#nullmistake)
-    - [3.2 Option Enum](#oe)
+- [Enum Not Holding data](#en)
+- Enum holding data
+  - [1. Enum holding 1 datatype](#e1)
+  - [2. Enum Holding Multiple Datatypes](#em)
+  - **3. Option Enum = NULL**
+    - [Creating NULL was mistake](#null)
+    - [Option Enum](#oe)
+      - [1. Initializing and using Option`<T>`](#oeuse)
+      - [2. Option`<T>` cannot be added to non Option`<T>`](#add)
 
 ## Enum
-- Similar to other languages, Enums are User defined data type which can be assigned some limited values. 
-- In rust enum variable can or cannot hold the data (Eg: String). 
+Enums are User defined data type(Similar to other languages) which can be assigned some limited values. In rust enum variable can/cannot hold the data (Eg: String). 
 
-<a name=enumnotholding></a>
-### 1. Enum not Holding data / Same as enum class in C++
+<a name=en></a>
+### Enum not Holding data / Same as enum class in C++
 ```rs
-#[derive(Debug)]            //1. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for enum.
-enum Color{                 //2. Declare enum same
+#[derive(Debug)]            //To print debugging information
+enum Color{                 //Declare enum
     Red,
     Blue,
     Green
 }
 
-fn fun (a:Color) {          //4. Print enum after passing to function
+fn fun (a:Color) {          //Print enum after passing to function
     println!("{:#?}",a);
 }
 
 fn main() {
-    let a:Color = Color::Red; //3. Initialize variable with enum value
+    let a:Color = Color::Red; //Initialize variable with enum value
     fun(a);
 }
 ```
 
-<a name=enumholding></a>
 ### 2. Enum Holding the data
 
-<a name=enumholdingone></a>
-#### 2.1 Enum holding 1 datatype
-```rust
+<a name=e1></a>
+#### 1. Enum holding 1 datatype
+```rs
 use std::{string::String, u32};
 
 #[derive(Debug)]
@@ -62,9 +62,9 @@ IPv4(
 )
 ```
 
-<a name=enumholdingmultiple></a>
-#### 2.2 Enum Holding Multiple Datatypes
-```rust
+<a name=em></a>
+#### 2. Enum Holding Multiple Datatypes
+```rs
 use std::{string::String, u32};
 
 #[derive(Debug)]                
@@ -115,11 +115,10 @@ IPv6 IPv6(
 Disconnected NoIP
 ```
 
-<a name=optionenum></a>
 ## 3. Option Enum = NULL
 
-<a name=nullmistake></a>
-### 3.1 Why creating NULL was mistake?
+<a name=null></a>
+### Why creating NULL was mistake?
 - Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
   - If we try using NULL value as non-NULL value. Eg: derefercing NULL ptr.
   - Problem is not in NULL but at places this get misused.
@@ -140,11 +139,11 @@ $ ./a.out
 Got Null ptr reference
 Segmentation Fault
 ```
-- **How Rust avoid Null ptr?**
+**How Rust avoid Null ptr?**
   - _1._ Whichever variable can have NULL or other value, Rust asks to declare it as `Option<T>`
   - _2._ Rust does not allow creating structure object without initializing its members.
     - It can be initialized with Some or None. This is how rust avoids NULL crashes.
-```rust
+```rs
 fn fun(obj:&A){
     println!("a:{:#?}",obj.a);
 }
@@ -160,32 +159,33 @@ fn main() {
 ```
 
 <a name=oe></a>
-### 3.2 Option Enum
-- This is another kind of enum in rust which takes either of 2 values: Some or None
-```rust
+### Option Enum
+This is another kind of enum in rust which takes either of 2 values: Some or None
+```rs
 enum Option<T> {          //T is template which can take any type: i32, i64 etc
     Some(T),
     None,
 }
 ```
-- **Example**
-- *1. Initializing and using Option<`T`>*
-```
+<a name=oeuse></a>
+#### 1. Initializing and using Option<`T`>
+```rs
 fn main() {
-    let a:Option<i32>= Some(2);
-    let b:Option<i32>= None;
+    let a:Option<i32> = Some(2);
+    let b:Option<i32> = None;
 
     println!("a:{:#?}",a);
     println!("b:{:#?}",b);
 }    
 $ main.exe
-a:Some(
+a : Some(
     2,
 )     
-b:None
+b : None
 ```
-- *2. We cannot add Option<`T`> to non Option<`T`>*
-```rust
+<a name=add></a>
+#### 2. *Option`<T>` cannot be added to non Option`<T>`*
+```rs
 fn main() {
     let x: i8 = 5;
     let y: Option<i8> = Some(5);
