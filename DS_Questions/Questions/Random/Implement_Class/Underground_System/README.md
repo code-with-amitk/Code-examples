@@ -73,6 +73,7 @@ checkout (id=1, es=B, t=50) {
 <a name=code></a>
 #### Code
 ```cpp
+/////underground.cpp
 class UndergroundSystem {
                 //id    stationName,checkInTime
     unordered_map<int, pair<string,int>> checkInMap;
@@ -101,4 +102,43 @@ public:
         return (double)itr.first / itr.second;
     }
 };
+
+/////main.cpp
+#include"underground.cpp"
+#include <gtest/gtest.h>
+
+TEST(Random, case1) {
+             //(Expected_Output, function call)
+    UndergroundSystem o;
+    o.checkIn(45, "Leyton", 3);
+    o.checkIn(32, "Paradise", 8);
+    o.checkIn(27, "Leyton", 10);
+    o.checkOut(45, "Waterloo", 15);
+    o.checkOut(27, "Waterloo", 20);
+    o.checkOut(32, "Cambridge", 22);
+    EXPECT_EQ(14.0, o.getAverageTime("Paradise", "Cambridge"));
+    EXPECT_EQ(11.0, o.getAverageTime("Leyton", "Waterloo"));
+    o.checkIn(10, "Leyton", 24);
+    EXPECT_EQ(11.0, o.getAverageTime("Leyton", "Waterloo"));
+    o.checkOut (10, "Waterloo", 38);
+    EXPECT_EQ(12.0, o.getAverageTime("Leyton", "Waterloo"));
+}
+int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+
+/////CMakeLists.txt
+cmake_minimum_required(VERSION 2.6)
+# Locate GTest
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+# Link runTests with what we want to test and the GTest and pthread library
+add_executable(runTests main.cpp)
+target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+
+$ cmake .
+$ make
+$ ./runtests
 ```
