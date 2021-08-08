@@ -1,11 +1,11 @@
 Type Annotation
-- [1. Scalar / Primitive Data Type](#sc)
-  - [1.1 int](#int)
-    - [1.1.1 int overflow](#into)
-    - [1.1.2 Array slice](#arrs)
-  - [1.2 float](#fl)
-  - [1.3 bool](#booldatatype)
-  - [1.4 char](#chardatatype)
+- [Scalar / Primitive Data Type](#sc)
+  - [int](#int)
+    - [int overflow](#into)
+    - [Array slice](#arrs)
+  - [float](#fl)
+  - [bool](#booldatatype)
+  - [char](#chardatatype)
 - [2. Compund Data Type](#compounddatatypes)
   - [2.1 Array Type](#arraydatatype)
   - [2.2 Tuple Type](#tupledatatype)
@@ -21,15 +21,15 @@ Type Annotation
 ```
 
 <a name="sc"></a>
-# 1. Scalar / Primitive Data Type
+# Scalar / Primitive Data Type
 A scalar type represents a single value. Rust has 4 primary scalar types: int, float, bool, char
 
 <a name="int"></a>
-## 1.1 int
-- Integers can be signed(-ve, +ve  both) and unsigned(takes +ve values). Signed Number are stored using [2's Compliment](/Languages/Programming_Languages/C/Bitwise/Representation_of_Numbers). 
-- _Signed:_ i8, i16, i32, i64, i128
-- _unsigned:_ u8, u16, u32, u64, u128
-- _isize, usize:_ Pointer sized signed, unsigned integer type. Depends on computer architecture. 
+## int
+Integers can be signed(-ve, +ve  both) and unsigned(takes +ve values). Signed Number are stored using [2's Compliment](/Languages/Programming_Languages/C/Bitwise/Representation_of_Numbers). 
+  - _Signed:_ i8, i16, i32, i64, i128
+  - _unsigned:_ u8, u16, u32, u64, u128
+  - _isize, usize:_ Pointer sized signed, unsigned integer type. Depends on computer architecture. 
   - _How usize is different from u32/u64?_ 
     - u32/u64 are always 4/8 bytes, But usize(sizeof pointer) depends on complier ie for 32Bit(its 32), for 64Bit(its 64).
     - So it makes great sense to access array variables using address only, bcoz it can change with architecture!! Cool
@@ -45,8 +45,8 @@ Byte (u8 only)            	b'A'
 ```
 
 <a name="into"></a>
-### 1.1.1 Integer Overflow
-- Assigning value outside of allowed range. Example:
+### Integer Overflow
+Assigning value outside of allowed range. Example:
 ```rust
   let a:u8 = 256      //This is integer overflow, because u8 0-255 values can be assigned
 ```  
@@ -56,9 +56,8 @@ Byte (u8 only)            	b'A'
   - *2’s complement wrapping?* Values greater than 255 gets wrapped around. 256 becomes 0. 257 becomes 1 and so on. No PANIC happens.
 
 <a name="arrs"></a>
-### 1.1.2 Array Slice
-- Read [String Slice](../) to understand How slices are stored and their type. Array Slice is taking piece of array.
-- Type of Array slice is `&i[32]`
+### Array Slice
+Read [String Slice](../) to understand How slices are stored and their type. Array Slice is taking piece of array. Type of Array slice is `&i[32]`
 ```rust
 fn main() {
     let a = [1,2,3,4,5];
@@ -68,7 +67,7 @@ fn main() {
 ```
 
 <a name="fl"></a>
-## 1.2 Floating-Point Types
+## Floating-Point Types
 - Floating point are of 2 sizes f32(32 bit), f64(64 bit). 
 - f64 is default. Why f64 is default, because on modern CPUs f64 is roughly the same speed as f32 but is capable of more precision.
 ```rust
@@ -78,7 +77,7 @@ fn main() {
 }
 ```
 - *All operations are supported on float*
-```rust
+```rs
 fn main() {
     let sum = 5.2 + 10.1;               //addition
     let difference = 95.5 - 4.3;        //subtraction
@@ -89,9 +88,9 @@ fn main() {
 ```
 
 <a name="booldatatype"></a>
-## 1.3 Boolean type
-- Booleans are one byte in size. Can have 2 values: true, false.
-```rust
+## Boolean type
+Booleans are one byte in size. Can have 2 values: true, false.
+```rs
 fn main() {
     let a = true;
     let b: bool = false;      //with explicit type annotation
@@ -99,7 +98,7 @@ fn main() {
 ```
 
 <a name="chardatatype"></a>
-## 1.4 Character Type
+## Character Type
 - char literals are specified with single quotes and string literals use double quotes.
 - Size of char type = 4 bytes
 - Letters: Chinese, Japanese, and Korean characters; emoji; and zero-width spaces are all valid char values in Rust
@@ -112,16 +111,16 @@ fn main() {
 ```
 
 <a name="compounddatatypes"></a>
-# 2. Compund Data Type
-- Compound types can group multiple values into one type.
+# Compund Data Type
+Compound types can group multiple values into one type.
 
 <a name="arraydatatype"></a>
-## 2.1 Array Type
+## Array Type
 - Array elements are allocated contigiously on stack, unlike vectors which's allocated on heap.
 - Unlike Tuple, every element of an array must have the same type.
 - **Fixed length.** arrays in Rust have a fixed length
 - Array are written as a comma-separated list inside square brackets
-```rust
+```rs
 fn main() {
     let a = [1, 2, 3, 4, 5];
     let a: [i32; 5] = [1, 2, 3, 4, 5];
@@ -134,12 +133,12 @@ fn main() {
 ```
 
 <a name="tupledatatype"></a>
-## 2.2 Tuple Type
+## Tuple Type
 - Grouping together a number of values of different types into one compound type.
 - Tuples are fixed length, once declared, they cannot grow or shrink in size.
 - **Destructring a Tuple?** Assigning tuple variable values to seperate variables to use.
 - **Accessing tuple using index values?** we can access a tuple element directly by using a period (.) followed by the index of the value we want to access. 1st index is 0.
-```rust
+```rs
 fn main() {
   let tup = (500, 6.4, 1);
   let tup1: (i32, f64, u8) = (500, 6.4, 1);             //optional type annotation added
@@ -154,5 +153,5 @@ fn main() {
 ```
 
 <a name="structdatatype"></a>
-## [2.3 Struct Type](Compound)
+## [Struct Type](Compound)
 - associated functions
