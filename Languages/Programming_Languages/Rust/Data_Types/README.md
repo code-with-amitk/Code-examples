@@ -9,6 +9,7 @@ Type Annotation
 - **Compund Data Type**
   - [Array Type](#arraydatatype)
   - [Tuple Type](#tupledatatype)
+    - [`Option<String, i32>` tuple](#opt)
   - [struct Type](#structdatatype)
 
 ### Type Annotation
@@ -132,22 +133,28 @@ fn main() {
 
 <a name="tupledatatype"></a>
 ## Tuple Type
-- Grouping together a number of values of different types into one compound type.
+- Grouping together different data types into 1 compound type.
 - Tuples are fixed length, once declared, they cannot grow or shrink in size.
-- **Destructring a Tuple?** Assigning tuple variable values to seperate variables to use.
-- **Accessing tuple using index values?** we can access a tuple element directly by using a period (.) followed by the index of the value we want to access. 1st index is 0.
+  - *1. Destructring a Tuple?* Assigning tuple variable values to seperate variables to use.
 ```rs
 fn main() {
-  let tup = (500, 6.4, 1);
-  let tup1: (i32, f64, u8) = (500, 6.4, 1);             //optional type annotation added
-  let (x, y, z) = tup;                                  //Destructring tuple
-  println!("The value of y is: {}", y);                 //6.4
-  
-  //Accessing tuple using (.) and index
+  let tup = (500, 6.4);                              //Type annotation is not mandatory
+  let (x, y) = tup;                                  //Destructing tuple
+  println!("The value of y is: {}", y);              //6.4
+}
+```
+*Accessing tuple using index values?* We can access a tuple element directly by using a period (.) followed by the index of the value we want to access. 1st index is 0.
+```rs
   let a = tup.0                                         //500
   let b = tup.1                                         //6.4
-  let c = tup.2                                         //1
 }
+```
+
+<a name=opt></a>
+#### `Option<String, i32>` tuple
+```rs
+  let tup : Option <&(String, i32)> = ("amit", 1);
+  
 ```
 
 <a name="structdatatype"></a>
