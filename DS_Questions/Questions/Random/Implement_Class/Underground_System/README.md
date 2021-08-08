@@ -1,11 +1,10 @@
-- [Underground System](#ques)
+[Underground System](https://leetcode.com/problems/design-underground-system/)
 - Approach, HashMap
   - [Logic](#logic)
   - [Complexity](#comp)
   - [Code](#code)
 
-<a name=ques></a>
-### [Underground System](https://leetcode.com/problems/design-underground-system/)
+### Underground System
 - An underground railway system is keeping track of customer travel times between different stations. They are using this data to calculate the average time it takes to travel from one station to another.
 - Implement the UndergroundSystem class:
 ```c
