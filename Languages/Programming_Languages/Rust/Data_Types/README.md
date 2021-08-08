@@ -1,26 +1,25 @@
 Type Annotation
-- [Scalar / Primitive Data Type](#sc)
+- **Scalar / Primitive Data Type**
   - [int](#int)
     - [int overflow](#into)
     - [Array slice](#arrs)
   - [float](#fl)
   - [bool](#booldatatype)
   - [char](#chardatatype)
-- [2. Compund Data Type](#compounddatatypes)
-  - [2.1 Array Type](#arraydatatype)
-  - [2.2 Tuple Type](#tupledatatype)
-  - [2.3 struct Type](#structdatatype)
+- **Compund Data Type**
+  - [Array Type](#arraydatatype)
+  - [Tuple Type](#tupledatatype)
+  - [struct Type](#structdatatype)
 
 ### Type Annotation
 - When many types are possible. Eg: String converted to a int using parse(), we must add a type annotation to tell type to complier.
-```rust
+```rs
   let a = 1;        //a inferred int
   let b = "get";    //b inferred string
   
   let c:u32 = "42".parse().expect("Not a number!");            //Type Annotation u32
 ```
 
-<a name="sc"></a>
 # Scalar / Primitive Data Type
 A scalar type represents a single value. Rust has 4 primary scalar types: int, float, bool, char
 
@@ -47,7 +46,7 @@ Byte (u8 only)            	b'A'
 <a name="into"></a>
 ### Integer Overflow
 Assigning value outside of allowed range. Example:
-```rust
+```rs
   let a:u8 = 256      //This is integer overflow, because u8 0-255 values can be assigned
 ```  
 - *Compiled in debug mode?* When program is compiled in debug mode, Rust includes checks for integer overflow & program will PANIC(exit with error) at runtime.
@@ -58,7 +57,7 @@ Assigning value outside of allowed range. Example:
 <a name="arrs"></a>
 ### Array Slice
 Read [String Slice](../) to understand How slices are stored and their type. Array Slice is taking piece of array. Type of Array slice is `&i[32]`
-```rust
+```rs
 fn main() {
     let a = [1,2,3,4,5];
     let b = &a[1..3];             //Type of b is &[i32]
@@ -70,7 +69,7 @@ fn main() {
 ## Floating-Point Types
 - Floating point are of 2 sizes f32(32 bit), f64(64 bit). 
 - f64 is default. Why f64 is default, because on modern CPUs f64 is roughly the same speed as f32 but is capable of more precision.
-```rust
+```rs
 fn main() {
     let x = 2.0;          //f64
     let y: f32 = 3.0;     //f32
@@ -110,7 +109,6 @@ fn main() {
 }
 ```
 
-<a name="compounddatatypes"></a>
 # Compund Data Type
 Compound types can group multiple values into one type.
 
