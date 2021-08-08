@@ -1,9 +1,9 @@
 Type Annotation
-- [1. Scalar / Primitive Data Type](#scalardatatypes)
-  - [1.1 int](#intdatatype)
-    - [1.1.1 int overflow](#intoverflow)
-    - [1.1.2 Array slice](#arrayslice)
-  - [1.2 float](#floatdatatypes)
+- [1. Scalar / Primitive Data Type](#sc)
+  - [1.1 int](#int)
+    - [1.1.1 int overflow](#into)
+    - [1.1.2 Array slice](#arrs)
+  - [1.2 float](#fl)
   - [1.3 bool](#booldatatype)
   - [1.4 char](#chardatatype)
 - [2. Compund Data Type](#compounddatatypes)
@@ -20,11 +20,11 @@ Type Annotation
   let c:u32 = "42".parse().expect("Not a number!");            //Type Annotation u32
 ```
 
-<a name="scalardatatypes"></a>
+<a name="sc"></a>
 # 1. Scalar / Primitive Data Type
 A scalar type represents a single value. Rust has 4 primary scalar types: int, float, bool, char
 
-<a name="intdatatype"></a>
+<a name="int"></a>
 ## 1.1 int
 - Integers can be signed(-ve, +ve  both) and unsigned(takes +ve values). Signed Number are stored using [2's Compliment](/Languages/Programming_Languages/C/Bitwise/Representation_of_Numbers). 
 - _Signed:_ i8, i16, i32, i64, i128
@@ -44,7 +44,7 @@ Binary	                    0b1111_0000
 Byte (u8 only)            	b'A'
 ```
 
-<a name="intoverflow"></a>
+<a name="into"></a>
 ### 1.1.1 Integer Overflow
 - Assigning value outside of allowed range. Example:
 ```rust
@@ -55,7 +55,7 @@ Byte (u8 only)            	b'A'
   - When program is compiled in release mode, Rust DOES NOT include checks for integer overflow. At runtime, overflow occurs Rust performs 2’s complement wrapping. 
   - *2’s complement wrapping?* Values greater than 255 gets wrapped around. 256 becomes 0. 257 becomes 1 and so on. No PANIC happens.
 
-<a name="arrayslice"></a>
+<a name="arrs"></a>
 ### 1.1.2 Array Slice
 - Read [String Slice](../) to understand How slices are stored and their type. Array Slice is taking piece of array.
 - Type of Array slice is `&i[32]`
@@ -67,7 +67,7 @@ fn main() {
 }
 ```
 
-<a name="floatdatatype"></a>
+<a name="fl"></a>
 ## 1.2 Floating-Point Types
 - Floating point are of 2 sizes f32(32 bit), f64(64 bit). 
 - f64 is default. Why f64 is default, because on modern CPUs f64 is roughly the same speed as f32 but is capable of more precision.
