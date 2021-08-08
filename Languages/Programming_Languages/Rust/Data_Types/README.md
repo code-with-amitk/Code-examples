@@ -1,4 +1,4 @@
-- [Type Annotation](#type)
+Type Annotation
 - [1. Scalar / Primitive Data Type](#scalardatatypes)
   - [1.1 int](#intdatatype)
     - [1.1.1 int overflow](#intoverflow)
@@ -11,7 +11,6 @@
   - [2.2 Tuple Type](#tupledatatype)
   - [2.3 struct Type](#structdatatype)
 
-<a name=type></a>
 ### Type Annotation
 - When many types are possible. Eg: String converted to a int using parse(), we must add a type annotation to tell type to complier.
 ```rust
@@ -23,7 +22,7 @@
 
 <a name="scalardatatypes"></a>
 # 1. Scalar / Primitive Data Type
-- A scalar type represents a single value. Rust has 4 primary scalar types: int, float, bool, char
+A scalar type represents a single value. Rust has 4 primary scalar types: int, float, bool, char
 
 <a name="intdatatype"></a>
 ## 1.1 int
