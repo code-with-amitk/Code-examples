@@ -167,7 +167,7 @@ Constructor inside class, Functions inside class
 
 <a name=controlflow></a>
 ## [Control Flow](Control_Flow)
-for, loop, while, match=switch, if
+for, loop, while, match=switch, if, if let
 
 <a name=Functions></a>
 ## [Functions](Functions)
