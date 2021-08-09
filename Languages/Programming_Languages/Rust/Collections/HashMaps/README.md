@@ -1,34 +1,30 @@
-**Hashmap**
-- Operations
-  - [Create](#create)
-  - Insert
-    - [1. New <key,value>](#insertnew)
-    - [2. Overwrite](#overwrite)
-    - [3. Insert only when entry does not exist](#orinsert)
-  - Search / Find
-    - [1. get(key)](#get)
-    - [2. get_mut(key)](#getm)
-  - [Print](#print)
-  - [Remove / Delete / Erase](#remove)
+- **Create**
+  - [hashmap`<keys=vector, values=vector>`](#vec)
+- **Insert**
+  - [1. New <key,value>](#insertnew)
+  - [2. Overwrite](#overwrite)
+  - [3. Insert only when entry does not exist](#orinsert)
+- **Search / Find**
+  - [1. get(key)](#get)
+  - [2. get_mut(key)](#getm)
+- **[Print](#print)**
+- [Remove / Delete / Erase](#remove)
 - [HashMap,vector inside Struct](#struct)
 
 ## Hashmap<Key, Value> //https://doc.rust-lang.org/std/collections/struct.HashMap.html
 - stores a mapping of keys of type K to values of type V and created on heap.
 - Like vectors, hash maps are homogeneous(all of the keys must have the same type, and all of the values must have the same type).
 
-## Operations
-
-<a name=create></a>
-### Create
-1. using iterators and collect() method
-  - `HashMap<_, _>` is needed type annotation.
+## Create
+<a name=vec></a>
+### hashmap`<keys=vector, values=vector>`
+using iterators and collect() method: `HashMap<_, _>` is needed type annotation.
 ```rust
 use std::collections::HashMap;
 fn main() {
     let color = vec![String::from("Red"), String::from("Blue")];
     let value = vec![1,2];
-    let mut hm:HashMap<_, _>  = 
-    color.into_iter().zip(value.into_iter()).collect();
+    let mut hm:HashMap<_, _>  = color.into_iter().zip(value.into_iter()).collect();
 } 
 ```
 
