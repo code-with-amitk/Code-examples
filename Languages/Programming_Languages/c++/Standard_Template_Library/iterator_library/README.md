@@ -1,7 +1,13 @@
-- Iterator
+- **Iterator**
   - [What](#what)
   - [Why](#why)
-- Types of Iterators
+- [Types of Iterators](#types)
+  - [1. Input](#inp)
+  - [2. Output](#out)
+  - [3. Forward](#fow)
+  - [4. Bidirectional](#bi)
+  - [5. Random Access](#ra)
+  - [6. Continuous(C++17)](#types)
 
 
 ## Iterator
@@ -19,10 +25,9 @@
 ```  
 **[Why](/Languages/Programming_Languages/Rust/Iterators)**
 
-  
-    
-### 6 types of iterators 
-- input is least & random access is most powerful.
+<a name=types></a>  
+### Types of iterators 
+input is least & random access is most powerful.
 ```c++
        Iterator          traverse-thru-container    direction    Read/Write        Example
     a. Input               single                    1             R            istream container
@@ -36,3 +41,123 @@
 - **Mutable Iterator?** (mutable means changeable) Iterators which support both input and output.
 - **Constant Iterator?** non-mutable iterators
 - **Operations on iterator?** Accessing elements(*,->), Make iterator point to next element(++)
+
+<a name=inp></a>
+#### 1. Input Iterator
+- Read values from the container and then increment
+- Can not alter the value of a container
+- 1 way Iterator
+- Once value is read it cannot be read again.  (decrement: Not allowed)
+```cpp
+#include<iterator>
+int main(){
+
+	int a,b=0;
+
+	cout<<"Enter a,b";
+	cin.clear();
+
+	istream_iterator<int> eos;		    //default ctr
+	istream_iterator<int> test(cin);	//stdin iterator
+
+	if(eos == test)	//testing end-of-stream
+		cout<<"Hello";
+	else
+		cout<<"No";
+}
+#./a.out
+1 2
+No
+```
+
+<a name=out></a>
+#### 2. Output Iterator
+Used to write the values to the container and then increment.
+```cpp
+int main(){
+	//EXAMPLE: ostream container provides output iterator
+	ostream_iterator<int> test(cout," ");
+
+	for(int i=0;i<10;i++)
+		*test++=i;
+}
+# ./a.out 
+0 1 2 3 4 5 6 7 8 9 
+```
+
+<a name=fow></a>
+#### 3. Forward Iterator
+ Combination of input & output iterator. Allowed to move forward not backward.
+ ```cpp
+ #include<forward_list>
+int main(){
+	//EXAMPLE-1: forward_list(singly ll) uses forward_iterator. iterator can iterate from front to end not from end to start
+	forward_list<int> a = {1,2,3,4,5};
+	forward_list<int>::iterator it;
+
+	for(it=a.begin();it!=a.end();it++){
+		cout<<*it<<" ";
+	}
+	//it = a.end();
+	//--it;			   //Decrement not allowed
+}
+# ./a.out 
+1 2 3 4 5 
+1 2 3 4 5
+ ```
+
+<a name=bi></a>
+#### 4. Bidirectional Iterator
+it is used to access the container in either direction forward or backward.
+```cpp
+#include<set>
+
+int main(){
+
+	//EXAMPLE: set container provides bi-directional iterator
+	set<int> a = {1,2,3,4,5};
+	set<int>::iterator it;
+
+	//end(): returns the value past end.
+	for(it=a.begin(); it!=a.end(); ++it)
+		cout<<*it<<" ";
+
+	for(it=a.end(); it!=a.begin();)
+		cout<<*--it<<" ";
+	cout<<endl;
+}
+# ./a.out 
+1 2 3 4 5 
+5 4 3 2 1 
+```
+
+<a name=ra></a>
+#### 5. Random Access
+Any element in container can be accessed randomly, same as pointer.
+```cpp
+#include <vector>
+#include<iterator>
+
+int main(){
+	//EXAMPLE: vector has ra iterator
+	vector<int> a = {1,2,3,4,5,6};
+	vector<int>::iterator it;
+
+	for(it=a.begin(); it!=a.end(); ++it)    //iterate forward
+		cout<<*it<<" ";
+
+	for(it=a.end(); it!=a.begin();)         //iterate backward
+		cout<<*--it<<" ";
+
+	for(it=a.begin(); it!=a.end(); it=it+2) //random forward
+		cout<<*it<<" ";
+
+	it = a.begin();                        //Access element randomly
+	cout<<*(it+4);
+}
+# ./a.out
+1 2 3 4 5 6
+6 5 4 3 2 1
+1 3 5
+5
+```
