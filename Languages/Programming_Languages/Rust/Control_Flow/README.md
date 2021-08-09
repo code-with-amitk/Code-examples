@@ -1,7 +1,9 @@
 - [if expression](#if)
   - [else if](#elseif)
 - [Infinite loop = loop](#loop)
+  - [Returning Values from Loop](#ret)
 - [for](#for)
+  - [Reversing the range](#rev)
 - [while](#while)
 - [match_switch](#match)
 
@@ -22,7 +24,7 @@ fn main() {
 Yes
 ```
 <a name=elseif></a>
-**else if expression**
+**else if**
 ```rs
 fn main() {
     let number = 6;
@@ -73,6 +75,7 @@ again!
 again!
 ^Cagain!
 ```
+<a name=ret></a>
 **Returning Values from Loops**
 ```rust
 fn main() {
@@ -100,6 +103,7 @@ OR
     println!("{}", i);    //0, 1, 2
     
 ```
+<a name=rev></a>
 **Reversing the range**
 ```rs
 fn main() {
