@@ -1,12 +1,14 @@
 - **Create**
   - [hashmap`<keys=vector, values=vector>`](#vec)
+  - [hashmap `<i32, (string, i32)>`](#pair)
 - **Insert**
   - [1. New <key,value>](#insertnew)
   - [2. Overwrite](#overwrite)
   - [3. Insert only when entry does not exist](#orinsert)
 - **Search / Find**
-  - [1. get(key)](#get)
-  - [2. get_mut(key)](#getm)
+  - [get(key)](#get)
+  - [get_mut(key)](#getm)
+  - [Value from hashmap `<i32, (String, i32)>`](#kv)
 - **[Print](#print)**
 - [Remove / Delete / Erase](#remove)
 - [HashMap,vector inside Struct](#struct)
@@ -17,7 +19,7 @@
 
 ## Create
 <a name=vec></a>
-### hashmap`<keys=vector, values=vector>`
+#### hashmap`<keys=vector, values=vector>`
 using iterators and collect() method: `HashMap<_, _>` is needed type annotation.
 ```rust
 use std::collections::HashMap;
@@ -27,6 +29,9 @@ fn main() {
     let mut hm:HashMap<_, _>  = color.into_iter().zip(value.into_iter()).collect();
 } 
 ```
+
+<a name=pair></a>
+#### [hashmap `<i32, (string, i32)>`](#kv)
 
 ### Insert 
 <a name=insertnew></a>
@@ -78,7 +83,7 @@ Green,50
 
 ### Search
 <a name=get></a>
-#### 1. pub fn get`<Q>`(&self, k: &Q) -> Option`<&V>`
+#### pub fn get`<Q>`(&self, k: &Q) -> Option`<&V>`
 ```rs
 {
   let mut var = HashMap::new();
@@ -97,13 +102,37 @@ if um.get(&3) == None {
 ```
 
 <a name=getm></a>
-#### 2. fn get_mut`<Q: ?Sized>`(&mut self, k: &Q) -> Option`<&mut V>`
+#### fn get_mut`<Q: ?Sized>`(&mut self, k: &Q) -> Option`<&mut V>`
 - Returns a mutable reference to the value corresponding to the key
 ```rs
 let mut map = HashMap::new();
 map.insert(1, "a");
 if let Some(x) = map.get_mut(&1) {
     *x = "b";
+}
+```
+
+<a name=kv></a>
+#### Value from hashmap `<i32, (String, i32)>`
+In rust pair is not present, We need to insert [tuple](/Languages/Programming_Languages/Rust). [if let](/Languages/Programming_Languages/Rust/Control_Flow)
+```rs
+struct test {
+    um : HashMap <i32, (String, i32)>,
+}
+fn insert(&mut self, key: i32, val1: String, val2: i32) {
+  assert!(self.um.insert (key, (val1, val2)).is_none() );
+}
+fn search_and_change (key: i32) {
+    let (val1, val2) = self.um.remove(&key).unwrap();   //Mehod-1
+  
+    let value = self.um.entry(key).or_default();        //Method-2. Read, Modify and insert
+    let (mut val1, mut val2) = *value;
+    val1 += "_";  val2 += 1;
+    *value = (val1, val2);  
+    
+    if let Some(&(val1, val2)) = self.um.get(&key) {    //Method-3
+        return 1
+    }    
 }
 ```
 
