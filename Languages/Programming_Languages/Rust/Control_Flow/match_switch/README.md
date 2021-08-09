@@ -1,55 +1,50 @@
-match
-- [Default Statement in match](#def)
+- [match](#mat)
+- [Default Statement](#def)
+  - [if let](#iflet)
 - [Patterns that Bind to Values](#patval)
 - [Matching Option`<T>`](#opt) 
 
+<a name=mat></a>
 ### match
-Similar to (switch + enum class) of c++. **Rules**
-  - _1._ match is followed by expression to be evaluated (same as switch)
-  - _2._ `pattern => code`. This is called _match arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
+Similar to (switch + enum class) of c++. Example
+  - `pattern => code`. This is called _Match Arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
 ```rust
 enum Color{
     Red,
     Black,
-}
-fn color_value(var:Color) -> u8 {
-    match var {                       //1
-        Color::Red => {               //2
+} 
+fn color_value (var : Color) {
+    match var {                       //var is expression to be evaluated
+        Color::Red => {               //Match Arm
             print!("Red");
-            1
         }
         //if we forget to define all match enum variables, Rust gives compile time error
     }
 }
 fn main() {
-    println!("{:#?}",color_value(Color::Red));
+    println!("{:#?}", color_value(Color::Red));
 }
 ```
 
 <a name=def></a>
-### Default Statement in match
-default statement in rust is represented by underscore `_`.
-  - _a._ match = switch
-  - _b._ Default case
-```rust
-//#[derive(Debug)]
-fn find(var:u8) -> u8 {
-    match var{                          //a
-        1 => {println!("one");
-            1
-        },
-        _ => {println!("default");        //b
-            255
-        }
-    }
-}
+### Default Statement
+default statement in match in rust is represented by underscore `_`.
+```rs
 fn main() {
-    println!("{:#?} ",find(3));
+    let a = Some(4);
+    match a {                           //Match case
+        Some(3) => println!("Something"),
+        _ => (),                       //Default case
+    }
 }
 $ rustc test.rs
 $ test.exe
-default
-255
+```
+<a name=iflet></a>
+#### if let
+Problem in above code is We want to do Something with Some(3) but nothing with None or any other value. To satisfy the match expression, we have to add `_ => ()` after processing just one variant, which is a lot of boilerplate code to add.
+```rs
+
 ```
 
 <a name=patval></a>
@@ -57,7 +52,7 @@ default
 - _1._ Created enum.
 - _2._ Binded a value(enum) to enum
 - _3._ `pattern => code` pattern is binded to value, which's printed.
-```rust
+```rs
 #[derive(Debug)]
 enum Food{
     Pizza,
