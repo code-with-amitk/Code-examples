@@ -2,7 +2,9 @@
 - Approach, HashMap
   - [Logic](#logic)
   - [Complexity](#comp)
-  - [Code](#code)
+  - Code
+    - [C++](#cpp)
+    - [Rust](#rust)
 
 ### Underground System
 - An underground railway system is keeping track of customer travel times between different stations. They are using this data to calculate the average time it takes to travel from one station to another.
@@ -70,8 +72,9 @@ checkout (id=1, es=B, t=50) {
   - S:number of stations
   - P:no of passengers
 
-<a name=code></a>
 #### Code
+<a name=cpp></a>
+**C++**
 ```cpp
 /////underground.cpp
 class UndergroundSystem {
@@ -87,6 +90,27 @@ public:
     void checkIn(int id, string stationName, int t) {
         checkInMap[id] = { stationName,t };
     }
+
+/*
+    void checkOut(int id, string stationName, int t) {
+        string routeKey;
+        auto itr = checkInData.find(id);
+        if (itr != checkInData.end()){
+            pair<string, int> p = itr->second;
+            string startStation = p.first;
+            int checkInTime = p.second;
+            routeKey = getKey(startStation, stationName);
+
+            auto itr1 = journeyData.find(routeKey);
+            if (itr1 != journeyData.end())
+                journeyData[routeKey] = {t - checkInTime + itr1->second.first,
+                    itr1->second.second + 1};
+            else
+                journeyData[routeKey] = { t-checkInTime,1 };
+        }
+        checkInData.erase(id);
+    }
+*/
 
     void checkOut(int id, string stationName, int t) {
         auto itr = checkInMap[id];
@@ -141,4 +165,76 @@ target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 $ cmake .
 $ make
 $ ./runtests
+```
+
+<a name=rust></a>
+**Rust**
+```rs
+use std::{collections::HashMap};
+struct UndergroundSystem {
+    checkInMap : HashMap <i32, (String, i32)>,
+    checkOutMap : HashMap <String, (f64, f64)>,
+}
+impl UndergroundSystem {
+
+    fn new() -> Self {
+        UndergroundSystem {
+            checkInMap: HashMap::new(),
+            checkOutMap: HashMap::new(),
+        }
+    }
+    
+    fn check_in(&mut self, id: i32, station_name: String, t: i32) {
+        assert!(self.checkInMap.insert(id,(station_name,t)).is_none());
+    }
+    
+                                //End station,  Checkout time
+    fn check_out(&mut self, id: i32, station_name: String, t: i32) {
+        let (start_station, start_time) = self.checkInMap.remove(&id).unwrap();
+
+        let mut ss_es:String = start_station + "_" + &station_name;
+
+        let value = self.checkOutMap.entry(ss_es).or_default();
+        let (mut total_time, mut number_of_trips) = *value;
+        total_time += (t-start_time) as f64;
+        let temp = 1.;
+        number_of_trips += temp;
+        *value = (total_time, number_of_trips);
+    }
+    
+    fn get_average_time(&self, start_station: String, end_station: String) -> f64 {
+        let mut ss_es:String = start_station + "_" + &end_station;
+        if let Some(&(total_time,number_of_trips)) = self.checkOutMap.get(&ss_es) {
+            return f64::from(total_time)/number_of_trips as f64;
+        }
+        unreachable!()
+    }
+}
+
+#[cfg(test)]                               //Automated tests run with `cargo test`
+mod all_tests {
+    use super::*;
+
+    #[test]
+    fn test1 () {
+        let mut obj = UndergroundSystem::new();
+        obj.check_in(45, "Leyton".to_string(), 3);
+        obj.check_in(32, "Paradise".to_string(), 8);
+        obj.check_in(27, "Leyton".to_string(), 10);
+        obj.check_out(45, "Waterloo".to_string(), 15);
+        obj.check_out(27, "Waterloo".to_string(), 20);
+        obj.check_out(32, "Cambridge".to_string(), 22);
+        assert_eq!(14.0, obj.get_average_time("Paradise".to_string(),"Cambridge".to_string()));
+        assert_eq!(11.0, obj.get_average_time("Leyton".to_string(),"Waterloo".to_string()));
+        obj.check_in(10, "Leyton".to_string(), 24);
+        assert_eq!(11.0, obj.get_average_time("Leyton".to_string(),"Waterloo".to_string()));
+        obj.check_out(10, "Waterloo".to_string(), 38);
+        assert_eq!(12.0, obj.get_average_time("Leyton".to_string(),"Waterloo".to_string()));
+    }
+}
+
+fn main(){
+    let obj = UndergroundSystem::new();
+
+}
 ```
