@@ -155,7 +155,8 @@ fn fun2(a_string: String) -> String {
 
 <a name=datatypes></a>
 ## [Data Types](Data_Types)
-Associated Functions, Compound: struct
+- Scalar / Primitive: int, Array slice, float, bool, char
+- Compund Data Type: Array, Tuple, Option<String, i32>
 
 <a name=collections></a>
 ## [Collections](Collections)
