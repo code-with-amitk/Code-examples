@@ -1,16 +1,14 @@
-- [1. if expression](#ifexp)
-- [2. Infinite loop = loop](#loop)
-- [3. for](#for)
-- [4. while](#while)
-- [5. match_switch](#match)
+- [if expression](#if)
+  - [else if](#elseif)
+- [Infinite loop = loop](#loop)
+- [for](#for)
+- [while](#while)
+- [match_switch](#match)
 
-<a name=ifexp></a>
-## 1. if expression
-- This is decide whether to run the code or not based on condition.
-- Paranthesis are mandatory in if-else block
-- `()` is not required around if block.
-- **Example**
-```rust
+<a name=if></a>
+### if expression
+This is decide whether to run the code or not based on condition. Paranthesis are mandatory in if-else block. `()` is not required.
+```rs
 fn main() {
   let a:i32 = 5;
   if a < 7 {
@@ -23,8 +21,9 @@ fn main() {
 # ./test.exe
 Yes
 ```
-- **else if expression**
-```rust
+<a name=elseif></a>
+**else if expression**
+```rs
 fn main() {
     let number = 6;
 
@@ -39,10 +38,8 @@ fn main() {
     }
 }
 ```
-- **Rust does not convert non-bool to bool **
-  - This code give compilation error, Since It expects expression to be bool.
-  - *Good Thing:* Unlike (C/C++), Rust does not try converting a(non-boolean) to bool
-```rust
+**Rust does not convert non-bool to bool: Good Thing:** This code give compilation error, Since It expects expression to be bool.
+```rs
 fn main() {
   let a = 3;                //a should be bool               
   if a {
@@ -62,8 +59,8 @@ fn main() {
 ```
 
 <a name=loop></a>
-## 2. loop
-- Loop executes infinitely until we press Control^C.
+### loop
+Executes infinitely until we press Control^C.
 ```rust
 fn main() {
     loop {
@@ -76,7 +73,7 @@ again!
 again!
 ^Cagain!
 ```
-- **Returning Values from Loops**
+**Returning Values from Loops**
 ```rust
 fn main() {
     let mut counter = 0;
@@ -91,7 +88,7 @@ fn main() {
 ```
 
 <a name=for></a>
-## 3. for
+### for
 ```rs
   let a = [1, 2];
   for b in a.iter() {
@@ -103,8 +100,8 @@ OR
     println!("{}", i);    //0, 1, 2
     
 ```
-- **Reversing the range**
-```rust
+**Reversing the range**
+```rs
 fn main() {
   for b in (1..4).rev(){
     println!("val:{}",b);
@@ -118,8 +115,8 @@ val:1
 ```
 
 <a name=while></a>
-## 4. while
-```rust
+### while
+```rs
 fn main() {
   let mut a = 3;
 
@@ -137,4 +134,4 @@ a:1
 ```
 
 <a name=match></a>
-## [5. match_switch](match_switch)
+### [match_switch](match_switch)
