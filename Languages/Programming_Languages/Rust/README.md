@@ -18,7 +18,7 @@
 - [Error Handling](#eh)
 - [Generic Types/Templates](#temp)
 - [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
-- [Writing Automated Tests](#tests)
+- [Automated Tests](#tests)
 - [Custom Programs](#custom)
 - [Design Guidelines](#dg)
 
@@ -193,7 +193,7 @@ Returning (value or struct) from function. Function Taking struct as argument. I
 ## [Generic Types/Templates](Generic_Types)
 
 <a name=tests></a>
-## [Writing Automated Tests](Automated_Tests)
+## [Automated Tests](Automated_Tests)
 - Unit test, Integration tests
 
 <a name=custom></a>
