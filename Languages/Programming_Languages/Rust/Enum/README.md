@@ -32,7 +32,7 @@ fn main() {
 }
 ```
 
-### 2. Enum Holding the data
+### Enum Holding the data
 
 <a name=e1></a>
 #### 1. Enum holding 1 datatype
@@ -40,23 +40,23 @@ fn main() {
 use std::{string::String, u32};
 
 #[derive(Debug)]
-enum Address{                     //1. Enum variable can store string data
+enum Address{                     //1. Enum variable storing string data
     IPv4(String),
     IPv6(String),
 }
 
-fn fun (addr:&Address) {          //3. Passing enum variable to function and printing.
+fn fun (addr:&Address) {          //3. Passing enum variable to function and print
     println!("{:#?}",addr);
 }
 
 fn main() {
     let router1:Address = 
-      Address::IPv4(String::from("192.168.1.1"));   //2. Creating enum variable having string data(192.0.0.1)
+      Address::IPv4(String::from("192.168.1.1"));   //2. Creating enum variable having string data(192.168.1.1)
     fun(&router1);
 }
 
 # rustc test.rs
-# .test.exe
+# ./test.exe
 IPv4(
     "192.168.1.1",
 )
@@ -95,9 +95,9 @@ fn fun (addr1:&Address,addr2:Address, addr3:Address) {         //3. Printing enu
 
 fn main() {
     let router1:Address = 
-      Address::IPv4(10,11,12,13);               //2. Router1 variable created of type IPv4, router2 of IPv6, disconnectedIP of no ip
-    let router2:Address = Address::IPv6(String::from("::1"));
-    let disconnectedDevice:Address = Address::NoIP;
+      Address::IPv4(10,11,12,13);                         //2. Router1 variable type=IPv4
+    let router2:Address = Address::IPv6(String::from("::1"));   //router2 of IPv6
+    let disconnectedDevice:Address = Address::NoIP;             //disconnectedIP of no ip
     fun(&router1,router2);
 }
 
@@ -118,14 +118,12 @@ Disconnected NoIP
 ## 3. Option Enum = NULL
 
 <a name=null></a>
-### Why creating NULL was mistake?
-- Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
-  - If we try using NULL value as non-NULL value. Eg: derefercing NULL ptr.
-  - Problem is not in NULL but at places this get misused.
-  - There are multiple situations, where crash is caused due to NULL. 
-- Ex-1. NULL References when derefrenced will cause crash
+### Creating NULL was mistake?
+Tony Hoare(inventor of NULL) said invention of NULL is his Billion dollar mistake. Why?
+  - Using NULL value as non-NULL value. Eg: derefercing NULL ptr. It will crash. Problem is not in NULL but at places it gets misused.
+  - There are multiple situations, where crash is caused due to NULL. Example: NULL References when derefrenced will cause crash
 - **C/C++ crashing code**
-```c++
+```cpp
 int fun(struct A*& p){              //Funtion taking NULL reference
   if (p == nullptr)
     cout<<"Got Null ptr reference\n";
@@ -140,21 +138,21 @@ Got Null ptr reference
 Segmentation Fault
 ```
 **How Rust avoid Null ptr?**
-  - _1._ Whichever variable can have NULL or other value, Rust asks to declare it as `Option<T>`
+  - _1._ Variable that can have NULL/other value is declared as Option`<T>`
   - _2._ Rust does not allow creating structure object without initializing its members.
-    - It can be initialized with Some or None. This is how rust avoids NULL crashes.
+    - It can be initialized with Some or None. No crash, None will be printed.
 ```rs
-fn fun(obj:&A){
-    println!("a:{:#?}",obj.a);
+fn fun (obj : &A) {
+    println! ("a:{:#?}", obj.a);    //3
 }
 struct A{
-    a:Option<i32>,              //1
+    a : Option<i32>,              //1
 }
 fn main() {
     let obj = A{
         a:None                  //2
     };
-    fun(&obj);
+    fun (&obj);
 }
 ```
 
@@ -162,29 +160,29 @@ fn main() {
 ### Option Enum
 This is another kind of enum in rust which takes either of 2 values: Some or None
 ```rs
-enum Option<T> {          //T is template which can take any type: i32, i64 etc
-    Some(T),
+enum Option <T> {        //T is template which can take any type: i32, i64 etc
+    Some (T),
     None,
 }
 ```
 <a name=oeuse></a>
-#### 1. Initializing and using Option<`T`>
+#### 1. Initializing and using Option`<T>`
 ```rs
 fn main() {
-    let a:Option<i32> = Some(2);
-    let b:Option<i32> = None;
+    let a : Option<i32> = Some(2);
+    let b : Option<i32> = None;
 
     println!("a:{:#?}",a);
     println!("b:{:#?}",b);
 }    
-$ main.exe
+$ ./main.exe
 a : Some(
     2,
 )     
 b : None
 ```
 <a name=add></a>
-#### 2. *Option`<T>` cannot be added to non Option`<T>`*
+#### 2. Option`<T>` cannot be added to non-Option`<T>`
 ```rs
 fn main() {
     let x: i8 = 5;
