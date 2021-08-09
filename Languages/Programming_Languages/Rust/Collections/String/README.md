@@ -1,21 +1,21 @@
-- [1. string literal, type, slice](#lts)
-- [2. str](#str)
-- [3. String](#string)
-- [4. Operations](#operations)
-  - [4.1 Create](#create)
-  - [4.2 Concatenate](#concatenate)
-  - [4.3 Print](#print)
-  - [4.4 Convert](#convert)
-  - [4.5 Reverse](#reverse)
-- [5. How strings are stored internally](#internal)
+- [string literal, type, slice](#lts)
+- [str](#str)
+- [String](#string)
+- **Operations**
+  - [1. Create](#cre)
+  - [2. Concatenate](#con)
+  - [3. Print](#print)
+  - [4. Convert](#convert)
+  - [5. Reverse](#reverse)
+- [How strings are stored internally](#internal)
 
 
 <a name=lts></a>
-## 1. string literal, String type, String slice
-- *1. string literal:* Are stored in the program’s exe(ie stack), these are also string slices.
-- *2. String type:* **Allocated on heap and can grow**. String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
-- *3. string slice:* Reference to part of a String taken as `string[starting_index, ending_index)`
-```rust
+## string literal, String type, String slice
+- *string literal:* Are stored in the program’s exe(ie stack), these are also string slices.
+- *String type:* **Allocated on heap and can grow**. String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
+- *string slice:* Reference to part of a String taken as `string[starting_index, ending_index)`
+```rs
   let lit:string = "test";                //1. STRING LITERAL
   
   let mut s = String::from("hello");      //2. STRING TYPE. 
@@ -36,9 +36,9 @@
 ```
 
 <a name=lts></a>
-## 2. str
-- str is [Immutable Reference](/Languages/Programming_Languages/Rust). Immutable means which cannot be changed.
-```rust
+## str
+str is [Immutable Reference](/Languages/Programming_Languages/Rust). Immutable means which cannot be changed.
+```rs
     let a = "T11 is Consistency";
     let b:&str = &a[0..4];            //Type of string slice is immutable reference.
     println!("{}",b);                 //T11
@@ -56,9 +56,9 @@ fn fun(s:&String) -> &str {                               //Function returning S
 ```
 
 <a name=string></a>
-## 3. String
-- string is growable, mutable, owned, UTF-8 encoded string type. string allocated on heap is shallow copy
-```rust
+## String
+string is growable, mutable, owned, UTF-8 encoded string type. string allocated on heap is shallow copy
+```rs
   let s1:String = String::from("test");
   //let s2 = s1;                              //Shallow copy, ie s2,s1 both point to same memory. COMPLIER ERROR
   let s2 = s1.clone();                        //Deep Copy. Deep copy is costly operation.
@@ -66,7 +66,7 @@ fn fun(s:&String) -> &str {                               //Function returning S
   let a:i32 = 5;
   let b = a;                                  //Data on stack is always deep copied
 ```
-- Its not allow to index into a String to get a character is that indexing operations because some [UTF-8](/Languages/Programming_Languages/C/Character_Sets/) characters are formed more than 1 byte. Eg: characters from 127-159 are used for creating characters using shift,cntrl keys. With string rust cannot determine exact sizeof string.
+Its not allow to index into a String to get a character is that indexing operations because some [UTF-8](/Languages/Programming_Languages/C/Character_Sets/) characters are formed more than 1 byte. Eg: characters from 127-159 are used for creating characters using shift,cntrl keys. With string rust cannot determine exact sizeof string.
 ```rust
   let hello = "Здравствуйте";                 
   let answer = &hello[0];                   //Complilation error
@@ -74,29 +74,28 @@ fn fun(s:&String) -> &str {                               //Function returning S
   let answer = &hello[0..4];                //Allowed
 ```
 
-<a name=operations></a>
-## 4. Operations
+## Operations
 
-<a name=create></a>
-### 4.1 Create
-  - from(), new()
-```rust
+<a name=cre></a>
+### 1. Create
+from(), new()
+```rs
     let s1 = String::new();                   //new()
     s1 = "test".to_string();
 
     let s2 = String::from("Hello");              //from()
 ```
 
-<a name=concatenate></a>
-### 4.2 Concatenate
-  - Using push_str(), push() methods
-```rust
+<a name=con></a>
+### 2. Concatenate
+Using push_str(), push() methods
+```rs
     let s2 = String::from("Hello");
     s2.push_str(" World");                       //push_str() appends string.
     s2.push(' k');                               //push() appends 1 character
 ```
-  - Using `+` operator
-```rust
+Using `+` operator
+```rs
     let s1 = String::from("Test");
     let s2 = String::from("Foo");
 
@@ -114,7 +113,7 @@ fn fun(s:&String) -> &str {                               //Function returning S
 <a name=print></a>
 ### 4.3 Printing
 - _chars():_ returns char types
-```rust
+```rs
     let hello = "Здравствуйте";
     for a in hello.chars() {
         println!("{}",a)
