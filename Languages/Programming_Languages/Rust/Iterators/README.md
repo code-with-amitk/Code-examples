@@ -8,11 +8,11 @@
 
 ## Iterators
 <a name=what></a>
-- **What**
+**What**
 Iterator is responsible for iterating over elements in sequence, we don’t have to reimplement that logic by ourself.
 
 <a name=why></a>
-- **Why**
+**Why**
 - Languages that don’t have iterators(Eg: C), we need to write this functionality by starting a variable at index 0, using that variable to index into the vector to get a value, and incrementing the variable value in a loop until it reached the total number of items in the vector.
 - _Problems with for(i=0;i<5;++i) or while(i<5):_ 
   - Coder can mess up this code, ie increment after 5
