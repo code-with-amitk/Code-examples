@@ -23,7 +23,7 @@ double getAverageTime(string startStation, string endStation)
 
 <a name=logic></a>
 #### Logic
-- let's consider we have 3 stations(A,B,C) and 4 customer-id's(1,2,3,4). Customer-id(1,2,3,4) checksin at station-A at time(10,20,30,40) and checkouts at station-B,C.
+let's consider we have 3 stations(A,B,C) and 4 customer-id's(1,2,3,4). Customer-id(1,2,3,4) checksin at station-A at time(10,20,30,40) and checkouts at station-B,C.
 ```c
     A         B         C
     /\        |         |
@@ -38,12 +38,12 @@ We will maintain 2 hashmaps to get the average time of travel between 2 stations
                 //id    stationName,checkInTime
     unordered_map<int, pair<string,int>> checkInData;
     
-| 1,<A,10> | 2,<B,20> | 3,<C,30> | 4,<D,40> |
+| 1,<A,10> | 2,<A,20> | 3,<A,30> | 4,<A,40> |
 ```
 - checkOutMap HashMap about journey to be populated at checkout()
 ```c
-                //ss->es    TotalTime,NoOfTrips
-    unordered_map<string, pair<double,double>> checkOutMap;
+                  //ss->es    TotalTime,NoOfTrips
+    unordered_map <string, pair <double, double>> checkOutMap;
     
 checkout (id=1, es=B, t=50) {
   //Find start station for id=1. ss=A. key becomes startStation_endStation = A_B
