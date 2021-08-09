@@ -1,13 +1,11 @@
-- [1. match](#what)
-  - [1.1 Default Statement in match](#default)
-  - [1.2 Patterns that Bind to Values](#patval)
-  - [1.3 Matching Option`<T>`](#opt) 
+match
+- [Default Statement in match](#def)
+- [Patterns that Bind to Values](#patval)
+- [Matching Option`<T>`](#opt) 
 
-<a name=what></a>
-## 1. match
-- This is similar to (switch + enum class) of c++.
-- **Rules**
-  - _1._ match is followed by expression to be evaluated
+### match
+Similar to (switch + enum class) of c++. **Rules**
+  - _1._ match is followed by expression to be evaluated (same as switch)
   - _2._ `pattern => code`. This is called _match arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
 ```rust
 enum Color{
@@ -15,7 +13,7 @@ enum Color{
     Black,
 }
 fn color_value(var:Color) -> u8 {
-    match var{                        //1
+    match var {                       //1
         Color::Red => {               //2
             print!("Red");
             1
@@ -28,11 +26,11 @@ fn main() {
 }
 ```
 
-<a name=default></a>
-### 1.1 Default Statement in match
-- default statement in rust is represented by underscore `_`.
-  - _a._ Switch is defined using match
-  - _b._ Default case is represented using `_`. For everything except 1 this will be executed.
+<a name=def></a>
+### Default Statement in match
+default statement in rust is represented by underscore `_`.
+  - _a._ match = switch
+  - _b._ Default case
 ```rust
 //#[derive(Debug)]
 fn find(var:u8) -> u8 {
@@ -55,7 +53,7 @@ default
 ```
 
 <a name=patval></a>
-### 1.2 Patterns that Bind to Values
+### Patterns that Bind to Values
 - _1._ Created enum.
 - _2._ Binded a value(enum) to enum
 - _3._ `pattern => code` pattern is binded to value, which's printed.
@@ -90,12 +88,12 @@ fn main() {
 ```
 
 <a name=opt></a>
-### 1.3 Matching Option`<T>`
-- [What is Option`<T>`](../../../Enum_OptionEnum/OptionEnum_Null/) This is called Option Enum which is replacement of NULL in rust.
+### Matching Option`<T>`
+[What is Option`<T>`](../../../Enum_OptionEnum/OptionEnum_Null/).
 - **Example**
   - _1._ Defined function taking Option`<T>` and returning Option`<T>`.
   - _2._ `pattern => code`. pattern can be some or None only.
-```rust
+```rs
 fn find(var:Option<i32>) -> Option<i32> {         //1
     match var{
         Some(i) => Some(i+1),                     //2
