@@ -96,12 +96,13 @@ fn main() {
   let a = [1, 2];
   for b in a.iter() {
     println!("{}", b);      //1,2 
-
+  }
+  
 OR 
 
   for i in 0..3 {         //for (i=0; i<3; ++i)
     println!("{}", i);    //0, 1, 2
-    
+  }  
 ```
 <a name=rev></a>
 **Reversing the range**
