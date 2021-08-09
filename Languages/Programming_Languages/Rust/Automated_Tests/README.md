@@ -1,5 +1,5 @@
-- [Automated Tests](#what)
-- [Test Examples](#ex)
+Automated Tests
+- **Test Examples**
   - [1. Simple function](#sim)
   - [2. All tests inside module](#mod)
   - [3. Running tests by name](#byname)
@@ -8,18 +8,15 @@
   - [1. Unit Tests](#unit)
   - [2. Integration Tests](#int)
 
-<a name=what></a>
 ## Automated Tests
-- In rust we can write test function with which we can test our existing code.
-- When we run `cargo test` command, Rust builds a test runner binary that runs the functions annotated with the test attribute and reports on whether each test function passes or fails.
+In rust we can write test function with which we can test our existing code. 
+- With *[cargo](/Languages/Programming_Languages/Rust/Cargo_BuildSystem) test* command, Rust builds a test runner binary that runs the functions annotated with the test attribute and reports on whether each test function passes or fails.
 
-<a name=ex></a>
 ## Test Examples
 
 <a name=sim></a>
 #### 1. Simple function
-- _1._ Functions preceded by attribute `#[test]` is a test function. On running [cargo test](/Languages/Programming_Languages/Rust/Cargo_BuildSystem) Rust builds a test runner binary that runs the all functions annotated with the test attribute
-- [assert!(), assert_eq!(), assert_ne!()](/Languages/Programming_Languages/Rust/Functions)
+Functions preceded by attribute `#[test]` is a test function. [assert!(), assert_eq!(), assert_ne!()](/Languages/Programming_Languages/Rust/Functions)
 ```rs
 fn greater_than_ten(a:u32)->bool {
     if a > 10 {
@@ -104,7 +101,7 @@ $ cargo test one                        //Will run all test cases having one in 
 
 <a name=ignore></a>
 #### 4. Ignoring some tests, ie should not be run
-- ignore attribute will not run the test.
+ignore attribute will not run the test.
 ```rs
 #[test]
 fn it_works() {
