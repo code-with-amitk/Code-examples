@@ -7,8 +7,8 @@
 <a name=mat></a>
 ### match
 Similar to (switch + enum class) of c++. Example
-  - `pattern => code`. This is called _Match Arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
-```rust
+- `pattern => code`. This is called _Match Arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
+```rs
 enum Color{
     Red,
     Black,
@@ -41,10 +41,14 @@ $ rustc test.rs
 $ test.exe
 ```
 <a name=iflet></a>
-#### if let
-Problem in above code is We want to do Something with Some(3) but nothing with None or any other value. To satisfy the match expression, we have to add `_ => ()` after processing just one variant, which is a lot of boilerplate code to add.
+#### [if let](https://doc.rust-lang.org/book/ch06-03-if-let.html)
+Problem in above code: Lot of unused code(ie We want to do Something with Some(3) but nothing with None or any other value). To satisfy the match expression, we have to add `_ => ()` after processing just one variant, which is a lot of boilerplate code to add.
 ```rs
-
+fn main() {
+    if let Some(3) = 3 {
+        println!("Something")
+    }
+}
 ```
 
 <a name=patval></a>
