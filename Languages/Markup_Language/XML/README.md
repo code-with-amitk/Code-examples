@@ -22,7 +22,7 @@ DOM defines
 </table>
 ```
 
-<img src=DOM.JPG width=400/>
+<img src=dom.JPG width=400/>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>        //XML Version
