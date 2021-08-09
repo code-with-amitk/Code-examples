@@ -10,6 +10,7 @@
 - [Smart Pointers](#smart)
 - [Data Types](#datatypes)
 - [Collections](#collections)
+- [Iterators](#itr)
 - [Class in Rust](#class)
 - [Control Flow](#controlflow)
 - [Functions](#Functions)
@@ -161,6 +162,10 @@ fn fun2(a_string: String) -> String {
 <a name=collections></a>
 ## [Collections](Collections)
 HashMap, HashSet, vector, string
+
+<a name=itr></a>
+## Iterators
+next(), sum()
 
 <a name=class></a>
 ## [Class in Rust](Class)
