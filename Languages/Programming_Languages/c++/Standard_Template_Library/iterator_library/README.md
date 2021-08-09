@@ -1,13 +1,25 @@
+- Iterator
+  - [What](#what)
+  - [Why](#why)
+- Types of Iterators
+
+
 ## Iterator
-- **What?** A object (similar to pointer) that points to an element inside the container and can iterate through elements of container. iterators class is defined inside container hence behavior is container specific.
-- **Usage?** Every iterator is not supported by all the containers. eg vectors support Random-access iterator, forward_list support forward iterator.
-- **Iterator class?** iterator class is defined inside namespace of container class. Hence its accessed using scope resolution(::) operator.
+<a name=what></a>
+**What**
+- A object (similar to pointer) that points to an element inside the container and can iterate through elements of container. 
+  - iterators class is defined inside container hence behavior is container specific.
+  - Every iterator is not supported by all the containers. eg vectors support Random-access iterator, forward_list support forward iterator.
+- *Iterator class?* iterator class is defined inside namespace of container class. Hence its accessed using scope resolution(::) operator.
 ```c++
     vector<int> a = {1,2,3,4,5,6};
-    vector<int>::iterator it;                        //Also note type of iterator is bound to type of class.
-    it = a.begin();                                      //vector class's member function begin() returns forward iterator
-    it = a.end();                                          //vector class's member function end() element 1 past end
-```    
+    vector<int>::iterator it;      //Also note type of iterator is bound to type of class.
+    it = a.begin();                //vector class's member function begin() returns forward iterator
+    it = a.end();                  //vector class's member function end() element 1 past end
+```  
+**[Why](/Languages/Programming_Languages/Rust/Iterators)**
+
+  
     
 ### 6 types of iterators 
 - input is least & random access is most powerful.
