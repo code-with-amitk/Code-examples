@@ -1,10 +1,11 @@
+**HTTP (Hyper Text Transfer Protocol)**
 - [What is HTTP](#what)
 - [HTTPv1 vs HTTPv2 vs HTTPv3](#2v3)
 - [Advatanges, Disadvatanges/pitfalls of HTTP](#adv)
 - [HTTP Message Format](#format)
 
-<a name=what></a>
-### What is HTTP (Hyper Text Transfer Protocol)
+
+## HTTP
 - Protocol working client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
 - [Design Issues](/Networking/OSI-Layers/README.md)
