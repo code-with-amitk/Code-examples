@@ -1,5 +1,5 @@
 **Information Security constitutes of 4 parts**
-- [1. Secrecy / Confidentiality / Encryption](#sec)
+- **[1. Secrecy / Confidentiality / Encryption](#sec)**
   - [How](#how)
   - **Types of Encryption**
     - [Assymetric /2 key](#2key)
@@ -9,6 +9,7 @@
         - Crammer-shoup
         - El-Gamal
       - [ECC](#ecc)
+        - [ECC vs Assymetric vs Symmetric](#eccvs)
     - [Symmetric / 1 key](#1key)
       - [Problem with Symmetric Key Algo](#prob)
       - Algorithms
@@ -133,8 +134,12 @@ This is Public Key variant. Public, Pvt keys are calculated using elliptic curve
 - Applications of ECC?
   - Calculating keys for following: Key agreement, Digital Signature, Pseudo-random generators.
   - ECCs can be used after combining with Symmetric encryption schemes.
-  - [Ecliptic Curve based Diffie Hellman / ECDH](ECDH)
+  - (ECDH) Ecliptic Curve based Diffie Hellman
+    - Allows two parties, each having an elliptic-curve public–private key pair, to establish a shared secret over an insecure channel. 
+    - This shared secret maybe used directly as key or derive another key. 
+    - The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher.
 
+<a name=eccvs></a>
 ##### ECC vs Symmetric vs Asymmetric
 ```c
 Symmetric | Asymmetric | ECC
