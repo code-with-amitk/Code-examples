@@ -1,2 +1,0 @@
-## Ecliptic Curve Cryptography / ECC
-
