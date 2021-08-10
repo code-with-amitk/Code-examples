@@ -3,8 +3,11 @@
 - [2. SSL](#what)
   - [SSL vs TLS](#vs)
   - [SSL Vulnerabilities](SSL_Vulnerabilities)
-  - SSL Client validating SSL Server Certificate & viceversa
-    - [Public Key Exchange](#pub)
+  - **SSL Client validating SSL Server Certificate & viceversa**
+    - [1. Public Key Exchange](#pub)
+      - [Alert protocol](#alert)
+    - 2. DH Key Exchange
+  - [Decrypting SSL Traffic using Wireshark](#dec)
 
 
 ## TLS Implementations
@@ -46,7 +49,7 @@ Layer7 protocol for Authentication+Encryption. Layer-4 can have TCP or UDP.
 
 ### SSL Client validating SSL Server Certificate & viceversa
 <a name=pub></a>
-#### Public Key Exchange
+#### 1. Public Key Exchange
 ```c
 Root-CA
   |--> Client.crt + RootCA.crt  -> Browser/SSL Client
@@ -124,3 +127,24 @@ L5-Data > |Compress| > xyz > |Add-MAC| > MMMxyz > |Encrypt| >
                                       -----close_notify_message----->
                ---------------RECORD PROTOCOL END-----------
 ```
+
+<a name=alert></a>
+**ALERT-PROTOCOL** 
+- Mechanism to inform other end that some thing wrong happened(either in handshake, record protocol). This message consists of two fields. (Alert Message,Criticality of the alert).
+
+<a name=dec></a>
+#### [Decrypting SSL Traffic using Wireshark](https://techzone.cisco.com/t5/Troubleshooting-and-Tools/How-to-Decrypt-SSL-traffic-using-Wireshark/ta-p/355403)
+- Get a. Server's: RSA pvt key,  b. Clients's: Pre-master-secret for each session
+- Enter the key in: Wireshark Menu -> Edit -> Prefrences -> Protocol -> ssl -> RSA Key List
+
+<a name=dtls></a>
+#### DTLS / Datagram TLS (TLS over UDP)
+- DTLS is port of TLS over UDP.
+- Why UDP?
+  - Less Delay(Good Choice for Audio/Video)
+  - No retransmissions (for lost packets)
+  - No Connection Setup (Handshakes)
+  - For Multicast, UDP is used
+  - If TCP is used sender has to take care of Each recipient's receiving rate
+  - Packet Header of UDP(8bytes) is much smaller than TCP(20 bytes)
+WHICH PACKET IS DELIVERED RELIABLY IN DTLS?
