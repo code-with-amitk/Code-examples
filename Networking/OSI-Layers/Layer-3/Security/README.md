@@ -1,28 +1,29 @@
-**Information Security**
-- [1. Secrecy / Confidentiality / Encryption](#sec)
-  - [Cipher Algorithms](#ca)
-  - **Types of Encryption**
-    - [Assymetric /2 key](#2key)
-      - Algorithms
-        - [DH](#dh)
-        - [RSA](#rsa)
-    - [Symmetric / 1 key](#1key)
-  - **How Encryption is performed at H/W Level**
-    - [a. Permutation / P-box/ Transposition Box](#pb)
-    - [b. Substitution / S-box](#sb)
+**Information Security constitutes of 4 parts**
+[1. Secrecy / Confidentiality / Encryption](#sec)
+- **Types of Encryption**
+  - [Assymetric /2 key](#2key)
+    - Algorithms
+      - [DH](#dh)
+      - [RSA](#rsa)
+  - [Symmetric / 1 key](#1key)
+- [Cipher Algorithms](#ca)
+- **How Encryption is performed at H/W Level**
+  - [a. Permutation / P-box/ Transposition Box](#pb)
+  - [b. Substitution / S-box](#sb)
+[2.]
+[3.]
+[4.]
+
 - [Terms](#Terms)
 - [Security Vulnerabilities](#Security_Vulnerabilities)
 
 
-## Information Security
-Consitutues of 4 parts
-
 <a name=sec></a>
-## 1. Secrecy / Confidentiality / Encryption / Cryptography
+# 1. Secrecy / Confidentiality / Encryption / Cryptography
 Conversion of Data/Plain-text into unreadable/cipher text.
 
-### Types of Encryption
-#### 1. Assymetric /2 key
+## Types of Encryption
+### 1. Assymetric /2 key
 Public key(encrypt), Private key(decrypt). Data encrypted with Public can only be decrypted using Pvt key. Both are mathematically linked. Public Key are published on website publicly.
 ```c
                   \/Public-Key                      \/Pvt-Key        
@@ -41,10 +42,10 @@ Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
              \/                                                 \/
   message > |Encrypt| > XXX   ---sent to Alice--->      XXX > Decrypt > message
 ```
-**Algorithms**
+#### Algorithms
 
 <a name=dh></a>
-**DH(Diffe-Helman)**
+#### DH(Diffe-Helman)
 DH Keys sizes
 ```c
 Group  | No of Bits |  Combinations  | Strong 
