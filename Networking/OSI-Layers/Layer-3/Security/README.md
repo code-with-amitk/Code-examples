@@ -22,6 +22,7 @@
 Conversion of Data/Plain-text into unreadable/cipher text.
 
 ## Types of Encryption
+<a name=2key></a>
 ### 1. Assymetric /2 key
 Public key(encrypt), Private key(decrypt). Data encrypted with Public can only be decrypted using Pvt key. Both are mathematically linked. Public Key are published on website publicly.
 ```c
