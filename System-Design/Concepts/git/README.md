@@ -1,8 +1,11 @@
 **Versioning Control**
 - **gerrit**
   - [git vs gerrit](#vs)
+- **Working on Review Comments**
+  - [gerrit](#revg)
 - **Issues**
   - [Remote head refers to nonexistent ref](#rem)
+  - [Merge Conflict](#mer)
 
 ## gerrit
 
@@ -16,6 +19,30 @@
 |Does not provide||Code browsing,search,Continious build,Code hosting|
 |git history|not clean|cleaner|
 |Permissions|not extensive|Much fine grained|
+
+
+## Working on Review Comments
+
+<a name=revg></a>
+#### [gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
+```c
+Open git bash (admin)
+$ git clone <>            //Find command from gerrit UI
+$ cd code
+$ git checkout branch1    //Change to existing branch
+$ git pull origin branch1 //Get latest code from repo
+$ git pull my-changes     //Find command on gerrit UI. Open Change Page > Download Patch > git pull. 
+$ git rebase branch1
+$ git branch
+$ git status
+-> Do code change
+$ git status              //Make sure changed files are there
+$ git add file1 file2
+$ git commit --amend
+$ gitdir=<>
+$ git push <complete command>
+```
+
 
 ## Issues
 <a name=rem></a>
@@ -34,3 +61,7 @@ test-repo$ cat .git/refs/heads/master       <<ref does not exist
   257143e8aded4f0fca7712105581567162cab60c
 test-repo$
 ```
+<a name=mer></a>
+#### Merge Conflict
+- _1._ Use rebase button on gerrit UI to resolve merge conflict.
+- _2._ If you want to make changes in PR.
