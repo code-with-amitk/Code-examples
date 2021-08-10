@@ -133,7 +133,7 @@ Here 3
   - Best case. O(logE). Using DFS, two parallel tree traversals, one preorder traversal and other postorder traversal.
 
 <a name=directed></a>
-### [Directed/Undirected]
+### [Directed/Undirected](Directed_Undirected)
 <a name=st></a>
 ### Spanning Tree
 Subgraph derived from Graph satisfying these conditions:
