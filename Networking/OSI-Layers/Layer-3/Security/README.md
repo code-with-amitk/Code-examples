@@ -50,7 +50,7 @@ Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
 ```
 #### Algorithms
 <a name=dh></a>
-#### a. DH(Diffe-Helman)
+##### a. DH(Diffe-Helman)
 ```c
 //DH Keys sizes
 Group  | No of Bits |  Combinations  | Strong 
@@ -131,7 +131,7 @@ Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
 
 #### Algorithms
 <a name=aes></a>
-#### a. AES / Rijndael
+##### a. AES / Rijndael
 There are 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
 ```c
 
