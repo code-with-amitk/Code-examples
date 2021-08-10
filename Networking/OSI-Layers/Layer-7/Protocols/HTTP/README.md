@@ -1,16 +1,15 @@
 **HTTP (Hyper Text Transfer Protocol)**
-- [What is HTTP](#what)
-- [HTTPv1 vs HTTPv2 vs HTTPv3](#2v3)
-- [Advatanges, Disadvatanges/pitfalls of HTTP](#adv)
+- [Design Issues](/Networking/OSI-Layers/README.md)
+- [HTTPv1 vs HTTPv2 vs HTTPv3](#vs)
+- [Advatanges, Disadvatanges of HTTP](#adv)
 - [HTTP Message Format](#format)
 
 
 ## HTTP
-- Protocol working client-server/Request-Response model. Default port 80, other can be used. Uses TCP, can also use UDP.
+Client-server/Request-Response protocol. Default port 80, other can be used. Uses TCP, can also use UDP.
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
-- [Design Issues](/Networking/OSI-Layers/README.md)
 
-<a name=2v3></a>
+<a name=vs></a>
 ### HTTPv1 vs HTTPv2 vs HTTPv3
 ||Http-1.1|Http-2|Http-3|
 |---|---|---|---|
