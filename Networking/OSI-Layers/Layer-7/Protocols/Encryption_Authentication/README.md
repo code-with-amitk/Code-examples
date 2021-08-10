@@ -52,7 +52,7 @@ Root-CA
   |--> Client.crt + RootCA.crt  -> Browser/SSL Client
   |--> server.crt + RootCA.crt  -> Web Server/SSL Server/HDFC
 
-  Web Browser/SSL-Client                                                           Web-Server/SSL-Server/HDFC
+  Web Browser/SSL-Client                                                                          Web-Server/SSL-Server/HDFC
 //Step-1: Browser has installed self.crt, RootCA.crt
 //Step-2: SSL Client wants to connect to Web-server.
 
@@ -60,8 +60,9 @@ Root-CA
   
       ----------------------HANDSHAKE PROTOCOL START----------------------
       Why HS? Client, server authenticate each  other, Negotiate Encryption-Algo, Keys
-ssl3_connect()                                                                                                                                                            ssl3_accept()
-send_clienthello()                                                                                                                                                       
+ssl3_connect()
+ssl3_accept()
+send_clienthello()
   -- CLIENT_HELLO |version|SessionId=0|Cipher_suite_list|Random_no=RNc|Comp_methods| -->            start_handshake()
   <--SERVER-HELLO |version|SessionId=4|Cipher_suite_selected|Random_no=RNs|Comp_method_selected| -- send_hello_req()
   <--SERVER-CERT+DS-of-CA |version|Len| [server.crt + DS-of-CA]--
@@ -84,11 +85,11 @@ Both Match. Server Authenticated.
 Client Certificate will have EKU value of OID=1.3.6.1.5.5.7.3.2(Means Client Authentication)
 
 //Step-4: Browser send self certificate, browser.crt signed by root-CA
-         ----------client.crt, CLIENT-CERTIFICATE(Optional)---------------------------->        //Step-5: Verify Client certificate
-                                                                                             - Find Issuer of client.crt
-                                                                                              Issuer: C = <>, ST = <>, L = <>, O = Verisign, OU = <>, CN = <>, emailAddress = <> 
-                                                                                             - Retrieves same RootCA.crt from DB. Gets Public Key from CA.crt
-                                                                                               CA-Public-Key-from RootCA.crt present with server
+         ----------client.crt, CLIENT-CERTIFICATE(Optional)---------------------------->    //Step-5: Verify Client certificate
+                                                                                           - Find Issuer of client.crt
+                                                                                              Issuer: C =, ST =, L =, O =, OU =, CN =, emailAddress = 
+                                                                                           - Retrieves same RootCA.crt from DB. Gets Public Key from CA.crt
+                                                                                              CA-Public-Key-from RootCA.crt present with server
                                                                                                                      \/
                                                                                        DS-present-in-browser.crt > [Decrypt] > Hash(XXX)
                                                                                        client.crt  > [sha256] > Hash(XXX)
@@ -100,7 +101,7 @@ Client Certificate will have EKU value of OID=1.3.6.1.5.5.7.3.2(Means Client Aut
                                                      \/Server's Public-key
 1. Generate Pre-Master-Secret-Key(from RNc,RNs) > |Encrypt| > PMSK
 
-         ---CLIENT-KEY-EXCHANGE |version|length|type=22(handshake)|PMSK| -->              Decrypt Pre-Master-Secret-Key using Pvt Key
+         ---CLIENT-KEY-EXCHANGE |version|length|type=22(handshake)|PMSK| -->           Decrypt Pre-Master-Secret-Key using Pvt Key
 2. Generate Master-key(from Pre-master-Secret-key+RNc+RNs)                               2. Server generates Master-key(from Pre-master-Secret-key+RNc+RNs)
 3. Generate Session-key(from Master-key)                                                 3. Server generates Session-key(from Master-key)
 Session-key is used for Encryption/Decryption
