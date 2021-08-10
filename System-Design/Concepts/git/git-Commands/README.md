@@ -8,6 +8,37 @@
   git checkout -b <branch>        //2. Creating a new branch
 ```
 - **clone:** Used to create a clone/copy of the target repository.
+```c
+# git config --global url "ssh://gerritgitmaster/".pushInsteadof "ssh://gerritgit/"
+# git config --global user.name "Amit Kumar"
+# git config --global user.email "name@company.com"
+# git config --global pull.rebase true
+
+//Generate ssh keys and upload on gerrit server
+# ssh-keygen -t rsa -C 'emailID'
+# cat ~/.ssh/id_rsa.pub
+<<<<<<<<<<<<Add this key to gerrit server>>>>>>>>>>>>>>>
+# vim ~/.ssh/config
+Host *
+  ServerAliveInterval 20
+Host gerrit*
+  User <username without @>
+  Port <>
+Host gerritgit-mirror              //This is mirror server
+  HostName <>
+Host gerritgitmaster        //This is master server.
+  Hostname <>
+# chmod 0600 ~/.ssh/config  
+
+//Test connection
+# ssh gerritgitmaster       //ssh master
+..sucess message
+# ssh gerritgit-mirror          //ssh mirror
+--success message
+
+$ git clone ssh://gerritgit-mirror/repo-name
+```
+
 - **commit:**    This is not Central Repo. but this is final local copy
 ```c
   # git rev-list -n 1 sssd-1_16_4_21      //finding commit-id of version
