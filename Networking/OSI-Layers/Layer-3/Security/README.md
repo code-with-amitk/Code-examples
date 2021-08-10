@@ -3,13 +3,14 @@
   - **Types of Encryption**
     - [Assymetric /2 key](#2key)
       - Algorithms
-        - [DH](#dh)
-        - [RSA](#rsa)
+        - [a. DH](#dh)
+        - [b. RSA](#rsa)
         - Crammer-shoup
         - El-Gamal
     - [Symmetric / 1 key](#1key)
+      - [Problem with Symmetric Key Algo](#prob)
       - Algorithms
-        - [AES / Rijndael](#aes)
+        - [a. AES / Rijndael](#aes)
         - [DES vs 3DES vs AES](#sycomp)
   - [Cipher Algorithms](#ca)
   - **How Encryption is performed at H/W Level**
@@ -49,7 +50,7 @@ Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
 ```
 #### Algorithms
 <a name=dh></a>
-#### DH(Diffe-Helman)
+#### a. DH(Diffe-Helman)
 ```c
 //DH Keys sizes
 Group  | No of Bits |  Combinations  | Strong 
@@ -74,7 +75,7 @@ Group  | No of Bits |  Combinations  | Strong
 ```   
 
 <a name=rsa></a>
-#### RSA (Ronald Rivest, Adi Shamir, Len Adleman)
+#### b. RSA (Ronald Rivest, Adi Shamir, Len Adleman)
 Steps of RSA
 - A. Pre-calculate Public, pvt key
   - *1.* Choose 2 numbers p(1024 bit),q(1024 bit).  {p=3,q=11}
@@ -121,9 +122,16 @@ Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
                 \/  Key-1                      \/ Key-1
     Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
 ```
+
+<a name=prob></a>
+#### Problem with Symmetric Key Algo
+- With same plaintext they will produce same ciphertext everytime. [Solution: Chaining](#sb)
+- 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
+
+
 #### Algorithms
 <a name=aes></a>
-#### AES / Rijndael
+#### a. AES / Rijndael
 There are 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
 ```c
 
@@ -159,10 +167,6 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
 |[AES / Rijndael](AES.md)|128,192,256|128,192,256(block-size)|10,12,14|
 |RC4||||
 
-### Problem with Symmetric Key Algo(AES,DES or any)
-- With same plaintext they will produce same ciphertext everytime.
-- **[Solution: Chaining](/Networking/OSI-Layers/Layer-3/Security/Encryption_Cryptography_Confidentiality/HowEncryptionIsPerformedAtHardware)** 
-  - 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
 
 
 <a name=ca></a>
