@@ -79,9 +79,17 @@ nothing to commit, working tree clean
 ```
 - **merge:**    
 Merge 2 or more development histories together.
-- **push:**    
-Pushing the changes onto main branch
-- **pull:**    
+- **push:** Pushing the changes onto main branch
+```c
+///gerrit///
+$ git add file1 file2 file3
+$ git commit -F commit-msg-file
+$ git pull
+$ git rebase
+$ gitdir=$(git rev-parse --git-dir); scp -p -P 29481 user-id@<gerrit-server>:hools/commit-msg $(gitdir)/hooks
+$ git push ssh://userId@bracnh HEAD:refs/for/branch%topic=<> , r=reviewer@test.com
+```
+- **pull:**
 Synching with latest branch code
 - **status:**    
 tells what's modified by you, what's not modified on local repo
