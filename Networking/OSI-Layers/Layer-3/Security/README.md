@@ -20,6 +20,8 @@
   - **How Encryption is performed at H/W Level**
     - [a. Permutation / P-box/ Transposition Box](#pb)
     - [b. Substitution / S-box](#sb)
+  - **[How safe are 128,256 bit Keys](#how128)**
+  - [Encryption at Data link, Transport, Application Layers](#encdta)
 - [2.]
 - [3.]
 - [4.]
@@ -235,6 +237,37 @@ This can have multiple stages of P-box inside providing more complex method bit 
   - There are more P-boxes at start and end, called Rounds.
 
 <img src=Encryption_at_hardware_level.png width=700/>
+
+<a name=how128></a>
+### How safe is 128, 256 bit Keys
+The longer the key, higher work to be done by breaking algo.    
+  - Email: 64-bit keys will do 
+  - Commercial applications: 128 bits
+  - Govt org: 256 bits
+Number of Unique keys:
+  - 2   No of unique keys: 2<sup>2</sup> = 4
+  - 3   No of unique keys: 2<sup>3</sup> = 8
+  - 32  No of unique keys: 2<sup>32</sup> = 4,294,967,296    (4 billion)
+  - 64  No of unique keys: 2<sup>64</sup>  = 18 x 10<sup>18</sup> keys (18 Quintillion)
+  - 128 No of unique keys: 2<sup>128</sup> = 34 x 10<sup>36</sup> keys (18 x 10<sup>18</sup> Quintillion)
+  - 256 No of unique keys: 2<sup>256</sup> = 
+How Long Hacker(having super Computer) need to crack key? 
+  - 1 super computer can perform 10<sup>17</sup> FLOPS (a hundred quadrillion FLOPS floating point operations per second)
+  - Per Year = 3600(hour) x 24 x 30 x 12 = 31,104,000 x  10<sup>17</sup>= 31,104,00 Quintillion Operations.
+  - 340,282,366,920,938,463,463 / 31,104,000 = 109,401,481,134,561 (approx) = 109 Trillion
+  - **109 Trillion super computers working parallelly for 1 year can produce all combinations of 128 bit key**
+
+
+<a name=encdta></a>
+### Encryption at DL Layer
+**Encryption at DL/ Link encryption**
+- Not good idea? With this approach packets have to be decrypted at each router(in internet), leaving them vulnerable to attacks from within the router.
+  
+**Encryption at Application Layer?**
+- Not good? All application worldwide has to be security aware putting extra burden on application developers.
+
+**Encryption at Transport Layer or between Transport and Application**
+- Not good? Since Application layer security is already provided by SSL/TLS
 
   - _B._ Authentication: whom you are talking to before revealing sensitive information
   - [_C._ Nonrepudiation](/Integrity/Digital_Signature): Sender cannot deny that he has not sent the message.
