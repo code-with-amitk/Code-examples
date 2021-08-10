@@ -13,7 +13,7 @@
 - **Types of Graphs**
   - [Cyclic/Acyclic](cyclic)
     - [1. DAG/Directed Acyclic Graph](#dag)
-  - [Directed/Undirected](directed)
+  - [Directed/Undirected](#dir)
   - [Spanning Tree](#st)
     - [1. Min Spanning Tree](#mst)
   - [Weighted/Unweighted Graph](#weighted)
@@ -132,7 +132,7 @@ This is subgraph in which each pair of nodes is connected with each other via a 
   - Average case O(V+E). V=vertices, E=Edges
   - Best case. O(logE). Using DFS, two parallel tree traversals, one preorder traversal and other postorder traversal.
 
-<a name=directed></a>
+<a name=dir></a>
 ### [Directed/Undirected](Directed_Undirected)
 <a name=st></a>
 ### Spanning Tree
