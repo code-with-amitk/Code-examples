@@ -1,5 +1,6 @@
 **Information Security constitutes of 4 parts**
 - [1. Secrecy / Confidentiality / Encryption](#sec)
+  - [How](#how)
   - **Types of Encryption**
     - [Assymetric /2 key](#2key)
       - Algorithms
@@ -7,6 +8,7 @@
         - [b. RSA](#rsa)
         - Crammer-shoup
         - El-Gamal
+      - [ECC](#ecc)
     - [Symmetric / 1 key](#1key)
       - [Problem with Symmetric Key Algo](#prob)
       - Algorithms
@@ -26,7 +28,11 @@
 
 <a name=sec></a>
 # 1. Secrecy / Confidentiality / Encryption / Cryptography
-Conversion of Data/Plain-text into unreadable/cipher text.
+- Conversion of Data/Plain-text into unreadable/cipher text.
+<a name=how></a>
+**How?**
+- Establishing public/pvt key pairs(Asymmetric key exchange) between 2 peers. Pvt key should be same.
+- Once keys are exchanged using asymmetric key algos, encryption/decryption is done using Symmetric algos.
 
 ## Types of Encryption
 <a name=2key></a>
@@ -116,6 +122,30 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
            (1394) pow(2011) mod(3127) = 89
 ```
 
+<a name=ecc></a>
+#### Ecliptic Curve Cryptography / ECC
+This is Public Key variant. Public, Pvt keys are calculated using elliptic curves over finite field.
+  - _Finite Field/Galois field?_ Field containing finite number of elements rather than real numbers.
+```c
+  Ecliptic curve: y2 = x3 + ax +b. 
+```
+- Advantage of ECC? Smaller keys in ECC provides equivalent security to larger non-ECC based algos. 
+- Applications of ECC?
+  - Calculating keys for following: Key agreement, Digital Signature, Pseudo-random generators.
+  - ECCs can be used after combining with Symmetric encryption schemes.
+  - [Ecliptic Curve based Diffie Hellman / ECDH](ECDH)
+
+##### ECC vs Symmetric vs Asymmetric
+```c
+Symmetric | Asymmetric | ECC
+----------|------------|-------
+80 bit    |   1024 bit | 160 bit
+112       |   2048     |  224
+128       |   3072     |  256
+192       |   7680     |  384
+256       |   15260    |  521
+```
+
 <a name=1key></a>
 ### 2. Symmetric / 1 key
 Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
@@ -128,7 +158,6 @@ Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
 #### Problem with Symmetric Key Algo
 - With same plaintext they will produce same ciphertext everytime. [Solution: Chaining](#sb)
 - 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
-
 
 #### Algorithms
 <a name=aes></a>
