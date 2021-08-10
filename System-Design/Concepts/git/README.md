@@ -1,8 +1,8 @@
-Versioning Control
+**Versioning Control**
 - **gerrit**
   - [git vs gerrit](#vs)
-  - gerrit issues
-    - [Remote head refers to nonexistent ref](#rem)
+- **Issues**
+  - [Remote head refers to nonexistent ref](#rem)
 
 ## gerrit
 
@@ -17,7 +17,7 @@ Versioning Control
 |git history|not clean|cleaner|
 |Permissions|not extensive|Much fine grained|
 
-### gerrit issues
+## Issues
 <a name=rem></a>
 #### Remote head refers to nonexistent ref
 - Head(.git/HEAD) is a file storing reference to checkout branch
@@ -33,3 +33,4 @@ test-repo$ cat .git/HEAD                    <<HEAD exist
 test-repo$ cat .git/refs/heads/master       <<ref does not exist
   257143e8aded4f0fca7712105581567162cab60c
 test-repo$
+```
