@@ -35,7 +35,7 @@ This can have multiple stages of P-box inside providing more complex method bit 
   - Actual implementations have minimum of 10 stages.
   - There are more P-boxes at start and end, called Rounds.
 
-<img src=Encryption-at-hardware-level.png width=1000 />
+<img src=Encryption_at_hardware_level.png width=1000 />
 
   - _B._ Authentication: whom you are talking to before revealing sensitive information
   - [_C._ Nonrepudiation](/Integrity/Digital_Signature): Sender cannot deny that he has not sent the message.
