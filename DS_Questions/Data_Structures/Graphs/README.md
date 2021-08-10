@@ -1,35 +1,33 @@
 - [What is Graph](#what)
-- [Representation of Graph](#repr)
+- **Representation of Graph**
   - [1. Adjacency Matrix/Lookup table](#adjm)
   - [2. Adjacency List](#adjl)
   - [3. Edge List](#edgelist)
-- [Terms](#terms)
-  - [1. Diameter/Eccentricity](#dia)
-  - [2. Edge/Arc/Line](#edge)
-  - [3. Radius](#radius)
-  - [4. Topological Sort / Topological Order](#ts)
-  - [5. Vertex/Node](#vertex)
-  - [6. Connected Components](#cc)
-- [Types of Graphs](#types)
-  - [1. Cyclic/Acyclic](cyclic)
-    - [1.1 DAG/Directed Acyclic Graph](#dag)
-  - [2. Directed/Undirected](directed)
-  - [3. Spanning Tree](#st)
-    - [3.1 Min Spanning Tree](#mst)
-  - [4. Weighted/Unweighted Graph](#weighted)
+- **Terms**
+  - [Diameter/Eccentricity](#dia)
+  - [Edge/Arc/Line](#edge)
+  - [Radius](#radius)
+  - [Topological Sort / Topological Order](#ts)
+  - [Vertex/Node](#vertex)
+  - [Connected Components](#cc)
+- **Types of Graphs**
+  - [Cyclic/Acyclic](cyclic)
+    - [1. DAG/Directed Acyclic Graph](#dag)
+  - [Directed/Undirected](directed)
+  - [Spanning Tree](#st)
+    - [1. Min Spanning Tree](#mst)
+  - [Weighted/Unweighted Graph](#weighted)
 
 
 <a name=what></a>
 ## Graph
-- Collection of nodes/vertices with edges between some/all of them. 
-- Examples: Internet, City map, Person's Social Network, State machines.
+Collection of nodes/vertices with edges between some/all of them. Examples: Internet, City map, Person's Social Network, State machines.
 ```c
     0 ------- 1     4         //Nodes: 0,1,2,3,4,5
     |         |               //Edges ={01, 12, 23, 03}
     3 ------- 2     5
 ```
 
-<a name=repr></a>
 ## Representation of Graph
 ```c++
         a --> c 
@@ -38,8 +36,8 @@
         ----> d <-- b
 ```
 <a name=adjm></a>
-### 1. Adjacency Matrix/Lookup table
-- Each cell keeps how two nodes are connected. For unweighted graph values are `1`. For weighted graph values are cost/weights.
+#### 1. Adjacency Matrix/Lookup table
+Each cell keeps how two nodes are connected. For unweighted graph values are `1`. For weighted graph values are cost/weights.
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
 ```c
    a   b   c   d     //a=0,b=1,c=2,d=3
@@ -50,8 +48,8 @@ d  0   0   0   0
 ```
 
 <a name=adjl></a>
-### 2. Adjacency List
-- Each node keeps list of neighbors. Data structures can be Arrays, vectors, ll etc.
+#### 2. Adjacency List
+Each node keeps list of neighbors. Data structures can be Arrays, vectors, ll etc.
 - *Advantages* Save space, only stores connected nodes, while AM stores 0 if edge is not present.
 ```c++
 Graph:
@@ -74,8 +72,8 @@ al[4]   | 3 |
 ```
 
 <a name=edgelist></a>
-### 3. Edge List
-```c++
+#### 3. Edge List
+```cpp
    v[0] |2|3|		//a(0) has c(2),d(3) as edges
    v[1] |3|
    v[2] |3|
@@ -84,20 +82,19 @@ al[4]   | 3 |
   v[1].push_back(3); v[2].push_back(3);
 ```
 
-<a name=terms></a>
 ## Terms
 <a name=dia></a>
-#### 1. Diameter/Eccentricity
+#### Diameter/Eccentricity
 Greatest distance between any pair of vertices.
 <a name=edge></a>
-#### 2. Edge/Arc/Line
+#### Edge/Arc/Line
 Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
 <a name=radius></a>
-#### 3. Radius 
+#### Radius 
 Minimum eccentricity of any vertex.
 <a name=ts></a>
-#### 4. Topological Sort / Topological Order
-  - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. TS is only possible for DAG. because DAGs don't have cycles and are directed.
+#### Topological Sort / Topological Order
+Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. TS is only possible for DAG. because DAGs don't have cycles and are directed.
   - in-degree: In directed graph number of incoming edges is called in-degree.
   - out-degree: number of outgoing edges.
 ```c
@@ -107,10 +104,10 @@ Minimum eccentricity of any vertex.
         2 --> 3 --> 1
 ```        
 <a name=vertex></a>
-#### 5. Vertex/Node
+#### Vertex/Node
 Interconnected objects are called vertices.
 <a name=cc></a>
-#### 6. Connected Components? 
+#### Connected Components? 
 Here 3
 ```c
 1---2    4--5   6
@@ -118,14 +115,13 @@ Here 3
     3
 ```
 
-<a name=types></a>
 ## Types of Graphs
 <a name=cyclic></a>
-### 1. Cyclic/Acyclic
+### Cyclic/Acyclic
 - *Cyclic:* If graph has cycle.  
 - *Acyclic:* No cycles in graph. When following the graph from node to node, you will never visit the same node twice.
 <a name=dag></a>
-#### 1.1 DAG(Directed Acyclic Graph)
+#### 1. DAG(Directed Acyclic Graph)
 - Directed graph without cycles graph. DAG will surely have 1 vertex with indegree=0 and 1 vertex with outdegree=0, because it does not have cycle.
 ```c
     a  ---->  b        //In-degree: Number of edges coming to the vertex. Eg: in-degree for c is 2
@@ -137,9 +133,9 @@ Here 3
   - Best case. O(logE). Using DFS, two parallel tree traversals, one preorder traversal and other postorder traversal.
 
 <a name=directed></a>
-### 2. [Directed/Undirected]
+### [Directed/Undirected]
 <a name=st></a>
-### 3. Spanning Tree
+### Spanning Tree
 Subgraph derived from Graph satisfying these conditions:
   - No cycles(ie it is acyclic), Since it a tree
   - Should connect all vertices with minimum number of edges.
@@ -163,8 +159,8 @@ Subgraph derived from Graph satisfying these conditions:
 - *B. Computer Network Routing Protocol*
 
 <a name=mst></a>
-#### 3.1 Min Spanning Tree
-- A ST where total weight of all edges is minimum. Has n-1 edges.
+#### 1. Min Spanning Tree
+A ST where total weight of all edges is minimum. Has n-1 edges.
 - **Finding Min Spanning Tree?**
   - Start from min weight edge
   - Go on connecting all min weight edges. 
@@ -224,7 +220,7 @@ Step-3:Include       Step-4: Include       Step-5: Include
 minimum edges        next min edges       next min edges
 ```
 <a name=weighted></a>
-### 4. Weighted/Unweighted Graph
+### Weighted/Unweighted Graph
 - *Weighted?* If edges has cost/weight. Ex: flight fuel cost between cities.        
 - *Unweighted?* if the edges do not have weights.
 ```c
