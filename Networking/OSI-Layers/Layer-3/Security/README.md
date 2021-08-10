@@ -5,7 +5,12 @@
       - Algorithms
         - [DH](#dh)
         - [RSA](#rsa)
+        - Crammer-shoup
+        - El-Gamal
     - [Symmetric / 1 key](#1key)
+      - Algorithms
+        - [AES / Rijndael](#aes)
+        - [DES vs 3DES vs AES](#sycomp)
   - [Cipher Algorithms](#ca)
   - **How Encryption is performed at H/W Level**
     - [a. Permutation / P-box/ Transposition Box](#pb)
@@ -43,20 +48,19 @@ Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
   message > |Encrypt| > XXX   ---sent to Alice--->      XXX > Decrypt > message
 ```
 #### Algorithms
-
 <a name=dh></a>
 #### DH(Diffe-Helman)
-DH Keys sizes
 ```c
+//DH Keys sizes
 Group  | No of Bits |  Combinations  | Strong 
 -------|------------|----------------|----------
    1   |   768      | 2<sup>768</sup>|
    2   |   1024     |                |
    5   |   1536     |                | Strongest
-```
-Algo:
-```html
-    Host-A                                        Host B 
+
+
+//Algorithm
+   Host-A                                        Host B 
         ----------Prime=p=13, Integer=q=6------->      //p is prime of min 600 digits
     Random-no=r=3                              Random-no=r=10
     
@@ -68,6 +72,97 @@ Algo:
   Private-Key = (Public Key)pow(Random No) mod(p)             
   4 pow(3)mod(13) = 12                        8pow(10)mod(13) = 12 
 ```   
+
+<a name=rsa></a>
+#### RSA (Ronald Rivest, Adi Shamir, Len Adleman)
+Steps of RSA
+- A. Pre-calculate Public, pvt key
+  - *1.* Choose 2 numbers p(1024 bit),q(1024 bit).  {p=3,q=11}
+  - *2.* Find n = p`*`q, z =(p-1)(q-1)  {n=33, z=20}
+  - *3.* Choose a number d relatively prime to z.   {d=7} //7 and 20 has no common factor
+  - *4.* Find e. So that e × d = 1 mod(z)
+```c
+    e x 7 = 1 mod(20)
+    e = mod(20)/7 = 3 (approx)
+```
+Public Key = (e,n). Private Key = (d,n)
+  
+- B. Divide Plain-text into blocks  input=10101111. {block1=1010 block2=1111}
+- C. Encrypt:  cipher text(C) = Block-of-plain-text<sup>e</sup> (mod n) 
+```c
+  C = P^3 mod(33)
+```  
+- D. Decrypt: Plain text(P) = C<sup>d</sup> (mod n)
+```c
+  P = C^7 mod(33)
+```
+
+```c
+Public Key (n,  e)        Private Key (n, d) or 5-value
+                Host-A                                                  Host-B
+                        -----Prime-1=53, Prime-2=59------>    //In real calculations P & Q are large numbers (64 bytes)
+                                                                   Modulus(n)=P*Q=64x64=128 bytes=1024 bit
+                                                                   Phy(n)=(P-1)(Q-1)=3016
+                                                                   Exponent(e)=coprime of Phy
+            Public-key calculated                    Public-key= n&e
+                                                                   Pvt key=2 (Phy(n) + 1)/e
+           
+                                                                    encryption of data: data pow(e)mod(n)
+                        <---cipher-text------             89 pow(3)mod(3127)    //if data=89
+        Decryption of data
+        (cipher Text)pow(Pvt Key) mod(n) 
+           (1394) pow(2011) mod(3127) = 89
+```
+
+<a name=1key></a>
+### 2. Symmetric / 1 key
+Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
+```c
+                \/  Key-1                      \/ Key-1
+    Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
+```
+#### Algorithms
+<a name=aes></a>
+#### AES / Rijndael
+There are 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
+```c
+
+#define LENGTH 16                     //Input,Output in bytes. 16x8=128
+#define NROWS 4                         //For internal use
+#define NCOLS 4                          //For algo's internal use
+#define ROUNDS 10                     //number of iterations/stages
+typedef unsigned char byte;           /// unsigned 8-bit integer
+
+AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
+  int r;
+  byte state[4][4];                                     // current state
+  struct {byte k[4][4];} rk[10 + 1];          // round keys
+  expand key(key, rk);                             // construct the round keys
+  copy plaintext to state(state, plaintext); // init current state
+  xor roundkey into state(state, rk[0]);     // XOR key into state
+  for (r = 1; r <= ROUNDS; r++) {
+  substitute(state);                             // apply S-box to each byte
+  rotate rows(state);                          // rotate row i by i bytes
+  if (r < ROUNDS) mix columns(state); // mix function
+    xor roundkey into state(state, rk[r]); / XOR key into state
+  }
+  copy state to ciphertext(ciphertext, state); / return result
+}
+```
+<a name=sycomp></a>
+#### DES vs 3DES vs AES
+
+|Algorithm|KeySize(bits)|InputSize(bits)|Stages|
+|---|---|---|---|
+|DES. Broken in 1999|56|64|19|
+|Triple-DES. Broken|168| | |
+|[AES / Rijndael](AES.md)|128,192,256|128,192,256(block-size)|10,12,14|
+|RC4||||
+
+### Problem with Symmetric Key Algo(AES,DES or any)
+- With same plaintext they will produce same ciphertext everytime.
+- **[Solution: Chaining](/Networking/OSI-Layers/Layer-3/Security/Encryption_Cryptography_Confidentiality/HowEncryptionIsPerformedAtHardware)** 
+  - 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
 
 
 <a name=ca></a>
