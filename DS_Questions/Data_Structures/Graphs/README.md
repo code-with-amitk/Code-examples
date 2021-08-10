@@ -107,8 +107,8 @@ Print/visit of directed graph such that for edge(ab) where a->b, a should be pri
 #### Vertex/Node
 Interconnected objects are called vertices.
 <a name=cc></a>
-#### Connected Components? 
-Here 3
+#### Connected Components?
+This is subgraph in which each pair of nodes is connected with each other via a path. Here 3
 ```c
 1---2    4--5   6
     |
