@@ -1,19 +1,18 @@
 **Information Security constitutes of 4 parts**
-[1. Secrecy / Confidentiality / Encryption](#sec)
-- **Types of Encryption**
-  - [Assymetric /2 key](#2key)
-    - Algorithms
-      - [DH](#dh)
-      - [RSA](#rsa)
-  - [Symmetric / 1 key](#1key)
-- [Cipher Algorithms](#ca)
-- **How Encryption is performed at H/W Level**
-  - [a. Permutation / P-box/ Transposition Box](#pb)
-  - [b. Substitution / S-box](#sb)
-[2.]
-[3.]
-[4.]
-
+- [1. Secrecy / Confidentiality / Encryption](#sec)
+  - **Types of Encryption**
+    - [Assymetric /2 key](#2key)
+      - Algorithms
+        - [DH](#dh)
+        - [RSA](#rsa)
+    - [Symmetric / 1 key](#1key)
+  - [Cipher Algorithms](#ca)
+  - **How Encryption is performed at H/W Level**
+    - [a. Permutation / P-box/ Transposition Box](#pb)
+    - [b. Substitution / S-box](#sb)
+- [2.]
+- [3.]
+- [4.]
 - [Terms](#Terms)
 - [Security Vulnerabilities](#Security_Vulnerabilities)
 
