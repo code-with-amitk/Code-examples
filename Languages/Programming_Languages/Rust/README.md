@@ -142,14 +142,13 @@ fn fun2(a_string: String) -> String {
 
 <a name=bow></a>
 ## [Reference = Borrowing](References_and_Borrowing)
-  - Associated Functions
-  - Dangling Reference
-  - Mutable Reference
-    - Mutable & immutable References in same scope not allowed
-    - 2 Mutable references are not allowed in same scope
-    - Mutable References are allowed in seperate scope
-  - Borrow checker
-  - Lifetimes: lifetime elision
+- Dangling Reference
+- Mutable Reference
+  - Mutable & immutable References in same scope not allowed
+  - 2 Mutable references are not allowed in same scope
+  - Mutable References are allowed in seperate scope
+- Borrow checker
+- Lifetimes: lifetime elision
 
 <a name=smart></a>
 ## [Smart Pointers](Smart_Pointers)
@@ -177,7 +176,8 @@ for, loop, while, match=switch, if, if let
 
 <a name=Functions></a>
 ## [Functions](Functions)
-Returning (value or struct) from function. Function Taking struct as argument. Inbuilt functions, Closures
+- Returning (value or struct) from function. Function Taking struct as argument. Inbuilt functions, Closures
+- Associated Functions, impl block
 
 <a name=cpm></a>
 ## [Crates, Packages, Modules](Crates_Packages_Modules)
