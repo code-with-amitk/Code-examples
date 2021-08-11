@@ -7,6 +7,22 @@
   git checkout <branch>           //1. Work on older branch
   git checkout -b <branch>        //2. Creating a new branch
 ```
+- **Cherry pick** means choose commit from 1 branch and apply to other branch. Ex: cherry pick changes from branch1 to master
+```c
+$ git branch
+  master
+  
+gerrit$ git fetch .. && git cherry-pick FETCH_HEAD      //Command from gerrit PR > Download Patch > Cherry Pick
+or
+git$ git cherry-pick -x <commit-hash>                //This will keep original hash intact(for history)
+
+$ git status
+on master branch
+Yout branch is a head of 'origin/master' by 1 commit
+
+gerrit$ gitdir=<>
+gerrit$ git push <>
+```
 - **clone:** Used to create a clone/copy of the target repository.
 ```c
 # git config --global url "ssh://gerritgitmaster/".pushInsteadof "ssh://gerritgit/"
