@@ -21,7 +21,7 @@
 <a name=terms></a>
 ## Terms
 - **Central repository(upstream)**: Organization's copy. Production Copy
-- **Cherry pick:** means choose commit from 1 branch and apply to other branch. 
+- **[Cherry pick:](git-Commands)** means choose commit from 1 branch and apply to other branch. 
 - **Clone:**    Making a local copy of code on your machine 
 - **Fork:** Own duplicated copy of someone else's code. user1 created a repo. User2 wants a local copy of repo. user2 forks the repo. How to Fork?    
   - Login github > Search for repos > Click Fork.
