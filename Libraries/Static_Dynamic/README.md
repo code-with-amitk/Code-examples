@@ -9,15 +9,15 @@
 
 - **Disadvantages**
 *1. Increased Size of Binary*
-- If Static Library contains 1000 functions, this all source code will become part of application code. Size of application code becomes large.
+  - If Static Library contains 1000 functions, this all source code will become part of application code. Size of application code becomes large.
 
 *2. If changes in static library, application code has to be complied everytime*
-- 3rd Party static library developer done some changes in libtotal.a & publishes on internet, to take those changes we have to download & compile with our exe again.
+  - 3rd Party static library developer done some changes in libtotal.a & publishes on internet, to take those changes we have to download & compile with our exe again.
 
 ### Create/Link Static Object
 <a name=lis></a>
 #### A. Linux
-1. Create static object/Library `libtotal.a`
+- _1._ Create static object/Library `libtotal.a`
   - /bin Contains executables for basic operations. Commands: mkdir, cp, chmod, uname etc
   - /usr/bin Installed softwares by user
 ```c
@@ -37,7 +37,7 @@
 r: Insert the files member... into archive (with replacement)
 s: Add an index to the archive, or update it if it already exists.
 ```
-2. Link static library to code `libtotal.a`
+- _2._ Link static library to code `libtotal.a`
 ```c
 # cat main.c
   # include<iostream>
@@ -57,7 +57,7 @@ collect2: error: ld returned 1 exit status
 
 <a name=wins></a>
 #### A. Windows
-1. Create `*.lib` file
+- _1._ Create `*.lib` file
   - Visual Studio 2019 > File > New > Project > Select (Static Library) > Name (StaticLib1). VS will create following folders
 ```c
 StaticLib1
@@ -73,14 +73,14 @@ int MySum(int a, int b){
 
 //Build solution, it will create StaticLib1.lib in project folder.
 ```
-2. Check Function names present in `*.lib`
+- _2._ Check Function names present in `*.lib`
   - Open Visual Studio Command Prompt. Tools > Command Line > Developer Command Prompt
 ```c
 > cd <directory-containing-lib-file>
 > dumpbin /symbols /exports StaticLib1.lib
   File Type : LIBRARY
 ```
-3. Link (`*.lib`)Static library with Application
+- _3._ Link (`*.lib`)Static library with Application
   - Open a new Console Application. Visual Studio 2019 > File > New > Project > C++ > Name(test)
   - Choose Platform, Include Header Files, Link Static Library
 ```c
