@@ -49,14 +49,14 @@ d  0   0   0   0
 
 <a name=adjl></a>
 #### 2. Adjacency List
-Each node keeps list of neighbors. Data structures can be Arrays, vectors, ll etc.
-- *Advantages* Save space, only stores connected nodes, while AM stores 0 if edge is not present.
+Each node keeps list of neighbors. Data structures can be vectors, ll etc.
+- *Advantages* Save space, only stores connected nodes.
 ```c++
 Graph:
    1 -- 0 -- 3 -- 4
         |
         2  
-  vector<int> al[5];      //5 vectors of int
+  vector<vector<int>> al[5];
   
   al[0].push_back(1); al[0].push_back(2); al[0].push_back(3); => 1,2,3    //node0
   al[1].push_back(0);                                                     //node1
@@ -64,6 +64,10 @@ Graph:
   al[3].push_back(0); al[3].push_back(4);                                 //node3
   al[4].push_back(3);                                                     //node4
   
+      |     |   |   |     |   |
+      |1,2  |0  |0  |0,4  |3  |
+index  0     1   2   3     4
+
 al[0]   | 1 | 2 | 3 |
 al[1]   | 0 |
 al[2]   | 0 |
