@@ -48,9 +48,11 @@ index   |0    |1     |2    |3   |4    |
 <a name=comp></a>
 #### Complexity
 > E = No of Edges, V = No of Vertices
+
 **Time:** O(E+V)
   - O(E): Create adjaceny matrix
   - O(V): Visting all nodes using visited bool array
+
 **Space** O(E+V). visited array=V, AdjacencyList=E
 
 #### Code
