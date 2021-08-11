@@ -1,16 +1,14 @@
 **Versioning Control**
-- **gerrit**
-  - [git vs gerrit](#vs)
+- [git vs gerrit](#vs)
+- [Terms](#terms)
 - **Working on Review Comments**
   - [gerrit](#revg)
 - **Issues**
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
 
-## gerrit
-
 <a name=vs></a>
-### git vs gerrit
+## git vs gerrit
 
 | | github/gitlab/bitbucket | gerrit |
 | --- | --- | --- |
@@ -20,9 +18,52 @@
 |git history|not clean|cleaner|
 |Permissions|not extensive|Much fine grained|
 
+<a name=terms></a>
+## Terms
+- **Central repository(upstream)**: Organization's copy. Production Copy
+- **Cherry pick:** means choose commit from 1 branch and apply to other branch. 
+- **Clone:**    Making a local copy of code on your machine 
+- **Fork:** Own duplicated copy of someone else's code. user1 created a repo. User2 wants a local copy of repo. user2 forks the repo. How to Fork?    
+  - Login github > Search for repos > Click Fork.
+  - Now under Your Profile you can see the forked repo. git clone it. Changes would not be reflected onto master branch
+- **HEAD** is a reference to the last commit in the currently checked-out branch.
+- **Detached Head**
+  - We checkedout a commit and its detached, ie we can do the changes, play around will not affect on git, since its not attached to any branch.
+  - We can think detached head as Branch without name.
+  - *How to Detach Head?* A situation where we have checked out a commit-id(instead of a branch), THIS means we want commit not branch.
+```console
+$ git clone https://github.com/amitkumar50/test-repo/
+$ git checkout 4cd80c97557dca56192d7448c800850fbdb7d412             //Checkout commit. Usually we do  $ git checkout branch
+You are in 'detached HEAD' state.
+
+HEAD is now at 4cd80c9 test2
+```
+  - _[Merge changes/commmits from detached head](https://stackoverflow.com/questions/7124486/what-to-do-with-commit-made-in-a-detached-head)_
+```console
+branch2 is 6 commits behind master.
+
+$ git checkout branch2
+$ git rev-list --left-right --count master...branch2        //Checking How many commits master is head of branch2
+6       0
+
+$ git checkout 4cd80c9                              //Creating Detached Head!! Wow
+$ git branch
+* (HEAD detached at 4cd80c9)
+  branch2
+  master
+  
+$ vim test1/hello-rust.rs                           //Done changes in Detached head
+$ git diff
++       println!("There");
+ }
+ ```
+- **.git/HEAD?** Stores commit-id of most recent/latest commit on the branch.
+- **Master/Trunk/Main/Head Branch:** Main branch (as of tree). Like trunk of tree. 
+  - _upstream/master:_    Master branch of upstream
+  - _Other Branches:_ These are like twigs of trunk. Finally trunk is main branch which keeps on going up    
+    - Origin: Your fork from original/upstream
 
 ## Working on Review Comments
-
 <a name=revg></a>
 #### [gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
 ```c
