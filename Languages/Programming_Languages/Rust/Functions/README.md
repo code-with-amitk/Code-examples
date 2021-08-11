@@ -3,7 +3,7 @@
   - [1. Function returning a value](#return_val)
   - [2. Function returning struct](#return_struct)
   - [3. Function Taking struct as argument](#take_struct)
-- [Associated Functions](#ass)
+- [Associated Functions / impl block](#ass)
 - [Rust defined Functions, Inbuilt Functions](Inbuilt_Functions)
 - [Closure / Lambda](#closure)
   - [Why](#why)
