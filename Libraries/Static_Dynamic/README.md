@@ -2,17 +2,18 @@
   - **Create/Link Static Object**
     - [A. Linux `*.a`](#lis)
     - [B. Windows `*.lib`](#wins)
-- [Dynamic](#dy)
+- **Dynamic Library**
+  - **Create/Link Dynamic Object**
+    - [A. Linux `*.so`](#lid)
+    - [B. Windows `*.dll`](#wind)
 
 
 ## Static Library / Static Object
 
-**Disadvantages**
-
-*1. Increased Size of Binary*
+- **Disadvantages**
+- *1. Increased Size of Binary*
   - If Static Library contains 1000 functions, this all source code will become part of application code. Size of application code becomes large.
-
-*2. If changes in static library, application code has to be complied everytime*
+- *2. If changes in static library, application code has to be complied everytime*
   - 3rd Party static library developer done some changes in libtotal.a & publishes on internet, to take those changes we have to download & compile with our exe again.
 
 ### Create/Link Static Object
@@ -92,3 +93,54 @@ Project Properties
   - Linker > Input > Additional Dependencies > StaticLib1.lib                //Add Library Name
 ```
 
+
+## [Dynamic Library / Dynamic Object](https://www.youtube.com/watch?v=KNr4tAPvbvQ)
+  A dynamic library does not become part of application code. These are stored at some memory (/usr/lib64/libutil.so) and from there compiler picks them.
+- **Advantages of Dynamic Libraries**
+  - size of Binary not increased: Since only address of function is placed inside with the exe, final size of binary is not increased.
+  - If changes happens in Dynamic Library provided by 3rd party, application need not to be complied
+
+### Create/Link Dynamic Object
+<a name=lid></a>
+#### A. Linux
+- _1._ Create shared object `*.so`
+  - Object files for shared libraries need to be compiled as **position independent code (-fPIC)** because they are mapped to any position in the address space. See `-fPIC` option on Compile/gcc-options.md
+```c
+# cat total.cpp
+  int sum(int a, intb){ 
+    return a+b; 
+  }
+# g++ -c -fPIC total.cpp                           //Step-1: Create *.o (Object Files) with -fPIC flag enabled
+# ls
+  total.o total.cpp
+# g++ -shared ./total.o -o libtotal.so             //Step-2: Create *.so(Shared object) with -shared flag
+# ls
+  libtotal.so   total.o   total.cpp
+```
+- _2._ Check what function are present in `*.so`
+```c
+# nm -D libtotal.so                                //List symbols
+```
+- _3._ Link the shared object `*.so` with application
+```c
+# vim main.c                                              //Step-3: Create driver file
+  int sum(int, int);
+  int main(){ 
+    int c = sum(3,2); 
+  }
+# g++ main.cpp -L/home/amit/amit-code -ltotal -o TEST      //Step-4: -L<path-to-shared-lib-dir>  -l<named of shared library without .so>
+# ls
+  TEST  libtotal.so  main.cpp  total.cpp
+# ln -s /home/amit/amit-code/libtotal.so /usr/lib
+``` 
+- _4._ Listing all `*.so` linked to exe
+```c
+# ldd TEST
+  linux-vdso.so.1 (0x00007ffff2074000)
+  libtotal.so => not found
+  libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fcee89d0000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007fcee9000000)
+```
+
+<a name=wins></a>
+#### B. Windows
