@@ -63,7 +63,6 @@ class Solution {
     using vec = vector<int>;
     using vecB = vector<bool>;
     using vecVec = vector<vec>;
-    uint32_t visitedNodes;
     stack<int> st;
 
     void dfs(vecVec& adjList, vecB& visited, int start) {           //4
@@ -82,9 +81,6 @@ class Solution {
         }
     }
 public:
-    Solution() {
-        visitedNodes = 0;
-    }
     int countComponents(int n, vecVec& edges) {
         if (!n)
             return n;
