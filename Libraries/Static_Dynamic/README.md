@@ -1,13 +1,11 @@
-**Libraries**
-- [Static](#st)
+- **Static Library**
   - **Create/Link Static Object**
-    - [A. Linux](#lis)
-    - [B. Windows](#wins)
+    - [A. Linux `*.a`](#lis)
+    - [B. Windows `*.lib`](#wins)
 - [Dynamic](#dy)
 
-<a name=st></a>
+
 ## Static Library / Static Object
-`*.a` linux, `*.lib` windows
 
 - **Disadvantages**
 *1. Increased Size of Binary*
