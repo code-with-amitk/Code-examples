@@ -47,11 +47,11 @@ index   |0    |1     |2    |3   |4    |
 
 <a name=comp></a>
 #### Complexity
-**Space** O(3n) where n=number of nodes
-  - visited=n, AdjacencyList=2n
-**Time:** O(n)+O(n)=O(n)
-  - O(n): Create adjaceny matrix
-  - O(n): Visting all nodes using visited bool array
+> E = No of Edges, V = No of Vertices
+**Time:** O(E+V)
+  - O(E): Create adjaceny matrix
+  - O(V): Visting all nodes using visited bool array
+**Space** O(E+V). visited array=V, AdjacencyList=E
 
 #### Code
 <a name=cpp></a>
