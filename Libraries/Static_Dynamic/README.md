@@ -7,7 +7,8 @@
 
 ## Static Library / Static Object
 
-- **Disadvantages**
+**Disadvantages**
+
 *1. Increased Size of Binary*
   - If Static Library contains 1000 functions, this all source code will become part of application code. Size of application code becomes large.
 
