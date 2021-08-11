@@ -3,17 +3,12 @@
   - [How](#how)
   - **Types of Encryption**
     - [Assymetric /2 key](#2key)
-      - Algorithms
-        - [a. DH](#dh)
-        - [b. RSA](#rsa)
-        - Crammer-shoup
-        - El-Gamal
+      - [Algorithms: DH, RSA, Crammer-Shoup, El-Gamal](#aalgo)
       - [ECC](#ecc)
         - [ECC vs Assymetric vs Symmetric](#eccvs)
     - [Symmetric / 1 key](#1key)
       - [Problem with Symmetric Key Algo](#prob)
-      - Algorithms
-        - [a. AES / Rijndael](#aes)
+      - [Algorithms: AES / Rijndael](#salgo)
         - [DES vs 3DES vs AES](#sycomp)
     - [Assymetric vs Symmetric](#asvs)
   - [Cipher Algorithms](#ca)
@@ -58,8 +53,9 @@ Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
              \/                                                 \/
   message > |Encrypt| > XXX   ---sent to Alice--->      XXX > Decrypt > message
 ```
+
+<a name=aalgo></a>
 #### Algorithms
-<a name=dh></a>
 ##### a. DH(Diffe-Helman)
 ```c
 //DH Keys sizes
@@ -84,7 +80,6 @@ Group  | No of Bits |  Combinations  | Strong
   4 pow(3)mod(13) = 12                        8pow(10)mod(13) = 12 
 ```   
 
-<a name=rsa></a>
 #### b. RSA (Ronald Rivest, Adi Shamir, Len Adleman)
 Steps of RSA
 - A. Pre-calculate Public, pvt key
@@ -166,8 +161,8 @@ Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
 - With same plaintext they will produce same ciphertext everytime. [Solution: Chaining](#sb)
 - 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
 
+<a name=salgo></a>
 #### Algorithms
-<a name=aes></a>
 ##### a. AES / Rijndael
 There are 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
 ```c
