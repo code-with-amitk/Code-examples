@@ -239,6 +239,7 @@ The longer the key, higher work to be done by breaking algo.
   - Email: 64-bit keys will do 
   - Commercial applications: 128 bits
   - Govt org: 256 bits
+
 Number of Unique keys:
   - 2   No of unique keys: 2<sup>2</sup> = 4
   - 3   No of unique keys: 2<sup>3</sup> = 8
@@ -246,6 +247,7 @@ Number of Unique keys:
   - 64  No of unique keys: 2<sup>64</sup>  = 18 x 10<sup>18</sup> keys (18 Quintillion)
   - 128 No of unique keys: 2<sup>128</sup> = 34 x 10<sup>36</sup> keys (18 x 10<sup>18</sup> Quintillion)
   - 256 No of unique keys: 2<sup>256</sup> = 
+
 How Long Hacker(having super Computer) need to crack key? 
   - 1 super computer can perform 10<sup>17</sup> FLOPS (a hundred quadrillion FLOPS floating point operations per second)
   - Per Year = 3600(hour) x 24 x 30 x 12 = 31,104,000 x  10<sup>17</sup>= 31,104,00 Quintillion Operations.
