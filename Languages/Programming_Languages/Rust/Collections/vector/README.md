@@ -1,4 +1,5 @@
-- [Create](#create)
+- [Create, Initialize](#cin)
+  - [2d vector](#2d)
 - [Initialize](#init)
 - [Update](#update)
 - Access
@@ -18,30 +19,27 @@
 - Same as in C++, Storing more than 1 value of same type contigously in memory.
 - Stack is implemented using vector in rust
 
-<a name=create></a>
-### Create
+<a name=cin></a>
+### Create, Initialize
 ```rs
-  let v1 : Vec<i32>;               //vector to hold values of type i32
-
+//Declare
+  let v : Vec<i32>;              
   let mut v2 = Vec::new();      //Allocating vector on heap
   
-  let v3 = vec![1,2,3,4];
+  let v1 : Vec<i32> = [1,2,3].to_vec();  //Initialize
+  let v2 : Vec<i32> = vec![14,25,35];
   
                   //init_value,size
   let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0  
-  
-  let mut vec2d = vec![vec![0; row]; col];
 ```
 
-<a name=init></a>
-### Initialize
+<a name=2d></a>
+#### 2d vector
 ```rs
-    let v : Vec<i32> = [1,2,3].to_vec();
-
-    let v2 : Vec<i32> = vec![14,25,35];
-    for a in v2.iter() {
-        println!("{} ", a);         //14 25 35
-    }    
+  let mut v : Vec<Vec<usize>> = vec![Vec::with_capacity(row); col];
+  v[a as usize].push(b as usize);
+OR  
+  let mut v = vec![vec![0; row]; col];
 ```
 
 <a name=update></a>
