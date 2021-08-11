@@ -16,7 +16,8 @@
 
 
 ## [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
-Same as in C++, Storing more than 1 value of same type contigously in memory.
+- Same as in C++, Storing more than 1 value of same type contigously in memory.
+- Stack is implemented using vector in rust
 
 <a name=create></a>
 ## Create
