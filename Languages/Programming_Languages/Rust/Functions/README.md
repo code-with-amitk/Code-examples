@@ -3,6 +3,7 @@
   - [1. Function returning a value](#return_val)
   - [2. Function returning struct](#return_struct)
   - [3. Function Taking struct as argument](#take_struct)
+- [Associated Functions](#ass)
 - [Rust defined Functions, Inbuilt Functions](Inbuilt_Functions)
 - [Closure / Lambda](#closure)
   - [Why](#why)
@@ -101,6 +102,41 @@ fn main() {
 
 fn area(b:&dimen) -> u32 {      //2
     b.len*b.width
+}
+```
+
+<a name=ass></a>
+## Associated Functions / Methods
+Methods makes structure/enum/trait object similar to classes, ie we can operate of struct data.
+- Similar to functions: Methods are Declared using `fn`, Return values, Takes parameter
+- Different from function: Methods are defined in a context struct, enum or trait object. 1st Parameter is always `self`, which is instance of the struct the method is being called on.
+
+**Example**
+- *1.* impl (implementation) block is used to define method within context of struct
+- *2.* 1st parameter is self. To refer struct variables we use self.
+  - if we want to change inside structure use `mut &self`.
+- *3.* Called method using object.method_name() syntax.
+```rs
+use std::{string::String, u32};
+
+struct Rectangle {
+    len:u32,
+    width:u32
+}
+impl Rectangle{                       //1
+    fn area(&self) -> u32{            //2
+        return self.len*self.width;   //2
+    }
+}
+
+fn main() {
+    let a = Rectangle {
+        len:10,
+        width:20
+    };
+
+    println!("{:#?}",a);
+    println!("{}",a.area());          //3
 }
 ```
 
