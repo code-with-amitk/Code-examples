@@ -1,6 +1,5 @@
 - [Create](#create)
 - [Initialize](#init)
-- [Create & Initialize](#ci)
 - [Update](#update)
 - Access
   - [using iterator](#itr)
@@ -25,8 +24,11 @@
   let v1 : Vec<i32>;               //vector to hold values of type i32
 
   let mut v2 = Vec::new();      //Allocating vector on heap
-
+  
   let v3 = vec![1,2,3,4];
+  
+                  //init_value,size
+  let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0  
 ```
 
 <a name=init></a>
@@ -38,13 +40,6 @@
     for a in v2.iter() {
         println!("{} ", a);         //14 25 35
     }    
-```
-
-<a name=ci></a>
-## Create & Initialize
-```rs
-                  //init_value,size
-  let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0
 ```
 
 <a name=update></a>
