@@ -1,5 +1,15 @@
 - [Pre-requisites before starting troubleshooting](#pre)
-- [DEBUGGING HUNG LINUX BOX](#hung)
+- [DEBUGGING HUNG LINUX BOX](#hungs)
+- [DEBUGGING HUNG PROCESS](#hungp)
+- [DEBUGGING OVERLOADED CPU](#ol)
+- [DEBUGGING MEMORY RELATED/SYSTEM/RAM ISSUES](#dm)
+- [DEBUGGING HARD DISK ISSUES](#dh)
+- [DEBUGGING NETWORK ISSUES](Network)
+- [DEBUGGING SLOW SYSTEM](#slow)
+- [DEBUGGING SLOW SQL DATABASE](#sql)
+- [DEBUGGING X Server ISSUES](#x)
+- [DEBUGGING BOOTING ISSUES](#boot)
+- [DEBUGGING DNS ISSUES](#dns)
 
 <a name=pre></a>
 ### Pre-requisites before starting troubleshooting
@@ -26,7 +36,7 @@
 5. Connected PCI devices    `# lspci`
 6. Connected usb devices    `# lsusb`
 
-<a name=hung></a>
+<a name=hungs></a>
 ### DEBUGGING HUNG LINUX BOX
 1. Is server pingable, How load is changing over time?
 2. Configure kdump for next occurrence and test it.
@@ -49,3 +59,366 @@
 # sysctl -p
 ```
 
+<a name=hungp></a>
+### DEBUGGING HUNG PROCESS
+#### 1. GENERIC
+  - _1._ Collect pstack            `# 'pstack $(pidof sssd_be')`        //Stack trace of each process
+  - _2._ Collect gcore             `# gcore $(pgrep -f sssd_nss)`
+  - _3._ List of open files        `# lsof -p $(pgrep -f sssd_be) > open-files.out`
+  - _4._ Connected sockets     `# netstat -pan` //-n:don't resolve names, -a:display all sockets (default: connected), -p:display PID/Program name for sockets
+  - _5._ Tcpdump to see client can communicate with server?
+**certmonger**
+```c
+# vim /etc/systemd/system/certmonger.service
+ExecStart=/usr/bin/valgrind --tool=memcheck --leak-check=yes --log-file=/var/log/valgrind/certmonger-valgrind.log /usr/sbin/certmonger -S -p /var/run/certmonger.pid -n $OPTS
+# mkdir /var/log/valgrind/;    service certmonger restart
+```
+**Directory Server (ns-slapd)**    https://directory.fedoraproject.org/docs/389ds/FAQ/faq.html#how-to-check-if-the-memory-growth-is-from-memory-leak-or-not
+```c
+5) stop directory server
+6) vi /etc/systemd/system/dirsrv.target.wants/dirsrv@<instance name>.service
+7) replace this line:
+    ExecStart=/usr/sbin/ns-slapd -D /etc/dirsrv/slapd-%i -i /var/run/dirsrv/slapd-%i.pid
+    by
+    ExecStart=/bin/valgrind --trace-children=yes --show-reachable=yes --track-origins=yes --read-var-info=yes --tool=memcheck --leak-check=full --num-callers=50 -v --log-file=/tmp/valgrind.out /usr/sbin/ns-slapd -D /etc/dirsrv/slapd-%i -i /var/run/dirsrv/slapd-%i.pid
+4) restart the server.
+5) wait till memory is consumed and upload the file /tmp/valgrind.out
+```
+**smbd / samba / winbind**
+```c
+# service smbd stop
+# debuginfo-install samba*          //This Needed to be done. Always
+# valgrind --tool=memcheck -v --num-callers=20 --track-origins=yes --trace-children=yes  --log-file=/tmp/valgrind.out    /usr/sbin/winbindd -F -S            //Do Not add "--leak-check nor --show-reachables"
+# valgrind --tool=memcheck -v --num-callers=20 --track-origins=yes  --log-file=winbind.valgrind.log  /usr/sbin/winbind &
+# valgrind --tool=memcheck -v --num-callers=20 --track-origins=yes  --log-file=samba.valgrind.log  /usr/sbin/smbd &
+For samba-4.8.3: # valgrind --tool=memcheck -v --num-callers=20 --track-origins=yes --log-file=winbind.valgrind.%p.log /usr/sbin/winbindd -D        //Working
+```
+**sssd**    
+```c
+# valgrind    --trace-children=yes    --show-reachable=yes    --track-origins=yes    --read-var-info=yes    --tool=memcheck    --leak-check=full    --num-callers=50    -v    --time-stamp=yes    --log-file=sssd_be.log /usr/libexec/sssd/sssd_be
+```
+#### 2. Is process using high Virtual-Memory, Physical Memory, Shared Memory?        
+if so, it shows RAM is less since more swapping is done
+```
+  # top        //virt: Virtual Memory allocated to process(int bytes), res: Physical Memory used by process, shr: shared Memory
+        pid   user    pr(priority)  ni(nice)     virt        res      shr     State  %cpu %mem   time    command    //All processes Running on System
+       7801  root      20               0           41800      3832   3224      R      55       0.2    4:36.47     sssd
+         1     amit       20               0          119744    5944   4040       S      0.0      0.3    0:02.69     ls   
+```
+#### 3. Has process used lot of CPU time until started? 
+```c
+  # top        //time(min:sec:us): Total CPU time used by process from when its started
+        pid   user    pr(priority)  ni(nice)     virt        res      shr     State  %cpu %mem   time+    command    //All processes Running on System
+       7801  root      20               0           41800      3832   3224      R      55       0.2    4:36.47     sssd
+         1     amit       20               0          119744    5944   4040       S      0.0      0.3    0:02.69     ls   
+```
+#### 4. Is process taking lot of CPU & Memory? 
+```c
+  # top        //time: Total time used by process from when its started
+        pid   user    pr(priority)  ni(nice)     virt        res      shr     State  %cpu %mem   time    command    //All processes Running on System
+       7801  root      20               0           41800      3832   3224      R      55       0.2    4:36.47     sssd
+         1     amit       20               0          119744    5944   4040       S      0.0      0.3    0:02.69     ls   
+```
+#### 5. Memory leak suspected? Collect Valgrind Report
+```c
+# yum install valgrind; debuginfo-install valgrind sssd libldb libtevent libtalloc 
+# vim /etc/sssd/sssd.conf
+    [nss]        //For sssd_nss
+        command = valgrind -v --leak-check=full --show-reachable=yes --log-file=/var/log/sssd/valgrind_nss_%p.log /usr/libexec/sssd/sssd_nss --uid 0 --gid 0 --debug-to-files        //Note if sssd_nss crashes, coredump would get generated by valgrind
+    [abc.com]    //For sssd_be
+        commad = valgrind --trace-children=yes --show-reachable=yes --track-origins=yes --read-var-info=yes --tool=memcheck --leak-check=full --num-callers=50 -v --time-stamp=yes /usr/libexec/sssd/sssd_be -domain abc.com --uid 0 --gid 0 --debug-to-files
+# setenforce 0     OR     # semanage permissive -a sssd_t
+# service sssd restart
+    //repro Issue.
+    //Provide valgrind_nss_ Log file
+- Remove above line, Set selinux as before. Restart sssd.
+```
+#### 6. TALLOC MEMORY DUMP
+```c
+# service sssd start (With normal sssd.conf)
+- wait until the sssd_be or sssd_nss process use lots of memory and don't give it back.
+# export FILE="/tmp/sssd.talloc"  sudo gdb -quiet -batch -p $(pidof sssd_be) -ex "set \$file = (FILE*)fopen(\"$FILE\", \"w+\")" -ex 'call talloc_enable_null_tracking()' -ex 'call talloc_report_full(0, $file)' -ex 'detach' -ex 'quit' &> /dev/null
+OR
+-> Replace PID of sssd_nss and collect report.
+Provide sssd.talloc file
+```
+#### 7. MEMORY USAGE REPORT
+```c
+# service sssd start (With normal sssd.conf)    //wait until the sssd_be or sssd_nss process use lots of memory and don't give it back.
+# sudo gdb -ex "call teardown_watchdog()" -ex 'call talloc_enable_null_tracking()'  -ex 'call talloc_report_full(0, debug_file)'  -ex 'detach' -ex 'quit' -p $(pidof sssd_be)
+OR
+# sudo gdb -ex "call teardown_watchdog()" -ex 'call talloc_enable_null_tracking()'  -ex 'call talloc_report_full(0, debug_file)'  -ex 'detach' -ex 'quit' -p $(pidof sssd_nss)
+- Save the domain log and sssd_nss.log and restart SSSD to release the memory.
+```
+#### 8. STRACE(System call tracer)
+Of process consuming CPU. Attach to process.  
+```c
+# strace -p `pgrep name-of-process`        //-p: path Trace  only system calls accessing path
+```
+
+<a name=ol></a>
+### DEBUGGING OVERLOADED CPU
+Overloaded CPU? CPU is given more processes(than it's capacity). And (Load Average > 1.0)
+#### a. Find Processor make, number of CPUs, cores
+```c
+   # lscpu
+    CPU(s): 8
+    Model: Intel EPYC 7451 24-Core processor
+```
+#### b. Is CPU loaded? Get load average:    //See linux commands page
+```c
+    # uptime    or    top
+      09:10:18 up 106 days, 2 users, load average: 0.22, 0.41, 0.32        //System is running from 106 days. Some s/w need restart to get installed.
+```
+#### c. Is kernel or user space process consumed more CPU/glitch (sar, top, vmstat)?
+SAR(System Activity Reporter): Monitor(CPU activity, memory/paging, interrupts, device load, network, swap space utilization). Sar uses /proc filesystem for gathering information.
+```c
+    # yum install systat; sar 1 2                                    //sar   interval(sec)  count          //Idle time, percentage of  CPU used by user, system etc.
+            Linux 2.6.18-194.el5PAE (dev-db)        03/26/2011      _i686_  (8 CPU)
+            01:27:32 PM      CPU  %user  %nice   %system  %iowait   %steal     %idle
+            01:27:33 PM       all      0.00      0.00      0.00         0.00         0.00      100.00
+            01:27:34 PM       all      0.99      0.00      0.01         0.00         0.99        00.01        <<<<<Glitch
+            Average:              all      0.33      0.00      0.17         0.00         0.00        99.50
+    Other Options:    -S:Swap space used.    -d: Individual Block Device I/O Activities    -q: run queue and load average    -w: run queue and load average    -n: Report network statistics
+    # top
+        Cpu%(s): 3.7us,  1.9 sy, 91.8 id,  1.3 wa,  0.0 hi,  0.1 si,  0.0 st  //3.7% CPU occupied by User-Space, 1.9% by kernel Space, 91.8% time CPU was idle, 1.3% spent on IO Processes
+    # vmstat  1  3  -S  k  -t        //interval  sample-count  -S(printStat)  k(Kilobyte)  -t(printTimestamp)     //vmstat(Virtual Memory Statistics. Tells system's VM, system usage since last reboot.
+        procs   -----------memory-------------       ---swap--   ----io---     --system--    -------cpu------    ----timestamp-----
+         r  b      swpd   free   buff  cache               si   so        bi    bo      in   cs        us  sy   id  wa  st        EST
+         1  0     3532   760  50      97880               0    0          1     2        6    6         9    27   97  0   0    2018-12-11 13:27:34   //Ignore 1st Line, it is average data from last reboot
+         1  0     3532   760  50      97880               0    0          1     2        6    6         78  22   97  0   0    2018-12-11 13:27:34
+         1  0     3532   760  50      97880               0    0          1     2        6    6         85  15   97  0   0    2018-12-11 13:27:35
+        Procs:        r: Processes waiting to run,   b: Processes in sleep state
+        Memory(Similar to free -m):   swpd: Memory Swapped to disk.  free: Unallocated memory.  buff: Allocated memory in use.  cache: can be used as swap(if needed).
+        Swap: si: Amount of memory moved into RAM from swap/sec.  so: From RAM to swap
+        IO:   bi: Blocks received/blocks in from disk/second.
+        System: system operations/sec.    in: Interrupts/sec   cs: Number of context switches
+        CPU: us: Time spend in user-space(73,78,85 percent),  sy: Time spent in kernel space,  id: Ideal time,  wa: Waiting IO
+```
+#### d. On which Processor culprit process is running in Multi-Processor/Multi-CPU machine?
+mpstat(Multiprocessor statistics): per CPU. Dumps statistics per processor.
+```c
+    # mpstat -P ALL 1 2                        //-P: Processors, interval samples.    Collect 3 samples at gap of 1 sec from all processors
+            01:27:32 PM      CPU  %user  %nice   %system  %iowait   %steal     %idle        //1st processor
+            01:27:33 PM       all      0.00      0.00      0.00         0.00         0.00      100.00
+            01:27:34 PM       all      0.01      0.00      0.00         0.00         0.01        00.00
+
+            01:27:32 PM      CPU  %user  %nice   %system  %iowait   %steal     %idle        //2nd processor
+            01:27:33 PM       all      0.00      0.00      0.00         0.00         0.00      100.00
+            01:27:34 PM       all      0.99      0.00      0.01         0.00         0.99        00.01            <<<<sssd is on 2nd processor
+            Average:              all      0.33      0.00      0.17         0.00         0.00        99.50    
+```
+#### e. Check %mem, %cpu used by culprit process(top/htop/ps)
+```c
+    # top                        //Sorted by Processes that uses CPU most.
+         top - 12:27:38        up  1:09,      3 user,  load average: 0.36, 0.12, 0.11                        //current time, up: System up time, Logged in users, CPU load Average(1/5/15 min)    [SIMILAR to uptime command]
+        Tasks:   228 total,   1 running, 227 sleeping,   0 stopped,   0 zombie                            //Number of processes running on system
+        Cpu(s):               3.7% us,  1.9 sy,  1.2 ni, 91.8 id,  1.3 wa,  0.0 hi,  0.1 si,  0.0 st         //CPU Utilization Status. us(CPU used by User processes), sy(System processes) ..
+        Memory(KB) :  2029876 total,   331784 free,   743740 used,   954352 buff/cache     //Memory Utilization Status. 2029876=Total system mem.  [SIMILAR to free command]
+        Swap(KB):         2094076 total,  2091308 free,   2768 used.      1074884 avail Mem    //Swap Memory Utilization Status
+        pid   user    pr(priority)  ni(nice) virt(virtualMem)  res(PhyMem)  shr(SharedMem) State  %cpu %mem   time    command    //All processes Running on System
+       7801  root      20               0           41800                       3832                3224                  R          55       0.2    4:36.47     sssd
+         1     amit       20               0          119744                     5944                4040                  S           0.0      0.3    0:02.69     ls
+    # htop //Similar to top with more colourful, more graphic interface which gives you more control of display scrolling       
+    # ps    //Reports snapshot of current processes.        //ps -aux    a:Displays all processes on a terminal.  u: Show user-name,  x; Lists all process(Including background processes)
+        user  pid  %cpu %mem  vsz     rss  tty  state   start-time      command
+        root    1    0.0       0.1    19404  832  ?     Ss   Mar02 0:01   /sbin/init
+        root    2    78.0       0.0       0         0    ?     S    Mar02 0:00   [abc]
+        root    3    0.0       0.0       0         0    ?     S    Mar02 0:00   [migration/0]
+        States of process:  D(uninterruptible sleep),  R(Running), S(Interruptible sleep),  T(stopped by job control signal),  t(stopped by debugger during the tracing), X(dead), Z(defunct/Zombie process, terminated but not reaped by its parent)
+```
+#### f. Reduce Process Priority. if customer is ok? Nice(19 to -20). 19 being lowest
+```c
+     # renice -n 10 7801        //Now sssd will consume less CPU, so other process will get it.
+```
+#### g. Create cgroup and place sssd into that    //See linux commands page for what is cgroup
+
+
+<a name=dm></a>
+### DEBUGGING MEMORY RELATED/SYSTEM/RAM ISSUES
+ #### 1. Is system under Memory Pressure?  if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressure
+    free: Free untouched RAM. 
+    Buffer: Temporary memory to help some processes. 
+    Cached: (Cache Page: Separate area on RAM). Whenever someone writes data disk, that's not immediately written to disk rather is accumulated in Cache(RAM area). And when cache gets full its written to disk. For Read operations cache page is called clean page. For write its called Dirty page.
+    Swap: Swap partition is hard disk partition(that will be used as Virtual Memory by kernel, other part of hard-disk will not be touched). When kernel is doing a task & real RAM fills up and more space is needed, unused/inactive pages are moved to Swap Space(swapped out). When Kernel uses Swap? if  lot of RAM is consumed, then Swapping/Virtual Memory is used. Kernel copies idle pages to swap, Give freed area to processes requiring memory in RAM.
+ - There is no need to  worry if you find the swap partition filled to 50%, because swapping to hard-disk is done by kernel for efficiency.
+ ```c
+    # free -mh                    //-m: Display memory in MB, -h: human readable
+                        total     used     free     shared     buffers        cached
+ Mem/RAM:  1.0G     1.0G     0B      599M          0B           1M        //Free+ Buffers+ cached = Amount of  available RAM
+           Swap:    6M      6M       0B 
+                total: Total RAM, Used: Application used Mem+Buffers+Cached. Free: free untouched RAM, shared: Memory dedicated for multi-process use,.
+    # top
+        Memory(KB) :  2029876 total,   331784 free,   743740 used,   954352 buff/cache
+        Swap(KB):         2094076 total,  2091308 free,   2768 used.      1074884 avail Mem     //Swap is hard-disk which will be used as Virtual Memory
+    DSTAT: Tells when system was ideal, waiting, read/write bytes, send/recv bytes, in/out bytes.
+    # dstat -mst  2  3          //Get 3 samples at 2 sec interval     //-m: memory stats (used, buffers, cache, free), -t: timestamp
+        -------memory-usage-----               -----system----
+        used      buff      cache      free|              date/time
+        422M  50.2M 1830M      0 M|      07-12 06:47:52
+        422M  50.2M 1830M    0.1M|      07-12 06:47:54
+        422M  50.2M 1830M    0.2M|      07-12 06:47:56
+    # cat /proc/meminfo | egrep "Buffers|Cached|MemFree"
+        MemFree:           5 kB
+        Buffers:               34032 kB
+        Cached:               188576 kB
+        SwapCached:            0 kB
+```
+#### 2. Are number of page faults high? PF is used for swapping memory to/from hard-disk.
+```c
+    # sar -B -s 05:00:00 -e 05:30:00
+    05:00:01     pgpin/s   pgpgout/s    fault/s     majflt/s   pgfree/s   pgscank/s pgscand/pgssteeal/s %vmeff
+    05:10:01     0.00        0.17              11.37      0.00         16.13        0.00 
+    05:20:01     0.00        0.17               4.50       0.00         14.17        0.00
+```
+#### 3. Is Per process Memory Consumption high?
+```c
+    $ pidstat -r|head
+    13:37:09      UID     PID  minflt/s  majflt/s     VSZ          RSS    %MEM  Command
+    13:37:09        10       111      0.00      0.00     1039314940  316      81.52      /usr/bin/Xorg
+    13:37:09        33       116      0.00      0.00     1039314940  224      1.00      vmstd-tools
+    13:37:09     1000      7      0.00      0.00     293186792    3508       0.05      bash
+    13:37:09     1000     84      0.00      0.00     404115200    1036       0.01      pidstat
+    13:37:09     1000     85      0.00      0.00     333295872     748       0.01      head    
+```
+RAM=16GB, process needs 1TB/ Process need space more than RAM? 
+ 1. Is system under memory pressure? Yes(ie no swap space)
+    - OOM(Out of memory killer) process will be invoked. Suppose process need high memory from available RAM and swap and its not available, OOM killer will be called. 
+      How it Works? Each running process will be assigned a "Badness level". Badness=How much RAM is used + How long process is running + How critical is process. Most Bad processes will be killed.
+ 2. Use Available Swap Space: Configure huge swap space=size of hard disk at OS installation. Process will use swap.
+ 3. Overcommitting: Kernel will allocate new swap space on the fly. kernel acknowledges the process 1st then goes to tries to allocate memory. If cannot allocate memory OOM killer is called.
+ ```c
+    # cat /proc/sys/vm/overcommit_memory
+              0: heuristic overcommit (this is the default)
+              1: always overcommit, never check                    //Use this.
+              2: always check, never overcommit
+```
+#### 4. Page Stealing/Swap out: kernel will start swapping unused pages out of RAM.
+If nothing works, asking process might get OOM killed, or start very slow
+
+<a name=dh></a>
+### DEBUGGING HARD DISK ISSUES
+SLOW HARD DISK & FAST CPU? CPU writes into hard Disk buffer, Since Disk is Slow, HD buffers gets filled up and Slow I/O Operations.
+```c
+# cp test test1
+    No space left on device
+```
+#### 1. Do we have enough free disk space, on Which filesystem I am?
+```c
+    # df -h        //Disk Free, Shows local and network file system
+        Filesystem    Size      Used     Avail     Use%    Mounted on
+        /dev/root      24G      19G         19G     100%     /                    //a. Compress big log files. [Delete unwanted/big files].  b. Check /var/log/messages for: IO Errors. 
+        devtmpfs      2.0G      0           2.0G      0%     /dev
+        tmpfs           2.0G       0           2.0G      0%     /dev/shm
+        tmpfs           2.0G    1.6M       2.0G      1%     /run
+        tmpfs           2.0G      0           2.0G      0%     /tmp
+```
+#### 2. Do we have free [INODES] on filesystem? When 0 sized files are created, it occupies inodes and used Inodes becomes=100%
+```c
+    # df -i
+        Filesystem    Inodes  IUsed     IFree    IUse%    Mounted on
+        /dev/root     998092   998092     0     100%     /                        //[a. Delete 0 sized files]
+        devtmpfs    100100     1       100100      0%     /dev
+        tmpfs          99019    2002    71920      3%    /dev/shm
+```
+#### 3. Are Number of Disk/Blocks I/O High?
+```c
+    # vmstat  1  2  -S  k  -t        //interval  sample-count  -S(printStat)  k(Kilobyte)  -t(printTimestamp) 
+        procs   -----------memory-------------       ---swap--   ----io---     --system--    -------cpu------    ----timestamp-----
+         r  b      swpd   free   buff  cache               si   so        bi    bo      in   cs        us  sy   id  wa  st        EST
+         1  0     3532   760  50      97880               0    0          1     2        6    6         78  22   97  0   0    2018-12-11 13:27:34  //Ignore 1st Line, it is average data from last reboot
+         1  0     3532   760  50      97880               0    0        560  582     6    6         73  27   97  0   0    2018-12-11 13:27:34
+        Procs:        r: Processes waiting to run,   b: Processes in sleep state
+        Memory(Similar to free -m):   swpd: Memory Swapped to disk.  free: Unallocated memory.  buff: Allocated memory in use.  cache: can be used as swap(if needed).
+        Swap: si: Amount of memory moved into RAM from swap/sec.  so: From RAM to swap
+        IO:   bi: Blocks received/blocks in from disk/second.
+        System: system operations/sec.    in: Interrupts/sec   cs: Number of context switches
+        CPU: us: Time spend in user-space(73,78,85 percent),  sy: Time spent in kernel space,  id: Ideal time,  wa: Waiting IO
+```
+#### 4. IOPS not too low?  IOPS(Inputs Outputs Per second): Max Reads, writes on non-contiguous Disk location.
+```c
+    # iostat -xd
+    Device: rrqm/s  wrqm/s  r/s  w/s  rsec/s wsec/s  avgrq-sz  avgqu-sz await  r_await  w_await svctm  %util
+        sda      .10 57.2    .22 .67  11.2     462.58  533.03        .7         77.85     -  - 2.20     .20
+        sdb     
+    Await(Average wait time): Higher the number, it shows which device is IO bound
+```    
+
+<a name=slow></a>
+### DEBUGGING SLOW SYSTEM
+> ls command slow        //sssd enabled
+
+ Admin need to decide it's due:
+ ```c
+    a. Overloaded CPU    OR        //See section 3
+    b. Low System Memory    OR    //See section 4
+    c. Slow Hard Disk    OR        //See section 5
+    c. Slow Network    OR            //See section 6
+    e. Application or Kernel Issue    //See section 2
+```
+
+<a name=sql></a>
+### DEBUGGING SLOW SQL DATABASE
+CAUSES
+ A. MISSING INDEXES: See what are indexes on Database Page.
+ B. Poor index design
+ C. Poorly designed database schema
+ D. Inadequate storage I/O subsystem
+ E. Buffer pool too small
+ F. Slow network
+ G. Wrong technology used
+ 
+ <a name=x></a>
+ ### DEBUGGING X Server ISSUES
+ Ubuntu
+ ```c
+ # ./gui-application
+    Issue-1: cannot connect to x server
+ Option-1: Install X server(Xming or cygwin) on Windows        //Use This. WORKING
+    1. Install Xming(x server for windows) on window's client
+    2. C:/Program Files(x86)/Xming/X0.hosts        //Place IP address of xhost machine here
+        localhost
+        <Ubuntu-IP-Address>
+    3. Restart xming
+    4. On Ubuntu
+        # export "DISPLAY=Windows-client-IP:0.0"        //Set the [Enviornment variable in ~/.profile]
+            OR
+            setenv DISPLAY WindowsIP:0.0        //For tcsh shell
+        # xhost +                                                    //Check connection to Window's client
+    5.  Putty > SSH > X11 > Enable X11. 
+        # ./gui_application
+        - if issues Found. See XMing Log File
+ Option-2: Install x-server on Linux        //lightdm showing issues
+    # dpkg -l|grep xorg                             //1. Is X server, lightdm installed on system, if not install it.
+    # sudo apt install xorg lightdm -y
+    # sudo /etc/init.d/lightdm start            // 2. Start xserver. lightdm is parent process of xorg, So it will start x-server
+    # export "DISPLAY=localhost:0.0"    // 3. Set DISPLAY variable
+    # cat /etc/ssh/sshd_config                    // 4. Check X11Forwarding enabled or not?
+        X11Forwarding yes
+    Putty > SSH > X11 > Enable X11        // 5. Login using Putty with X11 enabled.
+```
+
+<a name=boot></a>
+### DEBUGGING BOOTING ISSUES
+> System is not booting normally into run level 3 or 5
+  1. Boot into Rescue Mode. See linux commands
+  2. Boot into Single User mode
+  3. Boot into Emergency Mode. //Used When rescue mode is unavailable
+
+<a name=dns></a>
+### DEBUGGING DNS ISSUES
+A. Cannot find hostname but can ssh to user@IP
+```c
+    # ssh   server.com
+         ssh: could not resolve hostname server.com: Name or service not known
+    # vim  /etc/nsswitch.conf            //Where system is looking for hosts
+        hosts:    files dns                      //1st:File:/etc/hosts    2nd:dns
+    # cat /etc/hosts                            //Check in /etc/hosts to see any entry for server.com? No
+    # cat /etc/resolv.conf                    //Verify IP address of DNS resolver
+        nameserver    172.25.254.255    <=Looks this is wrong
+    # dig    @172.25.254.255    A     server.com        //Get A record
+            ;;connection timed out
+    # vim /etc/resolv.conf
+          nameserver    172.25.254.254
+    # systemctl    restart    networkManager
+```    
