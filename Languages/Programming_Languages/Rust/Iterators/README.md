@@ -6,7 +6,8 @@
   - [next() method](#next)
   - [sum() method](#sum)
   - Iterator Adopters
-    - [collect() method](#collect)
+    - [collect method](#col)
+    - [filter method](#fil)
 
 
 ## Iterators
@@ -79,21 +80,23 @@ fn main() {
 <a name=fil></a>
 #### filter() method
 This adoptor is applied over iterator, takes closure as argument(which takes each item of iterator) and return bool. 
-- If the closure returns true, the value is included in the iterator produced by filter
-- If the closure returns false, the value won’t be included in the resulting iterator.
+- If the closure returns true, the value is included in the iterator produced by filter, If the closure returns false, the value won’t be included in the resulting iterator.
 ```rs
 struct Test {
     a:i32,
     s:String,
 }
 
+//This function takes ownership of a vector. It returns all those vectors which have (a==2).
+//filter() adapts the iterator. collect() gathers the values returned by the adapted iterator into a vector which satisfies the condition.
 fn fun(v: Vec<Test>) -> Vec<Test> {
-    v.into_iter().filter(|s| s.a == 1).collect()
+    v.into_iter().filter(|s| s.a == 2).collect()
 }
 
 fn main() {
     let a = Test{a:1, s:String::from("a")};
     let b = Test{a:2, s:String::from("b")};
+    let b = Test{a:2, s:String::from("c")};
 
     let v1:Vec<Test> = fun(vec![a, b]);
     //fun(v);
@@ -102,4 +105,8 @@ fn main() {
         println!("{}",i.s);
     }
 }
+
+$ cargo run
+b
+c
 ```
