@@ -1,15 +1,14 @@
 **[Apache Xerces](https://xerces.apache.org/xerces-c/index.html)**
 - What is Xerces
-- Download,Install
+- **Build, Configure**
   - [Linux](#linux)
   - [Windows](#win)
-- **Examples**
-  - [Parse element from XML](#parse)
+- **[Source](#src)**
 
 ## Xerces
 XML parsing/manipulating/validating library written in C++ using the DOM, SAX, and SAX2 APIs.
 
-## Download, Install
+## Build, Configure
 <a name=linux></a>
 **Linux**
 ```c
@@ -18,66 +17,25 @@ XML parsing/manipulating/validating library written in C++ using the DOM, SAX, a
 ```
 <a name=win></a>
 **Windows**
+Create new Console-App(C++). Include [headers,xerces_3.2.lib as mentioned here.](/Libraries/Static_Dynamic). Also place xerces-c_3.2.dll in exe's folder.
 ```c
-Install cmake
-$ git clone https://github.com/apache/xerces-c.git
-$ cd xerces; mkdir build; cd build
-$ cmake ..
+- Download xerces.zip from https://xerces.apache.org/xerces-c/download.cgi. Extract in c:\amit
+- Install cmake
+$ cd c:\amit; mkdir build; cd build
+$ cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=D:\libs  (c:\amit\xerces)\path\to\xerces-c\source
+$ cmake --build . --config Debug
+$ ctest -V -C Debug -j 4
 $ cmake --build . --config Debug --target install
-cd ..
-cd ..
+c:\amit\xerces\libs\xerces-c_3.2.dll
+c:\amit\xerces\libs\lib\xerces-c_3D.lib
+
+//Using xerces functionality
+Visual-Studio > Console-App(C++) 
+  Include Headers as 
 ```
 
+<a name=src></a>
 ## Examples
-<a name=parse></a>
-### Parse element from XML Fie
-XML
-```xml
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<test>
-    <test1>hello world</test1>
-</test>
-```
-Code
-```cpp
-#include <iostream>
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/dom/DOMDocument.hpp>
-#include <xercesc/dom/DOMElement.hpp>
-#include <xercesc/util/TransService.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
+- [Parse element from XML](Parse_Element_From_XML_File.md)
+- [Merge 2 XMLs and Write in out.xml](Merge_2_XMLs_and_Write_in_out_xml.md)
 
-using namespace xercesc;
-using namespace std;
-
-int main() {
-
-  XMLPlatformUtils::Initialize();
-  
-  XercesDOMParser *parser = new XercesDOMParser;            //Create the DOM parser
-  parser->setValidationScheme(XercesDOMParser::Val_Never);
-  parser->parse("sample.xml");
-  
-  DOMDocument *doc = parser->getDocument();                 //Get the DOM representation
-  DOMElement* root = doc->getDocumentElement();             //Get the root element
-
-  DOMXPathResult* result=doc->evaluate(                     //Evaluate the xpath
-      XMLString::transcode("/test/test1"),
-      root, NULL,
-      DOMXPathResult::ORDERED_NODE_SNAPSHOT_TYPE,
-      NULL);
-
-  if (result->getNodeValue() == NULL)
-    cout << "There is no result for the provided XPath " << endl;
-  else
-    cout<<TranscodeToStr(result->getNodeValue()->getFirstChild()->getNodeValue(),"ascii").str()<<endl;
-
-  XMLPlatformUtils::Terminate();
-  return 0;
-}
-
-$ sudo ln -s /usr/local/lib/libxerces-c-3.2.so /usr/lib/
-$ g++ -g -Wall -pedantic -L/usr/local/lib/ -I/usr/local/include -DMAIN_TEST test1.cpp -lxerces-c-3.2 -o xpath
-$ ./xpath
-hello world
-```
