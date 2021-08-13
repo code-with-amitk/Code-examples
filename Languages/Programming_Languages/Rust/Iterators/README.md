@@ -2,8 +2,11 @@
   - [What](#what)
   - [Why](#why)
 - [iter() in for()](#itfor)
-- [next() method](#next)
-- [sum() method](#sum)
+- **Methods**
+  - [next() method](#next)
+  - [sum() method](#sum)
+  - Iterator Adopters
+    - [collect() method](#collect)
 
 
 ## Iterators
@@ -33,7 +36,7 @@ fn main() {
 ```
 
 <a name=next></a>
-### [next() method](#next)
+#### next() method
 next() method of iterator returns next element and None when reaches end.
 ```rs
 fn main() {
@@ -44,7 +47,8 @@ fn main() {
     println!("{:#?}", a.next());    //None
 ```
 
-### [sum() method](#sum)
+<a name=sum></a>
+#### sum() method
 sum() is consuming adoptor(calling them uses up the iterator). This takes ownership of the iterator and iterates through the items by repeatedly calling next, thus consuming the iterator. So everthing consumed, calling next() will give error.
 ```rs
 fn main() {
@@ -53,5 +57,49 @@ fn main() {
     let total: i32 = a.sum();
     println!("{}", total);        //6
     println!("{:#?}",a.next());   //Compilation Error
+}
+```
+
+### Iterator Adoptors
+These are methods defined on the Iterator trait, which allow you to change iterators into different kinds of iterators. 
+- Multiple calls to iterator adaptors are possible to perform complex actions in a readable way.
+<a name=col></a>
+#### collect() method
+collect() method is called on the iterator and collects the resulting values into a collection data type.
+```rs
+fn main() {
+    let v = vec![1,2,3,];
+    let v1:Vec<i32> = v.iter().map(|x| x+1).collect();
+    for i in v1.iter(){
+        println!("{}",i);     //2,3,4
+    }
+}
+```
+
+<a name=fil></a>
+#### filter() method
+This adoptor is applied over iterator, takes closure as argument(which takes each item of iterator) and return bool. 
+- If the closure returns true, the value is included in the iterator produced by filter
+- If the closure returns false, the value won’t be included in the resulting iterator.
+```rs
+struct Test {
+    a:i32,
+    s:String,
+}
+
+fn fun(v: Vec<Test>) -> Vec<Test> {
+    v.into_iter().filter(|s| s.a == 1).collect()
+}
+
+fn main() {
+    let a = Test{a:1, s:String::from("a")};
+    let b = Test{a:2, s:String::from("b")};
+
+    let v1:Vec<Test> = fun(vec![a, b]);
+    //fun(v);
+
+    for i in v1.iter(){
+        println!("{}",i.s);
+    }
 }
 ```
