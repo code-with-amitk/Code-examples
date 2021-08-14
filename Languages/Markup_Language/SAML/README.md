@@ -21,7 +21,8 @@ SSO authentication process involves these **3 parties**:
   - **a. Principal/Subject:** Identity/Human which need to be authenticated
   - **b. Identity Provider(IdP):** Authenticates the principal. Methods: Username/password, Multifactor auth, AD, ldap, radius etc.
   - **c. Service Provider(SP):** cloud-hosted application or service the user wants to use. Eg: Gmail, AWS S3 etc.
-- **3 types of SAML Queries:** Authentication query, Attribute query, Authorization decision query
+
+**3 types of SAML Queries:** Authentication query, Attribute query, Authorization decision query
 
 <a name=msg></a>
 #### 1. Message Exchange
