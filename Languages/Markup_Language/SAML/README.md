@@ -1,24 +1,23 @@
-- [What is SAML](#what)
-- [Usage of SAML](#use)
-- [How SAML works](#how)
+**SAML(Security Assertion Markup Language)**
+- [Usage](#use)
+- [How it works](#how)
   - [1. Message Exchange](#msg)
   - [2. SAML Request Example](#req)
   - [3. SAML Response Example](#res)
 - [SAML Assertion](#assert)
 
-<a name=what></a>
-### SAML / Security Assertion Markup Language
+## SAML
 - Security based XML protocol for user authentication, limited user authorization. More advanced authorization is suggested to use [XACML](https://en.wikipedia.org/wiki/XACML).
-- SAML It helps in achieving SSO(Single Sign On). SAML usses SOAP 1.1. It uses [HTTP]((Networking/OSI-Layers/Layer-7/Protocols/HTTP) as background.
+- SAML helps in achieving SSO(Single Sign On). SAML usses SOAP 1.1. It uses [HTTP]((Networking/OSI-Layers/Layer-7/Protocols) underlying.
 
 <a name=use></a>
-### SAML Usage
+### Usage
 - *XML Digital Signature* for authentication and Integrity.
 - *XML Encryption:* Uses encrypted name identifiers, encrypted attributes, and encrypted assertions
 
 <a name=how></a>
 ### How SAML Works
-- SSO authentication process involves these **3 parties**:
+SSO authentication process involves these **3 parties**:
   - **a. Principal/Subject:** Identity/Human which need to be authenticated
   - **b. Identity Provider(IdP):** Authenticates the principal. Methods: Username/password, Multifactor auth, AD, ldap, radius etc.
   - **c. Service Provider(SP):** cloud-hosted application or service the user wants to use. Eg: Gmail, AWS S3 etc.
