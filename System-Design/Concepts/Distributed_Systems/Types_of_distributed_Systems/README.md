@@ -1,2 +1,0 @@
-## Types of Distributed Systems
-
