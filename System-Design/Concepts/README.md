@@ -8,10 +8,10 @@
 ## Cloud
 Running programs on someone else's cluster of computers.
 ### Types of cloud
-**1. Private**: used by specific orgnizations.
-**2. Public:** Used by general public.
-**3. Community:** Used by specific community
-**4. Hybrid:** Composed of 2 or more different clouds.
+- _1. Private_: used by specific orgnizations.
+- _2. Public:_ Used by general public.
+- _3. Community:_ Used by specific community
+- _4. Hybrid:_ Composed of 2 or more different clouds.
 
 <a name=dis></a>
 ## Distributed System
