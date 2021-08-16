@@ -1,5 +1,0 @@
-## netstat
-
-
-### Commands
-
