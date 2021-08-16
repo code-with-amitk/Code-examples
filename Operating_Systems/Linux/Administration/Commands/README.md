@@ -1,6 +1,7 @@
 - [chroot](#ch)
 - [netstat](#net)
-- [Redirection `>`](#re)
+- [Pipe `ls -ltr | grep test`](#pipe)
+- [Redirection `ls -ltr > a.txt`](#re)
 - [sed](#sed)
 - [systemctl](#sys)
 - [systemd-run](#sysd)
@@ -62,6 +63,12 @@ Print network connections, routing tables, interface statistics, masquerade conn
 - *3. Get number of connections per ip address:* `# netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n`
 - *4. Get all IP Address connected to your host:* `# netstat -lantp | grep ESTABLISHED |awk '{print $5}' | awk -F: '{print $1}' | sort -u`
 - *5. Monitor open connection to web server on port 80, count and sort it by IP:* `# watch "netstat -plan|grep :80|awk {'print \$5'} | cut -d: -f 1 | sort | uniq -c | sort -nk 1"`
+
+<a name=pipe></a>
+### Pipe `ls -ltr | grep test`
+Output of process-1 becomes the input of process-2 ie standard output (stout) of one command is sent to the standard input (stdin) of a second command.
+- Pipes are unidirectional i.e data flows from left to right through the pipeline.
+- **Filter?** Commands which takes input from prev commands are called filters. These can modify the stream
 
 <a name=re></a>
 ### Redirection `ls -ltr > a.txt`
