@@ -1,9 +1,10 @@
 [Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)
-- **Approach-1, DFS**
+- **Approach-1, Depth 1st Search**
   - [Logic](#logic)
   - [Complexity](#comp)
   - Code
-    - [C++](#cpp)
+    - [C++](#cpp1)
+    - [Rust](#rs1)
 
 ## Number of connected Components
 - [Connected Components?](/DS_Questions/Data_Structures/Graphs)
@@ -23,7 +24,7 @@ Input: n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]
 Output: 1
 ```
 
-### Approach-1, DFS
+### Approach-1, Depth 1st Search
 <a name=logic></a>
 #### Logic
 - _1._ Create Adjacency List(2-D Vector) representing graph using input.
@@ -56,7 +57,7 @@ index   |0    |1     |2    |3   |4    |
 **Space** O(E+V). visited array=V, AdjacencyList=E
 
 #### Code
-<a name=cpp></a>
+<a name=cpp1></a>
 **C++**
 ```c
 class Solution {
@@ -110,4 +111,70 @@ int main()
     //vector<vector<int>> v = { {0, 1},{1, 2},{3, 4} };    cout << o.countComponents(5, v);
     vector<vector<int>> v = { {0,1},{1,2},{2,3},{3,4} };    cout << o.countComponents(5, v);
 }
+```
+
+<a name=rs1></a>
+**Rust**
+```rs
+struct Solution{
+}
+
+impl Solution {
+    pub fn dfs (adj_list : &Vec<Vec<usize>>, mut visited : &mut Vec<usize>, start : usize) {
+        if visited[start] == 1 {
+            return;
+        }
+        visited[start] = 1;
+        for &i in &adj_list[start] {
+            Self::dfs ( &adj_list, &mut visited, i);
+        }
+    }
+
+    pub fn count_components(n: i32, edges: Vec<Vec<i32>>) -> i32 {
+        let n = n as usize;
+        if n == 0 {
+            return n as i32;
+        }
+        let mut connected_comp:i32 = 0;
+        let mut visited:Vec<usize> = vec![0; n as usize];
+        let mut adj_list:Vec<Vec<usize>> = vec![Vec::with_capacity(n); n];
+
+        for i in edges.iter() {
+            let a = i[0] as usize;
+            let b = i[1] as usize;
+            adj_list[a].push(b);
+            adj_list[b].push(a);
+        }
+
+        for i in 0..n {
+            let a = i as usize;
+            if visited[a] == 0 {
+                Self::dfs (&adj_list, &mut visited, a);
+                connected_comp += 1;
+            }
+        }
+        connected_comp
+    }
+}
+
+#[cfg(test)]                               //Automated tests run with `cargo test`
+mod all_tests {
+    use super::*;
+
+    #[test]
+    fn test1 () {
+        let mut v: Vec<Vec<i32>> = Vec::with_capacity(3*2);     //row*col
+        v.push(vec!(0,1));  v.push(vec!(1,2));  v.push(vec!(3,4));
+        assert_eq!(2, Solution::count_components(5, v));
+
+        let mut v1: Vec<Vec<i32>> = Vec::with_capacity(4*2);     //row*col
+        v1.push(vec!(0,1));  v1.push(vec!(1,2));  v1.push(vec!(2,3)); v1.push(vec!(3,4));
+        assert_eq!(1, Solution::count_components(5, v1));
+    }
+}
+
+fn main(){
+
+}
+$ cargo test
 ```
