@@ -55,7 +55,7 @@ main() {
   - _2._ Read command from keyboard into string and trim leading, trailing spaces.
   - _3._ if input command is "q" exit.
   - _4._ Tokenize the command and place into `vector<string>` with sepeartor space " ".
-  - _5._ if input contains ">" jump to Redirect() function to process redirection.
+  - _5._ if input contains ">" jump to Redirect() function to process [redirection command]().
     - _5a._ Create file into which output needed to be redirected
     - _5b._ [dup2()](/Operating_Systems/Linux/Kernel/System_Calls) stdout as newly created file descriptor. so STDOUT,new file both point to new file.
     - _5c._ Remove file name, `>` from input string and pass string to execute function.
