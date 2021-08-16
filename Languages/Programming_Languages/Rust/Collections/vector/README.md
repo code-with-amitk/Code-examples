@@ -36,10 +36,14 @@
 <a name=2d></a>
 #### 2d vector
 ```rs
+  let mut v: Vec<Vec<i32>> = Vec::with_capacity(row*col);
+  v.push(vec!(0,1));  
+  v.push(vec!(1,2));
+OR         
   let mut v : Vec<Vec<usize>> = vec![Vec::with_capacity(row); col];
   v[a as usize].push(b as usize);
 OR  
-  let mut v = vec![vec![0; row]; col];
+  let mut v = vec![vec![0; row]; col];  
 ```
 
 <a name=update></a>
