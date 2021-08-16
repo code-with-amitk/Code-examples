@@ -8,6 +8,8 @@
 - [HTTP Headers](#hea)
 - [HTTP Methods](#mea)
   - [GET example](#get)
+- **HTTP Terms**
+  - [Cookie](#cok)
 - [Plugin, Helper Application, MIME](#mime)
 
 
@@ -157,6 +159,15 @@ Upgrade:     Both The protocol the sender wants to switch to
     fetches using same process
          ----------------    TCP-FIN    ---------------------------->
 ```
+
+### HTTP Terms
+<a name=cok></a>
+#### HTTP Cookie/ Web cookie / Internet cookie / browser cookie
+This is small data _created by Web server_ while user is browsing a website & placed on the user's computer.
+- **why?** 
+  - web servers can store stateful information(eg: items in shopping cart etc) on the user’s device OR
+  - To track the user's browsing activity(including clicking particular buttons, logging in, or recording which pages were visited in the past). 
+  - Knowing information that the user entered into form fields eg: names, addresses, passwords, and payment card numbers etc
 
 <a name=mime></a>
 ### Plugin, Helper Application, MIME
