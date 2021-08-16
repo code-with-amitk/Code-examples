@@ -1,6 +1,9 @@
 - [chroot](#ch)
+- [netstat](#net)
 - [Redirection `>`](#re)
 - [sed](#sed)
+- [systemctl](#sys)
+- [systemd-run](#sysd)
 
 <a name=ch></a>
 ### chroot
@@ -47,6 +50,19 @@ $ sudo chroot $HOME/jail /bin/bash              //Finally, chroot into your mini
 
 <img src=chroot-jail.png width=400 />
 
+<a name=net></a>
+### netstat
+Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. *Options*
+```c
+-p:show pid,    -a:all interfaces,  -n:show Numeric,  -t:tcp,   -u:udp
+```
+**Commands**
+- *1. Show TCP/UDP statistics of all interfaces:* `# netstat  -plunt`
+- *2. Get number of active connections:* `# netstat -ant | awk '{print $NF}' | grep -v '[a-z]' | sort | uniq -c`
+- *3. Get number of connections per ip address:* `# netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n`
+- *4. Get all IP Address connected to your host:* `# netstat -lantp | grep ESTABLISHED |awk '{print $5}' | awk -F: '{print $1}' | sort -u`
+- *5. Monitor open connection to web server on port 80, count and sort it by IP:* `# watch "netstat -plan|grep :80|awk {'print \$5'} | cut -d: -f 1 | sort | uniq -c | sort -nk 1"`
+
 <a name=re></a>
 ### Redirection `ls -ltr > a.txt`
 Redirection is implemented using dup2() system call.
@@ -64,3 +80,54 @@ For performing file operations(Search Text, Find and replace, Insert, delete) wi
     
   $ sed '1,3 s/unix/linux/' test.txt    //Replace occurence only on 1st,3rd line
 ```    
+
+<a name=sys></a>
+### systemctl
+[systemd](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) utility that is responsible for Controlling the systemd system and service manager.
+- **Listing units commands**
+```c
+# systemctl -t help                             //List all available units of systemd
+
+//////////SERVICE UNIT///////////
+# systemctl --all list-units | grep .service    //lists all available units in the type service.
+  abrt-ccpp.service
+  abrt-ops.service
+  abrt-vmcore.service
+# systemctl start | is-active | reload | list-dependencies sshd.service       //View status/reaload/list-dependencies of service
+# systemctl list-dependencies <unit>                            //Prints tree of units those must be started if this unit is started.
+# systemctl    mask/unmask     network        //Masking service
+
+///////////SOCKET UNIT///////////////
+#systemctl list-unit-files | grep .socket       //status of socket units
+```
+
+<a name=sysd></a>
+### systemd-run
+systemd-run may be used to create and start a transient systemd [`*.service` or `*.scope` unit](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) and run the specified COMMAND in it.
+- **Steps**
+  - *1.* Create [Transient cgroup](/Operating_Systems/Linux/Resource_Control/Kernel_Namespaces/cgroup/RHEL_Provided_cgroup)
+```c
+//Create a new group called group1. Run top command inside that group. Name of command=amit_top.service
+# sudo systemd-run --unit=amit_top --slice=group1 top -b
+```
+  - *2.* Set amount of resource cgroup can use.
+```c
+//systemctl set-property --runtime    name          property=value
+# systemctl set-property --runtime amit_top.service CPUShares=600 MemoryLimit=500M
+```
+  - *3.* View information about control group.
+```c
+# systemd-cgls              //Entire cgroup hierarchy
+├─system
+│ ├─1 /usr/lib/systemd/systemd --switched-root --system --deserialize 20  
+├─ group1.slice
+|   ├─ amit_top.service
+        ├─ 3714 /bin/top -b
+....
+
+# systemd-cgtop                         //View Resource,CPU,IO consumed by cgroup
+Path                             Tasks   %CPU    Memory    Input/s   Output/s
+/                                 260     3.4     658.9M      -         -
+/group1.slice/amit_top.service      1      -        -         -         -
+...
+```
