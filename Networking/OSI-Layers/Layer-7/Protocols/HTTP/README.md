@@ -1,13 +1,31 @@
 **HTTP (Hyper Text Transfer Protocol)**
+- [HTTP Features](#fea)
 - [Design Issues](/Networking/OSI-Layers/README.md)
 - [HTTPv1 vs HTTPv2 vs HTTPv3](#vs)
 - [Advatanges, Disadvatanges of HTTP](#adv)
-- [HTTP Message Format](#format)
+- [Message Format](#format)
+- [HTTP Caching](#cache)
+- [HTTP Headers](#hea)
 
 
 ## HTTP
 Client-server/Request-Response protocol. Default port 80, other can be used. Uses TCP, can also use UDP.
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
+
+<a name=fea></a>
+### Features
+- **1. CONNECTIONLESS:** HTTP-client(browser) initiates an HTTP request and after a request is made, the client disconnects from the server and waits for a response. server processes the request and re-establishes the connection with the client to send a response back.
+- **2. MEDIA INDEPENDENT:** Any type of data can be sent by HTTP as long as both the client and the server know how to handle the data content.
+- **3. STATELESS:** No session information is stored either by client or server.
+- **4. Persistant & Parallel Connection:**  2 access requests can be sent back-2-back without waiting for response to arrive.
+```html
+  Client                         Server
+     <-----TCP-3-way-handshake---->
+     --------GET Page-1----------->
+     --------GET Page-2----------->
+     <-------Page-1---------------
+     <-------Page-2---------------
+```
 
 <a name=vs></a>
 ### HTTPv1 vs HTTPv2 vs HTTPv3
@@ -35,7 +53,7 @@ Client-server/Request-Response protocol. Default port 80, other can be used. Use
   - *3.* HTTPv2 does not offer reliable exchange (without retry logic).
 
 <a name=format></a>
-### Format
+### Message Format
 > [Method](./HTTP_Methods.md), [Request-Header](./Request_Response_Header.md), Request-URI: Web page or resource
 ```html
   METHOD space REQUEST_HEADER space REQUEST_URI space HTTP_VERSION crlf
@@ -46,15 +64,58 @@ Examples:
 ```
 
 ### Features
-- **1. CONNECTIONLESS:** HTTP-client(browser) initiates an HTTP request and after a request is made, the client disconnects from the server and waits for a response. server processes the request and re-establishes the connection with the client to send a response back.
-- **2. MEDIA INDEPENDENT:** Any type of data can be sent by HTTP as long as both the client and the server know how to handle the data content.
-- **3. STATELESS:** No session information is stored either by client or server.
-- **4. Persistant & Parallel Connection:**  2 access requests can be sent back-2-back without waiting for response to arrive.
-```html
-  Client                         Server
-     <-----TCP-3-way-handshake---->
-     --------GET Page-1----------->
-     --------GET Page-2----------->
-     <-------Page-1---------------
-     <-------Page-2---------------
+
+<a name=cache></a>
+### HTTP Caching
+- *Why?* User(s) often request same Web page that they have used before and page contents(eg: images, CSS, scripts) donot change so often. Its network BW consumption and time wastage to fetch these resources again when browser has a copy.
+- *What?* Caching less frequently changing pages need to be cached.
+
+- **Cache Design** Conditional GET is sent with [Request Header (if Modified)](./Request_Response_Header.md)
+```http
+
+<-------------------Web Browser------->
+  User    front-end   Cache(Hard-Disk)                
+   - page1 ->
+            --- Find page-1 ->
+                       Cache Valid?
+            <-- Page-1 ------
+                       Else                                          WEB-SERVER
+                          -------------- Conditional GET ----------> (Program)  //Cache asks is my copy valid(using REQUEST HEADER)?
+                          <-----------  Page Not Modified   -------- 
+                          <---- Modified Page(Expires Header=1 day)-      //Expires header tells Http when to fetch the page again.
+```
+
+<a name=hea></a>
+### Headers
+- **Request Header?** The request line (e.g., the line with the GET method) may be followed by additional lines with more information.
+- **Reponse Header?** Responses may also have response headers.
+- **Headers**
+```c
+User-Agent:    Request Information about the browser and its platform
+Accept:     Request The type of pages the client can handle
+Accept-Charset:    Request The character sets that are acceptable to the client
+Accept-Encoding:    Request The page encodings the client can handle
+Accept-Language:    Request The natural languages the client can handle
+If-Modified-Since:    Request Time and date to check freshness
+If-None-Match:    Request Previously sent tags to check freshness
+Host: Request   The server’s DNS name
+Authorization:    Request A list of the client’s credentials
+Referer Request:   The previous URL from which the request came
+Cookie:  Request Previously set cookie sent back to the server
+Set-Cookie:    Response Cookie for the client to store
+Server:    Response Information about the server
+Content-Encoding:    Response How the content is encoded (e.g., gzip)
+Content-Language:    Response The natural language used in the page
+Content-Length:    Response The page’s length in bytes
+Content-Type:    Response The page’s MIME type
+Content-Range:     Response Identifies a portion of the page’s content
+Last-Modified:     Response Time and date the page was last changed
+Expires Response:    Time and date when the page stops being valid
+Location Response:     Tells the client where to send its request
+Accept-Ranges:     Response Indicates the server will accept byte range requests
+Date:    Both Date and time the message was sent
+Range:     Both Identifies a portion of a page
+Cache-Control:     Both Directives for how to treat caches
+ETag:    Both Tag for the contents of the page
+Upgrade:     Both The protocol the sender wants to switch to
 ```
