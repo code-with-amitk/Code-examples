@@ -6,7 +6,7 @@
 - [Message Format](#format)
 - [HTTP Caching](#cache)
 - [HTTP Headers](#hea)
-- [HTTP Methods](#met)
+- [HTTP Methods](#mea)
 
 
 ## HTTP
