@@ -163,11 +163,13 @@ Upgrade:     Both The protocol the sender wants to switch to
 ### HTTP Terms
 <a name=cok></a>
 #### HTTP Cookie/ Web cookie / Internet cookie / browser cookie
-This is small data _created by Web server_ while user is browsing a website & placed on the user's computer.
+This is small file _created by Web server_ while user is browsing a website & placed on the user's computer.
 - **why?** 
   - web servers can store stateful information(eg: items in shopping cart etc) on the user’s device OR
-  - To track the user's browsing activity(including clicking particular buttons, logging in, or recording which pages were visited in the past). 
-  - Knowing information that the user entered into form fields eg: names, addresses, passwords, and payment card numbers etc
+  - To track the user's browsing activity(clicking particular buttons, recording which pages were visited in the past). 
+  - Saving info user entered in forms: names, addresses, passwords(stored as hashed), and payment card numbers.
+- **Stolen Cookie?** If hacker steals and installs your cookies into their web browser, hacker will get access your account.
+  - _How cookie theaft can be avoided?_ Cleaning cookies every 7-14 days.
 
 <a name=mime></a>
 ### Plugin, Helper Application, MIME
