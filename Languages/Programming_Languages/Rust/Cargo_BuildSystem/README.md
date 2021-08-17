@@ -1,7 +1,8 @@
 **Cargo**
-- [Build project using cargo](#build)
-- [Documentation: cargo doc](#doc)
+- [$ cargo build   //Build project](#build)
+- [$ cargo doc     //Documentation](#doc)
   - [Sections in HTML Document](#sec)
+- [$ cargo publish  //publish on crates.io](#pub)
 - [Cargo Commands](Cargo_Commands)
 
 <a name=what></a>
