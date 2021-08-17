@@ -2,7 +2,11 @@
 - [Storage](#sto)
   - [Based on Location](#loc)
   - [Choices](#typ)
-- [Network Services](#net)
+- **Services**
+  - [Network Services](#net)
+  - [Big Data Services](#bd)
+  - [ML Services](#ml)
+  - [Identity Services](#id)
 
 ## GCP
 - Create project `https://console.cloud.google.com/`.
@@ -41,7 +45,7 @@ Big Table       | Massive scale with 10ms latency | Gmail, Gmaps
 ```
 
 <a name=net></a>
-## Network Services
+### Network Services
 GCP is based on SDN(Software defined networking), hence users can deliver all networking services programatically.
 - **VPC(Virtual Private cloud):** Each user can create VPC, this is cloud version of physical network. VMs in VPC can talk to each other. Traffic over VPCs goes via VPC Peering.
 ```c
@@ -68,3 +72,26 @@ GCP is based on SDN(Software defined networking), hence users can deliver all ne
 - Firewall
 - IDP(Identity awre proxy)
 - **Cloud Armor** Service that protects against DDoS attacks.
+
+<a name=bd></a>
+### Big Data Services
+Process large amound of data and answer complex problems.
+- **Big Query** Cloud datawarehouse with build in ML.
+- **Pub/Sub (Publisher/Subscriber):** async messaging service. We can loosely couple application components and communicate using it.
+- **Dataproc:** Fully managed [Apache spark, Hadoop cluster](). Billed per sec.
+- **Dataflow** For processing data in stream and batches, based on [Apache Beam]()
+- **Dataprep** Tool to perform data visualization without any coding skill requirement.
+- **Datalab:** Explore, analiyze, transform data.
+- **Data Studio:** consume data and visualize in form of reports and dashboard.
+
+<a name=ml></a>
+### ML Services
+- **Cloud ML Engine:** User has to train and host ML model. Used [Tensorflow]() for training.
+- **Pretrained APIs:** Eg: Google cloud video intelligence, cloud speech, cloud vision, natural language, translation
+- **Auto ML:** Service to train ML models for those who does not have deep knowledge of Data science.
+- **DialogFlow:** Conversation applications that interact with humans.
+
+<a name=id></a>
+### Identity Services
+- **IAM(Identity & Access Management)** Control authorization of GCP services.
+- **Cloud Identity:** Thsi is IDaaS(Identity as service). 
