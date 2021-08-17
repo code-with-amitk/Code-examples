@@ -43,3 +43,28 @@ Big Table       | Massive scale with 10ms latency | Gmail, Gmaps
 <a name=net></a>
 ## Network Services
 GCP is based on SDN(Software defined networking), hence users can deliver all networking services programatically.
+- **VPC(Virtual Private cloud):** Each user can create VPC, this is cloud version of physical network. VMs in VPC can talk to each other. Traffic over VPCs goes via VPC Peering.
+```c
+  |--VPC1-------|                      |------VPC2------|
+  | VM1 VM2..   |---- internet --------|  VMn VMn+1     |
+  |-------------|                      |----------------|
+```
+- **Load Balancers**
+```c
+  Http(s) LB
+  SSL proxy LB
+  TCP proxy LB
+  Network LB
+  Internal TCP/UDP LB
+```
+- **VPN:** VPC's communicate using VPN
+- **Cloud Interconnect:** Low latency. Traffic does not go thru internet.
+  - _Dedicated interconnect:_ 10Gbps piped directly to google datacenter.
+  - _Partner interconnect:_ 50Mbps - 10Gbps thru google partner
+- **Cloud Router**
+- **Cloud DNS**
+- Cloud CDN
+- Cloud NAT
+- Firewall
+- IDP(Identity awre proxy)
+- **Cloud Armor** Service that protects against DDoS attacks.
