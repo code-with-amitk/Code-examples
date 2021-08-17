@@ -44,9 +44,11 @@ Collection of computing elements that appears to its users as a 1 system giving 
   A. IaaS(Infrastructure as Service) | Provide VM. Cloud provider will give access to OS of server/VM,           | GCE(google compute Engine)
                                        user can install/remove/do anything on Server. Highest control.           |
   B. PaaS(Platform as Service)       | Provide Dashboard. upload button is provided you can upload your website. | GAE(Google App engine)
+                                       Write your code, Cloud provider will take care of it                      |
   C. SaaS(Software as Service)       | Host S/W on cloud VM. SaaS is accessed using a thin client or by browser  | 
-     or On-Demand Service
-  D. CaaS(Container as a Service)    |                                                                           | GKE(Google Kubernets Engine)
-  E. FaaS(Function as a Service)     |
+     or On-Demand Service            
+  D. CaaS(Container as a Service)    | Creating kubernets clusters.                                              | GKE(Google Kubernets Engine)
+  E. FaaS(Function as a Service)     | Writing application for IoT, mobilr backends.
+     or Cloud Functions
   F. Managed Services
 ```  
