@@ -118,6 +118,7 @@ This is subgraph in which each pair of nodes is connected with each other via a 
     |
     3
 ```
+[Finding connected Components: 1. DFS, 2. Disjoint set union](/DS_Questions/Questions/Graphs/Find/Undirected_Graph)
 
 ## Types of Graphs
 <a name=cyclic></a>
