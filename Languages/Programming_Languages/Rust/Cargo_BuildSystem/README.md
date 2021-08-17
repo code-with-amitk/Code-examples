@@ -1,7 +1,5 @@
-- [What is Cargo](#what)
-- Working with Cargo
-  - [1. Create Project using cargo](#create)
-  - [2. Build project with cargo](#build)
+**Cargo**
+- [Build project using cargo](#build)
 - [Cargo Commands](Cargo_Commands)
 
 <a name=what></a>
@@ -9,39 +7,35 @@
 Rust’s build system and package manager. It downloads dependencies,libraries from `crates.io`(public repo for libraries).
 Rust can also be build using cmake.
 
-
-## Working with cargo
-<a name=create></a>
-### 1. Create Project with Cargo
-- Create a project using cargo. It creates `*.toml` and src directory
-  - toml((Tom’s Obvious, Minimal Language)) is Cargo's configuration format.
-  - src directory contains source code
-```toml
-$ cargo new hello_cargo             //1. Create a project named hello_cargo
+<a name=build></a>
+### Build project using cargo
+toml((Tom’s Obvious, Minimal Language)) is Cargo's configuration format. src directory contains source code
+```rs
+//1. Create a project named hello_cargo. it creates cargo.toml, src directory
+$ cargo new hello_cargo             
 $ cd hello_cargo; dir
   <File>  Cargo.toml
   <DIR>   src
-  
-$ vim Cargo.toml                    //2
+
+$ vim Cargo.toml                    
 [package]
 name = "hello_cargo"
 version = "0.1.0"
 authors = ["amitk"]
 edition = "2018"
-
 [dependencies]
 
-$ cd src                            //3
-$ cat main.rs           
+$ cd src; cat main.rs           
 fn main() {
     println!("Hello, world!");
 }
-```
-<a name=build></a>
-### 2. Build project with cargo
-Executable is placed in `target/debug/hello_cargo`
-```rs
-# cargo build
+
+
+//2. Build project. exe is placed in target/debug
+# cargo build                                                   //opt-level = 0
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0s
+$ cargo build --release                                         //opt-level = 3
+    Finished release [optimized] target(s) in 0.0s
 # dir
 target/debug/hello_cargo
 ```
