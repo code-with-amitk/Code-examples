@@ -19,15 +19,16 @@ XML parsing/manipulating/validating library written in C++ using the DOM, SAX, a
 **Windows**
 Create new Console-App(C++). Include [headers,xerces_3.2.lib as mentioned here.](/Libraries/Static_Dynamic). Also place xerces-c_3.2.dll in exe's folder.
 ```c
-- Download xerces.zip from https://xerces.apache.org/xerces-c/download.cgi. Extract in c:\amit
+- Download xerces.zip from https://xerces.apache.org/xerces-c/download.cgi. Extract in c:\
 - Install cmake
-$ cd c:\amit; mkdir build; cd build
-$ cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_INSTALL_PREFIX=D:\libs  (c:\amit\xerces)\path\to\xerces-c\source
+$ cd c:\xerces; mkdir build; cd build
+$ cmake -G --help
+$ cmake -G "Visual Studio 16 2019" -DCMAKE_INSTALL_PREFIX=C:\xerces\libs  (c:\xerces)\path\to\xerces-c\source
 $ cmake --build . --config Debug
 $ ctest -V -C Debug -j 4
 $ cmake --build . --config Debug --target install
-c:\amit\xerces\libs\xerces-c_3.2.dll
-c:\amit\xerces\libs\lib\xerces-c_3D.lib
+c:\xerces\libs\xerces-c_3.2.dll
+c:\xerces\libs\lib\xerces-c_3D.lib
 
 //Using xerces functionality
 Visual-Studio > Console-App(C++) 
