@@ -12,7 +12,7 @@
 <a name=sto></a>
 ## Storage
 <a name=loc></a>
-#### On Location
+### On Location
 ```c
     Type   | Availability 
 -----------|------------------------------------
@@ -22,7 +22,7 @@
   Archive  | Low-cost, data accessed less than once 1 year
 ```
 <a name=typ></a>
-#### Choices
+### Choices
 **SQL(Relational DB)**
 ```c
       Name      |           Desc                                                               | Applications
