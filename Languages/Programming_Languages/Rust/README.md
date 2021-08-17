@@ -3,7 +3,7 @@
   - [Rust vs C++](#Rustcpp)
 - [Install on linux/windows](#install)
 - [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
-- [Cargo, Rust Build System](Cargo_BuildSystem)
+- [Cargo](#car)
 - [Statements & Expressions](#statements)
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
@@ -23,7 +23,7 @@
 - [Custom Programs](#custom)
 - [Design Guidelines](#dg)
 
-## What/Why Rust
+### What/Why Rust
 <a name="All"></a>
 #### Rust vs All Languages
 - No Garbage collector(Java,python has garbage collectors)               //Garbage collector is runtime heavy
@@ -65,7 +65,7 @@ fn main() {
 ```
 
 <a name=install></a>
-## Install
+### Install
 #### [Linux](https://doc.rust-lang.org/book/ch01-01-installation.html)
 ```c
 $ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
@@ -81,8 +81,12 @@ Rust is installed now. Great!   <<Rust Installed successfully
 rustc 1.51.0 (2fd73fabe 2021-03-23)
 ```
 
+<a name=car></a>
+### [Cargo](Cargo_BuildSystem)
+cargo build, cargo test, cargo doc, cargo publish
+
 <a name=statements></a>
-## Statements & Expressions
+### Statements & Expressions
 - **Statements:** These are instructions that perform some action and do not return a value. Example
 ```rs
   let y = 6;
@@ -100,7 +104,7 @@ fn fun() -> i32 {
 ```
 
 <a name="own"></a>
-## Ownership
+### Ownership
 - Means code/variable owns a memory and is allowed to free it.
 - **Memory management approaches**
   - _1._ Some languages have garbage collection(java,python,ruby) that constantly looks for no longer used memory as the program runs 
@@ -141,7 +145,7 @@ fn fun2(a_string: String) -> String {
 ```
 
 <a name=bow></a>
-## [Reference = Borrowing](References_and_Borrowing)
+### [Reference = Borrowing](References_and_Borrowing)
 - Dangling Reference
 - Mutable Reference
   - Mutable & immutable References in same scope not allowed
@@ -151,36 +155,36 @@ fn fun2(a_string: String) -> String {
 - Lifetimes: lifetime elision
 
 <a name=smart></a>
-## [Smart Pointers](Smart_Pointers)
+### [Smart Pointers](Smart_Pointers)
 
 <a name=datatypes></a>
-## [Data Types](Data_Types)
+### [Data Types](Data_Types)
 - Scalar / Primitive: int, Array slice, float, bool, char
 - Compund Data Type: Array, Tuple, Option<String, i32>
 
 <a name=collections></a>
-## [Collections](Collections)
+### [Collections](Collections)
 HashMap, HashSet, vector, string
 
 <a name=itr></a>
-## Iterators
+### Iterators
 next(), sum()
 
 <a name=class></a>
-## [Class in Rust](Class)
+### [Class in Rust](Class)
 Constructor inside class, Functions inside class
 
 <a name=controlflow></a>
-## [Control Flow](Control_Flow)
+### [Control Flow](Control_Flow)
 for, loop, while, match=switch, if, if let
 
 <a name=Functions></a>
-## [Functions](Functions)
+### [Functions](Functions)
 - Returning (value or struct) from function. Function Taking struct as argument. Inbuilt functions, Closures
 - Associated Functions, impl block
 
 <a name=cpm></a>
-## [Crates, Packages, Modules](Crates_Packages_Modules)
+### [Crates, Packages, Modules](Crates_Packages_Modules)
 - Crates, Packages
 - Modules
   - _1._ Creating a module & accessing its function
@@ -190,21 +194,21 @@ for, loop, while, match=switch, if, if let
   - _5._ use keyword: use as, pub use / Reexporting
 
 <a name=enum></a>
-## [Enum](Enum)
+### [Enum](Enum)
 
 <a name=eh></a>
-## [Error Handling](Error_Handling)
+### [Error Handling](Error_Handling)
 
 <a name=temp></a>
-## [Generic Types/Templates](Generic_Types)
+### [Generic Types/Templates](Generic_Types)
 
 <a name=tests></a>
-## [Automated Tests](Automated_Tests)
+### [Automated Tests](Automated_Tests)
 - Unit test, Integration tests
 
 <a name=custom></a>
-## [Custom Programs](Custom_Programs)
+### [Custom Programs](Custom_Programs)
 - minigrep, 
 
 <a name=dg></a>
-## [Design Guidelines](Design_Guidelines)
+### [Design Guidelines](Design_Guidelines)
