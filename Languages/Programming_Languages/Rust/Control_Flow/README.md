@@ -93,6 +93,8 @@ fn main() {
 <a name=for></a>
 ### for
 ```rs
+//Iterator+closures is faster than for loop
+
   let a = [1, 2];
   for b in a.iter() {
     println!("{}", b);      //1,2 
