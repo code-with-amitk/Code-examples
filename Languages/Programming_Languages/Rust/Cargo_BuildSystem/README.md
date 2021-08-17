@@ -1,5 +1,7 @@
 **Cargo**
 - [Build project using cargo](#build)
+- [Documentation: cargo doc](#doc)
+  - [Sections in HTML Document](#sec)
 - [Cargo Commands](Cargo_Commands)
 
 <a name=what></a>
@@ -39,3 +41,42 @@ $ cargo build --release                                         //opt-level = 3
 # dir
 target/debug/hello_cargo
 ```
+
+<a name=doc></a>
+### Documentation: `cargo doc`
+- Documentation comments use three slashes, `///`.We place documentation comments just before the item we want to document.
+- Crate Comments `//!` describes the purpose of my_crate.
+```rs
+//! # My Crate
+//!
+//! `my_crate` is a collection of utilities to make performing certain calculations more convenient.
+/// Adds one to the number given.
+
+struct Solution{ }
+
+impl Solution {
+/// add()
+/// # Examples
+/// ```
+/// let a = 5, b=4;
+/// let answer = Solution::add(a, b);
+///
+/// assert_eq!(9, answer);
+/// ```
+    fn add(a:i32, b:i32)->i32{
+        a + b
+    }
+}
+
+fn main() {
+    println!("Hi");
+}
+
+$ cargo doc
+  Documentation in target\doc
+$ cargo doc --open                //Will open Front page of create root  
+$ cargo test add()                //This will run test case in documentation
+```
+<a name=sec></a>
+#### Sections in HTML Document
+We can create sections in HTML using `#`. Some common sections: Examples, Panics, Errors, Safety
