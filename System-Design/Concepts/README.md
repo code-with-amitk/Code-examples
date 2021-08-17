@@ -7,7 +7,7 @@
 <a name=cloud></a>
 ## Cloud
 Running programs on someone else's cluster of computers.
-### Types of cloud
+#### Types of cloud
 - _1. Private_: used by specific orgnizations.
 - _2. Public:_ Used by general public.
 - _3. Community:_ Used by specific community
@@ -39,13 +39,14 @@ Collection of computing elements that appears to its users as a 1 system giving 
 3. Grid Computing: Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
 4. Cloud Computing: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
 ```c
-                                     | What
-  -----------------------------------|--------
-  A. IaaS(Infrastructure as Service) | Provide VM. Cloud provider will give access to OS of server/VM, user can install/remove/do anything on Server. Highest order of control.
-  B. PaaS(Platform as Service)       | Provide Dashboard. upload button is provided you can upload your website.
-  C. SaaS(Software as Service)       | Host S/W on cloud VM. SaaS is accessed using a thin client via a web browser.
+                                     |                    What                                                   |  Example
+  -----------------------------------|---------------------------------------------------------------------------|-----------
+  A. IaaS(Infrastructure as Service) | Provide VM. Cloud provider will give access to OS of server/VM,           | GCE(google compute Engine)
+                                       user can install/remove/do anything on Server. Highest control.           |
+  B. PaaS(Platform as Service)       | Provide Dashboard. upload button is provided you can upload your website. | GAE(Google App engine)
+  C. SaaS(Software as Service)       | Host S/W on cloud VM. SaaS is accessed using a thin client or by browser  | 
      or On-Demand Service
-  D. CaaS(Container as a Service)    |
+  D. CaaS(Container as a Service)    |                                                                           | GKE(Google Kubernets Engine)
   E. FaaS(Function as a Service)     |
   F. Managed Services
 ```  
