@@ -51,4 +51,5 @@ Collection of computing elements that appears to its users as a 1 system giving 
   E. FaaS(Function as a Service)     | Writing application for IoT, mobilr backends.
      or Cloud Functions
   F. Managed Services
-```  
+```
+GCE(GCP)
