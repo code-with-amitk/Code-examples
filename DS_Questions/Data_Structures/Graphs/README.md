@@ -17,6 +17,9 @@
   - [Spanning Tree](#st)
     - [1. Min Spanning Tree](#mst)
   - [Weighted/Unweighted Graph](#weighted)
+- **Operations**
+  - [Disjoint Set Union](#dis)
+    - [Application => Connected Component in Graph](#app)
 
 
 <a name=what></a>
@@ -232,4 +235,63 @@ minimum edges        next min edges       next min edges
    0 --50-- 1
  10|        |20
    3 --50-- 2
+```
+
+## Operations
+<a name=dis></a>
+### Disjoint set Union
+Some applications involve grouping n distinct elements/nodes into a collection of disjoint sets. These applications often need to perform two operations: 
+  - Finding the unique set that contains a given element OR
+  - uniting two sets. 
+
+- _Datastructure:_ disjoint-set data structure maintains a collection S = {S1,S2,S3 ..} of disjoint dynamic sets. Each set has a REPRESENTATIVE element(which is member of set).
+- _Operations:_ 
+  - UNION(x, y): unites the dynamic sets that contain x and y, say Sx and Sy, into a new set that is the union of these two sets.
+  - FIND-SET(x): returns a pointer to the representative of the (unique) set containing x.
+
+<a name=app></a>
+#### Application => [Connected Component in Graph]()
+> When the edges of the graph are static(not changing over time—we) can compute the connected components faster by using depth-first search.
+
+4 Connected components in graph.
+```c
+  a --- b     e -- f    h     j
+  |  /  |     |         |
+  c     d     g         i
+  
+Vertices(V) = a,b,c,d,e,f,g,h,i,j
+Edges(E) = 
+  (a,b), (a,c), (b,d), (b,c)
+  (e,f), (e,g)
+  (h,i)  
+```
+- Algo Steps
+```c
+  Edge Processed |               Collection of Disjoint Sets
+-----------------|---------------------------------------------
+                 | {a} {b} {c} {d} {e} {f} {g} {h} {i} {j}           //Step-1: Place each vertex/node in it's own set
+   (a,b)         | {a,b}   {c} {d} {e} {f} {g} {h} {i} {j}           //Step-2: For each edge(u,v), combine the sets containing u and v
+   (a,c)         | {a,b,c}     {d} {e} {f} {g} {h} {i} {j}
+   (b,d)         | {a,b,c,d}       {e} {f} {g} {h} {i} {j}
+   (b,c)         | {a,b,c,d}       {e} {f} {g} {h} {i} {j}
+   (e,f)         | {a,b,c,d}       {e,f}   {g} {h} {i} {j}
+   (e,g)         | {a,b,c,d}       {e,f,g}     {h} {i} {j}
+   (h,i)         | {a,b,c,d}       {e,f,g}     {h,i}   {j}
+```
+- Pseudo code
+```c
+connected_components(graph g) {
+  for vertex/node(V) in graph    //Step-1
+    make_set (V)
+    
+  for edge(u,v) in graph {          //Step-2. Combine edges(u,v) into 1 set
+    if (find_set(u) != find_set(v))
+      union(u,v)
+  }
+}  
+
+SAME-COMPONENT.u; /
+1 if FIND-SET.u/ == FIND-SET./
+2 return TRUE
+3 else return FALSE
 ```
