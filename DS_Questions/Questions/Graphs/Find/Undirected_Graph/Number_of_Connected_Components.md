@@ -5,6 +5,9 @@
   - Code
     - [C++](#cpp1)
     - [Rust](#rs1)
+- **Approach-2, Disjoint Set Union**
+  - Code
+    - [C++](#cpp2)
 
 ## Number of connected Components
 - [Connected Components?](/DS_Questions/Data_Structures/Graphs)
@@ -59,7 +62,7 @@ index   |0    |1     |2    |3   |4    |
 #### Code
 <a name=cpp1></a>
 **C++**
-```c
+```cpp
 class Solution {
     using vec = vector<int>;
     using vecB = vector<bool>;
@@ -177,4 +180,59 @@ fn main(){
 
 }
 $ cargo test
+```
+
+### Approach-2, Disjoint Set Union
+[What is Disjoint set Union and Algorithm to calculate connected components](/DS_Questions/Data_Structures/Graphs)
+- Example in code
+```c
+  0 -- 1    3 -- 4
+       |
+       2
+Input: n = 5, edges = [[0,1],[1,2],[3,4]]
+```
+#### Code
+<a name=cpp2></a>
+**C++**
+Steps are defined [here](/DS_Questions/Data_Structures/Graphs)
+```cpp
+class Solution {
+public:
+
+    //node1 and node2 are always connected, We need to combine them
+    int combine(vector<int> &set, vector<int> &size, int node1, int node2) {
+        node1 = find(set, node1);
+        node2 = find(set, node2);
+        
+        if (size[node1] > size[node2]) {
+          size[node1] += size[node2];
+          set[node2] = node1;
+        } else {
+          size[node2] += size[node1];
+          set[node1] = node2;
+        }
+        return 1;
+    }
+    
+    int countComponents(int n, vecVec& edges) {
+      vector<int> set(n);
+      
+      for (int i = 0; i < n; i++) {             //Step-1
+        set[i] = i;
+      }
+      
+      int components = n;
+      for (int i = 0; i < edges.size(); i++) {                  //Step-2
+        if (edges[i][0] != edges[i][1])
+          components -= combine(set, size, edges[i][0], edges[i][1]);
+      }      
+    }
+};
+
+
+int main()
+{
+    Solution o;
+    vector<vector<int>> v = { {0, 1},{1, 2},{3, 4} };    cout << o.countComponents(5, v); //2
+}
 ```
