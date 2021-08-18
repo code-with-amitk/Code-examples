@@ -21,12 +21,12 @@ Create new Console-App(C++). Include [headers,xerces_3.2.lib as mentioned here.]
 ```c
 - Download xerces.zip from https://xerces.apache.org/xerces-c/download.cgi. Extract in c:\
 - Install cmake
-$ cd c:\xerces; mkdir build; cd build
-$ cmake -G --help
-$ cmake -G "Visual Studio 16 2019" -DCMAKE_INSTALL_PREFIX=C:\xerces\libs  (c:\xerces)path_to_xerces-c_source_having_CMakeLists.txt
-$ cmake --build . --config Debug
-$ ctest -V -C Debug -j 4
-$ cmake --build . --config Debug --target install
+cmd> cd c:\xerces; mkdir build; cd build
+cmd> cmake -G --help
+cmd> cmake -G "Visual Studio 16 2019" -DCMAKE_INSTALL_PREFIX=C:\xerces\libs  (c:\xerces)path_to_xerces-c_source_having_CMakeLists.txt
+cmd> cmake --build . --config Debug
+cmd> ctest -V -C Debug -j 4
+cmd> cmake --build . --config Debug --target install
 c:\xerces\libs\xerces-c_3.2.dll
 c:\xerces\libs\lib\xerces-c_3D.lib
 
