@@ -244,8 +244,9 @@ Some applications involve grouping n distinct elements/nodes into a collection o
   - Finding the unique set that contains a given element OR
   - uniting two sets. 
 
-- _Datastructure:_ disjoint-set data structure maintains a collection S = {S1,S2,S3 ..} of disjoint dynamic sets. Each set has a REPRESENTATIVE element(which is member of set).
-- _Operations:_ 
+_Datastructure:_ disjoint-set data structure maintains a collection S = {S1,S2,S3 ..} of disjoint dynamic sets. Each set has a REPRESENTATIVE element(which is member of set).
+
+_Operations:_ 
   - UNION(x, y): unites the dynamic sets that contain x and y, say Sx and Sy, into a new set that is the union of these two sets.
   - FIND-SET(x): returns a pointer to the representative of the (unique) set containing x.
 
