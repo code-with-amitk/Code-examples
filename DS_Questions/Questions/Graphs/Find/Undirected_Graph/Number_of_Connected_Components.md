@@ -183,7 +183,7 @@ $ cargo test
 ```
 
 ### Approach-2, Disjoint Set Union
-[What is Disjoint set Union and Algorithm to calculate connected components](/DS_Questions/Data_Structures/Graphs)
+[Disjoint set Union and Algorithm to calculate connected components](/DS_Questions/Data_Structures/Graphs)
 - Example in code
 ```c
   0 -- 1    3 -- 4
