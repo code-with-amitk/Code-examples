@@ -7,6 +7,7 @@
   - [XPath](#xpath)
   - [XSLT](#xslt)
   - [XQuery](#xq)
+  - [CDATA Section](#cd)
 - [XML Parsers](#par)
 - [Rules for creating XML Doc](#rul)
 
@@ -127,6 +128,15 @@ for $x in doc("books.xml")/bookstore/book
 where $x/price>30
 order by $x/title
 return $x/title
+```
+
+<a name=cd></a>
+#### CDATA(Character data) Section
+Anything inside cdata section is considered text not markup.
+```xml
+<conversionData><![CDATA[
+  i Kilometer &it; 1 mile
+]]></conversionData>  
 ```
 
 <a name=par></a>
