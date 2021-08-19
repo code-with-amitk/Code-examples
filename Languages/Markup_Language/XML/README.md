@@ -8,6 +8,7 @@
   - [XSLT](#xslt)
   - [XQuery](#xq)
 - [XML Parsers](#par)
+- [Rules for creating XML Doc](#rul)
 
 <a name=adv></a>
 ## Advantages of XML
@@ -53,7 +54,7 @@ Both DTD & XML Schemas describe strucuture of XML document and what data is allo
 - _DTD vs XML Schemas:_ DTD is older standard wrt XML schemas. XML schemas are easy an offer more functionality. Most tools use XML schemas now.
 
 <a name=name></a>
-#### Namespace
+#### XML Namespace
 Name conflicts in XML is used to avoid name conflict. It uses name prefix.
 ```xml
 <h:table>
@@ -88,9 +89,8 @@ Complete path of element in XML document. XPath of 1st book=`/bookstore/book[0]`
 <a name=xslt></a>
 #### XSLT (eXtensible Stylesheet Language Transformations)
 XSLT is [sylesheet language](/Languages/StyleSheetLanguage) for XML. XSLT is used for transforming XML doc to HTML. Example
-
-**XML doc**
 ```xml
+//XML doc
 <?xml version="1.0" encoding="UTF-8"?>
 <breakfast_menu>
   <food>
@@ -99,9 +99,8 @@ XSLT is [sylesheet language](/Languages/StyleSheetLanguage) for XML. XSLT is use
     <calories>650</calories>
   </food>
 </breakfast_menu>
-```
-**XSLT stylesheet doc**
-```xslt
+
+//XSLT stylesheet doc
 <?xml version="1.0" encoding="UTF-8"?>
   <html xsl:version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <body style="font-family:Arial;font-size:12pt;background-color:#EEEEEE">
@@ -139,4 +138,26 @@ MSXML(Microsoft Core XML services)  | Microsoft's XML tool(including parser), ex
 System.Xml.XmlDocument              | In Microsoft .Net library. Has all standard DOM features.
 Saxon                               | Micheal Kay's product for XML parsing, quering, transforming. In java & .net
 Xerces                              | In java and c++ by Apache open source
+```
+
+<a name=rul></a>
+### Rules for creating XML Doc
+**Well Formed XML?** A document that follows W3C's XML Recommendataions and rules laid by is called well-formed xml else that is just a text document.
+- See Naming convention of elements at W3C.
+- [Elements & Attributes](..)
+```xml
+<?xml version="1.0"?>         //XML Prolog(Optional): contains version(1.0 or 1.1), encoding(optional), standalone(optional)
+<person>                      //Root Element. There should be 1 and only 1 root element. Every element follows naming convention.
+  <name> Amit </name>         //Child elements follow naming conventions. Content cannot have &(reference), <()
+  <address> abc </address>
+</person>
+
+OR 
+
+<?xml version="1.0"?>           //This is also valid XML
+<person>        
+  <name Amit ></name>
+  <address abc ></address>
+</person>
+
 ```
