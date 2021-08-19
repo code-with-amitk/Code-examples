@@ -1,11 +1,38 @@
-## Terms
+- [Antisnubbing](#ans)
+- [Availability](#av)
+- [Autoscaling](#auto)
+  - [How auto scaling works?](#howa)
+- [Bandwidth](#bw)
 
-- **Antisnubbing:** snub means ignoring someone or something. Time to time, a BitTorrent peer becomes choked/blocked by all peers from which it was receiving fragments because of poor download/upload capacity or absesnce of required fragments. 
-  - *Solution:* Finds a better peer than any of the current ones.
-- **[Availability](Availability)**
-- **Bandwidth:** Theoritical maximum at which data can be tranferred over link. Practical is Throughput. 
-  - *Bandwidth Throttling:* Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
-    - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
+<a name=ans></a>
+### Antisnubbing 
+snub means ignoring someone or something. Time to time, a BitTorrent peer becomes choked/blocked by all peers from which it was receiving fragments because of poor download/upload capacity or absesnce of required fragments. 
+- *Solution:* Finds a better peer than any of the current ones.
+
+<a name=av></a>
+### Availability
+Every request receives a response, without guarantee that it contains the most recent version of information. 
+- **Availabilty Problem** System is down and it cannot take requests and send responses.
+  - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
+    - *a.* Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
+    - *b.* Using Replication
+
+<a name=auto></a>
+### Autoscaling
+In cloud, infrastructure can increase/decrese based on demand. 
+<a name=howa></a>
+#### How auto scaling works?
+  - A group is defined in which similar VM instances are placed.
+  - Policies are defined. Example:
+    - _1._ Based on CPU Utilization. Autoscalar collects CPU Utilization of VM instances in group and decides to fork new/tear a VM based on that.
+
+<a name=bw></a>
+### Bandwidth
+Theoritical maximum at which data can be tranferred over link. Practical is Throughput. 
+- *Bandwidth Throttling:* Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
+  - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
+
+
 - **Biased Neighbour Selection?** BitTorrent peer chooses most of its neighbors from the local ISP and only a few peers from other ISPs reducing traffic, this is assisted by [Tracker](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). 
   - Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
