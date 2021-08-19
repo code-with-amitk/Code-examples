@@ -10,8 +10,8 @@ Language that uses tags to define elements within a document. It is human-readab
 ### Terms
 ```xml
 <users>
-  <user firstname="amit" lastname="kumar" />
-  <user firstname="ram" lastname="signh" />
+  <user> firstname="amit" lastname="kumar" </user>
+  <user> firstname="ram" lastname="singh" </user>
 </users>
 ```
 - **Elements:** users
