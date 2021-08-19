@@ -7,7 +7,8 @@
   - [Big Data Services](#bd)
   - [ML Services](#ml)
   - [Identity Services](#id)
-- Deploying GCE
+- [Deploying GCE](#dep)
+  - [Instance Groups](#ins)
 
 ## GCP
 - Create project `https://console.cloud.google.com/`.
@@ -97,6 +98,7 @@ Process large amound of data and answer complex problems.
 - **IAM(Identity & Access Management)** Control authorization of GCP services.
 - **Cloud Identity:** Thsi is IDaaS(Identity as service). 
 
+<a name=dep></a>
 ### Deploying GCE
 `https://console.cloud.google.com/` > Dashboard > Compute Engine > VM Instances > Create Instance > Select Region > OS(Windows Server 2019) > Create > RDP(Set Window's password)
 - Create pre-emptible instance so that after work it can tear down and save billing.
@@ -104,3 +106,8 @@ Process large amound of data and answer complex problems.
 - _Sole Tenancy_ means all your VM's will lie on 1 machine and there would be no other company's VMs on that hardware.
 - _GPUs_ can also be added at time of VM instance creation, but these are available on specific locations only.
 - _TPUs(Tensor Processing Unit)_ can be assigned for ML processing.
+
+<a name=ins></a>
+#### Instance Groups
+`Compute Engine > Instance Group`
+Instance groups let's us organize VM instances or use them in a load-balancing backend service ie [autoscaling](/System-Design/Concepts/Terms)
