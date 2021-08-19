@@ -109,5 +109,6 @@ Process large amound of data and answer complex problems.
 
 <a name=ins></a>
 #### Instance Groups
-`Compute Engine > Instance Group`
+> `Compute Engine > Instance Group`
+
 Instance groups let's us organize VM instances or use them in a load-balancing backend service ie [autoscaling](/System-Design/Concepts/Terms)
