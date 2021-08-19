@@ -1,18 +1,20 @@
 **XML**
 - [Advantage](#adv)
-- [DOM](#dom)
-- [XML Namespace](#name)
-- [XPath](#xpath)
-- [XSLT](#xslt)
-- [XQuery](#xq)
+- **Terms**
+  - [DOM](#dom)
+  - [XML Namespace](#name)
+  - [XPath](#xpath)
+  - [XSLT](#xslt)
+  - [XQuery](#xq)
 
 <a name=adv></a>
 ### Advantages of XML
 - **Interoperatability:** 2 applications written in different languages can communicate easily using XML.
 - **Meta-data** data about data is represented clearly wrt plain text.
 
+### Terms
 <a name=dom></a>
-### [DOM(Document Object Model)](https://www.w3.org/TR/DOM-Level-3-Core/introduction.html)
+#### [DOM(Document Object Model)](https://www.w3.org/TR/DOM-Level-3-Core/introduction.html)
 DOM defines 
   - Logical structure(tree or forest) of DOM documents(XML or html & the way a document is accessed and manipulated. 
   - Fraework for accessing these docs. DOM can be used with any programming language.
@@ -46,7 +48,7 @@ DOM defines
 ```
 
 <a name=name></a>
-### Namespace
+#### Namespace
 Name conflicts in XML is used to avoid name conflict. It uses name prefix.
 ```xml
 <h:table>
@@ -64,7 +66,7 @@ Name conflicts in XML is used to avoid name conflict. It uses name prefix.
 ```
 
 <a name=xpath></a>
-### XML XPath
+#### XML XPath
 Complete path of element in XML document. XPath of 1st book=`/bookstore/book[0]`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -79,7 +81,7 @@ Complete path of element in XML document. XPath of 1st book=`/bookstore/book[0]`
 ```
 
 <a name=xslt></a>
-### XSLT (eXtensible Stylesheet Language Transformations)
+#### XSLT (eXtensible Stylesheet Language Transformations)
 XSLT is [sylesheet language](/Languages/StyleSheetLanguage) for XML. XSLT is used for transforming XML doc to HTML. Example
 
 **XML doc**
@@ -114,7 +116,7 @@ XSLT is [sylesheet language](/Languages/StyleSheetLanguage) for XML. XSLT is use
 ```
 
 <a name=xq></a>
-### XQuery
+#### XQuery
 Querying XML document data using query statements. Xquery us similar to SQL in DB.
 ```xml
 for $x in doc("books.xml")/bookstore/book
