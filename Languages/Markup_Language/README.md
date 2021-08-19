@@ -28,6 +28,6 @@ Tags       | Uses predefined tags       | Uses custom tags to define elements
 Data       | More user centric ie more  | Both Application and user centric
              focus on display data to    XML data can be processed easily by applcations
              user                        also can be displayed in browser
-Use cases  | Showing data to users      | Document storage. storing data in xml files.
-                                          Showing data to user
+Use cases  | Showing data to users      | 1. Document storage. storing data in xml files. Showing data to user.
+                                          2. Image representation. svg image is xml based.
 ```
