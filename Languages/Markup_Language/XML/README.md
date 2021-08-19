@@ -1,8 +1,15 @@
+**XML**
+- [Advantage](#adv)
 - [DOM](#dom)
 - [XML Namespace](#name)
 - [XPath](#xpath)
 - [XSLT](#xslt)
 - [XQuery](#xq)
+
+<a name=adv></a>
+### Advantages of XML
+- **Interoperatability:** 2 applications written in different languages can communicate easily using XML.
+- **Meta-data** data about data is represented clearly wrt plain text.
 
 <a name=dom></a>
 ### [DOM(Document Object Model)](https://www.w3.org/TR/DOM-Level-3-Core/introduction.html)
