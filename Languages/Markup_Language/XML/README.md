@@ -2,6 +2,7 @@
 - [Advantage](#adv)
 - **Terms**
   - [DOM](#dom)
+  - [DTD](#dtd)
   - [XML Namespace](#name)
   - [XPath](#xpath)
   - [XSLT](#xslt)
@@ -9,18 +10,15 @@
 - [XML Parsers](#par)
 
 <a name=adv></a>
-### Advantages of XML
+## Advantages of XML
 - **Interoperatability:** 2 applications written in different languages can communicate easily using XML.
 - **Meta-data** data about data is represented clearly wrt plain text.
 
-### Terms
+## Terms
 <a name=dom></a>
 #### [DOM(Document Object Model)](https://www.w3.org/TR/DOM-Level-3-Core/introduction.html)
-DOM defines 
-  - Logical structure(tree or forest) of DOM documents(XML or html & the way a document is accessed and manipulated. 
-  - Fraework for accessing these docs. DOM can be used with any programming language.
-- With DOM we can build,navigate,add,modify,delete elements in documents.
-- DOM documents does not provide elements rather each element is called object(having functions and identity).
+- DOM is framework of defininig XML/html document using trees/forests. Xerces is based on DOM. In DOM each element is called object(having functions and identity).
+- World is moving away from DOM(and using other technologies to parse xml) since DOM takes huge memory. To parse 1MB XML it takes around 5MB RAM.
 ```xhtml
 <table>
   <tbody> 
@@ -47,6 +45,12 @@ DOM defines
   <body>Don't forget me this weekend!</body>
 </note>                                        //Root Element End. Closing Tag is Must
 ```
+
+<a name=dtd></a>
+#### DTD / Document Type Definition
+Both DTD & XML Schemas describe strucuture of XML document and what data is allowed.
+- _XML Validation:_ DTD and schema can be used to validate XML document that doc recived is as per prescribed format or not.
+- _DTD vs XML Schemas:_ DTD is older standard wrt XML schemas. XML schemas are easy an offer more functionality. Most tools use XML schemas now.
 
 <a name=name></a>
 #### Namespace
