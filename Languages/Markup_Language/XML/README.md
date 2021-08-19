@@ -6,6 +6,7 @@
   - [XPath](#xpath)
   - [XSLT](#xslt)
   - [XQuery](#xq)
+- [XML Parsers](#par)
 
 <a name=adv></a>
 ### Advantages of XML
@@ -123,4 +124,15 @@ for $x in doc("books.xml")/bookstore/book
 where $x/price>30
 order by $x/title
 return $x/title
+```
+
+<a name=par></a>
+### XML Parsers
+```c
+                    Name            |   About
+------------------------------------|-----------------------
+MSXML(Microsoft Core XML services)  | Microsoft's XML tool(including parser), exposed as COM object, accessed using C++ also.
+System.Xml.XmlDocument              | In Microsoft .Net library. Has all standard DOM features.
+Saxon                               | Micheal Kay's product for XML parsing, quering, transforming. In java & .net
+Xerces                              | In java and c++ by Apache open source
 ```
