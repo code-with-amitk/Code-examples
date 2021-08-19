@@ -1,10 +1,24 @@
-## Markup Language
-- **What?** 
-  - Language that uses tags to define elements within a document.
-  - It is human-readable, meaning markup files contain standard words, rather than typical programming syntax.
-- **Examples?** While several markup languages exist, the two most popular are HTML and XML.
+**Markup Language**
+- [Terms: Elements, Attributes](#ter)
+- [HTML vs XML](#vs)
 
-## Comparison
+### Markup Language
+Language that uses tags to define elements within a document. It is human-readable, meaning markup files contain english words, rather than typical programming syntax.
+- _Examples?_ While several markup languages exist, the two most popular are HTML and XML.
+
+<a name=ter></a>
+### Terms
+```xml
+<users>
+  <user firstname="amit" lastname="kumar" />
+  <user firstname="ram" lastname="signh" />
+</users>
+```
+- **Elements:** users
+- **Attributes:** firstname, lastname
+
+<a name=vs></a>
+### HTML vs XML
 
 ||HTML|XML(Extensible Markup Language)|
 |---|---|---|
