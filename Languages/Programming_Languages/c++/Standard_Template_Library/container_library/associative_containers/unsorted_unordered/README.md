@@ -1,6 +1,6 @@
 ### unordered_set`<key>`
 - Create
-  - [Set of pairs](#screate)
+  - [Set of pairs](#sp)
 - Find
   - [const_iterator find(key)](#find)
   - [random key with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
@@ -27,11 +27,11 @@
 
 # unordered_set`<key>`
 ## Create
-<a name=screate></a>
+<a name=sp></a>
 #### Set of Pair
-- We cannot create `unordered_set<pair<int,int>>` Why?
+We cannot create `unordered_set<pair<int,int>>` Why?
   - By default, it uses std::hash but there is no specialization of std::hash for std::pair<T1,T2> provided in the standard library.
-- How to create `unordered_set<pair<int,int>>`? Provide own hash functor
+  - Solution: Provide own hash [functor](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Operator_Overloading/Functor).
 ```cpp
 struct SimpleHash {
     size_t operator()(const std::pair<int, int>& p) const {
