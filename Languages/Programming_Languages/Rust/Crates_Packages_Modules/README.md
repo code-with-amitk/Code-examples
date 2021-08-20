@@ -1,7 +1,7 @@
-- [Crates](#crate)
+- **Crates**
   - [1. rand](#rand)
-- [Packages](#Packages)
-- [Modules](#Modules)
+- **Packages**
+- **Modules**
   - [Creating a module & accessing its function](#create)
   - [super keyword](#super)
   - [struct inside module](#struct)
@@ -10,14 +10,12 @@
     - [1. use as](#use_as)
     - [2. pub use / Reexporting](#pub_use)
 
-<a name=crates></a>
 ## Crates 
 crate is a binary(executable file having main()) or library(shared or static library) in rust.
 
 <a name=rand></a>
 ### 1. rand
-Rust library for random number generation.
-- **Using rand crate**
+Rust library for random number generation. Using rand crate:
 ```rs
 $ Cargo.toml
 [dependencies]
@@ -28,14 +26,11 @@ rand = "0.8.0"    //Add rand library as dependency, cargo will download from cra
 thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub fn thread_rng() -> ThreadRng
 ```
 
-<a name=Packages></a>
 ## Packages
 1 package is one or more crates that provide a set of functionality. A package contains a [Cargo.toml](../Cargo_BuildSystem) file that describes how to build crates.
 
-<a name=Modules></a>
 ## Modules
-- Similar to [namespaces, modules in c++](/Languages/Programming_Languages/c++) & [modules in python](/Languages/ScriptingLanguages/Python/).
-- Modules organizes code within a crate into groups for ease of use. Code inside module can be functions, enums, structs etc.
+Similar to [namespaces, modules in c++](/Languages/Programming_Languages/c++) & [modules in python](/Languages/ScriptingLanguages/Python/), Modules organizes code within a crate into groups for ease of use. Code inside module can be functions, enums, structs etc.
 - By default Functions within modules are private ie to access function and we need to make it public by placing `pub` in front of it.
 
 <a name=create></a>
@@ -45,6 +40,12 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
   - Absoulte path: starts from crate
   - Relative path: starts from scope in which module is called. //Preffered
 ```rs
+crate
+ └── module_a
+     |── module_b
+         ├── fun1
+         └── fun2
+         
 mod module_a {
     pub mod module_b {              //1. module_b made public
         pub fn fun1() {              //1. fun() made public
@@ -60,18 +61,11 @@ fn main(){
     
     module_a::module_b::fun2();         //Error, cannot access private
 }
-
-////////Similar to filesystem///////////
-crate
- └── module_a
-     |── module_b
-         ├── fun1
-         └── fun2
 ```
 
 <a name=super></a>
 ### super keyword
-- With keyword `super`, We can construct relative paths that begin in the parent module. This is like starting a filesystem path with the `..` syntax
+With keyword `super`, We can construct relative paths that begin in the parent module. This is like starting a filesystem path with the `..` syntax
 ```rs
 mod module_a {
     fn fun_a(){}
