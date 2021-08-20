@@ -8,7 +8,8 @@
   - [ML Services](#ml)
   - [Identity Services](#id)
 - [Deploying GCE](#dep)
-  - [Instance Groups](#ins)
+  - [1. Instance Groups](#ins)
+  - [2. Autohealing](#ah)
 
 <img src=gcp.JPG width=1000>
 
