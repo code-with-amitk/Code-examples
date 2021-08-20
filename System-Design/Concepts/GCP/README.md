@@ -10,7 +10,7 @@
 - [Deploying GCE](#dep)
   - [Instance Groups](#ins)
 
-<img src=gcp.JPG width=800>
+<img src=gcp.JPG width=1000>
 
 ## GCP
 - Create project `https://console.cloud.google.com/`.
