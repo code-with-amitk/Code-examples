@@ -184,7 +184,7 @@ $ cargo test
 ```
 
 ### Approach-2, Disjoint Set Union
-[Disjoint set Union and Algorithm to calculate connected components](/DS_Questions/Data_Structures/Graphs)
+Read algo 1st: [Disjoint set Union and Algorithm to calculate connected components](/DS_Questions/Data_Structures/Graphs)
 - Example in code
 ```c
   0 -- 1    3 -- 4
@@ -204,7 +204,6 @@ Input: n = 5, edges = [[0,1],[1,2],[3,4]]
 #### Code
 <a name=cpp2></a>
 **C++**
-Steps are defined [here](/DS_Questions/Data_Structures/Graphs)
 ```cpp
 class Solution {
 public:
