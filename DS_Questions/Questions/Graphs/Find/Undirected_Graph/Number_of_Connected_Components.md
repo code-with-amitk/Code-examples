@@ -6,6 +6,7 @@
     - [C++](#cpp1)
     - [Rust](#rs1)
 - **Approach-2, Disjoint Set Union**
+  - [Logic](#log2)
   - Code
     - [C++](#cpp2)
 
@@ -191,6 +192,15 @@ $ cargo test
        2
 Input: n = 5, edges = [[0,1],[1,2],[3,4]]
 ```
+<a name=log2></a>
+#### Logic
+- _1._ Create set containing all nodes 
+- _2._ Initially all nodes are in different set
+- _3._ Unite connected nodes, since they are connected using edge
+  - _3a._ Find node1 in set
+  - _3b._ Find node2 in set
+  - _3c._ node1,node2 are connected with edge. Update entry of node1 to point to node2 in Set. ie create node2 as representative of node1 in Set.
+
 #### Code
 <a name=cpp2></a>
 **C++**
@@ -198,35 +208,47 @@ Steps are defined [here](/DS_Questions/Data_Structures/Graphs)
 ```cpp
 class Solution {
 public:
-
-    //node1 and node2 are always connected, We need to combine them
-    int combine(vector<int> &set, vector<int> &size, int node1, int node2) {
-        node1 = find(set, node1);
-        node2 = find(set, node2);
+    int countComponents(int n, vecV& edges) {
+        int numComponents = 0;
+        vec Set(n);                         //1
         
-        if (size[node1] > size[node2]) {
-          size[node1] += size[node2];
-          set[node2] = node1;
-        } else {
-          size[node2] += size[node1];
-          set[node1] = node2;
+        for (int i = 0; i < n; i++)         //2
+          Set[i] = i;
+
+        for (auto i : edges)                //3
+            Union(Set, i[0], i[1]);
+
+        //
+        for (int i = 0; i < n; i++) {
+            cout  << Set[i]<<" ";
+            if (Set[i] == i)
+                numComponents++;
         }
-        return 1;
+
+        return numComponents;
     }
-    
-    int countComponents(int n, vecVec& edges) {
-      vector<int> set(n);
-      
-      for (int i = 0; i < n; i++) {             //Step-1
-        set[i] = i;
-      }
-      
-      int components = n;
-      for (int i = 0; i < edges.size(); i++) {                  //Step-2
-        if (edges[i][0] != edges[i][1])
-          components -= combine(set, size, edges[i][0], edges[i][1]);
-      }      
+    void Union(vec& Set, int node1, int node2) {
+      int val1 = Find(Set, node1);  //3a
+
+      int val2 = Find(Set, node2);  //3b
+
+      Set[val1] = val2;             //3c
     }
+
+    int Find(vec& Set, int node) {
+      //if node is found in Set, return node
+        while (Set[node] != node) {
+            node = Set[node];
+        }
+//        int fa = val;           //Compressed Find
+//        //compressed find
+//        while (hashSet[fa] != fa) {
+//            int temp = hashSet[fa];
+//            hashSet[fa] = parent;
+//            fa = temp;
+//        }
+      return node;
+    }    
 };
 
 
