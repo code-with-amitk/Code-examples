@@ -45,19 +45,14 @@ Authorization: Bearer ya29.AHES6ZSzX
 
 <a name=cp></a>
 #### Confidential, Public Client Applications
-##### 1. Confidential
-Client running on protected/secured server. It can securly save credentials as well
-##### 2. Public
-Application running on user's device(mobile or laptop or browser), cannot save credentials.
+- **1. Confidential:** Client running on protected/secured server. It can securly save credentials as well
+- **2. Public:** Application running on user's device(mobile or laptop or browser), cannot save credentials.
 
 <a name=ca></a>
 #### Client Application Profiles
-##### 1. Web Application
-[Confidential client]() with code on protected server.
-##### 2. User Agent-Based App
-This is public client with code executing in user's browser. Eg: JS
-##### 3. Native Application
-Public client ie installed and executing on user's machine.
+- **1. Web Application:** [Confidential client]() with code on protected server.
+- **2. User Agent-Based App:** This is public client with code executing in user's browser. Eg: JS
+- **3. Native Application:** Public client ie installed and executing on user's machine.
 
 ## Terminology
 <a name=fed></a>
