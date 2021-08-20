@@ -25,6 +25,7 @@ In cloud, infrastructure can increase/decrese based on demand.
   - A group is defined in which similar VM instances are placed.
   - Policies are defined. Example:
     - _1._ Based on CPU Utilization. Autoscalar collects CPU Utilization of VM instances in group and decides to fork new/tear a VM based on that.
+    - _2._ Scaling based on HTTP load etc
 
 <a name=bw></a>
 ### Bandwidth
