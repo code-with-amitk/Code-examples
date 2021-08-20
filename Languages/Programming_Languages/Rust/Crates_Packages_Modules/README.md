@@ -1,6 +1,7 @@
 - **Crates**
   - [1. rand](#rand)
 - **Packages**
+  - **Workspace**
 - **Modules**
   - [Creating a module & accessing its function](#create)
   - [super keyword](#super)
@@ -28,6 +29,30 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 
 ## Packages
 1 package is one or more crates that provide a set of functionality. A package contains a [Cargo.toml](../Cargo_BuildSystem) file that describes how to build crates.
+
+### Workspace
+This is set of packages that share the same Cargo.lock and output directory
+```rs
+$ mkdir add
+$ cd add
+$ vim Cargo.toml
+[workspace]
+members = [
+    "adder",
+]
+$ cargo new adder                   //create the adder binary crate by running cargo new within the add directory
+  Created binary (application) `adder` package
+$ cargo build
+
+Directory structure
+├── Cargo.lock
+├── Cargo.toml
+├── adder
+│   ├── Cargo.toml
+│   └── src
+│       └── main.rs
+└── target
+```
 
 ## Modules
 Similar to [namespaces, modules in c++](/Languages/Programming_Languages/c++) & [modules in python](/Languages/ScriptingLanguages/Python/), Modules organizes code within a crate into groups for ease of use. Code inside module can be functions, enums, structs etc.
