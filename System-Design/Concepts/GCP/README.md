@@ -10,6 +10,8 @@
 - [Deploying GCE](#dep)
   - [Instance Groups](#ins)
 
+<a name=gcp.JPG width=500></a>
+
 ## GCP
 - Create project `https://console.cloud.google.com/`.
 - Add user. Dashboard > Project > IAM > Add > Email (Role:Admin)
@@ -108,7 +110,10 @@ Process large amound of data and answer complex problems.
 - _TPUs(Tensor Processing Unit)_ can be assigned for ML processing.
 
 <a name=ins></a>
-#### Instance Groups
+#### 1. Instance Groups
 > `Compute Engine > Instance Group > Create New Instance Template`
+- Instance groups let's us organize VM instances or use them in a load-balancing backend service ie [autoscaling](/System-Design/Concepts/Terms)
 
-Instance groups let's us organize VM instances or use them in a load-balancing backend service ie [autoscaling](/System-Design/Concepts/Terms)
+<a name=ah></a>
+#### 2. Autohealing
+A healthcheck message is sent to each VM in [instance group](#ins). If response is not recieved intime, its assumed VM is not healthy and new VM is instantiated in its place.
