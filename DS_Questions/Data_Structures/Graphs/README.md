@@ -32,7 +32,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 ```
 
 ## Representation of Graph
-```c++
+```cpp
         a --> c 
         |     |
         |     \/
@@ -40,8 +40,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 ```
 <a name=adjm></a>
 #### 1. Adjacency Matrix/Lookup table
-Each cell keeps how two nodes are connected. For unweighted graph values are `1`. For weighted graph values are cost/weights.
-- *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
+Each cell keeps how two nodes are connected. For unweighted graph values are `1`. For weighted graph values are cost/weights. *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
 ```c
    a   b   c   d     //a=0,b=1,c=2,d=3
 a  0   0   1   1    
@@ -52,10 +51,9 @@ d  0   0   0   0
 
 <a name=adjl></a>
 #### 2. Adjacency List
-Each node keeps list of neighbors. Data structures can be vectors, ll etc.
-- *Advantages* Save space, only stores connected nodes.
-```c++
-Graph:
+Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
+```cpp
+////////Undirected///////////
    1 -- 0 -- 3 -- 4
         |
         2  
@@ -71,11 +69,16 @@ Graph:
       |1,2  |0  |0  |0,4  |3  |
 index  0     1   2   3     4
 
-al[0]   | 1 | 2 | 3 |
-al[1]   | 0 |
-al[2]   | 0 |
-al[3]   | 0 | 4 |
-al[4]   | 3 |
+///////////Directed Graph////////////
+  1 --> 2 --> 3
+        |
+       \/
+       0  
+vector<vector<int>> a[4];
+a[0].push_back(-1);
+a[1].push_back(1);
+a[2].push_back(0); a[2].push_back(3);
+a[3].push_back(-1);
 ```
 
 <a name=edgelist></a>
