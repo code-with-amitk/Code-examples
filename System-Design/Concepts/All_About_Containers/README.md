@@ -17,6 +17,7 @@
     - [Master Node](#mn)
     - [Worker Node](#wn)
       - [Pod](#pod)
+      - [Namespaces](#ns)
     - [Configuring kubernets Cluster](#cfgk)
 
 
@@ -319,7 +320,7 @@ User(application.yaml)      <----Master_Node-------->         <---- Worker_Node-
 
 <a name=pod></a>
 #### POD 
-This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pods run in isolated pvt enviornment. Pod Contains:
+- Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application)w. Pods run in isolated pvt enviornment. Pod Contains:
   - *1.* Container(Eg: [Docker](#doc))
   - *2.* Shared storage, as Volumes
   - *3.* Networking, as a unique cluster IP address
@@ -328,9 +329,35 @@ This is a Complete package which Kubernets creates to install application on Wor
 <img src=kubernets_pod_worker_node.png width=800>
 
 <a name=cfgk></a>
-### Configuring kubernets Cluster
-- **Kubernets cluster?** Complete deployment including kubernets master, worker nodes, containers etc is called kubernets cluster.
+### Configuring kubernets Cluster(1 master, n workers)
 ```c
+//////////////1. Configuration file for deploying 2 containers/pods. Containers hainvg ngnix image.////////////////
+$ vim test.yaml
+apiVersion: app/v1
+kind: Development
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+sped:
+  replicas: 3                       //Number of pods to be running at a time
+  selector:
+    matchlabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.7.9
+          ports:
+          - containerPort: 80
+
+////////////2. Create container(ie pod) using kubectl command////////////////////
+$ kubectl apply -f test.yaml
+
 //////////////1. Install kubernets master, worker nodes///////////////////////////////
 $ install
 $ minikube version                                          //Check version
@@ -359,4 +386,15 @@ $ kubectl describe pods
 $ kubectl proxy                               //Note, pods run on pvt network hence proxy is needed to communicate with them.
 
 $ systemctl start apache                      //Start Application inside container
+```
+
+<a name=ns></a>
+#### Namespaces
+Virtual clusters inside kubernets cluster. 3 predefined namespaces:
+- _1. Default:_ 
+- _2. Kube-system:_ resources created by kubernets.
+- _3. Kube-public:_ reserved for future.
+```c
+$ kubectl crete namespace test                        //Creating new namespace
+$ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ```
