@@ -1,13 +1,2 @@
 ## Container Orchestration
-- **What** Managing the lifecycles of containers, these are GUI/tools to automate following container tasks:
-  - Deployment of containers
-  - Availability of containers
-  - Scaling up/down
-  - Movement of containers from one host to another
-  - Load balancing between containers
-  - Health monitoring of containers and hosts
-  - Configuration of an application in relation to the containers running it
-- **Examples of Container Orhestrators**
-  - *1.* Kubernets
-  - *2.* Docker swarm
-  - *3.* Nomad
+
