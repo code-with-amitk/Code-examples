@@ -2,9 +2,9 @@
   - [Adv, Disadv of containers](#add)
   - [Container vs VM](#vs)
   - [Issues without containers](#isc)
+- **Docker**
 
-
-
+<a name=con></a>
 ## Containers
 - Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
 - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
@@ -35,3 +35,7 @@ What       | Pacakaged s/w   | Copy of OS
 - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. 
 - If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 
+
+## Docker
+Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
+- *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
