@@ -14,6 +14,7 @@
       - [Example: Nginx container binds directly to port 80 on the Docker host](#egn)
 - **Container Orchestration/ Kubernets**
   - [Kubernets](#Kub)
+    - [Configuring kubernets Cluster](#cfgk)
 
 
 <a name=con></a>
@@ -317,3 +318,37 @@ User(application.yaml)      <----Master_Node-------->         <---- Worker_Node-
   - *4.* Information about how to run each container, such as the container image version or specific ports to use
 
 <img src=kubernets_pod_worker_node.png width=800>
+
+<a name=cfgk></a>
+### Configuring kubernets Cluster
+- **Kubernets cluster?** Complete deployment including kubernets master, worker nodes, containers etc is called kubernets cluster.
+```c
+//////////////1. Install kubernets master, worker nodes///////////////////////////////
+$ install
+$ minikube version                                          //Check version
+  minikube version: v1.8.1
+$ minikube start                                            //Start minikube kubernets cluster
+$ kubectl version
+  Client Version: version.Info{Major:"1", Minor:"17"...}    //Worker node version
+  Server Version: version.Info{Major:"1", Minor:"17",..}    //Master node version
+$ kubectl get nodes                                         //How many nodes are in kubernetes cluster
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    master   2m    v1.17.3
+
+///////////////2. Deploy Application on cluster/////////////////////////////
+//Run command on Master Node. This will create Application=amit-app on any of available worker node/VM
+$ kubectl create deployment amit-app --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+  deployment.apps/amit-app created
+
+$ kubectl get deployments.apps 
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+amit-app              1/1     1            1           111s
+kubernetes-bootcamp   1/1     1            1           3m19s
+
+///////////////3. Check Pods and worker nodes///////////////////////////////////
+$ kubectl get pods
+$ kubectl describe pods
+$ kubectl proxy                               //Note, pods run on pvt network hence proxy is needed to communicate with them.
+
+$ systemctl start apache                      //Start Application inside container
+```
