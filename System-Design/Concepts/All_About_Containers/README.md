@@ -12,6 +12,9 @@
     - [2. None Networking](#nn)
     - [3. Host Networking](#hn)
       - [Example: Nginx container binds directly to port 80 on the Docker host](#egn)
+- **Container Orchestration/ Kubernets**
+  - [Kubernets](#Kub)
+
 
 <a name=con></a>
 ## Containers
@@ -44,7 +47,7 @@ What       | Pacakaged s/w   | Copy of OS
 - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. 
 - If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 
-
+<a name=doc></a>
 ## Docker
 Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
 - *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
@@ -277,3 +280,38 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
 # sudo netstat -tulpn | grep :80                                  //Check which process is binded to port 80.
 # docker container stop my_nginx                                  //Stop the container, it will be removed automatically since start with -rm switch
 ```
+
+
+## Container Orchestration
+**Orhestration?** Managing the lifecycles of containers, these are GUI/tools to automate following tasks: Deployment, Scaling up/down, Movement of containers from one host to another, Load balancing, Health monitoring.
+  - *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
+
+<a name=kub></a>
+### Kubernets
+Kubernets cluster is 1 master and multiple worker nodes. User can only ineracts with master node using yaml file, which defines how many applications,replicas to be run etc.
+
+**A. Master Node:** This is responsible for Creating/destroying worker nodes/VMs. Worker nodes runs containerized applications.
+  - Master node has following daemons.
+    - *1. Controller:* Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
+    - *2. API Service:* Manages all communication with Worker nodes(using kubelet)
+
+**B. Worker Machine/Node:** Master handles scheduling pods inside worker nodes after looking at available resources on each node.
+  - Worker has following daemons.
+    - *1. Kubelet:* Process for communication with master.
+    - *2. [Docker](#doc):* A container runtime.
+    - *3. Kubectl Proxy:* Does communication with other nodes in cluster.
+
+```c
+
+User(application.yaml)      <----Master_Node-------->         <---- Worker_Node-1 -->
+   --------------------->   Controller    API_service<------->Kubectl   Kubectl_Proxy------> Worker_Node-2
+                                                                                   |-------> Worker_Node-3                   
+```
+
+<a name=kterms></a>
+#### Terms
+**POD:** This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pods run in isolated pvt enviornment. Pod Contains:
+  - *1.* Container(Eg: [Docker](#doc))
+  - *2.* Shared storage, as Volumes
+  - *3.* Networking, as a unique cluster IP address
+  - *4.* Information about how to run each container, such as the container image version or specific ports to use
