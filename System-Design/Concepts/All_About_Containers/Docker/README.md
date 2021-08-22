@@ -1,5 +1,4 @@
-## Docker
-- [What_is_Docker](#What_is_Docker)
+**Docker**
   - [Docker_Architecture](#Docker_Architecture)
   - [Advantages](#Advantages)
 - [Docker_Terms](#Docker_Terms)
@@ -11,10 +10,9 @@
 - [Install_Docker_Run_Container](#Install_Docker_Run_Container)
 - [How_Containers_communicate_with_eachother_and_outside_world](#How_Containers_communicate_with_eachother_and_outside_world)
 
-## What_is_Docker 
-- This is tool for building/deploying/managing [Containers](../Containers), ie This is 1 of container implementation. 
-- Others are Rocket, Drawbridge, LXC. Docker is Container runtime. 
-- **Docker Inc.** is the company that sells the commercial version of Docker. Docker is also available as open source.
+## What is Docker 
+Tool for building/deploying/managing [Containers](../Containers), ie This is 1 of container implementation. Others are Rocket, Drawbridge, LXC.
+- *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 
 #### Docker_Architecture
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
