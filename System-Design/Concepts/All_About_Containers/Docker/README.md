@@ -12,14 +12,9 @@
 - [How_Containers_communicate_with_eachother_and_outside_world](#How_Containers_communicate_with_eachother_and_outside_world)
 
 ## What is Docker 
-Tool for building/deploying/managing [Containers](../Containers), ie This is 1 of container implementation. Others are Rocket, Drawbridge, LXC.
-- *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 
-<a name=adv></a>
-#### Advantages
-- *1. Nothing break at client side due to mistached libraries* All developers work and deliver in standardized and freezed enviornment. Same libraries and build is delivered to client.
-- *2. No special hardware requirements* Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.
-- *3. Running more workloads at same hardware.* 2 builds can run parallely on 2 containers on same host.
+
+
 
 
 #### Docker_Architecture
