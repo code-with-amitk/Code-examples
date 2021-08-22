@@ -5,6 +5,7 @@
 - **Docker**
   - [Docker Terms: Host, Image, File, Registry, Compose](#dterms)
   - [Installing & Running Docker](#insd)
+  - [Docker Commands](#dcm)
   - **Docker Networking**
     - [1. Bridge Networking](#bn)
       - [Example: Run 2 different Alpine containers on same docker host and commmunicate between them](#bn1)
@@ -229,6 +230,17 @@ PING 172.17.0.3 (172.17.0.3): 56 data bytes
 
 $ docker container stop alpine1 alpine2
 $ docker container rm alpine1 alpine2
+```
+
+<a name=dcm></a>
+### [Docker commands](https://docs.docker.com/engine/reference/commandline/docker/)
+```
+$ docker
+  -d: start the container detached (in the background)
+  -i: Interactive, (with the ability to type into it)
+  --network host: Start host driver
+  --rm: remove the container once it exits/stops. 
+  -t: With tty
 ```
 
 #### 2. None Networking
