@@ -17,7 +17,7 @@
 
 
 <a name=con></a>
-## Containers
+# Containers
 - Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
 - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
 - **Containerization** Packaging software code and all its dependencies in a bundle.
@@ -25,15 +25,15 @@
 <img src=TraditionalOS_vs_Containers.jpg width=400 />
 
 <a name=add></a>
-#### Advantages
+**Advantages**
 - *1. lightweight* Use less memory:* Simple web application running inside container takes 100MB space.
 - *2. Secure:* Reduces the chance that malicious code present in one container impacting other containers or invade the host system.
 - *3. Portable:* abstraction from the host operating system makes containerized applications portable ie able to run on any OS,VM.
-#### Disadvantages 
-Some application may not be suited for a containerized environment. Ex: applications accessing low-level hardware information.
+
+**Disadvantages:** Some application may not be suited for a containerized environment. Ex: applications accessing low-level hardware information.
 
 <a name=vs></a>
-#### Container vs VM
+### Container vs VM
 ```c
                  Container   |     VM
 -----------|-----------------|--------------------  
@@ -43,12 +43,12 @@ What       | Pacakaged s/w   | Copy of OS
 ```
 
 <a name=isc></a>
-#### Issues without containers
+### Issues without containers
 - When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. 
 - If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 
 <a name=doc></a>
-## Docker
+# Docker
 Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
 - *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
@@ -95,7 +95,7 @@ services:
  ```
 
 <a name=insd></a>
-### Install_Docker_Run_Container
+### Install Docker, Run Container
 ```c
 //////Install////////
 1. Download Docker Installer from https://hub.docker.com/.
@@ -109,7 +109,7 @@ $ docker run -d -p 80:80 -name docker-tutorial docker101tutorial` //Start the Co
 ```
 
 <a name=dn></a>
-### Docker Networking
+## Docker Networking
 Connecting Docker Containers with each other and with outside world. Docker’s networking subsystem is pluggable using drivers forming networks.
 - **Types of Docker Networking**
 ```c
@@ -124,7 +124,7 @@ Connecting Docker Containers with each other and with outside world. Docker’s 
 ```
 
 <a name=bn></a>
-#### 1. Bridge Networking
+### 1. Bridge Networking
 This is default network driver. Used when multiple containers want to communicate on the **same Docker host**.
 - **Types of Bridge**
 ```c
@@ -246,7 +246,7 @@ $ docker
   -t: With tty
 ```
 
-#### 2. None Networking
+### 2. None Networking
 This completely disables the networking stack on the container. Within the container, only the loopback device is created. Example:
 ```c
 $ docker run --rm -dit  --network none  --name no-net-alpine   alpine:latest   ash
@@ -265,14 +265,14 @@ $ docker stop no-net-alpine
 ```
 
 <a name=hn></a>
-#### 3. Host Networking
+### 3. Host Networking
 [Container's](#con) network stack is same as host network stack. IP Address of container is same as host OS. Useful in situtation where container needs to listen/read/write on large number of ports.
 - **Advantages**
   - *1.* Expose 1 port and IP access the service. Example: 50 Game servers are running in Docker containers on same host. Requests are routed using [kubernets](/System-Design/Concepts/All_About_Containers/Container_Orchestration) to free game server.
 - **Disadvantages:** Host networking driver only work on linux not on Windows and MAC. 
  
 <a name=egn></a>
-##### Example: Nginx container binds directly to port 80 on the Docker host
+#### Example: Nginx container binds directly to port 80 on the Docker host
 Start ngnix in container with host networking, ngnix listens on port 80 which is same as docker host.
 ```c
 # docker run --rm -d --network host --name my_nginx nginx         //Create and start container as detached process
@@ -282,12 +282,12 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
 ```
 
 
-## Container Orchestration
+# Container Orchestration
 **Orhestration?** Managing the lifecycles of containers, these are GUI/tools to automate following tasks: Deployment, Scaling up/down, Movement of containers from one host to another, Load balancing, Health monitoring.
   - *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
 
 <a name=kub></a>
-### Kubernets
+## Kubernets
 Kubernets cluster is 1 master and multiple worker nodes. User can only ineracts with master node using yaml file, which defines how many applications,replicas to be run etc.
 
 **A. Master Node:** This is responsible for Creating/destroying worker nodes/VMs. Worker nodes runs containerized applications.
@@ -309,7 +309,7 @@ User(application.yaml)      <----Master_Node-------->         <---- Worker_Node-
 ```
 
 <a name=kterms></a>
-#### Terms
+### Kubernets Terms
 **POD:** This is a Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple applications. Pods run in isolated pvt enviornment. Pod Contains:
   - *1.* Container(Eg: [Docker](#doc))
   - *2.* Shared storage, as Volumes
