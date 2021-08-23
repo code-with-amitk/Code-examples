@@ -100,7 +100,7 @@ Merge 2 or more development histories together.
 ///gerrit///
 $ git add file1 file2 file3
 $ git commit -F commit-msg-file
-$ git pull
+$ git pull                        //Run these 2 else you will get merge conflict
 $ git rebase
 $ gitdir=$(git rev-parse --git-dir); scp -p -P 29481 user-id@<gerrit-server>:hools/commit-msg $(gitdir)/hooks
 $ git push ssh://userId@bracnh HEAD:refs/for/branch%topic=<> , r=reviewer@test.com
