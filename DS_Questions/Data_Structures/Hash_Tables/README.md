@@ -1,5 +1,6 @@
 **Hash Table**
 - [Advantages, Disadvantages](#adv)
+- [HT vs Self Balanced BT](#vs)
 - [How Hash Table is implemented internally](#int)
 - [Hash Collision](#hc)
   - [Solution](#sol)
@@ -12,6 +13,8 @@
 ```c
 key -> |Hash Function| -> index of array/table
 ```
+**Hashing is improvement over Direct Access Table**
+- Take huge array and use phone numbers as index in the array. if phone number is not present entry is empty, else the array entry stores pointer to records corresponding to phone number. Searching in DA: O(1) but HUGE Extra Space required.
 
 <a name=adv></a>
 ### Advantages, Disadvantages
@@ -25,6 +28,19 @@ Search in O(1) time.
 - **c. Hash Collision:** When hash function provides same index/value for 2 different keys.
 ```c
   key -> |Hash Function| -> index of array/table
+```
+
+<a name=vs></a>
+## HT vs Self Balanced BT
+```c
+                                                         Hash-Tables            |        Self-Balancing BT
+---------------------------------|----------------------------------------------|----------------------------------
+Complexity(Insert/Delete/Search) | O(1)[Average Time], O(n) during table resize | O(log n)[guaranteed all times].
+Collision                        | Yes                                          | never
+Implementation                   | Tough, We depend on libraries                | Easy, we can implement our own customized BST
+ADVANTAGES of Tree over HT       |                                              | 1. Data can be retrieved in sorted order. inorder-traversal: O(n)
+                                                                                | 2. lowest, biggest element finding: easy
+                                                                                | 3. No need to guess size of input data.
 ```
 
 <a name=int></a>
@@ -94,7 +110,28 @@ All elements are stored in HT itself. Once same hash is derived, insert element 
 - *INSERTION*: Once same hash is derived, inserts the new item in the next open spot in the table ie next to already existent element with same hash. If the table is not too full, the contiguous runs of items should be fairly small, hence this location should be only a few slots from its intended position
 - *DELETION:* Ugly here removing one element might break a chain of insertions, making some elements inaccessible. We need to reinsert all the items into new holes.
   
-**B2. Quadratic Probing**
+**2. Quadratic Probing**
+look for i<sup>2</sup>th slot in i'th iteration. New hash function = (xmod7 + i2)%hash_table_size
+```c
+  h0 = (xmod7 + 0*0)%hash_table_size
+  h1 = (xmod7 + 1*1)%hash_table_size
+  h1 = (xmod7 + 2*2)%hash_table_size
+  Example: Hash Function = xmod11  a[]=7,36,18,62.   7mod11=7,  36mod11=3,  18mod11=7,  62mod11=7
+    Insert: Collision at insertion of 18. Since collision had occurred, we calculate h1 = (18mod11 + 1*1 = 8)
+    Collision at insertion of 62. Since collision had occurred, we calculate h1 = (18mod11 + 1*1 = 8) which is occupied.  We calculate h2= (62mod11+ 2*2 = 11). This goes to index 0. And we insert.
+    |   62   |        |        |   36  |        |        |        |    7     |   18     |        |        |
+        0        1       2       3        4          5       6         7          8        9        10
+```
+
+**3. DOUBLE HASHING:** We use double hash function to re-calculate the hash if collision occurs.  In case of collision: hash1(x) = (hash1(x) + i*hash2(x))%hash_table_size
+
+**Comparison**
+```
+                          Advantages                                     Disadvantages
+Linear Probing      Easy to implement, best cache performance        Suffers from clustering
+Quadratic Probing   Avg cache performance                            Small clustering occurs
+Double hashing      worst cache performance                          No clustering occurs, More computation time is required.
+```
 
 <a name=re></a>
 ## Rehashing
