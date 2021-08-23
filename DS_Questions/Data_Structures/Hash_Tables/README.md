@@ -1,7 +1,117 @@
-## Hash Table
+**Hash Table**
+- [Adv, Disadv](#adv)
+- [How Hash Table is implemented internally](#int)
+- [Hash Collision](#hc)
+  - [Solution](#sol)
+- [Rehashing](#re)
 
-- _[Hash Collision and Solutions](Hash_Collision_And_Solutions.md)_
-- *[Rehashing](ReHashing.md)*
+## Hash Table
+- Data structure that associates keys with values. `<key, value>`, Supports constant time lookups. Average Case: O(1), Worst case: O(n)
+- *Hash Function?* Hash function maps a big number or string to a small integer that can be used as index in hash table.
+```c
+key -> |Hash Function| -> index of array/table
+```
+
+<a name=adv></a>
+### Advantages, Disadvantages
+#### Advantage
+Search in O(1) time.
+
+#### Disadvantages
+- **a. Guess Approximate input data:** We have to know approximate size of input data before initializing hash table. Once all HT entries are filled it needs resized/rehashing which is a time-consuming operation. Eg:
+  - Let HT size = 100, we want to  insert 101st element. Not only the size of hash table is enlarged to 150, all element in hash table have to be rehashed. This insertion operation takes O(n).
+- **b. Elements are stored as unsorted order:** Some circumstance data should stored in sorted order. Eg: contacts in cell phone.
+- **c. Hash Collision:** When hash function provides same index/value for 2 different keys.
+
+
+- *[How Hash Table is implemented Internally](How_HashTable_Implemented_Internally)*
+```c
+  key -> |Hash Function| -> index of array/table
+```
+
+<a name=int></a>
+### How Hash Table is implemented internally
+> LH* Network
+
+Files are organized into buckets(Size is power of 2) stored either on RAM/disk/distributed servers. Hash function generates the bucket number which stores the key.
+- **Example:**
+  - Lets consider student data to be stored in hash table.
+  - Each student data is stored in seperate file and File pointers are stored in Buckets (Similar to [Inode](/Operating_Systems/Linux/FileSystem/I_Node_IndexNode.md))
+  - Hash Function generates bucket number as output with enrollment number(key) as input.
+  - **Split Coordinator**
+    - Once buckets on server gets full, splitting is done using SC. Making buckets/keys to half.
+    - SC also supports the merging of buckets.
+    - SC can be seen as [Super-Peer](/System-Design/Concepts/Terms) in P2P terminology.
+  - *Dsiadvantage?* 
+    - Clients maintain views to the global system state, ie overall bucket information.
+```html
+  | Name | Roll-No | Class | Sub-1 | Sub-2 | Sub-3 | .. | Enrollment No(Unique Key) |
+  | Amit |   5     | 10    | Math  | Sci   | Eng   |    | 12345                     | <- File-1
+  | Ram  |   35    | 10    | Math  | Sci   | Eng   |    | 23241                     | <- File-2
+  
+  file1		file2		file3		file4
+  0x40		0xac		0x45		0x34		//Files stored at different addresses
+  
+  |file1 file2 file3 file4|		|...|
+  |0x40  0xac  0x45  0x34 |		|...|
+  Bucket-1. Size=4			Bucket-2. Size=8
+
+  server1		server2			server3
+ bucket-1,2		Bucket-3,4,5		Bucket-6,7,10
+
+
+Enrollment-Number(Key)  -> hash_function ->  Bucket-3
+```
+
+<a name=hc></a>
+## Hash Collision
+When hash function provides same index or value for 2 different keys.
+<a name=sc></a>
+### Solution-1: Seperate Chaining
+Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
+- *Advantages:* Simple implementation, Space will never exhaust, Less sensitive to hash function
+- *Disadvantages:*
+  - Once LL/chain grows long, performance will degrade search time=O(n)
+  - Space wastage, some parts of hash table may never be used
+  - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
+![ImgUrl](https://i.ibb.co/XWZfxwX/chain.png)        
+```c
+  Example:  Hash Function = xmod7, a[]={50, 700, 76, 85, 46, 92, 73, 10}        
+  50mod7=1, 700mod7=0,  76mod7=6,  85mod7=1,    46mod7=1
+                     46
+                     |
+                    85
+                     |
+        |  700  |   50     |        |        |        |        |    76    |        Hash Table
+             0         1          2      3       4        5       6
+```
+
+### Solution-2: Open Addressing  
+All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains.
+
+![ImgUrl](https://i.ibb.co/b7Qnkh2/oa.png)
+
+#### Types of Open addressing
+**1. Linear/Sequential probing**
+- *INSERTION*: Once same hash is derived, inserts the new item in the next open spot in the table ie next to already existent element with same hash. If the table is not too full, the contiguous runs of items should be fairly small, hence this location should be only a few slots from its intended position
+- *DELETION:* Ugly here removing one element might break a chain of insertions, making some elements inaccessible. We need to reinsert all the items into new holes.
+  
+**B2. Quadratic Probing**
+
+<a name=re></a>
+## Rehashing
+Let's consider `unordered_map<int,string>` storing unique keys. At start of program sizeof hash table=3
+```c
+  Key | Value
+  ----------
+  01  | amit
+  02  | never
+  03  | give
+```
+- Now, (4, up) need to be stored, but hash table has no space so size of hash table is increased to 6. 
+- (old Hash function = %3) we can only goto index number=2. But we want to reach 5. Hence Hash function is changed (old Hash function = %6). So hash is again calculated for existing values.
+
+
 - **[Implementations of Hash Tables?](Implementations)** 
   - _1._ 2-way/2-choice/2-left Hash Table
   - _2._ Cuckoo Hashing
