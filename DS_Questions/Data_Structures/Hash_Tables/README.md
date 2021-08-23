@@ -1,9 +1,10 @@
 **Hash Table**
-- [Adv, Disadv](#adv)
+- [Advantages, Disadvantages](#adv)
 - [How Hash Table is implemented internally](#int)
 - [Hash Collision](#hc)
   - [Solution](#sol)
 - [Rehashing](#re)
+- [Implementations of Hash Tables](Implementations)
 
 ## Hash Table
 - Data structure that associates keys with values. `<key, value>`, Supports constant time lookups. Average Case: O(1), Worst case: O(n)
@@ -22,9 +23,6 @@ Search in O(1) time.
   - Let HT size = 100, we want to  insert 101st element. Not only the size of hash table is enlarged to 150, all element in hash table have to be rehashed. This insertion operation takes O(n).
 - **b. Elements are stored as unsorted order:** Some circumstance data should stored in sorted order. Eg: contacts in cell phone.
 - **c. Hash Collision:** When hash function provides same index/value for 2 different keys.
-
-
-- *[How Hash Table is implemented Internally](How_HashTable_Implemented_Internally)*
 ```c
   key -> |Hash Function| -> index of array/table
 ```
@@ -110,8 +108,3 @@ Let's consider `unordered_map<int,string>` storing unique keys. At start of prog
 ```
 - Now, (4, up) need to be stored, but hash table has no space so size of hash table is increased to 6. 
 - (old Hash function = %3) we can only goto index number=2. But we want to reach 5. Hence Hash function is changed (old Hash function = %6). So hash is again calculated for existing values.
-
-
-- **[Implementations of Hash Tables?](Implementations)** 
-  - _1._ 2-way/2-choice/2-left Hash Table
-  - _2._ Cuckoo Hashing
