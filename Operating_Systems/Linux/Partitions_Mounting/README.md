@@ -215,7 +215,8 @@ This is combination/summation of Physical volumes prepared using "pvcreate".
     |        |                |                                                               
 | PE1 | PE2 | PE3 | PE4 | Hard Disk-1/Physical Volume(PV)       | PE1 | PE2 | PE3 | PE4 | Hard Disk-2/Physical Volume(PV)
 ```
-<a name=lvm.png></a>
+
+<img src=lvm.png width=500>
 
 <a name=cre></a>
 ### Creating Logical Volume
