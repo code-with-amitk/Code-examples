@@ -207,14 +207,16 @@ This is combination/summation of Physical volumes prepared using "pvcreate".
 - Storage devices for: Applications, users. These are collection of logical extents(LE) which maps to PE(1 LE can map to more than 1 PE). 
 - LVs can be used as raw block devices just like disk partitions: creating mountable file systems on them, or using them as swap storage.
 ```c
-           		             |Log Vol-1|                 |Log Vol-2|
-                                                            |          
-   	          | Volume Group-1 |                                                             | Volume Group-2 |
-                    |                                                                                |
-             --------------------                                                      ------------------------
-            |        |                |                                                                        
-        | PE1 | PE2 | PE3 | PE4 | Hard Disk-1/Physical Volume(PV)   			            | PE1 | PE2 | PE3 | PE4 | Hard Disk-2/Physical Volume(PV)
+  		             |Log Vol-1|                 |Log Vol-2|
+                                                  |          
+      | Volume Group-1 |                                             | Volume Group-2 |
+           |                                                               |
+     --------------------                                          ------------------------
+    |        |                |                                                               
+| PE1 | PE2 | PE3 | PE4 | Hard Disk-1/Physical Volume(PV)       | PE1 | PE2 | PE3 | PE4 | Hard Disk-2/Physical Volume(PV)
 ```
+<a name=lvm.png></a>
+
 <a name=cre></a>
 ### Creating Logical Volume
 ```c
