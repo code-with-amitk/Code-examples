@@ -92,6 +92,7 @@ Each cell of HT point to a **DOUBLY LINKED LIST** of records that have same hash
   - Once LL/chain grows long, performance will degrade search time=O(n)
   - Space wastage, some parts of hash table may never be used
   - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
+- **Load Factor α = n/m** where m=slots, n=elements
 ![ImgUrl](https://i.ibb.co/XWZfxwX/chain.png)        
 ```c
   Example:  Hash Function = xmod7, a[]={50, 700, 76, 85, 46, 92, 73, 10}        
