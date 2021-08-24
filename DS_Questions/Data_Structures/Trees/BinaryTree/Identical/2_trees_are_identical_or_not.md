@@ -1,26 +1,53 @@
-/*
- Question: Compare 2 binary trees, return 1 if equal else 0.
+**[Same Tree](https://leetcode.com/problems/same-tree/)**
 
- Logic-1(Extra space):
-        - Traverse tree1 and tree2 and save in vector1 and vector2.
-        - if(vector1 == vector1)
+
+### Question
+Compare 2 binary trees, return 1 if equal else 0.
+```c
+Input: p = [1,2,3], q = [1,2,3]
+Output: true
+   1          1
+  / \        /  \
+ 2  3       2    3
+    
+Input: p = [1,2], q = [1,null,2]
+Output: false
+     1       1
+    /         \
+   2           2
+```
+
+<a name=log></a>
+### Logic
+- **Logic-1: Extra space**
+  - Traverse tree1 and tree2 and save in vector1 and vector2.
+```c
+  if(vector1 == vector1)
                 return 1;
           else 
                 return 0;
+```
 
-Logic-2(Without Extra Space):
-        - if both trees are empty return 1. Both are identical
-        - else Visit same node of each tree. ie tree1 & tree2
-          - if values are same do nothing
-          - if different return 0.       
+- **Logic-2(Without Extra Space)**
+  - Visit same node of each tree. ie tree1 & tree2
+  - if values are same do nothing
+  - if different return 0.     
+
+### Code
+**C++**
+ ```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
  */
-#include<iostream>
-#include<vector>
-struct Node{
-        int data;
-        Node *left;
-        Node*right;
-};
+
 std::vector<int> v1;
 
 void inorder(Node *root){
@@ -31,44 +58,16 @@ void inorder(Node *root){
         if(root->right) inorder(root->right);
 }
 
-Node *createTree1(){
-        Node *ptr = new Node;
-        ptr->data = 1;
-        ptr->left = new Node;
-        ptr->left->data = 2;    ptr->left->left = NULL;         ptr->left->right = NULL;
-        ptr->right = new Node;
-        ptr->right->data = 3;   ptr->right->left = NULL;                ptr->right->right = NULL;
-        return ptr;
-}
-
-Node *createTree2(){
-        Node *ptr;
-        ptr = new Node;
-        ptr->data = 1;
-        ptr->left = new Node;
-        ptr->left->data = 3;    ptr->left->left = NULL; ptr->left->right = NULL;
-        ptr->right = new Node;
-        ptr->right->data = 2;   ptr->right->left = NULL;        ptr->right->right = NULL;
-        return ptr;
-}
-
 int compare(Node *t1, Node *t2){
         std::vector<int> vt1, vt2;
 
         inorder(t1);
         vt1 = v1;               //vt1 has tree1 nodes in inorder
-
-/*      std::cout<<"Tree1=";
-        for (std::vector<int>::iterator itr=vt1.begin(); itr!=vt1.end(); itr++) 
-                std::cout <<*itr; */
         v1.clear();
 
         inorder(t2);
         vt2 = v1;
 
-/*      std::cout<<"Tree2=";
-        for (std::vector<int>::iterator itr=vt2.begin(); itr!=vt2.end(); itr++) 
-                std::cout <<*itr; */
         if(vt1 == vt2){
                 std::cout<<"Returning 1"<<std::endl;
                 return 1;
