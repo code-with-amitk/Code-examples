@@ -23,7 +23,7 @@ Output: false
 ### Logic
 **Logic-1: Extra space:** Traverse tree1 and tree2 and save in vector1 and vector2. if vectors are same return 1 else 0
 
-**Logic-2(Without Extra Space)**
+**Logic-2(Without Extra Space)**       //Using this
   - Visit same node of each tree. ie tree1 & tree2
   - if values are same do nothing
   - if different return 0.     
@@ -40,14 +40,6 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
-
-void inorder(Node *root){
-        if(!root) return;
-        if(root->left) inorder(root->left);
-        v1.push_back(root->data);
-        //std::cout<<"Pushing back:"<<root->data<<"\n";
-        if(root->right) inorder(root->right);
-}
 
 int isSameTree(TreeNode* a, TreeNode* b) {
     if (a == NULL && b == NULL)                       //Both Empty
