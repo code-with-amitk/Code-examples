@@ -2,8 +2,9 @@
 - [Advantages, Disadvantages](#adv)
 - [HT vs Self Balanced BT](#vs)
 - [How Hash Table is implemented internally](#int)
-- [Hash Collision](#hc)
-  - [Solution](#sol)
+- **Hash Collision**
+  - [Solution-1. Seperate Chaining](#sc)
+  - [Solution-2. Open Addressing](#oa)
 - [Rehashing](#re)
 - [Implementations of Hash Tables](Implementations)
 
@@ -77,14 +78,17 @@ Files are organized into buckets(Size is power of 2) stored either on RAM/disk/d
 Enrollment-Number(Key)  -> hash_function ->  Bucket-3
 ```
 
-<a name=hc></a>
 ## Hash Collision
 When hash function provides same index or value for 2 different keys.
-<a name=sc></a>
+<a name=sc1></a>
 ### Solution-1: Seperate Chaining
-Each cell of HT point to a linked list of records that have same hash function value. This requires additional memory outside the table.
-- *Advantages:* Simple implementation, Space will never exhaust, Less sensitive to hash function
-- *Disadvantages:*
+Each cell of HT point to a **DOUBLY LINKED LIST** of records that have same hash function value. This requires additional memory outside the table.
+- _Complexities:_ 
+  - Insert(x): O(1). Insert at head of LL
+  - Search(x): O(n). Need to search complete list
+  - Delete(x): O(1). Assumed we are at element in chain, we delete x. copy prev to next pointer. In singly LL we need O(n) time to search prev node.
+- _Advantages:_ Simple implementation, Space will never exhaust, Less sensitive to hash function
+- _Disadvantages:_
   - Once LL/chain grows long, performance will degrade search time=O(n)
   - Space wastage, some parts of hash table may never be used
   - Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
@@ -99,7 +103,7 @@ Each cell of HT point to a linked list of records that have same hash function v
         |  700  |   50     |        |        |        |        |    76    |        Hash Table
              0         1          2      3       4        5       6
 ```
-
+<a name=oa></a>
 ### Solution-2: Open Addressing  
 All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains.
 
