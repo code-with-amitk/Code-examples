@@ -1,7 +1,7 @@
 **[Same Tree](https://leetcode.com/problems/same-tree/)**
    - [Logic](#log)
    - [Complexity](#comp)
-   - Code
+   - [Code](#cpp)
 
 ### Question
 Compare 2 binary trees, return 1 if equal else 0.
@@ -29,6 +29,7 @@ Output: false
   - if different return 0.     
 
 ### Code
+<a name=cpp></a>
 **C++**
  ```cpp
 struct TreeNode {
