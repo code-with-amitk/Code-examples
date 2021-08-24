@@ -15,6 +15,17 @@
   - **Using fdisk or gdisk**
     - [MBR Partition](#mbr)
     - [GPT Partition](#gpt)
+- **LVM**
+  - [Terms: Physical Volume, Logical Volume, Volume Group](#te)
+  - [Creating Logical Volume](#cre)
+- **Others**
+  - [1. Combine 2 linux partitions to Create Volume Group(test-vg) & create Logical-Volume arya(512MB) mount on /start](#o1)
+  - [2. Existing Logical-Volume (loans=256MB). Increase It to 768MB. Mount at /finance/loans](#o2)
+  - [3. Logical-volume(/dev/finance/loans=768MB), Reduce to 256MB, Again resize to 768MB. Without Loss of data](#o3)
+  - [4. Make Volume-Group(oracleVG having each physicalExtentSize=8MB), (Logical Volume red_lv will have 100 extents), red_lv is ext3 formatted](#o4)
+- [Creating Bootable USB](#creu)
+- [Mounting USB Device](#mou)
+
 
 ## Disk Partition
 Dividing hard drive into multiple logical storage units called partitions. Disk is partitioned at time of OS installation or later whenever we need to extend/create a partition(using fdisk)
@@ -203,4 +214,144 @@ This is combination/summation of Physical volumes prepared using "pvcreate".
              --------------------                                                      ------------------------
             |        |                |                                                                        
         | PE1 | PE2 | PE3 | PE4 | Hard Disk-1/Physical Volume(PV)   			            | PE1 | PE2 | PE3 | PE4 | Hard Disk-2/Physical Volume(PV)
+```
+<a name=cre></a>
+### Creating Logical Volume
+```c
+///////////1. Disk Partition    //Create a Disk partition/Space using fdisk. Type = 8e (LVM)///////////////
+Method-1:    Reserve some free Space while installing Linux    //Preferred
+    While Selecting Disk > Select (I will configure Partitioning) > Done
+    Create Partitions automatically > Take 10 GB for /.
+    See Available Space = 40.68GB
+# lsblk
+    NAME                                     MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+    sda                                            8:0    0  100G  0 disk 
+    ├─sda1                                     8:1    0    1G  0 part /boot
+    ├─sda2                                     8:2    0 58.3G  0 part 
+    │ ├─rhel_vm249--232-root 253:0        0  9.3G  0 lvm  /
+    │ ├─rhel_vm249--232-swap 253:1      0  7.9G  0 lvm  [SWAP]
+    │ └─rhel_vm249--232-home 253:2     0 41.1G  0 lvm  /home        <<41GB at home
+# lsblk; fdisk /dev/sda
+    p(print the partition table)    >    n(add a new partition)  Give Size    > t=8e(LVM)//Type    >    w(write table to disk and exit)    > /dev/sda3
+# partprobe /dev/sda3
+
+Method-2:    Already installed OS, with All space occupied by /
+# lsblk 
+NAME        MAJ:MIN RM  SIZE   RO TYPE MOUNTPOINT
+vda                  252:0    0   15G      0 disk 
+├─vda1           252:1    0  200M     0 part /boot
+├─vda2           252:2    0 1000M    0 part [SWAP]
+└─vda3           252:3    0 13.8G     0 part 
+  ├─myvg-rootvol 253:0   0 13.3G 0 lvm  /        <<<See 13.3GB allocated to /
+  └─myvg-homevol 253:1 0 500M  0 lvm  /home
+# fdisk -l
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048     2099199     1048576   83  Linux
+/dev/sda2         2099200    62914559    30407680   8e  Linux LVM
+# fdisk /dev/sda2
+    p(print the partition table)    >    n(add a new partition)  Give Size    > t=8e(LVM)//Type    >    w(write table to disk and exit)
+Issue-1: No free sectors available.
+    Root-Cause: There is no free space on Disk, all space is allocated to /
+# partprobe
+
+
+///////////////////2. Make this disk partition as Logical Volume.    pvcreate, vgcreate, lvcreate//////////////////
+# lsblk; pvcreate /dev/sda3; pvscan; pvdisplay
+# vgcreate test-vg /dev/sda3; vgscan; vgdisplay                    //-c: Clustered support. -y:Take input as yes
+# lvcreate  -n arya  -L 512M  test-vg; lvscan; lvdisplay        //-n:name    -L:size-in-bytes    -l:number-of-physical-extents-to-allocate    name-of-volume-group-from-which LV needs to be created
+
+
+///////////////////3. Format this LVM in desired file system type => gfs, xfs, ext3 etc////////////
+# mkfs  -t xfs  /dev/mapper/test--vg-arya
+```
+
+### Others
+<a name=o1></a>
+#### 1. Combine 2 linux partitions to Create Volume Group(test-vg) & create Logical-Volume arya(512MB) mount on /start
+```c
+# fdisk    -l
+# fdisk    /dev/vdb        //Create 2 partitions    /vdb1 /vdb2
+    type: 8e    //LVM
+# partprobe
+# pvcreate  /dev/vdb1  /dev/vdb2;    pvdisplay            
+# vgcreate  test-vg  /dev/vdb1  /dev/vdb2;    vgdisplay   //vgcreate  -s <size-o-physical-extent>  <name>
+# lvcreate   -n arya   -L 512M  test-vg;    lvdisplay        //lvcreate  -n <name>  -L <size-in-bytes>   -l <number-of-physical-extents-to-allocate>   <name-of-volume-group-from-which LV needs to be created>
+# mkfs  -t xfs  /dev/mapper/test--vg-arya        //Build file system
+# lsblk;  blkid
+    UUID="........"
+# vim  /etc/fstab
+    UUID=....    /start    xfs    defaults    0    0
+# mount -a
+```
+
+<a name=o2></a>
+#### 2. Existing Logical-Volume (loans=256MB). Increase It to 768MB. Mount at /finance/loans
+```c
+# lvdisplay  /dev/finance/loans
+    ....    //Size of Logical Volume
+# fdisk /dev/vdb
+    ....    //Created    /dev/vdb3
+# pvcreate  /dev/vdb3
+# vgextend    finance    /dev/vdb3
+# lvextend    -n /dev/finance/loans    -L 768M    
+# xfs_growfs    /finance/loans        //For creating we use mkfs
+```
+
+<a name=o3></a>
+#### 3. Logical-volume(/dev/finance/loans=768MB), Reduce to 256MB, Again resize to 768MB. Without Loss of data
+```c
+# lvdisplay    /dev/finance/loans
+# cp    /finance/loans/*    /home/Desktop        <============Without Loss of data
+# lvreduce    -n /dev/finance/loans    -L 256M    
+# lvextend    -n /dev/finance/loans    -L 768M   
+```
+
+<a name=o4></a>
+#### 4. Make Volume-Group(oracleVG having each physicalExtentSize=8MB), (Logical Volume red_lv will have 100 extents), red_lv is ext3 formatted.
+```c
+# fdisk  /dev/vdb    [Get vdb1 of 1GB]
+# pvcreate /dev/vdb1
+# vgcreate  oracleVG  /dev/vdb1  -s 8M;    vgdisplay
+# lvcreate -n red_lv1  -l 100  oracleVG;    lvcreate
+# mkfs  -t ext3  /dev/mapper/oracle_red_lv
+```
+
+<a name=creu></a>
+## [Creating Bootable USB](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/sect-making-usb-media?extIdCarryOver=true&sc_cid=701f2000001Css5AAC)
+```c
+Step-1. A log detailing all recent events will be displayed. At the bottom of this log, you will see a set of messages caused 
+by the USB flash drive you just connected. Note the name of the connected device - in the above example, it is sdb
+-> Insert USB.    # lsblk;    lsusb;    dmesg 
+
+Step-2.  Make sure that the device is not mounted. If the command displays no output, you can proceed with the next step. 
+if the command does provide output, it means that the device was automatically mounted and you must unmount it before proceeding.
+# findmnt /dev/sdb
+
+Step-3. Umount if mounted.
+# findmnt /dev/sdb
+    TARGET   SOURCE   FSTYPE  OPTIONS    
+    /mnt/iso /dev/sdb iso9660 ro,relatime
+# umount /mnt/iso
+
+Step-4: Use the dd command to write the installation ISO image directly to the USB device. 
+Replace /image_directory/image.iso with the full path to the ISO image file you downloaded, device with the device name 
+as reported by the dmesg command earlier, and blocksize with a reasonable block size (for example, 512k) to speed up the writing process. 
+    # dd if=/image_directory/image.iso of=/dev/device bs=blocksize
+    # dd if=/home/testuser/Downloads/rhel-server-7-x86_64-boot.iso of=/dev/sdb bs=512k
+    
+Step-5: Wait for dd to finish writing the image to the device.    
+```    
+
+<a name=mou></a>
+## Mounting USB Device
+```c
+Step-1. Detect USB device. Look for your USB drive based on its size and filesystem. Once ready, take a note of the block device name of the partition you intent to mount.
+# fdisk -l 
+# gparted
+
+Step-2: Create mount point and mount
+# mkdir /root/test-mount
+# mount /dev/sdb /root/test-mount
+Issue-1:  mount: /dev/sdb is write-protected, mounting read-only.mount: wrong fs type, bad option, bad superblock on /dev/sdb,
+Resolution:  
 ```
