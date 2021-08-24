@@ -1,12 +1,12 @@
 **Hash Table**
 - [Advantages, Disadvantages](#adv)
 - [HT vs Self Balanced BT](#vs)
-- [How Hash Table is implemented internally](#int)
+- [How HT is implemented internally](#int)
 - **Hash Collision**
   - [Solution-1. Seperate Chaining](#sc)
   - [Solution-2. Open Addressing](#oa)
 - [Rehashing](#re)
-- [Implementations of Hash Tables](Implementations)
+- [Implementations of HT](Implementations)
 
 ## Hash Table
 - Data structure that associates keys with values. `<key, value>`, Supports constant time lookups. Average Case: O(1), Worst case: O(n)
