@@ -1,6 +1,6 @@
 - **Software geeks says: I LOVE PROBLEMS and this is AWESOME**
 
-## [Word Break leetcode](https://leetcode.com/problems/word-break/)
+## [Word Break](https://leetcode.com/problems/word-break/)
 - Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 - The same word in the dictionary may be reused multiple times in the segmentation. Dictionary does not contain duplicate words.
 - **Examples**
