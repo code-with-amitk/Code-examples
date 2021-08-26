@@ -10,8 +10,9 @@
 - **Returning Triats from Function**
   - [Function returning trait](#ret-t)
   - [Function cannot implement 2 traits internally](#invalid-t)
-- **Traits provided by Standard library**
+- **[Traits provided by Standard library](#sl)**
   - Fn, FnMut, or FnOnce
+  - Dref, Drop
 
 
 ## Trait
@@ -159,3 +160,11 @@ pub fn fun (test:bool) -> impl CompanyDB {
   }
 }
 ```
+
+<a name=sl></a>
+## Traits provided by Standard Library
+#### Dref trait
+Allows an instance of the smart pointer struct to behave like a reference so you can write code that works with either references or smart pointers
+
+#### Drop trait
+Allows you to customize the code that is run when an instance of the smart pointer goes out of scope.
