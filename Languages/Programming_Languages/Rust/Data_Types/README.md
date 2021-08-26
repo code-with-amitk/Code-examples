@@ -7,10 +7,11 @@ Type Annotation
   - [bool](#booldatatype)
   - [char](#chardatatype)
 - **Compund Data Type**
-  - [Array Type](#arraydatatype)
-  - [Tuple Type](#tupledatatype)
+  - [Array Type](#a)
+  - [Tuple Type](#t)
     - [`Option<String, i32>` tuple](#opt)
-  - [struct Type](#structdatatype)
+  - [struct Type](#st)
+  - [cons list](#cl)
 
 ### Type Annotation
 - When many types are possible. Eg: String converted to a int using parse(), we must add a type annotation to tell type to complier.
@@ -113,7 +114,7 @@ fn main() {
 # Compund Data Type
 Compound types can group multiple values into one type.
 
-<a name="arraydatatype"></a>
+<a name="a"></a>
 ## Array Type
 - Array elements are allocated contigiously on stack, unlike vectors which's allocated on heap.
 - Unlike Tuple, every element of an array must have the same type.
@@ -131,7 +132,7 @@ fn main() {
 }
 ```
 
-<a name="tupledatatype"></a>
+<a name="t"></a>
 ## Tuple Type
 - Grouping together different data types into 1 compound type.
 - Tuples are fixed length, once declared, they cannot grow or shrink in size.
@@ -157,6 +158,27 @@ fn main() {
   
 ```
 
-<a name="structdatatype"></a>
+<a name="st"></a>
 ## [Struct Type](Compound)
 - associated functions
+
+<a name=cl></a>
+## cons list
+CL is data structure which constructs a new pair from its two arguments, its something like a box is allocated internally to other and so on.
+```rs
+use crate::List::{Cons, Nil};
+
+fn main() {
+    let list = Cons(1, Cons(2, Cons(3, Nil)));           //Compile error. recursive without indirection
+}
+//Why Compile error? Compiler cannot determine how many i32 are nested inside.
+
+
+//Solution: Now we only store pointer to cons list at compile time.
+enum List { Cons(i32, Box<List>), Nil,}             //BOX
+
+fn main() {
+    let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
+}
+```
+<img src=cl.JPG width=400/>
