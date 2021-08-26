@@ -129,7 +129,7 @@ Google's kubernets software. GKE provides a managed environment for deploying, m
 - Create Cluster > Standard > Location(Zonal), Control plane version(Release) > Create
 - Node Pool(These are seperate instance groups running in GKE) > No of nodes, config > Ok
 
-<img src=gke.JPG width=500/>
+<img src=gke1.JPG width=500/>
 
 Once cluster is ready Choose connect button, run following command in cloud shell.
 ```
