@@ -3,6 +3,7 @@
 - [$ cargo doc     //Documentation](#doc)
   - [Sections in HTML Document](#sec)
 - [$ cargo publish  //publish on crates.io](#pub)
+- [$ cargo install  //install crate](#in)
 - [Cargo Commands](Cargo_Commands)
 
 <a name=what></a>
@@ -114,3 +115,6 @@ $ cargo publish
 //Remove particular version
 $ cargo yank --vers 0.1.0
 ```
+
+<a name=in></a>
+### `$cargo install`
