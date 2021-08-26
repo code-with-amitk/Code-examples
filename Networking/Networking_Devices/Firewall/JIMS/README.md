@@ -3,6 +3,7 @@
   - [JIMS Clients](#clients)
 - **Queries to JIMS**
   - [IP Query](#ip)
+  - [Batch Query](#bq)
 
 ## What
 JIMS is a Windows Application which sits on layer-5 and between SRX devices and AD or Exchange Servers(in AD). Why?
@@ -29,8 +30,8 @@ JIMS is a Windows Application which sits on layer-5 and between SRX devices and 
 
 ## Queries to JIMS
 <a name=ip></a>
-### IP Query
-This is a feature to be enabled on SRX device, when enabled, SRX will send query message(over HTTP/HTTPS) to JIMS for user information based on IP Address of user's device.
+#### IP Query
+This is a feature to be enabled on SRX device. SRX will send query message(over HTTP/HTTPS) to JIMS to get user information based on IP Address of user's device.
 ```c
                   JIMS                                          SRX_Device (IP Query enabled)
                     <-- Give user info (IP=x.y.z.g)/HTTP_HTTPS---
@@ -41,3 +42,6 @@ option-1
   no-ip-query	: Disable IP query. IP query is enabled by default.
   query-delay-time : Time after which the SRX Series device sends the query. Rather than allow the SRX Series device to respond automatically by sending a user query immediately, you can set a query-delay-time parameter, specified in seconds, that allows the SRX Series device to wait for a period of time before sending the query. Default: 15. Range: 0-60 seconds
 ```
+<a name=bq></a>
+#### batch query
+Get information for group of users.
