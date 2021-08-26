@@ -1,11 +1,10 @@
-- [What is dup](#what)
+**dup**
 - **dup() APIs**
   - [1. dup()](#dup)
   - [2. dup2()](#dup2)
     - [2.1 Output redirection using dup2](#impl)
   - [3. dup3()](#dup3)
 
-<a name=what></a>
 ## [dup() / Duplicate](https://man7.org/linux/man-pages/man2/dup2.2.html)
 - All dup() system calls create copy of file descriptor.
 - Input:0, Output:1, Error:2
