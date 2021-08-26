@@ -118,3 +118,8 @@ $ cargo yank --vers 0.1.0
 
 <a name=in></a>
 ### `$cargo install`
+- Allows to install a [binary crate](/Languages/Programming_Languages/Rust/Crates_Packages_Modules) locally.
+- All binaries installed with cargo install are stored in the installation root’s bin folder.
+```rs
+$ cargo install ripgrep   //Installing ropgrep binary crate
+```
