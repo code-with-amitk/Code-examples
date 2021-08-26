@@ -1,4 +1,4 @@
-- [Shell](#what)
+**Shell**
 - **Types of Shells**
   - [Bash](#bash)
   - [Ksh](#ksh)
@@ -8,9 +8,8 @@
   - [1. C++: Execute commands, Redirection](#cpp)
   - [2. C](#cc)
 
-<a name=what></a>
 ## Shell
-- Computer program which exposes OS services to User or programs.
+Computer program which exposes OS services to User or programs.
 
 <img src=shell.PNG width=400/>
 
@@ -88,6 +87,8 @@ void Execute (VectorString& vecInput) {                         //6
     waitpid (-1, &status, 0);
 }
 
+//ls -ltr > a.txt
+//Implements redirect using dup2
 void Redirect (VectorString& vecStr) {
   //Considering last as file name
   int oldfd = creat (vecStr[vecStr.size() - 1].c_str(), 0644);    //5a
@@ -98,6 +99,18 @@ void Redirect (VectorString& vecStr) {
   close (oldfd);
 }
 
+//ls -ltr | grep a.out
+//Implements Pipe |
+void Pipe (VectorString& vecStr) {
+  VectorString::iterator itr;
+  VectorString temp;
+  for (itr = vecStr.begin(); itr != vecStr.end(); itr++) {
+    if (*itr == "||")
+      Execute (temp);
+    temp.push_back (*itr);
+  }
+}
+
 int main() {
   string strInput;
   VectorString vecStr;
@@ -106,7 +119,6 @@ int main() {
     cout << "> ";                               //1
     getline (cin, strInput);                    //2
     boost::algorithm::trim (strInput);
-    
     if (strInput == "q") {                      //3
       cout << "Bye!!\n";
       exit (0);
@@ -118,9 +130,11 @@ int main() {
 
     if (count(vecStr.begin(), vecStr.end(), ">"))   //5
       Redirect(vecStr);
+    else if (count.vecStr.begin(), vecStr.end(), "|")
+      Pipe (vecStr);
     else                                          //6
       Execute (vecStr);
-      
+
     vec.clear();
   }
 }
