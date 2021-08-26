@@ -11,7 +11,7 @@
   - [1. Instance Groups](#ins)
   - [2. Autohealing](#ah)
 - **GKE(Google Kubernets Engine**
-  - [Deploying](#gked)
+  - [Deploy, Connect](#gked)
 
 <img src=gcp.JPG width=1000>
 
@@ -124,9 +124,14 @@ A healthcheck message is sent to each VM in [instance group](#ins). If response 
 ## GKE / Google Kubernet Engine
 Google's kubernets software. GKE provides a managed environment for deploying, managing, & scaling [containerized applications](/System-Design/Concepts/All_About_Containers) using Google infrastructure.
 <a name=gked></a>
-### Deploying GKE
+### Deploy, Connect GKE
 - `https://console.cloud.google.com/` > Kubernets Engine > Enable. 
 - Create Cluster > Standard > Location(Zonal), Control plane version(Release) > Create
 - Node Pool(These are seperate instance groups running in GKE) > No of nodes, config > Ok
 
 <img src=gke.JPG width=500/>
+
+Once cluster is ready Choose connect button, run following command in cloud shell.
+```
+$ gcloud container clusters get-credentials cluster-1 --zone us-central1-c --project amit-project-323006
+```
