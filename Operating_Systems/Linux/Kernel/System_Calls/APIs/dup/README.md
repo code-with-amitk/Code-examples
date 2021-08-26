@@ -22,11 +22,13 @@
 
 <a name=impl></a>
 #### 2.1 Output redirection `$ cat a>b`
-- Note: printf("str") writes the string to STDOUT(fd=1).
+printf("str") writes the string to STDOUT(fd=1).
 ```c
+
     ====Output_screen_Buffer====          =====a.txt=====
     /\                                    /\
   fd=1                                   fd_a=4
+  saved_stdout
 
 dup2(fd_a, 1)
   close (1)
@@ -36,10 +38,14 @@ dup2(fd_a, 1)
 
 #include<unistd.h>
 int main(){
+  int saved_stdout = dup(1);             //Saving STDOUT for restoring after completing work
   int fd_a = creat("a.txt", 0644);       //1. Create a file and open it
   dup2 (fd_a, STDOUT_FILENO);            //2. Create newfd(STDOUT) as duplicate of "file.txt".
                                          //   Now if somewrite on STDOUT, it will be written to "file.txt"
   printf("Be excited");
+  
+  dup2 (1, saved_stdout);                //3. Work completed, Lets restore stdout back
+  close (fd_a);
 }
 $ gcc test.c
 $ cat a.txt
