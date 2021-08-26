@@ -7,9 +7,11 @@
   - [Big Data Services](#bd)
   - [ML Services](#ml)
   - [Identity Services](#id)
-- [Deploying GCE](#dep)
+- **[Deploying GCE(Google Compute Engine)](#dep)**
   - [1. Instance Groups](#ins)
   - [2. Autohealing](#ah)
+- **GKE(Google Kubernets Engine**
+  - [Deploying](#gked)
 
 <img src=gcp.JPG width=1000>
 
@@ -118,3 +120,13 @@ Process large amound of data and answer complex problems.
 <a name=ah></a>
 #### 2. Autohealing
 A healthcheck message is sent to each VM in [instance group](#ins). If response is not recieved intime, its assumed VM is not healthy and new VM is instantiated in its place.
+
+## GKE / Google Kubernet Engine
+Google's kubernets software. GKE provides a managed environment for deploying, managing, & scaling [containerized applications](/System-Design/Concepts/All_About_Containers) using Google infrastructure.
+<a name=depg></a>
+### Deploying GKE
+- `https://console.cloud.google.com/` > Kubernets Engine > Enable. 
+- Create Cluster > Standard > Location(Zonal), Control plane version(Release) > Create
+- Node Pool(These are seperate instance groups running in GKE) > No of nodes, config > Ok
+
+<img src=gke.JPG width=500/>
