@@ -90,12 +90,16 @@ void Execute (VectorString& vecInput) {                         //6
 //ls -ltr > a.txt
 //Implements redirect using dup2
 void Redirect (VectorString& vecStr) {
+  int saved_stdout = dup(1);                              //Saving stdout for restoring after getting work done
+  
   //Considering last as file name
   int oldfd = creat (vecStr[vecStr.size() - 1].c_str(), 0644);    //5a
   dup2 (oldfd, STDOUT_FILENO);                                    //5b
   vecStr.pop_back();      //Remove filename                       //5c
   vecStr.pop_back();      //Remove redirection symbol >
   Execute (vecStr);
+  
+  dup2(1, saved_stdout);                                  //Work completed, restore stdout back.
   close (oldfd);
 }
 
