@@ -22,7 +22,7 @@
 
 <a name=impl></a>
 #### 2.1 Output redirection `$ cat a>b`
-- Note: printf("str") writes the string to STDOUT(fd=0).
+- Note: printf("str") writes the string to STDOUT(fd=1).
 ```c
     ====Output_screen_Buffer====          =====a.txt=====
     /\                                    /\
