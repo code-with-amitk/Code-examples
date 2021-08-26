@@ -1,7 +1,7 @@
 - **Crates**
   - [1. rand](#rand)
 - **Packages**
-  - **Workspace**
+  - [Workspace](#ws)
 - **Modules**
   - [Creating a module & accessing its function](#create)
   - [super keyword](#super)
@@ -30,6 +30,7 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 ## Packages
 1 package is one or more crates that provide a set of functionality. A package contains a [Cargo.toml](../Cargo_BuildSystem) file that describes how to build crates.
 
+<a name=ws></a>
 ### Workspace
 This is set of packages that share the same Cargo.lock and output directory
 ```rs
