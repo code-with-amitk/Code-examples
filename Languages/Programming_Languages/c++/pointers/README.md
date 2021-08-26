@@ -1,6 +1,6 @@
 **Pointers**
-- [Raw](#raw)
-- [Smart](#smart)
+- **Raw/Normal**
+- **Smart**
   - [Code](#smartcode)
   - **Types of Smart Pointers**
     - [Unique ptr vs Shared ptr](#vs)
@@ -13,23 +13,19 @@
       - [Code](#spcode)
     - _3. WEAK POINTER weak_ptr_
 
-<a name=raw></a>
 ## Raw/Normal pointer 
-- as defined in C. Eg: 
+As defined in C. Eg: 
 ```c
 int *p = new int();         //p is raw pointer.
 ```
 
-<a name=smart></a>
 ## Smart Pointer
-- User-defined class that manages automatic deletion of dynamic memory. Allocation is done in constructor, deletion inside destructor. Bcoz Destructors are automatically executed 
-when Object goes out of scope.
+This is a data structure that not only act like a pointer but has additional metadata, which does automatic deletion of allocated memory when no one using it.
+- In code, this is User-defined class where Allocation is done in constructor, deletion inside destructor. Bcoz Destructors are automatically executed when Object goes out of scope.
 - These are useful when Programmer may allocate memory using new() & later might forget to use delete(). 
 
 <a name=smartcode></a>
-- **Code**
-  - class maintains a local pointer, memory is allocated and assigned to pointer.
-  - Overloaded functions are defined for *, ->
+**Code:** class maintains a local pointer, memory is allocated and assigned to pointer. Overloaded functions are defined for `*, ->`
 ```cpp
 template <class T>		
 class A{                    //This class is Smart pointer
