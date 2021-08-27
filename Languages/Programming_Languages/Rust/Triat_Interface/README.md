@@ -163,8 +163,7 @@ pub fn fun (test:bool) -> impl CompanyDB {
 
 <a name=sl></a>
 ## Traits provided by Standard Library
-#### Dref trait
-Allows an instance of the smart pointer struct to behave like a reference so you can write code that works with either references or smart pointers
+- **[Dref trait](/Languages/Programming_Languages/Rust/Smart_Pointers)**
 
 #### Drop trait
 Allows you to customize the code that is run when an instance of the smart pointer goes out of scope.
