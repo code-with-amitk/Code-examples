@@ -53,9 +53,9 @@ struct Test<T>(T);
 // Standard library provided Deref trait.
 
 impl<T> Deref for Test<T> {                     //Standard Library's deref trait
-    type Target = T;
+    type Target = T;                            //type is associated Type to be used inside Deref trait.
     fn deref(&self) -> &Self::Target {          //Defining deref()
-        &self.0
+        &self.0                                 //return value from structure which dereference want to get
     }
 }
 
