@@ -1,28 +1,26 @@
-## struct
-
-- [Define struct](#Defining_struct)
-- [Initiale struct](#initialize)
-- [Mutable struct](#mutable)
+**struct**
+- [Define struct](#d)
+- [Initiale struct](#i)
+- [Mutable struct](#m)
 - [Dump struct variables using println](#dump)
-- [Associated Function](#return)
+- [Associated Function](#a)
 
 
 
-<a name=Defining_struct></a>
+<a name=d></a>
 ### Define struct
-- name 1st followed by type
-```rust
+```rs
 struct Employee {
-  name: String,
+  name: String,     //name:type
   email: String,
   salary: f64,
   empID: u32,
 }
 ```
 
-<a name=initialize></a>
+<a name=i></a>
 ### Initialize struct
-```rust
+```rs
 let amit = Employee {
   name: String::from("Amit"),
   email: String::from("amit@test.com"),
@@ -31,12 +29,10 @@ let amit = Employee {
 }
 ```
 
-<a name=mutable></a>
+<a name=m></a>
 ## Mutable struct
-- immutable: which cannot be changed.
-- Means struct whose values can be changed.
-- Entire struct has to be mutable, Rust does not allow only some feilds to be mutable.
-```rust
+immutable(which cannot be changed). Mutable struct means whose values can be changed. Entire struct has to be mutable, Rust does not allow only some feilds to be mutable.
+```rs
 let mut champ = Employee {
   name: String::from("Champ")
   email: String::from("champ@gmail.com")
@@ -76,7 +72,7 @@ dimen {                         //2
 }
 ```
 
-<a name=return></a>
+<a name=a></a>
 ### Associated Function
 - **What?** 
   - Defined inside impl block. As name depicts, they are associated with datatype.
