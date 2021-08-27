@@ -1,12 +1,12 @@
 **Generic Types**
-- [Generic Structure & Generic impl block](#genst)
-- [Monomorphization / Generic Internal Implementation](#internal)
+- [Generic Structure & Generic impl block](#g)
+- [Monomorphization / Generic Internal Implementation](#i)
 
 
 ## Generic Type
-- Same as templates, used to handle the duplicate data types,code.
+Same as templates, used to handle the duplicate data types,code.
 
-<a name=genst></a>
+<a name=g></a>
 ## Generic Structure & Generic impl block
 ```rs
 #[derive(Debug)]
@@ -37,11 +37,11 @@ fn main() {
 10
 ```
 
-<a name=internal></a>
+<a name=i></a>
 ## Generic Internal Implementation
 - Rust replaces generic code into specific-type code by filling in the concrete types that are used when compiled. This is called monomorphization.
 - How `Option<T> enum` is implemented?
-```rust
+```rs
 let integer = Some(5);
 let float = Some(5.0);
 
