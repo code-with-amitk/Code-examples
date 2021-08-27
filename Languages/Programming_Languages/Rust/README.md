@@ -156,6 +156,7 @@ fn fun2(a_string: String) -> String {
 
 <a name=smart></a>
 ### [Smart Pointers](Smart_Pointers)
+`Box <T>`
 
 <a name=datatypes></a>
 ### [Data Types](Data_Types)
