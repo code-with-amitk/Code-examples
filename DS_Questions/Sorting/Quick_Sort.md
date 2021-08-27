@@ -1,16 +1,20 @@
-## Quick Sort
-- Divide and conquer algo
+**Quick Sort / Divide and conquer algo**
+- [Approach](#a)
+- [Logic](#l)
+
 
 [if confused](https://www.youtube.com/watch?v=QN9hnmAgmOc)
 
+<a name=a></a>
 ### Approach(Very Simple)
 ```c
   6   7   8   9   1   5
 start                end
 ```
-- *1.* Any random element is selected as Pivot. Eg: pivot=a[0]=6
+- *1.* Any random element is selected as Pivot. Eg: pivot=`a[0]=6`
 - *2.* Find the final place(index=2) of pivot in the array. Final place will be the position which it will have in sorted array. `1 5 6 7 8 9`
 
+<a name=l></a>
 ### Logic
 ```c
   Iterate Until(start < end)
