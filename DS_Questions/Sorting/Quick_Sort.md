@@ -1,6 +1,8 @@
 **Quick Sort / Divide and conquer algo**
 - [Approach](#a)
 - [Logic](#l)
+- [Complexity](#c)
+- [Code](#cpp)
 
 
 [if confused](https://www.youtube.com/watch?v=QN9hnmAgmOc)
@@ -34,17 +36,18 @@ start                end
     if(start < end)
       Swap end and start elements
 }
-- Now end crossed start, swap element_pointed_by_pivot with end_element.
+Now end crossed start, swap element_pointed_by_pivot with end_element.
 
 Recursively do this for left and right sub-arrays.
 ```
-- **Complexity:**
-  - worst: O(n2)
-  - Avg: O(nlogn)
-  - Best: O(n)
 
+<a name=c></a>
+### Complexity
+Worst: O(n<sup>2</sup>), Avg: O(nlogn), Best: O(n)
+
+<a name=cpp></a>
 ### Code
-```c++
+```cpp
 int partition(vector<int>& v, int start, int end) {  
     int pivot = v[end];   //or int pivot = v[left + (right - left) / 2];
     int i = start, j = end;
