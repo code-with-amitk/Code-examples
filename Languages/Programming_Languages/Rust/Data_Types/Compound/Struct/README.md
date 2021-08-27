@@ -44,9 +44,8 @@ champ.name = String::from("Big Champ");     //Changing name of struct
 
 <a name=dump></a>
 ### Dumping struct variables using println
-- **Code**
-  - *A.* To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for particular struct.
-```rust
+A. To print debugging information, we need to explicitly add annotation `#[derive(Debug)]` for particular struct.
+```rs
 #[derive(Debug)]            //A
 struct dimen {
     len:u32,
@@ -74,10 +73,8 @@ dimen {                         //2
 
 <a name=a></a>
 ### Associated Function
-- **What?** 
-  - Defined inside impl block. As name depicts, they are associated with datatype.
-  - All datatype associated functionality is done inside these functions.
-```rust
+Defined inside impl block. As name depicts, they are associated with datatype. All datatype associated functionality is done inside these functions.
+```rs
 use std::{string::String, u32};
 #[derive(Debug)]
 
