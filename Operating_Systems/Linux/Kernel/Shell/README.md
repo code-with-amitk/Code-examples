@@ -103,16 +103,38 @@ void Redirect (VectorString& vecStr) {
   close (oldfd);
 }
 
-//ls -ltr | grep a.out
-//Implements Pipe |
+/*Implements Pipe(|)  ls -ltr | grep a.out
+How grep works?
+ grep string file-name
+  Prints string inside file
+Logic:
+  1. Save STDOUT=1 to restore after doing work
+  2. Create a file(child.txt) to redirect output of execvp() into it
+  3. duplicate STDOUT to child.txt. Now anything written on STDOUT will go to child.txt
+  4. Parse the command. ls -ltr | grep test
+    a. Execute 1st command (ls -ltr) using execvp and write output to child.txt
+    b. Create vector contaning 2nd command after pipe
+  5. Restore stdout.
+  6. Create command as "grep test child.txt" and execute using execvp()
+*/
 void Pipe (VectorString& vecStr) {
+  int saved_stdout = dup(1);            //1 
+  int fd = creat("child.txt", 0644);    //2
+  dup2(fd, STDOUT_FILENO);              //3
+  
   VectorString::iterator itr;
   VectorString temp;
   for (itr = vecStr.begin(); itr != vecStr.end(); itr++) {
-    if (*itr == "||")
-      Execute (temp);
-    temp.push_back (*itr);
+    if (*itr == "|") {
+      Execute (temp);                   //4a  ls -ltr
+      continue;
+    }
+    temp.push_back (*itr);              //4b grep test
   }
+  close (fd);
+  dup2 (saved_stdout, STDOUT_FILENO);   //5
+  temp.push_back("child.txt");          //6
+  Execute (temp);
 }
 
 int main() {
