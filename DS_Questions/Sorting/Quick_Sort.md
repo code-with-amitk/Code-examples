@@ -43,7 +43,12 @@ Recursively do this for left and right sub-arrays.
 
 <a name=c></a>
 ### Complexity
-Worst: O(n<sup>2</sup>), Avg: O(nlogn), Best: O(n)
+- **Time:**
+  - Worst: O(n<sup>2</sup>).
+    - When input array is sorted or reverse sorted. this makes picked pivot as always extreme(smallest or largest) element.
+  - Avg: O(nlogn)
+  - Best: O(n)
+- **Space:** O(1)
 
 <a name=cpp></a>
 ### Code
