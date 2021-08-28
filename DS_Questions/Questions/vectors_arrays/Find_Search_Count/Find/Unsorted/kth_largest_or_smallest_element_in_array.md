@@ -96,7 +96,8 @@ We will find k smallest element.
 
 <a name=co3></a>
 #### Complexity
-- **Time:** O(n), with a worst case of O(n^2)
+- **Time:** O(n), with a worst case of O(n<sup>2</sup>)
+  - _Guranteed O(n)_: Whenever we get worst case input, just shuffle the input. Done in code below. //Blum-Floyd-Pratt-Rivest-Tarjan algorithm
 - **Space:** O(1). No extra space
 
 <a name=cpp3></a>
@@ -149,8 +150,15 @@ public:
     //4,3,7,10,15,20. 3rd Largest = 4th smallest = 10
     //3rd largest = n - 3 + 1 smallest
     //            = 6 - 3 + 1 = 4th smallest
-        return  kthSmallest(a, 0, a.size() - 1, a.size()-k+1);
-    }
+    
+    //Guranteed O(n)
+    //Randomize the input, so that even when the worst case input would be provided the algorithm wouldn't be affected.
+    //So all what it is needed to be done is to shuffle input.
+    auto rng = std::default_random_engine {};
+    std::shuffle(std::begin(a), std::end(a), rng); 
+      
+    return  kthSmallest(a, 0, a.size() - 1, a.size()-k+1);
+  }
 };
 
 int main() {
