@@ -96,7 +96,7 @@ We will find k smallest element.
 
 <a name=co3></a>
 #### Complexity
-- **Time:** Good, Average case:O(n). Worst case: O(n<sup>2</sup>)
+- **Time:** Good, Average case:O(n). Worst case: O(n<sup>2</sup>). [What is worst case of Quick sort](/DS_Questions/Sorting)
   - _Guranteed O(n)_: Whenever we get worst case input, just shuffle the input. Done in code below. //Blum-Floyd-Pratt-Rivest-Tarjan algorithm
 - **Space:** O(1). No extra space
 
