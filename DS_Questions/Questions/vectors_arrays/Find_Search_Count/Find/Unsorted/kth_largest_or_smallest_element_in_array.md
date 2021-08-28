@@ -94,6 +94,11 @@ We will find k smallest element.
     return
 ```
 
+<a name=co3></a>
+#### Complexity
+- **Time:** O(n), with a worst case of O(n^2)
+- **Space:** O(1). No extra space
+
 <a name=cpp3></a>
 #### Code
 ```cpp
