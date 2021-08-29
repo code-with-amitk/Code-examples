@@ -65,6 +65,14 @@ Output:
 <a name=cpp2></a>
 **Code**
 ```c
+struct ListNode {
+      int val;
+      ListNode *next;
+      ListNode() : val(0), next(nullptr) {}             //ListNode(this_ptr)
+      ListNode(int x) : val(x), next(nullptr) {}        //ListNode(this_ptr,int x)
+      ListNode(int x, ListNode *next) : val(x), next(next) {}   //ListNode(this_ptr, int x, ListNode *next)
+};
+
 //Always pass smaller head to l1
 ListNode *fun(ListNode *l1, ListNode *l2){
 
