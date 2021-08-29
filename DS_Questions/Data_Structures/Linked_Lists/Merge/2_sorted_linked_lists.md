@@ -23,7 +23,6 @@ struct ListNode {
       ListNode(int x) : val(x), next(nullptr) {}        //ListNode(this_ptr,int x)
       ListNode(int x, ListNode *next) : val(x), next(next) {}   //ListNode(this_ptr, int x, ListNode *next)
 };
-
 ListNode *merge(ListNode *l1, ListNode *l2){
         if (!l1) 
                 return l2; 
