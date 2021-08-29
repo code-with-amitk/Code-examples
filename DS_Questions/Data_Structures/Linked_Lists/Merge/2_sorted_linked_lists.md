@@ -61,7 +61,7 @@ Output:
 */
 ```
 
-### Approach-1 / Iterative
+### Approach-2 / Iterative
 <a name=cpp2></a>
 **Code**
 ```c
