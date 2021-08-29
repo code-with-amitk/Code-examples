@@ -1,17 +1,21 @@
-/*      merge_two_sorted_linked_lists.cpp
- 
+**Merge two Sorted linked lists**
+- **Approach-1 / Recursion**
+  - [Code](#cpp1)
+- **Approach-2 / Iterative**
+  - [Code](#cpp2)
+
+```c 
 Input:  
  1->3->5->7
  6->8->9
 
 Output: 1->3->5->6->7->8->9
-*/
+```
 
-#include<iostream>
-#include<vector>
-#include<algorithm>
-using namespace std;
-
+### Approach-1 / Recursion
+<a name=cpp1></a>
+**Code**
+```cpp
 struct ListNode {
       int val;
       ListNode *next;
@@ -20,9 +24,6 @@ struct ListNode {
       ListNode(int x, ListNode *next) : val(x), next(next) {}   //ListNode(this_ptr, int x, ListNode *next)
 };
 
-
-/********[WORKING]MERGE USING RECURSION*********/
-/*
 ListNode *merge(ListNode *l1, ListNode *l2){
         if (!l1) 
                 return l2; 
@@ -37,9 +38,33 @@ ListNode *merge(ListNode *l1, ListNode *l2){
                 return l2; 
         } 
 }
-*/
+int main(){
+        ListNode *l1 = new ListNode(1);
+        l1->next = new ListNode(3);
+        l1->next->next = new ListNode(5);
 
-/************[WORKING]MERGE USING ITERATION**********/
+        ListNode *l2 = new ListNode(2);
+        l2->next = new ListNode(4);
+        l2->next->next = new ListNode(6);
+
+        l1 = merge(l1,l2);
+
+        while(l1){
+                cout<<l1->val<<" ";
+                l1 = l1->next;
+        }
+}
+/*
+Output:
+# ./a.out 
+1 2 3 4 5 6 
+*/
+```
+
+### Approach-1 / Iterative
+<a name=cpp2></a>
+**Code**
+```c
 //Always pass smaller head to l1
 ListNode *fun(ListNode *l1, ListNode *l2){
 
@@ -112,3 +137,4 @@ Output:
 # ./a.out 
 1 2 3 4 5 6 
 */
+```
