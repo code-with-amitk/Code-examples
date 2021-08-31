@@ -1,14 +1,10 @@
 **Databases**
 
 - **Comparisons**
-  - [Object, Block, File Storage](#obf)
+  - [Object vs Block vs File Storage](#obf)
   - [SQL/Relational/Structured vs NoSQL/nonRelational/unStructured](#sn)
   - [Database vs Datawarehouse](#dd)
-- [2. IMDB / In Memory DB](#imdb)
-  - [2.1 Problem with IMDB = Availability,Expensive](#prob)
-  - [2.2 What data should be stored on IMDB](#dataimdb)
-  - [2.3 IMDB vs DBCache](#imdb_vs_cache)
-  - [2.4 Why Redis is cache & imdb both?](#whyredis)
+- **[IMDB / In Memory DB](#i)**
 
 
 ## Comparisons
@@ -62,36 +58,20 @@ Modelling Techniques | ER modeling techniques              | data modeling
 used 
 ```
 
-<a name=imdb></a>
-### 2. IMDB(In Memory DB) / MMDB(Main Memory DB)
-- Stores all data in main memory/RAM not on hard-disk. 
-- **Examples** VoltDB, [Redis](/System-Design/Concepts/Cache)
-- **Advantages**
-  - Faster. Since disk access is always slower than RAM
-- **Applications?** Where response time is critical. Eg: Telecom equiments, Jet communications etc
+<a name=i></a>
+## IMDB(In Memory DB) / MMDB(Main Memory DB)
+Stores all data in main memory/RAM not on hard-disk. 
+- Examples: VoltDB, [Redis](/System-Design/Concepts/Cache).
+  - Why Redis is cache & imdb both? Redis has features of a Cache plus processing/querying capabilities. Redis supports multiple data structures and you can query the data in the Redis (examples like get last 10 accessed items, get the most used item etc).
+- *Advantages:* Faster. Since disk access is always slower than RAM
+- *Applications?* Where response time is critical. Eg: Telecom equiments, Jet communications etc
+- *Disadvantages:* 
+  - _1. Availability Problem?_ Since RAM is volatile(Means data is lost as power is gone or some failure). Solution:
+```c
+1a. Snapshot files OR checkpoint images, which record the state of the database at a given moment in time.
+1b. Transaction logging, which records changes to the database in a journal file
+1c. Replication
+```
+  - _2. Expensive:_ RAM is always costlier than Disk, Huge amounts cannot be stored here.
+- **IMDB vs [DBCache](/System-Design/Concepts/Cache):** DBCache stores: Mostly used, less frequently changing data is stored in cache. IMDB stores: Frequently changing data.
 
-<a name=prob></a> 
-### 2.1 Problems
-#### A. [RAM is volatile = Availability](/System-Design/Concepts/Terms) 
-- Means data is lost as power is gone or some failure.
-- **How imdb solves this?**
-  - _1._ Snapshot files, or, checkpoint images, which record the state of the database at a given moment in time.
-  - _2._ Transaction logging, which records changes to the database in a journal file
-  - _3._ Non-Volatile DIMM (NVDIMM)
-  - _4._ Non-volatile random-access memory (NVRAM)
-  - _5._ Replication
-#### B. Expensive
-- RAM is always costlier than Disk, Huge amounts cannot be stored here.
-
-<a name=dataimdb></a>
-### 2.2 Which data should be stored?
-- Most frequently accessed data.
-
-<a name=imdb_vs_cache></a>  
-### 2.3 IMDB vs [DBCache](/System-Design/Concepts/Cache)
-- DBCache stores: Mostly used, less frequently changing data is stored in cache.
-- IMDB stores: Frequently changing data.
-
-<a name=whyredis></a>  
-### 2.4 Why Redis is cache & imdb both?
-- Redis has features of a Cache plus processing/querying capabilities. Redis supports multiple data structures and you can query the data in the Redis (examples like get last 10 accessed items, get the most used item etc).
