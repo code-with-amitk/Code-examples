@@ -26,6 +26,9 @@ cmd> c:\xalan_c; mkdir build
 cmd> cd build
 cmd> cmake -G "Visual Studio 16 2019" -DCMAKE_PREFIX_PATH=C:\xerces-c\libs\ -DCMAKE_INSTALL_PREFIX=c:\xalan_c\libs c:\xalan_c(\path\to\Xalan-c\source)
 cmd> cmake --build . --config Debug
+Issue-1: error MSB8066: Custom build for "C:\xalan-c\build\CMakeFiles\54721b435eedbbf1c365bb7e2edfcd61\inmemory-dependencies.rule" exited with code -1073741515
+Sol: https://github.com/apache/xalan-c/pull/37
+
 cmd> ctest -V -C Debug -j 4
 cmd> cmake --build . --config Debug --target install
 ```
