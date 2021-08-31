@@ -6,7 +6,7 @@
     - Even: Traverse from Left to Right
     - Odd:  Traverse from Right to Left
     
-![ImgURL](spiralTraversalExample.jpg)
+<img src=spiralTraversalExample.jpg width=300/>
 
 ## [Self Youtube Video](https://youtu.be/aWKOMRt3wVs)
 
