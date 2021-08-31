@@ -1,10 +1,10 @@
-**[Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)**
+**Left to Right, Right to Left**
+- Approach-1 / 2 stacks
   - [Logic](#log)
   - [Complexity](#c)
   - [Code](#cpp)
 
-
-## Level Order / Zig zag Traversal
+## Zig Zag Traversal
 Traverse binary tree in zigzag fashion. Example
 ```c
 40 60 20 10 30 50 70 55 5
@@ -17,12 +17,14 @@ Traversal on Levels:
 
 ## [Self Youtube Video](https://youtu.be/aWKOMRt3wVs)
 
-<a name=log></a>
+## Approach-1 / 2 Stacks
+<a name=log1></a>
 ### Logic
 - Take 2 stacks. `mainStack<TreeNode*>, tempStack<TreeNode*>`.
   - *1.* mainStack for traversing a particular level
   - *2.* tempStack for storing children at time of traversal of level.
 - When mainStack is empty (ie all nodes on particular level) are traversed. Swap mainStack and tempStack.
+- On Odd Level, fill (Right,Left). On Even level fill(left,right).
 ```c
 			mainStack 		tempStack
 			| |			| |
@@ -58,7 +60,7 @@ Level=3			pop 55			| |
 			40 60 20 10 30 50 70 55 5
 ``` 
 
-<a name=cpp></a>
+<a name=cpp1></a>
 ### Code
 ```cpp
 #include<iostream>
@@ -107,13 +109,13 @@ void Solution::PrintZigZag() {
           tempStack.push(top->right);
           tempStack.push(top->left);
         }
-      }
+      }//while inner
 
       if (tempStack.empty() != 1)
         tempStack.swap(mainStack);
 
       ++level;
-    }
+    }//while outer
 }
 
 void Solution::ZigZagTraversal (TreeNode *root) {
