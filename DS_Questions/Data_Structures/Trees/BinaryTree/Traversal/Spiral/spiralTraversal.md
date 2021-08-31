@@ -1,12 +1,13 @@
 ## Problem
-- Traverse binary tree in zigzag fashion.
-- **Example**
-  - Print: 40 60 20 10 30 50 70 55 5
-  - Traversal on Levels:
-    - Even: Traverse from Left to Right
-    - Odd:  Traverse from Right to Left
+Traverse binary tree in zigzag fashion. Example
+```c
+40 60 20 10 30 50 70 55 5
+Traversal on Levels:
+  - Even: Traverse from Left to Right
+  - Odd:  Traverse from Right to Left
+```
     
-<img src=spiralTraversalExample.jpg width=300/>
+<img src=spiralTraversalExample.jpg width=500/>
 
 ## [Self Youtube Video](https://youtu.be/aWKOMRt3wVs)
 
@@ -14,16 +15,14 @@
 - Take 2 stacks. `mainStack<TreeNode*>, tempStack<TreeNode*>`.
   - *1.* mainStack for traversing a particular level
   - *2.* tempStack for storing children at time of traversal of level.
-- When mainStack is empty (ie all nodes on particular level) are traversed.
-  - Swap mainStack and tempStack
-- Example
+- When mainStack is empty (ie all nodes on particular level) are traversed. Swap mainStack and tempStack.
 ```c
 			mainStack 		tempStack
 
-			| |				| |
+			| |			| |
 
 			
-			push 40		
+			push 40
 			|40|
 
 Level=0			pop 40			push 20		|20|
