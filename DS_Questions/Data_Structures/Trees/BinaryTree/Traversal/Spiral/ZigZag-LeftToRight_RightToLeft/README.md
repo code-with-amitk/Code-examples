@@ -13,7 +13,7 @@ Traversal on Levels:
   - Odd:  Traverse from Right to Left
 ```
     
-<img src=ZigZag-LeftToRight_RightToLeft.jpg width=500/>
+<img src=ZigZag_LeftToRight_RightToLeft.jpg width=500/>
 
 ## [Self Youtube Video](https://youtu.be/aWKOMRt3wVs)
 
