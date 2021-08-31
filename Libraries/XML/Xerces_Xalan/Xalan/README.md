@@ -23,7 +23,8 @@ xalan-1.12 is compatible with xerces-3.23. [Release History](https://apache.gith
 ```c
 - Extract xalan in c:
 
-cmd> c:\xalan_c-1.12; mkdir build; cd build
+cmd> c:\xalan_c-1.12; mkdir build
+cmd> cd build
 cmd> cmake -G "Visual Studio 16 2019" -DCMAKE_PREFIX_PATH=C:\xerces-c-3.2.3\libs\ -DCMAKE_INSTALL_PREFIX=c:\xalan_c-1.12\libs c:\xalan_c-1.12(\path\to\Xalan-c\source)
 cmd> cmake --build . --config Debug
 ctest -V -C Debug -j 4
