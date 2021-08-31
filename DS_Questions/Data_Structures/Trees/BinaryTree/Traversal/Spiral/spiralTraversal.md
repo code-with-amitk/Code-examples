@@ -1,4 +1,10 @@
-## Problem
+**[Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)**
+  - [Logic](#log)
+  - [Complexity](#c)
+  - [Code](#cpp)
+
+
+## Level Order / Zig zag Traversal
 Traverse binary tree in zigzag fashion. Example
 ```c
 40 60 20 10 30 50 70 55 5
@@ -11,6 +17,7 @@ Traversal on Levels:
 
 ## [Self Youtube Video](https://youtu.be/aWKOMRt3wVs)
 
+<a name=log></a>
 ### Logic
 - Take 2 stacks. `mainStack<TreeNode*>, tempStack<TreeNode*>`.
   - *1.* mainStack for traversing a particular level
@@ -18,9 +25,7 @@ Traversal on Levels:
 - When mainStack is empty (ie all nodes on particular level) are traversed. Swap mainStack and tempStack.
 ```c
 			mainStack 		tempStack
-
 			| |			| |
-
 			
 			push 40
 			|40|
@@ -53,8 +58,9 @@ Level=3			pop 55			| |
 			40 60 20 10 30 50 70 55 5
 ``` 
 
+<a name=cpp></a>
 ### Code
-```c++
+```cpp
 #include<iostream>
 #include<stack>
 #include<algorithm>
