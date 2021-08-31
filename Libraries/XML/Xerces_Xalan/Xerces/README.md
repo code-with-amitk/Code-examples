@@ -1,6 +1,5 @@
 **[Apache Xerces](https://xerces.apache.org/xerces-c/index.html)**
-- What is Xerces
-- **Build, Configure**
+- **Build**
   - [Linux](#linux)
   - [Windows](#win)
 - **[Source](#src)**
@@ -8,7 +7,7 @@
 ## Xerces
 XML parsing/manipulating/validating library written in C++ using the DOM, SAX, and SAX2 APIs.
 
-## Build, Configure
+## Build
 <a name=linux></a>
 **Linux**
 ```c
@@ -19,16 +18,17 @@ XML parsing/manipulating/validating library written in C++ using the DOM, SAX, a
 **Windows**
 Create new Console-App(C++). Include [headers,xerces_3.2.lib as mentioned here.](/Libraries/Static_Dynamic). Also place xerces-c_3.2.dll in exe's folder.
 ```c
-- Download xerces.zip from https://xerces.apache.org/xerces-c/download.cgi. Extract in c:\
-- Install cmake
-cmd> cd xerces-c-3.2.3; mkdir build; cd build
+Download latest xerces from github. //Release page: https://xerces.apache.org/xerces-c/download.cgi. Extract in c:\
+Install cmake
+
+cmd> cd xerces-c; mkdir build; cd build
 cmd> cmake -G --help
-cmd> >cmake -G "Visual Studio 16 2019" -DCMAKE_INSTALL_PREFIX=c:\xerces-c-3.2.3\libs c:\xerces-c-3.2.3//path_to_xerces-c_source_having_CMakeLists.txt
+cmd> cmake -G "Visual Studio 16 2019" -DCMAKE_INSTALL_PREFIX=c:\xerces-c\libs c:\xerces-c//path_to_xerces-c_source_having_CMakeLists.txt
 cmd> cmake --build . --config Debug
 cmd> ctest -V -C Debug -j 4
 cmd> cmake --build . --config Debug --target install
-c:\xerces\libs\xerces-c_3.2.dll
-c:\xerces\libs\lib\xerces-c_3D.lib
+c:\xerces\libs\bin\xerces-c_4_0D.dll
+c:\xerces\libs\lib\xerces-c_4D.lib
 
 //Using xerces functionality
 Visual-Studio > Console-App(C++) 
