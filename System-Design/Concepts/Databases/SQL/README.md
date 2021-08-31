@@ -2,7 +2,7 @@
 - **Examples**
   - [1. Aurora](#a)
 - **Source code**
-  - [1.](#s1)
+  - [1. Connecting C Program to MySQL DB](#s1)
 
 
 ## SQL DB
@@ -15,7 +15,7 @@
 - **Scaling** Maintains 2 copies of your data in each availability zone with a minimum of 3 availability zones.
 
 ## Source Code
-### 1. Connecting C Program to MySQL Server
+### 1. Connecting C Program to MySQL DB
 ```c
 ///////1. Install mysql server, Start mysqld, Create root user, Create DB, Create Table, insert data into table//////
 $ yum install mysql my sql-devel mysql-server mysql-community-server-y
