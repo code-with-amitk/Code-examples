@@ -25,54 +25,43 @@ Set of nodes visible when the tree is viewed from the top.
 
 <a name=l></a>
 ### Logic
-- We calculate top view using [Vertical-order-traversal of Binary Tree]().
-```c
-Logic: 
- Considering You read and understood(verticalOrderTraversal.cpp), printing topView is very simple.
- - Only print 1st element of vector storing nodes.      map<int, vector<int>> &m
-```
+Top view is only printing 1st element of vector storing nodes same [horizontal distance, Vertical-order-traversal of Binary Tree](/DS_Questions/Data_Structures/Trees/BinaryTree/Traversal/Vertical_Order_Traversal.md).
 
 <a name=co></a>
 ### Complexity
-- **Time**: O(nlogn)
-a. createMapStoringHD_and_NodeVector(): map in STL is Self-Balancing BST. Search for key = O(Logn)
-b. printVerticalOrder(): n
+[Vertical-order-traversal of Binary Tree](/DS_Questions/Data_Structures/Trees/BinaryTree/Traversal/Vertical_Order_Traversal.md)
  
 <a name=c></a>
 ### Code
+Taken from [Vertical-order-traversal of Binary Tree](/DS_Questions/Data_Structures/Trees/BinaryTree/Traversal/Vertical_Order_Traversal.md)
 ```c
 #include <iostream>
 #include <vector>
 #include <map>
 using namespace std;
 
-struct Node
-{
+struct Node {
     int key;
     Node *left, *right;
 };
 
-void createMapStoringHD_and_NodeVector(Node* root, int hd, map<int, vector<int>> &m){
-        if (root == NULL)       return;
+void find_hf(Node* root, int hd, map<int, vector<int>> &m){
+  if (root == NULL)
+    return;
 
-        m[hd].push_back(root->key);
-
-        createMapStoringHD_and_NodeVector(root->left, hd-1, m);
-
-        createMapStoringHD_and_NodeVector(root->right, hd+1, m);
-
+  m[hd].push_back(root->key);
+  find_hd(root->left, hd-1, m);
+  find_hd(root->right, hd+1, m);
 }
 
-void printVerticalOrder(map<int, vector<int>> &m){
+void topView (map<int, vector<int>> &m) {
     map<int,vector<int>>::iterator it;
 
-    for (it=m.begin(); it!=m.end(); it++){
+    for (it=m.begin(); it!=m.end(); it++)
             cout<<it->second.front()<<" ";
-    }
 }
 
-struct Node* newNode(int key)
-{
+struct Node* newNode(int key) {
     struct Node* node = new Node;
     node->key = key;
     node->left = node->right = NULL;
@@ -93,17 +82,12 @@ Node* createTree(){
 }
 
 int main(){
-        Node *root;
-        root = createTree();
-        cout<<"Tree created\n";
-        cout<<"Top View:";
-        int hd = 0;
-        //map<key,value>
-        map <int,vector<int>> m;        //key=horizontal_distance, value=vector storing all nodes having 'key' horizontal distance
-        createMapStoringHD_and_NodeVector (root, hd, m);
+  Node *root = createTree();
+  int hd = 0;
+  map <int,vector<int>> m;        //key=horizontal_distance, value=vector storing all nodes having 'key' horizontal distance
+  find_hd (root, hd, m);
 
-        printVerticalOrder(m);
-    return 0;
+  topView (m);
 }
 /*
 Output:
