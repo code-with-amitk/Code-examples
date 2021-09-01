@@ -1,5 +1,9 @@
-## Recommended Videos by Google Recruiters
-### 1. [Chris Jereza, How I Passed Coding Interviews at Facebook, Google, Lyft, Bloomberg](https://www.youtube.com/watch?v=lDTKnzrX6qU&feature=youtu.be)
+- [Recommended Videos by Google Recruiters](#r)
+- **[Interviews](#i)**
+
+<a name=r></a>
+### Recommended Videos by Google Recruiters
+#### 1. [Chris Jereza, How I Passed Coding Interviews at Facebook, Google, Lyft, Bloomberg](https://www.youtube.com/watch?v=lDTKnzrX6qU&feature=youtu.be)
   - Know Iteration,recursion,arrays,linked lists,queues,stacks,heap,set,hash-map,tree,binary-search,graphs,bfs,dfs,tries
   - **Sorting(Important)** Merge Sort, Quick Sort(Memorize Implementations)
   - sliding Windows
@@ -19,11 +23,18 @@
     - *1.* Be Creative (Ask your self lot of questions). Write down atleast 2 and try solve them.
     - *2.* Self Awareness: When going on wrong path and Correcting. MEDITATION
     - *3.* Intensity: Feel how you would feel after passing interview. Enjoy shout at mirror and do it.
+ 
+<a name=i></a>
+### Interviews
+Round-1
+```c
+1. Toughest problem you solved?
+  Ans- ospfv2 memory leak
   
-## Rounds
-
-|Round|Duration|Mode|Content|
-|---|---|---|---|
-|1.(Coding)|45 min|Virtual|1-3 questions. Write Optimized code|
-
+2. Code: No of on bits in 64 bit number?  [Languages/Programming_Languages/C/Bitwise/Count_on_Bits/]
+Ans: 
+  Approach-1: 64 iterations. Asked to optimize
+  Approach-2: Hamming weight. Asked to optmize more
+  Approach-3: Lookup table, cannot tell.
+```
 
