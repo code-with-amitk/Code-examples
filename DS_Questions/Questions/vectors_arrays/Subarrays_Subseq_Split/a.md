@@ -1,18 +1,19 @@
+**Sub Array having sum equal to k**
+Given an array of positive integers, find a subarray such that the sum of the subarray is equal to K. If there exists such multiple subarray, then return the one with smallest interval length subarray.
+- Example
+```c
+Input=[1,2,3,7,5]. k=12
+Output=[7,5]
+
+Input=[1,2,3]. k=12
+Output=[-1]
+```
+
+### Code
+```c
 #include <iostream>
 #include <vector>
 using namespace std;
-
-/* Question: Find subarray within given array with expected sum
-  Input:
-  1	//num_of_test_cases
-  5 12		//elements_in_array expected_sum
-  1	 2	 3 	7 	5	//Array
-  /\	/\	/\	/\	/\
-  1	 2	3	4	5	//Array positions
- 
-  Output
-  2 4		//Start-Postion(2) End-Position(4) = 2+3+7=12
-  -1		//If sum is not found in subarray
 
 Logic(Per test case):
 	a. Store incoming array into vector.
