@@ -1,6 +1,11 @@
-/*
- Top View? set of nodes visible when the tree is viewed from the top.
+**Top View of Binary Tree**
+- [Logic](#l)
+- [Complexity](#co)
+- [Code](#c)
 
+## Top View
+Set of nodes visible when the tree is viewed from the top.
+```c
        1
     /     \
    2       3
@@ -16,27 +21,26 @@
             5
              \
                6        //Top view:2 1 3 6
+```
 
- We calculate top view using Vertical-order-traversal of Binary Tree.
-
- You are required to understand,
- a. What is Vertical-order-traversal
- b. How it is calculate using Horizontal_distance
- github/Code-examples/data-structures/trees/verticalOrderTraversal.cpp
-
-TO UNDERSTAND TOP VIEW CODE:
-READ VERITICAL_ORDER_TRAVERSAL
-        -> github/Code-examples/data-structures/trees/verticalOrderTraversal.cpp
-
+<a name=l></a>
+### Logic
+- We calculate top view using [Vertical-order-traversal of Binary Tree]().
+```c
 Logic: 
  Considering You read and understood(verticalOrderTraversal.cpp), printing topView is very simple.
  - Only print 1st element of vector storing nodes.      map<int, vector<int>> &m
+```
 
-TIME COMPLEXITY: O(nlogn)
+<a name=co></a>
+### Complexity
+- **Time**: O(nlogn)
 a. createMapStoringHD_and_NodeVector(): map in STL is Self-Balancing BST. Search for key = O(Logn)
 b. printVerticalOrder(): n
-*/
-
+ 
+<a name=c></a>
+### Code
+```c
 #include <iostream>
 #include <vector>
 #include <map>
@@ -107,3 +111,4 @@ Output:
 Tree created
 Top View:4 2 1 3 7 9
 */
+```
