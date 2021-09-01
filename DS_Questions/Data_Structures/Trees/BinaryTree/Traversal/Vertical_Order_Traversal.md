@@ -1,6 +1,8 @@
 **Vertical Order Traversal**
 - [Horizontal Distance](#hd)
-  - [Logic](#lh) 
+  - [Logic of Calculating HD](#lh)
+  - [Complexity](#co)
+  - [Code](#c)
 
 Video: https://www.youtube.com/watch?v=PQKkr036wRc
 
@@ -53,26 +55,13 @@ Nodes(1,5,6), (3,8) fall on same vertical line
 ```
 <a name=lh></a>
 #### Logic of Calculating HD
+- Start from root, take root's Horizontal distance=0.
 ```c
-1. Calculate and store HD of nodes.   createMapStoringHD_and_NodeVector(Node* root, int hd, map<int, vector<int>> &m)
-   Take map<key,value> to store map<horizontal_distance,(values)>.   map <int, vector<int>> m
-   Store key=horizontal_distance and value=list_of_all_nodes_having_key_as_HD
-      map < int, vector<int> >
-      Key = hd of node.                 -> 0, -1, -2, 1, 2, 3
-      value = Array of values from tree having same hd.
-           Hashmap:
-                |       |    |    |     |   |   |
-                |0|1,5,6|-1|2|-2|4|1|3,8|2|7|3|9|
-                |       |    |    |     |   |   |
-
-         m[-2].push_back(node->data);       //Adding element at hd[-2]. Map cannot have duplicate keys so, when same key 
-         is encounterd again. push_back() performs pushing back on same key's vector element.
-
-2. Printing the tree in Vert Order:   printVerticalOrder(map<int, vector<int>> &m)
-  - Pass the created map to print fuction.
-  - Take iterator. point it passed map
-  - Print Second element(ie vector) of map using for loop
-```  
+ if (left child) 
+  hd = parent_hd-1
+ if (right child) 
+  hd = parent_hd + 1
+```
 
 <a name=co></a>
 ### Complexity
@@ -86,17 +75,36 @@ b. printVerticalOrder(): n
 #include<iostream>
 #include<map>
 #include<vector>
+
 struct Node{
         int key;
         Node *left, *right;
 };
 
-struct Node* newNode(int key)
-{
+struct Node* newNode(int key) {
     struct Node* node = new Node;
     node->key = key;
     node->left = node->right = NULL;
     return node;
+}
+
+void find_hd (Node* root, int hd, map<int, vector<int>>& m){
+  if (root == NULL)       
+    return;
+
+  m[hd].push_back(root->key);
+  find_hd (root->left, hd-1, m);
+  find_hd (root->right, hd+1, m);
+}
+
+void printVerticalOrder(map<int, vector<int>> &m){
+    map<int,vector<int>>::iterator it;
+
+    for (it=m.begin(); it!=m.end(); it++) {
+        for (int i=0; i<it->second.size(); ++i)   //first:key, second:value
+            cout << it->second[i] << " ";
+        cout << endl;
+    }
 }
 
 Node* createTree(){
@@ -112,42 +120,15 @@ Node* createTree(){
     return root;
 }
 
-void createMapStoringHD_and_NodeVector(Node* root, int hd, map<int, vector<int>> &m){
-        if (root == NULL)       return;
-
-        m[hd].push_back(root->key);
-
-        createMapStoringHD_and_NodeVector(root->left, hd-1, m);
-
-        createMapStoringHD_and_NodeVector(root->right, hd+1, m);
-}
-
-void printVerticalOrder(map<int, vector<int>> &m){
-    map<int,vector<int>>::iterator it;
-
-    for (it=m.begin(); it!=m.end(); it++)
-    {
-        for (int i=0; i<it->second.size(); ++i)   //first:key, second:value
-            cout << it->second[i] << " ";
-        cout << endl;
-    }
-}
-
-
 int main(){
-        Node *root;
-        root = createTree();
-        std::cout<<"\nTree created root="<<root<<std::endl;
-
-        int hd = 0;
+  Node* root = createTree();
+  int hd = 0;               //hd of root=0
   
-        //map<key,value>
-       //key=horizontal_distance, value=vector storing all nodes having 'key' horizontal distance
-        map <int,vector<int>> m;
-        createMapStoringHD_and_NodeVector (root, hd, m);
+  //key=horizontal_distance, value=All nodes having key = hd
+  map<int,vector<int>> m;
+  find_hd (root, hd, m);
 
-        printVerticalOrder(m);
-        return 0;
+  printVerticalOrder(m);
 }
 /*
 Output:
