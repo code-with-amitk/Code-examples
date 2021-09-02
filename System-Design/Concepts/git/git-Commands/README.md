@@ -1,8 +1,28 @@
-## git commands
+**git commands**
+- [Working on Review Comments](#rev)
+- [Resolving Merge conflict, gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
+
+
+<a name=rev></a>
+#### Working on Review Comments
+```c
+Open git bash
+$ git clone; cd code
+$ git checkout branch; git branch      //Change to existing branch
+$ git pull origin branch               //Get latest code from repo
+$ git pull my-changes                  //Find command on gerrit UI. Open Change Page > Download Patch > git pull. 
+$ git rebase branch
+$ git status
+-> Do code change
+$ git status              //Make sure changed files are there
+$ git add file1 file2
+$ git commit --amend
+$ gitdir=<>
+$ git push <complete command>
+```
+
 - **add:**    This adds files onto staging area, ie in-between cache
 - **checkout:**
-  - _1._ When we want to create a new branch OR
-  - _2._ When we want to go onto existing branch.
 ```c
   git checkout <branch>           //1. Work on older branch
   git checkout -b <branch>        //2. Creating a new branch
