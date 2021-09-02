@@ -148,8 +148,10 @@ int main() {
 
 ### Approach-4. Lookup Table
 **What is lookup table?** This is precalculated table which stores number of on bits in a number.
+- 2<sup>8</sup> = 256
 ```c
-Number  Binary    On_Bits
+///8 bit lookup table///
+Number  Binary    On_Bits in 1 byte number
  0        0         0
  1        1         1
  2        10        1
@@ -163,12 +165,12 @@ Number  Binary    On_Bits
  254      11111110  7
  255      11111111  8
  
-Lookup Table  {0, 1, 1, 2, 1, 2, 2, 3, 1, .., 7, 8}       //size=256 bytes. 256*8=8192 bits
-Number         0  1  2  3  4  5  6  7  8  ...254 255
+Lookup Table(on bits)  {0, 1, 1, 2, 1, 2, 2, 3, 1, .., 7, 8}       //size=256 bytes. 256*8=8192 bits
+Number                  0  1  2  3  4  5  6  7  8  ...254 255
 ```
 
 <a name=cpp32></a>
-#### Code (32 Bit integer)
+#### Code (32 Bit integer). 
 - _1._ Create lookup table(at compile time), Iterate over every 8 bits(1 byte) of number and check in table.
 ```c
 //////////Logic to generate lookup table at compile time//////////////
@@ -193,3 +195,43 @@ int main() {
 
 <a name=cpp64></a>
 #### Code (64 Bit integer)
+**Method-1:** Using same 8 bit lookup table(as above), Checking every 8 bits
+```c
+int CountOnes(uint64_t a){        
+  return lookup [a & 0xff] +       //First 8 bits.
+         lookup [a>>8 & 0xff] +    //Next 8 bits
+         lookup [a>>16 & 0xff] +   //next 8 bits
+         lookup [a>>24 & 0xff] +
+         lookup [a>>32 & 0xff] +
+         lookup [a>>40 & 0xff] +
+         lookup [a>>48 & 0xff] +
+         lookup [a>>56 & 0xff];    //Last 8 bits         
+}
+int main() {
+  cout << CountOnes(489626271694);    //33 bits
+}
+```
+**Method-2:** Using 16 bit lookup table
+- 2<sup>16</sup> = 65536
+```c
+///16 bit lookup table///
+Number  Binary              On_Bits in 2 byte Number
+ 0        0                 0
+ 1        1                 1
+ 2        10                1
+ 3        11                2
+ 4        100               1
+ 5        101               2
+ 6        110               2
+ 7        111               3
+ 8        1000              1
+ ..
+ 254      11111110          7
+ 255      11111111          8
+ 256      100000000         1
+ ..
+ 65535    1111111111111111  16
+ 
+Lookup Table(on bits)  {0, 1, 1, 2, 1, 2, 2, 3, 1, .., 7, 8,  1,  ... 16}       //size=65535*2=131070 bytes. 131070*8=1048560 bits
+Number                  0  1  2  3  4  5  6  7  8  ...254 255 256 ..  65535
+```
