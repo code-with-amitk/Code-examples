@@ -18,12 +18,12 @@ clap = "2.33.3"
 $ cat main.rs
 use clap::{Arg, App};
 fn main() {
-    let matches = App::new("My Super Program")    //call new() from App crate
+    let matches = App::new("My Program")    //call new() from App crate
         .version("1.0")
         .author("Amit Kumar")
         .about("Does awesome things")
         .arg(
-            Arg::with_name("config")
+            Arg::with_name("var_file_name")
             .short("c")
             .long("config")
             .value_name("FILE")
@@ -32,8 +32,8 @@ fn main() {
         )
         .get_matches();
 
-    if let Some(c) = matches.value_of("config") {   //its stored as matches.valueof_("arg_name")
-        println!("Value for config: {}", c);        //test.txt
+    if let Some(c) = matches.value_of("var_file_name") {   //its stored as matches.valueof_("var_file_name")
+        println!("Value for config: {}", c);               //test.txt
     }
 }
 
