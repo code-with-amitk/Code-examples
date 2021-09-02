@@ -1,22 +1,21 @@
 **Versioning Control**
 - [git vs gerrit](#vs)
 - [Terms](#terms)
-- **Working on Review Comments**
-  - [gerrit](#revg)
 - **Issues**
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
 
 <a name=vs></a>
-## git vs gerrit
-
-| | github/gitlab/bitbucket | gerrit |
-| --- | --- | --- |
-|What|Code Hosting tool|<ul><li>Github's product. Web based Code Review tool for github repositories</li></ul><ul><li>Once suggested changes are accepted, they can be merged to the target branch of the Git repository</li></ul><ul><li>Prevents developer to directly push changes on repo</li></ul>|
-|Code review Capabilites|lesser|Extensive|
-|Does not provide||Code browsing,search,Continious build,Code hosting|
-|git history|not clean|cleaner|
-|Permissions|not extensive|Much fine grained|
+### git vs gerrit
+```c
+                       | github/gitlab/bitbucket | gerrit 
+-----------------------|-------------------------|--------------
+  What                 |  Code Hosting tool      | Github's product. Code Review tool for github repositories, Prevents developer to directly push changes on repo.
+Code review Capabilites|      lesser             | Extensive
+Does not provide       |                         | Code browsing,search,Continious build,Code hosting
+git history            |    not clean            |  cleaner
+Permissions            |    not extensive        | Much fine grained
+```
 
 <a name=terms></a>
 ## Terms
@@ -62,28 +61,6 @@ $ git diff
   - _upstream/master:_    Master branch of upstream
   - _Other Branches:_ These are like twigs of trunk. Finally trunk is main branch which keeps on going up    
     - Origin: Your fork from original/upstream
-
-## Working on Review Comments
-<a name=revg></a>
-#### [gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
-```c
-Open git bash (admin)
-$ git clone <>            //Find command from gerrit UI
-$ cd code
-$ git checkout branch1    //Change to existing branch
-$ git pull origin branch1 //Get latest code from repo
-$ git pull my-changes     //Find command on gerrit UI. Open Change Page > Download Patch > git pull. 
-$ git rebase branch1
-$ git branch
-$ git status
--> Do code change
-$ git status              //Make sure changed files are there
-$ git add file1 file2
-$ git commit --amend
-$ gitdir=<>
-$ git push <complete command>
-```
-
 
 ## Issues
 <a name=rem></a>
