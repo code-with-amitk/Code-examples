@@ -1,12 +1,10 @@
 **Xalan**
-  - [Xalan compatiblity with xerces](#comp)
   - **Build**
     - [Linux](#lin)
     - [Windows](#win)
 
-<a name=comp></a>
-### Xalan compatiblity with xerces
-xalan-1.12 is compatible with xerces-3.23. [Release History](https://apache.github.io/xalan-c/releases.html)
+### Xalan
+Xalan compatiblity with xerces, Check [Release History](https://apache.github.io/xalan-c/releases.html)
 
 ### Build
 <a name=lin></a>
