@@ -98,6 +98,8 @@ Merge 2 or more development histories together.
 - **push:** Pushing the changes onto main branch
 ```c
 ///gerrit///
+$ git status                  //Check files changed
+$ git diff                    //contents changed in files
 $ git add file1 file2 file3
 $ git commit -F commit-msg-file
 $ git pull                        //Run these 2 else you will get merge conflict
