@@ -2,6 +2,7 @@
 - [Approach-1. Brute Force / O(n<sup>3</sup>)](#ap1)
 - [Approach-2. Cumulative Sum / O(n<sup>2</sup>)](#ap2)
 - [Approach-3. Cumulative Sum / O(n<sup>2</sup>) No Extra Space](#ap3)
+- [Approach-4. Unordered_map O(n)](#ap4)
 
 
 ### Number of Subarray Sum Equals K
@@ -32,7 +33,7 @@ k = 5
  i     j
  so on
 ```
-**Complexity**
+#### Complexity
 - **Time:** O(n<sup>3</sup>)  3 for loops
 - **Space:** [O(1). Constant Space](/DS_Questions)
 #### Code
@@ -54,7 +55,7 @@ k = 5
 
 <a name=ap2></a>
 ### Approach-2. Cumulative Sum, Time:O(n<sup>2</sup>), Space:O(n+1)
-**Logic**
+#### Logic
 - *1.* Find cumulative sum(ie sum of all prev elements of array upto this element) and store in seperate array `sum` size=arr+1
 ```c
 arr =  -1  2  3  2  -2
@@ -79,7 +80,7 @@ cum_sum-ele(0)     -1-0     1-0     4-0       6-0       4-0
            (-1)    -1-1     1-1     4--1=5    6--1      4--1=5
            (1)     -1-1     1-1     4-1       6-1=5     4-1
 ```
-**Complexity**
+#### Complexity
 - **Time:** O(n<sup>2</sup>)
 - **Space:** O(n+1)
 #### Code
@@ -104,8 +105,9 @@ cum_sum-ele(0)     -1-0     1-0     4-0       6-0       4-0
 
 <a name=ap3></a>
 ### Approach-3  //Cumulative Sum, Time:O(n<sup>2</sup>), Space:O(1)
-**Logic:** Same as approach-2, But donot take seperate array to store cumulative sum(ie sum of all prev elements of array upto this element), calculate during for loop.
-**Complexity**
+#### Logic
+Same as approach-2, But donot take seperate array to store cumulative sum(ie sum of all prev elements of array upto this element), calculate during for loop.
+#### Complexity
 - **Time:** O(n<sup>2</sup>)
 - **Space:** O(1)
 #### Code
@@ -125,8 +127,9 @@ cum_sum-ele(0)     -1-0     1-0     4-0       6-0       4-0
   }
 ```
 
+<a name=ap4></a>
 ### Approach-4.  unordered_map. Time:O(n). Space:O(n)
-**Logic**
+#### Logic
   - *1.* if (cumulative_sum_i(sum of all prev elements of array upto this element) - cumulative_sum_j(sum of all prev elements of array upto this element)) == k. Then sum of elements lying between indices i and j is k.
   - *2.* Create unordered_map `<key = cumulative_sum_i, no. of occurrences of cumulative_sum_i)>`
   - *3.* Traverse the array, if we find new sum, create a new entry. If same sum is encountered, Update the value of this key.
@@ -144,7 +147,7 @@ i=2         4                         4              1              4 - 5 = -1  
 i=3         6                         6              1              6 - 5 = 1     //Present in um. count=2
 i=4         4                         4              2              4 - 5 = -1    //Present in um. count=3
 ```
-**Complexity**
+#### Complexity
 - **Time:** O(n)
 - **Space:** O(n+1)
 #### Code
