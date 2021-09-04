@@ -35,8 +35,9 @@ Output: ""
 - **1a. LPSArray?** Each entry means what's length of longest prefix which is also suffix in substring `[0, presentIndex]`
 ```c++
 Example:
-    String               LPS array
-  a b a b c a b d =>  0 0 1 2 0 1 2 0
+          String               LPS array
+      a b a b c a b d   =>  0 0 1 2 0 1 2 0
+indx  0 1 2 3 4 5 6 7       0 1 2 3 4 5 6 7
 
 Explanation of LPS Array:
 Index   Value   Meaning
