@@ -14,17 +14,15 @@ using namespace std;
 
 struct A{
   int a;
-  friend _kostream& operator<<(_kostream&, const A&);
+  friend _kostream& operator<<(_kostream&, const A&) {
+    out << "Hello\n"
+        << obj.a;
+    return out;  
+  }
 };
 
-_tostream& operator<<(_kostream& out, const A& obj){
-  out << "Hello\n"
-      << obj.a;
-  return out;
-}
-
-A obj;
 int main(){
+  A obj;
   obj.a = 5;
   _tcout << obj;
 }
