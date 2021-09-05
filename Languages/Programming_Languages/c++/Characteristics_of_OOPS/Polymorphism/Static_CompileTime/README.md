@@ -143,8 +143,8 @@ int main(){
 - *What is Output Stream?* Stream used to provide output to Printer, Monitor etc. **cout** is object of output stream class.
 - *Usecase* Dumping Object in Cutomized manner by passing to `<<`. Eg: `cout<<obj`.
 - *Why overloaded operator is friend?* operator overloading function a friend of the class because it would be called without creating an object.
-- _Code:_ Printing Month Date Year in Customized manner
 ```c++
+////Example-1: Printing Month Date Year in Customized manner//////
 #include <iostream>
 using namespace std;
 
@@ -170,9 +170,34 @@ int main(){
   //  cout.(operator<<)(this, obj)
   cout << obj;                                //Output:   31/7/2012
 }
-
 $ a.out
 31/7/2012
+
+
+//////Example-2: Writing to stdout using stream insertion (<<) opeartor////
+#if defined(UNICODE_WINDOWS)
+  #define _kcout            std::wcout
+  #define _kostream         std::wostream
+#else
+  //for linux and other OSes
+  #define _kcout            std::cout
+  #define _kostream         std::ostream
+#endif
+
+struct A{
+  int a;
+  friend _kostream& operator<<(_kostream&, const A&) {
+    out << "Hello\n"
+        << obj.a;
+    return out;  
+  }
+};
+
+int main(){
+  A obj;
+  obj.a = 5;
+  _tcout << obj;
+}
 ```
 
 <a name=overloadprefix></a>
