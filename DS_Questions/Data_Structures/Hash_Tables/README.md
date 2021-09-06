@@ -1,7 +1,7 @@
 **Hash Table**
 - [Advantages, Disadvantages](#adv)
 - [HT vs Self Balanced BT](#vs)
-- [How HT is implemented internally](#int)
+- [HT internal Implementation](#int)
 - **Hash Collision**
   - [Solution-1. Seperate Chaining](#sc)
   - [Solution-2. Open Addressing](#oa)
@@ -14,8 +14,8 @@
 ```c
 key -> |Hash Function| -> index of array/table
 ```
-**Hashing is improvement over Direct Access Table**
-- Take huge array and use phone numbers as index in the array. if phone number is not present entry is empty, else the array entry stores pointer to records corresponding to phone number. Searching in DA: O(1) but HUGE Extra Space required.
+#### Hash Table is improvement over Direct Access Table
+- **DAT?** Take huge array and use phone numbers as index in the array. if phone number is not present entry is empty, else the array entry stores pointer to records corresponding to phone number. Searching in DA: O(1) but HUGE Extra Space required.
 
 <a name=adv></a>
 ### Advantages, Disadvantages
@@ -45,7 +45,7 @@ ADVANTAGES of Tree over HT       |                                              
 ```
 
 <a name=int></a>
-### How Hash Table is implemented internally
+### HT Internal Implementation
 > LH* Network
 
 Files are organized into buckets(Size is power of 2) stored either on RAM/disk/distributed servers. Hash function generates the bucket number which stores the key.
@@ -53,12 +53,10 @@ Files are organized into buckets(Size is power of 2) stored either on RAM/disk/d
   - Lets consider student data to be stored in hash table.
   - Each student data is stored in seperate file and File pointers are stored in Buckets (Similar to [Inode](/Operating_Systems/Linux/FileSystem/I_Node_IndexNode.md))
   - Hash Function generates bucket number as output with enrollment number(key) as input.
-  - **Split Coordinator**
+  - **Split Coordinator:** 
     - Once buckets on server gets full, splitting is done using SC. Making buckets/keys to half.
     - SC also supports the merging of buckets.
-    - SC can be seen as [Super-Peer](/System-Design/Concepts/Terms) in P2P terminology.
-  - *Dsiadvantage?* 
-    - Clients maintain views to the global system state, ie overall bucket information.
+  - *Dsiadvantage?* Clients maintain views to the global system state, ie overall bucket information.
 ```html
   | Name | Roll-No | Class | Sub-1 | Sub-2 | Sub-3 | .. | Enrollment No(Unique Key) |
   | Amit |   5     | 10    | Math  | Sci   | Eng   |    | 12345                     | <- File-1
@@ -79,7 +77,7 @@ Enrollment-Number(Key)  -> hash_function ->  Bucket-3
 ```
 
 ## Hash Collision
-When hash function provides same index or value for 2 different keys.
+When hash function provides same index for 2 different keys.
 <a name=sc1></a>
 ### Solution-1: Seperate Chaining
 Each cell of HT point to a **DOUBLY LINKED LIST** of records that have same hash function value. This requires additional memory outside the table.
