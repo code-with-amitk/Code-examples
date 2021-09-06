@@ -1,6 +1,8 @@
 **[Longest Happy Prefix](https://leetcode.com/problems/longest-happy-prefix/)**
 - [What is Prefix, Suffix?](#ps)
 - [Logic](#l)
+- [Complexity](#c)
+- [Code](#co)
 
 
 <a name=ps></a>
@@ -32,7 +34,7 @@ Output: ""
 <a name=l></a>
 ### [Logic](https://www.youtube.com/watch?v=GTJr8OvyEVQ)
 #### Step-1. Build LPSArray(Longest prefix which is also suffix)
-- **1a. LPSArray?** Each entry means what's length of longest prefix which is also suffix in substring `[0, presentIndex]`
+**1a. LPSArray?** Each entry means what's length of longest prefix which is also suffix in substring `[0, presentIndex]`
 ```c++
 Example:
           String               LPS array
@@ -72,12 +74,14 @@ Index   Value   Meaning
 
 #### Step-2: return substring
 
-- **Complexity**
-  - Time: O(n)      //n-Length of input string
-  - Space: O(n)     //Same lengthed temporary InfoArray
+<a name=c></a>
+### Complexity
+- Time: O(n)      //n-Length of input string
+- Space: O(n)     //Same lengthed temporary InfoArray
 
+<a name=co></a>
 ### Code
-```c++
+```cpp
 #include<iostream>
 #include<vector>
 #include<sstream>
