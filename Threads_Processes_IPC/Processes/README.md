@@ -2,7 +2,7 @@
 - **Creating Child Process**
   - [fork()](#f) 
     - [When fork can fail](#fail)
-  - [Code](#c)
+  - [Code: 1 Child, 2 children, fork, n forks](#c)
 
 ## Process
 Running instance of program. All processes are decedents of swapper process(PID=0). Both(threads, processes) are independent sequence of operations
@@ -46,4 +46,4 @@ Fork can fail if there are:
 - 2 Children of parent
 - 1 Child of parent
 - Copy on Write
-- 
+- n forks
