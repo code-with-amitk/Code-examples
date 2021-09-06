@@ -1,7 +1,7 @@
 **Threads**
 - std::thread vs std::thread
 - [std::thread](#th)
-- 
+- [std::async](#as)
 
 ### std::thread vs stdfuture
 ```c
