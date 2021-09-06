@@ -22,16 +22,13 @@ using vec = vector<int>;
 
 vec fun(string haystack, string needle){
   vec index;
-
-  int hsize = haystack.size();
-  int nsize = needle.size();
   int i=0,j=0,k=0;
 
-  while (i < hsize) {
+  while (i < haystack.size()) {
     if (haystack[i] == needle[j]) {
       k = i;
-      while (haystack[k] == needle[j] && j < nsize){
-        if( j == psize -1 )
+      while (haystack[k] == needle[j] && j < needle.size()){
+        if( j == needle.size() -1 )
           index.push_back(i);
         k++;
         j++;
