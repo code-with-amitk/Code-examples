@@ -1,12 +1,10 @@
-- [match](#mat)
+**match = switch+enum(in c++)**
 - [Default Statement](#def)
   - [if let](#iflet)
 - [Patterns that Bind to Values](#patval)
 - [Matching Option`<T>`](#opt) 
 
-<a name=mat></a>
 ### match
-Similar to (switch + enum class) of c++. Example
 - `pattern => code`. This is called _Match Arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
 ```rs
 enum Color{
@@ -14,8 +12,8 @@ enum Color{
     Black,
 } 
 fn color_value (var : Color) {
-    match var {                       //var is expression to be evaluated
-        Color::Red => {               //Match Arm
+    match var {                       //switch (var)
+        Color::Red => {               //case 1 =>       //Match Arm
             print!("Red");
         }
         //if we forget to define all match enum variables, Rust gives compile time error
@@ -32,8 +30,8 @@ default statement in match in rust is represented by underscore `_`.
 ```rs
 fn main() {
     let a = Some(4);
-    match a {                           //Match case
-        Some(3) => println!("Something"),
+    match a {
+        Some(3) => println!("Something"),   //some=Anything
         _ => (),                       //Default case
     }
 }
