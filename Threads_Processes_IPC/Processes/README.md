@@ -3,6 +3,19 @@
   - [fork()](#f) 
     - [When fork can fail](#fail)
   - [Code: 1 Child, 2 children, fork, n forks](#c)
+- **Memory Layout of Process**
+  - [Code Segment](#cs)
+    - [Size of CS](#scs)
+  - **Data Segment**
+    - [Parts of DS](#partsds)
+      - A. Initialized DS
+      - B. UnInitialized DS / BSS
+      - C. Pointer to Heap
+  - [Stack Segment](#ss)
+    - [Stack Frame](#sf)
+    - [Stack Overflow](#so)
+    - [Stack Smashing](#ss)
+    - [MAX Stack Size / Maximum stack allocated to process at start](#maxs)
 
 ## Process
 Running instance of program. All processes are decedents of swapper process(PID=0). Both(threads, processes) are independent sequence of operations
@@ -47,3 +60,103 @@ Fork can fail if there are:
 - 1 Child of parent
 - Copy on Write
 - n forks
+
+## Memory Layout of Process
+```console
+                   |                                                                                               |
+                   |                          <------DATA SEGMENT (static, global) ----------->                    |
+[Kernel] Process-2 |[STACK] shared_libraries {PTR-To-HEAP} {Uninitialized_BSS} {Initialized DS} [TEXT/CODE SEGMENT]|
+                   | ----->                                BlockStartedBySymbol <-RW--><--RO-->              0x0000|
+                   |                                                                                               |
+```
+<img src=memory-layout-of-process.PNG width=700/>
+
+<a name=cs></a>
+### 1. Code/Text Segment
+- (RO) Have Executable Instructions. Neither grows nor shrinks.
+- When a process is run twice OS maintains 1 set of pages kept in main memory. Both processes points to same memory (ie does not have personal CS)
+<a name=scs></a>
+#### Size = 8k 
+Does not change since its Read Only
+
+### 2. Data Segment {Stores Global, Static}
+<a name=partsds></a>
+#### Parts of Data Segment
+#### 2a. Initialized DS
+Initialized by Coder. Again its divided into 2 parts:
+  - *A1. RO(READ ONLY):* Global constants are stored here. Eg: const char `*a = "test"`
+  - *A2. RW(READ WRITE):* Stores Initialized globals, extern variables, local static.
+```c
+char s[] = "test";  //Initialized Globals
+int a = 1;        
+static int b = 1;
+
+extern int a;     //Extern variable
+
+static int a;     //Local static
+```
+
+#### 2b. Unintialized DS / BSS(Block Started by Symbol) 
+Stores uninitialized global and static. Data is Initialized to 0(by kernel) before code start executing.
+```c
+ int a;        
+ static int b
+```
+
+#### 2c. Pointer-to-Heap 
+Data Segment also stored pointer to heap. As memory is allocated/deallocated on heap using malloc() DS grows/shrinks. 
+```c
+ malloc()->brk()        
+ realloc()->sbrk()
+``` 
+
+<a name=ss></a>
+### 3. Stack Segment
+- **Stores:** Local variables, Registers, Stack Frame pointer, return address, stack-based parameters, stack frame as LL
+
+<a name=sf></a>
+#### Stack Frame
+{Input_parameters} {Return_address} {Local_variables}
+```c
+  add(int a, int b){
+    int c;               //Local
+  }
+  main(argv[0],argv[1]){            
+    int a ,b;
+    add(a,b);
+  }   
+
+--------stack allocated in this direction---->
+[ argv[1] argv[0] | 0x45 | b a ]  [ | b a | 0x68 | c | ]     //Input parameters are pushed in reverse order
+<---    sf of main()  --------->  <--sf of add()---->
+```
+**Popping of Stack frame:** 
+- Function add() finishes, will clear its stack. add() will pop local variables. popped 'c', add() will pop return address (0x68) and control reaches inside main. 
+- Now main() is responsible for cleaning rest of add() stack frame ie (b, a)
+  - rsp: Stack Pointer: Head of Stack Frame(Not Stack)
+  - rbp: Base Pointer Tail of Stack Frame
+
+<a name=so></a>
+##### Stack Overflow
+When program overflows stack based local variable or when process uses all its stack. At end of process's stack there is a GUARD PAGE, when process goes into it. Its a Segmentation Fault. Code causing stack overflow:
+```c
+    fun() {
+        fun();
+    }
+``` 
+
+<a name=ss></a>
+#### Stack Smashing
+Stack overflow caused deliberately as part of an attack.
+
+<a name=maxs></s>
+#### MAX Stack Size / Maximum stack allocated to process at start
+- Why 8MB of stack? In a single-threaded process, the address space reserved for the stack can be large and difficult to overflow
+- Why Stack size != Virtual Memory size (As Heap size = Virtual Memory size)? 
+  - Every thread has its own Stack.if thread-1 consumes all virtual memory and thread-2 also, nothing left.
+```c
+ 8 MB(Default)  #cat /proc/pid/limits     //Linux
+ 1 MB(Default)                            //Windows
+ 
+ $ ulimit -u unlimited                    //Changing stack size
+```
