@@ -78,7 +78,7 @@ Enrollment-Number(Key)  -> hash_function ->  Bucket-3
 
 ## Hash Collision
 When hash function provides same index for 2 different keys.
-<a name=sc1></a>
+<a name=sc></a>
 ### Solution-1: Seperate Chaining
 Each cell of HT point to a **DOUBLY LINKED LIST** of records that have same hash function value. This requires additional memory outside the table.
 - _Complexities:_ 
