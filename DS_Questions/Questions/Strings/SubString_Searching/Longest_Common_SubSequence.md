@@ -1,7 +1,12 @@
-### [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)
+**[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)**
+- [Problem](#p)
+- [Approach-1, Recursion](#a1)
+- [Approach-2, Dynamic Programming](#a2)
+
+<a name=p></a>
+### Longest Common Subsequence
 - Given two strings str1,str2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
-- A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. For example, "ace" is a subsequence of "abcde".
-- A common subsequence of two strings is a subsequence that is common to both strings.
+- [What is Subsequence](..). A common subsequence of two strings is a subsequence that is common to both strings.
 ```c
 Input: text1 = "abcde", text2 = "ace" 
 Output: 3  
@@ -11,12 +16,13 @@ Example-2: str1 = “AGGTAB”, str2 = “GXTXAYB”
           Answer = “GTAB” of length 4. 
 ```
 
+<a name=a1></a>
 ### Approach-1    //Recursive. O(2<sup>n</sup>)
-- **Logic** 
-  - Enumerate all subsequences of both given sequences and find LCS.
-  - Match every character with other character. 
-  - PROBLEM: Many subproblems which are solved again and again eg:"se,e". And in bigger string these repeated recurions will be more.
-```c++
+**Logic** 
+- Enumerate all subsequences of both given sequences and find LCS.
+- Match every character with other character. 
+- PROBLEM: Many subproblems which are solved again and again eg:"se,e". And in bigger string these repeated recurions will be more.
+```c
 str1=sea, str2=eat
                 sea, eat
                 /       \
@@ -26,7 +32,7 @@ str1=sea, str2=eat
           /           /       \
          s,0        s,0       0,a
 ```
-- **Code**
+**Code**
 ```c++
 class Solution {
 public:
@@ -55,8 +61,9 @@ int main() {
 }
 ```
 
-### Approach-2       //[Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
-- This question has overlapping subproblem & will be solved using DP.
+<a name=a2></a>
+### Approach-2, [Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
+This question has overlapping subproblem & will be solved using DP.
 
 **Logic**
   - As in DP, create a 2-D array `dp[str1.size()+1][str2.size()+1]` containing LCS of str1, str2.
