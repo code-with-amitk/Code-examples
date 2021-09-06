@@ -4,18 +4,21 @@
     - [When fork can fail](#fail)
   - [Code: 1 Child, 2 children, fork, n forks](#c)
 - **Memory Layout of Process**
-  - [Code Segment](#cs)
+  - [1. Code Segment](#cs)
     - [Size of CS](#scs)
-  - **Data Segment**
+  - **2. Data Segment**
     - [Parts of DS](#partsds)
       - A. Initialized DS
       - B. UnInitialized DS / BSS
       - C. Pointer to Heap
-  - [Stack Segment](#ss)
+  - [3. Stack Segment](#ss)
     - [Stack Frame](#sf)
     - [Stack Overflow](#so)
     - [Stack Smashing](#ss)
     - [MAX Stack Size / Maximum stack allocated to process at start](#maxs)
+  - [4. Heap](#h)
+    - [Max Heap Size](#maxh)
+    - [Heap Overflow](#ho)
 
 ## Process
 Running instance of program. All processes are decedents of swapper process(PID=0). Both(threads, processes) are independent sequence of operations
@@ -159,4 +162,22 @@ Stack overflow caused deliberately as part of an attack.
  1 MB(Default)                            //Windows
  
  $ ulimit -u unlimited                    //Changing stack size
+```
+
+<a name=h></a>
+### 3. Heap
+Memory area for dynamic Memory allocation
+
+<a name=maxh></a>
+#### Max heap Size
+Max Heap Size=Virtual memory size. [What is max VM Size](/Motherboard/CPU/Memory/Virtual_Physical_Memory)
+
+<a name=ho></a>
+#### Heap Overflow / Memory leak
+- When process keeps on allocating more and more memory without freeing it causes Heap overflow. 
+- Aftermaths: System shutdown, Crash, System becoming dead-slow. 
+```c
+    while(1){ 
+      char *p = (char *) malloc(12); 
+    }
 ```
