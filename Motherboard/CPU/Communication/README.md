@@ -5,7 +5,8 @@
     - [Packet format, Communication](#pf)
     - [Steps on Tool for I2C Comm](#st)
   - **[SMBus](#sb)**
-  - 
+  - **[PMBus v(1.3)](#pm)**
+  - **[SPIBus](#spi)**
 
 <a name=sp></a>
 ## Serial Bus
@@ -116,3 +117,41 @@ Physical to virtual memory is mapped at stat and write is done there.
   - *Placing 1* Device should release the bus line letting it be pulled high by the bus pull-up circuitry(pull-up resistor or current source).
 
 <img src="SMBus.JPG" width=500 />
+
+<a name=pm></a>
+## PMBus(Power Management Bus) v(1.3) 
+Latest standard having AVS(Adaptive Voltage Scaling) Bus
+- This is dedicated bus to control processor voltages statically and dynamically. AVS is closed loop real time feedback from Devices to Voltage Regulator to update the voltage requested from the power supply. Adv: Intelligent power consumption savings.
+- AVS [Frames](https://pmbus.org/Assets/PDFS/Public/20130912PMBus_1-3_DPF.pdf)
+```c
+ Write Frame (32 bit)
+ Read Frame (32 bit)
+```
+### AVSBus Commands
+```c
+– Target Rail Voltage
+– Target Rail Vout Transition Rate (Rising and Falling)
+– Rail Current (read only)
+– Rail Temperature (read only)
+– Reset Rail Voltage to Default Value (write only)
+– Power Mode (Full Power, Maximum Efficiency)
+– AVSBus Status (VGood, OCW, UVW, OTW, OPW)
+– AVSBus Version
+```
+
+<a name=spi></a>
+## SPI(Serial Peripheral Interface) Bus
+Provides half(communication in 1 direction at a time) or full duplex(Communication in both directions at same time), synchronous(Devices are time syncd), serial communication bus with external devices.
+- Similar to I<sup>2</sup>Cmaster/slave concept is present. multiple masters can be present. Communication clock is called SCK.
+- **Data** Order of data is programmable ie MSB 1st or LSB 1st. Data can be 8 or 16 bit. Data can be transferred to SPI Device from Memory(ie using DMA) directly.
+- **SPI Pins**
+  - *1. MISO(Master In/Slave Out) Pin:* Master receiveing and slave sending data.
+  - *2. MOSI(Master Out/Slave In) Pin*
+  - *3. SCK(Serial clock):* Output for SPI masters, input for SPI slaves
+  - *4. NSS(Slave select):* optional pin to select slave device, Helps master to communicate directly with particular slave aoviding contention on SPI Bus.
+```c
+  |   board-n   |           |   board-m   |
+  | IC-1  IC-2  |           | IC-3  IC-4  |
+            /\                  /\
+            |-------------------|
+```
