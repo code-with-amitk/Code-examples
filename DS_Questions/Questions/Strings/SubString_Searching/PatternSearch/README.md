@@ -1,12 +1,4 @@
-## Substring Search
-- Pattern searching is an important When we do search for a string in file or browser or database.
-- Example: Searching needle in haystack
-```c
-haystack[]="ABCDBCF"    //Length = n
-needle[]="BC"           //Length = m
-```
-
-# Comparison
+### Comparison
 
 |ALGO|Time Complexity|Space Complexity|How it works|
 |---|---|---|---|
