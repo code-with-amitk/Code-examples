@@ -1,12 +1,15 @@
 - [Serial, Parallel Bus](#sp)
 - **Buses**
   - [I2C vs SMBus(System Management Bus) vs PMBus(Power Management Bus)](#vs)
-  - **I<sup>2</sup>C**
+  - **1. I<sup>2</sup>C**
     - [Packet format, Communication](#pf)
     - [Steps on Tool for I2C Comm](#st)
-  - **[SMBus](#sb)**
-  - **[PMBus v(1.3)](#pm)**
-  - **[SPIBus](#spi)**
+  - **[2. SMBus](#sb)**
+  - **[3. PMBus v(1.3)](#pm)**
+  - **[4. SPIBus](#spi)**
+  - **[5. CAN](#can)**
+    - [CAN Messages](#cmsg)
+    - [Standard vs Extended CAN](#vs)
 
 <a name=sp></a>
 ## Serial Bus
@@ -57,7 +60,7 @@ Adv           | Simple
 ```
 
 <a name=i2c></a>
-## [I<sup>2</sup>C/I2C (Inter-Interconnected Circuit Bus)](https://www.i2c-bus.org/specification/)
+## 1. [I<sup>2</sup>C/I2C (Inter-Interconnected Circuit Bus)](https://www.i2c-bus.org/specification/)
 - For communication between 2 soc's or IC's on 1 board using  2-wire Serial communication bus, ICs on seperate boards can also be connected using I2C.
 - This is similar to nodes(ICs/SOCs) connected on 1 LAN using switch/ethernet-cable.
 - **Rules** Bus master device initiates a bus transfer between & provides the clock signals. Slave device can receive data provided by the master or it can provide data to the master.
@@ -109,7 +112,7 @@ Physical to virtual memory is mapped at stat and write is done there.
 ```
 
 <a name=sb></a>
-## [SMBus(System Management Bus) http://smbus.org/specs/](http://smbus.org/specs/)
+## 2. [SMBus(System Management Bus) http://smbus.org/specs/](http://smbus.org/specs/)
 - VDD may be 3 to 5 volts +/- 10% and there may be SMBus devices powered directly by the bus VDD
 - SMBCLK and SMBDAT lines are bi-directional. When the bus is free, both lines are high
 - **Placing 0 or 1 on Bus**
@@ -119,7 +122,7 @@ Physical to virtual memory is mapped at stat and write is done there.
 <img src="SMBus.JPG" width=500 />
 
 <a name=pm></a>
-## PMBus(Power Management Bus) v(1.3) 
+## 3. PMBus(Power Management Bus) v(1.3) 
 Latest standard having AVS(Adaptive Voltage Scaling) Bus
 - This is dedicated bus to control processor voltages statically and dynamically. AVS is closed loop real time feedback from Devices to Voltage Regulator to update the voltage requested from the power supply. Adv: Intelligent power consumption savings.
 - AVS [Frames](https://pmbus.org/Assets/PDFS/Public/20130912PMBus_1-3_DPF.pdf)
@@ -140,7 +143,7 @@ Latest standard having AVS(Adaptive Voltage Scaling) Bus
 ```
 
 <a name=spi></a>
-## SPI(Serial Peripheral Interface) Bus
+## 4. SPI(Serial Peripheral Interface) Bus
 Provides half(communication in 1 direction at a time) or full duplex(Communication in both directions at same time), synchronous(Devices are time syncd), serial communication bus with external devices.
 - Similar to I<sup>2</sup>Cmaster/slave concept is present. multiple masters can be present. Communication clock is called SCK.
 - **Data** Order of data is programmable ie MSB 1st or LSB 1st. Data can be 8 or 16 bit. Data can be transferred to SPI Device from Memory(ie using DMA) directly.
@@ -155,3 +158,58 @@ Provides half(communication in 1 direction at a time) or full duplex(Communicati
             /\                  /\
             |-------------------|
 ```
+
+<a name=can></a>
+## 5. CAN / Controller Area Network
+**What is CAN?** 
+- Developed by Robert Bosch GmbH(1986) to send messages in automobile nodes.
+- All electronic devices in car(such as active suspension, gear and lighting control, central locking, and ABS) are connected to dashboard using CAN Bus.
+- Broadcast communication bus defined by the ISO 11898 standards, all nodes recieve packet, its upto node to recieve/discard the pkt.
+
+**Why CAN not I2C?**
+- Vehicular Env has high noise, CAN can handle better than any other protocol.
+- The automobile has a large number of systems
+- Long range communication with high speed.
+- Reliable wrt I2C.
+
+**How I2C does not fit for automotive?**
+- communication in short-distance Only.
+- True multi-master.
+
+CAN Controller Examples
+```c
+Intel 82526 CAN controller
+Philips 82C200
+```
+
+<a name=cmsg></a>
+### CAN Messages
+> max payload = 94 bit
+There are 4 kinds of messages:
+```c
+///////1. Data Frame////////
+     Arbitration Field    
+|Identifier(11bit) + RTR(1 bit) | Data (0-8 bytes) | CRC (15 bit checksum) | ACK bit |
+ AF: Decides priority of message
+
+///////2. Remote Frame/////
+- No data field is present, 
+- its used by reciever to initiate data transfer. If, say, node A transmits a Remote Frame with the Arbitration Field=234 to node B, then node B responds with Data Frame with the Arbitration Field=234
+
+///////3. Error Frame//////
+When node detects a fault it sends Error Frame, transmitter will retransmit the message.
+
+//////4. Overload Frame////
+When node is occupied, it sends OF to inform transmitter I'm busy.
+```
+
+<a name=vs></a>
+### Standard vs Extended CAN
+```c
+                     Standard(2.0A) |  Extended(2.0B)
+------------------|-----------------|------------------
+Arbitration Field | 11 bits         |    29 bits
+```
+<a name=ac></a>
+### How Collision is avoided / Bus Arbitration
+The transmitting nodes monitor the bus before sending. If it detects signal, it quits the arbitration process and become a receiver instead. 
