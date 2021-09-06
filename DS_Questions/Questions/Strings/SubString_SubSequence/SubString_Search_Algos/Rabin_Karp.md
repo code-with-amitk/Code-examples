@@ -3,9 +3,8 @@
 - [Logic](#l)
 - [Complexity](#co)
 - [Code](#c)
-
-https://amitkumar25nov.wordpress.com/rabin-karp-pattern-searching/	
-https://www.quora.com/What-is-a-rolling-hash-and-when-is-it-useful
+	
+[Rolling Hash](https://www.quora.com/What-is-a-rolling-hash-and-when-is-it-useful)
 
 <a name=h></a>
 ### How Algo Works
