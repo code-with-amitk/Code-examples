@@ -48,19 +48,7 @@ main() {
 <a name=cpp></a>
 ### 1. C++ Shell
 - This code can: Execute commands, redirect output to a file.
-> [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions), [fork()](/Threads_Processes_IPC/Processes/Process_Creation),  [PCB](/Threads_Processes_IPC/Processes/Process_Table), [waitpid()](https://linux.die.net/man/2/waitpid)
-- **Steps**
-  - _1._ Display shell prompt
-  - _2._ Read command from keyboard into string and trim leading, trailing spaces.
-  - _3._ if input command is "q" exit.
-  - _4._ Tokenize the command and place into `vector<string>` with sepeartor space " ".
-  - _5._ if input contains ">" jump to Redirect() function to process [redirection command]().
-    - _5a._ Create file into which output needed to be redirected
-    - _5b._ [dup2()](/Operating_Systems/Linux/Kernel/System_Calls) stdout as newly created file descriptor. so STDOUT,new file both point to new file.
-    - _5c._ Remove file name, `>` from input string and pass string to execute function.
-  - _6._ if input does not contain ">", excute the command.
-    - _6a._ Create array of `char*` containing command and its arguments
-    - _6b._ execute the command in child process and wait in parent
+> [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions), [fork()](/Threads_Processes_IPC/Processes/Process_Creation),  [PCB](/Threads_Processes_IPC/Processes/Process_Table), [waitpid()](https://linux.die.net/man/2/waitpid), [dup2()](/Operating_Systems/Linux/Kernel/System_Calls)
 ```c++
 #include<iostream>
 #include<string>
@@ -73,15 +61,20 @@ using tokenizer = boost::tokenizer <boost::char_separator<char>>;
 boost::char_separator<char> sep(" ");
 using VectorString = vector<string>;
 
-void Execute (VectorString& vecInput) {                         //6              
+/*
+Execute the command.
+1. Create array of `char*` containing command and its arguments
+2. execute the command in child process and wait in parent
+*/
+void Execute (VectorString& vecInput) {
   int status;
   
-  char *arr[vecInput.size() + 1];                               //6a
+  char *arr[vecInput.size() + 1];                               //1
   for (auto i=0; i<vecInput.size(); ++i)
     arr[i] = const_cast<char*>(vecInput[i].c_str());
   arr[vecInput.size()] = NULL;
 
-  if (fork() == 0)    //Child                                    //6b
+  if (fork() == 0)    //Child                                    //2
     execvp (arr[0], arr);
   else                                          
     waitpid (-1, &status, 0);
@@ -137,28 +130,36 @@ void Pipe (VectorString& vecStr) {
   Execute (temp);
 }
 
+/*
+1. Display shell prompt, Read command from keyboard into string, trim leading, trailing spaces.
+2. Tokenize the command and place into `vector<string>` with sepeartor space " ".
+3. Checks type of command
+  3a. if input contains ">" call Redirect().
+  3b. if input contains "|" call Pipe().
+  3c. For normal command "ls -ltr" call Execute().
+*/
 int main() {
   string strInput;
   VectorString vecStr;
   
   while (1) {
     cout << "> ";                               //1
-    getline (cin, strInput);                    //2
+    getline (cin, strInput);
     boost::algorithm::trim (strInput);
-    if (strInput == "q") {                      //3
+    if (strInput == "q") {
       cout << "Bye!!\n";
       exit (0);
     }
     
-    tokenizer tok(strInput, sep);               //4
+    tokenizer tok(strInput, sep);               //2
     for (const auto& t:tok) 
       vecStr.push_back(t);
 
-    if (count(vecStr.begin(), vecStr.end(), ">"))   //5
+    if (count(vecStr.begin(), vecStr.end(), ">"))  //3a
       Redirect(vecStr);
-    else if (count.vecStr.begin(), vecStr.end(), "|")
+    else if (count.vecStr.begin(), vecStr.end(), "|") //3b
       Pipe (vecStr);
-    else                                          //6
+    else                                          //3c
       Execute (vecStr);
 
     vec.clear();
