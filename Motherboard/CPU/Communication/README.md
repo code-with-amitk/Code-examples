@@ -9,7 +9,7 @@
   - **[4. SPIBus](#spi)**
   - **[5. CAN](#can)**
     - [CAN Messages](#cmsg)
-    - [Standard vs Extended CAN](#vs)
+    - [Standard vs Extended CAN](#vs1)
 
 <a name=sp></a>
 ## Serial Bus
@@ -203,7 +203,7 @@ When node detects a fault it sends Error Frame, transmitter will retransmit the 
 When node is occupied, it sends OF to inform transmitter I'm busy.
 ```
 
-<a name=vs></a>
+<a name=vs1></a>
 ### Standard vs Extended CAN
 ```c
                      Standard(2.0A) |  Extended(2.0B)
