@@ -196,6 +196,7 @@ for, loop, while, match=switch, if, if let
 
 <a name=enum></a>
 ### [Enum](Enum)
+- Option Enum
 
 <a name=eh></a>
 ### [Error Handling](Error_Handling)
