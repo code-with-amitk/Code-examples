@@ -1,4 +1,6 @@
-### Continious/Contigious substring
-|Question|Explain|
-|---|---|
-|1. Longest Contigiuos Substring Without Repeating Characters.md|<ul><li>Input="pwwkew", ans=3</li></ul><ul><li>Input="abcabcbb", ans=3</li></ul>|
+Terms
+- [SubSequence](#ss)
+
+<a name=ss></a>
+### Subsequence
+Subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. For example, "ace" is a subsequence of "abcde".
