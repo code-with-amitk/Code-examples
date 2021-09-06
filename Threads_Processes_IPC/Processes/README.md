@@ -6,7 +6,7 @@
 - **Memory Layout of Process**
   - [1. Code Segment](#cs)
     - [Size of CS](#scs)
-  - **2. Data Segment**
+  - _2._ Data Segment
     - [Parts of DS: Initialized DS, UnInitialized DS / BSS, Pointer to Heap](#partsds)
   - [3. Stack Segment](#ss)
     - [Stack Frame](#sf)
@@ -16,7 +16,7 @@
   - [4. Heap](#h)
     - [Max Heap Size](#maxh)
     - [Heap Overflow](#ho)
-- [Process States](#pros)
+- **[Process States](#pros)**
 
 ## Process
 Running instance of program. All processes are decedents of swapper process(PID=0). Both(threads, processes) are independent sequence of operations
