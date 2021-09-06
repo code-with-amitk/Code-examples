@@ -1,13 +1,15 @@
-**Knuth Morris Pratt algorithm**
-- Steps of Algo
+**KMP / Knuth Morris Pratt Algorithm**
+- [Logic](#s)
+- [Code](#c)
 
-### Steps
-- **1. Build LPS(longest prefix which is also proper suffix)**
-  - Logic is discussed in [longest_happy_prefix.cpp](/DS_Questions/Questions/Strings/Prefix_Suffix)
-- **2: Search needle using LPS in haystack**
+<a name=s></a>
+### Logic
+- _1._ Build [LPS(longest prefix which is also proper suffix)](/DS_Questions/Questions/Strings/Prefix_Suffix)
+- _2._ Search needle using LPS in haystack
 
+<a name=c></a>
 ## Code
-```c++
+```cpp
 class Solution{
 public:
    void LPSArray(string& s, vector<int>& lps) {
