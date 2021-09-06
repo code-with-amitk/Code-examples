@@ -7,10 +7,7 @@
   - [1. Code Segment](#cs)
     - [Size of CS](#scs)
   - **2. Data Segment**
-    - [Parts of DS](#partsds)
-      - A. Initialized DS
-      - B. UnInitialized DS / BSS
-      - C. Pointer to Heap
+    - [Parts of DS: Initialized DS, UnInitialized DS / BSS, Pointer to Heap](#partsds)
   - [3. Stack Segment](#ss)
     - [Stack Frame](#sf)
     - [Stack Overflow](#so)
@@ -64,7 +61,7 @@ Fork can fail if there are:
 - Copy on Write
 - n forks
 
-## Memory Layout of Process
+# Memory Layout of Process
 ```console
                    |                                                                                               |
                    |                          <------DATA SEGMENT (static, global) ----------->                    |
@@ -75,16 +72,16 @@ Fork can fail if there are:
 <img src=memory-layout-of-process.PNG width=700/>
 
 <a name=cs></a>
-### 1. Code/Text Segment
+## 1. Code/Text Segment
 - (RO) Have Executable Instructions. Neither grows nor shrinks.
 - When a process is run twice OS maintains 1 set of pages kept in main memory. Both processes points to same memory (ie does not have personal CS)
 <a name=scs></a>
 #### Size = 8k 
 Does not change since its Read Only
 
-### 2. Data Segment {Stores Global, Static}
+## 2. Data Segment {Stores Global, Static}
 <a name=partsds></a>
-#### Parts of Data Segment
+### Parts of Data Segment
 #### 2a. Initialized DS
 Initialized by Coder. Again its divided into 2 parts:
   - *A1. RO(READ ONLY):* Global constants are stored here. Eg: const char `*a = "test"`
@@ -114,11 +111,11 @@ Data Segment also stored pointer to heap. As memory is allocated/deallocated on 
 ``` 
 
 <a name=ss></a>
-### 3. Stack Segment
+## 3. Stack Segment
 - **Stores:** Local variables, Registers, Stack Frame pointer, return address, stack-based parameters, stack frame as LL
 
 <a name=sf></a>
-#### Stack Frame
+### Stack Frame
 {Input_parameters} {Return_address} {Local_variables}
 ```c
   add(int a, int b){
@@ -140,7 +137,7 @@ Data Segment also stored pointer to heap. As memory is allocated/deallocated on 
   - rbp: Base Pointer Tail of Stack Frame
 
 <a name=so></a>
-##### Stack Overflow
+### Stack Overflow
 When program overflows stack based local variable or when process uses all its stack. At end of process's stack there is a GUARD PAGE, when process goes into it. Its a Segmentation Fault. Code causing stack overflow:
 ```c
     fun() {
@@ -153,7 +150,7 @@ When program overflows stack based local variable or when process uses all its s
 Stack overflow caused deliberately as part of an attack.
 
 <a name=maxs></s>
-#### MAX Stack Size / Maximum stack allocated to process at start
+### MAX Stack Size / Maximum stack allocated to process at start
 - Why 8MB of stack? In a single-threaded process, the address space reserved for the stack can be large and difficult to overflow
 - Why Stack size != Virtual Memory size (As Heap size = Virtual Memory size)? 
   - Every thread has its own Stack.if thread-1 consumes all virtual memory and thread-2 also, nothing left.
@@ -165,15 +162,15 @@ Stack overflow caused deliberately as part of an attack.
 ```
 
 <a name=h></a>
-### 3. Heap
+## 3. Heap
 Memory area for dynamic Memory allocation
 
 <a name=maxh></a>
-#### Max heap Size
+### Max heap Size
 Max Heap Size=Virtual memory size. [What is max VM Size](/Motherboard/CPU/Memory/Virtual_Physical_Memory)
 
 <a name=ho></a>
-#### Heap Overflow / Memory leak
+### Heap Overflow / Memory leak
 - When process keeps on allocating more and more memory without freeing it causes Heap overflow. 
 - Aftermaths: System shutdown, Crash, System becoming dead-slow. 
 ```c
