@@ -170,7 +170,7 @@ Allows you to customize the code that is run when an instance of the smart point
 
 <a name=fu></a>
 #### Future Trait
-**Future?** is a "asynchronous value" that may not have finished computing yet. Thread waits on future to become available. These are similar to [epoll()], not smilar to [poll() or select()]().
+**Future?** is a "asynchronous value" that may not have finished computing yet. Thread waits on future to become available. These are similar to [epoll()](/Networking/OSI-Layers/Layer-4/Socket_Programming/APIs_Structures/APIs/Polling_APIs/), not smilar to poll() or select().
 ```rs
 pub trait Future {
     //The type of value produced on completion.
