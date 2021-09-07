@@ -1,8 +1,7 @@
 **Trait**
-- Functions in trait
-  - [Function Declaration in Trait](#dec)
-  - [Function Definition in Trait](#def)
-- [Passing Triat as argument to function](#arg)
+  - [Trait Declaration, Definition](#dec)
+  - [Function with default implemenration](#def)
+  - [Passing Triat as argument to function](#arg)
 - **Trait Bound**
   - _1._ Multiple Trait Bounds //Friend Function
       - [1.1 Using +](#usingplus)
@@ -16,31 +15,30 @@
 
 
 ## Trait
-Abstract interface/class having Virtual Functions(not pure Virtual). We declare or define function in trait. These functions are implemented(overridden) on type.
+- Interface/class in Rust(declared with keyword trait) having Virtual Functions(not pure Virtual). We declare or define function in trait. These functions are implemented(overridden) on type.
 
-## Functions in trait
 <a name=dec></a>
-#### Function declaration in Trait
-1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type
+### Trait Declaration & Definition
+- 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type.
 ```rust
-pub trait CompanyDB {                         //1. Declared a function inside trait
+pub trait CompanyDB {                         //1. Trait Declaration
     fn add_to_db(&self);
 }
-pub struct Employee{                          //2. Declared a Type "Employee struct"
+pub struct Employee{                          //2. Declared Type "struct Employee"
     pub name:String,
     pub emp_id:u32,
 }
-pub struct Contractor{                        //3. Declared Type "Contractor struct".
+pub struct Contractor{                        //3. Declared Type "struct Contractor".
     pub contractor_name:String,
 }
 
 //impl  TRAIT  for   TYPE
-impl CompanyDB for Employee{                  //4. Implemented trait/Overridden for Type="Employee struct"
+impl CompanyDB for Employee{                  //4. Trait Definition. Implemented trait/Overridden for Type="Employee struct"
     fn add_to_db(&self) {
         println!("Added {} {}", self.name, self.emp_id);
     }
 }
-impl CompanyDB for Contractor{                //5. Implemented trait/Overrideen for Type="Contractor struct"
+impl CompanyDB for Contractor{                //5. Trait Definition. Implemented trait/Overrideen for Type="Contractor struct"
     fn add_to_db(&self) {
         println!("Added {}", self.contractor_name);
     }
@@ -58,7 +56,7 @@ Added Amit 34
 ```
 
 <a name=def></a>
-#### Function definition in Trait / Default Implementation
+### Function with Default Implementation in Trait
 To use default implementation of trait just implement type as {}
 ```rust
 //Considering Above Example
@@ -84,7 +82,7 @@ Default Implementation
 ```
 
 <a name=arg></a>
-## Passing Triat as argument to function
+### Passing Triat as argument to function
 Above we have implemented a Trait(called CompanyDB), we can pass trait as parameter to function.
 ```rs
 pub fn test (param: &impl CompanyDB) {          //1. Function taking trait as parameter          //1.2.A
