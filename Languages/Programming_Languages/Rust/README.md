@@ -87,7 +87,7 @@ rustc 1.51.0 (2fd73fabe 2021-03-23)
 cargo build, cargo test, cargo doc, cargo publish
 
 <a name=as></a>
-### Asynchronous Programming
+### [Asynchronous Programming](Asynchronous Programming)
 - awaits, future
 
 <a name=statements></a>
