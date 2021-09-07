@@ -12,7 +12,7 @@
   - [Complexity](#co3)
   - [Code](#c3)
 
-## [Single Number II](https://leetcode.com/problems/single-number-ii/)
+## [Single Number II / All elements appears thrice and one element appears once](https://leetcode.com/problems/single-number-ii/)
 - Given an integer array where every element appears 3 times except for one, which appears exactly once. Find the single element and return it.
 - In Time:O(n), Space:O(1). Example
 ```c
