@@ -1,29 +1,30 @@
 - **Trait**
   - [Declaration, Definition](#dec)
   - [Function with default implemenration](#def)
-  - [Passing Triat as argument to function](#arg)
+  - [Function cannot implement 2 traits internally](#invalid-t)
+  - Passing, Returning Triats
+    - [Trait as Argument to function](#arg)
+    - [Returning Trait from function](#r)
 - **Trait Bound**
   - _1._ Multiple Trait Bounds //Friend Function
       - [1.1 Using +](#usingplus)
       - [1.2 Using where clause](#usingplus)
-- **Returning Triats from Function**
-  - [Function returning trait](#ret-t)
-  - [Function cannot implement 2 traits internally](#invalid-t)
 - **[Traits provided by Standard library](#sl)**
   - Fn, FnMut, or FnOnce
   - Dref, Drop
 
 
 ## Trait
-- Interface/class in Rust(declared with keyword trait) having Virtual Functions(not pure Virtual). We declare or define function in trait. These functions are implemented(overridden) on type.
+- Interface/class in Rust(declared with keyword trait) having Virtual Functions(not pure Virtual) declared or defined inside it. These functions are implemented(overridden) on type.
 
 <a name=dec></a>
 ### Trait Declaration & Definition
-- 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type.
+1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type.
 ```rust
 pub trait CompanyDB {                         //1. Trait Declaration
     fn add_to_db(&self);
 }
+
 pub struct Employee{                          //2. Declared Type "struct Employee"
     pub name:String,
     pub emp_id:u32,
@@ -56,7 +57,7 @@ Added Amit 34
 ```
 
 <a name=def></a>
-### Function with Default Implementation in Trait
+#### Function with Default Implementation in Trait
 To use default implementation of trait just implement type as {}
 ```rust
 //Considering Above Example
@@ -81,8 +82,27 @@ $ ./test.exe
 Default Implementation
 ```
 
+<a name=invalid-t></a>
+#### Function cannot implement 2 traits internally
+Returning either or trait(ie Employee or contractor) is not supported by complier.
+```rust
+pub fn fun (test:bool) -> impl CompanyDB {      
+  if test {
+    Employee {
+      name:String::from("Amit"),
+      emp_id:34,  
+    }
+  } else {
+    Contractor {
+      name:String::from("Rishu"),
+    }
+  }
+}
+```
+
+### Passing,Returning Triat 
 <a name=arg></a>
-### Passing Triat as argument to function
+#### Trait as argument to function
 Above we have implemented a Trait(called CompanyDB), we can pass trait as parameter to function.
 ```rs
 pub fn test (param: &impl CompanyDB) {          //1. Function taking trait as parameter          //1.2.A
@@ -95,6 +115,19 @@ fn main() {
     emp_id:34,  
   };
   test (&amit);                                 //4. Called Function, passed instance of Type implementing triat
+}
+```
+<a name=r></a>
+#### Returning Trait from function
+Function which returns (impl Trait) returns any of type that implements the trait.
+```rust
+//This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
+                //impl Trait
+pub fn fun ( ) -> impl CompanyDB {      
+  Employee {                            //Created "Employee struct" Type object.
+    name:String::from("Amit"),
+    emp_id:34,  
+  };
 }
 ```
 
@@ -125,38 +158,6 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
     where T: Triat2 + Triat2
           U: Triat2 + Triat3
 {
-```
-
-## Returning Triats from Function
-<a name=ret-t></a>
-#### Function returning trait
-Function which returns (impl Trait) returns any of type that implements the trait.
-```rust
-//This Function can return "Employee Type" or "Contractor Type" or "cleaning_staff Type". see above
-                //impl Trait
-pub fn fun ( ) -> impl CompanyDB {      
-  Employee {                            //Created "Employee struct" Type object.
-    name:String::from("Amit"),
-    emp_id:34,  
-  };
-}
-```
-<a name=invalid-t></a>
-#### Function cannot implement 2 traits internally
-Returning either or trait(ie Employee or contractor) is not supported by complier.
-```rust
-pub fn fun (test:bool) -> impl CompanyDB {      
-  if test {
-    Employee {
-      name:String::from("Amit"),
-      emp_id:34,  
-    }
-  } else {
-    Contractor {
-      name:String::from("Rishu"),
-    }
-  }
-}
 ```
 
 <a name=sl></a>
