@@ -1,4 +1,4 @@
-**All elements appears thrice and one element appears once**
+**All elements appears thrice(or n times) and one element appears once**
 - **Approach-1, unordered_map, Count Frequency. Time:O(n), Space:O(m)**
   - [Logic](#l1)
   - [Complexity](#co1)
@@ -12,7 +12,7 @@
   - [Complexity](#co3)
   - [Code](#c3)
 
-## [Single Number II / All elements appears thrice and one element appears once](https://leetcode.com/problems/single-number-ii/)
+## [Single Number II / All elements appears 3 times(or n times) and 1 element appears once](https://leetcode.com/problems/single-number-ii/)
 - Given an integer array where every element appears 3 times except for one, which appears exactly once. Find the single element and return it.
 - In Time:O(n), Space:O(1). Example
 ```c
@@ -103,6 +103,29 @@ public:
 ### Approach-3, Using Bitwise Operators
 <a name=l3></a>
 #### Logic
+- _1._ Sum all the bits in same positions for all the elements in `int bitset[32]`
 ```c
+input = {6, 6, 6, 3}   
+
+6 -> 00000000 00000000 00000000 00000 110
+6 -> 00000000 00000000 00000000 00000 110
+6 -> 00000000 00000000 00000000 00000 110
+3 -> 00000000 00000000 00000000 00000 011
+  ________________________________________+
+        0       0         0     00000 341
+```
+- _2._ Take modulus by 3. We can mod by n which means elements repeating n times.
+```c
+0mod3 3mod3  4mod3 1mod3
+_________________________
+0       0     1     1         =>   3  appearing once.
+```
+<a name=co3></a>
+#### Complexity
+- **Time** O(n)
+- **Space:** O(1). We are taking bitset of size 32 all times.
+<a name=c3></a>
+#### Code
+```cpp
 
 ```
