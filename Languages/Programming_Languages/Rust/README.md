@@ -41,6 +41,7 @@
 <a name="Rustcpp"></a>
 #### Rust vs C++
 - No implicit copies as in C++
+- Rust uses LLVM complier which has inherent advantages over g++
 - No invisible copy constructors, move operators etc (as in c++). Whatever is runtime cost that's visible in code.
 - Safe parallelism wrt C++
 - Pacakge Repository (crates) better
