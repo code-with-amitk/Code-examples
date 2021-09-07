@@ -88,7 +88,7 @@ cargo build, cargo test, cargo doc, cargo publish
 
 <a name=as></a>
 ### [Asynchronous Programming](Asynchronous)
-- awaits, future
+- awaits, async() function
 
 <a name=statements></a>
 ### Statements & Expressions
