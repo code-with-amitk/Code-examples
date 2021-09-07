@@ -19,7 +19,7 @@
 - [Enum](#enum)
 - [Error Handling](#eh)
 - [Generic Types/Templates](#temp)
-- [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
+- [Trait = Interface = Virtual (not pure virtual)](#ti)
 - [Automated Tests](#tests)
 - [Custom Programs](#custom)
 - [Design Guidelines](#dg)
@@ -208,6 +208,10 @@ for, loop, while, match=switch, if, if let
 
 <a name=temp></a>
 ### [Generic Types/Templates](Generic_Types)
+
+<a name=ti></a>
+### [Trait = Interface = Virtual (not pure virtual)](Trait_Interface)
+Trait bounds, Future, 
 
 <a name=tests></a>
 ### [Automated Tests](Automated_Tests)
