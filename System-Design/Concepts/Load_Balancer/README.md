@@ -28,9 +28,13 @@ Advantages  | 1. Increased security: No information about your backend  | 1. Han
 
 <a name=ty></a>
 ### Types of Load Balancing
-#### A. LOAD BALANCER?
-Traffic is divided using IP Address or Port numbers. if load-balancer-1 fails traffic gets routed using load-balancer-2.
-#### B. CHANNEL BONDING?
+#### Layer 7 LB (Also called Reverse Proxy)
+LB looks into Layer-7 Application packet(Eg: HTTP) and performs load balancing based on Header content.
+#### ayer 4 LB 
+Operate at transport layer(TCP or UDP). Packet is routed based on Src,dst Ports(without looking into packet).
+#### Layer3 VPN LB
+LB decision is made based on IP Address
+#### CHANNEL BONDING?
 Implies a division of traffic between physical interfaces at layer1(per packet division) or layer2(data link layer with a protocol like shortest path bridging).
 
 <a name=p></a>
