@@ -1,5 +1,5 @@
-**Trait**
-  - [Trait Declaration, Definition](#dec)
+- **Trait**
+  - [Declaration, Definition](#dec)
   - [Function with default implemenration](#def)
   - [Passing Triat as argument to function](#arg)
 - **Trait Bound**
