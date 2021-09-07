@@ -1,6 +1,7 @@
 **Asynchronous Programming in Rust**
 - [async function](#as)
 - [block_on()](#b)
+- [await](#aw)
 
 ## Asynchronous Programming
 To write asynchronous function in rust we need to perform these 3 tasks:
@@ -36,30 +37,70 @@ fn main() {
 }
 ```
 
-### block_on() 
-This will block/sleep current thread until [future]() is not run to completion.
+<a name=as></a>
+### async function
+Function prefixed with async & which will run asynchronously in rust.
 ```rs
-use futures::executor::block_on;
-
-async fn hello_world() {
-    println!("hello, world!");
-}
-
-fn main() {
-    let future = hello_world();     // Nothing is printed
-    block_on(future);               // `future` is run and "hello, world!" is printed
+async fn fun() {
+    ...
 }
 ```
 
-- `.await` is used to write Asynchronous function in Rust, it transforms block of code into a state machine that implements a [Future trait](/Languages/Programming_Languages/Rust/Triat_Interface).
-- async function returns [Future](/Languages/Programming_Languages/Rust/Triat_Interface).
+<a name=b></a>
+### block_on() 
+Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
+```rs
+use futures::executor::block_on;
+async fn fun() {
+    println!("hello, world!");
+}
+fn main() {
+    block_on(fun());        //main() is blocked until fun() does not completes
+}
+```
+
+<a name=aw></a>
+### await
+Inside [async function](#as) await is used to wait for another async function.
+- **await vs block_on()** 
+```c
+                                        |   await          |        block_on()    |
+----------------------------------------|------------------|----------------------|
+Blocks current thread                   |     no           |          yes         |
+wait for future to complete             |     yes          |          yes         |
+Other tasks in async function can run?  |     yes          |          no          |
+```
+**Code**
 ```rs
 $ cat Cargo.toml
 [dependencies]
 futures = "0.3"
 
-$ cat test.rs
-async fn do_something() {
-/* ... */ 
+//////Ex-1. block_on()//////////
+$ cat main.rs
+use futures::executor::block_on;
+async fn fun1() { print!("fun1"); }
+async fn fun2() { print!("fun2"); }
+fn main() {
+    block_on(fun1());                       //main() blocks until fun1(),fun2() does not compelte
+    block_on(fun2());
+}
+$ main.exe
+fun1 fun2
+
+///////Ex-2. await()/////////////
+$ cat main.rs
+use futures::executor::block_on;
+async fn fun1() { print!("fun1"); }
+async fn fun2() { print!("fun2"); }
+
+aync fn async_main() {                  //fun1(),fun2() can independently execute. async_main() can run other tasks independently as well.
+    fun1().await;
+    //other work
+    fun2.await();
+}
+
+fn main() {
+    block_on(async_main());
 }
 ```
