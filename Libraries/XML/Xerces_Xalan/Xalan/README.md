@@ -19,18 +19,22 @@ Xalan compatiblity with xerces, Check [Release History](https://apache.github.io
 **2. Windows** [Build steps apache.github.io](https://apache.github.io/xalan-c/build.html)
 - [CMAKE_PREFIX_PATH](https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html)
 ```c
+///////////////////Method-1 (Not Working)//////////////////////
 //Get latest xalan from github    //Release pages https://github.com/apache/xalan-c
 - Extract xalan in c:
-
 cmd> c:\xalan_c; mkdir build
 cmd> cd build
 cmd> cmake -G "Visual Studio 16 2019" -DCMAKE_PREFIX_PATH=C:\xerces-c\libs\ -DCMAKE_INSTALL_PREFIX=c:\xalan_c\libs c:\xalan_c(\path\to\Xalan-c\source)
 cmd> cmake --build . --config Debug
 Issue-1: error MSB8066: Custom build for "C:\xalan-c\build\CMakeFiles\54721b435eedbbf1c365bb7e2edfcd61\inmemory-dependencies.rule" exited with code -1073741515
 Sol: https://github.com/apache/xalan-c/pull/37
-
 cmd> ctest -V -C Debug -j 4
 cmd> cmake --build . --config Debug --target install
+
+//////////////////Method-2 (Working)///////////////////////////
+cmd> git clone https://github.com/Microsoft/vcpkg.git         //in C:      //https://vcpkg.io/en/getting-started.html
+cmd> bootstrap-vcpkg.bat
+cmd> vcpkg install xalan-c:x64-windows             //Install all dependencies, compiles and xalan libs in C:\vcpkg\packages
 ```
 
 ### Code
