@@ -9,9 +9,10 @@
   - _1._ Multiple Trait Bounds //Friend Function
       - [1.1 Using +](#usingplus)
       - [1.2 Using where clause](#usingplus)
-- **[Traits provided by Standard library](#sl)**
-  - Fn, FnMut, or FnOnce
-  - Dref, Drop
+- **Traits provided by Standard library**
+  - Fn, FnMut, or FnOnce, Dref
+  - [Drop](#dr)
+  - [Future](#fu)
 
 
 ## Trait
@@ -160,9 +161,27 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 {
 ```
 
-<a name=sl></a>
 ## Traits provided by Standard Library
 - **[Dref trait](/Languages/Programming_Languages/Rust/Smart_Pointers)**
 
+<a name=dr></a>
 #### Drop trait
 Allows you to customize the code that is run when an instance of the smart pointer goes out of scope.
+
+<a name=fu></a>
+#### Future Trait
+**Future?** is a "asynchronous value" that may not have finished computing yet. Thread waits on future to become available. These are similar to [epoll()], not smilar to [poll() or select()]().
+```rs
+pub trait Future {
+    //The type of value produced on completion.
+    type Output;                 
+    
+    /*Description:
+       This method resolves future into a final value. This is aync method does not block if value is not ready
+      Returns:
+       Poll::Pending if the future is not ready. 
+       Poll::Ready(val) with the result val of this future if it finished successfully.
+     */
+    fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output>;
+}
+```
