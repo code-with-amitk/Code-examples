@@ -3,7 +3,8 @@
 - [std::thread](#th)
 - [std::async](#as)
 
-### std::thread vs stdfuture
+### std::thread vs std::future
+Promise is deferred computations, Same as [Future in Rust](/Languages/Programming_Languages/Rust)
 ```c
               std::thread | std::future, std::promise or std::async
 -----|--------------------|-------------------------------------------
