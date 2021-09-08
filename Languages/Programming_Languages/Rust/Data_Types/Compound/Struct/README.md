@@ -1,6 +1,5 @@
 **struct**
-- [Define struct](#d)
-- [Initiale struct](#i)
+- [Define, Initialize struct](#d)
 - [Mutable struct](#m)
 - [Dump struct variables using println](#dump)
 - [Associated Function](#a)
@@ -8,7 +7,7 @@
 
 
 <a name=d></a>
-### Define struct
+### Define, Initiailize
 ```rs
 struct Employee {
   name: String,     //name:type
@@ -16,11 +15,7 @@ struct Employee {
   salary: f64,
   empID: u32,
 }
-```
 
-<a name=i></a>
-### Initialize struct
-```rs
 let amit = Employee {
   name: String::from("Amit"),
   email: String::from("amit@test.com"),
