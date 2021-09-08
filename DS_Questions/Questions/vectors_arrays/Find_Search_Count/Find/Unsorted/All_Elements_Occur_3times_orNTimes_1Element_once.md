@@ -125,7 +125,49 @@ _________________________
 - **Time** O(n)
 - **Space:** O(1). We are taking bitset of size 32 all times.
 <a name=c3></a>
-#### Code
+#### Code Logic
+- _1._ Check every bit of every number present in incoming vector.
+```
+input = {3,4}
+j = 1;
+for (int i=0;i<32; ++i){    //For 32 bits
+  int sum = 0;
+  for (int j=0; j<input.size(); ++j) {
+    sum = j<<1 | number
+  }
+}
+```
+- _2._ Calculate mod
+- _3._ Then check for -ve numbers as well.
+**Code**
 ```cpp
-
+int fun(vector<int>& v) {
+  uint64_t iOut = 0;
+  
+  //For calculating all bits in 32 bit integer
+  for (int i = 0; i < 32 ;i++) {
+    int iTempSum = 0;
+    
+    //Going thru every 
+    for(int j=0; j < v.size(); j++) {
+      int k = abs(v[j]);
+      iTempSum += ( k& (1<<i) ) !=0 ? 1 : 0;  
+    } 
+    iTempSum %= 3; 
+    iOut += pow(2,i) * iTempSum;
+  }//for
+  
+  ////////Handling -ve Number/////////
+  //Case-1 {1,1,-2,1} => {1,1,2,1}
+  //Case-2 {1,1,2,2,2,1,-2} => {1,1,2,2,2,1,2}
+  //We have taken abs of all numbers before. 
+  //With above logic answer=2 for Case-1, Case-2 both
+  //Check back again in input array, that 2 exists? if not answer=-2
+  int count = 0;
+  for (auto i:v) {
+    if (i == iOut)
+      count++;
+  }
+  return count==1 ? iOut : -iOut;
+}  
 ```
