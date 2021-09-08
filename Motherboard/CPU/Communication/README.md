@@ -10,6 +10,8 @@
   - **[5. CAN](#can)**
     - [CAN Messages](#cmsg)
     - [Standard vs Extended CAN](#vs1)
+    - [CAN Gateway](#cgw)
+    - [CANOpen](#cano)
 
 <a name=sp></a>
 ## Serial Bus
@@ -212,4 +214,18 @@ Arbitration Field | 11 bits         |    29 bits
 ```
 <a name=ac></a>
 ### How Collision is avoided / Bus Arbitration
-The transmitting nodes monitor the bus before sending. If it detects signal, it quits the arbitration process and become a receiver instead. 
+The transmitting nodes monitor the bus before sending. If it detects signal, it quits the arbitration process and become a receiver instead.
+
+<a name=cgw></a>
+### CAN Gateway
+CAN Gateway is bridge between 2 CAN networks/LANs(having different baud rates and protocols).
+
+<a name=cano></a>
+### CANOPen
+- CANopen is a communication protocol for embedded systems used in automation. As OSI model, CANopen implements the layers above DL layer.
+- CANopen standard consists of:
+  - addressing scheme
+  - Application layer defined by a device profile. 
+  - Network management
+  - Device monitoring
+  - Segmentation/desegmentation. 
