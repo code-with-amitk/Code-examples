@@ -3,6 +3,7 @@
 - [Autoscaling](#auto)
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
+- [Tenant](#ten)
 
 <a name=ans></a>
 ### Antisnubbing 
@@ -65,3 +66,17 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
   - Measured in Bits/sec(bps), data packets per second (p/s or pps).
 - **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
 
+<a name=ten></a>
+#### Tenant
+- **Single Tenant** Seperate software binary, sepearate DB for each customer.
+- **Multi Tenant** Virtualization on cloud. Software, DB shared by all customers. [SaaS](/System-Design/Concepts) uses multi-tenant. Eg: Microsoft Suite, Dropbox, Google Apps.
+```console
+    Cust1   Cust1   Cust1               Cust1   Cust1   Cust1
+    /\        /\      /\                  |       |        |
+    \/        \/      \/                   -------|---------
+    App       App     App                        App
+    /\        /\      /\                   -------|---------
+    \/        \/      \/                   |      |        |
+    DB        DB      DB                   DB    DB       DB
+        SINGLE TENANT                       MULTI TENANT
+```
