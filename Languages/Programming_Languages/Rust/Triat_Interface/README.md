@@ -172,7 +172,7 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 Used to give default value.
 - **Default value by Rust System**
 ```rs
-#[derive(Default)]
+#[derive(Default)]              <<<<<<<<<This asks Rust to provide Default implementation
 pub struct Test {
     a : i32,
 }
