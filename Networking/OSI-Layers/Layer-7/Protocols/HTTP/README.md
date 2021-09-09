@@ -136,7 +136,7 @@ Upgrade:     Both The protocol the sender wants to switch to
 |---|---|---|
 |GET| Server sends a Web page/object|GET `www.test.com/index.html` HTTP/1.1|
 |HEAD| Read a Web page’s header(not page). For checking validity of URL|
-|POST| Upload data to server. Used when forms are submitted.|POST `www.test.com/form.html` HTTP/1.1 |
+|POST| Send data to server. Used when forms are submitted.|POST `www.test.com/form.html` HTTP/1.1 |
 |PUT| Update existing Web page on server.|
 |DELETE| Remove the Web page|
 |TRACE| For debugging. Instructs the server to send back the message. Useful when requests are not processed correctly and the client wants to know what request the server actually got|
