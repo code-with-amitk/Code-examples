@@ -1,12 +1,12 @@
 **HTTP (Hyper Text Transfer Protocol)**
-- [HTTP Features](#fea)
+- [Features](#fea)
 - [Design Issues](/Networking/OSI-Layers/README.md)
 - [HTTPv1 vs HTTPv2 vs HTTPv3](#vs)
 - [Advatanges, Disadvatanges of HTTP](#adv)
 - [Message Format](#format)
-- [HTTP Caching](#cache)
-- [HTTP Headers](#hea)
-- [HTTP Methods](#mea)
+- [Caching](#cache)
+- [Headers](#hea)
+- [Methods](#mea)
   - [GET example](#get)
 - **HTTP Terms**
   - [Cookie](#cok)
