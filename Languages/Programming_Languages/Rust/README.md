@@ -211,7 +211,7 @@ for, loop, while, match=switch, if, if let
 ### [Generic Types/Templates](Generic_Types)
 
 <a name=ti></a>
-### [Trait = Interface = Virtual (not pure virtual)](Trait_Interface)
+### [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
 Trait bounds, Future, 
 
 <a name=tests></a>
