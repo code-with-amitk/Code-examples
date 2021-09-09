@@ -183,7 +183,7 @@ fn main() {
 $ cargo run
 0                       //0 is initialized by rust system
 ```
-- **Default value by user**
+- **Default value by user:** User need to implement default trait.
 ```rs
 pub struct test {
     a : i32,
