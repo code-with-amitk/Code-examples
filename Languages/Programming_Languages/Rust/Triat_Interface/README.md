@@ -11,6 +11,7 @@
       - [1.2 Using where clause](#usingplus)
 - **Traits provided by Standard library**
   - Fn, FnMut, or FnOnce, Dref
+  - [Default](#di
   - [Drop](#dr)
   - [Future](#fu)
 
@@ -20,7 +21,8 @@
 
 <a name=dec></a>
 ### Trait Declaration & Definition
-1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type.
+- **1. Declaration:** Trait declared having functions.
+- **2. Definition:** Trait is implemented for particular types. Eg: add_to_db() function is overridden for Employee, Contractor Type.
 ```rust
 pub struct Employee{                          //Declared "struct Employee"
     pub name:String,
@@ -164,6 +166,40 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 
 ## Traits provided by Standard Library
 - **[Dref trait](/Languages/Programming_Languages/Rust/Smart_Pointers)**
+
+<a name=di></a>
+#### Default Trait
+Used to give default value.
+- **Default value by Rust System**
+```rs
+#[derive(Default)]
+pub struct Test {
+    a : i32,
+}
+fn main() {
+    let test1: Test = Default::default();
+    println!("{}",test1.a);
+}
+$ cargo run
+0                       //0 is initialized by rust system
+```
+- **Default value by user**
+```rs
+pub struct test {
+    a : i32,
+}
+impl Default for test{            //Implemented trait for type "struct test"
+    fn default() -> Self {
+        Self {
+            a: 48,
+        }
+    }
+}
+fn main() {
+    let test1: Test = Default::default();
+    println!("{}",test1.a);             //48
+}
+```
 
 <a name=dr></a>
 #### Drop trait
