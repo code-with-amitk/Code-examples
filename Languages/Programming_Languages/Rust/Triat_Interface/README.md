@@ -22,36 +22,37 @@
 ### Trait Declaration & Definition
 1st function is declared inside trait, Then function is overridden for different types. Eg: add_to_db() function is overridden for Employee, Contractor Type.
 ```rust
+pub struct Employee{                          //Declared "struct Employee"
+    pub name:String,
+    pub emp_id:u32,
+}
+
+pub struct Contractor{                        //Declared "struct Contractor".
+    pub contractor_name:String,
+}
+
 pub trait CompanyDB {                         //1. Trait Declaration
     fn add_to_db(&self);
 }
 
-pub struct Employee{                          //2. Declared Type "struct Employee"
-    pub name:String,
-    pub emp_id:u32,
-}
-pub struct Contractor{                        //3. Declared Type "struct Contractor".
-    pub contractor_name:String,
-}
-
 //impl  TRAIT  for   TYPE
-impl CompanyDB for Employee{                  //4. Trait Definition. Implemented trait/Overridden for Type="Employee struct"
+impl CompanyDB for Employee{                  //2. Trait Definition. Implemented trait/Overridden for Type="Employee struct"
     fn add_to_db(&self) {
         println!("Added {} {}", self.name, self.emp_id);
     }
 }
-impl CompanyDB for Contractor{                //5. Trait Definition. Implemented trait/Overrideen for Type="Contractor struct"
+impl CompanyDB for Contractor{                //Trait Definition. Implemented trait/Overrideen for Type="Contractor struct"
     fn add_to_db(&self) {
         println!("Added {}", self.contractor_name);
     }
 }
 
 fn main() {
-    let amit = Employee {                     //6. Created Employee variable
+    let amit = Employee {                     //Created Employee variable
         name:String::from("Amit"),
         emp_id:34,
     };
-    amit.add_to_db()                         //7. Called trait's function for type
+    amit.add_to_db()                         //Called trait's function for type
 }
 $ ./test.exe
 Added Amit 34
