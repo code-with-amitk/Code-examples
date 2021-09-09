@@ -11,7 +11,7 @@
       - [1.2 Using where clause](#usingplus)
 - **Traits provided by Standard library**
   - Fn, FnMut, or FnOnce, Dref
-  - [Default](#di
+  - [Default](#di)
   - [Drop](#dr)
   - [Future](#fu)
 
