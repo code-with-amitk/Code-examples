@@ -39,6 +39,7 @@ Collection of computing elements that appears to its users as a 1 system giving 
 **3. Grid Computing:** Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
 **4. Cloud Computing**: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
 **5. Edge Computing:** Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
+**6. HPC(High Performance Computing):** Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
 ```c
                                      |                    What                                                   |  Example
   -----------------------------------|---------------------------------------------------------------------------|-----------
@@ -57,5 +58,7 @@ Collection of computing elements that appears to its users as a 1 system giving 
      or Cloud Functions
      
   F. Managed Services
+  
+  G. Cluster as a Service            | Virtualize cluster for applications.
 ```
 GCE(GCP)
