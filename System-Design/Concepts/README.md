@@ -34,10 +34,11 @@ Collection of computing elements that appears to its users as a 1 system giving 
 
 <a name=tyd></a>
 #### Types of Distributed Systems
-1. High Performance Distributed Computing
-2. Cluster Computing: Simple computers connected on high-speed network, does parallel processing of task. Eg: Hadoop.
-3. Grid Computing: Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
-4. Cloud Computing: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
+**1. High Performance Distributed Computing**
+**2. Cluster Computing:** Simple computers connected on high-speed network, does parallel processing of task. Eg: Hadoop.
+**3. Grid Computing:** Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
+**4. Cloud Computing**: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
+**5. Edge Computing:** Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
 ```c
                                      |                    What                                                   |  Example
   -----------------------------------|---------------------------------------------------------------------------|-----------
