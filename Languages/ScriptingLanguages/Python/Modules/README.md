@@ -1,4 +1,4 @@
-- [What is Module](#what)
+**Module**
 - [Creating & using Module](#create)
 - [Modules as scripts](#asscript)
 - [Examples](#ex)
@@ -9,10 +9,8 @@
   - [5. testmod](#testmod)
 
 
-<a name=what></a>
 ## Module
--  This is a File containing python functions, class, variables etc. Examples
-  - *sys* Access system variables, functions maintained by interpreter.
+Module is a File containing python functions, class, variables etc. Examples: sys(Access system variables, functions maintained by interpreter).
 ```py
 import sys
 print(sys.path)     #['/root/amit-code/python', '/usr/lib64/python36.zip', '/usr/lib64/python3.6', 
@@ -20,7 +18,7 @@ print(sys.path)     #['/root/amit-code/python', '/usr/lib64/python36.zip', '/usr
 '/usr/local/lib/python3.6/site-packages', '/usr/local/lib/python3.6/site-packages/memory_profiler-0.57.0-py3.6.egg', 
 '/usr/lib64/python3.6/site-packages', '/usr/lib/python3.6/site-packages']
 ```
-  - *builtin* Built-in identifiers of Python
+**builtin** Built-in identifiers of Python
 ```py
 import builtins
 print(dir(builtins)) #['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 
@@ -29,8 +27,8 @@ print(dir(builtins)) #['ArithmeticError', 'AssertionError', 'AttributeError', 'B
 'Exception', 'False', ...]
 ```
 
-<a name=create></a>
-## Creating & Using Modules
+<a name=c></a>
+### Create & use Modules
 - _1. Define a module_
 - _2. Import the module:_ means including the module to use its functionality. There are 2 methods of importing a module.
   - _2A._ Import complete Module
