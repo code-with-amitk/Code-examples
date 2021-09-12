@@ -1,37 +1,34 @@
-## Operations
-- Set objects support mathematical operations like union, intersection, difference, and symmetric difference
+- [Set Difference](#d)
+- [Union](#u)
+- [Intersection](#i)
+- [XOR (^). Letters in set-a or set-b but not both](#x)
 
-### 1. Keys are Unique
-```
-a = {'a', 'b', 'a', 'c', 'd', 'c'}
-print(a)                            #{'a', 'c', 'b', 'd'}       #Duplicates not stored
-```
-
-### 2. Set Difference
-- a1=set(''), b1=set(''). a1-b1 are those letters in a1 but not in b1
-```
+<a name=sd></a>
+### Set Difference
+a1=set(''), b1=set(''). a1-b1 are those letters in a1 but not in b1
+```py
 a1 = set('abcde')
 b1 = set('abcdf')
 print(a1-b1)                        #{'e'}  B
 ```
-
-### 3. Union (|)
-```
+<a name=u></a>
+### Union (|)
+```py
 a1 = set('abcde')
 b1 = set('abcdf')
 print(a1|b1)                        #{'b', 'c', 'f', 'e', 'd', 'a'}
 ```
-
-### 4. Intersection (&)
-- Common elements in set-a, set-b
-```
+<a name=i></a>
+### Intersection (&)
+Common elements in set-a, set-b
+```py
 a1 = set('abcde')
 b1 = set('abcdf')
 print(a1&b1)                        #{'a', 'c', 'b', 'd'}
 ```
-
-### 5. (^). Letters in set-a or set-b but not both
-```
+<a name=x></a>
+### XOR (^). Letters in set-a or set-b but not both
+```py
 a1 = set('abcde')
 b1 = set('abcdf')
 print(a1^b1)                        #{'f', 'e'} E
