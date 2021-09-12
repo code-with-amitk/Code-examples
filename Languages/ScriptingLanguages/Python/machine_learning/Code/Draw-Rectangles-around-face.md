@@ -1,7 +1,9 @@
-## Task
-- Take a image file(abba.png), Draw rectangle around faces on the image
+**Problem: Take a image file(abba.png), Draw rectangle around faces on the image**
+- [Steps](#s)
+- [Code](#c)
 
-## A. Steps
+<a name=s></a>
+### Steps
 
 | Steps/Functions | What it does | Returns |
 | --- | --- | --- |
@@ -11,10 +13,11 @@
 | 4. `dst	=	cv.cvtColor(	src, code[, dst[, dstCn]]`	)| <ul><li>Converts image from one color space to another</li></ul> <ul><li>COLOR_BGR2GRAY=convert from RGB/BGR to grayscale</li></ul> <ul><li>Many operations in OpenCV are done in grayscale</li></ul>| |
 | 5. `CascadeClassifier::detectMultiScale` | <ul><li>Detects objects of different sizes in the input image.</li></ul> | <ul><li>List of rectangles, in which it believes it found a face</li></ul> <ul><li>This function returns 4 values: `x`, `y` location of the rectangle, rectangle’s width and height `w , h`|
 | 6. `cv2.rectangle()` | draw a rectangle on any image |  returns an image |
-  
-## B. Complete source code
-### [CODE-ON-GITHUB](https://github.com/shantnu/FaceDetect/)
-```
+
+<a name=c></a>
+### Complete source code
+> [CODE-ON-GITHUB](https://github.com/shantnu/FaceDetect/)
+```py
 import cv2                                            //1
 import sys
 
