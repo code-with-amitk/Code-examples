@@ -1,11 +1,19 @@
+- [List vs Tuple vs Dictionary vs Set vs Deque](#vs)
+
+
+<a name=vs></a>
 ## Comparison
+Immutable = RO = Unchangable
+```c
+                |   List         |          Tuple       | Dictionary{} / MAP(STL) |      SET{}    | DEQUE
+----------------|----------------|----------------------|-------------------------|---------------|------
+Defined inside  |  `[]`          | With or without `()` |           {}            |         {}    |       
+What            | 1-D/2-D/n-D    | RO/Immutable lists   | {key,value} pair.       | No duplicates | Double ended queue
+                  arrays/vectors |                      | Unique keys
+Immutable       |      N         |            Y         |   
+Comprehension   |      y         |            n         |       y                 |       y        | |
+Hetrogeneous    |       Y        |            Y
+Data-types
+```
 
-| | List | Tuple| DICTIONARY{}/MAP(STL) | SET{} | DEQUE |
-|---|---|---|---|---|---|
-|Defined inside| `[]` | With or without `()` | {} | {} | |
-|What|1-D/2-D/n-D arrays or vectors|<ul><li>RO lists</li></ul> <ul><li>They are like lists but immutable</li></ul>|{key,value} pair. Unique keys|No duplicates|Double ended queue|
-|Immutable(RO,unchangble)|N|Y| | | |
-|Comprehension|y|n|y|y| |
-|Hetrogeneous Data-types|Y|Y| | |
 
-- **Immutable:** Means cannot be changed after initalization
