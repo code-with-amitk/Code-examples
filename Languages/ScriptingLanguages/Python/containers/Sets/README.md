@@ -2,7 +2,11 @@
 - [Comprehension](#com)
 
 ## Sets
-Unordered collection with no duplicates.
+Unordered collection of key, Duplicates not stored
+```py
+a = {'a', 'b', 'a', 'c', 'd', 'c'}
+print(a)                            #{'a', 'c', 'b', 'd'}       #Duplicates not stored
+```
 
 <a name=com></a>
 ### Set Comprehension
