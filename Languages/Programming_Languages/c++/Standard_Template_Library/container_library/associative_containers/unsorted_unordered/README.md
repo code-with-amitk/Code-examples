@@ -23,7 +23,7 @@
     - [5. Smallest Value](#f5)
     - [6. Count Number of occurences of value](#f6)
   - [Remove/Delete](#erase)
-  - [Count](#count1)
+  - [Count](#c1)
 
 
 
@@ -207,7 +207,7 @@ Method-2:
   um.erase(const key);              //Using Key
 ```
 
-<a name=count1></a>
+<a name=c1></a>
 ## size_type count ( const key_type& k ) const;
 - Searches key and returns the number of elements found. Because unordered_map,unordered_set do not allow for duplicate keys, this means that the function returns 1 if an key  exists in the container, and zero otherwise.
 - **find() vs count()**  equal performance, choice depends on the semantics in your code.
