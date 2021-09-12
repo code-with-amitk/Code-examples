@@ -141,7 +141,7 @@ for (unordered_map<int,string>::iterator i=um.begin(); i!=um.end(); ++i)        
     cout << it.first << it.second;    //1,100
 ```
 <a name=f2></a>
-#### 2. using count()
+#### 2. using [count()](#c1)
 <a name=f3></a>
 #### 3. using find()
 ```
