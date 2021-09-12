@@ -1,27 +1,29 @@
-### unordered_set`<key>`
-- Create
-  - [Set of pairs](#sp)
-- Find
-  - [const_iterator find(key)](#find)
-  - [random key with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
-- Remove Delete
-- [Count](#count1)
+**unordered_set`<key>`**
+  - Create
+    - [Set of pairs](#sp)
+  - Find
+    - [const_iterator find(key)](#find)
+    - [random key with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
+  - Remove Delete
+  - [Count](#count1)
 
-### unordered_map`<key, value>`
-- Create
-  - [Constructors](#umctr)
-  - [Map of Structures](#umstruct)
-  - [Map of Maps](#mapmap)
-- [Insert](#uminsert)
-- [Print](#umprint)
-  - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
-- Find/Search
-  - [key in um](#keyum)
-  - [Smallest `key`](#smllestk)
-  - [Smallest `value`](#smallestv)
-  - [Count Number of occurences of value inside array](#count)
-- [Remove/Delete](#erase)
-- [Count](#count1)
+**unordered_map`<key, value>`**
+  - **Create**
+    - [Constructors](#umctr)
+    - [Map of Structures](#umstruct)
+    - [Map of Maps](#mapmap)
+  - [Insert](#uminsert)
+  - [Print](#umprint)
+    - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
+  - **Find/Search**
+    - [1. using index ](#f1)
+    - [2. using count()](#f2)
+    - [3. using find()](#f3)
+    - [4. Smallest key](#f4)
+    - [5. Smallest Value](#f5)
+    - [6. Count Number of occurences of value](#f6)
+  - [Remove/Delete](#erase)
+  - [Count](#count1)
 
 
 
@@ -129,23 +131,20 @@ for (unordered_map<int,string>::iterator i=um.begin(); i!=um.end(); ++i)        
     cout<<i->first<<" "<<i->second<<"\n";
 ```
 
-## Find
+## Find 
 
-<a name=keyum></a>
-#### key in um
+<a name=f1></a>
+#### 1. using index {Preferred}
 ```cpp
-/////////1. Index///////////            {PREFERRED}
-    std::unordered_map<int, pair<int,int>> um;
-    um[1] = { 10,100 };
-
+    unordered_map<int, pair<int,int>> = {{1,100}, {2,200}};
     auto it = um [1];
-    cout << it.first << it.second;    //10,100
-    it = um [3];
-    cout << it.first << it.second;    //0,0
-    
-///////////2. count()///////////
-
-//////////3. find()/////////////
+    cout << it.first << it.second;    //1,100
+```
+<a name=f2></a>
+#### 2. using count()
+<a name=f3></a>
+#### 3. using find()
+```
 class cmd{ ... };
 class cmd1 : public cmd { ... };
 unordered_map<string, cmd *> um;
@@ -155,17 +154,15 @@ auto it = um.find ("cmd1");                   //Finding Key
 if (it != um.end())
   cout << it->second->fun();
 ```
-
-<a name=smllestk></a>
-#### Pair having smallest `key`
+<a name=f4></a>
+#### 4. Smallest key
 ```cpp
   unordered_map<int,int>::iterator it;
   it = min_element(um.begin(), um.end());
   cout<<it->first<<" " <<it->second;          //1 2
 ```
-
-<a name=smallestv></a>
-#### Pair having smallest `value`
+<a name=f5></a>
+#### 5. Smallest Value
 ```cpp
   static bool comp(pair<int,int> i, pair<int, int> j)
     return i.second < j.second;
@@ -175,8 +172,8 @@ if (it != um.end())
   cout<<it->first<<" " <<it->second;          //4 1
 ```
 
-<a name=count></a>
-#### Count Number of occurences of value inside array
+<a name=f6></a>
+#### 6. Count Number of occurences of value
 - Let's suppose an array `{4,3,1,1,3,3,2}` is present we need to create a map
 ```c++
 key ->            4 3 1 2
