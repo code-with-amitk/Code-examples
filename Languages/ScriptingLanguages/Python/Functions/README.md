@@ -1,25 +1,22 @@
-- [1. Functions](#fun)
-  - [1.1 Function used as Object](#obj)
-  - [1.2 Function passed as arguments to other function](#arg)
-  - [1.3 Functions as Mutable Objects](#mut)
-  - [1.4 Variable no of Arguments](#var)
-- [2. Types of Functions](#types)
-  - [2.1 Inner, function inside function](#func)
-- [3. Function Arguments](#funarg)
-  - [3.1 Arguments taking default value](#default)
-  - [3.2 kwarg, keyword Arguments](#kwarg)
-  - [3.3 Special Parameters](#special)
-- [4. Built in methods](Builtin_Methods)
+- [Function used as Object](#o)
+- [Function passed as arguments](#arg)
+- [Functions as Mutable Objects](#mut)
+- [Variable no of Arguments](#var)
+- **Types of Functions**
+  - [Inner, function inside function](#func)
+- **Function Arguments**
+  - [Arguments taking default value](#default)
+  - [kwarg, keyword Arguments](#kwarg)
+  - [Special Parameters](#special)
+- [Built in methods](Builtin_Methods)
   - Dunder/Magic, `__ITER__()`, `__CONTAINS__`, `__REPR__()`, `__STR__()`, `__doc__`
-- [5. Mostly used Functions](Mostly_Used_Functions)
+- [Mostly used Functions](Mostly_Used_Functions)
   - split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)
-- [6. filter(), map(), reduce()](filter_map_reduce)
+- [filter(), map(), reduce()](filter_map_reduce)
 
-<a name=fun></a>
-## 1. Functions
-<a name=obj></a>
-### 1.1 Functions used as Object
-- Means functions can be used as variable
+<a name=o></a>
+### Functions used as Object
+Means functions can be used as variable
 ```py
 def fun():
     return "Hello"
@@ -27,7 +24,7 @@ test = fun
 print(test())        #Hello
 ```
 <a name=arg></a>
-### 1.1 Function passed as argument to other function
+### Function passed as argument to other function
 ```py
 def f(a,b):
     return a+b
@@ -36,7 +33,7 @@ def f1(var):
 f1(f(1,2))              #Passing function f() as argument of f1() //hello 3
 ```
 <a name=mut></a>
-### 1.3 Function as Mutable Objects
+### Function as Mutable Objects
 - MUTABLE OBJECTS(list,dictionary etc): Are shared between subsequent calls
 ```py
 def fun2(a, L=[]):
@@ -47,7 +44,7 @@ print(fun2(2))     #[1,2]
 print(fun2(3))     #[1,2,3]
 ```
 <a name=var></a>
-### 1.4 Variable no of arguments
+### Variable no of arguments
 ```py
 def fun(*arg):
     for var in arg:
@@ -58,11 +55,10 @@ fun ( 1, 2 )
 fun ( 'te', 90 )
 ```
 
-<a name=types></a>
-## 2. Types of Functions
+## Types of Functions
 <a name=inner></a>
-### 2.1 Inner, function inside function
-- Note that the order in which the inner functions are defined does not matter. 
+### Inner, function inside function
+Note that the order in which the inner functions are defined does not matter. 
 ```py
 def parent():
     print("Parent")
@@ -75,11 +71,10 @@ def parent():
 parent()        #O/P: parent fun2 fun1
 ```
 
-<a name=funarg></a>
-## 3. Function Arguments
+## Function Arguments
 <a name=default></a>
-### 3.1 Arguments taking default value
-```python
+### Arguments taking default value
+```py
 def fun1(a, c='Again'):            #c is default arguments
     if a == 1:
         print('Test1')
@@ -88,10 +83,10 @@ def fun1(a, c='Again'):            #c is default arguments
 fun1(1)                 #Test1
 ```
 <a name=kwarg></a>
-### 3.2 kwarg, Keyword Arguments
-- kwarg MUST follow positional arguments
+### kwarg, Keyword Arguments
+kwarg MUST follow positional arguments
 <a name=special></a>
-### 3.3 Special Parameters
+### Special Parameters
 ```py
 def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
       -----------    ----------     ----------
