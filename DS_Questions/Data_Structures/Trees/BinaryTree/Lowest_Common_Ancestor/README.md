@@ -1,5 +1,11 @@
-## [Lowest Common Ancestor](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
-- LCA(lowest common ancestor) is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+**[Lowest Common Ancestor](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)**
+- [LCA](#lca)
+- **Approach-1**
+  - [Logic](#l)
+
+<a name=lca></a>
+### What is LCA
+LCA is defined between two tree nodes p, q as the lowest node in tree that has both p and q as descendants (where we allow a node to be a descendant of itself).
 - Examples
 ```
         p,q
@@ -16,11 +22,12 @@
  8   9
 ```
 
-## Approach       //Compare during inorder traversal
-- **Logic**
-  - *1.* if node->val == p->val it will return self address.
-  - *2.* On any node, if value returned from both left and right children are nonnull, that is LCA.
-  - *3.* On every node check if I am left or right. if I am left(ie p) then set left pointer, if I am right(ie q) right pointer. return null.
+### Approach-1, Compare during inorder traversal
+<a name=l></a>
+#### Logic
+- _1._ if `node->val == p->val` it will return self address.
+- _2._ On any node, if value returned from both left and right children are nonnull, that is LCA.
+- _3._ On every node check if I am left or right. if I am left(ie p) then set left pointer, if I am right(ie q) right pointer. return null.
 ```c  
   if (my->val == p->val)
     left = myself              
