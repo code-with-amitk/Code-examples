@@ -8,10 +8,8 @@
   - [Arguments taking default value](#default)
   - [kwarg, keyword Arguments](#kwarg)
   - [Special Parameters](#special)
-- [Built in methods](Builtin_Methods)
-  - Dunder/Magic, `__ITER__()`, `__CONTAINS__`, `__REPR__()`, `__STR__()`, `__doc__`
-- [Mostly used Functions](Mostly_Used_Functions)
-  - split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)
+- [Built in methods: Dunder/Magic, `__ITER__()`, `__CONTAINS__`, `__REPR__()`, `__STR__()`, `__doc__`](Builtin_Methods)
+- [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
 - [filter(), map(), reduce()](filter_map_reduce)
 
 <a name=o></a>
