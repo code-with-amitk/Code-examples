@@ -1,5 +1,6 @@
 - [format()](#f)
 - [input(str)](#i)
+- [join](#j)
 - [ord()](#o)
 - [range()](#r)
 - **split() & rsplit()**
@@ -24,6 +25,19 @@ This allows user to input until new line is pressed. input() returns string
 ```py
 r = float(input('Enter radius'))
 print('Area=' + 3.14*r**2)                                     //** is Exponetial. ie x^y
+```
+
+<a name=j></a>
+### join()
+joins all items from iterable into 1 string.
+```py
+myTuple = ("a", "b", "c")
+x = "@".join(myTuple)
+print(x)                      # a@b@c
+
+myTuple = ("a", "b", "c")
+x = "".join(myTuple)
+print(x)                      # abc
 ```
 
 <a name=o></a>
