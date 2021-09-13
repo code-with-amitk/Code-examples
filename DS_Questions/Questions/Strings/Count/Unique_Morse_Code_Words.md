@@ -1,7 +1,9 @@
 **Unique Morse Code Words**
 - [Logic](#l)
 - [Complexity](#co)
-- [Code](#c)
+- Code
+  - [CPP](#cpp)
+  - [Python](#py)
 
 
 ### [Unique Morse Code Words](https://leetcode.com/problems/unique-morse-code-words/)
@@ -43,8 +45,9 @@ Example 2:
 - **Time:** O(S)
 - **Space:** O(S). where S is the sum of the lengths of words in words. We iterate through each character of each word in words.
 
-<a name=c></a>
 ### Code
+<a name=cpp></a>
+**C++**
 ```cpp
 class Solution {
     unordered_map<char, string> um = {{'a', ".-"},
@@ -93,4 +96,34 @@ public:
         return u32Count;
     }
 };
+int main(){
+  vector<string> v = {"gin","zen", "gig", "msg"};
+  Solution s;
+  cout << s.uniqueMorseRepresentations (v);
+}
+```
+
+<a name=py></a>
+**Python**
+- Find morse's representation of every word. "gin"="--. .. -." and so on for all words
+- Insert morse's representation in [Dictionary, Hashset](/Languages/ScriptingLanguages/Python/). 
+- Count elements in Dictionary.
+- Functions: [ord()](/Languages/ScriptingLanguages/Python/)
+```py
+#import pdb; pdb.set_trace()
+class Solution(object):
+    def uniqueMorseRepresentations(self, words):
+        MORSE = [".-","-...","-.-.","-..",".","..-.","--.",
+                 "....","..",".---","-.-",".-..","--","-.",
+                 "---",".--.","--.-",".-.","...","-","..-",
+                 "...-",".--","-..-","-.--","--.."]
+
+        seen = {"".join(MORSE[ord(c) - ord('a')] for c in word)
+                for word in words}
+
+        return len(seen)
+
+s = Solution()
+A = ["gin","zen", "gig", "msg"]
+print(s.uniqueMorseRepresentations(A))
 ```
