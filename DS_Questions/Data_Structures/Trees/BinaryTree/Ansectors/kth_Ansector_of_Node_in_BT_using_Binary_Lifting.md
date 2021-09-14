@@ -110,7 +110,14 @@ int getKthAncestor(int node, int k)
 Input
 ["TreeAncestor", "getKthAncestor", "getKthAncestor", "getKthAncestor"]    //Function called
 [[7, [-1, 0, 0, 1, 1, 2, 2]], [3, 1], [5, 2], [6, 3]]                     //Arguments to function
-TreeAncestor(7, {-1, 0, 0, 1, 1, 2, 2})
+
+            numberofNodes parent
+TreeAncestor(7,           {-1, 0, 0, 1, 1, 2, 2})
+-1: no parent of 0
+0,0: 0 is parent of 1,2
+1,1: 1 is parent of 3,4
+2,2: 2 is parent of 5,6
+
 getKthAncestor(3, 1)                            //Get 1st ancestor of 3. Ans=1
 getKthAncestor(5, 2)                            //Get 2nd ancestor of 5. Ans=0
 getKthAncestor(6, 3)                            //Get 3rd ancestor of 6. Ans=-1
@@ -124,15 +131,52 @@ Output
 #### C++
 ```cpp
 class TreeAncestor {
+    vector<vector<int>> dp; // int up[N][20];
+    vector<int> depth;
+    int logNDepth;
 public:
     TreeAncestor(int n, vector<int>& parent) {
+        logNDepth = 0;
+        //Find log2(size), this will be number of coloumns of our 2d dp array
+        logNDepth = log2(n) + 1;
+
+        dp = vector<vector<int>>(n, vector<int>(logNDepth));
         
+        depth = vector<int>(n);
+        
+        // dp[i][j] is 2^j -th ancestor of node i
+        //dp[1][2] is 2^2=4th ansector of Node=1
+        //dp[2][3] is 2^3=8th ansector of Node=2
+        parent[0] = 0;
+        for(int i = 0; i < n; i++) {
+            dp[i][0] = parent[i];
+            if(i)
+                depth[i] = depth[parent[i]] + 1;
+            
+            for(int j = 1; j < logNDepth; j++)
+                dp[i][j] = dp[ dp[i][j-1] ][j-1];
+        }
     }
     
     int getKthAncestor(int node, int k) {
-        
+        if(depth[node] < k) {
+            return -1;
+        }
+        for(int j = logNDepth - 1; j >= 0; j--) {
+            if(k >= (1 << j)) {
+                node = dp[node][j];
+                k -= 1 << j;
+            }
+        }
+        return node;
     }
 };
+
+/**
+ * Your TreeAncestor object will be instantiated and called as such:
+ * TreeAncestor* obj = new TreeAncestor(n, parent);
+ * int param_1 = obj->getKthAncestor(node,k);
+ */
 
 /**
  * Your TreeAncestor object will be instantiated and called as such:
