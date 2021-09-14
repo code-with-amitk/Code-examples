@@ -14,7 +14,7 @@
 
 
 ## HTTP
-Client-server/Request-Response protocol. Default port 80, other can be used. Uses TCP, can also use UDP.
+Client-server/Request-Response protocol. Default port 80, other can be used. Uses TCP, does not use UDP. [Google's QUIC](/Networking/OSI-Layers/Layer-4/Protocols) uses HTTP over UDP
 - HTTP Clients: Web-browser, Any process can create socket and get information from server.
 
 <a name=fea></a>
