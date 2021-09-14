@@ -4,7 +4,7 @@
   - [2. Long Pooling/Push Method](#m2)
   - [3. WebSockets](#m3)
   - [4. Server Sent Events](#m4)
-- [Web Service](#ws)
+- **[Web Service](#ws)**
 
 ## Methods of Connection
 <a name=vs></a>
@@ -68,7 +68,7 @@ Server holds client’s connection open for as long as possible. Data is deliver
 
 <a name=m3></a>
 ### 3. Websockets / Web Sockets / Bi-Directional / Full Duplex
-- Any (Web client or Web server) can do TCP Connect() and start sending the data.
+- (Web client or Web server) can do TCP Connect() and start sending the data.
 - Full duplex bidirectional data transfer. Enhanced version of Http,can work over TCP.
 - **Flow**
   - *a.* Client establishes a WebSocket connection through a process known as the WebSocket handshake.
