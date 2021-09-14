@@ -7,6 +7,8 @@
     - [Complexity](#c)
 - [Leetcode problem, Kth Ancestor of a Tree Node](https://leetcode.com/problems/kth-ancestor-of-a-tree-node/)
   - [Problem](#p)
+  - [Logic](#l)
+  - [Complexity](#c)
   - **Code**
     - [C++](#cpp)
 
