@@ -5,6 +5,8 @@
   - [Logic](#l)
   - [Complexity](#c)
 
+https://www.youtube.com/watch?v=oib-XsjFa-M
+
 ## Find kth Ansector of Node in Binary Tree
 **Problem?** Find kth(k=6) ansector of node=10. Answer=0
 ```c
