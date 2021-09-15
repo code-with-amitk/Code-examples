@@ -4,6 +4,7 @@
   - [unwrap()](#u)
   - [unwrap_or()](#uo)
   - [unwrap_or_else()](#uoe)
+- [value_of()](/Libraries/Command_Line/Rust/Clap)
 
 ## assert Macros
 <a name=eq></a>
