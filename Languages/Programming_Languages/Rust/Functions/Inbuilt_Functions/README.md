@@ -1,10 +1,11 @@
-- assert Macros
+- **assert Macros**
   - [assert_eq](#eq)
-- [unwrap()](#u)
-
+- **unwrap**
+  - [unwrap()](#u)
+  - [unwrap_or()](#uo)
+  - [unwrap_or_else()](#uoe)
 
 ## assert Macros
-
 <a name=eq></a>
 #### assert_eq!(a,b)
 - if (a!=b) assert
@@ -24,6 +25,27 @@
  assert_ne!(a,b)   | if (a==b) assert       |  not equal
 ```
 
+## unwrap
+[Result <T, E>](/Languages/Programming_Languages/Rust/Data_Types/Builtin_Types)
+```c
+         | unwrap(self) -> T           |  unwrap_or(self, default) -> T
+---------|-----------------------------|-------------------------  
+Return   | Succes: Read value          | Success: Read value
+         | failure: panic              | Failure: Default value
+```
 <a name=u></a>
-### unwrap
-When an operation may return T or fail, value if type `Option<T>`, unwrap() will provide embedded T if there is one. If not T but an E or None then it will panic.
+### pub fn unwrap(self) `->` T
+Returns the contained Ok value, Because this function may panic, its use is generally discouraged use instead unwrap_or, unwrap_or_else, or unwrap_or_default.
+```rs
+let x: Result<u32, &str> = Err("emergency failure");
+x.unwrap(); // panics with `emergency failure`
+```
+
+<a name=uo></a>
+### pub fn `unwrap_or(self, default: T) -> T`
+Returns the contained Ok value or a provided default.
+```rs
+let defaultVal = 2;
+let x: Result<u32, &str> = Ok(9);
+assert_eq!(x.unwrap_or(default), 9);
+```
