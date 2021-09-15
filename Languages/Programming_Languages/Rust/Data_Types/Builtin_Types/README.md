@@ -1,4 +1,4 @@
-- `[Result<T, E>`](#res)
+- [Result`<T, E>`](#res)
 
 <a name=res></a>
 ### [`Result<T, E>`](https://doc.rust-lang.org/std/result/enum.Result.html#variant.Ok)
