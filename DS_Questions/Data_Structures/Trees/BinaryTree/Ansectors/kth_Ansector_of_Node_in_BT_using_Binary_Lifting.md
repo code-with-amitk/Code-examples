@@ -165,7 +165,7 @@ public:
             return -1;
         }
         for(int j = logNDepth - 1; j >= 0; j--) {
-            if(k >= (1 << j)) {
+            if(k >= (1 << j)) {                 //if jth bit is found, then we will go up
                 node = dp[node][j];
                 k -= 1 << j;
             }
