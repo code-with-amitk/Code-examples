@@ -1,5 +1,6 @@
 - [Products](#p)
 - [Cloud developer Role](#cd)
+- [Interviews, sept21](#int)
 
 <a name=p></a>
 ### Products
@@ -15,3 +16,16 @@ Development of cloud functionality on
 - **OS:** Linux based cluster software.
 - **Filesystem:** (Lustre, GPFS, BeeGFS, WekaIO),VMware, OpenStack, Docker, Kubernetes, Jupyter and Ceph.
 - **Cloud providers:** AWS, Azure GCP, VMware vCloud/vSphere
+
+### Interviews
+#### Round-1 (Networking, Linux)
+```c
+Networking: What is bitmask, MTU, ARP, ARP Table
+Linux: setuid(example), setgid, sticky bit, setopt, return value of command
+```
+#### Round-2 (Coding)
+```c
+Q1: Given employee class. Implement supervisor class and print name of employee via supervisor.
+Q2: Swap binary tree nodes, print inorder
+Q3: Count nodes of binary tree
+```
