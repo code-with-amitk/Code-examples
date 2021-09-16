@@ -1,5 +1,6 @@
 - **assert Macros**
   - [assert_eq](#eq)
+  - [Others, assert_ne](#o)
 - **unwrap**
   - [unwrap()](#u)
   - [unwrap_or()](#uo)
@@ -17,7 +18,7 @@
     
     assert_eq!(1,2);                    //Assert
 ```
-
+<a name=o></a>
 #### Others
 ```rs
        Function          desc                   Expects
@@ -35,8 +36,8 @@ Return   | Succes: Read value          | Success: Read value
          | failure: panic              | Failure: Default value
 ```
 <a name=u></a>
-### pub fn unwrap(self) `->` T
-Returns the contained Ok value, Because this function may panic, its use is generally discouraged use instead unwrap_or, unwrap_or_else, or unwrap_or_default.
+#### pub fn unwrap(self) `->` T
+Returns the contained Ok value. This function may panic on error, hence its generally discouraged to use, use unwrap_or, unwrap_or_else, or unwrap_or_default.
 ```rs
 let x: Result<u32, &str> = Err("emergency failure");
 x.unwrap(); // panics with `emergency failure`
