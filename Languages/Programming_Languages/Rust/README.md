@@ -171,7 +171,7 @@ fn fun2(a_string: String) -> String {
 
 <a name=collections></a>
 ### [Collections](Collections)
-HashMap, HashSet, vector, string
+HashMap, HashSet, vector, string, str
 
 <a name=itr></a>
 ### Iterators
