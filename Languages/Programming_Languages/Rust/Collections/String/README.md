@@ -1,6 +1,7 @@
-- [string literal, type, slice](#lts)
-- [str](#str)
-- [String](#string)
+- **string literal, type, slice (or str)**
+  - [Compared](#vs)
+  - [str](#s1)
+  - [String](#s2)
 - **Operations**
   - [1. Create](#cre)
   - [2. Concatenate](#con)
@@ -11,52 +12,29 @@
 
 
 <a name=lts></a>
-## string literal, String type, String slice
-- *string literal:* Are stored in the program’s exe(ie stack), these are also string slices.
-- *String type:* **Allocated on heap and can grow**. String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
-- *string slice:* Reference to part of a String taken as `string[starting_index, ending_index)`
-```rs
-  let lit:string = "test";                //1. STRING LITERAL
-  
-  let mut s = String::from("hello");      //2. STRING TYPE. 
-  s.push_str(", world!");                 //push_str() appends to string
-  println!("{}", s);                      //hello, world!
-  
-  let s = "T11 is Consistency";           //3. STRING SLICE
-  let a = &s[0..3];             //a=T11
-  let a = &s[..3];              //empty starting_index means 0
-  
-  let b = &a[4..6];             //b=is
-  
-  let c = &a[7..18];            //c=Consistency
-  let c = &a[7..a.len()];
-  let c = &a[7..];
-  
-  let d = &a[..];              //d=T11 is Consistency.   
+## string literal, String, String slice(or str)
+- String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
+
+<a name=vs></a>
+### Compared
+```c
+               |          What                         |        Example                 |   Stored on  |
+---------------|---------------------------------------|--------------------------------|--------------|--
+string literal | string local variable                 | let a:string = "test";         |   Stack     
+
+string slice   | Reference to part of a String         | let s = "T11 is Consistency";  |
+(or str)         string[starting_index, ending_index)  | let a = &s[0..3];  //T11
+                 
+String         | Allocated on heap and can grow        | let mut s = String::from("he");
+                                                       | s.push_str(", world!");
+                                                       | println!("{}", s);                 
 ```
+<a name=s1></a>
+### str
+- str is [Immutable Reference](/Languages/Programming_Languages/Rust). Immutable means which cannot be changed.
 
-<a name=lts></a>
-## str
-str is [Immutable Reference](/Languages/Programming_Languages/Rust). Immutable means which cannot be changed.
-```rs
-    let a = "T11 is Consistency";
-    let b:&str = &a[0..4];            //Type of string slice is immutable reference.
-    println!("{}",b);                 //T11
-    
-//Function returning string slice
-fn main() {
-    let mut a = String::from("T11 is Consistency");
-    let b = fun(&a);                                      //Function taking string reference
-    println!("{}",c);
-}
-
-fn fun(s:&String) -> &str {                               //Function returning String Slice
-    &s[0..4]
-}
-```
-
-<a name=string></a>
-## String
+<a name=s2></a>
+### String
 string is growable, mutable, owned, UTF-8 encoded string type. string allocated on heap is shallow copy
 ```rs
   let s1:String = String::from("test");
@@ -75,7 +53,6 @@ Its not allow to index into a String to get a character is that indexing operati
 ```
 
 ## Operations
-
 <a name=cre></a>
 ### 1. Create
 from(), new()
