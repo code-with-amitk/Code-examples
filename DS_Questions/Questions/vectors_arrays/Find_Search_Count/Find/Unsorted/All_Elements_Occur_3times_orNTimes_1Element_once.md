@@ -139,6 +139,7 @@ for (int i=0;i<32; ++i){    //For 32 bits
 ```
 - _2._ Calculate mod
 - _3._ Then check for -ve numbers as well.
+
 **Code**
 ```cpp
 int fun(vector<int>& v) {
