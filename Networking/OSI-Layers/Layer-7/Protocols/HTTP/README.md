@@ -8,6 +8,7 @@
 - [Headers](#hea)
 - [Methods](#mea)
   - [GET example](#get)
+  - [POST example](#pe)
 - **HTTP Terms**
   - [Cookie](#cok)
 - [Plugin, Helper Application, MIME](#mime)
@@ -158,6 +159,15 @@ Upgrade:     Both The protocol the sender wants to switch to
     if page has URL's, Videos
     fetches using same process
          ----------------    TCP-FIN    ---------------------------->
+```
+
+<a name=pe></a>
+#### POST message example
+To Send data to server. Used when forms are submitted.
+```c
+  Client                                                        Server
+  Header:
+    [key:content_type, val:application/encoded_url]
 ```
 
 ### HTTP Terms
