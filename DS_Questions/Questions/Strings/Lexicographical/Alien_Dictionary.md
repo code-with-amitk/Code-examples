@@ -1,5 +1,5 @@
-- [Question](#que)
-- [Approach-1, Breadth 1st Search](#apr1)
+**[Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)**
+- **Approach-1, Breadth 1st Search**
   - [1. Logic](#logic)
     - [Step-1: Extract information about lexiographical order of letters from input string](#step1)
       - [1.1 Simple Example](#ex1)
@@ -7,17 +7,14 @@
     - [Step-2: Represent all relations from prev step in graph, specifically DAG](#step2)
   - [2. Code](#code)
 
-<a name=ques></a>
-## [Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)
-- We are given string of words and these words are lexiographically sorted(as per alien dictionary). Remember this is not English dictionary. Where word `age` comes before `ago`.
-- Return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules.
-- Example
+## Question
+- Given string of words and these words are lexiographically sorted(as per alien dictionary). Remember this is not English dictionary. Where word `age` comes before `ago`.
+- Return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. Example
 ```c
 Input = ["wrt","wrf","er","ett","rftt"]
 o/p: wertf
 ```
 
-<a name=apr1></a>
 ## Approach-1, BFS, [Topological Sort](/DS_Questions/Data_Structures/Graphs)
 
 <a name=logic></a>
