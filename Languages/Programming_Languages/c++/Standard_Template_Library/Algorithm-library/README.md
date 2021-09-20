@@ -21,4 +21,5 @@ constexpr bool next_permutation( bidirectionalIterator first, bidirectionalItera
 
 <a name=s></a>
 ## sort
+Sorts the elements in the range `[first,last)` into ascending order.
 `sort()` uses [IntroSort](/DS_Questions/Sorting/Hybrid_Sorting_Algo).
