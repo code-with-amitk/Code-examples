@@ -72,23 +72,20 @@ v.push_back(a);
 
 ## Compare
 <a name=co1></a>
-#### A. int string::compare (const string& str) const
-```c
-Returns:        
-  0: if both strings are equal.
-  value< 0 : if *this is shorter than str or,first character that doesn't match is smaller than str.
-  value > 0 : if *this is longer than str or,first character that doesn't match is greater
-```
-**Code**
+#### A. int s1.compare(s2)
 ```cpp
-  string s = "ABC";
-  string pat = "ABC";
+  string s1 = "abc";
+  string pat = "abe";
   
-  if(!s.compare(pat)){
-    cout<<"Equal";
-  }else{
-    cout<<"Not equal";
-  }
+  if(!s1.compare(s2))
+    cout<<"s1";          //s1
+  else
+    cout<<"s2";
+
+compare returns:        
+  0: if both strings are equal.
+  value < 0 : if s1 is shorter than s2 or,first character that doesn't match is smaller than s2.
+  value > 0 : if s1 is longer than str or,first character that doesn't match is greater
 ```
 
 <a name=er></a>
