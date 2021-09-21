@@ -2,7 +2,7 @@
 - [next permutations](#np)
 - **sort, stable_sort**
   - [sort(first, last)](#s1)
-  - 
+  - [sort (first, last, Compare comp)](#s2)
 
 ## What
 These are Collection of functions to be used on containers. **NOTE:** These will not affects size of the container, but can modify a value.
