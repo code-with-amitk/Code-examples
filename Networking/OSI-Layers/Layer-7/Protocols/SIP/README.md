@@ -2,15 +2,15 @@
 - [VOIP](#v)
 
 ### Generations of Wireless communication/Telecommunication
-1G / NMT / TACS / ETAC: Nordic mobile telephony, Total access communication system, European Total access communication systemSends analog signals. Disadv: Analog signals cannot go long distance
-2G / GSM: Sends Digital signals. 1st converts Analog to Digital, sent digital, convert back to Analog 
-2.5G / GPRS: General Packet radio Service. data rate: 50-60 kbps
-2.75G / EDGE: Enhanced data rate for GSM Evolution. Data rate: 170 kbps
-3G / UMTS: Universal Mobile Telecommunication system. Data rate: 384 kbps. Features: Video calling
-3.5G / HSDPA: high Speed downlink packet access. focuses on download
-3.75 / LTE (we are here): Long term Evolution
-4G (Expected Yet not reached): 1Gbps: Stationary Object. 100mbps: moving object 
-5G: Researching going on. 5Gbps
+- 1G / NMT / TACS / ETAC: Nordic mobile telephony, Total access communication system, European Total access communication systemSends analog signals. Disadv: Analog signals cannot go long distance
+- 2G / GSM: Sends Digital signals. 1st converts Analog to Digital, sent digital, convert back to Analog 
+- 2.5G / GPRS: General Packet radio Service. data rate: 50-60 kbps
+- 2.75G / EDGE: Enhanced data rate for GSM Evolution. Data rate: 170 kbps
+- 3G / UMTS: Universal Mobile Telecommunication system. Data rate: 384 kbps. Features: Video calling
+- 3.5G / HSDPA: high Speed downlink packet access. focuses on download
+- 3.75 / LTE (we are here): Long term Evolution
+- 4G (Expected Yet not reached): 1Gbps: Stationary Object. 100mbps: moving object 
+- 5G: Researching going on. 5Gbps
 
 ## VOIP(Voice over IP)/Cloud Telephony
 - What? Sending voice(Audio), Image(Video) over IP network.
