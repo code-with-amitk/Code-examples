@@ -18,7 +18,7 @@
 - Prerequisites? You only need internet connection.
 
 ### SIP(Session Initiation Protocol)
-Signalling protocol used for starting, maintaining, terminating Media sessions over IP. ie sending Video/Audio over IP. SIP is text based protocol and formatting of SIP requests and responses is based on HTTP version 1.1. SIP can use both UDP or TCP as the underlying transport protocol.
+- Signalling protocol used for starting, maintaining, terminating Media sessions over IP. ie sending Video/Audio over IP. SIP is text based protocol and formatting of SIP requests and responses is based on HTTP version 1.1. SIP can use both UDP or TCP as the underlying transport protocol.
 - 3 protocols mainly used:
   - SIP: Establish/Terminate sessions
   - Session Description Protocol (SDP): for describing  multimedia sessions means to exchange information about audio/video channels
