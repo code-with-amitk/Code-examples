@@ -7,9 +7,9 @@
 - **[IMDB / In Memory DB](#i)**
 
 
-## Comparisons
+### Comparisons
 <a name=obf></a>
-### Object vs Block vs File storage
+#### Object vs Block vs File storage
 ```c
 DB           |   Object                           | Block                    |                 File
 -------------|------------------------------------|--------------------------|-------------------------------
@@ -23,7 +23,7 @@ Examples     | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  
 ```
 
 <a name=sn></a>
-### SQL vs noSQL
+#### SQL vs noSQL
 Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
 ```c
   DB               |  SQL, Relational, Structured                         | noSQL, nonRelational, unStructured
@@ -46,7 +46,7 @@ Types              |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL | a. K
 ```  
 
 <a name=dd></a>
-### Database vs Datawarehouse
+#### Database vs Datawarehouse
 ```c
                  |     Database                            | Datawarehouse
 -----------------|-----------------------------------------|-------------------
