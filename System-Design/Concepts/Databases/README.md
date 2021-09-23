@@ -14,9 +14,13 @@
 DB           |   Object                           | Block                    |                 File
 -------------|------------------------------------|--------------------------|-------------------------------
 Stores       | objects{ID,metaData+data}          | raw blocks(xfs,ext4 etc) | data in file, with limited meta-data
+             |                                    |
 Scaling      | Easy                               | Tough(on high volume becomes unmanagable)
+             |
 Suitable for |Static data(docs,photos,songs,videos)
+             |
 Consistency  | Eventual consistent                | Strongly consistent
+             |
 Use cases    | Not good for transactional 
                data(bcoz of eventual consistency)
 Examples     | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS
@@ -28,15 +32,22 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 ```c
   DB               |  SQL, Relational, Structured                         | noSQL, nonRelational, unStructured
 -------------------|------------------------------------------------------|--------------------------------------------
-Storage format     | Table(Records searched using primary key)            | key-value or xml or json or objects
+Storage format     | Table(Records searched using primary key)            | <key, value> or xml or json or objects
+
 Huge data support  | no(becomes slow)                                     | yes
+
 Storage            | May be on 1 or multiple servers                      | Always on multiple low cost nodes[commodity hardware]
+
 Scaling            | Vertical                                             | Horizontal, cheaper, raw data can be pushed:no schema, pro
+
 Tech Support       | Good, query-writing:simple                           | Poor, query-writing:complex
+
 Schema             | fixed                                                | not fixed. defining schema for unstructured data is very tough
+
 Examples           | Amazon S3, MySQL, postgreSQL                         | SEMI:    Amazon S3, Apache Cassandra,dynamoDB
                                                                             UNSTRU:  Amazon S3, Apache CouchDB, MongoDB
-Types              |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL | a. KEY-VALUE DB Eg: redis, dynamoDB, Voldemort
+
+Types              |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL | a. KEY-VALUE DB Eg: redis, dynamoDB, Voldemort, sled(rust)
                     RDBMS: mySQL                                          | b. WIDE-COLUMN DB: Stores data as columns instead of rows. 
                                                                           |    Eg: Cassandra, HBase
                                                                           | c. DOCUMENT DB: data is stored in documents(XML, JSON, binary) 
