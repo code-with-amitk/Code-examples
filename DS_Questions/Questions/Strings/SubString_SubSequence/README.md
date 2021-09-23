@@ -1,16 +1,17 @@
 **Terms**
-- [SubSequence](#ss)
-- [Substring](#ss1)
+- [SubSequence](#s1)
+- [Substring](#s2)
 
-<a name=ss></a>
-### Subsequence
-- Subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. 
-- For example, "ace" is a subsequence of "abcde".
+<a name=s1></a>
+### Subsequence (non-contiguous)
+- Subsequence is a new string generated from original string with some characters (can be none) deleted without changing the relative order of the remaining characters. 
+```
+s = "It was the best of times"
+subsequence = "Itwastimes"
+```
 
-<a name=ss1></a>
-### Substring
-Searching needle in haystack
+<a name=s2></a>
+### Substring (always contiguous)
 ```c
-haystack[]="ABCDBCF"    //Length = n
-needle[]="BC"           //Length = m
+substring = "the best of"
 ```
