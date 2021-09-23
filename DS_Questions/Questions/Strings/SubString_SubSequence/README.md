@@ -1,17 +1,18 @@
 **Terms**
-- [SubSequence](#s1)
-- [Substring](#s2)
+- [continuous vs contiguous](#c)
+- [SubSequence, substring](#s)
 
-<a name=s1></a>
-### Subsequence (non-contiguous)
-- Subsequence is a new string generated from original string with some characters (can be none) deleted without changing the relative order of the remaining characters. 
-```
-s = "It was the best of times"
-subsequence = "Itwastimes"
-```
+<a name=c></a>
+### continuous vs contiguous
+- **Continuous:** Continuing in time or space without interruption. Working or moving, without break or irregularity. 
+- **Contiguous:** means neighboring, close to each other or connected in space or time. Having a common boundary or edge; abutting; touching.
 
-<a name=s2></a>
-### Substring (always contiguous)
+<a name=s></a>
+### Subsequence (non-contiguous), Substring (always contiguous)
+- **Subsequence:** is a new string generated from original string with some characters (can be none) deleted without changing the relative order of the remaining characters. 
+- **Substring:** Always contiguous.
 ```c
-substring = "the best of"
+s = "Itwasthebestoftimes"
+subsequence = "Itwastimes"
+substring = "thebestof"
 ```
