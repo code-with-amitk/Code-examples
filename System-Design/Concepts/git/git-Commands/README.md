@@ -1,6 +1,7 @@
 **git commands**
 - [Working on Review Comments](#rev)
 - [Resolving Merge conflict, gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
+- [Removing commits after push](#rem)
 
 
 <a name=rev></a>
@@ -135,4 +136,17 @@ tells what's modified by you, what's not modified on local repo
 Reapply commits on top of another base tip. When we have merge conflicts we do
 ```c
 # git rebase master
+```
+<a name=rem></a>
+#### Removing commits after push
+```c
+$ git clone
+$ git checkout branch
+$ git log
+  abc           //Note commit ids which need to be removed
+  def
+$ git revert --no-commit abc
+$ git revert --no-commit def
+$ git commit -m "Reverting 2 commits"
+$ git push origin branch
 ```
