@@ -1,7 +1,10 @@
 **[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)**
 - [Problem](#p)
 - [Approach-1, Recursion](#a1)
-- [Approach-2, Dynamic Programming](#a2)
+- **Approach-2, Dynamic Programming**
+  - [Logic](#l2)
+  - [Logic of Filling values in dp Array](#l21)
+  - [Code](#c2)
 
 <a name=p></a>
 ### Longest Common Subsequence
@@ -61,44 +64,45 @@ int main() {
 }
 ```
 
-<a name=a2></a>
 ### Approach-2, [Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
 This question has overlapping subproblem & will be solved using DP.
 
-**Logic**
-  - As in DP, create a 2-D array `dp[str1.size()+1][str2.size()+1]` containing LCS of str1, str2.
-  - Consider example str1="xbdy" m=4, str2="abcdef" n=6. LCS=bd
-    - Take a 2-D array of size `[m+1][n+1]`. This array represents longest Common Subsequence till that element.
-    - `dp[2][3] = 1` means length of LCS in `str1[0..1]=xb` and `str2[0..2]=abc` ie b
-    - `dp[3][4] = 2` means length of LCS in `str1[0..2]=xbd` and `str2[0..3]=abcd` ie bd 
-  - *Step-1* Take a 2-D array of size `[m+1][n+1]`. Initialize to 0.
-```c++
- dp [5][7]
-       a  b  c  d  e  f   <<str2
+<a name=l2></a>
+#### Logic
+- _1._ As in DP, Take 2-D array `dp[s1.size()+1][s2.size()+1]` & init=0. This array represents longest Common Subsequence till that element.
+```c
+s1="xbdy", s2="abcdef". LCS=bd
+
+dp[5][7]                         //s1.size()+1, s2.size()+1. Represents lcs till that element
+
+       a  b  c  d  e  f   <<s2
     0  1  2  3  4  5  6
  x  1  0  0  0  0  0  0
  b  2  0  0  0  0  0  0
  d  3  0  0  0  0  0  0
  y  4  0  0  0  0  0  0
- str1
- ```
-- *Step-2* Start iterting array from `[1][1]`. Check 1st character of `str1[0] = x` in str2.
-```c++
- - dp[1][1]=0         //str[0]=x, str2[0]=a does not have any LCS
- - dp[1][2]=0         //str[0]=x, str2[0..1]=ab does not have any LCS
- - dp[1][3]=0         //str[0]=x, str2[0..2]=abc does not have any LCS
- - dp[1][4]=0         //str[0]=x, str2[0..3]=abcd does not have any LCS
- - dp[1][5]=0         //str[0]=x, str2[0..4]=abcde does not have any LCS
- - dp[1][6]=0         //str[0]=x, str2[0..5]=abcdef does not have any LCS 
+ s1
+
+dp[2][3] = 1         //Means length of LCS in `s1[0..1]=xb` and `s2[0..2]=abc` ie b is 1
+dp[3][4] = 2         //Means length of LCS in `s1[0..2]=xbd` and `s2[0..3]=abcd` ie bd is 2
 ```
-- *Step-3* Check 2 characters of `str1[0..1] = xb` in str2.
+_2._ Start iterting dp array from `[1][1]`. Check 1st character of `s1[0] = x` in s2.
 ```c++
- - dp[2][1]=0         //str[0..1]=xb, str2[0]=a does not have any LCS
- - dp[2][2]=1         //str[0..1]=xb, str2[0..1]=ab have LCS=b so dp=1
- - dp[2][3]=1         //str[0..1]=xb, str2[0..2]=abc have only LCS=1 hence dp=1
- - dp[2][4]=1         //str[0..1]=xb, str2[0..3]=abcd have only LCS=1 hence dp=1
- - dp[2][5]=1         //str[0..1]=xb, str2[0..4]=abcde have only LCS=1 hence dp=1
- - dp[2][6]=1         //str[0..1]=xb, str2[0..5]=abcdef have only LCS=1 hence dp=1
+ dp[1][1]=0         //s1[0]=x, s2[0]=a does not have any LCS
+ dp[1][2]=0         //s1[0]=x, s2[0..1]=ab does not have any LCS
+ - dp[1][3]=0       //s1[0]=x, s2[0..2]=abc does not have any LCS
+ - dp[1][4]=0       //s1[0]=x, s2[0..3]=abcd does not have any LCS
+ - dp[1][5]=0       //s1[0]=x, s2[0..4]=abcde does not have any LCS
+ - dp[1][6]=0       //s1[0]=x, s2[0..5]=abcdef does not have any LCS 
+```
+_3._ Check 2 characters of `s1[0..1] = xb` in s2.
+```cpp
+dp[2][1]=0         //s1[0..1]=xb, s2[0]=a does not have any LCS
+dp[2][2]=1         //s1[0..1]=xb, s2[0..1]=ab have LCS=b so dp=1
+dp[2][3]=1         //s1[0..1]=xb, s2[0..2]=abc have only LCS=1 hence dp=1
+dp[2][4]=1         //s1[0..1]=xb, s2[0..3]=abcd have only LCS=1 hence dp=1
+dp[2][5]=1         //s1[0..1]=xb, s2[0..4]=abcde have only LCS=1 hence dp=1
+dp[2][6]=1         //s1[0..1]=xb, s2[0..5]=abcdef have only LCS=1 hence dp=1
         a  b  c  d  e  f
     0  1  2  3  4  5  6
  x  1  0  0  0  0  0  0
@@ -106,14 +110,15 @@ This question has overlapping subproblem & will be solved using DP.
  d  3  0  0  0  0  0  0
  y  4  0  0  0  0  0  0
 ```
-- *Step-4* Check 3 characters of `str1[0..2] = xbd` in str2.
-```c++
- - dp[3][1]=0         //str[0..2]=xbd, str2[0]=a does not have any LCS
- - dp[3][2]=1         //str[0..2]=xbd, str2[0..1]=ab have LCS = b
- - dp[3][3]=1         //str[0..2]=xbd, str2[0..2]=abc have LCS = b
- - dp[3][4]=2         //str[0..2]=xbd, str2[0..3]=abcd have LCS = bd
- - dp[3][5]=2         //str[0..2]=xbd, str2[0..4]=abcde have LCS = bd
- - dp[3][6]=2         //str[0..2]=xbd, str2[0..5]=abcdef have LCS = bd
+_4._ Check 3 characters of `s1[0..2] = xbd` in s2.
+```cpp
+dp[3][1]=0         //s1[0..2]=xbd, s2[0]=a does not have any LCS
+dp[3][2]=1         //s1[0..2]=xbd, s2[0..1]=ab have LCS = b
+dp[3][3]=1         //s1[0..2]=xbd, s2[0..2]=abc have LCS = b
+dp[3][4]=2         //s1[0..2]=xbd, s2[0..3]=abcd have LCS = bd
+dp[3][5]=2         //s1[0..2]=xbd, s2[0..4]=abcde have LCS = bd
+dp[3][6]=2         //s1[0..2]=xbd, s2[0..5]=abcdef have LCS = bd
+
        a  b  c  d  e  f
     0  1  2  3  4  5  6
  x  1  0  0  0  0  0  0
@@ -121,14 +126,14 @@ This question has overlapping subproblem & will be solved using DP.
  d  3  0  1  1  2  2  2
  y  4  0  0  0  0  0  0
 ```
-- *Step-5* Check 4 characters of `str1[0..3] = xbdy` in str2.
+_5._ Check 4 characters of `s1[0..3] = xbdy` in s2.
 ```c++
- - dp[4][1]=0         //str[0..3]=xbdy, str2[0]=a does not have any LCS
- - dp[4][2]=1         //str[0..3]=xbdy, str2[0..1]=ab have LCS = b
- - dp[4][3]=1         //str[0..3]=xbdy, str2[0..2]=abc have LCS = b
- - dp[4][4]=2         //str[0..3]=xbdy, str2[0..3]=abcd have LCS = bd
- - dp[4][5]=2         //str[0..3]=xbdy, str2[0..4]=abcde have LCS = bd
- - dp[4][6]=2         //str[0..3]=xbdy, str2[0..5]=abcdef have LCS = bd
+dp[4][1]=0         //s1[0..3]=xbdy, s2[0]=a does not have any LCS
+dp[4][2]=1         //s1[0..3]=xbdy, s2[0..1]=ab have LCS = b
+dp[4][3]=1         //s1[0..3]=xbdy, s2[0..2]=abc have LCS = b
+dp[4][4]=2         //s1[0..3]=xbdy, s2[0..3]=abcd have LCS = bd
+dp[4][5]=2         //s1[0..3]=xbdy, s2[0..4]=abcde have LCS = bd
+dp[4][6]=2         //s1[0..3]=xbdy, s2[0..5]=abcdef have LCS = bd
        a  b  c  d  e  f
     0  1  2  3  4  5  6
  x  1  0  0  0  0  0  0
@@ -136,11 +141,11 @@ This question has overlapping subproblem & will be solved using DP.
  d  3  0  1  1  2  2  2
  y  4  0  1  1  2  2  2
 ```
-  - *Step-6* LCS of `str1[0..3]=xbdy and str2[0..6]=abcdef` is `dp[4][6]`. Return `dp[m-1][n-1]`
+_6._ LCS of complete string=s1 and s2 would be last element `dp[4][6]`. Return `dp[m-1][n-1]`
 
-**Logic of Filling values in dp Array**
-
-  - *1.* if character in str1 and str2 are not same, Calculate LCS using below formula:
+<a name=l21></a>
+#### Logic of Filling values in dp Array
+- _1._ if character in s1 and s2 are not same, Calculate LCS using below formula:
 ```c++
   LCS(str1[0..m], str[0..n]) = max ( LCS(str1[0..m-1], str2[0..n]), LCS(str1[0..m], str2[0..n-1]) )
 
@@ -149,14 +154,15 @@ This question has overlapping subproblem & will be solved using DP.
     //above=dp[3][4]=LCS(xbd,abcd)
     //back=dp[4][3]=LCS(xbdy,abc)
 ```
-- *2.* if character in str1 and str2 are same, Calculate LCS using below formula:
+_2._ if character in s1 and s2 are same, Calculate LCS using below formula:
 ```c++
   LCS(str1[0..m], str[0..n]) = LCS(str1[0..m-1], str2[0..n-1]) + 1
 
   if (str1[i] == str2[j])
     dp[3][4] = LCS(xbd,abcd) = LCS(xb, abc) + 1;
 ```
-**Code**
+<a name=c2></a>
+#### Code
 ```c++
  int lcs( string& str1, string& str2, int m, int n ) {
   vector<vector<int> > dp(m+1, vector<int>(n+1,0));               //1
