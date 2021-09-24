@@ -137,15 +137,15 @@ public:
             
             int n=word.size();
             
-            if(k==n && (n>out.size() || (out.size()==n && out>word)))
+            if(k==n && (n>out.size() || (out.size()==n && word<out)))
                 out=word;
-            //save word as ans if the three conditions are met: 
-                //1. k==n: if every letter of word exists in string s (and in order of the word)
-                //2. n>out.size(): word is a longer word than ans 
-                //3. (out.size()==n && out>word): word is same size as ans but is lexicographically smaller
-            //REMEMBER: "return the longest word with the smallest lexicographical order."
+            //save word in out if the three conditions are met: 
+                //1. k==n: if every letter of word exists in input string s (and in order of the word)
+                //2. n>out.size(): new word is a longer word than saved word(out)
+                //3. (out.size()==n && word<out): new word is same size as saved word(out) but is lexicographically smaller
+                     //"return the longest word with the smallest lexicographical order."
         }
-        return ans;     
+        return out;     
     }
 };
 ```
