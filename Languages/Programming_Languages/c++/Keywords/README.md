@@ -1,18 +1,100 @@
-- [explicit keyword](#explicit)
-  - [implicit conversion](#impl)
+- [const](#c)
+  - [member variable](#c1)
+  - [member function](#c2)
+  - [const function arguments](#c3)
+  - [const object](#c4)
+- [explicit keyword](#e)
+  - [implicit conversion](#im)
 - [final keyword](#final)
-- [static](#what)
-  - [1. static variable](#variable)
-  - [2. static member function](#func)
-  - [3. static class](#sclass)
+- [static](#s)
+  - [1. static variable in class](#sv)
+  - [2. static class member function](#sf)
+  - [3. static class](#sc)
 - [this](#this)
 
-<a name=what></a>
-## static
-- it has different meaning in different contexts.
 
-<a name=variable></a>
-### 1. static variable in class
+<a name=c></a>
+## const
+<a name=c1></a>
+#### a. const member variable of class
+Can only be initialized once. java does not have const keyword, rather it has final.
+```cpp
+        const int a = 2;
+        a=4;                 //Compilation Error
+```
+<a name=c1></a>
+#### b. const member function
+Function cannot change any class variable except mutable variables.  int const fun(), const int fun()//Both are same function returning constant Integer
+```cpp
+        int a;    mutable int c;
+        void fun() const{
+            a = 5;        //Compilation Error
+            c = 2;        //OK
+        }
+```
+<a name=c1></a>
+#### c. const function arguments 
+Function cannot modify the const argument.
+```cpp
+        int fun(const int a){
+            a=10;    //Compilation Error
+        } 
+```
+<a name=c1></a>
+#### d. const object
+Member variables present in object cannot be modified.
+```cpp
+        const obj s(1,2);
+        obj.a=100;    //Compilation Error
+```
+
+<a name=e></a>
+## explicit
+
+<a name=im></a>
+#### Implicit conversion?
+- Compiler converts data-type to class object which is wrong.
+- Example-1: fun() takes object as argument but we passed int and compiler did conversion internally. This is done using default constructor(1).
+```cpp
+class A {
+  int a;
+public:
+    A(int b) : a(b) {}             //1
+    int get( ) {
+      return a;
+    }
+};
+
+void fun (A obj) {
+  int x = obj.get ();
+  cout << x;
+}
+
+int main() {
+  fun (3);
+}
+# g++ test.cpp;./a.out
+3
+```
+**Explicit** Explicit can only come in front of constructor. Prefixing the explicit keyword before constructor prevents the compiler for using that constructor for implicit conversions. Above code will give error, we need.
+```c++
+class A {
+  ...
+  public:
+     explicit A(int b) : a(b) {}             //CONSTRUCTOR PREFIXED with EXPLICIT stops implicit conversion
+  ...
+};
+int main() {
+  fun (A(3));
+}
+```
+
+<a name=s></a>
+## static
+It has different meaning in different contexts.
+
+<a name=sv></a>
+#### 1. static variable in class
 - static variables are shared among all Objects of class. Only 1 copy of variables is created.
 - Since we cannot have multiple copies of static variable hence cannot be initialized inside constructor.
 - _Initialization:_ at compile-time.
@@ -39,8 +121,8 @@ int main(){
 } 
 ```
 
-<a name=func></a>
-### 2. Static member function of class
+<a name=sf></a>
+#### 2. Static class member function
 - Can be called without class object.
 - SMF can access: Static Data Members, Static Member Function, non-static functions from outside class.
 - Do not have access to this pointer or super.
@@ -56,9 +138,9 @@ int main(){
 }
 ```
 
-<a name=sclass></a>
-### 3. static class
-- Only present in Java. Way of grouping classes in Java. Only Inner(Nested classes) can be created static. But its not necessary that all nested classes needs to be static. 
+<a name=sc></a>
+#### 3. static class
+Only present in Java. Way of grouping classes in Java. Only Inner(Nested classes) can be created static. But its not necessary that all nested classes needs to be static. 
 ```java
 public class test{
     public static class InnerStatic{
@@ -77,48 +159,6 @@ public class test{
 |Class Method|<ul><li>if final function is defined in base class, it cannot be overridden in derv class(Compilation error)</li></ul><ul><li>Final methods gets inherited</li></ul>|final|
 |final class|Cannnot be extended/inherited||
 
-<a name=explicit></a>
-## explicit keyword
-
-<a name=impl></a>
-#### What is Implicit conversion?
-- Compiler converts data-type to class object which is wrong.
-- Example-1: fun() takes object as argument but we passed int and compiler did conversion internally. This is done using default constructor(1).
-```c++
-class A {
-  int a;
-public:
-    A(int b) : a(b) {}             //1
-    int get( ) {
-      return a;
-    }
-};
-
-void fun (A obj) {
-  int x = obj.get ();
-  cout << x;
-}
-
-int main() {
-  fun (3);
-}
-# g++ test.cpp;./a.out
-3
-```
-- **Explicit** 
-  - explicit can only come in front of constructor.
-  - Prefixing the explicit keyword before constructor prevents the compiler for using that constructor for implicit conversions. Above code will give error, we need.
-```c++
-class A {
-  ...
-  public:
-     explicit A(int b) : a(b) {}             //CONSTRUCTOR PREFIXED with EXPLICIT stops implicit conversion
-  ...
-};
-int main() {
-  fun (A(3));
-}
-```
 
 <a name=this></a>
 ## this pointer
