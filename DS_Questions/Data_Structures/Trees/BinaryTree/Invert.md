@@ -4,6 +4,7 @@
     - [C++](#cpp1)
     - [Python3](#py1)
     - [Java](#j1)
+    - [Rust](#rs1)
 - [Approach-2, Iterative](#a2)
   - [Code](#c2)
 
