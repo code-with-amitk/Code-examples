@@ -89,23 +89,81 @@ class derv3: public derv1, public derv2{ ...};      // In Memory [abcd]
 
 ## Terms
 <a name=g></a>
-#### Generalization
+### 1. Generalization
 Creating Base from 2 or more derv classes by extracting their Similar Characteristics(Attributes & Behavior).
-<img src=Generalization.png width=400/>
+<img src=Generalization.png width=300/>
 
 <a name=sp></a>
-#### Specialization
+### 2. Specialization
 New derived classes are created from base to perform Some SPECIAL function is called specialization
-<img src=Specialization.png width=400/>
+<img src=Specialization.png width=300/>
 
-#### Association
+### 3. Association
 <a name=ag></a>
-**Aggregation**
-Contained Object can exist without container Object. Contained object can belong to different classes at same time. Owner-ship is present. Container class have pointer to object of contained class
+#### 3.1 Aggregation
+Contained Object can exist without container Object. Contained object can belong to different classes at same time. Contained class does not delete container class object. Owner-ship is present. Contained class have pointer to object of contained class
+```c++
+class tree{
+    string name;
+public:
+    tree(string t):name(t){}
+    string getName() { return name;}
+};
+
+class sunlight{
+    tree *p;
+public:
+    sunlight(tree *t):p(t){}
+};
+
+int main(){
+    tree *ptr = new tree("palm");               //plam can exist with ant without sunlight
+   {
+        sunlight d(ptr);
+    } // sunlight object goes out of scope here and is destroyed
+    std::cout << ptr->getName() << " Exists without Sunlight\n";
+    delete ptr;
+}
+# ./a.out
+palm Exists without Sunlight
+```
+
 
 <a name=co></a>
-**Composition**
+#### 3.2 Composition
 If container Object is deleted, contained object will also deleted. Deleting contained object is responsibility of container.  Container class have actual object of contained class.
+```cpp
+//A is created But destroyed with B
+
+class A{
+public:
+        A(){
+                cout<<"A's Constructor\n";
+        }
+        ~A(){
+                cout<<"A's Destructor\n";
+        }
+};
+
+class B{
+       A  a;    //Composition
+public:
+       B(){
+               cout<<"B's constructor\n";
+       }
+       ~B(){
+               cout<<"B's Destructor\n";
+       }
+};
+int main(){
+        B b(1);
+}
+# ./a.out 
+A's Constructor
+B's constructor
+B's Destructor
+A's 
+```
 
 <a name=r></a>
 ### Rules of Inheritance
