@@ -12,7 +12,7 @@
 - Normally what will happen in this case is Segmentation Fault and abort. But we can place the same code inside try, catch and do something so that program does no coredumps.
 
 <a name=e></a>
-### Example
+#### Example
 ```cpp
 ////Coredump generated without try, catch/////
 int main(){
@@ -36,7 +36,7 @@ Divide by 0 happened
 ```
 
 <a name=t></a>
-### try, throw, catch
+## try, throw, catch
 - In case of problem instead of simply dying(coredumping), transfer control from one part of a program to another. This is build on 3 keywords:
   - *1. try block*: Block of code which throws exception. This is followed by one or more catch blocks
   - *2. throw keyword:* Instead of dying throw the exception
@@ -54,7 +54,7 @@ try {
 }
 ```
 
-### Exception class
+## Exception class
 Exception class is used to create our own exception types. **Why own exception types are needed?**
 - *1.* We want to display custom message to user at time of exception.
 - *2.* Perform some logging on Log server
