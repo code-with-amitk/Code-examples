@@ -2,7 +2,13 @@
 - [Types](#ty)
 - [Base Member Initialization](#bi)
 - [Diamond Problem](#dp)
-  - [Virtual Inheritance](#vi) 
+  - [Virtual Inheritance](#vi)
+- **Terms**
+  - [Generalization](#g)
+  - [Specialization](#sp)
+  - **Association**
+    - [Aggregation/Collection](#ag)
+    - [Composition / Has-A](#co)
 - [Rules of Inheritance](#r)
 - [Function Overriding](#fo)
 - Types
@@ -80,6 +86,22 @@ class derv1: public virtual base{  }
 class derv2: virtual public base{  }
 class derv3: public derv1, public derv2{ ...};      // In Memory [abcd]
 ```
+
+## Terms
+#### Generalization
+Creating Base from 2 or more derv classes by extracting their Similar Characteristics(Attributes & Behavior).
+<img src=Generalization.png width=400/>
+
+#### Specialization
+New derived classes are created from base to perform Some SPECIAL function is called specialization
+<img src=Specialization.png width=400/>
+
+#### Association
+**Aggregation**
+Contained Object can exist without container Object. Contained object can belong to different classes at same time. Owner-ship is present. Container class have pointer to object of contained class
+
+**Composition**
+If container Object is deleted, contained object will also deleted. Deleting contained object is responsibility of container.  Container class have actual object of contained class.
 
 <a name=r></a>
 ### Rules of Inheritance
