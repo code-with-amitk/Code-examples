@@ -1,12 +1,85 @@
-**Inheritance**
+**Inheritance / Is-A Relationship**
+- [Types](#ty)
+- [Base Member Initialization](#bi)
+- [Diamond Problem](#dp)
+  - [Virtual Inheritance](#vi) 
 - [Rules of Inheritance](#r)
 - [Function Overriding](#fo)
 - Types
  - [Aggregation]
 
 
-## Inheritance / Is-A Relationship
-Creating new class(decendent/derived) from existing class(ansector/base).
+## Inheritance
+Creating new class(decendent/derived) from existing class(ansector/base). This is uni-directional relation.
+- **Adv:** Provides re-usability. 
+- **Disadv:** 
+  - _1._ Since inheritance inherits everything from the super class and interface, it may make the subclass too clustering and sometimes error-prone when dynamic overriding or dynamic overloading in some situation. 
+  - _2._ Inheritance creates hierarchical structures, If Inheritance chains gets large these can become cumbersome & tough to maintain
+
+<a name=ty></a>
+### Types
+```c
+Single 
+|Base| ---> |Derv|
+
+Multiple
+ |Base class 1|     |Base class 2|
+    |                     |
+    -----> |Derv| <-------
+
+Hierarchical
+   |Base class|
+/        |     \
+DC1    DC2    DC3
+
+Multilevel
+    |Base 1| 
+       \/
+    |Base 2|
+       \/
+    |Derv |
+    
+Hybrid(Virtual)
+        | Base class |
+     \/                 \/
+   |Derv 1|        |Derv 2|
+     |                |
+     ----------------
+            |
+         |Derv 3|  
+```
+
+<a name=bi></a>
+### Base Member Initialization
+Passing Arguments from derv to base class
+```c
+class derv: public base {    
+public:    
+    derv(int a) : base(a){}
+};
+```
+
+<a name=dp></a>
+### Diamond Problem
+In multiple inheritance derv class gets 2 copies of base class variables. Solution:Virtual Inheritance
+```c
+        -------------- class base{ int a;}  ---------------
+       |                                                   |
+class derv1: public base                            class derv2: public base
+    int b;                                                int c;
+      |                                                    |
+       -- class derv3:public derv1, public derv2---  
+                   int d;
+
+derv3 class Object's memory representation
+          SS 
+ a(base),b,a(base),c,d 	 HS	DS 	CS 
+ 
+Solution: Virtual Inheritance
+class derv1: public virtual base{  }
+class derv2: virtual public base{  }
+class derv3: public derv1, public derv2{ ...};      // In Memory [abcd]
+```
 
 <a name=r></a>
 ### Rules of Inheritance
