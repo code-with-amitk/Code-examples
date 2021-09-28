@@ -88,18 +88,22 @@ class derv3: public derv1, public derv2{ ...};      // In Memory [abcd]
 ```
 
 ## Terms
+<a name=g></a>
 #### Generalization
 Creating Base from 2 or more derv classes by extracting their Similar Characteristics(Attributes & Behavior).
 <img src=Generalization.png width=400/>
 
+<a name=sp></a>
 #### Specialization
 New derived classes are created from base to perform Some SPECIAL function is called specialization
 <img src=Specialization.png width=400/>
 
 #### Association
+<a name=ag></a>
 **Aggregation**
 Contained Object can exist without container Object. Contained object can belong to different classes at same time. Owner-ship is present. Container class have pointer to object of contained class
 
+<a name=co></a>
 **Composition**
 If container Object is deleted, contained object will also deleted. Deleting contained object is responsibility of container.  Container class have actual object of contained class.
 
