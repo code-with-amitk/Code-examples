@@ -9,10 +9,10 @@
   - **Association**
     - [Aggregation/Collection](#ag)
     - [Composition / Has-A](#co)
-- [Rules of Inheritance](#r)
+- [Public, Pvt, Protected Inheritance](#ppp)
 - [Function Overriding](#fo)
-- Types
- - [Aggregation]
+- **Rules of Inheritance**
+  - [1. Function is linearly searched up in Multilevel Inheritance](#r1)
 
 
 ## Inheritance
@@ -165,8 +165,8 @@ B's Destructor
 A's 
 ```
 
-<a name=r></a>
-### Rules of Inheritance
+<a name=ppp></a>
+### Public, Pvt, Protected Inheritance
 <img src=rules-of-inheritance.png width=300/> 
 
 All member variables(public,protected,pvt) of base are inherited inside derv class. See Memory layout of derv class object. Inheriting Base member variables inside derv:
@@ -188,3 +188,25 @@ All member variables(public,protected,pvt) of base are inherited inside derv cla
 <a name=fo></a>
 ### Function Overriding
 Same named function in base & derv class.
+
+## Rules of Inheritance
+<a name=r1></a>
+### 1. Function is linearly searched up in Multilevel Inheritance
+- The print function is not defined in class C. So it is looked up in the inheritance hierarchy. print() is present in both classes A and B. 
+- if there is multilevel inheritance, then function is linearly searched up in the inheritance hierarchy until a matching function is found.
+```cpp
+class A {
+public:
+   void print() { cout <<"A"; }
+};
+class B : public A {
+public:
+   void print() { cout <<" B"; }
+};
+class C: public B {};
+ 
+int main(void) {
+  C obj;
+  obj.print();            //B
+}
+```
