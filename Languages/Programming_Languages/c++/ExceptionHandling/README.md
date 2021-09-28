@@ -2,8 +2,10 @@
   - [What](#w)
   - [Example](#e)
 - [try, throw, catch](#t)
-- **Exception class**
-  - [Null Exception class](#n)
+- **Throw Exception class**
+  - [1. Empty exception class](#ee)
+  - [2. Exception class having what()](#we)
+  - [3. Null Exception class](#n)
 
 
 <a name=w></a>
@@ -54,14 +56,55 @@ try {
 }
 ```
 
-## Exception class
+## Throw Exception class
 Exception class is used to create our own exception types. **Why own exception types are needed?**
 - *1.* We want to display custom message to user at time of exception.
-- *2.* Perform some logging on Log server
-- *3.* Block security sensitive information from being dumped. An exception might contain sensitive information, we donot want to show this to user.
+- *2.* Perform some logging on Log server. Block security sensitive information from being dumped. An exception might contain sensitive information, we donot want to show this to user.
+
+<a name=ee></a>
+#### 1. Empty Exception class
+- _a._ In try block we throw OBJECT of class type
+- _b._ catch, catches the object and displays it
+```cpp
+class demo {};
+int main() {
+	try {
+		throw demo();                   //a
+	}
+	catch (demo d) {                  //b
+		cout << "Caught exception of demo class \n";
+	}
+}
+```
+
+<a name=we></a>
+#### 2. Exception class having what()
+- Code throws Exception class(BadLength) when len<5.
+```cpp
+class BadLength {
+    int a;
+public:
+    BadLength(int x):a(x){}
+    int what(){
+        return a;
+    }
+};
+int main() {
+    int len;
+    cin >> len;
+    try {
+        if (len < 5)
+            throw BadLength(len);             //1. Call constructor of class
+        else
+            cout << "Len is Fine"<<endl;
+    } catch (BadLength b) {
+        cout << "Too Short:" << b.what();
+    }
+}
+```
 
 <a name=n></a>
-#### NULLException class
+#### 3. NULLException class
 - *1.* Create a class called NULLException. This class will: Log message to Log server, print custom information with Exception message
 - *2.*  Throw the custom class.
 - *3.* Catch the custom class.
