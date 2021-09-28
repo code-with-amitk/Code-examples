@@ -1,16 +1,33 @@
+**Inheritance**
+- [Rules of Inheritance](#r)
+- [Function Overriding](#fo)
+- Types
+ - [Aggregation]
+
+
 ## Inheritance / Is-A Relationship
-- **What?** Creating new class(decendent/derived) from existing class(ansector/base).
+Creating new class(decendent/derived) from existing class(ansector/base).
 
-### Rules of Inheritance?
-- All member variables(public,protected,pvt) of base are inherited inside derv class. See Memory layout of derv class object.
-- Inheriting Base member variables inside derv:
+<a name=r></a>
+### Rules of Inheritance
+<img src=rules-of-inheritance.png width=500/> 
 
-|Inheritance Type|Member Variable|Function|
-|---|---|---|
-|Public|<ul><li>*Public member Variables* Of base class can be accessed in public section. NOTE: this does not mean derv gets a COPY/REFERENCE of base public variables. Derv can access/display base variables</li></ul>|Derv class can invoke any public fun of base|
-|protected|*Member Variables:* all protected members of the base class becomes protected members in derv.|Function present in protected section cannot be called using Object|
-|Private|<ul><li>Not inherited in derv class. Can only be accessed if friended.</li></ul><ul><li>*How to access private data members inside derv?* Using public function in base and calling same from derv</li></ul>|
+All member variables(public,protected,pvt) of base are inherited inside derv class. See Memory layout of derv class object. Inheriting Base member variables inside derv:
+```c
 
-- SAME-NAMED-FUNCTION_IN_BASE_AND_DERV(FUNCTION-OVERRIDING)
- - Base & derv can have same named function. But with derv Object, derv class function is called.
- - (function overriding) Same named function having different body inside derv class.
+   Inheritance Type  |   Member Variable of base class                       |      Functions of base class
+---------------------|-------------------------------------------------------|---------------------------
+    Public           | can be accessed in public section.                    | derv class can invoke any public fun of base
+                     | NOTE: this does not mean derv gets a COPY/REFERENCE   |
+                     |  base public variables. Derv gets access base vars  
+                     
+    Protected        | All protected members of the base class becomes       | Function present in protected section cannot be called using Object
+                       protected members in derv
+
+    Private          | Not inherited in derv class. Can only be accessed     | How to access private data members inside derv? 
+                       if friended                                             Using public function in base and calling same from der
+```
+
+<a name=fo></a>
+### Function Overriding
+Same named function in base & derv class.
