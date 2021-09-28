@@ -10,7 +10,7 @@ Creating new class(decendent/derived) from existing class(ansector/base).
 
 <a name=r></a>
 ### Rules of Inheritance
-<img src=rules-of-inheritance.png width=500/> 
+<img src=rules-of-inheritance.png width=300/> 
 
 All member variables(public,protected,pvt) of base are inherited inside derv class. See Memory layout of derv class object. Inheriting Base member variables inside derv:
 ```c
