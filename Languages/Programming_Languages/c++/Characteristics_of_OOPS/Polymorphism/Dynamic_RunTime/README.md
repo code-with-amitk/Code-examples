@@ -13,7 +13,7 @@
 - Each class will have its own vtable. 3 classes 3 vtables. vptr is 1st member of object, which points to base address of vtable
 - virtual function should have a body, if its not pure virtual function.
 
-<img src=vtable.png width=700/>
+<img src=vtable.png width=800/>
 
 ```c
 vptr: Which points to vtable of object.
