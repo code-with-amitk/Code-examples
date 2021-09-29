@@ -16,6 +16,23 @@
 <img src=vtable.png width=800/>
 
 ```c
+Example:
+    |----------------class A------------|
+    |public:                            |
+    | virtual void vf1() {cout<<A vf1;} |<----------------------|
+    | void vf1()                        |                       |
+    |-----------------------------------|                       |
+                   /\                                           |
+                    |                             |------------class C-------------|          
+                    |                             |                                |
+    |----------------class B------------|         |--------------------------------|
+    |public:                            |
+    | virtual void vf1() {cout<<B vf1;} |
+    | void vf1()                        |
+    | void vf2()                        |
+    |-----------------------------------|
+                    
+
 vptr: Which points to vtable of object.
 vtable: Points to actual implementation of functions on Code Segment.
 
