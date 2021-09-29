@@ -1,9 +1,10 @@
 - [Dynamic/Runtime Polymorphism](#dp)
   - [vtable](#vt)
+- [Virtual Function](#vf)
 - [Pure Virtual Function](#pv)
 
 <a name=dp></a>
-### Dynamic/Runtime Polymorphism
+## Dynamic/Runtime Polymorphism
 - Means Same named functions in Base & derv class & both to be accessed using Base class Pointer only. Achieved using Virtual Functions
 - Virtual Function? Function prefixed with virtual keyword in base class.
 
@@ -100,10 +101,40 @@ int main(){
 $ ./a.out
 A vf1
 B vf1
- ```
+```
+
+<a name=vf></a>
+## Virtual Function
+VFs **SHOULD BE** defined in base class. VFs can or cannot be overridden/defined in derv class. Its not mandatory to override all functions in derv class. 
+```c
+class base{ virtual void fun(); }
+```
+#### Rules of VF
+```c
+class A {
+public:
+  A() { vf(); }
+  virtual void vf() { cout<<"A vf"; }
+};
  
+class B: public A {
+public:
+  B(){}
+  virtual void vf() { cout<<"B vf"; }
+};
+ 
+int main() {
+  A* ptr = new B();
+  delete ptr;
+}
+$ ./a.out
+A vf
+
+B() calls Base ctr, then derv ctr(Ctr calling hierarchy). A() calls  vf().
+```
+
 <a name=pv></a>
-### Pure Virtual Function
+## Pure Virtual Function
 - When we can't (or don't want to) implement a method for the base class. We want classes to inherit it and implement the PVF. Always needs to be overridden in derv class
 - Abstract_class can have other non-virtual functions defined in it.
 ```cpp
