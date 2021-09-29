@@ -2,7 +2,7 @@
 - [Types](#ty)
 - [Base Member Initialization](#bi)
 - [Diamond Problem](#dp)
-  - [Virtual Inheritance](#vi)
+  - [Virtual Inheritance / Virtual Base class](#vi)
 - **Terms**
   - [Generalization](#g)
   - [Specialization](#sp)
@@ -79,12 +79,37 @@ class derv1: public base                            class derv2: public base
 
 derv3 class Object's memory representation
           SS 
- a(base),b,a(base),c,d 	 HS	DS 	CS 
- 
-Solution: Virtual Inheritance
-class derv1: public virtual base{  }
-class derv2: virtual public base{  }
-class derv3: public derv1, public derv2{ ...};      // In Memory [abcd]
+ a(base),b,a(base),c,d 	 HS	DS 	CS
+```
+<a name=vi></a>
+#### Solution to Diamond Problem: Virtual Inheritance / Virtual Base class
+- Used for preventing multiple “instances” of a given class appearing in an inheritance hierarchy when using multiple inheritances.
+- **Why?** When any data / function member of class A is accessed by an object of class D, ambiguity arises as to which data/function member would be called? One inherited through B or the other inherited through C. This confuses compiler and it displays error.
+- virtual can be written before or after the public
+```cpp
+///////////Problem case///////////
+class A {
+  int a[10];
+};
+class B : public A {};
+class C : public A {};
+class D : public B, public C {};    //data members/function of class A are inherited twice to class D.
+int main(){
+  D obj;
+  cout << sizeof (obj);         //80
+}
+
+///////////Good Case////////////////
+class A {
+  int a[10];
+};
+class B : virtual public A {};  //if virtual not used will give (error: request for member ‘fun’ is ambiguous)
+class C : public virtual A {};
+class D : public B, public C {};
+int main(){
+  D obj;
+  cout << sizeof (obj);         //40. Only 1 copy inherited.
+}
 ```
 
 ## Terms
