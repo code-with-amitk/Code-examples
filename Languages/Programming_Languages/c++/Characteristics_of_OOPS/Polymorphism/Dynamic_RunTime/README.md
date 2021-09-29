@@ -1,23 +1,20 @@
 - [Dynamic/Runtime Polymorphism](#dp)
   - [vtable](#vt)
-- [Virtual Base Class](#vb)
 - [Pure Virtual Function](#pv)
 
 <a name=dp></a>
 ### Dynamic/Runtime Polymorphism
-- Memory is allocated at run time.
-- Example of Dynamic polymorphism? Virtual Function
-- When to use VF? Same named functions in Base & derv class & both to be accessed using Base class Pointer only.
+- Means Same named functions in Base & derv class & both to be accessed using Base class Pointer only. Achieved using Virtual Functions
 - Virtual Function? Function prefixed with virtual keyword in base class.
 
 <a name=vt></a>
-#### How VF logic is implemented? 
-- Using vtable,Virtual Table,Dispatch table. VIRTUAL TABLE/vtable/Dispatch table is Static array of function pointers.
-- Present in RO-DS section.
-- Each class will have its vtable. 3 classes 3 vtables
-- vptr is 1st member of object, which points to base address of vtable
+#### How VF logic is implemented?
+- Using vtable,Virtual Table,Dispatch table. VIRTUAL TABLE/vtable/Dispatch table is Static array of function pointers. Present in RO-DS section.
+- Each class will have its own vtable. 3 classes 3 vtables. vptr is 1st member of object, which points to base address of vtable
 - virtual function should have a body, if its not pure virtual function.
-- {Class C} if class does not override a VF, still its vtable is created which points to base class function address.
+
+<img src=vtable.png width=300/>
+
 ```c
 vptr: Which points to vtable of object.
 vtable: Points to actual implementation of functions on Code Segment.
@@ -87,38 +84,7 @@ $ ./a.out
 A vf1
 B vf1
  ```
-
-<a name=vb></a>
-### Virtual Base class
-- Used for preventing multiple “instances” of a given class appearing in an inheritance hierarchy when using multiple inheritances.
-- **Why?** When any data / function member of class A is accessed by an object of class D, ambiguity arises as to which data/function member would be called? One inherited through B or the other inherited through C. This confuses compiler and it displays error.
-- virtual can be written before or after the public
-```cpp
-///////////Problem case///////////
-class A {
-  int a[10];
-};
-class B : public A {};
-class C : public A {};
-class D : public B, public C {};    //data members/function of class A are inherited twice to class D.
-int main(){
-  D obj;
-  cout << sizeof (obj);         //80
-}
-
-///////////Good Case////////////////
-class A {
-  int a[10];
-};
-class B : virtual public A {};  //if virtual not used will give (error: request for member ‘fun’ is ambiguous)
-class C : public virtual A {};
-class D : public B, public C {};
-int main(){
-  D obj;
-  cout << sizeof (obj);         //40. Only 1 copy inherited.
-}
-```
-
+ 
 <a name=pv></a>
 ### Pure Virtual Function
 - When we can't (or don't want to) implement a method for the base class. We want classes to inherit it and implement the PVF. Always needs to be overridden in derv class
