@@ -8,7 +8,7 @@
     - *a. PPP/Remote Auth:* 
       - Remember PPP protocol is used for connection of Home Based user(Serial Cable User) to IP Network.  Ethernet cannot run on Serial/Telephone lines.    PAP(Password Authentication Protocol), CHAP(Challenge Handshake Authentication Protocol), MSCHAP(Microsoft CHAP), EAP(Extended Authentication Protocol), SPAP(Shiva PAP)
     - *[b. Pre-shared keys (PSK)](Pre_Shared_Key)*
-    - _[c. Certificates](Certificates)_
+    - _[c. Certificates](/Networking/OSI-Layers/Layer-7/Protocols/Encryption_Authentication/Certificates)_
     - *d. Smart-cards:* smart card authentication is variant of Certificate auth. SC also stores the certificates, when login is asked, SC presents certs & authenticates 
     - *[e. AAA Protocols](AAA_Protocols)*
 ```c
