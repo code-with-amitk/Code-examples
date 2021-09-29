@@ -1,44 +1,20 @@
-- **Exception**
-  - [What](#w)
-  - [Example](#e)
+**Exception**
 - [try, throw, catch](#t)
-- **Throw Exception class**
-  - [1. Empty exception class](#ee)
-  - [2. Exception class having what()](#we)
-  - [3. Null Exception class](#n)
+- **Examples**
+  - [1. Catching divide by 0](#ex1)
+  - [2. Catching bad_alloc, vector index out_of_range Exception](#ex1)
+  - **Throw Exception class**
+    - [1. Empty exception class](#e3)
+    - [2. Exception class having what()](#e4)
+    - [3. Null Exception class](#e5)
 
 
-<a name=w></a>
 ## Exception
 - Exception is Problem/error that arises when program is Running. Eg: Divide by Zero.
 - Normally what will happen in this case is Segmentation Fault and abort. But we can place the same code inside try, catch and do something so that program does no coredumps.
 
-<a name=e></a>
-#### Example
-```cpp
-////Coredump generated without try, catch/////
-int main(){
-  int c=0;
-  cout << 4/c;                        //Coredumps here
-}
-
-////Catching error(with try catch)/////
-int main(){
-  int c = 0;
-  try {
-    if(c == 0)
-      throw 99;
-    cout << 4/c;
-  } catch (...){
-    cout<<"Divide by 0 happened\n";
-  }
-}
-# ./a.out                       //No coredump happenened
-Divide by 0 happened
-```
-
 <a name=t></a>
-## try, throw, catch
+### try, throw, catch
 - In case of problem instead of simply dying(coredumping), transfer control from one part of a program to another. This is build on 3 keywords:
   - *1. try block*: Block of code which throws exception. This is followed by one or more catch blocks
   - *2. throw keyword:* Instead of dying throw the exception
@@ -56,12 +32,68 @@ try {
 }
 ```
 
-## Throw Exception class
+## Examples
+<a name=ex1></a>
+#### 1. Catching divide by 0
+```cpp
+////Coredump generated without try, catch/////
+int main(){
+  int c = 0;
+  cout << 4/c;                        //Coredumps here
+}
+
+////Catching error(with try catch)/////
+int main(){
+  int c = 0;
+  try {
+    if(c == 0)
+      throw 0;
+    cout << 4/c;
+  } catch (int x) {
+    cout << "Exception: " << x;
+  } catch (...) {
+    cout << "All other exceptions";
+  }
+}
+# ./a.out                       //No coredump happenened
+Exception: 0
+```
+
+<a name=ex2></a>
+#### 2. Catching bad_alloc, out_of_range Exception
+```cpp
+class A {
+public:
+	static int fun (long long A, long long B) {
+		if(A < 0)
+			throw std::invalid_argument("A is negative");
+		vector<int> v(A, 0);                  //Initialize vector
+		if(B == 0) throw 0;
+		return A/B + A - B*v.at(B);
+	}
+};
+int main() {
+        try {
+            cout << Server::compute(A,B) << endl;
+        } 
+        catch (bad_alloc& error) {
+            cout << "Bad Alloc" << endl;           		//if A is passed huge ie greater than 50 million.
+        }
+        catch (exception& error) {
+            cout << "Exception: " << error.what() << endl;      //A=2, B=10. Because v[2] and trying access v[10]
+        }
+        catch (...) {
+            cout << "Other Exception" << endl;
+	}
+}	
+```
+
+### Throw Exception class
 Exception class is used to create our own exception types. **Why own exception types are needed?**
 - *1.* We want to display custom message to user at time of exception.
 - *2.* Perform some logging on Log server. Block security sensitive information from being dumped. An exception might contain sensitive information, we donot want to show this to user.
 
-<a name=ee></a>
+<a name=e3></a>
 #### 1. Empty Exception class
 - _a._ In try block we throw OBJECT of class type
 - _b._ catch, catches the object and displays it
@@ -77,7 +109,7 @@ int main() {
 }
 ```
 
-<a name=we></a>
+<a name=e4></a>
 #### 2. Exception class having what()
 - Code throws Exception class(BadLength) when len<5.
 ```cpp
@@ -103,7 +135,7 @@ int main() {
 }
 ```
 
-<a name=n></a>
+<a name=e5></a>
 #### 3. NULLException class
 - *1.* Create a class called NULLException. This class will: Log message to Log server, print custom information with Exception message
 - *2.*  Throw the custom class.
