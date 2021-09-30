@@ -2,6 +2,8 @@
 - [When compiler provides default ctr](#w1)
 - [When compiler does not provide default ctr](#w1)
 - [Forcing compiler to create default ctr](#f)
+- **Rules of default Ctr**
+  - [1.](#r1)
 
 
 ## Default ctr
@@ -67,4 +69,37 @@ int main(){
         A obj1;
         obj1.disp();    //1
 }
+```
+
+## Rules of Default ctr
+<a name=r1></a>
+#### 1. Mismatch in declaration & call of ctr not allowed
+```cpp
+class A {
+    int a;
+public:
+    Test(int x) : x(a) {}
+};
+int main() {
+    Test t;                 //a
+    return 0;
+}
+$ ./a.out
+Compilation Error mismatch ctr            //Because ctr takes 1 argument but, a does not provide any argument.
+                                          //Resolving Compile time Error. Test(int x=0). Making argument as default
+```
+
+<a name=r2></a>
+#### 2. 
+```cpp
+class A
+{
+public:
+  A () { cout << "Constructor"; }
+};
+int main() {
+    Test t1();
+}
+$ ./a.out
+Nothing printed           //Why? Because Complier considers this t1() as function declaration not ctr call.
 ```
