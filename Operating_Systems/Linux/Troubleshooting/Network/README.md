@@ -1,4 +1,5 @@
-- [Is IP Reachable](#1)
+- [IP Reachable?](#1)
+- [Port Reachable?](#p)
 
 <a name=1></a>
 ### 1. Is IP Reachable
@@ -33,6 +34,18 @@ traceroute: Show all routers in-between from src to dst computer. Sends ICMP(ove
     default    <>                0.0.0.0            UG        100        0        ens192
     10.x.y.z   <>            255.255.254.0    U          100         0        ens192        <<<< No entry for x.y.z.q    
 ```
+
+<a name=p></a>
+### Is port reachable?
+1. On Destination machine, Is port listening? [netstat](/Operating_Systems/Linux/Administration/Commands/)
+```c
+cmd> netstat -ab | findstr port     //Windows
+```
+2. Disable firewall
+```c
+cmd > netsh advfirewall set allprofiles state off       //Windows
+```
+
 
 ### [ConnectionRefused Overflow Underflow](ConnectionRefused_Overflow_Underflow)
   - *1.* Number of TCP/UDP connections to/from my machine (netstat)
