@@ -1,9 +1,14 @@
-- [const](#c)
-  - [member variable](#c1)
-  - [member function](#c2)
-  - [const function arguments](#c3)
-  - [const object](#c4)
-- [explicit keyword](#e)
+- **const Rules**
+  - **const Member variables**
+    - [1. Initialized only once](#c1)
+  - **const Member Function**
+    - [1. can only change mutable members](#c2)
+  - **const function arguments**
+    - [1. cannot be modified](#c3)
+  - **const object**
+    - [1. Member variables present in const object cannot be changed](#c4)
+    - [2. Cannot call non const function](#c5)
+- **explicit**
   - [implicit conversion](#im)
 - [final keyword](#final)
 - [static](#s)
@@ -13,18 +18,19 @@
 - [this](#this)
 
 
-<a name=c></a>
 ## const
+### const Member Variables
 <a name=c1></a>
-#### a. const member variable of class
-Can only be initialized once. java does not have const keyword, rather it has final.
+#### 1. const member variables can be initialized only once
+java does not have const keyword, rather it has final.
 ```cpp
         const int a = 2;
         a=4;                 //Compilation Error
 ```
-<a name=c1></a>
-#### b. const member function
-Function cannot change any class variable except mutable variables.  int const fun(), const int fun()//Both are same function returning constant Integer
+### const Member Function
+<a name=c2></a>
+#### 1. Can only change mutable variables 
+int const fun(), const int fun()//Both are same function returning constant Integer
 ```cpp
         int a;    mutable int c;
         void fun() const{
@@ -32,25 +38,37 @@ Function cannot change any class variable except mutable variables.  int const f
             c = 2;        //OK
         }
 ```
-<a name=c1></a>
-#### c. const function arguments 
-Function cannot modify the const argument.
+### const Function Arguments
+<a name=c3></a>
+#### 1. Cannot be modified
 ```cpp
         int fun(const int a){
             a=10;    //Compilation Error
         } 
 ```
-<a name=c1></a>
-#### d. const object
-Member variables present in object cannot be modified.
+### const Objects
+<a name=c4></a>
+#### 1. Member variables present in cosnt object cannot be changed
 ```cpp
         const obj s(1,2);
         obj.a=100;    //Compilation Error
 ```
+#### 2. const object cannot call non-const function
+```cpp
+class A {
+public:
+	void fun() { cout << "fun"; }
+};
 
-<a name=e></a>
+int main() {
+	const A obj;
+	obj.fun();
+}
+$ ./a.out
+Compilation Error				//Can be resolved either by making fun() const. or making obj non-const.
+```
+
 ## explicit
-
 <a name=im></a>
 #### Implicit conversion?
 - Compiler converts data-type to class object which is wrong.
