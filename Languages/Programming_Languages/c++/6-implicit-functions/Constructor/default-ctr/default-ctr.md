@@ -3,7 +3,8 @@
 - [When compiler does not provide default ctr](#w1)
 - [Forcing compiler to create default ctr](#f)
 - **Rules of default Ctr**
-  - [1.](#r1)
+  - [1. Mismatch in declaration & call of ctr not allowed](#r1)
+  - [2. `A obj()` is not contructor call](#r2)
 
 
 ## Default ctr
@@ -90,7 +91,7 @@ Compilation Error mismatch ctr            //Because ctr takes 1 argument but, a 
 ```
 
 <a name=r2></a>
-#### 2. 
+#### 2. `A obj()` is not contructor call
 ```cpp
 class A
 {
@@ -98,7 +99,7 @@ public:
   A () { cout << "Constructor"; }
 };
 int main() {
-    Test t1();
+    A t1();
 }
 $ ./a.out
 Nothing printed           //Why? Because Complier considers this t1() as function declaration not ctr call.
