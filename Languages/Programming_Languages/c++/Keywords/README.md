@@ -11,9 +11,12 @@
 - **explicit**
   - [implicit conversion](#im)
 - [final keyword](#final)
-- [static](#s)
-  - [1. static variable in class](#sv)
-  - [2. static class member function](#sf)
+- **static**
+  - **static member variables**
+    - [1. Initialized outside class](#s1)
+  - **static class member function**
+    - [1. Called without class object](#s2)
+    - [2. Don't have access to this pointer or super](#s3)
   - [3. static class](#sc)
 - [this](#this)
 
@@ -107,43 +110,37 @@ int main() {
 }
 ```
 
-<a name=s></a>
 ## static
 It has different meaning in different contexts.
-
-<a name=sv></a>
-#### 1. static variable in class
+### Static member variables
+<a name=s1></a>
+#### 1. static variable are initialized outside the class
 - static variables are shared among all Objects of class. Only 1 copy of variables is created.
 - Since we cannot have multiple copies of static variable hence cannot be initialized inside constructor.
 - _Initialization:_ at compile-time.
-- _Calling:_ Without creation of class object, ie shared among objects. All objects wil
+- _Calling:_ Without creation of class object, ie shared among objects.
 - Java does not support Static Local variables
-```c++
+```cpp
 class A{
+  static int var;
 public:
-  static int var;    	//Declared in Public Scope
   A(){}
-	void disp(){
-		cout<<var;
-	}
+  void disp(){
+     cout<<var;
+  }
 };
-
 int A::var=10;  //Rule: Initialize static variable. THIS IS REQUIRED, else Compiler will give undefined reference Error for var
-
 int main(){
-	A obj1;
+	A obj1, obj2;
 	obj1.disp();    //10
-
-	A obj2;
 	obj2.disp();    //10
 } 
 ```
 
-<a name=sf></a>
-#### 2. Static class member function
-- Can be called without class object.
-- SMF can access: Static Data Members, Static Member Function, non-static functions from outside class.
-- Do not have access to this pointer or super.
+### Static member Functions
+<a name=s2></a>
+#### 1. Called without class object
+SMF can access: Static Data Members, Static Member Function, non-static functions from outside class.
 ```c++
 class A{
 public:
@@ -154,6 +151,27 @@ public:
 int main(){
   A::fun();         //fun
 }
+```
+
+<a name=s3></a>
+#### 2. static member functions don't have access to this pointer or super
+```cpp
+class A {
+    static int a;
+public:
+    static A& fun();
+};
+int A::a = 0;
+A& A::fun() {
+    A::a++;
+    return *this;
+}
+int main() {
+    A obj;
+    obj.fun();
+}
+$ ./a.out
+‘this’ is unavailable for static member functions
 ```
 
 <a name=sc></a>
