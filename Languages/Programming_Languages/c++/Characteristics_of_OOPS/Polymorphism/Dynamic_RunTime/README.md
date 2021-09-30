@@ -1,6 +1,8 @@
 - [Dynamic/Runtime Polymorphism](#dp)
   - [vtable](#vt)
 - [Virtual Function](#vf)
+  - **Rules of VF**
+    - [1. vptr increases size of class by 8](#r1)
 - [Pure Virtual Function](#pv)
 
 <a name=dp></a>
@@ -109,28 +111,21 @@ VFs **SHOULD BE** defined in base class. VFs can or cannot be overridden/defined
 ```c
 class base{ virtual void fun(); }
 ```
-#### Rules of VF
-```c
+### Rules of VF
+<a name=r1></a>
+#### 1. vptr increases sizeof class by 8
+```cpp
 class A {
+    int x;
 public:
-  A() { vf(); }
-  virtual void vf() { cout<<"A vf"; }
+    virtual void show1() {  }
+    virtual void show2() {  }
 };
- 
-class B: public A {
-public:
-  B(){}
-  virtual void vf() { cout<<"B vf"; }
-};
- 
-int main() {
-  A* ptr = new B();
-  delete ptr;
-}
-$ ./a.out
-A vf
 
-B() calls Base ctr, then derv ctr(Ctr calling hierarchy). A() calls  vf().
+int main(void) {
+    cout << sizeof(A);                    //16. 8=vptr, 4=x, 4=padding.
+                                          //When we make a function virtual, compiler adds an extra pointer vptr to objects of class
+}
 ```
 
 <a name=pv></a>
