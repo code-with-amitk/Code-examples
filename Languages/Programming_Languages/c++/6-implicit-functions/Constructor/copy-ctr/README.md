@@ -4,7 +4,7 @@
   - [Compiler provided cc](#cp)
   - [Forcing compiler to generate copy ctr](#fc)
   - [User created copy ctr](#uc)
-- **Deep, Shallow Copy**
+- **Deep copy, Shallow Copy**
   - [Example](#eg)
 - [How many temporary copies are created by copy Ctr?](#how)
 
