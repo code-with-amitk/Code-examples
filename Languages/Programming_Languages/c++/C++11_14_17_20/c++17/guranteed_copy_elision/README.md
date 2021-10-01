@@ -1,4 +1,4 @@
-- [Copy Elision](#ce)
+- [Copy Elision / Copy omission](#ce)
 - **RVO(Return value optimization)**
   - [1. Without RVO](#wo) 
   - [2. With RVO](#w)
@@ -7,8 +7,8 @@
   - [Example](#ex)
 
 <a name=ce></a>
-## Copy Elision
-- Compiler optimisation technique that eliminates unnecessary copying of objects.
+## Copy Elision / Copy omission
+- Compiler optimization technique that eliminates unnecessary copying of objects. Now a days, almost every compiler uses it.
 - This mandatory omitting copy and move constructor by compiler even user asked to perform copy/move operation because copy/move creates unnecessary temporary objects.
 - **How it works?**
   - The objects are constructed directly into the storage where they would otherwise be copied/moved to.
