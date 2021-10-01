@@ -2,8 +2,8 @@
   - [When compiler does not provide copy ctr](#n)
   - [When CC is called?](#w)
   - [Compiler provided cc](#cp)
-  - [Forcing compiler to generate copy ctr](#fc)
   - [User created copy ctr](#uc)
+  - [Forcing compiler to generate copy ctr](#fc)
 - **Deep copy, Shallow Copy**
   - [Example](#eg)
 - [How many temporary copies are created by copy Ctr?](#how)
@@ -48,23 +48,6 @@ int main(){
 }
 ```
 
-<a name=fc></a>
-#### Forcing compiler to generate copy ctr
-```cpp
-class A{
-        int a=10;
-public:
-        A() = default;                  //Rule of Big-3
-        A(A &) = default;
-        void disp(){ cout<<a<<"\n"; }
-};
-int main(){
-        A obj1; 
-        obj1.disp();    //10
-        A obj2(obj1);  
-        obj2.disp();    //10
-}
-```
 <a name=uc></a>
 #### User created copy ctr
 ```c++
@@ -84,6 +67,24 @@ int main(){
   
   A obj2(obj1);  obj2.disp();    //4		//Call cc
   A obj3 = obj1;  obj3.disp();    //4		//Calls cc
+}
+```
+
+<a name=fc></a>
+#### Forcing compiler to generate copy ctr
+```cpp
+class A{
+        int a=10;
+public:
+        A() = default;                  //Rule of Big-3
+        A(A &) = default;
+        void disp(){ cout<<a<<"\n"; }
+};
+int main(){
+        A obj1; 
+        obj1.disp();    //10
+        A obj2(obj1);  
+        obj2.disp();    //10
 }
 ```
 
