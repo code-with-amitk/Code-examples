@@ -11,6 +11,7 @@
 - **explicit**
   - [implicit conversion / Conversion constructor](#im)
 - [final keyword](#final)
+- **[new](new)**
 - **static**
   - **static member variables**
     - [1. Initialized outside class](#s1)
@@ -101,6 +102,18 @@ class A {
      explicit A(int b) : a(b) {}             //CONSTRUCTOR PREFIXED with EXPLICIT stops implicit conversion
   ...
 };
+```
+
+<a name=new></a>
+## new keyword
+Used for Allocating Objects.
+```cpp
+ptr = new data_type;
+
+double *ptr = new double; 
+char *ptr = new char[20];	     
+char *ptr = new char[20](); 	//Initializing Array with 0 values
+int* ptr = new int(5);		//Allocates int, Initializes to 5
 ```
 
 ## static
