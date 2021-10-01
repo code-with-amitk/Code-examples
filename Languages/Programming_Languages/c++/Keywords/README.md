@@ -9,7 +9,7 @@
     - [1. Member variables present in const object cannot be changed](#c4)
     - [2. Cannot call non const function](#c5)
 - **explicit**
-  - [implicit conversion](#im)
+  - [implicit conversion / Conversion constructor](#im)
 - [final keyword](#final)
 - **static**
   - **static member variables**
