@@ -12,6 +12,8 @@
   - [implicit conversion / Conversion constructor](#im)
 - [final keyword](#final)
 - **[new](new)**
+- **scope Resolution**
+  - [1. class members can be accessed using sr](#sr1)
 - **static**
   - **static member variables**
     - [1. Initialized outside class](#s1)
@@ -114,6 +116,26 @@ double *ptr = new double;
 char *ptr = new char[20];	     
 char *ptr = new char[20](); 	//Initializing Array with 0 values
 int* ptr = new int(5);		//Allocates int, Initializes to 5
+```
+
+## scope resolution
+<a name=sr1></a>
+#### 1. class members can be accessed using sr
+```cpp
+class A {
+public:
+    void set(int x) {A::a = x;}
+    int get() { return a; }	//Bright Computing(Netherland)
+private:
+    int a;
+};
+
+int main() {
+    A obj;
+    obj.set(4);
+    cout << obj.get();
+    return 0;
+}
 ```
 
 ## static
