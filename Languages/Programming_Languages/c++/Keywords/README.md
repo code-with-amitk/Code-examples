@@ -124,7 +124,7 @@ int* ptr = new int(5);		//Allocates int, Initializes to 5
 ```cpp
 class A {
 public:
-    void set(int x) {A::a = x;}
+    void set(int x) {A::a = x;}		//“A::a = x” is same as “this->a = x”
     int get() { return a; }	//Bright Computing(Netherland)
 private:
     int a;
