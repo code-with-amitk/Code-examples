@@ -1,5 +1,8 @@
 **Socket Programming**
-- Terms
+- **Terms**
+  - file, file descriptor, socket
+  - [Byte order: Little, Big endian](#bo)
+  - [inaddr_any](#ia)
 - **Code**
   - [TCP Server, Client](#t)
   - [UDP Server, Client](#u)
@@ -9,7 +12,7 @@
   - [NonBlocking](#nb)
     - [Nonblocking Multichat server using select()](nonblocking_multichat_server.md)
 
-### Terms
+## Terms
 - **File:** Everything is File(Network connection, a FIFO, a pipe, a terminal, a real on-the-disk file) Eg: & every file has a File Descriptor associated with it. 
 - **File descriptor:** This is an integer associated with an open file. File can be a n, or just about anything else.
 - **Socket?** Is a file descriptor used for communication. Types of sockets:
@@ -22,6 +25,32 @@ RAW(SOCK_PACKET, SOCK_RAW)      | Send/recv packet on DL Layer  | IP, Transport,
 
 Other Types: /APIs_Structures/APIs/socket
 ```
+<a name=bo></a>
+#### Byte Order
+- [Little Endian](/Languages/Programming_Languages/C/Bitwise) = N/W byte order
+- [Big Endian](/Languages/Programming_Languages/C/Bitwise) = Host Byte Order
+- **Why required?** 
+  - All computers store data differently. Internet Protocols says All data should be sent using N/W byte on internet then can be converted as per computer's storage endianess.
+- **APIs** htons(), htonl(), ntohl(), ntohs()
+<a name=ia></a>
+#### inaddr_any
+if our server has multiple interfaces, Each interface have different IP address and we want to bind to all interfaces(ie all IP addresses), then instead of inet_addr() we should use inaddr_any
+```c
+serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");    //Binding port to localhost(127.0.0.1)
+serverAddr.sin_addr.s_addr = INADDR_ANY;                //Binding port to all available IPs
+```
+- This is helpful for multihomed network(when server is connected to multiple networks).
+```c
+MULTIHOMED
+  
+N/W-1 ---192.168.0.14--
+                      |
+                    server -----95.95.2.21------ N/W-2
+                      |
+ N/W-3 ---16.21.4.5----
+```
+
+
 
 ## Code
 <a name=t></a>
