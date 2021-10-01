@@ -4,6 +4,7 @@
   - [2. Base class constructor should be defined](#b2)
   - [3. Inheritance Ctr calling Hierarchy](#b3)
   - [4. Contructor of Abstract class](#b4)
+- [Ctr Initializer list](#il)
 
 
 ### Constructor
@@ -98,3 +99,22 @@ Derv ctr
 Derv dtr
 ```
 
+<a name=il></a>
+### Ctr Initializer list
+```cpp
+class test{
+	int a;
+	char b;
+	float *c;
+public:
+	test (int x, int y): a(x), b(y), c(new float[10]) {
+		std::cout<<"a="<<a<<"\tb="<<b<<"\t"<<std::endl;
+	}
+};
+int main() {
+	test obj(1,'g');
+	return 0;
+}
+$ ./a.out
+ 1 g
+```
