@@ -19,19 +19,22 @@ Same named function of class
 ```
 
 <a name=w1></a>
-#### When Compiler provides default ctr?
-1. No user created Constructor is declared in class
+#### Compiler provided default ctr?
+When there is no user created Constructor, complier creates one.
 ```cpp
-class A{
-        int a=1;
+class A {
 public:
-        void disp(){
-                cout<<a<<"\n";
-        }
+    int get () { 
+      return id; 
+    }
+private    
+    uint32_t id;    
 };
-int main(){ 
-        A obj1;              //Calls complier provided default
-        obj1.disp();
+
+int main() {
+    A a;                        //This calls Compiler provided default ctr and member is initialized
+    cout << a.get();            //32567. Some Garbage value
+    return 0;
 }
 ```
 
@@ -41,17 +44,17 @@ int main(){
 2. There is a Member in class that is not default-constructible. Eg: Pointer, Reference    
 3. {C++11} Deleting Default Constructor using A() = delete;
 ```cpp
-class A{
-        int a;
+class A {
 public:
-        A(int b):a(b){}                 //User defined Default ctr
-        void disp(){
-                cout<<a<<"\n";
-        }
+    A(int x):a(x){}
+private:
+    uint32_t id;
 };
-int main(){
-        A obj(2);
-        obj.disp();    //1
+
+int main() {
+    A a;                    //COMPILATION ERROR. no matching function for call to 'A::A()'. Since user defined his own ctr
+                            //Complier does not provided inbuilt ctr. if we remove ctr from class it will work
+    return 0;
 }
 ```
 
