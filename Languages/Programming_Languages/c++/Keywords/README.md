@@ -7,7 +7,7 @@
     - [1. cannot be modified](#c3)
   - **const object**
     - [1. Member variables present in const object cannot be changed](#c4)
-    - [2. Cannot call non const function](#c5)
+    - [2. const object can only call const function](#c5)
 - **explicit**
   - [implicit conversion / Conversion constructor](#im)
 - [final keyword](#final)
@@ -59,7 +59,8 @@ int const fun(), const int fun()//Both are same function returning constant Inte
         const obj s(1,2);
         obj.a=100;    //Compilation Error
 ```
-#### 2. const object cannot call non-const function
+<a name=c5></a>
+#### 2. const object can only call const function
 ```cpp
 class A {
 public:
