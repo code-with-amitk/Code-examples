@@ -25,28 +25,30 @@ Creating new class(decendent/derived) from existing class(ansector/base). This i
 <a name=ty></a>
 ### Types
 ```c
-Single 
+//////////////Single//////////////
 |Base| ---> |Derv|
 
-Multiple
+////////////////Multiple/////////////
  |Base class 1|     |Base class 2|
     |                     |
     -----> |Derv| <-------
 
-Hierarchical
+/////////////Hierarchical//////////////
    |Base class|
 /        |     \
 DC1    DC2    DC3
 
-Multilevel
+/////////////Multilevel//////////////
     |Base 1| 
        \/
     |Base 2|
        \/
     |Derv |
     
-Hybrid(Virtual)
+//////////////Hybrid(Virtual)//////////
         | Base class |
+              |
+      |-----------------|  
      \/                 \/
    |Derv 1|        |Derv 2|
      |                |
@@ -152,7 +154,6 @@ int main(){
 # ./a.out
 palm Exists without Sunlight
 ```
-
 
 <a name=co></a>
 #### 3.2 Composition
