@@ -1,4 +1,5 @@
 **Inheritance / Is-A Relationship**
+- [Public, Pvt, Protected Inheritance](#ppp)
 - [Types](#ty)
 - [Base Member Initialization](#bi)
 - [Diamond Problem](#dp)
@@ -9,7 +10,6 @@
   - **Association**
     - [Aggregation/Collection](#ag)
     - [Composition / Has-A](#co)
-- [Public, Pvt, Protected Inheritance](#ppp)
 - [Function Overriding](#fo)
 - **Rules of Inheritance**
   - [1. Function is linearly searched up in Multilevel Inheritance](#r1)
@@ -21,6 +21,26 @@ Creating new class(decendent/derived) from existing class(ansector/base). This i
 - **Disadv:** 
   - _1._ Since inheritance inherits everything from the super class and interface, it may make the subclass too clustering and sometimes error-prone when dynamic overriding or dynamic overloading in some situation. 
   - _2._ Inheritance creates hierarchical structures, If Inheritance chains gets large these can become cumbersome & tough to maintain
+
+<a name=ppp></a>
+### Public, Pvt, Protected Inheritance
+<img src=rules-of-inheritance.png width=300/> 
+
+All member variables(public,protected,pvt) of base are inherited inside derv class. See Memory layout of derv class object. Inheriting Base member variables inside derv:
+```c
+
+   Inheritance Type  |   Member Variable of base class                       |      Functions of base class
+---------------------|-------------------------------------------------------|---------------------------
+    Public           | can be accessed in public section.                    | derv class can invoke any public fun of base
+                     | NOTE: this does not mean derv gets a COPY/REFERENCE   |
+                     |  base public variables. Derv gets access base vars  
+                     
+    Protected        | All protected members of the base class becomes       | Function present in protected section cannot be called using Object
+                       protected members in derv
+
+    Private          | Not inherited in derv class. Can only be accessed     | How to access private data members inside derv? 
+                       if friended                                             Using public function in base and calling same from der
+```
 
 <a name=ty></a>
 ### Types
@@ -189,26 +209,6 @@ A's Constructor
 B's constructor
 B's Destructor
 A's 
-```
-
-<a name=ppp></a>
-### Public, Pvt, Protected Inheritance
-<img src=rules-of-inheritance.png width=300/> 
-
-All member variables(public,protected,pvt) of base are inherited inside derv class. See Memory layout of derv class object. Inheriting Base member variables inside derv:
-```c
-
-   Inheritance Type  |   Member Variable of base class                       |      Functions of base class
----------------------|-------------------------------------------------------|---------------------------
-    Public           | can be accessed in public section.                    | derv class can invoke any public fun of base
-                     | NOTE: this does not mean derv gets a COPY/REFERENCE   |
-                     |  base public variables. Derv gets access base vars  
-                     
-    Protected        | All protected members of the base class becomes       | Function present in protected section cannot be called using Object
-                       protected members in derv
-
-    Private          | Not inherited in derv class. Can only be accessed     | How to access private data members inside derv? 
-                       if friended                                             Using public function in base and calling same from der
 ```
 
 <a name=fo></a>
