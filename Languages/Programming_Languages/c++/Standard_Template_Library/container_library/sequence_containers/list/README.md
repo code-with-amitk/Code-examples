@@ -1,4 +1,4 @@
-list (Doubly LL)
+**list (Doubly LL)**
 - **[insert](#i)**
 - **[delete, erase](#d)**
 
