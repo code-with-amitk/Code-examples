@@ -43,7 +43,7 @@ binary tree nodes represent length
 leaf nodes contains element and length.
 All other nodes contains (length of right child + length of left child)
 Problem:
-	1. Find nth charater
+	1. Find nth character index
 	2. return substring from n to m  
 	3. Delete substring from n to m
 
