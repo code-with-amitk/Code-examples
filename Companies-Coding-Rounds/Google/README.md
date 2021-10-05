@@ -43,7 +43,7 @@ binary tree nodes represent length
 leaf nodes contains element and length.
 All other nodes contains (length of right child + length of left child)
 Problem:
-	1. Find character at nth position.	findNthChar(root, int n).	findNthChar(root, 6) => c
+	1. Find character at nth index.		findNthChar(root, int n).	findNthChar(root, 6) => c
 	2. return substring from n to m  
 	3. Delete substring from n to m
 
