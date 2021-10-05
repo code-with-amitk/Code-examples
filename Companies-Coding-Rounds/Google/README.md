@@ -25,7 +25,7 @@
     - *3.* Intensity: Feel how you would feel after passing interview. Enjoy shout at mirror and do it.
  
 <a name=i></a>
-### Interview 1/sep/21
+### Interview sep/2021
 Round-1
 ```c
 1. Toughest problem you solved?
@@ -37,4 +37,24 @@ Ans:
   Approach-2: Hamming weight. Asked to optmize more
   Approach-3: Lookup table, cannot tell.
 ```
+Round-2
+```c
+binary tree nodes represent length
+leaf nodes contains element and length.
+All other nodes contains (length of right child + length of left child)
+Problem:
+	1. Find nth charater
+	2. return substring from n to m  
+	3. Delete substring from n to m
 
+testabcdefam
+		         	14
+		        /     \
+	      	 1		  13
+        /       /     \		 
+	   t,1	   5        6
+	         /  \     /   \ 
+		    	2    3   cde,3 fam,3
+		     / \    \
+        e,1 s,1  tab,3	
+```
