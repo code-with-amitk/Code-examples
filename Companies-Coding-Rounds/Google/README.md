@@ -48,13 +48,13 @@ Problem:
 	3. Delete substring from n to m
 
 testabcdefam
-		         	14
-		        /     \
-	      	 1		  13
-        /       /     \		 
-	   t,1	   5        6
-	         /  \     /   \ 
-		    	2    3   cde,3 fam,3
-		     / \    \
-        e,1 s,1  tab,3	
+                      14
+                    /     \
+	      	 1        13
+                /       /     \		 
+             t,1       5        6
+                     /  \     /   \ 
+	            2    3   cde,3 fam,3
+                   / \    \
+                 e,1 s,1  tab,3	
 ```
