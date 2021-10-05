@@ -37,8 +37,10 @@ Ans:
   Approach-2: Hamming weight. Asked to optmize more
   Approach-3: Lookup table, cannot tell.
 ```
-Round-2
+**Round-2**
+[Rope/cord Binary Tree](/DS_Questions/Data_Structures/Trees/BinaryTree/Rope_Cord)
 ```c
+Find Character in ROPE/CORD (Binary Tree)
 binary tree nodes represent length
 leaf nodes contains element and length.
 All other nodes contains (length of right child + length of left child)
