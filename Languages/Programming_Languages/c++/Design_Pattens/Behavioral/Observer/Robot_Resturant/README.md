@@ -15,14 +15,15 @@ OOD a robot restaurant, the waiter inside is a robot. The main three requirement
   Table-1                                 |-----> Kitchen-1
           <--order-->   Robot   <-order---|
   Table-n                                 |-----> Kitchen-n
-```
-- How Robot stores table order information?
+  
+How Robot stores table order information?
+  unordered_map<key=ordername, value=vector<*table_pointer>>  //vector<string>={Table-1, Table-2..}
   - Whenever a new order comes it finds key=orderName and pushes Table pointer to end of value vector.
+  
+Sending order back to table:
   - When kitchen prepares the order and sends to robot, robot does pop_front() so that 1st recieved order is served 1st
-```c
-unordered_map <string=order, vector<string>={Table-1, Table-2..}
 ```
-- How resturant to robot mapping is maintained?
+- How kitchen to robot mapping is maintained?
   - We can create a `vector<unordered_set<string>>` which stores food those can be prepared by kitchens.
   - Robot will have a cache which stores most frequently ordered food items.
 ```c
@@ -33,5 +34,5 @@ index       0 = kitchen-0                   1 = kitchen-1
 <a name=o></a>
 ### OOD
 ```c
-  Customer  <-observer dp-> Robot
+  Kitchen  <-observer dp-> Robot <---observer dp ----> Table
 ```
