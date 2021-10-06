@@ -1,14 +1,22 @@
-### Rope, Cord Binary Tree 
-- We are provided a binary tree, whose nodes represent length. if its leaf node it contains element and length.
-- All other nodes contains (length of right child + length of left child)
-- Example
+- **Modified Cord**
+- **Code**
+  - [1. Find character at nth index](#c1)
+
+### Find Character at nth index, find substring, delete substring in cord {Modified Cord}
+- Unlike [cord](/DS_Questions/Data_Structures/Trees/BinaryTree/README.md), in modified cord every
+  - Leaf node       : same as cord (stores string, length)
+  - Non-leaf nodes  : Unlike cord stores length of both left and right children's string.
+- Problem:
+1. Find character at nth index.		findNthChar(root, int n).	findNthChar(root, 6) => c
+2. return substring from n to m         substring(int n, int m).        //May span across two nodes
+3. Delete substring from n to m         deleteSubstring(int n, int m)   //May span across two nodes
 ```c
 string = t e s t a b c d e f a m
          0 1 2 3 4 5 6 7 8 9 10 11
   
                       14
                     /     \
-	      	        1        13
+                  1        13
                 /       /     \		 
              t,1       5        6
                      /  \     /   \ 
@@ -16,13 +24,11 @@ string = t e s t a b c d e f a m
                    / \    \
                  e,1 s,1  tab,3	
 ```
-Problem:
-	1. Find character at nth index.		findNthChar(root, int n).	findNthChar(root, 6) => c
-	2. return substring from n to m  
-	3. Delete substring from n to m
 
 
 ### Code
+<a name=c1></a>
+#### 1. Find character at nth index
 ```cpp
 struct Tree {
     bool isLeaf;
