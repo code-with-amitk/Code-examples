@@ -5,6 +5,7 @@
   - [3. Perfact BT](#p)
   - [4. Balanced BT](#b)
   - [5. Degenerated or Pathological BT](#d)
+  - [6. Rope / Cord](#r)
 
 
 ## Binary Tree
@@ -61,3 +62,24 @@ Every internal node has only a single child. Such trees are similar to a linked 
              \
                d
 ```
+<a name=r></a>
+#### 6. Rope / Cord
+```c
+leaf node holds       : string+length(also called weight)
+non-leaf node holds   : sum of lengths of all leaves in left subtree
+
+Storing: "Hello_my_name_is_Amit"
+H e l l o _ m y _ n a m e _ i s _ A m i t
+0 1 2 3 4 5 6 7 8 9 1011121314151617181920
+
+                        21
+                      /    
+                    9
+               /         \
+              6             6
+            /   \        /      \
+     Hello_,6  my_,3    2          1
+                      /   \      /    \
+                  na,2  me_i,4  s,1   _Amit,5 
+```
+Used for efficient storage and manipulation a very long string.
