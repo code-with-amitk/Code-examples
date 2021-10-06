@@ -34,30 +34,17 @@ r    t      g   p
 
 <a name=ty></a>
 ## Types of Tree
-#### 1. BINARY TREE 
-Each node cannot have more than 2 children. Height = log2n for n number of nodes. Eg: Butterfly Network
-```c
-        1
-       /  \
-      2    3
-```
-#### 2. BINARY SEARCH TREE(BST)/ORDERED 
+#### 1. Binary Trees
+Types: Full BT, Complete BT, Perfact BT, Balanced BT, Degenerated or Pathological BT
+
+#### 2. Binary Search Tree(BST)/Ordered
 Mainly used for Searching. Duplicate elements cannot exist. `Left-child < parent, right-child > parent`. Insert/search/delete: O(log(n))
 ```c
         2
        /  \
       1   3
-```
-#### 3. FULL/PROPER/2-TREE  
-Every node have 0 or 2 children. No node have 1 child
-```c
-        a
-       /  \
-     b      c
-    /  \   /  \
-  d   e   f    g
-```  
-#### 4. SUM TREE 
+``` 
+#### 3. Sum Tree
 Each node is sum of all nodes in its tree
 ```c
 
@@ -65,7 +52,7 @@ Each node is sum of all nodes in its tree
       /   \
      4     6
 ```    
-#### 5. M TREE 
+#### 4. M Tree
 Max m children of any node
 ```c
               a
@@ -73,20 +60,3 @@ Max m children of any node
           b   c    d
              | \  /|\ 
 ````
-#### 6. PERFECT TREE
-A full & complete BT. All leaves at same level.
-```c
-        a(Perfect)    a(not perfect)
-      /    \              /\
-    b       c           b  c
-  /    \    /    \       /\  /
-```
-#### 7. COMPLETE TREE 
-All levels are completely filled except possibly last.
-```c
-            a                       a [Not CT]
-           /   \                   /
-         b      c                b
-      /    \    /               /
-    d     e  f                c
-```    
