@@ -65,8 +65,9 @@ Every internal node has only a single child. Such trees are similar to a linked 
 <a name=r></a>
 #### 6. Rope / Cord
 ```c
-leaf node holds       : string+length(also called weight)
+BT where:
 non-leaf node holds   : sum of lengths of all leaves in left subtree
+leaf node holds       : string+length(also called weight)
 
 Storing: "Hello_my_name_is_Amit"
 H e l l o _ m y _ n a m e _ i s _ A m i t
