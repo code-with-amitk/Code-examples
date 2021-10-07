@@ -47,7 +47,7 @@ main() {
 ## Code
 <a name=cpp></a>
 ### 1. C++ Shell
-- This code can: Execute commands, redirect output to a file.
+- This code can: Execute commands, redirect output to a file, run pipe `|` command.
 > [execXXX()](/Threads_Processes_IPC/EXEC_Family_of_Functions), [fork()](/Threads_Processes_IPC/Processes/Process_Creation),  [PCB](/Threads_Processes_IPC/Processes/Process_Table), [waitpid()](https://linux.die.net/man/2/waitpid), [dup2()](/Operating_Systems/Linux/Kernel/System_Calls)
 ```c++
 #include<iostream>
