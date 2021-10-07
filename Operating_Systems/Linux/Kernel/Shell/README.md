@@ -52,6 +52,9 @@ main() {
 ```c++
 #include<iostream>
 #include<string>
+#include<vector>
+#include<fcntl.h>       //creat
+#include<algorithm>
 #include<unistd.h>    //fork()
 #include<sys/wait.h>
 #include<boost/tokenizer.hpp>
@@ -59,7 +62,7 @@ main() {
 
 using tokenizer = boost::tokenizer <boost::char_separator<char>>;
 boost::char_separator<char> sep(" ");
-using VectorString = vector<string>;
+using VectorString = std::vector<std::string>;
 
 /*
 Execute the command.
@@ -68,7 +71,7 @@ Execute the command.
 */
 void Execute (VectorString& vecInput) {
   int status;
-  
+
   char *arr[vecInput.size() + 1];                               //1
   for (auto i=0; i<vecInput.size(); ++i)
     arr[i] = const_cast<char*>(vecInput[i].c_str());
@@ -76,7 +79,7 @@ void Execute (VectorString& vecInput) {
 
   if (fork() == 0)    //Child                                    //2
     execvp (arr[0], arr);
-  else                                          
+  else
     waitpid (-1, &status, 0);
 }
 
@@ -84,14 +87,14 @@ void Execute (VectorString& vecInput) {
 //Implements redirect using dup2
 void Redirect (VectorString& vecStr) {
   int saved_stdout = dup(1);                              //Saving stdout for restoring after getting work done
-  
+
   //Considering last as file name
   int oldfd = creat (vecStr[vecStr.size() - 1].c_str(), 0644);    //5a
   dup2 (oldfd, STDOUT_FILENO);                                    //5b
   vecStr.pop_back();      //Remove filename                       //5c
   vecStr.pop_back();      //Remove redirection symbol >
   Execute (vecStr);
-  
+
   dup2(1, saved_stdout);                                  //Work completed, restore stdout back.
   close (oldfd);
 }
@@ -111,10 +114,10 @@ Logic:
   6. Create command as "grep test child.txt" and execute using execvp()
 */
 void Pipe (VectorString& vecStr) {
-  int saved_stdout = dup(1);            //1 
+  int saved_stdout = dup(1);            //1
   int fd = creat("child.txt", 0644);    //2
   dup2(fd, STDOUT_FILENO);              //3
-  
+
   VectorString::iterator itr;
   VectorString temp;
   for (itr = vecStr.begin(); itr != vecStr.end(); itr++) {
@@ -130,40 +133,60 @@ void Pipe (VectorString& vecStr) {
   Execute (temp);
 }
 
+/* We will create 1 string that is passed to execvp()
+   Example:
+    ls & => ls&
+*/
+void BackGroundJob (VectorString& vecStr) {
+    //Create 1 string
+    std::string strTemp;
+    for (auto i:vecStr) {
+        strTemp += i;
+    }
+    VectorString vec;
+    vec.push_back(strTemp);
+    Execute (vec);
+}
+
 /*
 1. Display shell prompt, Read command from keyboard into string, trim leading, trailing spaces.
 2. Tokenize the command and place into `vector<string>` with sepeartor space " ".
 3. Checks type of command
   3a. if input contains ">" call Redirect().
   3b. if input contains "|" call Pipe().
-  3c. For normal command "ls -ltr" call Execute().
+  3c. if input contains "&" call backGroundJob()
+  3d. For normal command "ls -ltr" call Execute().
 */
 int main() {
-  string strInput;
+  std::string strInput;
   VectorString vecStr;
-  
+
   while (1) {
-    cout << "> ";                               //1
-    getline (cin, strInput);
+    std::cout << "> ";                               //1
+    getline (std::cin, strInput);
     boost::algorithm::trim (strInput);
     if (strInput == "q") {
-      cout << "Bye!!\n";
+      std::cout << "Bye!!\n";
       exit (0);
     }
-    
+
     tokenizer tok(strInput, sep);               //2
-    for (const auto& t:tok) 
-      vecStr.push_back(t);
+    for (const auto& t:tok) {
+        vecStr.push_back(t);
+    }
 
     if (count(vecStr.begin(), vecStr.end(), ">"))  //3a
       Redirect(vecStr);
-    else if (count.vecStr.begin(), vecStr.end(), "|") //3b
+    else if (count(vecStr.begin(), vecStr.end(), "|")) //3b
       Pipe (vecStr);
-    else                                          //3c
+    else if (count(vecStr.begin(), vecStr.end(), "&")) //3c
+      BackGroundJob (vecStr);
+    else                                          //3d
       Execute (vecStr);
 
-    vec.clear();
+    vecStr.clear();
   }
+  return 0;
 }
 
 # g++ shell.cpp
