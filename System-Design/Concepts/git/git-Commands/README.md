@@ -2,6 +2,7 @@
 - [Working on Review Comments](#rev)
 - [Resolving Merge conflict, gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
 - [Removing commits after push](#rem)
+- [Sync your Branch with your master/Origin](#s)
 
 
 <a name=rev></a>
@@ -149,4 +150,11 @@ $ git revert --no-commit abc
 $ git revert --no-commit def
 $ git commit -m "Reverting 2 commits"
 $ git push origin branch
+```
+
+<a name=s></a>
+#### Sync your Branch with your master/Origin
+```c
+# git fetch origin                           # Updates origin/master
+# git rebase origin/master            # Rebases current branch onto origin/master
 ```
