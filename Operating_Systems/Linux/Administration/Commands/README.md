@@ -127,7 +127,7 @@ Redirection is implemented using dup2() system call.
 For performing file operations(Search Text, Find and replace, Insert, delete) without opening files.
 ```c
 //Replace Commands
-  $ sed 's/unix/linux/g' test.txt       //Replace all occurence of unix with linux from file test.txt
+  $ grep -rl oldtext . | xargs sed -i 's/oldtext/newtext/g'    //Replace all occurence of oldtext with newtext in all files recursively
     
   $ sed 's/unix/linux/2' test.txt       //Replace 2nd occurence of unix with linux
     
