@@ -1,4 +1,5 @@
 - [chroot](#ch)
+- [find](#f)
 - [netstat](#net)
 - [Pipe `ls -ltr | grep test`](#pipe)
 - [Redirection `ls -ltr > a.txt`](#re)
@@ -50,6 +51,53 @@ $ sudo chroot $HOME/jail /bin/bash              //Finally, chroot into your mini
 ```
 
 <img src=chroot-jail.png width=400 />
+
+<a name=f></a>
+### find
+```c
+    # find   <Path-to-search>(optional)        <Search-Criteria>(optional)    <Action>(optional)
+```    
+Search filename having matching Name:
+```c
+    $ find / -name foo                               //Search file named foo
+    $ find / -name '*.txt'                            //All .txt files
+    $ find /etc -name '*pass*'                   //Having pass anywhere in name
+    $ find / -iname '*messages*'              //Case insensitive search 
+```    
+Search with -user(Owner):
+```c
+    $ find  /  -user  harry    //All files owned by user harry RHCSA
+    $ find /home -perm 764
+```    
+Size:
+```c
+    $ find / -size  0                 //Size=0 Mega Bytes
+    $ find / -size 10M              //Size=10 Mega Bytes 
+    $ find / -size +10M           //Size>10 Mega Bytes
+    $ find / -size -10M           //Size<10 Mega Bytes
+```    
+Modified Time:
+```c
+    $ find / -mmin 120    //All files that had their file content changed EXACTLY 120 minutes ago 
+    $ find / -mmin +200  //Files who are modified more than 200 minutes ago
+    $ find / -mmin -150   //Files who are modified less than 150 minutes ago
+```    
+Created Time(in days):
+```c
+    $ find / -size +10G -ctime -1         //Files >10G created 1 day before
+```    
+Type of file(Hard or soft link):
+```c
+    $ find / -type f -links +1        //f: Regular file        //Search for all files with more than one hard link
+    $ find / -type l                        //l: symbolic link    //Search all softlinks in /
+    $ find /dev -type b                 //b: Block device    //all block devices in the /dev directory
+```    
+Execute Command:
+```c
+  $ find  / -type f -exec grep -l "text-to-find-here" {} \;     //Find text in all files    //-type f: Regular file, //-exec: Execute command. Should be space between {} \;
+  $ find / -name core -exec rm -rf {} \;                                //Search and Delete all log files
+  $ find  / -type f -mtime +3 -exec rm -rf {} \;                     //Search and delete files older than 3 days
+```
 
 <a name=net></a>
 ### netstat
