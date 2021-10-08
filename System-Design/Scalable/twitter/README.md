@@ -1,18 +1,29 @@
-- **Twitter?** Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc.
-  - This is read heavy system.
+**Twitter**
+- [1. Requirements](#r)
+- [2. BOE](#boe)
+- [3. System APIs](#sa)
+- [4. HLD](#hld)
+- [5. Database](#db)
+- [6. Load Balancers](#lb)
+- [7. Overall Tradeoffs/Bottlenecks & correction](#ot)
+- [8. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements)
 
-## [To Cover](/System-Design/Scalable)
+**Twitter?**
+Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc. This is read heavy system.
 
 ## 1. Requirements
-- **Functional**
+#### Functional
   - *1.* User can post tweet text < 150 characters, photos, videos.
   - *2.* Any user can search any other user by name.
   - *3.* Any user can can Add himself as follower & can see the tweets(text,videos,photos) of followed person.
   - *4.* Mark Tweet as favoriate.
   - *5.* Retweets, replies.
-- **Non-Functional:** S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
-- **Extended:** Searching tweets, tagging other users, AI powered suggestion(whom to follow)
+#### Non-Functional 
+S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+#### Extended
+Searching tweets, tagging other users, AI powered suggestion(whom to follow)
 
+<a name=boe></a>
 ## 2. BOE Calculation //Near to grooking
 
 |World Population|InternetUsers(60%)|Twitter users(50%)|Daily Active users(10~12%)|Only 50% users Tweet(text) daily|
@@ -31,8 +42,9 @@
     - Assume user visits his timeline 2 times/day and watches 5 other people timelines and 10 tweets on their timelines. Total timelines viewed
       - 240M x (5+2) x 10 = 16800M = 17 Billion Tweets viewed/day. 1 tweet=300bytes. 17B x 300 ~= 5PB/day. 5PB / 24x60x60 = 57MB/sec
 
+<a name=sa></a>
 ## 3. System APIs
-- SOAP or REST APIs to expose the functionality of service.
+SOAP or REST APIs to expose the functionality of service.
 ```c
 post_new_tweet(api_dev_key, tweet_data, tweet_location, user_location, media_ids)
   api_dev_key (string): The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota.
@@ -46,6 +58,7 @@ pointer_to_follower_struct *searchUser(toBeSearched_userId)
 bool addFollower(toBeFollowed_id, follower's_id)
 ```
 
+<a name=hld></a>
 ## 4. HLD
 - *1-6.* Same as [Facebook news feed](/System-Design/Scalable/facebook/News%20Feed).
 - *7.* Webserver will provide UI to user and Application server will search DB Updater and push on its [MOM](/System-Design/Concepts/MOM_ESB).
@@ -55,8 +68,9 @@ bool addFollower(toBeFollowed_id, follower's_id)
 
 <img src=Twitter.jpg width=1000 />
 
+<a name=db></a>
 ## 5. DB 
-- **DB Tables**
+#### DB Tables
 ```c
 1. User Table: Storing user information, people they are following, all self created tweets.
   - Self created tweets would be stored in map<key=timestamp, value=<pointer where tweets is stored on object store, tweetid>
@@ -66,22 +80,26 @@ bool addFollower(toBeFollowed_id, follower's_id)
 
 ```
 
-- **Storing Tweets(text,photos,videos):** can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
+#### Storing Tweets(text,photos,videos)
+can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
   - *a.* As mentioned in [Shard-DB Disadv point-a](/System-Design/Concepts/Databases/Database_Scaling).
   - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
     - We can create tweetID = timestamp+tweetid = xxx 0001
 - **[Replication](/System-Design/Concepts/Databases/Database_Scaling):** Master slave
-- **Cache:** Application servers, before hitting database, can quickly check if the cache has desired tweets. Memcache
+#### Cache 
+Application servers, before hitting database, can quickly check if the cache has desired tweets. Memcache
   - [Where Cache can be placed?](/System-Design/Concepts/Cache) 
   - [Cache Eviction LRU](/DS_Questions/Questions/Random/LRUCache)
   - Cache Storage policy (80-20 rule): 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
 
+<a name=lb></a>
 ## 6. Load Balancers
   - [Where Load Balancer can be placed?](/System-Design/Concepts/Load_Balancer)
 1. Between client and application servers
 2. Between application servers & DB
 3. Between Aggregation servers & cache servers.
 
+<a name=to></a>
 ## 7. [Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 - *1.* If high number of clients are connected system may respond slow.
   - *Solution:*
@@ -99,4 +117,4 @@ bool addFollower(toBeFollowed_id, follower's_id)
   - *6.* How to show top news? 
     - Use crawler to search (news, support, financial, entertainment, etc.) use [ML – supervised learning or Clustering](https://sites.google.com/site/amitinterviewpreparation/machine-learning).
 
-## [8. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
+## 
