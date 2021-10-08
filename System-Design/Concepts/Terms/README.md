@@ -5,9 +5,14 @@
 - [Bandwidth](#bw)
 - [Consistency / Accuracy](Consistency)
 - [CAP Theorem](CAP_Theorem)
+- [Deduplication](#de)
+- [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
+- [Latency](#la)
 - [Reliable](#re)
+- [Scalabilty](#sc)
 - [Tenant](#ten)
+- [Throughput](#tp)
 
 <a name=ans></a>
 ### Antisnubbing 
@@ -44,14 +49,25 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
 
-- **Deduplication:** Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
+<a name=de></a>
+### Deduplication 
+Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
+
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
-- **Fault Tolerance:** In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
+
+<a name=ft></a>
+### Fault Tolerance
+In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
+
 - **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
     - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
-- **Latency:** Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
+
+<a name=la></a>
+### Latency 
+Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
+
 - **Local Rarest First for Piece Selection**
   - Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
 - **Mutation?** Writing data from client to server's memory/disk. Specifically mutation is an operation that changes the contents or metadata of a data. Example: Write, append in distributed file system is a mutation.
@@ -66,7 +82,7 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 
 <a name=re></a>
 ### Reliable
-System to continue to work correctly, even when things go wrong. Eg a application:
+- System to continue to work correctly, even when things go wrong. Eg a application:
   - Can tolerate the user making mistakes or using the software in unexpected ways.
   - Its performance is good enough for the required use case, under the expected load and data volume.
   - The system prevents any unauthorized access and abuse.
@@ -78,13 +94,14 @@ System to continue to work correctly, even when things go wrong. Eg a applicatio
   - Servers may have dual power supplies and hot-swappable CPUs, and datacenters may have batteries and diesel generators for backup power. 
   - When one component dies, the redundant component can take its place while the broken component is replaced.
 
-- **Throughput:**
-  - Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
-  - Measured in Bits/sec(bps), data packets per second (p/s or pps).
-- **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
+<a name=sc></a>
+### Scalabilty
+- System’s ability to cope with increased load.
+- Scalability means considering questions like “If the system grows in a particular way, what are our options for coping with the growth?” and “How can we add computing
+resources to handle the additional load
 
 <a name=ten></a>
-#### Tenant
+### Tenant
 - **Single Tenant** Seperate software binary, sepearate DB for each customer.
 - **Multi Tenant** Virtualization on cloud. Software, DB shared by all customers. [SaaS](/System-Design/Concepts) uses multi-tenant. Eg: Microsoft Suite, Dropbox, Google Apps.
 ```console
@@ -97,3 +114,11 @@ System to continue to work correctly, even when things go wrong. Eg a applicatio
     DB        DB      DB                   DB    DB       DB
         SINGLE TENANT                       MULTI TENANT
 ```
+
+<a name=tp></a>
+### Throughput
+  - Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
+  - Measured in Bits/sec(bps), data packets per second (p/s or pps).
+- **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
+
+
