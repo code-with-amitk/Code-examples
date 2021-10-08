@@ -1,14 +1,101 @@
+- **Create list**
+  - [1D,2D,3D,4D list](#c1)
+  - [Nesting](#c2)
+- [Append / Concatenate](#a)
+- [Slice](#s)
 - **Comprehension**
-  - Examples
-    - [1. List of Squares](#e1)
-    - [2. Combining elements of 2 lists if they are not equal](#e2)
-    - [3. List of double value](#e3)
+  - [1. List of Squares](#e1)
+  - [2. Combining elements of 2 lists if they are not equal](#e2)
+  - [3. List of double value](#e3)
 - [List as Stack](#ass)
 - [List as Queue](#asq)
-- [Operations](Operations.md)
 
 
-### List Comprehension
+## Create list
+<a name=c1></a>
+### 1D,2D,3D,4D list
+```py
+//////////////1-D List//////////////
+a = input("Input some comma seprated numbers : ")     #1,2,3,4
+print('List',l)                                       #[1,2,3,4]
+
+///////////////2-D list/////////////////
+a = [[1, 2],                            //Every row can different no of coloumns. `a[0][2]:Index error`
+     ['test', 4, 50.2],
+     ['play', 1990, 8, 9]
+    ]
+print(a[0][1])  #2
+#print(a[0][2])  #list index out of range
+print(a[1][2])  #50.2
+
+
+/////////////////3-D List//////////////
+a = [                                         //Packing 2 or more Matrices.
+        [
+            [1,2,3],
+            [4,5,6],
+        ],
+        [
+            [7,8,9],
+            [10,11,12],
+        ]
+   ]
+
+///////////////4-D list////////////////
+a  =   [                                  //Packing 2 or more 3-D Matrices.
+            [
+                [
+                    [1,2,3],
+                    [4,5,6],
+                ],
+                [
+                    [7,8,9],
+                    [10,11,12],
+                ],
+            ],
+            [
+                [
+                    [13,14,15],
+                    [16,17,18],
+                ],
+                [
+                    [19,20,21],
+                    [22,23,24],
+                ]
+            ]
+       ]
+```
+
+<a name=c2></a>
+### Nesting of list
+Creating a List contaning other lists
+```py
+a = [1,2,3]
+x = ['a','b','c']
+y = [a,x]
+print(y)        #[[1, 2, 3], ['a', 'b', 'c']]
+print(y[0])     #[1, 2, 3]
+print(y[0][1])  #[2]
+```
+
+<a name=a></a>
+### Append / Concatenate
+```py
+print(a+[8,9])  #[1,2,3,4,5,6,7,8,9]
+```
+
+<a name=s></a>
+### Slicing `[i:j]`
+Getting sublist from bigger list. Slice assignment is also possible.
+```py
+print(a[-3:])   #[5,6,7]
+print(a[:])     #[1,2,3,4,5,6,7]
+a[1:3]=[10,11]  #Slice Assignment
+print(a)        #[1, 10, 11, 4, 5, 6, 7]
+a[1:3]=[2,3]
+```
+
+## List Comprehension
 Create new lists where each element is the result of some operation in just 1 line or few lines, rather than writing whole function. Examples
 <a name=e1></a>
 #### 1. List of Squares
