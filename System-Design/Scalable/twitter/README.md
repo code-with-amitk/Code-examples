@@ -3,6 +3,7 @@
 - [2. BOE](#boe)
 - [3. System APIs](#sa)
 - [4. HLD](#hld)
+  - [fanout](#fo)
 - [5. Database](#db)
 - [6. Load Balancers](#lb)
 - [7. Overall Tradeoffs/Bottlenecks & correction](#ot)
@@ -69,16 +70,34 @@ bool addFollower(toBeFollowed_id, follower's_id)
 
 <img src=Twitter.jpg width=1000 />
 
+<a name=fo></a>
+#### Fanout
+- _1._ UserId=x posts a tweet. Cache is maintained for all users following userid=x. See [DB tables](#db)
+- _2._ Push tweet to follower's timeline using web api.
+- **Celebrity case (40M followers or above)**
+  - if we try to write tweet to all followers, we need to write single tweet 40M times.
+  - Solution: Fetch celeb tweet seperately and merge with follower's timeline
+
 <a name=db></a>
 ## 5. DB 
 #### DB Tables
 ```c
-1. User Table: Storing user information, people they are following, all self created tweets.
-  - Self created tweets would be stored in map<key=timestamp, value=<pointer where tweets is stored on object store, tweetid>
+1. User Table: Storing user information.
+| userID | screen_name | Actual_name | profile_image |
+|  1     | celeb       | celeb       | test.jpg      |
+|  2     | amit        | amit        | test1.jpg     |
 
-|userID| username(varchar)|email| creationDate | lastLogin | Following | All selfcreated Tweets |
-| 111  |  amit | amit@test.com | <> | <>       | person1,person2..     | map<timestamp, <pointer_to_object_stored_tweet, tweet_id>> |
+2. Tweets table: Cache of each user having tweets of all users he's following.
+- Maintain a cache for each user’s home timeline which is like a mailbox of tweets for each recipient user. 
+- When a user posts a tweet, look up all the people who follow that user, and insert the new tweet into each of their home timeline caches. 
+- The request to read the home timeline is then cheap, because its result has been computed ahead of time.
+|user id | pointer|
+| 2      |  0xabc |
+| 3      |  0xdef |
 
+| userId | tweet_done_by | Tweet Text | timestamp |
+| 2      |    1 (celeb)  |  ...       | ..        |
+0xabc
 ```
 
 #### Storing Tweets(text,photos,videos)
