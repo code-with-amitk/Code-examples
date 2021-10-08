@@ -1,4 +1,4 @@
-- [Append / Concatenate](#a)
+- [Append](#a)
 - **Comprehension**
   - [1. List of Squares](#e1)
   - [2. Combining elements of 2 lists if they are not equal](#e2)
@@ -17,7 +17,10 @@
 <a name=a></a>
 ### Append / Concatenate
 ```py
-print(a+[8,9])  #[1,2,3,4,5,6,7,8,9]
+a = [1,2,3]
+print(a+[4,5])  #[1,2,3,4,5]
+
+a.append(6)
 ```
 
 ## List Comprehension
