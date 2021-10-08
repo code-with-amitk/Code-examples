@@ -1,15 +1,54 @@
-- **Create list**
-  - [1D,2D,3D,4D list](#c1)
-  - [Nesting](#c2)
 - [Append / Concatenate](#a)
-- [Slice](#s)
 - **Comprehension**
   - [1. List of Squares](#e1)
   - [2. Combining elements of 2 lists if they are not equal](#e2)
   - [3. List of double value](#e3)
+- **Create list**
+  - [1D,2D,3D,4D list](#c1)
+  - [Nesting](#c2)
+- [Declartion](#d)
+- [insert](#i)
+- [Remove element](#r)
+- [Slice](#s)
 - [List as Stack](#ass)
 - [List as Queue](#asq)
 
+
+<a name=a></a>
+### Append / Concatenate
+```py
+print(a+[8,9])  #[1,2,3,4,5,6,7,8,9]
+```
+
+## List Comprehension
+Create new lists where each element is the result of some operation in just 1 line or few lines, rather than writing whole function. Examples
+<a name=e1></a>
+#### 1. List of Squares
+```py
+sq = []
+for i in range(5):
+    sq.append(i**2)             #** is power operator
+print(sq)                       #0 1 4 9 16
+sq1 = [i**2 for i in range(5)]  #0 1 4 9 16         #List Comprehension
+```
+<a name=e2></a>
+#### 2. Combining elements of 2 lists if they are not equal
+```py
+com = []
+for x in [1,2,3]:
+  for y in [3,1,4]:
+    if x != y:
+      com.append((x, y))
+print([(x, y) for x in [1,2,3] for y in [3,1,4] if x != y])     #List Comprehension
+    #[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+```
+<a name=e3></a>
+#### 3. List of double value
+```py
+l = [-4, -2, 0, 2, 4]
+print([i*2 for i in l])     #[-8.-4.0,4,8]
+print([abs(i) for i in l])  #Applying function to all values
+```
 
 ## Create list
 <a name=c1></a>
@@ -66,6 +105,13 @@ a  =   [                                  //Packing 2 or more 3-D Matrices.
        ]
 ```
 
+<a name=d></a>
+### list Declaration
+```py
+if __name__ == '__main__':
+  l = []                      //Declares empty list, same as vector
+```
+
 <a name=c2></a>
 ### Nesting of list
 Creating a List contaning other lists
@@ -78,10 +124,24 @@ print(y[0])     #[1, 2, 3]
 print(y[0][1])  #[2]
 ```
 
-<a name=a></a>
-### Append / Concatenate
+<a name=i></a>
+### insert in list
+```c
+if __name__ == '__main__':
+    l = []                  //declare list
+    index = 1
+    element = 2
+    l.insert(index, element)
+```
+
+<a name=r></a>
+### remove element from list
 ```py
-print(a+[8,9])  #[1,2,3,4,5,6,7,8,9]
+
+if __name__ == '__main__':
+  l = [1,2,3,3]
+  l.remove(3)             //remove 1st 1st occurence of element
+  l.pop()                 //remove last element
 ```
 
 <a name=s></a>
@@ -95,35 +155,6 @@ print(a)        #[1, 10, 11, 4, 5, 6, 7]
 a[1:3]=[2,3]
 ```
 
-## List Comprehension
-Create new lists where each element is the result of some operation in just 1 line or few lines, rather than writing whole function. Examples
-<a name=e1></a>
-#### 1. List of Squares
-```py
-sq = []
-for i in range(5):
-    sq.append(i**2)             #** is power operator
-print(sq)                       #0 1 4 9 16
-sq1 = [i**2 for i in range(5)]  #0 1 4 9 16         #List Comprehension
-```
-<a name=e2></a>
-#### 2. Combining elements of 2 lists if they are not equal
-```py
-com = []
-for x in [1,2,3]:
-  for y in [3,1,4]:
-    if x != y:
-      com.append((x, y))
-print([(x, y) for x in [1,2,3] for y in [3,1,4] if x != y])     #List Comprehension
-    #[(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
-```
-<a name=e3></a>
-#### 3. List of double value
-```py
-l = [-4, -2, 0, 2, 4]
-print([i*2 for i in l])     #[-8.-4.0,4,8]
-print([abs(i) for i in l])  #Applying function to all values
-```
 
 <a name=ass></a>
 ### List as Stack(LIFO)
