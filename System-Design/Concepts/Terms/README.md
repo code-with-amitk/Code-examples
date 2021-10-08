@@ -10,7 +10,7 @@
 - [Flash Crowd](Flash_Crowd)
 - [Latency](#la)
 - [Reliable](#re)
-- [Scalabilty](#sc)
+- [Scalability](#sc)
 - [Tenant](#ten)
 - [Throughput](#tp)
 
@@ -95,7 +95,7 @@ Measured as a round trip time ie time taken for packet to reach dest and ACK to 
   - When one component dies, the redundant component can take its place while the broken component is replaced.
 
 <a name=sc></a>
-### Scalabilty
+### Scalability
 - System’s ability to cope with increased load.
 - Scalability means considering questions like “If the system grows in a particular way, what are our options for coping with the growth?” and “How can we add computing
 resources to handle the additional load
