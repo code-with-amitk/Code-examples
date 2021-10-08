@@ -3,6 +3,10 @@
 - [Autoscaling](#auto)
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
+- [Consistency / Accuracy](Consistency)
+- [CAP Theorem](CAP_Theorem)
+- [Flash Crowd](Flash_Crowd)
+- [Reliable](#re)
 - [Tenant](#ten)
 
 <a name=ans></a>
@@ -39,12 +43,10 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
   - Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
-- **[Consistency / Accuracy](Consistency)**
-- **[CAP Theorem](CAP_Theorem)**
+
 - **Deduplication:** Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 - **Fault Tolerance:** In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
-- **[Flash Crowd](FLash_Crowd)**
 - **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
@@ -61,6 +63,21 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
   - *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
 - **Policy Based Search:** Node keeps track of neighbours who responded positively & sends request to them again
 - **Random Walk?** Node selects k neighbours randomly, sends key-100(data to searched) to them, again those neighbours selects k neighbours.
+
+<a name=re></a>
+### Reliable
+System to continue to work correctly, even when things go wrong. Eg a application:
+  - Can tolerate the user making mistakes or using the software in unexpected ways.
+  - Its performance is good enough for the required use case, under the expected load and data volume.
+  - The system prevents any unauthorized access and abuse.
+#### How to make Hard-disk at datacenter Reliable?
+- At datacenter, Hard disks crash, power grid has a blackout, someone unplugs the wrong network cable. 
+- Hard disks have MTTF(mean time to failure) of about 10 to 50 years. Thus, on a storage cluster with 10,000 disks, we should expect on average one disk to die per day.
+- How to keep reliabilty?
+  - Add redundancy to the individual hardware components. Disks may be set up in a RAID configuration.
+  - Servers may have dual power supplies and hot-swappable CPUs, and datacenters may have batteries and diesel generators for backup power. 
+  - When one component dies, the redundant component can take its place while the broken component is replaced.
+
 - **Throughput:**
   - Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
   - Measured in Bits/sec(bps), data packets per second (p/s or pps).
