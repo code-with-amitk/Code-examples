@@ -54,7 +54,8 @@ What       | Pacakaged s/w   | Copy of OS
 
 <a name=doc></a>
 # Docker
-Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
+- **What?** Docker is a containerization platform which packages application and all its dependencies together in a container, hence it ensures this application works seamlessly in any environment be it development or test or production.
+- Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
 - *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
 - **Docker client / docker?** Users interact with docker client.
