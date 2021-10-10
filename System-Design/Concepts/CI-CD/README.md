@@ -2,6 +2,7 @@
   - [Practices in CI](#p)
 - **Continious Delivery**
   - [Phases of CD](#p)
+- **[Continious Delivery](#cdd)**
 - [Blue, Green, Rolling Deployment](#bgr)
 
 <a name=ci></a>
@@ -38,6 +39,7 @@ A3. Capacity tests/Load Tests:
 A4. Explorative tests: Examine new functionalities
 A5. Production Phase: Software bought in production
 
+<a name=cdd></a>
 ## Continuous Deployment
 This is 1 step further than [continuous delivery](#cd). With this practice, every change that passes all stages of your production pipeline is released to your customers. There's no human intervention, and only a failed test will prevent a new change to be deployed to production
 
