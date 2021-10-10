@@ -1,8 +1,10 @@
-## What is React?
-- **What** This is a declarative & flexible frontend JS library.
-- **Usage** 
-  - Designing UIs(specifically for Single Page Applications).  
-  - Designing Web-based Application, Native Mobile application for both Andriod and IOS, Desktop Application.
+**React**
+
+## React
+React is a declarative & flexible frontend JS library for building 
+  - frontend large scale, data driven UIs.
+  - Andriod, ios apps, Desktop applications
+  - Virtual Reality Application using react VR.
   
 ## Building Blocks
 
