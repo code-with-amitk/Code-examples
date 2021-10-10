@@ -1,5 +1,5 @@
 - [format()](#f)
-- [input(str)](#i)
+- [input(str), raw_input()](#i)
 - [join](#j)
 - [ord()](#o)
 - [range()](#r)
@@ -19,9 +19,10 @@ print ('The {1} who says {0}.'.format("person",'Hello')) #The Hello who says Per
 ```
 
 <a name=i></a>
-### input(str)
+### input(str), raw_input()
 This allows user to input until new line is pressed. input() returns string
-- *raw_input()* This was older function replaced by input()
+- Python 3.x, use input(str)
+- Python 2.x, use raw_input().
 ```py
 r = float(input('Enter radius'))
 print('Area=' + 3.14*r**2)                                     //** is Exponetial. ie x^y
