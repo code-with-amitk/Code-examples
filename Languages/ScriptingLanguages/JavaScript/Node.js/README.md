@@ -3,7 +3,8 @@
 
 
 ## Node.js
-This is **[javascript](/Languages/ScriptingLanguages/JavaScript/JavaScript_Lang) runtime**. js is used to create dynamic webpages,apps etc. Node.js is used to execute applications. nodejs execute outside web browser.
+- This is **[javascript](/Languages/ScriptingLanguages/JavaScript/JavaScript_Lang) runtime**.
+- Browser can execute/run javascript code. Node.js is used to execute applications. nodejs execute outside web browser.
 
 <a name=f></a>
 ### Feature of Node.js
