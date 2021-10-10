@@ -2,6 +2,7 @@
   - [Practices in CI](#p)
 - [Continious Delivery](#cd)
   - [Phases of CD](#p)
+- [Blue Green Deployment Technique](#bg)
 
 
 ## Continuous Integration
@@ -29,16 +30,15 @@ A approach where software is continuously brought into production with the help 
 ### A. Phases of CD
 ![ImgUrl](https://i.ibb.co/pjDPbK2/ms.png)
 
-A1. Commit Phase
-- software compilation, unit tests, and static code analysis
+A1. Commit Phase: software compilation, unit tests, and static code analysis
+A2. Acceptance test Phase: Assure the correctness of the software regarding domain logic.
+A3. Capacity tests/Load Tests: 
+A4. Explorative tests: Examine new functionalities
+A5. Production Phase: Software bought in production
 
-A2. Acceptance test Phase
-- Assure the correctness of the software regarding domain logic.
+<a name=bg></a>
+## Blue Green Deployment Technique
+- Technique for reducing downtime and risk by running two identical production environments called Blue and Green. 
+- At any time, only one of the environments is live, with the live environment serving all production traffic. For this example, Blue is currently live and Green is idle.
+- On One of enviornment new build is deployed tested, and when tests are good, Router is switched to make this as production env.
 
-A3. Capacity tests/Load Tests
-
-A4. Explorative tests
-  - Examine new functionalities
-  
-A5. Production Phase
-  - Software bought in production
