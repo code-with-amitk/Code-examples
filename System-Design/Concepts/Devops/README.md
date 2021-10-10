@@ -33,6 +33,7 @@ Dev(4 moths) --> testing(2 months) --> Production(Code Broke)
 - But dont you think these are OPPOSITE. So, what happens? Dev team continually creates new features/changes/bug fixes and throws them over the wall to operations. The operations team perfects its best defense to prevent change.
 
 # Solution = Devops
+Instead of releasing big sets of features, companies are releasing small features to customers through a series of release trains. Devops are practices to achieve this.
 - **Devops** is Close these gaps by aligning approaches, tools between dev & operations. 
 - **Success of Devops** is in culture of trust b/w different depts, culture of sharing ideas, issues, processes, tools, and goals.
   - Development: Programmers do not code alone; rather, everyone helps them to understand what to code
