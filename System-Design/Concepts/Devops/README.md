@@ -3,7 +3,7 @@
   - [1. Code Broke in Production](#p1)
   - [2. Dev and Operations Teams are not aligned to common Goal](#p2)
 - **Solution=devops**
-  - [How to Achive devops](#h)
+  - [How to Achive devops](#how)
 - [Terms](#t)
 - [Devops Building Blocks/Fundamental of Devops](#bb)
 
