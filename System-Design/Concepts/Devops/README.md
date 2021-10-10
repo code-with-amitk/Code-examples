@@ -3,7 +3,10 @@
   - [1. Code Broke in Production](#p1)
   - [2. Dev and Operations Teams are not aligned to common Goal](#p2)
 - **Solution=devops**
-  - [How to Achive devops](#how)
+  - **How to Achive devops**
+    - [1. Agile Approach](#h1)
+    - [2. Collective Feedback](#h2)
+    - [3. Kanban](#h3)
 - [Terms](#t)
 - [Devops Building Blocks/Fundamental of Devops](#bb)
 
@@ -29,7 +32,7 @@ Dev(4 moths) --> testing(2 months) --> Production(Code Broke)
 - **Operations team** How stable software is in production.
 - But dont you think these are OPPOSITE. So, what happens? Dev team continually creates new features/changes/bug fixes and throws them over the wall to operations. The operations team perfects its best defense to prevent change.
 
-## Solution = Devops
+# Solution = Devops
 - **Devops** is Close these gaps by aligning approaches, tools between dev & operations. 
 - **Success of Devops** is in culture of trust b/w different depts, culture of sharing ideas, issues, processes, tools, and goals.
   - Development: Programmers do not code alone; rather, everyone helps them to understand what to code
@@ -37,10 +40,28 @@ Dev(4 moths) --> testing(2 months) --> Production(Code Broke)
   - Shared Incentives: Performance bonus & incentives of each should depends on other dev and ops.
   - Area of Devops: How they can cooperate & work with each other. [See this Page](Area-Matrix.md)
 
-<a name=how></a>
-### How to achieve devops
-1. Bringing [Agile approaches]() to all parts of the software delivery process.
-2. Streaming feedback from production to development and improving the cycle time. (i.e., the time from inception to delivery)
+## How to achieve devops
+<a name=h1></a>
+### [1. Agile Approach]()
+Bringing Agile approaches to all parts of the software delivery process.
+<a name=h2></a>
+### 2. Collective Feedback
+Streaming feedback from production to development and improving the cycle time. (i.e., the time from inception to delivery)
+<a name=h3></a>
+### 3. Kanban
+Kanban method encourages continuous, incremental, and evolutionary changes to your current system. Supply is determined according to the actual demand, not according to some theoretical value.
+**Kanban Theories**
+  - **1. Theory of constraints (TOC)** A chain is no stronger than its weakest link. Means weakest items in the overall chain can cause failure or adversely affect the outcome.
+  - **2. Kaizen** means continuous improvement.
+**Kanban Properties**
+- **1. Visualize the Workflow:** How work is done/related is inherently invisible. Visualizing the flow of work. Method: Use a sticker/card wall with cards and columns.
+- **2. Limit WIP(work in progress):** Pull system is implemented on parts or all of the workflow. Each state in the workflow is limited.
+- **3. Manage Flow:** flow of work through each state is monitored, measured, and reported.
+- **4. Make Process Policies Explicit:** Process should be explained throughly to everyone to discuss problems & gain feedback.
+- **5. Improve Collaboratively:** If teams have a shared understanding of theories about work, workflow, process, and risk they can solve problem more quickly.
+
+**[kanban board](https://i.ibb.co/LkRwDQs/kanban-board.png):** Row1 is Expediate Lane. This is reserved for highly urgent items that must go live quickly.
+
 
 <a name=t></a>
 ### Terms
