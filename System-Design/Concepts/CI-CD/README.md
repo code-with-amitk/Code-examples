@@ -1,12 +1,25 @@
-- [Continuous Integration](#ci)
+- **Continuous Integration**
+  - [Practices in CI](#p)
 - [Continious Delivery](#cd)
   - [Phases of CD](#p)
 
-<a name=ci></a>
+
 ## Continuous Integration
 This is development practice that requires:
 - developers to integrate code into a shared repository several times a day.
 - Each check-in is then verified by an automated build, allowing teams to detect problems early.
+
+<a name=p></a>
+### Practices in CI
+```c
+1. Maintain a code repository
+
+2. Everyone commits to the baseline every day  >  3. Automate the build(self test)  >  4. Test in a clone of the production environment
+   Every commit (to baseline) should be built        Keep the build fast
+   
+5. Get latest deliverables(using artifacts) 
+Automate deployment
+```
 
 <a name=cd></a>
 ## CD(Continious Delivery)
