@@ -1,10 +1,10 @@
 - **Continuous Integration**
   - [Practices in CI](#p)
-- [Continious Delivery](#cd)
+- **Continious Delivery**
   - [Phases of CD](#p)
-- [Blue Green Deployment Technique](#bg)
+- [Blue, Green, Rolling Deployment](#bgr)
 
-
+<a name=ci></a>
 ## Continuous Integration
 This is development practice that requires:
 - developers to integrate code into a shared repository several times a day.
@@ -24,7 +24,9 @@ Automate deployment
 
 <a name=cd></a>
 ## CD(Continious Delivery)
-A approach where software is continuously brought into production with the help of a continuous delivery pipeline.
+After CI, new changes are released to customers quickly in a sustainable way. Here software is continuously brought into production with the help of a continuous delivery pipeline.
+- Automated testing is taken care in [CI](#ci)
+- Automated release process and you can deploy your application at any point of time by clicking on a button, taken care in CD.
 
 <a name=p></a>
 ### A. Phases of CD
@@ -36,9 +38,14 @@ A3. Capacity tests/Load Tests:
 A4. Explorative tests: Examine new functionalities
 A5. Production Phase: Software bought in production
 
-<a name=bg></a>
-## Blue Green Deployment Technique
+## Continuous Deployment
+This is 1 step further than [continuous delivery](#cd). With this practice, every change that passes all stages of your production pipeline is released to your customers. There's no human intervention, and only a failed test will prevent a new change to be deployed to production
+
+<a name=bgr></a>
+## Blue Green Deployment
 - Technique for reducing downtime and risk by running two identical production environments called Blue and Green. 
 - At any time, only one of the environments is live, with the live environment serving all production traffic. For this example, Blue is currently live and Green is idle.
 - On One of enviornment new build is deployed tested, and when tests are good, Router is switched to make this as production env.
 
+### Rolling Deployment
+Unlike BG, We have only ONE complete environment. The code is deployed in the subset of instances of the same environment and moves to another subset after completion.
