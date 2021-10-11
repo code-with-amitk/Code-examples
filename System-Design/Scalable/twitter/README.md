@@ -16,7 +16,7 @@ Social networking site, where people can post short messages(called tweets 150 c
 ## 1. Requirements
 #### Functional
   - *1.* User can post tweet text < 150 characters, photos, videos.
-  - _2._ Home timeline is visible to user.
+  - _2._ User can view his Home timeline any number of times in a day.
   - *2.* Any user can search any other user by name.
   - *3.* Any user can can Add himself as follower & can see the tweets(text,videos,photos) of followed person.
   - *4.* Mark Tweet as favoriate.
