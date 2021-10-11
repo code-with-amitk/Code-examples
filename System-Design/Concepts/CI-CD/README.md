@@ -14,11 +14,12 @@ This is development practice that requires:
 <a name=p></a>
 ### Practices in CI
 ```c
-1. Maintain a code repository
-
-2. Everyone commits to the baseline every day  >  3. Automate the build(self test)  >  4. Test in a clone of the production environment
-   Every commit (to baseline) should be built        Keep the build fast
-   
+1. Maintain a code repository                     >
+2. Everyone commits to the baseline every day     >
+3. Automate the build(self test)                  >
+4. Test in a clone of the production environment  >
+   Every commit (to baseline) should be built        
+   Keep the build fast
 5. Get latest deliverables(using artifacts) 
 Automate deployment
 ```
