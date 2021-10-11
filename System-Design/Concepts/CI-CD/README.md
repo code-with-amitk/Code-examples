@@ -32,7 +32,7 @@ After CI, new changes are released to customers quickly in a sustainable way. He
 
 <a name=p></a>
 ### A. Phases of CD
-<img src=phases-of-cd.png width=400/>
+<img src=phases-of-cd.png width=700/>
 ```c
 A1. Commit Phase: software compilation, unit tests, and static code analysis
 A2. Acceptance test Phase: Assure the correctness of the software regarding domain logic.
