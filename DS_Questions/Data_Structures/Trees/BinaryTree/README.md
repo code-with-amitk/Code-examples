@@ -83,4 +83,11 @@ H e l l o _ m y _ n a m e _ i s _ A m i t
                       /   \      /    \
                   na,2  me_i,4  s,1   _Amit,5 
 ```
-Used for efficient storage and manipulation a very long string.
+- **Advatanges**
+  - _1._ Used for efficient storage and manipulation a very long string.
+  - _2._ Unlike arrays, ropes do not require large contiguous memory allocations. 
+  - _3. Time Complexity (for insertion/deletion/searching)_ is O(logn) unlike strings which is O(n). Hence its VERY IMPORTANT TO LEARN.
+- **Disadvatanges**
+  - _1._ Complex code
+  - _2._ Extra memory required to store parent nodes.
+  - _3._ Time to access ith character increases. In plain strings its O(1).
