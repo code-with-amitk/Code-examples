@@ -16,6 +16,7 @@ Social networking site, where people can post short messages(called tweets 150 c
 ## 1. Requirements
 #### Functional
   - *1.* User can post tweet text < 150 characters, photos, videos.
+  - _2._ Home timeline is visible to user.
   - *2.* Any user can search any other user by name.
   - *3.* Any user can can Add himself as follower & can see the tweets(text,videos,photos) of followed person.
   - *4.* Mark Tweet as favoriate.
@@ -27,22 +28,39 @@ Searching tweets, tagging other users, AI powered suggestion(whom to follow)
 
 <a name=boe></a>
 ## 2. BOE Calculation //Near to grooking
+```
+World Population                    :     7 Billion //Year 2020
+Internet users(60%)                 :     7 x 0.6 = 4.2 Billion
+Twitter users(70%)                  :     4.2 x 0.7 = 2.94 Billion = 3 Billion
+Daily Active users(20~25%)          :     3 x .25 = 750 Million
+a. Daily Users posting tweets(80%)
+  - Daily                           :     750 x .8 = 6000 Million Tweets/daily
+  - Posted Tweets/sec               :     6000M/86400 => 6.9k requests/sec                            //WRITES
+b. Daily home timeline view requests:     750M * 30 = 25000M    //every user requests home timeline min=3 to max=30 times.
+  - Daily                           :     25 Billion requests/daily
+  - Home Timeline view/sec          :     300k requests/sec                                           //READS, FANOUT
 
-|World Population|InternetUsers(60%)|Twitter users(50%)|Daily Active users(10~12%)|Only 50% users Tweet(text) daily|
-|---|---|---|---|---|
-|7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.5 = 2 Billion |2 x .12 = 240 Million|240 x .5 = 120 Million Tweets/daily|
+//Data Released by Twitter in 2012
+Posted Tweets/sec                   :     4.6k requests/sec. 13k requests/sec at peak
+Home timeline views                 :     300k requests/sec
+
+//Assumed 2021(4-5 times)               
+Posted Tweets/sec                   :     25k requests/sec. 75k requests/sec at peak
+Home timeline views                 :     1500k requests/sec
+```
   
-- **Storage Estimates:** 1 text Tweet=150 characters. 2 bytes to store 1 char. 1 Tweet=300 bytes.
-  - Daily Text Tweets = 120M x 300 = 36GB. For 5 years = 36 x 30 x 12 x 5 = 64TB
-  - (Audio=200KB, Video=2MB). 5% does photo Tweet. 1% does video tweet
-    - Daily Audio Tweet = 240M x .05 = 12M. 12M x 200KB = 2.4GB
-    - Daily Video Tweet = 240M x .01 = 2.4M. 2.4M x 200KB = 4.8GB
+**Storage Estimates:** 1 text Tweet=150 characters. 2 bytes to store 1 char. 1 Tweet=300 bytes.
+- Daily Text Tweets = 6000M x 300 = 1.8TB. For 5 years = 1.8 x 30 x 12 x 5 = 1800TB
+- (Audio=200KB, Video=2MB). 5% does photo Tweet. 1% does video tweet
+  - Daily Audio Tweet = 6000M x .05 = 300M. 300M x 200KB = 60000TB = 60PB
+  - Daily Video Tweet = 6000M x .01 = 60M.  60M x 200KB = 12000GB  = 12PB
 
-- **Bandwidth Estimates:** 
-  - Writes/Incoming data. Daily Text=36GB, Audio=2.4GB, Video=4.8GB ~= 45GB. IncomingData/sec = 45/24x60x60 = 520KB/sec
-  - Reads/Outgoing data. 
-    - Assume user visits his timeline 2 times/day and watches 5 other people timelines and 10 tweets on their timelines. Total timelines viewed
-      - 240M x (5+2) x 10 = 16800M = 17 Billion Tweets viewed/day. 1 tweet=300bytes. 17B x 300 ~= 5PB/day. 5PB / 24x60x60 = 57MB/sec
+**Bandwidth Estimates:** 
+- Posting Tweets = Writes/Incoming data. Daily Text=1.8TB, Audio=60PB, Video=12PB. IncomingData/sec = 72PB/24x60x60 = 833MB/sec
+- Writing on Timeline = Outgoing data = Fanout
+  - Assumed timeline has 50-100 new entries everytime. 1 entry=150 character. 100 entries = 15k characters. 1 char=2 bytes. 15k=30k bytes.
+  - User refreshes 3-30 times his hometime line daily. 30times = 900kbytes/user
+  - 300k/requests/sec = 900k * 300k = 270000M = 270GB/sec (fanout)
 
 <a name=sa></a>
 ## 3. System APIs
