@@ -42,7 +42,9 @@ A5. Production Phase: Software bought in production
 
 <a name=cdd></a>
 ## Continuous Deployment
-This is 1 step further than [continuous delivery](#cd). With this practice, every change that passes all stages of your production pipeline is released to your customers. There's no human intervention, and only a failed test will prevent a new change to be deployed to production
+- This is 1 step further than [continuous delivery](#cd). 
+- With this practice, every change that passes all stages of your production pipeline is released to your customers. 
+- There's no human intervention, and only a failed test will prevent a new change to be deployed to production
 
 <a name=bgr></a>
 ## Blue Green Deployment
