@@ -1,7 +1,9 @@
 **PropertyTree**
 - [Why Ptree](#w)
 - **Reading**
-  - [from xml](#rx)
+  - [From xml](#rx)
+- **Writing**
+  - [To xml](#wx)
 
 ## PropertyTree
 - This library provides a data structure to store [m-ary Tree]() where each node has `<key, value>`
@@ -21,7 +23,7 @@ struct ptree_node
 ### Why PTree
 Ptrees can store data to which can be presented in number of data formats: XML, INI, and JSON. ie library provides parsers and generators for xml,ini,json.
 
-## Reading
+## Read
 <a name=rx></a>
 ### From xml
 ```cpp
@@ -69,4 +71,11 @@ int main() {
     cout << endl;
     return 0;
 }
+```
+
+## Write
+<a name=wx></a>
+### To XML
+```cpp
+
 ```
