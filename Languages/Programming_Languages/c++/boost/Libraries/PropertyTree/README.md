@@ -193,7 +193,7 @@ $ cat output.xml
 
 <a name=wj></a>
 ### To json
-```json
+```cpp
 $ cat main.cpp
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
