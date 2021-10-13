@@ -1,9 +1,11 @@
 **PropertyTree**
 - [Why Ptree](#w)
 - **Reading**
-  - [From xml](#rx)
+  - [1. From xml](#rx)
+  - [2. From json](#rj)
 - **Writing**
-  - [To xml](#wx)
+  - [1. To xml](#wx)
+  - [2. To json](#wj)
 
 ## PropertyTree
 - This library provides a data structure to store [m-ary Tree]() where each node has `<key, value>`
@@ -25,7 +27,7 @@ Ptrees can store data to which can be presented in number of data formats: XML, 
 
 ## Read
 <a name=rx></a>
-### From xml
+### 1. From xml
 ```cpp
 $ cat test.xml
 <debug>
@@ -73,9 +75,71 @@ int main() {
 }
 ```
 
+<a name=rj></a>
+### From Json
+```cpp
+$ cat test.json
+{
+    "height" : 320,
+    "some" :
+    {
+        "complex" :
+        {
+            "path" : "hello"
+        }
+    },
+    "animals" :
+    {
+        "rabbit" : "white",
+        "dog" : "brown",
+        "cat" : "grey"
+    },
+    "fruits" : ["apple", "raspberry", "orange"],
+    "matrix" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+}
+
+$ cat main.cpp
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/foreach.hpp>
+#include <string>
+#include <set>
+#include <exception>
+#include <iostream>
+using namespace std;
+void readJ() {
+    pt::ptree tree;
+    pt::read_json("./test.json", tree);
+    int height = tree.get<int>("height", 0);
+    std::string msg = tree.get<std::string>("some.complex.path");
+
+    std::vector< std::pair<std::string, std::string> > animals;
+    // Iterator over all animals
+    for (pt::ptree::value_type &animal : tree.get_child("animals"))
+    {
+        // Animal is a std::pair of a string and a child
+
+        // Get the label of the node
+        std::string name = animal.first;
+        // Get the content of the node
+        std::string color = animal.second.data();
+        animals.push_back(std::make_pair(name, color));
+    }
+    std::vector<std::string> fruits;
+    for (pt::ptree::value_type &fruit : tree.get_child("fruits"))
+    {
+        // fruit.first contain the string ""
+        fruits.push_back(fruit.second.data());
+    }
+
+    pt::write_json("output.json", tree);                                 //WRITTEN to json
+    cout << endl;
+}
+```
+
 ## Write
 <a name=wx></a>
-### To XML
+### 1. To XML
 ```cpp
 $ cat main.cpp
 #include <boost/property_tree/ptree.hpp>
@@ -126,3 +190,7 @@ $ cat output.xml
   </modules>
 </debug>
 ```
+
+<a name=wj></a>
+### To json
+- Read from json have code to write to json
