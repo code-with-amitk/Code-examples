@@ -193,4 +193,51 @@ $ cat output.xml
 
 <a name=wj></a>
 ### To json
-- Read from json have code to write to json
+```json
+$ cat main.cpp
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/foreach.hpp>
+#include <string>
+#include <set>
+#include <exception>
+#include <iostream>
+using namespace std;
+int main() {
+    pt::ptree root;
+    
+    vector<pair<string,int>< vec = {
+      {"amit", 1}, {"ram", 5}, {"sunny", 10}
+    };
+    pt::ptree top_words;
+    for (auto &i:vec)
+        top_words.put(i.first, i.second);
+    root.add_child("top_words", top_words);
+
+    vector<int> vecIndex = {1,2,8};
+    pt::ptree index_of_smileys;
+    for (auto &i:vecIndex) {
+        pt::ptree temp;
+        temp.put_value(i);
+        index_of_smileys.push_back(std::make_pair("", temp));
+    }
+    root.add_child("index_of_smileys", index_of_smileys);
+
+    pt::write_json("output.json", root);
+}    
+
+$ cat output.json
+{
+    "top_words":
+    {
+        "amit": 1,
+        "ram": 5,
+        "sunny": 9
+    },
+    "index_of_smileys": [
+        1,
+        2,
+        8
+    ],
+}
+```
