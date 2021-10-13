@@ -50,8 +50,8 @@ using namespace std;
 namespace pt = boost::property_tree;
 
 int main() {
-    pt::ptree tree;
-    pt::read_xml("./test.xml", tree);
+    pt::ptree tree;                                                   //Create empty property tree object
+    pt::read_xml("./test.xml", tree);                                 //Parse the XML into the property tree
     std::string file = tree.get<std::string>("debug.filename");       //Throws exception if path cannot be resolved
     int level = tree.get("debug.level", 0);
 
@@ -77,5 +77,52 @@ int main() {
 <a name=wx></a>
 ### To XML
 ```cpp
+$ cat main.cpp
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/foreach.hpp>
+#include <string>
+#include <set>
+#include <exception>
+#include <iostream>
+using namespace std;
+namespace pt = boost::property_tree;
 
+void writeX(string& strFile){
+    pt::ptree tree;                                 //Create empty property tree object
+    
+    // Put the simple values into the tree. The integer is automatically converted to a string. 
+    //Note that the "debug" node is automatically created if it doesn't exist.    
+    tree.put("debug.filename", strFile);
+    tree.put("debug.level", 5);                       //put() overwrites existing nodes
+
+    std::set<std::string> dept;
+    dept.insert("IT");
+    dept.insert("HR");
+    
+    // Add all the modules. Unlike put, which overwrites existing nodes, add() adds a new node at the lowest level, so the "modules" node will have
+    // multiple "module" children.
+    BOOST_FOREACH(const std::string &s, dept)
+        tree.add("debug.modules.module", s);
+        
+    pt::write_xml(strFile, tree);               // Write property tree to XML file
+}
+
+int main() {
+    string file = "output.xml";
+    writeX(file);
+}
+
+$ g++ main.cpp
+
+$ cat output.xml
+<?xml version="1.0" encoding="utf-8"?>
+<debug>
+  <filename>output.xml</filename>
+  <level>5</level>
+  <modules>
+    <module>HR</module>
+    <module>IT</module>
+  </modules>
+</debug>
 ```
