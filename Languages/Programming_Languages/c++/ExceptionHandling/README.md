@@ -62,6 +62,7 @@ Exception: 0
 <a name=ex2></a>
 #### 2. Catching bad_alloc, out_of_range Exception
 ```cpp
+#include<new>			//bad_alloc
 class A {
 public:
 	static int fun (long long A, long long B) {
@@ -76,7 +77,7 @@ int main() {
         try {
             cout << Server::compute(A,B) << endl;
         } 
-        catch (bad_alloc& error) {
+        catch (std::bad_alloc& error) {
             cout << "Bad Alloc" << endl;           		//if A is passed huge ie greater than 50 million.
         }
         catch (exception& error) {
