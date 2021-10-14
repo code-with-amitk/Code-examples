@@ -36,16 +36,15 @@ struct {
 ### Creating MFC Applications
 <a name=hw></a>
 #### 1. Hello World (name = mfc)
-```cpp
-//Visual Studio > Create MFC Application > Single Document.
+Visual Studio > Create MFC Application > Single Document.
+```
 Default files created
   |- mfc.cpp, mfc.h
   |- mainframe.cpp, mainframe.h
-
-mfc.h
 ```
+mfc.h
+```cpp
 class mfc : public CWinApp {      //CFrameWnd, CWinApp classes contain all code to create & operate the main window
 };
 
-```
 ```
