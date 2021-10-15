@@ -4,7 +4,7 @@
   - [2. Messages](#m)
   - [3. Multiple, Single Document Application](#md)
 - **Creating MFC Application**
-  - [1. Hello World](#hw)
+  - [1. Default MFC Application (name=Test)](#df)
 
 
 <a name=mfc></a>
@@ -13,12 +13,12 @@ MFC Library is a collection of C++ classes, which are used for writing windows a
 
 ## Terms
 <a name=w></a>
-### 1. Windows
-#### a. Main Window
-- Windows are the primary interface elements that applications use to present graphic and text output to the user. Main window will have:
-  - _Client Area:_ On which the application/user writes or displays graphics and text, surrounded by a rectangular border.
+#### 1. Windows
+- **a. Main Window:** 
+  - Windows are the primary interface elements that applications use to present graphic and text output to the user. Main window will have:
+    - _Client Area:_ On which the application/user writes or displays graphics and text, surrounded by a rectangular border.
 <a name=m></a>
-### 2. Messages
+#### 2. Messages
 Every MFC application is event driven. All application consists of message handler functions. Message is represented using this structure.
 ```c
 struct {
@@ -34,15 +34,13 @@ struct {
 };
 ```
 <a name=md></a>
-### 3. Multiple, Single Document Application
-#### Multiple Document
-Same as Microsoft Excel or Word, where we can open several documents at same time.
-#### Single Document
-Only 1 document is allowed to open at a time.
+#### 3. Multiple, Single Document Application
+- **Multiple Document:** Same as Microsoft Excel or Word, where we can open several documents at same time.
+- **Single Document:** Only 1 document is allowed to open at a time.
 
 ### Creating MFC Applications
-<a name=hw></a>
-#### 1. Hello World (name = Test)
+<a name=df></a>
+#### 1. Default MFC Application (name=Test)
 Visual Studio > Create MFC Application > Single Document.
 ```
 1. Windows will create following classes by default
@@ -122,8 +120,4 @@ WinMain() {
 BOOL CTestApp::InitInstance() {
   Initializes OLE, Windows sockets, 3D Controls.
 }
-```
-3. Creating Main Window
-```c
-
 ```
