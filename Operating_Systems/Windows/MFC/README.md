@@ -114,10 +114,16 @@ c. Initialize MFC
 WinMain() {
   InitApplication() //of CWinApp class. 
   InitInstance()    //of CWinApp class
-  Run()             //of CWinApp class
+  ShowWindow()
+  UpdateWindow()
+  CWinThread::Run()    //of CWinApp class. This is INFINITE loop which waits for message.
 }
 
 BOOL CTestApp::InitInstance() {
   Initializes OLE, Windows sockets, 3D Controls.
 }
+```
+3. Creating Main Window
+```c
+
 ```
