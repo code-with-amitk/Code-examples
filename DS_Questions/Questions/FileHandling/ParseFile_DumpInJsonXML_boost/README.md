@@ -4,6 +4,9 @@
   - Start positions of smileys
   - Top 10 words
 
+### Solution
+- Uses CMake Build, CTest, Boost(program_options, Tokenizer, PropertyTree, FileSystem), catching exceptions
+
 ### Buildme
 ```
 1. Go to code root directory
