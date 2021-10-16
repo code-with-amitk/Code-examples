@@ -2,6 +2,8 @@
 - [About](#a)
 - [Feature](#f)
 - [Memory Layout of Java Program](#ml)
+- **Input Output**
+  - [Reading stdin & dump on stdout](#i1)
 
 
 <a name=a></a>
@@ -62,3 +64,23 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
     - Local Variable Array (LVA), Operand Stack (OS), and Frame Data (FD). 
 - PC-Registers: Each thread has a Program Counter (PC) register associated with it. PC register stores the return address or a native pointer. It also contains the address of the JVM instructions currently being executed.
 - Native Method Stack/C stack: This stack is for native code written in a language other than Java
+
+## Input Output
+<a name=i1></a>
+#### 1. Reading stdin & dump on stdout
+```java
+import java.util.Scanner;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int i = scan.nextInt();                   //Read int
+        double d = scan.nextDouble();             //Read double
+        scan.nextLine();                          //Scanner.nextInt() or Scanner.nextDouble() does not read the newline character
+                                                  //in input created by hitting "Enter" hence Scanner.nextLine returns after reading that newline
+        String s = scan.nextLine();
+        System.out.println("String: " + s);
+        System.out.println("Double: " + d);
+        System.out.println("Int: " + i);
+    }
+}
+```
