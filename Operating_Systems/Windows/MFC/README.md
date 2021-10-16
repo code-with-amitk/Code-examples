@@ -13,14 +13,19 @@ MFC Library is a collection of C++ classes, which are used for writing windows a
 
 ## Terms
 <a name=w></a>
-#### 1. Windows
+### 1. Windows
 - **a. Main Window:** 
   - Windows are the primary interface elements that applications use to present graphic and text output to the user. Main window will have:
     - _Client Area:_ On which the application/user writes or displays graphics and text, surrounded by a rectangular border.
 <a name=m></a>
-#### 2. Messages
-Every MFC application is event driven. All application consists of message handler functions. Message is represented using this structure.
+### 2. Messages
+All windows applications(including: MFC) are message driven ie Windows provides messages to application. Application need to handle those. 
+#### Categories of Messages
+- **1. Windows messages:** Messages provided by Windows to applications. Windows messages start with WM_ (WM_QUIT, WM_PAINT). For most windows provides default handlers.
+- **2. Control Notifications:** Sent from child window to parent window. These are handled by class derived from `class CWnd`.
+- **3. Commands (WM_Command):** Messages from Menus, Buttons, keys.
 ```c
+//Message is represented using this structure.
 struct {
   hwnd;             //window whose Handler received the message (hwnd is a pointer that contains the window’s address)
   struct message{   //Messages are represented with WM_
