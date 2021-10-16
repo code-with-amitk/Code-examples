@@ -1,11 +1,13 @@
 **Java**
+- [About](#a)
 - [Feature](#f)
 - [Memory Layout of Java Program](#ml)
 
 
-## Java(By Sun micro systems(1995)
-- **What?**
-  - Java is a language+collection of run-time-libraries.  Compiler javac(written in java). IDE's(Netbeans, Eclipse).
+<a name=a></a>
+## About
+- By Sun micro systems(1995)
+- **What?** Java is a language+collection of run-time-libraries.  Compiler javac(written in java). IDE's(Netbeans, Eclipse).
   - _J2EE?_ Platform for Enterprise Applications    J2ME?Platform for Mobile Applications. 
   - _JDK(JAVA DEVELOPMENT KIT)_ SDK, for developing application and applets. This includes JRE,  JavaDoc(documentation generator), javac(compiler), jar(archiver) etc. For development and running you need this.
   - _JRE(JAVA RUNTIME ENV)_: Includes JVM+library classes. If you only want to run Java applications you would need JRE.
@@ -17,7 +19,7 @@
   c. J2ME(Java 2 Micro Edition): APIs for handheld devices.
 
 <a name=f></a>
-## FEATURES OF JAVA
+## Features of Java
 - **Platform Independent:** 
   - Unlike many other programming languages including C and C++, when Java is compiled, it is not compiled into platform specific machine, rather into platform independent byte code. This byte code is distributed over the web and interpreted by virtual Machine (JVM) on whichever platform it is being run. ie byte-code can be generated on MAC & run on linux/Windows.
 - **Secure:** a. Java always runs on JRE which has almost 0 interaction with OS hence secure.  b. No pointers(hence no SEG faults)    c. Runtime exception handling.        //Secure wrt C,C++
@@ -30,8 +32,8 @@
 - **Speed:** Memory is allocated on Eden space and its not guaranteed that it will be allocated contiguously. Non-contiguous memory is slower wrt to contiguous.        //Java is slow wrt C,C++
 
 <a name=ml></a>
-### Memory Layout of Java Program
-- Since program runs inside JVM, we will also see How JVM looks on memory.
+## Memory Layout of Java Program
+Since program runs inside JVM, we will also see How JVM looks on memory.
 ```java
                                  |---   Stack   Area      -----|  |----    PC(program counter Registers ---|
     [ Method Area ] [ Heap area] <--Thread-1----><-Thread-2---->  <Register-Thread-1><Register-Thread-2> [Native-Method-Stack]
