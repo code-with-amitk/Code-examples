@@ -9,6 +9,9 @@
 - **[Agile](#ag)**
   - [1. Agile Iterations](#ai)
   - [2. Burnout chart](#bc)
+  - [3. Velocity](#v)
+- **TDD, Test Driven Development**
+  - [What](#tdd)
 
 ## Scrum
 - Scrum is one of the most popular frameworks for implementing Agile. Scrum and agile are not same things.
@@ -68,3 +71,14 @@ Done
 <a name=bc></a>
 #### 2. Burn out chart
 The burn-down chart shows the remaining work to complete before the timebox (iteration) ends.
+
+<a name=v></a>
+#### 3. Velocity
+- Velocity is a metric that is calculated by addition of all efforts estimates related with user stories completed in an iteration. 
+- It mesures how much work Agile can complete in a sprint and how much time will it need to finish a project.
+
+<a name=tdd></a>
+## TDD, Test Driven Development
+Developer:
+- first writes an automated test case which describes new function or improvement and then creates small codes to pass that test, and
+- Later re-factors the new code to meet the acceptable standards.
