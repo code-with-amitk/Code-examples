@@ -4,6 +4,8 @@
 - [Memory Layout of Java Program](#ml)
 - **Input Output**
   - [Reading stdin & dump on stdout](#i1)
+- **Classes**
+  - [Scanner](#s)
 
 
 <a name=a></a>
@@ -68,6 +70,7 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 ## Input Output
 <a name=i1></a>
 #### 1. Reading stdin & dump on stdout
+[scanner class](#s)
 ```java
 import java.util.Scanner;
 public class Solution {
@@ -83,4 +86,14 @@ public class Solution {
         System.out.println("Int: " + i);
     }
 }
+```
+
+## Classes
+<a name=s></a>
+### Scanner
+Scanner class is used to get user input, and it is found in the java.util package. Available methods in scanner class
+```java
+nextLine():   Read string from stdin
+nextInt():    Read int from stdin
+nextDouble(): Read double from stdin
 ```
