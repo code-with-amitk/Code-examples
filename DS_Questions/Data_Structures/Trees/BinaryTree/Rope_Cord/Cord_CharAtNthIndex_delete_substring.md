@@ -1,5 +1,5 @@
 - **[Cord / Rope](#c)**
--[1. Find character at nth position](#f)
+- [1. Find character at nth position](#f)
 
 <a name=c></a>
 ### [Cord / Rope](/DS_Questions/Data_Structures/Trees/BinaryTree)
