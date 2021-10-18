@@ -10,6 +10,7 @@
 - [Flash Crowd](Flash_Crowd)
 - [Latency](#la)
 - [Reliable](#re)
+- [Response time](#rt)
 - [Scalability](#sc)
 - [Tenant](#ten)
 - [Throughput](#tp)
@@ -66,7 +67,7 @@ In cluster of 100 machines, when some machines/disks fail, if system can still r
 
 <a name=la></a>
 ### Latency 
-Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
+Latency is time that request is waiting to be handled ie awaiting service. [Response Time](#rt) means RTT.
 
 - **Local Rarest First for Piece Selection**
   - Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
@@ -93,6 +94,11 @@ Measured as a round trip time ie time taken for packet to reach dest and ACK to 
   - Add redundancy to the individual hardware components. Disks may be set up in a RAID configuration.
   - Servers may have dual power supplies and hot-swappable CPUs, and datacenters may have batteries and diesel generators for backup power. 
   - When one component dies, the redundant component can take its place while the broken component is replaced.
+
+<a name=rt></a>
+### Response Time
+- Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
+- The response time is what the client sees, includes (actual time to process the request (the service time), network delays and queueing delays).
 
 <a name=sc></a>
 ### Scalability
