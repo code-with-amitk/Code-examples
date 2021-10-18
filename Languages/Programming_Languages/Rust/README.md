@@ -153,7 +153,7 @@ fn fun2(a_string: String) -> String {
 <a name=bow></a>
 ### [Reference = Borrowing](References_and_Borrowing)
 - Dangling Reference
-- Mutable Reference
+- Mutable Reference. Mutable means changable. By default variables are immutable in rust
   - Mutable & immutable References in same scope not allowed
   - 2 Mutable references are not allowed in same scope
   - Mutable References are allowed in seperate scope
