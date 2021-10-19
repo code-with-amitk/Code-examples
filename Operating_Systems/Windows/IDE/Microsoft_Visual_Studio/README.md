@@ -59,4 +59,50 @@ Columns in thread window
 
 <a name=c></a>
 ## Code in VS build on Windows, WSL both
-- 
+We will create CMake project which will build on Windows, Linux(WSL) both.
+- _A._ [Target WSL from Visual Studio](https://devblogs.microsoft.com/cppblog/targeting-windows-subsystem-for-linux-from-visual-studio/)
+```c
+1. On WSL
+ 1a. Install gdbserver
+wsl$ sudo apt install -y build-essential
+wsl$ sudo apt install -y gdbserver        //For remote debugging
+
+ 1b. Install and configure ssh 
+wsl$ sudo apt install -y openssh-server
+wsl$ vim /etc/ssh/sshd_config
+PasswordAuthentication yes
+$ sudo ssh-keygen -A
+$ sudo service ssh start
+
+2. Install & configure Visual Studio
+- Install Linux development with c++
+- Now you can connect to WSL from Visual Studio. Tools > Options > Cross Platform > Connection Manager.
+  Click add and enter “localhost” for the hostname and your WSL user/password.
+```
+
+- _B._ [Create a CMake Linux project in Visual Studio](https://docs.microsoft.com/en-us/cpp/linux/cmake-linux-project?view=msvc-160)
+```c
+1. Create a new Linux CMake project
+2. Add a Linux configuration
+  From the main toolbar, open the Configuration dropdown and choose Manage Configurations.
+    chose: Linux-GCC-Debug or Linux-GCC-Release.
+  Refresh Intellisense it will copy files on WSL at location:
+    /home/amit/.vs/
+```
+
+- _C._ Build on Linux from Visual Studio it will print "Linux". Build on windows from VS it will print "Windows".
+```cpp
+using namespace std;
+int main()
+{
+	cout << "Hello CMake." << endl;
+#if defined(WIN32)
+	cout << "Windows";
+#else
+	cout << "Linux";
+#endif
+	return 0;
+}
+```
+
+- _D._ if stuck see this [Microsoft Article](https://docs.microsoft.com/en-us/cpp/linux/cmake-linux-project?view=msvc-160).
