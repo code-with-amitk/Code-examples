@@ -16,7 +16,9 @@
   - [4. Heap](#h)
     - [Max Heap Size](#maxh)
     - [Heap Overflow](#ho)
-- **[Process States](#pros)**
+- [Process States](#pros)
+- [PCB / Process Control Block](#pcb)
+- [Process Table](#pt)
 
 ## Process
 Running instance of program. All processes are decedents of swapper process(PID=0). Both(threads, processes) are independent sequence of operations
@@ -62,6 +64,7 @@ Fork can fail if there are:
 - Copy on Write
 - n forks
 
+<a name=ml></a>
 # Memory Layout of Process
 ```console
                    |                                                                                               |
@@ -188,3 +191,46 @@ Max Heap Size=Virtual memory size. [What is max VM Size](/Motherboard/CPU/Memory
   - **c. Running(Flag R):** Once the process has been assigned to a processor by the OS scheduler state changes to running.
   - **d. Waiting/Sleeping(Flag S):** Process moves into the waiting state if it needs to wait for a resource, eg: waiting for user input or file.
   - **e. Terminated or Exit:** Once the process finishes its execution, or it is terminated by the OS. Here it waits to be removed from main memory.
+
+<a name=pcb></a>
+## PCB / Process Control Block / Process Context
+PCB is a data structure([struct task_struct](https://www.cs.fsu.edu/~baker/opsys/examples/task_struct.html)) for storing all information of a process inside kernel.
+```c
+struct task_struct {
+  long                 priority;
+  struct task_struct   *next_task, *prev_task;            //DOUBLY LL
+  int                  pid;                               //PID
+  int                  pgrp;									            //Process Group
+  struct task_struct   *p_opptr, *p_pptr, *p_cptr,        //Pointers to parent, youngest child, silbilings etc
+  unsigned short       uid,suid,gid,sgid..;               //UID,GID
+  struct fs_struct     *fs;                               //File system information
+  struct sem_queue     *semsleeping;                      //IPC Information
+  struct mm_struct     *mm;                               //memory management info
+  struct signal_struct *sig;                              //signal handlers
+  //Register information.
+};
+```
+- **Why PCB is needed?** 
+  - When process changes state (ie switched from running to waiting/sleeping state(due to context switch or interrupt)) kernel stores info in PCB, so that process can resumed later from same poing using this information. 
+  - Information of child processes is stored in PCB of parent process etc.
+- **Information stored in PCB?** 
+  - [Register values of present process, stack pointer (rbp)](/assembly) etc
+  - Process-state: Any of 5
+  - pid: process-id
+  - [Program Counter/Instruction Pointer](/Motherboard/CPU/Memory/CPU_Registers/Special_Purpose_Registers/Instruction_Pointer): Address of next instruction to be executed on Code segment of this process.
+  - priority: This is a number. Process having higher priority execute 1st.
+  - [General purpose registers](/Motherboard/CPU/Memory/CPU_Registers/General_Purpose_Registers): Stores results of calculations done by process in Memory segment.
+  - list of open files, list of open devices. This all information is called PROCESS CONTEXT.
+
+<a name=pt></a>
+## Process Table
+- Information of every process is stored in [PCB, process control block](#pcb). Process Table is mapping of PID to PCB inside kernel.
+- **PCB vs [Memory layout of process](#ml)** 
+```c
+        |             PCB                                     |     Process Space                      |
+--------|-----------------------------------------------------|----------------------------------------|
+What    |Contains data to access state,do context switch etc  | Contains user data in Stack,Heap,CS,DS |
+Stored  | in kernel                                           | in User space                          |
+```
+
+<img src=pcb.png width=1000/>
