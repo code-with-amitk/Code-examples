@@ -3,6 +3,7 @@
 - **Debugging using VS**
   - [Remote Debugging](#r)
   - [Multithreaded Application](#m)
+- [Code in VS build on Windows, WSL both](#c)
 
 ### Visual Studio
 We can develop: Computer programs, Websites, Web apps, web services and mobile apps using VS.
@@ -55,3 +56,7 @@ Columns in thread window
 
 3. Show Threads in Code. Click on Button in Visual Studio Bar. This will place marker in code where specific threads are.
 ```
+
+<a name=c></a>
+## Code in VS build on Windows, WSL both
+- 
