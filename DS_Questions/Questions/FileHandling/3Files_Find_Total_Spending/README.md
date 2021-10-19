@@ -1,4 +1,5 @@
-Problem: Read 3 CSV files and find Total Spending?
+### Problem: Read 3 CSV files and find Total Spending?
+```c
 File1: Table01.csv
 Country, City, Street, HouseNumber, Num_Resident_Age_0, Num_Resident_Age_1,Num_Resident_Age_2, Num_Resident_Age_3
 
@@ -7,9 +8,10 @@ Age_Range, Spending
 
 File3: Table03.csv
 City, L_Weight, W_Weight
+```
 
-
-///////////////////LOGIC//////////////////
+### Logic
+```c
 1. Read Table03.csv and store in hashTable
     <std::string,std::pair<boost::any,boost::any>>
 
@@ -22,9 +24,11 @@ City, L_Weight, W_Weight
   no_of_cites no_of_streets city_name
   street1 street2 .. streetn
   houseNo1 HouseNo2 .. HouseNon
-///////////////////////////////////////////////
+```
 
-///////////////SAMPLE RUNS on (Linux)/////////////////
+### Code Run
+#### On Linux
+```c
 ****Scope: Mumbai*****
   (1 * 100 + 1 * 200 + 2 * 300) = 900*1.8 = 1620
   (2 * 400) = 800*1.8 =  1440
@@ -77,11 +81,9 @@ Spending: 3060
 1 1 London Street01 1   //Invalid Street, Invalid House
 Spending: 0
 *********************************************
-////////////////////////////////////////////////////
-
-
-
-///////////////SAMPLE RUNS on (WINDOWS)/////////////////
+```
+#### On Windows
+```c
 ****Scope: Mumbai*****
   (1 * 100 + 1 * 200 + 2 * 300) = 900*2 = 1800
   (2 * 400) = 800*2 =  1600
@@ -99,4 +101,4 @@ Spending: 3400
 1 1 Mumbai Street01 34    //1 Street, 1 House
 Spending: 1800
 *********************************************
-////////////////////////////////////////////////////
+```
