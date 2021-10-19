@@ -1,6 +1,8 @@
 - [Kernel](#k)
 - [User Mode vs Kernel Mode](#uk)
 - [IO / Input Output](#io)
+- [Interrupts](Interrupts)
+- [Shell](Shell)
 
 ## kernel
 Heart of Linux OS. Kernel is chunk of code doing following tasks:
@@ -29,7 +31,3 @@ Methods with which CPU communicates with I/O Device(Eg: printer, Disk etc).
 |What?|processor tests each I/O device in sequence and asks each one if it needs communication with the processor|Device itself tells when it need attention. CPU will stop doing present task, fulfill device request. then resume present task.|DMA Controller does handling interrupts.|
 |Disadv|Huge amount of processor time wastes in looping. Poor performance|High number of interrupts can halt currently running process|
 |Adv||Increases throughput|
-
-
-- _[Interrupts](Interrupts):_ Sources of Interrupts, Types of Interrupts, How Interrupt travels from HWDevice to CPU
-- _[Shell](Shell):_ How Shell Works, Working code
