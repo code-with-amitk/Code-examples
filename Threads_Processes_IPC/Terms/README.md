@@ -4,24 +4,23 @@
 ## Terms
 <a name=at></a>
 ### Atomic Operation(Uninterrupted Operation)
-- Operation which guarantees is completed without intervention of CPU. ie result at end of AO is predictable and correct.
-- Example: Let's function is incrementing a global/static variable.
-  - Thread-1 is executing the fun() fetched count value(say 2). At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
-  - Thread-2 does count=3.
-  - Thread-1 comes back and has previous value (2), instead of writing(4), it ends up in writing (3). But value of count should be 4 due to affect of both the threads.
-  - Such kind of bugs are quite difficult to recreate and locate.
-- Achieving Atomic Operation:    
-  - a. Taking a volatile variable     
-  - b. Using synchronization methods.
-```c
-count = 2;
-fun(){
-  count++;    
-}//This statement can be decomposed into, atleast three operations:    
-    a. Fetching count value    
-    b. Incrementing count value    
-    c. Storing the updated value
+- The end result of AO is predictable and correct. Example:
+```cpp
+a = 0;
+void fun () {     //2 Threads executing this function
+  a += 12;
+}
+
+/////////Problem without Atomic////////
+- Thread-1 enters fun() does a=12, At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
+- Thread-2 does a=12
+- Thread-1 comes back and has previous value (12), instead of writing(14), it ends up in writing (12). But value should be 24.
+  
+/////Solution(Make operation a+=12 atomic):////////
+a. Take a as volatile
+b. Use synchronization methods.
 ```
+
 <a name=av></a>
 #### Atomic Variables
 Atomic types provide are used for shared-memory communication between threads. Atomic variables are safe to share between threads.
