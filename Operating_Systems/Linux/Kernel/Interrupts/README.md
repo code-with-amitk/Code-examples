@@ -141,7 +141,7 @@ The driver must preserve the returned bit mask, and pass it to probe_irq_off lat
       - [PC(Program Counter) = rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Saved IP points to the first instruction which will be loaded into the processor after the interrupt handler completes.
       - [Accumulator(rax), PSW](/Motherboard/CPU/Memory/CPU_Registers) holding Intermidiate results of calculations.
       - [rflags](/Motherboard/CPU/Memory/CPU_Registers/) holding arithematic logical operation results.
-  - *b.* Get [ISR(Interrupt service routine)](ISR) from [IVT(Interrupt Vector Table)](IVT), place ISR address into [rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Jumps to ISR.
+  - *b.* Get [ISR](#isr) from [IVT](#ivt), place ISR address into [rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Jumps to ISR.
   - *c.* Create [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1) for interrupt routine. Copy arguments, local variables from Registers to ISR stack.
   - *d.* Perform [Context Switch](https://sites.google.com/site/amitinterviewpreparation/c-1/max-threads-opened-by-webserver):
     - Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
