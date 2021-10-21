@@ -1,14 +1,18 @@
+- [Atomic Operations](#at)
+  - [Atomic Variables](#av)
+
 ## Terms
-- **Atomic Operation(Uninterrupted Operation)**
-  - Operation which guarantees is completed without intervention of CPU. ie result at end of AO is predictable and correct.
-  - Example: Let's function is incrementing a global/static variable.
-    - Thread-1 is executing the fun() fetched count value(say 2). At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
-    - Thread-2 does count=3.
-    - Thread-1 comes back and has previous value (2), instead of writing(4), it ends up in writing (3). But value of count should be 4 due to affect of both the threads.
-    - Such kind of bugs are quite difficult to recreate and locate.
-  - Achieving Atomic Operation:    
-    - a. Taking a volatile variable     
-    - b. Using synchronization methods.
+<a name=at></a>
+### Atomic Operation(Uninterrupted Operation)
+- Operation which guarantees is completed without intervention of CPU. ie result at end of AO is predictable and correct.
+- Example: Let's function is incrementing a global/static variable.
+  - Thread-1 is executing the fun() fetched count value(say 2). At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
+  - Thread-2 does count=3.
+  - Thread-1 comes back and has previous value (2), instead of writing(4), it ends up in writing (3). But value of count should be 4 due to affect of both the threads.
+  - Such kind of bugs are quite difficult to recreate and locate.
+- Achieving Atomic Operation:    
+  - a. Taking a volatile variable     
+  - b. Using synchronization methods.
 ```c
 count = 2;
 fun(){
@@ -18,10 +22,19 @@ fun(){
     b. Incrementing count value    
     c. Storing the updated value
 ```
-- **Bound Waiting:** Process-2 waits outside critical section while process-1 is executing inside.
-- **CPU Bound:** Process spends most of time with CPU executing instructions. From Source: Program doing lot of calculations Eg: finding all possible permutations of a string.
-- **Deadlock**
-  - 2 or more threads waits on resources which is/are held by each other. None of thread releases the resource and in turn waits for other to release. 
+<a name=av></a>
+#### Atomic Variables
+Atomic types provide are used for shared-memory communication between threads. Atomic variables are safe to share between threads.
+
+<a name=bw></a>
+### Bound Waiting
+Process-2 waits outside critical section while process-1 is executing inside.
+<a name=cb></a>
+### CPU Bound 
+Process spends most of time with CPU executing instructions. From Source: Program doing lot of calculations Eg: finding all possible permutations of a string.
+<a name=dl></a>
+### Deadlock
+2 or more threads waits on resources which is/are held by each other. None of thread releases the resource and in turn waits for other to release. 
 ```c
 Example-1
   Thread-1 acquires mutex-a. 
@@ -59,7 +72,9 @@ void *thread-2(void *a){
     }
 }
 ```
-- **IO Bound?** Process spends most of time in IO. From source: Program doing lot of File RW operations.
+<a name=io></a>
+### IO Bound 
+Process spends most of time in IO. From source: Program doing lot of File RW operations.
 ```c
 Q: Find whether a process is IO Bound or CPU Bound?
  top command has %cpu column(Total CPU time used by process from when its started). CPU bound will have high %cpu.
@@ -68,7 +83,8 @@ Q: Find whether a process is IO Bound or CPU Bound?
         i=0;
  }
  ```
-- **Critical Section(requires Mutual Exclusion):** 
+ <a name=cs></a>
+### Critical Section(requires Mutual Exclusion)
   - Piece of code where 2 processes/threads are not allowed to execute concurrently. 
   - Ex: shared data structures, peripheral device, or network connection. CS should be accessed using synchronization. Eg: semaphore
 - **Pareto Principle** 90% of CPU cycles are spent in 10% of code. Means we have to focus & parallelly implement this 10% of code
