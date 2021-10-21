@@ -6,7 +6,7 @@
   - [4. Precise & Imprecise Interrupts](#pi)
 - [Source of Interrupt](#sr)
 - [Interrupt Flow/Hardware Interrupt reaching CPU](#if)
-- [ISR](#isr)
+- [ISR / Interrupt Handler](#isr)
 - [IVT(Interrupt Vector Table) / (IDT) Interrupt Descriptor Table](#ivt)
 - [Things CPU does after getting interrupt](#thing)
 - [High Number of Interrupts](#high)
