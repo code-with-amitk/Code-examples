@@ -23,6 +23,7 @@
 - [Automated Tests](#tests)
 - [Custom Programs](#custom)
 - [Design Guidelines](#dg)
+- [Threading](#th)
 
 ### What/Why Rust
 <a name="All"></a>
@@ -224,3 +225,6 @@ Trait bounds, Future,
 
 <a name=dg></a>
 ### [Design Guidelines](Design_Guidelines)
+
+<a name=th></a>
+### [Threading](Threading)
