@@ -1,6 +1,23 @@
+- [Memory layout of Threads](#ml)
 - [Joinable, Detachable Threads](#jd)
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
 
+<a name=ml></a>
+## Memory Layout of Threads
+Threads have seperate stacks on Process stack
+#### Thread1 executing fun1(), Thread2 executing fun2()
+```c
+<--------------Process Memory layout--------------------------->
+[           Stack             ][ ptr-to-heap ][Data Segment][Code Segment]
+ [Thread1 fun1] [Thread2 fun2]
+```			
+#### Memory layout of 2 threads executing same function
+```c
+<--------------Process Memory layout--------------------------->
+[       Stack   fun()          ][ ptr-to-heap ][Data Segment][Code Segment]
+ Thread1, Thread2 accesses fun()
+```			
+			
 <a name=jd></a>
 ## Joinable, Detachable Threads
 **Joinable Thread:** Thread1(Main Process) waits for thread2 before it terminates itself. Thread1(Main process) cannot terminate before thread2 terminates.
