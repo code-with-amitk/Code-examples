@@ -71,9 +71,28 @@ Q: Find whether a process is IO Bound or CPU Bound?
 - **Critical Section(requires Mutual Exclusion):** 
   - Piece of code where 2 processes/threads are not allowed to execute concurrently. 
   - Ex: shared data structures, peripheral device, or network connection. CS should be accessed using synchronization. Eg: semaphore
-- **[Deadlock](Deadlock)**
 - **Pareto Principle** 90% of CPU cycles are spent in 10% of code. Means we have to focus & parallelly implement this 10% of code
 - **Race Condition?** 2 or more threads/processes are accessing/writing same shared resource(file, global variables etc) then at end result is unpredictable or wrong.
-- **[Reentrant](Reentrant)**
-
-
+- **Reentrant**
+  - Making second call same function while a previous call has not yet finished.
+  - *Example:*
+    - Suppose 2 threads can excute same function `fun()`.
+    - Thread-1 executing is on line-11(writing to some big memory area `*ptr=bb`) of `fun()` & CPU decides to context switch. State of memory `*ptr` will be inconsistent and control is given to thread-2.
+    - Thread-2 starts executing and writes to `*ptr=bbaaaa` and again context switch is done to thread-1.
+    - Thread-1 comes back, expects `*ptr=bb` and starts writing `*ptr=bbbbb` and done.
+    - Thread-2 reads `*ptr` thinking output as `bbaaaa` But `*ptr` is in inconsistent state.
+  - **Solution:** mutex(But it eliminates parallelism)
+```c
+  fun(){            
+      ...
+11:    writing_to_big_memory (*ptr)
+      ...
+  }
+  
+int main(){  
+  thread t1(fun);
+  thread t2(fun);
+  t1.join();
+  t2.join();
+}  
+```
