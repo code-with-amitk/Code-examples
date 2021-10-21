@@ -21,8 +21,22 @@
 | unlikely | `[[unlikely]]` | 201803L |	(C++20) |
   
 ### Types of attributes
-  1. `[[noreturn]]`
-  2. `[[carries_dependency]]`
+#### 1. `[[noreturn]]`
+  - Indicates function will never returns to caller. This means function either `throw an exception` or `call std::terminate`.
+  - The behavior is undefined if the function with this attribute actually returns.
+  - **Advantage** Complier will not do clean up tasks(pushing rbp etc) and can optimize the function's code.
+```cpp
+[[noreturn]] void fun(std::string message) {
+    cout<<message;
+    if (THROW_EXCEPTION_ON_ASSERT)
+        throw AssertException(std::move(message));
+    terminate();
+}
+```
+
+#### 2. `[[carries_dependency]]`
+Tells complier to skip unnecessary memory fence instructions for this function as it will consumes/releases memory being part atomic operation.
+
   3. `[[deprecated]]C++14  [[deprecated("reason")]](C++14)`
   4. `[[fallthrough]]` only with switch
   5. `[[nodiscard]](C++17)  [[nodiscard("reason")]](C++20)`
