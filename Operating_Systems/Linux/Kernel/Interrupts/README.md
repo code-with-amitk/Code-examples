@@ -6,6 +6,9 @@
   - [4. Precise & Imprecise Interrupts](#pi)
 - [Source of Interrupt](#sr)
 - [Interrupt Flow/Hardware Interrupt reaching CPU](#if)
+- [ISR](#isr)
+- [IVT(Interrupt Vector Table) / (IDT) Interrupt Descriptor Table](#ivt)
+- [Things CPU does after getting interrupt](#thing)
 
 <a name=i></a>
 ## Interrupt
@@ -69,9 +72,86 @@ abort(): Program error eg: divide by 0, access invalid memory address.
 - User is watching a movie and presses key on keyboard(hardware device).
 - Hardware device/Periheral generates H/W Interrupt sends to [Interrupt Controller-8952 on IR0-IR7 lines](/Motherboard/8952_PIC). IC decides priority of Interrupt and forwards to CPU on [INTR(Interrupt) PIN](/Motherboard/CPU/Microprocessors/8086).
 - CPU stops what it is doing and does the [following](Things_CPU_does_after_getting_Interrupt.md).
-- Finds [ISR(Interrupt Service Routine/Interrupt Handler)](ISR.md) from [IVT(Interrupt Vector Table)](IVT), executes ISR. After completing the ISR resumes the task what it was doing.
+- Finds [ISR(Interrupt Service Routine/Interrupt Handler)](#isr) from [IVT(Interrupt Vector Table)](IVT), executes ISR. After completing the ISR resumes the task what it was doing.
 <img src="./interrupt.jpg" width=1000 />
 
+<a name=isr></a>
+## ISR(Interrupt Service Routine) / Interrupt Handler
+- ISR is function/process that processes the interrupt. ie this process is executed when interrupt is received. Every device has seperate ISR.
+- Registering ISR.
+```c
+int request_irq(unsigned int irq,		                      //1
+	irqreturn_t (*handler)(int, void *, struct pt_regs *),    //2
+	unsigned long flags,                                     //3
+	const char *dev_name,	                                 //4
+	void *dev_id);                                           //5
+            
+1. irq=3(Interrupt no): Interrupt number to which this handler should be registered.
+2. Interrupts Handler: Implemented as Function pointer, when interrupt happens code jumps to that location
+3. Flags:
+  SA_INTERRUPT: “fast” interrupt handler: Fast Interrupt executed with interrupts disabled on the current processor
+  SA_SHIRQ: shared interrupt
+  SA_SAMPLE_RANDOM: generated interrupts can contribute to the entropy pool used by /dev/random and /dev/urandom
+4. owner of interrupt  
+5. For shared Interrupt line. if interrupt is not shared. dev_id=NULL. But it a good idea anyway to use this item
+  to point to the device structure
+```
+
+#### Divison of ISR
+- ISR is divided into two parts:
+  - **1. Top-half or First-Level Interrupt Handler (FLIH):** Executed immediately at occurance of interrupt. Example:
+    - Acknowledging interrupt
+    - Resetting hardware(if needed)
+    - Recording any information ie only available at time of interrupt. 
+  - **2. Bottom-half or Second-Level Interrupt Handlers (SLIH):** Non-critical processing is deferred for this.
+
+<a name=ivt></a>
+## IVT(Interrupt Vector Table) / (IDT) Interrupt Descriptor Table
+- Contains ISR(Interrupt service routine)/Handler/Address to which CPU jumps at occurrence of interrupt. Present in 1st 1K of physical memory.
+- Starting address of IVT is stored in dedicated register (IDTR). 
+- **How its created?** IDT is created when the system initially boots and reflects the specific system configuration.
+- IVT is filled using [Probing](#prob).
+- Interrupt number is used as index in IVT. CPU goes to IVT's index, gets [Instruction Pointer/Program counter](https://sites.google.com/site/amitinterviewpreparation/c-1/assembly-language) and starts Interrupt service procedure. Once CPU starts ISP, Device Acks Interrupt controller
+```c
+            | 0x420932 ISR of Int0 |      |     |     |
+Interrupt No>       0                 1       2     3
+
+    CPU                    Hardware_Device
+       <- Interrupt3=signal-
+ Find & runs ISR3 for Intr3
+    isr3(){..}
+```
+<a name=prob></a>
+#### Probing
+- Finding which Interrupt line Hardware Device is going to use?
+- **How?** Device driver tells the Hardware device to generate interrupts and watches the IRQ line and finds which line device is using.
+```c
+unsigned long probe_irq_on(void);
+This function returns a bit maskof unassigned interrupts.
+The driver must preserve the returned bit mask, and pass it to probe_irq_off later.
+```
+- **Other Method?** The interrupt handler can be installed either at driver initialization or when the device is first opened. Installing isr at device initialization causes interrupt line to be occupied even device is not used.
+
+<a name=thing></a>
+## Things CPU does after getting interrupt
+- CPU is executing a function1() and interrupt occured.
+  - *a.* CPU saves following on current function1()'s [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1):
+    - Input_parameters, Return_address, Local_variables of function1()
+    - Registers:
+      - [PC(Program Counter) = rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Saved IP points to the first instruction which will be loaded into the processor after the interrupt handler completes.
+      - [Accumulator(rax), PSW](/Motherboard/CPU/Memory/CPU_Registers) holding Intermidiate results of calculations.
+      - [rflags](/Motherboard/CPU/Memory/CPU_Registers/) holding arithematic logical operation results.
+  - *b.* Get [ISR(Interrupt service routine)](ISR) from [IVT(Interrupt Vector Table)](IVT), place ISR address into [rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Jumps to ISR.
+  - *c.* Create [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1) for interrupt routine. Copy arguments, local variables from Registers to ISR stack.
+  - *d.* Perform [Context Switch](https://sites.google.com/site/amitinterviewpreparation/c-1/max-threads-opened-by-webserver):
+    - Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
+  - *e.* ACK interrupt controller
+  - *f.* Finishes ISR routine execution.
+  - *g. Resumption:* Means resuming the interrupted task which CPU has left inbetween.
+    - iret instruction executed.
+      - clear ISR stack.
+      - clear [rflags, rip registers](/Motherboard/CPU/Memory/CPU_Registers).
+      - Control goes back to interrupted process stack.
 
 - [High Number of Interrupts](High_No_of_Interrupts.md)
 - [Interrupt Numbers](Interrupt_Numbers.md)
