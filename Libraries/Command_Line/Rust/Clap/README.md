@@ -17,18 +17,21 @@ clap = "2.33.3"
 
 $ cat main.rs
 use clap::{Arg, App};
+const SERVER = "server";
 fn main() {
     let matches = App::new("My Program")    //call new() from App crate
         .version("1.0")
         .author("Amit Kumar")
         .about("Does awesome things")
         .arg(
-            Arg::with_name("var_file_name")
-            .short("c")
-            .long("config")
-            .value_name("FILE")
-            .help("Sets a custom config file")
+            Arg::with_name("SERVER")                         //Argument-1
+            .short("s")                                     //shortname
+            .long("SERVER")
+            .value_name("ADDRESS")                           //Value is of type "Address"
+            .help("Server Address")
+            .required(false)
             .takes_value(true)
+            .default_value("10.0.0.1")
         )
         .get_matches();
 
