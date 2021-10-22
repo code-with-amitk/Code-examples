@@ -1,18 +1,26 @@
-[Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)
-- **Approach-1, Depth 1st Search**
-  - [Logic](#logic)
-  - [Complexity](#comp)
-  - Code
-    - [C++](#cpp1)
-    - [Rust](#rs1)
-- **Approach-2, Disjoint Set Union**
-  - [Logic](#log2)
-  - Code
-    - [C++](#cpp2)
+**Both Question are finding Connected Components**
+- [Q-1: Number of Connected Components in an Undirected Graph](#q1)
+  - **Approach-1, Depth 1st Search**
+    - [Logic](#logic)
+    - [Complexity](#comp)
+    - Code
+      - [C++](#cpp1)
+      - [Rust](#rs1)
+  - **Approach-2, Disjoint Set Union**
+    - [Logic](#log2)
+    - Code
+      - [C++](#cpp2)
+- [Q-2: Gifting Groups/Friend Circles/Number of Provinces](#q2)
+  - **Approach-1, Depth 1st Search**
+    - [Logic](#logic)
+    - [Complexity](#comp)
+    - Code
+      - [C++](#cpp2)
 
-## Number of connected Components
-- [Connected Components?](/DS_Questions/Data_Structures/Graphs)
-- Question:
+
+
+<a name=q1></a>
+## [Question-1: Number of connected Components](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)
   - Graph contains n verteces. Given and an array edges where `edges[i] = [ai, bi]` indicates that there is an edge between ai and bi in the graph.
   - Return the number of connected components in the graph.
 ```c
@@ -256,5 +264,81 @@ int main()
 {
     Solution o;
     vector<vector<int>> v = { {0, 1},{1, 2},{3, 4} };    cout << o.countComponents(5, v); //2
+}
+```
+
+<a name=q2></a>
+## [Question-2: Number of Provinces](https://leetcode.com/problems/number-of-provinces/)
+- There are n cities. Some of them are connected, while some are not. If city a is connected directly with city b, and city b is connected directly with city c, then city a is connected indirectly with city c.
+- A province is a group of directly or indirectly connected cities and no other cities outside of the group.
+- You are given an n x n matrix isConnected where `isConnected[i][j] = 1` if the ith city and the jth city are directly connected, and `isConnected[i][j] = 0` otherwise.
+- Return the total number of provinces.
+
+#### Code
+<a name=cpp2></a>
+- **C++**
+Here, Adjacency Matrix is already given, we donot need to create (adjacency list or matrix) as done in [Quesion-1](#q1)
+```cpp
+$ cat test.h
+#pragma once
+#include <iostream>
+#include <vector>
+#include <stack>
+
+$ cat test.cpp
+#include "Connected_Comp_AdjMatrix.h"
+
+using namespace std;
+
+class Solution {
+    stack<int> m_st;
+    void dfs(vector<vector<int>>& isConnected,
+        vector<bool>& vecVisited,
+        int start) {
+        m_st.push(start);
+        while (!m_st.empty()) {
+            int top = m_st.top();
+            m_st.pop();
+            vecVisited[top] = true;
+
+            //Find Neighbour
+            for (int i = 0; i < isConnected[top].size(); ++i) {
+                //Except myself check all neighbours
+                //if any unvisited neighbour, push in stack
+                if (i != top) {
+                    if (isConnected[top][i] == 1 && !vecVisited[i])
+                        m_st.push(i);
+                }
+            }
+        }
+    }
+public:
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        if (!isConnected.size())
+            return 0;
+
+        size_t rows = isConnected.size();
+        int iConnected = 0;
+        vector<bool> vecVisited(rows, false);
+        stack<int> s;
+
+        for (int i = 0; i < rows; ++i) {
+            if (!vecVisited[i]) {
+                dfs(isConnected, vecVisited, i);
+                iConnected++;
+            }
+        }
+        return iConnected;
+    }
+};
+
+int main()
+{
+    //vector < vector<int>> v = { {1, 1, 0} ,{1, 1, 0},{0, 0, 1}};
+    //vector < vector<int>> v = { {1,0,0} ,{0,1,0},{0,0,1} };
+    vector < vector<int>> v = { {1, 0, 0, 1},{0, 1, 1, 0},{0, 1, 1, 1},{1, 0, 1, 1}};
+    Solution obj;
+    cout << obj.findCircleNum(v);
+	return 0;
 }
 ```
