@@ -20,4 +20,4 @@ Cealing of 7 = 1
 
 Answer: 7
 ```
-- _2._ [Gifting Groups/Friend Circles/Number of Provinces](https://leetcode.com/problems/number-of-provinces/)
+- _2._ [Gifting Groups/Friend Circles/Number of Provinces](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Number_of_Connected_Components.md)
