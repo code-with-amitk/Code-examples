@@ -44,11 +44,16 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 - For weighted graph values are cost/weights. 
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
 ```c
-   a   b   c   d     //a=0,b=1,c=2,d=3
-a  0   0   1   1    
-b  0   0   0   a
-c  0   0   0   1
-d  0   0   0   0
+    4 -- 2
+    | \
+    |   \
+    1 -- 3
+    
+   1   2   3   4
+1  0   0   1   1    
+2  0   0   0   1
+3  0   0   0   1
+4  1   1   1   0
 ```
 
 <a name=l></a>
