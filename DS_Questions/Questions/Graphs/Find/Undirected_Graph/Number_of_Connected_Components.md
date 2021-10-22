@@ -12,8 +12,9 @@
 
 ## Number of connected Components
 - [Connected Components?](/DS_Questions/Data_Structures/Graphs)
-- Graph contains n verteces. Given and an array edges where `edges[i] = [ai, bi]` indicates that there is an edge between ai and bi in the graph.
-- Return the number of connected components in the graph.
+- Question:
+  - Graph contains n verteces. Given and an array edges where `edges[i] = [ai, bi]` indicates that there is an edge between ai and bi in the graph.
+  - Return the number of connected components in the graph.
 ```c
 Example-1
   0 -- 1    3 -- 4
