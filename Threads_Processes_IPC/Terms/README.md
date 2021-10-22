@@ -23,7 +23,9 @@ b. Use synchronization methods.
 
 <a name=av></a>
 #### Atomic Variables
-Atomic types provide are used for shared-memory communication between threads. Atomic variables are safe to share between threads.
+- Atomic types provide are used for shared-memory communication between threads. Atomic variables are safe to share between threads.
+- ie values at end in these variables in not vague/unpredictable after n threads finished operating.
+- [C++ Atomic](/Languages/Programming_Languages/c++/Threads/)
 
 <a name=bw></a>
 ### Bound Waiting
