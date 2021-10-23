@@ -77,9 +77,9 @@ Done
 
 <a name=bc></a>
 #### 2. Burnout, Burnup, Burndown chart
-**Burnout:** The burn-down chart shows the remaining work to complete before the timebox (iteration) ends.
-**Burnup:** It shows the progress of stories done over time
-**Burndown:** It shows how much work was left.
+- **Burnout:** The burn-down chart shows the remaining work to complete before the timebox (iteration) ends.
+- **Burnup:** It shows the progress of stories done over time
+- **Burndown:** It shows how much work was left.
 
 <a name=v></a>
 #### 3. Velocity
