@@ -1,6 +1,6 @@
 - **Scrum Terms**
   - [1. Refactoring](#rf)
-  - [2. Sprint]( #sp)
+  - [2. Sprint](#sp)
   - [3. User Stories](#us)
   - [4. Epic](#ep)
   - [5. Task](#ta)
@@ -78,7 +78,7 @@ The burn-down chart shows the remaining work to complete before the timebox (ite
 <a name=v></a>
 #### 3. Velocity
 - Velocity is a metric that is calculated by addition of all efforts estimates related with user stories completed in an iteration. 
-- It mesures how much work Agile can complete in a sprint and how much time will it need to finish a project.
+- It mesures how much work Agile can complete in a [sprint](#sp) and how much time will it need to finish a project.
 
 <a name=tdd></a>
 ## TDD, Test Driven Development
