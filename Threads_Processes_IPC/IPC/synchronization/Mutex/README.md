@@ -30,6 +30,49 @@
   
 ## Code
 ### 2 Threads executing same function
+<a name=ct></a>
+#### C++ thread
+Note asynchronous nature of threads, Thread-2 starts earlier than thread-1.
+```
+$ cat test.h
+#include <iostream>
+#include <thread>
+#include <vector>
+#include <mutex>
+
+$ cat test.cpp
+#include "test.h"
+using namespace std;
+
+int a = 5;
+mutex m;
+
+void test(int tid) {
+    m.lock();
+    a += 5;
+    std::cout << "Thread: " << tid << ", a:" << a <<endl;
+    m.unlock();
+}
+
+int main()
+{
+    vec.push_back(40);
+    std::thread t1(test,1);
+    std::thread t2(test,2);
+    t1.join();
+    t2.join();
+    return 0;
+}
+
+///////Output without m.lock(), m.unlock()///////////
+Thread: Thread: 1, a:15                 //Because Global variables are not thread safe.
+2, a:15
+
+///////Output with m.lock(), m.unlock()///////////
+Thread: 2, a:10                         
+Thread: 1, a:15
+```
+
 <a name=pt1></a>
 #### pthread
 ```c
@@ -70,44 +113,3 @@ Output:
 */
 ```
 
-<a name=ct></a>
-#### C++ thread
-```
-$ cat test.h
-#include <iostream>
-#include <thread>
-#include <vector>
-#include <mutex>
-
-$ cat test.cpp
-#include "test.h"
-using namespace std;
-
-int a = 5;
-mutex m;
-
-void test(int tid) {
-    m.lock();
-    a += 5;
-    std::cout << "Thread: " << tid << ", a:" << a <<endl;
-    m.unlock();
-}
-
-int main()
-{
-    vec.push_back(40);
-    std::thread t1(test,1);
-    std::thread t2(test,2);
-    t1.join();
-    t2.join();
-    return 0;
-}
-
-///////Output without m.lock(), m.unlock()///////////
-Thread: Thread: 1, a:15                 //Because Global variables are not thread safe.
-2, a:15
-
-///////Output with m.lock(), m.unlock()///////////
-Thread: 2, a:10
-Thread: 1, a:15
-```
