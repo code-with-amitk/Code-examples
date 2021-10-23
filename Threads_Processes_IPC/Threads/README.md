@@ -1,6 +1,7 @@
 - [Memory layout of Threads](#ml)
 - [Joinable, Detachable Threads](#jd)
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
+- [Synchronization needed to access shared resource](#sy)
 
 <a name=ml></a>
 ## Memory Layout of Threads
@@ -85,3 +86,7 @@ Threads will Conflict over use of Global variables.
 - When process stack overflows, kernel provides that process with more stack automatically. When it becomes unmanagable it hangs.
 - **Thread Stacks** When process has multiple threads, Each thread will have its own stack.
   - When thread stack overflows, kernel is not aware(since its entity inside process), user space process need to take care of it.
+
+<a name=sy></a>
+### Synchronization needed to access shared resource
+if same function is executed by 2/more threads and resources are not thread safe, output is unpredictable. [2 Threads Executing same function](/Threads_Processes_IPC/IPC/synchronization/Mutex)
