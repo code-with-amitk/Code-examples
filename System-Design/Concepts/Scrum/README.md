@@ -1,11 +1,12 @@
-**Scrum**
 - **Scrum Terms**
   - [1. Refactoring](#rf)
   - [2. Sprint]( #sp)
-  - [3. User Stories, Epic, Task](#us)
-  - [4. Scrum Roles](#sr)
-  - [5. Scrum Task Board](#st)
-  - [6. Product Backlog, Sprint Backlog](#ps)
+  - [3. User Stories](#us)
+  - [4. Epic](#ep)
+  - [5. Task](#ta)
+  - [6. Scrum Roles](#sr)
+  - [7. Scrum Task Board](#st)
+  - [8. Product Backlog, Sprint Backlog](#ps)
 - **[Agile](#ag)**
   - [1. Agile Iterations](#ai)
   - [2. Burnout chart](#bc)
@@ -16,8 +17,6 @@
 ## Scrum
 - Scrum is one of the most popular frameworks for implementing Agile. Scrum and agile are not same things.
 - With scrum, the product is built in a series of fixed-length iterations called sprints that give teams a framework for shipping software on a regular cadence.
-
-## Terms
 
 <a name=rf></a>
 #### 1. Refactoring
@@ -31,18 +30,22 @@ To improve the performance or readability, the existing code is modified; this i
 
 <a name=us></a>
 #### 3. User Stories
-- Features customers might want to see in their software. Typically no more than a couple days work, they form the basis of our Agile plans.
-- Task: Further down user stories are broken down into different tasks.
-- Epic: A customer described software feature that is itemized in the product backlog is known as epic. Epics are sub-divided into stories.
+Features customers might want to see in their software. Typically no more than a couple days work, they form the basis of our Agile plans.
+<a name=ta></a>
+#### 4. Task 
+User stories are broken down into different tasks.
+<a name=ep></a>
+#### 5. Epic 
+A customer described software feature that is itemized in the product backlog is known as epic. Epics are sub-divided into stories.
 
 <a name=sr></a>
-#### 4. Scrum Roles
+#### 6. Scrum Roles
 - **Product Owner** They are focused on understanding business and market requirements, then prioritizing the work to be done by the engineering team accordingly.
 - **Scrum Master** They coach the team, the product owner, and the business on the scrum process and look for ways to fine-tune their practice of it.
 - **Scrum Team** These are cross-functional teams. Includes developers, testers, designers, and ops engineers in addition to developers.
 
 <a name=st></a>
-#### 5. Scrum Task Board
+#### 7. Scrum Task Board
 - This is visual display of the progress of the Scrum team during a sprint. It presents a snapshot of the current sprint backlog allowing everyone to see which tasks remain to be started, which are in progress and which are done.
 - Consider the following layout of the task board:
 ```c
@@ -54,7 +57,7 @@ Done
 ```
 
 <a name=ps></a>
-#### 6. Product Backlog, Sprint Backlog
+#### 8. Product Backlog, Sprint Backlog
 - **Product Backlog** is an ordered list of everything that is known to be needed in the product. It is the single source of requirements for any changes to be made to the product.
 - **Sprint Backlog** is the set of Product Backlog items selected for the Sprint during the Sprint Planning, plus a plan for delivering the product Increment and realizing the Sprint Goal.
 
