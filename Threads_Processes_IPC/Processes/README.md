@@ -66,6 +66,8 @@ Fork can fail if there are:
 
 <a name=ml></a>
 # Memory Layout of Process
+- After compilation obj file is created [ELF](Executable and linking format) format. This ELF file has (.text=CS, .data & .rodata = DS and others)
+- This file is loaded in memory which creates Memory layout of the process.
 ```console
                    |                                                                                               |
                    |                          <------DATA SEGMENT (static, global) ----------->                    |
