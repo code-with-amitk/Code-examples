@@ -7,9 +7,10 @@
   - [6. Scrum Roles](#sr)
   - [7. Scrum Task Board](#st)
   - [8. Product Backlog, Sprint Backlog](#ps)
+  - [9. Sprint Planning](#spl)
 - **[Agile](#ag)**
   - [1. Agile Iterations](#ai)
-  - [2. Burnout chart](#bc)
+  - [2. Burnout, Burnup, Burndown chart](#bc)
   - [3. Velocity](#v)
 - **TDD, Test Driven Development**
   - [What](#tdd)
@@ -61,6 +62,9 @@ Done
 - **Product Backlog** is an ordered list of everything that is known to be needed in the product. It is the single source of requirements for any changes to be made to the product.
 - **Sprint Backlog** is the set of Product Backlog items selected for the Sprint during the Sprint Planning, plus a plan for delivering the product Increment and realizing the Sprint Goal.
 
+<a name=spl></a>
+#### 9. Sprint Planning
+ All work that needed to be done in Sprint is planned in Sprint Planning.
 <a name=ag></a>
 ## Agile
 - Agile is a time boxed, iterative approach(framework) for software delivery that builds software incrementally, instead of trying to deliver it all at once near the end.
@@ -72,8 +76,10 @@ Done
 - An Agile iteration is a short 1 to 2 week period where a team takes most important user stories, builds them completely and deliver as running-tested-software to the customer. Analysis, design, coding, testing happen during an iteration.
 
 <a name=bc></a>
-#### 2. Burn out chart
-The burn-down chart shows the remaining work to complete before the timebox (iteration) ends.
+#### 2. Burnout, Burnup, Burndown chart
+**Burnout:** The burn-down chart shows the remaining work to complete before the timebox (iteration) ends.
+**Burnup:** It shows the progress of stories done over time
+**Burndown:** It shows how much work was left.
 
 <a name=v></a>
 #### 3. Velocity
