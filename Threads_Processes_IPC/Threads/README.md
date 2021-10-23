@@ -89,4 +89,6 @@ Threads will Conflict over use of Global variables.
 
 <a name=sy></a>
 ### Synchronization needed to access shared resource
-if same function is executed by 2/more threads and resources are not thread safe, output is unpredictable. [2 Threads Executing same function](/Threads_Processes_IPC/IPC/synchronization/Mutex)
+- if same function is executed by 2/more threads and resources are not thread safe, output is unpredictable.
+- Also note asynchronous nature of threads, Thread-2 starts earlier than thread-1.
+  - [2 Threads Executing same function](/Threads_Processes_IPC/IPC/synchronization/Mutex)
