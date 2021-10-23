@@ -3,7 +3,7 @@
   - [fork()](#f) 
     - [When fork can fail](#fail)
   - [Code: 1 Child, 2 children, fork, n forks](#c)
-- **Memory Layout of Process**
+- **[Memory Layout of Process](#ml)**
   - [1. Code Segment](#cs)
     - [Size of CS](#scs)
   - _2._ Data Segment
@@ -66,7 +66,7 @@ Fork can fail if there are:
 
 <a name=ml></a>
 # Memory Layout of Process
-- After compilation obj file is created [ELF](Executable and linking format) format. This ELF file has (.text=CS, .data & .rodata = DS and others)
+- After compilation obj file is created [ELF(Executable and linking format)](/Languages/Programming_Languages/C/Compile/Object_File) format. This ELF file has (.text=CS, .data & .rodata = DS and others)
 - This file is loaded in memory which creates Memory layout of the process.
 ```console
                    |                                                                                               |
