@@ -3,7 +3,8 @@
 - [Feature](#f)
 - [Memory Layout of Java Program](#ml)
 - **Input Output**
-  - [Reading stdin & dump on stdout](#i1)
+  - [1. Reading stdin & dump on stdout](#i1)
+  - [2. Formatted Output](#fo)
 - **Classes**
   - [Scanner](#s)
 
@@ -86,6 +87,20 @@ public class Solution {
         System.out.println("Int: " + i);
     }
 }
+```
+<a name=fo></a>
+#### 2. Formatted output
+- `%n` is newline
+```java
+float a = 4.2f;
+System.out.printf("%.4f", a);         //4.2000                      //Printing upto 4 precisions
+
+float n = 2324435.3f;
+System.out.printf("%20.4f n=",n);     //n =         2324435.2500    //number is formatted from right margin & occupies width of 20 characters
+
+String s="java";
+int a = 20;
+System.out.printf("%-15s%03d%n", s, a);   //java           20
 ```
 
 ## Classes
