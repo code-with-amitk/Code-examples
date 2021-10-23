@@ -73,7 +73,7 @@ Fork can fail if there are:
                    | ----->                                BlockStartedBySymbol <-RW--><--RO-->              0x0000|
                    |                                                                                               |
 ```
-<img src=memory-layout-of-process.PNG width=700/>
+<img src=memory-layout-of-process.PNG width=500/>
 
 <a name=cs></a>
 ## 1. Code/Text Segment
