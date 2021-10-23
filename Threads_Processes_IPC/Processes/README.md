@@ -74,6 +74,11 @@ Fork can fail if there are:
 [Kernel] Process-2 |[STACK] shared_libraries {PTR-To-HEAP} {Uninitialized_BSS} {Initialized DS} [TEXT/CODE SEGMENT]|
                    | ----->                                BlockStartedBySymbol <-RW--><--RO-->              0x0000|
                    |                                                                                               |
+                   
+Object File  ===>   |ELF Header|.data Header|.rodata Header|.text Header |.data|.rodata|.text|
+                                                                         /            /       \                         
+                                                                       /             /           \
+Memory Layout ==>                                                     | Data Segment |Code Segment| Stack |
 ```
 <img src=memory-layout-of-process.PNG width=500/>
 
