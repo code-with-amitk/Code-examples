@@ -1,6 +1,7 @@
 - [Thread vs Process](#vs)
 - [Thread usecases](#uc)
 - [Multiprocessing vs Multitasking](#vs1)
+- [Hyperthreading](#ht)
 
 <a name=vs></a>
 ### Thread(miniprocess) vs Process
@@ -25,3 +26,7 @@
 ----------|-------------------------------|-------------------------------------------
 What      |                               | - Only 1 processor, multiple threads are run in time sliced manner.
 ```
+
+<a name=ht></a>
+### Hyperthreading / SMT(Simultaneous Hyper Threading)
+Split a core into virtual [cores](/Threads_Processes_IPC/MultiCPU_MultiCore) and assign a thread to each of core.
