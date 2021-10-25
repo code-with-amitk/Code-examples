@@ -80,10 +80,10 @@ Thread: 1, a:15
 
 pthread_t tid1,tid2;  //Defined as int
 int counter;
-pthread_mutex_t lock;
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 
 void *fun(){
-  pthread_mutex_lock(&lock);       //Thread-2 sleeps until Thread-1 unlocks the mutex
+  pthread_mutex_lock(&lock);              //Thread-2 sleeps until Thread-1 unlocks the mutex
   printf("\n Thread-%d has started a job\n", pthread_self()); 
   for (unsigned long i = 0; i < (0xFFFFFFFF); i++) 	//Added to make processing large
     printf("\n Thread-%d has finished\n", pthread_self());
