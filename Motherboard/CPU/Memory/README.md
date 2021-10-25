@@ -18,7 +18,7 @@ CPU-Registers  L1-Cache/   L2-Cache/   L3-Cache/    Physical_Memory/  Hard_Disk/
 ### 1. CPU Registers
 Register store values on CPU. Hardware registers are outside CPU.
 
-<img src="x86-32_64 Registers.jpg" width=900 />
+<img src="x86-32_64 Registers.jpg" width=600 />
 
 <a name=gp></a>
 #### 1a. General Purpose Registers
