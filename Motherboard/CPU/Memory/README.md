@@ -1,27 +1,30 @@
 - [Memory Types](#mt)
   - [1. CPU Registers](#m1)
-    - [1a. Gneeral Purpose Registers](#gp)
+    - [1a. General Purpose Registers](#gp)
     - [1a. Segment Registers](#sr)
-    - [1c. XMM Registers](#xmm)
-    - [1d. RFLAGS Register](#rf)
+    - [1c. Special Purpose: IP, PSW](#sp)
+    - [1d. XMM Registers](#xmm)
+    - [1e. RFLAGS Register](#rf)
 
 
 <a name=mt></a>
-## Memory Types
+# Memory Types
 Program only runs when its in RAM.
 ```c
 CPU-Registers  L1-Cache/   L2-Cache/   L3-Cache/    Physical_Memory/  Hard_Disk/Secondary_Memory  Tertiary_Memory/
                 SRAM         SRAM        DRAM        RAM/Main Memory    SSD                        remote_storge
     <------------------[Speed, Cost increases]   [Size Decreases]-----------------------------
 ```
+<img src=Memory_types.jpg width=600/>
+
 <a name=m1></a>
-### 1. CPU Registers
+## 1. CPU Registers
 Register store values on CPU. Hardware registers are outside CPU.
 
 <img src="x86-32_64 Registers.jpg" width=600 />
 
 <a name=gp></a>
-#### 1a. General Purpose Registers
+### 1a. General Purpose Registers
 Used for logical, arithmetic, address calculations, Temporary storage.
 - **Types:** RAX, RBX, RCX, RDX, RDI, RSI, RSP, RBP, R8 through R15. 
 
@@ -47,7 +50,7 @@ Used for logical, arithmetic, address calculations, Temporary storage.
 - **Volatile Registers: (rax, rdx, rcx)** Means these store intermidiate calculation and must be preserved.
 
 <a name=sr></a>
-#### 1b. Segment Registers(16 bit)
+### 1b. Segment Registers(16 bit)
 - Holds segment addresses. Segment register initialization and management is normally handled by the operating system.
 - **Types**
   - *CS/CODE SEGMENT:* Contains address of the code segment of the currently executing instruction
@@ -57,7 +60,7 @@ Used for logical, arithmetic, address calculations, Temporary storage.
   - *FS, GS:*    They are both additional segments with no specific job or specialty
 
 <a name=sp></a>
-### Special Purpose
+### 1c. Special Purpose
 #### IP(Instruction Pointer) / PC(Program Counter)    RIP/EIP
 Holds offset address of the next machine instruction to be executed in the current code segment. IP can neither read from nor written directly by user.
 
@@ -83,14 +86,14 @@ Tells about status of Processor.
 ```
 
 <a name=xmm></a>
-#### 1c. XMM Registers
+### 1d. XMM Registers
 These support: 
   - 64-bit and 32-bit floating-point operations and 
   - Single Instruction Multiple Data (SIMD) instructions.
     - The SIMD instructions allow a single instruction to be applied simultaneously to multiple data items. This results in significant performance increase.
 
 <a name=rf></a>
-#### 1d. RFLAGS Register (64 Bits)
+### 1e. RFLAGS Register (64 Bits)
 There are 64 bits in this register each bit representing:
   - status of results of logical and arithmetic operations.
   - System control bits(used by OS)
@@ -126,5 +129,3 @@ Bit     Name            Symbol      Use
 - *3.* [ROM](ROM)
 - *5.* [Physical Memory / RAM / Main Memory:](RAM) Volatile(looses content at power off)
 - *6.* Virtual Memory / Hard Disk / Secondary Memory: Non volatile
-
-<img src=Memory_types.jpg width=600/>
