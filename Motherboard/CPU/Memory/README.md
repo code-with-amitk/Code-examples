@@ -5,6 +5,8 @@
     - [1c. Special Purpose: IP, PSW](#sp)
     - [1d. XMM Registers](#xmm)
     - [1e. RFLAGS Register](#rf)
+  - [2. CPU Cache](#cc)
+    - 
 
 
 <a name=mt></a>
@@ -123,6 +125,28 @@ Bit     Name            Symbol      Use
 21  ID Flag             ID        System
 22 - 31 Reserved 0
 ```
+
+<a name=cc></a>
+## CPU Cache
+Most frequently used data(from RAM) is kept by CPU into cache.
+- **Types of CPU Cache**
+```
+Type    |   Where                  |               What                |   Size    |   Access Delay
+--------|--------------------------|-----------------------------------|-----------|------------------
+  L1    | Always inside CPU        | Holds decoded instructions of CPU | 16KB Each | None
+  L2    | Have x MB of memory data |                                   |           |1-2 clock cycles
+```
+### Cache Lines/Cache Block
+CPU Cache content which is copied from RAM to cache. Data is transferred from RAM to CPU cache and is stored as cache line.
+```c
+Cache line 0 = 0 to 64 bytes
+Cache line 1 = 65 to 127 bytes
+so on
+4095
+```
+- **Cache Hit?** When the CPU want to RW data from RAM, it first checks for a data in cache. if data is found its cache hit else its cache miss
+- **Cache Miss?** CPU goes to RAM to read the data. After data is read from RAM, entry is Cache is updated.
+- **Number of Cache lines?** Typically 4096 with each holding 64 bytes of data.
 
 
 - *2.* [Caches: L1, L2, L3](CPU_Cache)
