@@ -7,6 +7,7 @@
 - [Source of Interrupt](#sr)
 - [Interrupt Flow/Hardware Interrupt reaching CPU](#if)
 - [ISR / Interrupt Handler](#isr)
+  - [mutex or semaphore of spinlock in ISR](#mss)
 - [IVT(Interrupt Vector Table) / (IDT) Interrupt Descriptor Table](#ivt)
 - [Things CPU does after getting interrupt](#thing)
 - [High Number of Interrupts](#high)
@@ -100,6 +101,12 @@ abort(): Program error eg: divide by 0, access invalid memory address.
     - ISR is required to enable and disable the interrupt servicing a particular device, or 
     - to manipulate data within a process’ stack area.
   - _2._ Interrupt service routines must execute as rapidly as possible.
+- **ISR is divided into two parts**:
+  - **1. Top-half or First-Level Interrupt Handler (FLIH):** Executed immediately at occurance of interrupt. Example:
+    - Acknowledging interrupt
+    - Resetting hardware(if needed)
+    - Recording any information ie only available at time of interrupt. 
+  - **2. Bottom-half or Second-Level Interrupt Handlers (SLIH):** Non-critical processing is deferred for this.
 #### Registering ISR
 ```c
 int request_irq(unsigned int irq,		                      //1
@@ -119,12 +126,9 @@ int request_irq(unsigned int irq,		                      //1
   to point to the device structure
 ```
 
-#### ISR is divided into two parts:
-- **1. Top-half or First-Level Interrupt Handler (FLIH):** Executed immediately at occurance of interrupt. Example:
-  - Acknowledging interrupt
-  - Resetting hardware(if needed)
-  - Recording any information ie only available at time of interrupt. 
-- **2. Bottom-half or Second-Level Interrupt Handlers (SLIH):** Non-critical processing is deferred for this.
+<a name=mss></a>
+#### [mutex or semaphore of spinlock](/Threads_Processes_IPC/IPC/synchronization/) in ISR
+https://stackoverflow.com/questions/3464700/why-spinlocks-are-used-in-interrupt-handlers
 
 <a name=ivt></a>
 ## IVT(Interrupt Vector Table) / (IDT) Interrupt Descriptor Table
