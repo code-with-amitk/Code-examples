@@ -4,10 +4,10 @@
   - [At end: `push_back(), emplace_back()`](#emp)
   - [At any place `insert(position, value)`](#any)
 - [Traverse/Iterate](#trav)
-- [Erase/Delete/Remove](#erase)
+- [Erase/Delete/Remove](#e)
   - Delete Last: pop_back()
-  - [Any Element](#any)
-  - [Delete Range](#range)
+  - [1 Element](#one)
+  - [Delete Range](#r)
   - [Erase all](#erase)
 - Search/Print
   - [Min Element](#min)
@@ -75,23 +75,25 @@ cout<<v.at(2);            //3
 cout<<v.at(3);            //terminate called after throwing an instance of 'std::out_of_range' coredumped
 ```
 
+<a name=e></a>
 ## Erase/Delete/Remove
-<a name=any></a>
-#### iterator erase(const_iterator pos)
-- Remove element at position
+<a name=one></a>
+#### Delete 1 element
 ```cpp
-  v.erase(v.begin());
+  //iterator erase(const_iterator pos)
+  v.erase(v.begin()+position-1);
 ```
-<a name=range></a>
-#### iterator erase(const_iterator first, const_iterator last )
-- Remove in range
+<a name=r></a>
+#### Delete range
 ```cpp
-  v.erase(v.begin()+1, v.end()-1);
+  //iterator erase(const_iterator first, const_iterator last )
+  v.erase(v.begin()+position1-1, v.begin()position2-1);
 ```
 <a name=erase></a>
-#### void clear() noexcept
+#### Delete all
 - Erases all elements from the container. After this call, size() returns 0. 
 ```cpp
+//void clear() noexcept
   v.clear();
 ```
 
