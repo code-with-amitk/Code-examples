@@ -1,11 +1,12 @@
 - [Memory Types](#mt)
-  - [1. CPU Registers](#m1)
+  - **[1. CPU Registers](#m1)**
     - [1a. General Purpose Registers](#gp)
     - [1a. Segment Registers](#sr)
     - [1c. Special Purpose: IP, PSW](#sp)
     - [1d. XMM Registers](#xmm)
     - [1e. RFLAGS Register](#rf)
-  - [2. CPU Cache](#cc)
+  - **[2. CPU Cache](#cc)**
+  - **[3. ROM](ROM)**
 
 
 
@@ -128,7 +129,7 @@ Bit     Name            Symbol      Use
 ```
 
 <a name=cc></a>
-## CPU Cache
+## 2. CPU Cache
 Most frequently used data(from RAM) is kept by CPU into cache.
 - **Types of CPU Cache**
 ```
@@ -149,8 +150,5 @@ so on
 - **Cache Miss?** CPU goes to RAM to read the data. After data is read from RAM, entry is Cache is updated.
 - **Number of Cache lines?** Typically 4096 with each holding 64 bytes of data.
 
-
-- *2.* [Caches: L1, L2, L3](CPU_Cache)
-- *3.* [ROM](ROM)
 - *5.* [Physical Memory / RAM / Main Memory:](RAM) Volatile(looses content at power off)
 - *6.* Virtual Memory / Hard Disk / Secondary Memory: Non volatile
