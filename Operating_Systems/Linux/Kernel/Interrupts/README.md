@@ -156,14 +156,20 @@ The driver must preserve the returned bit mask, and pass it to probe_irq_off lat
 <a name=thing></a>
 ## Things CPU does after getting interrupt
 - CPU is executing a function1() and interrupt occured.
-  - *a.* CPU saves following on current function1()'s [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1):
-    - Input_parameters, Return_address, Local_variables of function1()
+  - *a.* CPU saves: 
+    - Contents of stack-frame(Input_parameters, Return_address, Local_variables of function1()) on current process's [STACK](/Threads_Processes_IPC/Processes/).
     - Registers:
       - [PC(Program Counter) = rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Saved IP points to the first instruction which will be loaded into the processor after the interrupt handler completes.
       - [Accumulator(rax), PSW](/Motherboard/CPU/Memory/CPU_Registers) holding Intermidiate results of calculations.
       - [rflags](/Motherboard/CPU/Memory/CPU_Registers/) holding arithematic logical operation results.
   - *b.* Get [ISR](#isr) from [IVT](#ivt), place ISR address into [rip(Instruction pointer)](/Motherboard/CPU/Memory/CPU_Registers). Jumps to ISR.
-  - *c.* Create [STACK](https://sites.google.com/site/amitinterviewpreparation/c-1) for interrupt routine. Copy arguments, local variables from Registers to ISR stack.
+  - *c.* Create [STACK](/Threads_Processes_IPC/Processes/) for ISR inside kernel(Kernel stack). Copy arguments, local variables from Registers to ISR stack.
+```
+Q: Why new kernel stack is allocated for ISR?
+Ans:
+  1. Interrupted user process stack may not have enough space to accomodate ISR's stack.
+  2. If kernel uses User space stack for ISR, then after processing ISR kernel will leave data there. User space program/malicious users may use this data to find information about other processes.
+```
   - *d.* Perform [Context Switch](https://sites.google.com/site/amitinterviewpreparation/c-1/max-threads-opened-by-webserver):
     - Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
   - *e.* ACK interrupt controller
