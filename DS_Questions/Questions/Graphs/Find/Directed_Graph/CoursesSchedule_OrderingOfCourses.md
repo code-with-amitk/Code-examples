@@ -2,7 +2,7 @@
 - [Approach-1, Directed Cyclic Graph](#a1)
 
 <a name=p></a>
-## Course Schedule II
+## [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 - There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
 - You are given an array prerequisites where `prerequisites[i] = [a, b]` indicates that you must take course b first if you want to take course a.
 - Return the ordering of courses you should take to finish all courses. If there are many valid answers, return any of them. If it is impossible to finish all courses, return an empty array.
