@@ -7,9 +7,7 @@
 
 <a name=w></a>
 ## Why Threads
-- _1._ To run Tasks in parallel & parallelly tasks can be completed faster wrt sequential.
-  - Usecase: Suppose client want download 2-GB file from Internet. File is available from mirror servers, each can deliver 512 MB. With Threads we can download all chunks
-             parallely, but again if there's a single network link shared by all threads, this can become bottleneck as the number of threads becomes very large.
+- _1._ To run Tasks in parallel & parallelly tasks can be completed faster wrt sequential. [Thread usecases](..)
 ```c
 //Very Imp Example to understand (Tanenbaum). Do not Delete
 Example-1: Suppose multiprogrammed system has degree of 6 (i.e 6 programs in memory at the same time).
