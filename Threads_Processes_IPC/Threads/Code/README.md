@@ -177,5 +177,56 @@ Condition satisfied
 <a name=pp></a>
 #### Ping Pong game
 ```c
+#include<stdio.h>
+#include<pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <iostream>
+using namespace std;
 
+pthread_cond_t cond_ping = PTHREAD_COND_INITIALIZER;
+pthread_cond_t cond_pong = PTHREAD_COND_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+int j=0;
+
+void *pong(void* arg) {
+    while (j<10) {
+        pthread_mutex_lock(&mutex);
+        pthread_cond_wait(&cond_pong, &mutex);
+        ++j;
+        cout << "Pong" <<",j:"<< j <<"\n";
+        pthread_mutex_unlock(&mutex);
+        pthread_cond_signal(&cond_ping);
+    }
+}
+void *ping(void* arg) {
+    while( j <10) {
+        sleep(1);
+        pthread_cond_signal(&cond_pong);
+        pthread_mutex_lock(&mutex);
+        ++j;
+        cout << "Ping" <<",j:"<< j <<"\n";
+        pthread_cond_wait(&cond_ping, &mutex);
+        pthread_mutex_unlock(&mutex);
+    }
+}
+int main(){
+    pthread_t tid1,tid2;
+    pthread_create(&tid1, 0, ping, 0);
+    pthread_create(&tid2, 0, pong, 0);
+
+    pthread_join(tid1, 0);
+    pthread_join(tid2, 0);
+}
+$ ./a.out
+Ping,j:1
+Pong,j:2
+Ping,j:3
+Pong,j:4
+Ping,j:5
+Pong,j:6
+Ping,j:7
+Pong,j:8
+Ping,j:9
+Pong,j:10
 ```
