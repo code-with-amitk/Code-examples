@@ -106,12 +106,13 @@ DWORD WINAPI worker(LPVOID param) {
 int _tmain() {
 	DWORD thread_id[5];
 	for (int i = 0; i < 5; ++i) {
-		CreateThread(NULL,
-			0,
-			worker,
-			(void*)i,
-			0,
-			&thread_id[i]);
+		CreateThread(
+			NULL,               //Default security attributes
+			0,                  //Use default stack size
+			worker,             //thread function
+			(void*)i,           //argument to thread function
+			0,                  //Default creation flag
+			&thread_id[i]);     //Thread identifier returned
 	}
 
 }
