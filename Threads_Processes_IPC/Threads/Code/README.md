@@ -4,7 +4,7 @@
 
 <a name=cr></a>
 ## Creating Threads
-```
+```c
 ////////////////  POSIX //////////////////
 #include<pthread.h>
 #include<iostream>
