@@ -4,6 +4,7 @@
   - [C++](#ct)
     - [1. Using Object of thread class](#m1)
     - [2. Using Functor](#m2)
+  - [Windows](#win)
 - [Joinable, Detachable Threads](#jd)
 - [Condition Variables](#cond)
   - [Simple Example](#c1)
@@ -85,6 +86,36 @@ int main()
 }
 ```
 
+<a name=win></a>
+#### Windows
+```c
+#include <windows.h>
+#include <tchar.h>
+#include <strsafe.h>
+using namespace std;
+DWORD WINAPI worker(LPVOID param) {
+	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	int* data = (int*)param;
+	TCHAR buf[60];
+	DWORD dwChar;
+	StringCchPrintf(buf, 60, TEXT("val=%d"), *data);
+	WriteConsole(hStdout, buf, 10, &dwChar, nullptr);
+	return 0;
+}
+
+int _tmain() {
+	DWORD thread_id[5];
+	for (int i = 0; i < 5; ++i) {
+		CreateThread(NULL,
+			0,
+			worker,
+			(void*)i,
+			0,
+			&thread_id[i]);
+	}
+
+}
+```
 <a name=jd></a>
 ## Joinable, Detachable Threads
 **Joinable Thread:** Thread1(Main Process) waits for thread2 before it terminates itself. Thread1(Main process) cannot terminate before thread2 terminates.
