@@ -5,7 +5,9 @@
     - [1. Using Object of thread class](#m1)
     - [2. Using Functor](#m2)
 - [Joinable, Detachable Threads](#jd)
-
+- [Condition Variables](#cond)
+  - [Simple Example](#c1)
+  - [Ping Pong game](#pp)
 
 ## Creating Threads
 <a name=cp></a>
@@ -130,4 +132,50 @@ void main() {
 # gcc test.c -lpthread
 # ./a.out
   Inside main thread
+```
+<a name=cond></a>
+## Condition Variables
+Thread1 waits for condition to be true, which is signalled(ie made true) by other Thread
+<a name=c1></a>
+#### Simple Example
+```c
+#include<stdio.h>
+#include<pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <iostream>
+using namespace std;
+
+pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
+void *fun1(void* arg) {
+        //pthread_mutex_lock(&mutex);
+	cout << "Thread1 waiting on condition\n";
+        pthread_cond_wait(&cond, &mutex);               //pthread_cond_wait() might provide unexepected result without mutex
+	cout << "Condition satisfied\n";
+        //pthread_mutex_unlock(&mutex);
+}
+void *fun2(void* arg) {
+        sleep(1);
+	cout << "Thread2 signalled the condition\n";
+        pthread_cond_signal(&cond);
+}
+int main(){
+    pthread_t tid1,tid2;
+    pthread_create(&tid1, 0, fun1, 0);
+    pthread_create(&tid2, 0, fun2, 0);
+
+    pthread_join(tid1, 0);
+    pthread_join(tid2, 0);
+}
+$ ./a.out
+Thread1 waiting on condition
+Thread2 signalled the condition
+Condition satisfied
+```
+<a name=pp></a>
+#### Ping Pong game
+```c
+
 ```
