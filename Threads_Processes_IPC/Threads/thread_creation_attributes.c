@@ -23,11 +23,6 @@ Example:
  ret = pthread_create(&tid, &tattr, start_routine, arg);	   //Create Thread
 *****************************************************************
 
-********************Thread Creation?*********************
-- TCB is allocated
-- [On Windows] CreateThread(NULL,0,fun,0,0,NULL)
-
-*********************************************************
 
 */
 
