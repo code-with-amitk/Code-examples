@@ -1,7 +1,7 @@
 - [Why Threads](#w)
   - [When single threaded is better than Multi-Threaded](#st)
 - [Memory layout of Threads](#ml)
-- [Joinable, Detachable Threads](#jd)
+- [Terms: yeild](#t)
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
 - [Synchronization needed to access shared resource](#sy)
 - [POSIX Thread APIs](#ta)
@@ -53,9 +53,12 @@ Threads have seperate stacks on Process stack
 <--------------Process Memory layout--------------------------->
 [       Stack   fun()          ][ ptr-to-heap ][Data Segment][Code Segment]
  Thread1, Thread2 accesses fun()
-```			
-			
+```
 
+<a name=t></a>		
+## Terms
+### Yeild
+Means thread gives up CPU voluntarily by itself.
 
 <a name=p></a>
 ## Problems with Threads / Problems in turning Single Threaded Code to Multithreaded
