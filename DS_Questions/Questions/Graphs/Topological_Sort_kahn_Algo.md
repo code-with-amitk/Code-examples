@@ -34,7 +34,6 @@ b. Topological Sort: Remove elements from stack. 4 5 2 3 1 0
 ```c
 - _a._ Find in-degree of all nodes in graph store them in `vector<int>`
 - _b._ Push all nodes having indegree=0 to queue.
-```c
 while(queue!empty)
         - pop top of queue. 
         - Print
