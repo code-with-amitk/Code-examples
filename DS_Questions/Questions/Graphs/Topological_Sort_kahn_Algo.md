@@ -1,4 +1,7 @@
 - [What is Topological Sort](/DS_Questions/Data_Structures/Graphs)
+- [Logic](#l)
+- [Complexity](#c)
+- [Code](#co)
 
 ## Topological Sort
 Task: Print topological sort/order of following graph
@@ -10,9 +13,10 @@ Task: Print topological sort/order of following graph
 Result: 
  5 4 2 3 1 0 or 4 5 3 2 1 0
 ```
+<a name=l></a>
 ### Logic 
-a. Find in-degree of all nodes in graph store them in `vector<int>`
-b. Push all nodes having indegree=0 to queue.
+- _a._ Find in-degree of all nodes in graph store them in `vector<int>`
+- _b._ Push all nodes having indegree=0 to queue.
 ```c
 while(queue!empty)
         - pop top of queue. 
@@ -22,7 +26,8 @@ while(queue!empty)
                 - if(inDegree ==0)
                         push on Queue
 ```
-### Complexity:
+<a name=c></a>
+### Complexity
 - **Time:** O(V+E). V=vertices,E=Edges
   - Why complexity is not O(VE), as it has 2 nested for loops?
 ```c 
@@ -43,6 +48,7 @@ Let's Calculate?
              ---------------
              Total       8 = O(V+E)
 ```
+<a name=co></a>
 ### Code
 ```cpp
 #include<iostream>
