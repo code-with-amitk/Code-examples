@@ -14,7 +14,24 @@ Result:
  5 4 2 3 1 0 or 4 5 3 2 1 0
 ```
 <a name=l></a>
-### Logic 
+### Logic (DFS using queue)
+```c
+        5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
+        |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
+        \/         \/
+        2 --> 3 --> 1
+
+a. Perform DFS, when there is no outdegree of node. Push on stack
+
+start node=5. DFS=0. Since 0 has no outdegree. Push on stack      stack | 0 |
+              2-3-1. Since 1 has no outdegree. Push on stack      stack | 0 1 |
+      node=2. 2-3.  Since 3 has no unvisited outdegree.           stack | 0 1 3 |
+                                                                  stack | 0 1 3 2 5 4 |
+                                                                                    top
+b. Topological Sort: Remove elements from stack. 4 5 2 3 1 0
+```
+#### Code Logic
+```c
 - _a._ Find in-degree of all nodes in graph store them in `vector<int>`
 - _b._ Push all nodes having indegree=0 to queue.
 ```c
