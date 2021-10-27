@@ -1,4 +1,5 @@
 - [Why Threads](#w)
+  - [When single threaded is better than Multi-Threaded](#st)
 - [Memory layout of Threads](#ml)
 - [Joinable, Detachable Threads](#jd)
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
@@ -32,6 +33,11 @@ Once j1 goes to IO Wait, j2 also starts executing & enters IO wait.
      | j2 IO Wait(20 min) | ------------------- | j2 CPU Time(20 min) |
      
 ```
+<a name=st></a>
+#### When single threaded is better than Multi-Threaded
+- Consider web-server serving telephone directory assistance for an area with (1 million = 10<sup>6</sup>) people only.
+- If each record(name, telephone number) is 64 characters, the entire database takes (64x10<sup>6</sup>bytes = 64MB) 
+- 64MB can easily be kept in the server’s memory to provide fast lookup. Multithreaded will be an overhead.
 
 <a name=ml></a>
 ## Memory Layout of Threads
