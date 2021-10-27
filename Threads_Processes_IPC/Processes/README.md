@@ -52,10 +52,10 @@ int wait(int *status): Parent process to wait for child to terminate. returns pi
 This blocks parent if it has any unterminated child, else returns immediately.
 ```
 <a name=fail></a>
-#### When fork can fail
-Fork can fail if there are:
+#### When fork can fail, ie child process is not created?
 - *a.* No free slots left in the [process table](/Threads_Processes_IPC/Processes/Process_Table). 
 - *b.* and possibly if there is no memory or [swap space](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1/Booting_up_With_systemd.md) left.
+- _c._ When parent process is blocked on IO, then it cannot fork.
 
 <a name=c></a>
 ### [Code](Code)
