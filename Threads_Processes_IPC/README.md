@@ -6,7 +6,7 @@
 <a name=vs></a>
 ### Thread(miniprocess) vs Process
 ```c
-                              Thread                                         |                             Process
+                         UserSpace Thread                                    |                             Process                           |
 -------|------------------------------------------------------------------ --|---------------------------------------------------------------|
 Weight | Light(Since no duplication of process space)                        | Heavy(Complete process space(CS,DS,SS,HS) duplicated to child |
 Speed  | Fast.                                                               | Slow.
@@ -15,6 +15,7 @@ Speed  | Fast.                                                               | S
            Switch,No memory cache flush, No Trap instruction.                |     these control need to go into kernel space
            bcoz: Everything is inside process(No need to go in kernel space) |
            Process can decide his own scheduling algo 
+Disadv |If 1 thread blocks, whole process blocks. [See userspace, kernel Threads]
 ```
 
 <a name=uc></a>
