@@ -20,7 +20,8 @@ Input: numCourses = 1, prerequisites = []
 Output: [0]
 ```
 
-### Approach-1, Directed Cyclic Graph
+### Approach-1, Topological Sort of Directed Cyclic Graph
+- What is [Toplogical Sort of Directed cyclic graph](/DS_Questions/Data_Structures/Graphs/).
 - We can represent course relationships with directed, cyclic graph, where 
   - Each course would represent a vertex in the graph
   - Edges are modeled after the prerequisite relationship between courses. For pair `[a, b]` means the course b is a prerequisite for the course a. `b ➔ a`.
@@ -30,4 +31,5 @@ Output: [0]
   0 ------> 1 -----> 3
   |                  /\
   --------> 2 -------|
+  
 ```
