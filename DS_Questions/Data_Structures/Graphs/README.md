@@ -114,14 +114,13 @@ Minimum eccentricity of any vertex.
 - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. Achieved using [DFS](/DS_Questions/Algorithms/Traversals/).
 - TS is only possible for [DAG](#dag). because DAGs don't have cycles and are directed.
 - Some events should happen before next. Ex: Getting ready in morning (socks before shoes, undergarments before pants).
-  - in-degree: In directed graph number of incoming edges is called in-degree.
-  - out-degree: number of outgoing edges.
+- [Logic, Code Topological Sort](/DS_Questions/Questions/Graphs)
 ```c
-        5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2
-        |           |     //out-degree of node[5]=2, node[0]=0
+        5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
+        |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
         \/         \/
         2 --> 3 --> 1
-```        
+```
 <a name=vertex></a>
 #### Vertex/Node
 Interconnected objects are called vertices.
