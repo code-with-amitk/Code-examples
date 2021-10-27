@@ -1,27 +1,32 @@
-/*      
-Task? Print topological sort/order of following graph
+- [What is Topological Sort](/DS_Questions/Data_Structures/Graphs)
+
+## Topological Sort
+Task: Print topological sort/order of following graph
+```c
         5 --> 0 <-- 4
         |           |
         \/         \/
         2 --> 3 --> 1
 Result: 
  5 4 2 3 1 0 or 4 5 3 2 1 0
-
-*******************Logic******************* 
-a. [vector]Find in-degree of all nodes in graph store them in vector<int>
-b. [queue] Push all nodes having indegree=0 to queue.
-c. while(queue!empty)
+```
+### Logic 
+a. Find in-degree of all nodes in graph store them in `vector<int>`
+b. Push all nodes having indegree=0 to queue.
+```c
+while(queue!empty)
         - pop top of queue. 
         - Print
         - Check all connected nodes of popped node //for(auto i=p[u].begin(); i!=p[u].end(); i++)
                 - Decrement inDegree by 1
                 - if(inDegree ==0)
                         push on Queue
-
-Complexity:
-O(V+E). V=vertices,E=Edges
-- Why complexity is not O(VE), as it has 2 nested for loops?
-V=6,E=2(max).   O(V+E)=8, O(VE)=12
+```
+### Complexity:
+- **Time:** O(V+E). V=vertices,E=Edges
+  - Why complexity is not O(VE), as it has 2 nested for loops?
+```c 
+  V=6,E=2(max).   O(V+E)=8, O(VE)=12
         for(i=0;i<6;i++)
                 for(auto j=p[i].begin()....)
 
@@ -37,9 +42,9 @@ Let's Calculate?
              *j=3    --> 2
              ---------------
              Total       8 = O(V+E)
-*******************************************
-*/
-
+```
+### Code
+```cpp
 #include<iostream>
 #include<list>
 #include <queue>
@@ -115,3 +120,4 @@ Output:
 Topological Sort:
 4 5 0 2 3 1
 */
+```
