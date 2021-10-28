@@ -33,7 +33,7 @@ b. Use synchronization methods.
 ### Bound Waiting
 Process-2 waits outside critical section while process-1 is executing inside.
 
-<a name=bw></a>
+<a name=bw1></a>
 ### Busy Waiting
 - Let's suppose UserSpace program wants to read IO device. It invokes [Device Driver using device file](/Device_Drivers/Linux).
 - [Device driver writes to Device Controller's register](/Device_Drivers/Linux/how) for reading memory address & device driver sits in loop, continuously polling the device to see if it is done 
