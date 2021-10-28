@@ -22,7 +22,14 @@ Example	   | Keyboard,printers	   |         Disk Drivers      |	NIC
 
 ```c
   <----------------------user space----------------->        <--kernel space->
-  Application [open/read/write/close]  <>  Device-File   <>   Device-Driver     <>   Physical-Device(Terminal, Speakers, HD, keyboard, Tape, Memory)
+  Application [open/read/write/close]  <>  Device-File   <>   Device-Driver  
+  				                                         <-> Physical-Device(
+									           Terminal, 
+										   Speakers, 
+										   HD, 
+										   keyboard, 
+										   Tape, 
+										   Memory)
 ```
 
 - **Terms**
