@@ -1,7 +1,7 @@
 - [Atomic Operations](#at)
   - [Atomic Variables](#av)
 - [Bound Waiting](#bw)
-- [Busy Waiting](busyw)
+- [Busy Waiting](#busyw)
 
 ## Terms
 <a name=at></a>
