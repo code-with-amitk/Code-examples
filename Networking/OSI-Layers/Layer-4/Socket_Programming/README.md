@@ -1,5 +1,5 @@
 **Socket Programming**
-- **Terms**
+- **[Terms](#t)**
   - file, file descriptor, socket
   - [Byte order: Little, Big endian](#bo)
   - [inaddr_any](#ia)
@@ -12,6 +12,7 @@
   - [NonBlocking](#nb)
     - [Nonblocking Multichat server using select()](nonblocking_multichat_server.md)
 
+<a name=t></a>
 ## Terms
 - **File:** Everything is File(Network connection, a FIFO, a pipe, a terminal, a real on-the-disk file) Eg: & every file has a File Descriptor associated with it. 
 - **File descriptor:** This is an integer associated with an open file. File can be a n, or just about anything else.
@@ -49,8 +50,6 @@ N/W-1 ---192.168.0.14--
                       |
  N/W-3 ---16.21.4.5----
 ```
-
-
 
 ## Code
 <a name=t></a>
@@ -171,13 +170,13 @@ int main(){
 
 ## Blocking/Non-Blocking
 <a name=b></a>
-### Blocking ( means sleep)
+### Blocking (means sleep)
 - By default all server-side socket API's are Blocking. socket(), read(), readfrom(), accept()
 - At time of creation of sockets using socket() system call kernel makes the sockets as blocking
 
 <a name=nb></a>
 ### Non-Blocking
-- To make API non-blocking we use [select(), fcntl()]((APIs_Structures)
+- To make API non-blocking we use [select(), fcntl()](APIs_Structures)
 - [Non Blocking multichat server](nonblocking_multichat_server.md)
 
 - [**APIs:** accept(), bind(), close(), connect(), fcntl(), gethostname(), getpeername(), listen(), recv(), recvfrom(), select(), send(), sendto(), setsockopt(), shutdown(), socket()](APIs_Structures)
