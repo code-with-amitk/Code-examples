@@ -17,20 +17,17 @@ Example	   | Keyboard,printers	   |         Disk Drivers      |	NIC
 
 <a name=how></a>
 ## How userspace application talks to Physical Device
-
-<img src=device-driver.jpg width=1000 />
-
+- **Parts of IO Device:** Controller(embedded chip on device which accepts commands from OS), device itself
+- Device driver talks to device controller using register present on the controller. 
+  - Example: Disk controller have registers for specifying the disk address, memory address, sector count, and direction (read or write).
 ```c
-  <----------------------user space----------------->        <--kernel space->
-  Application [open/read/write/close]  <>  Device-File   <>   Device-Driver  
-  				                                         <-> Physical-Device(
-									           Terminal, 
-										   Speakers, 
-										   HD, 
-										   keyboard, 
-										   Tape, 
-										   Memory)
+Physical Devices: Terminal, Speakers, HD, keyboard, Tapes, Memory
+
+<---------------------user space---------------->     <kernel space>      <----Physical Device---->
+Application[open/read/write/close] <> Device-File  <>  Device-Driver  <>  Controller--ActualDevice
+                                                                          (registers)
 ```
+<img src=device-driver.jpg width=1000 />
 
 - **Terms**
   - [Device File, Major, Minor Number](Terms/Device_File_Major_MinorNo.md)
