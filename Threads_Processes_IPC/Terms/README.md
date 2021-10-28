@@ -1,5 +1,7 @@
 - [Atomic Operations](#at)
   - [Atomic Variables](#av)
+- [Bound Waiting](#bw)
+- [Busy Waiting](bw1)
 
 ## Terms
 <a name=at></a>
@@ -30,6 +32,13 @@ b. Use synchronization methods.
 <a name=bw></a>
 ### Bound Waiting
 Process-2 waits outside critical section while process-1 is executing inside.
+
+<a name=bw></a>
+### Busy Waiting
+- Let's suppose UserSpace program wants to read IO device. It invokes [Device Driver using device file](/Device_Drivers/Linux).
+- [Device driver writes to Device Controller's register](/Device_Drivers/Linux/how) for reading memory address & device driver sits in loop, continuously polling the device to see if it is done 
+- When IO is completed data(if any) is returned to driver. Device driver returns control to user space process. User space process was said to be in busy waiting.
+
 <a name=cb></a>
 ### CPU Bound 
 Process spends most of time with CPU executing instructions. From Source: Program doing lot of calculations Eg: finding all possible permutations of a string.
