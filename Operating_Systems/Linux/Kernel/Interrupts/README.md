@@ -1,10 +1,6 @@
 - [Interrupt](#i)
-- [Types of Interrupt](#t)
-  - [1. Hardware, Software Interrupt](#hs)
-  - [2. Vectored & Non Vectored](#vn)
-  - [3. Maskable & Non Maskable Interrupts](#mn)
-  - [4. Precise & Imprecise Interrupts](#pi)
-- [Source of Interrupt](#sr)
+- [Types](#t)
+- [Sources](#sr)
 - [Interrupt Flow/Hardware Interrupt reaching CPU](#if)
 - [ISR / Interrupt Handler](#isr)
   - [mutex or semaphore of spinlock in ISR](#mss)
@@ -35,43 +31,37 @@ Interrupt Number     |    Meaning
 
 <a name=t></a>
 ## Types of Interrupts
-<a name=hs></a>
 ### 1. Hardware, Software Interrupt
-#### a. Hardware
-Caused by signal from H/W. Examples: Key press on keyboard, mouse movement, timers
-#### b. Software? 
-Originated in software(process in user mode), CPU need to switch to kernel mode. Generated using system calls: 
+- **a. Hardware:** Caused by signal from H/W. Examples: Key press on keyboard, mouse movement, timers
+- **b. Software:** Originated in software(process in user mode), CPU need to switch to kernel mode. Generated using system calls: 
 ```c
+APIs to make s/w interrupt
 open(), socket()
 trap() //also used by gdb
 abort(): Program error eg: divide by 0, access invalid memory address.
-```
-**Making software Interrupt?**
-```asm
-  mov rax,4    ;Store system-call number in rax register
-  mov rbx,arg1    ;Store arguments of system-call in rbx,rcx,rdx,rsi,rdp registers
-  mov rcx,arg2
-  int 0x80        ;Call S/W Interrupt. Just call int function with Interrupt number.    //As int is called Control Reaches IVT, Interrupt Vector table
+
+How S/W Interrupt flows?
+mov rax,4    ;Store system-call number in rax register
+mov rbx,arg1    ;Store arguments of system-call in rbx,rcx,rdx,rsi,rdp registers
+mov rcx,arg2
+int 0x80        ;Call S/W Interrupt. Just call int function with Interrupt number.    //As int is called Control Reaches IVT, Interrupt Vector table
 ```        
 
-<a name=vn></a>
 ### 2. Vectored & Non Vectored
-- *a. Vectored?* The interrupts which have fixed address location ie ISR to be executed on occurence of Interrupt.
-- *b. Non Vectored?* The interrupts which does not have fixed address location for ISR to be executed at occurence
+- **a. Vectored?** The interrupts which have fixed address location ie ISR to be executed on occurence of Interrupt.
+- **b. Non Vectored?** The interrupts which does not have fixed address location for ISR to be executed at occurence
 
-<a name=mn></a>
 ### 3. Maskable & Non Maskable Interrupts
-  - *a. Maskable?* Interrupt handling can be delayed by CPU for some time. Eg: H/W device generating a interrupt.
-  - *b. Non Maskable(NMI)?* Interrupts which cannot be ignored by CPU and need to be processed immediately. Eg: Hardware error.
+- **a. Maskable?** Interrupt handling can be delayed by CPU for some time. Eg: H/W device generating a interrupt.
+- **b. Non Maskable(NMI)?** Interrupts which cannot be ignored by CPU and need to be processed immediately. Eg: Hardware error.
 
-<a name=pi></a>
 ### 4. Precise & Imprecise Interrupts
-  - *a. Precise?* This interrupt that leaves the machine in a well-defined state. 4 properties of precise interrupts:
+- **a. Precise?** This interrupt that leaves the machine in a well-defined state. 4 properties of precise interrupts:
     - *1.* The [PC (Program Counter)](/Motherboard/CPU/Memory/CPU_Registers/User_Accessible_Registers) is saved and PC is made to point to new ISR. [PSW](/Motherboard/CPU/Memory/CPU_Registers/User_Accessible_Registers) must not be modified.
     - *2.* All instructions before the one pointed to by the PC have completed.
     - *3.* No instruction beyond the one pointed to by the PC has finished.
     - *4.* The execution state of the instruction pointed to by the PC is known.
-  - *b. Imprecise?* Interrupts have completed in parts.
+- **b. Imprecise?** Interrupts have completed in parts.
     - *Disadvantages of Imprecise Interrupts:*
       - *1.* The code for handling imprecise is exceedingly complex.
       - *2.* Huge stacks are created contaning information of all states.
