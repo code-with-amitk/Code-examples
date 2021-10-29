@@ -116,6 +116,7 @@ pthread_exit();    //This will exit calling Thread
 <a name=usks></a>
 ## User Space, Kernel Space Threads
 <img src=./userspace_kernelspace_threads.PNG width=500 />
+
 <a name=us></a>
 ### User Space Threads
 - Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process.
