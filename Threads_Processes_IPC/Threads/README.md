@@ -46,7 +46,7 @@ Once j1 goes to IO Wait, j2 also starts executing & enters IO wait.
 
 <a name=ml></a>
 ## Memory Layout of Threads
-Threads have seperate stacks on Process stack
+Every Thread have its seperate stack on Process stack. This is true for both [user-space](#us) and [kernel-space](#ks) threads.
 #### Thread1 executing fun1(), Thread2 executing fun2()
 ```c
 <--------------Process Memory layout--------------------------->
