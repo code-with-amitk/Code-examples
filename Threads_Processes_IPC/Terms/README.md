@@ -35,9 +35,14 @@ Process-2 waits outside critical section while process-1 is executing inside.
 
 <a name=busyw></a>
 ### Busy Waiting
+**Busy waiting when doing IO**
 - Let's suppose UserSpace program wants to read IO device. It invokes [Device Driver using device file](/Device_Drivers/Linux).
 - [Device driver writes to Device Controller's register](/Device_Drivers/Linux/#how) for reading memory address & device driver sits in loop, continuously polling the device to see if it is done 
 - When IO is completed data(if any) is returned to driver. Device driver returns control to user space process. User space process was said to be in busy waiting.
+
+**Busy waiting on mutex**
+- Process-1(or thread-1) has locked mutex and is in critical section.
+- Process-2(or thread-2) need to wait outside critical section until mutex is unlocked. Process-2 sits in tight loop waiting for mutex to be released. This is called Busy waiting.
 
 <a name=cb></a>
 ### CPU Bound 
