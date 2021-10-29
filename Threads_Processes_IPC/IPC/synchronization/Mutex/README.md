@@ -1,5 +1,5 @@
-- [Mutex](#mt)
-- [Mutex internal Implementation](#in)
+**Mutex**
+- [How Mutex is internally implemented](#in)
 - [Mutex Problems](#mp)
 - [Mutex Types](#ty)
 - **Code**
@@ -10,19 +10,18 @@
 <a name=mt></a>
 ## Mutex / Mutual Exculsion / Locking mechanism
 - if 1 thread is in other cannot enter.
+- **Mutex Problems**
+  - *1. Priority Inversion:* Higher priority thread/process has to [Busy Wait](/Threads_Processes_IPC/Terms) outside critical section, because lower priority thread has locked mutex and is in Critical section.
+  - *2. Easy Deadlock:* if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.  
 
 <a name=in></a>
-## Mutex internal Implementation
-- This is kernel maintained lock that we set before using a shared resource and release after using it.
+## How Mutex is internally implemented
+- Mutex is kernel maintained lock that we set before using a shared resource and release after using it.
 - When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
 
-<a name=mp></a>
-### Mutex Problems
-  - *1. Priority Inversion:*   Higher priority thread has to wait behind lower priority thread to get mutex lock & resource.
-  - *2. Easy Deadlock:* if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.  
   
 <a name=ty></a>
-### Mutex Types
+## Mutex Types
   - **a. Non-Recursive:** They cannot be locked more than once. Deadlock: if thread that has already locked the mutex tries to lock again, It will enter deadlock(waiting state).
   - **b. Recursive:** Allows thread holding lock to acquire the lock again. Helpful for recursive algorithms.
   - **c. Reader/Writer:** Multiple Readers can acquire Lock Simultaneously. If single reader is in, Writer access is blocked.  Writer is allowed only when all readers exits.
