@@ -5,6 +5,11 @@
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
 - [Synchronization needed to access shared resource](#sy)
 - [POSIX Thread APIs](#ta)
+- **[User Space, Kernel Space Threads](#usks)**
+  - [User space threads](#us)
+  - [Kernel space threads](#ks)
+- [Scheduler Activation](#sa)
+- [Upcall](#up)
 - **[Code](#co)**
 
 <a name=w></a>
@@ -107,6 +112,56 @@ int pthread_yield(void): Causes the calling thread to give up CPU(ie terminate h
 
 pthread_exit();    //This will exit calling Thread
 ```
+
+<a name=usks></a>
+## User Space, Kernel Space Threads
+<img src=./userspace_kernelspace_threads.PNG width=500 />
+<a name=us></a>
+### User Space Threads
+- Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process.
+- Each process will need its own **[Thread Table](#tt)**(to keep track of threads in process). 
+- **Advantages**
+  - *1.* [Context switch] between threads is done in user space, no call into kernel space or call trap().
+  - *2.* UST can be implemented on OS which does not support threads
+  - *3.* Each process can have its own customized Thread scheduling algos.
+- **Disadvantages**
+  - *1.* If any of thread [busy waits]() on kernel for IO or [system call]() Eg: blocking read() then whole process will block/sleep. All other threads will also block(even if other threads are in runnable state).
+    - *Solutions:* 
+      - *1.* Making blocking calls as non-blocking.
+      - *2.* [Upcall](#up)
+
+<a name=tt></a>
+#### Thread Table
+- When thread is moved to sleep or blocked state(ie it finished its execution for moment), it state information is stored in thread-table so that later thread can come back to running state.For example thread1 waiting for input from thread2.
+- This is Similar to process table containing following entries:
+```c
+ Each thread’s program counter, stack pointer, registers, state etc
+```
+<a name=ks></a>
+### Kernel space threds
+- When a thread wants to create/destroy an existing thread, it makes a kernel call, which then does the creation or destruction by updating the kernel [thread table](#tt).
+- kernel have thread-Table having same contents.
+- **Advantages**
+  - *1.* No Thread-Table in each process.
+- **Disadvantages**
+  - *1.* Every thread will need some Thread-Control-block and stack space in kernel, in case of large number of threads this will become problem.
+  - *2.* Every thread will make [system calls](https://sites.google.com/site/amitinterviewpreparation/c-1/device-driver) in kernel and its cost is high.
+  - *3.* Slower than user level threads.
+
+<a name=sa></a>
+## Scheduler Activation
+- When scheduler activations are used, the kernel assigns a certain number of virtual processors(core) to each process. Now user space process can allocate each thread on specific core.
+- Intially only 1 virtual processors(core) is given to process, but process can ask more if required. The kernel can also take back virtual processors(core) & assign them to high priority process.
+
+<a name=up></a>
+## Upcall
+- _1._ Suppose a [User Space Thread](#us) thread is block on kernel IO and due to it whole process is blocked. 
+- _2._ Kernel is aware the Thread-1 has blocked the process.
+- *3.* Kernel notifies Run-Time system(scheduler) (ie does **upcall**) that Thread-1 of Process-x has blocked, event why thread is blocked by copying data on Scheduler-Process's stack. Run-Time system will marks thread as blocked, takes other runnable threads and starts them.
+- *4.* Later when kernel finds blocking system call is completed, it again makes a **upcall** and run-time system can restart the blocked thread immediately or put it on the ready list to be run later.
+- **Objections to upcalls?**
+  - *1.* upcalls violates the layered system architecture. ie Layer-n offering services that layer(n + 1) but layer(n+1) cannot pass information to layer-n. Upcalls do not follow this fundamental principle.
+
 
 <a name=co></a>
 ## [Code](Code)
