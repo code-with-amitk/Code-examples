@@ -8,6 +8,7 @@
   - [2. Formatted Output](#fo)
 - **Classes**
   - [Scanner](#s)
+  - [java.lang.Math](#math)
 
 
 <a name=a></a>
@@ -127,4 +128,10 @@ Scanner class is used to get user input, and it is found in the java.util packag
 nextLine():   Read string from stdin
 nextInt():    Read int from stdin
 nextDouble(): Read double from stdin
+```
+<a name=math></a>
+### java.lang.Math
+```java
+Contained methods:
+  Math.pow(a,b)
 ```
