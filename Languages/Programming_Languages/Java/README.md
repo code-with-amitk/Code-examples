@@ -125,9 +125,13 @@ System.out.printf("%-15s%03d%n", s, a);   //java           20
 ### Scanner
 Scanner class is used to get user input, and it is found in the java.util package. Available methods in scanner class
 ```java
-nextLine():   Read string from stdin
-nextInt():    Read int from stdin
-nextDouble(): Read double from stdin
+Scanner scan = new Scanner(System.in);
+scan.nextLine():   Read string from stdin
+scan.nextInt():    Read int from stdin
+scan.nextDouble(): Read double from stdin
+
+while(scan.hasNext()){   //Returns true if this scanner has another token in its input. This method may block while waiting for input to scan.
+}
 ```
 <a name=math></a>
 ### java.lang.Math
