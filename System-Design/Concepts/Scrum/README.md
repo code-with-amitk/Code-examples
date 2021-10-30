@@ -11,7 +11,8 @@
 - **[Agile](#ag)**
   - [1. Agile Iterations](#ai)
   - [2. Burnout, Burnup, Burndown chart](#bc)
-  - [3. Velocity](#v)
+  - [3. Spike](#sp)
+  - [4. Velocity](#v)
 - **TDD, Test Driven Development**
   - [What](#tdd)
 
@@ -25,9 +26,11 @@ To improve the performance or readability, the existing code is modified; this i
 
 <a name=sp></a>
 #### 2. Sprint
-- This is basic unit of development.
+This is basic unit of development.
 - _Sprint starts with:_ a planning meeting, where the tasks for the sprint are identified and an estimated commitment for the sprint goal is made.
 - _Sprint ends with:_ a review or retrospective meeting where the progress is reviewed and lessons for the next sprint are identified. During each sprint, the team creates finished portions of a product.
+
+**Zero Sprint:** This is first step or pre-preparation step that comes just before the first sprint. It includes all activities such as setting a development environment, preparing backlog, etc.
 
 <a name=us></a>
 #### 3. User Stories
@@ -81,8 +84,12 @@ Done
 - **Burnup:** It shows the progress of stories done over time
 - **Burndown:** It shows how much work was left.
 
+<a name=sp></a>
+#### 3. Spike
+This is too large and complex user story in software development that cannot be estimated until the development team runs a timeboxed investigation.
+
 <a name=v></a>
-#### 3. Velocity
+#### 4. Velocity
 - Velocity is a metric that is calculated by addition of all efforts estimates related with user stories completed in an iteration. 
 - It mesures how much work Agile can complete in a [sprint](#sp) and how much time will it need to finish a project.
 
