@@ -75,9 +75,9 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 datatype| size (byte) | Range
   ------|-------------|--------------
   Byte  | 1   signed  | -128 to 127
-  short | 2           | -32,768 to 32,767
-  int   | 4           | -2pow31 to 2pow31
-  long  | 8           | -2pow63 to 2pow63
+  short | 2           | -32768 to 32767
+  int   | 4           | -2pow31 to 2pow31-1
+  long  | 8           | -2pow63 to 2pow63-1
   float | 4           | 
   double| 8           |
   bool  | 1           | 
