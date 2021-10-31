@@ -1,5 +1,5 @@
 - [Append](#a)
-- **Comprehension**
+- **[List Comprehension](#lc)**
   - [1. List of Squares](#e1)
   - [2. Combining elements of 2 lists if they are not equal](#e2)
   - [3. List of double value](#e3)
@@ -26,8 +26,15 @@ print(a)        #[1,2,3,4]
 a.append(6)
 ```
 
+<a name=lc></a>
 ## List Comprehension
-Create new lists where each element is the result of some operation in just 1 line or few lines, rather than writing whole function. Examples
+- Create new lists where each element is the result of some operation in just 1 line or few lines, rather than writing whole function. Examples
+- A list comprehension consists of:
+```py
+  - Brackets containing an expression 
+  - followed by a for clause, then zero or more for or if clauses. 
+  - The result will be a new list resulting from evaluating the expression in the context of the for and if clauses which follow it.
+```  
 <a name=e1></a>
 #### 1. List of Squares
 ```py
@@ -54,6 +61,28 @@ print([(x, y) for x in [1,2,3] for y in [3,1,4] if x != y])     #List Comprehens
 l = [-4, -2, 0, 2, 4]
 print([i*2 for i in l])     #[-8.-4.0,4,8]
 print([abs(i) for i in l])  #Applying function to all values
+```
+<a name=
+#### 4. Create List containing all combinations of Cubiod sides not equal to n
+```py
+Question: Given 3 sides of cubiod(x,y,z) and n. Print all combinations where (x+y+z != n)
+Input: x=1,y=1,z=1,n=2
+Output:[[0, 0, 0], [0, 0, 1], [0, 1, 0], [1, 0, 0], [1, 1, 1]]
+
+if __name__ == '__main__':
+    x = int(input())    #length
+    y = int(input())    #breadth
+    z = int(input())    #height
+    n = int(input())
+    print (
+            [
+                [a,b,c]                   #Expression
+                for a in range(x+1)       #for clause
+                for b in range(y+1) 
+                for c in range(z+1) 
+                if a + b + c != n        #if clause
+            ]
+        )
 ```
 
 ## Create list
