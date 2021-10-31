@@ -1,6 +1,7 @@
 - [Containers](#con)
 - [Control Flow](#cf)
 - [Functions](#fun)
+- [Input,Output](#io)
 - [Keywords](#k)
 
 
@@ -15,6 +16,10 @@ if, for, range(), match statement
 <a name=fun></a>
 ### Functions
 
+<a name=io></a>
+### [Input, Output](Input_Output)
+- Taking input from keyboard
+
 <a name=k></a>
-### Keywords
+### [Keywords](Keywords)
 yeild
