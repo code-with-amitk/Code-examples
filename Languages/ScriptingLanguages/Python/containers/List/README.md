@@ -17,9 +17,12 @@
 <a name=a></a>
 ### Append / Concatenate
 ```py
-a = [1,2,3]
-print(a+[4,5])  #[1,2,3,4,5]
+///////Append List//////////
+a = [1,2]
+a = a + [4,5]
+print(a)        #[1,2,3,4]
 
+///////Function///////////
 a.append(6)
 ```
 
