@@ -22,6 +22,10 @@ Iterates over the items of any sequence (a list or a string), in the order that 
 ... words = ['cat', 'window', 'defenestrate']               //Iterate over list
 >>> for w in words:
 ...     print(w, len(w))
+
+/////////////////Iterting from (0, n)////////
+for x in range(0, n+1):
+  print (x)
 ```
 
 <a name=m></a>
