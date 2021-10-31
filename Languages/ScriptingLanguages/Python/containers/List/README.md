@@ -3,6 +3,7 @@
   - [1. List of Squares](#e1)
   - [2. Combining elements of 2 lists if they are not equal](#e2)
   - [3. List of double value](#e3)
+  - [4. Create List containing all combinations of Cubiod sides not equal to n](#e4)
 - **Create list**
   - [1D,2D,3D,4D list](#c1)
   - [Nesting](#c2)
@@ -62,7 +63,7 @@ l = [-4, -2, 0, 2, 4]
 print([i*2 for i in l])     #[-8.-4.0,4,8]
 print([abs(i) for i in l])  #Applying function to all values
 ```
-<a name=
+<a name=e4></a>
 #### 4. Create List containing all combinations of Cubiod sides not equal to n
 ```py
 Question: Given 3 sides of cubiod(x,y,z) and n. Print all combinations where (x+y+z != n)
