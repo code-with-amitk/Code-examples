@@ -3,10 +3,14 @@
 - [Feature](#f)
 - [Memory Layout of Java Program](#ml)
 - [Data types](#dt)
+- **Keywords**
+  - [Extends = inheritance](#ex)
+  - [Implements](#im)
 - **Input Output**
   - [1. Reading stdin & dump on stdout](#i1)
   - [2. Formatted Output](#fo)
 - **Classes**
+  - [ArrayList](#al)
   - [Scanner](#s)
   - [java.lang.Math](#math)
 
@@ -85,6 +89,31 @@ datatype| size (byte) | Range
   char  | 2           |
 ```
 
+## Keywords
+<a name=ex></a>
+### Extends = Inheritance
+```java
+class A{                             //A.java   
+  public A(){
+    S.o.p("A");
+  }  
+}
+class B extends A{                  //B.java
+  public B(){
+    S.o.p("B");
+  } 
+}        
+public static void main(String[] args) {
+  B obj = new B();
+}
+O/P->    A B
+```
+
+<a name=im></a>
+### Implements
+```c
+```
+
 ## Input Output
 <a name=i1></a>
 #### 1. Reading stdin & dump on stdout
@@ -121,6 +150,16 @@ System.out.printf("%-15s%03d%n", s, a);   //java           20
 ```
 
 ## Classes
+<a name=al></a>
+### Arraylist = vector(C++)
+- AL are not synchronized(ie If multiple threads access AL, synchronization needed to be provided externally). vectors are synchronized
+```c
+Iterable <--extends-- Collection <--extends-- List  <--implements-- AbstractList <--extends-- ArrayList
+
+List<Integer> al = new ArrayList<Integer>();
+```
+    
+
 <a name=s></a>
 ### Scanner
 Scanner class is used to get user input, and it is found in the java.util package. Available methods in scanner class
