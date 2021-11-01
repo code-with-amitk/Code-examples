@@ -164,7 +164,7 @@ Ans:
   1. Interrupted user process stack may not have enough space to accomodate ISR's stack.
   2. If kernel uses User space stack for ISR, then after processing ISR kernel will leave data there. User space program/malicious users may use this data to find information about other processes.
 ```
-  - *d.* Perform [Context Switch](https://sites.google.com/site/amitinterviewpreparation/c-1/max-threads-opened-by-webserver):
+  - *d.* Perform [Context Switch](/Threads_Processes_IPC/Terms/#cos):
     - Swaps new page in RAM ie changes [MMU, Page Table, TLB](https://sites.google.com/site/amitinterviewpreparation/c-1/memory-management/virtual-memory)
   - *e.* ACK interrupt controller
   - *f.* Finishes ISR routine execution.
