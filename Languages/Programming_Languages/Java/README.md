@@ -153,7 +153,7 @@ System.out.printf("%-15s%03d%n", s, a);   //java           20
 <a name=al></a>
 ### Arraylist = vector(C++)
 - AL are not synchronized(ie If multiple threads access AL, synchronization needed to be provided externally). vectors are synchronized
-```c
+```java
 Iterable <--extends-- Collection <--extends-- List  <--implements-- AbstractList <--extends-- ArrayList
 
 List<Integer> al = new ArrayList<Integer>();
