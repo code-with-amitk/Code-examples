@@ -1,3 +1,0 @@
-## Semaphore APIs
-- semwait
-- sempost
