@@ -218,7 +218,7 @@ struct task_struct {
 };
 ```
 - **Why PCB is needed?** 
-  - When process changes state (ie switched from running to waiting/sleeping state(due to context switch or interrupt)) kernel stores info in PCB, so that process can resumed later from same poing using this information. 
+  - When process changes state (ie switched from running to waiting/sleeping state(due to [context switch](/Threads_Processes_IPC/Terms/#cos) or interrupt)) kernel stores info in PCB, so that process can resumed later from same poing using this information. 
   - Information of child processes is stored in PCB of parent process etc.
 - **Information stored in PCB?** 
   - [Register values of present process, stack pointer (rbp)](/assembly) etc
