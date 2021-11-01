@@ -2,9 +2,13 @@
 - [How it works](#how)
 - **Types of Semaphores**
   - [Binary](#b)
+    - [Thread1 signals Thread2 to enter Critical Section, when Thread1 is done](#t1st2)
   - [Counting](#c)
 - [Datastructures](#ds)
 - [APIs](#api)
+  - [sem_init](#si)
+  - [sem_post](#sp)
+  - [sem_wait](#sw)
 
 ## Semaphore
 A integer whose [atomicity](/Threads_Processes_IPC/Terms) is maintained by kernel.
@@ -17,7 +21,7 @@ A integer whose [atomicity](/Threads_Processes_IPC/Terms) is maintained by kerne
 ```
 <a name=how></a>
 ## How it works
-Similar to mutex only 1 thread can enter Critical section, But Thread-1 will signal Thread-2 once he's done. [Code](Types_of_Semaphores/Binary/Code/Thread1_Signalling_Thread2/C++_code.md)
+Similar to mutex only 1 thread can enter Critical section, But Thread-1 will signal Thread-2 once he's done. [Code](#t1st2)
 ```c
   Thread-1()      Critical_Section()      Thread-2()
       ---execute---->                     waiting
@@ -83,6 +87,7 @@ typedef atomic_t 	sem_t
 ```
 <a name=api></a>
 ## APIs
+<a name=si></a>
 #### [sem_init](https://man7.org/linux/man-pages/man3/sem_init.3.html)
 Initialize semaphore
 ```c
@@ -97,6 +102,7 @@ Return:
   Success: 0 
   Error: -1, errno is set to indicate the error.
 ```
+<a name=sp></a>
 ### [sem_post](https://man7.org/linux/man-pages/man3/sem_post.3.html)
 unlock a semaphore
 ```c
@@ -119,6 +125,7 @@ Return:
     ++s;                      //2
   }
 ```
+<a name=sw></a>
 ### [sem_wait / Block](https://man7.org/linux/man-pages/man3/sem_timedwait.3.html)
 lock a semaphore.
 ```c
