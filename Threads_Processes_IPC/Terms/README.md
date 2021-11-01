@@ -2,6 +2,13 @@
   - [Atomic Variables](#av)
 - [Bound Waiting](#bw)
 - [Busy Waiting](#busyw)
+- [Context Switch](#cos)
+- [Critical Section(requires Mutual Exclusion)](#cs)
+- [CPU Bound](#cb)
+- [Deadlock](#dl)
+- [IO Bound](#io)
+- 
+
 
 ## Terms
 <a name=at></a>
@@ -43,6 +50,52 @@ Process-2 waits outside critical section while process-1 is executing inside.
 **Busy waiting on mutex**
 - Process-1(or thread-1) has locked mutex and is in critical section.
 - Process-2(or thread-2) need to wait outside critical section until mutex is unlocked. Process-2 sits in tight loop waiting for mutex to be released. This is called Busy waiting.
+
+<a name=cos></a>
+### Context Switch
+- Means giving CPU from 1 process to other by scheduler.
+- Each process is given a time interval(called its quantum) during which it is allowed to run. If the process keeps on running after the quantum also, CPU is preempted(fetched) from process and given to another process. 
+- When the scheduler switches the CPU from executing process-1 to another process-2, the state of the current running process-1 is stored in its PCB. 
+#### Tasks Done before CS
+- **Suppose CS needed to be done from processA to processB**
+  - _a._ Save processA registers, Remove Physical to Virtual Map (in MMU), Flush TLB for processA.
+  - _b._ Load processB registers, Update Physical to Virtual Map (in MMU), Update TLB for processB.
+- **Context switch from ProcessB to processA:** perform operations a and b again.
+  - _c._ Additionally, Flushing memory caches(L1,L2,L3), reloading memory caches
+#### Is context switch good? No(its wastage of CPU time). 
+- _Smaller Quantum:_ Suppose quantum is of 4millisec, Context switch(saving loading registers, caches etc) is of 1millisec. 4 1 4 1 4 1 ... After 100millisec. 20millisec wasted in context switch(that's waste of CPU time).
+- _Larger Quantum:_ Suppose quantum is of 100millisec, Context switch is 1millisec. 100 1 100 1. if 50 processes are in queue. last process will get CPU after 5 seconds. That's too long.
+- _Reasonable Quantum:_ 20-50millisec
+
+ <a name=cs></a>
+### Critical Section(requires Mutual Exclusion)
+  - Piece of code where 2 processes/threads are not allowed to execute concurrently. 
+  - Ex: shared data structures, peripheral device, or network connection. CS should be accessed using synchronization. Eg: semaphore
+- **Pareto Principle** 90% of CPU cycles are spent in 10% of code. Means we have to focus & parallelly implement this 10% of code
+- **Race Condition?** 2 or more threads/processes are accessing/writing same shared resource(file, global variables etc) then at end result is unpredictable or wrong.
+- **Reentrant**
+  - Making second call same function while a previous call has not yet finished.
+  - *Example:*
+    - Suppose 2 threads can excute same function `fun()`.
+    - Thread-1 executing is on line-11(writing to some big memory area `*ptr=bb`) of `fun()` & CPU decides to context switch. State of memory `*ptr` will be inconsistent and control is given to thread-2.
+    - Thread-2 starts executing and writes to `*ptr=bbaaaa` and again context switch is done to thread-1.
+    - Thread-1 comes back, expects `*ptr=bb` and starts writing `*ptr=bbbbb` and done.
+    - Thread-2 reads `*ptr` thinking output as `bbaaaa` But `*ptr` is in inconsistent state.
+  - **Solution:** mutex(But it eliminates parallelism)
+```c
+  fun(){            
+      ...
+11:    writing_to_big_memory (*ptr)
+      ...
+  }
+  
+int main(){  
+  thread t1(fun);
+  thread t2(fun);
+  t1.join();
+  t2.join();
+}  
+```
 
 <a name=cb></a>
 ### CPU Bound 
@@ -98,32 +151,4 @@ Q: Find whether a process is IO Bound or CPU Bound?
         i=0;
  }
  ```
- <a name=cs></a>
-### Critical Section(requires Mutual Exclusion)
-  - Piece of code where 2 processes/threads are not allowed to execute concurrently. 
-  - Ex: shared data structures, peripheral device, or network connection. CS should be accessed using synchronization. Eg: semaphore
-- **Pareto Principle** 90% of CPU cycles are spent in 10% of code. Means we have to focus & parallelly implement this 10% of code
-- **Race Condition?** 2 or more threads/processes are accessing/writing same shared resource(file, global variables etc) then at end result is unpredictable or wrong.
-- **Reentrant**
-  - Making second call same function while a previous call has not yet finished.
-  - *Example:*
-    - Suppose 2 threads can excute same function `fun()`.
-    - Thread-1 executing is on line-11(writing to some big memory area `*ptr=bb`) of `fun()` & CPU decides to context switch. State of memory `*ptr` will be inconsistent and control is given to thread-2.
-    - Thread-2 starts executing and writes to `*ptr=bbaaaa` and again context switch is done to thread-1.
-    - Thread-1 comes back, expects `*ptr=bb` and starts writing `*ptr=bbbbb` and done.
-    - Thread-2 reads `*ptr` thinking output as `bbaaaa` But `*ptr` is in inconsistent state.
-  - **Solution:** mutex(But it eliminates parallelism)
-```c
-  fun(){            
-      ...
-11:    writing_to_big_memory (*ptr)
-      ...
-  }
-  
-int main(){  
-  thread t1(fun);
-  thread t2(fun);
-  t1.join();
-  t2.join();
-}  
-```
+
