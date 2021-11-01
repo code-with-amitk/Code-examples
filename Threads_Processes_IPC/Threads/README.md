@@ -122,7 +122,7 @@ pthread_exit();    //This will exit calling Thread
 - Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process.
 - Each process will need its own **[Thread Table](#tt)**(to keep track of threads in process). 
 - **Advantages**
-  - *1.* [Context switch] between threads is done in user space, no call into kernel space or call trap().
+  - *1.* [Context switch](/Threads_Processes_IPC/Terms/#cos) between threads is done in user space, no call into kernel space or call trap().
   - *2.* UST can be implemented on OS which does not support threads
   - *3.* Each process can have its own customized Thread scheduling algos.
 - **Disadvantages**
