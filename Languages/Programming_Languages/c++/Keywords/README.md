@@ -121,13 +121,33 @@ class A {
 - fun() is present in C code. fun() will be used by C++ code by shared library(`*.so`) which will be dynamically linked.
 - C++ Compiler will [mangle function name](/Languages/Programming_Languages/c++/#nm) from fun() to f12asfn() at time of object code creation.
 - At time of Linking, C++ code calls f12asfn() but shared-library will call the function by actual name, and actual name is mangled by compiler it will generate a linker error.
+```
+int printf(const char *format,...);
+int main(){
+    int a = 1;
+    printf("%d",a);
+}
+$ g++ test.cpp
+$ ./a.out
+undefined reference to `printf(char const*, ...)'
+```
 
 **Solution:** Ask compiler not to mangle function name if its coming from C.
 ```cpp
-    extern "C"      //Do not mangle name of foo().
-    int foo(int) {
-        something;
-    }          
+#ifdef __cplusplus
+extern "C" {                //Do not mangle name of foo().
+#endif
+  int printf(const char *format,...);
+#ifdef __cplusplus
+}
+#endif
+
+int main(){
+    int a = 1;
+    printf("%d",a);
+}
+$ ./a.out
+1
 ```
 
 <a name=new></a>
