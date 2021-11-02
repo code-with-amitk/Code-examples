@@ -19,7 +19,7 @@
 - [Crates, Packages, Modules](#cpm)
 - [Enum](#enum)
 - [Error Handling](#eh)
-- [FFI, Forign Function Interface, Shared Library](FFI)
+- [FFI, Foreign Function Interface, Shared Library](FFI)
 - [Generic Types/Templates](#temp)
 - [Trait = Interface = Virtual (not pure virtual)](#ti)
 - [Automated Tests](#tests)
