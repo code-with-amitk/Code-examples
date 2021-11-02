@@ -1,8 +1,8 @@
-- [Forign Function Interface](#ffi)
+- [Foreign  Function Interface](#ffi)
 - [FFI C to Rust](#c2r)
 
 <a name=ffi></a>
-## Forign Function Interface / FFI
+## Foreign Function Interface / FFI
 Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
 
 <a name=c2r></a>
