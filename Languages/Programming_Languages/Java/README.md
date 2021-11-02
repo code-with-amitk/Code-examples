@@ -11,8 +11,9 @@
   - [2. Formatted Output](#fo)
 - **Classes**
   - [ArrayList](#al)
-  - [Scanner](#s)
+  - [HashMap](#hm)
   - [java.lang.Math](#math)
+  - [Scanner](#s)
 
 
 <a name=a></a>
@@ -158,7 +159,29 @@ Iterable <--extends-- Collection <--extends-- List  <--implements-- AbstractList
 
 List<Integer> al = new ArrayList<Integer>();
 ```
-    
+
+<a name=hm></a>
+### HashMap `<key,value>`
+- Writing on Key that is already existant Overrides the old entry. No ordering is maintained.
+```
+map <--implements-- AbstractMap <--extends-- HashMap
+```
+#### Code
+```java
+HashMap<Integer,String> hm = new HashMap <Integer,String>();
+hm.add(100,"Ravi");
+hm.add(200,"Hari");
+hm.add(300,"Mani");
+
+for (Map.Entry temp:hm.entrySet())
+  S.o.p(temp.getValue());
+```
+#### Functions
+```java
+            Function              |                 Meaning
+----------------------------------|-----------------------------------------------------------------------
+  getOrDefault(key, defaultValue) | Return value associated with key, if key not found return default value
+```
 
 <a name=s></a>
 ### Scanner
