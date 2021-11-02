@@ -1,4 +1,4 @@
-- [Foreign  Function Interface](#ffi)
+- [Foreign Function Interface](#ffi)
 - [FFI C to Rust](#c2r)
 
 <a name=ffi></a>
@@ -7,8 +7,9 @@ Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
 
 <a name=c2r></a>
 ### FFI C to Rust
-- **Step-1:** Create static library in Rust containing function definition, defined in Rust.
+**Step-1:** Create static library in Rust containing function definition, defined in Rust.
 ```rs
+Open "Visual Studio Code"
 $ cargo new ffi
 
 //Rename src/main.rs to src/lib.rs          //Step-1a
@@ -33,4 +34,10 @@ pub extern "C" fn rust_function() {
 $ cargo build                               //Step-1d: Build static library.
 $ ls ffi\target\debug
 ffi.lib
+```
+**Step-2:** Generate Header file containing function(rust_function()) declaration to be used in c++ code using [cbindgen](https://github.com/eqrion/cbindgen)
+```rs
+pub fn rust_function() ---becomes---> void rust_function()
+
+$ cargo install --force cbindgen        //Step-2a. Install cbindgen
 ```
