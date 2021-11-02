@@ -1,5 +1,4 @@
-**Mutex**
-- [How Mutex is internally implemented](#in)
+**[Mutex](#mut)**
 - [Mutex Problems](#mp)
 - [Mutex Types](#ty)
 - **Code**
@@ -7,17 +6,15 @@
     - [pthread](#pt1)
     - [C++ thread](#ct)
 
-<a name=mt></a>
+<a name=mut></a>
 ## Mutex / Mutual Exculsion / Locking mechanism
 - if 1 thread is in other cannot enter.
 - **Mutex Problems**
   - *1. Priority Inversion:* Higher priority thread/process has to [Busy Wait](/Threads_Processes_IPC/Terms) outside critical section, because lower priority thread has locked mutex and is in Critical section.
   - *2. Easy Deadlock:* if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.  
-
-<a name=in></a>
-## How Mutex is internally implemented
-- Mutex is kernel maintained lock that we set before using a shared resource and release after using it.
-- When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
+- **How Mutex is internally implemented?**
+  - Mutex is kernel maintained lock that we set before using a shared resource and release after using it.
+  - When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
 
   
 <a name=ty></a>
