@@ -1,5 +1,4 @@
-**Semaphore**
-- [How it works](#how)
+**[Semaphore](sem)**
 - **Types of Semaphores**
   - [Binary](#b)
     - [Thread1 signals Thread2 to enter Critical Section, when Thread1 is done](#t1st2)
@@ -10,8 +9,9 @@
   - [sem_post](#sp)
   - [sem_wait](#sw)
 
+<a name=sem></a>
 ## Semaphore
-A integer whose [atomicity](/Threads_Processes_IPC/Terms) is maintained by kernel.
+- A integer whose [atomicity](/Threads_Processes_IPC/Terms) is maintained by kernel.
 ```c
   if (variable==1)            //sem_post
     //Enter in Critical section 
@@ -19,9 +19,7 @@ A integer whose [atomicity](/Threads_Processes_IPC/Terms) is maintained by kerne
   if (variable==0)            //sem_wait
     //Entrace blocked. Wait
 ```
-<a name=how></a>
-## How it works
-Similar to mutex only 1 thread can enter Critical section, But Thread-1 will signal Thread-2 once he's done. [Code](#t1st2)
+- Similar to mutex only 1 thread can enter Critical section, But Thread-1 will signal Thread-2 once he's done. [Code](#t1st2)
 ```c
   Thread-1()      Critical_Section()      Thread-2()
       ---execute---->                     waiting
