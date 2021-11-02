@@ -10,6 +10,8 @@
     - [2. const object can only call const function](#c5)
 - **explicit**
   - [implicit conversion / Conversion constructor](#im)
+- **[extern](#ext)**
+  - [extern C](#extc)
 - [final keyword](#final)
 - **[new](new)**
 - **scope Resolution**
@@ -105,6 +107,27 @@ class A {
      explicit A(int b) : a(b) {}             //CONSTRUCTOR PREFIXED with EXPLICIT stops implicit conversion
   ...
 };
+```
+
+<a name=ext></a>
+## extern
+<a name=extc></a>
+### extern C
+**What?**
+- With extern C we tell C++ Compiler not to [mangle name]() of functions/symbols.
+- "extern C" is used to call C functions from C++ code.
+
+**Problem: Compile C code with g++ compiler**
+- fun() is present in C code. fun() will be used by C++ code by shared library(`*.so`) which will be dynamically linked.
+- C++ Compiler will [mangle function name]() from fun() to f12asfn() at time of object code creation.
+- At time of Linking, C++ code calls f12asfn() but shared-library will call the function by actual name, and actual name is mangled by compiler it will generate a linker error.
+
+**Solution:** Ask compiler not to mangle function name if its coming from C.
+```cpp
+    extern "C"      //Do not mangle name of foo().
+    int foo(int) {
+        something;
+    }          
 ```
 
 <a name=new></a>
