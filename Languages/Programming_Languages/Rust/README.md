@@ -5,6 +5,7 @@
 - [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
 - [Cargo](#car)
 - [Asynchronous Programming](#as)
+- [Attributes](#at)
 - [Statements & Expressions](#statements)
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
@@ -90,7 +91,11 @@ cargo build, cargo test, cargo doc, cargo publish
 
 <a name=as></a>
 ### [Asynchronous Programming](Asynchronous)
-- awaits, async() function
+awaits, async() function
+
+<a name=at></a>
+### [Attributes](Attributes)
+no_mangle
 
 <a name=statements></a>
 ### Statements & Expressions
