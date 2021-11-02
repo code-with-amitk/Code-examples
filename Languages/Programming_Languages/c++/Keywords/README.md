@@ -121,7 +121,7 @@ class A {
 - fun() is present in C code. fun() will be used by C++ code by shared library(`*.so`) which will be dynamically linked.
 - C++ Compiler will [mangle function name](/Languages/Programming_Languages/c++/#nm) from fun() to f12asfn() at time of object code creation.
 - At time of Linking, C++ code calls f12asfn() but shared-library will call the function by actual name, and actual name is mangled by compiler it will generate a linker error.
-```
+```c
 int printf(const char *format,...);
 int main(){
     int a = 1;
