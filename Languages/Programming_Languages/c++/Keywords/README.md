@@ -114,12 +114,12 @@ class A {
 <a name=extc></a>
 ### extern C
 **What?**
-- With extern C we tell C++ Compiler not to [mangle name]() of functions/symbols.
+- With extern C we tell C++ Compiler not to [mangle name](/Languages/Programming_Languages/c++/#nm) of functions/symbols.
 - "extern C" is used to call C functions from C++ code.
 
 **Problem: Compile C code with g++ compiler**
 - fun() is present in C code. fun() will be used by C++ code by shared library(`*.so`) which will be dynamically linked.
-- C++ Compiler will [mangle function name]() from fun() to f12asfn() at time of object code creation.
+- C++ Compiler will [mangle function name](/Languages/Programming_Languages/c++/#nm) from fun() to f12asfn() at time of object code creation.
 - At time of Linking, C++ code calls f12asfn() but shared-library will call the function by actual name, and actual name is mangled by compiler it will generate a linker error.
 
 **Solution:** Ask compiler not to mangle function name if its coming from C.
