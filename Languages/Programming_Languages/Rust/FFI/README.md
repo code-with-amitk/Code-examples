@@ -95,4 +95,16 @@ pub extern "C" fn fun(
 
 #### 2. Create [static library(`test.a`) in C++]()
 
-#### 3. 
+#### 3. Build.rs
+Place this in root of package, cargo will compile & run before building cargo pacakge.
+```rs
+fn main() {
+
+    // Tell Cargo that if the given file changes, to rerun this build script.
+    println!("cargo:rerun-if-changed=src/hello.c");
+    // Use the `cc` crate to build a C file and statically link it.
+    cc::Build::new()
+        .file("src/hello.c")
+        .compile("hello");
+}
+```
