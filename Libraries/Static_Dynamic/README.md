@@ -1,3 +1,4 @@
+- [Static vs Shared](#vs)
 - **Static Library**
   - **Create/Link Static Object**
     - [A. Linux `*.a`](#lis)
@@ -8,13 +9,30 @@
     - [B. Windows `*.dll`](#wind)
 
 
-## Static Library / Static Object
-
-- **Disadvantages**
-- *1. Increased Size of Binary*
-  - If Static Library contains 1000 functions, this all source code will become part of application code. Size of application code becomes large.
-- *2. If changes in static library, application code has to be complied everytime*
-  - 3rd Party static library developer done some changes in libtotal.a & publishes on internet, to take those changes we have to download & compile with our exe again.
+<a name=vs></a>
+## Static vs Shared
+```c
+            |       Static                                                     |   Dynamic
+------------|------------------------------------------------------------------|------------
+Extension   | Linux  (*.a)                                                     | (*.so)
+            | Windows (*.lib)                                                  | (*.dll)
+Disadv      | 1. Increased Size of Binary:                                     |
+            |    If Static Library contains 1000 functions, all                |
+                 source code will become part of application code. 
+                 Size of application code becomes large.
+            | 2. If changes in static lib, application has to be complied again
+                 3rd Party static library developer done some changes in 
+                 libtotal.a & publishes on internet, to take those changes we 
+                 have to download & compile with our exe again.
+Advantages  |                                                                  | 1. Size of Binary not increased
+                                                                                    A dynamic library does not become part of
+                                                                                    application code. These are stored at some
+                                                                                    memory (/usr/lib64/libutil.so) Only address
+                                                                                    of function is placed inside with the exe.
+                                                                               | 2. If changes happens in Dynamic Library
+                                                                                    provided by 3rd party, application need not
+                                                                                    to be complied.
+```
 
 ### Create/Link Static Object
 <a name=lis></a>
