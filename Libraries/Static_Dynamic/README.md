@@ -1,12 +1,10 @@
-- [Static vs Shared](#vs)
-- **Static Library**
-  - **Create/Link Static Object**
-    - [A. Linux `*.a`](#lis)
-    - [B. Windows `*.lib`](#wins)
-- **Dynamic Library**
-  - **Create/Link Dynamic Object**
-    - [A. Linux `*.so`](#lid)
-    - [B. Windows `*.dll`](#wind)
+- [Static vs Dynamic Library](#vs)
+- **Static Object**
+  - [a. Linux](#lis)
+  - [b. Windows](#wins)
+- **Dynamic Object**
+  - [a. Linux](#lid)
+  - [b. Windows](#wind)
 
 
 <a name=vs></a>
@@ -16,6 +14,7 @@
 ------------|------------------------------------------------------------------|------------
 Extension   | Linux  (*.a)                                                     | (*.so)
             | Windows (*.lib)                                                  | (*.dll)
+
 Disadv      | 1. Increased Size of Binary:                                     |
             |    If Static Library contains 1000 functions, all                |
                  source code will become part of application code. 
@@ -34,9 +33,9 @@ Advantages  |                                                                  |
                                                                                     to be complied.
 ```
 
-### Create/Link Static Object
+### 1. Static Lib
 <a name=lis></a>
-#### A. Linux
+#### a. Linux
 - _1._ Create static object/Library `libtotal.a`
   - /bin Contains executables for basic operations. Commands: mkdir, cp, chmod, uname etc
   - /usr/bin Installed softwares by user
@@ -76,7 +75,7 @@ collect2: error: ld returned 1 exit status
 ```
 
 <a name=wins></a>
-#### A. Windows
+#### b. Windows
 - _1._ Create `*.lib` file
   - Visual Studio 2019 > File > New > Project > Select (Static Library) > Name (StaticLib1). VS will create following folders
 ```c
@@ -111,16 +110,9 @@ Project Properties
   - Linker > Input > Additional Dependencies > StaticLib1.lib                //Add Library Name
 ```
 
-
-## [Dynamic Library / Dynamic Object](https://www.youtube.com/watch?v=KNr4tAPvbvQ)
-  A dynamic library does not become part of application code. These are stored at some memory (/usr/lib64/libutil.so) and from there compiler picks them.
-- **Advantages of Dynamic Libraries**
-  - size of Binary not increased: Since only address of function is placed inside with the exe, final size of binary is not increased.
-  - If changes happens in Dynamic Library provided by 3rd party, application need not to be complied
-
-### Create/Link Dynamic Object
+### 2. Dynamic Lib
 <a name=lid></a>
-#### A. Linux
+#### a. Linux
 - _1._ Create shared object `*.so`
   - Object files for shared libraries need to be compiled as **position independent code (-fPIC)** because they are mapped to any position in the address space. See `-fPIC` option on Compile/gcc-options.md
 ```c
@@ -161,4 +153,4 @@ Project Properties
 ```
 
 <a name=wins></a>
-#### B. Windows
+#### b. Windows
