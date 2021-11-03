@@ -1,5 +1,5 @@
 - [Foreign Function Interface](#ffi)
-- [1, FFI C to Rust](#c2r)
+- [1, FFI C/CPP to Rust](#c2r)
   - [A. Create static library in Rust](#s1)
   - [B. Generate Header file containing function declaration using cbindgen](#s2)
 - [2. FFI Rust to C](#r2c)
@@ -10,8 +10,8 @@
 Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
 
 <a name=c2r></a>
-### [1. FFI C to Rust](https://docs.rust-embedded.org/book/interoperability/rust-with-c.html)
-Function defined in Rust, called from C.
+### [1. FFI C/CPP to Rust](https://docs.rust-embedded.org/book/interoperability/rust-with-c.html)
+Function defined in Rust, called from C/CPP.
 <a name=s1></a>
 #### 1. Create static library in Rust
 ```rs
