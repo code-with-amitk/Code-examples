@@ -20,6 +20,7 @@ Input: numCourses = 1, prerequisites = []
 Output: [0]
 ```
 
+<a name=a1></a>
 ### Approach-1, Topological Sort of Directed Cyclic Graph
 - What is [Toplogical Sort of Directed cyclic graph](/DS_Questions/Data_Structures/Graphs/).
 - We can represent course relationships with directed, cyclic graph, where 
@@ -32,4 +33,16 @@ Output: [0]
   |                  /\
   --------> 2 -------|
   
+```
+<a name=l1></a>
+#### Logic
+- _1._ Create Adjacency list representing directed graph
+```c
+unordered_map <key=node, value=linked_list>
+
+ | key=0, value=ll | key=1, value=ll | key=2, value=ll |
+                 1                 3                 3
+                 |
+                \/
+                 2
 ```
