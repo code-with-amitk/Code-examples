@@ -2,13 +2,14 @@
 - [FFI C to Rust](#c2r)
   - [1. Create static library in Rust](#s1)
   - [2. Generate Header file containing function declaration using cbindgen](#s2)
+- [FFI Rust to C](#r2c)
 
 <a name=ffi></a>
 ## Foreign Function Interface / FFI
 Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
 
 <a name=c2r></a>
-### FFI C to Rust
+### [FFI C to Rust](https://docs.rust-embedded.org/book/interoperability/rust-with-c.html)
 <a name=s1></a>
 #### 1. Create static library in Rust
 ```rs
@@ -61,3 +62,37 @@ void rust_function();
 
 } // extern "C"
 ```
+
+<a name=r2c></a>
+### FFI Rust to C
+#### 1. Translate C Header file for Rust
+**Method-1: Manually reading and translating(Not recommended)**
+- **`#[repr(C)]`**?
+  - By default, Rust does not guarantee order, padding, or the size of data included in a struct Hence we should instructs the Rust compiler to always use the same rules C does for organizing data within a struct.
+- **cty?**
+  - To map primitive data types defined in cty, which will map types from C to types in Rust.
+```c
+$ cat test.h
+typedef struct st {
+  int x;
+}COOL_ST;
+void fun(int i, char c, COOL_ST* cs);
+
+test.h would be translated to =>
+
+#[repr(C)]
+pub struct COOL_ST {
+    pub x: cty::c_int,
+}
+pub extern "C" fn fun(
+    i: cty::c_int,
+    c: cty::c_char,
+    cs: *mut COOL_ST,
+);
+```
+
+**Method-2: Using [bindgen](https://github.com/rust-lang/rust-bindgen) tool**
+
+#### 2. Create [static library(`test.a`) in C++]()
+
+#### 3. 
