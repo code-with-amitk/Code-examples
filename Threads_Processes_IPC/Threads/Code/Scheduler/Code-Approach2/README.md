@@ -1,14 +1,29 @@
 - [Code Structure](#cs)
-  - [A. class Worker](#w)
-  - [B. class Dispatcher](#d)
+  - [1. Dispatcher](#d)
+  - [2. Worker](#w)
+
 
 <a name=cs></a>
 ## Code Structure
-- 10 threads are created.
+```
+   Module         |     Work
+------------------|-----------------
+1. Dispatcher     | - Create 10 threads initially       Dispatcher::init()
+                   
+2. main (Driver)  | - Add Task to Dispatcher Queue      Dispatcher::AddRequest()
+```
+<a name=d></a>
+### 1. Dispatcher
 - Every thread calls run() method. Access to run() is protected by mutex, condition variables.
+- Contains vector of ThreadId's.
+```cpp
+class Dispatcher {
+	static vector<thread*> threads;
+};  
+```
 
 <a name=w></a>
-### A. Class Worker
+### 2. Worker
 Contains mutex, condition variables, run() method.
 ```cpp
 class Worker {
@@ -21,11 +36,5 @@ class Worker {
 };  
 ```
 
-<a name=d></a>
+
 ### B. Class Dispatcher
-Contains vector of ThreadId's.
-```cpp
-class Dispatcher {
-	static vector<thread*> threads;
-};  
-```
