@@ -101,9 +101,9 @@ pub extern "C" fn fun(
 
 **Method-2: Using [bindgen](https://github.com/rust-lang/rust-bindgen) tool**
 
-#### 2. Create [static library(`test.a`) in C++](/Libraries/Static_Dynamic)
+#### B. Create [static library(`test.lib`) in C++](/Libraries/Static_Dynamic/#wins)
 
-#### 3. Build.rs
+#### C. Build.rs
 Place this in root of package, cargo will compile & run before building cargo pacakge.
 ```rs
 fn main() {
