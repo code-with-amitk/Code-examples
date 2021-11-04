@@ -1,15 +1,13 @@
 - [What is Graph](#what)
-- **Representation of Graph**
+- **[Representation of Graph](#r)**
   - [1. Adjacency Matrix/Lookup table](#m)
-  - [2. Adjacency List](#l)
+  - [2. Adjacency List: Directed, Undirected Graph](#l)
+    - [Undirected Graph](#alu)
+    - [Directed Graph](#ald)
+      - [1. 2-D Vector](#2dv)
+      - [2. HashMap of Linked List](#hml)
   - [3. Edge List](#el)
-- **Terms**
-  - [Diameter/Eccentricity](#dia)
-  - [Edge/Arc/Line](#edge)
-  - [Radius](#radius)
-  - [Topological Sort / Topological Order](#ts)
-  - [Vertex/Node](#vertex)
-  - [Connected Components](#cc)
+- **[Terms: Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
 - **Types of Graphs**
   - [Cyclic/Acyclic](cyclic)
     - [1. DAG/Directed Acyclic Graph](#dag)
@@ -31,6 +29,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
     3 ------- 2     5
 ```
 
+<a name=r></a>
 ## Representation of Graph
 ```cpp
         a --> c 
@@ -39,7 +38,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
         ----> d <-- b
 ```
 <a name=m></a>
-#### 1. Adjacency Matrix/Lookup table
+### 1. Adjacency Matrix/Lookup table
 - Each cell keeps how two nodes are connected. For unweighted graph values are `1`. 
 - For weighted graph values are cost/weights. 
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -57,15 +56,16 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 ```
 
 <a name=l></a>
-#### 2. Adjacency List
+### 2. Adjacency List
 Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
+<a name=al1></a>
+#### Undirected Graph
 ```cpp
-////////Undirected///////////
+
    1 -- 0 -- 3 -- 4
         |
         2  
   vector<vector<int>> al[5];
-  
   al[0].push_back(1); al[0].push_back(2); al[0].push_back(3); => 1,2,3    //node0
   al[1].push_back(0);                                                     //node1
   al[2].push_back(0);                                                     //node2
@@ -75,8 +75,12 @@ Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advan
       |     |   |   |     |   |
       |1,2  |0  |0  |0,4  |3  |
 index  0     1   2   3     4
-
-///////////Directed Graph////////////
+```
+<a name=ald></a>
+#### Directed Graph
+<a name=2dv></a>
+##### 1. 2-D Vector
+```c
   1 --> 2 --> 3
         |
        \/
@@ -86,6 +90,26 @@ a[0].push_back(-1);
 a[1].push_back(1);
 a[2].push_back(0); a[2].push_back(3);
 a[3].push_back(-1);
+```
+<a name=hml></a>
+##### 2. HashMap of Linked List
+```c
+vector<vector<int>> v = { {1, 0},{2, 0},{3, 1},{3, 2 }};
+		for (int i = 0; i < v.size(); ++i) {
+			ListInt l;
+			int dest = prerequisites[i][0];
+			int src = prerequisites[i][1];
+			auto it = adjList.find(src);
+			if (it != adjList.end()) {		//Element already exists
+				l = it->second;
+			}
+			l.push_back(dest);
+			adjList[src] = l;
+		}
+
+0 ---> 1 ---> 3
+|             /\
+-----> 2 -----|
 ```
 
 <a name=el></a>
@@ -99,17 +123,17 @@ a[3].push_back(-1);
   v[1].push_back(3); v[2].push_back(3);
 ```
 
+<a name=t></a>
 ## Terms
-<a name=dia></a>
 #### Diameter/Eccentricity
 Greatest distance between any pair of vertices.
-<a name=edge></a>
+
 #### Edge/Arc/Line
 Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
-<a name=radius></a>
+
 #### Radius 
 Minimum eccentricity of any vertex.
-<a name=ts></a>
+
 #### Topological Sort / Topological Order
 - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. Achieved using [DFS](/DS_Questions/Algorithms/Traversals/).
 - TS is only possible for [DAG](#dag). because DAGs don't have cycles and are directed.
@@ -121,10 +145,10 @@ Minimum eccentricity of any vertex.
         \/         \/
         2 --> 3 --> 1
 ```
-<a name=vertex></a>
+
 #### Vertex/Node
 Interconnected objects are called vertices.
-<a name=cc></a>
+
 #### Connected Components?
 This is subgraph in which each pair of nodes is connected with each other via a path. Here 3
 ```c
