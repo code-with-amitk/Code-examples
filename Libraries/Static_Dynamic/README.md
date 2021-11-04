@@ -75,9 +75,9 @@ collect2: error: ld returned 1 exit status
 ```
 
 <a name=wins></a>
-#### b. Windows
+#### b. Windows          //WORKING
 - _1._ Create `*.lib` file
-  - Visual Studio 2019 > File > New > Project > Select (Static Library) > Name (StaticLib1). VS will create following folders
+  - Visual Studio 2019 > File > New > Project > Search (Static Library) > Name (StaticLib1). VS will create following folders
 ```c
 StaticLib1
   |- Header Files
