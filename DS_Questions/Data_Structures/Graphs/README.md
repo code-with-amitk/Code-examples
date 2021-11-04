@@ -3,7 +3,7 @@
   - [1. Adjacency Matrix/Lookup table](#m)
   - [2. Adjacency List: Directed, Undirected Graph](#l)
     - [Undirected Graph](#alu)
-    - [Directed Graph](#ald)
+    - Directed Graph
       - [1. 2-D Vector](#2dv)
       - [2. HashMap of Linked List](#hml)
   - [3. Edge List](#el)
