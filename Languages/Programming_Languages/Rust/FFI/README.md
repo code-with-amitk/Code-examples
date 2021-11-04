@@ -2,6 +2,7 @@
 - [1, FFI C/CPP to Rust](#c2r)
   - [A. Create static library in Rust](#s1)
   - [B. Generate Header file containing function declaration using cbindgen](#s2)
+  - [C. Link rust static lib with Application](#s3)
 - [2. FFI Rust to C](#r2c)
   - [A. Translate C Header file for Rust](#r1)
 
@@ -13,7 +14,7 @@ Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
 ### [1. FFI C/CPP to Rust](https://docs.rust-embedded.org/book/interoperability/rust-with-c.html)
 Function defined in Rust, called from C/CPP.
 <a name=s1></a>
-#### 1. Create static library in Rust
+#### A. Create static library in Rust
 ```rs
 Open "Visual Studio Code"
 $ cargo new ffi
@@ -42,7 +43,7 @@ $ ls ffi\target\debug
 ffi.lib
 ```
 <a name=s2></a>
-#### 2. Generate Header file containing function declaration using cbindgen
+#### B. Generate Header file containing function declaration using cbindgen
 - rust_function() declaration to be used in c++ code.
 - using [cbindgen](https://github.com/eqrion/cbindgen)
 ```rs
@@ -64,6 +65,9 @@ void rust_function();
 
 } // extern "C"
 ```
+
+<a name=s3></a>
+#### [C. Link rust static lib with Application](/Libraries/Static_Dynamic/#wins)
 
 <a name=r2c></a>
 ### 2. FFI Rust to C
