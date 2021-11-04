@@ -1,12 +1,12 @@
 - [What is Graph](#what)
 - **[Representation of Graph](#r)**
-  - [1. Adjacency Matrix/Lookup table](#m)
-  - [2. Adjacency List: Directed, Undirected Graph](#l)
+  - [A. Adjacency Matrix/Lookup table](#m)
+  - [B. Adjacency List: Directed, Undirected Graph](#l)
     - [Undirected Graph](#alu)
     - Directed Graph
       - [1. 2-D Vector](#2dv)
       - [2. HashMap of Linked List](#hml)
-  - [3. Edge List](#el)
+  - [C. Edge List](#el)
 - **[Terms: Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
 - **Types of Graphs**
   - [Cyclic/Acyclic](cyclic)
@@ -38,7 +38,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
         ----> d <-- b
 ```
 <a name=m></a>
-### 1. Adjacency Matrix/Lookup table
+### A. Adjacency Matrix/Lookup table
 - Each cell keeps how two nodes are connected. For unweighted graph values are `1`. 
 - For weighted graph values are cost/weights. 
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -56,7 +56,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 ```
 
 <a name=l></a>
-### 2. Adjacency List
+### B. Adjacency List
 Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
 <a name=al1></a>
 #### Undirected Graph
@@ -113,7 +113,7 @@ vector<vector<int>> v = { {1, 0},{2, 0},{3, 1},{3, 2 }};
 ```
 
 <a name=el></a>
-#### 3. Edge List
+#### C. Edge List
 ```cpp
    v[0] |2|3|		//a(0) has c(2),d(3) as edges
    v[1] |3|
