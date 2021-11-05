@@ -7,11 +7,9 @@
   - [A. Translate C Header file for Rust](#r1)
 
 <a name=ffi></a>
-## Foreign Function Interface / FFI         {Working}
-Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
-
+## Foreign Function Interface / FFI
 <a name=c2r></a>
-### [1. FFI C/CPP to Rust](https://docs.rust-embedded.org/book/interoperability/rust-with-c.html)
+### [1. FFI C/CPP to Rust](https://docs.rust-embedded.org/book/interoperability/rust-with-c.html)         {Working}
 Function defined in Rust, called from C/CPP.
 <a name=s1></a>
 #### A. Create static library in Rust
