@@ -7,7 +7,7 @@
   - [A. Translate C Header file for Rust](#r1)
 
 <a name=ffi></a>
-## Foreign Function Interface / FFI
+## Foreign Function Interface / FFI         {Working}
 Calling C,C++,Ruby,other language(etc) code from rust or viceversa.
 
 <a name=c2r></a>
@@ -19,7 +19,7 @@ Function defined in Rust, called from C/CPP.
 Open "Visual Studio Code"
 $ cargo new ffi
 
-//Rename src/main.rs to src/lib.rs          //Step-1a
+//Rename src/main.rs to src/lib.rs          //1a
 
 $ Cargo.toml
 [package]
@@ -30,26 +30,30 @@ edition = "2018"
 
 [lib]
 name = "ffi"
-crate-type = ["staticlib", "lib"]           //Step-1b: Change crate-type
+crate-type = ["staticlib", "lib"]           //1b. Change crate-type
 
-$ cat src/lib.rs                            //Step-1c: Add extern "C" function in rust
-#[no_mangle]
-pub extern "C" fn rust_function() {
-  println!("Hi");
+$ cat src/lib.rs
+#![crate_type = "staticlib"]
+
+fn test() -> i32 {                          //1c. Function which needed to be called from C/C++ Code
+    4
 }
 
-$ cargo build                               //Step-1d: Build static library.
+#[no_mangle]
+pub extern "C" fn rust_function() -> i32 {  //1d. Add extern "C" function in rust. This will call Actual Rust function
+  test();
+}
+
+$ cargo build                               //1e. Build static library.
 $ ls ffi\target\debug
 ffi.lib
 ```
 <a name=s2></a>
-#### B. Generate Header file containing function declaration using cbindgen
-- rust_function() declaration to be used in c++ code.
-- using [cbindgen](https://github.com/eqrion/cbindgen)
+#### B. Generate Header file containing function declaration using [cbindgen](https://github.com/eqrion/cbindgen)
 ```rs
 pub fn rust_function() ---becomes---> void rust_function()
 
-$ cargo install --force cbindgen        //Step-2a. Install cbindgen
+$ cargo install --force cbindgen                        //2a. Install cbindgen
 //create empty cbindgen.toml
 ffi> cbindgen.exe --config cbindgen.toml --crate ffi --output ffi.h
 ffi> more ffi.h
@@ -61,7 +65,7 @@ ffi> more ffi.h
 
 extern "C" {
 
-void rust_function();
+int32_t rust_function();
 
 } // extern "C"
 ```
