@@ -6,6 +6,7 @@
 - **Keywords**
   - [Extends = inheritance](#ex)
   - [Implements](#im)
+  - [static](#st)
 - **Input Output**
   - [1. Reading stdin & dump on stdout](#i1)
   - [2. Formatted Output](#fo)
@@ -113,6 +114,19 @@ O/P->    A B
 <a name=im></a>
 ### Implements
 ```c
+```
+
+<a name=st></a>
+### Static
+Types of static
+```c
+1. static class variable
+2. static class method
+3. static class
+```
+Properties
+```c
+1. All objects share same static variable
 ```
 
 ## Input Output
