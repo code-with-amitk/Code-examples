@@ -1,5 +1,7 @@
 **[Course Schedule II](#p)**
 - [Approach-1, Directed Cyclic Graph](#a1)
+  - [Logic](#l)
+  - [Code](#cpp)
 
 <a name=p></a>
 ## [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
@@ -38,11 +40,74 @@ Output: [0]
 #### Logic
 - _1._ Create Adjacency list representing directed graph
 ```c
-unordered_map <key=node, value=linked_list>
+vector<vector<int>> al;
 
- | key=0, value=ll | key=1, value=ll | key=2, value=ll |
-                 1                 3                 3
-                 |
-                \/
-                 2
+ | 1,2 | 3 | 3 |  |
+   0     1   2   3
+```
+- _2._ Start from node=0. Traverse all its neighbours(connected nodes) recursively.
+```c
+  for (auto i : al) 
+    dfs (i)
+```
+- _3._ if node does not have any outdegree push on vector.
+```c
+  node=3
+  out.push_back(3)
+```
+- _4._ Reverse the vector and return.
+
+<a name=cpp></a>
+#### Code
+```cpp
+class Solution {
+    using VectorInt = vector<int>;
+    using VectorBool = vector<bool>;
+    using VectorVectorInt = vector<VectorInt>;
+    
+    VectorInt out;
+
+    bool dfs(VectorVectorInt& g, VectorBool& todo, VectorBool& done, int node) {
+        if (todo[node])
+            return false;
+
+        if (done[node])
+            return true;
+
+        todo[node] = done[node] = true;
+
+        for (int neigh : g[node]) {
+            if (!dfs(g, todo, done, neigh)) {
+                return false;
+            }
+        }
+        out.push_back(node);
+        todo[node] = false;
+        return true;
+    }   
+public:
+    VectorInt findOrder(int numCourses, VectorVectorInt& prerequisites) {
+        VectorVectorInt adjList(numCourses);          //Minmum size should be 2
+        if (!prerequisites.size()) {
+            if (numCourses == 1)
+                out.push_back(0);
+            return out;
+        }
+        for (int i = 0; i < numCourses; ++i) {
+            if (numCourses == 2 && i == 1) {
+                continue;
+            }
+            adjList[prerequisites[i][1]].push_back(prerequisites[i][0]);
+        }
+        
+        VectorBool todo(numCourses, false), done(numCourses, false);
+        for (int i = 0; i < numCourses; i++) {
+            if (!done[i] && !dfs(adjList, todo, done, i)) {
+                return {};
+            }
+        }
+        reverse(out.begin(), out.end());
+        return out;
+    }
+};
 ```
