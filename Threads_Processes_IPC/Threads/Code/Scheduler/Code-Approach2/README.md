@@ -14,6 +14,14 @@
 ```
 <a name=d></a>
 ### 1. Dispatcher
+```c
+for (int i = 0; i < 10; ++i) {				//1. Dispatcher creates 10 threads
+	thread* t = new thread(&Worker::run, i);	//Each thread will execute run() method
+	threads.push_back(t);
+}
+
+while (signal_caught == 0 && i < 50) {			//2. Until Cntrl^C caught or served 50 requests
+```
 - Every thread calls run() method. Access to run() is protected by mutex, condition variables.
 - Contains vector of ThreadId's.
 ```cpp
