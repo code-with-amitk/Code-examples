@@ -4,7 +4,7 @@
   - [2. Central scheduler accepts new tasks & assigns to workers threads](#a2)
 
 ## Scheduler
-- **Task:** Accept incoming requests/tasks(Packets or cpu jobs) & assign to worker threads (as qucikly as possible).
+Scheduler accepts incoming requests/tasks(Packets or cpu jobs) & assign to worker threads (as qucikly as possible).
 ### Approaches
 <a name=a1></a>
 #### 1. Threads pooling queue
