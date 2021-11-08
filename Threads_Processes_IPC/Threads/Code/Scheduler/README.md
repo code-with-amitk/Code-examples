@@ -1,7 +1,6 @@
 **Scheduler/Load Balancer**
-- *Approaches*
-  - [1. Threads pooling queue](#a1)
-  - [2. Central scheduler accepts new tasks & assigns to workers threads](#a2)
+- [Approach-1. Threads pooling queue](#a1)
+- [Approach-2. Central scheduler accepts new tasks & assigns to workers threads](#a2)
 
 ## Scheduler
 Scheduler accepts incoming requests/tasks(Packets or cpu jobs) & assign to worker threads (as qucikly as possible).
