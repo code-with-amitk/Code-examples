@@ -7,6 +7,16 @@
 <a name=cs></a>
 ## Code Structure
 ```
+        MAIN
+  1. Initialize Dispatcher
+  
+                                       DISPATCHER
+                                     2. init() //Create 10 threads, store in vector<>  t1, t2, .. t9
+				               //Threads will run Worker::run()
+   3. Create Task Object
+   4. Add Task to Dispatcher queue
+                                     5. AddRequest()
+
    Module         |     Work
 ------------------|-----------------
 1. main (Driver)  | - Add Task to Dispatcher Queue      Dispatcher::AddRequest()
