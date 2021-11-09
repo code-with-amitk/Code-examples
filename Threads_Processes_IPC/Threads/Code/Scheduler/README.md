@@ -30,3 +30,4 @@ thread2  <-----------------   Scheduler <----Task
                               |
 threadn  <--------------------|
 ```
+Scheduler holds a worker queue, `queue<Worker*> queueWorkers` and assigns task to 1st worker in queue.
