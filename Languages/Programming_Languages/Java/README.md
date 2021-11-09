@@ -12,6 +12,7 @@
   - [2. Formatted Output](#fo)
 - **Classes**
   - [ArrayList](#al)
+  - [List`<>`](#li)
   - [HashMap](#hm)
   - [java.lang.Math](#math)
   - [Scanner](#s)
@@ -192,6 +193,11 @@ Iterable <--extends-- Collection <--extends-- List  <--implements-- AbstractList
 
 List<Integer> al = new ArrayList<Integer>();
 ```
+
+<a name=li></a>
+### `List<>`
+- List is interface which is implemented by some concreate classes: AbstractList, AbstractSequentialList, ArrayList, AttributeList, CopyOnWriteArrayList, LinkedList, RoleList, RoleUnresolvedList, Stack, Vector
+- Since List`<>` is a interface, we cannot create object of List class.
 
 <a name=hm></a>
 ### HashMap `<key,value>`
