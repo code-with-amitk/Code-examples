@@ -1,10 +1,6 @@
 - **[STL / Standard template library](#stl)**
 - **Types of STL**
-  - [1. Containers](#con)
-    - [1.1 Seqeunce Containers](#seq)
-    - [1.2 Container Adopters](#adop)
-    - [1.3 Sorted/Ordered](#or)
-    - [1.4 UnSorted/Unordered](#unor)
+  - [1. Containers: Sequence containers, Container Adopters, Sorted/Ordered, Unsorted/unordered](#con)
   - [2. Algorithms](#algo)
   - [3. Iterators](#itr)
   - [4. Functors](#func)
