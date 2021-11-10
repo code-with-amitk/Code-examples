@@ -1,5 +1,5 @@
 **Map**
-- Inserting element
+- **Inserting element**
   - [insert()](#mins)
   - [emplace()](#emp)
 - [erase](#merase)
@@ -17,16 +17,18 @@
 
 ### Insert
 <a name=mins></a>
-#### `<iterator, bool>` insert(const val_type& val)
+#### insert()
 For inserting element into stl. Creates object somewhere else, copies objects into the vector
 ```cpp
-map< char, int > m;
+<iterator, bool> insert(const val_type& val)
+map<char, int> m;
 m.insert(make_pair('a', 1));
 ```
 <a name=emp></a>
-#### `<iterator,bool>` emplace(Args&.. args)   //Preferred over insert()
+#### emplace()
 Same, used for inserting elements into stl. But constructs elements inside the stl only. Does in place insertion, avoids unneccessary copy.
 ```cpp  
+<iterator,bool> emplace(Args&.. args)   //Preferred over insert()
 m.emplace('b', 2);
 for (auto i:m)
   cout << i;                    //a 1   b 2
