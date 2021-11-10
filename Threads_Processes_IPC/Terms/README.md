@@ -2,12 +2,12 @@
   - [Atomic Variables](#av)
 - [Bound Waiting](#bw)
 - [Busy Waiting](#busyw)
+- [Condition Varaibles](#cv)
 - [Context Switch](#cos)
 - [Critical Section(requires Mutual Exclusion)](#cs)
 - [CPU Bound](#cb)
 - [Deadlock](#dl)
 - [IO Bound](#io)
-- 
 
 
 ## Terms
@@ -50,6 +50,12 @@ Process-2 waits outside critical section while process-1 is executing inside.
 **Busy waiting on mutex**
 - Process-1(or thread-1) has locked mutex and is in critical section.
 - Process-2(or thread-2) need to wait outside critical section until mutex is unlocked. Process-2 sits in tight loop waiting for mutex to be released. This is called Busy waiting.
+
+<a name=co></a>
+### Conditional Variable / Condition Variable / shared variable
+- This is used for synchronization.
+- This block 1 thread/or multiple threads, until another thread modifies a shared variable (the condition), and notifies the condition_variable.
+- Implemented as class in C++. [Code](/Threads_Processes_IPC/Threads/Code/#cv)
 
 <a name=cos></a>
 ### Context Switch
