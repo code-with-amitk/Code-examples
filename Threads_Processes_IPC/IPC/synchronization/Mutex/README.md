@@ -5,6 +5,7 @@
   - 2 Threads Executing same function
     - [pthread](#pt1)
     - [C++ thread](#ct)
+- [lock_guard](#lg)
 
 <a name=mut></a>
 ## Mutex / Mutual Exculsion / Locking mechanism
@@ -109,3 +110,57 @@ Output:
 */
 ```
 
+<a name=lg></a>
+## lock_guard
+- [Good Video cppnuts](https://www.youtube.com/watch?v=ACoYnEzjEz4)
+- We do mutex.lock() before going into CS and mutex.unlock() at exit
+### Templated class lock_guard
+- **what is lock_guard?**
+  - This is mutex wrapper that provides a [RAII](/Languages/Programming_Languages/c++/OOPS_Principles), ie lock the mutex (mutex.lock()) no need to worry about unlocking (mutex.unlock()), when lock_guard object goes out of scope, mutex is automatically unlocked.
+  - lock_guard provides mutex for duration of scoped block.
+- **Why?** If someone locks the mutex and forgets to unlock, then whole process will block.
+- **How it works**
+  - This is used to lock the mutex at object creation, But we donot need to unlock the mutex at exit from thread function (or when lock_guard object goes out of scope).
+  - When lock guard object goes out of scope, destructor is called and mutex is unlocked.
+```cpp
+template<typename T>
+class lock_guard {
+public:
+  lock_guard(T a):mutex(a){}
+  ~lock_guard(){
+    a.unlock();
+  }
+};
+```
+**Code Example**
+```c
+#include<iostream>
+#include<thread>
+#include<mutex>
+using namespace std;
+
+mutex m;
+
+void fun(const char* name, int loop){
+    lock_guard<mutex> lgLock(m);                //1. Create object of lock_guard and mutex is locked. Same as m.lock()
+    for (int i=0;i<loop; ++i){
+        cout << name << ": " << i << endl;
+    }
+}                                               //2. No need to do m.unlock(). This will done in destructor of lock_guard object
+
+int main(){
+    thread t1(fun, "T1", 3);
+    thread t2(fun, "T2", 3);
+    t1.join();
+    t2.join();
+    return 0;
+}
+$ g++ test.cpp -lpthread
+$ ./a.out
+T1: 0
+T1: 1
+T1: 2
+T2: 0
+T2: 1
+T2: 2
+```
