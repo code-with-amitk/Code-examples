@@ -349,4 +349,19 @@ T2: 2
   - recursive locking
   - transfer of lock ownership
   - Use with condition variables.
+- unique_lock can be moved ie it is (MoveConstructible and MoveAssignable) but cannot be copied (not of CopyConstructible or CopyAssignable).
+```cpp
+class unique_lock{
+mutex m;
+public:
+  unique_lock(mutex m):a(m){}
+  ~unique_lock();
+  operator=     //unlocks (i.e., releases ownership of) the mutex, if owned, and acquires ownership of another
+  try_lock()
+  try_lock_for()
+  try_lock_until()
+  unlock()
+}
+```
+
 
