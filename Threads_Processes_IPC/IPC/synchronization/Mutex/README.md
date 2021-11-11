@@ -126,7 +126,9 @@ Output:
 template<typename T>
 class lock_guard {
 public:
-  lock_guard(T a):mutex(a){}
+  lock_guard(T a):mutex(a){
+    a.lock();
+  }
   ~lock_guard(){
     a.unlock();
   }
