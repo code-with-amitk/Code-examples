@@ -14,15 +14,24 @@ worker_object{task*=t, condition_variable}                  task_object
 worker_queue                                                 Task_queue
 					Dispatcher has 2 queues
 
-        main()
-  1. Initialize Dispatcher
-                       |               DISPATCHER
-                       |---------->    2. init() //Create 10 threads, store in vector<>  t1, t2, .. t9
+    main()
+1. Initialize Dispatcher
+                       |            DISPATCHER
+                       |-------->   2. init() 
+		                     Worker* w = new Worker; //Create Worker Object
+				                      |----------------> WORKER 
+						                         Object {
+						                           bool running = true
+									   bool ready   = false
+									  }
+				     
+					  //Create 10 threads, store in vector<>  t1, t2, .. t9
 				               //Threads will run Worker::run()
-   3. Create Task Object
-   4. Add Task to Dispatcher queue 
-                               |-->    5. AddRequest(Task* t)
-			       	          if Queue is not Empty
+while (i < 50)					       
+ 3. Create 50 Task Objects
+ 4. Add Tasks to Dispatcher queue 
+                         |-->     5. AddRequest(Task* t)
+			       	          if worker_queue is not Empty
 			                     worker_queue_mutex.lock();      //For acccessing worker Queue
 					   //6. Get front element of worker Queue And provide task to it.
 					     worker* w1 = queue.front()  
@@ -38,10 +47,14 @@ worker_queue                                                 Task_queue
 					       queue.pop();
 					      mutex.unlock();
 					      
-                                          if Queue is Empty          //9. Push task on task_queue
+                                          if worker_queue is Empty          //9. Push task on task_queue
 					    worker_queue_mutex.unlock();
 					    task_queue_mutex.lock();
-					    
+   9. sleep main thread 5 sec
+   10. Stop Dispatcher
+		|---------------->    11. stop()
+		                          for (i=0;i<vec_workers.size();++i)
+					    vec_workers[i].stop();
 					    
 ```
 <a name=dr></a>
