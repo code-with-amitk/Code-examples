@@ -118,6 +118,7 @@ Output:
 - **what is lock_guard?**
   - This is mutex wrapper that provides a [RAII](/Languages/Programming_Languages/c++/OOPS_Principles), ie lock the mutex (mutex.lock()) no need to worry about unlocking (mutex.unlock()), when lock_guard object goes out of scope, mutex is automatically unlocked.
   - lock_guard provides mutex for duration of scoped block.
+  - We cannot copy lock_guard, because operator = is deleted. Hence its not copy or move assignable.
 - **Why?** If someone locks the mutex and forgets to unlock, then whole process will block.
 - **How it works**
   - This is used to lock the mutex at object creation, But we donot need to unlock the mutex at exit from thread function (or when lock_guard object goes out of scope).
@@ -132,6 +133,7 @@ public:
   ~lock_guard(){
     a.unlock();
   }
+  operator=[deleted]           //Cannot copy lock_guard
 };
 ```
 **Code Example**
