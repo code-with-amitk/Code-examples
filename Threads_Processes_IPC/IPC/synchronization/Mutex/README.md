@@ -1,6 +1,10 @@
 - [Mutex](#mut)
 - [Mutex Problems](#mp)
 - [Mutex Types](#ty)
+  - [a. try_lock](#mtl)
+  - [b. Recursive mutex](#rec)
+  - [c. timed_mutex_try_lock_for](#tmtlf)
+  - [d. timed_mutex_try_lock_until](#tmtlu)
 - **Code**
   - 2 Threads Executing same function
     - [pthread](#pt1)
@@ -110,6 +114,7 @@ Output:
 5. timed_mutex_try_lock_until| same as Timed_mutex_try_lock_for but waits   | no
                                for specific time from present
 ```
+<a name=mtl></a>
 #### A. Mutex Try lock
 - try_lock() tries to lock the mutex, if mutex is acquired by any other thread it returns back immediately ie does not block.
 ```c
@@ -148,8 +153,8 @@ int main(){
 140309124548352 in CriticalSection.
 140309133002496 in CriticalSection.
 ```
-
-#### Recursive Mutex
+<a name=rec></a>
+#### b. Recursive Mutex
 - **What?** RM can be locked multiple times by same thread(without deadlock), but in case of normal mutex locking already locked mutex results in undefined behavior.
 - **Why?** In some recursive function resource lock is required again and again.        
 - **How Implemented?** RM keeps count of how many times its locked hence same number of time unlock should be called.
@@ -194,8 +199,8 @@ Thread:1, var:7
 Thread:1, var:8
 Thread:1, var:9
 ```
-
-#### Timed mutex Try lock for
+<a name=tmtlf></a>
+#### c. Timed mutex Try lock for
 - **What is TIMED MUTEX?** Unlike try_lock(){Which returns immediately} this waits for specific timeout duration and returns if lock is not acquired during that time.
 - **TRY_LOCK_FOR()?** Waits until specified timeout duration has elapsed or lock is acquired.
 - **Return:**
@@ -234,8 +239,8 @@ int main(){
 Thread 1 in Critical Section
 Thread 2 cannot get the lock
 ```
-
-#### timed_mutex_try_lock_until
+<a name=tmtlu></a>
+#### d. timed_mutex_try_lock_until
 - **TIMED MUTEX?** Unlike try_lock(){Which returns immediately} this waits for specific timeout duration and returns if lock is not acquired during that time.
 - **TRY_LOCK_UNTIL()?** Waits until specified timeout duration from now() or lock is acquired.
 - Return:
