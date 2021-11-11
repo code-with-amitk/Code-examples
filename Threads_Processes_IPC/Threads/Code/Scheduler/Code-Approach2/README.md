@@ -7,26 +7,35 @@
 <a name=cs></a>
 ## Code Structure
 ```
+Datastructure Dispatcher have:
+1. Two Queues
 worker_object{task*=t, condition_variable}                  task_object
   /\         worker_object                                   /\         task_object
    |           /\                                             |         /\
 | *worker-1 | *worker-2 | *worker-3 | *worker-4 |           | *task-1 | *task-2 |        
-worker_queue                                                 Task_queue
-					Dispatcher has 2 queues
+WORKER_QUEUE                                                TASK_QUEUE
+
+2. Two vectors
+|Worker-1*|Worker-2*|Worker-3*|                 |thread-1*|thread-2*|thread-3*|
+vector<Worker*> vecAllWorkers                    vector<thread*> vecAllThreads
 
     main()
 1. Initialize Dispatcher
                        |            DISPATCHER
                        |-------->   2. init() 
-		                     Worker* w = new Worker; //Create Worker Object
-				                      |----------------> WORKER 
-						                         Object {
-						                           bool running = true
-									   bool ready   = false
-									  }
+		                     for (int i=0;i<10;++i) {
+		                       2a. Worker* w = new Worker; //Create 10 Worker Objects
+				                          |----------------> WORKER Object {
+						                               bool running = true;
+						    			       bool ready   = false;
+									       mutex mtx;
+									       unique_lock<mutex> ulock(mtx);
+									      }
+                                            vecAllWorkers.push_back(w);  //Push in vector
 				     
-					  //Create 10 threads, store in vector<>  t1, t2, .. t9
-				               //Threads will run Worker::run()
+				        2b. thread* t = new thread(&Worker::run, w);  //Create 10 threads and push in vector
+				            vecAllThreads.push_back(t);
+                                       }
 while (i < 50)					       
  3. Create 50 Task Objects
  4. Add Tasks to Dispatcher queue 
