@@ -1,11 +1,93 @@
+- [spinlock](#sl)
+- 
+
+<a name=sl></a>
 ## Spin lock
-- **What?** Thread-2 keeps checking the lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.
-- **Applications?** Critical sections in ISR(Interrupt service routines){ISRs are defined inside kernel} are implemented using spinlocks.
-- **Example Code**
-  - Processes wait on shared variable (shared_var)
-  - *Process-1* enters Critical section when shared_var=0
-  - *Process-2* enters Critical section when shared_var=1
+- **What?** Thread-1 is in Critical section. Thread-2 keeps checking lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.
+- **Applications?**
+  - Critical sections in ISR(Interrupt service routines){ISRs are defined inside kernel} are implemented using spinlocks.
+- **Implementing spinlock**
+  - 
+- **Code**
+```cpp
+//Program to calculate Duplicate elements using 3 threads.
+#include <thread>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> a = { 10, 1, 1, 20, 2, 2, 3, 30, 3 };
+int asize = a.size();
+int acount = 0, k = 0, last_index = asize/3, start_index = 0, temp=0;
+
+struct my_spin_lock {
+    static atomic_bool my_lock;
+    static void lock() {
+        while (my_lock.exchange(true, std::memory_order_acquire));
+    }
+    static void unlock() {
+        my_lock.store(false, std::memory_order_release);
+    }
+};
+atomic_bool my_spin_lock::my_lock = false;
+void fun() {
+    thread::id s = this_thread::get_id();
+    cout << s << "\n";
+    
+    my_spin_lock::lock();                           //Lock spin lock
+    
+    sort(a.begin() + start_index, a.begin() + last_index);
+
+    for (int i = start_index; i < last_index -1; ++i) {
+        if (a[i] == a[i + 1])
+            acount++;
+    }
+    temp = last_index;
+    start_index = temp;
+    last_index += 3;
+    my_spin_lock::unlock();                        //unlock
+}
+
+int main() {
+    auto startTime = chrono::high_resolution_clock::now();
+    thread t1(fun);
+    thread t2(fun);
+    thread t3(fun);
+    t1.join();
+    t2.join();
+    t3.join();
+    auto stopTime = chrono::high_resolution_clock::now();
+    cout << "Time:" << chrono::duration_cast<chrono::milliseconds>(stopTime - startTime).count() << atomic_count;
+}
+```
+ 
+<a name=p></a>
+### Problems with spinlocks?
+#### 1. Consumes more CPU
+#### 2. Fast process need to wait until Slow is in spinlock
+Consider 2 processes(fast and slow). Slow-Process enters critical section, CPU schedules slow-process for IO. Now fast-Process need to wait until slow-process's IO(slow operations) does not complete.
+- **Solution: Peterson’s Solution:**
+  - Before going into critical section each process or thread calls enter_region() function
+  - Before leaving critical_section they call leave_region
 ```c
+#define FALSE 0
+#define TRUE 1
+#define N 2         /* number of processes */
+int turn;           /* whose turn is it? */
+int interested[N]; /* all values initially 0 (FALSE) */
+
+void enter region(int process){   
+  int other;                            /* number of the other process */
+  other = 1 − process;                  /* the opposite of process */
+  interested[process] = TRUE;           /* show that you are interested */
+  turn = process;                       /* set flag */
+  while (turn == process && interested[other] == TRUE) /* null statement */ ;
+}
+
+void leave region(int process){              /* process: who is leaving */
+  interested[process] = FALSE;              /* indicate departure from critical region */
+}
+
 ///////////Thread-1 or Process-1//////////////
 while (TRUE) {
   while (shared_var != 0)
@@ -24,7 +106,4 @@ while (TRUE) {
   }
 }
 ```
-## Problems with spinlocks?
-- *1.* Consumes more CPU.
-- *2.* Slow and fast processes in spin lock. Consider Process-1 is fast, Process-2 is slow. As Process-2 enters critical section, CPU schedules process-2 for IO. Now Process-1 need to wait until process-1's IO(slow operations) does not complete.
-  - **Solution: [Peterson’s Solution](Peterson_Solution.md)**
+
