@@ -1,16 +1,30 @@
 - [spinlock](#sl)
-- 
+- [spinlock in ISR](#si)
+- [Implementing spinlock using atomic_bool](#im)
+- [spinlock code](#co)
+- [Problems with spinlock](#p)
 
 <a name=sl></a>
 ## Spin lock
-- **What?** Thread-1 is in Critical section. Thread-2 keeps checking lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.
-- **Applications?**
-  - Critical sections in ISR(Interrupt service routines){ISRs are defined inside kernel} are implemented using spinlocks.
-- **Implementing spinlock**
-  - 
-- **Code**
+Thread-1 is in Critical section. Thread-2 keeps checking lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.
+
+<a name=si></a>
+**Spinlocks are used in ISR**. Critical sections in [ISR(Interrupt service routines)](/Operating_Systems/Linux/Kernel/Interrupts/) are implemented using spinlocks.
+
+<a name=im></a>
+### Implementing spinlock
+- _1._ Take [atomic_bool](/Threads_Processes_IPC/Terms).
+- _2._ lock() => Set atomic_bool to true atomically using [exchange()](https://en.cppreference.com/w/cpp/atomic/atomic/exchange)
+- _3._ unlock() => Replace the present value in atomic_bool using [store()](https://en.cppreference.com/w/cpp/atomic/atomic/store)
+```
+  atomic_bool a;            //1
+  lock() { a.exchange(true, std::memory_order_acquire);    //exchange(desired_value, memory order constraints to enforce) }//2
+  unlock() { a.store(false, std::memory_order_release);}  //3
+```
+<a name=co></a>
+### Code
 ```cpp
-//Program to calculate Duplicate elements using 3 threads.
+/// Program to calculate Duplicate elements using 3 threads.
 #include <thread>
 #include <vector>
 #include <algorithm>
