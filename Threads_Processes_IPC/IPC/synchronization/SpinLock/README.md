@@ -6,7 +6,8 @@
 
 <a name=sl></a>
 ## Spin lock
-Thread-1 is in Critical section. Thread-2 keeps checking lock continously in while(1). This consumes CPU but is 3 times faster than Mutex.
+- Thread-1 is in Critical section. Thread-2 keeps checking lock(atomic bool variable) continously in while(1) and sets it. bool=true
+- This consumes CPU but is 3 times faster than Mutex.
 
 <a name=si></a>
 **Spinlocks are used in ISR**. Critical sections in [ISR(Interrupt service routines)](/Operating_Systems/Linux/Kernel/Interrupts/) are implemented using spinlocks.
@@ -73,6 +74,10 @@ int main() {
     auto stopTime = chrono::high_resolution_clock::now();
     cout << "Time:" << chrono::duration_cast<chrono::milliseconds>(stopTime - startTime).count() << atomic_count;
 }
+
+$./a.out
+Time: 413.      //if we replace spinlock with mutex same algo takes 623 ms
+
 ```
  
 <a name=p></a>
