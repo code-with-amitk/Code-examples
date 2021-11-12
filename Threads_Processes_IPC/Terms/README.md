@@ -1,4 +1,4 @@
-- [Atomic Operations](#at)
+- [Atomic](#at)
   - [Atomic Variables](#av)
 - [Bound Waiting](#bw)
 - [Busy Waiting](#busyw)
@@ -13,7 +13,7 @@
 ## Terms
 <a name=at></a>
 ### Atomic Operation(Uninterrupted Operation)
-- The end result of AO is predictable and correct. Example:
+The end result of AO is predictable and correct. Example:
 ```cpp
 a = 0;
 void fun () {     //2 Threads executing this function
