@@ -12,8 +12,9 @@
 
 ## Terms
 <a name=at></a>
-### Atomic Operation(Uninterrupted Operation)
-The end result of AO is predictable and correct. Example:
+### [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
+- The end result of Atomic Operation is predictable and correct.
+- If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. Example:
 ```cpp
 a = 0;
 void fun () {     //2 Threads executing this function
