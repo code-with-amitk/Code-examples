@@ -1,13 +1,13 @@
 **[Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)**
-- **Approach-1, Breadth 1st Search**
+- [Approach-1, Breadth 1st Search](#a1)
   - [1. Logic](#logic)
-    - [Step-1: Extract information about lexiographical order of letters from input string](#step1)
-      - [1.1 Simple Example](#ex1)
+    - [A. Extract information about lexiographical order of letters from input string](#s1)
+      - [A1. Simple Example](#ex1)
       - [1.1 Complicated Example](#ex2)
     - [Step-2: Represent all relations from prev step in graph, specifically DAG](#step2)
   - [2. Code](#code)
 
-## Question
+## Alien Dictionary
 - Given string of words and these words are lexiographically sorted(as per alien dictionary). Remember this is not English dictionary. Where word `age` comes before `ago`.
 - Return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. Example
 ```c
@@ -15,23 +15,24 @@ Input = ["wrt","wrf","er","ett","rftt"]
 o/p: wertf
 ```
 
+<a name=a1></a>
 ## Approach-1, BFS, [Topological Sort](/DS_Questions/Data_Structures/Graphs)
 
 <a name=logic></a>
 ### 1. Logic
 
-<a name=step1></a>
-#### Extract information about lexiographical order of letters from input string
+<a name=s1></a>
+#### A. Extract information about lexiographical order of letters from input string
 - Only find 1st difference between adjacent words.
 
 <a name=ex1></a>
-- **1.1 Simple Example**
-- _a._ Lets try finding logical ordering of letters just by seeing the words. Looking at 1st letter of each word, we can find ordering of 1st letters
+- **A1. Simple Example**
+  - _a._ Looking at 1st letter of each word, we can find ordering of 1st letters
 ```c
 "wrt","wrf","er","ett","rftt"
 [w, e, r]             //Since w appears before e and r. its will be lexiographically ahead in alien dictionary
 ```
-- _b._ Let's remove 1st letters of words and find next lexiographical order.
+- _b._ Remove 1st letters of words and find next lexiographical order.
 ```c
 "rt","rf","r","tt","ftt"
 r t f                 //Since r is in 1st word, it will ahead in lexiographical order from other words
@@ -42,15 +43,18 @@ w, e, r, t, f
 ```
 
 <a name=ex2></a>
-- **1.2 Complicated Example**
+- **A2. Complicated Example**
   - Considering all rules from Ex-1.1
 ```c
 input = "uvoih", "ufoe", "aaief", "abve", "abvbr"
-u -> a                       //Lexiographical order on 1st iteration
+u, a                       //Lexiographical order on 1st iteration
 
 "voih", "foe", "aief", "bve", "bvbr"
-v -> f                       //We need to find Ignore all letters after v and f in 1st and 2nd word.
-                             //Because in english "agebb" and "agoaa". After e in 1st and o in 2nd all letter are ignored
+v, f                         //We will Ignore all letters after v and f in 1st and 2nd word.
+                             //Consider "test" & "toad" in English, How to find lexiographical order?
+                             //1st letter. t,t same. Remove. Left word: "est", "oad".
+                             //2nd letter mismatch: e appears before o. Lexiographical order till now: t,e,o
+                             //After 2nd letters, We will park remaning letters to decide order later.
                              //Means in Adjacent words we need to find first difference between them.
                              //That difference tells us the relative order between two letters.
 
