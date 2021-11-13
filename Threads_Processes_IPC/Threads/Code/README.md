@@ -5,7 +5,7 @@
     - [1. Using Object of thread class](#m1)
     - [2. Using Functor](#m2)
   - [Windows](#win)
-  - [Rust])(#ru)
+  - [Rust](#ru)
 - [Joinable, Detachable Threads](#jd)
 - [Condition Variables](#cond)
   - [Simple Example](#c1)
