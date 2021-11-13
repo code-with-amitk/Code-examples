@@ -5,6 +5,7 @@
     - [1. Using Object of thread class](#m1)
     - [2. Using Functor](#m2)
   - [Windows](#win)
+  - [Rust])(#ru)
 - [Joinable, Detachable Threads](#jd)
 - [Condition Variables](#cond)
   - [Simple Example](#c1)
@@ -117,9 +118,38 @@ int _tmain() {
 
 }
 ```
+<a name=ru></a>
+### [Rust](/Languages/Programming_Languages/Rust)
+```rs
+$ cargo new thread1
+
+$ cat main.rs
+use std::thread;
+fn fun1() {
+	println!("Thread-1");
+}
+
+fn main() {
+	let handle1 = thread::spawn(fun1);                      //Thread-1
+	let handle2 = thread::spawn(                           //Thread-2 created using closure       
+		|| {
+		    for i in 1..5 {
+		    	println! ("Thread-2");
+			thread::sleep (Duration::from_millis(1));
+		    }
+		}
+	);
+	handle1.join().unwrap();                           //Thread1, Thread2 are joinable. main will not exit without t1,t2
+	handle2.join().unwrap();
+}
+$ cargo build
+$ cargo run
+```
+
 <a name=jd></a>
 ## Joinable, Detachable Threads
-**Joinable Thread:** Thread1(Main Process) waits for thread2 before it terminates itself. Thread1(Main process) cannot terminate before thread2 terminates.
+### Joinable Thread
+Thread1(Main Process) waits for thread2 before it terminates itself. Thread1(Main process) cannot terminate before thread2 terminates.
 ```c
 #include<pthread.h>
 void *thread2() {
@@ -143,7 +173,8 @@ void main() {			//THREAD1 = MAIN PROCESS
  Thread-1/Main terminate2 after Thread-2
 ```
 
-**Detachable Thread:** Thread-1/Main does not wait for Thread-2 to finish. Thread-1/Main is free to terminate.
+### Detachable Thread
+Thread-1/Main does not wait for Thread-2 to finish. Thread-1/Main is free to terminate.
 ```c
 #include<pthread.h>
 void *thread1 (){
@@ -165,6 +196,7 @@ void main() {
 # ./a.out
   Inside main thread
 ```
+
 <a name=cond></a>
 ## Condition Variables
 Thread1 waits for condition to be true, which is signalled(ie made true) by other Thread
