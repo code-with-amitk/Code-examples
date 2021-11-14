@@ -17,7 +17,7 @@
 ## Mutex / Mutual Exculsion / Locking mechanism / Block / Sleep
 - if 1 thread is in CS other cannot enter, Return value: None, Parameters: None
 - **How Mutex is internally implemented?**
-  - Mutex is kernel maintained lock that we set before using a shared resource and release after using it.
+  - Mutex is kernel maintained lock(a data structure) that we set before using a shared resource and release after using it. Mutex keeps track of who currently has exclusive access to the data.
   - When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
 #### Code
 **C++**
