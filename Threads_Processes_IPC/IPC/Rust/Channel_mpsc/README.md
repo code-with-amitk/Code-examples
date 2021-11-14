@@ -1,5 +1,6 @@
 - [Channel](#ch)
 - [1 producer 1 consumer](#1p1c)
+- [Multiple Producer 1 consumer](#mp1c)
 
 <a name=ch></a>
 ## Channel
