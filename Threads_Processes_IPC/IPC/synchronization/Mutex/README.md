@@ -95,7 +95,8 @@ Output:
 <a name=mp></a>
 ### Mutex Problems
 - **1. Priority Inversion:** Higher priority thread/process has to [Busy Wait](/Threads_Processes_IPC/Terms) outside critical section, because lower priority thread has locked mutex and is in Critical section.
-- **2. Easy Deadlock:** if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.  
+- **2. Easy Deadlock:** if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.
+- **3. Thread holding mutex paniced:** if thread-1 which holding the lock panics, whole process would panic.
   
 <a name=ty></a>
 ### Mutex Types
