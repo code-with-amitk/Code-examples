@@ -1,4 +1,6 @@
-- [Why Threads](#w)
+- [Threads](#w)
+  - [When Thread dies/panics whole process dies](#tp)
+  - [Why threads](#w1)
   - [When single threaded is better than Multi-Threaded](#st)
 - [Memory layout of Threads](#ml)
 - [Terms: yeild](#t)
@@ -13,8 +15,32 @@
 - **[Code](#co)**
 
 <a name=w></a>
-## Why Threads
-- _1._ To run Tasks in parallel & parallelly tasks can be completed faster wrt sequential. [Thread usecases](..)
+## Threads
+<a name=tp></a>
+### When Thread dies/panics whole process dies
+Because thread is created on process stack, have common CS, HS, DS.
+```c
+void fun1(){
+    sleep(5);
+    cout <<"thread1";
+}
+void fun2(){
+    exit(1);
+}
+int main() {
+    thread t1(fun1);
+    thread t2(fun2);
+    t1.join();
+    t2.join();
+    cout << "Dieing";
+}
+$ ./a.out
+Nothing printed
+```
+
+<a name=w1></a>
+### Why Threads
+- _1._ To run Tasks in parallel & parallelly tasks are completed faster wrt sequential. [Thread usecases](..)
 ```c
 //Very Imp Example to understand (Tanenbaum). Do not Delete
 Example-1: Suppose multiprogrammed system has degree of 6 (i.e 6 programs in memory at the same time).
