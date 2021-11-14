@@ -121,6 +121,7 @@ int _tmain() {
 ```
 <a name=ru></a>
 ### [Rust](/Languages/Programming_Languages/Rust)
+- Use [move](/Languages/Programming_Languages/Rust/Functions) before closure if want closure to take ownership of the values it’s using rather than allowing Rust to infer that it should borrow the values
 ```rs
 $ cargo new thread1
 
