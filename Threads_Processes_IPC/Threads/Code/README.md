@@ -1,5 +1,5 @@
 **[Details about Thread APIs](../)**
-- Creating Threads
+- [Creating Threads](#cre)
   - [POSIX](#cp)
   - [C++](#ct)
     - [1. Using Object of thread class](#m1)
@@ -11,6 +11,7 @@
   - [Simple Example](#c1)
   - [Ping Pong game](#pp)
 
+<a name=cre></a>
 ## Creating Threads
 <a name=cp></a>
 ### POSIX
