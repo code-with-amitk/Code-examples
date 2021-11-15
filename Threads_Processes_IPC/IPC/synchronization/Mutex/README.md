@@ -1,9 +1,9 @@
 - [What is Mutex](#mut)
+- [Problems with Mutex](#mp)
 - [Creating Mutex](#cr)
   - [1. C++](#cpp)
   - [2. pthread](#pt)
   - [3. Rust](#rs)
-- [Problems with Mutex](#mp)
 - [Mutex Types](Mutex_Types.md)
   - try_lock, recursive_mutex, timed_mutex_try_lock_for, timed_mutex_try_lock_until
 - **Code**
@@ -21,6 +21,35 @@
   - Mutex is kernel maintained lock(a data structure) that we set before using a shared resource and release after using it. Mutex keeps track of who currently has exclusive access to the data.
   - When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
 
+<a name=mp></a>
+### Problems with Mutex
+- **1. Priority Inversion:** Higher priority thread/process has to [Busy Wait](/Threads_Processes_IPC/Terms) outside critical section, because lower priority thread has locked mutex and is in Critical section.
+- **2. Easy Deadlock:** if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.
+- **3. Thread holding mutex paniced:** if thread-1 which holding the lock panics, whole process would panic.
+- **4. Mutex and data are seperate Entities:** Thread-1,2 are accessing data using mutex, But thread-3 changed the data without mutex, this should not Happen.
+  - _Solutions:_ 
+    - [_1._ Making mutex and data as single entity as done in Rust](#rs)
+    - _2._ All times keeping in mind that data should not handled outside mutex guards.
+```c
+std::mutex m;
+int a = 5;
+void test(int tid) {
+    m.lock();
+    a++;
+    m.unlock();
+}
+int main() {
+    std::thread t1(test,1);
+    a += random_value;                      //But Thread-3=Main changed data without mutex.
+    std::thread t2(test,2);                 //Thread-1,2 will access data using mutex.
+    t1.join();                 
+    t2.join();
+    return 0;
+}
+$ ./a.out
+Thread-1: 5
+Thread-2: Random value
+```
 
 <a name=cr></a>
 ### Mutex Creation Code
@@ -97,51 +126,20 @@ Output:
 ```
 <a name=rs></a>
 #### 3. Rust
-_1._ We 
-
+- In rust, Mutex is implemented as [Smart pointer](/Languages/Programming_Languages/Rust/Smart_Pointers), `Mutex<type>`.
+- Mutex and data(data to be protected, shared data) are not seperate entities, ie we cannot access data without locking mutex. Rust will not allow
+- We need to lock() the mutex to get the data.
 ```rs
 use std::sync::Mutex;
 fn main() {
-    let m = Mutex::new(5);                       //1. Create mutex and associate a i32 data with it(whose initial value=5).
+    let m = Mutex::new(5);                   //1. Create mutex and associate a i32 data with it(whose initial value=5).
     {
-        let mut num = m.lock().unwrap();         //2. Access to data inside Mutex is only allowed after lock() the mutex.
-        *num = 6;                                //3. After acquiring lock, data inside mutex can be changed(treated as mutable reference).
-    }                                            //4. 
+        let mut num = m.lock().unwrap();     //2. Access to data inside Mutex is only allowed after lock() the mutex.
+        *num = 6;                            //3. After acquiring lock, data inside mutex can be changed(treated as mutable reference).
+    }                                        //4. Once mutex goes out of scope, data can be used without mutex.
     println!("m = {:?}", m);
 }
-
 ```
-
-<a name=mp></a>
-### Problems with Mutex
-- **1. Priority Inversion:** Higher priority thread/process has to [Busy Wait](/Threads_Processes_IPC/Terms) outside critical section, because lower priority thread has locked mutex and is in Critical section.
-- **2. Easy Deadlock:** if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.
-- **3. Thread holding mutex paniced:** if thread-1 which holding the lock panics, whole process would panic.
-- **4. Mutex and data are seperate Entities:** Main thread changed the data(which should be protected using Mutex), this should not Happen.
-  - _Solutions:_ 
-    - [_1._ Making mutex and data as single entity]
-    - _2._ All times keeping in mind that data should not handled outside mutex guards.
-```c
-std::mutex m;
-int a = 5;
-void test(int tid) {
-    m.lock();
-    a++;
-    m.unlock();
-}
-int main() {
-    std::thread t1(test,1);     
-    a += random_value;                      //Main Thread changed data to be protected.
-    std::thread t2(test,2);
-    t1.join();                 
-    t2.join();
-    return 0;
-}
-$ ./a.out
-Thread-1: 5
-Thread-2: Random value
-```
-
 
 <a name=lg></a>
 ## lock_guard
