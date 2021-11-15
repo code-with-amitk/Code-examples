@@ -1,22 +1,24 @@
-**Smart Pointers (SP)**
+- [Smart Pointers (SP)](#sp)
 - **Most Common SP**
   - [Box`<T>`](#box)
 - **Implementing own Smart pointer**
   - [SP without dereference operator `*`](#wo)
   - [SP with dereference operator `*`](#w)
+- [Drop Trait](#dr)
 
-
+<a name=sp></a>
 ## Smart Pointers
 Same as [C++ Smart,shared pointers](/Languages/Programming_Languages/c++/pointers), allocates memory and deallocates when all references to it goes out of scope. References are also smart pointers but they only point to 1 value. Examples: `vec<T>`, String.
 - Smart pointers are implemented using structs.
 - To dereference the smart pointer(ie get content of memory pointed by smart pointer), smart pointer class should define deref() function from **[Deref trait](#w)**
 
 ### Most Common Smart Pointers
+<a name=box></a>
 #### `Box<T>`
 This is smart pointer allocated on heap and variable to store pointer lies on stack.
 ```rs
 fn main() {
-    let y = Box::new(5);    //5 is allocated on stack. y points to 5
+    let y = Box::new(5);    //5 is allocated on heap. y points to 5 stored on stack.
     println ("{}", *y);     //5
 }   //box deallocated here
 ```
@@ -72,4 +74,66 @@ fn main() {
 
 $ cargo run
 5
+```
+
+<a name=dr></a>
+## Drop Triat(Running Code on Cleanup with the Drop Trait) = Destructor
+Call drop() function when a value is about to go out of scope. We can provide code to release resources like files or network connections when SP goes out of scope.
+### Implementing Drop Triat
+The Drop trait requires to implement 1 method `drop()` that takes a mutable reference to self.
+```rs
+struct mySmartPointer {
+    data: String,
+}
+
+impl Drop for mySmartPointer {
+    fn drop(&mut self) {              
+        println!("Dropping mySmartPointer, data: `{}`!", self.data);
+    }
+}
+
+fn main() {
+  {
+    let c = mySmartPointer {
+        data: String::from("my stuff"),
+    };
+    let d = mySmartPointer {
+        data: String::from("other stuff"),
+    };
+    println!("mySmartPointer created.");
+  } //Drop triat is called, since SP goes out of scope
+}
+$ cargo run
+mySmartPointer created
+Dropping mySmartPointer, data: my stuff
+Dropping mySmartPointer, data: other stuff
+```
+
+### Dropping value inside smart pointer early = Calling Destructor Explicitly
+We need to call `std::mem::drop()`, this calls destructor.
+```rs
+struct mySmartPointer {
+    data: String,
+}
+
+impl Drop for mySmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping mySmartPointer `{}`!", self.data);
+    }
+}
+
+fn main() {
+  {
+    let c = mySmartPointer {
+        data: String::from("some data"),
+    };
+    println!("mySmartPointer created");
+    drop(c);
+    println!("mySmartPointer dropped before the end of main.");
+  }
+}
+$ cargo run
+mySmartPointer created
+Dropping mySmartPointer some data               //Drop triat called early without being waiting to go out of scope.
+mySmartPointer dropped before the end of main.
 ```
