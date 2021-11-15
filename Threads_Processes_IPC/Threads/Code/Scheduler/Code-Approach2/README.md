@@ -3,10 +3,20 @@
   - [2. Dispatcher](#d)
   - [3. Worker](#w)
 
+### How it works
+- main() calls dispatcher::init()
+  - dispatcher::init() 
+    - Create 10 Worker Objects.
+    - Create 10 threads. threads will execute Worker::run() method.
+- main() creates 50 tasks, add to dispatcher task_queue
+  - if worker_queue is not empty, take 1st worker from queue & provide task to it.
+  - n threads are waiting on worker's conditional variable, release 1 of them.
+  - remove worker from queue.
+- main() sleep, considering task is getting completed.
 
 <a name=cs></a>
 ## Code Structure
-```
+```c
 Datastructure Dispatcher have:
 1. Two Queues
 worker_object{task*=t, condition_variable}                  task_object
@@ -16,8 +26,8 @@ worker_object{task*=t, condition_variable}                  task_object
 WORKER_QUEUE                                                TASK_QUEUE
 
 2. Two vectors
-|Worker-1*|Worker-2*|Worker-3*|                 |thread-1*|thread-2*|thread-3*|
-vector<Worker*> vecAllWorkers                    vector<thread*> vecAllThreads
+|Worker-1*|Worker-2*|Worker-3*|                             |thread-1*|thread-2*|thread-3*|
+vector<Worker*> vecAllWorkers                               vector<thread*> vecAllThreads
 
     main()
 1. Initialize Dispatcher
