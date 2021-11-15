@@ -6,6 +6,7 @@
 - **Most Common SP**
   - [Box`<T>`](#box)
   - [Rc`<T>` = Reference Counting = Multiple Owners](#rc)
+    - [Sharing ownership](#so)
 
 <a name=sp></a>
 ## Smart Pointers
@@ -144,3 +145,64 @@ fn main() {
   - _1._ In directed graph, there can be multiple nodes pointing to same node. Same node is owned by mutiple nodes. We cannot free pointed node untill all reference to it are not clean.
   - _2._ We allocated some data on the heap for multiple parts of program to read and we can’t determine at compile time which part will finish using the data last.
 - **How `Rc<T>` works?** It keeps track of the number of references to a value. If reference count=0, value can be cleaned up without any references becoming invalid.
+
+<a name=so></a>
+#### Sharing ownership using `Rc<T>`
+Example: Merging 3 linked-lists which are implemented using cons list
+```c
+//Provided 3 linked lists
+  | 3 |
+  b
+          | 5 | -> | 10 | -> |Nil|
+          a
+
+  | 4 |
+  c  
+  
+//Need to create. b and c both should point to head of a
+  | 3 |--
+  b      |
+         |-> | 5 | -> | 10 | -> |Nil|
+         |    a
+         |
+  | 4 |--
+  c  
+```
+- **Code giving compilation error**
+```rs
+//////////  Problmatic Code   /////////////
+use crate::List::{Cons, Nil};
+enum List {                                 //Definition of list
+    Cons(i32, Box<List>),
+    Nil,
+}
+fn main() {
+    let a = Cons(5, Box::new(Cons(10, Box::new(Nil))));
+    let b = Cons(3, Box::new(a));                       //ownership of a is mvoed to b
+    let c = Cons(4, Box::new(a));
+}
+$ cargo build   
+Compilation Error. Why?
+The Cons variants own the data they hold, so when we create b list, a is moved into b, then b owns a.
+We are not allowed to again move a to c.
+```
+- **Correct Code**
+  - _1. List definition change:_ Inplace of `Box<T>`, now we use `Rc<T>`. 
+  - _2._ Create list using Rc::new()
+  - _3. Store Reference:_ Instead of ownership being moved to b(ie b taking ownership). Only reference is stored with b. 
+    - Rc::clone(&list): This only increses reference count of of data. very different from clone(), which creates deep copy. Data won't be cleaned up unless there are 0 references to it.
+```rs
+enum List {
+    Cons(i32, Rc<List>),                                //1
+    Nil,
+}
+
+use crate::List::{Cons, Nil};
+use std::rc::Rc;
+
+fn main() {
+    let a = Rc::new(Cons(5, Rc::new(Cons(10, Rc::new(Nil)))));          //2
+    let b = Cons(3, Rc::clone(&a));                                     //3. Reference=1
+    let c = Cons(4, Rc::clone(&a));                                     //Reference=2
+}
+```
