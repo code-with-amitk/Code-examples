@@ -129,7 +129,7 @@ mySmartPointer dropped before the end of main.
 
 ## Most Common Smart Pointers
 <a name=box></a>
-#### `Box<T>`
+### `Box<T>`
 This is smart pointer allocated on heap and variable to store pointer lies on stack.
 ```rs
 fn main() {
@@ -138,7 +138,7 @@ fn main() {
 }   //box deallocated here
 ```
 <a name=rc></a>
-#### `Rc<T>` = Reference Counting = Multiple Owners
+### `Rc<T>` = Reference Counting = Multiple Owners
 - In most cases ownership is clear, but in some cases there can be multiple owners of data. 
 - Examples:
   - _1._ In directed graph, there can be multiple nodes pointing to same node. Same node is owned by mutiple nodes. We cannot free pointed node untill all reference to it are not clean.
