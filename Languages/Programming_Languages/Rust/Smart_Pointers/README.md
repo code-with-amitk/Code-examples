@@ -1,27 +1,17 @@
 - [Smart Pointers (SP)](#sp)
-- **Most Common SP**
-  - [Box`<T>`](#box)
 - **Implementing own Smart pointer**
   - [SP without dereference operator `*`](#wo)
   - [SP with dereference operator `*`](#w)
 - [Drop Trait](#dr)
+- **Most Common SP**
+  - [Box`<T>`](#box)
+  - [Rc`<T>` = Refernece Counting = Multiple Owners](#rc)
 
 <a name=sp></a>
 ## Smart Pointers
 Same as [C++ Smart,shared pointers](/Languages/Programming_Languages/c++/pointers), allocates memory and deallocates when all references to it goes out of scope. References are also smart pointers but they only point to 1 value. Examples: `vec<T>`, String.
 - Smart pointers are implemented using structs.
 - To dereference the smart pointer(ie get content of memory pointed by smart pointer), smart pointer class should define deref() function from **[Deref trait](#w)**
-
-### Most Common Smart Pointers
-<a name=box></a>
-#### `Box<T>`
-This is smart pointer allocated on heap and variable to store pointer lies on stack.
-```rs
-fn main() {
-    let y = Box::new(5);    //5 is allocated on heap. y points to 5 stored on stack.
-    println ("{}", *y);     //5
-}   //box deallocated here
-```
 
 ## Implementing own Smart pointer
 <a name=wo></a>
@@ -108,7 +98,6 @@ mySmartPointer created
 Dropping mySmartPointer, data: my stuff
 Dropping mySmartPointer, data: other stuff
 ```
-
 ### Dropping value inside smart pointer early = Calling Destructor Explicitly
 We need to call `std::mem::drop()`, this calls destructor.
 ```rs
@@ -137,3 +126,21 @@ mySmartPointer created
 Dropping mySmartPointer some data               //Drop triat called early without being waiting to go out of scope.
 mySmartPointer dropped before the end of main.
 ```
+
+## Most Common Smart Pointers
+<a name=box></a>
+#### `Box<T>`
+This is smart pointer allocated on heap and variable to store pointer lies on stack.
+```rs
+fn main() {
+    let y = Box::new(5);    //5 is allocated on heap. y points to 5 stored on stack.
+    println ("{}", *y);     //5
+}   //box deallocated here
+```
+<a name=rc></a>
+#### `Rc<T>` = Reference Counting = Multiple Owners
+- In most cases ownership is clear, but in some cases there can be multiple owners of data. 
+- Examples:
+  - _1._ In directed graph, there can be multiple nodes pointing to same node. Same node is owned by mutiple nodes. We cannot free pointed node untill all reference to it are not clean.
+  - _2._ We allocated some data on the heap for multiple parts of program to read and we can’t determine at compile time which part will finish using the data last.
+- **How `Rc<T>` works?** It keeps track of the number of references to a value. If reference count=0, value can be cleaned up without any references becoming invalid.
