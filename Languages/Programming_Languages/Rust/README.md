@@ -169,7 +169,8 @@ fn fun2(a_string: String) -> String {
 
 <a name=smart></a>
 ### [Smart Pointers](Smart_Pointers)
-`Box <T>, deref trait
+- `Box <T>`, deref trait, drop triat
+- `Rc<T>`, sharing ownership
 
 <a name=datatypes></a>
 ### [Data Types](Data_Types)
