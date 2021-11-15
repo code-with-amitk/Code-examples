@@ -140,8 +140,7 @@ fn main() {
 ```
 <a name=rc></a>
 ### `Rc<T>` = Reference Counting = Multiple Owners
-- In most cases ownership is clear, but in some cases there can be multiple owners of data. 
-- Examples:
+- In most cases ownership is clear, but in some cases there can be multiple owners of data. Examples:
   - _1._ In directed graph, there can be multiple nodes pointing to same node. Same node is owned by mutiple nodes. We cannot free pointed node untill all reference to it are not clean.
   - _2._ We allocated some data on the heap for multiple parts of program to read and we can’t determine at compile time which part will finish using the data last.
 - **How `Rc<T>` works?** It keeps track of the number of references to a value. If reference count=0, value can be cleaned up without any references becoming invalid.
