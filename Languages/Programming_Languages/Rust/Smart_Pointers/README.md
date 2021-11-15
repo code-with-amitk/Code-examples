@@ -5,7 +5,7 @@
 - [Drop Trait](#dr)
 - **Most Common SP**
   - [Box`<T>`](#box)
-  - [Rc`<T>` = Refernece Counting = Multiple Owners](#rc)
+  - [Rc`<T>` = Reference Counting = Multiple Owners](#rc)
 
 <a name=sp></a>
 ## Smart Pointers
