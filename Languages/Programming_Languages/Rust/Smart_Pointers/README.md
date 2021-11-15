@@ -189,7 +189,9 @@ We are not allowed to again move a to c.
   - _1. List definition change:_ Inplace of `Box<T>`, now we use `Rc<T>`. 
   - _2._ Create list using Rc::new()
   - _3. Store Reference:_ Instead of ownership being moved to b(ie b taking ownership). Only reference is stored with b. 
-    - Rc::clone(&`Rc<list>`): This only increses reference count of of data. Different from clone(), which creates deep copy. Data won't be cleaned up unless there are 0 references to it.
+    - Rc::clone(&`Rc<list>`):
+      - This only increses reference count of of data. Different from clone(), which creates deep copy. Data won't be cleaned up unless there are 0 references to it.
+      - Rc::clone() provides immutable references(non-changable).
 ```rs
 enum List {
     Cons(i32, Rc<List>),                                //1
