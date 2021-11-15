@@ -173,7 +173,6 @@ fn main() {
 }
 //Why Compile error? Compiler cannot determine how many i32 are nested inside.
 
-
 //Solution: Now we only store pointer to cons list at compile time.
 enum List { Cons(i32, Box<List>), Nil,}             //BOX
 
