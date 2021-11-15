@@ -147,9 +147,9 @@ fn main() {
 
 <a name=so></a>
 #### Sharing ownership using `Rc<T>`
-Example: Merging 3 linked-lists which are implemented using cons list
+Task: Merge 3 linked lists.
 ```c
-//Provided 3 linked lists
+//Input
   | 3 |
   b
           | 5 | -> | 10 | -> |Nil|
@@ -158,7 +158,7 @@ Example: Merging 3 linked-lists which are implemented using cons list
   | 4 |
   c  
   
-//Need to create. b and c both should point to head of a
+//Output: Create linked list where b and c both should point to head of a
   | 3 |--
   b      |
          |-> | 5 | -> | 10 | -> |Nil|
@@ -171,7 +171,7 @@ Example: Merging 3 linked-lists which are implemented using cons list
 ```rs
 //////////  Problmatic Code   /////////////
 use crate::List::{Cons, Nil};
-enum List {                                 //Definition of list
+enum List {                                 //Definition of linked list
     Cons(i32, Box<List>),
     Nil,
 }
@@ -189,7 +189,7 @@ We are not allowed to again move a to c.
   - _1. List definition change:_ Inplace of `Box<T>`, now we use `Rc<T>`. 
   - _2._ Create list using Rc::new()
   - _3. Store Reference:_ Instead of ownership being moved to b(ie b taking ownership). Only reference is stored with b. 
-    - Rc::clone(&list): This only increses reference count of of data. very different from clone(), which creates deep copy. Data won't be cleaned up unless there are 0 references to it.
+    - Rc::clone(&`Rc<list>`): This only increses reference count of of data. Different from clone(), which creates deep copy. Data won't be cleaned up unless there are 0 references to it.
 ```rs
 enum List {
     Cons(i32, Rc<List>),                                //1
