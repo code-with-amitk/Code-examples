@@ -180,4 +180,4 @@ fn main() {
     let list = Cons(1, Box::new(Cons(2, Box::new(Cons(3, Box::new(Nil))))));
 }
 ```
-<img src=cl.JPG width=400/>
+<img src=cons_list.JPG width=400/>
