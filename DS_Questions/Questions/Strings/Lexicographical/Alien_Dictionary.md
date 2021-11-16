@@ -1,11 +1,11 @@
 **[Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)**
 - [Approach-1, Breadth 1st Search](#a1)
-  - [1. Logic](#logic)
+  - [Logic](#logic)
     - [A. Extract information about lexiographical order of letters from input string](#s1)
       - [A1. Simple Example](#ex1)
       - [1.1 Complicated Example](#ex2)
     - [Step-2: Represent all relations from prev step in graph, specifically DAG](#step2)
-  - [2. Code](#code)
+  - [Code](#code)
 
 ## Alien Dictionary
 - Given string of words and these words are lexiographically sorted(as per alien dictionary). Remember this is not English dictionary. Where word `age` comes before `ago`.
@@ -19,7 +19,7 @@ o/p: wertf
 ## Approach-1, BFS, [Topological Sort](/DS_Questions/Data_Structures/Graphs)
 
 <a name=logic></a>
-### 1. Logic
+### Logic
 
 <a name=s1></a>
 #### A. Extract information about lexiographical order of letters from input string
@@ -47,71 +47,53 @@ w, e, r, t, f
   - Considering all rules from Ex-1.1
 ```c
 input = "uvoih", "ufoe", "aaief", "abve", "abvbr"
-u, a                       //Lexiographical order on 1st iteration
+u, a [u -> a]               //Lexiographical order on 1st iteration
+                            //1st letters are ordered                            
 
 "voih", "foe", "aief", "bve", "bvbr"
-v, f                         //We will Ignore all letters after v and f in 1st and 2nd word.
+v, f                         //if we found 1st difference in 2 adjacent words, we will ignore all letters after 1st diff.
+                             //We will Ignore all letters after v and f in 1st and 2nd word.
                              //Consider "test" & "toad" in English, How to find lexiographical order?
                              //1st letter. t,t same. Remove. Left word: "est", "oad".
                              //2nd letter mismatch: e appears before o. Lexiographical order till now: t,e,o
                              //After 2nd letters, We will park remaning letters to decide order later.
+                             //Because "st", "ad". a comes before s in lexiographical order which is irrelevant
+                             //Since in dictionary "test" comes before "toad".
                              //Means in Adjacent words we need to find first difference between them.
                              //That difference tells us the relative order between two letters.
+u -> a
+v -> f
 
-"oih", "oe", "aief", "bve", "bvbr"  //Just note the 1st difference
-o -> a
+"oih", "foe", "ve", "vbr"   //For words "aief", "abve" 1st difference was i,b
+a -> b                 
 
-"ih", "e", "ief", "bve", "bvbr"
-i -> e
+"oih", "foe", "e", "br"     //For words "bve", "bvbr". 1st differnce was e,b.
+v -> b
 
-"h", "ief", "bve", "bvbr"
-h -> i
+"oih", "foe", "r"           //For rest of words, order cannot be decided
+e -> b                      //So they will be single nodes in graph
+                 
+  u ----> a ---> b  <-- v --> f
+                 /\
+                 |
+                 e
+  o   i   h   f   r
 
-"ef", "bve", "bvbr"
-e -> b
+2. As question mentioned there can be multiple orderings, any 1 can be fine.
+o i h f r   OR
+i o h f r e       //Remove node with indegree=0
 
-"f", "ve", "vbr"
-f -> v             //Ignore this since f->v already derived
+u ----> a ---> b  <-- v --> f
 
-"e", "br"
-b -> r        //Since e->b is already present
-```
+a ---> b   f
+i o h f r e v u
 
-<a name=step2></a>
-#### Represent all relations from prev step in graph, specifically [DAG](/DS_Questions/Data_Structures/Graphs)
-- Condering ex-1.2
-```c
-        u -> a <- o
-        
-        v -> f
-        
-        i -> e <- h
-             |
-             \/
-             b -> r
-```
-- Notice there is no [in-degree(or arrow going)](/DS_Questions/Data_Structures/Graphs) to letters u,v,i,h. So these will be a head in alien dictionary.
-```c
-Ouput = u,v,i,h
-```
-- After removing u,v,i,h what's left in DAG?
-```c
-   a
-   
-   f
-   
-   e -> b -> r
-```
-- Again remove disjoint nodes.
-```c
-ouput = u,v,i,h,a,f,e
-  b -> r
-  
-output = u,v,i,h,a,f,e,b,r
+a ---> b   f
+i o h f r e v u f a b
 ```
 
 <a name=code></a>
-### 2. Code
+### Code
 - _a._ Extract relationship from input string and create a [Adjacency list](/DS_Questions/Data_Structures/Graphs).
   - Finding all nodes whose [indgree](/DS_Questions/Data_Structures/Graphs) is 0,because these will be placed ahead in alien dictionary. Let's suppose finding for a.
     - Search whether a is present in any of node's adjacency matrix. This means checking all 26 alphabet's adjacency list.
