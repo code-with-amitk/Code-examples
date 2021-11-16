@@ -170,7 +170,7 @@ fn fun2(a_string: String) -> String {
 <a name=smart></a>
 ### [Smart Pointers](Smart_Pointers)
 - `Box <T>`, deref trait, drop triat
-- `Rc<T>`, sharing ownership
+- `Rc<T>`, sharing ownership, Reference Counter, Reference counting
 
 <a name=datatypes></a>
 ### [Data Types](Data_Types)
@@ -235,3 +235,4 @@ Trait bounds, Future,
 
 <a name=th></a>
 ### [Threading](Threading)
+- `Arc<T>`
