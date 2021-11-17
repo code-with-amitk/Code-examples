@@ -79,7 +79,7 @@ index  0     1   2   3     4
 <a name=ald></a>
 #### Directed Graph
 <a name=2dv></a>
-##### 1. 2-D Vector
+##### 1. 2-D Vector (Only for numeral nodes)
 ```c
   1 --> 2 --> 3
         |
@@ -90,6 +90,12 @@ a[0].push_back(-1);
 a[1].push_back(1);
 a[2].push_back(0); a[2].push_back(3);
 a[3].push_back(-1);
+
+//This will not work if alphabetical nodes are there in graph. Will not work.
+  a --> b --> c 
+        |
+	\/
+	d
 ```
 <a name=hml></a>
 ##### 2. HashMap of Linked List
