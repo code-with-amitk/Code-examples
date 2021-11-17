@@ -43,57 +43,75 @@ w, e, r, t, f
 ```
 
 <a name=ex2></a>
-- **A2. Complicated Example**
-  - Considering all rules from Ex-1.1
+- **A2. Complicated Example:** Considering all rules from Ex-1.1
 ```c
 input = "uvoih", "ufoe", "aaief", "abve", "abvbr"
-u, a [u -> a]               //Lexiographical order on 1st iteration
-                            //1st letters are ordered                            
+u -> a                       //1st letters are always Lexiographical ordered                            
 
 "voih", "foe", "aief", "bve", "bvbr"
+"voih", "foe", "ief", "bve", "bvbr"
 v, f                         //if we found 1st difference in 2 adjacent words, we will ignore all letters after 1st diff.
-                             //We will Ignore all letters after v and f in 1st and 2nd word.
                              //Consider "test" & "toad" in English, How to find lexiographical order?
-                             //1st letter. t,t same. Remove. Left word: "est", "oad".
-                             //2nd letter mismatch: e appears before o. Lexiographical order till now: t,e,o
-                             //After 2nd letters, We will park remaning letters to decide order later.
-                             //Because "st", "ad". a comes before s in lexiographical order which is irrelevant
-                             //Since in dictionary "test" comes before "toad".
+                             //1st letters. t,t same. Remove. Left word: "est", "oad".
+                             //2nd letter mismatch:
+                                //Remove mismatched alphabets. Lexiographical order: t -> e -> o
+                                //We cannot predict correct order of alphabets after 1st mismatch in neighbouring words
+                                //"st", "ad". We cannot say 's' appears before 'a', which is wrong.
+                                //We will park remaning letters to decide order later.
+                             //We will Ignore all letters after v and f in 1st and 2nd word.
                              //Means in Adjacent words we need to find first difference between them.
-                             //That difference tells us the relative order between two letters.
-u -> a
 v -> f
 
-"oih", "foe", "ve", "vbr"   //For words "aief", "abve" 1st difference was i,b
-a -> b                 
+"oih", "foe", "ief", "bve", "bvbr"   //For words "ief", "bve" 1st difference was i,b
+i -> b
 
-"oih", "foe", "e", "br"     //For words "bve", "bvbr". 1st differnce was e,b.
-v -> b
+"oih", "foe", "ef", "e", "br"     //words "bve", "bvbr".
+b -> v
 
-"oih", "foe", "r"           //For rest of words, order cannot be decided
+"oih", "foe", "ef"                //words "e", "br"
+e -> b -> r
+
+"oih", "foe", "ef"          //For rest of words, order cannot be decided
 e -> b                      //So they will be single nodes in graph
-                 
-  u ----> a ---> b  <-- v --> f
-                 /\
+                 i
                  |
+                 \/
+  u ----> a ---> b  -----> v --> f
+                 /\ |
+                 |  |----> r
                  e
-  o   i   h   f   r
+  o   h   f 
 
 2. As question mentioned there can be multiple orderings, any 1 can be fine.
-o i h f r   OR
-i o h f r e       //Remove node with indegree=0
+o  h f   OR
+f h o  
 
-u ----> a ---> b  <-- v --> f
+//Remove nodes with indegree=0
+a ---> b  --> v --> f
+       |--> r
+o h f u i e
 
-a ---> b   f
-i o h f r e v u
+//Remove nodes with indegree=0
+b --> v --> f
+|--> r
+o h f u i e a
 
-a ---> b   f
-i o h f r e v u f a b
+//Remove nodes with indegree=0
+v --> f
+r
+o h f u i e a b
+
+//Remove nodes with indegree=0
+f
+o h f u i e a b v r
+
+//Place remaining nodes in output
+o h f u i e a b v r f
 ```
 
 <a name=code></a>
 ### Code
+#### Logic
 - _a._ Extract relationship from input string and create a [Adjacency list](/DS_Questions/Data_Structures/Graphs).
   - Finding all nodes whose [indgree](/DS_Questions/Data_Structures/Graphs) is 0,because these will be placed ahead in alien dictionary. Let's suppose finding for a.
     - Search whether a is present in any of node's adjacency matrix. This means checking all 26 alphabet's adjacency list.
