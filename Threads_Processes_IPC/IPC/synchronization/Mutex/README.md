@@ -216,7 +216,7 @@ T2: 2
 mutex mtx;
 unique_lock<mutex> ulock(mtx);           //Mutex(mtx) is owned by unique_lock
 ```
-- This is similar to [lock_guard](#lg), but supports additional locking strategies:
+- This is similar to [lock_guard](#lg), but supports additional locking strategies(or types of unique_locks):
 ```cpp  
 unique_lock<mutex> ulock(mtx);                    //Lock immdiately
 
