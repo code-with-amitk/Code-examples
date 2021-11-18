@@ -11,6 +11,8 @@
   - [pthread_cond_t](#pc)
     - [Simple Example](#c1)
     - [Ping Pong game](#pp)
+  - [C++, std::condition_variable](#cppc)
+    - [1. Ping Pong using std::condition_variable, unique_lock](#cpppp)
 
 <a name=cre></a>
 ## Creating Threads
@@ -205,7 +207,7 @@ void main() {
 ## Condition Variables
 Thread1 waits for condition to be true, which is signalled(ie made true) by other Thread
 <a name=pc></a>
-### pthread_cond_t
+### 1. pthread_cond_t
 <a name=c1></a>
 #### Simple Example
 ```c
@@ -299,4 +301,62 @@ Ping,j:7
 Pong,j:8
 Ping,j:9
 Pong,j:10
+```
+
+### 2. C++ [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable)
+- same thread-1 waiting on condition variable, thread-2 changes cond variable then thread-1 starts in critical section.
+<a name=cpppp></a>
+#### Ping Pong using std::condition_variable, unique_lock
+- _1._ Create 2 threads ping(), pong(). Consider execution starts from pong()
+- _2._ Control reaches pong()
+  - Own the `Mutex mtx` by creating [unique_lock](/Threads_Processes_IPC/IPC/synchronization/Mutex)
+  - `cv.wait(unique_lock, []{wait_condition});` Wait on condition variable until wait_condition becomes true. if wait_condition==false, Donot go in.
+  - Here start is false hence Pong will not be printed.
+- _4._ Control reaches ping().
+  - _4a._ mtx is owned by unique_lock. 
+  - _4b._ `cv.wait(unique_lock, []{wait_condition});` wait_condition==true. Hence go in. Print ping
+  - _4c._ unlock unique_lock. notify_one() one of threads waiting on condition variable (start).
+  - _4d._ if we have not printed 10 times, goto pong().
+```cpp
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+
+using namespace std;
+mutex mtx;
+condition_variable cv;
+bool start = false;
+int k = 0;
+
+void pong();
+void ping() {						//4
+	unique_lock<mutex> ulock(mtx);            //4a
+	cv.wait(ulock, [] {return !start;});//Wait until this code block return true	//4b
+	cout << "Ping\n";
+	start = true;						//4c
+	ulock.unlock();
+	cv.notify_one();
+	if (k++ < 10)						//4d
+		pong();
+}
+
+void pong() {
+	unique_lock<mutex> ulock(mtx);		//2
+	cv.wait(ulock, []{return start;});//Wait until this code block return true	//3
+	cout << "Pong\n";
+	start = false;
+	ulock.unlock();
+	cv.notify_one();
+	if (k++<10)
+		ping();
+}
+
+int main() {
+	thread t1(ping);		//1
+	thread t2(pong);
+	t1.join();
+	t2.join();
+	return 0;
+}
 ```
