@@ -3,8 +3,8 @@
   - [await](#aw)
 
 ## Tokio
-- **What?** This is [asynchronous]() runtime for rust, used for writing networking applications. 
-- **Why?** _1._ if we need to write aync networking applications. All benefits of async.
+- This is [asynchronous](/Languages/Programming_Languages/Rust/Asynchronous) runtime for rust, used for writing networking applications. 
+- **Why?** if we need to write aync networking application.
 
 ### Sample Application
 ```c
