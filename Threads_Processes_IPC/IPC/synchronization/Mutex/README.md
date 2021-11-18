@@ -10,9 +10,10 @@
   - 2 Threads Executing same function
     - [pthread](#pt1)
     - [C++ thread](#ct)
-- [lock_guard](#lg)
-- [unique_lock](#ul)
-- [scoped_lock C++17]()
+- [Wrappers over Mutex](#wr)
+  - [1. lock_guard](#lg)
+  - [2. unique_lock](#ul)
+  - [3. scoped_lock C++17]()
 
 <a name=mut></a>
 ## Mutex / Mutual Exculsion / Locking mechanism / Block / Sleep
@@ -141,15 +142,23 @@ fn main() {
 }
 ```
 
+<a name=wr></a>
+## Wrappers over Mutex
+- Wrapper means, these classes owns the mutex. To create object of any of these classes mutex has to be passed.
+
 <a name=lg></a>
-## lock_guard
-- [Good Video cppnuts](https://www.youtube.com/watch?v=ACoYnEzjEz4)
-- We do mutex.lock() before going into CS and mutex.unlock() at exit
-### Templated class lock_guard
-- **what is lock_guard?**
-  - This is mutex wrapper that provides a [RAII](/Languages/Programming_Languages/c++/OOPS_Principles), ie lock the mutex (mutex.lock()) no need to worry about unlocking (mutex.unlock()), when lock_guard object goes out of scope, mutex is automatically unlocked.
-  - lock_guard provides mutex for duration of scoped block.
-  - We cannot copy lock_guard, because operator = is deleted. Hence its not copy or move assignable.
+### 1. lock_guard
+- [Good Video cppnuts](https://www.youtube.com/watch?v=ACoYnEzjEz4).
+- We do mutex.lock() before going into CS and mutex.unlock() at exit.
+- lock_guard owns the mutex, then this mutex is handled with lock_guard.
+```cpp
+mutex mtx;
+lock_guard<mutex> lgLock(mtx);           //Mutex(mtx) is owned by lock_guard
+```
+#### Templated class lock_guard
+- This is **Wrapper over Mutex** that provides a [RAII](/Languages/Programming_Languages/c++/OOPS_Principles), ie lock the mutex (mutex.lock()) no need to worry about unlocking (mutex.unlock()), when lock_guard object goes out of scope, mutex is automatically unlocked.
+- lock_guard provides mutex for duration of scoped block.
+- We cannot copy lock_guard, because operator = is deleted. Hence its not copy or move assignable.
 - **Why?** If someone locks the mutex and forgets to unlock, then whole process will block.
 - **How it works**
   - This is used to lock the mutex at object creation, But we donot need to unlock the mutex at exit from thread function (or when lock_guard object goes out of scope).
@@ -201,26 +210,21 @@ T2: 2
 ```
 
 <a name=ul></a>
-## unique_lock
-- This is similar to [lock_guard](#lg), but has additional features. Features:
-  - deferred locking
-  - time-constrained attempts at locking
-  - recursive locking
-  - transfer of lock ownership
-  - Use with condition variables.
-- unique_lock can be moved ie it is (MoveConstructible and MoveAssignable) but cannot be copied (not of CopyConstructible or CopyAssignable).
+### 2. unique_lock
+- This also owns the mutex, then this mutex is handled with unique_lock.
 ```cpp
-class unique_lock{
-mutex m;
-public:
-  unique_lock(mutex m):a(m){}
-  ~unique_lock();
-  operator=     //unlocks (i.e., releases ownership of) the mutex, if owned, and acquires ownership of another
-  try_lock()
-  try_lock_for()
-  try_lock_until()
-  unlock()
-}
+mutex mtx;
+unique_lock<mutex> ulock(mtx);           //Mutex(mtx) is owned by unique_lock
 ```
+- This is similar to [lock_guard](#lg), but supports additional locking strategies:
+```cpp  
+unique_lock<mutex> ulock(mtx);                    //Lock immdiately
 
+unique_lock<mutex> ulock(mtx, defer_lock);        //deferred locking: Acquire the mutex but donot lock immediately.  
 
+unique_lock<mutex> ulock(mtx);                   //time-constrained attempts at locking: try_lock_for(), try_lock_until()
+mtx.try_lock_for(5 millisec);
+
+//recursive locking
+//unique_lock can be moved ie it is (MoveConstructible and MoveAssignable) but cannot be copied (not of CopyConstructible or CopyAssignable).
+```
