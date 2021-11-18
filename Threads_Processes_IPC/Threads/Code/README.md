@@ -8,8 +8,9 @@
   - [Rust](#ru)
 - [Joinable, Detachable Threads](#jd)
 - [Condition Variables](#cond)
-  - [Simple Example](#c1)
-  - [Ping Pong game](#pp)
+  - [pthread_cond_t](#pc)
+    - [Simple Example](#c1)
+    - [Ping Pong game](#pp)
 
 <a name=cre></a>
 ## Creating Threads
@@ -49,6 +50,7 @@ Thread: 3 Created
 ```
 <a name=ct></a>
 ### C++
+- **[thread class](https://www.cplusplus.com/reference/thread/thread/thread/):**
 <a name=m1></a>
 #### 1. Using Object of thread class
 ```cpp
@@ -58,7 +60,7 @@ void fun(int a){
 }
 int main() { 
   int a = 10;
-  std::thread t1(fun, a);
+  std::thread t1(fun, a);            //Creates Thread Object, which is entity that can start execution any time.
   t1.join();
 }
 ```
@@ -202,6 +204,8 @@ void main() {
 <a name=cond></a>
 ## Condition Variables
 Thread1 waits for condition to be true, which is signalled(ie made true) by other Thread
+<a name=pc></a>
+### pthread_cond_t
 <a name=c1></a>
 #### Simple Example
 ```c
