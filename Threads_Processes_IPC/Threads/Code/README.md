@@ -205,7 +205,8 @@ void main() {
 
 <a name=cond></a>
 ## Condition Variables
-Thread1 waits for condition to be true, which is signalled(ie made true) by other Thread
+- Thread1 waits for condition to be true, which is signalled(ie made true) by other Thread.
+- This is a synchronization primitive that can be used to block a thread, or multiple threads at the same time, until another thread modifies a shared variable (the condition), and this unblocks 1 or multiple threads.
 <a name=pc></a>
 ### 1. pthread_cond_t
 <a name=c1></a>
@@ -303,8 +304,16 @@ Ping,j:9
 Pong,j:10
 ```
 
-### 2. C++ [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable)
+### 2. C++ [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable) only works with [`unique_lock<mutex>`]
 - same thread-1 waiting on condition variable, thread-2 changes cond variable then thread-1 starts in critical section.
+- **Seqeunce:**
+  - **For thread publishing on condition_variable:**
+    - _a._ acquire a std::mutex (typically via std::lock_guard)
+    - _b._ perform the modification while the lock is held
+    - _c._ execute notify_one() or notify_all()
+  - **For thread waiting on condition_variable:**
+    - _a._ acquire a `std::unique_lock<std::mutex>`, same mutex as used to protect the shared variable
+    - _b._ execute wait, wait_for, or wait_until.
 <a name=cpppp></a>
 #### Ping Pong using std::condition_variable, unique_lock
 - _1._ Create 2 threads ping(), pong(). Consider execution starts from pong()
