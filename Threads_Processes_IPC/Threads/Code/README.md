@@ -13,6 +13,7 @@
     - [Ping Pong game](#pp)
   - [C++, std::condition_variable](#cppc)
     - [1. Ping Pong using std::condition_variable, unique_lock](#cpppp)
+  - [C++ condition_variable_any](#cppcva) 
 
 <a name=cre></a>
 ## Creating Threads
@@ -303,7 +304,7 @@ Pong,j:8
 Ping,j:9
 Pong,j:10
 ```
-
+<a name=cppc></a>
 ### 2. C++ [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable) only works with [`unique_lock<mutex>`]
 - same thread-1 waiting on condition variable, thread-2 changes cond variable then thread-1 starts in critical section.
 - **Seqeunce:**
@@ -338,27 +339,38 @@ condition_variable cv;
 bool start = false;
 int k = 0;
 
-void pong();
-void ping() {						//4
-	unique_lock<mutex> ulock(mtx);            //4a
-	cv.wait(ulock, [] {return !start;});//Wait until this code block return true	//4b
-	cout << "Ping\n";
-	start = true;						//4c
-	ulock.unlock();
-	cv.notify_one();
-	if (k++ < 10)						//4d
-		pong();
+void ping() {								//4
+	while(1) {
+		unique_lock<mutex> ulock(mtx);				//4a
+		cv.wait(ulock, []					//4b
+			{	//Wait until this code block return true
+				return !start;
+			}
+		);
+		if (k++ > 10)						//4d
+			return;
+		start = true;						//4c
+		cout << "Ping\n";
+		ulock.unlock();
+		cv.notify_one();
+	}
 }
 
 void pong() {
-	unique_lock<mutex> ulock(mtx);		//2
-	cv.wait(ulock, []{return start;});//Wait until this code block return true	//3
-	cout << "Pong\n";
-	start = false;
-	ulock.unlock();
-	cv.notify_one();
-	if (k++<10)
-		ping();
+	while(1) {
+		unique_lock<mutex> ulock(mtx);				//2
+		cv.wait(ulock, []					//3
+			{	//Wait until this code block return true
+				return start;
+			}
+		);
+		if (k++ > 10)
+			return;
+		start = false;
+		cout << "Pong\n";
+		ulock.unlock();
+		cv.notify_one();
+	}
 }
 
 int main() {
@@ -369,3 +381,6 @@ int main() {
 	return 0;
 }
 ```
+<a name=cppcva></a>
+### C++ condition_variable_any
+- unlike [condition_variable]() which works with only unique_lock, these can work with any (eg: shared_lock)
