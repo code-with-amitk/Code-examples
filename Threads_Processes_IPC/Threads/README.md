@@ -7,7 +7,7 @@
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
 - [Synchronization needed to access shared resource](#sy)
 - [POSIX Thread APIs](#ta)
-- **[User Space, Kernel Space Threads](#usks)**
+- **[User Space/Green Threads, Kernel Space/OS Threads](#usks)**
   - [User space threads](#us)
   - [Kernel space threads](#ks)
 - [Scheduler Activation](#sa)
@@ -144,8 +144,8 @@ pthread_exit();    //This will exit calling Thread
 <img src=./userspace_kernelspace_threads.PNG width=500 />
 
 <a name=us></a>
-### User Space Threads
-- Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process.
+### User Space/Green Threads
+- Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process. 
 - Each process will need its own **[Thread Table](#tt)**(to keep track of threads in process). 
 - **Advantages**
   - *1.* [Context switch](/Threads_Processes_IPC/Terms/#cos) between threads is done in user space, no call into kernel space or call trap().
@@ -156,6 +156,7 @@ pthread_exit();    //This will exit calling Thread
     - *Solutions:* 
       - *1.* Making blocking calls as non-blocking.
       - *2.* [Upcall](#up)
+- Examples: [Tokio::task](https://docs.rs/tokio/0.2.4/tokio/task/index.html)
 
 <a name=tt></a>
 #### Thread Table
@@ -165,7 +166,7 @@ pthread_exit();    //This will exit calling Thread
  Each thread’s program counter, stack pointer, registers, state etc
 ```
 <a name=ks></a>
-### Kernel space threds
+### Kernel Space/OS threads
 - When a thread wants to create/destroy an existing thread, it makes a kernel call, which then does the creation or destruction by updating the kernel [thread table](#tt).
 - kernel have thread-Table having same contents.
 - **Advantages**
