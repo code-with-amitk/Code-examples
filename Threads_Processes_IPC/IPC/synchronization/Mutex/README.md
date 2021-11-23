@@ -24,10 +24,16 @@
 
 <a name=mp></a>
 ### Problems with Mutex
-- **1. Priority Inversion:** Higher priority thread/process has to [Busy Wait](/Threads_Processes_IPC/Terms) outside critical section, because lower priority thread has locked mutex and is in Critical section.
-- **2. Easy Deadlock:** if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.
-- **3. Thread holding mutex paniced:** if thread-1 which holding the lock panics, whole process would panic.
-- **4. Mutex and data are seperate Entities:** Thread-1,2 are accessing data using mutex, But thread-3 changed the data without mutex, this should not Happen.
+#### 1. Priority Inversion
+  - Lower priority process is executing in Critical section, suddenly High-Priority process is scheduled, lower-priority process is preempted & thrown out of CS & higher priority process excecutes in CS. if 
+  - if Higher priority thread/process is [Busy Waiting](/Threads_Processes_IPC/Terms) then lower priority process will never get CPU(ie never scheduled).
+  - **Can PI happen on user-level threads?** No, there is no preemption in user level threads.
+#### 2. Easy Deadlock 
+if order of mutex locking/unlocking is not correct, that can led to easy dead-lock situation. See Dead-lock example.
+#### 3. Thread holding mutex paniced
+if thread-1 which holding the lock panics, whole process would panic.
+#### 4. Mutex and data are seperate Entities
+Thread-1,2 are accessing data using mutex, But thread-3 changed the data without mutex, this should not Happen.
   - _Solutions:_ 
     - [_1._ Making mutex and data as single entity as done in Rust](#rs)
     - _2._ All times keeping in mind that data should not handled outside mutex guards.
