@@ -1,6 +1,7 @@
 - [Synchronization](#sy)
 - [Types](#ty)
-- [Mutex vs Semaphore vs spinlock](#vs)
+  - [Mutex vs Semaphore vs spinlock vs Condition Variable](#vs)
+  - [Binary Semaphore vs Mutex](#vs1)
 
 <a name=sy></a>
 ## Synchronization
@@ -22,4 +23,7 @@ Suppose Thread-1 is in Critical Section and Thread-2 wants to enter in.
 | CPU Intesive | No. sleeping thread doesn't consume CPU | More wrt mutex | more wrt mutex ||
 | Implemented | On top of kernel futex(){Mutual exclusion} | | ||
 | ISR | | | synchronization in ISR is achieved using spinlocks. Since these are Fastest.||
+
+<a name=vs1></a>
+### Binary Semaphore vs Mutex
 
