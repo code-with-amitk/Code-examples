@@ -1,23 +1,17 @@
 - [spinlock](#sl)
-- [spinlock in ISR](#si)
-- [Implementing spinlock using atomic_bool](#im)
-- [spinlock code](#co)
+- [Code](#co)
 - [Problems with spinlock](#p)
 
 <a name=sl></a>
 ## Spin lock
-- Thread-1 is in Critical section. Thread-2 keeps checking lock(atomic bool variable) continously in while(1) and sets it. bool=true
+- Thread-1(or process-1) is in Critical section and has set atomic variable var=1, before entering into CS. Thread-2 keeps checking var continously in while(1) to be 0 and enter CS.
 - This consumes CPU but is 3 times faster than Mutex.
-
-<a name=si></a>
-**Spinlocks are used in ISR**. Critical sections in [ISR(Interrupt service routines)](/Operating_Systems/Linux/Kernel/Interrupts/) are implemented using spinlocks.
-
-<a name=im></a>
-### Implementing spinlock
-- _1._ Take [atomic_bool](/Threads_Processes_IPC/Terms).
-- _2._ lock() => Set atomic_bool to true atomically using [exchange()](https://en.cppreference.com/w/cpp/atomic/atomic/exchange)
-- _3._ unlock() => Replace the present value in atomic_bool using [store()](https://en.cppreference.com/w/cpp/atomic/atomic/store)
-```
+**Spinlocks are used in ISR**. Critical sections in [ISR(Interrupt service routines)](/Operating_Systems/Linux/Kernel/Interrupts/) are implemented using spinlocks, because spinlocks are 3 times faster than mutex.
+- **Example**
+  - _1._ Take [atomic_bool](/Threads_Processes_IPC/Terms).
+  - _2._ lock() => Set atomic_bool to true atomically using [exchange()](https://en.cppreference.com/w/cpp/atomic/atomic/exchange)
+  - _3._ unlock() => Replace the present value in atomic_bool using [store()](https://en.cppreference.com/w/cpp/atomic/atomic/store)
+```c
   atomic_bool a;            //1
   lock() { a.exchange(true, std::memory_order_acquire);    //exchange(desired_value, memory order constraints to enforce) }//2
   unlock() { a.store(false, std::memory_order_release);}  //3
@@ -125,4 +119,3 @@ while (TRUE) {
   }
 }
 ```
-
