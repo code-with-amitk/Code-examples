@@ -10,7 +10,7 @@
 <a name=cv></a>
 ## Conditional Variable / Condition Variable / shared variable
 - This block 1 thread/or multiple threads, until another thread modifies a shared variable (the condition), and notifies the condition_variable.
-- Implemented as class in C++. [Code](/Threads_Processes_IPC/Threads/Code/#cv)
+- **Advantages?** This avoids [busy waiting](/Threads_Processes_IPC/Terms#busyw), while spinlock does. For instance, if you have a thread (or multiple threads) that can't continue onward until a queue is empty, the busy waiting approach would be to just doing something
 
 ## Code
 <a name=pc></a>
