@@ -10,7 +10,10 @@
 <a name=cv></a>
 ## Conditional Variable / Condition Variable / shared variable
 - This block 1 thread/or multiple threads, until another thread modifies a shared variable (the condition), and notifies the condition_variable.
-- **Advantages?** This avoids [busy waiting](/Threads_Processes_IPC/Terms#busyw), while spinlock does. For instance, if you have a thread (or multiple threads) that can't continue onward until a queue is empty, the busy waiting approach would be to just doing something
+- **Advantages?**
+  - Avoids [busy waiting](/Threads_Processes_IPC/Terms#busyw), which spinlock does. For instance, if you have a thread (or multiple threads) that can't continue onward until a queue is empty, the busy waiting approach would be to just doing something.
+- **Similar to [Semaphores]**
+  - CV and semaphores are similar, both signals the sleeping threads, but counting semaphore is used for n available things.
 
 ## Code
 <a name=pc></a>
