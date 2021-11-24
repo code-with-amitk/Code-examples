@@ -3,7 +3,7 @@
   - [Binary](#b)
     - [Thread1 signals Thread2 to enter Critical Section, when Thread1 is done](#t1st2)
   - [Counting](#c)
-- [Datastructures:sem_t, APIs:sem_init, sem_post, sem_wait](Datastructures_API.md)
+- [Datastructures: sem_t, APIs: sem_init, sem_post, sem_wait](Datastructures_API.md)
 
 <a name=sem></a>
 ## Semaphore
