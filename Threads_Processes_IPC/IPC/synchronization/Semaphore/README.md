@@ -40,9 +40,8 @@
 ## Types of Semaphores
 <a name=b></a>
 ### 1. Binary
-Can take only 2 values (0 or 1).
-- **Use cases:**
-  - _1. 1 Producer/1 Consumer Problem_
+- Can take only 2 values (0 or 1).
+- **Use case:** 1 Producer/1 Consumer Problem_
 <a name=t1st2></a>
 #### Thread1 signals Thread2
 <a name=pos></a>
