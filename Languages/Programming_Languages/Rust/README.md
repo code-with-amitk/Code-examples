@@ -92,7 +92,7 @@ cargo build, cargo test, cargo doc, cargo publish
 
 <a name=as></a>
 ### [Asynchronous Programming](Asynchronous)
-awaits, async() function
+awaits, async() function, Future
 
 <a name=at></a>
 ### [Attributes](Attributes)
