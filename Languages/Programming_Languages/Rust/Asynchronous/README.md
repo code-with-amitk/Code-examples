@@ -1,44 +1,34 @@
-**Asynchronous Programming in Rust**
-- [async function](#as)
-- [block_on()](#b)
-- [await](#aw)
+- **Terms //Read these 1st**
+  - [Future](#fut)
+  - [Executor](#ex)
+  - [async function](#as)
+  - [await](#aw)
+  - [block_on()](#b)
+- [Asynchronous Programming in Rust](#async)
 
-## Asynchronous Programming
-To write asynchronous function in rust we need to perform these 3 tasks:
-- _1._ Start the [Runtime](https://www.quora.com/What-does-the-runtime-system-do-in-C) ([Tokio](/Libraries/Tokio/) or async_std or smol etc)
-- _2._ Spawn a [Future](/Languages/Programming_Languages/Rust/Triat_Interface)
-- _3._ Call blocking or CPU-intensive function in seperate thread
+## Terms
+<a name=fut></a>
+#### Future
+- **What?**
+  - This is a value which is not yet ready. (Same as Javascript=promises). 
+  - if we wait for some time it will be ready, its something compute heavy(Eg: network channel etc).
 ```rs
-$ Cargo.toml
-[dependencies]
-futures = { version = "0.3.*" }
-tokio = {version = "0.2.*", features = ["full"] }
-
-$ main.rs
-use tokio::task;
-
-fn fib_cpu_intensive(n: u32) -> u32 {
-    match n {
-        0 => 0,
-        1 => 1,
-        n => fib_cpu_intensive(n - 1) + fib_cpu_intensive(n - 2),
-    }
-}
-
-async fn fun(arg) {
-    let threadpool_future = task::spawn_blocking(||fib_cpu_intensive(30));    //3
-    todo!()
-}
-
+//Example, non working code
 fn main() {
-    let mut rt:Runtime = tokio::runtime::Runtime::new().unwrap();     //1. Start runtime
-    let local:LocalSet = tokio::task::LocalSet::new();
-    local.block_on (&mut rt, async move {fun(arg).await});            //2
+    let fut_x  = TcpStream::connect("127.0.0.1")
+                 .and_then(|c| c.write("got it");       //When connected write this
+
+    let ex: Executor;
+    let a = ex.run(fut_x);
 }
 ```
 
+<a name=ex></a>
+#### Executor
+We can give futures to this and executor will run the future. See above code.
+
 <a name=as></a>
-### async function
+#### async function
 Function prefixed with async & which will run asynchronously in rust.
 ```rs
 async fn fun() {
@@ -47,7 +37,7 @@ async fn fun() {
 ```
 
 <a name=b></a>
-### block_on() 
+#### block_on() 
 Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
 ```rs
 use futures::executor::block_on;
@@ -60,7 +50,7 @@ fn main() {
 ```
 
 <a name=aw></a>
-### await
+#### await
 Inside [async function](#as) await is used to wait for another async function.
 - **await vs block_on()** 
 ```c
@@ -102,5 +92,40 @@ aync fn async_main() {                  //fun1(),fun2() can independently execut
 
 fn main() {
     block_on(async_main());
+}
+```
+
+<a name=async></a>
+## Asynchronous Programming
+To write asynchronous function in rust we need to perform these 3 tasks:
+- _1._ Start the [Runtime](https://www.quora.com/What-does-the-runtime-system-do-in-C) ([Tokio](/Libraries/Tokio/) or async_std or smol etc)
+- _2._ Spawn a [Future](/Languages/Programming_Languages/Rust/Triat_Interface)
+- _3._ Call blocking or CPU-intensive function in seperate thread
+```rs
+$ Cargo.toml
+[dependencies]
+futures = { version = "0.3.*" }
+tokio = {version = "0.2.*", features = ["full"] }
+
+$ main.rs
+use tokio::task;
+
+fn fib_cpu_intensive(n: u32) -> u32 {
+    match n {
+        0 => 0,
+        1 => 1,
+        n => fib_cpu_intensive(n - 1) + fib_cpu_intensive(n - 2),
+    }
+}
+
+async fn fun(arg) {
+    let threadpool_future = task::spawn_blocking(||fib_cpu_intensive(30));    //3
+    todo!()
+}
+
+fn main() {
+    let mut rt:Runtime = tokio::runtime::Runtime::new().unwrap();     //1. Start runtime
+    let local:LocalSet = tokio::task::LocalSet::new();
+    local.block_on (&mut rt, async move {fun(arg).await});            //2
 }
 ```
