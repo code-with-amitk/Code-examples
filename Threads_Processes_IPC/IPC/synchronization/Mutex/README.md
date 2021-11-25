@@ -1,11 +1,11 @@
-- [What is Mutex](#mut)
+- [Mutex](#mut)
+  - [How internally implemented?](#how)
 - [Problems with Mutex](#mp)
 - [Creating Mutex](#cr)
   - [1. C++](#cpp)
   - [2. pthread](#pt)
   - [3. Rust](#rs)
-- [Mutex Types](Mutex_Types.md)
-  - try_lock, recursive_mutex, timed_mutex_try_lock_for, timed_mutex_try_lock_until
+- [Mutex Types](Mutex_Types.md): try_lock, recursive_mutex, timed_mutex_try_lock_for, timed_mutex_try_lock_until
 - **Code**
   - 2 Threads Executing same function
     - [pthread](#pt1)
@@ -17,10 +17,15 @@
 
 <a name=mut></a>
 ## Mutex / Mutual Exculsion / Locking mechanism / Block / Sleep
-- if 1 thread is in CS other cannot enter, Return value: None, Parameters: None
-- **How Mutex is internally implemented?**
-  - Mutex is kernel maintained lock(a data structure) that we set before using a shared resource and release after using it. Mutex keeps track of who currently has exclusive access to the data.
-  - When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
+if 1 thread is in CS other cannot enter, Return value: None, Parameters: None
+<a name=how></a>
+#### How Mutex is internally implemented?
+- Mutex is kernel maintained lock(a data structure) that we set before using a shared resource and release after using it. Mutex keeps track of who currently has exclusive access to the data.
+- When the lock is set, no other thread can access the locked region of code. Mutex lock will only be released by the thread who locked it.
+<a name=wake></a>
+#### Wake up?
+- When call to mutex.unlock() comes, signal is sent to scheduler. Scheduler checks all threads waiting on mutex.
+- if 1000 threads are waiting, wakeup call to activate 1000 comes(also called **thundering herd**), but scheduler wakes up 1 thread(at its discretion) & 999 falls to sleep.
 
 <a name=mp></a>
 ### Problems with Mutex
