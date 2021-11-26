@@ -188,7 +188,7 @@ next(), sum()
 
 <a name=kw></a>
 ### [Keywords](Keywords)
-Lazy
+Lazy, RWlock
 
 <a name=class></a>
 ### [Class in Rust](Class)
