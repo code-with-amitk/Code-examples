@@ -1,10 +1,10 @@
 **[Semaphore](sem)**
 - **[Types of Semaphores](#t)**
-  - [1. Binary](#b)
+  - [1. Binary = `std::counting_semaphore<1>`](#b)
     - [Thread1 signals Thread2](#t1st2)
       - [POSIX](#pos)
       - [C++](#cpp)
-  - [2. Counting](#coun)
+  - [2. Counting = `std::counting_semaphore<n>`](#coun)
 - [Datastructures: sem_t, APIs: sem_init, sem_post, sem_wait](Datastructures_API.md)
 
 <a name=sem></a>
