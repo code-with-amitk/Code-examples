@@ -13,6 +13,7 @@
 - [Data Types](#datatypes)
 - [Collections](#collections)
 - [Iterators](#itr)
+- [Keywords](#kw)
 - [Class in Rust](#class)
 - [Control Flow](#controlflow)
 - [Functions](#Functions)
@@ -184,6 +185,10 @@ HashMap, HashSet, vector, string, str
 <a name=itr></a>
 ### Iterators
 next(), sum()
+
+<a name=kw></a>
+### Keywords
+Lazy
 
 <a name=class></a>
 ### [Class in Rust](Class)
