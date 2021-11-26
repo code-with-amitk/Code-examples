@@ -99,12 +99,18 @@ Thread2 in Critical section
 #include <semaphore>
 #include <thread>
 #include <vector>
+using namespace std;
+std::vector<int> vec = {0, 1, 0, 3};
 
-std::binary_semaphore sem(0);                          
+std::binary_semaphore sem(0);                            // (1)
 
 void Producer() {
     sleep(2);
     std::cout << "Producer Created Task..." << '\n';
+    vec[2] = 1;
+    for (auto i:vec)
+        cout << i << ", ";
+    cout << "\n";
     sem.release();                                       //sem_post
 }
 
@@ -112,21 +118,19 @@ void Consumer() {
     std::cout << "Consumer Waiting..." << '\n';
     sem.acquire();                                        //sem_wait
     std::cout << "Consumer: Got Task" << '\n';
-    //Task
+    vec[2] = 2;
     std::cout << "Consumer: Completed Task" << '\n';
+    for (auto i:vec)
+        cout << i << ", ";
+    std::cout << '\n';
+    
 }
 
 int main() {
     std::thread tc(Producer);
     std::thread tw(Consumer);
     tc.join();    tw.join();
-}
-$ ./a.out
-Consumer Waiting...
-Producer Created Task...
-Consumer: Got Task
-Consumer: Completed Task
-```
+}```
 
 <a name=coun></a>
 ### 2. Counting Semaphore
