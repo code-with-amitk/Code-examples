@@ -87,7 +87,7 @@ Thread2 in Critical section
 ```
 
 <a name=cpp></a>
-**C++**
+**C++ (Introduced in C++20)**
 - [sem.release()](https://en.cppreference.com/w/cpp/thread/counting_semaphore/release): Same as sem_post(). Atomically increments the internal counter by the value of update. Any thread(s) waiting for the counter to be greater than 0.
 - [sem.acquire()](https://en.cppreference.com/w/cpp/thread/counting_semaphore/acquire): Same as sem_wait(). Atomically decrements the internal counter by 1 if it is greater than 0; otherwise blocks until it is greater than 0.
 ```cpp
