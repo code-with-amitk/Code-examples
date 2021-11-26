@@ -148,3 +148,9 @@ Consumer: Completed Task
     - n Producers Threads: Thread-1 putting choclates, Thread-2 putting cold drinks.
   - Consumer Threads need to wait if items are not in machine, Producers will notify consumers after placing items.
 - Acquiring a semaphore can occur on a different thread than releasing the semaphore
+```cpp
+std::counting_sempahore<n> sem(m);
+
+n = Least Max value.(should be >0). n concurrent threads allowed inside CS.
+m = Initial value of semaphore
+```
