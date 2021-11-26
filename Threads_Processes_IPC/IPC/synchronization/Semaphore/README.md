@@ -130,7 +130,8 @@ int main() {
     std::thread tc(Producer);
     std::thread tw(Consumer);
     tc.join();    tw.join();
-}```
+}
+```
 
 <a name=coun></a>
 ### 2. Counting Semaphore
