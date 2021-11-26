@@ -131,6 +131,13 @@ int main() {
     std::thread tw(Consumer);
     tc.join();    tw.join();
 }
+$ ./a.out
+Consumer Waiting...
+Producer Created Task...
+0, 1, 1, 3, 
+Consumer: Got Task
+Consumer: Completed Task
+0, 1, 2, 3, 
 ```
 
 <a name=coun></a>
