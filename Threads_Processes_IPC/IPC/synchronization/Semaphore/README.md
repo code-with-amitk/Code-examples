@@ -86,6 +86,34 @@ Thread1 in Critical section
 Thread2 in Critical section
 ```
 
+<a name=cpp></a>
+**C++**
+- [sem.release()](https://en.cppreference.com/w/cpp/thread/counting_semaphore/release): Same as sem_post(). Atomically increments the internal counter by the value of update. Any thread(s) waiting for the counter to be greater than 0.
+- [sem.acquire()](https://en.cppreference.com/w/cpp/thread/counting_semaphore/acquire): Same as sem_wait(). Atomically decrements the internal counter by 1 if it is greater than 0; otherwise blocks until it is greater than 0.
+```cpp
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <semaphore>
+using namespace std;
+ 
+std::binary_semaphore 	sem1(0);      //1. Initialize semaphore to 0
+
+void fun(){
+    sem1.acquire();                   //3. sem_wait(). Decrement counter, Block if counter=0
+    cout << "Thread1\n";
+}
+int main() {
+    thread t1(fun);                   //2. Create thread
+    sem1.release();                   //4. sem_post(). Increment counter, unblock waiting threads
+    cout << "main()\n";
+    t1.join();
+}
+$ ./a.out
+main
+Thread1
+```
+
 <a name=coun></a>
 ### 2. Counting Semaphore
 - **Usecases:** 
