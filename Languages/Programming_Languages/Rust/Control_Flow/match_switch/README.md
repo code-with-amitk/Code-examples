@@ -40,7 +40,8 @@ $ test.exe
 ```
 <a name=iflet></a>
 #### [if let](https://doc.rust-lang.org/book/ch06-03-if-let.html)
-Problem in above code: Lot of unused code(ie We want to do Something with Some(3) but nothing with None or any other value). To satisfy the match expression, we have to add `_ => ()` after processing just one variant, which is a lot of boilerplate code to add.
+- Problem in above code: Lot of unused code(ie We want to do Something with Some(3) but nothing with None or any other value). To satisfy the match expression, we have to add `_ => ()` after processing just one variant, which is a lot of boilerplate code to add.
+- Just match one pattern while ignore rest.
 ```rs
 fn main() {
     if let Some(3) = 3 {
