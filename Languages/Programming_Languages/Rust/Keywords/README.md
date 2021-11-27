@@ -6,5 +6,4 @@
 - Allows you to initialize static variables at runtime. 
 
 <a name=rwl></a>
-### RWlock
-1 producer provide data to n readers preventing readers from seeing invalid or inconsistent data.
+### [RWlock](/Threads_Processes_IPC/IPC/synchronization)
