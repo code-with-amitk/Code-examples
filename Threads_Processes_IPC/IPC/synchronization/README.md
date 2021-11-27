@@ -1,7 +1,8 @@
 - [Synchronization](#sy)
-- [Types](#ty)
+- **Differences**
   - [Mutex vs Semaphore vs spinlock vs Condition Variable](#vs)
   - [Binary Semaphore vs Mutex](#vs1)
+  - [Mutex vs Rwlock](#vs2)
 
 <a name=sy></a>
 ## Synchronization
@@ -26,4 +27,11 @@ Suppose Thread-1 is in Critical Section and Thread-2 wants to enter in.
 
 <a name=vs1></a>
 ### Binary Semaphore vs Mutex
+```c
+```
 
+### Mutex vs Rwlock
+||Mutex|Rwlock|
+|---|---|---|
+|Multiple readers allowed in CS| no | yes(At a time n readers are allowed inside CS. or 1 writer) |
+|Distinguishes reader and writer|no|yes|
