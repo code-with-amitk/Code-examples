@@ -14,6 +14,7 @@
   - [Max Element](#max)
   - [Any](#any)
   - [Last](#last)
+  - [lower_bound (uses binary search)](#lb)
 - [Reverse](#reverse)
 - [Convert to min_heap, max_heap](#conv)
 
@@ -123,6 +124,29 @@ iterator = find(v.begin(), v.end(), "test");
 ```cpp
 cout << v.back();
 ```
+
+<a name=lb></a>
+#### lower_bound
+## lower_bound (this uses binary_search)
+- Returns Iterator to 1st occurence of number in sorted Array.
+- if number does not exist, returns number just greater than searched value.
+```c++
+//ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last, const T& val);
+
+array  1 1 5 5 8 8 9 9 10 11
+index  0 1 2 3 4 5 6 7 8  9
+
+int main() {
+  vector<int> a = {1,1,5,5,8,8,9,9,10,11};
+  vector<int>::iterator it = lower_bound(a.begin(), a.end(), 8);     //Search 8
+  cout << "index:" << it - a.begin();     //4
+  
+  vector<int>::iterator it = lower_bound(a.begin(), a.end(), 4);     //Search 4
+  cout << *it;                            //5
+  cout << "index:" << it - a.begin();     //2
+}
+```
+
 
 <a name=reverse></a>
 ### `reverse[first, last)`
