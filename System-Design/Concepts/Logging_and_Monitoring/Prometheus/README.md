@@ -25,7 +25,7 @@
     - _c. client libraries:_ For user applications, these are avaiable in different languages like node.js, java, c++ etc
 - _2. HTTP Web Server:_ shows the data to prometheus UI or Grafanna after accepting APIs.
 ```c
---------- cloud ---------------
+------------------------------------------------- cloud ------------------------------------------------------
                |----------Prometheus----------|          |-------server-1-------|     |-------server-2-------|
 prometheus UI <--HTTP webServer<-|            |          | container[App1]      |     | container[App3]      |
 or             |                 |            |          |      container[App2] |     |      container[App4] |
