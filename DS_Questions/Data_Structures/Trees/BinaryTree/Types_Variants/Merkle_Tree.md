@@ -6,7 +6,7 @@
 - Binary tree storing hash of data(big files(audio,video,txt) etc) as leaf node.
 - All other nodes stores hash of their child nodes.
 - **Examples:** git, bitcoin uses Merkle tree.
-```c
+```html
 Data: let's meet  at	8 	in 	tombstone 	back 	park
 
                         h15
@@ -32,7 +32,7 @@ hash(park)  -> h8
 ## Usage of Merkle Tree
 ### 1. Retrieving lost/corrupted data in log(n) steps
 Suppose alice want to send Bob data="let's meet  at	8 	in 	  tom  	back 	park", But john(intruder) changes the data.
-```c      
+```html
           Alice                                           
 |data="let's meet at 8 in tom back park"|
   {encrypted|Hashed_metadata|...h15...|}
