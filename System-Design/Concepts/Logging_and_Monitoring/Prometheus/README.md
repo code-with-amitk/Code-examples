@@ -1,4 +1,6 @@
 **opensource Prometheus (Pull based system)**
+- [About](#ab)
+- [Usage scenario](#us)
 - [Internal Architecture](#int)
 - [Terms](#terms)
   - [1. Target](#tar)
@@ -8,7 +10,14 @@
 
 <a name=pro></a>
 ## Prometheus (Monitoring,Alerting & logging tool)
-- **Usage scenario:** 
+### About Prometheus
+- _1._ This is pull based system
+- _2._ Designed as standalone and hence reliable system, so that when complete infra goes down, promethus should be up and can be used to diagnose the problem.
+  - DISADVANTAGE: Promethus is difficult to scale.
+- _3. Compatible with Docker and kubernets_: Prometheus is fully compatible with both and is available as docker images.
+
+<a name=us></a>
+### Usage scenario
   - Consider datacenter running several servers running containarized applications(and each application has 5-10 threads/processes) and things are interconnected.
   - App4 crashed making App8 to function inappropraitely and whole application becomes unavailable to user.
   - How to identify which process in application crashed and Why it crashed?
