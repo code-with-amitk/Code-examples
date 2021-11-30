@@ -1,6 +1,7 @@
 **Merkle Tree**
 - [Usage/Advantages](#us)
   - [1. Retrieving lost/corrupted data in log(n) steps](#dv)
+- **[Self youtube Video](https://youtu.be/J5tphidJ9Uk)**
 
 ## Merkle Tree
 - Binary tree storing hash of data(big files(audio,video,txt) etc) as leaf node.
