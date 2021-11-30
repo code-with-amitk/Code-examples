@@ -63,16 +63,27 @@ Grafanna       |   |           DB<-|          |          |----------------------
   - Service, DB
 <a name=met></a>
 #### 2. Metrics
-- Data which is monitored for specific target is called metric which is saved in DB. Example of metrics entry.
+Data which is monitored for specific target is called metric which is saved in DB. Example of metrics entry.
 ```
-HELP: Description of what metric is
-TYPE:
- 1. Counter Type: Which stores some count. Eg: No of connections, CPU usage etc.
- 2. Histogram Type   
+# HELP: process_max_fds        //Description: Maximum number of open file descriptors
+# TYPE: process_max_fds gauge
+process_max_fds 811818
+
+# HELP: process_open_fds        //Description
+# TYPE: process_open_fds gauge
+process_max_fds 123
+
+# HELP: process_start_time_seconds   //Description: Start time since unix epoch in seconds
+# TYPE: process_start_time_seconds gauge
+process_start_time_seconds 1920910291.91
+
+# HELP: process_virtual_memory_bytes   //Description: virtual memory size in bytes
+# TYPE: process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 12889098109
 ```
 <a name=sc></a>
 #### 3. Scrape
-Pulling data from targets is called scraping
+Pulling data from targets is called scraping. Prometheus will scrap the metric using http. [Target](#tar) should support `http://ip:port/metrics/` and provide metrics.
 
 <a name=conf></a>
 ### Configuring Prometheus
