@@ -27,7 +27,7 @@
 
 <a name=int></a>
 ### Internal Architecture
-- _1. Retriever:_ Retriever sends "http GET hostaddress/metrics", fetches metriecs from Applications and stores in DB. Server should expose metrics in correct format.
+- _1. Retriever:_ Retriever call API `http://ip-address:port/metrics`, fetches metrics from [target](#tar) and stores in DB. Server should expose metrics in correct format.
   - _Exporter:_ Prometheus provides exporters which can be installed and used on target. Exporter will generate metrics to be sent to prometheus server. Example 
     - _a. linux_ just download expoter.tar.gz install, it wil expose /metric endpoint and send the data to server once needed.
     - _b. mysql:_ mysql has side car exporter.
@@ -45,12 +45,12 @@ prometheus UI <--HTTP webServer<-|            |          | container[App1]      
 or             |   |             |            |          |      container[App2] |     |      container[App4] |
 Grafanna       |   |           DB<-|          |          |----------------------|     |----------------------|
                |   |               |          |
-               |  \/              Retriever  ----http GET hostaddress/metrics-->  |-------server-n---------|
-   Email <------ AlertManager                 |                                   | exporter creates data  |
-               |                             <--metrics----------------------------                        |
-               |------------------------------|                                   |   container[App9]      |
-                                                                                  |        container[App8] |
-                                                                                  |------------------------|
+               |  \/              Retriever(API call) -http GET hostaddress/metrics-> |-------server-n---------|
+   Email <------ AlertManager                 |                                       | exporter creates data  |
+               |                             <--metrics--------------------------------                        |
+               |------------------------------|                                       |   container[App9]      |
+                                                                                      |        container[App8] |
+                                                                                      |------------------------|
 ```  
 
 <a name=terms></a>
