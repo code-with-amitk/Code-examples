@@ -1,6 +1,5 @@
 **Information Security constitutes of 4 parts**
 - **[1. Secrecy / Confidentiality / Encryption](#sec)**
-  - [How](#how)
   - **Types of Encryption**
     - [Assymetric /2 key](#2key)
       - [Algorithms: DH, RSA, Crammer-Shoup, El-Gamal](#aalgo)
@@ -26,36 +25,30 @@
 
 <a name=sec></a>
 # 1. Secrecy / Confidentiality / Encryption / Cryptography
-- Conversion of Data/Plain-text into unreadable/cipher text.
-<a name=how></a>
-**How?**
-- Establishing public/pvt key pairs(Asymmetric key exchange) between 2 peers. Pvt key should be same.
-- Once keys are exchanged using asymmetric key algos, encryption/decryption is done using Symmetric algos.
+Conversion of Data/Plain-text into unreadable/cipher text. Once keys are exchanged using asymmetric key algos, encryption/decryption is done using Symmetric algos.
 
 ## Types of Encryption
 <a name=2key></a>
-### 1. Assymetric /2 key
-Public key(encrypt), Private key(decrypt). Data encrypted with Public can only be decrypted using Pvt key. Both are mathematically linked. Public Key are published on website publicly.
-```c
-                  \/Public-Key                      \/Pvt-Key        
-Plain text > | Encryptor | >   Cipher Text  > | Decryptor | > Plain text
-```
-**Example Alice and Bob communication**
+### 1. Assymetric /2 key / Public,Pvt Key pair
+- Public key(encrypt), Private key(decrypt). Data encrypted with Public can only be decrypted using Pvt key. Both are mathematically linked. Public Key are published on website publicly.
+- **Example Alice and Bob communication**
   - *1.* Alice created his own Public(Pub_A),Pvt(Pvt_A) key pairs. Published Public key on his website and kept pvt secret.
   - *2.* Bob also created his own public(Pub_B), Pvt(Pvt_B) key pairs and published on his website.
   - *3.* Alice and bob can communicate using each other's public keys.
 ```html
-  Bob  <--read Alice public key---   http://alice.com
-  Alice <--read Bob public key--     http://bob.com
+                         Bob  <--read Alice public key-- http://alice.com
+                        Pub_A                                        
+                         \/
+message(plain text) > |Encrypt| > XXX  
 
-    Bob                                                   Alice
-            Pub_A                                             Pvt_A
-             \/                                                 \/
-  message > |Encrypt| > XXX   ---sent to Alice--->      XXX > Decrypt > message
+                                                                     Alice <-read Bob public key- http://bob.com
+                                                                     Pvt_A
+                                                                       \/
+                                     ---sent to Alice--->      XXX > |Decrypt| > message
 ```
 
 <a name=aalgo></a>
-#### Algorithms
+#### Assymetric Key Algorithms
 ##### a. DH(Diffe-Helman)
 ```c
 //DH Keys sizes
@@ -121,14 +114,11 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
 ```
 
 <a name=ecc></a>
-#### Ecliptic Curve Cryptography / ECC
-This is Public Key variant. Public, Pvt keys are calculated using elliptic curves over finite field.
-  - _Finite Field/Galois field?_ Field containing finite number of elements rather than real numbers.
-```c
-  Ecliptic curve: y2 = x3 + ax +b. 
-```
-- Advantage of ECC? Smaller keys in ECC provides equivalent security to larger non-ECC based algos. 
-- Applications of ECC?
+#### Ecliptic Curve Cryptography / ECC / 2 key
+- Public, Pvt keys are calculated using elliptic curves over (finite field/Galois field? Field containing finite number of elements rather than real numbers).
+- Ecliptic curve: y<sup>2</sup> = x<sup>3</sup> + a<sup>x</sup> + b. Place x and y in equation and get Public, Pvt key pairs.
+- **Advantage of ECC?** Smaller keys in ECC provides equivalent security to larger non-ECC based algos. 
+- **Applications of ECC?**
   - Calculating keys for following: Key agreement, Digital Signature, Pseudo-random generators.
   - ECCs can be used after combining with Symmetric encryption schemes.
   - (ECDH) Ecliptic Curve based Diffie Hellman
