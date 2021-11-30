@@ -1,4 +1,4 @@
-**Prometheus (Pull based system)**
+**opensource Prometheus (Pull based system)**
 - [Internal Architecture](#int)
 - [Terms](#terms)
   - [1. Target](#tar)
@@ -23,16 +23,21 @@
     - _a. linux_ just download expoter.tar.gz install, it wil expose /metric endpoint and send the data to server once needed.
     - _b. mysql:_ mysql has side car exporter.
     - _c. client libraries:_ For user applications, these are avaiable in different languages like node.js, java, c++ etc
+- _2. DB:_ Prometheus stores data on local hard-disk(hdd/ssd), it can also store data into [relational databases]().
 - _2. HTTP Web Server:_ shows the data to prometheus UI or Grafanna after accepting APIs.
+- _3. AlertManager:_ Prometheus server reads alert rules and sends notifications/alerts to users.
+- _4. PromQL query language:_ Using promQL, http server can be queried. For example:
+  - _a._ Querying a particular target
+  - _b._ Feed data to Grafanna 
 ```c
 ------------------------------------------------- cloud ------------------------------------------------------
                |----------Prometheus----------|          |-------server-1-------|     |-------server-2-------|
 prometheus UI <--HTTP webServer<-|            |          | container[App1]      |     | container[App3]      |
-or             |                 |            |          |      container[App2] |     |      container[App4] |
-Grafanna       |               DB<-|          |          |----------------------|     |----------------------|
-               |                   |          |
-               |                  Retriever  ----http GET hostaddress/metrics-->  |-------server-n---------|
-               |                              |                                   | exporter creates data  |
+or             |   |             |            |          |      container[App2] |     |      container[App4] |
+Grafanna       |   |           DB<-|          |          |----------------------|     |----------------------|
+               |   |               |          |
+               |  \/              Retriever  ----http GET hostaddress/metrics-->  |-------server-n---------|
+   Email <------ AlertManager                 |                                   | exporter creates data  |
                |                             <--metrics----------------------------                        |
                |------------------------------|                                   |   container[App9]      |
                                                                                   |        container[App8] |
