@@ -27,11 +27,11 @@
 
 <a name=int></a>
 ### Internal Architecture
-- _1. Retriever:_ Retriever call API `http://ip-address:port/metrics`, fetches metrics from [target](#tar) and stores in DB. Server should expose metrics in correct format.
-  - _Exporter:_ Prometheus provides exporters which can be installed and used on target. Exporter will generate metrics to be sent to prometheus server. Example 
+- **1. Retriever:** Retriever call API `http://ip-address:port/metrics`, fetches metrics from [target](#tar) and stores in DB. Server should expose metrics in correct format.
+  - **1a. Exporter:** These can be installed and used on target. Exporters will generate metrics to be sent to prometheus server. Example 
     - _a. linux_ just download expoter.tar.gz install, it wil expose /metric endpoint and send the data to server once needed.
     - _b. mysql:_ mysql has side car exporter.
-    - _c. client libraries:_ For user applications, these are avaiable in different languages like node.js, java, c++ etc
+  - **1b. Client libraries (`*.so, *.a, *.lib, *.dll`)** [Client Libraries](https://prometheus.io/docs/instrumenting/clientlibs/) User applications will use these and these libs will generate data in metric form. Different languages like node.js, java, c++, rust have different libs.
 - _2. DB:_ Prometheus stores data on local hard-disk(hdd/ssd), it can also store data into [relational databases]().
 - _2. HTTP Web Server:_ shows the data to prometheus UI or Grafanna after accepting APIs.
 - _3. AlertManager:_ Prometheus server reads alert rules and sends notifications/alerts to users.
