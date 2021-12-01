@@ -1,5 +1,6 @@
 - **Crates**
   - [1. rand](#rand)
+  - [2. Prometheus](#pro)
 - **Packages**
   - [Workspace](#ws)
 - **Modules**
@@ -22,9 +23,83 @@ $ Cargo.toml
 [dependencies]
 rand = "0.8.0"    //Add rand library as dependency, cargo will download from crates.io
 ```
-- [thread_rng()](//https://docs.rs/rand/0.8.4/rand/fn.thread_rng.html): Generate random number
+[thread_rng()](//https://docs.rs/rand/0.8.4/rand/fn.thread_rng.html): Generate random number
 ```rsp
 thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub fn thread_rng() -> ThreadRng
+```
+
+### 2. Prometheus
+- [What is Prometheus](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/). 
+- [Prometheus crate](https://github.com/tikv/rust-prometheus) is rust [Client library](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) for prometheus.
+#### Using Prometheus Crate
+- **1. Create a [Registry](https://docs.rs/prometheus/latest/prometheus/struct.Registry.html)** 
+  - Registry is a structure `pub struct Registry { /* fields omitted */ }` for registering Prometheus collectors, collecting their metrics, and gathering them into MetricFamilies for exposition.
+- **2. Register [Metrics](https://docs.rs/prometheus/latest/prometheus/core/trait.Metric.html) to registry**
+  - In prometheus: [Metrices](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#met).
+  - In Rust::crate::prometheus: Metric is an interface that represents a single sample value with its meta data being exported to Prometheus. Eg [Counter](https://docs.rs/prometheus/latest/prometheus/type.Counter.html)
+- **3. [Exporter/End point](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) collecting data**
+  - End point will call [gather() method](https://docs.rs/prometheus/latest/prometheus/fn.gather.html) which will return [structure of metrices called MetricFamily](https://docs.rs/prometheus/latest/prometheus/proto/struct.MetricFamily.html) using [encoder](https://docs.rs/prometheus/latest/prometheus/trait.Encoder.html)
+```rs
+$ cat Cargo.toml
+..
+[dependencies]
+prometheus = "0.13.0"
+lazy_static = "1.4.0"
+
+$ cat main.rs
+use std::collections::HashMap;
+use prometheus::{Encoder, IntCounter, Registry};
+use lazy_static::lazy_static;
+
+lazy_static! {
+    static ref DEFAULT_COUNTER: IntCounter = IntCounter::new("default", "generic counter").unwrap();
+    static ref CUSTOM_COUNTER: IntCounter = IntCounter::new("custom", "dedicated counter").unwrap();
+}
+
+fn main() {
+    // Register default metrics.
+    default_metrics(prometheus::default_registry());
+
+    // Register custom metrics to a custom registry.
+    let mut labels = HashMap::new();
+    labels.insert("mykey".to_string(), "myvalue".to_string());
+    let custom_registry = Registry::new_custom(Some("myprefix".to_string()), Some(labels)).unwrap();
+    custom_metrics(&custom_registry);
+
+    // Print metrics for the default registry.
+    let mut buffer = Vec::<u8>::new();
+    let encoder = prometheus::TextEncoder::new();
+    encoder.encode(&prometheus::gather(), &mut buffer).unwrap();
+    println!("## Default registry");
+    println!("{}", String::from_utf8(buffer.clone()).unwrap());
+
+    // Print metrics for the custom registry.
+    let mut buffer = Vec::<u8>::new();
+    let encoder = prometheus::TextEncoder::new();
+    encoder
+        .encode(&custom_registry.gather(), &mut buffer)
+        .unwrap();
+    println!("## Custom registry");
+    println!("{}", String::from_utf8(buffer.clone()).unwrap());
+}
+
+/// Default metrics, to be collected by the default registry.
+fn default_metrics(registry: &Registry) {
+    registry
+        .register(Box::new(DEFAULT_COUNTER.clone()))
+        .unwrap();
+
+    DEFAULT_COUNTER.inc();
+    assert_eq!(DEFAULT_COUNTER.get(), 1);
+}
+
+/// Custom metrics, to be collected by a dedicated registry.
+fn custom_metrics(registry: &Registry) {
+    registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
+
+    CUSTOM_COUNTER.inc_by(42);
+    assert_eq!(CUSTOM_COUNTER.get(), 42);
+}
 ```
 
 ## Packages
