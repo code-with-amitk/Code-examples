@@ -3,7 +3,6 @@
   - **1. Ctr,dtr calling Hierarchy**
     - [a. ctr(1st base then derv). destr(1st derv then base)](#b1)
   - [2. Base class constructor should be defined](#b2)
-  - [4. Contructor of Abstract class](#b4)
 - [Ctr Initializer list](#il)
 - **[Conversion Ctr](/Languages/Programming_Languages/c++/Keywords)**
 
@@ -65,30 +64,6 @@ int main(){
 }
 # ./a.out
 Error cannot find A::A()
-```
-
-<a name=b4></a>
-#### 4. Contructor of Abstract class
-A class containing pure virtual function is only a template, Since we will not be creating object of that class, it good to provide empty contructor.
-```cpp
-class A{                                  //Abstract class.
-public:
-  virtual void fun()=0;                   //Pure Virtual function
-  A(){};
-  virtual ~A(){};
-};
-class B: public A {
-public:
-  void fun(){}                          //Derived class must override PVF else declare it as PV.
-  B() { cout<<"Derv ctr"<<endl;  }
-  ~B() { cout<<"Derv dtr"<<endl;  }
-};
-int main(){
-    B obj;
-}
-# ./a.out
-Derv ctr
-Derv dtr
 ```
 
 <a name=il></a>
