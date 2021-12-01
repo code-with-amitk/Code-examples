@@ -28,6 +28,7 @@ rand = "0.8.0"    //Add rand library as dependency, cargo will download from cra
 thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub fn thread_rng() -> ThreadRng
 ```
 
+<a name=pro></a>
 ### 2. Prometheus
 - [What is Prometheus](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/). 
 - [Prometheus crate](https://github.com/tikv/rust-prometheus) is rust [Client library](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) for prometheus.
