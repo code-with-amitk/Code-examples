@@ -13,6 +13,7 @@
 - [Function Overriding](#fo)
 - **Rules of Inheritance**
   - [1. Function is linearly searched up in Multilevel Inheritance](#r1)
+  - [2. Multiple Inheritance, Ctr of base class is called in derivation order from left to right](#r2)
 
 
 ## Inheritance
@@ -235,4 +236,15 @@ int main(void) {
   C obj;
   obj.print();            //B
 }
+```
+
+<a name=r2></a>
+### 2. Multiple Inheritance, Ctr of base class is called in derivation order from left to right
+- Destructor is called in reverse order
+```cpp
+class A : public B, public C ;
+$ ./a.out
+B
+C
+A
 ```
