@@ -1,10 +1,9 @@
 **Default ctr**
-- [When compiler provides default ctr](#w1)
-- [When compiler does not provide default ctr](#w1)
-- [Forcing compiler to create default ctr](#f)
+- [class_name () = default is forcing compiler to create default ctr](#f)
 - **Rules of default Ctr**
-  - [1. Mismatch in declaration & call of ctr not allowed](#r1)
-  - [2. `A obj()` is not contructor call](#r2)
+  - [1. When user creates parameterzied,default or copy constructor, compiler doesn’t provide default constructor](#r1)
+  - [2. When there is no user created parameterzied or copy Constructor, complier provide default constructor](#r2)
+  - [3. `A obj()` is not contructor call](#r3)
 - [How many temporary copies are created by Default Ctr?](#h)
 
 
@@ -16,46 +15,6 @@ Same named function of class
   class_name() = delete ;                         (since C++11)
   class_name() = default ;                        (since C++11)
   class_name :: class_name ( ) = default ;        (since C++11)
-```
-
-<a name=w1></a>
-#### Compiler provided default ctr?
-When there is no user created Constructor, complier creates one.
-```cpp
-class A {
-public:
-    int get () { 
-      return id; 
-    }
-private    
-    uint32_t id;    
-};
-
-int main() {
-    A a;                        //This calls Compiler provided default ctr and member is initialized
-    cout << a.get();            //32567. Some Garbage value
-    return 0;
-}
-```
-
-<a name=w2></a>
-#### When complier does not provide default ctr?
-1. If user has  defined ANY constructor(either default or copy ctr)
-2. There is a Member in class that is not default-constructible. Eg: Pointer, Reference    
-3. {C++11} Deleting Default Constructor using A() = delete;
-```cpp
-class A {
-public:
-    A(int x):a(x){}
-private:
-    uint32_t id;
-};
-
-int main() {
-    A a;                    //COMPILATION ERROR. no matching function for call to 'A::A()'. Since user defined his own ctr
-                            //Complier does not provided inbuilt ctr. if we remove ctr from class it will work
-    return 0;
-}
 ```
 
 <a name=f></a>
@@ -78,24 +37,43 @@ int main(){
 
 ## Rules of Default ctr
 <a name=r1></a>
-#### 1. Mismatch in declaration & call of ctr not allowed
+#### 1. When user creates parameterzied,default or copy constructor, compiler doesn’t provide default constructor
+{C++11} Deleting Default Constructor using A() = delete; also deletes default ctr
 ```cpp
-class A {
-    int a;
-public:
-    Test(int x) : x(a) {}
+class A{
+  int a;
+public:  
+  A(int i):a(i) {}
 };
 int main() {
-    Test t;                 //a
-    return 0;
+  A obj;
 }
-$ ./a.out
-Compilation Error mismatch ctr            //Because ctr takes 1 argument but, a does not provide any argument.
-                                          //Resolving Compile time Error. Test(int x=0). Making argument as default
+$ g++ test.cpp
+Compilation Error. 
+When user create parameterzied constructor or copy constructor, compiler doesn’t provide default constructor
 ```
 
 <a name=r2></a>
-#### 2. `A obj()` is not contructor call
+#### 2. When there is no user created parameterzied or copy Constructor, complier provide default constructor
+```cpp
+class A {
+public:
+    int get () { 
+      return id; 
+    }
+private    
+    uint32_t id;    
+};
+
+int main() {
+    A a;                        //This calls Compiler provided default ctr and member is initialized
+    cout << a.get();            //32567. Some Garbage value
+    return 0;
+}
+```
+
+<a name=r3></a>
+#### 3. `A obj()` is not contructor call
 ```cpp
 class A
 {
