@@ -52,7 +52,7 @@ lazy_static = "1.4.0"
 //This Code
 //1. Register counter to prometheus::default_registry.
 //2. Create custom registry and register custom counter to custom registry
-//3. 
+//3. Collect data using gather() from default, custom registeries.
 
 $ cat main.rs
 use std::collections::HashMap;
