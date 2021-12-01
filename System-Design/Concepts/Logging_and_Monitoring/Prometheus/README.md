@@ -32,10 +32,10 @@
     - _a. linux_ just download expoter.tar.gz install, it wil expose /metric endpoint and send the data to server once needed.
     - _b. mysql:_ mysql has side car exporter.
   - **1b. Client libraries (`*.so, *.a, *.lib, *.dll`)** [Client Libraries](https://prometheus.io/docs/instrumenting/clientlibs/) User applications will use these and these libs will generate data in metric form. Different languages like node.js, java, c++, rust have different libs.
-- _2. DB:_ Prometheus stores data on local hard-disk(hdd/ssd), it can also store data into [relational databases]().
-- _2. HTTP Web Server:_ shows the data to prometheus UI or Grafanna after accepting APIs.
-- _3. AlertManager:_ Prometheus server reads alert rules and sends notifications/alerts to users.
-- _4. PromQL query language:_ Using promQL, http server can be queried. For example:
+- **2. Database:** Prometheus stores data on local hard-disk(hdd/ssd), it can also store data into [relational databases]().
+- **3. HTTP Web Server:** shows the data to prometheus UI or Grafanna after accepting APIs.
+- **4. AlertManager:** Prometheus server reads alert rules and sends notifications/alerts to users.
+- **5. PromQL query language:** Using promQL, http server can be queried. For example:
   - _a._ Querying a particular target
   - _b._ Feed data to Grafanna 
 ```c
