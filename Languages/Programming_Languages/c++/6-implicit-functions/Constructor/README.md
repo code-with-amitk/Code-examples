@@ -1,13 +1,14 @@
 **Constructor**
-- **Constructor calling Hierarchy**
-  - [1. Base class ctr called 1st](#b1)
+- **Rules:**
+  - **1. Ctr,dtr calling Hierarchy**
+    - [a. ctr(1st base then derv). destr(1st derv then base)](#b1)
   - [2. Base class constructor should be defined](#b2)
   - [3. Inheritance Ctr calling Hierarchy](#b3)
   - [4. Contructor of Abstract class](#b4)
 - [Ctr Initializer list](#il)
 - **[Conversion Ctr](/Languages/Programming_Languages/c++/Keywords)**
 
-### Constructor
+## Constructor
 Same named function of class called when object of class is created. Used to provide values to data members. 
 ```c
   Return type:               None 
@@ -16,13 +17,15 @@ Same named function of class called when object of class is created. Used to pro
   PRIVATE SCOPED CTR*:      Can ctr be inside private section(Yes. Single DP)
 ```
 
-### Constructor calling Hierarchy
+## Rules
+### 1. Constructor,Destructor calling Hierarchy
 - Whenever derived class constructor(default or parameterized) is called, Base class default constructor is **ALWAYS** called.
 - **Why Base class Constructor called by Derived class ctr**
   - Constructors have job to initialize member variables. A Derived class constructor has access only to its own class members, but a Derived class object also have inherited properties of Base class, and only base class constructor can properly initialize base class members. Hence all the constructors are called, else object wouldn't be constructed properly.
 
 <a name=b1></a>
-#### 1. Base class ctr called 1st
+#### a. Base class ctr is called 1st then derv class ctr
+Dtr is called opposite of ctr calling hierarchy
 ```cpp
 class A{
 public:
@@ -35,7 +38,6 @@ public:
   B() { cout<<"Derv ctr"<<endl;  }
   ~B() { cout<<"~derv"<<endl;  }
 };
-
 int main(){
     B obj;
 }
@@ -65,16 +67,7 @@ int main(){
 # ./a.out
 Error cannot find A::A()
 ```
-<a name=b3></a>
-#### 3. Inheritance Ctr calling Hierarchy
-In Multiple Inheritance, constructors of base classes are called in derivation order from left to right and Destructors are called in reverse order.
-```cpp
-class A : public B, public C ;
-$ ./a.out
-B
-C
-A
-```
+
 <a name=b4></a>
 #### 4. Contructor of Abstract class
 A class containing pure virtual function is only a template, Since we will not be creating object of that class, it good to provide empty contructor.
