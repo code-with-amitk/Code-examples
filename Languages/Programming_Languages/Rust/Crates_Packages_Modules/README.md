@@ -38,14 +38,21 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 - **2. Register [Metrics](https://docs.rs/prometheus/latest/prometheus/core/trait.Metric.html) to registry**
   - In prometheus: [Metrices](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#met).
   - In Rust::crate::prometheus: Metric is an interface that represents a single sample value with its meta data being exported to Prometheus. Eg [Counter](https://docs.rs/prometheus/latest/prometheus/type.Counter.html)
-- **3. [Exporter/End point](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) collecting data**
+- **3. [Exporter/End point](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) collects data**
   - End point will call [gather() method](https://docs.rs/prometheus/latest/prometheus/fn.gather.html) which will return [structure of metrices called MetricFamily](https://docs.rs/prometheus/latest/prometheus/proto/struct.MetricFamily.html) using [encoder](https://docs.rs/prometheus/latest/prometheus/trait.Encoder.html)
+
+#### Code 
 ```rs
 $ cat Cargo.toml
 ..
 [dependencies]
 prometheus = "0.13.0"
 lazy_static = "1.4.0"
+
+//This Code
+//1. Register counter to prometheus::default_registry.
+//2. Create custom registry and register custom counter to custom registry
+//3. 
 
 $ cat main.rs
 use std::collections::HashMap;
@@ -58,48 +65,35 @@ lazy_static! {
 }
 
 fn main() {
-    // Register default metrics.
+    // 1. prometheus::default_registry() already exist
+    //    Register DEFAULT_COUNTER to default registry
     default_metrics(prometheus::default_registry());
-
-    // Register custom metrics to a custom registry.
+    prometheus::default_registry().register(Box::new(DEFAULT_COUNTER.clone())).unwrap();
+    DEFAULT_COUNTER.inc();
+    
+    // 2. Create Custom Registry
     let mut labels = HashMap::new();
-    labels.insert("mykey".to_string(), "myvalue".to_string());
+    labels.insert("mykey".to_string(), "myvalue".to_string());  
     let custom_registry = Registry::new_custom(Some("myprefix".to_string()), Some(labels)).unwrap();
-    custom_metrics(&custom_registry);
+    
+    // 2a. Register CUSTOM_COUNTER to custom registry
+    custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
+    CUSTOM_COUNTER.inc_by(42);
 
-    // Print metrics for the default registry.
+    // 3. Collect data using gather() from registries
+    // 3a. Get data from default registry
     let mut buffer = Vec::<u8>::new();
     let encoder = prometheus::TextEncoder::new();
     encoder.encode(&prometheus::gather(), &mut buffer).unwrap();
     println!("## Default registry");
     println!("{}", String::from_utf8(buffer.clone()).unwrap());
 
-    // Print metrics for the custom registry.
+    // 3b. Get data from custom registry
     let mut buffer = Vec::<u8>::new();
     let encoder = prometheus::TextEncoder::new();
-    encoder
-        .encode(&custom_registry.gather(), &mut buffer)
-        .unwrap();
+    encoder.encode(&custom_registry.gather(), &mut buffer).unwrap();
     println!("## Custom registry");
     println!("{}", String::from_utf8(buffer.clone()).unwrap());
-}
-
-/// Default metrics, to be collected by the default registry.
-fn default_metrics(registry: &Registry) {
-    registry
-        .register(Box::new(DEFAULT_COUNTER.clone()))
-        .unwrap();
-
-    DEFAULT_COUNTER.inc();
-    assert_eq!(DEFAULT_COUNTER.get(), 1);
-}
-
-/// Custom metrics, to be collected by a dedicated registry.
-fn custom_metrics(registry: &Registry) {
-    registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
-
-    CUSTOM_COUNTER.inc_by(42);
-    assert_eq!(CUSTOM_COUNTER.get(), 42);
 }
 ```
 
