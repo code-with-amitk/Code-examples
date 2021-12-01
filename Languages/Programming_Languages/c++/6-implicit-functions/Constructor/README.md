@@ -1,8 +1,10 @@
 **Constructor**
 - **Rules:**
-  - **1. Ctr,dtr calling Hierarchy**
-    - [a. ctr(1st base then derv). destr(1st derv then base)](#b1)
-  - [2. Base class constructor should be defined](#b2)
+  - **1. Ctr calling Hierarchy**
+    - [a. ctr(1st base then derv)](#r1)
+  - **2. dtr calling Hierarchy**
+    - [a. dtr(1st derv then base)](#r2)
+  - [3. Base class constructor should be defined](#b2)
 - [Ctr Initializer list](#il)
 - **[Conversion Ctr](/Languages/Programming_Languages/c++/Keywords)**
 
@@ -16,36 +18,43 @@ Same named function of class called when object of class is created. Used to pro
 ```
 
 ## Rules
-### 1. Constructor,Destructor calling Hierarchy
 - Whenever derived class constructor(default or parameterized) is called, Base class default constructor is **ALWAYS** called.
-- **Why Base class Constructor called by Derived class ctr**
-  - Constructors have job to initialize member variables. A Derived class constructor has access only to its own class members, but a Derived class object also have inherited properties of Base class, and only base class constructor can properly initialize base class members. Hence all the constructors are called, else object wouldn't be constructed properly.
 
-<a name=b1></a>
-#### a. Base class ctr is called 1st then derv class ctr
-Dtr is called opposite of ctr calling hierarchy
+### 1. Ctr calling Hierarchy
+<a name=r1></a>
+#### a. Base class ctr is called 1st then derv ctr
+Constructors have job to initialize member variables. A Derived class constructor has access only to its own class members, but a Derived class object also have inherited properties of Base class, and only base class constructor can properly initialize base class members. Hence all the constructors are called, else object wouldn't be constructed properly.
 ```cpp
 class A{
 public:
-  A() { cout<<"base ctr"<<endl;  }
-  ~A() { cout<<"~base"<<endl;  }
+  A() { cout<<"base ctr";  }
+  ~A() { cout<<"base dtr";  }
 };
 
 class B: public A {
 public:
-  B() { cout<<"Derv ctr"<<endl;  }
-  ~B() { cout<<"~derv"<<endl;  }
+  B() { cout<<"Derv ctr";  }
+  ~B() { cout<<"Derv dtr";  }
 };
 int main(){
     B obj;
 }
 $ a.out
-Output:
 base ctr
 Derv ctr
-~derv
-~base
+Derv dtr
+Base dtr
 ```
+
+### 2. Dtr calling Hierarchy
+<a name=r1></a>
+#### [a. Derv class dtr is called 1st then base ctr](#r1)
+Why? Because objects are allocated on stack and top of stack is removed 1st.
+```c
+ | base-obj | derv-obj |
+ stack----------->
+```
+
 <a name=b2></a>
 #### 2. Base class constructor should be defined
 ```c++
