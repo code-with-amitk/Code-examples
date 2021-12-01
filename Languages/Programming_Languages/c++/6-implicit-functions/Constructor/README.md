@@ -3,7 +3,6 @@
   - **1. Ctr,dtr calling Hierarchy**
     - [a. ctr(1st base then derv). destr(1st derv then base)](#b1)
   - [2. Base class constructor should be defined](#b2)
-  - [3. Inheritance Ctr calling Hierarchy](#b3)
   - [4. Contructor of Abstract class](#b4)
 - [Ctr Initializer list](#il)
 - **[Conversion Ctr](/Languages/Programming_Languages/c++/Keywords)**
