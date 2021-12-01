@@ -125,16 +125,13 @@ Pong,j:10
     - _b._ execute wait, wait_for, or wait_until.
 <a name=cpppp></a>
 #### Ping Pong using std::condition_variable, unique_lock
-- _1._ Create 2 threads ping(), pong(). Consider execution starts from pong()
-- _2._ Control reaches pong()
-  - Own the `Mutex mtx` by creating [unique_lock](/Threads_Processes_IPC/IPC/synchronization/Mutex)
-  - `cv.wait(unique_lock, []{wait_condition});` Wait on condition variable until wait_condition becomes true. if wait_condition==false, Donot go in.
-  - Here start is false hence Pong will not be printed.
-- _4._ Control reaches ping().
-  - _4a._ mtx is owned by unique_lock. 
-  - _4b._ `cv.wait(unique_lock, []{wait_condition});` wait_condition==true. Hence go in. Print ping
-  - _4c._ unlock unique_lock. notify_one() one of threads waiting on condition variable (start).
-  - _4d._ if we have not printed 10 times, goto pong().
+- [unique_lock](/Threads_Processes_IPC/IPC/synchronization/Mutex)
+
+- _4._ .
+  - _4a._ 
+  - _4b._ 
+  - _4c._ 
+  - _4d._ .
 ```cpp
 #include <iostream>
 #include <thread>
@@ -147,27 +144,36 @@ condition_variable cv;
 bool start = false;
 int k = 0;
 
-void ping() {								//4
+void ping() {								//5. Control reaches ping()
 	while(1) {
-		unique_lock<mutex> ulock(mtx);				//4a
-		cv.wait(ulock, []					//4b
+		unique_lock<mutex> ulock(mtx);				//5a. mtx is owned by unique_lock
+		
+		//5b. `cv.wait(unique_lock, []{wait_condition});` wait_condition==true.
+		//Hence go in. Print ping
+		cv.wait(ulock, []					
 			{	//Wait until this code block return true
 				return !start;
 			}
 		);
-		if (k++ > 10)						//4d
+		if (k++ > 10)						//5e. if we have not printed 10 times, goto pong()
 			return;
-		start = true;						//4c
+		start = true;
 		cout << "Ping\n";
-		ulock.unlock();
-		cv.notify_one();
+		
+		ulock.unlock();                                         //5c. unlock unique_lock.
+		cv.notify_one();					//5d. notify_one() one of threads waiting on condition variable (start).
 	}
 }
 
-void pong() {
+void pong() {                                                            //2. Control reaches pong()
 	while(1) {
-		unique_lock<mutex> ulock(mtx);				//2
-		cv.wait(ulock, []					//3
+		unique_lock<mutex> ulock(mtx);				//3. Own the `Mutex mtx` by creating unique_lock
+		
+		//4. `cv.wait(unique_lock, []{wait_condition});` 
+		//Wait on condition variable until wait_condition becomes true. 
+		//if wait_condition==false, Donot go in.
+		//Here start is false hence Pong will not be printed
+		cv.wait(ulock, []
 			{	//Wait until this code block return true
 				return start;
 			}
@@ -182,8 +188,10 @@ void pong() {
 }
 
 int main() {
-	thread t1(ping);		//1
+        //1. Create 2 threads ping(), pong(). Consider execution starts from pong()
+	thread t1(ping);		
 	thread t2(pong);
+	
 	t1.join();
 	t2.join();
 	return 0;
