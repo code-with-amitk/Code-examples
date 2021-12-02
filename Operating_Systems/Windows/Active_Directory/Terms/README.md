@@ -28,7 +28,14 @@
 
 <a name=sam></a>
 ### samAccountName
-- User Logon Name in Pre-Windows 2000. SamAccountName must be unique among all security principal objects within the domain. Logon name format is : DomainName\testUser
+#### User
+- Logon Name in Pre-Windows 2000. SamAccountName must be unique among all security principal objects within the domain. Logon name format is : DomainName\testUser
+#### Computer/Device/Machine Object
+- sAMAccountName attribute of a [computer object](/Operating_Systems/Windows/Active_Directory/Computer_Object) is the NetBIOS name of the computer with a trailing dollar sign, `$`, appended. AD maintains index in database on sAMAccountName
+- **why $ at end?**
+  - Machine accounts are always given a trailing dollar sign "$" in their sAMAccountName attribute; this causes them to not be enumerated by certain APIs
+  - Computer account and user account can have same names & to identify computer account this is used.
+- 
 
 <a name=upn></a>
 ### UPN / Universal Principal Name
