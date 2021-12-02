@@ -49,8 +49,8 @@ c can reach b in cost 1/3
 - _3._ Traverse DFS, to all neighbours from src, 
   - if dst is found return path costs
   - else 
-    - insert `unordered_set<string> neighbours`
-    - Check neigbhour of neighbour
+    - insert neighbour in  `unordered_set<string>`
+    - Check if neigbhour of neighbour is dst?
 ```
 Find a/z (src=a, dst=z)
 
