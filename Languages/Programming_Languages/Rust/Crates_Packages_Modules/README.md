@@ -95,6 +95,17 @@ fn main() {
     println!("## Custom registry");
     println!("{}", String::from_utf8(buffer.clone()).unwrap());
 }
+
+$ cargo run
+## Default registry
+# HELP default generic counter
+# TYPE defaout counter
+default 1
+
+## Custom registry
+# HELP custom dedicated counter
+# TYPE custom counter
+custom{mykey="myvalue"} 42
 ```
 
 ## Packages
