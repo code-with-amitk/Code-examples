@@ -67,6 +67,7 @@ lazy_static! {
 fn main() {
     // 1. prometheus::default_registry() already exist
     //    Register DEFAULT_COUNTER to default registry
+    //    pub fn register(&self, c: Box<dyn Collector>) -> Result<()>
     default_metrics(prometheus::default_registry());
     prometheus::default_registry().register(Box::new(DEFAULT_COUNTER.clone())).unwrap();
     DEFAULT_COUNTER.inc();
@@ -77,6 +78,7 @@ fn main() {
     let custom_registry = Registry::new_custom(Some("myprefix".to_string()), Some(labels)).unwrap();
     
     // 2a. Register CUSTOM_COUNTER to custom registry
+    //     pub fn register(&self, c: Box<dyn Collector>) -> Result<()>
     custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
     CUSTOM_COUNTER.inc_by(42);
 
