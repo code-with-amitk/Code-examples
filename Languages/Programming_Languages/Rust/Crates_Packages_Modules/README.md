@@ -29,8 +29,7 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 ```
 
 <a name=pro></a>
-### 2. Prometheus
-- [What is Prometheus](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/). 
+### [2. Prometheus?](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/)
 - [Prometheus crate](https://github.com/tikv/rust-prometheus) is rust [Client library](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) for prometheus.
 #### Using Prometheus Crate
 - **1. Create a [Registry](https://docs.rs/prometheus/latest/prometheus/struct.Registry.html)** 
