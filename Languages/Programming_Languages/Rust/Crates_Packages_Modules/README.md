@@ -32,10 +32,19 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 ### [2. Prometheus?](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/)
 - [Prometheus crate](https://github.com/tikv/rust-prometheus) is rust [Client library](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) for prometheus.
 #### Using Prometheus Crate
-- **1. Create a [Registry](https://docs.rs/prometheus/latest/prometheus/struct.Registry.html)** 
-  - Registry is a structure `pub struct Registry { /* fields omitted */ }` for registering Prometheus collectors, collecting their metrics, and gathering them into MetricFamilies for exposition.
-- **2. Register [Metrics](https://docs.rs/prometheus/latest/prometheus/core/trait.Metric.html) to registry**
-  - In prometheus: [Metrices](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#met).
+- **1. Create a [Registry](https://docs.rs/prometheus/latest/prometheus/struct.Registry.html) `pub struct Registry { /* fields omitted */ }`**
+  - Registry is a structure where Prometheus collectors will register for collecting metrics.
+```rs
+impl Registry {
+  pub fn new() -> Registry              //Create new Registry.
+  pub fn new_custom(                    //Create new registry, with optional custom prefix and labels.
+    prefix: Option<String>,
+    labels: Option<HashMap<String, String>>
+  ) -> Result<Registry>
+}
+```
+- **2. Register Metrics to registry**
+  - [Prometheus Metrices](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#met), [Rust crate Metric]((https://docs.rs/prometheus/latest/prometheus/core/trait.Metric.html)
   - In Rust::crate::prometheus: Metric is an interface that represents a single sample value with its meta data being exported to Prometheus. Eg [Counter](https://docs.rs/prometheus/latest/prometheus/type.Counter.html)
 - **3. [Exporter/End point](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int) collects data**
   - End point will call [gather() method](https://docs.rs/prometheus/latest/prometheus/fn.gather.html) which will return [structure of metrices called MetricFamily](https://docs.rs/prometheus/latest/prometheus/proto/struct.MetricFamily.html) using [encoder](https://docs.rs/prometheus/latest/prometheus/trait.Encoder.html)
