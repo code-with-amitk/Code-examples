@@ -1,34 +1,46 @@
-/*
-        is_node_reachable_directed_graph.cpp
+- [Problem](#p)
+- [Approach : DFS](#a)
+- [Complexity](#c)
+- [Code](#c)
 
-Question: Given a directed graph, design an algorithm to find out whether there is a route between two nodes?
+<a name=p></a>
+## Problem
+- Given a directed graph, find whether there is a route between two nodes?
+```c
         0 ---> 1 ----> 2 <----- 4
         |     |        |
         |    \/        |
         ----> 3 <------
+```
 
-- We can either use BFS(queue) or DFS(stack)
-
-***************Solution(using DFS)***************
-a. Store graph in Adjacency List.
-
-b. Take 2 DS
+<a name=a></a>
+### Approach : DFS
+- _a._ Store graph in Adjacency List.
+- _b._ Take 2 DS
+```c
         visited[nodes] = {0}
         stack<int>              //Push 0 on stack
-
-c. Perform the operations until stack is empty:
+```
+- _c._ Perform the operations until stack is empty:
+```c
         - u = pop,top
         - visited[u] = true
         - if(u==dst) -> We found the dst. break
         - if any unvisited neighbours of u
                 push-on-stack
+```
 
-Complexity:
-O(mn).
+<a name=c></a>
+### Complexity
+O(mn)
+```c
 n: Number of nodes in Graph
 m: Max Number of connected vertices to a node
-************************************************
-*/
+```
+
+<a name=c></a>
+### Code
+```c
 #include<iostream>
 #include<stack>
 #include<vector>
@@ -93,3 +105,4 @@ int main(){
 Node 4 is not reachable from Node 0
 Node 3 is reachable from Node 2
 */
+```
