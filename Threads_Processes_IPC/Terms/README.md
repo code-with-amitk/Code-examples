@@ -9,7 +9,7 @@
 - [Critical Section(requires Mutual Exclusion)](#cs)
 - [CPU Bound](#cb)
 - [Deadlock](#dl)
-- [Future](#fut)
+- [Future, Promise](#fut)
 - [IO Bound](#io)
 
 
@@ -19,9 +19,15 @@ Unlike synchronous/sequential, Async program returns from blocking call without 
 ```c
 main () {
   future = send()          //Does not block
-  //can execute
+  //execution resumes
 }
 ```
+**C++**
+- Used to create asynchronous task and execute in parallel.
+  - *promise(input side)* For passing value from calling to called thread.
+  - *future(output side)* For retreving values returned by called thred into main() thread. `auto returned_value = get_future()`
+#### Asynchronous vs Multithreaded
+Asynchronous can be both single and multithreaded
 
 <a name=at></a>
 ### [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
@@ -164,8 +170,9 @@ void *thread-2(void *a){
 ```
 
 <a name=fut></a>
-### Future
+### Future(Rust) = Promise(C++)
 This is a value which is not yet ready. (Same as Javascript=promises). if we wait for some time it will be ready, its something compute heavy(Eg: network channel etc).
+- **Rust**
 ```rs
 //Example, non working code
 fn main() {
@@ -175,6 +182,10 @@ fn main() {
     let ex: Executor;
     let a = ex.run(fut_x);
 }
+```
+- **Promise**
+```cpp
+
 ```
 
 <a name=io></a>
