@@ -1,12 +1,21 @@
-### Compiled Language
-- **What?** A executable is created after being checked/converted at various stages. [Complilations Steps]()
-- **Examples?**
-  - C/C++
+### Compilation Steps
+- A executable is created after being checked/converted at various stages.
+- **C/C++**
 ```c
-source-code                     Intermediate-file       assembly-code            001010101
-  a.c      -> | Pre-processor |  - a.i ->  | Compiler |  - a.s ->   | Assembler | - a.o ->   | Linker (ld) | -> a.out -> | Loader |  -> |RAM|
+source-code(*.cpp) --|   
+                    \/
+             |Pre-processor| Intermediate file(a.i) 
+                                                |
+                                               \/ 
+                                          |Compiler| -> Assembly code(a.s) 
+                                                                      |
+                                                                     \/
+                                                                 |Assembler| -> Binary(a.o) 01010
+                                                                                   |
+                                                                                  \/
+                                                                                |Linker (ld)| -a.out-> |Loader| -> |RAM|
 ```
-  - Java
+**Java**
 ```c
 source-code                              bytecode         ---------------- JVM(resides on RAM)--------------------            
  a.java    -->    | Compiler(javac) |    -a.class ->     | class-loader   bytecode-verifier    Execution-Engine  | 
