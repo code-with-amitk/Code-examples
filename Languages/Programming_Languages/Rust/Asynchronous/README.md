@@ -1,5 +1,5 @@
 - **Terms //Read these 1st**
-  - [Future](#fut)
+  - [What is Asynchronous, Future](/Threads_Processes_IPC/Terms/)
   - [Executor](#ex)
   - [async function](#as)
   - [await](#aw)
@@ -7,28 +7,12 @@
 - [Asynchronous Programming in Rust](#async)
 
 ## Terms
-<a name=fut></a>
-#### Future
-- **What?**
-  - This is a value which is not yet ready. (Same as Javascript=promises). 
-  - if we wait for some time it will be ready, its something compute heavy(Eg: network channel etc).
-```rs
-//Example, non working code
-fn main() {
-    let fut_x  = TcpStream::connect("127.0.0.1")
-                 .and_then(|c| c.write("got it");       //When connected write this
-
-    let ex: Executor;
-    let a = ex.run(fut_x);
-}
-```
-
 <a name=ex></a>
-#### Executor
+### Executor
 We can give futures to this and executor will run the future. See above code.
 
 <a name=as></a>
-#### async function
+### async function
 Function prefixed with async & which will run asynchronously in rust.
 ```rs
 async fn fun() {
@@ -37,7 +21,7 @@ async fn fun() {
 ```
 
 <a name=b></a>
-#### block_on() 
+### block_on() 
 Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
 ```rs
 use futures::executor::block_on;
@@ -50,7 +34,7 @@ fn main() {
 ```
 
 <a name=aw></a>
-#### await
+### await
 Inside [async function](#as) await is used to wait for another async function.
 - **await vs block_on()** 
 ```c
