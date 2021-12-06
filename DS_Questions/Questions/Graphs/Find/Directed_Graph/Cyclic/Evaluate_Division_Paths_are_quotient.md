@@ -42,47 +42,30 @@ b can reach c and a in costs 3,.05
 c can reach b in cost 1/3
   | key      |key             |key        |
   |    |-----|   |------------|   |-------|
-  | a  | b,2 | b | c,3 | a,0.5| c | b,1/3 |
+  | a  | b,2 | b | c,3 | a,1/2| c | b,1/3 |
   |    |-----|   |------------|   |-------|
   |          |                |           |
 ```
-- _3._ Traverse DFS, to all neighbours from src, 
-  - if dst is found return path costs
-  - else 
-    - insert neighbour in  `unordered_set<string>`
-    - Check if neigbhour of neighbour is dst?
+- _3._ Iterate over queries, if src=target(insert 1.0), src or target not found (insert -1.0), else dfs
+```c
+  vector<double> out;
+  for (auto i : quries) {
+    src = i[0], target = i[1];
+    if (src not found || target not found)
+      out.push_back(-1.0);
+    else if (src == target)
+      out.push_back(1.0);
+    else 
+      Perform DFS
+  }
 ```
-Find a/z (src=a, dst=z)
-
- a --> b --> c
- |
- |------> e --> f
-\/
-d
-
-check()                 //At node a
-if (z is neighbour of a)
-  return path_cost
-
-//Confirmed z is not neighbour of a
-for (all neighbours of a)
-    unordered_set.insert(neighbour)
-    check(this_neighbour)           //check_this_neighbour_is_dst?
-    
-check()                 //Node b
-if (z is neighbour)
-  no
-for (all neighbours of b)
-    unordered_set.insert(c)
-    check(c)                 //check_this_neighbour_is_dst?
-
-check()                 //Node c
-if (z is neighbour)
-  no
-for (all neighbours of c)
-  //No neighbours of c
-return 0;  
-```
+- _4._ Perform Depth 1st search
+  - Take `unordered_set<string> visited`
+```c
+  dfs (curr, target, product) {
+    if 
+  }
+``` 
 <a name=co></a>
 ### Code
 ```cpp
