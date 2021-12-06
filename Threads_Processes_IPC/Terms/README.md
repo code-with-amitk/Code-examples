@@ -1,16 +1,28 @@
+- [Asynchronous](#as)
 - [Atomic](#at)
   - [Atomic Variables](#av)
 - [Bound Waiting](#bw)
 - [Busy Waiting](#busyw)
+- [Concurrent](#con)
 - [Condition Variable](#cv)
 - [Context Switch](#cos)
 - [Critical Section(requires Mutual Exclusion)](#cs)
 - [CPU Bound](#cb)
 - [Deadlock](#dl)
+- [Future](#fut)
 - [IO Bound](#io)
 
 
-## Terms
+<a name=as></a>
+### Asynchronous
+Unlike synchronous/sequential, Async program returns from blocking call without blocking, it usually returns a [future](#fut)
+```c
+main () {
+  future = send()          //Does not block
+  //can execute
+}
+```
+
 <a name=at></a>
 ### [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
 - The end result of Atomic Operation is predictable and correct.
@@ -32,7 +44,7 @@ b. Use synchronization methods.
 ```
 
 <a name=av></a>
-#### Atomic Variables
+### Atomic Variables
 - Atomic types provide are used for shared-memory communication between threads. Atomic variables are safe to share between threads.
 - ie values at end in these variables in not vague/unpredictable after n threads finished operating.
 
@@ -50,6 +62,10 @@ Process-2 waits outside critical section while process-1 is executing inside.
 - Let's suppose UserSpace program wants to read IO device. It invokes [Device Driver using device file](/Device_Drivers/Linux).
 - [Device driver writes to Device Controller's register](/Device_Drivers/Linux/#how) for reading memory address & device driver sits in loop, continuously polling the device to see if it is done 
 - When IO is completed data(if any) is returned to driver. Device driver returns control to user space process. User space process was said to be in busy waiting.
+
+<a name=con></a>
+### Concurrent (opposite of sequential)
+Means happening at same time. Several computations are executed simultaneouly ie during overlapping time periods.
 
 <a name=cv></a>
 ### Conditional Variable / Condition Variable / shared variable
@@ -146,6 +162,21 @@ void *thread-2(void *a){
     }
 }
 ```
+
+<a name=fut></a>
+### Future
+This is a value which is not yet ready. (Same as Javascript=promises). if we wait for some time it will be ready, its something compute heavy(Eg: network channel etc).
+```rs
+//Example, non working code
+fn main() {
+    let fut_x  = TcpStream::connect("127.0.0.1")
+                 .and_then(|c| c.write("got it");       //When connected write this
+
+    let ex: Executor;
+    let a = ex.run(fut_x);
+}
+```
+
 <a name=io></a>
 ### IO Bound 
 Process spends most of time in IO. From source: Program doing lot of File RW operations.
