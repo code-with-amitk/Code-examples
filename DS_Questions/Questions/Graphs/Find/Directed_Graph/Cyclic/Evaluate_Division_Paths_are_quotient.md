@@ -60,15 +60,40 @@ c can reach b in cost 1/3
   }
 ```
 - _4._ Perform Depth 1st search
-  - Take `unordered_set<string> visited`
+  - _a._ Take `unordered_set<string> visited`, Make current node as visited.
+  - _b._ On every call of dfs()
+    - if target is directly connected return cost
+    - else
+      - check all neighbours of current node
+        - if neighbour is in visited list
+          - continue to next neighbour
+        - dfs(product = product`*`cost)
 ```c
   dfs (curr, target, product) {
-    if 
-  }
+    visited.insert(curr);             //a
+    if target_directly_connected      //b
+      return product * cost;
+    else {
+      for (all neighbours of current node) {
+        if (neighbour_is_in_visited_list)   //Check next neighbour
+          continue;
+        dfs (product*cost)
+      }
+    }
+    
+    visited.remove(curr);         //Remove current node from visited
+    return ret;
+  }//dfs
 ``` 
 <a name=co></a>
 ### Code
 ```cpp
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+#include<unordered_set>
+#include<string>
+#include<map>
 using namespace std;
 using VecVecString = vector<vector<string>>;
 using VecDouble = vector<double>;
@@ -76,50 +101,73 @@ using umStringDouble = unordered_map<string, double>;
 using usString = unordered_set<string>;
 
 class Solution {
+    unordered_map<string, umStringDouble> umGraph;
 public:
     VecDouble calcEquation(VecVecString equations, VecDouble& values, VecVecString queries) {
-
-        unordered_map<string, umStringDouble> m;
         vector<double> out;
 
-        //2. Create Directed Graph using Hash-map
-        for (int i = 0; i < values.size(); ++i) {
-            m[equations[i][0]].insert(make_pair(equations[i][1], values[i]));
+        //Create Graph
+        for (int i = 0; i < equations.size(); ++i) {
+            umGraph[equations[i][0]].insert(make_pair(equations[i][1], values[i]));
             if (values[i] != 0)
-                m[equations[i][1]].insert(make_pair(equations[i][0], 1 / values[i]));
+                umGraph[equations[i][1]].insert(make_pair(equations[i][0], 1 / values[i]));
         }
 
         for (auto i : queries) {
-            usString s;
-            double tmp = check(i[0], i[1], m, s);
-            if (tmp) 
-                out.push_back(tmp);
-            else 
-                out.push_back(-1);
+            //i[0]:src, i[1]:dst
+            auto it = umGraph.find(i[0]);
+            auto it1 = umGraph.find(i[1]);
+            if (it == umGraph.end() || it1 == umGraph.end())
+                out.push_back(-1.0);
+            else if (i[0] == i[1])
+                out.push_back(1.0);
+            else {
+                unordered_set<string> visited;
+                out.push_back(dfs(i[0], i[1], 1.0, visited));
+            }
         }
         return out;
     }
-
 private:
-    double check(string src, string dst,
-        unordered_map<string, umStringDouble>& m,
-        usString& s)
-    {
-        //Found key
-        if (m[src].find(dst) != m[src].end()) 
-            return m[src][dst];
+    double dfs(string curr, string target, double pro, unordered_set<string> visited) {
+        visited.insert(curr);
+        double ret = -1.0;
 
-        //Key not found
-        for (auto i : m[src]) {
-            if (s.find(i.first) == s.end()) {
-                s.insert(i.first);
-                double tmp = check(i.first, dst, m, s);
+        //Find node is graph
+        auto it = umGraph.find(curr);
 
-                if (tmp) 
-                    return i.second * tmp;
+        //Find neighbour of current node in graph
+        auto it1 = it->second.find(target);
+
+        //if target is directly connected, return cost
+        if (it1 != it->second.end())
+            ret = pro * it1->second;
+        else {
+            //Check all neighbours of curr node
+            for (auto i : umGraph[curr]) {
+                string nextNode = i.first;
+                auto itr = visited.find(nextNode);
+                if (itr != visited.end())
+                    continue;
+                ret = dfs(nextNode, target, pro * i.second, visited);
+                if (ret != -1.0)
+                    break;
             }
         }
-        return 0;
+        
+        visited.erase(curr);
+        return ret;
     }
 };
-```
+int main() {
+    Solution s;
+    //VecVecString equ = { {"a","b"},{"b","c"} };
+    //VecDouble val = { 2.0,3.0 };
+    //VecVecString que = { {"a","c"},{"b","a"},{"a","e"},{"a","a"},{"x","x"} };
+
+    VecVecString equ = { {"x1","x2"},{"x2","x3"}, {"x3", "x4"}, {"x4","x5"}};
+    VecDouble val = { 3.0,4.0,5.0,6.0 };
+    VecVecString que = { {"x1","x5"},{"x5","x2"},{"x2","x4"},{"x2","x2"},{"x2","x9"}, {"x9","x9"}};
+    VecDouble out;
+    out = s.calcEquation(equ, val, que);
+}```
