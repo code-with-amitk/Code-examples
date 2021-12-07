@@ -1,4 +1,6 @@
 - [Asynchronous](#as)
+  - [async function](#afun)
+  - [block_on() rust](#bo)
   - [Asynchronous vs Multithreaded](#vs1)
 - [Atomic](#at)
   - [Atomic Variables](#av)
@@ -29,6 +31,29 @@ main () {
 - Used to create asynchronous task and execute in parallel.
   - *promise(input side)* For passing value from calling to called thread.
   - *future(output side)* For retreving values returned by called thred into main() thread. `auto returned_value = get_future()`
+
+<a name=afun></a>
+#### async Function
+Function prefixed with async & which will run asynchronously in rust.
+```rs
+async fn fun() {
+    ...
+}
+```
+
+<a name=bo></a>
+#### block_on() 
+Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
+```rs
+use futures::executor::block_on;
+async fn fun() {
+    println!("hello, world!");
+}
+fn main() {
+    block_on(fun());        //main() is blocked until fun() does not completes
+}
+```
+
 <a name=vs1></a>
 #### Asynchronous vs Multithreaded
 Asynchronous can be both single and multithreaded
