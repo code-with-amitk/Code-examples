@@ -7,6 +7,7 @@
   - [Windows](#win)
   - [Rust](#ru)
     - [1. thread::spawn = OS Thread](#ts)
+    - [2. tokio::spawn = Green Thread](#tos)
 - [Joinable, Detachable Threads](#jd)
 
 
@@ -150,9 +151,9 @@ $ cargo build
 $ cargo run
 ```
 
-<a name=ts></a>
+<a name=tos></a>
 #### 2. tokio::spawn() = [asynchronous](/Threads_Processes_IPC/Terms/README.md#as) [Green Thread](/Threads_Processes_IPC/Threads#usks)
-- tokio::spawn is 1 level up from threads. These are user level non-blocking threads, ie thread blocks on call it will return immediately.
+[tokio](/Languages/Programming_Languages/Rust/Tokio/)::spawn is 1 level up from threads. These are user level non-blocking threads, ie thread blocks on call it will return immediately.
 ```rs
 $ cat Cargo.toml
 [package]
