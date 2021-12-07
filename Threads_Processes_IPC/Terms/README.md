@@ -1,6 +1,7 @@
 - [Asynchronous](#as)
   - [async function](#afun)
   - [block_on() rust](#bo)
+  - [await](#aw)
   - [Asynchronous vs Multithreaded](#vs1)
 - [Atomic](#at)
   - [Atomic Variables](#av)
@@ -45,13 +46,48 @@ async fn fun() {
 #### block_on() 
 Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
 ```rs
+$ cat Cargo.toml
+[dependencies]
+futures = "0.3"
+
+$ cat main.rs
 use futures::executor::block_on;
-async fn fun() {
-    println!("hello, world!");
-}
+async fn fun1() { print!("fun1"); }
+async fn fun2() { print!("fun2"); }
 fn main() {
-    block_on(fun());        //main() is blocked until fun() does not completes
+    block_on(fun1());                       //main() blocks until fun1(),fun2() does not compelte
+    block_on(fun2());
 }
+$ main.exe
+fun1 fun2
+```
+
+<a name=aw></a>
+### await
+Inside [async function](#afun) await is used to wait for another async function.
+```rs
+$ cat main.rs
+use futures::executor::block_on;
+async fn fun1() { print!("fun1"); }
+async fn fun2() { print!("fun2"); }
+
+aync fn async_main() {                  //fun1(),fun2() can independently execute. async_main() can run other tasks independently as well.
+    fun1().await;
+    //other work
+    fun2.await();
+}
+
+fn main() {
+    block_on(async_main());
+}
+```
+**await vs block_on()** 
+```c
+                                        |   await          |        block_on()    |
+----------------------------------------|------------------|----------------------|
+Blocks current thread                   |     no           |          yes         |
+wait for future to complete             |     yes          |          yes         |
+Other tasks in async function can run?  |     yes          |          no          |
 ```
 
 <a name=vs1></a>
