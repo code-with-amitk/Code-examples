@@ -1,37 +1,10 @@
 - **Terms //Read these 1st**
-  - [Asynchronous, Future](/Threads_Processes_IPC/Terms/)
-  - [Executor](#ex)
-  - [async function](#as)
   - [await](#aw)
   - [block_on()](#b)
 - [Asynchronous Programming in Rust](#async)
 
-## Terms
-<a name=ex></a>
-### Executor
-We can give futures to this and executor will run the future. See above code.
 
-<a name=as></a>
-### async function
-Function prefixed with async & which will run asynchronously in rust.
-```rs
-async fn fun() {
-    ...
-}
-```
 
-<a name=b></a>
-### block_on() 
-Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
-```rs
-use futures::executor::block_on;
-async fn fun() {
-    println!("hello, world!");
-}
-fn main() {
-    block_on(fun());        //main() is blocked until fun() does not completes
-}
-```
 
 <a name=aw></a>
 ### await
