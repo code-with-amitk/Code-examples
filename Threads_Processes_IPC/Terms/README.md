@@ -20,8 +20,7 @@
 
 <a name=as></a>
 ### Asynchronous
-- Unlike synchronous/sequential, Async program are [concurrent](#con) ie work on many tasks, on single threads.
-- This means return from blocking call without blocking, it usually returns a [future](#fut)
+- Async program are [concurrent](#con) ie work on many tasks at a time but only using 1 thread, it usually returns a [future](#fut)
 ```c
 main () {
   future = send()          //Does not block
