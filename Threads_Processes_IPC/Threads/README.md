@@ -144,7 +144,7 @@ pthread_exit();    //This will exit calling Thread
 <img src=./userspace_kernelspace_threads.PNG width=500 />
 
 <a name=us></a>
-### User Space/Green Threads
+### User Space/Green Threads (Eg: [Tokio::task](https://docs.rs/tokio/0.2.4/tokio/task/index.html))
 - Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process. 
 - Each process will need its own **[Thread Table](#tt)**(to keep track of threads in process). 
 - **Advantages**
@@ -156,7 +156,6 @@ pthread_exit();    //This will exit calling Thread
     - *Solutions:* 
       - *1.* Making blocking calls as non-blocking.
       - *2.* [Upcall](#up)
-- Examples: [Tokio::task](https://docs.rs/tokio/0.2.4/tokio/task/index.html)
 
 <a name=tt></a>
 #### Thread Table
