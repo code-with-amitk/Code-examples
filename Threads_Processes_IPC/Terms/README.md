@@ -12,11 +12,13 @@
 - [Deadlock](#dl)
 - [Future, Promise](#fut)
 - [IO Bound](#io)
+- [Parallelism](#pa)
 
 
 <a name=as></a>
 ### Asynchronous
-Unlike synchronous/sequential, Async program returns from blocking call without blocking, it usually returns a [future](#fut)
+- Unlike synchronous/sequential, Async program are [concurrent](#con) ie work on many tasks, on single threads.
+- This means return from blocking call without blocking, it usually returns a [future](#fut)
 ```c
 main () {
   future = send()          //Does not block
@@ -73,7 +75,7 @@ Process-2 waits outside critical section while process-1 is executing inside.
 
 <a name=con></a>
 ### Concurrent (opposite of sequential)
-Means happening at same time. Several computations are executed simultaneouly ie during overlapping time periods.
+Alternate between two tasks, then you are working on both tasks concurrently, but not in [parallelism](#pa)
 
 <a name=cv></a>
 ### Conditional Variable / Condition Variable / shared variable
@@ -202,3 +204,6 @@ Q: Find whether a process is IO Bound or CPU Bound?
  }
  ```
 
+<a name=pa></a>
+### Parallelism
+2 tasks assigned to 2 threads running on different cores.
