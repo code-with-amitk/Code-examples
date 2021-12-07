@@ -1,5 +1,5 @@
 **Directed, Undirected**
-- **Representation of Undirected**
+- **Undirected**
   - [2-D vector](#2dv)
 - **Directed**
   - [1. 2-D Vector (Only for numeral nodes)](#2dvd)
