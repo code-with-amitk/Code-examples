@@ -1,20 +1,16 @@
 - [What is Graph](#what)
 - **[Representation of Graph](#r)**
-  - [A. Adjacency Matrix/Lookup table](#m)
-  - [B. Adjacency List: Directed, Undirected Graph](#l)
-    - [Undirected Graph](#alu)
-    - Directed Graph
-      - [1. 2-D Vector](#2dv)
-      - [2. HashMap of Linked List](#hml)
-  - [C. Edge List](#el)
+  - [1. Adjacency Matrix/Lookup table](#m)
+  - [2. Adjacency List](#l)
+  - [3. Edge List](#el)
 - **[Terms: Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
 - **Types of Graphs**
-  - [Cyclic/Acyclic](cyclic)
-    - [1. DAG/Directed Acyclic Graph](#dag)
-  - [Directed/Undirected](#dir)
-  - [Spanning Tree](#st)
-    - [1. Min Spanning Tree](#mst)
-  - [Weighted/Unweighted Graph](#weighted)
+  - [1. Cyclic/Acyclic](cyclic)
+    - [1a. DAG/Directed Acyclic Graph](#dag)
+  - [2. Directed/Undirected](/DS_Questions/Data_Structures/Graphs/Directed_Undirected)
+  - [3. Spanning Tree](#st)
+    - [3a. Min Spanning Tree](#mst)
+  - [4. Weighted/Unweighted Graph](#weighted)
 - **Operations**
   - [Disjoint Set Union](#dis)
     - [Application => Connected Component in Graph](#app)
@@ -38,7 +34,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
         ----> d <-- b
 ```
 <a name=m></a>
-### A. Adjacency Matrix/Lookup table
+### 1. Adjacency Matrix/Lookup table
 - Each cell keeps how two nodes are connected. For unweighted graph values are `1`. 
 - For weighted graph values are cost/weights. 
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -56,70 +52,17 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 ```
 
 <a name=l></a>
-### B. Adjacency List
+### 2. Adjacency List
 Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
-<a name=al1></a>
-#### Undirected Graph
-```cpp
-
-   1 -- 0 -- 3 -- 4
-        |
-        2  
-  vector<vector<int>> al[5];
-  al[0].push_back(1); al[0].push_back(2); al[0].push_back(3); => 1,2,3    //node0
-  al[1].push_back(0);                                                     //node1
-  al[2].push_back(0);                                                     //node2
-  al[3].push_back(0); al[3].push_back(4);                                 //node3
-  al[4].push_back(3);                                                     //node4
-  
-      |     |   |   |     |   |
-      |1,2  |0  |0  |0,4  |3  |
-index  0     1   2   3     4
-```
-<a name=ald></a>
-#### Directed Graph
-<a name=2dv></a>
-##### 1. 2-D Vector (Only for numeral nodes)
 ```c
-  1 --> 2 --> 3
-        |
-       \/
-       0  
-vector<vector<int>> a[4];
-a[0].push_back(-1);
-a[1].push_back(1);
-a[2].push_back(0); a[2].push_back(3);
-a[3].push_back(-1);
-
-//This will not work if alphabetical nodes are there in graph. Will not work.
-  a --> b --> c 
-        |
-	\/
-	d
+vector<list>
+        4,3   4    1,4   1,2,3  <Linked list
+	/\    /\    /\    /\
+        |     |     |     |
+Nodes | 1  |  2  |  3  |  4  |  <vector
 ```
-<a name=hml></a>
-##### 2. HashMap of Linked List
-```c
-vector<vector<int>> v = { {1, 0},{2, 0},{3, 1},{3, 2 }};
-		for (int i = 0; i < v.size(); ++i) {
-			ListInt l;
-			int dest = prerequisites[i][0];
-			int src = prerequisites[i][1];
-			auto it = adjList.find(src);
-			if (it != adjList.end()) {		//Element already exists
-				l = it->second;
-			}
-			l.push_back(dest);
-			adjList[src] = l;
-		}
-
-0 ---> 1 ---> 3
-|             /\
------> 2 -----|
-```
-
 <a name=el></a>
-#### C. Edge List
+#### 3. Edge List
 ```cpp
    v[0] |2|3|		//a(0) has c(2),d(3) as edges
    v[1] |3|
@@ -166,11 +109,11 @@ This is subgraph in which each pair of nodes is connected with each other via a 
 
 ## Types of Graphs
 <a name=cyclic></a>
-### Cyclic/Acyclic
+### 1. Cyclic/Acyclic
 - *Cyclic:* If graph has cycle.  
 - *Acyclic:* No cycles in graph. When following the graph from node to node, you will never visit the same node twice.
 <a name=dag></a>
-#### 1. DAG(Directed Acyclic Graph)
+#### 1a. DAG(Directed Acyclic Graph)
 - Directed graph without cycles graph. DAG will surely have 1 vertex with indegree=0 and 1 vertex with outdegree=0, because it does not have cycle.
 ```c
     a  ---->  b        //In-degree: Number of edges coming to the vertex. Eg: in-degree for c is 2
@@ -181,10 +124,8 @@ This is subgraph in which each pair of nodes is connected with each other via a 
   - Average case O(V+E). V=vertices, E=Edges
   - Best case. O(logE). Using DFS, two parallel tree traversals, one preorder traversal and other postorder traversal.
 
-<a name=dir></a>
-### [Directed/Undirected](Directed_Undirected)
 <a name=st></a>
-### Spanning Tree
+### 3. Spanning Tree
 Subgraph derived from Graph satisfying these conditions:
   - No cycles(ie it is acyclic), Since it a tree
   - Should connect all vertices with minimum number of edges.
@@ -208,7 +149,7 @@ Subgraph derived from Graph satisfying these conditions:
 - *B. Computer Network Routing Protocol*
 
 <a name=mst></a>
-#### 1. Min Spanning Tree
+#### 3a. Min Spanning Tree
 A ST where total weight of all edges is minimum. Has n-1 edges.
 - **Finding Min Spanning Tree?**
   - Start from min weight edge
@@ -269,7 +210,7 @@ Step-3:Include       Step-4: Include       Step-5: Include
 minimum edges        next min edges       next min edges
 ```
 <a name=weighted></a>
-### Weighted/Unweighted Graph
+### 4. Weighted/Unweighted Graph
 - *Weighted?* If edges has cost/weight. Ex: flight fuel cost between cities.        
 - *Unweighted?* if the edges do not have weights.
 ```c
