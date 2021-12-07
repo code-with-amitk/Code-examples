@@ -4,7 +4,7 @@
 - [Install on linux/windows](#install)
 - [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
 - [Cargo](#car)
-- [Asynchronous Programming](#as)
+- [Asynchronous, block_on, await, async](/Threads_Processes_IPC/Terms)
 - [Attributes](#at)
 - [Statements & Expressions](#statements)
 - [Ownership](#own)
@@ -90,10 +90,6 @@ rustc 1.51.0 (2fd73fabe 2021-03-23)
 <a name=car></a>
 ### [Cargo](Cargo_BuildSystem)
 cargo build, cargo test, cargo doc, cargo publish
-
-<a name=as></a>
-### [Asynchronous Programming](Asynchronous)
-awaits, async() function, Future
 
 <a name=at></a>
 ### [Attributes](Attributes)
