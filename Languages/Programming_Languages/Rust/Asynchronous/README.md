@@ -1,5 +1,5 @@
 - **Terms //Read these 1st**
-  - [What is Asynchronous, Future](/Threads_Processes_IPC/Terms/)
+  - [Asynchronous, Future](/Threads_Processes_IPC/Terms/)
   - [Executor](#ex)
   - [async function](#as)
   - [await](#aw)
