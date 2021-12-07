@@ -6,6 +6,7 @@
     - [2. Using Functor](#m2)
   - [Windows](#win)
   - [Rust](#ru)
+    - [1. thread::spawn = OS Thread](#ts)
 - [Joinable, Detachable Threads](#jd)
 
 
@@ -121,6 +122,8 @@ int _tmain() {
 <a name=ru></a>
 ### [Rust](/Languages/Programming_Languages/Rust)
 - Use [move](/Languages/Programming_Languages/Rust/Functions) before closure if want closure to take ownership of the values it’s using rather than allowing Rust to infer that it should borrow the values
+<a name=ts></a>
+#### 1. thread::spawn() = OS Thread
 ```rs
 $ cargo new thread1
 
@@ -145,6 +148,38 @@ fn main() {
 }
 $ cargo build
 $ cargo run
+```
+
+<a name=ts></a>
+#### 2. tokio::spawn() = [asynchronous](/Threads_Processes_IPC/Terms/README.md#as) [Green Thread](/Threads_Processes_IPC/Threads#usks)
+- tokio::spawn is 1 level up from threads. These are user level non-blocking threads, ie thread blocks on call it will return immediately.
+```rs
+$ cat Cargo.toml
+[package]
+name = "tokio_spawn"
+version = "0.1.0"
+authors = ["amitk"]
+edition = "2018"
+
+[dependencies]
+futures = { version = "0.3.*" }
+tokio = {version = "0.2.*", features = ["full"] }
+
+$ cat main.rs
+use tokio::task;
+fn fun_thread() {
+    println!("thread-1");
+}
+#[tokio::main]
+async fn main() {
+    let join:JoinHandle<()> = task::spawn(async {		//spawn() returns `struct JoinHandle`
+        fun_thread()
+    });
+    assert!(join.await.is_err());
+}
+$ cargo build
+$ cargo run
+thread-1
 ```
 
 <a name=jd></a>
