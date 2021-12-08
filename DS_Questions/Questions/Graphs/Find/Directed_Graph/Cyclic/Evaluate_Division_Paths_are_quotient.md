@@ -2,6 +2,8 @@
   - [Logic](#l)
   - [Code](#co)
 
+### [Self Video Explanation](https://youtu.be/_RLSvZaM7mY)
+
 ### [Evaluate Division](https://leetcode.com/problems/evaluate-division/)
 - Input Given 2 arrays equations and values, where `values[i]` represent the `equation Ai / Bi = values[i]`.
 - Given some queries, `queries[j] = [Cj, Dj]` where we need to find Cj / Dj = ?.
