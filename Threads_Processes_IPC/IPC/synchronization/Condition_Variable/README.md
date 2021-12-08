@@ -1,10 +1,9 @@
-- [Conditional Variable](#cv)
+**Conditional Variable**
 - **Code**
-  - [pthread_cond_t](#pc)
-    - [Simple Example](#c1)
-    - [Ping Pong game](#pp)
-  - [C++, std::condition_variable](#cppc)
-    - [1. Ping Pong using std::condition_variable, unique_lock](#cpppp)
+  - [1. Thread1 signalling Thread2 using pthread](#c1)
+  - _2. Ping Pong game_
+    - [A. pthread_cond_signal](#c2)
+    - [B. C++, std::condition_variable, unique_lock](#c3)
   - [C++ condition_variable_any](#cppcva) 
 
 <a name=cv></a>
@@ -16,10 +15,8 @@
   - CV and semaphores are similar, both signals the sleeping threads, but counting semaphore is used for n available things.
 
 ## Code
-<a name=pc></a>
-### 1. pthread_cond_t
 <a name=c1></a>
-#### Simple Example
+### 1. Thread1 signalling Thread2 using pthread
 ```c
 #include<stdio.h>
 #include<pthread.h>
@@ -56,8 +53,9 @@ Thread1 waiting on condition
 Thread2 signalled the condition
 Condition satisfied
 ```
-<a name=pp></a>
-#### Ping Pong game
+### Ping Pong game
+<a name=c2></a>
+#### A. Ping pong using pthread
 ```c
 #include<stdio.h>
 #include<pthread.h>
@@ -112,26 +110,17 @@ Pong,j:8
 Ping,j:9
 Pong,j:10
 ```
-<a name=cppc></a>
-### 2. C++ [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable) only works with [`unique_lock<mutex>`]
-- same thread-1 waiting on condition variable, thread-2 changes cond variable then thread-1 starts in critical section.
-- **Seqeunce:**
-  - **For thread publishing on condition_variable:**
+<a name=c3></a>
+#### B. Ping pong using [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable), `unique_lock<mutex>`
+- std::condition_variable only works with [unique_lock](/Threads_Processes_IPC/IPC/synchronization/Mutex)
+- **Seqeunce:** Thread-1 waiting on condition variable, thread-2 changes cond variable then thread-1 starts in critical section.
+  - **Thread-2 publishing on condition_variable:**
     - _a._ acquire a std::mutex (typically via std::lock_guard)
     - _b._ perform the modification while the lock is held
     - _c._ execute notify_one() or notify_all()
-  - **For thread waiting on condition_variable:**
+  - **Thread-1 waiting on condition_variable:**
     - _a._ acquire a `std::unique_lock<std::mutex>`, same mutex as used to protect the shared variable
     - _b._ execute wait, wait_for, or wait_until.
-<a name=cpppp></a>
-#### Ping Pong using std::condition_variable, unique_lock
-- [unique_lock](/Threads_Processes_IPC/IPC/synchronization/Mutex)
-
-- _4._ .
-  - _4a._ 
-  - _4b._ 
-  - _4c._ 
-  - _4d._ .
 ```cpp
 #include <iostream>
 #include <thread>
