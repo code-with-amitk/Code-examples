@@ -1,7 +1,7 @@
 **Conditional Variable**
 - **Code**
   - [1. Thread1 signalling Thread2 using pthread](#c1)
-  - _2. Ping Pong game_
+  - **2. Ping Pong game**
     - [A. pthread_cond_signal 2 threads](#c2)
     - [B. C++, std::condition_variable, unique_lock](#ppcv)
       - [Using 2 threads](#c3)
