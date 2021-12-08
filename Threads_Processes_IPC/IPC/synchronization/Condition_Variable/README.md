@@ -2,8 +2,10 @@
 - **Code**
   - [1. Thread1 signalling Thread2 using pthread](#c1)
   - _2. Ping Pong game_
-    - [A. pthread_cond_signal](#c2)
-    - [B. C++, std::condition_variable, unique_lock](#c3)
+    - [A. pthread_cond_signal 2 threads](#c2)
+    - [B. C++, std::condition_variable, unique_lock](#ppcv)
+      - [Using 2 threads](#c3)
+      - [Using 4 threads](#c4)
   - [C++ condition_variable_any](#cppcva) 
 
 <a name=cv></a>
@@ -110,7 +112,7 @@ Pong,j:8
 Ping,j:9
 Pong,j:10
 ```
-<a name=c3></a>
+<a name=ppcv></a>
 #### B. Ping pong using [std::condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable), `unique_lock<mutex>`
 - std::condition_variable only works with [unique_lock](/Threads_Processes_IPC/IPC/synchronization/Mutex)
 - **Seqeunce:** Thread-1 waiting on condition variable, thread-2 changes cond variable then thread-1 starts in critical section.
@@ -121,6 +123,8 @@ Pong,j:10
   - **Thread-1 waiting on condition_variable:**
     - _a._ acquire a `std::unique_lock<std::mutex>`, same mutex as used to protect the shared variable
     - _b._ execute wait, wait_for, or wait_until.
+<a name=c3></a>
+#### ping pong using 2 threads
 ```cpp
 #include <iostream>
 #include <thread>
@@ -162,7 +166,7 @@ void pong() {                                                            //2. Co
 		//Wait on condition variable until wait_condition becomes true. 
 		//if wait_condition==false, Donot go in.
 		//Here start is false hence Pong will not be printed
-		cv.wait(ulock, []
+		cv.wait(ulock, []                                       //Lambda Expression
 			{	//Wait until this code block return true
 				return start;
 			}
@@ -186,6 +190,84 @@ int main() {
 	return 0;
 }
 ```
+
+<a name=c4></a>
+#### ping pong using 4 threads
+```cpp
+// Condition_Variable_PingPong.cpp : Defines the entry point for the application.
+//
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+
+using namespace std;
+mutex mtx;
+condition_variable cv;
+bool start = false;
+int k = 1;
+
+void ping() {
+	while(1) {
+		unique_lock<mutex> ulock(mtx);
+		cv.wait(ulock, []
+			{	//Wait until this code block return true
+				return !start;
+			}
+		);
+		if (k++ > 10)
+			return;
+		start = true;
+		cout << "Ping\n";
+		ulock.unlock();
+		cv.notify_all();
+	}
+}
+
+void pong() {
+	while(1) {
+		unique_lock<mutex> ulock(mtx);
+		cv.wait(ulock, []
+			{	//Wait until this code block return true
+				return start;
+			}
+		);
+		if (k++ > 10)
+			return;
+		start = false;
+		cout << "Pong\n";
+		ulock.unlock();
+		cv.notify_all();
+	}
+}
+
+int main()
+{
+	thread t1(ping);
+	thread t2(pong);
+	thread t3(ping);
+	thread t4(pong);
+	t1.join();
+	t2.join();
+	t3.join();
+	t4.join();
+	std::this_thread::sleep_for(std::chrono::seconds(4));
+	return 0;
+}
+$ ./a.out
+Ping
+Pong
+Ping
+Pong
+Ping
+Pong
+Ping
+Pong
+Ping
+Pong
+```
+
 <a name=cppcva></a>
 ### C++ condition_variable_any
 - unlike [condition_variable]() which works with only unique_lock, these can work with any (eg: shared_lock)
