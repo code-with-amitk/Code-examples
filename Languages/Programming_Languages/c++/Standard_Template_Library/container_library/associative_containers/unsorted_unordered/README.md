@@ -110,12 +110,17 @@ unordered_map<std::bitset<8>, double> m5(v.begin(), v.end());     //Range ctr
 <a name=uminsert></a>
 ### Insert
 ```cpp
-um[key] = value;   
+unordered_map<int,float> um;
+um[1] = 4.0;    //um[key] = value;
 
-um.insert (make_pair("test",4));
+unordered_map<string,float> um1;
+um1.insert (make_pair("test",4));
 
 unordered_map<string, int> test = { {"test5",5}, {"test6",6} };
-um.insert(test.begin(),test.end());
+test.insert(test.begin(),test.end());
+
+unordered_map<int, unordered_set<int>> um2;
+um2[key].insert({value});
 ```
 
 <a name=umprint></a>
