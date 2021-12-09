@@ -8,7 +8,6 @@
   - [Directions](#dir)
   - [Types](#types)
 - [Computer Object](Computer_Object)
-- [Commands in AD](#commands)
 - [Global Catalog /GC](#gc)
 - [Groups](#groups)
 - [GPO(Group Policy Object)](GPO)
@@ -108,28 +107,6 @@ Domain-a1   Domain-a2                          Domain-b1
 Trust       External      Realm             Forest    Shortcut
 Transitive    n       both(tran & non)        y          y
 1 or 2 way    y             y                 y          y
-```
-
-<a name=commands></a>
-## Commands in AD
-- Creating Users
-```ps
-ps> Import System modules.    OR    PS> import-module activedirectory
-PS> New-ADUser -Name "amitk7" -Path "OU=amit-ou,DC=atest,DC=com" -AccountPassword (ConvertTo-SecureString "Test@123" -AsPlainText -Force) -AccountExpirationDate 0:0:0 -ChangePasswordAtLogon 0 -SamAccountName "amitk7"    //working
-```
-- Creating Groups
-```ps
-ps> Import System modules.    OR    PS> import-module activedirectory
-PS> New-ADGroup -Name "group1" -GroupScope Global -GroupCategory Security -Path "OU=amit-ou,DC=atest,DC=com"        //Create 1 Group
-```
-- Creating 100 Groups
-```ps
-Step-1: Create File name test.ps1 on Desktop
-for ($i=2;$i -lt 100;$i++){
-New-ADGroup -Name group$i -GroupScope Global -GroupCategory Security -Path "OU=amit-ou,DC=atest,DC=com"
-}
-PS> SetExecutionPolicy RemoteSigned
-PS> ./test.ps1
 ```
 
 <a name=gc></a>
