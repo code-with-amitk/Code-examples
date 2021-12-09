@@ -5,6 +5,7 @@
   - [C. Link rust static lib with Application](#s3)
 - [2. FFI Rust to C](#r2c)
   - [A. Translate C Header file for Rust](#r1)
+- [`#[naked]`](#nak)
 
 <a name=ffi></a>
 ## Foreign Function Interface / FFI
@@ -118,3 +119,8 @@ fn main() {
         .compile("hello");
 }
 ```
+
+<a name=nak></a>
+### `#[naked]`
+- This indicating the function should have [prologue/epilogue](/assembly/Memory_layout_of_object.md) emission disabled.
+- Calling convention of a naked function is not guaranteed to match any calling convention the compiler is compatible with
