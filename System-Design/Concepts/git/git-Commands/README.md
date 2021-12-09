@@ -155,19 +155,47 @@ $ git push origin branch
 
 <a name=spl></a>
 ### Splitting pull request
+- **[Splitting recent pull request](https://www.youtube.com/watch?v=e26Zx9K3cdQ)**
 ```c
 $ git clone repo
+
 $ git pull origin branch
-$ git reset HEAD~               //reset to parent commit
-$ git status                       //Changes from last commit are unstaged
-On branch master
-Your branch is up to date with 'origin/master'.
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
+$ git log --oneline --decorate                        //reset to Head's parent commit(ie 3939039)
+b899500 (HEAD -> main, origin/more_fixes) more testing
+3939039 (origin/main, origin/HEAD) initial commit
 
-        test_profian
-        
+$ git reset HEAD~                                    //reset to parent commit
+Unstaged changes after reset:
+M       README.md
+M       src/main.rs
+$ git diff                                            //go a head and create new commits
+
+//Stage code related to feature1. 
+//-p: Interactively choose hunks of patch between the index and the work tree and add them to the index.
+//
+$ git add -p                                          
+...
+Stage this hunk [y,n,q,a,d,e,?]? y
+Stage this hunk [y,n,q,a,d,e,?]? e              //edit
+
+..
+$ git diff --staged
+$ git commit -m "splitted commit"              //commit
+[main 9f0685f] splitted commit
+ 2 files changed, 14 insertions(+), 7 deletions(-)
+ 
+$ git diff                                        //Now commit deleted part
++const MEM_SIZE: usize = 0x2000;
++const CODE_SIZE: usize = 0x1000;
+$ git add .
+$ git commit -m "splitted commit2"                 
+
+//Using this way, git history would be clean
+$ git log --oneline                                //Now 2 seperate commits
+3e98cf8 (HEAD -> main) splitted commit2
+9f0685f splitted commit
+3939039 (origin/main, origin/HEAD) initial commit
 ```
 
 <a name=s></a>
