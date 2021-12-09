@@ -155,6 +155,20 @@ $ git push origin branch
 
 <a name=spl></a>
 ### Splitting pull request
+```c
+$ git clone repo
+$ git pull origin branch
+$ git reset HEAD~               //reset to parent commit
+$ git status                       //Changes from last commit are unstaged
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        test_profian
+        
+```
 
 <a name=s></a>
 #### Sync your Branch with your master/Origin
