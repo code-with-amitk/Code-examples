@@ -3,6 +3,7 @@
 - [Resolving Merge conflict, gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
 - [Removing commits after push](#rem)
 - [Sync your Branch with your master/Origin](#s)
+- [Split pull request](#spl)
 
 
 <a name=rev></a>
@@ -151,6 +152,9 @@ $ git revert --no-commit def
 $ git commit -m "Reverting 2 commits"
 $ git push origin branch
 ```
+
+<a name=spl></a>
+### Splitting pull request
 
 <a name=s></a>
 #### Sync your Branch with your master/Origin
