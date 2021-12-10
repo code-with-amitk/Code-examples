@@ -9,6 +9,7 @@
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
 - [Latency](#la)
+- [Orchestration](#orc)
 - [Reliable](#re)
 - [Response time](#rt)
 - [Scalability](#sc)
@@ -94,6 +95,13 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
   - Add redundancy to the individual hardware components. Disks may be set up in a RAID configuration.
   - Servers may have dual power supplies and hot-swappable CPUs, and datacenters may have batteries and diesel generators for backup power. 
   - When one component dies, the redundant component can take its place while the broken component is replaced.
+
+<a name=orc></a>
+### Orchestration / Cloud Orchestrator
+- Since process/microservices communicate via APIs. There should be some process to authenticate/authorize them.
+- cloud Orchestrator is a process/microservice which does following on cloud:
+  - Policy enforcement
+  - Ensure process-1 has proper permission to connect to process-2 or execute some task on cloud.
 
 <a name=rt></a>
 ### Response Time
