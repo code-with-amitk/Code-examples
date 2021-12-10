@@ -29,7 +29,7 @@ Suppose Thread-1 is in Critical Section and Thread-2 wants to enter in.
 ### Binary Semaphore vs Mutex
 ```c
 ```
-
+<a name=vs2></a>
 ### Mutex vs Rwlock
 ||Mutex|Rwlock|
 |---|---|---|
