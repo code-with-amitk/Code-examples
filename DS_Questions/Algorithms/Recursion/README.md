@@ -1,20 +1,17 @@
-- [What](#What)
+- [What](#w)
 - [Complexities](#com)
-  - [Time](#time)
-  - [Space](#space)
-    - [Example-1 Fibonacci Series](#fib)
+- Examples using recursion
+  - [1. Reverse string inplace](#rev)
 
-<a name=What></a>
+<a name=w></a>
 ## Recursion
-- The process in which a function calls itself directly or indirectly is called recursion and the corresponding function is called as recursive function. 
+- The process in which a function calls itself and the corresponding function is called as recursive function. The trick is each time a recursive function calls itself, it reduces the given problem into subproblems. The recursion call continues until it reaches a point where subproblem can be solved without further recursion.
+- Recursive function should have a base case(a terminating scenario) so that it does not result in an infinite loop.
 - Using recursive algorithm, certain problems can be solved quite easily eg Towers of Hanoi (TOH), Inorder/Preorder/Postorder Tree Traversals, DFS of Graph, etc.
-- The idea is to represent a problem in terms of one or more smaller problems, and add one or more base conditions that stop the recursion.
 
 <a name=com></a>
 ## Complexities
-<a name=time></a>
-### Time = O(2<sup>n</sup>)
-- Total number of nodes in the tree will represent the runtime, since each call only does 0(1) work outside of its recursive calls.
+**Time = O(2<sup>n</sup>):** Total number of nodes in the recursion tree will represent the runtime.
 ```c
 f(int n) {
   if (n==0) return 0
@@ -34,7 +31,21 @@ f(int n) {
                                  /     \
                                 f1      f0
 ```
+**Space = O(n)** n stacks are created for n function calls.
 
-<a name=space></a>
-### Space = O(n)
-- n stacks are created for n function calls.
+## Examples using recursion
+#### 1. Reverse string inplace
+```c
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        fun (s, 0, s.size()-1);
+    }
+    void fun(vector<char>& s, int pos1, int pos2){
+        if (pos1 >= pos2)
+            return;
+        fun(s, pos1+1, pos2-1);
+        swap(s[pos1], s[pos2]);
+    }
+};
+```
