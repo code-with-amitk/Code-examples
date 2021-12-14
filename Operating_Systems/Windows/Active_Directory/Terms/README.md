@@ -1,9 +1,37 @@
+- [cn](#cn)
+- [dc](#dc)
+- [dn](#dn)
+  - [basedn](#bdn)
+  - [bindDN](#bidn)
+- [rdn = Relative Distinguished Name](#rdn)
 - [Group Policy](#gp)
 - [Naming Context](#nc)
 - [RootDSE](#rootdse)
 - [RootDN](#rootdn)
 - [samAccountName](#sam)
 - [UPN](#upn)
+
+<a name=cn></a>
+### cn = common name
+user object in ldap
+
+<a name=dc></a>
+### dc = domain component
+This is designator of AD DNS namespace. For example for windows-2012.gsslab.pnq.redhat.com it would be dc=gsslab,dc=pnq,dc=redhat,dc=com
+
+<a name=dn></a>
+### dn = Distinguished name
+Collection of RDN forming complete URL of resource. This is object's entire path to the root of the LDAP namespace. Example: DN of amitk is:  CN=root,CN=Users,DC=gsslab,DC=pnq,DC=redhat,DC=com
+<a name=bdn></a>
+#### baseDN/base DN
+baseDN of a search is the starting point. Where it will start searching. it can be way below root of tree.
+<a name=bidn></a>
+#### bindDN/ bind DN
+In LDAP tree, bind dn/ binddn is username/object to which you will bind and get permissions to do whatever you're trying to do. Typically admin.
+    
+<a name=rdn></a>
+### rdn = Relative Distinguished Name
+This is Single AV(Attribute value Pair). Eg: DC=Domain Component, CN=Common Name, OU=Orgnizational Unit, S=Street, L=locality, ST=state, C=country, UID=user ID
 
 <a name=gp></a>
 ### Group Policy
