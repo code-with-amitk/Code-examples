@@ -59,6 +59,7 @@ Working
 //All Users
 # ldapsearch -h IP-Address -w<Admin_password> -D "CN=Administrator,CN=Users,DC=atest,DC=com" -b "CN=Users,DC=atest,DC=com" -x
 Working
+# 
 
 //Get complete DN of object
 # ldapsearch -h IP-Address -w<Admin_password> -D "CN=Administrator,CN=Users,DC=atest,DC=com" -b "CN=Users,DC=atest,DC=com" -x -s sub "(objectclass=user)" sAMAccountName=amit scope=2
