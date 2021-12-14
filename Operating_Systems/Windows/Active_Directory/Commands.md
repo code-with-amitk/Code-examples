@@ -1,7 +1,7 @@
 - [Create users,groups](#cre)
 - [Import](#im)
 - ldap commands
-  - [ldap search](#ldp)
+  - [ldap search](#lds)
 
 <a name=cre></a>
 ## Create
