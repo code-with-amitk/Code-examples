@@ -9,6 +9,7 @@
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
 - [Latency](#la)
+- [LAN, MAN, WAN](#vs)
 - [Orchestration](#orc)
 - [Reliable](#re)
 - [Response time](#rt)
@@ -81,6 +82,13 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
   - *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
 - **Policy Based Search:** Node keeps track of neighbours who responded positively & sends request to them again
 - **Random Walk?** Node selects k neighbours randomly, sends key-100(data to searched) to them, again those neighbours selects k neighbours.
+
+<a name=vs></a>
+### LAN(Local area network), MAN(metropolitan area network), WAN(wide area network)
+||LAN|MAN|WAN|
+|---|---|---|---|
+|What|connected devices in small n/w|Covers Larger area than LAN, connects devices across cities|Connects devices across countries|
+|Example|school, hospital n/w|towns, cities(multiple owners)|Satellite communication|
 
 <a name=re></a>
 ### Reliable
