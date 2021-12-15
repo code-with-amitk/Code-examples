@@ -10,7 +10,7 @@
 |Example|school, hospital n/w|towns, cities(multiple owners)|Satellite communication|
 
 <a name=pl></a>
-## Data Plane, Control Plane, Forwarding Plane, Management Plane
+### Data Plane, Control Plane, Forwarding Plane, Management Plane
 - **Plane?** Conceptual model used by routers and switches. Planes describe how packets travel to, from, and through a device.
 - **Why planes are seperated?**
   - Technologies can be developed independetly.
@@ -27,7 +27,7 @@
 
 
 <a name=sdn></a>
-## SDN / Software Defined Networking (Eg: opendaylight)
+### SDN / Software Defined Networking (Eg: opendaylight)
 - Separating S/W from H/W. Routers, Switches can be controlled remotely. ie [Forwarding Plane(lies on Switch), Control Plane(lies on Serve with GUI)](#pl).This is combination of    
   - _a. NFV(N/W Function Virtualization):_ Installing different Software on different Virtual machines.
   - _b. SDN:_ Controlling switches routing decisions from GUI. Person does not have to go physically to control/change Switch/Router.
@@ -50,7 +50,7 @@ SDN Networking:
  switch-chip ---- switch-chip ---- switch-chip
   /  |    \       /    |    \     /    |     \
 ```
-### SDN Architecture
+#### SDN Architecture
 **Generic**
 ```c
         Application Plane                SDN App server/App Code
