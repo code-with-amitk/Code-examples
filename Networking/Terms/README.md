@@ -4,10 +4,10 @@
 
 <a name=vs></a>
 ### LAN(Local area network), MAN(metropolitan area network), WAN(wide area network)
-||LAN|MAN|WAN|
-|---|---|---|---|
-|What|connected devices in small n/w|Covers Larger area than LAN, connects devices across cities|Connects devices across countries|
-|Example|school, hospital n/w|towns, cities(multiple owners)|Satellite communication|
+||LAN|MAN|WAN|SD-WAN|
+|---|---|---|---|---|
+|What|connected devices in small n/w|Covers Larger area than LAN, connects devices across cities|Connects devices across countries|Connecting company site offices using MPLS, mobile networks, VPN and other technologies, [mpls](/Networking/OSI-Layers/Layer-2.5/MPLS)|
+|Example|school, hospital n/w|towns, cities(multiple owners)|Satellite communication||
 
 <a name=pl></a>
 ### Data Plane, Control Plane, Forwarding Plane, Management Plane
