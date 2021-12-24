@@ -14,12 +14,9 @@ Implement 3 functions:
 
 ### Code
 ```c
-// DoublyLinkedList.cpp : Defines the entry point for the application.
-//
-
-#include "DoublyLinkedList.h"
-
+#include<iostream>
 using namespace std;
+
 typedef struct node {
 	int val;
 	node* next;
@@ -48,7 +45,7 @@ public:
 
 /*
 * LL			1 <-> 2	<->	4
-* position		1	  2		4
+* position		1     2		4
 * 
 * Insert node at position.
 * if position > sizeof(LL), insert at end
