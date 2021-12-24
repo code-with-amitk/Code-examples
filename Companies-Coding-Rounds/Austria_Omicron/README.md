@@ -1,7 +1,7 @@
 Forget the mistake remember the lesson. **Lesson:**
 - _1. Understand Question Completely._ 
   - Read. Repeat(and ask questions). Doctest(small, medium, big inputs). Visualize
-- _2. Concentrate_
+- _2. Concentrate, Meditate_
 
 ## Round-1 (Video call)
 - MTU vs MSS, spinlock vs other synchronization mechanisms, project related
