@@ -77,20 +77,18 @@ Error cannot find A::A()
 
 <a name=il></a>
 ### Ctr Initializer list
+In the initializer list, the order of execution takes place according to the order of declaration of member variables. 
 ```cpp
 class test{
-	int a;
-	char b;
-	float *c;
+  int a; //Declared 1st
+  int b; //Declared 2nd
 public:
-	test (int x, int y): a(x), b(y), c(new float[10]) {
-		std::cout<<"a="<<a<<"\tb="<<b<<"\t"<<std::endl;
+	test (int x): b(x), a(b * 2) {
+		cout << b << a;       //b=10, a=garbage
 	}
 };
 int main() {
-	test obj(1,'g');
+	test obj(10);
 	return 0;
 }
-$ ./a.out
- 1 g
 ```
