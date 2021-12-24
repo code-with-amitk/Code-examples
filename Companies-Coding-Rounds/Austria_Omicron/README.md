@@ -1,6 +1,7 @@
 Forget the mistake remember the lesson. **Lesson:**
 - _1. Understand Question Completely._ 
   - Read. Repeat(and ask questions). Doctest(small, medium, big inputs). Visualize
+- _2. Concentrate_
 
 ## Round-1 (Video call)
 - MTU vs MSS, spinlock vs other synchronization mechanisms, project related
@@ -20,7 +21,7 @@ int main() {
   printf("%d\n",a);
 }
 
-//C complied with warning. Because libc(C Standard library) has defined it already.
+//In C it compiles with warning. Because libc(C Standard library) has defined it already.
 $ gcc test.c
 test.c:3:5: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
      printf("%d\n",a);
@@ -28,13 +29,27 @@ test.c:3:5: warning: implicit declaration of function ‘printf’ [-Wimplicit-f
 test.c:3:5: warning: incompatible implicit declaration of built-in function ‘printf’
 test.c:3:5: note: include ‘<stdio.h>’ or provide a declaration of ‘printf’
 
-//C++ did not compile. C++ always need header include
+//In C++ did not compile. C++ always need header include
 $ g++ test.c
 test.c: In function ‘int main()’:
 test.c:3:5: error: ‘printf’ was not declared in this scope
      printf("%d\n",a);
+
+3 Mistakes in question:
+a. return statement missing from main. Return value is stored in rax which presently stores 3 (return value from printf) which is wrong.
+b. Header file include is missing
+c. main() should be main(int argc, char** argv) 
 ```
-- **3 Mistakes**
-  - _1._ return statement missing from main. Return value is stored in rax which presently stores 3 (return value from printf) which is wrong.
-  - _2._ Header file include is missing
-  - _3._ main() should be main(int argc, char** argv) 
+### 3. [Code: Doubly Linked List](/DS_Questions/Data_Structures/Linked_Lists/Doubly_LinkedList/Using_Double_Pointer/AddDelete_AfterPosition.md)
+```c
+typedef struct node {
+  int val;
+  node* next;
+  node* prev;
+}Node;
+
+Implement 3 functions:
+1. void InitializeToNull(Node** ptr);                        //Initialize a head pointing to null
+2. void AddAfter (Node** head, int position, Node node);    //Add a node inside DLL after position p.
+3. void RemoveNode (Node** head, int val)                   //Remove element from Doubly Linked List
+```
