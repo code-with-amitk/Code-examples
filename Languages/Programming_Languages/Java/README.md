@@ -12,8 +12,10 @@
   - [2. Formatted Output](#fo)
 - **Classes**
   - [ArrayList](#al)
+  - [Calendar](#cal)
   - [Integer](#int)
   - [List`<>`](#li)
+  - [NumberFormat](#nf)
   - [HashMap](#hm)
   - [java.lang.Math](#math)
   - [Scanner](#s)
@@ -195,6 +197,15 @@ Iterable <--extends-- Collection <--extends-- List  <--implements-- AbstractList
 List<Integer> al = new ArrayList<Integer>();
 ```
 
+<a name=cal></a>
+### Calendar
+This is abstract class that provides methods for converting date b/w DD/MM/YYYY to other formats.
+```c
+Calendar obj = new Calendar();
+void obj.set(year, month, day);      //Sets the calender to YEAR, MONTH, and DAY_OF_MONTH.
+int get(Calendar.DAY_OF_WEEK);       //Returns the day of the given calendar field in int
+```
+
 <a name=int></a>
 ### Integer class
 **Why?** Converting int to string, string to int. Methods:
@@ -206,6 +217,27 @@ String s = Integer.toString(int i);       //Converts int to string
 ### `List<>`
 - List is interface which is implemented by some concreate classes: AbstractList, AbstractSequentialList, ArrayList, AttributeList, CopyOnWriteArrayList, LinkedList, RoleList, RoleUnresolvedList, Stack, Vector
 - Since List`<>` is a interface, we cannot create object of List class.
+
+<a name=nf></a>
+### NumberFormat
+This class provides methods for converting numbers into different locales(US, India, Italy, etc).
+```c
+double d = 123456.789
+Indian representation: 1,23,456.789
+US representation:     123,456.789
+Italy representation:  123.456,789
+
+double input = 12324.134;
+NumberFormat us = NumberFormat.getCurrencyInstance(Locale.US);
+NumberFormat in = NumberFormat.getCurrencyInstance(new Locale("en", "IN"));
+NumberFormat ch = NumberFormat.getCurrencyInstance(Locale.CHINA);
+NumberFormat fr = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+                
+System.out.println(us.format(input));                       // $12,324.13
+System.out.println(in.format(input));                       // Rs.12,324.13
+System.out.println(ch.format(input));                       // ￥12,324.13
+System.out.println(fr.format(input));                       // 12 324,13 €
+```
 
 <a name=hm></a>
 ### HashMap `<key,value>`
