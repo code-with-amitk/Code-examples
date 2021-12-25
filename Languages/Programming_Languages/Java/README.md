@@ -12,6 +12,7 @@
   - [2. Formatted Output](#fo)
 - **Classes**
   - [ArrayList](#al)
+  - [Integer](#int)
   - [List`<>`](#li)
   - [HashMap](#hm)
   - [java.lang.Math](#math)
@@ -192,6 +193,13 @@ System.out.printf("%-15s%03d%n", s, a);   //java           20
 Iterable <--extends-- Collection <--extends-- List  <--implements-- AbstractList <--extends-- ArrayList
 
 List<Integer> al = new ArrayList<Integer>();
+```
+
+<a name=int></a>
+### Integer class
+**Why?** Converting int to string, string to int. Methods:
+```c
+String s = Integer.toString(int i);       //Converts int to string
 ```
 
 <a name=li></a>
