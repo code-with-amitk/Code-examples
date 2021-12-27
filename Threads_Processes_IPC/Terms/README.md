@@ -114,9 +114,13 @@ b. Use synchronization methods.
 ```
 
 <a name=av></a>
-### Atomic Variables
-- Atomic types provide are used for shared-memory communication between threads. Atomic variables are safe to share between threads.
-- ie values at end in these variables in not vague/unpredictable after n threads finished operating.
+#### Atomic Variables
+- Used for shared-memory communication between threads these are safe to share between threads ie values at end in these variables in not vague/unpredictable after n threads finished operating.
+```rs
+//Atomic variables in Rust
+let mut a_atm:AtomicU32 = Atomic:U32::new(100);          //Create and Initialize Atomic variable(a_atm)
+let mut b_atm:AtomicU32 = Atomic:U32::new(5);
+```
 
 <a name=bw></a>
 ### Bound Waiting
