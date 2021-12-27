@@ -13,7 +13,7 @@
   - This is just wrapping Mutex inside Arc. We know in [Rust value & mutex are not seperate](/Threads_Processes_IPC/IPC/synchronization/Mutex#rs)
 
 <a name=vs></a>
-#### `Rc<T>` vs `Arc<T>`
+#### [`Rc<T>`](/Languages/Programming_Languages/Rust/Smart_Pointers/README.md#rc) vs `Arc<T>`
 Both are Reference counting Smart Pointers.
 ```rs
                         RC<T>                                Arc<T>
