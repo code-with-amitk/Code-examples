@@ -68,7 +68,7 @@ Freed
 |Move Constructible|Yes,can be moved using the new move semantics||
 
 <a name=up></a>
-#### 1. Unique ptr
+### 1. Unique ptr
 - _1. Not Copy Constructible_ There can be only one unique_ptr to any resource, any attempt to make a copy of a unique_ptr will cause a compile-time error.
 ```c
 unique_ptr<T> ptr(new T);       // Okay
@@ -106,7 +106,7 @@ make_unique<T>()
 ```
 
 <a name=shp></a>
-#### 2. Shared Pointer
+### 2. Shared Pointer
 - Allows for multiple pointers to point at a given resource.
 - shared_ptr maintains [reference counting](https://en.wikipedia.org/wiki/Reference_counting) to track how many pointers refer to a resource, Once all references goes away resource is deleted. So we need to be careful not to introduce any reference cycles.
 ```c
