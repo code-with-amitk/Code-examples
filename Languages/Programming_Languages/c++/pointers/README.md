@@ -84,15 +84,12 @@ unique_ptr<T> cptr = std::move(ptr);  // Okay, resource now stored in cptr
 ```cpp
 #include <memory>
 int main(){
-        unique_ptr<int> p(new int(5));          //Create UP, Allocate int, provide value=5
+        unique_ptr<int> p(new int(5));          //Unique Pointer for int
         cout<<*p;                               //5
-
         //unique_ptr<int> p1 = p;               //error: use of deleted function. copy of UP is not allowed
-
         unique_ptr<int> p2 = std::move(p);      //Moving ownership
         cout<<*p2;                              //5
         //cout<<*p;                             //Segmentation Fault
-
         p2.reset();
 /*
 make_unique<T>()
@@ -102,6 +99,10 @@ make_unique<T>()
 */
         unique_ptr<int> p1 = make_unique<int>();  //Create UP using make_unique()
         cout<<*p1<<endl;                          //0
+        
+//////UP for char array////////
+    std::unique_ptr<PWSTR[]>    m_pwstrPath;    //PWSTR: pointer to wide str
+    m_pwstrPath = (PWSTR*) new TCHAR[260]();    //Allocate char array of 260 chars and Initialize to ()
 }
 ```
 
