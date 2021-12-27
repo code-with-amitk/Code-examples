@@ -106,7 +106,7 @@ void fun () {     //2 Threads executing this function
 /////////Problem without Atomic////////
 - Thread-1 enters fun() does a=12, At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
 - Thread-2 does a=12
-- Thread-1 comes back and has previous value (12), instead of writing(14), it ends up in writing (12). But value should be 24.
+- Thread-1 comes back and has previous value (12), instead of writing(24), it ends up in writing (12). But value should be 24.
   
 /////Solution(Make operation a+=12 atomic):////////
 a. Take a as volatile
