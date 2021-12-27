@@ -53,3 +53,16 @@ Implement 3 functions:
 2. void AddAfter (Node** head, int position, Node node);    //Add a node inside DLL after position p.
 3. void RemoveNode (Node** head, int val)                   //Remove element from Doubly Linked List
 ```
+### 4. OOD: Asynchronous Logger class
+- Create logging class in C++ which supports logging to different targets(Eg: file, console, remote server). It should have 1 method `void log (const std::string& message);`
+- Features of logging class:
+  - _1._ Thread safe
+  - _2._ Changing logging target at runtime
+  - _3._ Extend logging class in future with new logging targets without touching existing code.
+- **What's needed to be done?**
+  - _a._ UML diagrams
+  - _b._ Write Code of logging class
+    - log to console, file, remote UDP server(use netcat to test server side implementation). Write a test program to test the code
+    - Add timestamps to log messages(resolution nanoseconds).
+  - _c._ `log()` method should queue the messages and process asynchronously in another thread.
+  - _d._ Free to use C++11, STL, boost
