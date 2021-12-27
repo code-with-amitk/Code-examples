@@ -5,7 +5,7 @@
 
 <a name=arc></a>
 ### `Arc<T>` / Atomically Reference Counted
-- [Atomic?](/Threads_Processes_IPC/Terms). Arc is [reference counting](/Languages/Programming_Languages/Rust/Smart_Pointers/) pointer.
+- [Meaning of Atomic.](/Threads_Processes_IPC/Terms) Arc is [reference counting](/Languages/Programming_Languages/Rust/Smart_Pointers/) pointer.
 ```rs
 let mut a_atm:AtomicU32 = Atomic:U32::new(100);          //Create and Initialize Atomic variable(a_atm)
 let mut b_atm:AtomicU32 = Atomic:U32::new(5);
