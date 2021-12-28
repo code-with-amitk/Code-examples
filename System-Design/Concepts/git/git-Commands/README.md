@@ -154,8 +154,7 @@ $ git push origin branch
 ```
 
 <a name=spl></a>
-### Splitting pull request
-- **[Splitting recent pull request](https://www.youtube.com/watch?v=e26Zx9K3cdQ)**
+### [Splitting pull request]https://www.youtube.com/watch?v=e26Zx9K3cdQ)
 ```c
 $ git clone repo
 
