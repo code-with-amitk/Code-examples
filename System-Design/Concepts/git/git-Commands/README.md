@@ -1,10 +1,9 @@
-**git commands**
 - [Working on Review Comments](#rev)
 - [Resolving Merge conflict, gerrit](https://osm.etsi.org/wikipub/index.php/Resolving_merge_conflicts)
 - [Removing commits after push](#rem)
 - [Sync your Branch with your master/Origin](#s)
 - [Split pull request](#spl)
-
+- [git log. Commits between 2 branches](#log)
 
 <a name=rev></a>
 #### Working on Review Comments
@@ -90,12 +89,15 @@ $ git clone ssh://gerritgit-mirror/repo-name
 $ git diff --output file        //Output in file
 ```
 - **fetch:**    Download objects and refs from another repository
-- **log:**    Shows commit logs.
+
+<a name=log></a>
+#### log    
+Shows commit logs.
 ```c
   # git log --graph
   # git log --grep 'openldap' --oneline
   # git log --since='<date>' --until='<date>' --pretty=oneline --grep openldap     //Look for commits between dates
-  # git log commit-id-1 commit-id-2  --pretty=oneline                       //Look for commits between commit-ids
+  # git log commit-id-1 commit-id-2  --pretty=oneline                              //Look for commits between commit-ids
 ```
 - **show** To see code changes that particular commit did
 ```c
