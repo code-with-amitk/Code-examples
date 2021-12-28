@@ -94,7 +94,7 @@ Other tasks in async function can run?  |     yes          |          no        
 Asynchronous can be both single and multithreaded
 
 <a name=at></a>
-### [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
+## [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
 - The end result of Atomic Operation is predictable and correct.
 - If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. Example:
 ```cpp
@@ -114,12 +114,29 @@ b. Use synchronization methods.
 ```
 
 <a name=av></a>
-#### Atomic Variables
+### Atomic Variables
 - Used for shared-memory communication between threads these are safe to share between threads ie values at end in these variables in not vague/unpredictable after n threads finished operating.
+#### Rust Set,Get Atomic Variables 
 ```rs
-//Atomic variables in Rust
 let mut a_atm:AtomicU32 = Atomic:U32::new(100);          //Create and Initialize Atomic variable(a_atm)
 let mut b_atm:AtomicU32 = Atomic:U32::new(5);
+
+pub struct test {
+    a: AtomicU64,
+};
+static TEST: Lazy<Arc<test>> = Lazy::new(|| Arc::new(test::new()))
+impl test {
+    pub fn increment_a_by(x: u64) {
+        TEST.a.fetch_add(x, Ordering::Relaxed);
+    }
+    pub fn get_a() -> u64 {
+        TEST.a.load(Ordering::Relaxed)
+    }
+};
+fn main() {
+  test::increment_a_by(1);
+  println!("{}", test::get_a());
+}
 ```
 
 <a name=bw></a>
