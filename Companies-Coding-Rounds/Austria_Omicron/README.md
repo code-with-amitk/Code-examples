@@ -1,6 +1,7 @@
 Forget the mistake remember the lesson. **Lesson:**
 - _1. Understand Question Completely._ 
   - Read. Repeat(and ask questions). Doctest(small, medium, big inputs). Visualize
+- _2._ You do lot of Yes after interviewer comments something, try follow on. Lesson: Take your stand. 
 - _2. Concentrate, Meditate_
 
 ## Round-1 (Video call)
