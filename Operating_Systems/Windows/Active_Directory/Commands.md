@@ -31,7 +31,13 @@ From Video: https://www.youtube.com/watch?v=ozxmwkeUtds
 cmd> csvde -f allobject.csv
 
 //Add computer object to AD.
-cmd> csvde -i -f allobject.csv                  //dn,objectclass,distinguished name are enough
+cmd> csvde -i -f allobject.csv                  
+-> Open csv file
+-> Keep 1st row. Remove all columms execept dn,objectclass,distinguished. These are enough
+-> allobjects.csv
+DN,objectClass,distinguishedName
+"CN=amit32,OU=Clients,OU=Win10,OU=PCI,DC=atest,DC=com",user,"CN=amit32,OU=Clients,OU=Win10,OU=PCI,DC=atest,DC=com"    //Create new entry
+cmd> csvde -i -f allobject.csv                  //Works
 cmd> csvde -i -f allobject.csv  -c FromDN ToDN  //if getting customer
 ```
 
