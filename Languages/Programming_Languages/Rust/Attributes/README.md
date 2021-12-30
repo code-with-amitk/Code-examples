@@ -17,7 +17,7 @@ An attribute is sort of data that is interpreted by its name and compiler versio
 ### 2. feature
 ```rs
 $ main.rs 
-#[cfg(feature = "foo")]
+#[cfg(feature = "foo")]      //Conditional Compilation
 fn fun(){
     println!("fun");
 }
@@ -36,5 +36,10 @@ authors = ["kumara"]
 edition = "2018"
 
 [features]
-foo = []
+default = ["foo"]              //By default, all features are disabled unless explicitly enabled.
+foo = []                      //Need to be defined feature here
+
+$ cargo build --features "foo" //Building feature
+fun
+Hello World!
 ```
