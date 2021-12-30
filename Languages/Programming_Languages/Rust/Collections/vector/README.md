@@ -26,8 +26,9 @@
   let v : Vec<i32>;              
   let mut v2 = Vec::new();      //Allocating vector on heap
   
-  let v1 : Vec<i32> = [1,2,3].to_vec();  //Initialize
-  let v2 : Vec<i32> = vec![14,25,35];
+  let v1: Vec<i32> = [1,2,3].to_vec();  //Initialize
+  let v2: Vec<i32> = vec![14,25,35];
+  let v3: Vec<String> = vec!["test".to_string(), "test1".to_string()];
   
                   //init_value,size
   let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0  
