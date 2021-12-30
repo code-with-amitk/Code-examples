@@ -14,15 +14,16 @@ An attribute is sort of data that is interpreted by its name and compiler versio
 - This directive tells complier not to mangle the name.
 
 <a name=f></a>
-### 2. feature
+### 2. [feature](https://doc.rust-lang.org/cargo/reference/features.html) = Conditional Compilation
+This provides enabling/disabling of source code (similar to `#ifdef`)
 ```rs
 $ main.rs 
-#[cfg(feature = "foo")]      //Conditional Compilation
+#[cfg(feature = "foo")]           //1. Define Conditional Compilation. fun() is inside #ifdef
 fn fun(){
     println!("fun");
 }
 fn main() {
-    #[cfg(feature = "foo")]
+    #[cfg(feature = "foo")]       //2. calling fun()
     fun();
     
     println!("Hello, world!");
@@ -36,10 +37,10 @@ authors = ["kumara"]
 edition = "2018"
 
 [features]
-default = ["foo"]              //By default, all features are disabled unless explicitly enabled.
-foo = []                      //Need to be defined feature here
+default = ["foo"]              //3. By default, all features are disabled unless explicitly enabled.
+foo = []                       //4. Add feature(or condition) which need to be enabled
 
-$ cargo build --features "foo" //Building feature
+$ cargo build --features "foo" //5. Cargo build needed to be done with feature
 fun
 Hello World!
 ```
