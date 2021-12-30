@@ -31,7 +31,8 @@ From Video: https://www.youtube.com/watch?v=ozxmwkeUtds
 cmd> csvde -f allobject.csv
 
 //Add computer object to AD.
-cmd> csvde -i -f allobject.csv    //dn,objectclass,distinguished name are enough
+cmd> csvde -i -f allobject.csv                  //dn,objectclass,distinguished name are enough
+cmd> csvde -i -f allobject.csv  -c FromDN ToDN  //if getting customer
 ```
 
 ## Ldap commands
