@@ -2,7 +2,7 @@
 - [About](#a)
 - [Feature](#f)
 - [Memory Layout of Java Program](#ml)
-- [Data types](#dt)
+- [Data types](Data_Types)
 - **Keywords**
   - [Extends = inheritance](#ex)
   - [Implements](#im)
@@ -80,20 +80,7 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 - PC-Registers: Each thread has a Program Counter (PC) register associated with it. PC register stores the return address or a native pointer. It also contains the address of the JVM instructions currently being executed.
 - Native Method Stack/C stack: This stack is for native code written in a language other than Java
 
-## Datatypes
-### Primitive Datatypes
-```java
-datatype| size (byte) | Range
-  ------|-------------|--------------
-  Byte  | 1   signed  | -128 to 127
-  short | 2           | -32768 to 32767
-  int   | 4           | -2pow31 to 2pow31-1
-  long  | 8           | -2pow63 to 2pow63-1
-  float | 4           | 
-  double| 8           |
-  bool  | 1           | 
-  char  | 2           |
-```
+
 
 ## Keywords
 <a name=ex></a>
