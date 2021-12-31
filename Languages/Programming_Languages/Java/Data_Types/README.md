@@ -4,6 +4,7 @@
   - [1. String](#st)
     - [compare](#com)
     - [Case convert](#cas)
+    - [Substring](#sub)
 
 ## Datatypes
 <a name=pr></a>
@@ -46,4 +47,12 @@ if s1 == s2, it returns 0
 //Convert "hello" to "Hello"
 String A = "hello";
 System.out.print(A.substring(0, 1).toUpperCase() + A.substring(1));
+```
+<a name=sub></a>
+#### Substring
+```c
+//substring(start_index, end_index-1);
+            0123456789
+String A = "testisgood";
+System.out.println(A.substring(3,8));     //tisgo (from 3 to 7)
 ```
