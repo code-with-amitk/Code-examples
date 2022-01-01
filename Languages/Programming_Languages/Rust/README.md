@@ -3,9 +3,9 @@
   - [Rust vs C++](#Rustcpp)
 - [Install on linux/windows](#install)
 - [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
-- [Cargo](#car)
+- [Cargo: cargo build, cargo test, cargo doc, cargo publish](Cargo_BuildSystem)
 - [Asynchronous, block_on, await, async](/Threads_Processes_IPC/Terms)
-- [Attributes](#at)
+- [Attributes: no_mangle, feature](Attributes)
 - [Statements & Expressions](#statements)
 - [Ownership](#own)
 - [Reference = Borrowing](#bow)
@@ -13,13 +13,13 @@
 - [Data Types](#datatypes)
 - [Collections: HashMap, HashSet, vector, string, str](Collections)
 - [Iterators](#itr)
-- [Keywords](#kw)
+- [Keywords: Lazy, RWlock](Keywords)
 - [Class in Rust](#class)
-- [Control Flow](#controlflow)
+- [Control Flow: for, loop, while, match=switch, if, if let](Control_Flow)
 - [Functions](#Functions)
 - [Crates, Packages, Modules](#cpm)
 - [Enum](#enum)
-- [Error Handling](#eh)
+- [Error Handling](Error_Handling)
 - [FFI, Foreign Function Interface, Shared Library](FFI)
 - [Generic Types/Templates](#temp)
 - [Trait = Interface = Virtual (not pure virtual)](#ti)
@@ -86,14 +86,6 @@ Rust is installed now. Great!   <<Rust Installed successfully
 > C:\Users\amitk>rustc --version
 rustc 1.51.0 (2fd73fabe 2021-03-23)
 ```
-
-<a name=car></a>
-### [Cargo](Cargo_BuildSystem)
-cargo build, cargo test, cargo doc, cargo publish
-
-<a name=at></a>
-### [Attributes](Attributes)
-no_mangle
 
 <a name=statements></a>
 ### Statements & Expressions
@@ -178,17 +170,9 @@ fn fun2(a_string: String) -> String {
 ### Iterators
 next(), sum()
 
-<a name=kw></a>
-### [Keywords](Keywords)
-Lazy, RWlock
-
 <a name=class></a>
 ### [Class in Rust](Class)
 Constructor inside class, Functions inside class
-
-<a name=controlflow></a>
-### [Control Flow](Control_Flow)
-for, loop, while, match=switch, if, if let
 
 <a name=Functions></a>
 ### [Functions](Functions)
@@ -208,9 +192,6 @@ for, loop, while, match=switch, if, if let
 <a name=enum></a>
 ### [Enum](Enum)
 - Option Enum
-
-<a name=eh></a>
-### [Error Handling](Error_Handling)
 
 <a name=temp></a>
 ### [Generic Types/Templates](Generic_Types)
