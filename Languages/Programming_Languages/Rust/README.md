@@ -11,7 +11,7 @@
 - [Reference = Borrowing](#bow)
 - [Smart Pointers](#smart)
 - [Data Types](#datatypes)
-- [Collections](#collections)
+- [Collections: HashMap, HashSet, vector, string, str](Collections)
 - [Iterators](#itr)
 - [Keywords](#kw)
 - [Class in Rust](#class)
@@ -173,10 +173,6 @@ fn fun2(a_string: String) -> String {
 ### [Data Types](Data_Types)
 - Scalar / Primitive: int, Array slice, float, bool, char
 - Compund Data Type: Array, Tuple, Option<String, i32>
-
-<a name=collections></a>
-### [Collections](Collections)
-HashMap, HashSet, vector, string, str
 
 <a name=itr></a>
 ### Iterators
