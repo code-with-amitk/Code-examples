@@ -1,4 +1,7 @@
-## Commands
+**Commands**
+- [find_package](#fp)
+
+
 **--build**
 ```c
 $ cmake --build <dir>
@@ -7,6 +10,16 @@ $ cmake --build <dir>
 ```c
 $ cmake --config Debug
 ```
+<a name=fp></a>
+#### find_package
+Finds and loads settings from an external project
+```c
+find_package(<package> [version] [EXACT] [QUIET] [MODULE]
+             [REQUIRED] [[COMPONENTS] [components...]]
+             [OPTIONAL_COMPONENTS components...]
+             [NO_POLICY_SCOPE])
+```
+
 **list:** Does list operations
 ```c
 list subcommands: APPEND, FIND ..
