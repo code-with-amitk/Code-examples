@@ -1,5 +1,6 @@
 - **Kafka?**
   - [Applications/Use cases](#uc)
+  - [librdkafka](#lrdk)
 - **Terms** 
   - [Producer](#pr)
   - [Consumer](#con)
@@ -7,16 +8,19 @@
   - [Broker](#br)
   - [Kafka connect](#kc)
   - Offset
-- Kafka Application/Use Cases
-  - [1. MOM](#mom)
-  - [2. Analysis & Stream Processing](#analysis)
-  - [3. Log Aggregation](#la)
+  - [Streams](#st)
 - Configuring kafka to communicate over JSON
   - [1. Install kafka and zookeeper](#install)
 
 <a name=what></a>
 ## [Kafka](https://kafka.apache.org/intro)
-Kafka(written in Java) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB) works over TCP Protocol.
+- Kafka(by Apache foundation) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB) works over TCP Protocol written in java. There are multiple replicas of Kakfa written in other languages.
+<a name=lrdk></a>
+### [librdkafka](https://github.com/edenhill/librdkafka)
+- This is C library implementation of the Apache Kafka protocol. librdkafka has no affiliation with and is not endorsed by The Apache Software Foundation.
+
+<a name=uc></a>
+### Applications/Use cases
 <a name=uc></a>
 ### 1. Messaging
 Kafka can working as MOM
@@ -61,8 +65,19 @@ ms-1    ms2           |
 Software/Library/Modules which fetches data from legacy systems(Eg: database, some SaS products) and put that into kafka queue for it to be consumed by other consumers.
 
 <a name=br></a>
-#### Broker 
-A Kafka server that manages one or more Topics.
+### Broker 
+- A Kafka server that manages one or more Topics.
+- **Bootstrap Broker:**
+  - On Init, kafka needs(at least one) broker called the bootstrap brokers. The client will connect to the bootstrap brokers specified by the bootstrap.servers configuration property and query cluster Metadata information which contains the full list of brokers, topic, partitions and their leaders in the Kafka cluster.
 
 #### Offset 
 A unique ID for a message within a Partition. This is how Kafka maintains the ordering and sequencing of messages.
+
+<a name=st></a>
+### Kafka Streams
+This is not message from 1 application to other, but real-time flow of records. Records are `<key,value>` pairs.
+```c
+  --|key=a,value=x|---|key=c,value=z|---|key=b,value=y|-->
+```
+#### Stream APIs
+APIs/Code for consuming/using streams. These APIs are publicly available as shared objects/crates.
