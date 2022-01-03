@@ -8,8 +8,8 @@
 ### Writing kafka client
 - _1._ Create a [StreamConsumer](/System-Design/Concepts/MOM_ESB/Apache_Kafka#st) object using [bootstrap broker server](/System-Design/Concepts/MOM_ESB/Apache_Kafka#br)
   - _1a._ Extract StreamConsumer
-- 2. Create [topics](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp) vector on which we want to listen.
-- 3. [Subscribe to topics]()
+- _2._ Create [topics](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp) vector on which we want to listen.
+- _3._ [Subscribe to topics]()
 ```rs
 thread_spawn run_consumer (my_topics: &Vec<String>) {
   let result:Result<StreamConsumer<CustomContext>,...> = ClientConfig::new()                  //1
