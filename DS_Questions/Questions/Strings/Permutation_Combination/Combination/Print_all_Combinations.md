@@ -32,3 +32,26 @@ abcd  //Taken 4 a time
 ```
 
 ## Logic
+
+## Code
+```c
+void combine(string instr, string outstr, int index)
+{
+	for (int i = index; i < instr.length(); i++)
+	{
+		outstr += instr[i];
+		cout << outstr<<"\n";
+		combine(instr, outstr, i + 1);
+		outstr.erase(outstr.length() - 1,1);
+	}
+}
+
+int main()
+{
+	string str = "abcd";
+	string out;
+
+	combine(str, out, 0);
+	return 0;
+}
+```
