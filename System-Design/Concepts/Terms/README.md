@@ -13,6 +13,7 @@
 - [Reliable](#re)
 - [Response time](#rt)
 - [Scalability](#sc)
+- [Stream](#st)
 - [Tenant](#ten)
 - [Throughput](#tp)
 
@@ -113,6 +114,13 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
 - System’s ability to cope with increased load.
 - Scalability means considering questions like “If the system grows in a particular way, what are our options for coping with the growth?” and “How can we add computing
 resources to handle the additional load
+
+<a name=st></a>
+### Stream
+This is not message from 1 application to other, but real-time flow of records. Records are `<key,value>` pairs.
+```c
+  --|key=a,value=x|---|key=c,value=z|---|key=b,value=y|-->
+```
 
 <a name=ten></a>
 ### Tenant
