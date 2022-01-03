@@ -1,5 +1,10 @@
-- [What is Kafka](#what)
-- [Terms: Producer, Consumer, Topic, Broker, Offset](#terms)
+**Kafka**
+- **Terms** 
+  - Producer
+  - Consumer
+  - [Topic](#tp)
+  - [Broker]
+  - Offset
 - Kafka Application/Use Cases
   - [1. MOM](#mom)
   - [2. Analysis & Stream Processing](#analysis)
@@ -8,16 +13,39 @@
   - [1. Install kafka and zookeeper](#install)
 
 <a name=what></a>
-## Kafka
-- Kafka(written in Java) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB).
+## [Kafka](https://kafka.apache.org/intro)
+Kafka(written in Java) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB).
 
-<a name=terms></a>
 ## Terms
 - _Producer_ Publishes messages to a Topic.
 - _Consumer_ Registers/Subscribes to a Topic and reads messages as they become available.
-- _Topic_ A named channel/queue.
-- _Broker_ A Kafka server that manages one or more Topics.
-- _Offset_ A unique ID for a message within a Partition. This is how Kafka maintains the ordering and sequencing of messages.
+
+<a name=tp></a>
+### Topics/Events/Message
+- Collection of events(specifically logs) which are stored on servers/disks in form of QUEUE. These topics are replicated. For example:
+  - _1._ temprature changed from 40 to 45   //All are events
+  - _2._ Train changed speed from 80 to 90 etc
+- **Usage of topics?** Microservices can talk to each other using topics.
+```
+                    ms-4 (Listening on topic
+                      /\  Does processing) ----publishes to other Queue --> |t101|t102|..|
+                      |                                                     kakfa Queue
+                      |
+kafka topics  |t1|t2|t3|t4|...
+                      /\
+ms-1    ms2           |
+                    ms-3(Publishing topic)
+```
+
+<a name=con></a>
+#### Kafka connect
+Software/Library/Modules which fetches data from legacy systems(Eg: database, some SaS products) and put that into kafka queue for it to be consumed by other consumers.
+
+#### Broker 
+A Kafka server that manages one or more Topics.
+
+#### Offset 
+A unique ID for a message within a Partition. This is how Kafka maintains the ordering and sequencing of messages.
 
 ## Kafka Application/Use Cases
 <a name=mom></a>
