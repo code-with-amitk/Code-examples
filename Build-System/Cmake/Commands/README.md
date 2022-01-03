@@ -1,5 +1,6 @@
 **Commands**
 - [find_package](#fp)
+- [target_link_libraries](#tll)
 
 
 **--build**
@@ -36,6 +37,14 @@ source_group ("Source Files" FILES $(varSourceFiles))
 source_group ("Resource Files" FILES $(varResourceFiles))
 ```
 **--target** Build tgt instead of default targets.
+
+<a name=tll></a>
+### target_link_libraries
+Specify libraries or flags to use when linking a given target and/or its dependents.
+```c
+target_link_libraries(<target> ... <item>... ...)
+```
+
 ```c
 $ cmake --target <tgt>
 ```
