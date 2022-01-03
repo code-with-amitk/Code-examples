@@ -19,6 +19,7 @@
       - [Pod](#pod)
       - [Namespaces](#ns)
     - [Configuring kubernets Cluster](#cfgk)
+    - [Commands](#kcmd)
 
 
 <a name=con></a>
@@ -399,4 +400,11 @@ Virtual clusters inside kubernets cluster. 3 predefined namespaces:
 ```c
 $ kubectl crete namespace test                        //Creating new namespace
 $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
+```
+
+<a name=kcmd></a>
+### Kubernets commands
+```c
+# kubectl get svc -A      //List all services on this VM
+# kubectl config view     //Show Merged kubeconfig settings
 ```
