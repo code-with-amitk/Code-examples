@@ -153,7 +153,8 @@ $ cargo run
 
 <a name=tos></a>
 #### 2. tokio::spawn() = [asynchronous](/Threads_Processes_IPC/Terms/README.md#as) [Green Thread](/Threads_Processes_IPC/Threads#usks)
-[tokio](/Languages/Programming_Languages/Rust/Tokio/)::spawn is 1 level up from threads. These are user level non-blocking threads, ie thread blocks on call it will return immediately.
+- [tokio](/Languages/Programming_Languages/Rust/Tokio/)::spawn is 1 level up from threads. 
+- These are user level non-blocking threads(ie if thread blocks on any call, due to async it will return immediately) means now thread will also not block.
 ```rs
 $ cat Cargo.toml
 [package]
