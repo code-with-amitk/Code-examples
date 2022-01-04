@@ -103,12 +103,14 @@ Erases portion of string, reducing its length
 
 <a name=f></a>
 ## find()
-Returns 0th index of substring if found, else -1
-```c++
+Returns 0th index of character/substring if found, else string::npos
+```cpp
+  int index = -1;
   string str1 = "Failing Reveals your weaknesses!";
-  cout<<str1.find("your")<<endl;
-  
-  O/P: 16               //
+  if ((index = str1.find("your")) != string::npos)
+    cout << index;
+    
+  O/P: 16
 ```
 
 <a name=ins></a>
