@@ -11,6 +11,7 @@
   - [POST example](#pe)
 - **HTTP Terms**
   - [Cookie](#cok)
+  - [PAC File](#pac)
 - [Plugin, Helper Application, MIME](#mime)
 
 
@@ -180,6 +181,13 @@ This is small file _created by Web server_ while user is browsing a website & pl
   - Saving info user entered in forms: names, addresses, passwords(stored as hashed), and payment card numbers.
 - **Stolen Cookie?** If hacker steals and installs your cookies into their web browser, hacker will get access your account.
   - _How cookie theaft can be avoided?_ Cleaning cookies every 7-14 days.
+
+<a name=pac></a>
+#### PAC(proxy auto-configuration) File
+- This is a Javascript file that instructs a browser to forward traffic to a particular [proxy server](), instead of directly to the destination server. All browsers support PAC File.
+- Limitations of PAC
+  - Can only send web traffic, not other(eg: video, audio).
+  - Admin user can change proxy address(to which requests need to go) in PAC.
 
 <a name=mime></a>
 ### Plugin, Helper Application, MIME
