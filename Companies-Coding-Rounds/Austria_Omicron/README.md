@@ -60,6 +60,57 @@ Implement 3 functions:
   - a. Atleast 1 family member goes to party
   - b. A does not go with D. B will always go with C. if A & C goes, B will not go. if A does not go, D or C goes.
 - Write program to print groupings in which family members can go to party.
+```c
+string strInput = "abcd";
+void gen_combinations(vector<string>& vecOut, string& outstr, int index) {
+	for (int i = index; i < strInput.length(); i++) {
+		outstr += strInput[i];
+		//cout << outstr<<"\n";
+		vecOut.push_back(outstr);
+		gen_combinations(vecOut, outstr, i + 1);
+		outstr.erase(outstr.length() - 1,1);		//erase(length, position)
+	}
+}
+void print_groupings(vector<string>& vecInput) {
+	bool af, bf, cf, df;
+	for (auto i : vecInput) {
+		i.find("a") != string::npos ? af = true : af = false;
+		i.find("b") != string::npos ? bf = true : bf = false;
+		i.find("c") != string::npos ? cf = true : cf = false;
+		i.find("d") != string::npos ? df = true : df = false;
+
+		if (af && df) {
+			//A does not go with D
+		}
+		else if (af && cf && bf) {
+			//if A & C goes, B will not go
+		}
+		else if (af && cf) {
+			//if A does not go, D or C goes.
+		}
+		else if (bf && !cf) {
+			//B will always go with C. If B present & C not skip
+		}
+		else
+			cout << i << "\n";
+	}
+}
+int main() {
+	vector<string> vecOut;
+	string out;
+	gen_combinations(vecOut, out, 0);
+
+	print_groupings(vecOut);
+	return 0;
+}
+$ ./a.out
+a
+bc
+bcd
+c
+cd
+d
+```
 
 ### 4. OOD: Asynchronous Logger class
 - Create logging class in C++ which supports logging to different targets(Eg: file, console, remote server). It should have 1 method `void log (const std::string& message);`
