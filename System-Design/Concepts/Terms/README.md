@@ -117,18 +117,36 @@ resources to handle the additional load
 
 <a name=ten></a>
 ### Tenant
-- **Single Tenant** Seperate software binary, sepearate DB for each customer.
-- **Multi Tenant** Virtualization on cloud. Software, DB shared by all customers. [SaaS](/System-Design/Concepts) uses multi-tenant. Eg: Microsoft Suite, Dropbox, Google Apps.
-```console
-    Cust1   Cust1   Cust1               Cust1   Cust1   Cust1
-    /\        /\      /\                  |       |        |
-    \/        \/      \/                   -------|---------
-    App       App     App                        App
-    /\        /\      /\                   -------|---------
-    \/        \/      \/                   |      |        |
-    DB        DB      DB                   DB    DB       DB
-        SINGLE TENANT                       MULTI TENANT
+#### Single Tenant 
+Seperate software binary, sepearate DB for each customer.
+```c
+Cust1   Cust1   Cust1
+/\        /\      /\
+\/        \/      \/
+App       App     App
+/\        /\      /\
+\/        \/      \/
+DB        DB      DB
 ```
+#### Multi Tenant
+Virtualization on cloud. Software, DB shared by all customers. [SaaS](/System-Design/Concepts) uses multi-tenant. Eg: Microsoft Suite, Dropbox, Google Apps.
+```console
+                   Cust1   Cust1   Cust1
+                      |       |        |
+                       -------|---------
+                            App
+                       -------|---------
+                       |      |        |
+                       DB    DB       DB
+JAMS case:
+
+  (site-1)JAMS_Kallactor-1 ------\
+                                  \
+  (site-2)JAMS_Kallactor-2 --------- JAMS-Sarver //This is Multi-tenant
+                                   / 
+  (site-3)JAMS_Kallactor-3 -------/
+```
+
 
 <a name=tp></a>
 ### Throughput
