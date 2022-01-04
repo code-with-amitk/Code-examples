@@ -32,26 +32,39 @@ abcd  //Taken 4 a time
 ```
 
 ## Logic
+- _1._ Keep characters from last in output string and dump the output.
 
 ## Code
 ```c
-void combine(string instr, string outstr, int index)
-{
-	for (int i = index; i < instr.length(); i++)
-	{
-		outstr += instr[i];
+string strInput = "abcd";
+
+void combine(string& outstr, int index) {
+	for (int i = index; i < strInput.length(); i++) {
+		outstr += strInput[i];
 		cout << outstr<<"\n";
-		combine(instr, outstr, i + 1);
-		outstr.erase(outstr.length() - 1,1);
+		combine(outstr, i + 1);
+		outstr.erase(outstr.length() - 1,1);		//erase(length, position)
 	}
 }
-
-int main()
-{
-	string str = "abcd";
+int main() {
 	string out;
-
-	combine(str, out, 0);
+	combine(out, 0);
 	return 0;
 }
+$ ./a.out
+a
+ab
+abc
+abcd
+abd
+ac
+acd
+ad
+b
+bc
+bcd
+bd
+c
+cd
+d
 ```
