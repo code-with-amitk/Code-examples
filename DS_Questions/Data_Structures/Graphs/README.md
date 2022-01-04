@@ -3,7 +3,7 @@
   - [1. Adjacency Matrix/Lookup table](#m)
   - [2. Adjacency List](#l)
   - [3. Edge List](#el)
-- **[Terms: Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
+- **[Terms: Degree, Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
 - **Types of Graphs**
   - [1. Cyclic/Acyclic](cyclic)
     - [1a. DAG/Directed Acyclic Graph](#dag)
@@ -74,6 +74,12 @@ Nodes | 1  |  2  |  3  |  4  |  <vector
 
 <a name=t></a>
 ## Terms
+#### Degree
+- _Undirected Graph:_ Number of edges incident on it.
+- _Directed Graph:_ 
+  - _Indegree of Node:_ Number of edges leading into that node.
+  - _Outdegree:_ the number of edges leading away from node.
+
 #### Diameter/Eccentricity
 Greatest distance between any pair of vertices.
 
