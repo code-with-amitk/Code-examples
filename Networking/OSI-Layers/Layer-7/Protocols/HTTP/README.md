@@ -184,7 +184,7 @@ This is small file _created by Web server_ while user is browsing a website & pl
 
 <a name=pac></a>
 #### PAC(proxy auto-configuration) File
-- This is a Javascript file that instructs a browser to forward traffic to a particular [proxy server](), instead of directly to the destination server. All browsers support PAC File.
+- This is a Javascript file that instructs a browser to forward traffic to a particular [proxy server](/System-Design/Concepts/Proxy_Servers), instead of directly to the destination server. All browsers support PAC File.
 - Limitations of PAC
   - Can only send web traffic, not other(eg: video, audio).
   - Admin user can change proxy address(to which requests need to go) in PAC.
