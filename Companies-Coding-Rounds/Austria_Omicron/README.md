@@ -2,7 +2,7 @@ Forget the mistake remember the lesson. **Lesson:**
 - _1. Understand Question Completely._ 
   - Read. Repeat(and ask questions). Doctest(small, medium, big inputs). Visualize
 - _2._ You do lot of Yes after interviewer comments something, try follow on. Lesson: Take your stand. 
-- _2. Concentrate, Meditate_
+- _3. Concentrate, Meditate_
 
 ## Round-1 (Video call)
 - MTU vs MSS, spinlock vs other synchronization mechanisms, project related
@@ -41,7 +41,8 @@ a. return statement missing from main. Return value is stored in rax which prese
 b. Header file include is missing
 c. main() should be main(int argc, char** argv) 
 ```
-### 3. [Code: Doubly Linked List](/DS_Questions/Data_Structures/Linked_Lists/Doubly_LinkedList/Using_Double_Pointer/AddDelete_AfterPosition.md)
+### 3. Code
+#### 3.1 [Doubly Linked List](/DS_Questions/Data_Structures/Linked_Lists/Doubly_LinkedList/Using_Double_Pointer/AddDelete_AfterPosition.md)
 ```c
 typedef struct node {
   int val;
@@ -54,6 +55,12 @@ Implement 3 functions:
 2. void AddAfter (Node** head, int position, Node node);    //Add a node inside DLL after position p.
 3. void RemoveNode (Node** head, int val)                   //Remove element from Doubly Linked List
 ```
+#### 3.2 Help Smith Family
+- Smith family is invited to birthday party. Unfortunately family members (A,B,C,D) could not agree on who goes, who does'nt. Following is aggred:
+  - a. Atleast 1 family member goes to party
+  - b. A does not go with D. B will always go with C. if A & C goes, B will not go. if A does not go, D or C goes.
+- Write program to print groupings in which family members can go to party.
+
 ### 4. OOD: Asynchronous Logger class
 - Create logging class in C++ which supports logging to different targets(Eg: file, console, remote server). It should have 1 method `void log (const std::string& message);`
 - Features of logging class:
