@@ -17,7 +17,7 @@
 - _3._ Subscribe the consumer to a list of topics.
 - _4._ Start consumer to read on stream.
 - _5._ Wait on future that resolves to the next item in the stream.
-- _6._ On return from future, check topic from Message recieved and add message to queue.
+- _6._ On return from future, Get topic,paylod from Message.
 ```rs
 
 pub const TOPIC1: &str = "topic-1";
@@ -59,12 +59,19 @@ thread_spawn run_consumer (my_topics: &Vec<String>) {
     match message {
       Err(e: KafkaError) => warn!("Msg Stream error: {}", e),
       Ok(m: BorrowedMessage) => {
-          match m.topic() {                                                       //6
-            TOPIC-1 => {
-              queue(
-            },
-            TOPIC-2 => {
-            },
+        let payload = match m.payload_view::<str>() {                     //6
+          None => "",
+          Some(Ok(s)) => s,
+          Some(Err(e)) => {
+            warn!("Error message payload: {:?}",e);
+          }
+        };
+        match m.topic() {                                                       
+          TOPIC-1 => {
+            let msg_type = TOPIC-1.to_string();                           //
+          },
+          TOPIC-2 => {
+          },
         }
       }
   }
@@ -104,4 +111,8 @@ A zero-copy Kafka message. The content of the message is stored in the receiving
 pub struct BorrowedMessage<'a> { /* fields omitted */ }
 
 fn topic(&self) -> &str                           //Returns the source topic of the message.
+
+fn payload_view<P: ?Sized + FromBytes>(&self) -> Option<Result<&P, P::Error>>
+//Converts the raw bytes of the payload to a reference of the specified type, that points to the same
+//data inside the message and without performing any memory allocation
 ```
