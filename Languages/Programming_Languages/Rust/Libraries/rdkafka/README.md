@@ -1,5 +1,8 @@
 **rdkafka**
 - [Writing kafka client](#kc)
+- **kafka Traits**
+  - [ConsumerContext](#cc)
+  - [Consumer](#con)
 
 ## [rust-rdkafka](https://docs.rs/rdkafka/0.8.1/rdkafka/index.html)
 - Rust based Kafka client library(based on [librdkafka](/System-Design/Concepts/MOM_ESB/Apache_Kafka#lrdk)).
@@ -9,7 +12,7 @@
 - _1._ Create a [StreamConsumer](/System-Design/Concepts/MOM_ESB/Apache_Kafka#st) object using [bootstrap broker server](/System-Design/Concepts/MOM_ESB/Apache_Kafka#br)
   - _1a._ Extract StreamConsumer
 - _2._ Create [topics](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp) vector on which we want to listen.
-- _3._ [Subscribe to topics]()
+- _3._ Subscribe the consumer to a list of topics.
 ```rs
 thread_spawn run_consumer (my_topics: &Vec<String>) {
   let result:Result<StreamConsumer<CustomContext>,...> = ClientConfig::new()                  //1
@@ -41,4 +44,15 @@ thread_spawn run_consumer (my_topics: &Vec<String>) {
     return Err(error);
   }
 }
+```
+
+## Kafka Traits
+<a name=cc></a>
+### ConsumerContext
+User-defined object used to provide custom callbacks for consumer events. 
+<a name=con></a>
+### rdkafka::consumer::Consumer
+Common trait for all consumers.
+```rs
+fn subscribe(&self, topics: &[&str]) -> KafkaResult<()> //Subscribe the consumer to a list of topics.
 ```
