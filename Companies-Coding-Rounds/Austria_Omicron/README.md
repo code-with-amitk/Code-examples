@@ -56,7 +56,7 @@ Implement 3 functions:
 3. void RemoveNode (Node** head, int val)                   //Remove element from Doubly Linked List
 ```
 #### 3.2 Help Smith Family
-- Smith family is invited to birthday party. Unfortunately family members (A,B,C,D) could not agree on who goes, who does'nt. Following is aggred:
+- Smith family is invited to birthday party. Unfortunately family members (Anton,Berta,Claus,Doris) could not agree on who goes, who does'nt. Following is aggred:
   - a. Atleast 1 family member goes to party
   - b. A does not go with D. B will always go with C. if A & C goes, B will not go. if A does not go, D or C goes.
 - Write program to print groupings in which family members can go to party.
