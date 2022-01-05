@@ -1,5 +1,5 @@
- - :heart: I Love Problems, Get Excited and Laugh a Lot. I welcome These Big, Powerful, Complicated Problems. In them lies Oppurtunities to change My Life :heart_eyes: :heart:
- - Forget the Mistake, Remember the lesson:
+- :heart: I Love Problems, Get Excited and Laugh a Lot. I welcome These Big, Powerful, Complicated Problems. In them lies Oppurtunities to change My Life :heart_eyes: :heart:
+- Forget the Mistake, Remember the lesson:
   - _1._ No PatchWork. Include Edge cases
   - _2. Understand Question Completely._ Read. Repeat(and ask questions). Doctest(small, medium, big inputs). Visualize
   - _3. Take your Stand._ You do lot of Yes after interviewer comments something, try follow on.
