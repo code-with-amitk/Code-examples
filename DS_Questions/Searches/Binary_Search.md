@@ -67,5 +67,34 @@ public:
 <a name=r></a>
 #### Rust
 ```rs
+impl Solution {
 
+    pub fn search(nums: Vec<i32>, target: i32) -> i32 { 
+        let mut end = nums.len() - 1;
+        let mut start:usize = 0;
+        if start == end && nums[start] == target {
+            return start as i32;
+        }
+        if start >= end {
+            return -1;
+        }
+        
+        while start <= end {
+            let mut mid = start + (end-start)/2;
+            if nums[mid] == target {
+                return mid as i32;
+            }
+            if nums[mid] < target {
+                start = mid + 1;
+            }
+            else {
+                if mid == 0 {
+                    return -1;
+                }
+                end = mid - 1;
+            }
+        }
+        -1
+    }
+}
 ```
