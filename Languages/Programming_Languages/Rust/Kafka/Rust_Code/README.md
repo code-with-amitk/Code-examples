@@ -128,9 +128,16 @@ use futures::StreamExt;
 use rdkafka;
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Message {
+pub struct Payload {
     #[serde(rename = "Message")]
     msg: String,
+}
+impl Payload {
+    pub fn add_payload() -> Self {
+        Self {
+            msg: String::from("test"),
+        }
+    }
 }
 
 #[tokio::main]
@@ -143,10 +150,12 @@ async fn main() {
     .create()
     .expect("producer error");
 
+  let payl = Payload::add_payload();
+
   producer.send()(                            //send <topic, payload(key, value)>
     FutureRecord::to(topic)
-    .payload(&event.to_string())
-    .key(&format!("Key {}", i))
+    .payload(&payl.to_string())
+    .key(&format!("Key {}", 1))
   ).await;
 }
 
