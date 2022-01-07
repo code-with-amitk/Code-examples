@@ -1,20 +1,28 @@
-**rdkafka**
-- [Kafka Producer Consumer Code](#pc)
-  - [1. Start kafka Broker, zookeeper](#s1)
-  - [2. kafka Consumer](#c)
+- [rdkafka](#rd_
+- Kafka Producer Consumer
+  - [1. CLI Tools](#cl)
+    - [a. Start kafka Broker, zookeeper](#s1)
+    - [b. Create a Topic](#s2)
+    - [c. Write Event/Message into topic from Producer](#s3)
+    - [d. Read Event/Message in consumer](#s4)
+  - [2. Rust Code](#rc)
+    - [a. kafka Consumer](#rc1)
+    - [b. kafka Producer](#rc2)
 - **kafka Traits**
   - [ConsumerContext](#cc)
   - [Consumer](#con)
   - [StreamConsumer](#sc)
   - [MessageStream](#ms)
 
+<a name=rd></a>
 ## [rust-rdkafka](https://docs.rs/rdkafka/0.8.1/rdkafka/index.html)
 - Rust based Kafka client library(based on [librdkafka](/System-Design/Concepts/MOM_ESB/Apache_Kafka#lrdk)).
 
-<a name=pc></a>
-### Kafka Producer Consumer Code
-<a name=p></a>
-#### 1. Start kafka Broker, zookeeper
+## Kafka Producer Consumer
+<a name=c1></a>
+### 1. CLI Tools
+<a name=s1></a>
+#### a. Start kafka Broker, zookeeper
 STEP TAKE FROM https://kafka.apache.org/quickstart
 ```c
 Ubuntu machine 
@@ -27,8 +35,33 @@ $ bin/zookeeper-server-start.sh config/zookeeper.properties         //2. Start Z
 //From Another Terminal
 $ bin/kafka-server-start.sh config/server.properties            //3. Start the Kafka broker service
 ```
-<a name=c></a>
-#### 2. kafka Consumer
+<a name=s2></a>
+#### b. Create a [Topic](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp)
+```c
+//Another Terminal
+$ bin/kafka-topics.sh --create --partitions 1 --replication-factor 1 --topic quickstart-events --bootstrap-server localhost:9092
+```
+<a name=s3></a>
+#### c. Write Event/Message into topic from Producer
+```c
+//Another Terminal
+$ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
+Event,Message-1
+Event,Message-2
+```
+<a name=s4></a>
+#### d. Read Event/Message in consumer
+```c
+//Another Terminal
+$ bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+Event,Message-1
+Event,Message-2
+```
+
+<a name=rc></a>
+### 2. Rust Code
+- Start [kafka broker & zookeper 1st](#s1)
+
 
 - _1._ Create a [StreamConsumer](/System-Design/Concepts/MOM_ESB/Apache_Kafka#st) object using [bootstrap broker server](/System-Design/Concepts/MOM_ESB/Apache_Kafka#br)
   - _1a._ Extract StreamConsumer
