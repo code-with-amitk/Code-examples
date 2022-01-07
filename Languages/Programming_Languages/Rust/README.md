@@ -17,6 +17,7 @@
 - [Class in Rust](#class)
 - [Control Flow: for, loop, while, match=switch, if, if let](Control_Flow)
 - [Functions](#Functions)
+- [Frameworks: Actix_web](Frameworks)
 - [Crates, Packages, Modules](#cpm)
 - [Enum](#enum)
 - [Error Handling](Error_Handling)
