@@ -16,6 +16,19 @@
 <a name=what></a>
 ## [Kafka](https://kafka.apache.org/intro)
 - Kafka(by Apache foundation) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB) works over TCP Protocol written in java. There are multiple replicas of Kakfa written in other languages.
+- How kafka messaging works?
+```c
+                          kafka-Broker(192.168.0.1:9092)   //1. broker starts
+consumer(0.2)                                              //2. consumer subscribes to topic
+      --subscribe topic(t1)->Add to topic hashmap
+while(1){
+..
+}
+                                                        producer(0.3) //3. Producer produces topic
+                           Broker<--|topic=t1,payload="test"|--
+  <--|topic=t1,payload="test"|-
+```
+
 ### kafka Implementations
 <a name=lrdk></a>
 #### [librdkafka](https://github.com/edenhill/librdkafka)
@@ -26,18 +39,6 @@ This is C library implementation of the Apache Kafka protocol. librdkafka has no
 <a name=uc></a>
 ### 1. Messaging
 Kafka can working as MOM
-```c
-                          kafka-Broker(192.168.0.1:9092)   //1. broker starts
-consumer(0.2)                                              //2. consumer subscribes to topic
-      --subscribe topic(t1)->Add to topic hashmap
-while(1){
-..
-}
- 
-                                                        producer(0.3) //3. Producer produces topic
-                           Broker<--|topic=t1,payload="test"|--
-  <--|topic=t1,payload="test"|-
-```
 
 #### 2. Analytics and stream processing
 Applications sends real-time usage information (e.g., clicks, visitors, sessions, page views, and purchases) to Kafka Topics. 
