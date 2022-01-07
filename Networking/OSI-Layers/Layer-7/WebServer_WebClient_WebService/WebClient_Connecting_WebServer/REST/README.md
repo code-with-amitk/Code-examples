@@ -1,6 +1,9 @@
 **REST / (Representation State Transfer) APIs**
 - [Restful Methods/APIs/Verbs](#m)
 - [Comparisons: (REST vs HTTP), (REST vs SOAP)](#vs)
+- [Constraints for RESTFUL application](#c)
+- **Code Implementations**
+   - [Using Python flask-restful](/Languages/ScriptingLanguages/Python/web-frameworks/flask-restful)
 
 
 ## REST / (Representation State Transfer) APIs
@@ -26,12 +29,19 @@ Client calls these methods and response returned over HTTP.
   - PUT: Update a record in web service
   - DELETE: delete 1 record in web service
 ```
-
-- [What is WebService](../WebServer_vs_WebService)
-- [6 Constraints for Application to be Restful](Restful_Constraints)
-- **[Code Implementation using Python flask-restful](/Languages/ScriptingLanguages/Python/web-frameworks/flask-restful)**
-- [REST vs SOAP](REST_vs_SOAP)
-- [REST_vs_HTTP](REST_vs_HTTP)
+<a name=c></a>
+### Constraints for RESTFUL application
+- **a. Uniform interface:**
+  - client request must include a resource identifier. The response the server returns include enough information so the client can modify the resource.
+- **b. Client - server separation:** 
+  - The client and the server act independently, each on its own, and the interaction between them is only in the form of requests, initiated by the client only.
+- **c. Stateless:** Server does not store information about client who uses the APIs.
+- **d. Layered system:** 
+  - Between the client who requests a representation of a resource’s state, and the server who sends the response back, there might be a number of servers in the middle.These servers might provide a security, caching, load-balancing layers or                 other functionality. 
+- **e. Cacheable:** 
+  - Data sent by server contains information about whether or not the data is cacheable. If the data is cacheable, it might contain sort of a version number. Since the client knows which version of the data it has the client can avoid requesting the                         same data again.
+- **f. Code-on-demand(optional):** 
+  - The client can request code from the server, and then the response from the server will contain some code, usually in the form of a script. The client then can execute that code.
 
 <a name=vs></a>
 ## Comparisons
