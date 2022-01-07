@@ -1,5 +1,7 @@
 **rdkafka**
-- [Writing kafka client](#kc)
+- [Kafka Producer Consumer Code](#pc)
+  - [1. Start kafka Broker, zookeeper](#s1)
+  - [2. kafka Consumer](#c)
 - **kafka Traits**
   - [ConsumerContext](#cc)
   - [Consumer](#con)
@@ -9,8 +11,25 @@
 ## [rust-rdkafka](https://docs.rs/rdkafka/0.8.1/rdkafka/index.html)
 - Rust based Kafka client library(based on [librdkafka](/System-Design/Concepts/MOM_ESB/Apache_Kafka#lrdk)).
 
-<a name=kc></a>
-### Writing kafka client
+<a name=pc></a>
+### Kafka Producer Consumer Code
+<a name=p></a>
+#### 1. Start kafka Broker, zookeeper
+STEP TAKE FROM https://kafka.apache.org/quickstart
+```c
+Ubuntu machine 
+$ wget https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz    //1. Get latest Kafka release and extract it
+$ cd kafka_2.13-3.0.0
+
+//From Another terminal
+$ bin/zookeeper-server-start.sh config/zookeeper.properties         //2. Start ZooKeeper service. Soon, ZooKeeper will no longer be required by Apache Kafka
+
+//From Another Terminal
+$ bin/kafka-server-start.sh config/server.properties            //3. Start the Kafka broker service
+```
+<a name=c></a>
+#### 2. kafka Consumer
+
 - _1._ Create a [StreamConsumer](/System-Design/Concepts/MOM_ESB/Apache_Kafka#st) object using [bootstrap broker server](/System-Design/Concepts/MOM_ESB/Apache_Kafka#br)
   - _1a._ Extract StreamConsumer
 - _2._ Create [topics](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp) vector on which we want to listen.
