@@ -5,7 +5,8 @@
 - [Comparisons: (REST vs HTTP), (REST vs SOAP)](#vs)
 - [Constraints for RESTFUL application](#c)
 - **Code Implementations**
-   - [Using Python flask-restful](/Languages/ScriptingLanguages/Python/web-frameworks/flask-restful)
+   - [Python flask-restful](/Languages/ScriptingLanguages/Python/web-frameworks/flask-restful)
+   - [Rust Actix_web Http Server exposing REST APIs](/Languages/Programming_Languages/Rust/Frameworks/Actix_web)
 
 
 ## REST / (Representation State Transfer) APIs
