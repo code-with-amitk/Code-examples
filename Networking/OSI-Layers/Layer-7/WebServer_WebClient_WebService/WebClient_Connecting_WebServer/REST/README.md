@@ -12,6 +12,7 @@
 ## REST / (Representation State Transfer) APIs
 **Restful Web Server/Application?** Web application that implements [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
 - When web-client calls Restful APIs then Web-Server can return [JSON](/Languages/ScriptingLanguages/JavaScript) or HTML or [XML](/Languages/Markup_Language).
+- [Good Youtube Video](https://www.youtube.com/watch?v=SLwpqD8n3d0)
 <a name=api></a>
 ### REST API
 Same as [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea)
