@@ -1,13 +1,6 @@
 - [rdkafka](#rd_
-- Kafka Producer Consumer
-  - [1. CLI Tools](#cl)
-    - [a. Start kafka Broker, zookeeper](#s1)
-    - [b. Create a Topic](#s2)
-    - [c. Write Event/Message into topic from Producer](#s3)
-    - [d. Read Event/Message in consumer](#s4)
-  - [2. Rust Code](#rc)
-    - [a. kafka Consumer](#rc1)
-    - [b. kafka Producer](#rc2)
+
+
 - **kafka Traits**
   - [ConsumerContext](#cc)
   - [Consumer](#con)
@@ -20,55 +13,11 @@
 
 ## Kafka Producer Consumer
 <a name=c1></a>
-### 1. CLI Tools
-<a name=s1></a>
-#### a. Start kafka Broker, zookeeper
-STEP TAKE FROM https://kafka.apache.org/quickstart
-```c
-Ubuntu machine 
-$ wget https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz    //1. Get latest Kafka release and extract it
-$ cd kafka_2.13-3.0.0
 
-//From Another terminal
-$ bin/zookeeper-server-start.sh config/zookeeper.properties         //2. Start ZooKeeper service. Soon, ZooKeeper will no longer be required by Apache Kafka
-
-//From Another Terminal
-$ bin/kafka-server-start.sh config/server.properties            //3. Start the Kafka broker service
-```
-<a name=s2></a>
-#### b. Create a [Topic](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp)
-```c
-//Another Terminal
-$ bin/kafka-topics.sh --create --partitions 1 --replication-factor 1 --topic quickstart-events --bootstrap-server localhost:9092
-```
-<a name=s3></a>
-#### c. Write Event/Message into topic from Producer
-```c
-//Another Terminal
-$ bin/kafka-console-producer.sh --topic quickstart-events --bootstrap-server localhost:9092
-Event,Message-1
-Event,Message-2
-```
-<a name=s4></a>
-#### d. Read Event/Message in consumer
-```c
-//Another Terminal
-$ bin/kafka-console-consumer.sh --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
-Event,Message-1
-Event,Message-2
-```
 
 <a name=rc></a>
 ### 2. Rust Code
-- Start [kafka broker & zookeper 1st](#s1)
 
-
-- _1._ Create a [StreamConsumer](/System-Design/Concepts/MOM_ESB/Apache_Kafka#st) object using [bootstrap broker server](/System-Design/Concepts/MOM_ESB/Apache_Kafka#br)
-  - _1a._ Extract StreamConsumer
-- _2._ Create [topics](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#tp) vector on which we want to listen.
-- _3._ Subscribe the consumer to a list of topics.
-- _4._ Start consumer to read on stream.
-- _5._ Wait on future that resolves to the next item in the stream.
 - _6._ On return from future, Get topic,paylod from Message.
 ```rs
 
@@ -130,41 +79,3 @@ thread_spawn run_consumer (my_topics: &Vec<String>) {
 }
 ```
 
-## Kafka Traits
-<a name=cc></a>
-### ConsumerContext
-User-defined object used to provide custom callbacks for consumer events. 
-<a name=con></a>
-### rdkafka::consumer::Consumer
-Common trait for all consumers.
-```rs
-fn subscribe(&self, topics: &[&str]) -> KafkaResult<()> //Subscribe the consumer to a list of topics.
-```
-<a name=sc></a>
-### rdkafka::consumer::stream_consumer
-- [kafka Stream?](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#st). This is Consumer with an associated polling thread. This return all consumed messages as a Stream.
-```c
-pub struct StreamConsumer<C: ConsumerContext + 'static> {
-}
-fn start(&mut self) -> MessageStream    //Starts StreamConsumer with default configuration(100ms polling interval and no NoMessageReceived notifications).
-```
-<a name=ms></a>
-### [rdkafka::consumer::stream_consumer::MessageStream](https://docs.rs/rdkafka/0.10.0/rdkafka/consumer/stream_consumer/struct.MessageStream.html)
-A Stream of Kafka messages. It can be used to receive messages as they are received.
-```c
-pub struct MessageStream { /* fields omitted */ }
-
-fn next(&mut self) -> Next<'_, Self>      //Creates a future that resolves to the next item in the stream.
-```
-<a name=bm></a>
-### [rdkafka::message::BorrowedMessage](https://docs.rs/rdkafka/0.14.0/rdkafka/message/struct.BorrowedMessage.html)
-A zero-copy Kafka message. The content of the message is stored in the receiving buffer of the consumer or the producer. As such, BorrowedMessage cannot outlive the consumer or producer it belongs to.
-```c
-pub struct BorrowedMessage<'a> { /* fields omitted */ }
-
-fn topic(&self) -> &str                           //Returns the source topic of the message.
-
-fn payload_view<P: ?Sized + FromBytes>(&self) -> Option<Result<&P, P::Error>>
-//Converts the raw bytes of the payload to a reference of the specified type, that points to the same
-//data inside the message and without performing any memory allocation
-```
