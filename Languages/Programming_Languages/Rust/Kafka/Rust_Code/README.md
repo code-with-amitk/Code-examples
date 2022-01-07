@@ -2,6 +2,12 @@
 - [1. Start kafka broker & zookeper 1st](/Languages/Programming_Languages/Rust/Kafka/Using_CLI#s1)
 - [2. kafka Consumer](#c)
 - [3. kafka Producer](#p)
+- **kafka Traits**
+  - [ConsumerContext](#cc)
+  - [Consumer](#con)
+  - [StreamConsumer](#sc)
+  - [MessageStream](#ms)
+
 
 <a name=c></a>
 ## 2. kafka Consumer
@@ -148,4 +154,43 @@ $ ./producer
 serialized {
   "Message": "test",
 }
+```
+
+## Kafka Traits
+<a name=cc></a>
+### ConsumerContext
+User-defined object used to provide custom callbacks for consumer events. 
+<a name=con></a>
+### rdkafka::consumer::Consumer
+Common trait for all consumers.
+```rs
+fn subscribe(&self, topics: &[&str]) -> KafkaResult<()> //Subscribe the consumer to a list of topics.
+```
+<a name=sc></a>
+### rdkafka::consumer::stream_consumer
+- [kafka Stream?](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#st). This is Consumer with an associated polling thread. This return all consumed messages as a Stream.
+```c
+pub struct StreamConsumer<C: ConsumerContext + 'static> {
+}
+fn start(&mut self) -> MessageStream    //Starts StreamConsumer with default configuration(100ms polling interval and no NoMessageReceived notifications).
+```
+<a name=ms></a>
+### [rdkafka::consumer::stream_consumer::MessageStream](https://docs.rs/rdkafka/0.10.0/rdkafka/consumer/stream_consumer/struct.MessageStream.html)
+A Stream of Kafka messages. It can be used to receive messages as they are received.
+```c
+pub struct MessageStream { /* fields omitted */ }
+
+fn next(&mut self) -> Next<'_, Self>      //Creates a future that resolves to the next item in the stream.
+```
+<a name=bm></a>
+### [rdkafka::message::BorrowedMessage](https://docs.rs/rdkafka/0.14.0/rdkafka/message/struct.BorrowedMessage.html)
+A zero-copy Kafka message. The content of the message is stored in the receiving buffer of the consumer or the producer. As such, BorrowedMessage cannot outlive the consumer or producer it belongs to.
+```c
+pub struct BorrowedMessage<'a> { /* fields omitted */ }
+
+fn topic(&self) -> &str                           //Returns the source topic of the message.
+
+fn payload_view<P: ?Sized + FromBytes>(&self) -> Option<Result<&P, P::Error>>
+//Converts the raw bytes of the payload to a reference of the specified type, that points to the same
+//data inside the message and without performing any memory allocation
 ```
