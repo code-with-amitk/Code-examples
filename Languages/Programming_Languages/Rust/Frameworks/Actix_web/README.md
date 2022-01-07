@@ -6,7 +6,7 @@ Fast, powerful, open source web framework for Rust. Actix_web is sponsored by mi
 
 <a name=w></a>
 ## Actix http Webserver exposing REST API
-Check [How REST Works](Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST/README.md#how). Remember REST-API exposes a resource via [HTTP CRUD Methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) and allows to perform operations on it. 
+Check [How REST Works](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST/README.md#how). Remember REST-API exposes a resource via [HTTP CRUD Methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) and allows to perform operations on it. 
 ```rs
 //Resource is user. REST APIs
 REST API           |   Desc                                         |   function
