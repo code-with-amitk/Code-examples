@@ -1,5 +1,6 @@
 **REST / (Representation State Transfer) APIs**
-- [How REST Works](#how)
+- [REST API](#api)
+- [How REST API Works >> MOST IMPORTANT](#how)
 - [Restful Methods/APIs/Verbs](#m)
 - [Comparisons: (REST vs HTTP), (REST vs SOAP)](#vs)
 - [Constraints for RESTFUL application](#c)
@@ -10,19 +11,33 @@
 ## REST / (Representation State Transfer) APIs
 **Restful Web Server/Application?** Web application that implements [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
 - When web-client calls Restful APIs then Web-Server can return [JSON](/Languages/ScriptingLanguages/JavaScript) or HTML or [XML](/Languages/Markup_Language).
+<a name=api></a>
+### REST API
+Same as [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea)
 <a name=how></a>
 ### How REST Works?
 ```c
-1. Web server(abc.com) defines Resources(Eg: Customers, movies, cars etc) and exposes a service/End point (https://abc.com/api/movies)
+1. Web server(abc.com) defines Resources(Eg: Customers, movies, cars etc) and exposes a service/End point eg:(https://abc.com/api/movies), where
    abc.com  : Domain
    api      : Convention(mostly used by companies) to expose RESTful services
    movies   : Resource 
-2. Web client will use above END POINT to talk to Web server/service.
-3. 
+2. Web client will use above END POINT(https://abc.com/api/movies) to talk to Web service to perform CRUD Operations on Resource
+3. Perform CRUD Operations on Resource.   
+   Web Client                                         Web Service
+   Http GET /api/movies       --------->           Query list of movies
+                  <-[ {id:1,'movie1'}, {id:2,'movie2'} ]-
+
+   Http GET /api/movies/1       --------->         return id=1 movie
+                        <-[ {id:1,'movie1'} ]-
+   
+   Http POST /api/movies {id:3, 'movie3'}  --------->  Add object [ {id:1,'movie1'}, {id:2,'movie2'}, {id:3,'movie3'} ]
+   Http PUT /api/movies/1 {id:1, 'movie11'} ---------> Updates db [ {id:1,'movie11'}, {id:2,'movie2'}, {id:3,'movie3'} ]
+   Http DELETE /api/movies/1             ---------> Delete object [ {id:2,'movie2'}, {id:3,'movie3'} ]
+                        
 
    Client	                        	                Web Service
  http://<ip-address>/api/resource-name
-                                          Implement APIs GET(){..} POST(){..} DELETE(){..} PUT(){..}
+                                          Implement APIs GET(){..} POST(){..} PUT(){..} DELETE(){..}
                      <---data----
 ```
 **Why Restful**
