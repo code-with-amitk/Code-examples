@@ -133,14 +133,20 @@ Upgrade:     Both The protocol the sender wants to switch to
 - **Safe methods?** Those which donot change state of server. Eg: GET, HEAD
 - **Read only methods?** GET, OPTIONS, HEAD
 - **Idempotent methods?** A operation that will produce the same results if executed once or multiple times. Eg: GET, HEAD, PUT, DELETE, TRACE, OPTIONS
-
+- **CRUD Operations:** Protocol should support minimum these operations/methods.
+```c
+  Create = POST
+  Read = GET
+  Update = PUT
+  Delete = DELETE
+```
 |Method|Description|Example|
 |---|---|---|
-|GET| Server sends a Web page/object|GET `www.test.com/index.html` HTTP/1.1|
+|GET| Reading data(page,object etc) from web server|GET `www.test.com/index.html` HTTP/1.1|
 |HEAD| Read a Web page’s header(not page). For checking validity of URL|
-|POST| Send data to server. Used when forms are submitted.|POST `www.test.com/form.html` HTTP/1.1 |
-|PUT| Update existing content(eg: Web page) on server.|
-|DELETE| Remove the Web page|
+|POST| Send data to server, Server will create entry. Eg: Form submittion.|POST `www.test.com/form.html` HTTP/1.1 |
+|PUT| Update existing data on web server.|
+|DELETE| Remove data from web server|
 |TRACE| For debugging. Instructs the server to send back the message. Useful when requests are not processed correctly and the client wants to know what request the server actually got|
 |CONNECT| Connect to server using proxy or web cache|
 |OPTIONS| Query options(What methods,headers can be used for the page) from server|
