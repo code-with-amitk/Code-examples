@@ -1,11 +1,11 @@
 **Rust Code for kafka Consumer, Producer**
-- [1. kafka Consumer](#c)
-- [2. kafka Producer](#p)
+- [1. Start kafka broker & zookeper 1st](/Languages/Programming_Languages/Rust/Kafka/Using_CLI#s1)
+- [2. kafka Consumer](#c)
+- [3. kafka Producer](#p)
 
 <a name=c></a>
-## 1. kafka Consumer
--  Start [kafka broker & zookeper 1st](/Languages/Programming_Languages/Rust/Kafka/Using_CLI#s1)
-- **Cargo.toml**
+## 2. kafka Consumer
+**Cargo.toml**
 ```rs
 [package]
 name = "consumer"
@@ -38,14 +38,7 @@ uuid = {version = "0.7", features = ["v4"]}
 #[macro_use]
 extern crate serde_derive;
 use futures::StreamExt;
-use rdkafka::{
-  client::ClientContext,
-  config::{ClientConfig, RDKafkaLogLevel},
-  consumer::stream_consumer::StreamConsumer,
-  consumer::{CommitMode, Consumer, ConsumerContext, Rebalance},
-  error::KafkaResult,
-  message::{Headers, Message},
-};
+use rdkafka;
 struct CustomContext;
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -80,7 +73,7 @@ async fn main() {
         };
         
         if let Some(key) = msg1.key() {                                 //5b. extract Key
-          let m: Messafe = match serde_json::from_str(&payload) {
+          let m: Message = match serde_json::from_str(&payload) {
             Ok(m) => m,
             Err(e) => println("No Key");
           };
@@ -93,6 +86,11 @@ async fn main() {
     }//match msg
   }//while
 }
+$ ./consumer
+payload {
+  "Message": "test",
+}
+key: '"Key 1"'
 ```
 
 <a name=p></a>
@@ -121,15 +119,7 @@ uuid = {version = "0.7", features = ["v4"]}
 #[macro_use]
 extern crate serde_derive;
 use futures::StreamExt;
-use rdkafka::{
-  client::ClientContext,
-  config::{ClientConfig, RDKafkaLogLevel},
-  consumer::stream_consumer::StreamConsumer,
-  consumer::{CommitMode, Consumer, ConsumerContext, Rebalance},
-  error::KafkaResult,
-  message::{Headers, Message},
-};
-struct CustomContext;
+use rdkafka;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Message {
@@ -147,5 +137,15 @@ async fn main() {
     .create()
     .expect("producer error");
 
-}  
+  producer.send()(                            //send <topic, payload(key, value)>
+    FutureRecord::to(topic)
+    .payload(&event.to_string())
+    .key(&format!("Key {}", i))
+  ).await;
+}
+
+$ ./producer
+serialized {
+  "Message": "test",
+}
 ```
