@@ -25,15 +25,15 @@ Same as [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README
 3. Perform CRUD Operations on Resource.   
 
    Web Client                                         Web Service
-   Http GET /api/movies       --------->           Query list of movies
-                  <-[ {id:1,'movie1'}, {id:2,'movie2'} ]-
+   GET www.abc.com/api/movies HTTP/1.1       --------->           Query list of movies
+                           <-[ {id:1,'movie1'}, {id:2,'movie2'} ]-
 
-   Http GET /api/movies/1       --------->         return id=1 movie
-                        <-[ {id:1,'movie1'} ]-
+   GET www.abc.com/api/movies/1 HTTP/1.1    --------->         return id=1 movie
+                                       <-[ {id:1,'movie1'} ]-
    
-   Http POST /api/movies {id:3, 'movie3'}  --------->  Add object [ {id:1,'movie1'}, {id:2,'movie2'}, {id:3,'movie3'} ]
-   Http PUT /api/movies/1 {id:1, 'movie11'} ---------> Updates db [ {id:1,'movie11'}, {id:2,'movie2'}, {id:3,'movie3'} ]
-   Http DELETE /api/movies/1             ---------> Delete object [ {id:2,'movie2'}, {id:3,'movie3'} ]
+   POST www.abc.com/api/movies {id:3, 'movie3'} HTTP/1.1  --------->  Add object [ {id:1,'movie1'}, {id:2,'movie2'}, {id:3,'movie3'} ]
+   PUT www.abc.com/api/movies/1 {id:1, 'movie11'} HTTP/1.1 ---------> Updates db [ {id:1,'movie11'}, {id:2,'movie2'}, {id:3,'movie3'} ]
+   DELETE www.abc.com/api/movies/1 HTTP/1.1             ---------> Delete object [ {id:2,'movie2'}, {id:3,'movie3'} ]
                         
 
    Client	                        	                Web Service
