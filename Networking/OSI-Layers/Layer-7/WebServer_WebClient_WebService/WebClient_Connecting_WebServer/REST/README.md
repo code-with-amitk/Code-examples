@@ -23,6 +23,7 @@ Same as [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README
    movies   : Resource 
 2. Web client will use above END POINT(https://abc.com/api/movies) to talk to Web service to perform CRUD Operations on Resource
 3. Perform CRUD Operations on Resource.   
+
    Web Client                                         Web Service
    Http GET /api/movies       --------->           Query list of movies
                   <-[ {id:1,'movie1'}, {id:2,'movie2'} ]-
