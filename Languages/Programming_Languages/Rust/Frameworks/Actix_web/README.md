@@ -80,8 +80,8 @@ $ cargo run
 ..
 
 //Run from command prompt
-cmd> curl 127.0.0.1:8080/users            //http GET url=127.0.0.1:8080/users
+cmd> curl 127.0.0.1:8080/users            //GET www.127.0.0.1:8080/users HTTP/1.1
 Http GET get_users()
-cmd> curl -X POST 127.0.0.1:8080/users    //http POST url=127.0.0.1:8080/users
+cmd> curl -X POST 127.0.0.1:8080/users    //POST www.127.0.0.1:8080/users HTTP/1.1
 Http POST post_add_user()
 ```
