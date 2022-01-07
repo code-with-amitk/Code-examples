@@ -1,4 +1,5 @@
 **REST / (Representation State Transfer) APIs**
+- [How REST Works](#how)
 - [Restful Methods/APIs/Verbs](#m)
 - [Comparisons: (REST vs HTTP), (REST vs SOAP)](#vs)
 - [Constraints for RESTFUL application](#c)
@@ -7,12 +8,21 @@
 
 
 ## REST / (Representation State Transfer) APIs
-**Restful Web Server/Application?** Web application that implements Restful APIs POST,GET,PUT,DELETE(or HTTP methods). Eg: Twitter, facebook are implemented using restful APIs.
-- When web-client calls Restful APIs then Web-Server will return [JSON](/Languages/ScriptingLanguages/JavaScript) or HTML or [XML](/Languages/Markup_Language) representing state of the requested resource.
+**Restful Web Server/Application?** Web application that implements [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
+- When web-client calls Restful APIs then Web-Server can return [JSON](/Languages/ScriptingLanguages/JavaScript) or HTML or [XML](/Languages/Markup_Language).
+<a name=how></a>
+### How REST Works?
 ```c
+1. Web server(abc.com) defines Resources(Eg: Customers, movies, cars etc) and exposes a service/End point (https://abc.com/api/movies)
+   abc.com  : Domain
+   api      : Convention(mostly used by companies) to expose RESTful services
+   movies   : Resource 
+2. Web client will use above END POINT to talk to Web server/service.
+3. 
+
    Client	                        	                Web Service
- http://<ip-address>/get/username
-                                        Implement APIs GET(){..} POST(){..} DELETE(){..} PUT(){..}
+ http://<ip-address>/api/resource-name
+                                          Implement APIs GET(){..} POST(){..} DELETE(){..} PUT(){..}
                      <---data----
 ```
 **Why Restful**
@@ -22,13 +32,32 @@
 
 <a name=m></a>
 ### Restful Methods/APIs/Verbs
-Client calls these methods and response returned over HTTP.
+Web Client call these [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) and response returned over HTTP.
 ```c
   - POST: This will create a new record in web service
   - GET: Get list of all records in web service
   - PUT: Update a record in web service
   - DELETE: delete 1 record in web service
 ```
+
+<a name=vs></a>
+## Comparisons
+**REST vs [HTTP](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/)**
+
+||REST|HTTP|
+|---|---|---|
+|What|Set of rules|L7 protocol|
+|Focus|Resource|Methods to get|
+
+**REST vs SOAP(Simple Object Access Protocol)**
+
+||REST|SOAP|
+|---|---|---|
+|Why|To access web service|Same|
+|Flexible|More|Less, hard to use|
+|Relies on|JSON,XML,CSV,RSS|XML, CORBA(Common Object Request Broker Architecture) rely on binary messaging|
+|Advgs over soap|small learning curve, smaller messages||
+
 <a name=c></a>
 ### Constraints for RESTFUL application
 - **a. Uniform interface:**
@@ -43,21 +72,6 @@ Client calls these methods and response returned over HTTP.
 - **f. Code-on-demand(optional):** 
   - The client can request code from the server, and then the response from the server will contain some code, usually in the form of a script. The client then can execute that code.
 
-<a name=vs></a>
-## Comparisons
-**REST vs HTTP**
 
-||REST|HTTP|
-|---|---|---|
-|What|Set of rules|L7 protocol|
-
-**REST vs SOAP(Simple Object Access Protocol)**
-
-||REST|SOAP|
-|---|---|---|
-|Why|To access web service|Same|
-|Flexible|More|Less, hard to use|
-|Relies on|JSON,XML,CSV,RSS|XML, CORBA(Common Object Request Broker Architecture) rely on binary messaging|
-|Advgs over soap|small learning curve, smaller messages||
 
 
