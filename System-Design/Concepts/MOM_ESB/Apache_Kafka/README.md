@@ -81,7 +81,7 @@ Software/Library/Modules which fetches data from legacy systems(Eg: database, so
 
 <a name=br></a>
 ### Broker 
-- A Kafka server that manages one or more Topics.
+- A TCP server that listens(default 9092) for Topics(`<key=id,value=payload>`) from producers & provides topics to subscribed consumers.
 - **Bootstrap Broker:**
   - On Init, kafka needs(at least one) broker called the bootstrap brokers. The client will connect to the bootstrap brokers specified by the bootstrap.servers configuration property and query cluster Metadata information which contains the full list of brokers, topic, partitions and their leaders in the Kafka cluster.
 
