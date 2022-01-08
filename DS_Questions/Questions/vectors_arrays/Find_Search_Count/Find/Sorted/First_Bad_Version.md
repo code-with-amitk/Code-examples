@@ -4,7 +4,7 @@ First Bad Version
 - Code
   - [CPP](#cpp)
   - [Rust](#r)
-  - [Python](#py)
+  - [Python](#p)
   - [Java](#j)
 
 ## [First Bad Version](https://leetcode.com/problems/first-bad-version/)
