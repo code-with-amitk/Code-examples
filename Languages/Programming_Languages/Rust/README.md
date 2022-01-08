@@ -16,7 +16,7 @@
 - [Keywords: Lazy, RWlock](Keywords)
 - [Class in Rust](#class)
 - [Control Flow: for, loop, while, match=switch, if, if let](Control_Flow)
-- [Functions](#Functions)
+- [Functions, Associated Functions=Methods, Closure=Lambda, impl block](#Functions)
 - [Frameworks: Actix_web](Frameworks)
 - [Crates, Packages, Modules](#cpm)
 - [Enum](#enum)
@@ -174,11 +174,6 @@ next(), sum()
 <a name=class></a>
 ### [Class in Rust](Class)
 Constructor inside class, Functions inside class
-
-<a name=Functions></a>
-### [Functions](Functions)
-- Returning (value or struct) from function. Function Taking struct as argument. Inbuilt functions, Closures
-- Associated Functions, impl block
 
 <a name=cpm></a>
 ### [Crates, Packages, Modules](Crates_Packages_Modules)
