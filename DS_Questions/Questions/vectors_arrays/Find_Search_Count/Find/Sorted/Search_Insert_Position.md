@@ -1,5 +1,5 @@
 **Search Insert Position**
-- Code
+- **Code**
   - [C++](#cpp)
 
 ### [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
