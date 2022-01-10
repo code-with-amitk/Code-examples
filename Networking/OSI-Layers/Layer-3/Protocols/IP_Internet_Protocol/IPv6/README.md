@@ -1,4 +1,4 @@
-- Why IPv6, Advantages
+- Advantages
 - [Why IPv6 is not deployed yet worldwide](#whynot)
 - [Addressing modes](#modes)
 - [IPv6 Header](#hdr)
@@ -8,7 +8,7 @@
 - [IPv6 URI](#uri)
 - [Configuring IPv6 on Node](#conf)
 
-## Why IPv6, Advantages
+### Advantages
 - *1. LARGER ADDRESS SPACE:* 2<sup>128</sup> = 340 trillion trillion trillion. This number is so large that around 1534 addresses can be allocated to every square meter of this earth
 - *2. SIMPLIFIED HEADER:* All necessary information + options are moved to End of IPv6 header
 - *3. END-TO-END CONNECTIVITY:* NAT will not be required specifically
