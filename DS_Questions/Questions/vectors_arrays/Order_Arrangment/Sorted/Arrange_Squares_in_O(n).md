@@ -108,3 +108,21 @@ impl Solution {
     }
 }
 ```
+
+<a name=py></a>
+#### Python
+```py
+class Solution(object):
+    def sortedSquares(self, A):
+        out = collections.deque()
+        left, right = 0, len(A) - 1
+        i = 0
+        while left <= right:
+            if abs(A[left]) > abs(A[right]):
+                out.appendleft(A[left] * A[left])
+                left += 1
+            else:
+                out.appendleft(A[right] * A[right])
+                right -= 1
+        return list(out)
+```
