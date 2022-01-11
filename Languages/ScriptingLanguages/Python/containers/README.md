@@ -5,10 +5,6 @@
 ## Comparison
 Immutable = RO = Unchangable
 
-|---|---|---|
-|Test|test|test|
-|Test1|test1|test1|
-
 ```c
                 |   List         |          Tuple       | Dictionary{} / MAP(STL) |      SET{}    | DEQUE
 ----------------|----------------|----------------------|-------------------------|---------------|------
