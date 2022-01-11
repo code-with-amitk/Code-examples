@@ -1,8 +1,15 @@
 **Deque**
+- [Initialize](#in)
 - [Append](#ap)
 - [Remove 1st, last](#r)
 
 ### Deque //double ended queue.
+
+<a name=in></a>
+### Initialize
+```py
+out = collections.deque()
+```
 
 <a name=ap></a>
 ### Append
