@@ -152,7 +152,7 @@ async fn main() {
 
   let payl = Payload::add_payload();
 
-  producer.send()(                            //send <topic, payload(key, value)>
+  producer.send()(                            //send <key=topic, value=payload(key, value)>
     FutureRecord::to(topic)
     .payload(&payl.to_string())
     .key(&format!("Key {}", 1))
