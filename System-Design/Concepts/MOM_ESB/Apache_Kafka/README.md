@@ -59,8 +59,8 @@ Registers/Subscribes to a Topic and reads messages as they become available.
 
 <a name=tp></a>
 ### Topics/Events/Message
-- Collection of events(specifically logs) which are stored on servers/disks in form of QUEUE. These topics are replicated. For example:
-  - _1._ temprature changed from 40 to 45   //All are events
+- Events which are stored on servers/disks in form of QUEUE. These topics are replicated. Example:
+  - _1._ Temprature changed from 40 to 45   //All are events
   - _2._ Train changed speed from 80 to 90 etc
 - Events are not deleted after reading, but we can define how long kafka should keep the events. Topics are spread over a number of "buckets" located on different Kafka brokers makes it scalable. A common production setting is a replication factor of 3, i.e., there will always be three copies of topics. 
 - **Usage of topics?** Microservices can talk to each other using topics.
@@ -71,7 +71,7 @@ Registers/Subscribes to a Topic and reads messages as they become available.
                       |
 kafka topics  |t1|t2|t3|t4|...
                       /\
-ms-1    ms2           |
+ms-1    ms2           |t3
                     ms-3(Publishing topic/Producer)
 ```
 
