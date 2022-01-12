@@ -1,7 +1,6 @@
 - **Containers**
   - [Adv, Disadv of containers](#add)
   - [Container vs VM](#vs)
-  - [Issues without containers](#isc)
 - **Docker**
   - [Docker Terms: Host, Image, File, Registry, Compose](#dterms)
   - [Installing & Running Docker](#insd)
@@ -27,6 +26,7 @@
 - Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
 - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
 - **Containerization** Packaging software code and all its dependencies in a bundle.
+- **Issue without containers?** When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 
 <img src=TraditionalOS_vs_Containers.jpg width=400 />
 
@@ -47,11 +47,6 @@ size       |    smaller      | Bigger wrt container
 capability |    smaller      | big
 What       | Pacakaged s/w   | Copy of OS 
 ```
-
-<a name=isc></a>
-### Issues without containers
-- When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. 
-- If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 
 <a name=doc></a>
 # Docker
