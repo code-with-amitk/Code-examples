@@ -32,7 +32,7 @@ serde_json = {version="1.0"}
 tokio = { version = "^0.2.6", features = ["macros", "sync", "stream", "time", "rt-core", "rt-util"]}
 uuid = {version = "0.7", features = ["v4"]}
 ```
-- **src/main.rs**
+**src/main.rs**
   - _1._ Create [StreamConsumer](/System-Design/Concepts/MOM_ESB/Apache_Kafka#st) using [broker](/System-Design/Concepts/MOM_ESB/Apache_Kafka#br)
   - _2._ Subscribe to topic
   - _3._ Start consumer to read on stream.
