@@ -50,7 +50,6 @@ What       | Pacakaged s/w   | Copy of OS
 
 <a name=doc></a>
 # Docker
-- **What?** Docker is a containerization platform which packages application and all its dependencies together in a container, hence it ensures this application works seamlessly in any environment be it development or test or production.
 - Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
 - *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
@@ -64,11 +63,10 @@ $ docker run -----> [Docker Client]
 <a name=dterms></a>
 ### Docker Terms
 - **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
-- **Docker Image**
-  - RO template with instructions for creating a Docker container. We can create our own images or use those created by others and published in a registry.Docker image is created using Docker File.
+- **Docker Image:** Template/Shell script/Docker file for creating a Docker container. Docker image is published on registry.
 - **Docker File:** Creation of Docker images is done using docker files. This is shell script for installing the s/w.
-```sh
-//////docker_file.sh//////////////
+```c
+$ docker_file.sh
 FROM openjdk:11.0.2-jre-slim                            //base image on which the installation is based
 COPY target/customer.jar .                              //copies files in the Docker image
 CMD /usr/bin/java -Xmx400m -Xms400m -jar customer.jar   //what happens when the Docker container is started
@@ -284,7 +282,7 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
 ```
 
 # Container Orchestration
-**Orhestration?** Managing the lifecycles of containers, these are GUI/tools to automate following tasks: Deployment, Scaling up/down, Movement of containers from one host to another, Load balancing, Health monitoring.
+**Orhestration?** Managing the lifecycles of containers. These are GUI/tools to automate following tasks: Deployment, Scaling up/down, Movement of containers from one host to another, Load balancing, Health monitoring.
   - *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
 
 <a name=kub></a>
@@ -292,7 +290,7 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
 
 <a name=mn></a>
 ### A. Master Node
-- **Reponsibilities:** Create/destroy worker nodes. User can only interacts with master node using yaml file.
+- Create/destroy worker nodes. User can only interacts with master node using yaml file.
 - **Daemon in master node**
   - *1. Controller Manager:* Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
   - *2. API Service:* Manages all communication with Worker nodes(using kubelet)
@@ -301,12 +299,13 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
 
 <a name=wn></a>
 ### B. Worker Node
-- **Reponsibilities:** Handling workload.
+- Handles workload.
 - **Daemons in worker node**
   - *1. Kubelet:* Process for communication with master.
   - *2. [Docker](#doc):* A container runtime.
   - *3. Kube Proxy:* Does communication with other nodes in cluster.
-- **Architecture:** 
+
+**Architecture:** 
 Worker nodes hosts [PODS](#pod)(most atomic unit of kubernets). These pods can contain 1 or more [containers](#con).
 ```c
 
@@ -317,7 +316,7 @@ User(application.yaml)      <----Master_Node-------->         <---- Worker_Node-
 
 <a name=pod></a>
 #### POD 
-- Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application)w. Pods run in isolated pvt enviornment. Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
+- Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application). Pods run in isolated pvt enviornment. Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
 - Pod Contains:
   - *1.* Container(Eg: [Docker](#doc))
   - *2.* Shared storage, as Volumes
@@ -388,18 +387,46 @@ $ systemctl start apache                      //Start Application inside contain
 
 <a name=ns></a>
 #### Namespaces
-Virtual clusters inside kubernets cluster. 3 predefined namespaces:
-- _1. Default:_ 
-- _2. Kube-system:_ resources created by kubernets.
-- _3. Kube-public:_ reserved for future.
+- Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
+- 3 predefined namespaces:
 ```c
+1. Default:_ 
+2. Kube-system:_ resources created by kubernets.
+3. Kube-public:_ reserved for future.
+
 $ kubectl crete namespace test                        //Creating new namespace
 $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ```
 
 <a name=kcmd></a>
-### Kubernets commands
+### Kubernets commands (kubectl -h)
+<a name=ser></a>
+#### Services
 ```c
-# kubectl get svc -A      //List all services on this VM
-# kubectl config view     //Show Merged kubeconfig settings
+//ssh to kubernets VM running microservices
+# kubectl get svc -A                        //List all services on this VM
+```
+<a name=pc></a>
+#### Pods
+```c
+$ kubectl get pods -A                             //List all pods
+NAMESPACE               POD-NAME                  READY   STATUS      RESTARTS   AGE
+nsa                     pod1                      1/1     Running     0          48d      //2 pods in namespace=nsa
+nsa                     pod2                      0/2     Completed   0          7d3h
+nsb                     pod1                      0/2     Completed   0          7d3h
+nsb                     pod2                      0/2     Completed   0          7d3h
+
+$ kubectl get pods -A | grep kafka                //All pods named kafka
+Namespace              Pod-name         READY   STATUS      RESTARTS   AGE
+n1                      kafka-0         2/2     Running     0          38d
+n1                      kafka-1         2/2     Running     0          38d
+n1                      kafka-2         2/2     Running     0          38d
+
+$ kubectl get pods -n namespace           //All pods in namespace
+```
+<a name=lc></a>
+#### Logs of Container in Pod
+```c
+$ kubectl logs -h                             //Print the logs for a container in a pod
+$ kubectl logs podName -n namespaceName containerName > t.txt
 ```
