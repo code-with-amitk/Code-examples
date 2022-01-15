@@ -7,7 +7,7 @@
 - **Terms**
   - [Generalization](#g)
   - [Specialization](#sp)
-  - **Association**
+  - **[Association](#as)**
     - [Aggregation/Collection](#ag)
     - [Composition / Has-A](#co)
 - [Function Overriding](#fo)
@@ -148,7 +148,9 @@ int main(){
 - For example, degree of hazardness will only be applicable to certain types of frieghts not all
 <img src=Specialization1.png width=300/>
 
+<a name=as></a>
 ### 3. Association
+Means any kind of relationship between 2 objects.
 <a name=ag></a>
 #### 3.1 Aggregation
 Contained Object can exist without container Object. Owner-ship is present.
