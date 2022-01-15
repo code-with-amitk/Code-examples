@@ -144,8 +144,9 @@ int main(){
 
 <a name=sp></a>
 ### 2. Specialization
-New derived classes are created from base to perform Some SPECIAL function is called specialization
-<img src=Specialization.png width=300/>
+- Creating new subclasses from certain attributes, methods only for some special usecase.
+- For example, degree of hazardness will only be applicable to certain types of frieghts not all
+<img src=Specialization1.png width=300/>
 
 ### 3. Association
 <a name=ag></a>
