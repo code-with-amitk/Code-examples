@@ -151,67 +151,28 @@ int main(){
 ### 3. Association
 <a name=ag></a>
 #### 3.1 Aggregation
-Contained Object can exist without container Object. Contained object can belong to different classes at same time. Contained class does not delete container class object. Owner-ship is present. Contained class have pointer to object of contained class
-```c++
-class tree{
-    string name;
-public:
-    tree(string t):name(t){}
-    string getName() { return name;}
+Contained Object can exist without container Object. Owner-ship is present.
+```cpp
+class A{
+    int a;
 };
 
-class sunlight{
-    tree *p;
-public:
-    sunlight(tree *t):p(t){}
+class B{
+    A *ptr;
 };
-
-int main(){
-    tree *ptr = new tree("palm");               //plam can exist with ant without sunlight
-   {
-        sunlight d(ptr);
-    } // sunlight object goes out of scope here and is destroyed
-    std::cout << ptr->getName() << " Exists without Sunlight\n";
-    delete ptr;
-}
-# ./a.out
-palm Exists without Sunlight
 ```
 
 <a name=co></a>
 #### 3.2 Composition
-If container Object is deleted, contained object will also deleted. Deleting contained object is responsibility of container.  Container class have actual object of contained class.
+If container Object is deleted, contained object will also deleted.
 ```cpp
-//A is created But destroyed with B
-
 class A{
-public:
-        A(){
-                cout<<"A's Constructor\n";
-        }
-        ~A(){
-                cout<<"A's Destructor\n";
-        }
+  int a;
 };
 
 class B{
        A  a;    //Composition
-public:
-       B(){
-               cout<<"B's constructor\n";
-       }
-       ~B(){
-               cout<<"B's Destructor\n";
-       }
 };
-int main(){
-        B b(1);
-}
-# ./a.out 
-A's Constructor
-B's constructor
-B's Destructor
-A's 
 ```
 
 <a name=fo></a>
