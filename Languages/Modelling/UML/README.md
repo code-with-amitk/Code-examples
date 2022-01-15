@@ -34,6 +34,6 @@
 ## Relationship
 How objects/elements have relationship with each other?
 ### [1. Generalization/Inheritance](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Inheritance#g)
-### [2. Association]()
-### 3. Aggregation
+### [2. Association](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Inheritance#as)
+### [3. Aggregation](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Inheritance#as)
 ### 4. Composition
