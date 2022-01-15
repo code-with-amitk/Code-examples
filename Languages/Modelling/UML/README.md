@@ -66,4 +66,4 @@ Implementation declared in 1 class is defined in another class. Eg: Virtual Func
 #### _2c._ Reflexive Association
 #### _2d._ Multiplicity
 [`0..*`](#tomany) A passenger can belong to minimum=0 and possibly more airplanes
-<a name=relationships.png></a>
+<img src=relationships.png></img>
