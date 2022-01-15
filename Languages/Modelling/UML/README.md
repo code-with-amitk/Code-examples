@@ -1,7 +1,12 @@
 **UML (Unified Modelling Language)**
-- Types of UML Diagram
+- **Types of UML Diagram**
   - [1. Structural](#st)
   - [2. Class](#cl)
+- **Relationship Types**
+  - [1. Generalization/Inheritance](#gen)
+  - [2. Association](#as)
+  - [3. Aggregation](#ag)
+  - [4. Composition](#com)
 
 ## UML
 - To build models/class diagrams and their relationship before actual code
@@ -28,7 +33,7 @@
 
 ## Relationship
 How objects/elements have relationship with each other?
-1. Generalization/Inheritance
-2. Association
-3. Aggregation
-4. Composition
+### [1. Generalization/Inheritance](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Inheritance#g)
+### [2. Association]()
+### 3. Aggregation
+### 4. Composition
