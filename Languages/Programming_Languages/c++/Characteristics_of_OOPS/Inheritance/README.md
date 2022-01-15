@@ -5,7 +5,7 @@
 - [Diamond Problem](#dp)
   - [Virtual Inheritance / Virtual Base class](#vi)
 - **Terms**
-  - [Generalization](#g)
+  - [Generalization = Inheritance](#g)
   - [Specialization](#sp)
   - **[Association](#as)**
     - [Aggregation/Collection](#ag)
@@ -137,7 +137,7 @@ int main(){
 
 ## Terms
 <a name=g></a>
-### 1. Generalization
+### 1. Generalization = Inheritance
 - Process of extracting shared characteristics(attributes, methods) from 2 or more classes and combining them into a generalized superclass.
 - Shared characteristics(variables, methods) are listed in base class but accessible(and used) in all derived/sub classes.
 <img src=Generalization1.png width=300/>
