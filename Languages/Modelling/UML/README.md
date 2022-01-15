@@ -2,11 +2,11 @@
 - **Types of UML Diagram**
   - [1. Structural](#st)
   - [2. Class](#cl)
-- **Relationship Types**
-  - [1. Generalization/Inheritance](#gen)
-  - [2. Association](#as)
-  - [3. Aggregation](#ag)
-  - [4. Composition](#com)
+- **[Relationship Types](#r)**
+  - _1._ Generalization/Inheritance
+  - _2._ Association
+  - _3._ Aggregation
+  - _4._ Composition
 
 ## UML
 - To build models/class diagrams and their relationship before actual code
@@ -31,6 +31,7 @@
 --------------------------------
 ```
 
+<a name=r></a>
 ## Relationship
 How objects/elements have relationship with each other?
 ### [1. Generalization/Inheritance](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Inheritance#g)
