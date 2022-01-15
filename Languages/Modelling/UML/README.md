@@ -3,7 +3,8 @@
   - [1. Structural](#st)
   - [2. Class](#cl)
 - **[Relationship Types](#r)**
-  - [`0..* 1..*`](#tomany)
+  - [`0..*`](#0tom)
+  - [`1..*`](#1tom)
   - _1._ Generalization/Inheritance
     - _1a._ Relization
   - _2._ Association
@@ -38,15 +39,16 @@
 <a name=r></a>
 ## Relationship
 How objects/elements have relationship with each other?
-### [`0..*, 1..*`](#tomany)
-####  **`1..*`(1 to many)**
+<a name=#1tom></a>
+### **`1..*` = 1 to many**
 Means book object can belong to **at least 1 and possibly more** library classes.
 ```c
 |----|1..*   |-------|
 |book|-------|Library|
 |----|       |-------|
 ```
-#### **`0..*`(0 to many)**
+<a name=#0tom></a>
+### **`0..*` = 0 to many**
 Means object-1(can belong to) **at least 0 and possibly more** object-2.
 ```c
 |--------|0..*      |--------|
