@@ -66,4 +66,4 @@ Implementation declared in 1 class is defined in another class. Eg: Virtual Func
 ```
 <a name=o></a>
 ### 2. Object, Use Case, Interactive, Collaborative, Activity, State, Deployment, Component Diagram
-<img src=UML_Diagrams.png width=700></img>
+<img src=UML_Diagrams.png width=1000></img>
