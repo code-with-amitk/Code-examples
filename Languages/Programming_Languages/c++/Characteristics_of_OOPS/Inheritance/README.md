@@ -138,8 +138,9 @@ int main(){
 ## Terms
 <a name=g></a>
 ### 1. Generalization
-Creating Base from 2 or more derv classes by extracting their Similar Characteristics(Attributes & Behavior).
-<img src=Generalization.png width=300/>
+- Process of extracting shared characteristics(attributes, methods) from 2 or more classes and combining them into a generalized superclass.
+- Shared characteristics(variables, methods) are listed in base class but accessible(and used) in all derived/sub classes.
+<img src=Generalization1.png width=300/>
 
 <a name=sp></a>
 ### 2. Specialization
