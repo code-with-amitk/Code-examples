@@ -1,7 +1,4 @@
 **UML (Unified Modelling Language)**
-- **Types of UML Diagram**
-  - [1. Structural](#st)
-  - [2. Class](#cl)
 - **[Relationship Types](#r)**
   - [`0..*`](#0tom)
   - [`1..*`](#1tom)
@@ -12,29 +9,11 @@
     - _2b._ Composition
     - _2c._ Reflexive Association
     - _2d._ Multiplicty
+- **Types of UML Diagram**
+  - [1. Class diagram](#cl)
 
 ## UML
 - To build models/class diagrams and their relationship before actual code
-
-## Types of UML Diagrams
-<a name=st></a>
-### 1. Structural
-
-<a name=cl></a>
-### 2. Class Diagram
-```c
----------------------------------
-|      Student //classname      |
----------------------------------
-|+name:string       //public    | << Attributes
-|-marks:int         //private   |
-|#character:string  //protected |
----------------------------------
-|+fun1(int)=void //Normal       | << Methods
-|+_fun2()__=void    //static is underlined
-|+fun3()=void     //virtual=Italized
---------------------------------
-```
 
 <a name=r></a>
 ## Relationship
@@ -66,4 +45,23 @@ Implementation declared in 1 class is defined in another class. Eg: Virtual Func
 #### _2c._ Reflexive Association
 #### _2d._ Multiplicity
 [`0..*`](#tomany) A passenger can belong to minimum=0 and possibly more airplanes
-<img src=relationships.png></img>
+<img src=relationships.png width=700></img>
+
+## Types of UML Diagrams
+<a name=cl></a>
+### 1. Class Diagram
+```c
+---------------------------------
+|      Student //classname      |
+---------------------------------
+|+name:string       //public    | << Attributes
+|-marks:int         //private   |
+|#character:string  //protected |
+---------------------------------
+|+fun1(int)=void //Normal       | << Methods
+|+_fun2()__=void    //static is underlined
+|+fun3()=void     //virtual=Italized
+--------------------------------
+```
+### 2. Object, Use Case, Interactive, Collaborative, Activity, State, Deployment, Component Diagram
+<img src=UML_Diagrams.png width=700></img>
