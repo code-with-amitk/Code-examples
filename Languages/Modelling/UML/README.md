@@ -11,6 +11,7 @@
     - _2d._ Multiplicty
 - **Types of UML Diagram**
   - [1. Class diagram](#cl)
+  - [Object, Use Case, Interactive, Collaborative, Activity, State, Deployment, Component Diagram](#o)
 
 ## UML
 - To build models/class diagrams and their relationship before actual code
@@ -63,5 +64,6 @@ Implementation declared in 1 class is defined in another class. Eg: Virtual Func
 |+fun3()=void     //virtual=Italized
 --------------------------------
 ```
+<a name=o></a>
 ### 2. Object, Use Case, Interactive, Collaborative, Activity, State, Deployment, Component Diagram
 <img src=UML_Diagrams.png width=700></img>
