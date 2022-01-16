@@ -19,21 +19,21 @@
 <a name=r></a>
 ## Relationship
 How objects/elements have relationship with each other?
-<a name=#1ton></a>
-### **`1..*` = 1 to many = 1 to n**
-Means book object can belong to **at least 1 and possibly more** library classes.
-```c
-|----|1..*   |-------|
-|book|-------|Library|
-|----|       |-------|
-```
-<a name=#0ton></a>
+<a name=0ton></a>
 ### **`0..*` = 0 to many = 1 to n**
 Means object-1(can belong to) **at least 0 and possibly more** object-2.
 ```c
 |--------|0..*      |--------|
 |object-1|----------|object-2|
 |--------|          |--------|
+```
+<a name=1ton></a>
+### **`1..*` = 1 to many = 1 to n**
+Means book object can belong to **at least 1 and possibly more** library classes.
+```c
+|----|1..*   |-------|
+|book|-------|Library|
+|----|       |-------|
 ```
 ### [1. Inheritance/Generalization/Specialization](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Inheritance#g)
 #### _1a._ Realization
