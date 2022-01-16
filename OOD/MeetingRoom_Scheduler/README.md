@@ -20,15 +20,26 @@ Meeting Room Scheduler OOD
 5. User: Can be organizer or attendee
 ```
 ### 3. Relationship b/w objects
+- **[`0..*`](/Languages/Modelling/UML/README.md#0ton):**
+  - Meeting_Scheduler can hold atleast 0 and max n meeting rooms.
+  - Meeting rooms can have atleast 0 or n meetings.
+  - User to Meeting_Scheduler is 0 to n relationship, because user can use 0 or n meeting_scheduler class.
+- **[`1..*`](/Languages/Modelling/UML/README.md#1ton):**
+  - Meeting to Meeting room is 1ton relation, because only 1 meeting can be conducted at a time in meeting room.
 ```c
-
-|-------------------| 0..*    |---------------|1..*         |--------------|
-| Meeting_Scheduler |---------| Meeting rooms |-------------| Meetings     |
-|-------------------|         |---------------|             |--------------|
-    |                                                         |
-|-------|         |---------------|                           |
-| User  |---------| notifications |                           |
-|-------|         |---------------|                           |
-   |1..*  //Bcoz 1 user can schedule 1 to many meetings.      |
-   |----------------------------------------------------------|
+|-------------------| 0..*     |---------------|0..*          |--------------|
+|                   |--------->|               |------------->|              |
+| Meeting_Scheduler |          | Meeting room  |              |   Meeting    |
+|                   |          |               |          1..*|              |
+|-------------------|          |---------------|<-------------|--------------|
+    /\                                                              /\   |1..n  //Meeting can have 1 or n attendees
+    |                                                               |    |
+    |0..*                                                           |    |
+|-------|0..*     |---------------|                                 |    |
+| User  |-------->| notifications |                                 |    |
+|-------|         |---------------|                                 |    |
+/\   | 0..*  //Bcoz 1 user can schedule 0 to many meetings.         |    |
+|     |-------------------------------------------------------------|    |
+|-------------------------------------------------------------------------     
+   
 ```
