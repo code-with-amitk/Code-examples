@@ -1,7 +1,7 @@
 **UML (Unified Modelling Language)**
 - **[Relationship Types](#r)**
-  - [`0..*`](#0tom)
-  - [`1..*`](#1tom)
+  - [`0..* or 0..n`](#0ton)
+  - [`1..* or 1..n`](#1ton)
   - _1._ Generalization/Inheritance
     - _1a._ Relization
   - _2._ Association
@@ -19,16 +19,16 @@
 <a name=r></a>
 ## Relationship
 How objects/elements have relationship with each other?
-<a name=#1tom></a>
-### **`1..*` = 1 to many**
+<a name=#1ton></a>
+### **`1..*` = 1 to many = 1 to n**
 Means book object can belong to **at least 1 and possibly more** library classes.
 ```c
 |----|1..*   |-------|
 |book|-------|Library|
 |----|       |-------|
 ```
-<a name=#0tom></a>
-### **`0..*` = 0 to many**
+<a name=#0ton></a>
+### **`0..*` = 0 to many = 1 to n**
 Means object-1(can belong to) **at least 0 and possibly more** object-2.
 ```c
 |--------|0..*      |--------|
