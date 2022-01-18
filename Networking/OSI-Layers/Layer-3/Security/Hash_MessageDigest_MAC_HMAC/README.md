@@ -23,14 +23,14 @@ Kumar >  | Hash Function |  > 4421
 |Output Hash(bits)|512|256|160|128|
 
 <a name=mac></a>
-## MAC
+## 2. MAC
 *Examples:* CMAC, SHA1-HMAC, MD5-HMAC, UMAC
 ```c
 (Message + Pvt Key) > |Hash function| > MAC    
 ```
 
 <a name=hmac></a>
-## HMAC(Hashed MAC)
+## 3. HMAC(Hashed MAC)
 More complex way of calculating MAC
 ```c
 
