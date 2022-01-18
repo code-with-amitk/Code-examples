@@ -19,8 +19,8 @@ if input is not 512 bit pad it
 ```c
 //AM: Addition Modulo
   Round-1:    F(K2,K3,K4) ->  AM ->  AM -> |Rotate left bit by s places| ->  AM -> K2        
-                              /\     /\				                               /\
-                 			        C1     m1 				                             C2
+                              /\     /\                                      /\
+                              C1     m1                                      C2
   Round-2: For m2 and so on..
-```    
+```
 - Message Digest=Hash = abcd
