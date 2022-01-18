@@ -16,11 +16,11 @@ Kumar >  | Hash Function |  > 4421
 <a name=ha></a>
 ### Hashing Algo
 
-|Hashing Algo|SHA3/Keccak(or 512)|SHA2(or 256)(not broken)|SHA1,SHA0(broken)|MD4,[MD5(broken)](Hashing_Algo)|
-|---|---|---|---|---|
-|Published|2015|2012|1995
-|Input(bytes)|2128 bit|2128 bit|264 bit|infinite|
-|Output Hash(bits)|512|256|160|128|
+|Hashing Algo|SHA3/Keccak(or 512)|SHA2(or 256)(not broken)|SHA1,SHA0(broken)|MD4,[MD5(broken)](Hashing_Algo)|[Argon2](Hashing_Algo)|
+|---|---|---|---|---|---|
+|Published|2015|2012|1995|2015|
+|Input(bytes)|2128 bit|2128 bit|264 bit|infinite||
+|Output Hash(bits)|512|256|160|128||
 
 <a name=mac></a>
 ## 2. MAC
