@@ -1,6 +1,6 @@
 - **:heart: I love problems. This is Awesome. :heart:**
 - [Approach](#apr)
-- [Big O Notation](#bigo)
+- [Big O Notation / Asymtotic Analysis](#bigo)
   - [1. Space Complexity](#space) 
     - [1.1 O(1) is not Constant Space](#o1)
     - [1.2 Recursion = O(2<sup>n</sup>)](#recurs)
@@ -10,7 +10,7 @@
 - [Speed up the program](#speed)
 
 <a name=apr></a>
-## Approach (RDSS ME PCT) //
+## Approach (RDSS ME PCT)
 - _1. Repeat:_ Repeat problem in own words.
 - _2. Doctest:_ Reaserch lot on I/P, O/P. -1,0,smallest valid,medium,largest valid
 - _3. Similar:_ Have I seen similar problem before?
