@@ -1,4 +1,5 @@
 - **:heart: I love problems. This is Awesome. :heart:**
+- [Approach](#apr)
 - [Big O Notation](#bigo)
   - [1. Space Complexity](#space) 
     - [1.1 O(1) is not Constant Space](#o1)
@@ -7,6 +8,18 @@
     - [2.1 What is Asymtotic Analysis](#asym) 
     - [2.1 Recursion = O(2<sup>n</sup>)](#recurt)
 - [Speed up the program](#speed)
+
+<a name=apr></a>
+## Approach (RDSS ME PCT) //
+- _1. Repeat:_ Repeat problem in own words.
+- _2. Doctest:_ Reaserch lot on I/P, O/P. -1,0,smallest valid,medium,largest valid
+- _3. Similar:_ Have I seen similar problem before?
+- _4. Subproblem:_ Does it contains subproblem to be solved with(Recursion or else)?
+- _5. Mind:_ See problem in mind. Mental representation of problem=Solution
+- _6. English:_ State logic in Plain English
+- _7. Pseudo Code:_ Write PC, walk step by step until you find problem
+- _8. Code:_
+- _9. Test cases:_
 
 <a name=bigo></a>
 ## Big O Notation, Complexity Calculations
