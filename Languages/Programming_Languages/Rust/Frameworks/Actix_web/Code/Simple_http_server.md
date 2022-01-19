@@ -6,6 +6,8 @@
 #### How it works
 Server exposes 4 endpoints to http clients.
 ```rs
+//Here we have taken Resource=user.
+
 GET /users         | returns all users                              |   get_users()
 GET /users/{id}    | returns the user with a given id               |   get_user_by_id()
 POST /users        | takes in a JSON payload and creates a new user |   post_add_user()
