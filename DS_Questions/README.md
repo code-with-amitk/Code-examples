@@ -10,16 +10,18 @@
 - [Speed up the program](#speed)
 
 <a name=apr></a>
-## Approach (RDSS ME PCT)
-- _1. Repeat:_ Repeat problem in own words.
-- _2. Doctest:_ Reaserch lot on I/P, O/P. -1,0,smallest valid,medium,largest valid
-- _3. Similar:_ Have I seen similar problem before?
-- _4. Subproblem:_ Does it contains subproblem to be solved with(Recursion or else)?
-- _5. Mind:_ See problem in mind. Mental representation of problem=Solution
-- _6. English:_ State logic in Plain English
-- _7. Pseudo Code:_ Write PC, walk step by step until you find problem
-- _8. Code:_
-- _9. Test cases:_
+## Approach (UAWCTS(Ultimate Aim with clear Tested Solution))
+**Google Interview:** https://www.youtube.com/watch?v=XKu_SEDAykw
+1. Understand Clearly. Repeat
+	- Note key points from question.
+	- Repeat in your own words
+	- Ask too many clarifying questions(from interviewer)
+2. Approach: Naive(Just tell), {O(logn) or O(n)}. Thought-out loud
+3. Walk: Walk approach on given input
+4. Code. Write meaningful function,variable names.
+5. Test cases: doctest(-1,0,1,-inf,+inf)
+6. Scale on Multiple machines
+
 
 <a name=bigo></a>
 ## Big O Notation, Complexity Calculations
