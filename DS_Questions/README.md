@@ -10,7 +10,7 @@
 - [Speed up the program](#speed)
 
 <a name=apr></a>
-## Approach (UAWCTS(Ultimate Aim with clear Tested Solution))
+## Approach (UAWCTS(U Amit Will Conquer This Season))
 **Google Interview:** https://www.youtube.com/watch?v=XKu_SEDAykw
 1. Understand Clearly. Repeat
 	- Note key points from question.
@@ -18,7 +18,7 @@
 	- Ask too many clarifying questions(from interviewer)
 2. Approach: Naive(Just tell), {O(logn) or O(n)}. Thought-out loud
 3. Walk: Walk approach on given input
-4. Code. Write meaningful function,variable names.
+4. Code. Write Modularized code. meaningful function,variable names. 
 5. Test cases: doctest(-1,0,1,-inf,+inf)
 6. Scale on Multiple machines
 
