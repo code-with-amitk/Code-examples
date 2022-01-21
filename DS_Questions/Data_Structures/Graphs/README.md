@@ -1,8 +1,8 @@
 - [What is Graph](#what)
 - **[Representation of Graph](#r)**
-  - [1. Adjacency Matrix/Lookup table](#m)
-  - [2. Adjacency List](#l)
-  - [3. Edge List](#el)
+  - [1. Adjacency List](#l)
+  - [2. Edge List](#el)
+  - [3. Adjacency Matrix/Lookup table](#m)
 - **[Terms: Degree, Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
 - **Types of Graphs**
   - [1. Cyclic/Acyclic](#cyclic)
@@ -27,14 +27,40 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 
 <a name=r></a>
 ## Representation of Graph
+<a name=l></a>
+#### 1. Adjacency List	//Often used
+- Each node keeps list of adjacent neighbours.
+- Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
+```c
+    3 -- 1
+    | \
+    |   \
+    0 -- 2
+
+        2,3   3    0,3   0,1,2  <Linked list
+	/\    /\    /\    /\
+        |     |     |     |
+Nodes | 0  |  1  |  2  |  3  |  <vector
+```
+<a name=el></a>
+#### 2. Edge List
+- Each node keeps [edges](#t)
 ```cpp
-        a --> c 
-        |     |
-        |     \/
-        ----> d <-- b
+    3 -- 1
+    | \
+    |   \
+    0 -- 2
+
+   v[0] |2|3|		//0 has edges to 2,3
+   v[1] |3|		//1 has edge to 3
+   v[2] |0|3|           //2 has edges to 0,3
+   v[3] |0|1|2|         //3 has edges to 0,1,2
+
+  v[0].push_back(2); v[0].push_back(3);
+  v[1].push_back(3); v[2].push_back(3);
 ```
 <a name=m></a>
-#### 1. Adjacency Matrix/Lookup table
+#### 3. Adjacency Matrix/Lookup table
 - Each cell keeps how two nodes are connected. For unweighted graph values are `1`. 
 - For weighted graph values are cost/weights. 
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -49,34 +75,6 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 2  0   0   0   1
 3  0   0   0   1
 4  1   1   1   0
-```
-
-<a name=l></a>
-#### 2. Adjacency List
-Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
-```c
-vector<list>
-        4,3   4    1,4   1,2,3  <Linked list
-	/\    /\    /\    /\
-        |     |     |     |
-Nodes | 1  |  2  |  3  |  4  |  <vector
-```
-<a name=el></a>
-#### 3. Edge List
-Shows edge connections.
-```cpp
-    3 -- 1
-    | \
-    |   \
-    0 -- 2
-
-   v[0] |2|3|		//0 is connected to 2,3
-   v[1] |3|		//1 is connected to 3
-   v[2] |0|3|           //2 is connected to 0,3
-   v[3] |0|1|2|         //3 is connected to 0,1,2
-
-  v[0].push_back(2); v[0].push_back(3);
-  v[1].push_back(3); v[2].push_back(3);
 ```
 
 <a name=t></a>
