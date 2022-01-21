@@ -1,4 +1,4 @@
-## Backtracking
+## [Backtracking](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
 - Backtracking uses Recursion & it is an algorithmic paradigm aimed to improve the time complexity of the [Naive/Brute Force](..) **if possible**.
 - Backtracking **can be imagined** same as tree traversal where we start from root node to search for solutions that are located at the leaf nodes.
 - Each node represents a partial candidate to final solution, At each node. Once we can determine if a certain node cannot possibly lead to a final solution, we abandon the current node and backtrack to its parent node to explore other possibilities.
