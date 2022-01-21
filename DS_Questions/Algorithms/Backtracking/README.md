@@ -7,10 +7,12 @@
 ### Examples
 #### Example-1
 - We are given a set of words represented in the form of a tree. Find specific word.
+
 **Brute Force Approach**
-<img src=backtracking.jpeg></img>
+<img src=backtracking.jpeg width=500></img>
+
 **BackTracking Approach**
-<img src=backtracking1.jpeg></img>
+<img src=backtracking1.jpeg width=500></img>
 
 - **Example:** Finding path in a maze from start point to destination.
   - Select one way and try to move forward towards the destination.
