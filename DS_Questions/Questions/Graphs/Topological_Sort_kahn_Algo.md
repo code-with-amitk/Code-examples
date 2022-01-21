@@ -1,4 +1,4 @@
-- [What is Topological Sort](/DS_Questions/Data_Structures/Graphs)
+- [What is Topological Sort](/DS_Questions/Data_Structures/Graphs#t)
 - [Logic](#l)
 - [Complexity](#c)
 - [Code](#co)
