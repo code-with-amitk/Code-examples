@@ -5,7 +5,7 @@
   - [3. Edge List](#el)
 - **[Terms: Degree, Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
 - **Types of Graphs**
-  - [1. Cyclic/Acyclic](cyclic)
+  - [1. Cyclic/Acyclic](#cyclic)
     - [1a. DAG/Directed Acyclic Graph](#dag)
   - [2. Directed/Undirected](/DS_Questions/Data_Structures/Graphs/Directed_Undirected)
   - [3. Spanning Tree](#st)
