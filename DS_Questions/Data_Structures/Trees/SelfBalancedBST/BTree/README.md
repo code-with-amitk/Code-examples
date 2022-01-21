@@ -1,7 +1,7 @@
 **BTree**
 
 ## BTree / B Tree / B-Tree
-- B-Tree is a self-balancing search tree (might not be binary).
+- Sorted self-balancing search tree (might not be binary).
 - BTree is used to store huge amount of data that cannot fit in main memory. (Eg: DB)
 - **BTree is better wrt Disk Access:** Since DB uses B-Tree/B+Tree. Search time is still better than disk.
 - Time complexity(Search, Insert, Delete):	O(log n). n is no of nodes.
