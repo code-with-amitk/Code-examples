@@ -41,6 +41,10 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 	/\    /\    /\    /\
         |     |     |     |
 Nodes | 0  |  1  |  2  |  3  |  <vector
+
+      |key value   |           |             |               |
+      | 0 | [2,3]  |  1 | [3]  |  2 | [0,3]  |  3 | [0,1,2]  |  <<HashTable
+      |            |           |             |               |
 ```
 <a name=el></a>
 #### 2. Edge List
@@ -60,21 +64,21 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
   v[1].push_back(3); v[2].push_back(3);
 ```
 <a name=m></a>
-#### 3. Adjacency Matrix/Lookup table
-- Each cell keeps how two nodes are connected. For unweighted graph values are `1`. 
-- For weighted graph values are cost/weights. 
+#### 3. Adjacency Matrix/Lookup table/2D Matrix
+- Shows whether node has connection to other node or not. `0 means No, 1 means yes`
+- For weighted graph values are cost/weights.
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
 ```c
-    4 -- 2
+    3 -- 1
     | \
     |   \
-    1 -- 3
+    0 -- 2
     
-   1   2   3   4
-1  0   0   1   1    
-2  0   0   0   1
-3  0   0   0   1
-4  1   1   1   0
+   0   1   2   3
+0  0   0   1   1    
+1  0   0   0   1
+2  1   0   0   1
+3  1   1   1   0
 ```
 
 <a name=t></a>
