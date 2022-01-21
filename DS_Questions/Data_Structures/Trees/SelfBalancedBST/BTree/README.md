@@ -1,0 +1,16 @@
+**BTree**
+
+## BTree / B Tree / B-Tree
+- B-Tree is a self-balancing search tree (might not be binary).
+- BTree is used to store huge amount of data that cannot fit in main memory. (Eg: DB)
+- **BTree is better wrt Disk Access:** Since DB uses B-Tree/B+Tree. Search time is still better than disk.
+- Time complexity(Search, Insert, Delete):	O(log n). n is no of nodes.
+```
+struct btree{
+    int *keys;  // An array of keys
+    int t;      // Minimum degree (defines the range for number of keys)
+    BTreeNode **C; // An array of child pointers
+    int n;     // Current number of keys
+    bool leaf; // Is true when node is leaf. Otherwise false
+}    
+```
