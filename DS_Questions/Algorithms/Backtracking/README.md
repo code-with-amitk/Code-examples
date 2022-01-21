@@ -6,7 +6,7 @@
 
 ### Examples
 #### Example-1
-- We are given a set of words represented in the form of a tree. Find specific word.
+- We are given a set of words represented in the form of a tree. Find word `AIM`.
 
 **Brute Force Approach**
 
