@@ -34,7 +34,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
         ----> d <-- b
 ```
 <a name=m></a>
-### 1. Adjacency Matrix/Lookup table
+#### 1. Adjacency Matrix/Lookup table
 - Each cell keeps how two nodes are connected. For unweighted graph values are `1`. 
 - For weighted graph values are cost/weights. 
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -52,7 +52,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 ```
 
 <a name=l></a>
-### 2. Adjacency List
+#### 2. Adjacency List
 Each node keeps list of neighbors. Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
 ```c
 vector<list>
@@ -63,10 +63,17 @@ Nodes | 1  |  2  |  3  |  4  |  <vector
 ```
 <a name=el></a>
 #### 3. Edge List
+Shows edge connections.
 ```cpp
-   v[0] |2|3|		//a(0) has c(2),d(3) as edges
-   v[1] |3|
-   v[2] |3|
+    3 -- 1
+    | \
+    |   \
+    0 -- 2
+
+   v[0] |2|3|		//0 is connected to 2,3
+   v[1] |3|		//1 is connected to 3
+   v[2] |0|3|           //2 is connected to 0,3
+   v[3] |0|1|2|         //3 is connected to 0,1,2
 
   v[0].push_back(2); v[0].push_back(3);
   v[1].push_back(3); v[2].push_back(3);
