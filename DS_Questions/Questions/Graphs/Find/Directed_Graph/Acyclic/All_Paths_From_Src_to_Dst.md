@@ -1,15 +1,18 @@
-**All Paths From Source to Target**
+**Find All Paths From Source to Target**
 - [Approach-1. BackTracking](#a1)
   - [Logic](#l1)
   - [Code](#c1)
+  - [Complexity](#co1)
 
-## [All Paths From Source to Target](https://leetcode.com/problems/all-paths-from-source-to-target/)
-- Given a [directed acyclic graph (DAG)]() of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
+## [Find All Paths From Source to Target Node](https://leetcode.com/problems/all-paths-from-source-to-target/)
+- Given a [directed acyclic graph (DAG)](/DS_Questions/Data_Structures/Graphs#dag) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
 - `graph[i]` is a list of all nodes you can visit from node i (i.e., there is a directed edge from node i to node `graph[i][j]`).
 ```c
 Example-1
-Input: graph = [[1,2],[3],[3],[]]. Consider as | 1,2 | 3 | 3 | {} |
-                                                  0    1   2    3 
+Input: graph = [[1,2],[3],[3],[]].
+| 1,2 | 3 | 3 | {} |. Node 0 has 2 neighbours(1,2). Node 1 has 1 neighbour(3), Node 2 has 1 neighbour(3).
+  0    1   2    3 
+  
   0 ---> 1 ---> 3
   |             /\
   |----> 2 -----|
@@ -70,3 +73,24 @@ int main() {
     s.allPathsSourceTarget(input);
 }
 ```
+<a name=co1></a>
+#### Complexity
+- if n = no of nodes in graph.
+- Max Possible Paths: At maximum, then there can be (2<sup>n-1</sup> - 1) paths from src to dst.
+```c
+Nodes   Graph                     Paths
+  2     0 --> 1                 2^(2-1)-1 = 1
+  
+  3     0 ---> 1 --> 2          2^(3-1)-1 = 3
+        |------------/\
+        
+        |-------------|
+        |             \/
+  4     0 ---> 1 ---> 2         2^(4-1)-1 = 7
+        |     \/      /\
+        |----> 3 ------|
+```
+- **Time Complexity:** (2<sup>n-1</sup> - 1)`*`n = 2<sup>N</sup>N. Since there can be path from every nth node to end.
+- **Space Complexity:** (2<sup>n-1</sup> - 1)`*`n = 2<sup>N</sup>N
+  - Since there can be max (2<sup>n-1</sup> - 1) paths from src to end. We need to store these many paths in vector.
+  - N recursions will take n space. Since its consumes function stack.
