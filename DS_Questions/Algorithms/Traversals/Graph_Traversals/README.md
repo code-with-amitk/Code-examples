@@ -1,11 +1,11 @@
 **Traversals**
-- **All Paths from src to dst**
-  - [DAG](#dag)
+- **1. All Paths from src to dst**
+  - [Unweighted DAG](#dag)
 
 ## Graph Traversals
-### All paths from src to dst
+### 1. All paths from src to dst
 <a name=dag></a>
-#### DAG
+#### Unweighted DAG
 - [Approach-1: Backtracking](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Acyclic)
 ```c
   0 ---> 1 ---> 3
