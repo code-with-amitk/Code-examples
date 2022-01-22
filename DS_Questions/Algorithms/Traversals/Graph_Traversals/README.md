@@ -2,6 +2,7 @@
 - **All Paths from src to dst**
   - [DAG](#dag)
 
+## Graph Traversals
 ### All paths from src to dst
 <a name=dag></a>
 #### DAG
