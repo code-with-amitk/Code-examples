@@ -1,21 +1,24 @@
 **Directed, Undirected**
 - **Undirected**
-  - [2-D vector](#2dv)
+  - [1. Undirected Unweighted](#udu)
+    - [2-D vector](#uduv)
 - **Directed**
-  - [1. 2-D Vector (Only for numeral nodes)](#2dvd)
-  - [2. HashMap of Linked List](#hml)
-  - **Directed, cyclic, paths have cost**
-    - [3. Hashmap of Hashmap](#hmhm)
+  - [1. Directed, Unweighted](#du)
+    - [1a. 2-D Vector (Only for numeral nodes)](#duv)
+    - [1b. HashMap of Linked List](#duhm)
+  - [2. Directed, Weighted](#dw)
+    - [2a. Hashmap of Hashmap](#dwh)
 
 ## Directed, Undirected
 - **Directed/1 way:** 1 side know other but viceversa not true. `[a] --> [b] --> [c]`. Ex: a. Fans knows celebrity but other side does not. b.  On Facebook the graph of friends is undirected.
 - **Undirected/Digraph/Bidirectional:** Both sides know each other.  `[1] -- [2] -- [3]`
 
 
-<a name=ud></a>
 ### Undirected Graph
-<a name=2dv></a>
-#### 1. 2-D vector
+<a name=udu></a>
+#### 1. Undirected Unweighted
+<a name=uduv></a>
+##### 1a. 2-D vector
 ```cpp
 
    1 -- 0 -- 3 -- 4
@@ -35,8 +38,10 @@ index  0     1   2   3     4
 
 <a name=dg></a>
 ### Directed Graph
-<a name=2dvd></a>
-##### 1. 2-D Vector (Only for numeral nodes)
+<a name=du></a>
+#### 1. Directed, Unweighted
+<a name=duv></a>
+##### 1a. 2-D Vector (Only for numeral nodes)
 ```c
   1 --> 2 --> 3
         |
@@ -54,8 +59,8 @@ a[3].push_back(-1);
 	\/
 	d
 ```
-<a name=hml></a>
-#### 2. HashMap of Linked List
+<a name=duhm></a>
+##### 1b. HashMap of Linked List
 ```c
 0 ---> 1 ---> 3
 |             /\    //Graph
@@ -82,8 +87,10 @@ for (int i = 0; i < v.size(); ++i) {
   umGraph[src] = l;
 }
 ```
-<a name=hmhm></a>
-#### 3. Hashmap of Hashmap
+<a name=dw></a>
+#### 2. Directed, Weighted
+<a name=dwh></a>
+##### 2a. Hashmap of Hashmap
 Directed, Cyclic graph. Paths have cost.
 ```c
   a ---2.0----> b -----3.0----> c
