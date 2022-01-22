@@ -99,10 +99,15 @@ Directed, Cyclic graph. Paths have cost.
   
 costs:  a->b = 6.0.   b->a = 1/6,   b->c = 3.0    c->b = 1/3
 
+             //src                 //dst,  cost
 unordered_map<string, unordered_map<string, double>>
-a can reach b in cost=2
-b can reach c and a in costs 3,0.5
-c can reach b in cost 1/3
+
+src    dst cost
+a       b  2.0
+b       c  3.0
+b       a  1/2
+c       b  1/3
+
   | key      |key             |key        |
   |    |-----|   |------------|   |-------|
   | a  | b,2 | b | c,3 | a,1/2| c | b,1/3 |
