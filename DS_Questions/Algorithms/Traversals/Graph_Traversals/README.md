@@ -1,7 +1,7 @@
 **Traversals**
 - **1. All Paths from src to dst**
   - [Unweighted DAG](#dag)
-- **2. Single Source <u>Shortest Path</u>**
+- **2. Single Source <ins>Shortest Path</ins>**
 
 ## Graph Traversals
 ### 1. All paths from src to dst
