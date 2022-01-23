@@ -3,7 +3,7 @@
   - [Unweighted DAG](#dag)
 - **2. Single Source <ins>Shortest Path</ins>**
   - **2a. Weighted Graph**
-    - [2a1. Dijkstra Algo. For +ve(non-negative) weights only](Dijkstra_Algo.md)
+    - [2a1. Dijkstra Algo. For +ve(non-negative) weights only](Dijkstra)
     - 2a2. Bellman Ford Algo. For +ve,-ve weights
   - **2b. Unweighted Graph: DFS**
 
