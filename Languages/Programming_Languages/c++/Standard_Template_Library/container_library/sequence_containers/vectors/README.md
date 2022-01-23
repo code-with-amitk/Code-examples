@@ -1,5 +1,6 @@
 - [Vector, How vector works](#what)
   - [Arraylist vs Vector](#vs)
+- [Initialize](#ini)
 - Insert
   - [At end: `push_back(), emplace_back()`](#emp)
   - [At any place `insert(position, value)`](#any)
@@ -25,6 +26,13 @@
 <a name=vs></a>
 #### Arraylist vs vector
 - Vectors are synchronized by default but ArrayLists are not. Means if multiple threads accesses vectors then no synchronization needed but required in AL.    
+
+<a name=ini></a>
+## Initialize
+```c
+vector<int> v(size, init_value);
+vector<int> v(4, 10);           //vector of 4 ints, initialized to 10
+```
 
 ## Insert
 <a name=emp></a>
