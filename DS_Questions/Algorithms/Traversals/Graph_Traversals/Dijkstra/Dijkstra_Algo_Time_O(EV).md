@@ -39,7 +39,7 @@ bool visited | 0 | 0 | 0 | 0 |  //No nodes are visited presently
 cost | 0 | inf | inf | inf |    //From node=0, node=0 can be reached in cost=0
 visited | 1 | 0 | 0 | 0 |       //Mark node=0 as visited
 ```
-- Step-3. Present node=0. Check all connected nodes of present node. ie if you are sitting on Node which other nodes you can see and at what distance? Update cost.
+- Step-3. Present node=0. Check all connected nodes of present node. ie if you are sitting on Node what other nodes you can see and at what distance? Update cost.
 ```c
   cost | 0 | 10 | inf | 50 |    
          0   1     2    3
