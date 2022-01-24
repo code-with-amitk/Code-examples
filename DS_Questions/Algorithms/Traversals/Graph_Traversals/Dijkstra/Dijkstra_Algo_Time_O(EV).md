@@ -51,16 +51,20 @@ visited | 1 | 0 | 0 | 0 |       //Mark node=0 as visited
   - Perform step-3. ie if I am sitting on node=1, which all nodes can I see and in what distance?
 ```c
 Sitting on Node=1. 
-  I can see node=2. cost to reach node=2 from node=0 is inf, ie vecCost[2]=inf. Update cost.
-    - Cost to reach 2 = Cost to reach myself from node=1 + cost to reach 2 from me
+  if ((neighbour is unvisited) { 
+    if (assumed cost of reaching neighbour(in vecCost) >  Cost to reach myself from node=0(10) + cost to reach neighbour from me(30))
+      update neighbour_cost
+      //push (neighbour-cost, neighbour) in minHeap
+  }
+  
+  if (Assumed cost to reach node=2 (inf) > Cost to reach myself from start node + cost to reach 2 from me)
+    update cost
 
   cost | 0 | 10 | 10+20 | 50 |
          0   1     2      3
          
-  I can see node=3. 
-    - Cost to reach 3 = Cost to reach myself from node=1(10) + cost to reach 3 from me(30) = 40
-    - if (present_cost_in_cost_array > cost_to_reach_3_from_me)
-        update cost
+  if (Assumed cost to reach node=3 (inf) > Cost to reach myself from start node + cost to reach 3 from me)
+    update cost
          
   cost | 0 | 10 | 10+20 | 10+30 |
          0   1     2      3
