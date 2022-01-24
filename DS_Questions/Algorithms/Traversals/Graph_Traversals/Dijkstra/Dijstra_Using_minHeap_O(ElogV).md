@@ -1,6 +1,10 @@
 **Dijstra's Min Distance using MinHeap**
-- [Logic](#l)
-- [Code](#co)
+- **[Using Adjacency Matrix](#am)**
+  - [Logic](#l)
+  - [Code](#co1)
+- **[Using Adjacency List](#al)**
+  - [Logic](#l)
+  - [Code](#co2)
 
 ## Dijstra's Min Distance using MinHeap
 Task: Find Minimum distance of every node from Node=0.
@@ -16,6 +20,11 @@ Adjacency Matrix:
 2   0  20   0  40
 3  50  30  40   0
 
+Adjacency List: unordered_map<int, unordered_map<int,int>> graph;
+  |            |                 |             |                  |
+  |0 |1,10|3,50|1 |0,10|2,20|3,30| 2 |1,20|3,40| 3 |0,50|1,30|2,40|
+  |            |                 |             |                  |
+  
 Answer:
 Node  Cost
 0     0
@@ -24,8 +33,10 @@ Node  Cost
 3     40
 ```
 
+<a name=am></a>
+### Using Adjacency Matrix
 <a name=l></a>
-### Logic(very simple) O(ElogV)
+#### Logic(very simple) O(ElogV)
 - Step-1. Take cost, visited array, `minHeap<key=cost, value=node>` and initialize.
 ```c
 //NOTE: This array always represents cost to reach nodes from source node(node=0)
@@ -207,4 +218,94 @@ Node	Cost
 1	    10
 2	    30
 3	    40
+```
+
+<a name=al></a>
+### Using Adjacency List
+<a name=co2></a>
+#### Code
+```cpp
+#include<iostream>
+#include<vector>
+#include<unordered_map>
+#include<queue>
+using namespace std;
+using VecI = vector<int>;
+using VecVecI = vector<VecI>;
+using UsI = unordered_set<int>;
+
+                //cost, node
+using mpair = pair<int, int>;
+
+class Solution {
+    priority_queue <mpair, vector<mpair>, greater<mpair>> minHeap;
+    unordered_map<int/*src*/, unordered_map<int/*dst*/, int/*cost*/>> graph;
+
+    void create_weighted_graph(int cities, VecVecI& flights) {
+        for (int i=0;i<flights.size();++i) {
+            int src = flights[i][0];
+            int dst = flights[i][1];
+            int cost = flights[i][2];
+            graph[src].insert(make_pair(dst,cost));
+        }
+    }
+
+public:
+    int FindShortestPath(int n, VecVecI& flights, int start) {
+        //Create a Weighted DAG
+        create_weighted_graph(n, flights);
+        
+        //Take visited array, Mark all as unvisited
+        vector<bool> vecVisited(n, false);
+
+        //Cost of reaching all nodes from start is infinity
+        vector<int> vecCost(n, INT_MAX);
+
+        //There is no outgoing path from start
+        if (graph.find(start) == graph.end())
+            return -1;
+
+        vecVisited[start] = true;
+        vecCost[start] = 0;
+
+        //Cost of reaching start node=0
+        minHeap.push(make_pair(start, 0));
+
+        while (minHeap.empty() != 1) {
+            mpair p = minHeap.top();
+            int cost = p.first;
+            int node = p.second;
+            minHeap.pop();
+
+            //Check all unvisited Neighbours of node
+            for (auto it=graph[node].begin(); it!=graph[node].end(); ++it) {
+                int neighbour = it->first;
+                int cost_to_reach_neighbour = it->second;
+                if (vecVisited[neighbour] == false) {
+                    if (vecCost[neighbour] > cost_to_reach_neighbour + vecCost[node]) {
+                        vecCost[neighbour] = cost_to_reach_neighbour + vecCost[node];
+                        minHeap.push({cost_to_reach_neighbour, neighbour});
+                    }
+                }
+            }
+        }
+        return vecCost;
+    }
+};
+
+int main(){
+    Solution s;
+                //src,dst,cost
+    //VecVecI a = {{0,1,100},{1,2,100},{0,2,500}};
+    //cout << s.findCheapestPrice(3, a, 0,2, 0);  //src=0, dst=2, stops=0
+
+    // VecVecI a = {{4,1,1},{1,2,3},{0,3,2},{0,4,10},{3,1,1},{1,4,3}};
+    // cout << s.findCheapestPrice(5, a, 2, 1, 1);  //src=2, dst=1, stops=1
+    // cout << "test";
+    
+    //VecVecI a = {{1,2,10},{2,0,7},{1,3,8},{4,0,10},{3,4,2},{4,2,10},{0,3,3},{3,1,6},{2,4,5}};
+    //cout << s.findCheapestPrice(5, a, 2, 1, 1);  //src=2, dst=1, stops=1
+    VecI cost = {{0,1,10},{0,3,40},{1,2,50},{3,2,10},{1,3,10},{3,0,10}};
+    s.FindShortestPath(4, a, 0, 2, 1);  //src=2, dst=1, stops=1  //ans=20
+}
 ```
