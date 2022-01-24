@@ -1,11 +1,21 @@
+**Dijstra's Min Distance using MinHeap**
+- [Logic](#l)
+- [Code](#co)
+
 ## Dijstra's Min Distance using MinHeap
-- Task: Find Minimum distance of every node from Node=0.
-```c++  
-                [0]-10-[1]-20-[2]
-                  \     |    /
-                   \50  |30 /40
-                    \   |  /
-                       [3]
+Task: Find Minimum distance of every node from Node=0.
+```cpp
+                                 [0] --10--[1]--20-- [2]   
+                                   \50     |30      /40
+                                    \      |       /
+                                          [3]
+Adjacency Matrix:
+    0   1   2   3
+0   0  10   0  50
+1  10  0   20  30
+2   0  20   0  40
+3  50  30  40   0
+
 Answer:
 Node  Cost
 0     0
@@ -14,36 +24,37 @@ Node  Cost
 3     40
 ```
 
-## Logic(very simple) O(ElogV)
-1. Store graph in adjacency matrix `g[4][4]`.
-2. Take 3 Datastructures. `visited[4], cost[4], minHeap<key=cost, value=node>`
-  - minHeap/Priority Queue(Self Balanced Binary Tree). Balances itself and least element is at root.
-```c++  
-    |0|0|0|0|   bool visited[4]
-     0 1 2 3    <-Nodes. Start at node=0
-     
-    |INF|INF|INF|INF| int cost[4]   //Means cost of reaching any node is infinite
-     0  1  2   3    <-Nodes
-     
+<a name=l></a>
+### Logic(very simple) O(ElogV)
+- Step-1. Take cost, visited array, `minHeap<key=cost, value=node>` and initialize.
+```c
+//NOTE: This array always represents cost to reach nodes from source node(node=0)
+ cost | inf | inf | inf | inf |
+         0    1      2     3      <-Nodes
+         
+bool visited | 0 | 0 | 0 | 0 |  //No nodes are visited presently
+               0   1   2   3     <-Nodes
+
     |       |
     | |0|0| |  minHeap = priority_queue<cost,node>    //push(0,0) on Heap. Cost of reaching 0 is 0
     |       |
+
 ```
-3. Make `cost[0] = 0` because we are starting at node=0. Means cost of reaching node=0 is 0.
-```c++  
-    |0|INF|INF|INF| int cost[4]
-     0  1  2   3    <-Nodes
+- Step-2. Start from node(0). Fill cost of directly connected nodes.
+```c
+cost | 0 | inf | inf | inf |    //From node=0, node=0 can be reached in cost=0
+visited | 1 | 0 | 0 | 0 |       //Mark node=0 as visited
 ```
-4. Repeat until minHeap is not empty:
+- Step-3. Repeat until minHeap is not empty:
   - *4a.* pop top. node=top. Mark node as visited.
   - *4b.* Push all connected unvisited neighbours of popped node into minHeap
 ```c++
-  if ((neighbour is unvisited) and (present_cost_of_reaching_unvisited_neighbour > cost_in_graph + selfcost))
+  if ((neighbour is unvisited) and (cost of reaching neighbour >  Cost to reach myself from node=0(10) + cost to reach neighbour from me(30))
     update neighbour_cost
     //push (neighbour-cost, neighbour) in minHeap
 ```
 
-## Example Run
+#### Example Run
 ```c++
                 [0]-10-[1]-20-[2]
                   \     |    /
@@ -126,38 +137,51 @@ Calculate cost of reaching unvisited neighbours of popped node
   neighbour=1   //visited discarded
   neighbour=2   //visited discarded                               |0  |10|30|50|  
 ```
-
- ## Code
+<a name=co></a>
+#### Code
 ```c++
 #include<iostream>
 #include<vector>
 #include<queue>         //priority_queue
 
+                //<cost, node> bcoz need to be sorted using cost
 typedef std::pair<int, int> mypair;
+
+std::priority_queue<mypair, std::vector<mypair>, std::greater<mypair>> minHeap;
 
 void dijkstra_sp(std::vector<std::vector<int> > v){
   int iSize = v.size();
+  
+  //Take visited array, Mark all nodes unvisited
   std::vector<bool> iVisited(iSize, 0);
+  
+  //Take cost array, Mark all nodes infinity
+  //NOTE: This array represents cost of reaching all nodes from start_node
   std::vector<int> iCost(iSize, INT32_MAX);
 
   iCost[0] = 0;   //Starting at node=0. Cost is 0
 
-  //<cost, node>
-  std::priority_queue<mypair, std::vector<mypair>, std::greater<mypair>> minHeap;
+  //To reach node=0, cost=0
   minHeap.push(mypair(0,0));
 
   while (!minHeap.empty()) {
     int node = minHeap.top().second;
     minHeap.pop();
-    std::cout<<"node="<<node<<"\n";
 
-    iVisited[node]=true;
+    iVisited[node] = true;
 
+    //Check all connected neighbours and update cost
     for(int i=0;i<v.size(); ++i){
+    
+      //Check only unvisited Neighbours
       if(v[node][i] && iVisited[i]==false){
-        if(iCost[i] > v[node][i] + iCost[node]){
-          iCost[i] = v[node][i] + iCost[node];
-          minHeap.push (mypair(v[node][i],i));
+      
+        //if (present cost of reaching neighbour >
+        //      cost of reaching neighbour from me +
+        //      cost of reaching me from start_node)  
+        if (iCost[i] > v[node][i] + iCost[node]) {
+          iCost[i] = v[node][i] + iCost[node];    //Update cost of reaching neighbour from start node
+          minHeap.push (mypair(v[node][i],i));    //Push all unvisited Neighbours into minHeap
         }
       }
     }
