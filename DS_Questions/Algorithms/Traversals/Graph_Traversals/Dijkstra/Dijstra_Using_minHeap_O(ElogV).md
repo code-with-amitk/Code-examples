@@ -60,9 +60,11 @@ visited | 1 | 0 | 0 | 0 |       //Mark node=0 as visited
   - *4a.* pop top. node=top. Mark node as visited.
   - *4b.* Push all connected unvisited neighbours of popped node into minHeap
 ```c++
-  if ((neighbour is unvisited) and (cost of reaching neighbour >  Cost to reach myself from node=0(10) + cost to reach neighbour from me(30))
-    update neighbour_cost
-    //push (neighbour-cost, neighbour) in minHeap
+  if ((neighbour is unvisited) { 
+    if (assumed cost of reaching neighbour(in vecCost) >  Cost to reach myself from node=0(10) + cost to reach neighbour from me(30))
+      update neighbour_cost
+      //push (neighbour-cost, neighbour) in minHeap
+  }      
 ```
 
 #### Example Run
