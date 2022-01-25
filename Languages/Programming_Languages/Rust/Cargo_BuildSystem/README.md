@@ -51,9 +51,15 @@ target/debug/hello_cargo
 //! # My Crate
 //!
 //! `my_crate` is a collection of utilities to make performing certain calculations more convenient.
-/// Adds one to the number given.
 
-struct Solution{ }
+pub struct test {   //Adding description to struct fields
+    /// a text
+    a: String,
+    /// b text
+    b: String,
+}
+
+struct Solution{}
 
 impl Solution {
 /// add()
