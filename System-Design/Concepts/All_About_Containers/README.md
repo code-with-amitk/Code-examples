@@ -405,7 +405,7 @@ $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ```c
 //ssh to kubernets VM running microservices
 # kubectl get svc -A                        //List all services on this VM
-$ kubectl --all-namespaces get service       //IP Addresses of all services in cluster in all namespaces
+$ kubectl get service --all-namespaces      //IP Addresses of all services in cluster in all namespaces
 NAMESPACE     NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE
 default       kubernetes                 ClusterIP   10.32.0.1       <none>        443/TCP         6d
 kube-system   csi-attacher-doplugin      ClusterIP   10.32.159.128   <none>        12345/TCP       6d
