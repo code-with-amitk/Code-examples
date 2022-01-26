@@ -405,13 +405,14 @@ $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ```c
 //ssh to kubernets VM running microservices
 # kubectl get svc -A                        //List all services on this VM
-$ kubectl get service --all-namespaces      //IP Addresses of all services in cluster in all namespaces
+$ kubectl --all-namespaces get service       //IP Addresses of all services in cluster in all namespaces
 NAMESPACE     NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE
 default       kubernetes                 ClusterIP   10.32.0.1       <none>        443/TCP         6d
 kube-system   csi-attacher-doplugin      ClusterIP   10.32.159.128   <none>        12345/TCP       6d
 kube-system   csi-provisioner-doplugin   ClusterIP   10.32.61.61     <none>        12345/TCP       6d
 kube-system   kube-dns                   ClusterIP   10.32.0.10      <none>        53/UDP,53/TCP   6d
 kube-system   kubernetes-dashboard       ClusterIP   10.32.226.209   <none>        443/TCP 
+$ kubectl -n name_space get service         //Get all services within namespace
 ```
 <a name=pc></a>
 #### Pods
@@ -429,7 +430,13 @@ n1                      kafka-0         2/2     Running     0          38d
 n1                      kafka-1         2/2     Running     0          38d
 n1                      kafka-2         2/2     Running     0          38d
 
-$ kubectl get pods -n namespace           //All pods in namespace
+$ kubectl -n namespace get pods                 //All pods in namespace
+
+//////////Commands from inside the POD//////////////
+$ kubectl exec -it testing{pod_name} -n namespace /bin/bash   //Go inside POD
+
+root@testing:/opt/# ping namespace.service_name               //Pinging service
+
 ```
 <a name=lc></a>
 #### Logs of Container in Pod
