@@ -2,7 +2,7 @@
 - **Implementations**
   - [Rust](#ru)
     - [1. Storing u32 in `Arc<RwLock>`](#e1)
-    - [2. Storing String in `Arc<RwLock>`](#e2)
+    - [2. Storing String, `Option<String>` in `Arc<RwLock>`](#e2)
 
 <a name=rwl></a>
 ### RWlock
@@ -82,7 +82,7 @@ Thread3 read10
 ```rs
 pub struct Test {
     ip: Arc<RwLock<String>>,
-    opt_token: Arc<RwLock<Option<String>>>,
+    opt_ip: Arc<RwLock<Option<String>>>,
 }
 pub static TEST: Lazy<Arc<Test>> = Lazy::new(|| Arc::new(Test::create()));
 impl Test {
@@ -90,11 +90,12 @@ impl Test {
     fn create() -> Self {
         Self {
             ip: Arc::new(RwLock::new(String::new())),
-            opt_token: Arc::new(RwLock::new(None)),
+            opt_ip: Arc::new(RwLock::new(None)),
         }
     }
 }
 async fn fun1() {
+//////////Write, Read String//////////////////////
   match TEST.ip.write() {                   //Writing
             Ok(mut token_guard) => {
             *token_guard = format!("{}", ip);
@@ -112,5 +113,16 @@ async fn fun1() {
       return;
     }
   };
+  
+  ////////Write, Read Option<String>//////////////////
+  let mut wg = match TEST.opt_ip.write() {
+    Ok(wguard) => wguard,
+    Err(err) => {
+      return Err(format!("failed to get write lock for opt_ip, error {:?}",err));
+    }
+  };
+  *wg = Some("test".to_string());
+  
+  
 }
 ```
