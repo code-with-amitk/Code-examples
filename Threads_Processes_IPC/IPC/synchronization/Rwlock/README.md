@@ -1,6 +1,8 @@
 - [Rwlock](#rwl)
 - **Implementations**
   - [Rust](#ru)
+    - [1. Storing u32 in `Arc<RwLock>`](#e1)
+    - [2. Storing String in `Arc<RwLock>`](#e2)
 
 <a name=rwl></a>
 ### RWlock
@@ -18,8 +20,10 @@ Allowed     | n readers inside                  | Only 1 reader inside CS.
 ### Rust
 - Rwlock is often used with [Arc](/Languages/Programming_Languages/Rust/Threading/), because cannot be sent between threads safely bcoz trait `Send` is not implemented for `RwLockReadGuard`.
 - Atomicity is provided by RwLocks, once all references to resource are gone(ie its not used by any thread) its automatically deallocates.
-- **Example: Thread1 reading, Thread2 writing, Thread3 reading**
+<a name=e1></a>
+#### 1. Storing u32 in `Arc<RwLock>`
 ```rs
+//Example: Thread1 reading, Thread2 writing, Thread3 reading
 use std::{
     thread,
     sync::{
@@ -71,4 +75,42 @@ $ cargo run
 Thread1 read5
 Thread2 write,read 10
 Thread3 read10
+```
+
+<a name=e2></a>
+#### 2. Storing String in `Arc<RwLock>`
+```rs
+pub struct Test {
+    ip: Arc<RwLock<String>>,
+    opt_token: Arc<RwLock<Option<String>>>,
+}
+pub static TEST: Lazy<Arc<Test>> = Lazy::new(|| Arc::new(Test::create()));
+impl Test {
+    // Create default instance.
+    fn create() -> Self {
+        Self {
+            ip: Arc::new(RwLock::new(String::new())),
+            opt_token: Arc::new(RwLock::new(None)),
+        }
+    }
+}
+async fn fun1() {
+  match TEST.ip.write() {                   //Writing
+            Ok(mut token_guard) => {
+            *token_guard = format!("{}", ip);
+            println!("ip stored");
+        }
+        Err(e) => {
+            println!("failed to acquire token lock, error {}", e);
+        }
+  }
+  
+  let token_str = match test.ip.read() {                  //Reading
+    Ok(token) => token.to_string(),
+    Err(e) => {
+      println!("{} failed to lock token {:?}", FN_NAME, e);
+      return;
+    }
+  };
+}
 ```
