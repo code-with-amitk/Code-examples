@@ -35,7 +35,7 @@ This is a self contained package that contains everything that your binary/appli
 - Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
 
 <a name=bc></a>
-### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container
+### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container inside kubernets
 - _1._ Get [dockerfile](#dterms) and Application to run
 ```c
 # tar tvf application1.tgz
@@ -58,8 +58,10 @@ application1 initializing...
 listening on port 453
 application1 started
 ```
+- _5._ Run contianer inside [kubernets](#Kub).
 
-<img src=TraditionalOS_vs_Containers.jpg width=400 />
+|---|---|
+|<img src=TraditionalOS_vs_Containers.jpg width=200/>|<img src=docker_image_to_container.png width=400/>|
 
 <a name=add></a>
 **Advantages**
