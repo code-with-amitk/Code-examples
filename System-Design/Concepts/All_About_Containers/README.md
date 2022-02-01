@@ -34,7 +34,7 @@ This is a self contained package that contains everything that your binary/appli
 - **Issue without containers?** When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
 - Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
 
-<img src=TraditionalOS_vs_Containers.jpg width=200/>
+<img src=TraditionalOS_vs_Containers.jpg width=400/>
 
 <a name=bc></a>
 ### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container inside kubernets
@@ -62,7 +62,7 @@ application1 started
 ```
 - _5._ Run contianer inside [kubernets](#Kub).
 
-<img src=docker_image_to_container.PNG width=400/>
+<img src=docker_image_to_container.PNG width=600/>
 
 <a name=add></a>
 **Advantages**
