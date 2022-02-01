@@ -62,7 +62,7 @@ application1 started
 ```
 - _5._ Run contianer inside [kubernets](#Kub).
 
-<img src=docker_image_to_container.png width=400/>
+<img src=docker_image_to_container.PNG width=400/>
 
 <a name=add></a>
 **Advantages**
