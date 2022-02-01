@@ -60,6 +60,7 @@ application1 started
 ```
 - _5._ Run contianer inside [kubernets](#Kub).
 
+|OS vs Container|Packaging Application & Running in container|
 |---|---|
 |<img src=TraditionalOS_vs_Containers.jpg width=200/>|<img src=docker_image_to_container.png width=400/>|
 
