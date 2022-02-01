@@ -2,6 +2,7 @@
 - [History](#history)
 - [Terminology](#Terminology)
 - [SRX Series](#series)
+- [Commands](Commands.md)
 
 <a name=history></a>
 ## History
