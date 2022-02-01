@@ -1,9 +1,8 @@
 - **Containers**
-  - [Adv, Disadv of containers](#add)
-  - [Container vs VM](#vs)
+  - [What](#wc)
+  - [Steps of Building a Container Image(also called docker image) & running application in container](#bc)
 - **Docker**
   - [Docker Terms: Host, Image, File, Registry, Compose](#dterms)
-  - [Installing & Running Docker](#insd)
   - [Docker Commands](#dcm)
   - **Docker Networking**
     - [1. Bridge Networking](#bn)
@@ -21,12 +20,44 @@
     - [Commands](#kcmd)
 
 
-<a name=con></a>
-# Containers
-- Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
+# Container
+<a name=wc></a>
+### What is container?
+This is a self contained package that contains everything that your binary/application need to run.
+```c
+    |-------------------------------------------------------------------------|
+    | binary(*.exe), runtime(tokio-1.2), libraries(utc.so...), other packages |
+    |----------------------------Container------------------------------------|
+```
 - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
-- **Containerization** Packaging software code and all its dependencies in a bundle.
+- **Containerization** means Packaging software code and all its dependencies in a bundle.
 - **Issue without containers?** When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
+- Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
+
+<a name=bc></a>
+### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container
+- _1._ Get [dockerfile](#dterms) and Application to run
+```c
+# tar tvf application1.tgz
+application1.Dockerfile      //See how file looks like below
+application1.out
+```
+- _2._ Create a docker image
+```c
+# docker build . -f Application.Dockerfile --tag tag1   //--tag=<tag-name-of-image> <directory-name-where-docker-file-is-present>
+````
+- _3._ Store docker image created in step-2 to [Docker repository](#dterms)
+```c
+# docker tag tag1 artifactory/application-1/tag1
+# docker push artifactory/application-1/tag1
+```
+- _4._ Deploy docker image into container. //Now Application1.out will start running.
+```c
+# docker container run artifactory/application-1/tag1
+application1 initializing...
+listening on port 453
+application1 started
+```
 
 <img src=TraditionalOS_vs_Containers.jpg width=400 />
 
@@ -63,19 +94,20 @@ $ docker run -----> [Docker Client]
 <a name=dterms></a>
 ### Docker Terms
 - **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
-- **Docker Image:** Template/Shell script/Docker file for creating a Docker container. Docker image is published on registry.
-- **Docker File:** Creation of Docker images is done using docker files. This is shell script for installing the s/w.
+- **Container Image/Docker Image:** This is used to start the container.
+- **Docker File:** Shell script for creating Docker image/Container image.
 ```c
-$ docker_file.sh
-FROM openjdk:11.0.2-jre-slim                            //base image on which the installation is based
-COPY target/customer.jar .                              //copies files in the Docker image
-CMD /usr/bin/java -Xmx400m -Xms400m -jar customer.jar   //what happens when the Docker container is started
-EXPOSE 8080                                             //Port on which docker is available
+# vim application.Dockerfile 
+FROM ubuntu:20.04                             //FROM Command: Installation is based image this OS, Since docker is not full OS.
+RUN apt update \                              //RUN Command: Run some command
+    apt-get install -y --no-install-recommends openssl \
+    apt-get install -y --no-install-recommends iputils-ping \
 
-/////Building docker image
-# docker build --tag=<tag-name-of-image> <directory-name-where-docker-file-is-present>    //docker is command line tool
+COPY ./application.out ./a.txt /app/
+
+CMD /app/application.out "--config" a.txt     //CMD Command: Start the application
 ```
-- **Docker Registry (hub.docker.com):** Stores docker images. Same as github,gitlab are for source code.
+- **Docker Registry:** Stores docker images. Same as github,gitlab are for source code. Eg: dockerhub, elastic container registry(ecr)
 - **Docker Compose** [Microservices](/System-Design/Concepts/MicroServices) can contact other microservice using DC. DC uses yaml configuration file.
  ```yaml
  $ cat docker-compose.yml
@@ -92,20 +124,6 @@ services:
      - order
     ports:
      - "8080:8080"
- ```
-
-<a name=insd></a>
-### Install Docker, Run Container
-```c
-//////Install////////
-1. Download Docker Installer from https://hub.docker.com/.
-2. Check Hyper-V and Containers Windows features must be enabled.
-
-/////Running Container///
-$ cd C:/Users/amit/                                               //Start docker from desktop. It will present a CLI. 
-$ git clone https://github.com/docker/getting-started.git         //Clone the tutorial repo to build the docker image. 
-$ cd getting-started; docker build -t docker101tutorial .         //Build the Docker Image
-$ docker run -d -p 80:80 -name docker-tutorial docker101tutorial` //Start the Container based on image build in step-3. 
 ```
 
 <a name=dn></a>
