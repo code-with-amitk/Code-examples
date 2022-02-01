@@ -58,6 +58,29 @@ Exiting configuration mode
 ````c
 # run show services user-identification identity-management counters
 # run show services user-identification identity-management status
+            Primary server :
+            Address                      : ip
+            Port                         : 443
+            Source                       : Automatic
+            Interface                    : Automatic
+            Routing-instance             : Automatic
+            Connection method            : HTTPS
+            Connection status            : Online
+            Last received status message : OK (200)
+            Access token                 : <>
+            Token expire time            : 2022-01-31 16:20:08
+            
+            Secondary server :
+            Address                      : ip
+            Port                         : 443
+            Source                       : Automatic
+            Interface                    : Automatic
+            Routing-instance             : Automatic
+            Connection method            : HTTPS
+            Connection status            : Online
+            Last received status message : OK (200)
+            Access token                 : <>
+            Token expire time            : 2022-01-31 16:22:19
 
 //////////////reboot: Needed when you change config////////////////
 # reboot
