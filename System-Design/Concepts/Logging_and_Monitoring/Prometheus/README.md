@@ -24,7 +24,7 @@
 
 <a name=int></a>
 ### Internal Architecture
-- **1. Retriever:** Retriever call [REST API](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST) `http GET ip-address:port/metrics`. [Target](#tar) provides [metrics](#met), retriever stores in DB. Target should expose metrics in correct format.
+- **1. Retriever:** Retriever call [REST API](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST) `http GET ip-address:port/metrics`. [Target or server](#tar) provides [metrics](#met), retriever stores in DB. Target should expose metrics in correct format.
   - **1a. Exporter:** These can be installed and used on target. Exporters will generate metrics to be sent to prometheus server. Example 
     - _a. linux_ just download expoter.tar.gz install, it will expose /metric endpoint and send the data to server once needed.
     - _b. mysql:_ mysql has side car exporter.
