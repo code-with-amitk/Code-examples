@@ -417,10 +417,19 @@ $ systemctl start apache                      //Start Application inside contain
 ```
 
 <a name=ck1></a>
-#### 1. Install/Upgrade Service in Cluster = Helm Chart
-**Helm Chart?** This is collection of yaml files which contains configuration,installation information for service. Files present in helm chart
+#### 1. Install/Upgrade Service in Cluster using Helm Chart
+- _1. Create a helm chart for applicaton:_ 
+  - **Helm chart:** This is collection of yaml files which contains configuration,installation information for service. Files present in helm chart
 ```c
-$ cat chart.yaml                      //Contains this chart's information
+mychart/
+  Chart.yaml                  //Contains meta information of this chart
+  value.yaml                 //Contains default values for this chart, to be used by templated files
+  templates/
+    configmap.yaml       
+    deployment.yaml
+    ...
+  
+$ cat chart.yaml                      
 apiVersion: v2
 appVersion: 1.1
 maintainers:
@@ -430,7 +439,7 @@ name: app
 type: application
 version: 1.0
 
-$ cat values.yaml                      //Contains default values for this chart
+$ cat values.yaml                      
 chart:
   name: app1
 image:
@@ -455,6 +464,10 @@ metadata:
   name: app1-config
   labels:
     app: {{ .Values.image.app }}        //Take value from values.yaml
+```
+- _2. Install application using helm chart_
+```c
+$ helm install app1{chartname}
 ```
 
 <a name=ns></a>
