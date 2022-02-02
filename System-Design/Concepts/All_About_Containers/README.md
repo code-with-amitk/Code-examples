@@ -309,7 +309,16 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
 
 <a name=kub></a>
 ## Kubernets Architecture : 1 master, n worker nodes
-
+Kubernets cluster will have different microservices inside cluster
+```c
+  |--------------k8s cluster------------|
+  | micro_service1      micro_service4  |
+  |                                     |
+  |   micro_service2                    |
+  |                                     |
+  |           micro_servicen            |
+  |-------------------------------------|
+```
 <a name=mn></a>
 ### A. Master Node
 - Create/destroy worker nodes. User can only interacts with master node using yaml file.
@@ -439,9 +448,13 @@ k8sServices:
   service1_url: https://service1:9091
   service2_url: https://service2.serv:9091
 
-
 $ cat configmap.yaml                    //Information related to configuration
-  
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app1-config
+  labels:
+    app: {{ .Values.image.app }}        //Take value from values.yaml
 ```
 
 <a name=ns></a>
