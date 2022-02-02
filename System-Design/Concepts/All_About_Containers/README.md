@@ -17,6 +17,7 @@
       - [Pod](#pod)
       - [Namespaces](#ns)
     - [Configuring kubernets Cluster](#cfgk)
+      - [Install/Upgrade service in cluster = Helm Chart](#ck1) 
     - [Commands](#kcmd)
 
 
@@ -404,6 +405,43 @@ $ kubectl describe pods
 $ kubectl proxy                               //Note, pods run on pvt network hence proxy is needed to communicate with them.
 
 $ systemctl start apache                      //Start Application inside container
+```
+
+<a name=ck1></a>
+#### 1. Install/Upgrade Service in Cluster = Helm Chart
+**Helm Chart?** This is collection of yaml files which contains configuration,installation information for service. Files present in helm chart
+```c
+$ cat chart.yaml                      //Contains this chart's information
+apiVersion: v2
+appVersion: 1.1
+maintainers:
+- email: amit@google.com
+  name: Amit
+name: app
+type: application
+version: 1.0
+
+$ cat values.yaml                      //Contains default values for this chart
+chart:
+  name: app1
+image:
+  repository: artifactory-path
+  version: "1.0"
+  name: app1
+  dbTag: 1.1.lmaslmd
+database:
+  enabled: true
+  host: test.abc.com
+  user: admin
+  password: Passw0rd
+  sslmode: require
+k8sServices:
+  service1_url: https://service1:9091
+  service2_url: https://service2.serv:9091
+
+
+$ cat configmap.yaml                    //Information related to configuration
+  
 ```
 
 <a name=ns></a>
