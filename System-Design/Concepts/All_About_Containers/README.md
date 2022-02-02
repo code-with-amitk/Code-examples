@@ -465,9 +465,11 @@ metadata:
   labels:
     app: {{ .Values.image.app }}        //Take value from values.yaml
 ```
-- _2. Install application using helm chart_
+- _2. Install/upgrade/rollback application using helm chart_
 ```c
 $ helm install app1{chartname}
+$ helm upgrade app1{chartname}      //Upgrade the microservice instead of install
+$ helm rollback app1{chartname}     //rollback to older version
 ```
 
 <a name=ns></a>
