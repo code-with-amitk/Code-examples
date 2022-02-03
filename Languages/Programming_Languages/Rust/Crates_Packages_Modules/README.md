@@ -1,6 +1,6 @@
 - **Crates**
   - [1. rand](#rand)
-  - [2. Prometheus](#pro)
+  - [2. Prometheus(Pull based)](#pro)
 - **Packages**
   - [Workspace](#ws)
 - **Modules**
