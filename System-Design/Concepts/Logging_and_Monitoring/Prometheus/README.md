@@ -29,7 +29,7 @@
     - **[1a. Client libraries (`*.so, *.a, *.lib, *.dll`)](https://prometheus.io/docs/instrumenting/clientlibs/)** User applications will use these and these libs will generate data in metric form. Different languages like node.js, java, c++, rust have different libs.
 ```c
   |-----Prometheus-------|                              |-------
-  |                      ------GET hostaddress/metrics--> User-Application 
+  |                      ------GET hostaddress/metrics--> User-Application(Target/Server) 
   |----------------------|                              |     --------data-------------> Client Library
                                                         |    <-----prometheus metric----
                        <---------------metric----------------                                      
