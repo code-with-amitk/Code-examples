@@ -152,7 +152,7 @@ $ git log
 $ git revert --no-commit abc
 $ git revert --no-commit def
 $ git commit -m "Reverting 2 commits"
-$ git push origin branch
+$ git push ssh://amit@git:<path> HEAD:refs/for/master,r=reviwer-1,r=reviewer-2
 ```
 
 <a name=spl></a>
