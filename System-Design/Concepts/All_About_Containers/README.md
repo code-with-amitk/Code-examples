@@ -529,5 +529,16 @@ root@testing:/opt/# ping namespace.service_name               //Pinging service
 #### Logs of Container in Pod
 ```c
 $ kubectl logs -h                             //Print the logs for a container in a pod
-$ kubectl logs podName -n namespaceName containerName > t.txt
+
+$ kubectl get pods -A | grep kafka            //Get pod name
+namespace               pods
+ns1                     kafka-a     2/2     Running     0          46d
+ns1                     kafka-b     2/2     Running     0          46d
+ns1                     kafka-c     2/2     Running     0          46d
+
+$ kubectl logs kafka-c -n ns1                 //In pod kafka-c, 3 containers are running.
+error: a container name must be specified for pod kafka-c, choose one of: [prometheus-jmx-exporter kafka-broker]
+
+//Get logs of container kafka-broker
+$ kubectl logs kafka-2 -n ns1 kafka-broker> t.txt    //kubectl logs podname namespace containerName
 ```
