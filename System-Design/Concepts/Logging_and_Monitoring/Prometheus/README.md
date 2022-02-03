@@ -34,10 +34,9 @@
                                                         |    <-----prometheus metric----
                        <---------------metric----------------                                      
 ```
-    - **[1b. Exporter:](https://prometheus.io/docs/instrumenting/exporters/)** These Can fetch statistics from another, non-Prometheus system. Client Libraries will turn these statistics to prometheus metrics.
-      - _a. linux_ just download expoter.tar.gz install, it will expose /metric endpoint and send the data to server once needed.
-      - _b. mysql:_ mysql has side car exporter.
-```c
+- **[1b. Exporter:](https://prometheus.io/docs/instrumenting/exporters/)** These Can fetch statistics from another, non-Prometheus system. Client Libraries will turn these statistics to prometheus metrics.
+  - _a. linux_ just download expoter.tar.gz install, it will expose /metric endpoint and send the data to server once needed.
+  - _b. mysql:_ mysql has side car exporter.
 ```c
   |-----Prometheus-------|                              |-----------------
   |                      ------GET hostaddress/metrics--> User-Application(on Linux) 
@@ -48,8 +47,6 @@
   |                    <-----prometheus metric----------------
   |----------------------|                              |-------------------
 ```
-```
-
 - **2. Database:** Prometheus stores data on local hard-disk(hdd/ssd), it can also store data into [relational databases](/System-Design/Concepts/Databases).
 - **3. HTTP Web Server:** shows the data to prometheus UI or Grafanna after accepting APIs.
 - **4. AlertManager:** Prometheus server reads alert rules and sends notifications/alerts to users.
