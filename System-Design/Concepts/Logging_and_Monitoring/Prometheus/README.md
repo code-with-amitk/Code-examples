@@ -24,29 +24,7 @@
 
 <a name=int></a>
 ### Internal Architecture
-- **1. Retriever:** Retriever call [REST API](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST) `http GET ip-address:port/metrics`. [Target or server](#tar) provides [metrics](#met), retriever stores in DB. Target should expose metrics in correct format.
-  - Helper Utilities to generate metric: 
-    - **[1a. Client libraries (`*.so, *.a, *.lib, *.dll`)](https://prometheus.io/docs/instrumenting/clientlibs/)** User applications will use these and these libs will generate data in metric form. Different languages like node.js, java, c++, rust have different libs.
-```c
-  |-----Prometheus-------|                              |-------
-  |                      ------GET hostaddress/metrics--> User-Application(Target/Server) 
-  |----------------------|                              |     --------data-------------> Client Library
-                                                        |    <-----prometheus metric----
-                       <---------------metric----------------                                      
-```
-- **[1b. Exporter:](https://prometheus.io/docs/instrumenting/exporters/)** These Can fetch statistics from another, non-Prometheus system. Client Libraries will turn these statistics to prometheus metrics.
-  - _a. linux_ just download expoter.tar.gz install, it will expose /metric endpoint and send the data to server once needed.
-  - _b. mysql:_ mysql has side car exporter.
-```c
-  |-----Prometheus-------|                              |-----------------
-  |                      ------GET hostaddress/metrics--> User-Application(on Linux) 
-  |                      |                              |     ----get system data------> Exporter
-  |                      |                              |    <-----data--------------------
-  |                      |                              |   ---------data--------------> client Library
-  |                      |                              |   <---- prometheus metric---------
-  |                    <-----prometheus metric----------------
-  |----------------------|                              |-------------------
-```
+- **1. Retriever:** Retriever call [REST API](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST) `http GET ip-address:port/metrics`. [Target or server](#tar) provides [metrics](#met) with help of [Client library](#hl), retriever stores in DB. Target should expose metrics in correct format.
 - **2. Database:** Prometheus stores data on local hard-disk(hdd/ssd), it can also store data into [relational databases](/System-Design/Concepts/Databases).
 - **3. HTTP Web Server:** shows the data to prometheus UI or Grafanna after accepting APIs.
 - **4. AlertManager:** Prometheus server reads alert rules and sends notifications/alerts to users.
@@ -67,8 +45,30 @@ Grafanna       |   |           DB<-|          |          |----------------------
                |------------------------------|                                       |                                        |
                                                                                       |        container[App8]                 |
                                                                                       |----------------------------------------|
-```  
-
+```
+<a name=hl></a>
+**Helper Utilities to generate metric**
+  - **[a. Client libraries (`*.so, *.a, *.lib, *.dll`)](https://prometheus.io/docs/instrumenting/clientlibs/)** User applications will use these and these libs will generate data in metric form. Different languages like node.js, java, c++, rust have different libs.
+```c
+  |-----Prometheus-------|                              |-------
+  |                      ------GET hostaddress/metrics--> User-Application(Target/Server) 
+  |----------------------|                              |     --------data-------------> Client Library
+                                                        |    <-----prometheus metric----
+                       <---------------metric----------------                                      
+```
+  - **[b. Exporter:](https://prometheus.io/docs/instrumenting/exporters/)** These Can fetch statistics from another, non-Prometheus system. Client Libraries will turn these statistics to prometheus metrics.
+  - _a. linux_ just download expoter.tar.gz install, it will expose /metric endpoint and send the data to server once needed.
+  - _b. mysql:_ mysql has side car exporter.
+```c
+  |-----Prometheus-------|                              |-----------------
+  |                      ------GET hostaddress/metrics--> User-Application(on Linux) 
+  |                      |                              |     ----get system data------> Exporter
+  |                      |                              |    <-----data--------------------
+  |                      |                              |   ---------data--------------> client Library
+  |                      |                              |   <---- prometheus metric---------
+  |                    <-----prometheus metric----------------
+  |----------------------|                              |-------------------
+```
 <a name=terms></a>
 ### Terms
 <a name=tar></a>
