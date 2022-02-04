@@ -30,7 +30,7 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 
 <a name=pro></a>
 ### [2. Prometheus, Pull Based System](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/)
-[Prometheus crate](https://github.com/tikv/rust-prometheus) is rust client library for prometheus. [What is Client library?](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#int).
+[Prometheus crate](https://github.com/tikv/rust-prometheus) is rust client library for prometheus. [What is Client library?](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#hl).
 #### Using Prometheus Crate
 > [Example from here](https://github.com/tikv/rust-prometheus/blob/master/examples/example_custom_registry.rs)
 - **1. Create a [Registry](https://docs.rs/prometheus/latest/prometheus/struct.Registry.html) `pub struct Registry { /* fields omitted */ }`**
