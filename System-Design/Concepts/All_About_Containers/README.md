@@ -351,14 +351,20 @@ User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 ---|
 <a name=pod></a>
 ##### POD 
 - Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application). Pods run in isolated pvt enviornment. Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
-- Pod Contains: *1.* Container(Eg: [Docker](#doc)),  *2.* Shared storage, as Volumes, *3.* Networking, as a unique cluster IP address,port,  *4.* other Information 
+- Pod Contains: 
+  - *1.* Container(Eg: [Docker](#doc))
+  - *2.* Shared storage, as Volumes
+  - *3.* Networking, as a unique cluster IP address,port,  *4.* other Information 
 
 <img src=kubernets_pod_worker_node.png width=400>
 
 <a name=ns></a>
 ##### Namespaces
 - Collection of pods ie Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
-- 3 predefined namespaces: _a. Default_ , _b. Kube-system:_ resources created by kubernets, _c. Kube-public:_ reserved for future
+- 3 predefined namespaces:
+  - _a. Default_ 
+  - _b. Kube-system:_ resources created by kubernets
+  - _c. Kube-public:_ reserved for future
 ```c
 $ kubectl create namespace test                       //Creating new namespace
 $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
