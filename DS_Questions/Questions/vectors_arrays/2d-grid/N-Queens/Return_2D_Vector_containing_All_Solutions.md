@@ -11,8 +11,6 @@
 - The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
 - Given an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.
 - Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.
-```c
-```
 - Examples
 ```c
 Example-1. Input: n = 4. 4x4 chess board
@@ -127,14 +125,14 @@ O(n<sup>2</sup>) + O(n)   //nxn board, n sized vector to store coloumns
 #include<string>
 #include<set>
 using namespace std;
+
 using vecI = vector<int>;
 using vecS = vector<string>;
 using vecVecI = vector<vecI>;
 using vecVecS = vector<vector<string>>;
 
 class Solution {
-    vecVecS vecs_final_board;
-    int board_size;
+    int board_size, out;
 public:
   /*  This function checks whether particular [row][col] is under attack or not
       ie only check row, col, both diagonals have any 1 entry or not
@@ -144,7 +142,8 @@ public:
             if (board[row][i] || board[i][col])
                 return false;
         }
-        //TODO: Check Diagonal
+        
+        //Checking Diagonals
         int r = row, c = col;
         while (r >0 && c < board_size-1){    //Right up
             if (board[--r][++c])
@@ -172,17 +171,7 @@ public:
     }
     void backtrack(int row, vecVecI& board, vecI& vecCols){
         if (row == board_size){                           //3. Base case, We reached last row.
-            vecI temp;
-            string strTemp(board_size, '.'), strTest;
-            strTest = strTemp;
-            vecS vecTemp;
-            for (auto i:vecCols){                         //Create output Solution vector for 1 board
-                temp.push_back(i);
-                strTest[i] = 'Q';
-                vecTemp.emplace_back(strTest);
-                strTest = strTemp;
-            }
-            vecs_final_board.emplace_back(vecS);
+            ++out;
             return;
         }
         for (int col=0; col<board_size; col++){
@@ -199,9 +188,9 @@ public:
             } 
         }
     }
-    vecVecS totalNQueens(int n) {
+    int totalNQueens(int n) {
         if (n==1)
-            return {{"Q"}};
+            return 1;
 
         vecVecI board(n, vecI(n,0));    //Step-1. Create a empty board
         board_size = n;                 //Store board size
@@ -217,7 +206,7 @@ vecCols 1 3 0 2                 2 0 3 1
         vecI vecCols;                 //We will store Queen Coloums in vecCols.
         backtrack(0, board, vecCols);
 
-        return vecs_final_board;
+        return out;
     }
 };
 
@@ -225,12 +214,7 @@ int main() {
     int n=5;
 
     Solution s;
-    vecVecS out = s.totalNQueens(n);
-    for (int i=0;i<out.size();++i){
-        for (int j=0;j<out[0].size();++j){
-            cout << out[i][j] <<" ";
-        }
-        cout <<"\n";
-    }
+    int out = s.totalNQueens(n);
+    cout << out;
 }
 ```
