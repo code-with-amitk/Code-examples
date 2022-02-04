@@ -27,6 +27,11 @@ Input: n = 1
 Output: 1
 ```
 
+<a name=ap></a>
+### Approach = Backtracking
+- We can solve all backtracking questions using a [backtracking template](/DS_Questions/Algorithms/Backtracking/README.md#tem)
+- This problem also uses backtracking template, see that 1st.
+
 <a name=l></a>
 ### Logic
 _1._ Create a empty board & Start from index=`board[0][0]`
@@ -99,11 +104,6 @@ board
 3  0 0 0 0
 //Try placing Queen on row=2
 ```
-
-<a name=ap></a>
-### Approach = Backtracking
-- We can solve all backtracking questions using a [backtracking template](/DS_Questions/Algorithms/Backtracking)
-- This problem also uses backtracking template, see that 1st.
 
 <a name=co></a>
 ### Complexity
