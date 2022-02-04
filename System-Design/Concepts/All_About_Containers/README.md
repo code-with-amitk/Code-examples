@@ -324,14 +324,14 @@ Cluster having different microservices inside it.
 ### Kubernets Architecture
 ```c
 
-User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 ---|
+User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 ----|
    --*.yaml-->     |Controller  API_service <--------> Kubelet Kubectl_Proxy------> Worker_Node-2
                    |                         |      |                  |----------> Worker_Node-3
-                   |Scheduler     etcd       |      | docker                  |
-                   |-------------------------|      |     |------POD------|   |
-                                                    |     | container1    |   |
-                                                    |     | container2    |   |
-                                                    |     |---------------|   |
+                   |Scheduler     etcd       |      |                         |
+                   |-------------------------|      |  |------POD-----------| |
+                                                    |  | container1(docker) | |
+                                                    |  | container2(docker) | |
+                                                    |  |--------------------| |
                                                     |-------------------------|
 ```
 <a name=mn></a>
