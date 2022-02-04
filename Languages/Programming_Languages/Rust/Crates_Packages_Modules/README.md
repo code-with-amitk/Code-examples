@@ -99,6 +99,23 @@ fn main() {
     println!("{}", String::from_utf8(buffer.clone()).unwrap());
 }
 
+fn default_metrics(registry: &Registry) {
+    registry
+        .register(Box::new(DEFAULT_COUNTER.clone()))
+        .unwrap();
+
+    DEFAULT_COUNTER.inc();
+    assert_eq!(DEFAULT_COUNTER.get(), 1);
+}
+
+/// Custom metrics, to be collected by a dedicated registry.
+fn custom_metrics(registry: &Registry) {
+    registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
+
+    CUSTOM_COUNTER.inc_by(42);
+    assert_eq!(CUSTOM_COUNTER.get(), 42);
+}
+
 $ cargo run
 ## Default registry
 # HELP default generic counter
