@@ -10,12 +10,13 @@
     - [2. None Networking](#nn)
     - [3. Host Networking](#hn)
       - [Example: Nginx container binds directly to port 80 on the Docker host](#egn)
-- **Container Orchestration/ Kubernets**
-  - [Kubernets Architecture](#Kub)
-    - [Master Node](#mn)
-    - [Worker Node](#wn)
-      - [Pod](#pod)
-      - [Namespaces](#ns)
+- **Container Orchestration**
+  - [Kubernets](#Kub)
+    - [Kubernets Architecture](#ka) 
+      - [Master Node](#mn)
+      - [Worker Node](#wn)
+        - [Pod](#pod)
+        - [Namespaces](#ns)
     - [Configuring kubernets Cluster](#cfgk)
       - [Install/Upgrade service in cluster = Helm Chart](#ck1) 
     - [Commands](#kcmd)
@@ -308,8 +309,8 @@ Start ngnix in container with host networking, ngnix listens on port 80 which is
   - *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
 
 <a name=kub></a>
-## Kubernets Architecture : 1 master, n worker nodes
-Kubernets cluster will have different microservices inside cluster
+## Kubernets
+Cluster having different microservices inside it.
 ```c
   |--------------k8s cluster------------|
   | micro_service1      micro_service4  |
@@ -319,9 +320,23 @@ Kubernets cluster will have different microservices inside cluster
   |           micro_servicen            |
   |-------------------------------------|
 ```
+<a name=ka></a>
+### Kubernets Architecture
+```c
+
+User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 ---|
+   --*.yaml-->     |Controller  API_service <--------> Kubelet Kubectl_Proxy------> Worker_Node-2
+                   |                         |      |                  |----------> Worker_Node-3
+                   |Scheduler     etcd       |      | docker                  |
+                   |-------------------------|      |     |------POD------|   |
+                                                    |     | container1    |   |
+                                                    |     | container2    |   |
+                                                    |     |---------------|   |
+                                                    |-------------------------|
+```
 <a name=mn></a>
-### A. Master Node
-- Create/destroy worker nodes. User can only interacts with master node using yaml file.
+#### A. Master Node
+- User Intercts with Master node(using yaml file). Master node create/destroy worker nodes.
 - **Daemon in master node**
   - *1. Controller Manager:* Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
   - *2. API Service:* Manages all communication with Worker nodes(using kubelet)
@@ -329,32 +344,25 @@ Kubernets cluster will have different microservices inside cluster
   - 4. _etcd:_ Database that hosts cluster state information.
 
 <a name=wn></a>
-### B. Worker Node
-- Handles workload.
-- **Daemons in worker node**
-  - *1. Kubelet:* Process for communication with master.
-  - *2. [Docker](#doc):* A container runtime.
-  - *3. Kube Proxy:* Does communication with other nodes in cluster.
-
-**Architecture:** 
-Worker nodes hosts [PODS](#pod)(most atomic unit of kubernets). These pods can contain 1 or more [containers](#con).
-```c
-
-User(application.yaml)      <----Master_Node-------->         <---- Worker_Node-1 -->
-   --------------------->   Controller    API_service<------->Kubectl   Kubectl_Proxy------> Worker_Node-2
-                                                                                   |-------> Worker_Node-3                   
-```
+#### B. Worker Node
+- handles workload. Worker nodes hosts [PODS](#pod). 1 Pod can contain 1 or more [containers](#con).
+- **Daemons in worker node:** *1. Kubelet:* Process for communication with master, *2. [Docker](#doc):* A container runtime, *3. Kube Proxy:* for communication with other nodes in cluster.
 
 <a name=pod></a>
-#### POD 
+##### POD 
 - Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application). Pods run in isolated pvt enviornment. Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
-- Pod Contains:
-  - *1.* Container(Eg: [Docker](#doc))
-  - *2.* Shared storage, as Volumes
-  - *3.* Networking, as a unique cluster IP address
-  - *4.* Information about how to run each container, such as the container image version or specific ports to use 
+- Pod Contains: *1.* Container(Eg: [Docker](#doc)),  *2.* Shared storage, as Volumes, *3.* Networking, as a unique cluster IP address,port,  *4.* other Information 
 
-<img src=kubernets_pod_worker_node.png width=800>
+<img src=kubernets_pod_worker_node.png width=400>
+
+<a name=ns></a>
+##### Namespaces
+- Collection of pods ie Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
+- 3 predefined namespaces: _a. Default_ , _b. Kube-system:_ resources created by kubernets, _c. Kube-public:_ reserved for future
+```c
+$ kubectl create namespace test                       //Creating new namespace
+$ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
+```
 
 <a name=cfgk></a>
 ### Configuring kubernets Cluster(1 master, n workers)
@@ -472,19 +480,6 @@ $ helm upgrade app1{chartname}      //Upgrade the microservice instead of instal
 $ helm rollback app1{chartname}     //rollback to older version
 ```
 
-<a name=ns></a>
-#### Namespaces
-- Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
-- 3 predefined namespaces:
-```c
-1. Default:_ 
-2. Kube-system:_ resources created by kubernets.
-3. Kube-public:_ reserved for future.
-
-$ kubectl crete namespace test                        //Creating new namespace
-$ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
-```
-
 <a name=kcmd></a>
 ### Kubernets commands (kubectl -h)
 <a name=ser></a>
@@ -511,7 +506,7 @@ nsa                     pod2                      0/2     Completed   0         
 nsb                     pod1                      0/2     Completed   0          7d3h
 nsb                     pod2                      0/2     Completed   0          7d3h
 
-$ kubectl get pods -A | grep kafka                //All pods named kafka
+$ kubectl get pods -A | grep kafka                //All pods named kafka*
 Namespace              Pod-name         READY   STATUS      RESTARTS   AGE
 n1                      kafka-0         2/2     Running     0          38d
 n1                      kafka-1         2/2     Running     0          38d
@@ -530,7 +525,7 @@ root@testing:/opt/# ping namespace.service_name               //Pinging service
 ```c
 $ kubectl logs -h                             //Print the logs for a container in a pod
 
-$ kubectl get pods -A | grep kafka            //Get pod name
+$ kubectl get pods -A | grep kafka            //Get All pods named kafka*
 namespace               pods
 ns1                     kafka-a     2/2     Running     0          46d
 ns1                     kafka-b     2/2     Running     0          46d
