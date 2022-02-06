@@ -37,9 +37,12 @@ There is a pattern about the backtracking algorithm, with which most of BT probl
         return;
       
       for (candidate in candidate list) {
+      
         if (candidate not valid) {
           continue;
-        } else {
+        } 
+        else                                            //if Candidate is VALID
+        {
           place_candidate (candidate);                  //Place this candidate on partial solution
           
           recursive_backtrack (candidate+1, &board);    //Try next candidate
