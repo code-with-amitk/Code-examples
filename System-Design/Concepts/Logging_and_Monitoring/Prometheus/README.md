@@ -2,9 +2,10 @@
 - [Usage scenario](#us)
 - [Internal Architecture](#int)
 - [Terms](#terms)
-  - [1. Target](#tar)
-  - [2. Metric](#met)
-  - [3. Scrape](#sc)
+  - [Target](#tar)
+  - [Metric](#met)
+  - [Scrape](#sc)
+  - [Collector](#col)
 - [Configuring Prometheus](#conf)
 
 <a name=pro></a>
@@ -71,7 +72,7 @@ Grafanna       |   |           DB<-|          |          |----------------------
   |----------------------|                              |---------------------
 ```
 <a name=terms></a>
-### Terms
+### [Prometheus Glossary](https://prometheus.io/docs/introduction/glossary/#collector)
 <a name=tar></a>
 #### 1. Target
 Identity which Prometheus can monitor is called target. Eg:
@@ -103,6 +104,9 @@ process_virtual_memory_bytes 12889098109
 <a name=sc></a>
 #### 3. Scrape
 Pulling data from targets is called scraping. Prometheus will scrap the metric using http. [Target](#tar) should support `http://ip:port/metrics/` and provide metrics.
+<a name=col></a>
+#### 4. Collector
+A collector is a part of an [exporter](#hl) that represents a set of metrics. It may be a single metric if it is part of direct instrumentation, or many metrics if it is pulling metrics from another system.
 
 <a name=conf></a>
 ### Configuring Prometheus
