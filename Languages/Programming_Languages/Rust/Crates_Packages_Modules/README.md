@@ -34,7 +34,7 @@ thread_rng().gen_range(0..100)    //Generate random no between [0,100)    //pub 
 #### Using Prometheus Crate
 > [Example from here](https://github.com/tikv/rust-prometheus/blob/master/examples/example_custom_registry.rs)
 - **1. Create a [Registry](https://docs.rs/prometheus/latest/prometheus/struct.Registry.html) `pub struct Registry { /* fields omitted */ }`**
-  - Registry is a structure where Prometheus collectors will register for collecting metrics.
+  - Registry is a structure where [Prometheus collectors](/System-Design/Concepts/Logging_and_Monitoring/Prometheus/README.md#col) will register for collecting metrics.
 ```rs
 impl Registry {
   pub fn new() -> Registry              //Create new Registry.
