@@ -39,7 +39,7 @@ or             |   |             |            |          |      container[App2] 
 Grafanna       |   |           DB<-|          |          |----------------------|     |----------------------|
                |   |               |          |
                |   |               |          |                                       |-------server-n-------------------------|
-               |  \/              Retriever(API call) -http GET hostaddress/metrics---> User-Application                       |
+               |  \/              Retriever(API call) -http GET hostaddress/metrics---> User-Application(http_server)          |
    Email <------ AlertManager                 |                                       |      ----------data----->Client Library|
                |                             <-- prometheus metrics------------------------  <-prometheus metric-----          |
                |------------------------------|                                       |                                        |
