@@ -46,6 +46,8 @@ openssl = { version = "0.10", features = ["vendored"] }
 **src/main.rs**
 ```rs
 use actix_web::{web, App, HttpServer};
+pub(crate) mod handlers;
+
 #[actix_rt::main]                             //3. Mark main function to be executed by the actix runtime using the actix_rt::main attribute
 async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=debug");
