@@ -1,22 +1,19 @@
-- [What is JSON](#what)
-- [Why JSON](#why)
+- [What, Why JSON](#what)
 - [Datatypes](#datatypes)
 - [JSON Schema](#schema)
 - [JSON Transform, Converting JSON to HTML,XML,JSON](#transform)
 - [RESTFul JSON Server](#restful)
 - [Building Web Application using Yeoman](#webapp)
+- [Rust Json Object]()
 
 <a name=what></a>
 ## JSON / JavaScript Object Notation
-- Invented by "Douglas Crockford".
 - JSON is text-based, language-independent **data interchange format**. JSON format is syntactically identical to the code for creating JavaScript objects.
 - **JSON Comments:** There are no comments in a JSON document. Reasons:
   - JSON parsers had difficulties supporting comments.
   - People were abusing comments. For example, Comments were being used for parsing directives, which would have destroyed interoperability.
   - Removing comments simplified and enabled cross-platform JSON support.
-
-<a name=why></a>
-## Why JSON
+#### Why JSON
 - *1.* [RESTful Web Applications](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods/REST) can communicate using JSON.
 - *2.* The simplicity of JSON’s basic data structures
 - *3.* The increasing popularity of JavaScript
