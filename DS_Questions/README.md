@@ -13,11 +13,11 @@
 ## Approach (UAWCTS(U Amit Will Conquer This Season))
 **Google Interview:** https://www.youtube.com/watch?v=XKu_SEDAykw
 1. Understand Clearly. Repeat
-	- Note key points from question.
+	- Note key points from question. {ON PAPER}
 	- Repeat in your own words
-	- Ask too many clarifying questions(from interviewer)
-2. Approach: Naive(Just tell), {O(logn) or O(n)}. Thought-out loud
-3. Walk: Walk approach on given input
+	- Ask 3 clarifying questions(from interviewer)
+2. Approach{ON PAPER}: Naive, Optimized. {O(logn) or O(n)}. Thought-out loud
+3. Walk{ON PAPER}: Walk approach on given input
 4. Code. Write Modularized code. meaningful function,variable names. 
 5. Test cases: doctest(-1,0,1,-inf,+inf)
 6. Scale on Multiple machines
