@@ -7,6 +7,6 @@ Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku so
 - Each of the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
 - The '.' character indicates empty cells.
     
-<img src=https://upload.wikimedia.org/wikipedia/commons/f/ff/Sudoku-by-L2G-20050714.svg width=400></img>
+<img src=https://upload.wikimedia.org/wikipedia/commons/f/ff/Sudoku-by-L2G-20050714.svg width=100></img>
 
-![ImgURL](https://upload.wikimedia.org/wikipedia/commons/3/31/Sudoku-by-L2G-20050714_solution.svg)
+<img src=https://upload.wikimedia.org/wikipedia/commons/3/31/Sudoku-by-L2G-20050714_solution.svg width=100></img>
