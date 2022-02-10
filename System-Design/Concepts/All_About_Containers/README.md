@@ -39,7 +39,7 @@ This is a self contained package that contains everything that your binary/appli
 <img src=TraditionalOS_vs_Containers.jpg width=400/>
 
 <a name=bc></a>
-### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container inside kubernets
+### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container
 - _1._ Get [dockerfile](#dterms) and Application to run
 ```c
 # tar tvf application1.tgz
@@ -55,13 +55,15 @@ application1.out
 # docker tag tag1 artifactory/application-1/tag1
 # docker push artifactory/application-1/tag1
 ```
-- _4._ Deploy docker image into container. Now Application1.out will start running. Container can be part of [kubernets](#Kub).
+- _4._ Deploy docker image into container. Now Application1.out will start running. 
 ```c
 # docker container run artifactory/application-1/tag1
 application1 initializing...
 listening on port 453
 application1 started
 ```
+- _5._ To run container inside [kubernets](#Kub) cluster.
+  - we need (Docker image(build in steps1-4) + [helm chart](#ck1)) to run this container in kubernets.
 <img src=docker_image_to_container.PNG width=600/>
 
 <a name=add></a>
