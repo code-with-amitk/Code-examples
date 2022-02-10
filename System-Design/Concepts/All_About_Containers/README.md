@@ -55,15 +55,13 @@ application1.out
 # docker tag tag1 artifactory/application-1/tag1
 # docker push artifactory/application-1/tag1
 ```
-- _4._ Deploy docker image into container. //Now Application1.out will start running.
+- _4._ Deploy docker image into container. Now Application1.out will start running. Container can be part of [kubernets](#Kub).
 ```c
 # docker container run artifactory/application-1/tag1
 application1 initializing...
 listening on port 453
 application1 started
 ```
-- _5._ Run contianer inside [kubernets](#Kub).
-
 <img src=docker_image_to_container.PNG width=600/>
 
 <a name=add></a>
