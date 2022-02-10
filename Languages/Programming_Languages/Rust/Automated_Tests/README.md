@@ -1,9 +1,10 @@
 Automated Tests
-- **Test Examples**
-  - [1. Simple function](#sim)
-  - [2. All tests inside module](#mod)
-  - [3. Running tests by name](#byname)
-  - [4. Ignoring some tests, ie should not be run](#ignore)
+- **Examples**
+  - [Simple function](#sim)
+  - [All tests inside module](#mod)
+  - [Running tests by name](#byname)
+  - [Ignoring some tests, ie should not be run](#ignore)
+  - [async function test](#as)
 - Unit Tests, Integration Tests
   - [1. Unit Tests](#unit)
   - [2. Integration Tests](#int)
@@ -15,7 +16,7 @@ In rust we can write test function with which we can test our existing code.
 ## Test Examples
 
 <a name=sim></a>
-#### 1. Simple function
+#### Simple function
 Functions preceded by attribute `#[test]` is a test function. [assert!(), assert_eq!(), assert_ne!()](/Languages/Programming_Languages/Rust/Functions)
 ```rs
 fn greater_than_ten(a:u32)->bool {
@@ -34,7 +35,7 @@ $ cargo test
 ```
 
 <a name=mod></a>
-#### 2. All tests inside module
+#### All tests inside module
 - _2._ Inside all_tests module outside code cannot be seen, we use glob here so anything we define in the outer module is available to this all_tests module.
 ```rs
 struct rect {
@@ -69,7 +70,7 @@ $ cargo test
 ```
 
 <a name=byname></a>
-#### 3. Running tests by name
+#### Running tests by name
 ```rs
 pub fn add_two(a: i32) -> i32 {
     a + 2
@@ -100,7 +101,7 @@ $ cargo test one                        //Will run all test cases having one in 
 ```
 
 <a name=ignore></a>
-#### 4. Ignoring some tests, ie should not be run
+#### Ignoring some tests, ie should not be run
 ignore attribute will not run the test.
 ```rs
 #[test]
@@ -116,6 +117,37 @@ fn expensive_test() {
 
 $ cargo test
 $ cargo test -- --ignored             // If we want to run only the ignored tests
+```
+
+<a name=as></a>
+#### async function test
+```rs
+# Cargo.toml
+[package]
+name = "async_test"
+version = "0.1.0"
+edition = "2018"
+[dependencies]
+actix-rt = "*"
+
+# main.rs
+fn main() {}
+
+async fn fun(s: &str) -> String{
+    "Hello".to_string()
+}
+
+#[cfg(test)]
+#[allow(non_snake_case)]
+mod tests {
+    use super::*;
+  
+    #[actix_rt::test]
+    async fn fun_test() {
+      assert_eq!(fun("a").await, "Hello".to_string());
+    }
+}
+$ cargo test
 ```
 
 ## Unit Tests, Integration Tests
