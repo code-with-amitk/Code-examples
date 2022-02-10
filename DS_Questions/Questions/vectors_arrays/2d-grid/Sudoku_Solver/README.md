@@ -18,4 +18,4 @@ Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku so
 - When checking for violations, if it is discovered that the "2" is not allowed, the value is advanced to "3".
 - If a cell is discovered where none of the 9 digits is allowed, then the algorithm leaves that cell blank and moves back to the previous cell. The value in that cell is then incremented by one. This is repeated until the allowed value in the last box is discovered.
 
-#### [Example-1: 4x4 Board](4x4Board.md)
+#### [Example-1: 4x4 Board](4x4Board)
