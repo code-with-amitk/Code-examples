@@ -12,9 +12,28 @@
 
 #### Code
 ```rs
-let (s, r) = async_channel::unbounded();
+# Cargo.toml
+[package]
+name = "async_channel"
+version = "0.1.0"
+edition = "2018"
 
-assert_eq!(s.send("Hello").await, Ok(()));    //Sends a message into the channel.
+[dependencies]
+async-channel = {version = "1.5"}
+tokio = {version = "0.2.*", features = ["full"] }
 
-assert_eq!(r.recv().await, Ok("Hello"));    //Receives a message from channel. If the channel is empty, this method waits until there is a message.
+# main.rs
+use async_channel;
+async fn fun() {
+    let (s, r) = async_channel::unbounded();
+
+    assert_eq!(s.send("Hello").await, Ok(())); //Sends a message into the channel.
+    assert_eq!(r.recv().await, Ok("Hello"));   //Receives a message from channel. If the channel is empty, this method waits until there is a message.
+}
+
+fn main() {
+    let mut rt = tokio::runtime::Runtime::new().unwrap(); //1. Start tokio runtime
+    let local = tokio::task::LocalSet::new();
+    local.block_on(&mut rt, async move { fun().await });
+}
 ```
