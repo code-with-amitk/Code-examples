@@ -21,7 +21,7 @@ Allowed     | n readers inside                  | Only 1 reader inside CS.
 - Rwlock is often used with [Arc](/Languages/Programming_Languages/Rust/Threading/), because cannot be sent between threads safely bcoz trait `Send` is not implemented for `RwLockReadGuard`.
 - Atomicity is provided by RwLocks, once all references to resource are gone(ie its not used by any thread) its automatically deallocates.
 <a name=e1></a>
-#### 1. Storing u32 in `Arc<RwLock>`
+#### 1. Storing u32 in `Arc<RwLock>`, Reading writing using Threads
 ```rs
 //Example: Thread1 reading, Thread2 writing, Thread3 reading
 use std::{
@@ -34,6 +34,7 @@ use std::{
 
 fn main() {
     let lock = Arc::new(RwLock::new(5));
+    
     let thread1_lock = lock.clone();
     let thread2_lock = lock.clone();
     let thread3_lock = lock.clone();
@@ -43,6 +44,7 @@ fn main() {
             println!("Thread1 read{:?}",*r1);    
         };
     });
+    
     let handle2 = thread::spawn(move ||{                //Writer Thread
         let w1 = thread2_lock.write();
         let mut val = match w1 {
