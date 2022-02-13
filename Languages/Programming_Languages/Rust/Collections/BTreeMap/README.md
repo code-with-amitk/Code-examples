@@ -1,6 +1,6 @@
 **BTreeMap**
 - [Insert(key,value), len(), iterate over all element, delete](#c)
-  - 
+
 
 <a name=btm></a>
 ### [BTreeMap <key, value>](https://doc.rust-lang.org/std/collections/struct.BTreeMap.html)
