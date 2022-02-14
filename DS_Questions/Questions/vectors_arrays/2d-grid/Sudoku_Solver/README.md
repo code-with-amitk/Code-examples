@@ -14,8 +14,12 @@ Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku so
 
 <a name=l></a>
 ### READ Logic 1st = [Backtracking](/DS_Questions/Algorithms/Backtracking)
-- Place digit "1" in the first cell and checking if it is allowed to be there. If there are no violations (checking row, column, and box constraints) then the algorithm advances to the next cell and places a "2" in that cell.
-- When checking for violations, if it is discovered that the "2" is not allowed, the value is advanced to "3".
-- If a cell is discovered where none of the 9 digits is allowed, then the algorithm leaves that cell blank and moves back to the previous cell. The value in that cell is then incremented by one. This is repeated until the allowed value in the last box is discovered.
+[How to solve Suduko. Great PepCode](https://www.youtube.com/watch?v=uyetDh-DyDg)
+
+**Logic**
+- _1._ Find all possible numbers which can be placed on cell.
+  - Place 1st number from all possible numbers.
+- _2._ if on particular cell no number can be placed, Backtrack to previous cell
+  - Place next number from possible solutions which were found in step-1.
 
 #### [Example-1: 4x4 Board](4x4Board)
