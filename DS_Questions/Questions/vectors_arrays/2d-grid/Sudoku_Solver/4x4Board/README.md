@@ -93,4 +93,4 @@ Position=32. All possibilites(1?No, 2?no 3?yes 4?no) Place 3
 ```
 
 **Another Example**
-<img src=suduko_backtrack.png width=300></img>
+<img src=suduko_backtrack.png width=700></img>
