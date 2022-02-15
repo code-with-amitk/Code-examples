@@ -1,10 +1,6 @@
 **4x4 Board**
 
 ### 4x4 Board using Backtracking
-#### Example. Backtracking on same row(ie prev element)
-
-<img src=4x4Example1.PNG width=200></img>
-
 **In Recursion we have something as:**
 ```c
   fun(row, col) {
@@ -19,6 +15,8 @@
 <img src=suduko_backtrack1.png width=900></img>
 
 #### Example-2 (using backtracking)
+<img src=4x4Example1.PNG width=100></img>
+
 ```c
 2 1 . .
 . 3 2 .
