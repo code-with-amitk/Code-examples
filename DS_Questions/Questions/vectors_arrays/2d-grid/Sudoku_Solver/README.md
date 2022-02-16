@@ -13,11 +13,8 @@ Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku so
 <img src=https://upload.wikimedia.org/wikipedia/commons/3/31/Sudoku-by-L2G-20050714_solution.svg width=200></img>
 
 <a name=l></a>
-### READ Logic 1st = [Backtracking](/DS_Questions/Algorithms/Backtracking)
-[How to solve Suduko. Great PepCode](https://www.youtube.com/watch?v=uyetDh-DyDg)
-
-<a name=l></a>
-#### Logic
+### Logic
+[How to solve Suduko. PepCode](https://www.youtube.com/watch?v=uyetDh-DyDg)
 - _1._ Find all possible numbers/solutions which can be placed on cell.
   - Place 1st number/solution from all possible numbers.
 - _2._ if on particular cell no number can be placed, Backtrack to previous cell.
