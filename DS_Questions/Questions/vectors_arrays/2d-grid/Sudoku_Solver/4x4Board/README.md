@@ -19,7 +19,7 @@
 
 <a name-ex1></a>
 #### Example-1 (using backtracking)
-<img src=suduko_backtrack1.png width=900></img>
+<img src=suduko_backtrack.png width=900></img>
 
 <a name-ex2></a>
 #### Example-2 (using backtracking)
