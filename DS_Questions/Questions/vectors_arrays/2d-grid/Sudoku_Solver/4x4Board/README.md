@@ -108,7 +108,7 @@ Position=32. All possibilites(1?No, 2?no 3?yes 4?no) Place 3
 ### Code
 <a name=c1></a>
 #### CPP
-We will follow [BT Template](/DS_Questions/Algorithms/Backtracking#tem)
+We will follow [BT Template](/DS_Questions/Algorithms/Backtracking#tem).
 ```c
 class Solution {
     int size;
