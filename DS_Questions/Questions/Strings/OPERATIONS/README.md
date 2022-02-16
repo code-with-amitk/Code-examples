@@ -2,9 +2,9 @@
 - **Compare**
   - [compare()](#co1)
 - **Create / Convert**
-  - [A. String from int, double, string using stringstream](#ss1)
-  - [B. `vector<int>` from string using stringstream](#ss2)
-  - [C. int from string. istringstream, stringstream](#ss3)
+  - [A. int, double to string using stringstream](#ss1)
+  - [B. String to `vector<int>` using stringstream](#ss2)
+  - [C. String to int istringstream, stringstream](#ss3)
 - [Erase](#er)
 - [Find](#f)
 - [insert](#in)
@@ -27,7 +27,7 @@
 
 ## Create
 <a name=ss1></a>
-#### A. String from int, string, double
+#### A. int, double to string
 ```cpp
 ///Using stringstream
 #include<sstream>
@@ -39,7 +39,7 @@ int main(){
 }
 ```
 <a name=ss2></a>
-#### B. `vector<int>` from string
+#### B. String to `vector<int>`
 ```c++
 ///Using stringstream
 vector<int> v;
@@ -50,7 +50,7 @@ ss>>std::hex>>a;                                  //a=Hex of 444
 v.push_back(a);
 ```
 <a name=ss3></a>
-#### C. int from String
+#### C. String to int
 ```c++
 ////1. istringstream////////
   string a ="12";
