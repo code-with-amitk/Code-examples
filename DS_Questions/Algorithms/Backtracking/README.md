@@ -32,9 +32,12 @@ Select one way and try to move forward towards the destination. if we reach a po
 ### Backtracking Template
 There is a pattern about the backtracking algorithm, with which most of BT problems can be solved. Check [N-Queen problem uses this](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens).
 ```c
-    void recursive_backtrack(int row, &board){
-      if (row = board_size)                             //Base case. We reached last row
+    board sol;
+    void recursive_backtrack(int row, int col, &board){
+      if (row == size && col == size){                  //Base case. We reached last cell
+        sol = board;
         return;
+      }
       
       for (candidate in candidate list) {
       
@@ -54,7 +57,7 @@ There is a pattern about the backtracking algorithm, with which most of BT probl
     
     return-type solve (int n) {
         board = create-broad (0);
-        recursive_backtrack (0, board);               //Start from 0
+        recursive_backtrack (0, 0, board);               //Start from row=0,col=0
         return vecs_final_board;
     }
     
