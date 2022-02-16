@@ -20,11 +20,13 @@
 <a name-ex1></a>
 #### Example-1 (using backtracking)
 [READ LOGIC](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver/README.md#l)
+
 <img src=suduko_backtrack.png width=900></img>
 
 <a name-ex2></a>
 #### Example-2 (using backtracking)
 [READ LOGIC](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver/README.md#l)
+
 <img src=4x4Example1.PNG width=200></img>
 
 ```c
