@@ -19,10 +19,12 @@
 
 <a name-ex1></a>
 #### Example-1 (using backtracking)
+[READ LOGIC](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver/README.md#l)
 <img src=suduko_backtrack.png width=900></img>
 
 <a name-ex2></a>
 #### Example-2 (using backtracking)
+[READ LOGIC](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver/README.md#l)
 <img src=4x4Example1.PNG width=200></img>
 
 ```c
@@ -104,6 +106,7 @@ Position=32. All possibilites(1?No, 2?no 3?yes 4?no) Place 3
 ### Code
 <a name=c1></a>
 #### CPP
+We will follow [BT Template](/DS_Questions/Algorithms/Backtracking#tem)
 ```c
 class Solution {
     int size;
@@ -119,7 +122,8 @@ public:
         return true;
     }
     void backtrack (vecVecI board, int row, int col) {
-        if (row == size-1 && col == size-1) {
+
+        if (row == size-1 && col == size-1) {       //Base case
             sol = board;
             return;
         }
@@ -127,7 +131,9 @@ public:
         if (col == size)
             backtrack(board, row+1, 0);
 
-        if (board[row][col] == 0){
+        if (board[row][col] != 0){                  //Not valid candidate continue
+            backtrack(board, row, col+1);
+        } else {            
             for (int i=1; i<=size; ++i){    //All possible solutions
                 if (is_valid_solution(board, i, row, col)){
                     board[row][col] = i;
@@ -135,9 +141,6 @@ public:
                     board[row][col] = 0;
                 }
             }
-        }
-        else {
-            backtrack(board, row, col+1);
         }
     }
 
