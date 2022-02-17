@@ -21,3 +21,5 @@ Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku so
   - Place next number/solution from possible solutions which were found in step-1.
 
 #### [Example-1: 4x4 Board](4x4Board)
+#### [Example-2: 5x5 Board](5x5Board)
+#### [Example-3: 9x9 Board](9x9Board)
