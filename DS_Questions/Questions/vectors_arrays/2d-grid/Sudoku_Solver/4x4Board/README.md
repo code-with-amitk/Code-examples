@@ -185,5 +185,11 @@ int main() {
 - Now, we are at last cell of 4th row and we need to backtrack maybe to 1st row, 1st cell
  - Backtrack 2 rows and fill again = 4x4!
 - Total Time Complexity = 4!<sup>4></sup>
-#### Space
-- Constant, no extra allocations.
+#### Space O(nxn) = O(n)
+- 1st row. 
+  - 1st cell, 4 placed. Function stack. Recursion call
+  - 2nd cell, 3 placed. Function stack. Recursion call
+  - 3rd cell, 2 placed. Function stack. Recursion call
+  - 4th cell, Backtrack. Now this function stack is deleted.
+  - Now only 3 function stacks.
+- So at any time in single row. n function stacks are there.
