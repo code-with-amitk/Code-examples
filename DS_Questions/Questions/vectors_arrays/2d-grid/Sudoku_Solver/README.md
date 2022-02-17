@@ -14,7 +14,7 @@ Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku so
 
 <a name=l></a>
 ### Logic
-[How to solve Suduko. PepCode](https://www.youtube.com/watch?v=uyetDh-DyDg)
+[How to solve Suduko?](https://www.youtube.com/watch?v=uyetDh-DyDg)
 - _1._ Find all possible numbers/solutions which can be placed on cell.
   - Place 1st number/solution from all possible numbers.
 - _2._ if on particular cell no number can be placed, Backtrack to previous cell.
