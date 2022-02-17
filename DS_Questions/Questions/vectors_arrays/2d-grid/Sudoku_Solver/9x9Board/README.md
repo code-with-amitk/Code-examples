@@ -192,13 +192,4 @@ int main() {
 ```
 
 <a name=co></a>
-### Complexity
-#### Time complexity
-- TC is constant since the board size is fixed. Number of operations needed : 9!<sup>9</sup>
-- Let's consider one row having 9 cells. 
-  - There are not more than 9 possibilities for the first number to put
-  - not more than 9x8 for the second one
-  - not more than 9x8x7 for the third one etc.
-  - In total that results in not more than 9! possibilities for a just one row and not more than 9!<sup>9</sup> for total.
-#### Space complexity
-The board size is fixed, and the space is used to store board, rows, columns and boxes structures, each contains 81 elements.
+### [Complexity](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver/4x4Board/README.md#co)
