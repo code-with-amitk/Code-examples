@@ -17,8 +17,10 @@
       - [Worker Node](#wn)
         - [Pod](#pod)
         - [Namespaces](#ns)
+    - Kubernets Terms
+      - [configmaps](#cm)
     - [Configuring kubernets Cluster](#cfgk)
-      - [Install/Upgrade service in cluster = Helm Chart](#ck1) 
+      - [Install/Upgrade service in cluster = Helm Chart](#ck1)
     - [Commands](#kcmd)
 
 
@@ -368,6 +370,38 @@ User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 ----|
 ```c
 $ kubectl create namespace test                       //Creating new namespace
 $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
+```
+
+### Kubernets Terms
+<a name=cm></a>
+#### Configmaps
+configmap is a kubernets Object which stores non-sensative configuration of container in key=value pair.
+##### Creating a configmap from File
+```c
+# cat test.properties
+name=Amit
+age=25
+life=Great
+worry=None
+
+# kubectl create configmap amit-configmap --from-file=test.properties   //Create configmap
+
+# kubectl get configmaps amit-configmap -o yaml                         //View configmap
+apiVersion: v1
+data:
+  test.properties: |
+    name=Amit
+    age=25
+    life=Great
+    worry=None
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-02-17T12:41:43Z"
+  name: amit-configmap
+  namespace: fs-central
+  resourceVersion: "55390398"
+  uid: 65e65104-d94c-4054-9359-16f5dc221b53
+
 ```
 
 <a name=cfgk></a>
