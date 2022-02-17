@@ -167,5 +167,23 @@ int main() {
 #### Rust
 ```rs
 ```
+
 <a name=co></a>
 ### Complexity
+#### Time
+- 1st row. 
+  - 1st cell, 4 numbers to be checked.
+  - 2nd cell, 3 numbers to be checked.
+  - 3rd cell, 2 numbers to be checked... Also these are checked in nested for loop. 
+  - Complexity for 1st row = 4x3x2x1 = 4!
+- 2nd row. 4!
+- 1st+2nd+3rd+4th = 4x4!
+- Now, we are at last cell of 2nd row and we need to backtrack maybe to 1st row, 1st cell
+ - Backtrack 1 row and fill again = 4! + 4! = 2x4!
+- Now, we are at last cell of 3rd row and we need to backtrack maybe to 1st row, 1st cell
+ - Backtrack 2 rows and fill again = 4! + 4! + 4! = 3x4!
+- Now, we are at last cell of 4th row and we need to backtrack maybe to 1st row, 1st cell
+ - Backtrack 2 rows and fill again = 4x4!
+- Total Time Complexity = 4!<sup>4></sup>
+#### Space
+- Constant, no extra allocations.
