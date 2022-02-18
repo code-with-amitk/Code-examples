@@ -200,9 +200,8 @@ If-None-Match: "26f731-8287-427fcfaa"
 #### POST message example
 To Send data to server. Used when forms are submitted.
 ```c
-  Client                                                        Server
-  Header:
-    [key:content_type, val:application/encoded_url]
+  Client                                              Server
+  	---- POST data ----->
 ```
 
 ### HTTP Terms
