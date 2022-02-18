@@ -1,9 +1,17 @@
 **Commands**
+- [get ip addresses](#g)
 - [User Identification](#ui)
 - [Set Logging](#sl)
 - [Counters, Status](#cs)
 
 ### Commands
+<a name=ui></a>
+#### Get IP Addresses
+```c
+> cli
+> show interfaces terse
+```
+
 <a name=ui></a>
 #### User Identification
 ```c
