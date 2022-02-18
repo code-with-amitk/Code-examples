@@ -155,14 +155,42 @@ Upgrade:     Both The protocol the sender wants to switch to
 
 <a name=get></a>
 #### GET example
+- [_Step-1._ DNS Resolution](/Networking/OSI-Layers/Layer-7/Protocols/DNS/). got IP address.
+- [_Step-2._ TCP Connection Estbd SYN,SYNACK,ACK](/Networking/OSI-Layers/Layer-4/Protocols/TCP#estb)
+- _Step-3._ Broweser sends this plain text to server
 ```html
-    BROWSER
-    www.cs.washington.edu        ---DNS Query-->    DNS
-                     <--A record(a.b.c.d)---
-                     
-         ---------------- TCP 3-Way handshake port 80 -----------> SERVER(a.b.c.d)
-         ------GET www.test.com/index.html HTTP/1.1------------->
-         <-----HTTP/1.1 200 OK ContentType:txt/html ContentLen:988 [........988 bytes txt]--
+    BROWSER							SERVER(www.freebsd.org)
+         ------ GET www.test.com/index.html HTTP/1.1------------->
+GET / HTTP/1.1
+Host: www.freebsd.org
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.7) Gecko/20050414 Firefox/1.0.3
+Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
+Accept-Language: en-us,en;q=0.5
+Accept-Encoding: gzip,deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+If-Modified-Since: Mon, 09 May 2005 21:01:30 GMT
+If-None-Match: "26f731-8287-427fcfaa"
+
+         <----- HTTP/1.1 200 OK ----------------------------------
+								HTTP/1.1 200 OK
+								Date: Fri, 13 May 2005 05:51:12 GMT
+								Server: Apache/1.3.x LaHonda (Unix)
+								Last-Modified: Fri, 13 May 2005 05:25:02 GMT
+								ETag: "26f725-8286-42843a2e"
+								Accept-Ranges: bytes
+								Content-Length: 33414
+								Keep-Alive: timeout=15, max=100
+								Connection: Keep-Alive
+								Content-Type: text/html
+	<----- Text HTML ------------------------------------------
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html>
+			<!-- Rest of the HTML Page Here -->
+		</html>
+
     if page has URL's, Videos
     fetches using same process
          ----------------    TCP-FIN    ---------------------------->
