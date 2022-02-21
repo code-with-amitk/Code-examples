@@ -19,10 +19,8 @@ _ _ _
 5 4 3 <- 5x4x3 = 60 ways
 ```
 
-### Combination/Choosing (not arrangement)
+### Combination/Choose(not arrangement). Repetition not allowed
 - [Good Video](https://www.youtube.com/watch?v=p8vIcmr_Pqo)
-- Ways to choose r persons from n.
-- Example
 1. In how many ways 3 persons can be choosen from 5(p1,p2..p5) to sit on 3 chairs? <sup>5</sup>C<sub>3</sub> = 10
 ```c
 _  _  _ 
@@ -34,4 +32,15 @@ p3 p1 p2
 p3 p2 p1
 
 Permutations / 3!
+```
+2. Combination of 2 numbers out of 4
+```c
+[1,2,3,4]
+
+12    //21 is not taken, 12 21 are same. Since its not arragement
+13
+14
+23
+24
+34
 ```
