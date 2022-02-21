@@ -4,12 +4,13 @@
 
 <a name=btm></a>
 ### [BTreeMap <key, value>](https://doc.rust-lang.org/std/collections/struct.BTreeMap.html)
+- Map implemented using BTree, suitable for storage of data in Databases, since Databases uses BTree internally.
+- Has unique keys
 ```c
 Complexity       Insert      Search    Delete
 Map              O(1)         O(1)      O(1)
 BS Tree,BTree    O(logn)     O(logn)   O(logn)
 ```
-Has unique keys
 
 <a name=c></a>
 ### Code
