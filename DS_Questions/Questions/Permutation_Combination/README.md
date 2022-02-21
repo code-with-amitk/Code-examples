@@ -33,7 +33,7 @@ p3 p2 p1
 
 Permutations / 3!
 ```
-2. Combination of 2 numbers out of 4
+2. Combination/Choosing of 2 numbers out of 4. <sup>4</sup>C<sub>2</sub> = 4!/2!2! = 6
 ```c
 [1,2,3,4]
 
@@ -43,4 +43,13 @@ Permutations / 3!
 23
 24
 34
+```
+3. Combination/Choosing of 3 numbers out of 4. <sup>4</sup>C<sub>3</sub> = 4!/3!1! = 4
+```c
+[1,2,3,4]
+
+123    //321 is not taken, 123 = 321 are same. Since its not arragement
+124
+234
+134     //or 431 both are same
 ```
