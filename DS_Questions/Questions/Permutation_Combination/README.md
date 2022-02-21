@@ -4,5 +4,34 @@
 |Formula| <sup>n</sup>P<sub>r</sub> = n!/(n-r)! | <sup>n</sup>C<sub>r</sub> = n!/(n-r)!r! |
 
 
-- **Permutation/Arragement?** counting the number of arrangements from n objects.
-- **Combination?** counting of selections that we make from n objects.
+### Permutation/Arragement
+[Good Video](https://www.youtube.com/watch?v=DROZVHObeko)
+- Never look at formula, always count.
+- Examples
+1. In how many ways 5 persons (p1,p2..p5) can sit on 5 chairs?
+```c
+_ _ _ _ _ 
+5 4 3 2 1 <- ways.  5!=120 ways
+```
+2. In how many ways 5 persons (p1,p2..p5) can sit on 3 chairs?
+```c
+_ _ _ 
+5 4 3 <- 5x4x3 = 60 ways
+```
+
+### Combination/Choosing (not arrangement)
+- [Good Video](https://www.youtube.com/watch?v=p8vIcmr_Pqo)
+- Ways to choose r persons from n. I
+- Example
+1. In how many ways 3 persons can be choosen from 5(p1,p2..p5) to sit on 3 chairs? <sup>5</sup>C<sub>3</sub> = 10
+```c
+_  _  _ 
+p1 p2 p3    //These are considered as 1 way. All the same.
+p1 p3 p2
+p2 p1 p3
+p2 p3 p1
+p3 p1 p2
+p3 p2 p1
+
+Permutations / 3!
+```
