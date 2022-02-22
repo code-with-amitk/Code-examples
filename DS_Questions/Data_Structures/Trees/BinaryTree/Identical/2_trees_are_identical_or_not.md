@@ -1,9 +1,9 @@
-**[Same Tree](https://leetcode.com/problems/same-tree/)**
+**Same Tree**
    - [Logic](#log)
    - [Complexity](#comp)
    - [Code](#cpp)
 
-### Question
+### [Same Tree](https://leetcode.com/problems/same-tree/)
 Compare 2 binary trees, return 1 if equal else 0.
 ```c
 Input: p = [1,2,3], q = [1,2,3]
@@ -21,16 +21,17 @@ Output: false
 
 <a name=log></a>
 ### Logic
-**Logic-1: Extra space:** Traverse tree1 and tree2 and save in vector1 and vector2. if vectors are same return 1 else 0
+#### Logic-1: Extra space
+Traverse tree1 and tree2 and save in vector1 and vector2. if vectors are same return 1 else 0
 
-**Logic-2(Without Extra Space)**       //Using this
+#### Logic-2(Without Extra Space)
   - Visit same node of each tree. ie tree1 & tree2
   - if values are same do nothing
   - if different return 0.     
 
 ### Code
 <a name=cpp></a>
-**C++**
+#### CPP
  ```cpp
 struct TreeNode {
     int val;
