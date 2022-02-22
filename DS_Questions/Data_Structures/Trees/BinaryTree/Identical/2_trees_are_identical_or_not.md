@@ -1,7 +1,10 @@
 **Same Tree**
-- [Approach-1: Extra space](#a1)
-- [Approach-2(Without Extra Space)](#a2)
-- [Code](#cpp)
+- **Approaches**
+  - [Approach-1: Extra space](#a1)
+  - [Approach-2(Without Extra Space)](#a2)
+- **Code**
+  - [Recursive](#r)
+  - [Iterative](#it)
 - [Complexity](#comp)
 
 ### [My Video. See it before Editing the page](https://youtu.be/ZTNCu_IiuZc)
@@ -35,8 +38,8 @@ Traverse tree1 and tree2 and save in vector1 and vector2. if vectors are same re
   - _3._ if left subtree is empty & right is not empty and viceversa.
 
 ### Code
-<a name=cpp></a>
-#### CPP
+<a name=r></a>
+#### Recursive:CPP
  ```cpp
 struct TreeNode {
     int val;
@@ -88,6 +91,57 @@ int main(){
      //Logic without Extra Space
    cout << identicalTrees(p1a, p1b));
 }
+```
+
+<a name=i></a>
+#### Iterative
+- [We will use following approach To convert Itertive to recursive](/DS_Questions/Algorithms/Recursion/README.md#ci)
+- Take stack.
+  - _1._ Push a,b root on stack.
+  - _2._ Pop top 2 elements compare and repeat step-1
+  - _3._ if stack becomes empty(that means no more child nodes are there to be added) return true.
+```cpp
+class Solution {
+public:
+    bool isSameTree(TreeNode* a, TreeNode* b) {
+        if ((a == nullptr && b) || (b == nullptr && a))
+            return false;
+        
+        if (!a && !b)
+            return true;
+        if (a->val != b->val)
+            return false;
+        
+        stack<TreeNode*> st;
+        st.push(a);
+        st.push(b);
+        
+        while (st.empty() != 1){
+            auto a1 = st.top(); st.pop();
+            auto b1 = st.top(); st.pop();
+            
+            if (a1->val != b1->val)
+                return false;
+
+            if ((a1->left == nullptr && b1->left) ||
+                (b1->left == nullptr && a1->left) ||
+                (a1->right == nullptr && b1->right) ||
+                (b1->right == nullptr && a1->right)
+                )
+                return false;
+        
+            if (a1->left && b1->left){
+                st.push(a1->left);
+                st.push(b1->left);
+            }
+            if (a1->right && b1->right){
+                st.push(a1->right);
+                st.push(b1->right);
+            }
+        }
+        return true;
+    }
+};
 ```
 
 <a name=comp></a>
