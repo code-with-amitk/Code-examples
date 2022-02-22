@@ -4,6 +4,8 @@
 - [Code](#cpp)
 - [Complexity](#comp)
 
+### [My Video](https://youtu.be/ZTNCu_IiuZc)
+
 ### [Same Tree](https://leetcode.com/problems/same-tree/)
 Compare 2 binary trees, return 1 if equal else 0.
 ```c
