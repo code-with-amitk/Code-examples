@@ -3,6 +3,7 @@
 |---|---|---|
 |Formula| <sup>n</sup>P<sub>r</sub> = n!/(n-r)! | <sup>n</sup>C<sub>r</sub> = n!/(n-r)!r! |
 
+### [My Video](https://youtu.be/ijLshCenMEk)
 
 ### Permutation/Arragement
 [Good Video](https://www.youtube.com/watch?v=DROZVHObeko)
