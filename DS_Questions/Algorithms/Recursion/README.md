@@ -2,6 +2,7 @@
 - [Complexities](#com)
 - Examples using recursion
   - [1. Reverse string inplace](#rev)
+- [Converting Recursion to Iterative](#ci)
 
 <a name=w></a>
 ## Recursion
@@ -49,3 +50,8 @@ public:
     }
 };
 ```
+
+<a name=ci></a>
+### Convert Recursive to Iterative
+- Use stack or queue data structure to replace the role of the system call stack.
+- At each occurrence of recursion, we simply push the parameters as a new element into the data structure that we created, instead of invoking a recursion.
