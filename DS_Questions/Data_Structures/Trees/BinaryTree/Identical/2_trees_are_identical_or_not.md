@@ -1,7 +1,8 @@
 **Same Tree**
-   - [Logic](#log)
-   - [Complexity](#comp)
-   - [Code](#cpp)
+- [Approach-1: Extra space](#a1)
+- [Approach-2(Without Extra Space)](#a2)
+- [Code](#cpp)
+- [Complexity](#comp)
 
 ### [Same Tree](https://leetcode.com/problems/same-tree/)
 Compare 2 binary trees, return 1 if equal else 0.
@@ -19,15 +20,17 @@ Output: false
    2           2
 ```
 
-<a name=log></a>
-### Logic
-#### Logic-1: Extra space
+<a name=a1></a>
+### Approach-1: Extra space
 Traverse tree1 and tree2 and save in vector1 and vector2. if vectors are same return 1 else 0
 
-#### Logic-2(Without Extra Space)
-  - Visit same node of each tree. ie tree1 & tree2
-  - if values are same do nothing
-  - if different return 0.     
+<a name=a2></a>
+#### Approach-2(Without Extra Space)
+- Recursively iterate through same nodes of both trees, if at any level not found same, return false. else return true.
+- Checks to perform and return false:
+  - _1._ if root nodes are not equal
+  - _2._ if values of any node not same
+  - _3._ if left subtree is empty & right is not empty and viceversa.
 
 ### Code
 <a name=cpp></a>
@@ -42,17 +45,34 @@ struct TreeNode {
     TreeNode(int x, TreeNode* left, TreeNode* right) : val(x), left(left), right(right) {}
 };
 
-int isSameTree(TreeNode* a, TreeNode* b) {
-    if (a == NULL && b == NULL)                       //Both Empty
-        return 1;
+    bool isSameTree(TreeNode* a, TreeNode* b) {
+        if ((a == nullptr && b) ||
+            (b==nullptr && a))
+            return false;
 
-    if (a != NULL && b != NULL)                       //Both Non-empty
-        return ((a->val == b->val) && 
-                (isSameTree(a->left, b->left)) &&
-                (isSameTree(a->right, b->right)));
+        return test(a,b);
+    }
+    
+    bool test(TreeNode* a, TreeNode* b) {
+    
+         //base case that both children of both nodes of tree a,b are empty
+        if (a == nullptr && b == nullptr)
+            return true;
+        
+        if (a->val != b->val)
+            return false;
+            
+        //We cannot proceed if either a or b has non symmetrical subtrees under
+        if ((a->left==nullptr && b->left) ||
+            (b->left==nullptr && a->left) ||
+            (a->right==nullptr && b->right) ||
+            (b->right==nullptr && a->right)
+           )
+            return false;
+        
+        return test(a->left, b->left) && test(a->right, b->right);
 
-    return 0;                             //if 1 is empty other not, return 0
-}
+    }
 
 int main(){
     TreeNode* p2a = new TreeNode(2);
@@ -67,3 +87,10 @@ int main(){
    cout << identicalTrees(p1a, p1b));
 }
 ```
+
+<a name=comp></a>
+### Complexity
+#### Time
+O(n)
+#### Space
+O(logn) because at anytime we will only have logn stacks used.
