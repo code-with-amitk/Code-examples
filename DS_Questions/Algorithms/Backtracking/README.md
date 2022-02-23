@@ -1,14 +1,14 @@
 - [Backtracking](#bt)
 - **Examples**
   - [Ex-1, 2](#ex1)
+- [BT Template](#tem) Problems solved using BT Template:
   - [N-Queen-Problem](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
   - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
   - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
-- [BT Template](#tem)
 
 <a name=bt></a>
-## [Backtracking](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
+## [Backtracking LC Explore Cards](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
 - Backtracking uses Recursion & it is an algorithmic paradigm aimed to improve the time complexity of the [Naive/Brute Force](..) **if possible**.
 - Backtracking **can be imagined** same as tree traversal where we start from root node to search for solutions that are located at the leaf nodes.
 - Each node represents a partial candidate to final solution, At each node. Once we can determine if a certain node cannot possibly lead to a final solution, we abandon the current node and backtrack to its parent node to explore other possibilities.
@@ -33,12 +33,12 @@ Select one way and try to move forward towards the destination. if we reach a po
 
 <a name=tem></a>
 ### Backtracking Template
-There is a pattern about the backtracking algorithm, with which most of BT problems can be solved. Check [N-Queen problem uses this](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens).
+Most of BT problems can be solved using below pattern.
 ```c
-    board sol;
-    void recursive_backtrack(int row, int col, &board){
+    vec<> solution;
+    void recursive_backtrack(int row, int col, &candidate){
       if (row == size && col == size){                  //Base case. We reached last cell
-        sol = board;
+        solution = candidate;
         return;
       }
       
@@ -47,20 +47,26 @@ There is a pattern about the backtracking algorithm, with which most of BT probl
         if (candidate not valid) {
           continue;
         } 
-        else                                            //if Candidate is VALID
+        else                                                  //if Candidate is VALID
         {
-          place_candidate (candidate);                  //Place this candidate on partial solution
+          place_candidate (candidate);                         //Place this candidate on partial solution
           
-          recursive_backtrack (candidate+1, &board);    //Try next candidate
+          recursive_backtrack (next_candidate=candidate+1);    //Try next candidate
           
-          remove (candidate);                           //Remove this candidate
+          remove (candidate);                                  //Remove this candidate
         }
       }
     }
     
     return-type solve (int n) {
-        board = create-broad (0);
-        recursive_backtrack (0, 0, board);               //Start from row=0,col=0
+      /*
+        candidate:
+          n-queen problem:         empty board
+          Generate combinations:   empty string ""
+          Suduko solver:           empty board
+      */
+        canditate = create-1st-candidate;
+        recursive_backtrack (0, 0, candidate);             //Start from row=0,col=0
         return vecs_final_board;
     }
     
