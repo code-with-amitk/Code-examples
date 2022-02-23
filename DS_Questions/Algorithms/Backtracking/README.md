@@ -2,6 +2,9 @@
 - **Examples**
   - [Ex-1, 2](#ex1)
   - [N-Queen-Problem](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
+  - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
+  - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
+  - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
 - [BT Template](#tem)
 
 <a name=bt></a>
