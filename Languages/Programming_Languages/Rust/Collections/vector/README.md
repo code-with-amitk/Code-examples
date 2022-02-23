@@ -16,16 +16,26 @@
 
 
 ## [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
-- Same as in C++, Storing more than 1 value of same type contigously in memory.
+- Same as in C++, Storing more than 1 value of same type contigously in memory. Remember All collections are allocated on HEAP.
 - Stack is implemented using vector in rust
 
 <a name=cin></a>
 ### Create, Initialize
+#### Allocate Empty vector
 ```rs
-//Declare
+//Both are same//
+let mut v:Vec<i32> = Vec::new();
+println!("size={:?}", v.len());     //0
+
+let mut v:Vec<i32> = vec![];
+println!("size={:?}", v.len());     //0
+```
+#### Declare
+```rs
   let v : Vec<i32>;              
-  let mut v2 = Vec::new();      //Allocating vector on heap
-  
+```
+#### Initialize
+```rs
   let v1: Vec<i32> = [1,2,3].to_vec();  //Initialize
   let v2: Vec<i32> = vec![14,25,35];
   let v3: Vec<String> = vec!["test".to_string(), "test1".to_string()];
