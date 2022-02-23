@@ -6,6 +6,7 @@
 
 ### [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
 - Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+- Well formed parantheses are those which are properly closed, ie opening and closing brackets should be matched.
 ```c
 Example 1:
 Input: n = 1
