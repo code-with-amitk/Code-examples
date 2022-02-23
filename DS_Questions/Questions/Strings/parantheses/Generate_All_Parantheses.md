@@ -47,7 +47,7 @@ For n=2, We can only add 2 (( and 2 )).
 ```
 
 ### Code
-- We will use [backtracking template](/DS_Questions/Algorithms/Backtracking)
+We will use [backtracking template](/DS_Questions/Algorithms/Backtracking)
 <a name=c1></a>
 #### C++
 ```c
