@@ -1,8 +1,10 @@
 **Inorder Traversal**
 - Recursive
   - [CPP](#rc)
-- Iterative
+  - [Complexity](#co1)
+- Iterative Using stack
   - [CPP](#ic)
+  - [Complexity](#co2)
 
 ### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
@@ -16,7 +18,7 @@ Input: root = []
 Output: []
 ```
 
-### Recursive
+### 1. Recursive
 <a name=rc></a>
 #### CPP
 ```cpp
@@ -56,18 +58,29 @@ int main(){
     cout<<i<<" ";
 }
 ```
+<a name=co1></a>
+#### Complexity
+- **Time:** O(n). Traversing all nodes
+- **Space:** 
+  - Worst case: O(n)
+  - Average Case: O(logn). At any time logn function stacks are allocated.
 
-
-## 2. Iterative Approach
-```
+### 2. Iterative (Using stack)
+- Keep pushing left children on stack.
+- Once reach leaf node(ie node having left child). pop, push on vector.
+-  Make pointer point to right child(if exist).
+<a name=ic></a>
+#### CPP
+```cpp
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> r;
-        if (root == NULL) {
+        vector<int> out;
+        if (!root)
             return r;
-        }
+
         stack<TreeNode*> st;
+        
         TreeNode* p = root;
         while (p || !st.empty()) {
             while (p) {
@@ -76,10 +89,16 @@ public:
             }
             p = st.top();
             st.pop();
-            r.push_back(p->val);
+            out.push_back(p->val);
             p = p->right;
         }
-        return r;
+        return out;
     }
 };
 ```
+<a name=co1></a>
+#### Complexity
+- **Time:** O(n). Traversing all nodes
+- **Space:**
+  - Worst case: O(n)
+  - Average Case: O(logn). At any time logn function stacks are allocated.
