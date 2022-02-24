@@ -1,24 +1,25 @@
-# Function returning Vector<int> created after inorder traversal
-- Pass Created tree to a function
-- Create a vector during inorder traversal & return it
-- **Input**
+**Inorder Traversal**
+- Recursive
+  - [CPP](#rc)
+- Iterative
+  - [CPP](#ic)
+
+### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+```c
+Example 1:
+Input: root = [1,null,2,3]
+Output: [1,3,2]
+
+Example 2:
+Input: root = []
+Output: []
 ```
-  1
-   \
-    2
-   /
-  3 
-```
-- **Ouput**: Vector created after inorder traversal
-```
-vector<int> = {1,3,2}
-```
-## 1. Recursive Approach
-- **Logic**
-  - Take 2 vectors `v`, `temp`.
-  - Create vector `temp` after recursive traversal of tree
-  - Append `temp` at end of `v` when branch's traversal is over.
-```
+
+### Recursive
+<a name=rc></a>
+#### CPP
+```cpp
 struct TreeNode {
   int val;
   TreeNode *left;
@@ -29,22 +30,19 @@ struct TreeNode {
 };
 class Solution {
 public:
-  vector<int> inorderTraversal(TreeNode* root) {
-    vector<int> v, temp;
-    if (!root) {
-      return v;
+    void traverse(TreeNode* root, vector<int>& out){
+        if (root->left)
+            traverse (root->left, out);
+        out.push_back(root->val);
+        if (root->right)
+            traverse (root->right, out);        
     }
-    if (root->left != NULL) {
-      temp = inorderTraversal(root->left);
-      v.insert(r.end(), temp.begin(), temp.end());
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> out;
+        if (root)
+            traverse (root, out);
+        return out;
     }
-    v.push_back(root->val);
-    if (root->right != NULL) {
-      temp = inorderTraversal(root->right);
-      v.insert(v.end(), temp.begin(), temp.end());
-    }
-    return v;
-  }
 };
 int main(){
   TreeNode n3(3);
@@ -58,6 +56,7 @@ int main(){
     cout<<i<<" ";
 }
 ```
+
 
 ## 2. Iterative Approach
 ```
