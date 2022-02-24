@@ -1,10 +1,14 @@
 **Inorder Traversal**
 - Recursive
   - [CPP](#rc)
-  - [Complexity](#co1)
+  - [Complexity. Time:O(n), Space:O(n)](#co1)
 - Iterative Using stack
   - [CPP](#ic)
-  - [Complexity](#co2)
+  - [Complexity, Time:O(n), Space:O(n)](#co2)
+- Morris Traversal
+  - [CPP](#ic)
+  - [Complexity, Time:O(n), Space:O(1)](#co3)
+
 
 ### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
@@ -102,3 +106,37 @@ public:
 - **Space:**
   - Worst case: O(n)
   - Average Case: O(logn). At any time logn function stacks are allocated.
+
+### 3. Morris Traversal
+**Logic**
+- if left node exist on tree, make parent as right child of left node.
+- if no left child exist
+  - Add current value to vector
+  - go to right
+```c
+Example-1:
+    1               2
+   / \    =>         \
+  2   3               1
+                       \
+                         3
+
+Example-2:
+    1               2                     4
+   / \             / \                     \
+  2   3   =>      4   5           =>        2
+ / \                   \                     \
+4  5                    1                     5
+                         \                     \
+                          3                     1
+                                                 \
+                                                  3
+Example-3:
+      1
+       \
+        2     =>    vector=1,     2     =>    3
+       / \                       / \           \
+      3   4                     3   4           2
+                                                 \
+                                                  4
+``` 
