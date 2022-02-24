@@ -77,7 +77,7 @@ fn main() {
     }
 ```
 - **Example-2:** Collect 1 field from `vector<struct>`
-```
+```rs
 pub struct test {
     pub tenant: String,
     pub device_uuid: Option<String>,
