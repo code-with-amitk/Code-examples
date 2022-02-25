@@ -305,13 +305,13 @@ SLOW HARD DISK & FAST CPU? CPU writes into hard Disk buffer, Since Disk is Slow,
 ```
 #### 1. Do we have enough free disk space, on Which filesystem I am?
 ```c
-    # df -h        //Disk Free, Shows local and network file system
-        Filesystem    Size      Used     Avail     Use%    Mounted on
-        /dev/root      24G      19G         19G     100%     /                    //a. Compress big log files. [Delete unwanted/big files].  b. Check /var/log/messages for: IO Errors. 
-        devtmpfs      2.0G      0           2.0G      0%     /dev
-        tmpfs           2.0G       0           2.0G      0%     /dev/shm
-        tmpfs           2.0G    1.6M       2.0G      1%     /run
-        tmpfs           2.0G      0           2.0G      0%     /tmp
+# df -h        //Disk Free, Shows local and network file system
+Filesystem  Size    Used     Avail    Use%    Mounted on
+/dev/root   24G      19G      19G     100%     /          //a. Compress big log files. [Delete unwanted/big files].  b. Check /var/log/messages for: IO Errors. 
+devtmpfs    2.0G       0     2.0G      0%     /dev
+tmpfs       2.0G       0     2.0G      0%     /dev/shm
+tmpfs       2.0G    1.6M     2.0G      1%     /run
+tmpfs       2.0G       0     2.0G      0%     /tmp
 ```
 #### 2. Do we have free [INODES] on filesystem? When 0 sized files are created, it occupies inodes and used Inodes becomes=100%
 ```c
