@@ -1,14 +1,14 @@
 - [Pre-requisites before starting troubleshooting](#pre)
-- [DEBUGGING HUNG LINUX BOX](#hungs)
-- [DEBUGGING HUNG PROCESS](#hungp)
-- [DEBUGGING OVERLOADED CPU](#ol)
-- [DEBUGGING MEMORY RELATED/SYSTEM/RAM ISSUES](#dm)
-- [DEBUGGING HARD DISK ISSUES](#dh)
-- [DEBUGGING NETWORK ISSUES](Network)
-- [DEBUGGING SLOW SYSTEM](#slow)
-- [DEBUGGING SLOW SQL DATABASE](#sql)
-- [DEBUGGING X Server ISSUES](#x)
-- [DEBUGGING BOOTING ISSUES](#boot)
+- [Hung Linux Box](#hungs)
+- [Hung Process](#hungp)
+- [Overloaded CPU](#ol)
+- [Memory/System/RAM Related](#dm)
+- [Hard Disk Issues](#dh)
+- [Network Issues](Network)
+- [Slow System](#slow)
+- [Slow SQL DB](#sql)
+- [X Server Issues](#x)
+- [Booting Issues](#boot)
 - [DEBUGGING DNS ISSUES](#dns)
 
 <a name=pre></a>
@@ -60,7 +60,7 @@
 ```
 
 <a name=hungp></a>
-### DEBUGGING HUNG PROCESS
+### Hung Process
 #### 1. GENERIC
   - _1._ Collect pstack            `# 'pstack $(pidof sssd_be')`        //Stack trace of each process
   - _2._ Collect gcore             `# gcore $(pgrep -f sssd_nss)`
@@ -157,7 +157,7 @@ Of process consuming CPU. Attach to process.
 ```
 
 <a name=ol></a>
-### DEBUGGING OVERLOADED CPU
+### Overloaded CPU
 Overloaded CPU? CPU is given more processes(than it's capacity). And (Load Average > 1.0)
 #### a. Find Processor make, number of CPUs, cores
 ```c
@@ -235,8 +235,8 @@ mpstat(Multiprocessor statistics): per CPU. Dumps statistics per processor.
 
 
 <a name=dm></a>
-### DEBUGGING MEMORY RELATED/SYSTEM/RAM ISSUES
- #### 1. Is system under Memory Pressure?  if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressure
+### Memory/System/RAM Related
+#### 1. Is system under Memory Pressure?  if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressure
     free: Free untouched RAM. 
     Buffer: Temporary memory to help some processes. 
     Cached: (Cache Page: Separate area on RAM). Whenever someone writes data disk, that's not immediately written to disk rather is accumulated in Cache(RAM area). And when cache gets full its written to disk. For Read operations cache page is called clean page. For write its called Dirty page.
@@ -297,7 +297,7 @@ RAM=16GB, process needs 1TB/ Process need space more than RAM?
 If nothing works, asking process might get OOM killed, or start very slow
 
 <a name=dh></a>
-### DEBUGGING HARD DISK ISSUES
+### Hard Disk Issues
 SLOW HARD DISK & FAST CPU? CPU writes into hard Disk buffer, Since Disk is Slow, HD buffers gets filled up and Slow I/O Operations.
 ```c
 # cp test test1
@@ -345,7 +345,7 @@ SLOW HARD DISK & FAST CPU? CPU writes into hard Disk buffer, Since Disk is Slow,
 ```    
 
 <a name=slow></a>
-### DEBUGGING SLOW SYSTEM
+### Slow System
 > ls command slow        //sssd enabled
 
  Admin need to decide it's due:
@@ -369,7 +369,7 @@ CAUSES
  G. Wrong technology used
  
  <a name=x></a>
- ### DEBUGGING X Server ISSUES
+ ### X Server Issues
  Ubuntu
  ```c
  # ./gui-application
@@ -399,7 +399,7 @@ CAUSES
 ```
 
 <a name=boot></a>
-### DEBUGGING BOOTING ISSUES
+### Booting Issues
 > System is not booting normally into run level 3 or 5
   1. Boot into Rescue Mode. See linux commands
   2. Boot into Single User mode
