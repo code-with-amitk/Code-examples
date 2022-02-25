@@ -1,12 +1,12 @@
 **Inorder Traversal**
 - Recursive
-  - [CPP](#rc)
+  - [CPP](#c1)
   - [Complexity. Time:O(n), Space:O(n)](#co1)
 - Iterative Using stack
-  - [CPP](#ic)
+  - [CPP](#c2)
   - [Complexity, Time:O(n), Space:O(n)](#co2)
-- Morris Traversal
-  - [CPP](#ic)
+- [Morris Traversal](#mt)
+  - [CPP](#c3)
   - [Complexity, Time:O(n), Space:O(1)](#co3)
 
 
@@ -23,7 +23,7 @@ Output: []
 ```
 
 ### 1. Recursive
-<a name=rc></a>
+<a name=c1></a>
 #### CPP
 ```cpp
 struct TreeNode {
@@ -73,7 +73,7 @@ int main(){
 - Keep pushing left children on stack.
 - Once reach leaf node(ie node having left child). pop, push on vector.
 -  Make pointer point to right child(if exist).
-<a name=ic></a>
+<a name=c2></a>
 #### CPP
 ```cpp
 class Solution {
@@ -107,6 +107,7 @@ public:
   - Worst case: O(n)
   - Average Case: O(logn). At any time logn function stacks are allocated.
 
+<a name=mt></a>
 ### 3. Morris Traversal
 **Logic**
 - if left node exist on tree, make parent as right child of left node.
@@ -140,3 +141,38 @@ Example-3:
                                                  \
                                                   4
 ``` 
+
+### Code
+<a name=c3></a>
+#### CPP
+```c
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* r) {
+        vector<int> out;
+        if (!r)
+            return out;
+        
+        while (r) {
+            if (r->left) {                //if left child is present
+            
+                TreeNode* p = r->left;
+                TreeNode* p1 = r->left;
+                
+                while (p->right)          //Traverse to right most child of left child
+                    p = p->right;
+                    
+                r->left = nullptr;
+                p->right = r;             //Make root at right child of rightmost child
+                r = p1;
+            }
+            else                            //if no left child is present
+            {
+              out.push_back(r->val);        //Push to vector and move to next element
+              r = r->right;
+            }
+        }
+        return out;
+    }
+};
+```
