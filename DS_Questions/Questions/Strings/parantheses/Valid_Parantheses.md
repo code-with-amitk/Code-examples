@@ -1,4 +1,9 @@
-### Problem
+**Is valid parantheses**
+- [Logic](#l)
+- [Complexity](#com)
+- [Code](#c)
+
+### [Valid Parantheses](https://leetcode.com/problems/valid-parentheses/)
 - Input string can contain any of these '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 - An input string is valid if:
   - Open brackets must be closed by the same type of brackets.
@@ -11,6 +16,7 @@
 4. Input: "([)]"        Output: false
 5. Input: "(((((((()"   Output: false
 ```
+<a name=l></a>
 ### Logic
 ```c
 a. if 1st character is ')',']','}' return false
@@ -25,11 +31,13 @@ b. Take a stack.
             if top=='(' && present-element != ')' 
                 //same for all elements
                 return false
-```                
-### COMPLEXITY:
+```        
+<a name=com></a>
+### Complexity
 - TIME: O(n)
 - SPACE: O(n)
 
+<a name=c></a>
 ### Code        
 ```c
 #include<iostream>
