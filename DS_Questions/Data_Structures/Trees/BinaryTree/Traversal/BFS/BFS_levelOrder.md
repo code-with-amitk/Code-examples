@@ -1,8 +1,9 @@
 - **Level Order Traversal**
-- [Logic](#l)
-- [Complexity](#c)
-- Code
-  - [CPP](#c1)
+- **Iterative Approach**
+  - [Logic](#l)
+  - [Complexity](#c)
+  - Code
+    - [CPP](#c1)
 
 ## [Level Order](https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/)
 - Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
@@ -42,7 +43,7 @@ O/P ->  12
 - Time: O(n) reaching all nodes.
 - Space: O(n) queue to hold elements.
  
-### Code
+### Code (Iterative)
 <a name=c1></a>
 #### CPP
 ```cpp
