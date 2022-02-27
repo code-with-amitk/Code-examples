@@ -3,7 +3,8 @@
 
 ### Online Test
 - Task: Implement the assign() member function of this data structure `interval_map<>`. `interval_map<K, V>` is implemented on top of std::map.
-- `interval_map<K,V> m_map` is a data structure that associates keys of type K with values of type V. Intervals of consecutive keys are associated with the same value. 
+- `interval_map<K,V> m_map` is a data structure that associates keys of type K with values of type V. Intervals of consecutive keys are associated with the same value.
+  -  “Consecutive” refers consecutive elements in the map with respect to the map ordering.
 - Each key-value-pair (k,v) in `interval_map<K,V> m_map` means that the value v is associated with all keys from k (including) to the next key (excluding) in m_map.
 - For example
 ```c
