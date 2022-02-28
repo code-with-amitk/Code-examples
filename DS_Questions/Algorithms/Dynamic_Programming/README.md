@@ -1,4 +1,5 @@
-- [1. What and How DP Works](#when)
+**Dynamic Programming / Caching**
+- [Types of Caching/DP](#t)
 - [2. Identify whether this problem is DP?](#identify)
 - [3. Methods in DP?](#methods)
 - [4. Examples](#examples)
@@ -11,28 +12,36 @@
 
 
 
-<a name="when"></a>
-## 1. Dynamic Programming / Tabular Method  <== VERY EASY
+## Dynamic Programming / Tabular Method / Caching
+- Storing values which can be used later.
 - **When to apply**
   - In recursive algorithm, when subproblems is calculated again & again we cache those for future recursive calls. Eg: Fibonacci series
   - You have to study recursive algorithm and cache prev results into array or hash.
   - Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
 
-<a name="identify"></a>
-## 2. Identify whether this problem is DP?
-- **A. Overlapping Subproblems**
-  - When recursive algorithm for the problem solves the same subproblems over and over again, we say that the optimization problem has overlapping subproblems.
-- **B. Optimal Substructure**
-
-<a name="methods"></a>
-## 3. Methods in DP
-- __1. Bottom up / Tabulation:__ Steps
+<a name=t></a>
+### Types of Caching/Methods in DP
+**1. Top Down / Memoization:** Think how we can divide the problem for case N into subproblems. 
+```c
+let cache = {}
+function memoization {
+  if (n does not exist in cache)
+    cache[n] = n + x;
+  return cache[n];
+}
+```
+- **2. Bottom up / Tabulation:** Steps
   - Think how to solve the problem for a simple case(eg: list with 1 element). 
   - Think how to solve the problem for 2 elements, then for 4 elements, and so on
   - Save solutions of subproblems(in array/hash) and refer it before recalculation.
     - If solved, return the saved value, saving further computation at this level
-- __2. Top Down / Memoization:__
-  - Think how we can divide the problem for case N into subproblems. 
+
+<a name="identify"></a>
+### 2. Identify whether this problem is DP?
+- **A. Overlapping Subproblems**
+  - When recursive algorithm for the problem solves the same subproblems over and over again, we say that the optimization problem has overlapping subproblems.
+- **B. Optimal Substructure**
+
 
 <a name="examples"></a>
 ## 4. Examples
