@@ -20,21 +20,37 @@
   - Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
 
 <a name=t></a>
-### Types of Caching/Methods in DP
-**1. Top Down / Memoization:** Think how we can divide the problem for case N into subproblems. 
+### [Types of Caching/Methods in DP LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4035/)
+
+||Top Down|Bottom Up|
+|---|---|---|
+|Uses| Recursion | Iteration |
+|Faster| less | more than top down |
+|Easier| more easier than BU||
+
+**1. Top Down / Memoization:** Remembering/caching the results instead of calculating them again. 
 ```c
-let cache = {}
-function memoization {
-  if (n does not exist in cache)
-    cache[n] = n + x;
-  return cache[n];
-}
+///// Pseudocode example Fibnacci series//////
+memo = hashmap
+Function F(integer i):
+    if i is 0 or 1: 
+        return i
+    if i doesn't exist in memo:
+        memo[i] = F(i - 1) + F(i - 2)
+    return memo[i]
 ```
-- **2. Bottom up / Tabulation:** Steps
-  - Think how to solve the problem for a simple case(eg: list with 1 element). 
-  - Think how to solve the problem for 2 elements, then for 4 elements, and so on
-  - Save solutions of subproblems(in array/hash) and refer it before recalculation.
-    - If solved, return the saved value, saving further computation at this level
+**2. Bottom up / Tabulation:** Solution is built from base case and upward (uses Recursion).
+```c
+Example: Fibonacci sequence.
+1. Start with base case, F(0) = 0, F(1) = 1
+2. Calculate f(2) using f(0),f(1). Calculate f(3) using f(2),f(1) and so on
+
+F = array of length (n + 1)
+F[0] = 0
+F[1] = 1
+for i from 2 to n:
+    F[i] = F[i - 1] + F[i - 2]
+```
 
 <a name="identify"></a>
 ### 2. Identify whether this problem is DP?
