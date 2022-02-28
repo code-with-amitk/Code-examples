@@ -1,7 +1,12 @@
 **YAML (YAML Ain't Markup Language)**
 - [yaml vs xml vs json](#vs)
 - [design Goals](#d)
-- [
+- Data Structures
+  - [Key, Value pairs](#kv)
+  - [Objects](#o)
+  - [List](#l)
+  - [Multiline string](#ml)
+  - [Place holders {{ }}](#ph)
 
 ## [YAML](https://yaml.org/spec/)
 - YAML(rhymes with “camel”) is a human-friendly, cross language, Unicode based **data serialization language**.
@@ -54,12 +59,14 @@ microservices:
 <a name=ds></a>
 ### Data Structures
 [Online yaml validator](http://www.yamllint.com/)
+<a name=kv></a>
 #### Key, Value pairs
 ```yml
 name: Amit
 age: 35
 version: 2.0
 ```
+<a name=o></a>
 #### Objects
 Just indent kv pairs inside a object. name,age,version are its attributes
 ```yml
@@ -69,6 +76,7 @@ person1:
   name: Amit
   version: 2.0
 ```
+<a name=l></a>
 #### List
 ```yml
 # Format1
@@ -82,6 +90,7 @@ test:
 # Format2
 test: [a,1]
 ```
+<a name=ml></a>
 #### Multiline string
 All lines are interpreted as seperate lines.
 ```yml
@@ -91,6 +100,7 @@ multiline: |
     this is 2nd line
     this is 3rd line
 ```
+<a name=ph></a>
 #### Place holders {{ }}
 Instead of providing the values directly, we can provide {{ .Values.service.port }}, which will be replaced parameters in values.yaml.j2.
 ```yml
