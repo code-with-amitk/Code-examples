@@ -4,7 +4,7 @@
 - Data Structures
   - [Key, Value pairs](#kv)
   - [Objects](#o)
-  - [List](#l)
+  - [List or Arrays](#l)
   - [Multiline string](#ml)
   - [Place holders {{ }}](#ph)
 
@@ -79,7 +79,7 @@ person1:
 person1.age     #Accessing the value
 ```
 <a name=l></a>
-#### List
+#### List or Arrays
 ```yml
 # Format1
 ---
