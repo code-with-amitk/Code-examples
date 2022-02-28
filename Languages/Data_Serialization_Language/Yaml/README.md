@@ -75,6 +75,8 @@ person1:
   age: 35
   name: Amit
   version: 2.0
+  
+person1.age     #Accessing the value
 ```
 <a name=l></a>
 #### List
