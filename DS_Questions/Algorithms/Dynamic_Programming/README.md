@@ -74,7 +74,8 @@ int dp(i) {     //For climbing stairs
 ```c
   dp(i) = dp(i-1) + dp(i-2);
 ```
-- _4. Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
+- _4. Base case:_ Try finding base case from problem itself and logical thinking.
+  - Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
 ```c
 start ___  ___
       1st  2nd
