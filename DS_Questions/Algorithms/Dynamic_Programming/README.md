@@ -1,5 +1,5 @@
 **Dynamic Programming / Caching**
-- [Identifying DP Problem / DP Problem Characteristics](#dp)
+- [Identifying DP Problem / DP Problem Characteristics](#i)
 - [Types of Caching/DP](#t)
   - [1. Top Down](#td)
   - [2. Bottom Up](#bu)
@@ -14,7 +14,7 @@
 
 
 ## [Dynamic Programming / Tabular Method / Caching LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/)
-<a name=id></a>
+<a name=i></a>
 ### Identifying DP Problem / DP Characteristics
 - _1. Overlapping subproblems:_ When subproblems is calculated again & again(overlapping subproblems) we cache those for future recursive calls. Eg: Fibonacci series
 - _2. Optimal Substructure:_ an optimal solution can be formed from optimal solutions
