@@ -66,18 +66,18 @@ for i from 2 to n:
 ### DP Template
 > Eg: [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/Climb_Stairs_1or2_steps.md)
 - _1. Define State:_ Variable(s) which can define a scenario. Eg: state=number of ways to jump to ith stair
-- _2. Function to calculate State:_ Write a function or data structure that will compute answer to the problem for every given state
+- _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
 int dp(i) {     //For climbing stairs
   //returns number of ways to climb to ith step
 }
 ```
-- _3. Calculate Relationship between different states:_ 
+- _3. Relationship between different states:_ 
   - Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
 ```c
   dp(i) = dp(i-1) + dp(i-2);
 ```
-- _4. Find Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
+- _4. Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
 ```c
 start ___  ___
       1st  2nd
