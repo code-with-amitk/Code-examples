@@ -1,4 +1,5 @@
 **Dynamic Programming / Caching**
+- [Identifying DP Problem / DP Problem Characteristics](#dp)
 - [Types of Caching/DP](#t)
   - [1. Top Down](#td)
   - [2. Bottom Up](#bu)
@@ -12,20 +13,16 @@
     - [4.1.3 Directly finding nth fibonacci series number](direct)
 
 
-## Dynamic Programming / Tabular Method / Caching
-- Storing values which can be used later.
-
-<a name=w></a>
-### When to use DP
-- You have to study recursive algorithm and cache prev results into array or hash.
-- Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
-- A problem in this format (asking for the max/min/longest etc)
-- **Problem Characteristics**
-  - _1. Overlapping subproblems:_ When subproblems is calculated again & again(overlapping subproblems) we cache those for future recursive calls. Eg: Fibonacci series
-  - _2. Optimal Substructure:_ 
+## [Dynamic Programming / Tabular Method / Caching LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/)
+<a name=id></a>
+### Identifying DP Problem / DP Characteristics
+- _1. Overlapping subproblems:_ When subproblems is calculated again & again(overlapping subproblems) we cache those for future recursive calls. Eg: Fibonacci series
+- _2. Optimal Substructure:_ an optimal solution can be formed from optimal solutions
+- Problem statement: min/max/longest/largest
+  - Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
 
 <a name=t></a>
-### [Types of Caching/Methods in DP LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4035/)
+### Methods in DP
 
 ||Top Down / Memoization|Bottom Up / Tabulation|
 |---|---|---|
