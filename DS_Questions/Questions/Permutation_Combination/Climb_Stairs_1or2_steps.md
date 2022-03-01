@@ -64,6 +64,7 @@ int main(){
 ```
 <a name=a2></a>
 ### Approach-2  //[Dynamic Programming](/DS_Questions/Algorithms)   //O(n)
+#### [Identifying DP problem](/DS_Questions/Algorithms/Dynamic_Programming/README.md#i)
 #### Logic
 - Above recursion solution calculates same subproblem again and again. Repeative subproblems, hence DP.
 - We will follow [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
