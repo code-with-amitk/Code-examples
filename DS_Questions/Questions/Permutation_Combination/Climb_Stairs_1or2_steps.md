@@ -1,3 +1,9 @@
+**Climbing Stairs**
+- [Approach-1, Recursion](#a1)
+- [Approach-2, DP](#a2)
+- [Approach-3, Direct nth Fibancci number](#a3)
+
+
 ### [Climbing Stairs / Jumping Stairs](https://leetcode.com/problems/climbing-stairs/)
 - There are n stairs, a person standing at the bottom wants to reach the top. 
 - The person can climb either 1 stair or 2 stairs at a time. Count the number of ways, the person can reach the top.
@@ -16,7 +22,7 @@ Example-3:
 Stairs = 4
 Ways: 5. 1111, 211, 221, 212, 122
 ```
-
+<a name=a1></a>
 ### Approach-1  //Brute Force. [Recursion](/DS_Questions/Algorithms)   (2<sup>n</sup>)
 - **Logic**
   - We take all possible step combinations i.e. 1 and 2, at every stair.
@@ -56,7 +62,7 @@ int main(){
   cout << climbStairs (4);
 }
 ```
-
+<a name=a2></a>
 ### Approach-2  //[Dynamic Programming](/DS_Questions/Algorithms)   //O(n)
 - **Logic**
   - Above recursion solution calculates same subproblem again and again. Repeative subproblems, hence DP.
@@ -128,7 +134,7 @@ int main(){
   std::cout << s.climbStairs (5);
 }
 ```
-
+<a name=a3></a>
 ### Approach-3  //[Directly finding nth fibonacci series number](/DS_Questions/Algorithms/Dynamic_Programming)
 - **Code**
 ```c++
