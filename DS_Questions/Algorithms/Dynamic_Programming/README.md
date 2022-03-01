@@ -82,6 +82,7 @@ int dp(i) {     //For climbing stairs
 start ___  ___
       1st  2nd
 ```
+- _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
 
 <a name="examples"></a>
 ## 4. Examples
