@@ -1,6 +1,6 @@
 **Climbing Stairs**
 - [Approach-1, Recursion. TLE. 2<sup>n</sup>](#a1)
-- [Approach-2, DP](#a2)
+- [Approach-2, DP. Time Complexity=O(n)](#a2)
 - [Approach-3, Direct nth Fibancci number](#a3)
 
 
