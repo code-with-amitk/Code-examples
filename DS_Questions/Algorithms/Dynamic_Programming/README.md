@@ -1,7 +1,8 @@
 **Dynamic Programming / Caching**
 - [Types of Caching/DP](#t)
-- [2. Identify whether this problem is DP?](#identify)
-- [3. Methods in DP?](#methods)
+  - [1. Top Down](#td)
+  - [2. Bottom Up](#bu)
+- [DP Template](#tem)
 - [4. Examples](#examples)
   - [4.1 Fibonacci Series](#fibonacci)
     - [4.1.1 Recursion](#recur)
@@ -11,24 +12,31 @@
     - [4.1.3 Directly finding nth fibonacci series number](direct)
 
 
-
 ## Dynamic Programming / Tabular Method / Caching
 - Storing values which can be used later.
-- **When to apply**
-  - In recursive algorithm, when subproblems is calculated again & again we cache those for future recursive calls. Eg: Fibonacci series
-  - You have to study recursive algorithm and cache prev results into array or hash.
-  - Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
+
+<a name=w></a>
+### When to use DP
+- You have to study recursive algorithm and cache prev results into array or hash.
+- Recursion Time Complexity: Exponential, DP Time Complexity: Polynomial
+- A problem in this format (asking for the max/min/longest etc)
+- **Problem Characteristics**
+  - _1. Overlapping subproblems:_ When subproblems is calculated again & again(overlapping subproblems) we cache those for future recursive calls. Eg: Fibonacci series
+  - _2. Optimal Substructure:_ 
 
 <a name=t></a>
 ### [Types of Caching/Methods in DP LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4035/)
 
-||Top Down|Bottom Up|
+||Top Down / Memoization|Bottom Up / Tabulation|
 |---|---|---|
 |Uses| Recursion | Iteration |
 |Faster| less | more than top down |
 |Easier| more easier than BU||
+|Implemented using|Recursive Function + HashMap|nested for loop + Array|
 
-**1. Top Down / Memoization:** Remembering/caching the results instead of calculating them again. 
+<a name=td></a>
+#### 1. Top Down / Memoization 
+Remembering/caching the results instead of calculating them again. 
 ```c
 ///// Pseudocode example Fibnacci series//////
 memo = hashmap
@@ -39,7 +47,9 @@ Function F(integer i):
         memo[i] = F(i - 1) + F(i - 2)
     return memo[i]
 ```
-**2. Bottom up / Tabulation:** Solution is built from base case and upward (uses Recursion).
+<a name=bu></a>
+#### 2. Bottom up / Tabulation
+Solution is built from base case and upward (uses Recursion).
 ```c
 Example: Fibonacci sequence.
 1. Start with base case, F(0) = 0, F(1) = 1
@@ -52,12 +62,26 @@ for i from 2 to n:
     F[i] = F[i - 1] + F[i - 2]
 ```
 
-<a name="identify"></a>
-### 2. Identify whether this problem is DP?
-- **A. Overlapping Subproblems**
-  - When recursive algorithm for the problem solves the same subproblems over and over again, we say that the optimization problem has overlapping subproblems.
-- **B. Optimal Substructure**
-
+<a name=tem></a>
+### DP Template
+> Eg: [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/Climb_Stairs_1or2_steps.md)
+- _1. Define State:_ Variable(s) which can define a scenario. Eg: state=number of ways to jump to ith stair
+- _2. Function to calculate State:_ Write a function or data structure that will compute answer to the problem for every given state
+```c
+int dp(i) {     //For climbing stairs
+  //returns number of ways to climb to ith step
+}
+```
+- _3. Calculate Relationship between different states:_ 
+  - Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
+```c
+  dp(i) = dp(i-1) + dp(i-2);
+```
+- _4. Find Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
+```c
+start ___  ___
+      1st  2nd
+```
 
 <a name="examples"></a>
 ## 4. Examples
