@@ -1,6 +1,7 @@
 **Jinja2**
 - [Variable Substitution](#v)
 - [Dictionary](#d)
+- [Undefined Variables](#u)
 
 ### [Jinja2](https://ttl255.com/jinja2-tutorial-part-1-introduction-and-variable-substitution/)
 - Templating languages allow creation of text based documents where some of the content can be dynamically generated.
@@ -78,4 +79,19 @@ $ python.exe .\test1.py
 hostname GigabitEthernet1/1
 no ip domain lookup
 ip name-server 10.0.0.1/31
+```
+
+<a name=u></a>
+### Undefined Variables
+```py
+from jinja2 import Template
+
+template = "Device {{ name }} is of type: {{ type }}."
+data = {
+    "name": "abc",
+}
+print(Template(template).render(data))
+
+# python3.exe test1.py
+Device abc is of type: .                    //see type is not rendered
 ```
