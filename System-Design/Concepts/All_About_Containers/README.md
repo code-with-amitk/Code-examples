@@ -18,7 +18,7 @@
         - [Pod](#pod)
         - [Namespaces](#ns)
     - Kubernets Terms
-      - [configmaps](#cm)
+      - [configmap](#cm)
     - [Configuring kubernets Cluster](#cfgk)
       - [Install/Upgrade service in cluster = Helm Chart](#ck1)
     - [Commands](#kcmd)
@@ -380,8 +380,8 @@ $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 
 ### Kubernets Terms
 <a name=cm></a>
-#### Configmaps
-configmap is a kubernets Object which stores non-sensative configuration of container in key=value pair.
+#### Configmap
+This configuration file is store configuration used by [POD](#ka)
 ##### Creating a configmap from File
 ```c
 # cat test.properties
@@ -391,15 +391,8 @@ life=Great
 worry=None
 
 # kubectl create configmap amit-configmap --from-file=test.properties   //Create configmap
-
 # kubectl get configmaps amit-configmap -o yaml                         //View configmap
 apiVersion: v1
-data:
-  test.properties: |
-    name=Amit
-    age=25
-    life=Great
-    worry=None
 kind: ConfigMap
 metadata:
   creationTimestamp: "2022-02-17T12:41:43Z"
@@ -407,7 +400,12 @@ metadata:
   namespace: fs-central
   resourceVersion: "55390398"
   uid: 65e65104-d94c-4054-9359-16f5dc221b53
-
+data:
+  test.properties: |
+    name=Amit
+    age=25
+    life=Great
+    worry=None
 ```
 
 <a name=cfgk></a>
