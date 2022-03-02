@@ -7,6 +7,9 @@
   - [List or Arrays](#l)
   - [Multiline string](#ml)
   - [Place holders {{ }}](#ph)
+- Different yaml files
+  - [configmap.yaml]
+  - [deployment.yaml]
 
 ## [YAML](https://yaml.org/spec/)
 - YAML(rhymes with “camel”) is a human-friendly, cross language, Unicode based **data serialization language**.
