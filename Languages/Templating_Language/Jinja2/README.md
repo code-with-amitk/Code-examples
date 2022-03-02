@@ -83,6 +83,7 @@ ip name-server 10.0.0.1/31
 
 <a name=u></a>
 ### Undefined Variables
+#### Leaving string empty
 ```py
 from jinja2 import Template
 
@@ -93,5 +94,16 @@ data = {
 print(Template(template).render(data))
 
 # python3.exe test1.py
-Device abc is of type: .                    //see type is not rendered
+Device abc is of type: .                    //type is not rendered
+```
+#### StrictUndefined 
+```py
+from jinja2 import Template, StrictUndefined
+template = "Device {{ name }} is of type: {{ type }}."
+data = {
+    "name": "abc",
+}
+print(Template(template, undefined=StrictUndefined).render(data))
+$ python3.exe test1.py
+Error                                               //Error if a variable is not found
 ```
