@@ -1,10 +1,12 @@
 **Jinja2**
+- [Variable Substitution](#v)
+- [Dictionary](#d)
 
 ### [Jinja2](https://ttl255.com/jinja2-tutorial-part-1-introduction-and-variable-substitution/)
 - Templating languages allow creation of text based documents where some of the content can be dynamically generated.
 - Resulting files can be HTML, JSON, XML, or anything that uses pure text as the encoding.
 
-<a name=vs></a>
+<a name=v></a>
 ### Variable Substitution
 - Check which parts can remain unchanged, and which can be parametrized. 
 ```c
@@ -48,4 +50,32 @@ no ip domain lookup
 ip name-server 1.1.1.1
 ntp server 0.pool.ntp.org
 client-secret {client_secret}             //jinja only parse {{ }}
+```
+
+<a name=d></a>
+### Dictionary Keys
+```py
+> Open vscode
+$ pip install jinja2
+$ vim test.py
+
+from jinja2 import Template
+template = """
+hostname {{ interface.name }}
+no ip domain lookup
+ip name-server {{ interface.ip }}
+"""
+
+d = {
+"interface": {                                          //key
+    "name": "GigabitEthernet1/1",                       //values
+    "ip": "10.0.0.1/31",
+  }
+}
+print(Template(template).render(d))
+
+$ python.exe .\test1.py
+hostname GigabitEthernet1/1
+no ip domain lookup
+ip name-server 10.0.0.1/31
 ```
