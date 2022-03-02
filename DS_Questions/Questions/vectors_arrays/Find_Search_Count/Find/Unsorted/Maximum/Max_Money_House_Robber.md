@@ -3,7 +3,7 @@
 - [Approach-2, Dynamic Programming](#a2)
   - [Logic](#l)
   - Code
-    - [CPP](#cpp)
+    - [CPP Top Down Approach](#cpptd)
 
 ### [House Robber](https://leetcode.com/problems/house-robber/)
 - You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed.
@@ -52,7 +52,8 @@ Explanation:
 
 ### Code
 <a name=cpp></a>
-#### CPP
+#### CPP Top Down Approach
+[What is Top Down](/DS_Questions/Algorithms/Dynamic_Programming/README.md#td)
 ```cpp
 class Solution {
     vector<int> vecMoney;
