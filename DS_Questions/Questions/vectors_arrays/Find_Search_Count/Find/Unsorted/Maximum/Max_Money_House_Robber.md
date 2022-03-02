@@ -1,6 +1,9 @@
 **House Robber**
 - [Approach-1, Recursion](#a1)
 - [Approach-2, Dynamic Programming](#a2)
+  - [Logic](#l)
+  - Code
+    - [CPP](#cpp)
 
 ### [House Robber](https://leetcode.com/problems/house-robber/)
 - You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed.
@@ -45,4 +48,55 @@ Explanation:
   dp(0) = num[0]                  //if there is only 1 house I can rob that only
   dp(1) = max(num[0], num[1])     //if there are 2 houses, I can start with max of 2
 ```
-- _4. Memorize/Cache/Memoization:_
+- _4. Memorize/Cache/Memoization:_ Remember the Money looted from prev houses to find max money that can be looted from present house.
+
+### Code
+<a name=cpp></a>
+#### CPP
+```cpp
+class Solution {
+    vector<int> vecMoney;
+public:
+    
+    //state: Max money which I can loot when i am at house=i
+    int dp(int i, vector<int>& nums, vector<int>& vecMoney) {
+        int ret = -1;
+        if (i==0)
+            ret = vecMoney[0];
+        if (i==1)
+            ret = vecMoney[1];
+        
+        if (vecMoney[i] == -1)
+            vecMoney[i] = max ((nums[i] + dp(i-2, nums, vecMoney)), dp(i-1, nums, vecMoney));
+        else
+            ret = vecMoney[i];
+
+        return ret;
+    }
+    
+    int rob(vector<int>& nums) {
+        if (nums.size() == 1)
+            return nums[0];
+        if (nums.size() == 2)
+            return max(nums[0], nums[1]);
+
+        //Aim: to fill vecMoney
+        //Ans: Last element of vecMoney
+        vector<int> vecMoney(nums.size(), -1);
+        vecMoney[0] = nums[0];
+        vecMoney[1] = max(nums[0],nums[1]);
+        
+        int _ret;
+        for (int i = 2; i<nums.size(); ++i)
+            _ret = dp (i, nums, vecMoney);
+        
+        return vecMoney.back();
+    }
+};
+```
+
+### Complexity
+#### Time
+O(n)
+#### Space
+O(n) = Taking vecMoney equal to input size, which stores the max looted money till present house.
