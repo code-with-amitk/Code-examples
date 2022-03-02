@@ -4,7 +4,9 @@
   - [1. Top Down](#td)
   - [2. Bottom Up](#bu)
 - [DP Template](#tem)
-- [4. Examples](#examples)
+- Examples
+  - [House Robber](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Money_House_Robber.md)
+  - [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md)
   - [4.1 Fibonacci Series](#fibonacci)
     - [4.1.1 Recursion](#recur)
     - [4.1.2 Dynamic Programming](#dp)
