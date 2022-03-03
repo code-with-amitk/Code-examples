@@ -411,7 +411,7 @@ data:
 <a name=cfgk></a>
 ### Configuring kubernets Cluster(1 master, n workers)
 ```c
-//////////////1. Configuration file for deploying 2 containers/pods. Containers hainvg ngnix image.////////////////
+//////////////1. Configuration file for deploying 2 containers. Containers having ngnix image.////////////////
 $ vim test.yaml
 apiVersion: app/v1
 kind: Development
@@ -435,11 +435,9 @@ sped:
           ports:
           - containerPort: 80
 
-////////////2. Create container(ie pod) using kubectl command////////////////////
-$ kubectl apply -f test.yaml
+$ kubectl apply -f test.yaml          //2. Create container(ie pod) using kubectl command
 
-//////////////1. Install kubernets master, worker nodes///////////////////////////////
-$ install
+$ install                             //1. Install kubernets master, worker nodes
 $ minikube version                                          //Check version
   minikube version: v1.8.1
 $ minikube start                                            //Start minikube kubernets cluster
@@ -474,14 +472,14 @@ $ systemctl start apache                      //Start Application inside contain
   - **Helm chart:** This is collection of yaml files which contains configuration,installation information for service. Files present in helm chart
 ```c
 mychart/
-  Chart.yaml                  //Contains meta information of this chart
-  value.yaml                 //Contains default values for this chart, to be used by templated files
+  Chart.yaml.j2                  //Contains meta information of this chart
+  values.yaml.j2                 //Contains default values for this chart, to be used by templated files
   templates/
-    configmap.yaml       
+    configmap-jams.yaml       
     deployment.yaml
     ...
   
-$ cat chart.yaml                      
+$ cat chart.yaml.j2
 apiVersion: v2
 appVersion: 1.1
 maintainers:
@@ -491,7 +489,7 @@ name: app
 type: application
 version: 1.0
 
-$ cat values.yaml                      
+$ cat values.yaml.j2                      
 chart:
   name: app1
 image:
@@ -509,13 +507,15 @@ k8sServices:
   service1_url: https://service1:9091
   service2_url: https://service2.serv:9091
 
-$ cat configmap.yaml                    //Information related to configuration
+$ cat configmap-jams.yaml                    //Information related to configuration
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app1-config
+  name: jams-config
   labels:
     app: {{ .Values.image.app }}        //Take value from values.yaml
+data:
+  
 ```
 - _2. Install/upgrade/rollback application using helm chart_
 ```c
