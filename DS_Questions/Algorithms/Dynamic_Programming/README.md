@@ -19,6 +19,7 @@
 <a name=i></a>
 ### Identifying DP Problem / DP Characteristics / DP Properties
 - _1. Overlapping subproblems:_ Can this problem be divided into subproblems (ie Recursive Solution?)
+  - Can solution be obtained by cumulation of smaller problem solutions.
 - _2. Optimal Substructure Property:_ if optimal solution(a feasible solution) of the given sub-problem can be obtained.
 - _3. Problem statement(min/max/longest/largest):_ Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
 
