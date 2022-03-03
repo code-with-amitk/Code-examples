@@ -28,5 +28,5 @@ Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
 ### Approach / Dynamic Programming
 - [Why DP is suitable here?](/DS_Questions/Algorithms/Dynamic_Programming/README.md#i)
 #### Logic
-We will follow [DP Logic / DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
+We will follow [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
 - _1. State:_ 
