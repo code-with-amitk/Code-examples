@@ -11,7 +11,8 @@
   - [Helm Chart](#hc)
     - [1. chart.yaml.j2](#h1)
     - [2. Values.yaml.j2](#h2)
-    - [3. configmap-jams.yaml](#h3)
+    - [3. templates/configmap-jams.yaml](#h3)
+    - [4. templates/deployment.yaml](#h4)
   - [Commands](#kcmd)
 
 
@@ -180,52 +181,136 @@ $ systemctl start apache                      //Start Application inside contain
 
 <a name=ck1></a>
 ## Helm Chart
-**What?** This is collection of yaml files which contains configuration,installation information for service. HC is used to install/upgrade service in cluster. Files in HC:
+**What?** This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) for configuration,installation of A service in cluster. HC is used to install/upgrade service in cluster. Files in HC:
 ```c
-mychart/
+jams/                       //Every chart will have same structure
   Chart.yaml.j2
   values.yaml.j2
-  templates/
+  templates/                //These all templates will get values from Values.yaml.j2
     configmap-jams.yaml       
     deployment.yaml
     ...
 ```
+
 <a name=h1></a>
 #### 1. Chart.yaml.j2           //Contains meta information of this chart
 ```c
 $ cat chart.yaml.j2
-apiVersion: v2
-appVersion: 1.1
-maintainers:
-- email: amit@google.com
-  name: Amit
-name: app
-type: application
-version: 1.0
+  version: 1.2      //Application version
+  maintainers:
+  - email: amit@google.com
+    name: Amit
+  name: jams
+  type: application  
 ```
+
 <a name=h2></a>
-#### 2. Values.yaml.j2          //Contains default values for this chart, to be used by templated files
+#### 2. Values.yaml.j2          //Defines default values to be passed to templated files
+- number of replicas
+- repository for image
+- database's username, password
+- Other microservices URLs
+- Kafka topics on which this service will listen
+- autoscaling and resource limits
 ```c
-$ cat values.yaml.j2                      
+$ cat values.yaml.j2
+
+replicas: 1
+
+common:
+  registry: github/amitkumar50
+
+jams:
+  name: jams-server
+
 chart:
-  name: app1
+  name: jams
+
 image:
-  repository: artifactory-path
-  version: "1.0"
-  name: app1
-  dbTag: 1.1.lmaslmd
+  repository: github/amitkumar50/dir1/dir2/
+  initRepository: github/amitkumar50/init/
+  initTag: v1.0.0
+  dbTag: {{ 1.2.3 }}
+
+jamsVersion:
+  imageTag: v1.2.3.141.333.444
+
 database:
   enabled: true
-  host: test.abc.com
+  host: abc.db.com
   user: admin
-  password: Passw0rd
+  password: admin
+  dialect: postgres
   sslmode: require
+  maxOpenConn: 5
+  
+sled-DB:
+  source: Sled
+  enabled: false
+  user: admin
+  password: admin
+  dialect: postgres
+  sslmode: require
+  maxOpenConn: 5
+
 k8sServices:
-  service1_url: https://service1:9091
-  service2_url: https://service2.serv:9091
+  service1: https://service1:9091
+  service2: https://service2.test2:9091
+
+log:
+  level: warning
+
+Kallactar-API:
+  name: collector
+  port: 8001
+  tls: true
+  workers: 8
+
+metrics-API:
+  name: metrics
+  port: 9009
+  tls: false
+
+healthcheck:
+  path: /health
+  port: 9009
+
+certs:
+  certFile:
+    path: /etc/jams/certs
+  privateKey:
+    path: /etc/jams/pvt-keys
+
+kafka:
+  brokers: kafka.atom-message-bus:9092
+  topics:
+    - "topic1"
+    - "topic2"
+
+service_Monitor:
+  name: jams-server-mon
+  enabled: false
+  interval: 30s
+  timeout: 10s
+
+resources:
+  limits:
+    memory: 32Gi
+    #cpu: 4
+  requests:
+    memory: 8Gi
+    #cpu: 2
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
 ```
+
 <a name=h3></a>
-#### 3. configmap-jams.yaml                    //Information related to configuration of this service
+#### 3. templates/configmap-jams.yaml                    //Information related to configuration of this service
+- Templates are defined to pick values from [Values.yaml.j2](#h2).
 ```c
 $ cat configmap-jams.yaml
 apiVersion: v1
@@ -233,10 +318,117 @@ kind: ConfigMap
 metadata:
   name: jams-config
   labels:
-    app: {{ .Values.image.app }}        //Take value from values.yaml
+    app: {{ .Values.image.app }}            //Pick from Values.yaml.j2
 data:
-  
+  test.yaml: |-
+    servicename: jams
+    pg_database_config:
+      host: {{ .Values.database.host }}           //Pick from Values.yaml.j2
+      user: {{ .Values.database.user }}           
+      password: {{ .Values.database.password }}
+      ssl_mode: {{ .Values.database.sslmode }}
+    log_config:
+      log_level: {{ .Values.log.level }}
+      log_to_file: false
+      rotate_keep: 20
+      rotate_size_mb: 10
+    servers:
+      bat_query:
+        params:
+          workers: {{ .Values.batQueryAPI.workers }}
+        server:
+          host: 0.0.0.0
+          port: {{ .Values.batchQueryAPI.port }}
+          tls: {{ .Values.batchQueryAPI.tls }}
+      cert_password: null
+      lb_port: {{ .Values.API.lbPort }}
+      lb_query_fqdn: {{ .Values.API.lbFqdn }}
+      kafka_config:
+        brokers: {{ .Values.kafka.brokers }}
+        topics:
+          {{- toYaml .Values.kafka.topics | nindent 10 }}
+
+    service1_url: {{ .Values.k8sServices.service1Url }}
+    service2_url: {{ .Values.k8sServices.service2Url }}
+    version: 1.2.3
+
+metadata:
+  name: test
+  labels:
+    app: {{ .Values.image.app }}
 ```
+
+<a name=h4></a>
+#### 4. templates/deployment.yaml                   //Related to deployment of this service
+- Contains Service account names, init containers, DB path username password
+- Ports for Http endpoints
+- 
+```c
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.image.app }}
+  labels:
+    app: {{ .Values.image.app }}
+
+spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      initContainers:
+        - name: init
+          image: "{{ .Values.common.registry }}{{ .Values.image.initRepository }}:{{ .Values.image.initTag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DEPENDENCY_JOBS
+              value: {{ .Release.Namespace }}:{{ .Release.Name }}-db-create-{{ .Values.image.dbTag }}
+          command:
+            - kubernetes-entrypoint
+      containers:
+        - name: {{ .Release.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: {{ .Values.image.repository }}{{ .Values.image.folder }}/{{ .Values.image.imageLabel }}:{{ .Values.jamsVersion.imageTag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: DATABASE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-database
+                  key: host
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-database
+                  key: name
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-database
+                  key: user
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-database
+                  key: password
+            - name: DATABASE_SSL_MODE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-database
+                  key: sslmode
+          ports:
+            - containerPort: {{ .Values.batQueryAPI.port }}
+              protocol: TCP
+              name: {{ .Values.batQueryAPI.name }}
+
+          volumeMounts:
+            - name: jams-cfg-vol
+              mountPath: /etc/jams/config
+
+      volumes:
+        - name: jams-cfg-vol
+          configMap:
+            name: jams-config
+```
+
 ### Install/upgrade/rollback application using helm chart_
 ```c
 $ helm install app1{chartname}
