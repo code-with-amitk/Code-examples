@@ -147,7 +147,7 @@ services:
 - By Default, all files created inside a container are accessed only by that container. Data doesn’t persist when that container no longer exists.
 - volumes, bind mounts, tmpfs all are seen as mounted directories to container.
 
-||Volumes|Bind Mounts|tmpfs(in memory/RAM)|
+||Volumes(shared directory on disk)|Bind Mounts|tmpfs(in memory/RAM)|
 |---|---|---|---|
 |Storage Type|Persistant|non persistant|non persistant|
 |Data available after container stops|yes|no|no|
