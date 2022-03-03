@@ -497,4 +497,7 @@ error: a container name must be specified for pod kafka-c, choose one of: [prome
 
 //Get logs of container kafka-broker
 $ kubectl logs kafka-2 -n ns1 kafka-broker> t.txt    //kubectl logs podname namespace containerName
+
+//Live tail
+$ kubectl logs kafka-2 -n ns1 kafka-broker --follow
 ```
