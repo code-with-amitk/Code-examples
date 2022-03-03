@@ -18,8 +18,20 @@
 ## [Dynamic Programming / Tabular Method / Caching LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/)
 <a name=i></a>
 ### Identifying DP Problem / DP Characteristics / DP Properties
-- _1. Overlapping subproblems:_ Can this problem be divided into subproblems (ie Recursive Solution?)
-  - Can solution be obtained by cumulation of smaller problem solutions.
+- _1. Overlapping subproblems:_ Does this problem involves solving a subproblem again and again. Is solution equals cumulation of smaller subproblems?
+```c
+                fib(5)
+              /        \ 
+             fib(4)      fib(3)
+            /   \          /   \   
+         fib(3) fib(2)     fib(2)  fib(1)
+        /   \     /  \
+   fib(2) fib(1) fib(1) fib(0) 
+
+fib(2): function need to be executed 3 times
+fib(2): function need to be executed 2 times
+..
+```
 - _2. Optimal Substructure Property:_ if optimal solution(a feasible solution) of the given sub-problem can be obtained.
 - _3. Problem statement(min/max/longest/largest):_ Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
 
