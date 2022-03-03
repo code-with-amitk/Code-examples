@@ -9,7 +9,9 @@
     - [configmap](#cm)
   - [Configure kubernets Cluster](#cfgk)
   - [Helm Chart](#hc)
-    - [1. Create Helm chart](#chc)
+    - [1. chart.yaml.j2](#h1)
+    - [2. Values.yaml.j2](#h2)
+    - [3. configmap-jams.yaml](#h3)
   - [Commands](#kcmd)
 
 
@@ -71,7 +73,7 @@ User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 -----
   - *2.* Shared storage, as Volumes
   - *3.* Networking, as a unique cluster IP address,port,  *4.* other Information 
 
-<img src=kubernets_pod_worker_node.png width=400>
+<img src=kubernets_pod_worker_node.png width=600>
 
 <a name=ns></a>
 #### Namespaces
@@ -178,18 +180,19 @@ $ systemctl start apache                      //Start Application inside contain
 
 <a name=ck1></a>
 ## Helm Chart
-**What?** This is collection of yaml files which contains configuration,installation information for service. HC is used to install/upgrade service in cluster.
-#### 1. Create a helm chart for applicaton
-> HC contains following files
+**What?** This is collection of yaml files which contains configuration,installation information for service. HC is used to install/upgrade service in cluster. Files in HC:
 ```c
 mychart/
-  Chart.yaml.j2                  //Contains meta information of this chart
-  values.yaml.j2                 //Contains default values for this chart, to be used by templated files
+  Chart.yaml.j2
+  values.yaml.j2
   templates/
     configmap-jams.yaml       
     deployment.yaml
     ...
-  
+```
+<a name=h1></a>
+#### 1. Chart.yaml.j2           //Contains meta information of this chart
+```c
 $ cat chart.yaml.j2
 apiVersion: v2
 appVersion: 1.1
@@ -199,7 +202,10 @@ maintainers:
 name: app
 type: application
 version: 1.0
-
+```
+<a name=h2></a>
+#### 2. Values.yaml.j2          //Contains default values for this chart, to be used by templated files
+```c
 $ cat values.yaml.j2                      
 chart:
   name: app1
@@ -217,8 +223,11 @@ database:
 k8sServices:
   service1_url: https://service1:9091
   service2_url: https://service2.serv:9091
-
-$ cat configmap-jams.yaml                    //Information related to configuration
+```
+<a name=h3></a>
+#### 3. configmap-jams.yaml                    //Information related to configuration of this service
+```c
+$ cat configmap-jams.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -228,7 +237,7 @@ metadata:
 data:
   
 ```
-- _2. Install/upgrade/rollback application using helm chart_
+### Install/upgrade/rollback application using helm chart_
 ```c
 $ helm install app1{chartname}
 $ helm upgrade app1{chartname}      //Upgrade the microservice instead of install
