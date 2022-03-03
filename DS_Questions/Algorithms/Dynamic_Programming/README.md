@@ -17,11 +17,10 @@
 
 ## [Dynamic Programming / Tabular Method / Caching LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/)
 <a name=i></a>
-### Identifying DP Problem / DP Characteristics
+### Identifying DP Problem / DP Characteristics / DP Properties
 - _1. Overlapping subproblems:_ Can this problem be divided into subproblems (ie Recursive Solution?)
-- _2. Optimal Substructure:_ an optimal solution can be formed from optimal solutions
-- Problem statement: min/max/longest/largest
-  - Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
+- _2. Optimal Substructure Property:_ if optimal solution(a feasible solution) of the given sub-problem can be obtained.
+- _3. Problem statement(min/max/longest/largest):_ Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
 
 <a name=t></a>
 ### Methods in DP
