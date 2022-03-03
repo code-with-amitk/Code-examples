@@ -8,7 +8,6 @@
     - [Docker File](#t3)
     - [Docker Registry](#t4)
     - [Docker Compose](#t5)
-    - [Volume](#t6)
   - [Storing Data in Docker](#sd)
   - [Docker Commands](#dcm)
   - **Docker Networking**
