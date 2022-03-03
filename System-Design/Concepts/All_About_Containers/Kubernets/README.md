@@ -309,7 +309,8 @@ autoscaling:
 ```
 
 <a name=h3></a>
-#### 3. templates/configmap-jams.yaml                    //Information related to configuration of this service
+#### 3. templates/configmap-jams.yaml                    
+**What?** Contains information related to configuration of this service. This is shared across all [PODS](#pod)
 - Templates are defined to pick values from [Values.yaml.j2](#h2).
 ```yaml
 $ cat configmap-jams.yaml
@@ -359,10 +360,14 @@ metadata:
 ```
 
 <a name=h4></a>
-#### 4. templates/deployment.yaml                   //Related to deployment of this service
-- Contains Service account names, init containers, DB path username password
-- Ports for Http endpoints
-- 
+#### 4. templates/deployment.yaml    
+**What?** For deployment/instantiation of [pod](#pod). Remember 1 pod can have multiple containers. Each contianer=1Application
+- Contains
+  - Service account names
+  - init containers
+  - DB path username password
+  - Ports for Http endpoints
+  - [volume details](/System-Design/Concepts/All_About_Containers#sd)
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
