@@ -2,7 +2,14 @@
   - [What](#wc)
   - [Steps of Building a Container Image(also called docker image) & running application in container](#bc)
 - **Docker**
-  - [Docker Terms: Host, Image, File, Registry, Compose](#dterms)
+  - Docker Terms
+    - [Docker Host](#t1)
+    - [Docker Image](#t2)
+    - [Docker File](#t3)
+    - [Docker Registry](#t4)
+    - [Docker Compose](#t5)
+    - [Volume](#t6)
+  - [Storing Data in Docker](#sd)
   - [Docker Commands](#dcm)
   - **Docker Networking**
     - [1. Bridge Networking](#bn)
@@ -90,9 +97,15 @@ $ docker run -----> [Docker Client]
 
 <a name=dterms></a>
 ### Docker Terms
-- **Docker Host** Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
-- **Container Image/Docker Image:** This is used to start the container.
-- **Docker File:** Shell script for creating Docker image/Container image.
+<a name=t1></a>
+#### Docker Host
+Machine on which the Docker containers run. It can be a virtual machine or a physical machine.
+<a name=t2></a>
+#### Container Image/Docker Image 
+This is used to start the container.
+<a name=t3></a>
+#### Docker File 
+Shell script for creating Docker image/Container image.
 ```c
 # vim application.Dockerfile 
 FROM ubuntu:20.04                             //FROM Command: Installation is based image this OS, Since docker is not full OS.
@@ -104,8 +117,12 @@ COPY ./application.out ./a.txt /app/
 
 CMD /app/application.out "--config" a.txt     //CMD Command: Start the application
 ```
-- **Docker Registry:** Stores docker images. Same as github,gitlab are for source code. Eg: dockerhub, elastic container registry(ecr)
-- **Docker Compose** [Microservices](/System-Design/Concepts/MicroServices) can contact other microservice using DC. DC uses yaml configuration file.
+<a name=t4></a>
+#### Docker Registry
+Stores docker images. Same as github,gitlab are for source code. Eg: dockerhub, elastic container registry(ecr)
+<a name=t5></a>
+#### Docker Compose
+[Microservices](/System-Design/Concepts/MicroServices) can contact other microservice using DC. DC uses yaml configuration file.
  ```yaml
  $ cat docker-compose.yml
  version: '3'
@@ -122,6 +139,26 @@ services:
     ports:
      - "8080:8080"
 ```
+<a name=t6></a>
+#### [Docker Volume](https://docs.docker.com/storage/)
+
+
+<a name=sd></a>
+### Storing Data in Docker
+- By Default, all files created inside a container are accessed only by that container. Data doesn’t persist when that container no longer exists.
+- volumes, bind mounts, tmpfs all are seen as mounted directories to container.
+
+||Volumes|Bind Mounts|tmpfs(in memory/RAM)|
+|---|---|---|---|
+|Storage Type|Persistant|non persistant|non persistant|
+|Data available after container stops|yes|no|no|
+|How to create| a. `docker volume create` OR b. At container creation|||
+
+#### 1. Volumes
+- Volumes are stored on host filesystem which is managed by Docker (/var/lib/docker/volumes/ on Linux). Volumes are the best way to persist data in Docker.
+- volumes stores the files on the host machine(so that the files are persisted even after the container stops)
+#### 2. Bind mounts
+#### 3. tmpfs
 
 <a name=dn></a>
 ## Docker Networking
