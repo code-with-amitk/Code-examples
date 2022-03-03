@@ -93,7 +93,7 @@ $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ### Configmap
 This is the configuration file that stores the configuration used by [POD](#ka)
 #### Creating a configmap from File
-```c
+```yaml
 # cat test.properties
 name=Amit
 age=25
@@ -121,7 +121,7 @@ data:
 <a name=cfgk></a>
 ## Configure kubernets Cluster(1 master, n workers)
 #### a. Configuration file for deploying 2 containers. Containers having ngnix image.
-```c
+```yaml
 $ vim test.yaml
 apiVersion: app/v1
 kind: Development
@@ -194,7 +194,7 @@ jams/                       //Every chart will have same structure
 
 <a name=h1></a>
 #### 1. Chart.yaml.j2           //Contains meta information of this chart
-```c
+```yaml
 $ cat chart.yaml.j2
   version: 1.2      //Application version
   maintainers:
@@ -212,7 +212,7 @@ $ cat chart.yaml.j2
 - Other microservices URLs
 - Kafka topics on which this service will listen
 - autoscaling and resource limits
-```c
+```yaml
 $ cat values.yaml.j2
 
 replicas: 1
@@ -311,7 +311,7 @@ autoscaling:
 <a name=h3></a>
 #### 3. templates/configmap-jams.yaml                    //Information related to configuration of this service
 - Templates are defined to pick values from [Values.yaml.j2](#h2).
-```c
+```yaml
 $ cat configmap-jams.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -363,7 +363,7 @@ metadata:
 - Contains Service account names, init containers, DB path username password
 - Ports for Http endpoints
 - 
-```c
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
