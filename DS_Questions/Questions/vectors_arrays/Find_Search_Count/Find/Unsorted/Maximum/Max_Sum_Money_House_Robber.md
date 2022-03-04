@@ -1,4 +1,4 @@
-**House Robber**
+**House Robber, Max sum adjacent elements not allowed**
 - [Approach-1, Recursion](#a1)
 - [Approach-2, Dynamic Programming](#a2)
   - [Logic](#l)
