@@ -76,7 +76,7 @@ for i from 2 to n:
 <a name=tem></a>
 ### DP Template
 > Eg: [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/Climb_Stairs_1or2_steps.md)
-- _1. Define State:_ Variable(s) which can define a scenario. Eg: state=number of ways to jump to ith stair
+- _1. Define State:_ state means reaching nth stair or nth number etc. Eg: state=number of ways to jump to nth stair
 - _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
 int dp(i) {     //For climbing stairs
