@@ -1,9 +1,12 @@
 **Fibonacci Number**
-- **Approach-1, DP**
+- [Approach-1, Recursion, TLE](#a1)
+- **Approach-2, Dynamic Programming. O(n)**
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Rust](#rs)
   - [Complexity](#co)
+- [Approach-3, Directly finding nth fibonacci number](#a3)
 
 ### Fibonacci Number
 The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, 
@@ -29,7 +32,38 @@ Output: 3
 Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
 ```
 
-### Approach / Dynamic Programming
+<a name=a1></a>
+### Approach-1, Recursion
+```c
+1 2 3 5 8 13 21 34
+0 1 2 3 4 5  6  7
+
+int f(int n){
+  if (n==0) return 0;
+  if (n==1) return 1;
+  return f(n-1) + f(n-2);
+}
+int main() {
+ cout << f(7);
+}
+                       f(7)
+                        ret f6+f5
+                   f6
+                    ret f5+f4
+              f5
+               ret f4+f3  -------> f3 again calculated
+          f4
+           ret f3+f2    ---------> This f2 is again calculated
+      f3
+       ret f2+f1------------> This f1 is again calculated
+   f2
+    ret f1+f0
+ f1           f0
+  ret 1        ret 0
+```
+
+<a name=a2></a>
+### Approach-2 / Dynamic Programming
 - [Why DP is suitable here?](/DS_Questions/Algorithms/Dynamic_Programming/README.md#i)
 <a name=l></a>
 #### Logic
@@ -112,3 +146,7 @@ impl Solution {
 - **Space:** O(n)
   - (n-2) Function stacks. For nth number we jump n-2 stacks. O(n-2) = O(n)
   - (n+1) Vector size.
+
+<a name=a3></a>
+### Approach-3 Directly finding nth fibonacci series number
+<img src=nth-fibonacci.JPG width=400/>
