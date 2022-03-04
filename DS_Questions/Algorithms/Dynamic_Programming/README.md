@@ -102,33 +102,7 @@ start ___  ___
 ### 4.1 Fibonacci Series //Just write recursion stack on copy
 <a name="recur"></a>
 #### 4.1.1 Recursion
-```c
-1 2 3 5 8 13 21 34
-0 1 2 3 4 5  6  7
 
-int f(int n){
-  if (n==0) return 0;
-  if (n==1) return 1;
-  return f(n-1) + f(n-2);
-}
-int main() {
- cout << f(7);
-}
-                       f(7)
-                        ret f6+f5
-                   f6
-                    ret f5+f4
-              f5
-               ret f4+f3  -------> f3 again calculated
-          f4
-           ret f3+f2    ---------> This f2 is again calculated
-      f3
-       ret f2+f1------------> This f1 is again calculated
-   f2
-    ret f1+f0
- f1           f0
-  ret 1        ret 0
-```
 <a name="dp"></a>
 #### 4.1.2 Dynamic Programming
 <a name="cpp"></a>
@@ -187,6 +161,4 @@ impl Solution {
     }
 }
 ```
-<a name=direct></a>
-#### 4.1.3 Directly finding nth fibonacci series number
-<img src=nth-fibonacci.JPG width=400/>
+
