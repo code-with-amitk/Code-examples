@@ -83,7 +83,7 @@ int dp(i) {     //For climbing stairs
   //returns number of ways to climb to ith step
 }
 ```
-- _3. Relationship between different states:_ 
+- _3. Recurrence relation to transition between states:_
   - Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
 ```c
   dp(i) = dp(i-1) + dp(i-2);
