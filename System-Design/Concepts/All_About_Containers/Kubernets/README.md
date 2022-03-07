@@ -526,6 +526,7 @@ kubeconfig: Configured
 ```c
 $ helm upgrade app1{chartname}      //Upgrade the microservice instead of install
 $ helm rollback app1{chartname}     //rollback to older version
+$ helm delete --purge {chartname}   //Delete chart
 
 $ helm install my-cherry-chart buildachart/ --values buildachart/values.yaml
 NAME: my-cherry-chart
@@ -539,7 +540,16 @@ NOTES:
   export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
   echo http://$NODE_IP:$NODE_PORT
 http://1.2.3.4:8888
+
+//Check installation status
+# helm history my-cherry-chart
+REVISION        UPDATED                         STATUS          CHART                   APP VERSION     DESCRIPTION
+1               Mon Mar  7 03:09:47 2022        deployed        buildachart-0.1.0       1.16.0          Install complete
+
+
+# helm list --all
 ```
+
 <a name=hc4></a>
 ### 4. Access the application on cluster
 ```c
