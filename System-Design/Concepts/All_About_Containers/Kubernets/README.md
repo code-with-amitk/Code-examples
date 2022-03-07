@@ -179,9 +179,67 @@ $ kubectl proxy                               //Note, pods run on pvt network he
 $ systemctl start apache                      //Start Application inside container
 ```
 
-<a name=ck1></a>
+<a name=hc></a>
 ## Helm Chart
-**What?** This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) for configuration,installation of A service in cluster. HC is used to install/upgrade service in cluster. Files in HC:
+- **What?** This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) for configuration,installation of A service in cluster. HC is used to install/upgrade service in cluster.
+### [Creating Helm Chart](https://opensource.com/article/20/5/helm-charts)
+#### 1. [Download, Install minikube/Cluster](https://minikube.sigs.k8s.io/docs/start/)
+```ps
+//1. Run on powershell
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+//2. Add the binary in to your PATH.
+//Make sure to run PowerShell as Administrator.
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
+  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+}
+
+cmd> minikube start
+cmd> minikube kubectl -- get po -A
+NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
+kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
+kube-system            etcd-minikube                               1/1     Running   0               2d17h
+kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
+kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
+kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
+kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
+kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
+kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
+kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
+
+cmd> minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
+#### 2. Create helm Chart
+- **[Download Helm](https://github.com/helm/helm/releases)**
+- **Create Chart**
+```c
+cmd> cd C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64
+C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64> helm create amit-chart
+C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64>dir amit-chart
+ Volume in drive C is Windows
+ Volume Serial Number is EC27-7451
+
+ Directory of C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64\amit-chart
+
+03/04/2022  06:14 PM    <DIR>          .
+03/04/2022  06:14 PM    <DIR>          ..
+03/04/2022  06:14 PM               349 .helmignore
+03/04/2022  06:14 PM             1,146 Chart.yaml
+03/04/2022  06:14 PM    <DIR>          charts
+03/04/2022  06:14 PM    <DIR>          templates
+03/04/2022  06:14 PM             1,877 values.yaml
+```
+- Files in HC:
 ```c
 jams/                       //Every chart will have same structure
   Chart.yaml.j2
@@ -191,21 +249,28 @@ jams/                       //Every chart will have same structure
     deployment.yaml
     ...
 ```
+**Files inside Helm Chart**
 
 <a name=h1></a>
-#### 1. Chart.yaml.j2           //Contains meta information of this chart
+##### 1. chart.yaml.j2           //Contains meta information of this chart
 ```yaml
 $ cat chart.yaml.j2
-  version: 1.2      //Application version
+  version: 0.1.0          //Chart version
+  appVersion: 1.16.0      //Version number of the application being deployed
+  
+  //chart is either Application or Library Chart.
+  //Application: Collection of templates that can be packaged into versioned archives
+  //Library: Provide useful utilities or functions for chart developer. Library charts do not define any templates and therefore cannot be deployed.
+  type: application
+  
   maintainers:
   - email: amit@google.com
     name: Amit
-  name: jams
-  type: application  
+  name: jams 
 ```
 
 <a name=h2></a>
-#### 2. Values.yaml.j2          //Defines default values to be passed to templated files
+#### 2. values.yaml.j2          //Defines default values to be passed to templated files
 - number of replicas
 - repository for image
 - database's username, password
@@ -215,25 +280,42 @@ $ cat chart.yaml.j2
 ```yaml
 $ cat values.yaml.j2
 
-replicas: 1
+replicaCount: 1                                   //By default 1 pod will come up
 
-common:
-  registry: github/amitkumar50
+image:                                            //image section tells from where image will be downloaded
+  repository: nginx
+  pullPolicy: Always
+  
+imagePullSecrets: []
+nameOverride: "cherry-awesome-app"
+fullnameOverride: "cherry-chart"
 
-jams:
-  name: jams-server
+serviceAccount:                                   //Service to be run using this serviceAccount on pod.
+ # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  Name: cherrybomb
 
-chart:
-  name: jams
+podSecurityContext: {}
+  # fsGroup: 2000
 
-image:
-  repository: github/amitkumar50/dir1/dir2/
-  initRepository: github/amitkumar50/init/
-  initTag: v1.0.0
-  dbTag: {{ 1.2.3 }}
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  
+service:                        //Networking options
+  type: NodePort                //NodePort: informs all services in kubernets, that this service is listning on port=80
+  port: 80
 
-jamsVersion:
-  imageTag: v1.2.3.141.333.444
+ingress:
+  enabled: false
 
 database:
   enabled: true
