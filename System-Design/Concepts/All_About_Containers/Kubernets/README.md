@@ -9,10 +9,14 @@
     - [configmap](#cm)
   - [Configure kubernets Cluster](#cfgk)
   - [Helm Chart](#hc)
-    - [1. chart.yaml.j2](#h1)
-    - [2. Values.yaml.j2](#h2)
-    - [3. templates/configmap-jams.yaml](#h3)
-    - [4. templates/deployment.yaml](#h4)
+    - [1. Create Helm Chart](#hc1)
+      - [a. chart.yaml.j2](#f1)
+      - [b. Values.yaml.j2](#f2)
+      - [c. templates/configmap-jams.yaml](#f3)
+      - [d. templates/deployment.yaml](#f4)
+    - [2. Download, Install minikube/Cluster](#hc2)
+    - [3. Install/Upgrade/Rollback application on cluster using helm](#hc3)
+    - [4. Access the application on cluster](#hc4)
   - [Commands](#kcmd)
 
 
@@ -182,45 +186,10 @@ $ systemctl start apache                      //Start Application inside contain
 <a name=hc></a>
 ## Helm Chart
 - **What?** This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) for configuration,installation of A service in cluster. HC is used to install/upgrade service in cluster.
-### [Creating Helm Chart](https://opensource.com/article/20/5/helm-charts)
-#### 1. [Download, Install minikube/Cluster](https://minikube.sigs.k8s.io/docs/start/)
-```ps
-//1. Run on powershell
-New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
-Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
 
-//2. Add the binary in to your PATH.
-//Make sure to run PowerShell as Administrator.
-
-$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
-if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
-  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
-}
-
-cmd> minikube start
-cmd> minikube kubectl -- get po -A
-NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
-kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
-kube-system            etcd-minikube                               1/1     Running   0               2d17h
-kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
-kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
-kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
-kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
-kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
-kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
-kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
-
-cmd> minikube status
-minikube
-type: Control Plane
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-```
-
-#### 2. Create helm Chart
-- **[Download Helm](https://github.com/helm/helm/releases)** & Create Chart.
+<a name=hc1></a>
+### [1. Create Helm Chart](https://opensource.com/article/20/5/helm-charts)
+**[Download Helm](https://github.com/helm/helm/releases)** & Create Chart.
 ```c
 cmd> cd C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64
 C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64> helm create amit-chart
@@ -237,9 +206,7 @@ C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64>dir amit-chart
 03/04/2022  06:14 PM    <DIR>          charts
 03/04/2022  06:14 PM    <DIR>          templates
 03/04/2022  06:14 PM             1,877 values.yaml
-```
-**Files in HC:**
-```c
+
 jams/                       //Every chart will have same structure
   Chart.yaml.j2
   values.yaml.j2
@@ -248,10 +215,11 @@ jams/                       //Every chart will have same structure
     deployment.yaml
     ...
 ```
+
 **Files inside Helm Chart**
 
-<a name=h1></a>
-##### 1. chart.yaml.j2           //Contains meta information of this chart
+<a name=f1></a>
+##### a. chart.yaml.j2           //Contains meta information of this chart
 ```yaml
 $ cat chart.yaml.j2
   version: 0.1.0          //Chart version
@@ -268,8 +236,8 @@ $ cat chart.yaml.j2
   name: jams 
 ```
 
-<a name=h2></a>
-#### 2. values.yaml.j2          //Defines default values to be passed to templated files
+<a name=f2></a>
+#### b. values.yaml.j2          //Defines default values to be passed to templated files
 - number of replicas
 - repository for image
 - database's username, password
@@ -313,21 +281,23 @@ service:                        //Networking options
   type: NodePort                //NodePort: informs all services in kubernets, that this service is listning on port=80
   port: 80
 
-ingress:
-  enabled: false
+resources:                      //Maximum amount of resources a Helm chart can request
+   limits:
+     cpu: 100m
+     memory: 128Mi
+   requests:
+     cpu: 100m
+     memory: 128Mi
+     
+nodeSelector: {}            //Assign part of your application to specific node in your K8 cluster
+
+tolerations: []             //Tolerations, tainting, and affinities work together to ensure that pods run on separate nodes
+
+affinity: {}
 
 database:
   enabled: true
   host: abc.db.com
-  user: admin
-  password: admin
-  dialect: postgres
-  sslmode: require
-  maxOpenConn: 5
-  
-sled-DB:
-  source: Sled
-  enabled: false
   user: admin
   password: admin
   dialect: postgres
@@ -389,8 +359,8 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
 ```
 
-<a name=h3></a>
-#### 3. templates/configmap-jams.yaml                    
+<a name=f3></a>
+#### c. templates/configmap-jams.yaml                    
 **What?** Contains information related to configuration of this service. This is shared across all [PODS](#pod)
 - Templates are defined to pick values from [Values.yaml.j2](#h2).
 ```yaml
@@ -440,8 +410,8 @@ metadata:
     app: {{ .Values.image.app }}
 ```
 
-<a name=h4></a>
-#### 4. templates/deployment.yaml    
+<a name=f4></a>
+#### d. templates/deployment.yaml    
 **What?** For deployment/instantiation of [pod](#pod). Remember 1 pod can have multiple containers. Each contianer=1Application
 - Contains
   - Service account names
@@ -515,11 +485,65 @@ spec:
             name: jams-config
 ```
 
-### Install/upgrade/rollback application using helm chart_
+<a name=hc2></a>
+### [2. Download, Install minikube/Cluster](https://minikube.sigs.k8s.io/docs/start/)
+```ps
+//1. Run on powershell
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+//2. Add the binary in to your PATH.
+//Make sure to run PowerShell as Administrator.
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
+  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+}
+
+cmd> minikube start
+cmd> minikube kubectl -- get po -A
+NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
+kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
+kube-system            etcd-minikube                               1/1     Running   0               2d17h
+kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
+kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
+kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
+kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
+kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
+kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
+kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
+
+cmd> minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+<a name=hc3></a>
+### 3. Install/Upgrade/Rollback application on cluster using helm
 ```c
-$ helm install app1{chartname}
 $ helm upgrade app1{chartname}      //Upgrade the microservice instead of install
 $ helm rollback app1{chartname}     //rollback to older version
+
+$ helm install my-cherry-chart buildachart/ --values buildachart/values.yaml
+NAME: my-cherry-chart
+LAST DEPLOYED: Mon Mar  7 03:09:47 2022
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services cherry-chart)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+http://1.2.3.4:8888
+```
+<a name=hc4></a>
+### 4. Access the application on cluster
+```c
+Open URL: http://1.2.3.4:8888
 ```
 
 <a name=kcmd></a>
