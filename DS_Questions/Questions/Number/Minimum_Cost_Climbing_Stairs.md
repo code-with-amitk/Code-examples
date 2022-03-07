@@ -1,7 +1,10 @@
 **Min Cost Climbing Stairs**
 - Approach-1, Dynamic Programming
   - [Logic](#l)
-  - [
+  - Code
+    - [CPP](#cpp)
+    - [Rust](#rs)
+  - [Complexity](#co)
 
 
 ### [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs)
@@ -44,6 +47,8 @@ int dp(i) {
   vecMinCost[i] = min(vecMinCost[i - 1] + cost[i - 1], vecMinCost[i - 2] + cost[i - 2])
 ```
 #### Code
+<a name=cpp></a>
+##### CPP
 ```cpp
 class Solution {
 public:
@@ -54,7 +59,6 @@ public:
         
         vector<int> vecMinCost(cost.size()+1, 0);
         
-        
         for (int i=2; i < vecMinCost.size() ; ++i) {
             vecMinCost[i] = min((vecMinCost[i-2] + cost[i-2]), (vecMinCost[i-1] + cost[i-1]));
         }
@@ -63,6 +67,30 @@ public:
     }
 };
 ```
+<a name=rs></a>
+##### Rust
+```rs
+use std::cmp;
+impl Solution {
+    pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {
+        if cost.len() == 2 {
+            return cmp::min (cost[0], cost[1]);
+        }
+
+        let mut vec_min_cost = vec![0; cost.len()+1];
+        
+        for i in 2..vec_min_cost.len() {
+            let a = vec_min_cost[i-2] + cost[i-2];
+            let b = vec_min_cost[i-1] + cost[i-1];
+            let c = cmp::min (a,b);
+            vec_min_cost[i] = c;
+        }
+
+        vec_min_cost[vec_min_cost.len()-1] as i32
+    }
+}
+```
+<a name=co></a>
 #### Complexity
 - **Time:** O(n)
 - **Space:** O(n+1) = O(n). Taken n+1 sized array since we need to reach top which is 1 step above last stair.
