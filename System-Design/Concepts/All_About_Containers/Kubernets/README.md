@@ -220,8 +220,7 @@ kubeconfig: Configured
 ```
 
 #### 2. Create helm Chart
-- **[Download Helm](https://github.com/helm/helm/releases)**
-- **Create Chart**
+- **[Download Helm](https://github.com/helm/helm/releases)** & Create Chart.
 ```c
 cmd> cd C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64
 C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64> helm create amit-chart
@@ -239,7 +238,7 @@ C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64>dir amit-chart
 03/04/2022  06:14 PM    <DIR>          templates
 03/04/2022  06:14 PM             1,877 values.yaml
 ```
-- Files in HC:
+**Files in HC:**
 ```c
 jams/                       //Every chart will have same structure
   Chart.yaml.j2
