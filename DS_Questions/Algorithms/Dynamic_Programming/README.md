@@ -28,7 +28,7 @@ fib(2): function need to be executed 3 times
 fib(2): function need to be executed 2 times
 ..
 ```
-- _2. Optimal Substructure Property:_ if optimal solution(a feasible solution) of the given sub-problem can be obtained.
+- _2. Optimal Substructure Property:_ if optimal(feasible) solution can be constructed from optimal solutions of its subproblems. ie smaller solution cumulate to give bigger solution.
 - _3. Problem statement(min/max/longest/largest):_ Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
 
 <a name=t></a>
