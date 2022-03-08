@@ -31,6 +31,7 @@ fib(2): function need to be executed 2 times
 - _2. Optimal Substructure Property:_ if optimal(feasible) solution can be constructed from optimal solutions of its subproblems. ie smaller solution cumulate to give bigger solution.
 - _3. Problem statement:_ **min/max/longest/largest/Nth Number**
   - Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
+- _4. Greedy solution should not fit in:_ Test greedy, we should not reach solution using greedy.
 
 <a name=t></a>
 ### Methods in DP
