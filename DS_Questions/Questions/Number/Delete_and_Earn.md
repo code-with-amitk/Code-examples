@@ -1,4 +1,4 @@
-**Delete and Earn**
+**Delete and Earn / Delete and profit / Delete and gains**
 - [Approach-1, Dynamic Programming](#a1)
   - [Why this is DP Problem?](#w)
   - [Logic](#l1)
@@ -24,7 +24,7 @@ Output: 9
 - Delete a 3 once more to earn 3 points. nums = [].
 
 Example 3:
-Input nums = [5, 5, 5, 6, 6, 6, 6, 7, 7]
+Input nums = [5, 5, 5, 6, 6, 6, 6, 7, 7, 10, 10, 10, 10]
 Output: 29
 - Delete a 5 to earn 5 points. All 6's are also deleted. nums = [5,5,7,7].
 - Delete a 5 again to earn 5 points. nums = [5,7,7].
@@ -39,7 +39,7 @@ Output: 29
 #### [Why this is DP Problem?](/DS_Questions/Algorithms/Dynamic_Programming/README.md#i)
   - _1. Keyword:_ Maximum
   - _2. Optimal Substructure?_ Yes, Does smaller solution cumulate to give bigger solution? Yes gain is calculated by careful selection of element.
-  - _3. Greedy solution does not fit:_ Take example:`[5, 5, 5, 6, 6, 6, 6, 7, 7]`if we greedily choose 6. Gain would be 24, but 5's and 7's gain becomes 29
+  - _3. Greedy solution does not fit:_ Take example:`[5, 5, 5, 6, 6, 6, 6, 7, 7, 10, 10, 10, 10]`if we greedily choose 6. Gain would be 24, but 5's and 7's gain becomes 29
 
 <a name=l1></a>
 ### Logic = [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
@@ -49,6 +49,7 @@ Output: 29
   5     15
   6     24
   7     14
+  10    40
 ```
 - _2. State_ = Gain on choosing particular number.
 - _3._ Define a function to return gain
@@ -56,4 +57,19 @@ Output: 29
 int gain(int i) {
 }
 ```
-- _4. Recoccurance Relation:_ Deriving gain from selection of prev, next available numbers.
+- _4. Recoccurance Relation:_ can we derive gain from selection of prev, next available gains.
+```c
+//if we take present item's gain
+gain = gain(i) + gain(i-2);      //Because we cannot get points for i-1, But all points upto i-2 add up
+
+//if we donot take present item gain
+gain = gain(i-1)                //we donot consider gain(i+1) since this will be calculated as we move to i+1
+
+gain(i) = max(gain(i) + gain(i-2), gain(i-1))
+```
+- _5._ Base cases: We need to think logically.
+```c
+i=0, gain=0     //There is no gain in selecting 0
+i=1, gain=number of time 1 is found
+```
+- _6._ Memoize the gains present in step-4.
