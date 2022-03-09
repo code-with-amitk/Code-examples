@@ -1,7 +1,8 @@
 **YAML (YAML Ain't Markup Language)**
 - [yaml vs xml vs json](#vs)
 - [design Goals](#d)
-- Data Structures
+- [Data types](#dt)
+- Data Structures 
   - [Key, Value pairs](#kv)
   - [Objects](#o)
   - [List or Arrays](#l)
@@ -59,6 +60,13 @@ microservices:
 - One-pass processing.
 - Easy to implement and use.
 
+<a name=dt></a>
+### Data Types
+#### 1. Scalars (numbers, strings)
+Basic values like numbers or strings are called scalars
+#### 2. Complex Types (arrays, objects)
+All others are complex types 
+
 <a name=ds></a>
 ### Data Structures
 [Online yaml validator](http://www.yamllint.com/)
@@ -96,8 +104,9 @@ test:
 test: [a,1]
 ```
 <a name=ml></a>
-#### Multiline string
-All lines are interpreted as seperate lines.
+#### Multiline string, Block Pipe |
+- All lines are interpreted as seperate lines.
+- The pipe is used when you want newlines to be kept as newlines.
 ```yml
 --- 
 multiline: |
