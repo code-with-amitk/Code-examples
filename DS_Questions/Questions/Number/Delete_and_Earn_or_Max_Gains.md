@@ -1,4 +1,4 @@
-**Delete and Earn / Delete and profit / Delete and gains**
+**Delete and Earn / Delete and profit / Delete and gains / Maximum Gains**
 - [Approach-1, Dynamic Programming(Top Down)](#a1)
   - [Why this is DP Problem?](#w)
   - [Logic](#l1)
