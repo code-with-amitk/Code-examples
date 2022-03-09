@@ -1,7 +1,11 @@
 **Delete and Earn / Delete and profit / Delete and gains**
-- [Approach-1, Dynamic Programming](#a1)
+- [Approach-1, Dynamic Programming(Top Down)](#a1)
   - [Why this is DP Problem?](#w)
   - [Logic](#l1)
+  - Code
+    - [CPP](#cpp)
+  - [Complexity](#co)
+
 
 ## [Delete & Earn](https://leetcode.com/problems/delete-and-earn/)
 - Given an integer array nums. You want to maximize the number of points you get by performing the following operation any number of times:
@@ -33,7 +37,7 @@ Output: 29
 ```
 
 <a name=a1></a>
-## Approach-1, Dynamic Programming
+## Approach-1, Dynamic Programming(Top Down)
 
 <a name=w></a>
 #### [Why this is DP Problem?](/DS_Questions/Algorithms/Dynamic_Programming/README.md#i)
@@ -43,26 +47,29 @@ Output: 29
 
 <a name=l1></a>
 ### Logic = [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
-- _1._ Create a hash map of number and times its occuring. Number of times is the gain.
+- _1._ Create a hash map of number and times its occuring. Number of times is the gain. Also note max number.
 ```c
+Hashmap
   key   Value=Gain
   5     15
   6     24
   7     14
   10    40
+
+max_number = 10
 ```
 - _2. State_ = Gain on choosing particular number.
-- _3._ Define a function to return gain
+- _3._ Define a function to return gain from number=i
 ```c
 int gain(int i) {
 }
 ```
-- _4. Recoccurance Relation:_ can we derive gain from selection of prev, next available gains.
+- _4. Recoccurance Relation:_ can we derive gain from present number from prev gain?
 ```c
-//if we take present item's gain
+//Taking present number's gain
 gain = gain(i) + gain(i-2);      //Because we cannot get points for i-1, But all points upto i-2 add up
 
-//if we donot take present item gain
+//if we donot take present number's gain
 gain = gain(i-1)                //we donot consider gain(i+1) since this will be calculated as we move to i+1
 
 gain(i) = max(gain(i) + gain(i-2), gain(i-1))
@@ -72,4 +79,58 @@ gain(i) = max(gain(i) + gain(i-2), gain(i-1))
 i=0, gain=0     //There is no gain in selecting 0
 i=1, gain=number of time 1 is found
 ```
-- _6._ Memoize the gains present in step-4.
+- _6._ Memoize the gains returned in step-4.
+```c
+unordered_map <number, gain>
+```
+
+### Code
+#### CPP
+```cpp
+class Solution {
+                 //num, gain
+    unordered_map<int, int> umGains;
+public:
+    int fill(int num, unordered_map<int,int>& um){
+        
+        //Base cases
+        if (!num)
+            return 0;
+        if (num == 1)
+            return um[num];
+        
+        if (umGains.find(num) != umGains.end())
+            return umGains[num];
+        
+        //Apply recurrance relation
+        umGains[num] = max(fill(num-1, um), (fill(num-2, um) + um[num]));
+        return umGains[num];
+    }
+    
+    //[5, 5, 5, 6, 6, 6, 6, 7, 7, 10, 10, 10, 10]
+    int deleteAndEarn(vector<int>& nums) {
+        
+        int max_number = 0;
+        
+        //HashMap <key=number, value=No_of_times>
+        //5:15, 6:24, 7:14, 10:40
+        //max_number = 10
+        unordered_map<int,int> um;
+        for (auto itr:nums) {
+            um[itr] += itr;
+            max_number = max(max_number, itr);
+        }
+        
+        return fill(max_number, um);
+    }
+};
+```
+
+<a name=co></a>
+### Complexity
+#### Time = O(n)
+- O(n): Creating `unordered_map um`. Supposing all numbers are unique.
+- O(n): Finding gains `unordered_map umGains`
+#### Space = O(n)
+- 2O(n): `unordered_map um`
+- 2O(n): `unordered_map umGains`
