@@ -2,9 +2,9 @@
   - [hashmap`<keys=vector, values=vector>`](#vec)
   - [hashmap `<i32, (string, i32)>`](#pair)
 - **Insert**
-  - [1. New <key,value>](#insertnew)
-  - [2. Overwrite](#overwrite)
-  - [3. Insert only when entry does not exist](#orinsert)
+  - [1. New <key,value>](#i1)
+  - [2. Increment existing key value](#i2)
+  - [3. Insert only when entry does not exist](#i3)
 - **Search / Find**
   - [get(key)](#get)
   - [get_mut(key)](#getm)
@@ -34,7 +34,7 @@ fn main() {
 #### [hashmap `<i32, (string, i32)>`](#kv)
 
 ### Insert 
-<a name=insertnew></a>
+<a name=i1></a>
 #### 1. New (key,value) to hashmap
 ```rs
 use std::collections::HashMap;
@@ -44,22 +44,15 @@ fn main() {
 }   
 ```
 
-<a name=overwrite></a>
-#### 2. Overwriting existing value
-  if key already exists in map and we insert (key,value) with existing key and new value, then it old value would be updated.
-```rust
-use std::collections::HashMap;
-fn main() {
-    let mut var = HashMap::new();
-    var.insert(String::from("Red"), 1);
-
-    var.insert(String::from("White"), 1);    //Updating existing (key,value)
-    for (a,b) in &var {
-        println!("{},{}",a,b);
-    }
-}   
+<a name=i2></a>
+#### 2. Increment existing key value
+- Increment existing value by 5
+- if value does not exist insert `<key,value>`
+```rs
+  let um:HashMap<int, int>;
+  um.entry(i).and_modify(|e|{*e+=5}).or_insert(i);
 ```
-<a name=orinsert></a>
+<a name=i3></a>
 #### 3. Insert (key,value) only when entry does not exist
   - Function entry() only inserts into hashmap only when entry is not present in hashtable, if entry is present function does nothing.
   - or_insert() method returns a [mutable reference](/Languages/Programming_Languages/Rust) to the value of key if that key exists, and if not, inserts (key,value) & returns a mutable reference to the new value. 
