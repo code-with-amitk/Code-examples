@@ -4,6 +4,7 @@
   - [Logic](#l1)
   - Code
     - [CPP](#cpp)
+    - [Rust](#rs)
   - [Complexity](#co)
 
 
@@ -126,6 +127,77 @@ public:
 };
 ```
 
+<a name=rs></a>
+#### Rust
+```rs
+use std::collections::HashMap;
+use std::cmp::max;
+pub struct Solution1{
+    pub um_gains: HashMap<i32, i32>,
+    pub um: HashMap<i32, i32>,
+}
+impl Solution1 {
+    pub fn new() -> Self {
+        Self {
+            um_gains: HashMap::new(),
+            um: HashMap::new()
+        }
+    }
+}
+pub struct Solution{}
+impl Solution {
+    pub fn delete_and_earn(nums: Vec<i32>) -> i32 {
+        let mut max_number: i32 = 0;
+        let mut s = Solution1::new();
+        
+        //HashMap <key=number, value=No_of_times>
+        let mut um = s.um;
+        for i in nums.iter() {
+            um.entry(*i).and_modify(|e|{*e+=*i}).or_insert(*i);
+            max_number = max(max_number, *i);
+        }
+
+        println!("um={:?}",um);
+        println!("max_no={:?}",max_number);
+        return Self::fill (max_number, &mut um, &mut s.um_gains);
+        
+    }
+    pub fn fill(num:i32, um:&mut HashMap<i32, i32>, um_gains:&mut HashMap<i32, i32>) -> i32 {
+        //Base cases
+        if num == 0 {
+            return 0;
+        }
+        if num == 1 {
+            let a = um.get(&num);
+            if a != None {
+                return *a.unwrap();
+            }
+            return 0;
+        }
+
+        if um_gains.get(&num) != None {
+            return um_gains[&num];
+        }
+        else{
+            let a = Self::fill(num-1, um, um_gains);
+            let b = Self::fill(num-2, um, um_gains);
+            let c = um.get(&num);
+            let mut d = 0;
+            if c != None {
+                d = *c.unwrap();
+            }
+            um_gains.insert(num, max(a, b+d));
+        }
+        return um_gains[&num];
+    }
+}
+
+fn main() {
+    let nums = vec![2,2,3,3,3,4];
+    let out = Solution::delete_and_earn(nums);
+    println!("Hello, world! {}", out);
+}
+```
 <a name=co></a>
 ### Complexity
 #### Time = O(n)
