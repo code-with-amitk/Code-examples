@@ -58,7 +58,7 @@ custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
 
 #### Code 
 ```rs
-     Collector
+     COLLECTOR
   dr = prometheus::default_registry(); 
                             |---------create registry-------> struct RegistryCore {
                                                                                   .. };
