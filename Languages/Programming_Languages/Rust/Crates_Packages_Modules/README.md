@@ -59,14 +59,15 @@ custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
 #### Code 
 ```rs
      Collector
-  dr = prometheus::default_registry(); ---------create-------> struct RegistryCore {
-                                                                .. };
+  dr = prometheus::default_registry(); 
+                            |---------create registry-------> struct RegistryCore {
+                                                                                  .. };
   dr.register(static int a)-------add variable to registry--> |a=0|
   a++                                                         |a=1|
   
-  Get structure   ------gather()----------------------------->
+  Get registry structure as vector ----gather()------------->
          let mf = <--------vec<MetricFamily>-----------------
-                  
+
   let encoder = prometheus::TextEncoder::new();
                   ---------encoder.encode(mf)---------------->
                   <------------String------------------------
