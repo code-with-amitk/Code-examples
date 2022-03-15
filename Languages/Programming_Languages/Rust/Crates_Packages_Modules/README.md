@@ -58,6 +58,21 @@ custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
 
 #### Code 
 ```rs
+     Collector
+  dr = prometheus::default_registry(); ---------create-------> struct RegistryCore {
+                                                                .. };
+  dr.register(static int a)-------add variable to registry--> |a=0|
+  a++                                                         |a=1|
+  
+  Get structure   ------gather()----------------------------->
+         let mf = <--------vec<MetricFamily>-----------------
+                  
+  let encoder = prometheus::TextEncoder::new();
+                  ---------encoder.encode(mf)---------------->
+                  <------------String------------------------
+  Display the string
+
+
 $ cat Cargo.toml
 ..
 [dependencies]
@@ -75,45 +90,48 @@ lazy_static! {
 }
 
 fn main() {
-    // 1. Create Registry
-    default_metrics(prometheus::default_registry());                //Default Registry
-    let mut labels = HashMap::new();                  
-    labels.insert("mykey".to_string(), "myvalue".to_string());  
-    let custom_registry = Registry::new_custom(Some("myprefix".to_string()), Some(labels)).unwrap();  //Custom Registry
-    
-    // 2. Regiter collector to registry
-    prometheus::default_registry().register(Box::new(DEFAULT_COUNTER.clone())).unwrap();
-    custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
-    DEFAULT_COUNTER.inc();
-    CUSTOM_COUNTER.inc_by(42);
-
-    // 3. Collect data using gather() from registries
     let mut buffer = Vec::<u8>::new();
-    prometheus::TextEncoder::new().encode(&prometheus::gather(), &mut buffer).unwrap();   //collect from default registry
+    
+    ///////////Default Registry///////////
+    //1a. Create default Registry. This is a structure where Prometheus collectors will register for collecting metrics
+    let default_registry = prometheus::default_registry();
+    
+    //1b. Register Collector to registry, Collector will do metric collection
+    default_registry.register(Box::new(DEFAULT_COUNTER.clone())).unwrap();
+    DEFAULT_COUNTER.inc();
+    assert_eq!(DEFAULT_COUNTER.get(), 1);
+
+    //1c. gather(): Will return structure of metrices called MetricFamily
+    let metric_family:vec<MetricFamily> = prometheus::gather();
+
+    //1d. encoder: Encodes metric families into an underlying wire protocol using encode()
+    let encoder = prometheus::TextEncoder::new();
+    encoder.encode(&metric_family, &mut buffer).unwrap();
     println!("## Default registry");
     println!("{}", String::from_utf8(buffer.clone()).unwrap());
 
-    let mut buffer = Vec::<u8>::new();
-    prometheus::TextEncoder::new().encode(&custom_registry.gather(), &mut buffer).unwrap(); //Collect from custom registry
-    println!("## Custom registry");
-    println!("{}", String::from_utf8(buffer.clone()).unwrap());
-}
 
-fn default_metrics(registry: &Registry) {
-    registry
-        .register(Box::new(DEFAULT_COUNTER.clone()))
-        .unwrap();
+    ///////////Custom Registry//////////////////
+    //2a. Create a hash_map
+    let mut hm = HashMap::new();
+    hm.insert("mykey".to_string(), "myvalue".to_string());
 
-    DEFAULT_COUNTER.inc();
-    assert_eq!(DEFAULT_COUNTER.get(), 1);
-}
+    //2b. Create custom registry
+    let custom_registry = Registry::new_custom(Some("myprefix".to_string()), Some(hm)).unwrap();
 
-/// Custom metrics, to be collected by a dedicated registry.
-fn custom_metrics(registry: &Registry) {
-    registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
-
+    custom_registry.register(Box::new(CUSTOM_COUNTER.clone())).unwrap();
     CUSTOM_COUNTER.inc_by(42);
     assert_eq!(CUSTOM_COUNTER.get(), 42);
+
+    //2c. Print metrics for the custom registry.
+    let mut buffer = Vec::<u8>::new();
+
+    let custom_family = custom_registry.gather();
+    encoder
+        .encode(&custom_family, &mut buffer)
+        .unwrap();
+    println!("## Custom registry");
+    println!("{}", String::from_utf8(buffer.clone()).unwrap());
 }
 
 $ cargo run
