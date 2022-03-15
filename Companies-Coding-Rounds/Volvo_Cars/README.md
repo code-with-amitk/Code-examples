@@ -1,11 +1,10 @@
-- [Architecture](#ar)
+- [Volvo cars Architecture](#ar)
 - **Roles**
   - [Position: Senior Software Developer (Gothenberg, Sweden)](#p1)
 
 <a name=ar></a>
 ### Architecture
-#### ECU(Electric control Unit)
-**Present Day: ECU's**
+#### Present Day: Based on ECU(Electric control Unit)
   - Around 100+ ECU, which talk to each other/dashboard.
   - These are sort of firmware(Hardware+ complied software) maybe from different vendors.
   - Used to control behaviour of components(Eg: parking camera)
@@ -18,7 +17,7 @@
     |
     -| |-----------------------------------| |-
 ```
-**Future: Core computer** 
+#### Future: Core computer
 - Car will have high end CPU/GPU 2 boxes which communicate over other components over ethernet.
 - Does not rely on supplier provided ECUs for behaviour we want.
 - Work load is distributed between these core_computers using distributed framework.
