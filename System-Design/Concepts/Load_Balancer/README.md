@@ -1,6 +1,8 @@
 **Load Balancer**
 - [Reverse Proxy vs LB](#vs)
 - [Types](#ty)
+  - [1. ALB/Layer-7/Application LB](#alb)
+  - [2. NLB/Layer-3,4/Network LB](#nlb)
 - [Places where LB can be placed?](#p)
 - [Scheduling Algorithms at LB](#s)
 
@@ -28,9 +30,11 @@ Advantages  | 1. Increased security: No information about your backend  | 1. Han
 
 <a name=ty></a>
 ## Types of Load Balancing
-### Layer 7 LB / ALB(Application Load Balancer) / (Also called Reverse Proxy)       //Layer-7=Application
+<a name=alb></a>
+### 1. ALB/Layer-7/Application LB (Also called Reverse Proxy)       //Layer-7=Application
 LB looks into Layer-7 Application packet(Eg: HTTP/HTTPS) and performs load balancing based on Header content.
-#### Layer 4 LB / NLB(Network LB)   //Layer-4=Transport
+<a name=nlb></a>
+#### 2. Layer 3,4 LB / NLB(Network LB)   //Layer-4=Transport
 Operate at transport layer(TCP, UDP, TLS). Packet is routed based on Src,dst Ports(without looking into packet).
 #### Layer3 VPN LB
 LB decision is made based on IP Address
