@@ -7,7 +7,7 @@
 - _3. OOD: Shortest distance between 2 points (x,y,z)_
 
 ### 6/18/2021  Bangalore
-#### Round-1. Online Assesment. 2 Questions
+#### a. Online Assesment. 2 Questions
 - _1._ Modified [Finding connected components in disjoint set in graph](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Number_of_Connected_Components.md) called Cloudfront caching problem. 
   - Find total cealing of all nodes in disjoint set of connected components. Cealing is defined as square root of number of elements in connected component.
 ```c
