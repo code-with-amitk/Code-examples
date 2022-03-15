@@ -27,11 +27,11 @@ Advantages  | 1. Increased security: No information about your backend  | 1. Han
 ```
 
 <a name=ty></a>
-### Types of Load Balancing
-#### Layer 7 LB (Also called Reverse Proxy)
-LB looks into Layer-7 Application packet(Eg: HTTP) and performs load balancing based on Header content.
-#### ayer 4 LB 
-Operate at transport layer(TCP or UDP). Packet is routed based on Src,dst Ports(without looking into packet).
+## Types of Load Balancing
+### Layer 7 LB / ALB(Application Load Balancer) / (Also called Reverse Proxy)       //Layer-7=Application
+LB looks into Layer-7 Application packet(Eg: HTTP/HTTPS) and performs load balancing based on Header content.
+#### Layer 4 LB / NLB(Network LB)   //Layer-4=Transport
+Operate at transport layer(TCP, UDP, TLS). Packet is routed based on Src,dst Ports(without looking into packet).
 #### Layer3 VPN LB
 LB decision is made based on IP Address
 #### CHANNEL BONDING?
