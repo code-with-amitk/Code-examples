@@ -1,7 +1,10 @@
 ### 2/23/2020 Dublin
-- **Round-1, Online Assesement. 4 Questions**
-  - _1._ Drone flight planner
-
+#### a. Online Assesement. 4 Questions
+- _1._ Drone flight planner
+#### b. Onsite
+- _1. Code: Sales Rank:_ Find best selling product per category.
+- _2. System Design: Tiny URL_
+- _3. OOD: Shortest distance between 2 points (x,y,z)_
 
 ### 6/18/2021  Bangalore
 #### Round-1. Online Assesment. 2 Questions
