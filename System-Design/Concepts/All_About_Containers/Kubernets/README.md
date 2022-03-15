@@ -7,6 +7,10 @@
       - [Namespaces](#ns)
   - Kubernets Terms
     - [configmap](#cm)
+    - [Kubernets Objects](#ko)
+      - Types of k8 objects
+        - [1. deployment](#dep)
+        - [2. configmap](#cm)
   - [Configure kubernets Cluster](#cfgk)
   - [Helm Chart](#hc)
     - [1. Create Helm Chart](#hc1)
@@ -93,10 +97,34 @@ $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ```
 
 ## Kubernets Terms
+<a name=ko></a>
+## [Kubernets Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+A Kubernetes object always exist once we create them. k8 objects stores:
+- Containerized applications configuration, Resources available to those applications, Policies of those applications(restart,upgrades etc)
+### Types of k8 objects
+<a name=dep></a>
+#### 1. Deployment
+Represent an application running on your cluster
+```yaml
+//test.yaml
+apiVersion: apps/v1       #(Required) Which version of the Kubernetes API you're using to create this object
+kind: Deployment          #(Required) What kind of object you want to create
+metadata:                 #(Required) Data that helps uniquely identify the object
+  name: nginx-deployment
+spec:                     #(Required) What state you desire for the object
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+
+$ kubectl apply -f test.yaml
+```
 <a name=cm></a>
-### Configmap
-This is the configuration file that stores the configuration used by [POD](#ka)
-#### Creating a configmap from File
+#### [2. ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
+- Object used to store configuration of [POD](#ka)
+- Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
+#### Creating a configmap
+We can copy
 ```yaml
 # cat test.properties
 name=Amit
@@ -105,7 +133,8 @@ life=Great
 worry=None
 
 # kubectl create configmap amit-configmap --from-file=test.properties   //Create configmap
-# kubectl get configmaps amit-configmap -o yaml                         //View configmap
+
+# kubectl get configmaps amit-configmap -o yaml                         //View configmap. 
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -121,6 +150,8 @@ data:
     life=Great
     worry=None
 ```
+
+
 
 <a name=cfgk></a>
 ## Configure kubernets Cluster(1 master, n workers)
