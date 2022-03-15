@@ -1,12 +1,12 @@
 **Load Balancer**
 - [Reverse Proxy vs LB](#vs)
-- [Types of Load Balancing](#ty)
+- [Types](#ty)
 - [Places where LB can be placed?](#p)
 - [Scheduling Algorithms at LB](#s)
 
 ## Load Balancer
 - LB improves the distribution of workloads across multiple computers. Examples Ngnix, Amazon ELB
-  - Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](Scheduling_Algo_of_Load_Balancers.md)
+- Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](#s)
 **Advantages of LB**
 - *a.* Handle more users wrt single server.
 - *b.* Redundancy: if one server fails, others are available to ensure the application stays online.
