@@ -1,3 +1,8 @@
+Max difference between two elements, larger appears after smaller
+- [Approach-1, Naive](#a1)
+- [Approach-2, O(1)](#a2)
+
+
 ## [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 - Array of `prices[i]` is given shows the price of a given stock on the ith day.
 - You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
@@ -14,9 +19,11 @@ Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 ```
 
-## 1. Approach1 //Naive O(n<sup>2</sup>)
-- **Logic** Find difference of every element with other element using 2 for loops.
-- **Code**
+<a name=a1></a>
+### 1. Approach1 //Naive O(n<sup>2</sup>)
+#### Logic
+Find difference of every element with other element using 2 for loops.
+#### Code
 ```c
   int maxProfit(std::vector<int>& prices) {
     int maxDiff = 0;
@@ -32,8 +39,9 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 };
 ```
 
-## 2. Approach2   //Time:O(n), Space:O(1)
-- **Logic:** 
+<a name=a2></a>
+### 2. Approach-2   //Time:O(n), Space:O(1)
+#### Logic
   - *1.* maxDiff = 0;   minElement = INT_MAX
   - *2.* Iterate thru the elements.
 ```c  
@@ -42,8 +50,8 @@ Explanation: In this case, no transactions are done and the max profit = 0.
     if (element - minElement > maxDiff)     //if difference is greater than stored
         maxDiff = element - minElement;
 ```
-- **Code**  
-```c++
+#### Code
+```cpp
   int maxProfit(vector<int>& prices) {        
     int minElement = INT_MAX;
     int maxDiff = 0;
