@@ -1,9 +1,9 @@
-Max difference between two elements, larger appears after smaller
+**Max difference between two elements, larger appears after smaller / Best Time to Buy and Sell Stock**
 - [Approach-1, Naive](#a1)
 - [Approach-2, O(1)](#a2)
 
 
-## [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
+### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 - Array of `prices[i]` is given shows the price of a given stock on the ith day.
 - You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
 - Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0
