@@ -5,6 +5,7 @@
   - [A. int, double to string using stringstream](#ss1)
   - [B. String to `vector<int>` using stringstream](#ss2)
   - [C. String to int istringstream, stringstream](#ss3)
+  - [D. Convert to lowercase](#con)
 - [Erase](#er)
 - [Find](#f)
 - [insert](#in)
@@ -68,6 +69,13 @@ v.push_back(a);
   ss.clear(); ss.str(str1);           //Resuing stringstream
   ss >> a;
   cout << a << "\n";                  //5
+```
+<a name=con></a>
+#### D. String to lowercase
+```c
+  string sl = "Amit Kumar";
+  
+  transform(sl.begin(), sl.end(), sl.begin(), ::tolower);
 ```
 
 ## Compare
