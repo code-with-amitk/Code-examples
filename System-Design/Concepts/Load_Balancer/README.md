@@ -10,6 +10,7 @@
 ## Load Balancer
 - LB distributes workload across multiple computers. Examples Ngnix, Amazon ELB
 - Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](#s)
+- Load Balancers can be run as array of servers, these can be auto scaled when needed, and released when don't needed.
 <a name=adv></a>
 ### Advantages of LB
 - _1. Performance:_
