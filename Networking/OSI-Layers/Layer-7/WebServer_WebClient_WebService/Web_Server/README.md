@@ -8,12 +8,12 @@
 - _3. SSL-Terminators and Load Balancers._
 - _4. Skip kernel stack:_ Write custom driver to send pkt directly to Application, kernel stack is complicated and slow. 
   - How fast can this be? Intel has a benchmark where the process 80 million packets/second on a fairly lightweight server in user mode.
-_5. MULTI-CORE:_ Some code gets slower on running with cores because code is written badly. We want to get faster as we add more cores.  Recommendations: Keep Data structures/core, Avoid atomic operation(those are expensive), Lock-free data structures
+- _5. MULTI-CORE:_ Some code gets slower on running with cores because code is written badly. We want to get faster as we add more cores.  Recommendations: Keep Data structures/core, Avoid atomic operation(those are expensive), Lock-free data structures
 - _6. MULTI-THREADED:_ What's thread model(Pipelined or worker?). Set processor affinity
-_7. COMPRESS DATA:_ Use cache friendly data.
-_8. EVENT TRIGGERED LIBRARIES:_ (Eg: libtevent) Use ET-libraries in-place of poll() or select(). poll() is better than select(). select can only monitor 1024(FD_SETSIZE) sockets.
-_9. LOAD BALANCING IN WORKER THREADS:_ Ngnix defines accept_mutex directive(if enabled), worker processes will accept new connections by turn. Else all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
-_10. NON_BLOCKING STATE MACHINE: _
+- _7. COMPRESS DATA:_ Use cache friendly data.
+- _8. EVENT TRIGGERED LIBRARIES:_ (Eg: libtevent) Use ET-libraries in-place of poll() or select(). poll() is better than select(). select can only monitor 1024(FD_SETSIZE) sockets.
+- _9. LOAD BALANCING IN WORKER THREADS:_ Ngnix defines accept_mutex directive(if enabled), worker processes will accept new connections by turn. Else all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
+- _10. NON_BLOCKING STATE MACHINE: _
   - What is state machine? State machine like the rules for chess. Each HTTP transaction is a chess game. On one side of the chessboard is the web server/master(predefined logic). On the other side is the remote client(web browser) that is accessing the site.
   - Blocking state machine? Master being powerful & knows all logic sits idle for huge amount of time. because web clients are slow(people reading pages, surfing internet).
   - Non-Blocking state machine? 
