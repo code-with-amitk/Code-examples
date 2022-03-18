@@ -36,7 +36,9 @@ fn main() {
     let deserialized: Point = serde_json::from_str(&serialized).unwrap();
     println!("deserialized = {:?}", deserialized);
 }
-$ cargo build
+$ cargo run
+serialized = {"x":1,"y":2}
+deserialized = Point { x: 1, y: 2 }
 ```
 
 <a name=e2></a>
