@@ -13,14 +13,14 @@
 - Load Balancers can be run as array of servers, these can be auto scaled when needed, and released when don't needed.
 ```c
                       Server Farm/Pool
-			   	              \/
-	            		 |- |Web Server-1|
-  ---------------	 |		
+		              \/
+	           |- |Web Server-1|
+  ---------------  |		
   |Load-Balancer|- |- |Web Server-2|
   ---------------  |
-       			       |- |Web Server-3|
-			             | ....
-			             |- |Web Server-n|
+                   |- |Web Server-3|
+                   | ....
+                   |- |Web Server-n|
 ```
 <a name=adv></a>
 ### Advantages of LB
