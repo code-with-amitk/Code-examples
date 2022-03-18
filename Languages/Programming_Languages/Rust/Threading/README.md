@@ -27,14 +27,14 @@ Memory overhead|    less                     |   More
 <a name=c1></a>
 #### Passing mutable Reference to thread
 ```rs
-main.rs
-use std::sync{
-  Arc, Mutex
-}
+//main.rs
+use std::sync{Arc, Mutex}
 use tokio;
+
 pub struct Employee {
   age: i32,
 }
+
 impl Employee {
   pub fn new() -> Self {
     Employee {
@@ -42,6 +42,7 @@ impl Employee {
     }
   }
 }
+
 pub async fn thread1(emp: Arc<Mutex<&mut Employee>>) {                          //6. Collected Arc<Mutex<Employee>>
   let a = emp.lock().unwrap();                                                  //7. locked mutex to access value inside it
   println!("a={}",a);                                                           //40
@@ -65,7 +66,7 @@ pub async fn fun(emp: &mut Employee) {
 
 #[tokio::main]
 pub async fn main(){                  //All tokio functions should be async
-  let mut emp = Employee new();   //1. Created struct
-  fun (emp);                      //2. Passed mutable reference to function
+  let mut emp = Employee new();       //1. Created struct
+  fun (emp);                          //2. Passed mutable reference to function
 }
 ```
