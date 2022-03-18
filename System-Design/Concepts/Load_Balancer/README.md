@@ -1,4 +1,5 @@
 **Load Balancer**
+- [Advantages of LB](#adv)
 - [Reverse Proxy vs LB](#vs)
 - [Types](#ty)
   - [1. ALB/Layer-7/Application LB](#alb)
@@ -7,9 +8,18 @@
 - [Scheduling Algorithms at LB](#s)
 
 ## Load Balancer
-- LB improves the distribution of workloads across multiple computers. Examples Ngnix, Amazon ELB
+- LB distributes workload across multiple computers. Examples Ngnix, Amazon ELB
 - Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](#s)
-**Advantages of LB**
+<a name=adv></a>
+### Advantages of LB
+- _1. Performance:_
+There are physical bound on how much 1 computer can do task. Millions of users can only be supported on multiple machines not 1
+- _2. Availability:_
+Machine failure happens. We should avoid single points of failure whenever possible.
+- _3. Economy:_
+Its always cheaper to buy 5 small comodity machines as compared to 1 big machine.
+- _4. Redundancy:_
+Multiple machines are of same capacity, if 1 fails others are ready and up, While in Vertical scaling(if 1 machine fails) system is down.
 - *a.* Handle more users wrt single server.
 - *b.* Redundancy: if one server fails, others are available to ensure the application stays online.
 
