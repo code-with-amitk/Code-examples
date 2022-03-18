@@ -5,8 +5,9 @@
 - [Matching Option`<T>`](#opt) 
 
 ### match
-- `pattern => code`. This is called _Match Arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
+`pattern => code`. This is called _Match Arm_. Pattern is matched and corresponding code is executed. Each arm is seperated by `,`.
 ```rs
+//////Example-1/////
 enum Color{
     Red,
     Black,
@@ -22,6 +23,14 @@ fn color_value (var : Color) {
 fn main() {
     println!("{:#?}", color_value(Color::Red));
 }
+
+//////Example-2 (same as switch)////////
+                match a[0] {  
+                    "a" => println!("a"),
+                    "b" => println!("b"),
+                    "c" => println!("c"),
+                    _ => println!("default"),
+                 }
 ```
 
 <a name=def></a>
