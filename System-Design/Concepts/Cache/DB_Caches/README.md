@@ -1,16 +1,12 @@
-- [1. Caches](#cac)
-  - [1.1 Memcached vs Redis](#comp)
+**DB Caches**
+- [Memcached vs Redis](#vs)
   
-<a name=cac></a>
-## 1. Caches
-- Examples:
-  - Redis
-  - Memcached
-  - AWS Elastic Cache
+### DB Caches
+Examples: Redis, Memcached, AWS Elastic Cache
 
-<a name=comp></a>
-### 1.1 Memcached vs Redis
-||Memcached|Redis(recommended bcoz of speed)|
+<a name=vs></a>
+#### Memcached(in Memory) vs Redis(in Memory)
+||Memcached|Redis(Recommended bcoz of speed)|
 |---|---|---|
 |Key-value pair| y (key<250B, value<1MB)| y (key<512MB, value<512MB)|
 |Overhead|less. It does not have any inbuilt datatypes|More. Bcoz it supports datatypes as(string,hash,list,set)|
