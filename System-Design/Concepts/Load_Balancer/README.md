@@ -1,5 +1,7 @@
 **Load Balancer**
 - [Advantages of LB](#adv)
+- [Session Persistance](#sp)
+- [How Node is added to LB](#how)
 - [Reverse Proxy vs LB](#vs)
 - [Types](#ty)
   - [1. ALB/Layer-7/Application LB](#alb)
@@ -15,13 +17,22 @@
                       Server Farm/Pool
 		              \/
 	           |- |Web Server-1|
-  ---------------  |		
+  ---------------  |
   |Load-Balancer|- |- |Web Server-2|
   ---------------  |
-                   |- |Web Server-3|
-                   | ....
                    |- |Web Server-n|
 ```
+<a name=sp></a>
+### Session Persistance
+All sessions should be stored into postgres DB. DB cache should be [redis or memcached](/System-Design/Concepts/Cache/DB_Caches) which is in memory.
+```c
+                   |- |Web Server-1| -------\         Server-1 -------------\         DB-1
+  ---------------  |                         \          |                     \       |
+  |Load-Balancer|- |- |Web Server-2| ------> LB --- DB-Cache(redis)/Server-2 - LB --- DB-2(Postgres)
+  ---------------  |                         /          |                     /       |
+                   |- |Web Server-n| -------/       Server-n  --------------/         DB-n
+```
+
 <a name=adv></a>
 ### Advantages of LB
 - _1. Performance:_
@@ -34,6 +45,12 @@ Its always cheaper to buy 5 small comodity machines as compared to 1 big machine
 Multiple machines are of same capacity, if 1 fails others are ready and up, While in Vertical scaling(if 1 machine fails) system is down.
 - *a.* Handle more users wrt single server.
 - *b.* Redundancy: if one server fails, others are available to ensure the application stays online.
+
+<a name=how></a>
+### How Node is added to LB
+#### 1. Proactive Approach
+
+#### 2. Reactive Approach
 
 <a name=vs></a>
 ### Reverse Proxy vs Load Balancer
