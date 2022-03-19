@@ -1,9 +1,27 @@
 **DB In Memory Caches**
+- [Where DB Cache sits](#w)
 - [Memcached vs Redis](#vs)
-- [Where it sits](#w)
   
 ### DB Caches
 Examples: Redis, Memcached, AWS Elastic Cache
+
+<a name=w></a>
+#### Where DB Cache sits
+```c
+                                                            Redis/
+    Web-server/DB-Client                 DB-frontEnd        memCached(servers)    Databases
+                    -------query table1--->     -----table1---->
+                                                <--NULL------
+                                             --------query table1----------------->
+                                           <-table1-     table1|expiry-time  <-table1-
+
+
+	                 |- |Web Server-1| -------\        Server-1             DB-1
+  ---------------  |                         \          |                  |
+  |Load-Balancer|- |- |Web Server-2| ------> DB-Cache(redis)/Server-2 --- DB-2(Postgres)
+  ---------------  |                         /          |                  |
+                   |- |Web Server-n| -------/       Server-n              DB-n
+```
 
 <a name=vs></a>
 #### Memcached(in Memory) vs Redis(in Memory)
@@ -18,20 +36,3 @@ Examples: Redis, Memcached, AWS Elastic Cache
 |Replication||2 slave nodes with master|
 |Cache Eviction policies|Only 1(LRU)|6 different policies|
 |Speed|less|more(since it supports different datatypes)|
-
-<a name=w></a>
-#### Where it sits
-```c
-                                                            Redis/
-    Web-server/DB-Client                 DB-frontEnd        memCached(servers)    Databases
-                    -------query table1--->     -----table1---->
-                                                <--NULL------
-                                             --------query table1----------------->
-                                           <-table1-     table1|expiry-time  <-table1-
-                                           
-	                 |- |Web Server-1| -------\        Server-1             DB-1
-  ---------------  |                         \          |                  |
-  |Load-Balancer|- |- |Web Server-2| ------> DB-Cache(redis)/Server-2 --- DB-2(Postgres)
-  ---------------  |                         /          |                  |
-                   |- |Web Server-n| -------/       Server-n              DB-n
-``` 
