@@ -34,7 +34,7 @@ int main(){
 
     printf("Write data:");
     scanf("%s",str);
-    printf("Data written in memory: %s\n",str);
+    printf("Data written to memory: %s\n",str);
     shmdt(str);
     return 0;
 }
@@ -57,7 +57,7 @@ int main()
 
 # ./writer 
 Write data:amit
-Data written in memory: amit
+Data written to memory: amit
 # ./reader 
 Data read from memory: amit
 ```
