@@ -23,7 +23,7 @@ Examples: Redis, Memcached, AWS Elastic Cache
 #### Where it sits
 ```c
                                                             Redis/
-    Web-server/DB-Client                 DB-frontEnd        memCached(servers)    DB
+    Web-server/DB-Client                 DB-frontEnd        memCached(servers)    Databases
                     -------query table1--->     -----table1---->
                                                 <--NULL------
                                              --------query table1----------------->
