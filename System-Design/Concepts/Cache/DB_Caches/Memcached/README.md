@@ -1,5 +1,8 @@
-## Memcached?
-- **What?** Open-source caching project using huge hash-table. It is helpful for websites caching data/objects in RAM from Databases. Can store upto 1 Million entries.
+**Memcached(In Memory Cache)**
+
+
+## Memcached
+- Open-source caching project using huge hash-table. It is helpful for websites caching data/objects in RAM from Databases. Can store upto 1 Million entries.
 - **How it stores data?**
   - Stores data as <key,value> pair. Implemented as LRU. 
   - If the caching strategy is efficient, the number of trips to memcached wrt DB (10:1).  
