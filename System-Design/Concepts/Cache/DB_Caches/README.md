@@ -1,5 +1,6 @@
-**DB Caches**
+**DB In Memory Caches**
 - [Memcached vs Redis](#vs)
+- [Where it sits](#w)
   
 ### DB Caches
 Examples: Redis, Memcached, AWS Elastic Cache
@@ -17,3 +18,14 @@ Examples: Redis, Memcached, AWS Elastic Cache
 |Replication||2 slave nodes with master|
 |Cache Eviction policies|Only 1(LRU)|6 different policies|
 |Speed|less|more(since it supports different datatypes)|
+
+<a name=w></a>
+#### Where it sits
+```c
+                                                            Redis/
+    Web-server/DB-Client                 DB-frontEnd        memCached(servers)    DB
+                    -------query table1--->     -----table1---->
+                                                <--NULL------
+                                             --------query table1----------------->
+                                           <-table1-     table1|expiry-time  <-table1-
+``` 
