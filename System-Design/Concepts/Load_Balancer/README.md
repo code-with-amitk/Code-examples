@@ -24,7 +24,7 @@
 ```
 <a name=sp></a>
 ### Session Persistance
-All sessions should be stored into postgres DB. DB cache should be [redis or memcached](/System-Design/Concepts/Cache/DB_Caches) which is in memory.
+Sessions which are established between web-server & web-clients should be stored into postgres DB. DB cache should be [redis or memcached](/System-Design/Concepts/Cache/DB_Caches) which is in memory.
 ```c
                    |- |Web Server-1| -------\         Server-1 -------------\         DB-1
   ---------------  |                         \          |                     \       |
@@ -48,9 +48,11 @@ Multiple machines are of same capacity, if 1 fails others are ready and up, Whil
 
 <a name=how></a>
 ### How Node is added to LB
-#### 1. Proactive Approach
-
-#### 2. Reactive Approach
+#### 1. Proactive Approach (Nodes tell LB)
+- _1. Registration via REST API on LB:_ Automatically registering with Load Balancer(using REST API) at time of service creation inside Container.
+- _2. Lifecycle Hooks:_ AWS feature, which allows server to run arbitrary code when it transitions to different state.
+#### 2. Reactive Approach (LB reach nodes)
+- _1. LB queries AWS API:_ Load balancer queries AWS API(when node is created/removed) and updates itself.
 
 <a name=vs></a>
 ### Reverse Proxy vs Load Balancer
