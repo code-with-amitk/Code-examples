@@ -28,4 +28,10 @@ Examples: Redis, Memcached, AWS Elastic Cache
                                                 <--NULL------
                                              --------query table1----------------->
                                            <-table1-     table1|expiry-time  <-table1-
+                                           
+	                 |- |Web Server-1| -------\        Server-1             DB-1
+  ---------------  |                         \          |                  |
+  |Load-Balancer|- |- |Web Server-2| ------> DB-Cache(redis)/Server-2 --- DB-2(Postgres)
+  ---------------  |                         /          |                  |
+                   |- |Web Server-n| -------/       Server-n              DB-n
 ``` 
