@@ -12,6 +12,7 @@
   - [1. RTO(Re-transmission timeout)](#rto)
   - [2. Persistant timer(Prevent Deadlock)](#dead)
   - [3. Keep Alive](#keep)
+    - [TCP Long Lived Connection?](#ll)
   - [4. Timed Wait](#timed)
 - [Improvements / Changes in TCP = Google_QUIC Protocol](/Networking/OSI-Layers/Layer-4/Protocols)
 
@@ -193,6 +194,7 @@ TCP uses several timers to ensure that excessive delays are not encountered duri
 - **How it works**?
   - Each time the server hears from a client, it resets this timer. If the server does not hear from the client after 2 hours, it sends a probe segment. 
   - If there is no response after 10 probes, each of which is 75 s apart, it assumes that the client is down and terminates the connection.
+<a name=ll></a>
 #### TCP Long Lived Connection?
 TCP connection that is not terminated between client and server for days, even for years.But any connection living beyond few minutes is considered as LL.
 - **Advantages:**
