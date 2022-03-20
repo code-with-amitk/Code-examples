@@ -15,13 +15,13 @@
 - Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](#s)
 - Load Balancers can be run as array of servers, these can be auto scaled when needed, and released when don't needed.
 ```c
-                      Server Farm/Pool
-		              \/
-	           |- |Web Server-1|
-  ---------------  |
-  |Load-Balancer|- |- |Web Server-2|
-  ---------------  |
-                   |- |Web Server-n|
+                                      Server Farm/Pool
+		                        \/
+	                           |- |Web Server-1|
+                  ---------------  |
+client            |Load-Balancer|- |- |Web Server-2|
+will talk to      | (1.2.3.4)   |  |
+1.2.3.4           ---------------  |- |Web Server-n|
 ```
 <a name=sp></a>
 ### Session Persistance
