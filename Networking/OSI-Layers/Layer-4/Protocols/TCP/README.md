@@ -186,12 +186,12 @@ TCP uses several timers to ensure that excessive delays are not encountered duri
 
 <a name=keep></a>
 #### 3. KEEP ALIVE TIMER (default = 2 hours) 
-WHAT?
+- WHAT?
   - When a connection has been idle for a long time, the keepalive timer may go off to cause one side to check whether the other side is still there. 
   - This may the case, client connects server, does some exchange and then client crashes. Now connection remains open forever
-How it works?
- - Each time the server hears from a client, it resets this timer. If the server does not hear from the client after 2 hours, it sends a probe segment. 
- - If there is no response after 10 probes, each of which is 75 s apart, it assumes that the client is down and terminates the connection.
+- How it works?
+  - Each time the server hears from a client, it resets this timer. If the server does not hear from the client after 2 hours, it sends a probe segment. 
+  - If there is no response after 10 probes, each of which is 75 s apart, it assumes that the client is down and terminates the connection.
 
 <a name=timed></a>
 #### 4. TIME WAIT TIMER    //Read Time_Wait state 1st
