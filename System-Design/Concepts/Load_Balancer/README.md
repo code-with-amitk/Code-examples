@@ -5,7 +5,8 @@
 - [Reverse Proxy vs LB](#vs)
 - [Types](#ty)
   - [1. ALB/Layer-7/Application LB](#alb)
-  - [2. NLB/Layer-3,4/Network LB](#nlb)
+  - [2. Layer-4 LB](#4lb)
+  - [3. NLB/Layer-3/Network LB](#3lb)
 - [Places where LB can be placed?](#p)
 - [Scheduling Algorithms at LB](#s)
 
@@ -74,10 +75,11 @@ Advantages  | 1. Increased security: No information about your backend  | 1. Han
 <a name=alb></a>
 ### 1. ALB/Layer-7/Application LB (Also called Reverse Proxy)       //Layer-7=Application
 LB looks into Layer-7 Application packet(Eg: HTTP/HTTPS) and performs load balancing based on Header content.
-<a name=nlb></a>
-#### 2. Layer 3,4 LB / NLB(Network LB)   //Layer-4=Transport
+<a name=4lb></a>
+#### 2. Layer 4 LB		//Layer-4=Transport
 Operate at transport layer(TCP, UDP, TLS). Packet is routed based on Src,dst Ports(without looking into packet).
-#### Layer3 VPN LB
+<a name=3lb></a>
+#### 3. Layer 3 LB / NLB(Network LB) / VPN LB
 LB decision is made based on IP Address
 #### CHANNEL BONDING?
 Implies a division of traffic between physical interfaces at layer1(per packet division) or layer2(data link layer with a protocol like shortest path bridging).
