@@ -6,6 +6,7 @@
 - [Types](#ty)
   - [1. ALB/Layer-7/Application LB](#alb)
   - [2. Layer-4 LB](#4lb)
+    - [DSR (Direct Server Return)](#dsr)
   - [3. NLB/Layer-3/Network LB](#3lb)
 - [Places where LB can be placed?](#p)
 - [Scheduling Algorithms at LB](#s)
@@ -15,24 +16,19 @@
 - Multiple IP addresses are associated with a single domain name(google.com is associated with IP1, IP2, IP3). Whenever client want to connect using DNS, IP are given based on [scheduling algo](#s)
 - Load Balancers can be run as array of servers, these can be auto scaled when needed, and released when don't needed.
 ```c
-                                      Server Farm/Pool
-		                        \/
-	                           |- |Web Server-1|
-                  ---------------  |
-client            |Load-Balancer|- |- |Web Server-2|
-will talk to      | (1.2.3.4)   |  |
-1.2.3.4           ---------------  |- |Web Server-n|
+                                   |- |Web Server-1| -------\         Server-1 -------------\         DB-1
+web-client      ---------------    |                         \          |                     \       |
+will connect    |Load-Balancer|--- |- |Web Server-2| ------> LB --- DB-Cache(redis)/Server-2 - LB --- DB-2(Postgres)
+to 1.2.3.4     1.2.3.4        |    |                         /          |                     /       |
+                ---------------    |- |Web Server-n| -------/       Server-n  --------------/         DB-n
+  -|src=xx,
+   dst=1.2.3.4|-> Checks free
+                           -|src=xx
+			   dst=ws1| ->
 ```
 <a name=sp></a>
 ### Session Persistance
 Sessions which are established between web-server & web-clients should be stored into postgres DB. DB cache should be [redis or memcached](/System-Design/Concepts/Cache/DB_Caches) which is in memory.
-```c
-                   |- |Web Server-1| -------\         Server-1 -------------\         DB-1
-  ---------------  |                         \          |                     \       |
-  |Load-Balancer|- |- |Web Server-2| ------> LB --- DB-Cache(redis)/Server-2 - LB --- DB-2(Postgres)
-  ---------------  |                         /          |                     /       |
-                   |- |Web Server-n| -------/       Server-n  --------------/         DB-n
-```
 
 <a name=adv></a>
 ### Advantages of LB
@@ -76,8 +72,21 @@ Advantages  | 1. Increased security: No information about your backend  | 1. Han
 ### 1. ALB/Layer-7/Application LB (Also called Reverse Proxy)       //Layer-7=Application
 LB looks into Layer-7 Application packet(Eg: HTTP/HTTPS) and performs load balancing based on Header content.
 <a name=4lb></a>
-#### 2. Layer 4 LB		//Layer-4=Transport
+### 2. Layer 4 LB		//Layer-4=Transport
 Operate at transport layer(TCP, UDP, TLS). Packet is routed based on Src,dst Ports(without looking into packet).
+<a name=dsr></a>
+#### DSR (Direct Server Return Mode)
+- _Problem:_
+  - load balancer passes incoming packets to the appropriate server with negligible modification to the packets. The server responds to the load balancer with the required data and then this is relayed onto the client by the load balancer.
+  - _Major drawback:_ if incoming requests is small(2MB) & Response big(200MB). Response has to passthru load balancer while LB might be sering large traffic already, the risk of the LB might become bottleneck
+- _Solution=DSR._ As request reaches backend server using LB, backends will answer directly to the clients, without passing through LB.
+  - _Advantages:_
+    - _1._ very fast
+    - _2._ Load-balancer network bandwith is not a bottleneck anymore
+  - _Disadvantages:_
+    - _1._ No intelligence needed at LB
+    - _2._ No Layer-7 advanced features are available.
+
 <a name=3lb></a>
 #### 3. Layer 3 LB / NLB(Network LB) / VPN LB
 LB decision is made based on IP Address
