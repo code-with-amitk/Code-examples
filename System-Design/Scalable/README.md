@@ -18,7 +18,7 @@
   - Storage estimates
   - QPS(Queries per second)
 - **3. API Design**
-- **4. HLD:** For 2, 100, 1 lac users
+- **4. HLD:** _For 2, 100, 1 lac users_
 - **5. Database schema**
 - **6. Tradeoffs/Bottlenecks & correction**
 - **7. Adjusting to changing requirements**
