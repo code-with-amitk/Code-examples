@@ -12,7 +12,7 @@
   - [1. RTO(Re-transmission timeout)](#rto)
   - [2. Persistant timer(Prevent Deadlock)](#dead)
   - [3. Keep Alive](#keep)
-    - [TCP Long Lived Connection?](#ll)
+    - [TCP Long Lived Connection / Long Lived TCP](#ll)
   - [4. Timed Wait](#timed)
 - [Improvements / Changes in TCP = Google_QUIC Protocol](/Networking/OSI-Layers/Layer-4/Protocols)
 
@@ -200,6 +200,7 @@ TCP connection that is not terminated between client and server for days, even f
 - **Advantages:**
   - _1._ If webservice/server retrives data from DB, then LL connection avoids closing/re-establishing connections again & again.
   - _2._ Server can push data to client as it becomes available.
+- **Applications?** LL TCP Connections are used in daily life, such as chat and messaging(MSN, Skype).
 
 <a name=timed></a>
 ### 4. Time wait Timer    //Read Time_Wait state 1st
