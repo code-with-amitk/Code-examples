@@ -17,7 +17,7 @@
 
 
 ## Trait
-- Interface/class in Rust(declared with keyword trait) having Virtual Functions(not pure Virtual) declared or defined inside it. These functions are implemented(overridden) on type.
+Interface/class in Rust(declared with keyword trait) having Virtual Functions(not pure Virtual) declared or defined inside it. These functions are implemented(overridden) on type.
 
 <a name=dec></a>
 ### Trait Declaration & Definition
