@@ -206,7 +206,7 @@ To Send data to server. Used when forms are submitted.
 
 ### HTTP Terms
 <a name=cok></a>
-#### HTTP Cookie/ Web cookie / Internet cookie / browser cookie
+#### HTTP Cookie / Web cookie / Internet cookie / browser cookie
 This is small file _created by Web server_ while user is browsing a website & placed on the user's computer.
 - **why?** 
   - web servers can store stateful information(eg: items in shopping cart etc) on the user’s device OR
