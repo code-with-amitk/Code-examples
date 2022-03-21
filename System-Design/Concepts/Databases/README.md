@@ -4,7 +4,7 @@
   - [Object vs Block vs File Storage](#obf)
   - [SQL/Relational/Structured vs NoSQL/nonRelational/unStructured](#sn)
   - [Database vs Datawarehouse](#dd)
-- **[IMDB / In Memory DB](#i)**
+- **[IMDB / In Memory / Embedded DB](#i)**
 
 
 ### Comparisons
@@ -70,7 +70,7 @@ used
 ```
 
 <a name=i></a>
-## IMDB(In Memory DB) / MMDB(Main Memory DB)
+## IMDB(In Memory DB) / MMDB(Main Memory DB) / Embedded DB
 Stores all data in main memory/RAM not on hard-disk. 
 - Examples: VoltDB, [Redis](/System-Design/Concepts/Cache).
   - Why Redis is cache & imdb both? Redis has features of a Cache plus processing/querying capabilities. Redis supports multiple data structures and you can query the data in the Redis (examples like get last 10 accessed items, get the most used item etc).
