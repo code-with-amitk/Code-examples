@@ -212,6 +212,17 @@ This is small file _created by Web server_ while user is browsing a website & pl
   - web servers can store stateful information(eg: items in shopping cart etc) on the user’s device OR
   - To track the user's browsing activity(clicking particular buttons, recording which pages were visited in the past). 
   - Saving info user entered in forms: names, addresses, passwords(stored as hashed), and payment card numbers.
+```c
+  Web Browser                                   Web server
+         -- GET /sample_page.html HTTP/2.0 ->
+            Host: www.example.org
+	    
+         <------- HTTP/2.0 200 OK---------------
+                 Content-Type: text/html
+                 Set-Cookie: yummy_cookie=choco       //Store cookie
+                 Set-Cookie: tasty_cookie=strawberry
+                 [page content]
+```
 - **Stolen Cookie?** If hacker steals and installs your cookies into their web browser, hacker will get access your account.
   - _How cookie theaft can be avoided?_ Cleaning cookies every 7-14 days.
 
