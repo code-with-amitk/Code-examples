@@ -232,6 +232,7 @@ This is a file _created by Web browser_ & placed on the user's computer.
   - _Path:_ "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie(SQL Lite DB)"
   - _In Browser:_ Right-click on your browser window > Inspect > Applications tab > Cookies > Check installed cookies
 ```c
+# cat "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie"
 creation_utc      top_frame_site_key  host_key      name  encrypted_value  path    expires_utc     secure httponly  last_access_utc  expires persistent  priority
 13268758066855308		    .microsoft.com  MC1    129109aksknz1   /    13300294067855308   1	    0      13292307116001488  1        1          0
 ```
