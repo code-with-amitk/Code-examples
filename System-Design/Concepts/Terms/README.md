@@ -46,11 +46,13 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 - *Bandwidth Throttling:* Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
   - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
 
-
 - **Biased Neighbour Selection?** BitTorrent peer chooses most of its neighbors from the local ISP and only a few peers from other ISPs reducing traffic, this is assisted by [Tracker](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). 
   - Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
+
+### CAP Theorem ([Consistency](Consistency) [Availability](#av) [Partition-Tolerance](#la))
+- Only 2 out 3 can be guaranteed.
 
 <a name=de></a>
 ### Deduplication 
