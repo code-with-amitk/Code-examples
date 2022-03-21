@@ -232,8 +232,8 @@ This is a file _created by Web browser_ & placed on the user's computer.
   - _Path:_ "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie(SQL Lite DB)"
   - _In Browser:_ Right-click on your browser window > Inspect > Applications tab > Cookies > Check installed cookies
 ```c
-creation_utc	top_frame_site_key	host_key	name	value	encrypted_value	path	expires_utc		is_secure	is_httponly	last_access_utc	has_expires	is_persistent	priority
-13268758066855308				 .microsoft.com	 MC1 	118,..	  /						13300294067855308	1			0		13292307116001488	1			1			0
+creation_utc	top_frame_site_key	host_key	name	value	encrypted_value	path    expires_utc       is_secure   is_httponly  last_access_utc	has_expires  is_persistent  priority
+13268758066855308		    .microsoft.com	 MC1 	118,..	  /                    13300294067855308      1		0         13292307116001488	1			1			0
 ```
 - **Stolen Cookie?** If hacker steals and installs your cookies into their web browser, hacker will get access your account.
   - _How cookie theaft can be avoided?_ Cleaning cookies every 7-14 days.
