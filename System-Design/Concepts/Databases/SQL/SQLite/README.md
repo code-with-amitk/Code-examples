@@ -8,6 +8,8 @@
     - [Print Table](#p)
     - [Update Table](#u)
     - [Delete from Table](#d)
+    - **Where Clause:** Extracts only those records that fulfill a stated condition.
+    - [And Statement](#a)
 
 ## SQLite
 - Small Relational DB. This is [In Memory=Embedded DB](/System-Design/Concepts/Databases/README.md#i) with < 500kb in size.
@@ -83,5 +85,20 @@ sqlite> delete from person where id=1;
 sqlite> select * from person
    ...> ;
 2|vivek|25|m|1/27
+sqlite>
+```
+<a name=a></a>
+#### And Statement
+Conjunctive operator which makes multiple comparisons with different operators in the same statement.
+```c
+sqlite> select * from person;
+2|vivek|25|m|1/27
+1|amit|25|m|b602
+3|amit3|25|m|b602
+
+sqlite> select * from person where age=25 and gender="m";
+2|vivek|25|m|1/27
+1|amit|25|m|b602
+3|amit3|25|m|b602
 sqlite>
 ```
