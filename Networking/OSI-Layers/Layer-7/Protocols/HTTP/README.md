@@ -208,11 +208,9 @@ To Send data to server. Used when forms are submitted.
 <a name=cok></a>
 #### HTTP Cookie / Web cookie / Internet cookie / browser cookie
 This is a file _created by Web browser_ & placed on the user's computer.
-- **why?** 
-  - Web Server asks web browser to store some information locally so that when Web Browser again queries web server, Web server can identify:
-    - Whether it's same web browser or different.
-    - Whether it's same information asked by web browser or different.
-  - To track the user's browsing activity(clicking particular buttons, recording which pages were visited in the past). 
+- **why?** Web Server asks web browser to store some information locally.
+  - So that when Web Browser again queries web server, Web server can identify, Whether it's same web browser or different, Whether it's same information asked by web browser or different.
+  - To track the user's browsing activity(clicking particular buttons, recording which pages were visited in the past, User Preferences).
   - Saving info user entered in forms: names, addresses, passwords(stored as hashed), and payment card numbers.
 ```c
   Web Browser                                   Web server
