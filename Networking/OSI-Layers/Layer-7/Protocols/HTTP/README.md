@@ -207,9 +207,11 @@ To Send data to server. Used when forms are submitted.
 ### HTTP Terms
 <a name=cok></a>
 #### HTTP Cookie / Web cookie / Internet cookie / browser cookie
-This is small file _created by Web server_ while user is browsing a website & placed on the user's computer.
+This is a file _created by Web browser_ & placed on the user's computer.
 - **why?** 
-  - web servers can store stateful information(eg: items in shopping cart etc) on the user’s device OR
+  - Web Server asks web browser to store some information locally so that when Web Browser again queries web server, Web server can identify:
+    - Whether it's same web browser or different.
+    - Whether it's same information asked by web browser or different.
   - To track the user's browsing activity(clicking particular buttons, recording which pages were visited in the past). 
   - Saving info user entered in forms: names, addresses, passwords(stored as hashed), and payment card numbers.
 ```c
@@ -222,7 +224,13 @@ This is small file _created by Web server_ while user is browsing a website & pl
                  Set-Cookie: yummy_cookie=choco       //Store cookie
                  Set-Cookie: tasty_cookie=strawberry
                  [page content]
+		 
+ store information
+ in Cookie file
 ```
+- **Where Cookie is stored on my Computer?**
+  - _Path:_ "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie(SQL Lite DB)"
+  - _In Browser:_ Right-click on your browser window > Inspect > Applications tab > Cookies > Check installed cookies
 - **Stolen Cookie?** If hacker steals and installs your cookies into their web browser, hacker will get access your account.
   - _How cookie theaft can be avoided?_ Cleaning cookies every 7-14 days.
 
