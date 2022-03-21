@@ -3,7 +3,7 @@
   - [1. Serializing Structure](#e1)
 
 ## Serde
-This is framework/library to Serialize/DeSerialize various data formats(JSON, toml, bson(used in mongodb), rusto_dynamodb and many more) and send.
+Framework/library to Serialize/DeSerialize various data formats(JSON, toml, bson(used in mongodb), rusto_dynamodb and many more) and send.
 
 ### Examples
 <a name=e1></a>
