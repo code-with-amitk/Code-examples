@@ -31,6 +31,6 @@
 <a name=c></a>
 ### Comparison of Architectures
 
-|Metric|Agility(ability to respond quickly to a constantly changing environment)|Ease of deployment|Testability|Performance|Scalability|Ease of development|
+|Metric|Agility(ability to respond quickly to a constantly changing environment)|Ease of deployment(One small change to a component can require a redeployment of the entire application)|Testability(To test 1 layer, other layers can be mocked or stubbed)|Performance()|Scalability|Ease of development|
 |---|---|---|---|---|---|---|
-|1.Layered Architecture|Low|Low|high|Low|High|High|
+|1.Layered Architecture|Low|Low|high|Low(Bcoz multiple layers need to be traversed)|Low(tightly coupled and monolithic implementation)|High(not overly complex to implement)|
