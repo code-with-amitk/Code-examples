@@ -46,7 +46,7 @@ QPS(Queries per second)
   - _4. workbench:_ hosts editors & provides the framework for "viewlets" like the Explorer, Status Bar, or Menu Bar.
   - _5. Code:_ Entry point for desktop app.
 
-<img src=vscode.png width=400 />
+<img src=vscode.png width=600 />
 
 5. Database schema
 6. Tradeoffs/Bottlenecks & correction
