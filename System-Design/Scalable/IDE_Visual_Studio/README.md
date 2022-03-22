@@ -51,7 +51,7 @@ QPS(Queries per second)
 <img src=vscode.png width=600 />
 
 #### Light UI
-- VSCode is built on top of [Web based electron framework](https://en.wikipedia.org/wiki/Electron_(software_framework)#:~:text=Electron%20(formerly%20known%20as%20Atom,js%20runtime.)
+- VSCode is built on top of [Web based electron framework](https://en.wikipedia.org/wiki/Electron_(software_framework)#:~:text=Electron%20(formerly%20known%20as%20Atom,js%20runtime)
 - **[Electron design](https://blog.logrocket.com/advanced-electron-js-architecture/#:~:text=Electron%20embeds%20Chromium%20and%20Node,similar%20to%20the%20Chromium%20browser.)** 1 main process and n renderer processes.
 
 5. Database schema
