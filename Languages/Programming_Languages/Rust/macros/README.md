@@ -3,7 +3,8 @@
 - Types of macros
   - [1. Declarative macros / macros by Example](#dm)
   - [2. Procedural macros, more Advanced](#pm)
-    - [2a. 1. Attribute-like macros](#a1)
+    - [2a. Custom Derive macros](#a1)
+    - [2b. Attribute Like macros](#a2)
 
 ## macros
 - Macro is a way of writing code that writes other code, which is known as **metaprogramming**
@@ -104,7 +105,7 @@ macro_rules! add{
 
 **Types of Procedural macros**
 <a name=a1></a>
-#### 1. Attribute-like macros   //Used as decorator in python
+#### 2a. Custom Derive macros   //Used as decorator in python
 ```rs
 NOTE THE PATH CORRECTLY
 
@@ -204,10 +205,9 @@ proc-macro = true
 [dependencies]
 syn = "1.0"
 quote = "1.0"
-
-
 ```
-#### 2. Derive macros
+<a name=a2></a>
+#### 2. Attribute Like Macros
 ```rs
 ```
 #### 3. Function-like macros
