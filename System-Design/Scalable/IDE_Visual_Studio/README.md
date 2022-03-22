@@ -33,7 +33,7 @@ QPS(Queries per second)
 <a name=hld></a>
 ### 3. [HLD](https://2021.desosa.nl/projects/vscode/posts/essay2/#fn:1)
 #### Plugin based
-- Make everything a plug-in. Breaking tasks down into individual chucks. IDE will support plug-ins:
+- Make everything a plug-in/extensions. All extensions run as seperate processes. Breaking tasks down into individual chucks. IDE will support plug-ins:
   - Add a compiler invocation plug-in
   - program output viewer plug-in to see compiler result
   - plug-in for source code parsing
@@ -45,8 +45,8 @@ QPS(Queries per second)
   - _3. Editor layer:_ For plug-in new editors(Eg: Monaco)
   - _4. workbench:_ hosts editors & provides the framework for "viewlets" like the Explorer, Status Bar, or Menu Bar.
   - _5. Code:_ Entry point for desktop app.
-- **Modular**
-  - 
+
+<img src=vscode.png width=400 />
 
 5. Database schema
 6. Tradeoffs/Bottlenecks & correction
