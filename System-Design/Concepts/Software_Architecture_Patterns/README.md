@@ -1,5 +1,8 @@
 **Software Architecture / Software Design Pattern**
 - [1. Layered Architecture / n-tier architecture pattern](#l)
+- [2. Event-Driven Architecture](#e)
+  - [2a. Mediator Toplogy](#e1)
+  - [2b. Broker Toplogy](#e2)
 - [Comparison of Architectures](#c)
 
 ## Software Architectures
@@ -28,9 +31,40 @@
   - if around 20% of the requests as simple pass-through processing and 80% of the requests having some business logic associated with the request, then its ok.
   - if its reverse then you need to look at some other software design pattern.
 
+<a name=e></a>
+### 2. Event-Driven Architecture
+- This is made up of highly decoupled, single-purpose event processing components that asynchronously receive and process events. 
+- The event-driven architecture pattern consists of two main topologies, the mediator and the broker.
+<a name=e1></a>
+#### 2a. Mediator Toplogy (has central mediator/Orchestrator)
+- There are majorly four components within the mediator topology: event queues(message queue, a web service endpoint etc), an event mediator, event channels, and event processors
+- There can be from 12 to several 1000 event queues in an event-driven architecture.
+```c
+                  (1 to 100s)
+Client            EVENT_QUEUE   
+      ---event1-->                   EVENT_MEDIATOR(Orchestrator)     
+                            --event1--> picks INTIAL event, breaks to PROCESSING events
+                                        places on Q for further processing
+                       <----event2,3,4---
+                                                            | EVENT_PROCESSOR |
+                                                            | module1 modulen |
+                       --------event3-----------------------> EP will fetch 
+                                                              event for its processing
+```
+<a name=e2></a>
+#### 2b. Broker Toplogy (has chain of events to be processed)
+- No central Mediator/Orchestrator rather message flow is distributed across the event processor components in a chain-like fashion using message broker (e.g., ActiveMQ, HornetQ, etc.)
+```c
+Client            
+      ---event-->  CHANGE_ADDRESS  --event-->   RECALCULATE_QUOTE --event--> UPDATE_CLAIM
+                      |                           |
+                   Custom_processor             Quote_recalc
+```
+
 <a name=c></a>
 ### Comparison of Architectures
 
 |Metric|Agility(ability to respond quickly to a constantly changing environment)|Ease of deployment(One small change to a component can require a redeployment of the entire application)|Testability(To test 1 layer, other layers can be mocked or stubbed)|Performance()|Scalability|Ease of development|
 |---|---|---|---|---|---|---|
 |1.Layered Architecture|Low|Low|high|Low(Bcoz multiple layers need to be traversed)|Low(tightly coupled and monolithic implementation)|High(not overly complex to implement)|
+|2.Event driven Architecture|High|High(Easy to deploy bcoz of decoupled nature of the event-processor components)|Low(pattern is async)|High|High|Low|
