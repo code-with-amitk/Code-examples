@@ -33,7 +33,9 @@ QPS(Queries per second)
 <a name=hld></a>
 ### 3. [HLD](https://2021.desosa.nl/projects/vscode/posts/essay2/#fn:1)
 #### Plugin based
-- Make everything a plug-in/extensions. All extensions run as seperate processes. Breaking tasks down into individual chucks. IDE will support plug-ins:
+- Make everything a plug-in/extensions. All extensions run as seperate processes. Breaking tasks down into individual chucks. 
+- All extensions will communicate with using API calls.
+- IDE will support plug-ins:
   - Add a compiler invocation plug-in
   - program output viewer plug-in to see compiler result
   - plug-in for source code parsing
@@ -47,6 +49,10 @@ QPS(Queries per second)
   - _5. Code:_ Entry point for desktop app.
 
 <img src=vscode.png width=600 />
+
+#### Light UI
+- VSCode is built on top of [Web based electron framework](https://en.wikipedia.org/wiki/Electron_(software_framework)#:~:text=Electron%20(formerly%20known%20as%20Atom,js%20runtime.)
+- **[Electron design](https://blog.logrocket.com/advanced-electron-js-architecture/#:~:text=Electron%20embeds%20Chromium%20and%20Node,similar%20to%20the%20Chromium%20browser.)** 1 main process and n renderer processes.
 
 5. Database schema
 6. Tradeoffs/Bottlenecks & correction
