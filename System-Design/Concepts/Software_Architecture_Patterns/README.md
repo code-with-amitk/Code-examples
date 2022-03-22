@@ -1,5 +1,6 @@
-**Software Architecture**
+**Software Architecture / Software Design Pattern**
 - [1. Layered Architecture / n-tier architecture pattern](#l)
+- [Comparison of Architectures](#c)
 
 ## Software Architectures
 <a name=l></a>
@@ -19,4 +20,17 @@
 
 <img src=layered_arch.PNG width=400 />
 
-#### 
+#### Architecture sinkhole anti-pattern
+- **What**
+  - Situation where requests flow through multiple layers of architecture as simple pass-through processing with little or no logic performed within each layer.
+  - Every layered architecture will have at least some scenarios that fall into the architecture sinkhole anti-pattern.
+- **80-20 rule**
+  - if around 20% of the requests as simple pass-through processing and 80% of the requests having some business logic associated with the request, then its ok.
+  - if its reverse then you need to look at some other software design pattern.
+
+<a name=c></a>
+### Comparison of Architectures
+
+|Metric|Agility(ability to respond quickly to a constantly changing environment)|Ease of deployment|Testability|Performance|Scalability|Ease of development|
+|---|---|---|---|---|---|---|
+|1.Layered Architecture|Low|Low|high|Low|High|High|
