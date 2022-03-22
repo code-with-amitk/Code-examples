@@ -28,6 +28,7 @@
 - [Custom Programs](#custom)
 - [Design Guidelines](#dg)
 - [Threading](#th)
+- [macros](macros)
 
 ### What/Why Rust
 <a name="All"></a>
