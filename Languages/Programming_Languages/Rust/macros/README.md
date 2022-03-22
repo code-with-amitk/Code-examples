@@ -1,7 +1,7 @@
 **macros**
 - Types of macros
   - [1. Declarative macros](#dm)
-  - [2. Procedural macros](#pm)
+  - [2. Procedural macros, more Advanced](#pm)
 
 ## macros
 Expanded during [compile time](/Languages/Programming_Languages/C/Compile/).
@@ -13,6 +13,11 @@ Expanded during [compile time](/Languages/Programming_Languages/C/Compile/).
 ## Types of macros in Rust
 <a name=dm></a>
 ### 1. Declarative macros (similar to a match expression)
+- **Disadv**
+  - _1._ Debugging is difficult
+  - _2._ Limited modification capabilities
+  - _3._ Larger binaries
+  - _4._ Longer compile time (this applies to both declarative and procedural macros)
 #### a. Add string
 ```rs
 pub const LR: &str = "# Learn ";
@@ -76,5 +81,24 @@ macro_rules! add{
    }
 ```
 <a name=pm></a>
-### 2. Procedural macros
+### 2. Procedural macros (More advanced than declarative)
 - operate on the abstract syntax tree (AST)
+- Procedural macros are functions that TAKE CODE as input, and returns Code.
+```c
+  Code as input(TokenStream) --> | Procedural Macro |
+                                 | operator on code | --> Code as output(TokenStream)
+```
+- Procedural macros should be defined in own Crate with their Custom Crate Type. 
+#### syntax for defining procedural macros
+```rs
+use proc_macro::TokenStream;
+
+#[some_attribute]                             //This tells kind of procedural macro we are creating
+pub fn fun(input: TokenStream) -> TokenStream {
+}
+```
+
+**Types of Procedural macros**
+#### 1. Attribute-like macros
+#### 2. Derive macros
+#### 3. Function-like macros
