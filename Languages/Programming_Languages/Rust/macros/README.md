@@ -1,18 +1,30 @@
 **macros**
+- [macro vs functions](#vs)
 - Types of macros
-  - [1. Declarative macros](#dm)
+  - [1. Declarative macros / macros by Example](#dm)
   - [2. Procedural macros, more Advanced](#pm)
 
 ## macros
-Expanded during [compile time](/Languages/Programming_Languages/C/Compile/).
+- Macro is a way of writing code that writes other code, which is known as **metaprogramming**
+- Expanded during [compile time](/Languages/Programming_Languages/C/Compile/).
+- Examples of macros: println!, vec!
 
+<a name=vs></a>
+### macro vs functions
+||Rust Function|Rust Macro|
+|---|---|---|
+|No & type of arguments|Must be declared early|can take a variable number of parameters|
+|Implement Trait on given type.|can't(because called on runtime)|macro can do it(because expanded on compile time)|
+>Note TRAIT needs to be implemented at compile time.
+
+**Rust macro vs C Macro**
 ||Rust Macro|C Macro|
 |---|---|---|
 |How applied|Applied to the token tree|These are text substitution|
 
 ## Types of macros in Rust
 <a name=dm></a>
-### 1. Declarative macros (similar to a match expression)
+### 1. Declarative macros / Macro by example (similar to a match expression)
 - **Disadv**
   - _1._ Debugging is difficult
   - _2._ Limited modification capabilities
@@ -83,22 +95,116 @@ macro_rules! add{
 <a name=pm></a>
 ### 2. Procedural macros (More advanced than declarative)
 - operate on the abstract syntax tree (AST)
-- Procedural macros are functions that TAKE CODE as input, and returns Code.
+- Procedural macros are functions that TAKE CODE as input, and returns Code. Similar to Decorators in Python.
 ```c
   Code as input(TokenStream) --> | Procedural Macro |
                                  | operator on code | --> Code as output(TokenStream)
 ```
-- Procedural macros should be defined in own Crate with their Custom Crate Type. 
-#### syntax for defining procedural macros
-```rs
-use proc_macro::TokenStream;
-
-#[some_attribute]                             //This tells kind of procedural macro we are creating
-pub fn fun(input: TokenStream) -> TokenStream {
-}
-```
 
 **Types of Procedural macros**
-#### 1. Attribute-like macros
+#### 1. Attribute-like macros   //Used as decorator in python
+```rs
+> pwd
+C:\Users\kumara\source\repos\
+
+///////Create main////////////////
+> cargo new main
+src\main.rs
+use test_lib::TestTriat;
+use test_lib_derive::TestTriat;
+
+//Implement TestTrait TRAIT for struct structA
+#[derive(TestTriat)]
+struct StructA;
+
+fn main() {
+	StructA::fun();
+}
+
+> Cargo.toml
+[package]
+name = "main"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+test_lib = { path = "../test_lib" }
+test_lib_derive = { path = "../test_lib/test_lib_derive" }
+
+////////////////Create lib test_lib/////////////////////////
+> pwd
+C:\Users\kumara\source\repos\
+> cargo new test_lib --lib
+src/lib.rs
+pub trait TestTriat {
+    fn fun();
+}
+
+Cargo.toml
+[package]
+name = "test_lib"
+version = "0.1.0"
+edition = "2018"
+
+> cargo run
+Name: StructA
+
+///////////////////////Create test_lib_derive inside test_lib////////////
+> pwd
+C:\Users\kumara\source\repos\test_lib        
+> cargo new test_lib_derive --lib
+src\lib.rs
+extern crate proc_macro;
+use proc_macro::TokenStream;
+
+// syntax crate. Rust Code -> [syn] -> syntax Tree Datastructure
+use syn;            
+
+// syntax Tree Datastructure -> [quote] -> Rust Code
+use quote::quote;
+
+//proc_macro_derive tells this is Custom derived macro with name HelloMacro
+#[proc_macro_derive(TestTriat)]
+pub fn fun_derive(input: TokenStream) -> TokenStream {
+
+    //Parses Rust stream into Abstract Syntax Tree using syn crate
+    let ast = syn::parse(input).unwrap();
+
+    //Convert syntax tree to Rust code
+    impl_fun(&ast)
+}
+
+fn impl_fun(ast: &syn::DeriveInput) -> TokenStream {
+    let name = &ast.ident;
+    let ge = quote! {
+        impl TestTriat for #name {
+            fn fun() {
+                println!("Name: {}", stringify!(#name));
+            }
+        }
+    };
+    //Convert ge into TokenString
+    ge.into()
+}
+
+> Cargo.toml
+[package]
+name = "test_lib_derive"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = "1.0"
+quote = "1.0"
+
+
+```
 #### 2. Derive macros
+```rs
+```
 #### 3. Function-like macros
+```rs
+```
