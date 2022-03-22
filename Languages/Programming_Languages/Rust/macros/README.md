@@ -3,6 +3,7 @@
 - Types of macros
   - [1. Declarative macros / macros by Example](#dm)
   - [2. Procedural macros, more Advanced](#pm)
+    - [2a. 1. Attribute-like macros](#a1)
 
 ## macros
 - Macro is a way of writing code that writes other code, which is known as **metaprogramming**
@@ -102,12 +103,14 @@ macro_rules! add{
 ```
 
 **Types of Procedural macros**
+<a name=a1></a>
 #### 1. Attribute-like macros   //Used as decorator in python
 ```rs
-> pwd
-C:\Users\kumara\source\repos\
+NOTE THE PATH CORRECTLY
 
 ///////Create main////////////////
+> pwd
+C:\Users\kumara\source\repos\
 > cargo new main
 src\main.rs
 use test_lib::TestTriat;
@@ -134,6 +137,7 @@ test_lib_derive = { path = "../test_lib/test_lib_derive" }
 ////////////////Create lib test_lib/////////////////////////
 > pwd
 C:\Users\kumara\source\repos\
+
 > cargo new test_lib --lib
 src/lib.rs
 pub trait TestTriat {
@@ -151,7 +155,8 @@ Name: StructA
 
 ///////////////////////Create test_lib_derive inside test_lib////////////
 > pwd
-C:\Users\kumara\source\repos\test_lib        
+C:\Users\kumara\source\repos\test_lib
+
 > cargo new test_lib_derive --lib
 src\lib.rs
 extern crate proc_macro;
