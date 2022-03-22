@@ -106,6 +106,7 @@ macro_rules! add{
 **Types of Procedural macros**
 <a name=a1></a>
 #### 2a. Custom Derive macros   //Used as decorator in python
+ONLY works on structs, enums
 ```rs
 NOTE THE PATH CORRECTLY
 
@@ -208,6 +209,7 @@ quote = "1.0"
 ```
 <a name=a2></a>
 #### 2. Attribute Like Macros
+Works on functions also with structs, enums.
 ```rs
 ```
 #### 3. Function-like macros
