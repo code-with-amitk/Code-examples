@@ -1,5 +1,6 @@
-**macros**
-- [macro vs functions](#vs)
+**macros / Metaprogramming**
+- [C Macro vs Rust Macro](#vs1)
+- [macro vs functions](#vs2)
 - Types of macros
   - [1. Declarative macros / macros by Example / macro_rules!](#dm)
   - [2. Procedural / Proc macros](#pm)
@@ -7,12 +8,34 @@
     - [2b. Attribute Like](#a2)
     - [2c. Derive / custom derive](#a3)
 
-## macros
-- Macro is a way of writing code that writes other code, which is known as **metaprogramming**
-- Expanded during [compile time](/Languages/Programming_Languages/C/Compile/).
+## macros / Metaprogramming
+**What is metaprogamming?**
+- Any program contains two entities: data and instructions(that manipulate the data). Metaprogramming treats instructions as data and generate new instructions using code.
+- _Runtime Metaprogramming languages:_ Python, Javascript, and Lisp.
+- _compiletime Metaprogramming languages:_ C, C++, Rust (using macros). macros are expanded at [compile time](/Languages/Programming_Languages/C/Compile/).
 - Examples of macros: println!, vec!
 
-<a name=vs></a>
+<a name=vs1></a>
+### Rust macro vs C Macro
+||Rust Macro|C Macro|
+|---|---|---|
+|How applied|Applied to the token tree|These are text substitution|
+|Hygenic, Context Aware|Yes|No|
+
+**C Macro is UnHygenic, Not Context Aware?** original x variable in main() is modified by the expansion of the TEST macro. 
+```c
+#include <stdio.h> 
+#define TEST(a) {
+  x = a;
+} 
+int main() { 
+    int x = 3;
+    TEST(5);
+    printf("x=%d",x);		//5 
+}
+```
+
+<a name=vs2></a>
 ### macro vs functions
 ||Rust Function|Rust Macro|
 |---|---|---|
@@ -20,10 +43,7 @@
 |Implement Trait on given type.|can't(because called on runtime)|macro can do it(because expanded on compile time)|
 >Note TRAIT needs to be implemented at compile time.
 
-**Rust macro vs C Macro**
-||Rust Macro|C Macro|
-|---|---|---|
-|How applied|Applied to the token tree|These are text substitution|
+
 
 # Types of macros in Rust
 <a name=dm></a>
