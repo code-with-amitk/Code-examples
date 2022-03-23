@@ -38,7 +38,7 @@ pub const LR: &str = "# Learn ";
 macro_rules! mac{                              //declared using macro_rules!
        ($a:expr, $b:expr)=>{
         LR.to_string() + $a + $b
-       }
+       };
        ($a:expr)=>{                           //if macro takes 1 argument, we can define match for it as well
             $a
        }
