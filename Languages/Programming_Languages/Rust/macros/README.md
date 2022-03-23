@@ -3,7 +3,7 @@
 - Types of macros
   - [1. Declarative macros / macros by Example](#dm)
   - [2. Procedural macros, more Advanced](#pm)
-    - [2a. Custom Derive macros](#a1)
+    - [2a. Derive macros / custom derive](#a1)
     - [2b. Attribute Like macros](#a2)
 
 ## macros
@@ -105,8 +105,9 @@ macro_rules! add{
 
 **Types of Procedural macros**
 <a name=a1></a>
-#### 2a. Custom Derive macros   //Used as decorator in python
-ONLY works on structs, enums
+#### 2a. Derive Macro / Custom Derive macros   //Used as decorator in python
+- ONLY works on structs, enums
+- Annotated using `#[derive(MyMacro)]`. They can also declare helper attributes, which can be attached to members of the items.
 ```rs
 NOTE THE PATH CORRECTLY
 
