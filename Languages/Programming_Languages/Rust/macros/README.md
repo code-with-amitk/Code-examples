@@ -1,10 +1,11 @@
 **macros**
 - [macro vs functions](#vs)
 - Types of macros
-  - [1. Declarative macros / macros by Example](#dm)
-  - [2. Procedural macros, more Advanced](#pm)
-    - [2a. Derive macros / custom derive](#a1)
-    - [2b. Attribute Like macros](#a2)
+  - [1. Declarative macros / macros by Example / macro_rules!](#dm)
+  - [2. Procedural / Proc macros](#pm)
+    - [2a. Function Like](#a1) 
+    - [2b. Attribute Like](#a2)
+    - [2c. Derive / custom derive](#a3)
 
 ## macros
 - Macro is a way of writing code that writes other code, which is known as **metaprogramming**
@@ -24,9 +25,9 @@
 |---|---|---|
 |How applied|Applied to the token tree|These are text substitution|
 
-## Types of macros in Rust
+# Types of macros in Rust
 <a name=dm></a>
-### 1. Declarative macros / Macro by example (similar to a match expression)
+## 1. Declarative macros / Macro by example / macro_rules! (similar to a match expression)
 - **Disadv**
   - _1._ Debugging is difficult
   - _2._ Limited modification capabilities
@@ -95,7 +96,7 @@ macro_rules! add{
    }
 ```
 <a name=pm></a>
-### 2. Procedural macros (More advanced than declarative)
+## 2. Procedural macros (More advanced than declarative)
 - operate on the abstract syntax tree (AST)
 - Procedural macros are functions that TAKE CODE as input, and returns Code. Similar to Decorators in Python.
 ```c
@@ -103,9 +104,35 @@ macro_rules! add{
                                  | operator on code | --> Code as output(TokenStream)
 ```
 
-**Types of Procedural macros**
-<a name=a1></a>
-#### 2a. Derive Macro / Custom Derive macros   //Used as decorator in python
+**Types of Procedural macros:** Note all are same just annotations differ.
+- _1. function-like_
+```rs
+#[proc_macro]						<<<<<<<<<<< proc_macro
+pub fn fun(input: TokenStream) -> TokenStream {
+    TokenStream::new()
+}
+
+test() {                 //Usage
+	fun!(be quick; time is mana);
+}
+```
+- _2. attribute_
+```rs
+#[proc_macro_attribute]					<<<<<<<<<<< extra _attribute
+pub fn fun(input: TokenStream, annotated_item: TokenStream) -> TokenStream {
+    TokenStream::new()
+}
+```
+- _3. derive macro_
+```rs
+#[proc_macro_derive(MyDerive)]				<<<<<<<<<<<< extra _derive
+pub fn fun(annotated_item: TokenStream) -> TokenStream {
+    TokenStream::new()
+}
+```
+
+<a name=a3></a>
+### 2c. Derive proc Macro / Custom Derive macros   //Used as decorator in python
 - ONLY works on structs, enums
 - Annotated using `#[derive(MyMacro)]`. They can also declare helper attributes, which can be attached to members of the items.
 ```rs
