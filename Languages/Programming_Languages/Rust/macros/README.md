@@ -105,7 +105,7 @@ macro_rules! add{
 ```
 
 **Types of Procedural macros:** Note all are same just annotations differ.
-- _1. function-like_
+- _2a. function-like_
 ```rs
 #[proc_macro]						<<<<<<<<<<< proc_macro
 pub fn fun(input: TokenStream) -> TokenStream {
@@ -116,21 +116,29 @@ test() {                 //Usage
 	fun!(be quick; time is mana);
 }
 ```
-- _2. attribute_
+- _2b. attribute_
 ```rs
 #[proc_macro_attribute]					<<<<<<<<<<< extra _attribute
 pub fn fun(input: TokenStream, annotated_item: TokenStream) -> TokenStream {
     TokenStream::new()
 }
 ```
-- _3. derive macro_
+- _2c. derive macro_
 ```rs
 #[proc_macro_derive(MyDerive)]				<<<<<<<<<<<< extra _derive
 pub fn fun(annotated_item: TokenStream) -> TokenStream {
     TokenStream::new()
 }
 ```
-
+<a name=a1></a>
+### 2a. Function-like macros
+```rs
+```
+<a name=a2></a>
+### 2b. Attribute Like Macros
+Works on functions also with structs, enums.
+```rs
+```
 <a name=a3></a>
 ### 2c. Derive proc Macro / Custom Derive macros   //Used as decorator in python
 - ONLY works on structs, enums
@@ -234,12 +242,4 @@ proc-macro = true
 [dependencies]
 syn = "1.0"
 quote = "1.0"
-```
-<a name=a2></a>
-#### 2. Attribute Like Macros
-Works on functions also with structs, enums.
-```rs
-```
-#### 3. Function-like macros
-```rs
 ```
