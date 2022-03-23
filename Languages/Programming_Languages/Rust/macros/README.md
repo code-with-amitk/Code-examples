@@ -22,7 +22,7 @@
 |How applied|Applied to the token tree|These are text substitution|
 |Hygenic, Context Aware|Yes|No|
 
-**C Macro is UnHygenic, Not Context Aware?** original x variable in main() is modified by the expansion of the TEST macro. 
+- **C Macro is UnHygenic, Not Context Aware?** original x variable in main() is modified by the expansion of the TEST macro. 
 ```c
 #include <stdio.h> 
 #define TEST(a) {
@@ -33,6 +33,20 @@ int main() {
     TEST(5);
     printf("x=%d",x);		//5 
 }
+```
+- **Rust Macro is Hygenic & Context Aware?** original x variable in main() is modified by the expansion of the TEST macro. 
+```rs
+macro_rules! test {
+    ($a:expr) => {
+        temp = $a;
+    };
+}
+fn main() { 
+    let x = 3;
+    test!(x);
+}
+$ cargo build
+Compilation failed
 ```
 
 <a name=vs2></a>
