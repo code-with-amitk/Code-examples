@@ -3,7 +3,7 @@
   - [Logic](#l)
   - [Code](#c)
 
-### Arrange Cities in proper order by Population
+### Arrange/Sort Cities in proper order by Population
 - Sort list of cities in right order
 - Give list of tuples. 
 - Tuple represents (population_of_present_city, Number of cities on its left whose population >= this city's population)
