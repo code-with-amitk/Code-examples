@@ -1,4 +1,7 @@
 **Sort list of cities / list of pairs**
+- Approach=Sorting using comparator
+  - [Logic](#l)
+  - [Code](#c)
 
 ### Arrange Cities in proper order by Population
 - Sort list of cities in right order
@@ -32,6 +35,7 @@ Output: [700,0][300,1][800,0][600,2]
 ```
 
 ### Approach=Sorting using comparator
+<a name=l></a>
 #### Logic
 - _1._ Sort in decending order by population
 ```c
@@ -54,7 +58,7 @@ input = [8000,1], [5000,3], [8000,0], [6000,2], [6000,0]
       
 Ans: [6000,0] [8000,0] [6000,2] [5000,3] [8000,1]
 ```
-
+<a name=c></a>
 #### Code
 **CPP**
 ```c
