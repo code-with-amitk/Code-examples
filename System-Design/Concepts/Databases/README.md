@@ -12,15 +12,11 @@
 |DB | Object | Block | File |
 |---|---|---|---|
 |Stores |objects{ID,metaData+data}| raw blocks(xfs,ext4 etc) | data in file, with limited meta-data |
-Scaling      | Easy                               | Tough(on high volume becomes unmanagable)
-             |
-Suitable for |Static data(docs,photos,songs,videos)
-             |
-Consistency  | Eventual consistent                | Strongly consistent
-             |
-Use cases    | Not good for transactional 
-               data(bcoz of eventual consistency)
-Examples     | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS
+|Scaling | Easy | Tough(on high volume becomes unmanagable) | |
+|Suitable for |Static data(docs,photos,songs,videos) | | |
+|Consistency | Eventual consistent | Strongly consistent| |
+|Use cases | Not good for transactional data(bcoz of eventual consistency)| | |
+|Examples | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS |
 
 
 <a name=sn></a>
