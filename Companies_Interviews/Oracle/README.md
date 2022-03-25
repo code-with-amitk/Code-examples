@@ -7,3 +7,14 @@
 ### 1. Choose Data Structure
 - What DS will you choose to find which service is visited maximum times in last 1 hour.
 - You have services s1,s2..sn. All services are accessed using common gateway, you can install your process to find which service is accessed.
+- **Answer**
+  - Purge timer will fire every second and check services from head of ll. if (current_timestamp > timestamp_on_list) remove
+```c
+list<timestamp, service>
+  2pm   2.30  2.45  3     3.01
+  s1    s2    s3    s2    s3
+
+  [2,s1]  ->  [2.30,s2] ->  [2.45,s3] ->  [3,s2]  ->  [3.01,s3]
+  /\
+  Purge timer
+```
