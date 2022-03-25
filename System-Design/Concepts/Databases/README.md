@@ -1,18 +1,16 @@
 **Databases**
-
-- **Comparisons**
-  - [Object vs Block vs File Storage](#obf)
-  - [SQL/Relational/Structured vs NoSQL/nonRelational/unStructured](#sn)
-  - [Database vs Datawarehouse](#dd)
+- [Object vs Block vs File Storage](#obf)
+- [SQL/Relational/Structured vs NoSQL/nonRelational/unStructured](#sn)
+- [Database vs Datawarehouse](#dd)
 - **[IMDB / In Memory / Embedded DB](#i)**
 
 
-### Comparisons
+## Comparisons
 <a name=obf></a>
-#### Object vs Block vs File storage
-```c
+### Object vs Block vs File storage
+
 DB           |   Object                           | Block                    |                 File
--------------|------------------------------------|--------------------------|-------------------------------
+---|---|---|---
 Stores       | objects{ID,metaData+data}          | raw blocks(xfs,ext4 etc) | data in file, with limited meta-data
              |                                    |
 Scaling      | Easy                               | Tough(on high volume becomes unmanagable)
@@ -24,7 +22,7 @@ Consistency  | Eventual consistent                | Strongly consistent
 Use cases    | Not good for transactional 
                data(bcoz of eventual consistency)
 Examples     | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS
-```
+
 
 <a name=sn></a>
 #### SQL vs noSQL
