@@ -20,21 +20,22 @@
 
 
 <a name=sn></a>
-#### SQL vs noSQL
+### SQL vs noSQL
 Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
+
 |DB| SQL, Relational, Structured | noSQL, nonRelational, unStructured |
 |---|---|---|
+|Examples | Amazon S3, MySQL, postgreSQL | SEMI(Amazon S3, Apache Cassandra,dynamoDB), UNSTRU:Amazon S3, Apache CouchDB, MongoDB|
+|Types |<ul><li>ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL</li></ul> <ul><li>RDBMS: mySQL</li></ul> |<ul><li> a. KEY-VALUE DB Eg: redis, dynamoDB, Voldemort, sled(rust)</li></ul> <ul><li>b. WIDE-COLUMN DB: Stores data as columns instead of rows. Eg: Cassandra, HBase</li></ul> <ul><li>c. DOCUMENT DB: data is stored in documents(XML, JSON, binary) Eg: mongoDB, dynamoDB.</li></ul> <ul><li>d. GRAPH DB: Data is stored in form of graph.Eg: Neo4J, HyperGraphDB</li></ul>| 
 |Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
 |Huge data support | no(becomes slow) | yes |
 |Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
 |Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
 |Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 |Schema | fixed | not fixed. defining schema for unstructured data is very tough |
-|Examples | Amazon S3, MySQL, postgreSQL | SEMI(Amazon S3, Apache Cassandra,dynamoDB), UNSTRU:Amazon S3, Apache CouchDB, MongoDB|
-|Types |<ul><li>ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL</li></ul> <ul><li>RDBMS: mySQL</li></ul> |<ul><li> a. KEY-VALUE DB Eg: redis, dynamoDB, Voldemort, sled(rust)</li></ul> <ul><li>b. WIDE-COLUMN DB: Stores data as columns instead of rows. Eg: Cassandra, HBase</li></ul> <ul><li>c. DOCUMENT DB: data is stored in documents(XML, JSON, binary) Eg: mongoDB, dynamoDB.</li></ul> <ul><li>d. GRAPH DB: Data is stored in form of graph.Eg: Neo4J, HyperGraphDB</li></ul>| 
 
 <a name=dd></a>
-#### Database vs Datawarehouse
+### Database vs Datawarehouse
 ```c
                  |     Database                            | Datawarehouse
 -----------------|-----------------------------------------|-------------------
