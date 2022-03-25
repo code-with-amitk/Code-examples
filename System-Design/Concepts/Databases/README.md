@@ -11,43 +11,27 @@
 
 |DB | Object | Block | File |
 |---|---|---|---|
+|Examples | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS |
 |Stores |objects{ID,metaData+data}| raw blocks(xfs,ext4 etc) | data in file, with limited meta-data |
 |Scaling | Easy | Tough(on high volume becomes unmanagable) | |
 |Suitable for |Static data(docs,photos,songs,videos) | | |
 |Consistency | Eventual consistent | Strongly consistent| |
 |Use cases | Not good for transactional data(bcoz of eventual consistency)| | |
-|Examples | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS |
 
 
 <a name=sn></a>
 #### SQL vs noSQL
 Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
-```c
-  DB               |  SQL, Relational, Structured                         | noSQL, nonRelational, unStructured
--------------------|------------------------------------------------------|--------------------------------------------
-Storage format     | Table(Records searched using primary key)            | <key, value> or xml or json or objects
-
-Huge data support  | no(becomes slow)                                     | yes
-
-Storage            | May be on 1 or multiple servers                      | Always on multiple low cost nodes[commodity hardware]
-
-Scaling            | Vertical                                             | Horizontal, cheaper, raw data can be pushed:no schema, pro
-
-Tech Support       | Good, query-writing:simple                           | Poor, query-writing:complex
-
-Schema             | fixed                                                | not fixed. defining schema for unstructured data is very tough
-
-Examples           | Amazon S3, MySQL, postgreSQL                         | SEMI:    Amazon S3, Apache Cassandra,dynamoDB
-                                                                            UNSTRU:  Amazon S3, Apache CouchDB, MongoDB
-
-Types              |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL | a. KEY-VALUE DB Eg: redis, dynamoDB, Voldemort, sled(rust)
-                    RDBMS: mySQL                                          | b. WIDE-COLUMN DB: Stores data as columns instead of rows. 
-                                                                          |    Eg: Cassandra, HBase
-                                                                          | c. DOCUMENT DB: data is stored in documents(XML, JSON, binary) 
-                                                                               Eg: mongoDB, dynamoDB
-                                                                          | d. GRAPH DB: Data is stored in form of graph.
-                                                                               Eg: Neo4J, HyperGraphDB</li></ul>
-```  
+|DB| SQL, Relational, Structured | noSQL, nonRelational, unStructured |
+|---|---|---|
+|Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
+|Huge data support | no(becomes slow) | yes |
+|Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
+|Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
+|Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
+|Schema | fixed | not fixed. defining schema for unstructured data is very tough |
+|Examples | Amazon S3, MySQL, postgreSQL | SEMI(Amazon S3, Apache Cassandra,dynamoDB), UNSTRU:Amazon S3, Apache CouchDB, MongoDB|
+|Types |<ul><li>ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL</li></ul> <ul><li>RDBMS: mySQL</li></ul> |<ul><li> a. KEY-VALUE DB Eg: redis, dynamoDB, Voldemort, sled(rust)</li></ul> <ul><li>b. WIDE-COLUMN DB: Stores data as columns instead of rows. Eg: Cassandra, HBase</li></ul> <ul><li>c. DOCUMENT DB: data is stored in documents(XML, JSON, binary) Eg: mongoDB, dynamoDB.</li></ul> <ul><li>d. GRAPH DB: Data is stored in form of graph.Eg: Neo4J, HyperGraphDB</li></ul>| 
 
 <a name=dd></a>
 #### Database vs Datawarehouse
