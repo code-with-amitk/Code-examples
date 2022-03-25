@@ -9,10 +9,9 @@
 <a name=obf></a>
 ### Object vs Block vs File storage
 
-DB           |   Object                           | Block                    |                 File
----|---|---|---
-Stores       | objects{ID,metaData+data}          | raw blocks(xfs,ext4 etc) | data in file, with limited meta-data
-             |                                    |
+|DB | Object | Block | File |
+|---|---|---|---|
+|Stores |objects{ID,metaData+data}| raw blocks(xfs,ext4 etc) | data in file, with limited meta-data |
 Scaling      | Easy                               | Tough(on high volume becomes unmanagable)
              |
 Suitable for |Static data(docs,photos,songs,videos)
