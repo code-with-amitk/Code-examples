@@ -25,8 +25,8 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 
 |DB| SQL, Relational, Structured | noSQL, nonRelational, unStructured |
 |---|---|---|
-|Examples |<ul><li>Amazon Aurora</li></ul> <ul><li>Amazon RDS</li></ul> <ul><li>MySQL</li></ul> <ul><li>postgreSQL</li></ul> <ul><li>mariaDB</li></ul>|SEMI:<br> Amazon S3, Apache Cassandra, dynamoDB <br> UNSTRU:<br> Amazon S3, Apache CouchDB, MongoDB|
-|Types |<ul><li>ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL</li></ul> <ul><li>RDBMS: mySQL</li></ul> |a. KEY-VALUE DB:<br> redis, Amazon dynamoDB, Amazon documentDB, Voldemort, sled(rust) <br> b. WIDE-COLUMN DB:<br> Stores data as columns instead of rows. Eg: Cassandra, HBase <br> c. DOCUMENT DB: <br> data is stored in documents(XML, JSON, binary) Eg: mongoDB, dynamoDB. <br> d. GRAPH DB: <br> Data is stored in form of graph.Eg: Neo4J, HyperGraphDB| 
+|Examples |Amazon Aurora <br> Amazon RDS <br> MySQL <br> postgreSQL <br> mariaDB|SEMI:<br> - Amazon S3, Apache Cassandra, dynamoDB <br> UNSTRU:<br> - Amazon S3, Apache CouchDB, MongoDB|
+|Types |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL <br> RDBMS: mySQL|a. KEY-VALUE DB:<br> - redis, Amazon dynamoDB, Voldemort, sled(rust) <br> b. WIDE-COLUMN DB:<br> - Stores data as columns instead of rows. Eg: Cassandra, HBase <br> c. DOCUMENT DB: <br> Data is stored in documents(XML, JSON, binary) Eg: mongoDB, AMazon dynamoDB. <br> d. GRAPH DB: <br> Data is stored in form of graph.Eg: Neo4J, HyperGraphDB| 
 |Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
 |Huge data support | no(becomes slow) | yes |
 |Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
