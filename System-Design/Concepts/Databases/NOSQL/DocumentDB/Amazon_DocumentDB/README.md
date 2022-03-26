@@ -2,7 +2,7 @@
 
 ### DocumentDB
 - Data is stored in form of documents(XML, JSON, binary)
-```json
+```js
 //json data
 {
   id: "1",
@@ -18,7 +18,7 @@
 #### Advantages
 - _1. No specilized schema is required, new fields can be added on the fly:_ 
   - Eg: Susan has a user profile like this.
-```json
+```js
 //susan profile
 {
   userid: 992
@@ -26,7 +26,7 @@
 }
 ```
   - Susan plays a new game tango, now no need to change exisiting fields, data can be added in this table only.
-```json
+```js
 //susan profile
 {
   userid: 992
@@ -39,7 +39,7 @@
 }
 ```
   - Susan got promotions now that can be added with complete db change.
-```json
+```js
 //susan profile
 {
   userid: 992
