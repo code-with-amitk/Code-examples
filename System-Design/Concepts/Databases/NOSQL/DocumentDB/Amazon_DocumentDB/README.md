@@ -38,7 +38,7 @@ Data is stored in form of documents(XML, JSON, binary).
   }
 }
 ```
-  - Susan got promotions now that can be added with complete db change.
+  - Susan got promotions now that can be added without complete db change.
 ```js
 //susan profile (json data)
 {
