@@ -1,4 +1,5 @@
 **DocumentDB**
+- [Architecture](#ar)
 
 ### DocumentDB
 Data is stored in form of documents(XML, JSON, binary).
@@ -51,4 +52,22 @@ Data is stored in form of documents(XML, JSON, binary).
   }
   promotions: ["lead", "director", "vp"]
 }
+```
+
+<a name=ar></a>
+### Architecture
+Whole DocumentDB is divided into 2 layers(compute, Storage). Even they can be scaled seperately.
+- _Compute:_ All data intensive work is carried in compute.
+- _Storage:_ All storage related work in storage layer.
+```c
+                     |---------------
+                     | API
+      Compute Layer -| Query Processing
+                     | Caching
+                     |--------------
+      
+                     |-------------
+      Storage Layer -| Logging
+                     | Storage
+                     |----------
 ```
