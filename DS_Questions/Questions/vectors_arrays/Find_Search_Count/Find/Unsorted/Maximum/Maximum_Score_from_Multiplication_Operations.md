@@ -7,9 +7,12 @@
 - We are given 2 arrays nums(size=n), multipliers(size=m). n>=m
 ```c
 nums = [-5,-3,-3,-2,7,1], multipliers = [-10,-5,3,4,6]
+- nums: Number can be choosen from left or right
+- multiplier: Number is always choosen from left.
 ```
-- We need to find maximum sum after multiplying numbers from nums, multipliers. Constriant:
-  - Choose one number=x from either the start or the end of the array nums.
+- We need to find maximum sum after multiplying numbers from nums, multipliers. **Constriant**:
+  - **`nums[i]:`** Choose one number=x from either the start or the end of the array nums.
+  - **`multipliers[i]`:** Always choose next number from left in this array.
   - Add `multipliers[i] * x` to your score.
   - Remove x from the array nums.
 ```c
