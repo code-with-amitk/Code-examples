@@ -1,30 +1,38 @@
-- [Cloud](#cloud)
-  - [Types of cloud](#tyc)
-- [Distributed System](#dis)
-  - [Architecture of DS](#archds) 
-  - [Types of DS](#tyd)
+- **Cloud**
+  - [Types of cloud](#t)
+- [Distributed System](#d)
+  - [Architecture of DS](#a) 
+  - [Types of DS](#ty)
+    - [1. High Performance Distributed Computing](#hpdc)
+    - [2. Cluster Computing](#clc)
+    - [3. Grid Computing](#gc)
+    - **[4. Cloud Computing](#cc)**
+      - [Advantages of cloud computing wrt onprem](#adv)
+      - [Types of Cloud Computing](#tc)
+    - [5. Edge Computing](#ec)
+    - [6. HPC(High Performance Computing)](#hpc)
 
-<a name=cloud></a>
 ## Cloud
-Running programs on someone else's cluster of computers.
-#### Types of cloud
-- _1. Private_: used by specific orgnizations.
-- _2. Public:_ Used by general public.
-- _3. Community:_ Used by specific community
-- _4. Hybrid:_ Composed of 2 or more different clouds.
+Running programs on someone else's cluster of computers, ie not running program locally.
+<a name=t></a>
+### Types of Cloud
+- **1. Private:** used by specific orgnizations.
+- **2. Public:** Used by general public.
+- **3. Community:** Used by specific community
+- **4. Hybrid:** Composed of 2 or more different clouds.
 
-<a name=dis></a>
-## Distributed System
-Collection of computing elements that appears to its users as a 1 system giving 1 system view ie end users does not notice that he is dealing with processes, data and control are dispersed across the nodes.
+<a name=d></a>
+# Distributed System
+- Collection of computing elements that appears to its users as a 1 system giving 1 system view ie end users does not notice that he is dealing with processes, data and control are dispersed across the nodes.
 - All transactions in distributed systems Follow ACID(Atomic, Consistency, Isolated, Durable)
-- **Components of DS**
-  - *1. Middleware* It hides he differences in H/W and OS from each application.  
-  - *2. Broker* All application commnicate with each other using broker. 
+## Components of DS
+- *1. Middleware* It hides he differences in H/W and OS from each application.  
+- *2. Broker* All application commnicate with each other using broker. 
 
 <img src=distributed-system-middleware-layer.PNG width=500/>
 
-<a name=archds></a>
-#### Architecture of Distributed Systems
+<a name=a></a>
+## Architecture of Distributed Systems
 - *1. Layered:* Components are organized in a layered fashion making upcall/downcall. Eg: TCP-IP Stack
 - _2. Object Based/SOA:_ Each object/Node is connected using Procedure call mechanism. Client machine have proxy/stub application running which communicates with Server running on other machine.
 - _3. Resource Centered/REST:_ Node/Resource is identified by single naming scheme. All services provide same interface. Stateless, no state maintained.
@@ -32,16 +40,41 @@ Collection of computing elements that appears to its users as a 1 system giving 
 
 <img src=architecture-types-of-distributed-systems.png width=500/>
 
-<a name=tyd></a>
-#### Types of Distributed Systems
-- **1. High Performance Distributed Computing**
-- **2. Cluster Computing:** Simple computers connected on high-speed network, does parallel processing of task. Eg: Hadoop.
-  - _Advantages of cloud computing wrt onprem:_ Cheap(no upfront real estate cost), stop guessing capacity, increased speed, no maintaince of data centers, You can be near to your customer whereever he's in world.
+<a name=ty></a>
+## Types of Distributed Systems
+<a name=hpdc></a>
+### 1. High Performance Distributed Computing
+<a name=clc></a>
+### 2. Cluster Computing 
+Simple computers connected on high-speed network, does parallel processing of task. Eg: Hadoop.
+<a name=gc></a>
+### 3. Grid Computing 
+Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
+<a name=cc></a>
+### 4. Cloud Computing
+Customer upload tasks to a data center and charged on a per-resource basis.
+<a name=adv></a>
+#### Advantages of cloud computing wrt onprem
+- _1. Pay on demand/usage:_ No upfront payment
+- _2. Cheap:_ You are sharing with lots of customers on cloud
+- _3. Stop Guessing:_ No need to guess the infra capacity, just pay whatever used
+- _4. Increase speed:_ Get resources by few clicks, instead of waiting for weeks.
+- _5. No money spent on running/maintaining datacenters:_ no need to hire admins to maintain datancenters.
+- _6. Go global in minutes:_ You can be near to your customer whereever he's in world.
 
-- **3. Grid Computing:** Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
-- **4. Cloud Computing**: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
-- **5. Edge Computing:** Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
-- **6. HPC(High Performance Computing):** Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
+<a name=tc></a>
+#### Types of cloud computing
+||SaaS(Software as Service) for CUSTOMERS|PaaS(Platform as Service) for DEVELOPERS|IaaS(Infrastructure as Service) for ADMINS|
+|---|---|---|---|
+|What|Host S/W on cloud VM. SaaS is accessed using a thin client or by browser|Provide Dashboard. upload button is provided you can upload your website. Write your code, Cloud provider will take care of it|Provide VM. Cloud provider will give access to OS of server/VM, user can install/remove/do anything on Server. Highest control|
+|Examples|Gmail, Salesforce, Office 365|GAE(Google App engine)|GCE(google compute Engine)|
+
+<a name=ec></a>
+### 5. Edge Computing 
+Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
+<a name=hpc></a>
+### 6. HPC(High Performance Computing)
+Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
 ```c
                                      |                    What                                                   |  Example
   -----------------------------------|---------------------------------------------------------------------------|-----------
