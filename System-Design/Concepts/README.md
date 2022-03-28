@@ -34,12 +34,14 @@ Collection of computing elements that appears to its users as a 1 system giving 
 
 <a name=tyd></a>
 #### Types of Distributed Systems
-**1. High Performance Distributed Computing**
-**2. Cluster Computing:** Simple computers connected on high-speed network, does parallel processing of task. Eg: Hadoop.
-**3. Grid Computing:** Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
-**4. Cloud Computing**: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
-**5. Edge Computing:** Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
-**6. HPC(High Performance Computing):** Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
+- **1. High Performance Distributed Computing**
+- **2. Cluster Computing:** Simple computers connected on high-speed network, does parallel processing of task. Eg: Hadoop.
+  - _Advantages of cloud computing wrt onprem:_ Cheap(no upfront real estate cost), stop guessing capacity, increased speed, no maintaince of data centers, You can be near to your customer whereever he's in world.
+
+- **3. Grid Computing:** Nodes can be anything. Databases, High end machines(super computers), normal processor, sensors, telescopes etc.
+- **4. Cloud Computing**: Customer upload tasks to a data center and charged on a per-resource basis. 3 types of services to customers.
+- **5. Edge Computing:** Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
+- **6. HPC(High Performance Computing):** Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
 ```c
                                      |                    What                                                   |  Example
   -----------------------------------|---------------------------------------------------------------------------|-----------
