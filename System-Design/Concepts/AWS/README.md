@@ -1,3 +1,37 @@
+- [Global Infrastructure](#gi)
+- [Terms](#t)
+
+<a name=gi></a>
+### Global Infrastructure
+AWS runs in:
+- 69 Availabilty zones
+- 22 Geographic Regions
+- 190+ countries have 1 million+ customers
+
+<a name=t></a>
+### Terms
+#### Availabilty zones
+1 or more data center owned by AWS, collectively called AZ
+```c
+   |-----------AZ---------------|
+   | Data-center1  Data-center2 |  Data-centern
+   |----------------------------|
+```
+#### Edge Locations
+Datacenters owned by AWS partners
+#### Geographic Regions
+- **Geographically Distinct** Locations in world with 1 or more AZ
+- Largest Region of AWS is US-EAST(ie North Virginia), new services becomes available here 1st.
+- Billing happens on
+```c
+  -------US-----------
+   |---GR---|
+   |AZ1 AZn |
+   |--------|
+```
+- [Regions and AZ](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
+<img src=regions_and_az.JPG width=400 />
+
 ## 4 Primary Areas of AWS
 
 |Area|What|Services|
