@@ -9,6 +9,7 @@
     - **[4. Cloud Computing](#cc)**
       - [Advantages of cloud computing wrt onprem](#adv)
       - [Types of Cloud Computing](#tc)
+      - [Deployment Models of Cloud Computing](#dm)
     - [5. Edge Computing](#ec)
     - [6. HPC(High Performance Computing)](#hpc)
 
@@ -67,26 +68,11 @@ Customer upload tasks to a data center and charged on a per-resource basis.
 ||SaaS(Software as Service) for CUSTOMERS|PaaS(Platform as Service) for DEVELOPERS|IaaS(Infrastructure as Service) for ADMINS|
 |---|---|---|---|
 |What|Host S/W on cloud VM. SaaS is accessed using a thin client or by browser|Provide Dashboard. upload button is provided you can upload your website. Write your code, Cloud provider will take care of it|Provide VM. Cloud provider will give access to OS of server/VM, user can install/remove/do anything on Server. Highest control|
-|Examples|Gmail, Salesforce, Office 365|GAE(Google App engine)|GCE(google compute Engine)|
+|Examples|Gmail, Salesforce, Office 365|GAE(Google App engine), Heroku, AWS(Elastic Bean stawk)|AWS, GCP, Azure|
 
-<a name=ec></a>
-### 5. Edge Computing 
-Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
-<a name=hpc></a>
-### 6. HPC(High Performance Computing)
-Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
 ```c
                                      |                    What                                                   |  Example
   -----------------------------------|---------------------------------------------------------------------------|-----------
-  A. IaaS(Infrastructure as Service) | Provide VM. Cloud provider will give access to OS of server/VM,           | GCE(google compute Engine)
-                                       user can install/remove/do anything on Server. Highest control.           |
-                                       
-  B. PaaS(Platform as Service)       | Provide Dashboard. upload button is provided you can upload your website. | GAE(Google App engine)
-                                       Write your code, Cloud provider will take care of it                      |
-                                       
-  C. SaaS(Software as Service)       | Host S/W on cloud VM. SaaS is accessed using a thin client or by browser  | 
-     or On-Demand Service            
-     
   D. CaaS(Container as a Service)    | Creating kubernets clusters.                                              | GKE(Google Kubernets Engine)
   
   E. FaaS(Function as a Service)     | Writing application for IoT, mobilr backends.
@@ -96,4 +82,17 @@ Process data and perform complex calculations at high speeds. HPC systems can pe
   
   G. Cluster as a Service            | Virtualize cluster for applications.
 ```
-GCE(GCP)
+
+<a name=dm></a>
+#### Deployment Models of Cloud Computing
+- **1. Cloud:** Eg: Dropbox
+- **2. On-Prem** Eg: Hospitals, Govt Offices, Insurance companies
+- **3. Hybrid:** Combination of cloud & on-prem
+
+
+<a name=ec></a>
+### 5. Edge Computing 
+Computing done near to the data source. How does this help? If computation is done near data source it will be faster and has low latency.
+<a name=hpc></a>
+### 6. HPC(High Performance Computing)
+Process data and perform complex calculations at high speeds. HPC systems can perform quadrillions of calculations/sec. Eg: supercomputer. HPC has 3 main components: Compute, Network, Storage
