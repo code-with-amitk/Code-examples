@@ -101,6 +101,21 @@ process_start_time_seconds 1920910291.91
 # TYPE: process_virtual_memory_bytes gauge
 process_virtual_memory_bytes 12889098109
 ```
+##### [Metric Types](https://prometheus.io/docs/concepts/metric_types/)
+**1. Gauge**
+- gauge is a metric that represents a single numerical value that can arbitrarily go up and down
+- Eg:  temperatures, current memory usage
+
+**2. Counter**
+- Represents a single monotonically increasing counter whose value can only increase or be reset to zero on restart.
+- NOTE: Do not use a counter to expose a value that can decrease. For example, do not use a counter for the number of currently running processes; instead use a gauge.
+
+**3. Histogram/Buckets**
+- histogram samples observations (usually things like request durations or response sizes) and counts them in configurable buckets
+
+**4. Summary**
+- Similar to histogram, it calculates configurable quantiles over a sliding time window.
+
 <a name=sc></a>
 #### 3. Scrape
 Pulling data from targets is called scraping. Prometheus will scrap the metric using http. [Target](#tar) should support `http://ip:port/metrics/` and provide metrics.
