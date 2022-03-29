@@ -1,6 +1,7 @@
 **Oracle Bangalore**
 - **March 2022, Principal Engineer**
-  - [Choose Data Structure](#c)
+  - [1. Choose Data Structure](#c)
+  - [2. OOD => Parking lot](#pl)
 
 ## March 2022, Principal Engineer
 <a name=c></a>
@@ -18,3 +19,8 @@ list<timestamp, service>
   /\
   Purge timer
 ```
+<a name=pl></a>
+### 2. OOD => Parking lot
+- Design a parking lot which can accomodate 2 wheeler, 4 wheeler, truck into parking.
+- n 2 wheelers will combine to create 1 4 wheeler. m 4 wheelers will combine to create 1 truck parking.
+- Take driveway into consideration when designing parking lot.
