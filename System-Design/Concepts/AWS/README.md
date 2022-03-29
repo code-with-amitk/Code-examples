@@ -15,7 +15,7 @@ AWS runs in:
 <a name=t></a>
 ## Terms
 <a name=gr></a>
-### [Geographic Region]((https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
+### [Geographic Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
 - Each Region has atleast **2 AZ**
 - **Largest Region of AWS is US-EAST(ie North Virginia)**, new services becomes available here 1st.
 ```c
@@ -24,9 +24,9 @@ AWS runs in:
    |AZ1 AZn |
    |--------|
 ```
-<img src=regions_and_az.JPG width=400 />
+<img src=regions_and_az.JPG width=500 />
 
-<img src=north-america-political-map.jpg width=400 />
+<img src=north-america-political-map.jpg width=500 />
 
 <a name=az></a>
 ### Availabilty zones
