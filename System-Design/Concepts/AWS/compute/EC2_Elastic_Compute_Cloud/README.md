@@ -1,5 +1,6 @@
- **EC2(Elastic Compute Cloud)**
- - 
+**EC2(Elastic Compute Cloud)**
+
+
 
 ## EC2(Elastic Compute Cloud)
 - This is server hosted in AWS cloud, where we can create EC2 instances(or VMs). Helpful in scaling up/down.
