@@ -1,8 +1,10 @@
+ **EC2(Elastic Compute Cloud)**
+ - 
+
 ## EC2(Elastic Compute Cloud)
-  - **What:** This is web service for creating VMs. Helpful in scaling up/down.
-  - **without EC2(Old world)**
-    - if you needed an new server(app server, db server etc).
-    - 1st need to write how big server is required, how many cores, purcharse, installation -> 2 months
+- This is server hosted in AWS cloud, where we can create EC2 instances(or VMs). Helpful in scaling up/down.
+  - With EC2, we can spun/delete instances when needed/not needed & pay only for the compute time.
+- **without EC2(Old world):** if we need an new server, 1st decide how big server is required(how many cores etc), purcharse, installation around 2+ months
     
 ## EC2 instance types
 | Family | Speciality | Use case |
