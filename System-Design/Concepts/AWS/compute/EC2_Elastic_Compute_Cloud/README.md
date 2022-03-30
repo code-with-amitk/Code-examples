@@ -36,5 +36,11 @@ EC2 instance types are optimized for different tasks. When selecting an instance
 
 <a name=p></a>
 ### EC2 Pricing
-
+|Pricing Type|What|Example| Pay For |
+| --- | --- |---| --- |
+|1. On-Demand|Ideal for short term, Irregular work loads|Create a instance for learning and tear it| Whatever time you use it |
+|2. Savings Plans(1 yr, 3 yr)|Ideal for Longer workloads which can run for 1 or 3 years ||Save upto 66%|
+|3. Reserved Instances|Standard Reserved and Convertible Reserved Instances for a 1-year or 3-year term, and Scheduled Reserved Instances(for 1-year term)|Ends when we terminate the instance|
+|4. Spot Instances|Ideal for workloads with flexible start and end times which can can withstand interruptions. if you make a Spot request and Amazon EC2 capacity is unavailable, the request is not successful until capacity becomes available. |Batch Processing|Save upto 90%|
+|5. Dedicated Hosts(Most Expensive)|EC2 server fully dedicated to your use|
 
