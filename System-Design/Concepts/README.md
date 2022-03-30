@@ -56,12 +56,12 @@ Nodes can be anything. Databases, High end machines(super computers), normal pro
 Customer upload tasks to a data center and charged on a per-resource basis.
 <a name=adv></a>
 #### Advantages of cloud computing wrt onprem
-- _1. Pay on demand/usage:_ No upfront payment
-- _2. Cheap:_ You are sharing with lots of customers on cloud
-- _3. Stop Guessing:_ No need to guess the infra capacity, just pay whatever used
-- _4. Increase speed:_ Get resources by few clicks, instead of waiting for weeks.
-- _5. No money spent on running/maintaining datacenters:_ no need to hire admins to maintain datancenters.
-- _6. Go global in minutes:_ You can be near to your customer whereever he's in world.
+1. _Trade upfront expense for variable expense:_ Pay on demand/usage. No upfront payment
+2. _Stop spending money to run and maintain data centers:_ Focus less on maintaining data center and more on your applications and customers.
+3. _Stop guessing capacity:_ You don’t have to predict how much infrastructure capacity you will need before deploying an application. Just launch Amazon EC2 instances when needed, and pay only for the compute time you use. 
+4. _Benefit from massive economies of scale:_ lower pay-as-you-go prices. 
+5. _Increase speed and agility:_ Get resources by few clicks, instead of waiting for weeks.
+6. _Go global in minutes:_ You can be near to your customer whereever he's in world.
 
 <a name=tc></a>
 #### Types of cloud computing
@@ -86,7 +86,7 @@ Customer upload tasks to a data center and charged on a per-resource basis.
 <a name=dm></a>
 #### Deployment Models of Cloud Computing
 - **1. Cloud:** Eg: Dropbox
-- **2. On-Prem** Eg: Hospitals, Govt Offices, Insurance companies
+- **2. On-Prem/Private Cloud:** Eg: Hospitals, Govt Offices, Insurance companies
 - **3. Hybrid:** Combination of cloud & on-prem
 
 
