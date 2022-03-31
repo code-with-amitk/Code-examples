@@ -4,6 +4,7 @@
   - [Availabilty zones](#az)
   - [Edge Location](#el)
   - [GovCloud](#gc)
+- [Service Categories](#sc)
 
 <a name=gi></a>
 ## Global Infrastructure
@@ -48,11 +49,12 @@ AWS runs in:
 - [Geographic Region](#gr) for highly sensative data storage. Eg: US DOD, US DOJ(dept of justice) etc. Presently only 2 GovCloud Regions: US-West, US-East.
 - Person using GovCloud need to be US citizen and located in US only.
 
-## 4 Primary Areas of AWS
+<a name=sc></a>
+### Service Categories
 
 |Area|What|Services|
 |---|---|---|
-|Compute|Provides compute capacity on cloud.|[EC2](/System-Design/Concepts/AWS/compute/EC2_Elastic_Compute_Cloud/README.md), [LightSail](/System-Design/Concepts/AWS/compute/Light_Sail/README.md), [ECS](/System-Design/Concepts/AWS/compute/ECS_Elastic_Container_Service/README.md), [Lambda](/System-Design/Concepts/AWS/compute/Lambda/README.md), [ELB](/System-Design/Concepts/AWS/compute/ELB_Elastic_Load_Balancer/README.md)|
+|Compute|Provides compute capacity on cloud.|[EC2](/System-Design/Concepts/AWS/compute/EC2_Elastic_Compute_Cloud/README.md), [LightSail](/System-Design/Concepts/AWS/compute/Light_Sail/README.md), [ECS](/System-Design/Concepts/AWS/compute/ECS_Elastic_Container_Service/README.md), [Lambda](/System-Design/Concepts/AWS/compute/Lambda), [ELB(Elastic Load Balancer)](/System-Design/Concepts/AWS/compute/ELB_Elastic_Load_Balancer)|
 |Storage||[Object Store:S3](/System-Design/Concepts/Databases/Object_Storage), Block Store:[EBS](/System-Design/Concepts/AWS/Storage/EBS_Elastic_Block_Storage/README.md), File Store:[EFS](/System-Design/Concepts/AWS/Storage/EFS_Elastic_File_System/README.md), Glacier, [Snowball](/System-Design/Concepts/AWS/Storage/SnowBall/README.md), [StorageGW](/System-Design/Concepts/AWS/Storage/Storage_Gateway/README.md)|
 |Databases||RDS:[Aurora](/System-Design/Concepts/Databases/SQL/Aurora.md), NoSQL:[DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB), GraphDB:[Neptune](/System-Design/Concepts/Databases/NOSQL/Graph_DB/AWS_Neptune), Cache:[ElasticCache](/System-Design/Concepts/Cache/AWS_ElasticCache/README.md), Datawarehouse:[RedShift](/System-Design/Concepts/Databases/DataWareHouse/Aws_RedShift/README.md)|
 |Network||Cloudfront,VPC, Direct Connect, Load Balancing, Route 53|
