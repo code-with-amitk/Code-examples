@@ -1,6 +1,7 @@
 **EC2(Elastic Compute Cloud)**
 - [EC2 Instance Types](#it)
 - [EC2 Pricing](#p)
+- [EC2 Auto scaling](#as)
 
 
 
@@ -43,4 +44,18 @@ EC2 instance types are optimized for different tasks. When selecting an instance
 |3. Reserved Instances|Standard Reserved and Convertible Reserved Instances for a 1-year or 3-year term, and Scheduled Reserved Instances(for 1-year term)|Ends when we terminate the instance|
 |4. Spot Instances|Ideal for workloads with flexible start and end times which can can withstand interruptions. if you make a Spot request and Amazon EC2 capacity is unavailable, the request is not successful until capacity becomes available. |Batch Processing|Save upto 90%|
 |5. Dedicated Hosts(Most Expensive)|EC2 server fully dedicated to your use|
+
+<a name=as></a>
+### EC2 Auto scaling
+This means scaling automatically as load increases and reducing instances as load decreases
+#### Auto Scaling group?
+Min/Max number of EC2 instances that would spun up. Configuration:
+- _a. Min Capacity = x._ These many intances will always be running. if x=2, then min 2 instances will always be there.
+- _b. Desired Capacity = y._ In case of load switch to desired. if y=4, then 4 instances will run in case of load.
+- _c. Max Capacity = z:_ Max instances which can spun is z. Even load is more than that, instances will not be spun.
+
+<a name=app></a>
+#### Auto scaling Approaches
+- **1. Dynamic scaling:** As load increases spun up more instances.
+- **2. Predictive scaling:** Predict the need in advance and scale as per prediction.
 
