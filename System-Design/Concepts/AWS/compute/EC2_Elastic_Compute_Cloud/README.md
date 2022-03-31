@@ -2,6 +2,8 @@
 - [EC2 Instance Types](#it)
 - [EC2 Pricing](#p)
 - [EC2 Auto scaling](#as)
+  - [Auto Scaling group](#asg)
+  - [Auto scaling Approaches](#app)
 
 
 
@@ -45,9 +47,9 @@ EC2 instance types are optimized for different tasks. When selecting an instance
 |4. Spot Instances|Ideal for workloads with flexible start and end times which can can withstand interruptions. if you make a Spot request and Amazon EC2 capacity is unavailable, the request is not successful until capacity becomes available. |Batch Processing|Save upto 90%|
 |5. Dedicated Hosts(Most Expensive)|EC2 server fully dedicated to your use|
 
-<a name=as></a>
 ### EC2 Auto scaling
 This means scaling automatically as load increases and reducing instances as load decreases
+<a name=asg></a>
 #### Auto Scaling group?
 Min/Max number of EC2 instances that would spun up. Configuration:
 - _a. Min Capacity = x._ These many intances will always be running. if x=2, then min 2 instances will always be there.
