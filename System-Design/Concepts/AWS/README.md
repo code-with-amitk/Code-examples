@@ -59,6 +59,7 @@ AWS runs in:
 |Databases||RDS:[Aurora](/System-Design/Concepts/Databases/SQL/Aurora.md), NoSQL:[DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB), GraphDB:[Neptune](/System-Design/Concepts/Databases/NOSQL/Graph_DB/AWS_Neptune), Cache:[ElasticCache](/System-Design/Concepts/Cache/AWS_ElasticCache/README.md), Datawarehouse:[RedShift](/System-Design/Concepts/Databases/DataWareHouse/Aws_RedShift/README.md)|
 |Network||Cloudfront,VPC, Direct Connect, Load Balancing, Route 53|
 |Security,Identity,Compliance||IAM,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,[WAF](/System-Design/Concepts/AWS/Security/WAF_Web_Application_Firewall),[Sheild](/System-Design/Concepts/AWS/Security/Sheilg/),Artifact|
+|Application Integration||[SNS](/System-Design/Concepts/AWS/Application_Integration/SNS_SQS/), [SQS](/System-Design/Concepts/AWS/Application_Integration/SNS_SQS/)|
 
 - Security
 ```
