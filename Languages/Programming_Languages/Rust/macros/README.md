@@ -6,7 +6,7 @@
   - [2. Procedural / Proc macros](#pm)
     - [2a. Function Like](#a1) 
     - [2b. Attribute Like](#a2)
-    - [2c. Derive / custom derive](derive_macro.md)
+    - [2c. Derive / custom derive](Derive_macro.md)
 
 ## macros / Metaprogramming
 **What is metaprogamming?**
