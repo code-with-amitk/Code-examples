@@ -1,5 +1,5 @@
 **EC2(Elastic Compute Cloud)**
-- [EC2 Instance Types](#it)
+- [EC2 Instance=VM Types](#it)
 - [EC2 Pricing](#p)
 - [EC2 Auto scaling](#as)
   - [Auto Scaling group](#asg)
@@ -14,7 +14,8 @@
     
 <a name=it></a>
 ### EC2 instance types
-EC2 instance types are optimized for different tasks. When selecting an instance type, consider the specific needs of your workloads and applications.
+- EC2 instance is VM
+- EC2 instance types are optimized for different tasks. When selecting an instance type, consider the specific needs of your workloads and applications.
 
 |Type|What|Areas where used|
 |---|---|---|
