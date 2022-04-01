@@ -1,7 +1,7 @@
 **Derive Macro**
 - Code
   - [A. Annotate struct](#as)
-  - [B.  
+  - [B. Convert Struct into String](#ex2)
 
 ## Derive proc Macro / Custom Derive macros   //Used as decorator in python
 - ONLY works on structs, enums
