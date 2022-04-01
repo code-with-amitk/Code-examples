@@ -1,5 +1,6 @@
 - [IP Reachable?](#1)
 - [Port Reachable?](#p)
+- [Is hostname resolvable](#i)
 
 <a name=1></a>
 ### 1. Is IP Reachable
@@ -56,3 +57,16 @@ cmd > netsh advfirewall set allprofiles state off       //Windows
   - *3.* Is Network Bandwidth(bits/second) low and Latency(RTT) high (qperf)?
   - *4.* tcpdump
 
+<a name=i></a>
+### Is hostname resolvable
+**nslookup:** Get IP Address corresponding to hostname & viceversa.
+```c
+>nslookup google.com
+Server:  anydns.jnpr.net
+Address:  66.129.233.81
+
+Non-authoritative answer:
+Name:    google.com
+Addresses:  2404:6800:4007:80a::200e
+          172.217.160.142
+```
