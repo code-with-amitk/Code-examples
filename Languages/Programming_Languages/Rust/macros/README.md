@@ -138,7 +138,7 @@ macro_rules! add{
                                  | operator on code | --> Code as output(TokenStream)
 ```
 
-**Types of Procedural macros:** Note all are same just annotations differ.
+**Types of Procedural macros:** To mark a function as a procedural macro, we need to annotate it with the **`#[proc_macro]`** attribute.
 - _2a. function-like_
 ```rs
 #[proc_macro]						<<<<<<<<<<< proc_macro
@@ -159,6 +159,10 @@ pub fn fun(input: TokenStream, annotated_item: TokenStream) -> TokenStream {
 ```
 - _2c. derive macro_
 ```rs
+#[derive(TriatName)]
+struct A{
+}
+
 #[proc_macro_derive(MyDerive)]				<<<<<<<<<<<< extra _derive
 pub fn fun(annotated_item: TokenStream) -> TokenStream {
     TokenStream::new()
@@ -176,7 +180,9 @@ Works on functions also with structs, enums.
 <a name=a3></a>
 ### 2c. Derive proc Macro / Custom Derive macros   //Used as decorator in python
 - ONLY works on structs, enums
-- Annotated using `#[derive(MyMacro)]`. They can also declare helper attributes, which can be attached to members of the items.
+- struct is annotated using `#[derive(MyMacro)]` and function is preceded by `#[proc_macro_derive]`
+
+#### A. 
 ```rs
 NOTE THE PATH CORRECTLY
 
@@ -188,8 +194,7 @@ src\main.rs
 use test_lib::TestTriat;
 use test_lib_derive::TestTriat;
 
-//Implement TestTrait TRAIT for struct structA
-#[derive(TestTriat)]
+#[derive(TestTriat)]			//Implement TestTrait TRAIT for struct structA
 struct StructA;
 
 fn main() {
@@ -234,21 +239,15 @@ src\lib.rs
 extern crate proc_macro;
 use proc_macro::TokenStream;
 
-// syntax crate. Rust Code -> [syn] -> syntax Tree Datastructure
-use syn;            
+use syn;            				// syntax crate. Rust Code -> [syn] -> syntax Tree Datastructure
 
-// syntax Tree Datastructure -> [quote] -> Rust Code
-use quote::quote;
+use quote::quote;				// syntax Tree Datastructure -> [quote] -> Rust Code
 
-//proc_macro_derive tells this is Custom derived macro with name HelloMacro
-#[proc_macro_derive(TestTriat)]
+#[proc_macro_derive(TestTriat)]			//proc_macro_derive tells this is Custom derived macro with name HelloMacro
 pub fn fun_derive(input: TokenStream) -> TokenStream {
 
-    //Parses Rust stream into Abstract Syntax Tree using syn crate
-    let ast = syn::parse(input).unwrap();
-
-    //Convert syntax tree to Rust code
-    impl_fun(&ast)
+    let ast = syn::parse(input).unwrap();	//Parses Rust stream into Abstract Syntax Tree using syn crate
+    impl_fun(&ast)				//Convert syntax tree to Rust code
 }
 
 fn impl_fun(ast: &syn::DeriveInput) -> TokenStream {
@@ -260,8 +259,7 @@ fn impl_fun(ast: &syn::DeriveInput) -> TokenStream {
             }
         }
     };
-    //Convert ge into TokenString
-    ge.into()
+    ge.into()					//Convert ge into TokenString
 }
 
 > Cargo.toml
