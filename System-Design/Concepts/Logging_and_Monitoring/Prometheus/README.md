@@ -6,7 +6,7 @@
   - [Metric](#met)
   - [Scrape](#sc)
   - [Collector](#col)
-- [Configuring Prometheus](#conf)
+- [Setting up Prometheus](#conf)
 
 <a name=pro></a>
 # Prometheus (Centralized Monitoring,Alerting & logging tool)
@@ -124,5 +124,15 @@ Pulling data from targets is called scraping. Prometheus will scrap the metric u
 A collector is a part of an [exporter](#hl) that represents a set of metrics. It may be a single metric if it is part of direct instrumentation, or many metrics if it is pulling metrics from another system.
 
 <a name=conf></a>
-## Configuring Prometheus
+## [Setting up Prometheus](https://www.youtube.com/watch?v=4WWW2ZLEg74)
+```c
+///////////Install and run prometheus/////////////
+> on WSL
+$ wget https://prometheus.io/download/prometheus-2.34.0.linux-amd64.tar.gz
+$ tar -xvf prometheus-2.34.0.linux-amd64.tar.gz
+$ cd prometheus-2.34.0.linux-amd64/
+$ ./prometheus
+
+////////////Configure Prometheus to scrape a datasource//////////
+```
 Who and what need to be [scraped](#sc) is defined inside prometheus.yml file and at what interval.
