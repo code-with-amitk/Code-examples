@@ -18,7 +18,7 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 |Security,Identity,Compliance||[IAM,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,WAF,Sheild](Security),Artifact|
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Containers||[ECS,EKS,Fargate](Container)|
-|Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation](Configuration_Management)|
+|Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation, Outpost](Configuration_Management)|
 
 - Security
 ```
