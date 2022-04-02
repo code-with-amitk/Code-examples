@@ -1,12 +1,10 @@
 - [Global Infrastructure](#gi)
 - [Service Categories](#sc)
+- [How to interact with AWS Services](#how)
 
 <a name=gi></a>
 ## Global Infrastructure
-AWS runs in:
-- 69 Availabilty zones
-- 22 Geographic Regions
-- 190+ countries have 1 million+ customers
+AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 million+ customers
 
 <a name=sc></a>
 ### Service Categories
@@ -47,3 +45,15 @@ AWS runs in:
   j. Artifact: 
     - Is used for compliance and audit
 ```
+
+<a name=how></a>
+### How to interact with AWS Services
+#### 1. Management Console
+This is a web-based interface for accessing and managing AWS services.
+#### 2. AWS CLI
+Same as linux cli, you can type commands to start/configure AWS service(s). Example:
+```c
+$ aws ec2 run-instances --image-id xxx --count 1 --instance-type 1
+```
+#### 3. AWS SDK
+Calling AWS [REST API's](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST) from your application code
