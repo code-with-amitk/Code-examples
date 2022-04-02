@@ -16,9 +16,8 @@
    |AZ1 AZn |
    |--------|
 ```
-<img src=regions_and_az.JPG width=500 />
-
-<img src=north-america-political-map.jpg width=500 />
+|<img src=regions_and_az.JPG width=500 />|<img src=north-america-political-map.jpg width=500 />|
+|---|---|
 
 <a name=az></a>
 ### Availabilty zones
