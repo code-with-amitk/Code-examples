@@ -5,7 +5,7 @@
 
 <a name=az></a>
 ### Availabilty zones
-- 1 or more data center owned by AWS, collectively called AZ.
+- Single or Group of data centers owned by AWS is called AZ.
 - Naming convention of AZ is {Geographic location}{letter}. Example AZs for us-east are: us-east-1a, us-east-1b
 - Latency between AZ's is <10ms (Hence these AZs are purposely positioned to be that apart).
 ```c
@@ -16,7 +16,7 @@
 
 <a name=gr></a>
 ### [Geographic Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
-- Each Region has atleast **[2 AZ](#az)**
+- AWS region consists of multiple, isolated, physically seperated [availablity zones](#az)**
 - **Largest Region of AWS is US-EAST(ie North Virginia)**, new services becomes available here 1st.
 ```c
   -------US-east-----------
