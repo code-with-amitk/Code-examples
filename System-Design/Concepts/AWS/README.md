@@ -11,13 +11,14 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 
 |Area|What|Services|
 |---|---|---|
-|Compute|Provides compute capacity on cloud.|[EC2, LightSail,Lambda, ELB](/System-Design/Concepts/AWS/compute/)|
-|Storage||[Object Store:S3, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](/System-Design/Concepts/AWS/Storage)|
+|Compute|Provides compute capacity on cloud.|[EC2, LightSail,Lambda, ELB](compute)|
+|Storage||[Object Store:S3, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
 |Databases||[RDS:Aurora, NoSQL:DynamoDB, GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
 |Network||Cloudfront,VPC, Direct Connect, Load Balancing, Route 53|
-|Security,Identity,Compliance||[IAM,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,WAF,Sheild](/System-Design/Concepts/AWS/Security),Artifact|
-|Application Integration||[SNS,SQS](/System-Design/Concepts/AWS/Application_Integration)|
-|Containers||[ECS,EKS,Fargate](/System-Design/Concepts/AWS/Container/)|
+|Security,Identity,Compliance||[IAM,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,WAF,Sheild](Security),Artifact|
+|Application Integration||[SNS,SQS](Application_Integration)|
+|Containers||[ECS,EKS,Fargate](Container)|
+|Configuration Management|Provides tools for automation|[Elastic Beanstalk](Configuration_Management)|
 
 - Security
 ```
