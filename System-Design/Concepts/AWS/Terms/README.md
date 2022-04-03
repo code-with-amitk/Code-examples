@@ -67,16 +67,17 @@ Company's Maindatacenter
 - Person using GovCloud need to be US citizen and located in US only.
 
 <a name=vpc></a>
-### Amazon VPC(Virtual Private Cloud)
+## Amazon VPC(Virtual Private Cloud)
 This helps in provisioning an isolated section in AWS Cloud. Then we can have resources inside VPC
 <a name=sn></a>
-#### Subnets 
+### Subnets 
 - All resources are organized into subnets. Subnet is a section of a VPC that can contain resources(eg: Amazon EC2 instances)
 - **Types of Subnets:**
    - **1. Public:** contain resources that need to be accessible by the public, such as an online store’s website.
    - **2. Private:** contain resources that should be accessible only through private network, such as a DB that contains customers’ personal information.
-### N/W ACL
-- Every packet that comes to subnet is checked against N/W ACL. These are stateless ie every packet is checked against a rule, no state is maintained.
+#### Network ACL
+- Every packet that comes to subnet is checked against N/W ACL. N/W ACL is 
+- These are stateless ie every packet is checked against a rule, no state is maintained.
 - Similar work is done by *[Security Group](/System-Design/Concepts/AWS/compute/EC2_Elastic_Compute_Cloud)* but SG are stateful.
 
 ||N/W ACL|Security Group|
@@ -93,7 +94,7 @@ To allow public traffic from internet to access VPC, a IG is needed to be attach
    |--------------Company-A VPC---------------|
    | |-----subnet1-------|                    |
    | | resource1         |                    |
-   | | EC2               |----------------Internet G/W
+   | | EC2            N/W ACL ------------ Internet G/W
    | |                   |                    |
    | |-------------------|                    |
    |                                          |
