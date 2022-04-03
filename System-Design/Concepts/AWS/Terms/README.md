@@ -89,7 +89,7 @@ This helps in provisioning an isolated section in AWS Cloud. Then we can have re
 |Stateful|no|yes|
 |Outbound traffic checking|yes|no|
 
-<img src=ACL_security_group.JPG width=500 />
+<img src=ACL_security_group.JPG width=600 />
 
 <a name=ig></a>
 #### Internet gateway
