@@ -2,6 +2,7 @@
 - [Geographic Region](#gr)
 - [Edge Location](#el)
 - [GovCloud](#gc)
+- [Amazon VPC(Virtual Private Cloud)](#vpc)
 
 <a name=az></a>
 ### Availabilty zones
