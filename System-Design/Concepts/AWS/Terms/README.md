@@ -72,8 +72,16 @@ This helps in provisioning an isolated section in AWS Cloud. Then we can have re
 <a name=sn></a>
 #### Subnets 
 All resources are organized into subnets. Subnet is a section of a VPC that can contain resources(eg: Amazon EC2 instances)
-- **N/W ACL:** Every packet that comes to subnet is checked against N/W ACL.
-- **Security Group:** Whenever an EC2 instance is created a security group is created with it. All networks,ports in created instance are blocked.
+- **N/W ACL:**
+   - Every packet that comes to subnet is checked against N/W ACL. These are stateless ie every packet is checked against a rule, no state is maintained.
+   - Similar work is done by *[Security Group](/System-Design/Concepts/AWS/compute/EC2_Elastic_Compute_Cloud)* but SG are stateful.
+
+||N/W ACL|Security Group|
+||---|---|
+|What|Firewall at boundary of subnet|Firewall at boundary of EC2 instance|
+|Stateful|no|yes|
+|Outbound traffic checking|yes|no|
+
 <a name=ig></a>
 #### Internet gateway
 To allow public traffic from internet to access VPC, a IG is needed to be attached to VPC.
