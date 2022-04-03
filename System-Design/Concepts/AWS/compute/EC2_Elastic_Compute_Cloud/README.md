@@ -1,6 +1,6 @@
 **EC2(Elastic Compute Cloud)**
 - [Security Group](#sg)
-- [EC2 Instance=VM Types](#it)
+- [EC2 Instance Types](#it)
 - [EC2 Pricing](#p)
 - [EC2 Auto scaling](#as)
   - [Auto Scaling group](#asg)
@@ -9,17 +9,17 @@
 
 
 ## EC2(Elastic Compute Cloud)
-- This is server hosted in AWS cloud, where we can create EC2 instances(or VMs). Helpful in scaling up/down.
-  - With EC2, we can spun/delete instances when needed/not needed & pay only for the compute time.
+- This is **VM** created in AWS cloud. EC2 can be spun/deleted when needed & pay only for the compute time.
 - **without EC2(Old world):** if we need an new server, 1st decide how big server is required(how many cores etc), purcharse, installation around 2+ months
 
 <a name=sg></a>
 ### EC2 Security Groups
-- Whenever an EC2 instance is created a security group is created with it. All networks,ports in created instance are blocked.
-- SG is stateful ie it remembers the state and allows/blocks packet based on prev/next state.
+- Whenever an EC2 instance is created a SG is also created for EC2. A security group is a virtual firewall that controls inbound and outbound traffic for an Amazon EC2 instance.
+- By default, a SG denies all inbound traffic and allows all outbound traffic. You can add custom rules to configure which traffic to allow or deny.
+- SG is **stateful** ie they remember previous decisions made for incoming packets. if a packet is allowed into EC2, its not checked when its going out.
 - while [Network ACL in Amazon VPC](/System-Design/Concepts/AWS/Terms/README.md#vpc) does same job but are stateless.
 - All outgoing traffic is allowed from SG.
-    
+
 <a name=it></a>
 ### EC2 instance types
 - EC2 instance is VM
