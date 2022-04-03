@@ -3,6 +3,10 @@
 - [Edge Location](#el)
 - [GovCloud](#gc)
 - [Amazon VPC(Virtual Private Cloud)](#vpc)
+   - [Subnets](#sn)
+   - [Internet gateway](#ig)
+   - [Virtual private gateway](#vpg)
+   - [AWS Direct Connect](#adc)
 
 <a name=az></a>
 ### Availabilty zones
@@ -61,3 +65,54 @@ Company's Maindatacenter
 ### GovCloud Region
 - [Geographic Region](#gr) for highly sensative data storage. Eg: US DOD, US DOJ(dept of justice) etc. Presently only 2 GovCloud Regions: US-West, US-East.
 - Person using GovCloud need to be US citizen and located in US only.
+
+<a name=vpc></a>
+### Amazon VPC(Virtual Private Cloud)
+This helps in provisioning an isolated section in AWS Cloud. Then we can have resources inside VPC
+<a name=sn></a>
+#### Subnets 
+All resources are organized into subnets. Subnet is a section of a VPC that can contain resources(eg: Amazon EC2 instances)
+- **N/W ACL:** Every packet that comes to subnet is checked against N/W ACL.
+- **Security Group:** Whenever an EC2 instance is created a security group is created with it. All networks,ports in created instance are blocked.
+<a name=ig></a>
+#### Internet gateway
+To allow public traffic from internet to access VPC, a IG is needed to be attached to VPC.
+```c
+<-------------------------------AWS Datacenter--------------------------------->
+   |--------------Company-A VPC---------------|
+   | |-----subnet1-------|                    |
+   | | resource1         |                    |
+   | | EC2               |----------------Internet G/W
+   | |                   |                    |
+   | |-------------------|                    |
+   |                                          |
+   |------------------------------------------|
+```
+<a name=vpg></a>
+#### Virtual private gateway
+if VPC have some private reources(Eg: EC2 instances) then VPG is used to access them
+```c
+<-------------------------------AWS Datacenter------->
+   |--------------Company-A VPC---------------|
+   | |-----subnet1-------|                    |
+   | | pvt resource1(DB) |                    |
+   | | EC2          Virtual Pvt G/W ----------- VPN Connection ------- (Internet) ------ Client
+   | |                   |                    |
+   | |-------------------|                    |
+   |                                          |
+   |------------------------------------------|
+```
+<a name=adc></a>
+#### AWS Direct Connect
+This helps to establish a dedicated private connection between Client's datacenter and a VPC. ie this is direct line.
+```c
+<------------------AWS Datacenter------->
+   |--------------Company-A VPC--------|
+   | |-----subnet1-------|             |
+   | | pvt resource1(DB) |             |
+   | | EC2          Virtual Pvt G/W    |     AWS Direct Connect --- (Client Datacenter)
+   | |                   |             |
+   | |-------------------|             |
+   |                                   |
+   |-----------------------------------|
+```
