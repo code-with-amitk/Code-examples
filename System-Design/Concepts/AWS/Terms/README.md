@@ -83,11 +83,11 @@ This helps in provisioning an isolated section in AWS Cloud. Then we can have re
 #### Internet gateway
 To allow public traffic from internet to access VPC, a IG is needed to be attached to VPC.
 ```c
-<-------------------------------AWS Datacenter--------------------------------->
+<--------------------AWS Datacenter------------------>
    |--------------Company-A VPC---------------|
    | |-----subnet1-------|                    |
    | | resource1         |                    |
-   | | EC2            N/W ACL ------------ Internet G/W
+   | | EC2            N/W ACL ------------ Internet G/W ------ {internet}
    | |                   |                    |
    | |-------------------|                    |
    |                                          |
