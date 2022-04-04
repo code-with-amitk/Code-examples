@@ -9,7 +9,7 @@
 <a name=p></a>
 ### Longest Common Subsequence
 - Given two strings str1,str2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
-- [What is Subsequence](..). A common subsequence of two strings is a subsequence that is common to both strings.
+- [What is Subsequence](/DS_Questions/Questions/Strings/SubString_SubSequence#s)
 ```c
 Input: text1 = "abcde", text2 = "ace" 
 Output: 3  
