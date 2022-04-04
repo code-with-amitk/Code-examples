@@ -136,61 +136,25 @@ macro_rules! add{
   Code as input(TokenStream) --> | Procedural Macro |
                                  | operator on code | --> Code as output(TokenStream)
 ```
-
-||Code|
-|---|---|
-|Function|```rs
-#[proc_macro]						<<<<<<<<<<< proc_macro
+### Types of Proc Macros
+#### 2a. Function
+```rs
+#[proc_macro]
 pub fn fun(input: TokenStream) -> TokenStream {
     TokenStream::new()
 }
-
-test() {                 //Usage
-	fun!(be quick; time is mana);
-}
-```|
-|Attribute|```rs
-#[proc_macro_attribute]					<<<<<<<<<<< extra _attribute
-pub fn fun(input: TokenStream, annotated_item: TokenStream) -> TokenStream {
+```
+#### 2b. Attribute
+```rs
+#[proc_macro_attribute]
+pub fn fun(input: TokenStream, attr: TokenStream) -> TokenStream {
     TokenStream::new()
 }
-```|
-
-- _2a. function-like_
+```
+#### 2c. Derive
 ```rs
-#[proc_macro]						<<<<<<<<<<< proc_macro
+#[proc_macro_derive(MyTriat)]
 pub fn fun(input: TokenStream) -> TokenStream {
     TokenStream::new()
 }
-
-test() {                 //Usage
-	fun!(be quick; time is mana);
-}
-```
-- _2b. attribute_
-```rs
-#[proc_macro_attribute]					<<<<<<<<<<< extra _attribute
-pub fn fun(input: TokenStream, annotated_item: TokenStream) -> TokenStream {
-    TokenStream::new()
-}
-```
-- _2c. derive macro_
-```rs
-#[derive(TriatName)]
-struct A{
-}
-
-#[proc_macro_derive(MyDerive)]				<<<<<<<<<<<< extra _derive
-pub fn fun(annotated_item: TokenStream) -> TokenStream {
-    TokenStream::new()
-}
-```
-<a name=a1></a>
-### 2a. Function-like macros
-```rs
-```
-<a name=a2></a>
-### 2b. Attribute Like Macros
-Works on functions also with structs, enums.
-```rs
 ```
