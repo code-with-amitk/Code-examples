@@ -13,16 +13,16 @@
   - *1.* To send packet across network we need IP Address and only DNS can provide.
   - *2.* No need for memorizing IP addresses
 - **Disadv**
-  - *1.* Registry only controlled by [ICANN](/Networking/OSI-Layers/Layer5/Protocols/DNS/Terms/Domain_Name) which can become bais to some country/organization.
-  - *2.* [DNS Messages](/Networking/OSI-Layers/Layer5/Protocols/DNS/DNS_Messages) does not have information of client asking the information, hacker can bisect the message and send his own message.
-  - *3.* [TLD's](/Networking/OSI-Layers/Layer5/Protocols/DNS/Terms/Domain_Name) can be bottleneck.
+  - *1.* Registry only controlled by [ICANN](Terms) which can become bais to some country/organization.
+  - *2.* [DNS Messages](DNS_Messages) does not have information of client asking the information, hacker can bisect the message and send his own message.
+  - *3.* [TLD's](Terms) can be bottleneck.
 
 ### Name resolution
 The process of looking up a hostname and finding corresponding IP address.
 
 <a name=fl></a>
 #### Forward Lookup (hostname to IP conversion)
-- [DNS Query](../DNS_Messages), [Recursive DNS Server](../Terms/DNS_Queries/), [Root_Nameserver](../Terms/Name_Server), [Authoritative_NameServer](../Terms/Name_Server)
+- [DNS Query](DNS_Messages), [Recursive DNS Server, Root Nameserver, Authoritative NameServer](Terms)
 <img src=forward-lookup.JPG width=1000 />
 
 <a name=rl></a>
@@ -32,13 +32,3 @@ The process of looking up a hostname and finding corresponding IP address.
 
 - RECURSIVE DNS SERVER? Recursive means referring to itself. This DNS server caches the DNS records and sends DNS query further if record is not found.
 - AUTHORITATIVE DNS SERVER? This server holds information about domain(eg: google.com) and delivers it to internet.
-
-
-- **Terms:** 
-  - [DNS Queries(Recursive, Iterative)](Terms/DNS_Queries)
-  - [DNS Zones: Primary, Secondary, Stub](Terms/DNS_Zone)
-  - [Domain/Domain Name: TLD(Top Level Domain), 2nd-Level-Domain, 3rd-Level-Domain](Terms/Domain_Name)
-  - [Nameservers: Primary, Secondary, Root Nameserver, Authoritative](Terms/Name_Server)
-  - [Resource Records, DNS Zone File](Terms/Resource_Records)
-- **[Advantages_Disadv_of_DNS](Advantages_Disadv_of_DNS)**
- 
