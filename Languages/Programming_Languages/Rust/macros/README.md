@@ -137,9 +137,24 @@ macro_rules! add{
                                  | operator on code | --> Code as output(TokenStream)
 ```
 
-||Function|Attribute|Derive Macro|
-|---|---|---|---|
-|Annotated with|```c #[proc_macro]pub fn fun(input: TokenStream) -> TokenStream {..}```|```rs #[proc_macro_attribute] pub fn fun(attr:TokenStream, input: TokenStream) -> TokenStream {..} ```|```rs #[proc_macro_derive(MyDerive)] pub fn fun(input: TokenStream) -> TokenStream {..} ```|
+||Code|
+|---|---|
+|Function|```rs
+#[proc_macro]						<<<<<<<<<<< proc_macro
+pub fn fun(input: TokenStream) -> TokenStream {
+    TokenStream::new()
+}
+
+test() {                 //Usage
+	fun!(be quick; time is mana);
+}
+```|
+|Attribute|```rs
+#[proc_macro_attribute]					<<<<<<<<<<< extra _attribute
+pub fn fun(input: TokenStream, annotated_item: TokenStream) -> TokenStream {
+    TokenStream::new()
+}
+```|
 
 - _2a. function-like_
 ```rs
