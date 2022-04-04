@@ -45,20 +45,8 @@
 
 <a name=el></a>
 ### Edge Location
-- These are also Datacenters but located very near to customer, wrt to actual datacenter which hosts the customer's data. Example:
-   - Suppose Company's main datacenter is Brazil and customer is in China. Getting data from Brazil will cause huge latency.
-   - Instead required data is cached near to customer's location(in local datacenter) from where Amazon CloudFront pulls and delivers the data.
-```c
-                               |-------------China-----------|
-                               |       |-data-> Customer     |
-                               |       |                     |
-                               |  cloudfront                 |
-                               |     /\                      |
-                               | Local-datacenter(CDN)       |
-                               |-----------------------------|
-   Brazil
-Company's Maindatacenter
-```
+These are also Datacenters but located very near to customer, wrt to actual datacenter which hosts the customer's data. [Cloudfront](/System-Design/Concepts/AWS/Network/CloudFront) pulls the data and pushes to customer.
+
 **[WORLD MAP](https://geology.com/world/world-map.shtml)**
 
 <a name=gc></a>
