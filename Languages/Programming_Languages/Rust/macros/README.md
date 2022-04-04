@@ -110,7 +110,7 @@ fn main(){
     println!("{}",add_as!());               //500
 }
 ```
-##### [TT Muncher](https://danielkeep.github.io/tlborm/book/pat-incremental-tt-munchers.html) / Recursive Parsing of Arguments
+##### [TT(Token Tree) Muncher](https://danielkeep.github.io/tlborm/book/pat-incremental-tt-munchers.html) / Recursive Parsing of Arguments
 A "TT muncher" is a recursive macro that works by incrementally processing its input one step at a time.
 ```rs
 macro_rules! add{
@@ -131,14 +131,16 @@ macro_rules! add{
 ```
 <a name=pm></a>
 ## 2. Procedural macros (More advanced than declarative)
-- operate on the abstract syntax tree (AST)
-- Procedural macros are functions that TAKE CODE as input, and returns Code. Similar to Decorators in Python.
+- operate on the abstract syntax tree (AST).Procedural macros are functions that TAKE CODE as input, and returns Code. Similar to Decorators in Python.
 ```c
   Code as input(TokenStream) --> | Procedural Macro |
                                  | operator on code | --> Code as output(TokenStream)
 ```
 
-**Types of Procedural macros:** To mark a function as a procedural macro, we need to annotate it with the **`#[proc_macro]`** attribute.
+||Function|Attribute|Derive Macro|
+|---|---|---|---|
+|Annotated with|```c test```|||
+
 - _2a. function-like_
 ```rs
 #[proc_macro]						<<<<<<<<<<< proc_macro
