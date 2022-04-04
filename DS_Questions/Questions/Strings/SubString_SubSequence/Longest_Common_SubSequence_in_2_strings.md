@@ -1,7 +1,8 @@
 **[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)**
 - [Problem](#p)
-- [Approach-1, Recursion](#a1)
-- **Approach-2, Dynamic Programming**
+- [Approach-1, Recursion, O(n<sup>2</sup>)](#a1)
+- [Approach-2, Iteration, O(mn)](#a2)
+- **Approach-3, Dynamic Programming**
   - [Logic](#l2)
   - [Logic of Filling values in dp Array](#l21)
   - [Code](#c2)
@@ -64,7 +65,59 @@ int main() {
 }
 ```
 
-### Approach-2, [Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
+<a name=a2></a>
+### Approach-2, Iteration, Brute Force. O(mn)
+#### Logic
+- Check every occurance of char from str1 in st2 using 2 for loops
+```c
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    string lcs(string s1, string s2) {
+        int size1 = s1.size(), size2 = s2.size();
+        string temp1, temp2;
+        if (!size1 || !size2)
+            return temp2;
+        int k = 0, pos = 0;
+        int i = 0;
+        for (int i=k; i<size1; ++i) {
+            for (int j=pos; j<size2; ++j){
+
+                if (s1[i] == s2[j]){
+                    temp1 += s1[i];
+                    pos = j+1;
+                    if (j == size2-1){
+                        if (temp1.size() > temp2.size())
+                            temp2 = temp1;
+                        temp1.clear();
+                        k++;
+                        i = k-1;
+                        pos = 0;
+                    }
+                    break;
+                }
+            }
+        }
+        if (temp1.size() > temp2.size())
+            temp2 = temp1;
+        cout << temp2;
+        return temp2;
+    }
+};
+
+int main() {
+    string s1 = "aggtab", s2 = "gxtxaybg";
+    Solution o;
+    string out = o.lcs(s1,s2);
+    cout << out;
+}
+```
+
+<a name=a3></a>
+### Approach-3, [Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
 This question has overlapping subproblem & will be solved using DP.
 
 <a name=l2></a>
