@@ -5,6 +5,7 @@
 - [EC2 Auto scaling](#as)
   - [Auto Scaling group](#asg)
   - [Auto scaling Approaches](#app)
+- [EC2 Storage](#s)
 
 
 
@@ -70,3 +71,12 @@ Min/Max number of EC2 instances that would spun up. Configuration:
 - **1. Dynamic scaling:** As load increases spun up more instances.
 - **2. Predictive scaling:** Predict the need in advance and scale as per prediction.
 
+<a name=s></a>
+### EC2 Storage (called Instance storage)
+- Since EC2 is a VM, it has a storage(Hard Disk) associated with it called Instance Storage.
+- This is [Block level storage](/System-Design/Concepts/Databases#obf) and has lifespan same as EC2 instance. ie if EC2 instance goes away storage also goes away.
+- [Permanent Solution = EBS](/System-Design/Concepts/AWS/Storage/EBS)
+
+||Instance Storage|EBS|
+|---|---|---|
+|Permanent|No|Yes|
