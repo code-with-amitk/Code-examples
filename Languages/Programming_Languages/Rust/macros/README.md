@@ -139,7 +139,7 @@ macro_rules! add{
 
 ||Function|Attribute|Derive Macro|
 |---|---|---|---|
-|Annotated with|```c test```|||
+|Annotated with|```c #[proc_macro]pub fn fun(input: TokenStream) -> TokenStream {..}```|```rs #[proc_macro_attribute] pub fn fun(attr:TokenStream, input: TokenStream) -> TokenStream {..} ```|```rs #[proc_macro_derive(MyDerive)] pub fn fun(input: TokenStream) -> TokenStream {..} ```|
 
 - _2a. function-like_
 ```rs
