@@ -1,8 +1,8 @@
 **DNS / Domain Name Service**
 - [Adv, Disadv of DNS](#ad)
 - Name Resolution
-  - [Forward Lookup](#fl)
-  - [Reverse Lookup](#rl)
+  - [1. Forward Lookup](#fl)
+  - [2. Reverse Lookup](#rl)
 
 ## DNS / Domain Name Service / Port 53
 - Protocol for converting hostname to IP address and viceversa. 
@@ -21,12 +21,12 @@
 The process of looking up a hostname and finding corresponding IP address.
 
 <a name=fl></a>
-#### Forward Lookup (hostname to IP conversion)
+#### 1. Forward Lookup (hostname to IP conversion)
 - [DNS Query](DNS_Messages), [Recursive DNS Server, Root Nameserver, Authoritative NameServer](Terms)
-<img src=forward-lookup.JPG width=1000 />
+<img src=forward-lookup.JPG width=900 />
 
 <a name=rl></a>
-#### Reverse Lookup (IP to hostname)
+#### 2. Reverse Lookup (IP to hostname)
 - **Why?** Case-1: Spam received in mailbox, From-IP header is parsed. Now Email client wants to know from where this Email arrived? Is this IP Address authentic or spam. So Machine enquires ISP for reverse query, giving IP address and asking for URL(if exists)).
 <img src=reverse-lookup.png width=800 />
 
