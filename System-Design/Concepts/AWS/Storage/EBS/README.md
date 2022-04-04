@@ -1,7 +1,14 @@
 **EBS / Elastic Block Storage**
+- [Backup](#bu)
 
 ### EBS
-This is persistent/permanent block level storage volumes(ie hard disks) & can be attached to EC2 instances.
+- This is persistent/permanent block level storage volumes(ie hard disks) & can be attached to EC2 instances.
+
+<a name=bu></a>
+#### Backup of Data (called snapshot)
+- We can take backup of data present on EBS. Each backup is called Snapshot.
+- Snapshots are incremental, ie data which is changed between snapshots are only stored not complete data again.
+<img src=ebs_snapshots.JPG width=500 />
   
 #### EBS Use Cases
   - OS - Used for Boot/Root Volume, secondary Volumes
