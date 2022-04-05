@@ -2,7 +2,9 @@
 - [Backup](#bu)
 
 ### EBS
-This is solid state persistent/permanent block level storage volumes(ie hard disks) & can be attached to EC2 instances.
+- This is solid state persistent/permanent block level storage volumes(ie hard disks) & can be attached to EC2 instances.
+- Stores data in Single Availabilty zone. Both EC2 and EBS volume should be in same Availabilty zone.
+- [EFS vs EBS](/System-Design/Concepts/AWS/Storage/File/EFS/README.md#vs)
 
 <a name=bu></a>
 #### Backup of Data (called snapshot)
