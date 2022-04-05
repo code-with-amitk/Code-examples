@@ -1,7 +1,7 @@
 - [Global Infrastructure](#gi)
 - [Service Categories](#sc)
 - [How to interact with AWS Services](#how)
-- [Terms:Availabilty zones, Geographic Region, Edge Location, GovCloud, VPC(Virtual Private Cloud), Subnets, Internet gateway, Virtual private gateway, AWS Direct Connect, Security Groups](Terms)
+- [Terms:Availabilty zones, Geographic Region, Edge Location, GovCloud, VPC(Virtual Private Cloud), Subnets, Internet gateway, Virtual private gateway, AWS Direct Connect, Security Groups, serverless](Terms)
 
 <a name=gi></a>
 ## Global Infrastructure
