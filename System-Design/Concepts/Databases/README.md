@@ -12,7 +12,7 @@
 |DB | Object | Block | File |
 |---|---|---|---|
 |Examples | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS |
-|Stores |objects{ID,metaData+data}| raw blocks(xfs,ext4 etc) | data in file, with limited meta-data |
+|Stores |objects{unique_key,metaData+data(image,video)}| raw blocks(xfs,ext4 etc). Only part that changed need to be updated. | data in file, with limited meta-data |
 |Scaling | Easy | Tough(on high volume becomes unmanagable) | |
 |Suitable for |Static data(docs,photos,songs,videos) | | |
 |Consistency | Eventual consistent | Strongly consistent| |
