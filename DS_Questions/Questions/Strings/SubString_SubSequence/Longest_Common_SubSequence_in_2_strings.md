@@ -221,7 +221,9 @@ _2._ if character in s1 and s2 are same, Calculate LCS using below formula:
 #### Code
 ```c++
  int lcs( string& str1, string& str2, int m, int n ) {
-  vector<vector<int> > dp(m+1, vector<int>(n+1,0));               //1
+    int m = s1.size();
+    int n = s2.size();
+    vector<vector<int> > dp(m+1, vector<int>(n+1,0));               //1
   
     for (int i = 1; i <= m; i++) {
         for (int j = 1; j <= n; j++) {
