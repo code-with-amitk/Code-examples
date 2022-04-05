@@ -2,7 +2,7 @@
 - [Backup](#bu)
 
 ### EBS
-- This is persistent/permanent block level storage volumes(ie hard disks) & can be attached to EC2 instances.
+This is solid state persistent/permanent block level storage volumes(ie hard disks) & can be attached to EC2 instances.
 
 <a name=bu></a>
 #### Backup of Data (called snapshot)
