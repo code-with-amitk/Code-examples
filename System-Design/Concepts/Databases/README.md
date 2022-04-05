@@ -12,11 +12,13 @@
 |DB | Object | Block | File |
 |---|---|---|---|
 |Examples | Amazon S3,ceph, openstack swift    | Amazon EBS, SAN-Arrays   |  Amazon EFS |
-|Stores |objects{unique_key,metaData+data(image,video)}| raw blocks(xfs,ext4 etc). Only part that changed need to be updated. | data in file, with limited meta-data |
+|Stores |Object{unique_key,metaData+data}| raw blocks(xfs,ext4 etc). Only part that changed need to be updated. | data in file, with limited meta-data |
+|Disadv|When ever there is small change in object(eg:video), whole object needed to be reuploaded. if object is 80GB then lot of time wasted in uploading|||
+|Adv||Only part that is changed need to uploaded. if block is 80GB and small part is changed, then uploading takes very less time||
 |Scaling | Easy | Tough(on high volume becomes unmanagable) | |
-|Suitable for |Static data(docs,photos,songs,videos) | | |
+|Suitable for |objects can be: images,videos,text files,docs,photos,songs |files,docs | |
 |Consistency | Eventual consistent | Strongly consistent| |
-|Use cases | Not good for transactional data(bcoz of eventual consistency)| | |
+|Use cases |Occasional Changes & Storage|Making large RW changes in file and storing frequently.| |
 
 
 <a name=sn></a>
