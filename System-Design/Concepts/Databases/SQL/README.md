@@ -1,18 +1,9 @@
-**SQL DB**
-- **Examples**
-  - [1. Aurora](#a)
-- **Source code**
-  - [1. Connecting C Program to MySQL DB](#s1)
+**Source code**
+- [1. Connecting C Program to MySQL DB](#s1)
 
 
 ## SQL DB
 - **Stores data:** Using [B+ Tree](DS_Questions/Data_Structures/Trees/M-Ary_Trees/B+Tree), stores sorted dictionary 
-
-## Examples
-<a name=a></a>
-### 1. Aurora
-5 five times better performance than MySQL. 
-- **Scaling** Maintains 2 copies of your data in each availability zone with a minimum of 3 availability zones.
 
 ## Source Code
 ### 1. Connecting C Program to MySQL DB
