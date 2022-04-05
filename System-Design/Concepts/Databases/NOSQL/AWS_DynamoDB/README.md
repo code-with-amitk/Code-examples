@@ -1,5 +1,7 @@
+**Dynamo DB**
+
 ## Dynamo DB
-- Provides single-digit millisecond retrieval at any scale, stored on **SSD.**
+- This is [serverless](/System-Design/Concepts/AWS/). Provides single-digit millisecond retrieval at any scale, stored on **SSD.**
 - Supports both: document data model, key value data model
 - Read consistent by default. Consistency across all copies of data is usually reached within a second
 - 
