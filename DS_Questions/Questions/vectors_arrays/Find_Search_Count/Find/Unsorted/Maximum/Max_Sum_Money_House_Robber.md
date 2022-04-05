@@ -1,4 +1,4 @@
-**House Robber / MMaximum sum such that no two elements are adjacent**
+**House Robber / Maximum sum such that no two elements are adjacent**
 - [Approach-1, Recursion](#a1)
 - [Approach-2, Dynamic Programming](#a2)
   - [Logic](#l)
