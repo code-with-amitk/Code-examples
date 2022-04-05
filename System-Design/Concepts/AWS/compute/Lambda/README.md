@@ -4,9 +4,7 @@
 
 ## Lambda
 <a name=sl></a>
-### Lambda is Serverless Architecture?
-- Unlike [EC2]() which is a VM which you need to configure and run code on it. Lambda is serverless that means you do not need to create VM.
-- You can directly upload your code(webservice) and create a Lamdba function.
+### Lambda is [Serverless](/System-Design/Concepts/AWS/) Architecture
 - Some cloud providers call this as FaaS(Function as a service).
 - **Advantages:**
   - *1. Lambda takes care of Scaling:* if load increases Lambda will provision new machines and run code there.
