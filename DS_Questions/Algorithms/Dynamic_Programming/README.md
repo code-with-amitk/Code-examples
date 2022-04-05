@@ -5,7 +5,7 @@
   - [2. Bottom Up](#bu)
 - [DP Template](#tem)
 - Examples
-  - [House Robber](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Money_House_Robber.md)
+  - [House Robber](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Sum_Money_House_Robber.md)
   - [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md)
   - [Fibonacci Series](/DS_Questions/Questions/Number/Fibonacci_Number.md)
   - [Minimum Cost Climbing Stairs](/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md)
