@@ -12,7 +12,7 @@
 - Given two strings str1,str2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
 - [What is Subsequence](/DS_Questions/Questions/Strings/SubString_SubSequence#s)
 ```c
-Input: text1 = "abcde", text2 = "ace" 
+Input: s1 = "abcde", s2 = "ace" 
 Output: 3  
 Explanation: LCS is "ace" and its length is 3.
            
@@ -118,10 +118,13 @@ int main() {
 
 <a name=a3></a>
 ### Approach-3, [Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
-This question has overlapping subproblem & will be solved using DP.
-
+#### [How this is DP Problem?](/DS_Questions/Algorithms/Dynamic_Programming#i)
+- _1. Overlapping subproblem:_ Do we need to solve a problem again and again? Yes
+- _2. This is optimization problem:_ Optimization problem involves finding 1 best solution out of many.
 <a name=l2></a>
-#### Logic
+#### [Logic = DP Template](/DS_Questions/Algorithms/Dynamic_Programming#tem)
+- _1. Define State:_ state = LCS till this point.
+- _2. Function to return State:_ 
 - _1._ As in DP, Take 2-D array `dp[s1.size()+1][s2.size()+1]` & init=0. This array represents longest Common Subsequence till that element.
 ```c
 s1="xbdy", s2="abcdef". LCS=bd
