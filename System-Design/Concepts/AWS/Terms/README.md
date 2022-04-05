@@ -127,3 +127,4 @@ This helps to establish a dedicated private connection between Client's datacent
 ### Serverless
 - Unlike [EC2](/System-Design/Concepts/AWS/) which is a VM which you need to create and run code on it. Serverless means you do not need to create VM. You can directly upload your code(to webservice) and it will start running.
 - That means server(or EC2) instance is already created by AWS for you.
+- Examples of serverless Architectures: Lambda, DynamoDB, Fargate
