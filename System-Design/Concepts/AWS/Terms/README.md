@@ -7,6 +7,7 @@
    - [Internet gateway](#ig)
    - [Virtual private gateway](#vpg)
    - [AWS Direct Connect](#adc)
+- [Serverless](#sl)
 
 <a name=az></a>
 ### Availabilty zones
@@ -121,3 +122,8 @@ This helps to establish a dedicated private connection between Client's datacent
    |                                   |
    |-----------------------------------|
 ```
+
+<a name=sl></a>
+### Serverless
+- Unlike [EC2](/System-Design/Concepts/AWS/) which is a VM which you need to create and run code on it. Serverless means you do not need to create VM. You can directly upload your code(to webservice) and it will start running.
+- That means server(or EC2) instance is already created by AWS for you.
