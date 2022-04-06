@@ -1,6 +1,8 @@
 - **Crates**
   - [1. rand](#rand)
   - [2. Prometheus(Pull based)](#pro)
+  - [3. proc macro](#pm)
+  - [4. proc macro](#pm2)
 - **Packages**
   - [Workspace](#ws)
 - **Modules**
@@ -146,6 +148,18 @@ default 1
 # TYPE custom counter
 custom{mykey="myvalue"} 42
 ```
+
+<a name=pm></a>
+### 3. [proc_macro crate](https://doc.rust-lang.org/proc_macro/)
+- When we write [macros](/Languages/Programming_Languages/Rust/macros) in rust, we need to create a library which exposes macros. This library is provided by proc_macro.
+- Due to this library only, we can define `function macros #[proc_macro], attribute macro #[proc_macro_attribute], derive macro#[proc_macro_derive]`.
+
+<a name=pm2></a>
+### 4. [proc_macro2 crate](https://doc.rust-lang.org/proc_macro2/)
+- Wrapper around [proc_macro crate](#pm).
+- Purposes of proc_macro2 crate:
+  - _1._ Bring proc_macro functionality to main.rs, build.rs
+  - _2. Make procedural macros unit testable:_ proc_macros are not unit testable, proc_macro2 are.
 
 ## Packages
 1 package is one or more crates that provide a set of functionality. A package contains a [Cargo.toml](../Cargo_BuildSystem) file that describes how to build crates.
