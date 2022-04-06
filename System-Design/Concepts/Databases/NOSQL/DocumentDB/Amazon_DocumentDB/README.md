@@ -1,8 +1,8 @@
-**DocumentDB**
+**AWS DocumentDB**
 - [Architecture](#ar)
 
 ### DocumentDB
-Data is stored in form of documents(XML, JSON, binary).
+Data is stored in form of documents(XML, JSON, binary). Service that supports MongoDB workloads.
 ```js
 //Example storing: json data
 {
