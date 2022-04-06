@@ -13,7 +13,7 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 |Area|What|Services|
 |---|---|---|
 |Compute|Provides compute capacity on cloud.|[EC2, LightSail,Lambda, ELB](compute)|
-|Cache|Caching layer before DB|[ElasticCache](/System-Design/Concepts/Cache/DB_Caches/)|
+|Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Storage||[Object Store:S3, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB, GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
