@@ -4,7 +4,7 @@
   - [2. Function returning struct](#return_struct)
   - [3. Function Taking struct as argument](#take_struct)
 - [Associated Functions / impl block](#ass)
-- [Rust defined Functions, Inbuilt Functions](Inbuilt_Functions)
+- [Rust defined Functions, Inbuilt Functions: assert_eq, assert_ne, unwrap(), unwrap_or(), unwrap_or_else(), value_of(), writeln!()](Inbuilt_Functions)
 - [Closure / Lambda](#closure)
   - [Why](#why)
   - Properties
