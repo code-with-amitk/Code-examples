@@ -2,6 +2,9 @@
 - **Users**
   - [Root User](#r)
   - [IAM Users](#iu)
+- [IAM policies](#p)
+- [IAM Groups](#g)
+- [IAM Roles](#r)
 
 ## IAM
 - IAM enables you to manage access to AWS services and resources securely.   
