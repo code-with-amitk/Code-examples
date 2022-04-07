@@ -20,6 +20,7 @@
 - SG is **stateful** ie they remember previous decisions made for incoming packets. if a packet is allowed into EC2, its not checked when its going out.
 - while [Network ACL in Amazon VPC](/System-Design/Concepts/AWS/Terms/README.md#vpc) does same job but are stateless.
 - All outgoing traffic is allowed from SG.
+- [Security Group vs ACL](/System-Design/Concepts/AWS/Terms/README.md#vpc)
 
 <a name=it></a>
 ### EC2 instance types
