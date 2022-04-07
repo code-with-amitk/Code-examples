@@ -67,7 +67,7 @@ This helps in provisioning an isolated section in AWS Cloud. Then we can have re
 #### Network ACL
 - Every packet that comes into/goes from subnet is checked against N/W ACL. N/W ACL is a firewall which applies rules to incoming/outgoing packets and allows/denies them into subnet.
 - N/W ACLs are stateless ie every packet is checked against a rule, no state is maintained.
-- Similar work is done by *[Security Group](/System-Design/Concepts/AWS/compute/EC2_Elastic_Compute_Cloud)* but SG are stateful.
+- Similar work is done by *[Security Group](/System-Design/Concepts/AWS/compute/EC2)* but SG are stateful.
 - **ACL Types**
   - _1. Default ACL:_ Every AWS account has default N/W ACL. By default all inbound and outbound traffic are allowed, but you can modify it by adding your own rules.
   - _2. Custom ACL:_ We can create Custom ACL as well. By default all inbound and outbound traffic is denied until you add rules to specify which traffic to allow.
