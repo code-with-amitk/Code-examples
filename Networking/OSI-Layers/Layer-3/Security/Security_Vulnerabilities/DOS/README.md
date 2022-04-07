@@ -1,13 +1,12 @@
-- [What is DOS](#what)
+**DOS**
 - [Examples of DOS](#ex)
 
-<a name=what></a>
 ## DOS / Denial of Service
 - Intentional flooding/Overwhelming Web-Server's particular port. 
 - This is similar to Jamming gate of shop by Unwanted people, restricting genuine/Original customers from entering into shop. 
 
 <a name=ex></a>
-## Examples of DDOS
+### Examples of DDOS
 <a name=icmp></a>
 - **A. ICMP Flood/Ping Flood**
   - Overwhelming the server with ECHO_REQ messages from multiple devices(ddos). Server will respond and its CPU, resources consumed.
@@ -27,3 +26,4 @@
   - Slow reading is achieved by advertising a very small number for the TCP Receive Window size and at the same time by emptying clients' TCP receive buffer slowly. 
   - That naturally ensures a very low data flow rate.
 - **9. Ping of Death**
+- **10. UDP Flood:** Asking whether report from whether forecasting service and flodding whether report generator server.
