@@ -17,7 +17,7 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 |Storage||[Object Store:S3, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB, GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
-|Security,Identity,Compliance||[IAM,Organizations,SCP,OU,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,WAF,Sheild](Security),Artifact|
+|Security,Identity,Compliance||[IAM,Organizations,SCP,OU,Cognition,Guard Duty,Inspector,Macie,Certificate Manager,Cloud HSMHardware,Directory Services,WAF,Sheild, Artifact](Security)|
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation, Outpost](Configuration_Management)|
