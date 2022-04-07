@@ -26,4 +26,10 @@
   - Slow reading is achieved by advertising a very small number for the TCP Receive Window size and at the same time by emptying clients' TCP receive buffer slowly. 
   - That naturally ensures a very low data flow rate.
 - **9. Ping of Death**
-- **10. UDP Flood:** Asking whether report from whether forecasting service and flodding whether report generator server.
+- **10. UDP Flood:** Asking whether report from whether forecasting service and flodding AWS server with massive reports.
+```c
+  Bot                                         Whether_Forecasting_Service
+    ---------Give Whether report to 1.1.1.1 ------->
+                                                -------- Big Whether Report ------> AWS_App_Server(1.1.1.1)
+```
+- **11. Slow Loris Attack:** Deliberate Very slow client connects to server. Server holds sessions to sends data and client deliberalty delays and server resources are wasted.
