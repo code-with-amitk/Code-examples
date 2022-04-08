@@ -5,6 +5,7 @@
 
 ## AWS Organizations
 - This service helps to manage multiple AWS accounts from central location.
+- The default maximum number of accounts allowed for an organization is 4, but you can contact AWS Support to increase your quota.
 - Root user is created which is parent of all users.
 
 <a name=scp></a>
