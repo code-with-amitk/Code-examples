@@ -1,6 +1,7 @@
 **Pricing and Support**
 - [AWS Free Tier](#ft)
 - [Pricing Strategy](#ps)
+- [Billing & Cost Management dashboard](#bc)
 
 
 ## Pricing and Support
@@ -28,3 +29,9 @@ Services are divided into some categories and based on that falls into Tiers.
 |Lambda|Based on the number of requests your functions hit & time taken to run|Free (Requests=1 million, Compute Time=3.2 million sec)/month|
 |EC2|Time for which instance is running|Use spot instances to save upto 90%|
 |S3|1. size & number of objects stored 2. Features used(replication, analytics) 3. Requests made to S3||
+
+<a name=bc></a>
+### Billing & Cost Management dashboard
+- This is used to check/pay your AWS bill, monitor your usage, and analyze and control your costs.
+- Compare your current month-to-date balance with the previous month, and get a forecast of the next month based on current usage.
+  - View month-to-date spend by service, View Free Tier usage by service, Access Cost Explorer and create budgets, Purchase and manage Savings Plans, Publish AWS Cost and Usage Reports.
