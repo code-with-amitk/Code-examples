@@ -13,7 +13,7 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 |Area|What|Services|
 |---|---|---|
 |Application Integration||[SNS,SQS](Application_Integration)|
-|Pricing, Billing, Budget, Support| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support](Pricing_Billing_Budget_Support)|
+|Pricing, Billing, Budget, Support| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[EC2, LightSail,Lambda, ELB](compute)|
 |Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation, Outpost](Configuration_Management)|
