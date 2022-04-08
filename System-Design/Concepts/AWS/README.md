@@ -19,22 +19,16 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 |Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation, Outpost](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB, GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
-|Management,Monitoring|[CloudWatch, Cloudtrail, Trusted Advisor](Monitoring)|
-|Migration||[6Rs, CAF](Migration_Innovation)|
+|Management,Monitoring||[CloudWatch, Cloudtrail, Trusted Advisor](Monitoring)|
+|Migration||[6Rs, CAF, Snow](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Security,Identity,Compliance||[IAM, Organizations, SCP, OU, Cognition, GuardDuty, Inspector, Macie,C ertificate Manager, Cloud HSMHardware, Directory Services,WAF,Sheild, Artifact, KMS](Security)|
 |Storage||[Object Store:S3, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
 
 - Security
 ```
- a. IAM (Identity and Access Management)
-    - manage users and their levels of access to the AWS resources.
   b. Cognition
-    -  used for device authentication / O Auth service
-  c. Guard Duty
-    - monitor for malicious activity on your AWS account
-  d. Inspector
-    - Agent installed on your VM and you can run tests for security vulnerabilities
+    -  used for device authentication / O Auth service 
   e. Macie
     - check your entire suite of application for personally identifiable information
     - ML based service which discover, classify, and protect sensitive data in AWS provides dashboard provides alerts.
@@ -46,10 +40,6 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
     -  Integrate your Microsoft active directory services with AWS services
   h. WAF(Web Application Firewall)
     - sits in front of your web server and it mitigates against injection, cross scripting
-  i. Shield
-    - Prevents DDoS Attacks. Can be used with load balancers, cloud front, as well as Route 53
-  j. Artifact: 
-    - Is used for compliance and audit
 ```
 
 <a name=how></a>
