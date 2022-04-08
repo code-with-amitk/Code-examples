@@ -1,4 +1,7 @@
-### [Problem](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one)
+**Number of Steps to Reduce a Number in Binary Representation to One**
+
+
+### [Number of Steps to Reduce a Number in Binary Representation to One](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one)
 - Number "s" is given in binary representation. Return the number of steps to reduce it to 1 under the following rules:
  - If the current number is even, you have to divide it by 2.
  - If the current number is odd, you have to add 1 to it.
@@ -18,9 +21,9 @@ if last-bit=1. Indicates no is odd. Add 1.
 
 ### Logic
 ```c++
-Number  Last Bit  Operation Logic
-Even  0   Divide by 2 remove last bit
-Odd   1   Add 1   1+1= 0(at position),1(carry)
+Number  Last Bit  Operation     Logic
+Even       0      Divide by 2   remove last bit
+Odd        1      Add 1         1+1= 0(at position),1(carry)
 
 Example:
 Even: Divide by 2=remove last 0    a. 1000/2 = 8/2 = 4(100)  b.1110/2 = 14/2 = 7(111)
