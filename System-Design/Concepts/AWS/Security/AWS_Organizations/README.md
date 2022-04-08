@@ -4,7 +4,7 @@
 
 
 ## AWS Organizations
-- AWS Organizations is used to consolidate and manage multiple AWS accounts within a central location.
+- This service helps to manage multiple AWS accounts from central location.
 - Root user is created which is parent of all users.
 
 <a name=scp></a>
