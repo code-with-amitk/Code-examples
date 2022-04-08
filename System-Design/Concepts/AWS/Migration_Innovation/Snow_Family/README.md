@@ -1,4 +1,5 @@
 **Snowball Family**
+- [Types of snow device](#t)
 
 ## Snowball Family
 - if customer want to copy huge data/exe (via internet) to AWS cloud it may take months. Example:
@@ -7,7 +8,8 @@
   - A dedicated security team comes with snowdevice to transfer your data encrypted to AWS site.
   - There AWS support will transfer data to cloud.
 
-### Types of Snowballs
+<a name=t></a>
+### Types of Snow devices
 
 #### 1. Snowcone
 Smallest. 2 CPUs, 8 TB storage
