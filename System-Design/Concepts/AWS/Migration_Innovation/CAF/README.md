@@ -14,5 +14,5 @@
 |2. People|Evaluate organizational structures,roles,new skill & identify gaps|Human resources, Staffing, People managers|
 |3. Governance|Skills and processes to align with business strategy|Chief Information Officer (CIO), Program managers, Enterprise architects, Business analysts, Portfolio managers|
 |4. Platform|Principles/patterns for implementing new solutions on cloud|Chief Technology Officer (CTO), IT managers, Solutions architects|
-|5. Security|Oganization meets security objectives for visibility, auditability, control, and agility|Chief Information Security Officer (CISO), IT security managers, IT security analysts|
+|5. Security|Organization meets security objectives. Manage Permissions|Chief Information Security Officer (CISO), IT security managers, IT security analysts|
 |6. Operations|Define how day-to-day, quarter-to-quarter, and year-to-year business is conducted|IT operations managers,IT support managers|
