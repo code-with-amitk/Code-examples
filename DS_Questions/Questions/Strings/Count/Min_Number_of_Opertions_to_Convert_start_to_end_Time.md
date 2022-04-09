@@ -1,7 +1,9 @@
 **Minimum Number of Operations to Convert Time**
 - Approach
   - [Logic](#l)
-  - [Code](#c)
+  - Code
+    - [CPP](#c)
+    - [Rust](#r)
   - [Complexity](#co)
 
 ### Minimum Number of Operations to Convert Time
@@ -45,8 +47,9 @@ vecEnd[0] = 4, vecEnd[1] = 35
   - if (minutes > 60)
     - steps = minutes/60. minutes = minutes%60
 
-<a name=c></a>
 #### Code
+<a name=c></a>
+**CPP**
 ```cpp
 #include<sstream>
 class Solution {
@@ -104,6 +107,83 @@ int main(){
     //s.convertTime("02:30", "04:35");      //3
     //s.convertTime("11:00", "11:01");        //1
     s.convertTime("02:30", "08:13");      //12
+}
+```
+
+<a name=rs></a>
+**Rust**
+```rs
+struct Solution{}
+impl Solution {
+    pub fn convert_time(current: String, correct: String) -> i32 {
+        let vec_start_time:Vec<&str> = current.split(':').collect();
+        let vec_end_time:Vec<&str> = correct.split(':').collect();
+        let mut minutes = 0;
+        let mut steps = 0;
+
+        let a = match vec_start_time.get(0){
+            Some(a)=>a,
+            None=>
+                ""
+        };
+        let start_hrs = (*a).parse::<i32>().unwrap();
+
+        let a = match vec_start_time.get(1){
+            Some(a)=>a,
+            None=>
+                ""
+        };
+        let start_min = (*a).parse::<i32>().unwrap();
+
+        let a = match vec_end_time.get(0){
+            Some(a)=>a,
+            None=>
+                ""
+        };
+        let mut end_hrs = (*a).parse::<i32>().unwrap();
+
+        let a = match vec_end_time.get(1){
+            Some(a)=>a,
+            None=>
+                ""
+        };
+        let end_min = (*a).parse::<i32>().unwrap();
+
+
+        if end_min > start_min {
+            minutes = end_min - start_min;
+        }
+        else {
+            minutes = end_min+60 - start_min;
+            end_hrs = end_hrs - 1;
+        }
+        minutes = minutes + (end_hrs - start_hrs)* 60 ;
+
+        let mut k = 0;
+        let mut minutes1 = 0;
+        while minutes != 0 {
+            if minutes >= 60 {
+                k = 60;
+            } else if minutes >= 15 {
+                k = 15;
+            } else if minutes >= 5 {
+                k = 5;
+            } else if minutes >= 1 {
+                k = 1;
+            }
+            minutes1 = minutes;
+            minutes %= k;
+            steps += minutes1/k;
+        }
+        return steps;
+    }
+}
+
+fn main() {
+    //let a = Solution::convert_time("02:30".to_string(), "04:35".to_string());
+    let a = Solution::convert_time("02:30".to_string(), "08:13".to_string());
+    println!("a={}",a);
+    println!("test");
 }
 ```
 
