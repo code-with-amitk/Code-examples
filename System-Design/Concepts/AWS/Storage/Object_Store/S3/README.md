@@ -6,10 +6,13 @@
 ## S3
 - This service provides object-level storage. Amazon S3 stores data as objects in buckets.
 - Any data can be stored on S3(eg: images, videos, text files). The maximum file size for an object in Amazon S3 is 5 TB.
-- **Features**
-  - _1. Web Enabled:_ Every Object has a URL, from web it can be seen.
-  - _2. Regionally Avaialble:_ Highly Durable. 99.999999999% {11 9's}
-  - _3. [Serverless:](/System-Design/Concepts/AWS/compute/Lambda)_ No EC2 instances are needed.
+### Features/Advantages
+- _1. Web Enabled:_ Every Object has a URL, from web it can be seen.
+- _2. Regionally Avaialble:_ Highly Durable. 99.999999999% {11 9's}
+- _3. [Serverless:](/System-Design/Concepts/AWS/compute/Lambda)_ No EC2 instances are needed.
+- _4. Supports data replication across AWS Regions/Cross Regions:_
+  - With Cross-Region Replication, you designate a destination S3 bucket in another Region.
+  - When Cross-Region Replication is turned on, any new object that is uploaded will be replicated to the destination S3 bucket
 
 <a name=sc></a>
 ### Amazon S3 storage classes
