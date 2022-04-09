@@ -10,7 +10,7 @@
 ### 5 Pillars of Framework
 Well-Architected Framework is based on five pillars
 #### 1. Operational excellence
-Run business to deliver business value, 
+Run business workload efficiently to deliver business value & gain insights into their operations.
 
 #### 2. Security
 Ability to protect information, systems, and assets
