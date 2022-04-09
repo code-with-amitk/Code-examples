@@ -1,11 +1,11 @@
-- [Global Infrastructure](#gi)
+**AWS**
 - [Service Categories](#sc)
 - [How to interact with AWS Services](#how)
 - [Terms:Availabilty zones, Geographic Region, Edge Location, GovCloud, VPC(Virtual Private Cloud), Subnets, Internet gateway, Virtual private gateway, AWS Direct Connect, Security Groups, serverless](Terms)
 
-<a name=gi></a>
-## Global Infrastructure
-AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 million+ customers
+### AWS
+**AWS Infra:** AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 million+ customers
+- **[Advantages of AWS](/System-Design/Concepts#adv)**
 
 <a name=sc></a>
 ### Service Categories
