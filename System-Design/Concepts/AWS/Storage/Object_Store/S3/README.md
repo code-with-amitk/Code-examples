@@ -1,11 +1,14 @@
 **S3 / Simple Storage Service**
 - [S3 Storage classes](#sc)
+- [Advantages/Features](#f)
 - [S3 vs EBS](#vs)
 
 
 ## S3
 - This service provides object-level storage. Amazon S3 stores data as objects in buckets.
 - Any data can be stored on S3(eg: images, videos, text files). The maximum file size for an object in Amazon S3 is 5 TB.
+
+<a name=f></a>
 ### Features/Advantages
 - _1. Web Enabled:_ Every Object has a URL, from web it can be seen.
 - _2. Regionally Avaialble:_ Highly Durable. 99.999999999% {11 9's}
