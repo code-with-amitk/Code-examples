@@ -56,7 +56,7 @@ v.push_back(a);
 ////1. istringstream////////
   string a ="12";
   uint64_t val;
-  istringstream(a) >> hex >> val;
+  istringstream(a) >> dec >> val;
   cout<<hex<<val;                     //12
   
 ////2. Stringstream/////////
