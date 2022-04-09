@@ -56,12 +56,19 @@ Nodes can be anything. Databases, High end machines(super computers), normal pro
 Customer upload tasks to a data center and charged on a per-resource basis.
 <a name=adv></a>
 #### Advantages of cloud computing wrt onprem
-1. _Trade upfront expense for variable expense:_ Pay on demand/usage. No upfront payment
-2. _Stop spending money to run and maintain data centers:_ Focus less on maintaining data center and more on your applications and customers.
-3. _Stop guessing capacity:_ You don’t have to predict how much infrastructure capacity you will need before deploying an application. Just launch Amazon EC2 instances when needed, and pay only for the compute time you use. 
-4. _Benefit from massive economies of scale:_ lower pay-as-you-go prices. 
-5. _Increase speed and agility:_ Get resources by few clicks, instead of waiting for weeks.
-6. _Go global in minutes:_ You can be near to your customer whereever he's in world.
+1. **Trade upfront expense for variable expense:** Pay on demand/usage. No upfront payment
+2. **Stop spending money to run & maintain data centers:** Focus less on maintaining data center and more on your applications and customers.
+3. **Stop guessing capacity:** if we are building our own datacenter we need to guess how much would be the cost(Eg: for 10M users for 3 years) & purchased HW accordingly.
+    - _Overestimation:_ And then turns out we have only 1M users.
+    - _Underestimation:_ if we got 100M users, we need to scale our infra it may take 2-3 months(loss of business).
+  - At AWS we don’t need to predict users, autoscale up/down. Amazon EC2 instances will spun up/down within 5 min as users increases.
+4. **Benefit from massive economies of scale:**
+  - AWS is building Huge datacenters around the globe and buys hardware at cheaper costs.
+  - AWS is expert in setting datacenters for max productivity & least cost.
+  - While if we setup our own datacenter we might buy H/W at higher prices & setup might not be correct costing high.
+5. **Increase speed and agility:** Suppose a new multithreaded code developer wrote and he wants to test it High-end intel Xeon processor need to be purchased might take 2-3 months(if code is not good) whole cost is wasted.
+  - With AWS, Get high end EC2 instance in few clicks check your code and delete instance.
+6. **Go global in minutes:** You can be near to your customer whereever he's in world.
 
 <a name=tc></a>
 #### Types of cloud computing
