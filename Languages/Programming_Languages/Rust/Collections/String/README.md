@@ -3,11 +3,12 @@
   - [str](#s1)
   - [String](#s2)
 - **Operations**
-  - [1. Create](#cre)
-  - [2. Concatenate](#con)
-  - [3. Print](#print)
-  - [4. Convert](#convert)
-  - [5. Reverse](#reverse)
+  - [Create](#cre)
+  - [Concatenate](#con)
+  - [Print](#print)
+  - [Convert](#convert)
+  - [Reverse](#reverse)
+  - [Tokenize](#t)
 - [How strings are stored internally](#internal)
 
 
@@ -54,7 +55,7 @@ Its not allow to index into a String to get a character is that indexing operati
 
 ## Operations
 <a name=cre></a>
-### 1. Create
+### Create
 from(), new()
 ```rs
     let s1 = String::new();                   //new()
@@ -64,7 +65,7 @@ from(), new()
 ```
 
 <a name=con></a>
-### 2. Concatenate
+### Concatenate
 Using push_str(), push() methods
 ```rs
     let s2 = String::from("Hello");
@@ -88,7 +89,7 @@ Using `+` operator
 ```
 
 <a name=print></a>
-### 4.3 Printing
+### Printing
 - _chars():_ returns char types
 ```rs
     let hello = "Здравствуйте";
@@ -117,22 +118,28 @@ $ test.exe
 ```
 
 <a name=convert></a>
-### 4.4 Convert
-- **int to string**
-```rust
+### Convert
+**int to string**
+```rs
 let mut strA = a.to_string();
 ```
-- **string to int**
+**string to int**
 ```rust
-let a = my_string.parse::<i32>().unwrap()
+let a = my_string.parse::<i32>().unwrap();
 ```
 
 <a name=rev></a>
-### 4.5 Reversing a string
-```rust
+### Reversing a string
+```rs
 strA = strA.chars().rev().collect::<String>();
 ```
 
+<a name=t></a>
+### Tokenize
+```rs
+  let a = "40:20".to_string();
+  let vec:Vec<&str> = a.split(':').collect();
+```
 
 <a name=internal></a>
 ## 5. How strings are stored internally
