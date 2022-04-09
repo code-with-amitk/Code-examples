@@ -5,7 +5,7 @@
 
 ### AWS
 - **AWS Infra:** AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 million+ customers
-- **[Advantages of AWS](/System-Design/Concepts#adv)**
+- **[6 Benefits of using AWS Cloud](/System-Design/Concepts#adv)**
 
 <a name=sc></a>
 ### Service Categories
