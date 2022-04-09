@@ -1,6 +1,7 @@
 **Billing**
 - [Billing DashBoard](#bd)
 - [Consolidated Billing](#cb)
+  - [Benefits/Advantages](#b)
 
 
 <a name=bd></a>
@@ -21,4 +22,9 @@
      AWS_Account1    AWS_Account2   AWS_Account3
       $20.00            $80.90        $49.99
 ```
-- Consolidated billing also enables to share volume pricing discounts across accounts. 
+
+<a name=b></a>
+### Benefits/Advantages
+- **1. Avail volume pricing, Reserved Instance Discounts:**
+  - Combine usage across all accounts in your organization & get discounts and Savings Plans.
+  - This solution can result in a lower charge compared to the use of individual standalone accounts.
