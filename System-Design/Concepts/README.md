@@ -56,19 +56,23 @@ Nodes can be anything. Databases, High end machines(super computers), normal pro
 Customer upload tasks to a data center and charged on a per-resource basis.
 <a name=adv></a>
 #### Advantages of cloud computing wrt onprem
-- _1._ **Trade upfront expense for variable expense:** Pay on demand/usage. No upfront payment
-- _2._ **Stop spending money to run & maintain data centers:** Focus less on maintaining data center and more on your applications and customers.
+- _1._ **Trade upfront expense for variable expense:** if you are setting up an Datacenter, upfront expenses include physical servers & other resources.
+  - With AWS no need to purchase Datacenter Hardware, Pay for on demand/usage. No upfront payment
+- _2._ **Stop spending money to run & maintain data centers:**
+  - Donot spend time on datacenter's research(if you are not datacenter company).
+  - Focus on your application, make application better than your competitors. Delight your customer with new innovations.
 - _3._ **Stop guessing capacity:** if we are building our own datacenter we need to guess how much would be the cost(Eg: for 10M users for 3 years) & purchased HW accordingly.
     - _Overestimation:_ And then turns out we have only 1M users.
     - _Underestimation:_ if we got 100M users, we need to scale our infra it may take 2-3 months(loss of business).
   - At AWS we don’t need to predict users, autoscale up/down. Amazon EC2 instances will spun up/down within 5 min as users increases.
-- _4._ **Benefit from massive economies of scale:**
+- _4._ **Benefit from massive economies of scale:** Lower pay-as-you-go prices.
   - AWS is building Huge datacenters around the globe and buys hardware at cheaper costs.
   - AWS is expert in setting datacenters for max productivity & least cost.
   - While if we setup our own datacenter we might buy H/W at higher prices & setup might not be correct costing high.
 - _5._ **Increase speed and agility:** Suppose a new multithreaded code developer wrote and he wants to test it High-end intel Xeon processor need to be purchased might take 2-3 months(if code is not good) whole cost is wasted.
   - With AWS, Get high end EC2 instance in few clicks check your code and delete instance.
-- _6._ **Go global in minutes:** You can be near to your customer whereever he's in world.
+- _6._ **Go global in minutes:** Suppose you have your datacenters in US, now got new customer base in Germany. You need to setup DC in germany or customers see high latency.
+  - If you setup datacenter at your own it can take months to years but with AWS it takes minutes.
 
 <a name=tc></a>
 #### Types of cloud computing
