@@ -19,6 +19,7 @@ AWS runs in: 69 Availabilty zones, 22 Geographic Regions, 190+ countries have 1 
 |Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation, Outpost](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB, GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
+|Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
 |Management,Monitoring||[CloudWatch, Cloudtrail, Trusted Advisor](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
