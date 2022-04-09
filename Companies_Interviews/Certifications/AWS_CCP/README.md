@@ -1,6 +1,6 @@
 **AWS Certified Cloud Practitioner**
 - [Areas of Exam](#a)
-- [Score]
+- [Score](#s)
 
 ## Areas of Exam
 |Domain|% in Exam|
@@ -10,6 +10,6 @@
 |Technology|33%|
 |Billing and Pricing|16%|
 
-
+<a name=s></a>
 ## Score (100-1000)
 Passing 700. No need to pass indivisual section, pass overall exam.
