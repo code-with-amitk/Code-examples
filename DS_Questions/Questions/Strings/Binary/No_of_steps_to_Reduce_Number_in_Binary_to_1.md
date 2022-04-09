@@ -1,7 +1,9 @@
 **Number of Steps to Reduce a Number in Binary Representation to One**
 - [Approach-1, Convert to decimal](#a1)
 - [Approach-2, Comprehend string as binary only](#a2)
- - [Logic](#l)
+  - [Logic](#l)
+  - [Code](#c)
+  - [Complexity](#co)
 
 ### [Number of Steps to Reduce a Number in Binary Representation to One](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one)
 - Number "s" is given in binary representation. Return the number of steps to reduce it to 1 under the following rules:
@@ -47,10 +49,7 @@ In case of very big number 500 bits, 2<sup>500</sup> we cannot store it in unsig
                If 0 is not found, insert 1 at beginning of the string and make all other bits as 0.
                
   0 (even no)  remove last bit
-```
 
-### Code Logic
-```c++
 Example: number=1110
 Step   Last-bit    resulting-no
  1       0 (even)     111
@@ -60,6 +59,7 @@ Step   Last-bit    resulting-no
  5       0 (even)     1
 ```
 
+<a name=c></a>
 ### Code
 ```c++
 #include<iostream>
