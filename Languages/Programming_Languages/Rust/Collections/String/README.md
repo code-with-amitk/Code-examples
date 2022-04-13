@@ -89,7 +89,7 @@ Using `+` operator
 ```
 
 <a name=print></a>
-### Printing
+### Print
 - _chars():_ returns char types
 ```rs
     let hello = "Здравствуйте";
@@ -97,24 +97,19 @@ Using `+` operator
         println!("{}",a)
     }
 ```
-- _bytes():_ returns raw bytes. Remember valid Unicode scalar values may be made up of more than 1 byte.
-```rust
-    let hello = "Здрав";
-    for a in hello.bytes() {
-        println!("{}",a)
+#### Using index
+**as_bytes():** returns raw bytes. Valid Unicode scalar values may be made up of more than 1 byte.
+```rs
+    let hello = "abcdd";
+    let k = hello.as_bytes();
+    let i = 0;
+    while i < hello.len() {
+        println!("{}",k[i]);
+        i += 1;
     }
     
-$ test.exe    
-208
-151
-208
-180
-209
-128
-208
-176
-208
-178
+$ test.exe
+a b c d d
 ```
 
 <a name=convert></a>
