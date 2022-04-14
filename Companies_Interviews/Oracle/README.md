@@ -28,10 +28,32 @@ list<timestamp, service>
 
 ### Round-3
 #### 1. DS
-[Counts Anagrams from Dictionary]()
+[Counts Anagrams from Dictionary](/DS_Questions/Questions/Strings/Anagrams_Pangrams/Anagrams/Count_Anagrams_in_Dictionary.md)
 #### 2. System Design
 **Design Stock Trading System**
 - Requirements: 
   - _1._ You can buy n units of particular stock (Eg: google 100)
-  - _2._ Preference should be give to user who buys more stocks.
-#### 3. 
+  - _2._ Preference should be give to user who buys more stocks. (Eg: (user-A stocks=100,company google), (user-B stocks=50,company google))
+  - _3._ Give OOD
+```c
+Objects:
+ 1. MoneyTransfer
+ 2. GlobalStock: This keeps avialble stock count globally
+             stock   value   available_count
+ 3. Userbookeeping: This keeps stocks aviable per user inside datacenter.
+             stock   value  time_picked   user_name(id)  count
+             
+      globalStock(stock,count) 
+         moneyTransfer
+  4. display: Shows stocks to user. Take values from  GlobalStock -> vector<object>
+  5. user_microservice: call display's method show(). informs userbooking about stock picked
+            pick(stock_name){
+                  gbk(count, stock, selfid)
+            }
+            sell(){
+            }
+```
+#### 3. OOD
+- Design a system where original base class is not touched and we need to add new features. Design a window class which initially supports:
+  - text window, image window
+  - Now we want to add a new window(video window), base class should not change.
