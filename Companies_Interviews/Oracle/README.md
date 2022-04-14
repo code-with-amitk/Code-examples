@@ -1,7 +1,8 @@
 **Oracle Bangalore**
 - **March 2022, Principal Engineer**
-  - [1. Choose Data Structure](#c)
-  - [2. OOD => Parking lot](#pl)
+  - [Round-1. DS => Choose Data Structure](#c)
+  - [Round-2. OOD => Parking lot](#pl)
+  - [Round-3. DS+OOD+SystemDesign](#r3)
 
 ## March 2022, Principal Engineer
 <a name=c></a>
@@ -24,3 +25,13 @@ list<timestamp, service>
 - Design a parking lot which can accomodate 2 wheeler, 4 wheeler, truck into parking.
 - n 2 wheelers will combine to create 1 4 wheeler. m 4 wheelers will combine to create 1 truck parking.
 - Take driveway into consideration when designing parking lot.
+
+### Round-3
+#### 1. DS
+[Counts Anagrams from Dictionary]()
+#### 2. System Design
+**Design Stock Trading System**
+- Requirements: 
+  - _1._ You can buy n units of particular stock (Eg: google 100)
+  - _2._ Preference should be give to user who buys more stocks.
+#### 3. 
