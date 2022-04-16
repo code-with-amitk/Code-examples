@@ -2,11 +2,12 @@
 - [S3 Storage classes](#sc)
 - [Advantages/Features](#f)
 - [S3 vs EBS](#vs)
+- [Creating S3 Bucket](#c)
 
 
 ## S3
-- This service provides object-level storage. Amazon S3 stores data as objects in buckets.
-- Any data can be stored on S3(eg: images, videos, text files). The maximum file size for an object in Amazon S3 is 5 TB.
+- This service stores data(eg: images, videos, text files) using objects. Amazon S3 stores data as objects in buckets.
+- The maximum file size for an object in Amazon S3 is 5 TB.
 
 <a name=f></a>
 ### Features/Advantages
@@ -39,3 +40,12 @@
 |---|---|---|
 |Can Store upto|16 TiB|Unlimited, Indivisual Objects upto 5TB|
 |Enforce Policies||Yes. WORM(Write Once Read Many)|
+
+<a name=c></a>
+### Creating S3 Bucket
+```c
+AWS Console > s3
+  Bucket name:                amit-bucket       //This should be globally unique
+  Upload files to bucket:     Upload (Upload files from desktop)
+                              We can download files from bucket as well.
+```
