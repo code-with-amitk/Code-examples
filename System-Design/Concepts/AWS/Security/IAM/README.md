@@ -1,5 +1,6 @@
 **Identity and Access Management / IAM**
 - **Users**
+  - [Best Practices](#bp)
   - [Root User](#r)
   - [IAM Users](#iu)
 - [IAM policies](#p)
@@ -11,8 +12,13 @@
 - With IAM we can configure access based on company’s security needs. 
 
 ### Users
+<a name=bp></a>
+#### Best Practices
+- _1._ Enable MFA(multifactor auth for root user.
+- _2._ Create IAM user. Logout and try login
+- _3._ Create password policy
 <a name=r></a>
-#### AWS Account Root user
+#### Root user
 - When we create AWS account(using email, password), a root user is created. It has complete access to all the AWS services and resources in the account.
 - **Best Practice?**
   - Do not use root user to perform day-to-day tasks, instead create a IAM user and assign it permissions to perform tasks(eg:create other users).
