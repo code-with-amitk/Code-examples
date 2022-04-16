@@ -6,6 +6,11 @@
   - [Auto Scaling group](#asg)
   - [Auto scaling Approaches](#app)
 - [EC2 Storage](#s)
+- [Launch/Access/Stop EC2 Instance](#l)
+  - [1. Creating a EC2 Instance](#cre)
+  - [2. Getting Access to this Instance using SSM](#ac)
+  - [3. Stop EC2 instance](#se)
+  - [4. Create/Launch Replica/AMI](#ca)
 
 
 
@@ -81,3 +86,56 @@ Min/Max number of EC2 instances that would spun up. Configuration:
 ||Instance Storage|EBS|
 |---|---|---|
 |Permanent|No|Yes|
+
+<a name=l></a>
+### Launch/access/stop EC2
+<a name=cre></a>
+#### 1. Creating a EC2 Instance
+```c
+AWS Console > Launch Instance > 
+  Operating System:                                   Amazon Linux 2(Free Tier)
+  Instance Type (Instance means CPU,Memory,Storage):  t2.micro(Free Tier)
+  Network Settings:                                   Default VPC, Auto assign public IP(to access from internet)
+  IAM Instance Profile:                               Create new IAM Role > 
+                                                                  Select EC2 Role (AmazonEC2RoleforSSM)  //SSM(Simple System Manager) > Next
+                                                                  Role Name(MyEC2Role) > Create Role
+                                                      DropDown (MyEC2Role)
+  Launch Instance
+  Key Pair (Proceed without keypair) //We will login via SSM
+  Launch Instance
+
+AWS Console > Instance (Check status) > Running
+```
+<a name=ac></a>
+#### 2. Getting Access to this Instance using SSM
+- SSM(Simple Session Manager) records the history of login into ec2 instances etc.
+```c
+AWS Console > ssm > Session Manager(on left side) > Start a Session > Select Session > Start Session
+sh-4.2$ sudo su - ec2-user
+[ec2-user@ip-172-31-92-130 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-92-130 ~]$
+```
+<a name=se></a>
+#### 3. Stop EC2 instance
+- With stopping/terminating the instance no money is charged.
+```c
+AWS Console > EC2 > Left side (Instances) > Stop instance.
+```
+<a name=am></a>
+#### 4. Create/Launch Replica of EC2 / AMI(Amazon Machine Image)
+Create AMI
+```c
+  From [step-3](#se) >
+  select instance > Actions > Image and Templates > Create Image > Image name(fresh-000) > Leave others default > Create Image
+  AWS Dashboard > Images(on left) > AMIs > Status (pending > Available)
+
+  
+```
+Launch AMI:
+```c
+  Select AMI > Launch Instance from AMI > 
+  Select all options as done in Step-1(Creating a EC2 Instance)
+  Launch
+```
+
