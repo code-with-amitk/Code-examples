@@ -63,14 +63,32 @@
 |4. Spot Instances|Ideal for workloads with flexible start and end times which can can withstand interruptions. if you make a Spot request and Amazon EC2 capacity is unavailable, the request is not successful until capacity becomes available. |Batch Processing|Save upto 90%|
 |5. Dedicated Hosts(Most Expensive)|EC2 server fully dedicated to your use|
 
-### EC2 Auto scaling
-This means scaling automatically as load increases and reducing instances as load decreases
+## EC2 Auto scaling
+This means scaling automatically as load increases and reducing instances as load decreases.
 <a name=asg></a>
-#### Auto Scaling group?
+### Auto Scaling group?
 Min/Max number of EC2 instances that would spun up. Configuration:
 - _a. Min Capacity = x._ These many intances will always be running. if x=2, then min 2 instances will always be there.
 - _b. Desired Capacity = y._ In case of load switch to desired. if y=4, then 4 instances will run in case of load.
 - _c. Max Capacity = z:_ Max instances which can spun is z. Even load is more than that, instances will not be spun.
+<a name=cas></a>
+#### 1. Create Auto Scaling Group?
+```c
+Search > EC2 >
+Left side bar(bottom) > Auto Scaling > Auto Scaling Groups > Create Autoscaling Groups
+  Name(fresh-asg) > Create Launch Configuration > Instance(t2.micro) > Create
+  
+AWS Console > Instances
+  - You will see 1-2 instance spunned up there
+```
+<a name=das></a>
+#### 2. Delete Auto Scaling Group?
+```c
+Search > EC2 >
+Left side bar(bottom) > Auto Scaling > Auto Scaling Groups > Select > Delete.
+
+On Delete ASG will take down created instances as well.
+```
 
 <a name=app></a>
 #### Auto scaling Approaches
