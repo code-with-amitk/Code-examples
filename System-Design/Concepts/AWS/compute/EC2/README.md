@@ -4,6 +4,8 @@
 - [EC2 Pricing](#p)
 - [EC2 Auto scaling](#as)
   - [Auto Scaling group](#asg)
+    - [1. Create Auto Scaling Group](#cas)
+    - [2. Delete Auto Scaling Group](#das)
   - [Auto scaling Approaches](#app)
 - [EC2 Storage](#s)
 - [Launch/Access/Stop EC2 Instance](#l)
@@ -72,7 +74,7 @@ Min/Max number of EC2 instances that would spun up. Configuration:
 - _b. Desired Capacity = y._ In case of load switch to desired. if y=4, then 4 instances will run in case of load.
 - _c. Max Capacity = z:_ Max instances which can spun is z. Even load is more than that, instances will not be spun.
 <a name=cas></a>
-#### 1. Create Auto Scaling Group?
+#### 1. Create Auto Scaling Group
 ```c
 Search > EC2 >
 Left side bar(bottom) > Auto Scaling > Auto Scaling Groups > Create Autoscaling Groups
@@ -82,7 +84,7 @@ AWS Console > Instances
   - You will see 1-2 instance spunned up there
 ```
 <a name=das></a>
-#### 2. Delete Auto Scaling Group?
+#### 2. Delete Auto Scaling Group
 ```c
 Search > EC2 >
 Left side bar(bottom) > Auto Scaling > Auto Scaling Groups > Select > Delete.
