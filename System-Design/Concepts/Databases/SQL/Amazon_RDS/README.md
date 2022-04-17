@@ -1,6 +1,7 @@
 **RDS / Amazon Relational Database Service**
 - [Amazon RDS vs Amazon DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB/README.md#vs)
 - [Features/Advantages](#f)
+- [Creating RDS](#c)
 
 ## RDS 
 - Runs automated tasks as: hardware provisioning, database setup, patching, and backups.
@@ -17,3 +18,15 @@
 - **1. Support cross Region Replication:**
   - One RDS DB instance resides in 1 Region. With Amazon RDS, you can create read replicas across Regions.
   - Amazon RDS replicates any data from the primary DB instance to the read replica across Regions.
+
+<a name=c></a>
+### Creating RDS
+```c
+AWS Console > Dashboard > Create Database > 
+  Engine Options:       Postgres
+  Templates:            Free Tier
+  Credential Settings:  Master password:  postgres123
+  DB Instance class:    t2.micro
+  Storage:              20 MB
+  Connectivity:         Default VPC
+```
