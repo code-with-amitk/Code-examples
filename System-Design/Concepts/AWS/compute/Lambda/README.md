@@ -1,6 +1,8 @@
 **Lambda / FaaS(Function as a service)**
 - [Lambda is Serverless](#sl)
 - [Steps of running code in Lambda](#s)
+- [Creating lambda](#c)
+- [Write source, Test in lambda](#w)
 
 ## Lambda
 <a name=sl></a>
@@ -20,3 +22,26 @@
 3. **Retrieve Image Details Lambda Function:** it will retrieve image details from DynamoDB and return JSON result
 4. **Dynamo DB:** All interactions with DynamoDB will happen via the Lambda functions.
 5. **API Gateway:** Provides image to web app using lambda
+
+<a name=c></a>
+### Creating Lambda
+```c
+AWS Management console > Lambda > Create Lambda
+Author from scratch
+name:             myLambda
+Runtime:          Python 3.9(or your language of choice)
+//Lambda will create an execution role named myLambda-role-i7t8fwvj, with permission to upload logs to Amazon CloudWatch Log
+Create Function
+```
+
+<a name=w></a>
+### Write source, Test in lambda
+```c
+//Write source in lambda
+print("Hello world")
+
+Press Test Button
+START RequestId: 859acc88-061d-43f2-a28e-bbdcbec2945c Version: $LATEST
+END RequestId: 859acc88-061d-43f2-a28e-bbdcbec2945c
+REPORT RequestId: 859acc88-061d-43f2-a28e-bbdcbec2945c	Duration: 1.03 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 36 MB	Init Duration: 110.76 ms
+```
