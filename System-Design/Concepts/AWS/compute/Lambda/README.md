@@ -1,7 +1,7 @@
 **Lambda / FaaS(Function as a service)**
 - [Lambda is Serverless](#sl)
 - [Steps of running code in Lambda](#s)
-- [Creating lambda](#c)
+- [Create lambda](#c)
 - [Write source, Test in lambda](#w)
 
 ## Lambda
@@ -44,4 +44,8 @@ Press Test Button
 START RequestId: 859acc88-061d-43f2-a28e-bbdcbec2945c Version: $LATEST
 END RequestId: 859acc88-061d-43f2-a28e-bbdcbec2945c
 REPORT RequestId: 859acc88-061d-43f2-a28e-bbdcbec2945c	Duration: 1.03 ms	Billed Duration: 2 ms	Memory Size: 128 MB	Max Memory Used: 36 MB	Init Duration: 110.76 ms
+
+Add Trigger
+- lambda can be triggered from different sources(as kafka, API g/w, cloudwatch etc)
+- Also 3rd party AWS partners.
 ```
