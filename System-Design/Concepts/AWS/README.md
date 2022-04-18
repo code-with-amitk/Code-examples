@@ -20,7 +20,7 @@
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
-|Management,Monitoring||[CloudWatch, Cloudtrail, Trusted Advisor](Monitoring)|
+|Management,Monitoring,Debug||[CloudWatch, Cloudtrail, Trusted Advisor,X-ray](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Security,Identity,Compliance||[IAM, Organizations, SCP, OU, Cognition, GuardDuty, Inspector, Macie,C ertificate Manager, Cloud HSMHardware, Directory Services,WAF,Sheild, Artifact, KMS](Security)|
