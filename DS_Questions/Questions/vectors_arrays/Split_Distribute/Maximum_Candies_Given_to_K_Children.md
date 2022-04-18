@@ -1,6 +1,8 @@
 **Maximum Candies Allocated to K Children**
 - Approach
   - [Logic](#l)
+  - Code
+    - [CPP](#cpp)
 
 ## [Maximum Candies Allocated to K Children](https://leetcode.com/problems/maximum-candies-allocated-to-k-children/)
 - You are given array candies. Each element in the array denotes a pile of candies.
