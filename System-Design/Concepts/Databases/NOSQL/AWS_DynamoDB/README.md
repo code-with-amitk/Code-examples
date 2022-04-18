@@ -1,5 +1,6 @@
 **Dynamo DB**
 - [Amazon RDS vs DynamoDB](#vs)
+- [DynamoDB Accelrator](#ac)
 
 ## Dynamo DB (Key,value DB store)
 - This is [serverless](/System-Design/Concepts/AWS/). Provides single-digit millisecond retrieval at any scale, stored on **SSD.**
@@ -11,6 +12,10 @@
 ```
 - **Consistent** by default. Consistency across all copies of data is usually reached within a second
 - **Scaling:** As size of grows/shrink DB automatically grows/shrinks.
+
+<a name=ac></a>
+### DynamoDB Accelrator
+This is used to enhance read performance of applications reading from dynamo db.
 
 <a name=vs></a>
 ### Amazon RDS vs DynamoDB
