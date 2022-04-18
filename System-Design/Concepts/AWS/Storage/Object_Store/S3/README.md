@@ -29,7 +29,7 @@
 |S3 Standard|Frequently accessed data|3|Costliest|
 |S3 Standard-Infrequent Access (S3 Standard-IA)|Infrequent accessed and highly avaialble data|3|Cheaper than Standard|
 |S3 One Zone-Infrequent Access (S3 One Zone-IA)||1||
-|S3 Intelligent-Tiering|For data with unknown or changing access patterns|||
+|S3 Intelligent-Tiering|For data which is accessed randomly|||
 |S3 Glacier|Data archiving|Able to retrieve objects from 1min-1 Hours|Low|
 |S3 Glacier Deep Archive||Able to retrieve objects within 12 hours|Lowest|
 
