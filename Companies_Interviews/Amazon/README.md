@@ -1,3 +1,8 @@
+- [Feb/2020 Dublin](#i1)
+- [Jun/2021  Bangalore](#i2)
+- [Apr/2022 Dubin](#i3)
+
+<a name=i1></a>
 ### Feb/2020 Dublin
 - **A. Online Assesement. 4 Questions:** Drone flight planner
 - **B. Onsite**
@@ -5,6 +10,7 @@
   - _2. System Design: Tiny URL_
   - _3. OOD: Shortest distance between 2 points (x,y,z)_
 
+<a name=i2></a>
 ### Jun/2021  Bangalore
 - **A. Online Assesment**
   - _1._ Modified [Finding connected components in disjoint set in graph](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Number_of_Connected_Components.md) called Cloudfront caching problem. 
@@ -24,6 +30,7 @@ Answer: 7
 ```
 - _3._ [Gifting Groups/Friend Circles/Number of Provinces](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Number_of_Connected_Components.md)
 
+<a name=i3></a>
 ### Apr/2022 Dubin
 - **A. Online Assessement**
   - _1._ [Check Password Strength / Sum of Unique letters in all substrings](/DS_Questions/Questions/Strings/SubString_SubSequence/Sum_of_Unique_letters_in_all_substrings.md)
