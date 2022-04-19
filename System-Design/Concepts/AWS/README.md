@@ -15,12 +15,12 @@
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
-|Compute|Provides compute capacity on cloud.|[EC2, LightSail,Lambda, ELB](compute)|
+|Compute|Provides compute capacity on cloud.|[EC2 VM(on-demand,spot,reserved), LightSail,Lambda, ELB](compute)|
 |Configuration Management|Provides tools for automation|[Elastic Beanstalk, CloudFormation, Outpost](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
-|Management,Monitoring,Debug||[CloudWatch, Cloudtrail, Trusted Advisor,X-ray](Monitoring)|
+|Management,Monitoring,Debug,Audit||[CloudWatch, Cloudtrail(Audit), Trusted Advisor,X-ray](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Security,Identity,Compliance||[IAM, Organizations, SCP, OU, Cognition, GuardDuty, Inspector, Macie,C ertificate Manager, Cloud HSMHardware, Directory Services,WAF,Sheild, Artifact, KMS](Security)|
