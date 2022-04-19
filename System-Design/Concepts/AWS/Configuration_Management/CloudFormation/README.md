@@ -1,6 +1,7 @@
 **CloudFormation**
 - Terms
   - [Stack](#s)
+  - [Drift Detection](#dd)
 
 ### CloudFormation
 - AWS service which helps creating collection of services using a Template.
@@ -21,3 +22,7 @@
 ```c
   Stack1 = resource1,resource2,..
 ```
+
+<a name=dd></a>
+#### Drift Detection
+Detect whether the actual configuration differs(or drifted), from its expected configuration.
