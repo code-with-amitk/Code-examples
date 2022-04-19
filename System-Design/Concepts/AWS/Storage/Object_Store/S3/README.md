@@ -1,6 +1,6 @@
 **S3 / Simple Storage Service**
 - [S3 Storage classes](#sc)
-- [Advantages/Features](#f)
+- [Advantages/Features: S3 Transfer Acceleration](#f)
 - [S3 vs EBS](#vs)
 - [Creating S3 Bucket](#c)
 
@@ -17,6 +17,10 @@
 - _4. Support **Cross Region Replication**:_
   - You designate a destination S3 bucket in another Region.
   - When Cross-Region Replication is turned on, any new object that is uploaded will be replicated to the destination S3 bucket
+- **5. S3 Transfer Acceleration:** (have additional chaarges)
+  - A bucket-level feature for fast,secure transfers of files over long distances between your client and an S3 bucket.
+  - it uses globally distributed [edge locations](/System-Design/Concepts/AWS/Terms#el) to transfer data.
+  - As data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path.
 
 <a name=sc></a>
 ### Amazon S3 storage classes
