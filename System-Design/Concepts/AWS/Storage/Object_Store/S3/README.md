@@ -1,6 +1,8 @@
 **S3 / Simple Storage Service**
 - [S3 Storage classes](#sc)
-- [Advantages/Features: S3 Transfer Acceleration](#f)
+- Advantages/Features
+  - [Downloadable via URL](#f1)
+  - [S3 Transfer Acceleration](#f5)
 - [S3 vs EBS](#vs)
 - [Creating S3 Bucket](#c)
 
@@ -9,18 +11,24 @@
 - This service stores data(eg: images, videos, text files) using objects. Amazon S3 stores data as objects in buckets.
 - The maximum file size for an object in Amazon S3 is 5 TB.
 
-<a name=f></a>
 ### Features/Advantages
-- _1. Web Enabled:_ Every Object has a URL, from web it can be seen.
-- _2. Regionally Avaialble:_ Highly Durable. 99.999999999% {11 9's}
-- _3. [Serverless:](/System-Design/Concepts/AWS/compute/Lambda)_ No EC2 instances are needed.
-- _4. Support **Cross Region Replication**:_
-  - You designate a destination S3 bucket in another Region.
-  - When Cross-Region Replication is turned on, any new object that is uploaded will be replicated to the destination S3 bucket
-- **5. S3 Transfer Acceleration:** (have additional chaarges)
-  - A bucket-level feature for fast,secure transfers of files over long distances between your client and an S3 bucket.
-  - it uses globally distributed [edge locations](/System-Design/Concepts/AWS/Terms#el) to transfer data.
-  - As data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path.
+<a name=f1></a>
+#### 1. Web Enabled
+Every Object has a URL from where it can be downloaded/seen.
+
+#### 2. Regionally Avaialble
+Highly Durable. 99.999999999% {11 9's}
+#### 3. [Serverless:](/System-Design/Concepts/AWS/compute/Lambda) 
+No EC2 instances are needed.
+#### 4. Support Cross Region Replication
+- You designate a destination S3 bucket in another Region.
+- When Cross-Region Replication is turned on, any new object that is uploaded will be replicated to the destination S3 bucket
+
+<a name=f5></a>
+#### 5. S3 Transfer Acceleration (have additional chaarges)
+- A bucket-level feature for fast,secure transfers of files over long distances between your client and an S3 bucket.
+- it uses globally distributed [edge locations](/System-Design/Concepts/AWS/Terms#el) to transfer data.
+- As data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path.
 
 <a name=sc></a>
 ### Amazon S3 storage classes
