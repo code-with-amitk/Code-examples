@@ -33,17 +33,16 @@
 ```
 Volvo cars will launch its own OS.
 
-### April,2022
+## April,2022
 <a name=r1></a>
-#### R1. Online Assesement
+### R1. Online Assesement
 
 <a name=r2></a>
-#### R2. OOD. Design Perception function
-**Question**
+### R2. OOD. Design Perception function
+#### 1. Write a perception function for self driven vehicle
 - Vehicle is equipped with: 
   - _1. front looking camera:_ Will just just click photos.
   - _2. front looking radar:_ Using electromagnetic sensor it detects/recognizes various objects and their distances.
-- Write a perception function for self driven vehicle.
 ```c
 //Read surrounding env of the vehicle
 //Provide information to other functions(path_planner(), acutator_control())
@@ -67,13 +66,42 @@ perception_func() {
 ```
 - _2._ Perception function will pop tops of both queues. Matches timestamps.
 ```c
+//listen on kafka or timer expiry
 perception_func() {
   camera_object co = top_queue_camera()
   radar_object ro = top_queue_radar()
   
   if (co.timestamp == ro.timestamp){ //if timestamps match
-    //Try Predicting Object name and distance
+	predict_objects_in_picture(vector<radar_obj>)
+  }
+}
+
+//Try Predicting Object name
+predict_objects_in_picture(vector<radar_obj>& ) {
+  //1. Use opencv for image recognizance. OpenCV searches for objects within a picture. It does not names objects.
+  (https://github.com/amitkumar50/Code-examples/tree/master/Languages/ScriptingLanguages/Python/machine_learning)
+  array_of_images(x,y,z,w) arr = opencv_recognize_objects();
     
+  //2. Library-2 to name objects.
+  object_names[] = lib-2_fun(array_of_images);
+  for (auto &i:object_names){
+	//i=cat
+	ret = predict_distance_direction(cat, vector<radar_object>& )
+  }
+}
+
+//3. Library-3 to predict distance,direction,angle of object
+predict_distance_direction(object_name(cat), vector<radar_object>& ) {
+  dis(x,y,z,degree,time_to_hit) = lib-3_fun(cat, vector<radar_object>&)
+  if (dis != 0) {
+  	//This is cat coming
+	vector<radar_object>& .remove(cat)	//Delete entry from radar vector
+	
+	//4. Provide data to path planner function
+	path_planner_func (dis);
+  }
+  else {
+  	//Wrong prediction
   }
 }
 ```
