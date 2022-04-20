@@ -1,6 +1,7 @@
 - [Artificial Intelligence, Machine Learning, Deep Learning](#vs)
 - **Tensorflow**
-  - [Tensor](#t)
+  - Terms
+    - [Tensor](#t)
   - [Code](#c1)
 - **Opencv**
   - [How it works?](#how)
@@ -22,8 +23,9 @@ Objective  | Building machines which can       | Algo which can learn thru |Neur
 - This is ML Open source library(EXPOSING APIs) for numerical computation and large-scale ML supports CPUs & GPUs. 
 - Python Front-end APIs & backend written in c++ for high performance.
 
+### Terms
 <a name=t></a>
-**Tensor?**
+#### Tensor
 - Multi-dimensional arrays used to store numbers during computation.
 - String tensors don’t exist in Numpy (or in most other libraries), because tensors are preallocated contiguous memory segments, and strings, being variable length. 
 
@@ -33,7 +35,7 @@ Objective  | Building machines which can       | Algo which can learn thru |Neur
 2. [Supervised Learning using imdb Dataset](Code)
 
 ## opencv
-opensource library(written in C++,python,java) for image processing, recognizance. OpenCV uses ML algorithms to search for faces within a picture. It matches thousands of small patterns and features.
+opensource library(C++,python,java) for image processing, recognizance. OpenCV uses ML algorithms to search for faces within a picture. It matches thousands of small patterns and features.
 ```c
 ////Ubuntu Installation///
 # sudo apt update
