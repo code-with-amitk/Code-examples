@@ -105,3 +105,43 @@ predict_distance_direction(object_name(cat), vector<radar_object>& ) {
   }
 }
 ```
+#### OOD
+```c
+Objects:
+  Camera
+  Radar
+  Perception_Module
+  Path_Planner_Module
+  Acutator_Module
+                       |---------Camera---------------|
+		       | camera(vector<resolution>){  |
+		       |   for (num of cameras)       |
+		       |    init_camera(callback())-----------------> firmware ----init----> CAMERA-1
+		       | }                            |
+		       | thread-1{
+		       | camera_callback() {          |                                     click_picture
+		       |           <---------------- picture, timestamp-----------------------------
+		       |  publish on Embedded_Queue   |
+		       |   }                          |
+		       | }                            |
+		       |------------------------------|
+		       
+		       |------Radar------------|         |-----PerceptionServer----------------|
+		       |thread-1 {             |         | Check Acutator,Path Planner on pipe |
+		       |  publish on queue     |         | thread-1 {
+		       |}                      |         |  listen on queue-1
+		       |                       |         | }
+		       |-----------------------|         | thread-2 {
+		                                         |  listen on queue-2
+		       				         | }
+							 | As events arrive, check timestamps  |
+							 |-------------------------------------|
+main() {               
+ PathPlanner OPathPlanner;
+ AcutatorServer OAcutator;
+ PerceptionServer OPerceptionServer;
+ Camera OCamera;
+ Radar ORadar;
+ 
+}
+```
