@@ -24,7 +24,7 @@
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Security,Identity,Compliance||[IAM, Organizations, SCP, OU, Cognition, GuardDuty, Inspector, Macie,C ertificate Manager, Cloud HSMHardware, Directory Services,WAF,Sheild, Artifact, KMS](Security)|
-|Storage||[Object Store:S3, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
+|Storage||[Object Store:S3, macie, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
 
 - Security
 ```
