@@ -5,7 +5,7 @@
 ### Complexities
 
 |Algorithms|Time Complexity | Space Compelxity |
-|---|---|
+|---|---|---|
 | Bubble/Selection/Insertion Sort |O(n<sup>2</sup>)| O(1) |
 | Merge/Heap/Quick(Best) Sort | O(nlogn) | Merge:O(n), Other: O(1) |
 | Counting/Radix/Bucket Sort | O(n) | |
