@@ -4,6 +4,7 @@
 - **Issues**
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
+- [Actions](#ac)
 
 <a name=vs></a>
 ### git vs gerrit
@@ -83,3 +84,12 @@ test-repo$
 #### Merge Conflict
 - _1._ Use rebase button on gerrit UI to resolve merge conflict.
 - _2._ If you want to make changes in PR.
+
+<a name=ac></a>
+## Actions
+- Action is single task. We can combine actions to create jobs and a custom workflow.
+- **Custom Action?** We can write custom code(action) which can interact with github repository and perform tasks.
+
+### Types of Actions
+#### 1. Docker container Action
+#### 2. Javascript Action
