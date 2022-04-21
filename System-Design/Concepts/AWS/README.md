@@ -12,7 +12,7 @@
 
 |Area|What|Services|
 |---|---|---|
-|Analytics||[Athena](Analytics)|
+|Analytics||[Athena, CodePipeline](Analytics)|
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[EC2 VM(on-demand,spot,reserved), LightSail,Lambda, ELB](compute)|
@@ -22,7 +22,7 @@
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
 |Developer Tools|[CodeStar](Developer_Tools)|
 |Management,Monitoring,Debug,Audit||[CloudWatch, Cloudtrail(Audit), Trusted Advisor,X-ray](Monitoring)|
-|Migration||[6Rs, CAF, Snow devices, Machine Learning, AI](Migration_Innovation)|
+|Migration||[6Rs, CAF, Snow devices, Machine Learning, AI, Datasync](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
 |Security,Identity,Compliance||[IAM, Organizations, SCP, OU, Cognition, GuardDuty, Inspector, Macie,C ertificate Manager, Cloud HSMHardware, Directory Services,WAF,Sheild, Artifact, KMS](Security)|
