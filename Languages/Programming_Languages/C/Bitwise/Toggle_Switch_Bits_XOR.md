@@ -1,6 +1,8 @@
 - [1. Toggle All Bits](#all)
 - [2. Toggle nth Bit](#nth)
 - [3. Toggle nth to mth Bit(Both inclusive)](#ntom)
+- [Find jth bit](#f1)
+- [Multiply/Divide by 2](#md)
 
 <a name=all></a>
 ### 1. Reverse/Toggle all bits
@@ -65,4 +67,22 @@ void ToggleFrom_n_to_m(int a, int n, int m){
   a ^= b;                 //2
   PrintBinary(a);
 }
+```
+
+<a name=f1></a>
+### Find jth bit  //Find 5th bit of 42
+```c
+    00101010   //42
+  & 00010000   
+  -----------
+     ans     //if ans=0,bit=0   else 1
+      
+```
+
+<a name=md></a>
+### Multiply/Divide by 2
+```c
+  0000 0110   //6
+  0000 1100   //6*2=12 = Left shift by 1
+  0000 0011   //6/2=3  = Right shift by 1
 ```
