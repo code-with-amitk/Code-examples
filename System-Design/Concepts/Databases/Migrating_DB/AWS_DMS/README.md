@@ -49,3 +49,4 @@ Step-2:
   Prod_DB --> DMS  ---- DB2
                     \-- DB3
 ```
+**5. Migrate from AWS to on-prem**
