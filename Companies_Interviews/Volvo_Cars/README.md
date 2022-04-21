@@ -2,6 +2,7 @@
 - **April, 2022**
   - [R1. Online Assesement](#r1)
   - [R2. OOD](#r2)
+  - [R3](#r3)
 
 <a name=ar></a>
 ### Architecture
@@ -145,3 +146,7 @@ main() {
  
 }
 ```
+
+<a name=r3></a>
+### Round-3
+- Sprint cycle, agile, scrum, Jenkins rule writing, Creating CI/CD pipeline(Have you written)?
