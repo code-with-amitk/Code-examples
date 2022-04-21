@@ -3,6 +3,7 @@
 - Advantages/Features
   - [Downloadable via URL](#f1)
   - [S3 Transfer Acceleration](#f5)
+  - [AWS Macie](#f6)
 - [S3 vs EBS](#vs)
 - [Creating S3 Bucket](#c)
 
@@ -29,6 +30,11 @@ No EC2 instances are needed.
 - A bucket-level feature for fast,secure transfers of files over long distances between your client and an S3 bucket.
 - it uses globally distributed [edge locations](/System-Design/Concepts/AWS/Terms#el) to transfer data.
 - As data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path.
+
+<a name=f6></a>
+#### 6. AWS Macie
+This is data security and data privacy service that uses ML to help identify & protect sensitive data in S3 buckets. Eg:
+- Macie can detect personal information eg: names, password, credit card information etc
 
 <a name=sc></a>
 ### Amazon S3 storage classes
