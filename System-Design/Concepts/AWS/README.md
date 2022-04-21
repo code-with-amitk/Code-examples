@@ -12,6 +12,7 @@
 
 |Area|What|Services|
 |---|---|---|
+|Analytics||[Athena](Analytics)|
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[EC2 VM(on-demand,spot,reserved), LightSail,Lambda, ELB](compute)|
