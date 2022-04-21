@@ -20,12 +20,12 @@
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift, DMS](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
-|Developer Tools|[CodeStar](Developer_Tools)|
+|Developer Tools||[CodeStar](Developer_Tools)|
 |Management,Monitoring,Debug,Audit||[CloudWatch, Cloudtrail(Audit), Trusted Advisor,X-ray](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI, Datasync](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
-|Security,Identity,Compliance||[IAM, Organizations, SCP, OU, Cognition, GuardDuty, Inspector, Macie,C ertificate Manager, Cloud HSMHardware, Directory Services,WAF,Sheild, Artifact, KMS](Security)|
+|Security,Identity,Compliance||[Artifact, Certificate Manager, Cloud HSMHardware, Cognition, Detective, Directory Services, GuardDuty, IAM, Inspector, Organizations, Sheild, KMS, WAF](Security)|
 |Storage||[Object Store:S3, macie, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
 
 - Security
