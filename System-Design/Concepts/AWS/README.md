@@ -18,7 +18,7 @@
 |Compute|Provides compute capacity on cloud.|[EC2 VM(on-demand,spot,reserved), LightSail,Lambda, ELB](compute)|
 |Configuration Management|Provides tools for automation|[Elastic Beanstalk, (CloudFormation(IaaS)=Template), Outpost, Cloudformation, Config](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
-|Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift](/System-Design/Concepts/Databases)|
+|Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift, DMS](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
 |Management,Monitoring,Debug,Audit||[CloudWatch, Cloudtrail(Audit), Trusted Advisor,X-ray](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI](Migration_Innovation)|
