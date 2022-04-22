@@ -1,35 +1,67 @@
-- [1. Toggle All Bits](#all)
-- [2. Toggle nth Bit](#nth)
-- [3. Toggle nth to mth Bit(Both inclusive)](#ntom)
-- [Find jth bit](#f1)
+- [Check nth bit](#c)
+- Find 
+  - [jth bit](#f1)
+  - [1st on bit from LSB](#f2)
 - [Multiply/Divide by 2](#md)
+- Toggle
+  - [nth Bit](#tn)
+  - [All Bits](#ta)
+  - [nth to mth Bit(Both inclusive)](#tnm)
+- [Turn on/off nth bit](#tof)
 
-<a name=all></a>
-### 1. Reverse/Toggle all bits
-- [PrintBinary()](/Languages/Programming_Languages/C/Bitwise/Print_Binary_Representation.md)
+<a name=c></a>
+### Check 5th bit
 ```c
-void ToggleReverseAll(int a){
-  a = ~a;
-  PrintBinary(a);
-}
+   0000 0110   //6
+&  0001 0000   (1<<5) 
+--------------
+   0000 0000    //off
 ```
 
-<a name=nth></a>
-### 2. Toggle nth bit
-> Input a = 1 = 1000000000000000000000000000000, n=3
-- **Logic**
-  - *1.* Create a number `b` by shifting 1 to nth place.
-  - *2.* XOR `^` b and a. same bit=0, diff=1
+### Find 
+<a name=f1></a>
+#### jth bit  //Find 5th bit of 42
 ```c
-Eg:
-Step-1:  b=00100000000000000000000000000000
-Step-2:   a = 10000000000000000000000000000000
-        ^ b = 00100000000000000000000000000000
-        --------------------------------------
-              1010000000000000000000000000000 //See 3rd bit toggled.
-```              
-- **Code**  
+    00101010   //42
+  & 00010000   
+  -----------
+     ans     //if ans=0,bit=0   else 1
+```
+<a name=f2></a>
+#### 1st on bit from LSB
 ```c
+Ans:2nd bit is on from LSB of 42
+
+        00101010   //42
+~42     11010101   //1's complement
+~42+1   11010110   //2's complement
+
+        00101010   //42
+ &      11010110   //2's complement
+  ----------------
+        00000010
+```
+
+<a name=md></a>
+### Multiply/Divide by 2
+```c
+  0000 0110   //6
+  0000 1100   //6*2=12 = Left shift by 1
+  0000 0011   //6/2=3  = Right shift by 1
+```
+
+
+
+### Toggle (XOR)
+<a name=tn></a>
+#### 5th bit
+```c
+xor: same=0, diff=1
+       0000 0110   //6
+^xor   0001 0000  //(1<<5)
+      -----------
+       0001 0110
+
 void Toggle_nth_Bit(int a, int n){
   int b = 1;
   b <<= n-1;
@@ -37,9 +69,17 @@ void Toggle_nth_Bit(int a, int n){
   PrintBinary(a);
 }
 ```
-
-<a name=ntom></a>
-### 3. Toggle nth to mth bit(Both inclusive)
+<a name=ta></a>
+#### Toggle all
+- [PrintBinary()](/Languages/Programming_Languages/C/Bitwise/Print_Binary_Representation.md)
+```c
+void ToggleReverseAll(int a){
+  a = ~a;
+  PrintBinary(a);
+}
+```
+<a name=tnm></a>
+#### Toggle nth to mth bit(Both inclusive)
 - **Logic**
   - Let's suppose input number=4 and we need to toggle 2nd to 5th bit(both inclusive)
 ```c
@@ -69,20 +109,20 @@ void ToggleFrom_n_to_m(int a, int n, int m){
 }
 ```
 
-<a name=f1></a>
-### Find jth bit  //Find 5th bit of 42
-```c
-    00101010   //42
-  & 00010000   
-  -----------
-     ans     //if ans=0,bit=0   else 1
-      
-```
 
-<a name=md></a>
-### Multiply/Divide by 2
+<a name=tof></a>
+### Turn On/Off
+#### Turn on 5th bit
 ```c
-  0000 0110   //6
-  0000 1100   //6*2=12 = Left shift by 1
-  0000 0011   //6/2=3  = Right shift by 1
+   0000 0110   //6
+|  0001 0000   (1<<5)
+--------------
+   0001 0110
+```
+#### Turn off 3rd bit
+```c
+   0000 0110   //6
+&  1111 1011   ~(1<<3) 
+--------------
+   0000 0010
 ```
