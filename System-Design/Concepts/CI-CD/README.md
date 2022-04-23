@@ -32,14 +32,15 @@ After CI, new changes are released to customers quickly in a sustainable way. He
 
 <a name=p></a>
 ### A. Phases of CD
-<img src=phases-of-cd.png width=700/>
 ```c
-A1. Commit Phase: software compilation, unit tests, and static code analysis
-A2. Acceptance test Phase: Assure the correctness of the software regarding domain logic.
-A3. Capacity tests/Load Tests: 
-A4. Explorative tests: Examine new functionalities
-A5. Production Phase: Software bought in production
+COMMIT --> TESTS --> BUILD --> PUSH_to_Aritifactory --> DEPLOYED
 ```
+- _1. Commit:_ Code is commited to repository
+- _2. Acceptance/Capacity/Load tests:_ Assure the correctness of the software regarding domain logic. 
+  - _2a. Explorative tests:_ Examine new functionalities
+- _3. Build:_ Build the code, ie produce a exe.
+- _4. Push to Artifactory:_
+- _5. Deploy to Prod Machine:_
 
 <a name=cdd></a>
 ## Continuous Deployment
