@@ -14,10 +14,12 @@
   - Microsoft SQL Server
 
 <a name=f></a>
-### Features
+### Features/Advantages
 - **1. Support cross Region Replication:**
   - One RDS DB instance resides in 1 Region. With Amazon RDS, you can create read replicas across Regions.
   - Amazon RDS replicates any data from the primary DB instance to the read replica across Regions.
+- **2. Automated backups, Software patching**
+- **3. Simplifies DB administration tasks**
 
 <a name=c></a>
 ### Creating RDS
