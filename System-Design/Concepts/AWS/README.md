@@ -16,7 +16,7 @@
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[Elastic Beanstalk,EC2 VM(on-demand,spot,reserved), LightSail,Lambda, ELB](compute)|
-|Configuration Management|Provides tools for automation|[(CloudFormation(IaaS)=Template), Outpost, Cloudformation, Config](Configuration_Management)|
+|Configuration Management|Provides tools for automation|[(CloudFormation(IaaS)=Template), Cloudformation, Config, Outpost, Quickstart](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift, DMS](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
