@@ -11,9 +11,8 @@
 
 <a name=az></a>
 ### Availabilty zones
-- Single or Group of data centers owned by AWS is called AZ.
+- Single or Group of data centers owned by AWS is called AZ. Latency between AZ's is <10ms.
 - Naming convention of AZ is {Geographic location}{letter}. Example AZs for us-east are: us-east-1a, us-east-1b
-- Latency between AZ's is <10ms, AZ are located 10s of miles apart from each other.
 - A best practice is to run a application across at least 2 Availability Zones in a Region.
 ```c
    ---------------------------------  Region   ---------------------------------
