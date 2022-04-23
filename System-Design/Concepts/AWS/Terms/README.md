@@ -58,6 +58,7 @@ These are also Datacenters but located very near to customer, wrt to actual data
 <a name=vpc></a>
 ## Amazon VPC(Virtual Private Cloud)
 This helps in provisioning an isolated section in AWS Cloud. Then we can have resources inside VPC
+<img src=ACL_security_group.JPG width=600 />
 <a name=sn></a>
 ### Subnets 
 - All resources are organized into subnets. Subnet is a section of a VPC that can contain resources(eg: Amazon EC2 instances)
@@ -77,8 +78,6 @@ This helps in provisioning an isolated section in AWS Cloud. Then we can have re
 |What|Firewall at boundary of subnet|Firewall at boundary of EC2 instance|
 |Stateful|no|yes|
 |Outbound traffic checking|yes|no|
-
-<img src=ACL_security_group.JPG width=600 />
 
 <a name=ig></a>
 #### Internet gateway
