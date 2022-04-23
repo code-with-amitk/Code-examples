@@ -17,6 +17,8 @@
   - [2. Getting Access to this Instance using SSM](#ac)
   - [3. Stop EC2 instance](#se)
   - [4. Create/Launch Replica/AMI](#ca)
+- Terms
+  - [Tag](#tag)
 
 
 ## EC2(Elastic Compute Cloud)
@@ -171,3 +173,14 @@ Launch AMI:
   Launch
 ```
 
+### Terms
+<a name=tag></a>
+#### Tag
+- A tag is a label(key,value(optional)) that you assigned to AWS resource. Ex:
+```c
+  EC2-instance1
+    |____|tag=(amit,admin)
+  
+  EC2-instance2
+    |____|tag=(ram,user)
+```
