@@ -11,8 +11,9 @@
 
 <a name=az></a>
 ### Availabilty zones
-- Single or Group of data centers owned by AWS is called AZ. Latency between AZ's is <10ms.
+- Single or Group of data centers owned by AWS is called AZ.
 - Naming convention of AZ is {Geographic location}{letter}. Example AZs for us-east are: us-east-1a, us-east-1b
+- Latency between AZ's is <10ms, AZ are located 10s of miles apart from each other.
 - A best practice is to run a application across at least 2 Availability Zones in a Region.
 ```c
    ---------------------------------  Region   ---------------------------------
@@ -56,7 +57,7 @@ These are also Datacenters but located very near to customer, wrt to actual data
 
 <a name=vpc></a>
 ## Amazon VPC(Virtual Private Cloud)
-This helps in provisioning an isolated section in AWS Cloud. Then we can have resources inside VPC
+This helps in provisioning an isolated section in AWS Cloud. Then we can have resources inside VPC. VPC can be in multiple [AZ](#az)
 <img src=ACL_security_group.JPG width=600 />
 <a name=sn></a>
 ### Subnets 
