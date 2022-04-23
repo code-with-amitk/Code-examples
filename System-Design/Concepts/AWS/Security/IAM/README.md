@@ -62,5 +62,6 @@
 
 <a name=ak></a>
 ### IAM Access Keys
-These are long-term credentials for an IAM user or root user. Access keys can be used to programatic request to:
-- AWS APIs, AWS CLI
+- These are long-term credentials for an IAM user or root user. Access keys can be used for programatic request to: AWS APIs, AWS CLI.
+- Parts of access key: 1. key ID, 2. secret
+- Rotation of Access keys is Customer's responsibilty not AWS.
