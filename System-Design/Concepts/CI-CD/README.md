@@ -7,8 +7,7 @@
 
 <a name=ci></a>
 ## Continuous Integration
-This is development practice that requires:
-- developers to integrate code into a shared repository several times a day.
+- Developers checkin the code into a shared repository several times a day.
 - Each check-in is then verified by an automated build, allowing teams to detect problems early.
 
 <a name=p></a>
