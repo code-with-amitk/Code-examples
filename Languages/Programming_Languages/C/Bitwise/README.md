@@ -5,7 +5,11 @@
 - Find 
   - [nth bit](#f1)
   - [1st on bit from LSB](#f2)
+- Modulus
+  - [divisor is power of 2](#m1)
 - [Multiply/Divide by 2](#md)
+- Power
+  - [Power of 2](#p1)
 - Toggle
   - [nth Bit](#tn)
   - [All Bits](#ta)
@@ -92,6 +96,19 @@ Ans:2nd bit is on from LSB of 42
         00000010
 ```
 
+### Modulus
+<a name=m1></a>
+#### Divisor is Power of 2  {m & (n-1)}
+```c
+  0100 1001   //m=73
+  0001 0000   //n=16.   m%n=73%16=9
+  
+  0100 1001   //m
+& 0000 1111   //n-1
+  ---------
+  0000 1001   //9
+```
+
 <a name=md></a>
 ### Multiply/Divide by 2
 ```c
@@ -99,6 +116,11 @@ Ans:2nd bit is on from LSB of 42
   0000 1100   //6*2=12 = Left shift by 1
   0000 0011   //6/2=3  = Right shift by 1
 ```
+
+### Power
+|||
+|---|---|
+|Power of 2|n&(n-1) = 0|
 
 ### Toggle (XOR)
 <a name=tn></a>
