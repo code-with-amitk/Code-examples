@@ -28,3 +28,4 @@
 - **1. Avail volume pricing, Reserved Instance Discounts:**
   - Combine usage across all accounts in your organization & get discounts and Savings Plans.
   - This solution can result in a lower charge compared to the use of individual standalone accounts.
+- **2. Get 1 consolidated bill for multiple accounts.**
