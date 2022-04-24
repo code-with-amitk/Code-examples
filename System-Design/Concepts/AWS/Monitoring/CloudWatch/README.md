@@ -7,4 +7,4 @@
 - Metrics as prometheus
 - Logs
 
-<img src=cloudwatch.JPG size=500 />
+<img src=cloudwatch.JPG size=400 />
