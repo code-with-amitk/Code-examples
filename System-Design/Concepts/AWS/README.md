@@ -26,7 +26,7 @@
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
 |Security,Identity,Compliance||[Artifact, Certificate Manager, Cloud HSM, Cognition, Detective, Directory Services, GuardDuty, IAM, Inspector, KMS, Organizations, Sheild, WAF](Security)|
-|Storage||[Object Store:S3, macie, Block Store:EBS, File Store:EFS, Glacier, Snowball, StorageGW](Storage)|
+|Storage||[Block Store:EBS, File Store:EFS, Object Store:S3, macie, Glacier, Snowball, Storage Gateway](Storage)|
 
 - Security
 ```
