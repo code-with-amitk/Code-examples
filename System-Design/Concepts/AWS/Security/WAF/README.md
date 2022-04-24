@@ -1,4 +1,5 @@
 **WAF / Web Application Firewall**
+- [WAF vs Sheild](#vs)
 
 ## WAF
 - WAF (sort of wireshark+policy enforcer) that monitors network requests that come into your web applications and can block/allow traffic using WACL(web access control list)
