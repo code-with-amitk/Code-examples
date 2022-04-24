@@ -7,7 +7,7 @@
 - **Snowball:** This is dust/rain/temperproof device for storing/shipping the data to AWS site.
   - A dedicated security team comes with snowdevice to transfer your data encrypted to AWS site.
   - There AWS support will transfer data to cloud.
-<img src=snowball.png width=500 />
+<img src=snowball.png width=200 />
 
 <a name=t></a>
 ### Types of Snow devices
