@@ -1,11 +1,9 @@
 **Heap/Binary Heap/Priority Queue**
-- [Heap](#h)
 - [Priority Queue](#pq)
 - [Operations on heap](#o)
 - [Types of Heap](#t)
 
 
-<a name=h></a>
 ## Heap
 Heap is a data structure which is used for implementing PQ
 
