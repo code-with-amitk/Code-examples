@@ -20,12 +20,9 @@ Heap is a data structure which is used for implementing PQ
     
 <a name=o></a>
 ### Operation on Heap
-#### Insert(Q,x)  
-Given an item x with key k, insert it into the priority queue Q. 
-#### Find-Minimum(Q) or Find-Maximum(Q)
-Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
-#### Delete-Minimum(Q) or Delete-Maximum(Q)
-Remove the item from the priority queue Q whose key is minimum (maximum).
+- **Insert(Q,x):** Given an item x with key k, insert it into the priority queue Q. 
+- **Find-Minimum(Q) or Find-Maximum(Q):** Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
+- **Delete-Minimum(Q) or Delete-Maximum(Q):** Remove the item from the priority queue Q whose key is minimum (maximum).
 
 <a name=t></a>
 ### Types of Heap
