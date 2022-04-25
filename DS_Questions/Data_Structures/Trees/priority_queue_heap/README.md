@@ -1,8 +1,8 @@
 **Heap/Binary Heap/Priority Queue**
 - [Priority Queue](#pq)
-- [Operations on heap](#o)
-- [Types of Heap](#t)
-
+- Types of Heap
+  - [Max Heap](#maxh)
+  - [Min Heap](#minh)
 
 ## Heap
 Heap is a data structure which is used for implementing PQ
@@ -17,18 +17,20 @@ Heap is a data structure which is used for implementing PQ
   - Reordering of elements in done prior to arrival.
   - Duplicates are allowed in heap. This is suited to be stored in array ie Heap can be implemented using arrays.
   - If you use arrays to implement Heaps then you don't need to store pointer as done in trees and its space advantage. 
-    
-<a name=o></a>
-### Operation on Heap
-- **Insert(Q,x):** Given an item x with key k, insert it into the priority queue Q. 
-- **Find-Minimum(Q) or Find-Maximum(Q):** Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
-- **Delete-Minimum(Q) or Delete-Maximum(Q):** Remove the item from the priority queue Q whose key is minimum (maximum).
+- **Operation on Heap**
+  - **Insert(Q,x):** Given an item x with key k, insert it into the priority queue Q. 
+  - **Find-Minimum(Q) or Find-Maximum(Q):** Return a pointer to the item whose key value is smaller (larger) than any other key in the priority queue Q. 
+  - **Delete-Minimum(Q) or Delete-Maximum(Q):** Remove the item from the priority queue Q whose key is minimum (maximum).
 
-<a name=t></a>
 ### Types of Heap
-#### MAX_HEAP (`priority_queue<int>`)
-Root is always greatest. Condition: `parent >= child`
+<a name=maxh></a>
+#### 1. max_heap (`priority_queue<int>`)
+- Root is always greatest. Condition: `parent >= child`
+- **Properties**
+  - _a._ Max element is at root
+  - _b._ 2nd, 3rd largest element are direct children of root(either left or right).
   
-#### MIN_HEAP (`priority_queue <int, vector<int>, greater<int>>`)
+<a name=minh></a>
+#### 2. min_heap (`priority_queue <int, vector<int>, greater<int>>`)
 - Root is always least. Condition: `parent =< child`. 
 - Heapify only non-leaf nodes. Follow same algo as in max heap. `a[] = {17, 15, 8, 9, 10, 13, 6, 4, 5, 3, 1}`
