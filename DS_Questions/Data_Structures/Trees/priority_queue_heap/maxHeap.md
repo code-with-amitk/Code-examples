@@ -1,13 +1,17 @@
-/*    maxHeap.cpp
-Binary heap? Balanced complete Binary tree. Duplicates are allowed in heap. 
+**Max Heap**
+- [Logic](#l)
+- Code
+  - [Method-1](#c1)
+  - [Method-2](#c2)
+- [Complexity](#co)
 
-Max-Heap? Root is always greatest. parent >= child
-
-How Heap is stored? Heap is stored using arrays. 
-This provides advantage that space complexity is low since pointer is not stored as in trees.
-
-Question Build a Max-Heap from array {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
-Answer 
+### Max Heap
+- Binary heap? Balanced complete Binary tree. Duplicates are allowed in heap. 
+- Max-Heap? Root is always greatest. parent >= child
+- How Heap is stored? Heap is stored using arrays. This provides advantage that space complexity is low since pointer is not stored as in trees.
+- Question Build a Max-Heap from unsorted array {1, 13, 5, 17, 4, 6, 3, 10, 15, 8, 9}.
+```c
+Answer:
                17
               /   \
             15     13
@@ -15,81 +19,111 @@ Answer
           9    6  5  10
          / \  / \
         4  8 15 1 
+```
+#### Logic to Build Max-Heap
+_a._ Create Binary tree using level-order-traversal from Array
+```c
+        {1, 13, 5, 17, 4, 6, 3, 10, 15, 8, 9}
+         0   1  2   3  4  5  6   7  8   9  10
+  
+              1
+           /     \
+          13      5
+         /  \    /  \
+        17   4  6    3
+       / \  /\
+      10 15 8 9
 
-***********Logic to Build Max-Heap*************
-a. Create Binary tree using level-order-traversal from Array
-b. Perform heapify operation on all non-leaf nodes starting from 1st non-leaf node to top of tree in reverse order.
-        heapify operation: Compare node,it's left & right child. Swap and place largest element at top.
-************************************************
-
-Example:        
+For any node a[i], leftChild = a[2*i + 1], rightChild = a[2*i + 2]
+Example: i=2 a[i]=5  leftChild=a[2*2+1]=6. rightChild=arr[6]=3   
+  
 Array = {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
          0  1  2  3  4  5   6   7  8  9   10
+```
+- _b._ Perform heapify operation on all non-leaf nodes starting from 1st non-leaf node to top of tree in reverse order.
+  - heapify operation: Compare node,it's left & right child. Swap and place largest element at top.
+  - Calculate all non-leaf nodes, on which heapify operation need to be performed!
+  - Total nodes size=11, Non-leaf-nodes = sizeOfArray/2 - 1 = 11/2 - 1 = 4
+  - We will heapify from last non-leaf node to 1st in reverse order.
+  - Last non-leaf node, `arr[4]=4`.
+  - Nodes to heapify=`[1, 13, 5, 17, 4]` in reverse order.
+```c
+              1
+           /     \
+          13      5
+         /  \    /  \
+        17   4  6    3
+       / \  /\
+      10 15 8 9
 
-Step-1: Create Complete Binary Tree from Array using level-order/bfs method.
-        For any node a[i], leftChild = a[2*i + 1], rightChild = a[2*i + 2]
-        Example: i=3 a[i]=4  leftChild=a[2*3+1]=9. rightChild=arr[8]=8
+(Heapify 4) Swap 4 and 9.
+              1
+           /     \
+          13      5
+         /  \    /  \
+        17   9  6    3
+       / \  /\
+      10 15 8 4
                 
-                 1
-              /     \
-            3         5
-         /    \     /  \
-        4      6   13  10
-       / \    / \
-      9   8  15 17
+No need to heapify 17
+(Heapify 5) Swap 5 and 6.
 
-Step-2: Calculate all non-leaf nodes, on which heapify operation need to be performed!
-        Total nodes size=11, Non-leaf-nodes = sizeOfArray/2 - 1 = 11/2 - 1 = 4
-        We will heapify from last non-leaf node to 1st in reverse order.
-        Last non-leaf node, arr[4]=6.
-        Nodes to heapify=[1, 3, 5, 4, 6] in reverse order.
+              1
+           /     \
+          13      6
+         /  \    /  \
+        17   9  5    3
+       / \  /\
+      10 15 8 4
 
-Step-3: (Heapify 6) Swap 6 and 17. Compare 17,15,6. Place largest element at top
-                 1
-              /     \
-            3         5
-         /    \      /  \
-        4      17   13  10
-       / \    /  \
-      9   8  15   6
+(Heapify 13) Swap 13 and 17.
+              1
+           /     \
+          17      6
+         /  \    /  \
+        13   9  5    3
+       / \  /\
+      10 15 8 4
 
-Step-4: (Heapify 4) Swap 4 and 9.
-                 1
-              /     \
-            3         5
-         /    \      /  \
-        9      17   13  10
-       / \    /  \
-      4   8  15   6
+(Again Heapify 15). Swap 13,15
+              1
+           /     \
+          17      6
+         /  \    /  \
+        15   9  5    3
+       / \  /\
+      10 13 8 4
+                
+(Heapify 1) First Swap 1 and 17, Again swap 1,15. Again swap 13,1
+              17
+           /     \
+          1      6
+         /  \    /  \
+        15   9  5    3
+       / \  /\
+      10 13 8 4
+               
+              17
+           /     \
+          15      6
+         /  \    /  \
+        1    9  5    3
+       / \  /\
+      10 13 8 4
+               
+              17
+           /     \
+          15      6
+         /  \    /  \
+        13   9  5    3
+       / \   /\
+      10  1  8 4
 
-Step-5: (Heapify 5) Swap 13 and 5.
-                 1
-              /     \
-            3         13
-         /    \      /  \
-        9      17   5   10
-       / \    /  \
-      4   8  15   6
-
-Step-6: (Heapify 3) First Swap 3 and 17, again swap 3 and 15.
-                 1
-              /     \
-            17         13
-          /    \      /  \
-         9      15   5   10
-        / \    /  \
-       4   8  3   6      
-
-Step-7: (Heapify 1) First Swap 1 and 17, again swap 1 and 15, finally swap 1 and 6.
-                 17
-              /      \
-            15         13
-          /    \      /  \
-         9      6    5   10
-        / \    /  \
-       4   8  3    1
-
-************METHOD-1: Code Logic*************
+```
+#### Code
+<a name=c1></a>
+**Method-1(Same as logic above)**
+```c
 a. Calculate number of nodes to be heapified.   size/2 - 1
 
 b. Inplace heapify the array
@@ -109,26 +143,10 @@ b. Inplace heapify the array
         swap(a[indexOfNodeToHeapify], a[IndexOfParent])
         heapifyANode(a,size,IndexOfParent);   <<<<<<<<<<<<<<<<
 
-====Now array is inplace heapified but yet Tree is not created====
+- Now array is inplace heapified but yet Tree is not created
 
 c. Create Tree level order by traversing the array
-**********************************************
 
-
-**********METHOD-2: STL priority_queue**********
-- Instead of implementing the things by yourself, use STL priority_queue
-- priority_queue<int> is implemented as MAX_HEAP.
-************************************************
-
-TIME COMPLEXITY:
-Heapify a single node takes O(Log N) time complexity where N is the total number of Nodes. 
-Therefore, building the entire Heap will take N heapify operations and the total time complexity will be O(N*logN).
-*/
-#include<iostream>
-#include<queue>
-using namespace std;
-
-/**********************METHOD-1**************************
 typedef struct node
 {
         int val;
@@ -206,9 +224,6 @@ NODE *method_1_createMaxHeapTree(int a[], int i, int size)
 
         return ptr;
 }
-***************************************************************/
-
-
 void show_max_heap(priority_queue <int> a)
 {
         cout<<"Max Heap from priority_queue<>\n";
@@ -218,9 +233,7 @@ void show_max_heap(priority_queue <int> a)
                 a.pop();
         }
 }
-
 int main(){
-        /*************METHOD-1**************************
         int a[] = { 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
         
 
@@ -235,20 +248,27 @@ int main(){
 
         ptr = method_1_createMaxHeapTree(a,0,noofelements);
         cout<<"Created Max Heap tree from heapified array\n";
-        ***********************************************/
-        
-        
-        /***********METHOD-2****************************/
+}
+```
+<a name=c2></a>
+**Method-2: STL priority_queue**
+```c
+- Instead of implementing the things by yourself, use STL priority_queue
+- priority_queue<int> is implemented as MAX_HEAP.
+
+#include<iostream>
+#include<queue>
+using namespace std;
+int main() {
         priority_queue <int> pq;
         for(int n: {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17})
                 pq.push(n);
         show_max_heap(pq);
-        /**********************************************/
 }
+```
 
-/*
-# g++ maxHeap.cpp
-# ./a.out 
-Max Heap from priority_queue<>
-17 15 13 10 9 8 6 5 4 3 1 
-*/
+<a name=co></a>
+#### Complexity
+- **Time:** 
+  - Heapify a single node takes O(Log N) time complexity where N is the total number of Nodes. 
+  - Therefore, building the entire Heap will take N heapify operations and the total time complexity will be `O(N*logN)`.
