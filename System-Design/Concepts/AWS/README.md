@@ -20,12 +20,12 @@
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift, DMS](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
-|Developer Tools||[<ul><li>CodeStar</li><li>CDK</li></ul>](Developer_Tools)|
+|Developer Tools||[<ul><li>CodeStar</li> <li>CDK</li></ul>](Developer_Tools)|
 |Management,Monitoring,Debug,Audit||[<ul><li>CloudWatch(Send Alarms)</li> <li>Cloudtrail(Audit)</li> <li>Kinesis(Real Time Data)</li> <li>OpsWork</li> <li>Personal Health Dashboard</li> <li>QuickSight</li> <li>(System Manager(SSM)=See Operatinal data of AWS resources take action)</li> <li>Trusted Advisor</li> <li>X-ray</li></ul>](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI, Datasync](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
-|Security,Identity,Compliance||[Artifact=Compliance, Certificate Manager, Cloud HSM, Cognition, Detective, Directory Services, (GuardDuty=Threat detection), IAM, Inspector(security vunerabilites scanner), KMS, Organizations, Sheild(DDoS protection), WAF](Security)|
+|Security,Identity,Compliance||[<ul><li>Artifact=Compliance</li> <li>Certificate Manager</li> <li>Cloud HSM</li> <li>Cognition</li> <li>Detective</li> <li>Directory Services</li> <li>(GuardDuty=Threat detection)</li> <li>IAM</li> <li>Inspector(security vunerabilites scanner)</li> <li>KMS</li> <li>Organizations</li> <li>Sheild(DDoS protection)</li> <li>WAF</li></ul>](Security)|
 |Storage||[Block Store:EBS, File Store:EFS, Object Store:S3, macie, Glacier, Storage Gateway](Storage)|
 
 - Security
