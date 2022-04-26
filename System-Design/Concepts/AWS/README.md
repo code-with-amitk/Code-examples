@@ -15,7 +15,7 @@
 |Analytics||[Athena, CodePipeline](Analytics)|
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
-|Compute|Provides compute capacity on cloud.|[Elastic Beanstalk,EC2, EMR(Elastic Map Reduce), VM(on-demand,spot,reserved), LightSail,Lambda, ELB](compute)|
+|Compute|Provides compute capacity on cloud.|[<ul><li>Elastic Beanstalk</li> <li>EC2=VM(on-demand,spot,reserved)</li> <li>EMR(Elastic Map Reduce)</li> <li>LightSail</li> <li>Lambda</li> <li>ELB</ul>](compute)|
 |Configuration Management|Provides tools for automation|[(CloudFormation(IaaS)=Template), Cloudformation, Config, Outpost, Quickstart](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift, DMS](/System-Design/Concepts/Databases)|
