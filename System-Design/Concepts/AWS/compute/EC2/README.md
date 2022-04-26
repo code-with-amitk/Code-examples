@@ -26,8 +26,8 @@
 - **without EC2(Old world):** if we need an new server, 1st decide how big server is required(how many cores etc), purcharse, installation around 2+ months
 
 <a name=sg></a>
-### EC2 Security Groups
-- Whenever an EC2 instance is created a SG is also created for EC2. A security group is a virtual firewall that controls inbound and outbound traffic for an Amazon EC2 instance.
+### EC2 Security Groups(Stateful)
+- Whenever an EC2 instance is created a SG is also created for EC2. A SG is a virtual firewall that controls inbound and outbound traffic for EC2.
 - By default, a SG denies all inbound traffic and allows all outbound traffic. You can add custom rules to configure which traffic to allow or deny.
 - SG is **stateful** ie they remember previous decisions made for incoming packets. if a packet is allowed into EC2, its not checked when its going out.
 - while [Network ACL in Amazon VPC](/System-Design/Concepts/AWS/Terms/README.md#vpc) does same job but are stateless.
