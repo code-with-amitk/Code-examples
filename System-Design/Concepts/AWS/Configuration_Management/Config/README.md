@@ -2,7 +2,5 @@
 
 ### AWS Config
 Provides information about the resources(on AWS account):
-- How resources are configured
-- How they are related to one another
-- How the configurations and their relationships have changed over time.
-- Check service limits of resources on AWS.
+- configuration history
+- configuration change notifications(configurations and their relationships have changed over time)
