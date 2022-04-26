@@ -25,7 +25,7 @@
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI, Datasync](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
-|Security,Identity,Compliance||[Artifact=Compliance, Certificate Manager, Cloud HSM, Cognition, Detective, Directory Services, GuardDuty, IAM, Inspector(security vunerabilites scanner), KMS, Organizations, Sheild(DDoS protection), WAF](Security)|
+|Security,Identity,Compliance||[Artifact=Compliance, Certificate Manager, Cloud HSM, Cognition, Detective, Directory Services, (GuardDuty=Threat detection), IAM, Inspector(security vunerabilites scanner), KMS, Organizations, Sheild(DDoS protection), WAF](Security)|
 |Storage||[Block Store:EBS, File Store:EFS, Object Store:S3, macie, Glacier, Storage Gateway](Storage)|
 
 - Security
