@@ -20,7 +20,7 @@
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[Relational:Aurora,RDS, NoSQL:DynamoDB,Accelrator GraphDB:Neptune, Cache:ElasticCache, Datawarehouse:RedShift, DMS](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
-|Developer Tools||[<ul><li>CodeStar</li>, <li>CDK</li></ul>](Developer_Tools)|
+|Developer Tools||[<ul><li>CodeStar</li><li>CDK</li></ul>](Developer_Tools)|
 |Management,Monitoring,Debug,Audit||[CloudWatch(Send Alarms), Cloudtrail(Audit), Kinesis(Real Time Data), OpsWork, Personal Health Dashboard, QuickSight, (System Manager(SSM)=See Operatinal data of AWS resources take action), Trusted Advisor,X-ray](Monitoring)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI, Datasync](Migration_Innovation)|
 |Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
