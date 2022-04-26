@@ -3,6 +3,7 @@
   - [Best Practices](#bp)
   - [Root User](#r)
   - [IAM Users](#iu)
+  - [Authentication Mechanisms](#am)
 - Terms
   - [Policies](#p)
   - [Groups](#g)
@@ -34,6 +35,12 @@
   - IAM user is created with NO PERMISSIONS(even no permissions to login).
   - Grant permissions to AWS user to perform any task(eg: launching an Amazon EC2 instance or creating an Amazon S3 bucket).
 
+<a name=am></a>
+#### Authentication Mechanims
+- Console passwords
+- [Access keys](#ak)
+- Server certificates
+
 ## Terms
 <a name=p></a>
 ### IAM policies
@@ -61,7 +68,9 @@
 - _Use case:_ IAM roles are ideal for situations in which access to services or resources needs to be granted temporarily, instead of long-term.
 
 <a name=ak></a>
-### IAM Access Keys
+### Access Keys
 - These are long-term credentials for an IAM user or root user. Access keys can be used for programatic request to: AWS APIs, AWS CLI.
-- Parts of access key: 1. key ID, 2. secret
+- Parts of access key:
+  - _1._  key ID
+  - _2._ secret key
 - Rotation of Access keys is Customer's responsibilty not AWS.
