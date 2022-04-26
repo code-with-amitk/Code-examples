@@ -20,6 +20,7 @@
   - Amazon RDS replicates any data from the primary DB instance to the read replica across Regions.
 - **2. Automated backups, Software patching**
 - **3. Simplifies DB administration tasks**
+- **4. Being managed service, there is no need to manage OS**
 
 <a name=c></a>
 ### Creating RDS
