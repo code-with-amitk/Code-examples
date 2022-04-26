@@ -33,6 +33,16 @@
 - while [Network ACL in Amazon VPC](/System-Design/Concepts/AWS/Terms/README.md#vpc) does same job but are stateless.
 - All outgoing traffic is allowed from SG.
 - [Security Group vs ACL](/System-Design/Concepts/AWS/Terms/README.md#vpc)
+```c
+------------------- AWS -----------------------
+  |---------  VPC ---------------
+  |   |------ Subnet  -------
+  |   | |-- Security Group--|
+  |   | |   EC2             |
+  |   | |-------------------|
+  |   |-----------------------
+  |------------------------------
+```
 
 <a name=it></a>
 ### EC2 instance types
