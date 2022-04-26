@@ -24,7 +24,7 @@
 |Management,Monitoring,Debug,Audit||[<ul><li>CloudWatch(Send Alarms)</li> <li>Cloudtrail(Audit)</li> <li>Kinesis(Real Time Data)</li> <li>OpsWork</li> <li>Personal Health Dashboard</li> <li>QuickSight</li> <li>(System Manager(SSM)=See Operatinal data of AWS resources take action)</li> <li>Trusted Advisor</li> <li>X-ray</li></ul>](Monitoring)|
 |Media||[<ul><li>Elastic Transcoder=Convert media in Amazon S3 to audio,video</li></ul>](#Media)|
 |Migration||[6Rs, CAF, Snow devices, Machine Learning, AI, Datasync](Migration_Innovation)|
-|Network||[Cloudfront,VPC, Direct Connect, Load Balancing, Route 53](Network)|
+|Network||[<ul><li>Cloudfront=CDN</li> <li>VPC</li> <li>Direct Connect</li> <li>Load Balancing</li> <li>Route 53=DNS</li><ul>](Network)|
 |Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
 |Security,Identity,Compliance||[<ul><li>Artifact=Compliance</li> <li>Certificate Manager</li> <li>Cloud HSM</li> <li>Cognition</li> <li>Detective</li> <li>Directory Services</li> <li>(GuardDuty=Threat detection)</li> <li>IAM</li> <li>Inspector(security vunerabilites scanner)</li> <li>KMS</li> <li>Organizations(Has SCP(service control policy for APIs)</li> <li>Sheild(DDoS protection)</li> <li>WAF</li></ul>](Security)|
 |Storage||[Block Store:EBS, File Store:EFS, Object Store:S3, macie, Glacier, Storage Gateway](Storage)|
