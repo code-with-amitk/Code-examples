@@ -7,6 +7,7 @@
    - [Internet gateway](#ig)
    - [Virtual private gateway](#vpg)
    - [AWS Direct Connect](#adc)
+- [Reserved](#r)
 - [Serverless](#sl)
 
 <a name=az></a>
@@ -121,6 +122,10 @@ This helps to establish a dedicated private connection between Client's datacent
    |                                   |
    |-----------------------------------|
 ```
+
+<a name=r></a>
+### Which services can be reserved?
+- Discounts(up to 75%) can be availed by reservation in advance. Some of the services which can be reserved: EC2, DynamoDB, ElastiCache, RDS, and RedShift.
 
 <a name=sl></a>
 ### Serverless
