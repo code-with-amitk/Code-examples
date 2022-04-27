@@ -20,12 +20,12 @@
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[<ul><li>Elastic Beanstalk</li> <li>EC2=VM(Has security groups)</li> <li>EMR(Elastic Map Reduce)</li> <li>LightSail</li> <li>Lambda</li> <li>ELB</li></ul>](compute)|
-|Configuration Management|Provides tools for automation|[<ul><li>CloudFormation(IaaS)=Template</li> <li>Cloudformation</li> <li>Config=AWS Resources configuration change history</li> <li>Outpost</li> <li>Quickstart</li><ul>](Configuration_Management)|
+|Configuration Management|Provides tools for automation|[<ul><li>CloudFormation(IaaS)=Template</li> <li>Cloudformation</li> <li>Config=AWS Resources configuration change history</li> <li>OpsWork(Use Puppet, Chef)</li> <li>Outpost</li> <li>Quickstart</li><ul>](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[<ul><li>Relational:Aurora,RDS</li> <li>NoSQL:DynamoDB,Accelrator</li> <li>GraphDB:Neptune</li> <li>Cache:ElasticCache</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
 |Developer Tools||[<ul><li>CodeStar</li> <li>CDK</li></ul>](Developer_Tools)|
-|Management,Monitoring,Debug,Audit||[<ul><li>CloudWatch(Send Alarms)</li> <li>Cloudtrail(Audit)</li> <li>Kinesis(Real Time Data)</li> <li>OpsWork</li> <li>Personal Health Dashboard</li> <li>QuickSight</li> <li>(System Manager(SSM)=See Operatinal data of AWS resources take action)</li> <li>Trusted Advisor</li> <li>X-ray</li></ul>](Monitoring)|
+|Management & Governance||[<ul><li>CloudWatch(Send Alarms)</li> <li>Cloudtrail(Audit)</li> <li>Kinesis(Real Time Data)</li> <li>Personal Health Dashboard</li> <li>QuickSight</li> <li>(System Manager(SSM)=See Operatinal data of AWS resources take action)</li> <li>Trusted Advisor</li> <li>X-ray</li></ul>](Monitoring)|
 |Media||[<ul><li>Elastic Transcoder=Convert media in Amazon S3 to audio,video</li></ul>](#Media)|
 |Migration||[<ul><li>6Rs</li> <li>CAF</li> <li>Snow devices(Peta byte scale data transfer)</li> <li>Machine Learning</li> <li>AI</li> <li>Datasync</li></ul>](Migration_Innovation)|
 |Network||[<ul><li>Cloudfront=CDN</li> <li>VPC</li> <li>Direct Connect</li> <li>Load Balancing</li> <li>Route 53=DNS</li><ul>](Network)|
