@@ -20,8 +20,8 @@
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(Has security groups)</li> <li>ELB</li> <li>Elastic Beanstalk</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail</li> <li>Outpost</li> </ul>](Compute)|
-|Cost Management||[Billing, Budgets, MarketPlace, Cost Explorer](Cost_Management)|
-|Customer Enablement||[AWS Free TierPersonal, Health Dashboard, Pricing, Support](Customer_Enablement)|
+|Cost Management||[<ul> <li>Billing</li> <li>Budgets</li> <li>MarketPlace</li> <li>Cost Explorer</li> </ul>](Cost_Management)|
+|Customer Enablement||[<ul> <li>AWS Free TierPersonal</li> <li>Health Dashboard</li> <li>Pricing</li> <li>Support</li> </ul>](Customer_Enablement)|
 |Configuration Management|Provides tools for automation|[<ul> <li>Quickstart</li> </ul>](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[<ul><li>Relational:Aurora,RDS</li> <li>NoSQL:DynamoDB,Accelrator</li> <li>GraphDB:Neptune</li> <li>Cache:ElasticCache</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
