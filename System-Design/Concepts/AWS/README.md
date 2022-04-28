@@ -19,8 +19,8 @@
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
-|Compute|Provides compute capacity on cloud.|[<ul> <li>Elastic Beanstalk</li> <li>EC2=VM(Has security groups)</li> <li>EMR(Elastic Map Reduce)</li> <li>LightSail</li> <li>Lambda</li> <li>ELB</li> </ul>](compute)|
-|Configuration Management|Provides tools for automation|[<ul> <li>Outpost</li> <li>Quickstart</li> </ul>](Configuration_Management)|
+|Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(Has security groups)</li> <li>ELB</li> <li>Elastic Beanstalk</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail</li> <li>Outpost</li> </ul>](Compute)|
+|Configuration Management|Provides tools for automation|[<ul> <li>Quickstart</li> </ul>](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[<ul><li>Relational:Aurora,RDS</li> <li>NoSQL:DynamoDB,Accelrator</li> <li>GraphDB:Neptune</li> <li>Cache:ElasticCache</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
