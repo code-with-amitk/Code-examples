@@ -7,6 +7,7 @@
    - [Internet gateway](#ig)
    - [Virtual private gateway](#vpg)
    - [AWS Direct Connect](#adc)
+   - [VPC Flow Logs](#fl)
 - [Reserved](#r)
 - [Serverless](#sl)
 
@@ -122,6 +123,15 @@ This helps to establish a dedicated private connection between Client's datacent
    |                                   |
    |-----------------------------------|
 ```
+
+<a name=fl></a>
+#### VPC Flow Logs
+- Capture information about the IP traffic going to/from network interfaces in VPC.
+- Flow log data can be published to CloudWatch Logs or Amazon S3. Flow logs can help you with a number of tasks, such as:
+   - Diagnosing overly restrictive security group rules
+   - Monitoring the traffic that is reaching your instance
+   - Determining the direction of the traffic to and from the network interfaces
+- Flow log data is collected outside of the path of your network traffic, and therefore does not affect network throughput or latency. You can create or delete flow logs without any risk of impact to network performance.
 
 <a name=r></a>
 ### Which services can be reserved?
