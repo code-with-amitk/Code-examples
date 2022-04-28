@@ -20,6 +20,8 @@
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
 |Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(Has security groups)</li> <li>ELB</li> <li>Elastic Beanstalk</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail</li> <li>Outpost</li> </ul>](Compute)|
+|Cost Management||[Billing, Budgets, MarketPlace, Cost Explorer](Cost_Management)|
+|Customer Enablement||[AWS Free TierPersonal, Health Dashboard, Pricing, Support](Customer_Enablement)|
 |Configuration Management|Provides tools for automation|[<ul> <li>Quickstart</li> </ul>](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[<ul><li>Relational:Aurora,RDS</li> <li>NoSQL:DynamoDB,Accelrator</li> <li>GraphDB:Neptune</li> <li>Cache:ElasticCache</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
@@ -27,9 +29,8 @@
 |Developer Tools||[<ul><li>CodeStar</li> <li>CDK</li></ul>](Developer_Tools)|
 |Management & Governance||[<ul> <li>CloudFormation(IaaS)=Template</li> <li>CloudWatch(Send Alarms)</li> <li>Cloudtrail(Audit)</li> <li>Config=AWS Resources configuration change history</li> <li>Kinesis(Real Time Data)</li> <li>OpsWork(Use Puppet, Chef)</li> <li>Organizations(Has SCP(service control policy for APIs)</li> <li>Personal Health Dashboard</li> <li>QuickSight</li> <li>(System Manager(SSM)=See Operatinal data of AWS resources take action)</li> <li>Trusted Advisor</li> <li>X-ray</li></ul>](Monitoring)|
 |Media||[<ul><li>Elastic Transcoder=Convert media in Amazon S3 to audio,video</li></ul>](#Media)|
-|Migration||[<ul><li>6Rs</li> <li>CAF</li> <li>Snow devices(Peta byte scale data transfer)</li> <li>Machine Learning</li> <li>AI</li> <li>Datasync</li></ul>](Migration_Innovation)|
+|Migration||[<ul><li>6Rs</li> <li>CAF</li> <li>Snow devices(Peta byte scale data transfer)</li> <li>Machine Learning</li> <li>AI</li> <li>Datasync</li></ul>](Migration_and_Transfer)|
 |Network||[<ul><li>Cloudfront=CDN</li> <li>VPC</li> <li>Direct Connect</li> <li>Load Balancing</li> <li>Route 53=DNS</li><ul>](Network)|
-|Pricing, Billing, Budget, Support|| [Billing, Budgets, Cost Explorer, Pricing, Support, AWS Free Tier, Support, MarketPlace](Pricing_Billing_Budget_Support)|
 |Security,Identity,Compliance||[<ul><li>Artifact=Compliance</li> <li>Certificate Manager</li> <li>Cloud HSM</li> <li>Cognition</li> <li>Detective</li> <li>Directory Services</li> <li>(GuardDuty=Threat detection)</li> <li>IAM</li> <li>Inspector(security vunerabilites scanner)</li> <li>KMS</li>  <li>Sheild(DDoS protection)</li> <li>WAF</li></ul>](Security)|
 |Storage||[<ul><li>Block Store:EBS</li> <li>File Store:EFS</li> <li>Object Store:<ul><li>S3(Feature:macie, Storage class:Glacier)</li></ul></li></ul>](Storage)|
 
