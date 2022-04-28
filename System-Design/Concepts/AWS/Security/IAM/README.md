@@ -74,3 +74,6 @@
   - _1._  key ID
   - _2._ secret key
 - Rotation of Access keys is Customer's responsibilty not AWS.
+- **Best Practices:**
+  - Don’t generate an access key for the root account user.
+  - Use TemporaryCredentials(IAM Roles) Instead of Long-Term Access Keys.
