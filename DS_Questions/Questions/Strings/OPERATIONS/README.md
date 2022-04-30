@@ -13,8 +13,11 @@
 - [size](#sz)
 - [Substring](#sub)
 - **Tokenize**
-  - [stringstream](#ss)
-  - [boost::tokenizer](#bt)
+  - One Delimiter
+    - [stringstream](#ss)
+    - [boost::tokenizer](#bt)
+  - Multiple Delimiters
+    - [strtok](#strt)
 - [Traversal. Forward, Reverse](#tra)
 
 
@@ -163,6 +166,7 @@ Complexity |      O(1)                          | O(1)
 ```
 
 ## Tokenize
+### Delimiter=1
 <a name=ss></a>
 #### stringstream
 *1. Read input from keyboard. Tokenize for " ", create string*
@@ -206,6 +210,47 @@ Replace a character in string with some other character
   }
   
   cout<<s<<endl;                                        //1[.]1[.]1[.]1
+```
+
+### Delimiter=2 or more
+<a name=strt></a>
+#### strtok
+```cpp
+char *strtok(char *str, const char *delim)
+
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+
+string convert_char_to_string(char* token){
+    string temp = token;
+    if (temp.size())
+        transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+    return temp;
+}
+vector<string> fun(string s, string delimiters){
+   char *str = (char*)input.c_str();        //Convert string to char*
+   const char *delim = delimiters.c_str();  //Convert string to const char*
+
+   char *token;
+   vector<string> out;                        //Store tokens
+   token = strtok(str, delim);
+   out.push_back(convert_char_to_string(token));     //Convert char* to string
+   while( token != NULL ) {
+      token = strtok(NULL, delim);
+      if (token)
+        out.push_back(convert_char_to_string(token));
+   }
+   return out;
+}
+int main() {
+    string s = "I love CS3233 Competitive Programming. i also love AlGoRiThM";
+    string delimiters = "- .";                      //Tokenize on - . " "
+    vector<string> o = fun(s, delimiters);
+    for (auto& i: o)
+      cout << i << " ";
+}
 ```
 
 <a name=tra></a>
