@@ -11,6 +11,8 @@
 - [insert](#in)
 - [Replace](#rep)
 - [size](#sz)
+- Sort
+  - [Lexiographical](#lex)
 - [Substring](#sub)
 - **Tokenize**
   - One Delimiter
@@ -152,6 +154,24 @@ Complexity |      O(1)                          | O(1)
   cout<<st.length()<<endl;        //8
 ```
 
+### Sort
+<a name=lex></a>
+#### [Lexiographical](/DS_Questions/Questions/Strings/Lexicographical)
+```c
+int main() {
+    string s = "I love CS3233 Competitive \
+Programming. i also love kk zz aza za \
+AlGoRiThM";
+    string delimiters = "- .";
+    vector<string> o = tokenize(s,delimiters);    //Defined in strtok (/DS_Questions/Questions/Strings/OPERATIONS#strt)
+    sort(o.begin(), o.end());
+    for (auto i:o) {
+        cout << i << " ";
+    }
+}
+# ./a.out
+algorithm also aza competitive cs3233 i i kk love love programming za zz
+```
 
 <a name=sub></a>
 ## str.substr(pos, length)
@@ -212,7 +232,7 @@ Replace a character in string with some other character
   cout<<s<<endl;                                        //1[.]1[.]1[.]1
 ```
 
-### Delimiter=2 or more
+### Delimiters=2 or more
 <a name=strt></a>
 #### strtok
 ```cpp
@@ -229,7 +249,7 @@ string convert_char_to_string(char* token){
         transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
     return temp;
 }
-vector<string> fun(string s, string delimiters){
+vector<string> tokenize(string s, string delimiters){
    char *str = (char*)input.c_str();        //Convert string to char*
    const char *delim = delimiters.c_str();  //Convert string to const char*
 
@@ -247,7 +267,7 @@ vector<string> fun(string s, string delimiters){
 int main() {
     string s = "I love CS3233 Competitive Programming. i also love AlGoRiThM";
     string delimiters = "- .";                      //Tokenize on - . " "
-    vector<string> o = fun(s, delimiters);
+    vector<string> o = tokenize(s, delimiters);
     for (auto& i: o)
       cout << i << " ";
 }
