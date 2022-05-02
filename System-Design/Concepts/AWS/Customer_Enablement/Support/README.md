@@ -13,6 +13,7 @@
 |Architectural Guidance|General|Contextual to your use-cases|Consultative review|Consultative review|
 |TAM|n|n|y|y|
 |Pricing(dollar per month)|29>|100>|5500>15000>|
+|Account issues|||handled by Concierge Support Team|handled by Concierge Support Team|
 
 <a name=tam></a>
 ### TAM
