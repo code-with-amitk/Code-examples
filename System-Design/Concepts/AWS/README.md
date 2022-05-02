@@ -15,7 +15,7 @@
 **Learning Aid**
 ```
   go cat swift    <-Services
-  tp hct davtr    <-Work
+  tp hca davtr    <-Work
 ```
 |Guard Duty|Opswork|Config|Artifact|Trail|Sheild|Watch|Inspector|Formation|Trusted-Advisor|
 |---|---|---|---|---|---|---|---|---|---|
