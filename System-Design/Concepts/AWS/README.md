@@ -31,7 +31,7 @@
 |Media||[<ul><li>Elastic Transcoder=Convert media in Amazon S3 to audio,video</li></ul>](#Media)|
 |Migration||[<ul><li>6Rs</li> <li>CAF</li> <li>Snow devices(Peta byte scale data transfer)</li> <li>Machine Learning</li> <li>AI</li> <li>Datasync</li></ul>](Migration_and_Transfer)|
 |Networking & Content Delivery||[<ul> <li>API Gateway=Write HTTP APIs</li> <li>Cloudfront=CDN</li> <li>VPC</li> <li>Direct Connect</li> <li>Load Balancing</li> <li>Route 53=DNS</li><ul>](Network)|
-|Security,Identity,Compliance||[<ul><li>Artifact=Compliance</li> <li>Certificate Manager</li> <li>Cloud HSM</li> <li>Cognition</li> <li>Detective</li> <li>Directory Services</li> <li>(GuardDuty=Threat detection)</li> <li>IAM</li> <li>Inspector(security vunerabilites scanner)</li> <li>KMS</li>  <li>Sheild(DDoS protection)</li> <li>WAF</li></ul>](Security)|
+|Security,Identity,Compliance||[<ul><li>Artifact=Compliance</li> <li>Certificate Manager</li> <li>Cloud HSM(Hardware based encryption key generator)</li> <li>Cognition</li> <li>Detective</li> <li>Directory Services</li> <li>(GuardDuty=Threat detection)</li> <li>IAM</li> <li>Inspector(security vunerabilites scanner)</li> <li>KMS</li>  <li>Sheild(DDoS protection)</li> <li>WAF</li></ul>](Security)|
 |Storage||[<ul><li>Block Store:EBS</li> <li>File Store:EFS</li> <li>Object Store:<ul><li>S3(Feature:macie, Storage class:Glacier)</li></ul></li></ul>](Storage)|
 
 - Security
