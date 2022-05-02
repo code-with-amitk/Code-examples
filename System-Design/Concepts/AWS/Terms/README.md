@@ -1,5 +1,5 @@
 - [Availabilty zones](#az)
-- [Geographic Region](#gr)
+- [Region](#gr)
 - [Edge Location](#el)
 - [GovCloud](#gc)
 - [Amazon VPC(Virtual Private Cloud)](#vpc)
@@ -25,13 +25,15 @@
 ```
 
 <a name=gr></a>
-### [Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
+### [Geographic Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
 - AWS region consists of multiple, isolated, physically seperated [Availablity Zones](#az)
 - **Largest Region of AWS is US-EAST(ie North Virginia)**, new services becomes available here 1st.
 |<img src=regions_and_az.JPG width=400 height=200 />|<img src=north-america-political-map.jpg width=400 height=200 />|
 
-#### In which region should I place my service?
-**Factors to consider before choosing a region:**
+#### Properties
+- Data stored in region is not replicated outside of that region unless customers replicates to other regions.
+
+#### In which region should I place my service / Factors to consider before choosing a region
 - _1. Compliance with data governance and legal requirements:_ Depending on your company and location, you might need to run your application in specific areas. For example, if your company requires all of its data to reside within the boundaries of the UK, you would choose the London Region.
 - _2. Proximity to your customers:_ Selecting a Region that is close to your customers will help you to get content to them faster.
 - _3. Available services within a Region:_ Sometimes, the closest Region might not have all the features that you want to offer to customers. Eg: Amazon Braket (AWS quantum computing platform) is not yet available in every AWS Region around the world, so choose that region in which service is available.
