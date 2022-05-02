@@ -12,10 +12,11 @@
 
 <a name=sc></a>
 ### Service Categories
-
-- **go cat swift**
--   tp hct davtr
-
+**Learning Aid**
+```
+  go cat swift    <-Services
+  tp hct davtr    <-Work
+```
 |Guard Duty|Opswork|Config|Artifact|Trail|Sheild|Watch|Inspector|Formation|Trusted-Advisor|
 |---|---|---|---|---|---|---|---|---|---|
 |Threat detection|Puppet,Chef|History|Compliance|Audit|DDos|Alarms|Vunerablity|Template|Recommendation|
