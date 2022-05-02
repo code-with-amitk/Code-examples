@@ -13,29 +13,22 @@
 
 <a name=az></a>
 ### Availabilty zones
-- Single or Group of data centers owned by AWS is called AZ.
-- Naming convention of AZ is {Geographic location}{letter}. Example AZs for us-east are: us-east-1a, us-east-1b
+- Single or Group of data centers owned by AWS is called AZ. Naming convention {Geographic location}{letter}. Example AZs for us-east are: us-east-1a, us-east-1b
 - Latency between AZ's is <10ms, AZ are located 10s of miles apart from each other.
 - A best practice is to run a application across at least 2 Availability Zones in a Region.
 ```c
    ---------------------------------  Region   ---------------------------------
    
    |-----------AZ-1---------------|             |-----------AZ-2---------------|
-   | Data-center1  Data-center2   | > 10 miles  | Data-center-n  Data-center-m |
+   | Data-center1  Data-center2   | < 10 ms     | Data-center-n  Data-center-m |
    |------------------------------|             |------------------------------|
 ```
 
 <a name=gr></a>
-### [Geographic Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
-- AWS region consists of multiple, isolated, physically seperated [Availablity Zones](#az)**
+### [Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
+- AWS region consists of multiple, isolated, physically seperated [Availablity Zones](#az)
 - **Largest Region of AWS is US-EAST(ie North Virginia)**, new services becomes available here 1st.
-```c
-  -------US-east-----------
-   |---GR---|
-   |AZ1 AZn |
-   |--------|
-```
-|<img src=regions_and_az.JPG width=500 />|<img src=north-america-political-map.jpg width=500 />|
+|<img src=regions_and_az.JPG width=400 />|<img src=north-america-political-map.jpg width=400 />|
 |---|---|
 
 #### In which region should I place my service?
