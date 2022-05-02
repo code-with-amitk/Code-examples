@@ -28,8 +28,7 @@
 ### [Region](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2)
 - AWS region consists of multiple, isolated, physically seperated [Availablity Zones](#az)
 - **Largest Region of AWS is US-EAST(ie North Virginia)**, new services becomes available here 1st.
-|<img src=regions_and_az.JPG width=400 />|<img src=north-america-political-map.jpg width=400 />|
-|---|---|
+|<img src=regions_and_az.JPG width=400 height=200 />|<img src=north-america-political-map.jpg width=400 height=200 />|
 
 #### In which region should I place my service?
 **Factors to consider before choosing a region:**
