@@ -1,11 +1,7 @@
 **EC2(Elastic Compute Cloud)**
 - [Security Group](#sg)
 - [EC2 Instance Types](#it)
-- Pricing
-  - [1. On-Demand](#p1)
-  - [2. Reserved Instances (1 yr, 3 yr)](#p2)
-  - [3. Spot Instances](#p3)
-  - [4. Dedicated Hosts(Most Expensive)](#p4)
+- [Pricing: On-demand, reserved(1-3yrs), Spot, Dedicated Hosts](#p)
 - [EC2 Auto scaling](#as)
   - [Auto Scaling group](#asg)
     - [1. Create Auto Scaling Group](#cas)
@@ -70,24 +66,15 @@
 | P2 | Graphics/General Purpose| |
 | X1 | Memory optmized |
 
+<a name=p></a>
 ### EC2 Pricing
-<a name=p1></a>
-#### 1. On-Demand
-Ideal for short term, Irregular work loads. To be paid for whenever time you use it. Eg: Create a instance for learning and tear it
+|Model|For Work Load|Cost|Use case|
+|---|---|---|---|
+|1. On Demand|Irregular|Pay as you use|For Learning, running adhoc|
+|2. Reserved(1,3yr)|fixed|fixed||
+|3. Spot|Flexible start,end times which can withstand interruptions|Saving (upto 90%)|Batch Processing|
+|4. Dedicated Host|fixed|Highest|EC2 server fully dedicated to your use|
 
-<a name=p2></a>
-#### 2. Reserved Instances (1 yr, 3 yr)
-Reserve Instance for a 1-year or 3-year term. This ends when we terminate the instance
-
-<a name=p3></a>
-#### 3. Spot Instances
-- For workloads which have flexible start,end times which can withstand interruptions.
-- if you make a Spot request and Amazon EC2 capacity is unavailable, the request is not successful until capacity becomes available.
-- Useful for: Batch Processing (Save upto 90%)
-
-<a name=p4></a>
-#### 4. Dedicated Hosts(Most Expensive)
-EC2 server fully dedicated to your use
 
 ## EC2 Auto scaling
 This means scaling automatically as load increases and reducing instances as load decreases.
