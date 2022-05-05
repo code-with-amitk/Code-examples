@@ -224,27 +224,16 @@ $ systemctl start apache                      //Start Application inside contain
 ```c
 cmd> cd C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64
 C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64> helm create amit-chart
-C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64>dir amit-chart
- Volume in drive C is Windows
- Volume Serial Number is EC27-7451
-
- Directory of C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64\amit-chart
-
-03/04/2022  06:14 PM    <DIR>          .
-03/04/2022  06:14 PM    <DIR>          ..
-03/04/2022  06:14 PM               349 .helmignore
-03/04/2022  06:14 PM             1,146 Chart.yaml
-03/04/2022  06:14 PM    <DIR>          charts
-03/04/2022  06:14 PM    <DIR>          templates
-03/04/2022  06:14 PM             1,877 values.yaml
-
-jams/                       //Every chart will have same structure
-  Chart.yaml.j2
-  values.yaml.j2
-  templates/                //These all templates will get values from Values.yaml.j2
-    configmap-jams.yaml       
-    deployment.yaml
-    ...
+mychart
+|-- Chart.yaml
+|-- charts
+|-- templates
+|   |-- NOTES.txt
+|   |-- _helpers.tpl
+|   |-- deployment.yaml
+|   |-- ingress.yaml
+|   `-- service.yaml
+`-- values.yaml
 ```
 
 **Files inside Helm Chart**
@@ -517,7 +506,7 @@ spec:
 ```
 
 <a name=hc2></a>
-### [2. Download, Install minikube/Cluster](https://minikube.sigs.k8s.io/docs/start/)
+### [2. Run a Cluster / Download, Install minikube](https://minikube.sigs.k8s.io/docs/start/)
 ```ps
 //1. Run on powershell
 New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
@@ -552,6 +541,7 @@ kubelet: Running
 apiserver: Running
 kubeconfig: Configured
 ```
+
 <a name=hc3></a>
 ### 3. Install/Upgrade/Rollback application on cluster using helm
 ```c
