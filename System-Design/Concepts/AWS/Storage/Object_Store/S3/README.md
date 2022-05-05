@@ -29,14 +29,14 @@
 - Factors when choosing a storage class: How often data need to retrieved, How available data need to be?
 - _Charges at Glacier:_ 1. For storage per GB/month basis. 2. Retrieval requests
 
-|Storage class|Designed for|Number of AZ in which data is stored|Cost|
-|---|---|---|---|
-|1. Standard|Frequently accessed data|3|Costliest|
-|2. Standard-Infrequent Access (S3 Standard-IA)|Infrequent accessed and highly avaialble data|3|Cheaper than Standard|
-|3. One Zone-Infrequent Access (S3 One Zone-IA)||1||
-|4. Intelligent-Tiering|For data which is accessed randomly|||
-|5. Glacier|Data archiving|Able to retrieve objects from 1min-1Hours|Low|
-|6. Glacier Deep Archive||Able to retrieve objects within 12 hours|Lowest|
+|Storage class|Designed for|Number of AZ in which data is stored|Cost|Charged at time|
+|---|---|---|---|---|
+|1. Standard|Frequently accessed data|3|Costliest|Data Exgress,GB/month storage|
+|2. Standard-IA(Infrequent Access)|Infrequent accessed and highly avaialble data|3|Cheaper than Standard|Data Exgress,Per object|
+|3. One Zone-IA||1||Data Exgress,Per object|
+|4. Intelligent-Tiering|For data which is accessed randomly||||
+|5. Glacier|Data archiving|Able to retrieve objects from 1min-1Hours|Low|Data Exgress,|
+|6. Glacier Deep Archive||Able to retrieve objects within 12 hours|Lowest|Data Exgress,|
 
 <a name=vs></a>
 ### Amazon S3 vs EBS
