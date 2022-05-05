@@ -12,7 +12,7 @@
   - [1. Creating a EC2 Instance](#cre)
   - [2. Getting Access to this Instance using SSM](#ac)
   - [3. Stop EC2 instance](#se)
-  - [4. Create/Launch Replica/AMI](#ca)
+  - [4. Create/Launch Replica/AMI(Amazon Machine Image)](#ca)
 - Terms
   - [Tag](#tag)
 
