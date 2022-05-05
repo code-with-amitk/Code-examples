@@ -28,7 +28,7 @@
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Cache|Caching layer before DB|[ElasticCache, DAX](/System-Design/Concepts/Cache/DB_Caches/)|
-|Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(Has security groups)</li> <li>ELB</li> <li>Elastic Beanstalk(Take(a.out + config files) & create EC2 instance)</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail</li> <li>Outpost</li> </ul>](Compute)|
+|Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(security groups, AMI(Amazon Machine Image))</li> <li>ELB</li> <li>Elastic Beanstalk(Take(a.out + config files) & create EC2 instance)</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail</li> <li>Outpost</li> </ul>](Compute)|
 |Cost Management||[<ul> <li>Billing</li> <li>Budgets</li> <li>MarketPlace</li> <li>Cost Explorer(Forecast spending</li> </ul>](Cost_Management)|
 |Customer Enablement||[<ul> <li>AWS Free TierPersonal</li> <li>Pricing</li> <li>Support</li> </ul>](Customer_Enablement)|
 |Configuration Management|Provides tools for automation|[<ul> <li>Quickstart</li> </ul>](Configuration_Management)|
