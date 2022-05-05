@@ -223,7 +223,7 @@ $ systemctl start apache                      //Start Application inside contain
 **[Download Helm](https://github.com/helm/helm/releases)** & Create Chart.
 ```c
 cmd> cd C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64
-C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64> helm create amit-chart
+C:\Users\kumara\Downloads\helm-v3.8.0-windows-amd64\windows-amd64> helm create mychart
 mychart
 |-- Chart.yaml
 |-- charts
@@ -506,45 +506,13 @@ spec:
 ```
 
 <a name=hc2></a>
-### [2. Run a Cluster / Download, Install minikube](https://minikube.sigs.k8s.io/docs/start/)
-```ps
-//1. Run on powershell
-New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
-Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
-
-//2. Add the binary in to your PATH.
-//Make sure to run PowerShell as Administrator.
-
-$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
-if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
-  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
-}
-
-cmd> minikube start
-cmd> minikube kubectl -- get po -A
-NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
-kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
-kube-system            etcd-minikube                               1/1     Running   0               2d17h
-kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
-kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
-kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
-kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
-kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
-kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
-kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
-
-cmd> minikube status
-minikube
-type: Control Plane
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-```
+### 2. Run a Cluster or [run minikube](#mk)
 
 <a name=hc3></a>
 ### 3. Install/Upgrade/Rollback application on cluster using helm
 ```c
+$ helm install --dry-run --debug ./mychart
+$ helm install --dry-run --debug ./mychart --set service.internalPort=8080
 $ helm upgrade app1{chartname}      //Upgrade the microservice instead of install
 $ helm rollback app1{chartname}     //rollback to older version
 $ helm delete --purge {chartname}   //Delete chart
@@ -636,4 +604,41 @@ $ kubectl logs kafka-2 -n ns1 kafka-broker> t.txt    //kubectl logs podname name
 
 //Live tail
 $ kubectl logs kafka-2 -n ns1 kafka-broker --follow
+```
+
+<a name=mk></a>
+### [Running Minikube](https://minikube.sigs.k8s.io/docs/start/)
+```ps
+//1. Run on powershell
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+//2. Add the binary in to your PATH.
+//Make sure to run PowerShell as Administrator.
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
+  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+}
+
+cmd> minikube start
+cmd> minikube kubectl -- get po -A
+NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
+kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
+kube-system            etcd-minikube                               1/1     Running   0               2d17h
+kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
+kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
+kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
+kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
+kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
+kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
+kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
+
+cmd> minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
 ```
