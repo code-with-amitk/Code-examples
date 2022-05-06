@@ -1,6 +1,22 @@
-**Projects**
-- [C++](#cpp)
-- [SSL/TLS](#ssl)
+- **Projects**
+  - [C++](#cpp)
+  - [SSL/TLS](#ssl)
+- **OOD**
+  - Behavioral
+    - [1. Chain of Responsibilty](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Chain-of-Resp/)
+    - [2. Command DP: Remote Control](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Command/)
+    - [3. Mediator DP: Online Auction](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Mediator/)
+    - 4. Observer DP
+      - [4a. Robot Resturant](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Observer/Robot_Resturant/)
+      - [4b. Whether Display Device](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Observer/Whether_Display_Device/)
+    - [5. Template DP: Bevarage Making Machine](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Template/)
+  - Creational
+    - [1. Singleton DP: Single, Multithreaded](/Languages/Programming_Languages/c++/Design_Pattens/Creational/Singleton/)
+    - [2. Facade DP: Home Theater](/Languages/Programming_Languages/c++/Design_Pattens/Creational/facade/)
+  - Structural
+    - [1. Adapter DP: FlatPinPlug RoundSwitchBoard](/Languages/Programming_Languages/c++/Design_Pattens/Structural/Adapter/)
+    - [2. Decorator DP: Coffee Maker](/Languages/Programming_Languages/c++/Design_Pattens/Structural/Decorator/)
+
 
 ### Projects
 <a name=cpp></a>
