@@ -2,5 +2,5 @@
 - Forget the Mistake, Remember the lesson:
   - _1._ No PatchWork. Include Edge cases
   - _2. Understand Question Completely._ Read. Repeat(and ask questions). Doctest(small, medium, big inputs). Visualize
-  - _3. Take your Stand._ You do lot of Yes after interviewer comments something, try follow on.
+  - _3. Take your Stand._ You do lot of Yes after other's comments, do not be follower, be student.
   - _4. Concentrate, Meditate_
