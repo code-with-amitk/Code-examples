@@ -1,6 +1,8 @@
 - **Projects**
   - [C++](#cpp)
   - [SSL/TLS](#ssl)
+  - [Rust](#r)
+  - [Python](#p)
 - **OOD/Object Oriented Design**
   - Behavioral
     - [1. Chain of Responsibilty](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Chain-of-Resp/)
@@ -31,3 +33,11 @@
 #### [SSL/TLS: Server, Client Communication using ssl,crypto libraries](/Projects/TLS_SSL/)
 - [1. Mutual TLS. Client sending its certificate](/Projects/TLS_SSL/Mutual_TLS_client-sending-its-certs/)
 - [2. Normal TLS. Client not sending its certificate](/Projects/TLS_SSL/Normal_TLS_client-notsending-itsCerts/)
+
+<a name=r></a>
+#### Rust
+
+<a name=p></a>
+#### Python
+- [Parser for /var/log/samba/log.*](https://github.com/RedHatInsights/insights-core/pull/2362)
+- [Parser for /etc/dirsrv/slapd-<>/dse.ldif](https://github.com/RedHatInsights/insights-core/pull/2362)
