@@ -10,4 +10,7 @@
   - simplified load balancers
   - and CDN distributions
 
-|<img src=light-sail1.PNG width=200>|<img src=light-sail2.PNG width=200>|
+
+### Creating light sail instance
+<img src=light-sail1.PNG width=200>
+<img src=light-sail2.PNG width=200>
