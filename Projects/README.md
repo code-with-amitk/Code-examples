@@ -1,7 +1,7 @@
 - **Projects**
   - [C++](#cpp)
   - [SSL/TLS](#ssl)
-- **OOD**
+- **OOD/Object Oriented Design**
   - Behavioral
     - [1. Chain of Responsibilty](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Chain-of-Resp/)
     - [2. Command DP: Remote Control](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Command/)
