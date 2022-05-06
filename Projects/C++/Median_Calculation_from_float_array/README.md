@@ -3,7 +3,7 @@
 - [Code](#c)
 
 <a name=q></a>
-### Question
+### Question = Calculate Median using N Nodes
 - There is huge floating point array. Size=m
 - This is stored on n disks. m/n per disk.
 - Calculate median.
