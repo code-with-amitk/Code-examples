@@ -35,6 +35,7 @@
 |Databases||[<ul><li>Relational:Aurora,RDS</li> <li>NoSQL:DynamoDB,Accelrator</li> <li>GraphDB:Neptune</li> <li>ElasticCache(Cache before DB)</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
 |Developer Tools||[<ul><li>CodeStar</li> <li>CDK</li></ul>](Developer_Tools)|
+|Internet of Things||[<ul> <li>Core</li> </ul>](Internet_of_Things)|
 |Management & Governance||[<ul> <li>CloudFormation(IaaS)=Template</li> <li>CloudWatch(Monitor performance of AWS services, generate alarms, metrices)</li> <li>Cloudtrail(Audit)</li> <li>Config=AWS Resources configuration change history</li> <li>Kinesis(Real Time Data)</li> <li>OpsWork(Use Puppet, Chef)</li> <li>Organizations(Has SCP(service control policy for APIs)</li> <li>Health Dashboard(Alerts & remediation guidance for AWS resources)</li> <li>QuickSight</li> <li>(System Manager(SSM)=See Operatinal data of AWS resources take action)</li> <li>Trusted Advisor(Recommendations in 5 categories: Cost optimization, Performance, Security, Fault tolerance, Service limits)</li> <li>X-ray</li></ul>](Management_Governance)|
 |Media||[<ul><li>Elastic Transcoder=Convert media in Amazon S3 to audio,video</li></ul>](#Media)|
 |Migration||[<ul><li>6Rs</li> <li>CAF</li> <li>Snow devices(Peta byte scale data transfer)</li> <li>Machine Learning</li> <li>AI</li> <li>Datasync</li></ul>](Migration_and_Transfer)|
