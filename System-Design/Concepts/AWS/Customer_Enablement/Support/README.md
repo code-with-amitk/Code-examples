@@ -8,9 +8,9 @@
 |---|---|---|---|---|
 |AWS Trusted Advisor Best Practice Checks|Basic Security checks|Full|Full|Full|
 |support cases|Unlimited|Unlimited|Unlimited|Unlimited|
-|Email support|Business Hours|24x7|24x7|
-|Phone support|n|24x7|24x7|
-|Chat support|n|24x7|24x7|
+|Email support|Business Hours|24x7|24x7|24x7|
+|Phone support|n|24x7|24x7|24x7|
+|Chat support|n|24x7|24x7|24x7|
 |Response Times(Hr)|<24|Production down(<1)|Production down(<30 min)|Production down(<15 min)|
 |Architectural Guidance|General|Contextual to your use-cases|Consultative review|Consultative review|
 |TAM|n|n|y|y|
