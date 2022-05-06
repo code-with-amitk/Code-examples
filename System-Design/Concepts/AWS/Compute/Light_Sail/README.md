@@ -12,5 +12,5 @@
 
 
 ### Creating light sail instance
-<img src=light-sail1.PNG width=200>
-<img src=light-sail2.PNG width=200>
+<img src=light-sail1.PNG width=500>
+<img src=light-sail2.PNG width=500>
