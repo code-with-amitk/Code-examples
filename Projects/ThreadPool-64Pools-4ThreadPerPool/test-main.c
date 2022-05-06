@@ -10,11 +10,11 @@
 #define QUEUES 64
 
 /*
- *  * Warning do not increase THREAD and QUEUES too much on 32-bit
- *   * platforms: because of each thread (and there will be THREAD *
- *    * QUEUES of them) will allocate its own stack (8 MB is the default on
- *     * Linux), you'll quickly run out of virtual space.
- *      */
+ * Warning do not increase THREAD and QUEUES too much on 32-bit
+ * platforms: because of each thread (and there will be THREAD *
+ * QUEUES of them) will allocate its own stack (8 MB is the default on
+ *  Linux), you'll quickly run out of virtual space.
+*/
 
 threadpool_t *pool[QUEUES];
 int tasks[SIZE] = {0}, left;
