@@ -36,8 +36,10 @@
 
 <a name=r></a>
 #### Rust
+- _1._ Web Server exposing n REST End points
+- _2._ CI/CD as github Action, Read yml file, hash the repo and send to Http Server.
 
 <a name=p></a>
 #### Python
-- [Parser for /var/log/samba/log.*](https://github.com/RedHatInsights/insights-core/pull/2362)
-- [Parser for /etc/dirsrv/slapd-<>/dse.ldif](https://github.com/RedHatInsights/insights-core/pull/2362)
+- [1. Parser for /var/log/samba/log.*](https://github.com/RedHatInsights/insights-core/pull/2362)
+- [2. Parser for /etc/dirsrv/slapd-<>/dse.ldif](https://github.com/RedHatInsights/insights-core/pull/2362)
