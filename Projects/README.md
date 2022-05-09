@@ -37,7 +37,7 @@
 <a name=r></a>
 #### Rust
 - _1._ Web Server exposing n REST End points
-- _2._ CI/CD as github Action, Read yml file, hash the repo and send to Http Server.
+- _2._ [CI/CD as github Action, Read yml file, hash the repo and send to Http Server](/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/)
 
 <a name=p></a>
 #### Python
