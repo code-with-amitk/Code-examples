@@ -1,6 +1,7 @@
 - [R2: Take home challenge](#r)
 
 ## R2. THC
+### Question
 Design CI/CD tool as github action.
 - _1._ .oblivious folder, .oblivious/service.yaml exists in repository
 - _2._ Confirm service.yaml confirms to json schema.
@@ -28,3 +29,4 @@ $ ./a.exe username
                                           <--------Hello<username>------------
   }
 ```
+### [Code](/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/)
