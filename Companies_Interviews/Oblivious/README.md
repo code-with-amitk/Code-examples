@@ -1,6 +1,9 @@
-- [R2: Take home challenge](#r)
+- R2: Take home challenge
+  - [Question](#q)
+  - [Code](/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/)
 
 ## R2. THC
+<a name=q></a>
 ### Question
 Design CI/CD tool as github action.
 - _1._ .oblivious folder, .oblivious/service.yaml exists in repository
@@ -29,4 +32,3 @@ $ ./a.exe username
                                           <--------Hello<username>------------
   }
 ```
-### [Code](/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/)
