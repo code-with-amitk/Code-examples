@@ -9,6 +9,7 @@
    - [AWS Direct Connect](#adc)
    - [VPC Flow Logs](#fl)
 - [Reserved](#r)
+- [Recommendations](#rec)
 - [Serverless](#sl)
 
 <a name=az></a>
@@ -130,6 +131,11 @@ This helps to establish a dedicated private connection between Client's datacent
 <a name=r></a>
 ### Which services can be reserved?
 - Discounts(up to 75%) can be availed by reservation in advance. Some of the services which can be reserved: EC2, DynamoDB, ElastiCache, RDS, and RedShift.
+
+<a name=rec></a>
+### Recommendations
+- _1. Where possible, Replace EC2 with AWS managed services(Eg: lambda):_ 
+   - You should be free from capacity decisions hence you only pay for actual processing time.
 
 <a name=sl></a>
 ### Serverless
