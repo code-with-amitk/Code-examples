@@ -5,6 +5,7 @@ use serde_json::Value;
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::prelude::*;
+use std::path::Path;
 
 pub const REPOSITORY_URL: &str = "https://github.com/amitkumar50/test-repo";
 pub const FILE: &str = ".oblivious/services.yml";
@@ -29,17 +30,26 @@ impl Git {
         const FN_NAME: &str = "is_user_admin";
         warn!("{}", FN_NAME);
 
+        let mut dir_hash = None;
         let git = Self::checkout_read_yaml();
-        let dir_hash = git.file_hash;
+        if git.hm.is_empty() && git.file_hash.is_none() {
+            return (false, dir_hash);
+        }
+
+        dir_hash = git.file_hash;
 
         //Is user present in services.yml on github?
-        let role = git.hm.get(&user).unwrap();
+        let role = match git.hm.get(&user) {
+            Some(a) => a,
+            None => "",
+        };
         if role.is_empty() {
             warn!("User not found in yml file");
             return (false, dir_hash);
         }
-        if !role.eq(ADMIN) {
-            warn!("User role is not admin");
+        if role.eq(ADMIN) {
+            warn!("User role is not admin. role: {}", role);
+            println!("User role is not admin. role: {}", role);    //Remove
             return (false, dir_hash);
         }
         (true, dir_hash)
@@ -72,6 +82,18 @@ impl Git {
         warn!("{}", FN_NAME);
 
         let mut a = Self::new();
+        if Path::new(PATH_TO_CLONE).exists() {
+            //File exists Let's Delete it for now.
+            //Sometimes user is running this program with
+            //low priviledges and directory contains a file
+            //with high priviledges, remove_all_dir() may fail
+            //Better way is to rebase
+            error!("Please delete directory {}. ", PATH_TO_CLONE);
+            println!("Please delete directory {}. ", PATH_TO_CLONE); //Remove
+            return a;
+        }
+
+        let services_yaml1 = PATH_TO_CLONE.to_owned() + FILE;
         let services_yaml = PATH_TO_CLONE.to_owned() + FILE;
         let _repo = match Repository::clone(REPOSITORY_URL, PATH_TO_CLONE) {
             Ok(r) => r,
@@ -79,7 +101,7 @@ impl Git {
         };
 
         //Open and Read services.yml file
-        let mut file = match File::open(services_yaml) {
+        let file = match File::open(services_yaml) {
             Ok(a) => a,
             Err(e) => {
                 error!("{} Error {}", e, FN_NAME);
@@ -87,24 +109,35 @@ impl Git {
             }
         };
 
-        a.file_hash = Self::calc_hash(&mut file);
+        let mut file1 = match File::open(services_yaml1) {
+            Ok(a) => a,
+            Err(e) => {
+                error!("{} Error {}", e, FN_NAME);
+                File::create(DEFAULT_FILE).unwrap()
+            }
+        };
 
         //Parse services.yml and fill in json object
         let json: Value = match serde_json::from_reader(file) {
             Ok(a) => a,
             Err(e) => {
-                error!("{} Error {}", FN_NAME, e);
-                Value::default()
+                error!("{} {}", FN_NAME, e);
+                println!("{} {}", FN_NAME, e);  //Remove
+                //Value::default()
+                return a;
             }
         };
 
-        //Parse json and store in <key=role, value=username> format
+        warn!("File Parsed {}", json);
+        println!("File Parsed {}", json);   //Remove
 
+        //Parse json and store in <key=role, value=username> format
         let person = &json["person"];
         for (key, value) in person.as_object().unwrap() {
             a.hm.insert(key.to_string(), value.to_string());
         }
         //println!("json:{}", json);
+        a.file_hash = Self::calc_hash(&mut file1);
         a
     }
 }
