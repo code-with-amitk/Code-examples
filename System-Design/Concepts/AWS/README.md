@@ -29,7 +29,7 @@
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(security groups, AMI(Amazon Machine Image))</li> <li>ELB</li> <li>Elastic Beanstalk(Take(a.out + config files) & create EC2 instance)</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail(EC2+OS+Service(eg:wordpress))</li> <li>Outpost</li> </ul>](Compute)|
 |Cost Management||[<ul> <li>Billing</li> <li>Budgets</li> <li>MarketPlace</li> <li>Cost Explorer(Forecast spending</li> </ul>](Cost_Management)|
-|Customer Enablement||[<ul> <li>AWS Free TierPersonal</li> <li>Pricing</li> <li>Support</li> </ul>](Customer_Enablement)|
+|Customer Enablement||[<ul> <li>AWS Free TierPersonal</li> <li>Pricing</li> <li>TCO Calculator(aws vs onprem cost)</li> <li>Support</li> </ul>](Customer_Enablement)|
 |Configuration Management|Provides tools for automation|[<ul> <li>Quickstart</li> </ul>](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
 |Databases||[<ul><li>Relational:Aurora,RDS(no autoscaling)</li> <li>NoSQL:DynamoDB(auto scales),Accelrator</li> <li>GraphDB:Neptune</li> <li>ElasticCache(Cache before DB)</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
