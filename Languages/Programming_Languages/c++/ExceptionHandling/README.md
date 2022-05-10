@@ -1,8 +1,9 @@
 **Exception**
 - [try, throw, catch](#t)
 - **Examples**
-  - [1. Catching divide by 0](#ex1)
-  - [2. Catching bad_alloc, vector index out_of_range Exception](#ex1)
+  - [1. Divide by 0](#ex1)
+  - [2. bad_alloc, vector index out_of_range Exception](#ex1)
+  - [3. Exception in constructor](#e3)
   - **Throw Exception class**
     - [1. Empty exception class](#e3)
     - [2. Exception class having what()](#e4)
@@ -87,6 +88,34 @@ int main() {
             cout << "Other Exception" << endl;
 	}
 }	
+```
+<a name=e3></a>
+#### 3. Exception in constructor
+```cpp
+class base {
+  char* ptr;
+public:
+  base() {
+      ptr = nullptr;
+      ptr = new char[10];
+      if (ptr == nullptr) 
+        throw std::bad_alloc();        //Exception thrown from constructor
+  }
+  ~base(){
+    std::cout<<"base dtr\n";
+  }
+};
+int main() {
+    try {
+        base b;
+    }
+    catch (std::bad_alloc& b) {
+        std::cout << "Bad alloc" << b.what();
+    }
+    catch(...){
+        std::cout << "Exception happened";
+    }    
+}
 ```
 
 ### Throw Exception class
