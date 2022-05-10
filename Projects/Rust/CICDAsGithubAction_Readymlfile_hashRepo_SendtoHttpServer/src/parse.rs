@@ -26,7 +26,7 @@ impl Parser {
                     .help("username to be parsed from service.yaml")
                     .required(true)
                     .takes_value(true)
-                    .default_value("test"),
+                    .default_value(""),
             )
             .get_matches();
 
