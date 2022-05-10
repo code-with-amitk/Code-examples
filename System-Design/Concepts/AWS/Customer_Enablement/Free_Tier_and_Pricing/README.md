@@ -2,6 +2,7 @@
 - [AWS Free Tier](#ft)
 - [Pricing Strategy](#ps)
 - [Billing & Cost Management dashboard](#bc)
+- [TCO Calculator](#tco)
 
 
 ## Pricing and Support
@@ -30,4 +31,10 @@ Services are divided into some categories and based on that falls into Tiers.
 |EC2|Time for which instance is running|Use spot instances to save upto 90%|
 |S3|1. size & number of objects stored 2. Features used(replication, analytics) 3. Requests made to S3||
 
-
+<a name=tco></a>
+### TCO Calculator
+- Compare cost of Onprem application wrt AWS env.
+- It takes following inputs & produces report
+  - _1._ Number of servers (Physical or VMs)
+  - _2._ Resource information (CPU, RAM)
+  - _3._ DB or non-DB.
