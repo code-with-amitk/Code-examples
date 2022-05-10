@@ -7,8 +7,8 @@
 ```c
 Input source
   RDS         ---------\
-  S3 Bucket   ---data--- GLUE ---load data--> Redshift(Data warehouse)
-  other sources -------/                      - Does analysis
-  Semi-Strutured -----/
+  S3 Bucket   ---data------ GLUE -----> ETL scripts --> load data--> Redshift(Data warehouse)
+  other sources -------/                user can                     - Does analysis
+  Semi-Strutured -----/                 edit scripts
   Structured data ---/
 ```
