@@ -77,7 +77,7 @@ impl Sender {
         Ok(client)
     }
 
-    pub async fn send(username: String, dir_hash: Option<String>) -> Result<StatusCode, String> {
+    pub async fn send_to_server(username: String, dir_hash: Option<String>) -> Result<StatusCode, String> {
         const FN_NAME: &str = "send";
         warn!("{}", FN_NAME);
 
