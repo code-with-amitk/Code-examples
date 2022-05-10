@@ -32,7 +32,7 @@
 |Customer Enablement||[<ul> <li>AWS Free TierPersonal</li> <li>Pricing</li> <li>Support</li> </ul>](Customer_Enablement)|
 |Configuration Management|Provides tools for automation|[<ul> <li>Quickstart</li> </ul>](Configuration_Management)|
 |Containers||[ECS,EKS,Fargate](Container)|
-|Databases||[<ul><li>Relational:Aurora,RDS</li> <li>NoSQL:DynamoDB,Accelrator</li> <li>GraphDB:Neptune</li> <li>ElasticCache(Cache before DB)</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
+|Databases||[<ul><li>Relational:Aurora,RDS(no autoscaling)</li> <li>NoSQL:DynamoDB(auto scales),Accelrator</li> <li>GraphDB:Neptune</li> <li>ElasticCache(Cache before DB)</li> <li>Datawarehouse:RedShift, DMS</li></ul>](/System-Design/Concepts/Databases)|
 |Design|Helps designing systems at scale|[AWS Well-Architected Framework](Design)|
 |Developer Tools||[<ul><li>CodeStar</li> <li>CDK</li></ul>](Developer_Tools)|
 |Internet of Things||[<ul> <li>Core</li> </ul>](Internet_of_Things)|
@@ -41,7 +41,7 @@
 |Migration||[<ul><li>6Rs</li> <li>CAF</li> <li>Snow devices(Peta byte scale data transfer)</li> <li>Machine Learning</li> <li>AI</li> <li>Datasync</li></ul>](Migration_and_Transfer)|
 |Networking & Content Delivery||[<ul> <li>API Gateway=Write HTTP APIs</li> <li>Cloudfront=CDN</li> <li>VPC</li> <li>Direct Connect</li> <li>Load Balancing</li> <li>Route 53(DNS, domain registration, traffic flow, health check, failover)</li><ul>](Network)|
 |Security,Identity,Compliance||[<ul><li>Artifact=Compliance</li> <li>Certificate Manager</li> <li>Cloud HSM(Hardware based encryption key generator)</li> <li>Cognition</li> <li>Cognito</li> <li>Detective</li> <li>Directory Services</li> <li>(GuardDuty=Threat detection)</li> <li>IAM</li> <li>Inspector(security vunerabilites scanner)</li> <li>KMS</li>  <li>Sheild(DDoS protection)</li> <li>WAF</li></ul>](Security)|
-|Storage||[<ul><li>Block Store:EBS</li> <li>File Store:EFS</li> <li>Object Store:<ul><li>S3(Feature:macie, Storage class:Glacier)</li></ul></li></ul>](Storage)|
+|Storage||[<ul><li>Block Store:EBS(No Autoscaling)</li> <li>File Store:EFS</li> <li>Object Store:<ul><li>S3(Feature:Autoscale, macie, Storage class:Glacier)</li></ul></li></ul>](Storage)|
 
 - Security
 ```
