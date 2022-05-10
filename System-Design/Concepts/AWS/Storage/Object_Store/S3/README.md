@@ -23,6 +23,7 @@
   - As data arrives at an edge location, the data is routed to Amazon S3 over an optimized network path.
 - **6. AWS Macie:** This is data security and data privacy service that uses ML to help identify & protect sensitive data in S3 buckets. Eg:
   - Macie can detect personal information eg: names, password, credit card information etc
+- **7. Autoscaling:** S3 and DynamoDB automatically scale as demand dictates
 
 <a name=sc></a>
 ### S3 storage classes
