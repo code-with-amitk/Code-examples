@@ -30,7 +30,7 @@ Whenever an object's lifetime ends, which includes
 
 ### Destructor calling hierarchy = Opposite of constructor
 <a name=e1></a>
-#### Inheritance case
+#### 1. Inheritance case
 ```cpp
 class Base{
 public:
@@ -53,7 +53,7 @@ int main(){
 ```
 
 <a name=e2></a>
-#### Non-Inheritance case
+#### 2. Non-Inheritance case
 ```cpp
 class A {
 public:
@@ -73,8 +73,9 @@ dtr called    //a[0]
 ```
 
 <a name=e3></a>
-#### Calling base destructor when derv destructor has exception
-_Question:_ if destructor throws exception at line 1, then How memory allocated in base ctr will be freed?
+#### 3. Calling base destructor when derv destructor has exception
+> contructor base successful, destructor derv failed, How to deallocate memory allocated in base ctr
+- _Question:_ if destructor throws exception at line 1, then How memory allocated in base ctr will be freed?
 - [Constructor, Destructor calling Hierarchy](/Languages/Programming_Languages/c++/6-implicit-functions/Constructor/README.md)
 ```cpp
 #include<iostream>
