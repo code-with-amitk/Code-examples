@@ -3,7 +3,7 @@
 - **Examples**
   - [1. Divide by 0](#ex1)
   - [2. bad_alloc, vector index out_of_range Exception](#ex1)
-  - [3. Exception in constructor](#e3)
+  - [3. Catch exception from constructor in main](#e3)
   - **Throw Exception class**
     - [1. Empty exception class](#e3)
     - [2. Exception class having what()](#e4)
