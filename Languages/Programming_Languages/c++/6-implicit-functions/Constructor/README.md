@@ -47,7 +47,7 @@ Base dtr
 ```
 
 ### 2. Dtr calling Hierarchy
-<a name=r1></a>
+<a name=r2></a>
 #### [a. Derv class dtr is called 1st then base ctr](#r1)
 Why? Because objects are allocated on stack and top of stack is removed 1st.
 ```c
