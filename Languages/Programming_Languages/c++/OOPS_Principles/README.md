@@ -2,6 +2,8 @@
 ### 1. SOLID
 - *a. Single Responsibility:* Every module/class should have one responsibility and should work on single part of functionality provided by software. Microservices are build around this.
 - *b. Open-Closed:* Software entities(classes/modules) should be open for extension but closed for modification.
+  - Extension: Existing classes can be extended/coupled with any new behavior.
+  - Modifications: Coders have spent day & night for making code bug free & fast. We cannot get code changes in existing now.
 - *c. Liskov Substitution:* function using base class object can use derv class object in place of base class object, without causing any issues/problems.
 - *d. Interface Segregation:* Split the Bigger/Large Interfaces into smaller once, so that client should should only know about interfaces that interests him.
 - *d. Dependency Inversion:* Decoupling software modules. High-level modules should not depend on low-level modules. Both should depend on abstractions(ie interfaces).
