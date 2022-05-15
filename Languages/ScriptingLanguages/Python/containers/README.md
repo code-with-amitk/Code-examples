@@ -1,22 +1,26 @@
-## Comparison
-Mutable=changable
 
-|| List(not linkedlist)=vector(c++) | Tuple |Dictionary{} / MAP(STL) |      SET{}    | DEQUE
-|---|---|---|---|---|---|
-|Defined inside  |  `[]`          | With or without `()` |           {}            |         {}    |       |
-|What| 1-D/2-D/n-D vector, which can store int,float,char anything| Immutable lists | {key,value} pair. Unique Keys | No duplicates | Double ended queue|
-|Mutable/Changable|y|n|
-|Comprehension   |      y         |            n         |       y                 |       y        | |
-|Hetrogeneous    |       Y        |            Y|
+- [Built-in: int,float,complex,bool](#b)
+- [Sequence Type: list, tuple, Range, str](#st)
+- [Mapping Type: Dictionary](#mt)
+- [Set Type: Dictionary](#st)
+
+## Types in Python
+<a name=b></a>
+### Built in Types
+- Python doesn't require data types to be defined explicitly during variable declarations
+- Python provides type() and isinstance() functions to check the type of these variables.
+- **Categories:**
+  - _1. None:_ same as NULL
+  - _2. Numeric Types:_ int, float, complex(stores complex numbers a+ib), bool, decimals.
 
 <a name=st></a>
 ### Sequence Types
 For storage of collection of objects. Can store different data types.
 
-|Type|Represented by|Difference|
-|---|---|---|
-|1. List| `[]` | Mutable=Changable |
-|2. Tuple| () | Immutable |
+|Type|Represented by|Difference|Comprehension|
+|---|---|---|---|
+|1. List(not linked list)| `[]` | Mutable=Changable. This is same as vector in c++ |y|
+|2. Tuple| () | Immutable |n|
 |3. Range Object| immutable | Sequence of numbers generated during execution |
 |4. str | Immutable | Sequence to store textual data. |
 
@@ -24,11 +28,11 @@ For storage of collection of objects. Can store different data types.
 ### Mapping Types `<key, value=object>`
 - These are Mutable. Key cannot be mutable. Hence these cannot be used as key(set, list)
 - Example: Dictionary
+- Dictionary Comprehension: y
 
 <a name=st></a>
 ### Set Type
-|Type|Represented by||
-|---|---|---|
-|1. set| {} | Mutable, supports add(),remove()|
-|2. frozen_set| | Immutable |
-
+|Type|Represented by|Mut/Immutable|Description|Comprehension|
+|---|---|---|---|---|
+|1. set| {} | Mutable, supports add(),remove()|No Duplicates|y|
+|2. frozen_set| | Immutable | |
