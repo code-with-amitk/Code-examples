@@ -7,17 +7,14 @@
   - [3. re Module](#re)
   - [4. datetime module](#datetime)
   - [5. testmod](#testmod)
+- Packages
+  - [Creating Package](#cp)
 
 
 ## Module
-Module is a File containing python functions, class, variables etc. Examples: sys(Access system variables, functions maintained by interpreter).
-```py
-import sys
-print(sys.path)     #['/root/amit-code/python', '/usr/lib64/python36.zip', '/usr/lib64/python3.6', 
-'/usr/lib64/python3.6/lib-dynload', '/root/.local/lib/python3.6/site-packages', '/usr/local/lib64/python3.6/site-packages', 
-'/usr/local/lib/python3.6/site-packages', '/usr/local/lib/python3.6/site-packages/memory_profiler-0.57.0-py3.6.egg', 
-'/usr/lib64/python3.6/site-packages', '/usr/lib/python3.6/site-packages']
-```
+- Module is a File in python with .py extension containing python functions, class, variables etc.
+- They can be imported and initialized once using the import statement. If partial functionality is needed, `from foo import bar`.
+
 **builtin** Built-in identifiers of Python
 ```py
 import builtins
@@ -184,4 +181,50 @@ Test passed.
 failed=0
 total=2
 """
+```
+
+## Package
+- This is Collection of modules grouped together
+- `__INIT__.PY`: if this file is present in directory python treats that directory as package.
+
+<a name=cp></a>
+### Creating Packages
+```py
+sound_package
+    |
+    |__init__.py
+    |format
+        |__init__.py
+        |wavread.py
+        |wavwrite.py
+    |effects
+        |__init__.py
+        |echo.py
+            def fun(a):
+            print(a)
+    |filters
+        |__init__.py
+        |karaoke.py
+
+ # mkdir sound_package
+ # touch sound_package/__init__.py
+ 
+ # mkdir -p sound_package/format
+ # touch sound_package/format/__init__.py
+ # touch sound_package/format/wavread.py
+ # touch sound_package/format/wavwrite.py
+
+ # mkdir -p sound_package/effects
+ # touch sound_package/effects/__init__.py
+ # touch sound_package/effects/echo.py
+
+ # mkdir -p sound_package/filters
+ # touch sound_package/filters/__init__.py
+ # touch sound_package/filters/karaoke.py
+ 
+ # vim sound_package_user.py
+
+
+from sound_package.effects.echo import fun
+fun('Sit with ease, Preserve energy')   #Sit with ease, Preserve energy
 ```
