@@ -1,6 +1,14 @@
-- **Yeild**
+- [self](#s)
+- [yeild](#y)
 
-## Yeild
+<a name=s></a>
+### self
+- self represents instance of class. 
+- With this keyword, we can access the attributes and methods of the class in python. 
+- self is used in different places and often thought to be a keyword. But unlike in C++, self is not a keyword in Python.
+
+<a name=y></a>
+### Yeild
 - Consider below C++ Code. Every time fun() returns, callstack of fun() is destroyed & New call of function fun() creates a new call stack.
 - **Yield**
   - is a keyword that allows function to return without destroying local variables(ie stack) & resume from old point.
