@@ -9,5 +9,26 @@ Mutable=changable
 |Comprehension   |      y         |            n         |       y                 |       y        | |
 |Hetrogeneous    |       Y        |            Y|
 
+<a name=st></a>
+### Sequence Types
+For storage of collection of objects. Can store different data types.
 
+|Type|Represented by|Difference|
+|---|---|---|
+|1. List| `[]` | Mutable=Changable |
+|2. Tuple| () | Immutable |
+|3. Range Object| immutable | Sequence of numbers generated during execution |
+|4. str | Immutable | Sequence to store textual data. |
+
+<a name=mt></a>
+### Mapping Types `<key, value=object>`
+- These are Mutable. Key cannot be mutable. Hence these cannot be used as key(set, list)
+- Example: Dictionary
+
+<a name=st></a>
+### Set Type
+|Type|Represented by||
+|---|---|---|
+|1. set| {} | Mutable, supports add(),remove()|
+|2. frozen_set| | Immutable |
 
