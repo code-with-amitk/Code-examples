@@ -28,7 +28,7 @@ list<timestamp, service>
 
 ### Round-3
 #### 1. DS
-[Counts Anagrams from Dictionary](/DS_Questions/Questions/Strings/Anagrams_Pangrams/Anagrams/Count_Anagrams_in_Dictionary.md)
+[Remove All Anagrams Keeping 1st only](/DS_Questions/Questions/Strings/Anagrams_Pangrams/Anagrams/Remove_All_Anagrams_Keeping_1st.md)
 #### 2. System Design
 **Design Stock Trading System**
 - Requirements: 
