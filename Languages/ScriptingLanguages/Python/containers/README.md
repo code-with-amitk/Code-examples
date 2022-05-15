@@ -14,7 +14,7 @@
   - _2. Numeric Types:_ int, float, complex(stores complex numbers a+ib), bool, decimals.
 
 <a name=st></a>
-### Sequence Types
+### Sequence Container
 For storage of collection of objects. Can store different data types.
 
 |Type|Represented by|Difference|Comprehension|
@@ -25,13 +25,13 @@ For storage of collection of objects. Can store different data types.
 |4. str | Immutable | Sequence to store textual data. |
 
 <a name=mt></a>
-### Mapping Types `<key, value=object>`
+### Mapping Container `<key, value=object>`
 - These are Mutable. Key cannot be mutable. Hence these cannot be used as key(set, list)
 - Example: Dictionary
 - Dictionary Comprehension: y
 
 <a name=st></a>
-### Set Type
+### Set Container
 |Type|Represented by|Mut/Immutable|Description|Comprehension|
 |---|---|---|---|---|
 |1. set| {} | Mutable, supports add(),remove()|No Duplicates|y|
