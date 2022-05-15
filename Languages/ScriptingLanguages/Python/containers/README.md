@@ -27,6 +27,12 @@ For storage of collection of objects. Can store different data types.
 <a name=mt></a>
 ### Mapping Container `<key, value=object>`
 - These are Mutable. Key cannot be mutable. Hence these cannot be used as key(set, list)
+
+|Type|Represented by|
+|---|---|
+|1. Dictionary| {} |
+|2. OrderedDict|  |
+
 - Example: Dictionary
 - Dictionary Comprehension: y
 
