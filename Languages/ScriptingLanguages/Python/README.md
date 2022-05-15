@@ -2,7 +2,7 @@
 - Feature of Python
   - [Dynamically Typed](#st)
 - [PEP](#pep)
-- [Types in Python: Dictionary, List, OrderedDict, Sets, Tuples](containers)
+- [Types in Python: Arrays, Dictionary, List, OrderedDict, Sets, Tuples](containers)
 - [Control Flow: if, for, range(), match statement](Control_Flow)
 - [Functions: filter(), format(), input(), map(), range(), reduce(), split() & rsplit(), strip(), type(), range(), `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__()`](#Functions)
 - [Input,Output: Taking input from keyboard](Input_Output)
