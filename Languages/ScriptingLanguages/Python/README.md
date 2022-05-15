@@ -16,6 +16,7 @@ Python is interpreted(executes statement line by line), general Purpose language
 #### 1. Python is dynamic typed language. 
 - Dynamic typed means type checking is done at run time.
 - **What is Typed?** This means type checking.
+
 |Typed Language|Example|
 |---|---|
 |1. Strongly|"1" + 2  results in type error|
