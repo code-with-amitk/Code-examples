@@ -2,7 +2,7 @@
 - [input(str), raw_input()](#i)
 - [join](#j)
 - [ord()](#o)
-- [range()](#r)
+- [range(), xrange()](#r)
 - **split() & rsplit()**
   - [split()](#s)
   - [rsplit()](#rs)
@@ -46,8 +46,13 @@ print(x)                      # abc
 converts character to its Unicode code value.
 
 <a name=r></a>
-### range()
-Produces continuous sequence
+### range(), xrange()
+|Function|What|Return|
+|---|---|---|
+|range()|generate integer sequence|list|
+|xrange()|generate integer sequence|xrange object|
+
+**xrange():** it does not generate a static list, but creates the value on the go. This technique is used in object-type generator and has been termed as "yielding".
 ```py
 print(list(range(5,8)))         #5,6,7
 print(list(range(5,10,2)))      #5,7,9      #3rd argument tells interval of sequence
