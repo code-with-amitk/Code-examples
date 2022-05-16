@@ -2,7 +2,7 @@ Builtin Methods
 - _1._ Dunder, Magic
   - [a. `__contains__`](#con)
   - [b. `__doc__`](#doc)
-  - [c. init](#in)
+  - [c. `__init__`](#in)
   - [d. `__iter__()`](#iter)
   - [e. `__repr__()`](#repr)
   - [f. `__str__()`](#str)
