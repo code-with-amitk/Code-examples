@@ -3,9 +3,7 @@
 - [join](#j)
 - [ord()](#o)
 - [range(), xrange()](#r)
-- **split() & rsplit()**
-  - [split()](#s)
-  - [rsplit()](#rs)
+- [split() & rsplit()](#sr)
 - [strip(`[char]`)](#st)
 - [type()](#t)
 
@@ -58,9 +56,8 @@ print(list(range(5,8)))         #5,6,7
 print(list(range(5,10,2)))      #5,7,9      #3rd argument tells interval of sequence
 ```
 
+<a name=sr></a>
 ### Split() & rsplit
-- **split:** splits into tokens from start to end
-- **rsplit()** splits into tokens from end to start
 ```py
 list[] = str.split(seperator = None, maxsplit = -1)
 list[] = str.rsplit(seperator = None, maxsplit = -1)
@@ -71,9 +68,8 @@ list[] = str.rsplit(seperator = None, maxsplit = -1)
     - If maxsplit is not provided or -1, there is no limit on the number of splits 
 Return: A list of strings.
 ```
-<a name=s></a>
-#### split example
-```
+**split:** splits into tokens from start to end
+```py
 word = 'Amit, will, achieve'
 li = word.split(', ')
 print(li)                    #['Amit', 'will', 'achieve']   //1
@@ -81,9 +77,8 @@ print(li)                    #['Amit', 'will', 'achieve']   //1
 l2 = word.split(', ',1)      #['Amit', 'will, achieve']     //2
 print(l2)
 ```
-<a name=rs></a>
-#### rsplit example
-```
+**rsplit()** splits into tokens from end to start
+```py
 word = 'Amit, will, achieve'
 li = word.rsplit(', ')
 print(li)                    #['Amit', 'will', 'achieve']   //Same as 1
@@ -91,6 +86,7 @@ print(li)                    #['Amit', 'will', 'achieve']   //Same as 1
 l2 = word.rsplit(', ',1)      #['Amit, will', 'achieve']    //Different from 2
 print(l2)
 ```
+
 
 <a name=st></a>
 ### 1.2 string.strip(`[char]`)
