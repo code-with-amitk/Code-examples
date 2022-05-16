@@ -1,4 +1,11 @@
+- [About Company](#ab)
 - [R1](#1)
+
+
+### About Company
+- 12,900 employees within its 41 offices in 22 countries. HQ:Zug, Switzerland
+- Into strategy, consulting, Intelligent Automation, Data to Insights, Strategy and Design Thinking
+
 
 <a name=1></a>
 ### R1
