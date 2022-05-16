@@ -1,6 +1,7 @@
-- [Function used as Object](#o)
-- [Function passed as arguments](#arg)
-- [Functions as Mutable Objects](#mut)
+- Function
+  - [1. Used as Object](#o)
+  - [2. Passed as arguments](#arg)
+  - [3. As Mutable Objects](#mut)
 - [Variable no of Arguments](#var)
 - **Types of Functions**
   - [Inner, function inside function](#func)
@@ -13,7 +14,7 @@
 - [filter(), map(), reduce()](filter_map_reduce)
 
 <a name=o></a>
-### Functions used as Object
+### Function used as Object
 Means functions can be used as variable
 ```py
 def fun():
