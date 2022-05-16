@@ -8,7 +8,7 @@
 - [Class,Object: isinstance(),issubclass(), copy objects](Objects-and-Classes)
 - [Types in Python: Arrays, Dictionary, List, OrderedDict, Sets, Tuples](containers)
 - [Control Flow: if, for, range(), match statement](Control_Flow)
-- [Functions: decorator, generator, filter(), format(), input(), lambda, map(), range(), xrange(), reduce(), split() & rsplit(), strip(), type(), `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__()`, call by value, call by reference](#Functions)
+- [Functions: decorator, generator, filter(), format(), input(), join(), lambda, map(), range(), xrange(), reduce(), split() & rsplit(), strip(), type(), `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__()`, call by value, call by reference](#Functions)
 - [Input,Output: Taking input from keyboard](Input_Output)
 - [Keywords: self, yeild](Keywords)
 
