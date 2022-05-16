@@ -8,7 +8,7 @@
   - [Arguments taking default value](#default)
   - [kwarg, keyword Arguments](#kwarg)
   - [Special Parameters](#special)
-- [Built in methods: Dunder/Magic, `__ITER__()`, `__CONTAINS__`, `__REPR__()`, `__STR__()`, `__doc__`](Builtin_Methods)
+- [Built in methods: Dunder/Magic, `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__`](Builtin_Methods)
 - [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
 - [filter(), map(), reduce()](filter_map_reduce)
 
