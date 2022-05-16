@@ -1,9 +1,0 @@
-Round-1(hangout):
- a. Implement strrev() using recursion
- b. Find n points(x,y) are collinear or not?
-	- Similar to finding non-duplicate permutations of string
- c. const variable?
- d. volatile variable? Can we have and its usecases?
- e. const volatile variable? Can we have and its usecases?
- f. mmap() API?
- g. DMA(Direct memory access) in kernel?
