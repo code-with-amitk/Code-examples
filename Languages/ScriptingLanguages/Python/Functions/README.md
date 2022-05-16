@@ -1,3 +1,4 @@
+- [Call by value, Call By Reference](#vr)
 - Function
   - [1. Used as Object](#o)
   - [2. Passed as arguments](#arg)
@@ -15,6 +16,22 @@
 - [Built-in methods: Dunder/Magic, `__iter__(), __contains__, __repr__(), __str__(), __doc__, __init__`](Builtin_Methods)
 - [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
 - [filter(), map(), reduce()](filter_map_reduce)
+
+<a name=vr></a>
+### Call by value, Call By Reference
+- **Pass by value:** Copy of the actual object is passed. Changing the value of the copy of the object will not change the value of the original object.
+- **Pass by reference:** Reference to the actual object is passed. Changing the value of the new object will change the value of the original object.
+  - In Python, **arguments are passed by reference**.
+```py
+def appendNumber(arr):
+   arr.append(4)
+   
+arr = [1, 2, 3]
+print(arr)  #Output: => [1, 2, 3]
+
+appendNumber(arr)   #Call by reference
+print(arr)  #Output: => [1, 2, 3, 4]
+```
 
 <a name=o></a>
 ### Function used as Object
