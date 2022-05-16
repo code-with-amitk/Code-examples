@@ -10,6 +10,7 @@
   - [kwarg, keyword Arguments](#kwarg)
   - [Special Parameters](#special)
 - [Decorator](#dec)
+- [Generator](#gen)
 - [Lambda](#lam)
 - [Built in methods: Dunder/Magic, `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__`](Builtin_Methods)
 - [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
@@ -168,6 +169,33 @@ def names_decorator(function):
 def say_hello(name1, name2):
    return 'Hello ' + name1 + '! Hello ' + name2 + '!'
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
+```
+
+<a name=gen></a>
+### Generator
+- This function returns an iterable collection of items in a set manner. Use [yeild keyword](/Languages/ScriptingLanguages/Python/Keywords) to return a generator object.
+- Example: Generator for fibonacci numbers
+```py
+def fib(n):
+   p, q = 0, 1
+   while(p < n):
+       yield p
+       p, q = q, p + q
+x = fib(10)    # create generator object 
+ 
+## iterating using __next__(), for Python2, use next()
+x.__next__()    # output => 0
+x.__next__()    # output => 1
+x.__next__()    # output => 1
+x.__next__()    # output => 2
+x.__next__()    # output => 3
+x.__next__()    # output => 5
+x.__next__()    # output => 8
+x.__next__()    # error
+ 
+## iterating using loop
+for i in fib(10):
+   print(i)    # output => 0 1 1 2 3 5 8
 ```
 
 <a name=lam></a>
