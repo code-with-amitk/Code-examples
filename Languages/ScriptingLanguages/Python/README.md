@@ -1,5 +1,5 @@
 - [What](#w)
-- [Concepts: Picking, Unpickling](#Concepts)
+- [Concepts: Picking, Unpickling, GIL](#Concepts)
 - Feature of Python
   - [Dynamically Typed](#st)
 - [Memory Management](#mm)
