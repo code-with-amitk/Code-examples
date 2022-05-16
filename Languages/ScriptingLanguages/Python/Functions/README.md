@@ -12,7 +12,7 @@
 - [Decorator](#dec)
 - [Generator](#gen)
 - [Lambda](#lam)
-- [Built in methods: Dunder/Magic, `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__`](Builtin_Methods)
+- [Built-in methods: Dunder/Magic, `__iter__(), __contains__, __repr__(), __str__(), __doc__, __init__`](Builtin_Methods)
 - [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
 - [filter(), map(), reduce()](filter_map_reduce)
 
