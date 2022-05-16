@@ -1,5 +1,7 @@
 **Classes**
 - [Constructor calling hierarchy](#cch)
+- [issubclass()](#isc)
+- [isinstance()](#in)
 
 ## Classes
 ```py
@@ -27,4 +29,28 @@ class Derv(Base2,Base1):
 		print("Derv")
 
 obj = Derv()	#Output = Derv. Unlike C++ Ctr calling hierarchy
+```
+
+<a name=isc></a>
+### issubclass()
+This method checks if a class is a child of another class
+```py
+class Parent(object):
+   pass   
+ 
+class Child(Parent):
+   pass   
+ 
+print(issubclass(Child, Parent))    #True
+print(issubclass(Parent, Child))    #False
+```
+
+<a name=in></a>
+### isinstance()
+This checks if an object is an instance of a class.
+```py
+obj1 = Child()
+obj2 = Parent()
+print(isinstance(obj2, Child))    #False 
+print(isinstance(obj2, Parent))   #True
 ```
