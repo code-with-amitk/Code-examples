@@ -9,6 +9,7 @@
   - [Arguments taking default value](#default)
   - [kwarg, keyword Arguments](#kwarg)
   - [Special Parameters](#special)
+- [Decorator](#dec)
 - [Built in methods: Dunder/Magic, `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__`](Builtin_Methods)
 - [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
 - [filter(), map(), reduce()](filter_map_reduce)
@@ -119,3 +120,33 @@ def kwd_only_arg(*, arg):
 kwd_only_arg(arg=3)     #3
 ```
 
+<a name=dec></a>
+### Decorator
+- Functions that add functionality to an existing function, without changing the structure of the existing function itself.
+- They are represented the `@decorator_name` in Python and are called in a **bottom-up fashion**. 
+- Example-1
+```py
+# decorator function to convert to lowercase
+def lowercase_decorator(function):
+   def wrapper():
+       func = function()
+       string_lowercase = func.lower()
+       return string_lowercase
+   return wrapper
+   
+# decorator function to split words
+def splitter_decorator(function):
+   def wrapper():
+       func = function()
+       string_split = func.split()
+       return string_split
+   return wrapper
+   
+@splitter_decorator # this is executed next
+@lowercase_decorator # this is executed first
+def hello():
+   return 'Hello World'
+   
+# Driver Code
+hello()                   # output => [ hello , world ]
+```
