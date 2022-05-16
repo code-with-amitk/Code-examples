@@ -1,7 +1,9 @@
 **Classes**
 - [Constructor calling hierarchy](#cch)
-- [issubclass()](#isc)
-- [isinstance()](#in)
+- Functions
+  - [issubclass()](#isc)
+  - [isinstance()](#in)
+- [Copy of Object](#co)
 
 ## Classes
 ```py
@@ -31,8 +33,9 @@ class Derv(Base2,Base1):
 obj = Derv()	#Output = Derv. Unlike C++ Ctr calling hierarchy
 ```
 
+### Functions
 <a name=isc></a>
-### issubclass()
+#### issubclass()
 This method checks if a class is a child of another class
 ```py
 class Parent(object):
@@ -46,11 +49,36 @@ print(issubclass(Parent, Child))    #False
 ```
 
 <a name=in></a>
-### isinstance()
+#### isinstance()
 This checks if an object is an instance of a class.
 ```py
 obj1 = Child()
 obj2 = Parent()
 print(isinstance(obj2, Child))    #False 
 print(isinstance(obj2, Parent))   #True
+```
+
+<a name=co></a>
+### Copy of Object
+- Assignment statement(= operator) does not copy objects. Instead, it creates a binding between the existing object and the target variable name. 
+- Copy is created using copy module.
+- **Shallow Copy:** 
+  - Copied object created has an exact copy of the values in the original object.
+  - If either of the values is a reference to other objects, just the reference addresses for the same are copied.
+- **Deep Copy:** Copies all values recursively from source to target object, i.e. it even duplicates the objects referenced by the source object.
+```py
+from copy import copy, deepcopy
+list_1 = [1, 2, [3, 5], 4]
+
+list_2 = copy(list_1)                  ## shallow copy
+list_2[3] = 7
+list_2[2].append(6)
+list_2    # output => [1, 2, [3, 5, 6], 7]
+list_1    # output => [1, 2, [3, 5, 6], 4]
+
+list_3 = deepcopy(list_1)             ## deep copy
+list_3[3] = 8
+list_3[2].append(7)
+list_3    # output => [1, 2, [3, 5, 6, 7], 8]
+list_1    # output => [1, 2, [3, 5, 6], 4]
 ```
