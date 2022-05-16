@@ -10,6 +10,7 @@
   - [kwarg, keyword Arguments](#kwarg)
   - [Special Parameters](#special)
 - [Decorator](#dec)
+- [Lambda](#lam)
 - [Built in methods: Dunder/Magic, `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__`](Builtin_Methods)
 - [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
 - [filter(), map(), reduce()](filter_map_reduce)
@@ -167,4 +168,23 @@ def names_decorator(function):
 def say_hello(name1, name2):
    return 'Hello ' + name1 + '! Hello ' + name2 + '!'
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
+```
+
+<a name=lam></a>
+## Lambda / Anonymous function
+- Can accept any number of arguments, but can only have a single expression.
+- **Use-case:** Require an anonymous function for a short time period. 
+### Ways to use Lambda
+#### 1. Assigning lambda functions to a variable
+```py
+mul = lambda a, b : a * b
+print(mul(2, 5))    # output => 10
+```
+#### 2. Wrapping lambda functions inside another function
+```py
+def myWrapper(n):
+ return lambda a : a * n
+ 
+mulFive = myWrapper(5)
+print(mulFive(2))    # output => 10
 ```
