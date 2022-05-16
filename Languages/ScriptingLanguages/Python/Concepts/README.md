@@ -1,5 +1,10 @@
+- [GIL](#gil)
 - [Pickling = Serialization / Unpickling](#pu)
 
+<a name=gil></a>
+### GIL / Global Interpreter Lock
+- This is a mutex used for limiting access to python objects and helps thread synchronization by avoiding deadlocks. 
+- GIL achieves [multitasking (and not parallel computing)](/Threads_Processes_IPC/Terms/).
 
 <a name=pu></a>
 ### Pickling = Serialization / Unpickling
