@@ -24,6 +24,7 @@
     - [2. Don't have access to this pointer or super](#s3)
   - [3. static class](#sc)
 - [this](#this)
+- [volatile](#vo)
 
 
 ## const
@@ -288,3 +289,15 @@ int main(){
     obj.fun(10);                //obj.fun(&obj, 10);
 }
 ```
+
+<a name=vo></a>
+### Volatile
+- Request to complier to Not Optimize the variable OR Donot place variable on Register.
+- **Optimization?**
+  - _What?_ Complier optimizes the code to use less memory & deliver more speed.
+  - _How?_ 
+    - Complier Optimizations
+    - Programmer Optimization: Less time,space complexity of written code
+- **Use Case:** 2 Threads are talking on global variable. This variable should not be optimized(ie should be volatile)
+  - Let Thread-1 does var++, Compiler optimizes the variable & places on Register. Since threads can execute asynchronously, Thread-2 comes in & tries to read. 
+  - Since on variable some CPU operations are going on, its final value is yet no calculated. Thread-2 reads wrong value.
