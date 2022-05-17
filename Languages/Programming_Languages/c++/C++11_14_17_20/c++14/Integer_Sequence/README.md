@@ -1,17 +1,19 @@
+**Integer Sequence**
+
 ## Integer Sequence
-- **What?** Represents a compile-time sequence of integers. it can be used as argument to [variadic function template](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Templates/Variadic/Function)
-- make_integer_sequence: Alias template for creating integer_sequence<>
-```c++
+- Represents a compile-time sequence of integers. it can be used as argument to [variadic function template](/Languages/Programming_Languages/c%2B%2B/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Templates/Variadic/Function)
+- `make_integer_sequence:` Alias template for creating `integer_sequence<>`
+```cpp
 template<class T, T N>
 using make_integer_sequence = std::integer_sequence<T, //a sequence 0,1,2,..,N-1>;
 ```
 - make_index_sequence:
-```c++
+```cpp
 template<std::size_t N>
 using make_index_sequence = make_integer_sequence<std::size_t, N>;
 ```
 ### Code Example
-```c++
+```cpp
 #include <iostream>
 #include <utility>
 
