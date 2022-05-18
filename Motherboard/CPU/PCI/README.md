@@ -2,6 +2,7 @@
 - [How CPU discover PCI Device](#h)
   - [PCI Config Space](#pcs)
   - [Locating PCI Config Space](#loc)
+- [Example GPU Device](#gpu)
 
 <a name=ar></a>
 ### PCI system Architecture
@@ -95,18 +96,16 @@
 ```
 
 #### Structures Tables in System Memory
-
-|Table|Why|
-|---|---|
-|1. [RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)|<ul><li>To reach PCI Config Space of CPU and find PCI devices</li></ul> <ul><li>RSDP Table->XSDT Table->MCFG Table (contains MCFGBase)->PCI Config Space starts from MCFGBase</li></ul>|
-|2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)|<ul><li>Generic XSDT Table.(Described Below)</li></ul><ul><li>sizeof(ACPISDTHeader) = 36 bytes</li></ul>|
-|3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
+- **[1. RDSP(Root System Description Pointer)/ACPI Structure (36 bytes)](https://wiki.osdev.org/RSDP)**
+  - To reach PCI Config Space of CPU and find PCI devices
+  - `RSDP Table->XSDT Table->MCFG Table (contains MCFGBase)->PCI Config Space starts from MCFGBase`
+- **2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)**
+  - Generic XSDT Table.(Described Below).sizeof(ACPISDTHeader) = 36 bytes
+- **3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)**
+  - Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space
 
 #### Table Descriptions
-- **SDT(System Description Table)**
-  - There are many kinds of SDT. All the SDT may be split into two parts. 
-    - **1. header** which is common to all the SDT 
-    - **2. Data** which is different for each table.
+- **SDT(System Description Table):** There are many kinds of SDT. All the SDT may be split into two parts. *1. header:* which is common to all the SDT, *2. Data:* which is different for each table.
   - Types of SDT:
     - **1. SRAT/System Resource Affinity Table (SRAT)**
     - [Many other](https://wiki.osdev.org/XSDT)
@@ -121,3 +120,8 @@ bool doChecksum(ACPISDTHeader *tableHeader){    //Validating xsdt
     return sum == 0;
 }
 ```
+
+<a name=gpu></a>
+### Example GPU Device
+
+<img src=pci-header.PNG width=600 />
