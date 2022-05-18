@@ -94,7 +94,7 @@
   }
 ```
 
-### B. Structures Tables in System Memory
+#### Structures Tables in System Memory
 
 |Table|Why|
 |---|---|
@@ -102,7 +102,7 @@
 |2. [SDT(System Description Table)](https://wiki.osdev.org/XSDT)|<ul><li>Generic XSDT Table.(Described Below)</li></ul><ul><li>sizeof(ACPISDTHeader) = 36 bytes</li></ul>|
 |3. [MCFG Table (60bytes)](https://wiki.osdev.org/PCI_Express)|<ul><li>Contains `unsigned long long MCFGBase` which is Start Address of PCI Config Space|
 
-### C. Table Descriptions
+#### Table Descriptions
 - **SDT(System Description Table)**
   - There are many kinds of SDT. All the SDT may be split into two parts. 
     - **1. header** which is common to all the SDT 
