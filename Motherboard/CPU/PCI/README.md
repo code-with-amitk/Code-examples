@@ -124,4 +124,7 @@ bool doChecksum(ACPISDTHeader *tableHeader){    //Validating xsdt
 <a name=gpu></a>
 ### Example GPU Device
 
-<img src=pci-header.PNG width=600 />
+<img src=pci-header.PNG width=900 />
+
+- [BARS](./BARs)
+- [Capabilites](./Capabilites)
