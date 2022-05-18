@@ -1,5 +1,7 @@
 - [PCI system Architecture](#ar)
 - [How CPU discover PCI Device](#h)
+  - [PCI Config Space](#pcs)
+  - [Locating PCI Config Space](#loc)
 
 <a name=ar></a>
 ### PCI system Architecture
@@ -53,7 +55,7 @@
 ### Locating PCI Config Space
 > RDP-PTR > RDSP-struct{xsdt-struct-address} > XSDT-struct{64bit-mcfg-struct-address} > MCFG-struct{contains MCFG_BaseAddress} > Store Mapping to PCIConfig Space
 
-
+<img src=mcfg-xsdt-rdsp.PNG width=500 />
 
 **Steps**
   - *1.* Search `RSDP Structure` in Physical Memory 
