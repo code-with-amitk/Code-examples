@@ -53,9 +53,9 @@
 
 <a name=loc></a>
 ### Locating PCI Config Space
-> RDP-PTR > RDSP-struct{xsdt-struct-address} > XSDT-struct{64bit-mcfg-struct-address} > MCFG-struct{contains MCFG_BaseAddress} > Store Mapping to PCIConfig Space
+- **Overall Steps:** `RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> Store Mapping to PCIConfig Space`
 
-<img src=mcfg-xsdt-rdsp.PNG width=500 />
+<img src=mcfg-xsdt-rdsp.PNG width=800 />
 
 **Steps**
   - *1.* Search `RSDP Structure` in Physical Memory 
@@ -93,9 +93,6 @@
     vec_PCIInfo [i] = test;
   }
 ```
-- **Overall Steps**
-> RDP-PTR -> RDSP-struct{xsdt-struct-address} -> XSDT-struct{64bit-mcfg-struct-address} -> MCFG-struct{contains MCFG_BaseAddress} -> Store Mapping to PCIConfig Space -> 
-
 
 ### B. Structures Tables in System Memory
 
