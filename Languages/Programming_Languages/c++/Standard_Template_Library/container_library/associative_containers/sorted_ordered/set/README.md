@@ -4,6 +4,7 @@
 - [Implementing set](implementing_set.cpp)
 
 ## Set ///usr/include/c++/8/profile/set.h
+Elements are stored in ascending order(by default).
 <a name=scre></a>
 ### Create
 ```cpp
