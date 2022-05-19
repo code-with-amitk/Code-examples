@@ -28,6 +28,7 @@
 
 
 # unordered_set`<key>`
+Keys are stored in HashMap, hence unordered not in ascending,descending order.
 ## Create
 <a name=sp></a>
 #### Set of Pair
