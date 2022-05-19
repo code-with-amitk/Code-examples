@@ -53,7 +53,7 @@ ffi.lib
 pub fn rust_function() ---becomes---> void rust_function()
 
 $ cargo install --force cbindgen                        //2a. Install cbindgen
-//create empty cbindgen.toml
+$ touch cbindgen.toml                                   //create empty cbindgen.toml
 ffi> cbindgen.exe --config cbindgen.toml --crate ffi --output ffi.h
 ffi> more ffi.h
 #include <cstdarg>
