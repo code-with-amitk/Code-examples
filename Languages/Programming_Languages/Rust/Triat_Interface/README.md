@@ -12,7 +12,7 @@
 - **Traits provided by Standard library**
   - Fn, FnMut, or FnOnce, Dref
   - [Default](#di)
-  - [Drop](#dr)
+  - [Drop = Destructor](#dr)
   - [Future](#fu)
 
 
@@ -202,9 +202,33 @@ fn main() {
 ```
 
 <a name=dr></a>
-#### Drop trait
-Allows you to customize the code that is run when an instance of the smart pointer goes out of scope.
-
+#### [Drop trait](https://doc.rust-lang.org/std/ops/trait.Drop.html)
+- Custom code within the destructor.
+- When a value is no longer needed, Rust runs a “destructor” on that value, but if we want to perform some task in destructor, use drop trait.
+```rs
+pub struct Test {
+    a: i32,
+}
+impl Drop for Test {
+    fn new(&mut self) {
+        println!("new()");
+    }
+    fn drop(&mut self){
+        println!("dropping");
+    }
+}
+fn main() {
+    {
+      let mut k = Test{
+        a: 10,
+      };
+    }
+    k.new();
+}
+# cargo run
+new()
+dropping
+```
 <a name=fu></a>
 #### Future Trait
 **Future?** is a "asynchronous value" that may not have finished computing yet. Thread waits on future to become available. These are similar to [epoll()](/Networking/OSI-Layers/Layer-4/Socket_Programming/APIs_Structures/APIs/Polling_APIs/), not smilar to poll() or select().
