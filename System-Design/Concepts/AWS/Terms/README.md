@@ -54,7 +54,7 @@ These are also Datacenters but located very near to customer, wrt to actual data
 
 <a name=vpc></a>
 ## Amazon VPC(Virtual Private Cloud)
-This helps in provisioning an isolated section in AWS Cloud. Then we can have resources inside VPC. VPC can be in multiple [AZ](#az)
+VPC is a isolated section in AWS Cloud. Then we can have resources inside VPC. VPC can be in multiple [AZ](#az)
 <img src=ACL_security_group.JPG width=600 />
 <a name=sn></a>
 ### Subnets 
