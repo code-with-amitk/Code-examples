@@ -2,12 +2,13 @@
 - [Region](#gr)
 - [Edge Location](#el)
 - [GovCloud](#gc)
-- [Amazon VPC(Virtual Private Cloud)](#vpc)
+- [VPC(Virtual Private Cloud)](#vpc)
    - [Subnets](#sn)
    - [Internet gateway](#ig)
    - [Virtual private gateway](#vpg)
    - [AWS Direct Connect](#adc)
    - [VPC Flow Logs](#fl)
+- [Transit Gateway](#tg)
 - [Reserved](#r)
 - [Recommendations](#rec)
 - [Serverless](#sl)
@@ -80,15 +81,13 @@ VPC is a isolated section in AWS Cloud. Then we can have resources inside VPC. V
 #### Internet gateway
 To allow public traffic from internet to access VPC, a IG is needed to be attached to VPC.
 ```c
-<--------------------AWS Datacenter------------------>
-   |--------------Company-A VPC---------------|
-   | |-----subnet1-------|                    |
-   | | resource1         |                    |
-   | | EC2            N/W ACL ------------ Internet G/W ------ {internet}
-   | |                   |                    |
-   | |-------------------|                    |
-   |                                          |
-   |------------------------------------------|
+                        <--------------------AWS Datacenter------------------------>
+                              |------------Company-A-VPC--------------|
+                              |        |---------subnet1----------|   |
+                              |        |         resources        |   |
+client   {internet}    InternetG/W   N/W ACL      EC2             |   |
+                              |        |--------------------------|   |
+                              |---------------------------------------|
 ```
 <a name=vpg></a>
 #### Virtual private gateway
@@ -127,6 +126,11 @@ This helps to establish a dedicated private connection between Client's datacent
    - Monitoring the traffic that is reaching your instance
    - Determining the direction of the traffic to and from the network interfaces
 - Flow log data is collected outside of the path of your network traffic, and therefore does not affect network throughput or latency. You can create or delete flow logs without any risk of impact to network performance.
+
+<a name=tg></a>
+### Transit Gateway
+This service connects customer's [Virtual Private Clouds (VPCs)](#vpc) and their on-premises networks to a single gateway.
+<img src=transit_gateway.png width=600/>
 
 <a name=r></a>
 ### Which services can be reserved?
