@@ -2,6 +2,7 @@
 - [Amazon RDS vs Amazon DynamoDB](/System-Design/Concepts/Databases/NOSQL/AWS_DynamoDB/README.md#vs)
 - [Features/Advantages](#f)
 - [Creating RDS](#c)
+- [Ways to scale RDS](#w)
 
 ## RDS 
 - Runs automated tasks as: hardware provisioning, database setup, patching, and backups.
@@ -33,3 +34,9 @@ AWS Console > Dashboard > Create Database >
   Storage:              20 MB
   Connectivity:         Default VPC
 ```
+
+<a name=w></a>
+### Ways to Scale RDS
+**Vertical Scaling:**
+  - _1._ Increase Storage capacity. Hard-Disk
+  - _2._ Move to Bigger Machine
