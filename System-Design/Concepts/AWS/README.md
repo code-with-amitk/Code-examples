@@ -1,7 +1,7 @@
 **AWS**
 - [Service Categories](#sc)
 - [How to interact with AWS Services](#how)
-- [Terms: Availabilty zones, Direct Connect, Edge Location, GovCloud, Internet gateway, Recommendations, Region, VPC(Virtual Private Cloud), Security Groups, Serverless, Subnets, Transit Gateway, Virtual private gateway](Terms)
+- [Terms: Availabilty zones, Direct Connect, Edge Location, GovCloud, Internet gateway, Recommendations, Region, Security Groups, Serverless, Step Function, Subnets, Transit Gateway,  VPC(Virtual Private Cloud), Virtual private gateway](Terms)
 
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
