@@ -72,7 +72,7 @@
 |---|---|---|---|
 |1. On Demand|Irregular|Pay as you use|For Learning, running adhoc|
 |2. Reserved(1,3yr)|fixed|fixed||
-|3. Spot|Flexible start,end times which can withstand interruptions|Saving (upto 90%)|Batch Processing|
+|3. Spot|Flexible start,end times which can withstand interruptions|Upto 90% cheaper|Batch Processing|
 |4. Dedicated Host|fixed|Highest|EC2 server fully dedicated to your use|
 
 
