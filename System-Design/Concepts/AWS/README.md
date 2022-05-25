@@ -16,6 +16,10 @@
 ```
   go cat swift    <-Services
   tp hca davtr    <-Work
+  
+fargate: Container runner
+SWF: Distribute tasks among distributed components
+WAF: Protects WebAPI against Web exploits
 ```
 |Guard Duty|Opswork|Config|Artifact|Trail|Sheild|Watch|Inspector|Formation|Trusted-Advisor|
 |---|---|---|---|---|---|---|---|---|---|
