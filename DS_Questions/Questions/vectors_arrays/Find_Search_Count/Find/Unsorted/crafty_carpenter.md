@@ -13,19 +13,19 @@ Second line: number of lines (K) of input to follow.
 Next K lines:
 numerical key (integer) of the next item to be worked on by the carpenter
 Input Value Ranges
-
+```c
 0 < cabinet size < 2^10
 0 < N < 2^6
 0 < K < 2^32
 0 < numerical key < 2^32
 Output The output of the your program should be one of the following:
-
+```
 An integer representing the cabinet the last item (as specified by the last line of input) was taken from, ranging from 1 (nearest) to N (furthest)
 NEW if the item was newly created
 OUTSIDE if the item was outside
 INPUT_ERROR if the input was somehow incorrect
 - Examples
-```
+```c
 Input-1:
 2 2 4
 7
