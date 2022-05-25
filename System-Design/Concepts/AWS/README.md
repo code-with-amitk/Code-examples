@@ -24,7 +24,7 @@
 
 |Area|What|Services|
 |---|---|---|
-|Analytics||[Athena, CodePipeline, ElasticSearch/OpenSearch, Glue(ETL(Extract, transform, Load))](Analytics)|
+|Analytics||[<ul><li>Athena</li> <li>CodePipeline</li> <li>ElasticSearch/OpenSearch</li> <li>Glue(ETL(Extract, transform, Load))</li></ul>](Analytics)|
 |Application Integration||[SNS,SQS](Application_Integration)|
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
 |Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(security groups, AMI(Amazon Machine Image))</li> <li>ELB</li> <li>Elastic Beanstalk(Take(a.out + config files) & create EC2 instance)</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail(EC2+OS+Service(eg:wordpress))</li> <li>Outpost</li> </ul>](Compute)|
