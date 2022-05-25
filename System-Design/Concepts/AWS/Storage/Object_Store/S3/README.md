@@ -1,6 +1,7 @@
 **S3 / Simple Storage Service**
 - [Advantages/Features: Web enabled, serverless, cross region replication, S3 transfer accelration, Macie](#f)
 - [S3 storage classes](#sc)
+  - [Glacier Archive Retrieval Options](#ro)
 - [S3 vs EBS](#vs)
 - [Creating S3 Bucket](#c)
 
@@ -38,6 +39,15 @@
 |4. Intelligent-Tiering|For data which is accessed randomly||||
 |5. Glacier|Data archiving|Able to retrieve objects from 1min-1Hours|Low|Data Exgress,|
 |6. Glacier Deep Archive||Able to retrieve objects within 12 hours|Lowest|Data Exgress,|
+
+<a name=ro></a>
+#### Glacier Archive Retrieval Options
+||Time of Retrieval|
+|---|---|
+|Expedited|1-5 min|
+|Accelrated||
+|Standard|3-5 hours|
+|Bulk|5–12 hours|
 
 <a name=vs></a>
 ### Amazon S3 vs EBS
