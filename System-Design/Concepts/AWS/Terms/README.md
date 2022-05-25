@@ -146,3 +146,8 @@ This service connects customer's [Virtual Private Clouds (VPCs)](#vpc) and their
 - Unlike [EC2](/System-Design/Concepts/AWS/) which is a VM which you need to create and run code on it. Serverless means you do not need to create VM. You can directly upload your code(to webservice) and it will start running.
 - That means server(or EC2) instance is already created by AWS for you.
 - Examples of serverless Architectures: Lambda, DynamoDB, Fargate
+
+<a name=sf></a>
+### Step Function
+- Step functions helps in coordinating multiple AWS services into serverless workflows so we can build and update apps quickly.
+- Step Functions lets you build visual workflows that enable fast translation of business requirements into technical requirements.
