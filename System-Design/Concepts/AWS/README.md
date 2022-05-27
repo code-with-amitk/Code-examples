@@ -14,16 +14,16 @@
 ### Service Categories
 **Learning Aid**
 ```
-  go cat swift    <-Services
-  tp hca davtr    <-Work
+  c swwifft goats   <-Services
+  h dawvctr tpcad   <-Work
   
 fargate: Container runner
 SWF: Distribute tasks among distributed components
 WAF: Protects WebAPI against Web exploits
 ```
-|Guard Duty|Opswork|Config|Artifact|Trail|Sheild|Watch|Inspector|Formation|Trusted-Advisor|
-|---|---|---|---|---|---|---|---|---|---|
-|Threat detection|Puppet,Chef|History|Compliance|Audit|DDos|Alarms|Vunerablity|Template|Recommendation|
+|Config|Sheild|Watch|WAF|Inspector|Fargate|Formation|Trusted-Advisor|Guard Duty|Opswork|Artifact|Trail|SWF|
+|---|---|---|---|---|---|---|---|---|---|---|---|
+|History|DDos|Alarms|WebAPI protection against Web exploits|Vunerablity|Container runner|Template|Recommendation|Threat detection|Puppet,Chef|Compliance|Audit|Distribute tasks among distributed components|
 
 
 |Area|What|Services|
