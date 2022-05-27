@@ -8,20 +8,24 @@
 
 <a name=what></a>
 ## Functor
-- A object of class which overloads `operator ()`. Ex: object(). Functors are objects only, Hence can store state. Compiler does not provide functors, we define explicitly.
+- Overloading `operator ()`. Ex: object(). Functors are objects only, Hence can store state. Compiler does not provide functors, we define explicitly.
 - If we want to store state within a function, use functor.
-```c++
+```cpp
 class A {
-  int sv;             //STATE VARIABLE
+  int a;             //STATE VARIABLE
 public:
-  A(int x):sv(x){}
-  int operator () (int a) {     //class A overloads operator (), Now object of this class will be functor
-    return a*sv;
+  A(int a):a(a){}
+  int operator () (int x) {     //class A overloads operator(), Now object of this class will be functor
+    return a+x;
+  }
+  double operator () (double x) { //Overloading Functor
+    return a+x;
   }
 };
 int main(){
-  A obj(10);
-  cout<<obj(3)<<endl;        //Using object as Function ie functor. //30
+  A obj(1);
+  cout << obj(3) <<endl;        //4
+  cout << obj(5.2) <<endl;        //6.2
 }
 ```
 
