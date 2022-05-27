@@ -21,6 +21,11 @@ public:
   double operator () (double x) { //Overloading Functor
     return a+x;
   }
+  
+  template<typename t>          //Doing using template
+  t operator() (t x){
+    return a+x;
+  }
 };
 int main(){
   A obj(1);
