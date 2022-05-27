@@ -21,10 +21,13 @@ fargate: Container runner
 SWF: Distribute tasks among distributed components
 WAF: Protects WebAPI against Web exploits
 ```
-|Config|Sheild|Watch|WAF|Inspector|Fargate|Formation|Trusted-Advisor|Guard Duty|Opswork|Artifact|Trail|SWF|
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|History|DDos|Alarms|WebAPI protection against Web exploits|Vunerablity|Container runner|Template|Recommendation|Threat detection|Puppet,Chef|Compliance|Audit|Distribute tasks among distributed components|
+|Config|Sheild|Watch|WAF|Inspector|Fargate|Formation|Trusted-Advisor|Guard Duty|
+|---|---|---|---|---|---|---|---|---|
+|History|DDos|Alarms|WebAPI protection against Web exploits|Vunerablity|Container runner|Template|Recommendation|Threat detection|
 
+|Opswork|Artifact|Trail|SWF|
+|---|---|---|---|
+|Puppet,Chef|Compliance|Audit|Distribute tasks among distributed components|
 
 |Area|What|Services|
 |---|---|---|
