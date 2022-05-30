@@ -1,6 +1,6 @@
 **Java**
 - [About](#a)
-- [Feature](#f)
+- [Features](#f)
 - [Memory Layout of Java Program](#ml)
 - [Data types](Data_Types)
 - **Keywords**
@@ -37,16 +37,25 @@
 
 <a name=f></a>
 ## Features of Java
-- **Platform Independent:** 
-  - Unlike many other programming languages including C and C++, when Java is compiled, it is not compiled into platform specific machine, rather into platform independent byte code. This byte code is distributed over the web and interpreted by virtual Machine (JVM) on whichever platform it is being run. ie byte-code can be generated on MAC & run on linux/Windows.
-- **Secure:** a. Java always runs on JRE which has almost 0 interaction with OS hence secure.  b. No pointers(hence no SEG faults)    c. Runtime exception handling.        //Secure wrt C,C++
-- **Robust:** Code is made robust as Java introduces, Memory management & mishandled exceptions.
 - **Architecture Neutral:** Compiler generates bytecode which has nothing to do with computer architecture.
-- **Portable:** bytecode can be carried to any platform, no implementation depend features.
-- Multi-threaded
+- **Automatic Garbage Collection:** 
+  - Unlike C/C++ programmer need not to allocate/deallocate memory using (malloc/free). Memory is automatically allocated and deallocated hence less bugs.
+  - Looking at heap memory, finding what objects are in use & what not. Deleting the un-used Objects.
 - **Distributed:** We can create distributed application in Java using RMI, EJB.
-- **Automatic Garbage Collection:** Looking at heap memory, finding what objects are in use & what not. Deleting the un-used Objects.
+- **Object Oriented**
+- **Platform Independent:** 
+  - Java produces [byte code](/Languages/Programming_Languages/CompilationSteps_C_Java.md), Unlike C and C++ which produces platform specific machine code. This byte code is distributed over the web and interpreted by virtual Machine (JVM) on whichever platform it is being run. ie byte-code can be generated on MAC & run on linux/Windows.
+  - Elimination of platform specific constructs
+- **Portable:** bytecode can be carried to any platform, no implementation depend features.
+- **Robust:** Code is made robust as Java introduces, Memory management & mishandled exceptions.
+- **Safe:** 
+  - _a._ Java always runs on [JRE](/Languages/Programming_Languages/CompilationSteps_C_Java.md) which has almost 0 interaction with OS hence secure.
+  - _b._ No pointers(hence no SEG faults)    
+  - _c._ Runtime exception handling is better wrt c++/c.
+  - _d._ typecasting is meaningful and logical. int can be casted to short but not bool.
+- **Multi-threaded:** 1 program can have multiple threads running and improving performance of program.
 - **Speed:** Memory is allocated on Eden space and its not guaranteed that it will be allocated contiguously. Non-contiguous memory is slower wrt to contiguous.        //Java is slow wrt C,C++
+
 
 <a name=ml></a>
 ## Memory Layout of Java Program
