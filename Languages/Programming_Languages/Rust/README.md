@@ -29,6 +29,7 @@
 - [Design Guidelines](#dg)
 - [Threading](#th)
 - [macros](macros)
+- [Logging: env_Logger, log4rs](Logging)
 
 ### What/Why Rust
 <a name="All"></a>
