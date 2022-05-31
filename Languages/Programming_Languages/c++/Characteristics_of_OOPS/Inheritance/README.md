@@ -17,7 +17,8 @@
 
 
 ## Inheritance
-Creating new class(decendent/derived) from existing class(ansector/base). This is uni-directional relation.
+- Creating new class(decendent/derived/Sub class) from existing class(ansector/base/Super). This is uni-directional relation.
+- Most general classes appear higher in the class hierarchy and the most specific classes appear lower in the class hierarchy.
 - **Adv:** Provides re-usability. 
 - **Disadv:** 
   - _1._ Since inheritance inherits everything from the super class and interface, it may make the subclass too clustering and sometimes error-prone when dynamic overriding or dynamic overloading in some situation. 
