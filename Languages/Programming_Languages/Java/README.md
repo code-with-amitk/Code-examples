@@ -4,13 +4,13 @@
 - [Memory Layout of Java Program](#ml)
 - [Data types](Data_Types)
 - **Keywords**
-  - [Extends = inheritance](#ex)
   - [final](#fi)
   - [Implements](#im)
   - [static](#st)
 - **Input Output**
   - [1. Reading stdin & dump on stdout](#i1)
   - [2. Formatted Output](#fo)
+- [Object Oriented: Class, Inheritance, extends](Object_Oriented)
 - **Classes**
   - [ArrayList](#al)
   - [Calendar](#cal)
@@ -107,25 +107,6 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 
 
 ## Keywords
-<a name=ex></a>
-### Extends = Inheritance
-```java
-class A{                             //A.java   
-  public A(){
-    S.o.p("A");
-  }  
-}
-class B extends A{                  //B.java
-  public B(){
-    S.o.p("B");
-  } 
-}        
-public static void main(String[] args) {
-  B obj = new B();
-}
-O/P->    A B
-```
-
 <a name=fi></a>
 ### Final
 - Before an object is freed by [GC, the garbage collector]() calls object's final() method. Object can free all resources itself in final(). This process is called finalization.
