@@ -4,6 +4,7 @@
 - [Memory Layout of Java Program](#ml)
 - [Data types](Data_Types)
 - **Keywords**
+  - [abstract](#ab)
   - [final](#fi)
   - [Implements](#im)
   - [static](#st)
@@ -107,30 +108,30 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 
 
 ## Keywords
+<a name=ab></a>
+### abstract
+Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
+
 <a name=fi></a>
 ### Final
-- Before an object is freed by [GC, the garbage collector]() calls object's final() method. Object can free all resources itself in final(). This process is called finalization.
-- During finalization object can: free system resources(eg: files,sockets) or drop references to other objects
-- finalize method is a member of the Object class and class must override finalize method to perform any finalization.
-
-<a name=im></a>
-### Implements
-```c
-```
+- **final function:**
+  - Before an object is freed by [GC, the garbage collector]() calls object's final() method. Object can free all resources itself in final(). This process is called finalization.
+  - During finalization object can: free system resources(eg: files,sockets) or drop references to other objects
+  - finalize method is a member of the Object class and class must override finalize method to perform any finalization.
+  - final method cannot be overridden
+- **final class:** final class cannot be inherited. But why someone want to make class=final. 2 reasons(Security, Design decision)
 
 <a name=st></a>
 ### Static
-Types of static
-```c
-1. static class variable
-2. static class method
-3. static class
+- _Types of static:_
+  - _1._ static class variable
+  - _2._ static class method
+  - _3._ static class
 ```
-Properties
-```c
-1. All objects share same static variable
-```
-Code
+- _Properties_
+  - _1._ All objects share same static variable
+- static base class methods cannot be overridden in derv class.
+- Code
 ```java
 public class Solution {
   static Scanner scan = new Scanner(System.in);
