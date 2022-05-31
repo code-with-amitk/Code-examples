@@ -5,6 +5,7 @@
 - [Data types](Data_Types)
 - **Keywords**
   - [Extends = inheritance](#ex)
+  - [final](#fi)
   - [Implements](#im)
   - [static](#st)
 - **Input Output**
@@ -124,6 +125,12 @@ public static void main(String[] args) {
 }
 O/P->    A B
 ```
+
+<a name=fi></a>
+### Final
+- Before an object is freed by [GC, the garbage collector]() calls object's final() method. Object can free all resources itself in final(). This process is called finalization.
+- During finalization object can: free system resources(eg: files,sockets) or drop references to other objects
+- finalize method is a member of the Object class and class must override finalize method to perform any finalization.
 
 <a name=im></a>
 ### Implements
