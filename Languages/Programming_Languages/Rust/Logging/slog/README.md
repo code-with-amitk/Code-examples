@@ -78,7 +78,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-slog = {version="2.7.0", features = ["max_level_warn"]}
+slog = {version="2.7.0"}
 slog-term = "2.9.0"
 slog-async = "2.7.0"
 sloggers = {version="2.0"}
