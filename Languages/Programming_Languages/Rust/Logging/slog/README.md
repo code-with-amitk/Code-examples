@@ -24,7 +24,7 @@ This is logging handle used to execute logging statements
 ### Code
 - **Log levels:** error (highest priority), warn, info, debug, and trace (lowest priority)
 
-<a name=ct></a>
+<a name=c1></a>
 #### 1. Configure log level at compile time
 ```rs
 $ Cargo.toml
@@ -68,6 +68,7 @@ May 31 06:57:30.221 ERRO log
 May 31 06:57:30.221 WARN log
 ```
 
+<a name=c2></a>
 #### 2. Configure log level from function
 ```rs
 $ Cargo.toml
