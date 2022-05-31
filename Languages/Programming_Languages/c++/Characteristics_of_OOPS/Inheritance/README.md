@@ -34,7 +34,7 @@ All member variables(public,protected,pvt) of base are inherited inside derv cla
    Inheritance Type  |   Member Variable of base class                       |      Functions of base class
 ---------------------|-------------------------------------------------------|---------------------------
     Public           | can be accessed in public section.                    | derv class can invoke any public fun of base
-                     | NOTE: this does not mean derv gets a COPY/REFERENCE   |
+                     | NOTE: this does not mean derv gets a COPY/REFERENCE   | or can override
                      |  base public variables. Derv gets access base vars  
                      
     Protected        | All protected members of the base class becomes       | Function present in protected section cannot be called using Object
