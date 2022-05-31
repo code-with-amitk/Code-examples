@@ -18,6 +18,7 @@
   - [Integer](#int)
   - [List`<>`](#li)
   - [NumberFormat](#nf)
+  - [Object](#o)
   - [HashMap](#hm)
   - [java.lang.Math](#math)
   - [Scanner](#s)
@@ -279,6 +280,21 @@ System.out.println(us.format(input));                       // $12,324.13
 System.out.println(in.format(input));                       // Rs.12,324.13
 System.out.println(ch.format(input));                       // ￥12,324.13
 System.out.println(fr.format(input));                       // 12 324,13 €
+```
+
+<a name=o></a>
+### Object class
+- Object class sits at the top of the class hierarchy tree. Every class in the Java system is a descendent (direct or indirect) of the Object class.
+- **Benefits:** Object class provides couple of methods, which every class can use example
+  - compare oneself to another object
+  - convert to a string
+  - to wait on a condition variable, to notify other objects that a condition variable has changed, and to return the object's class
+  - Methods provided by Object class
+```java
+getClass(): Returns information about object. Its name, its superclass, and the names of the interfaces that it implements.
+equals(): 2 objects are equal or not
+toString(): Returns string representation of object.
+  System.out.println(Thread.currentThread().toString());
 ```
 
 <a name=hm></a>
