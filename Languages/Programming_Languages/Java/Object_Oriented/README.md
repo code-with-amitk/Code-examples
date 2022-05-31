@@ -1,7 +1,7 @@
 Object Oriented
 
 ### class
-#### Creating
+#### 1. Employee Class
 ```java
 $ mkdir test; cd test
 $ vim Emp.java
