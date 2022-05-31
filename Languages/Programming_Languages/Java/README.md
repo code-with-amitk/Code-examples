@@ -110,17 +110,30 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 ## Keywords
 <a name=ab></a>
 ### abstract
-Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
+This class cannot be instantiated. Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
+```java
+```
 
-<a name=fi></a>
+<a name=f></a>
 ### Final
-- **final function:**
-  - Before an object is freed by [GC, the garbage collector]() calls object's final() method. Object can free all resources itself in final(). This process is called finalization.
+- **final Method:**
+  - Before an object is freed by [GC, the garbage collector](#f) calls object's final() method. Object can free all resources itself in final(). This process is called finalization.
   - During finalization object can: free system resources(eg: files,sockets) or drop references to other objects
   - finalize method is a member of the Object class and class must override finalize method to perform any finalization.
-  - final method cannot be overridden
+  - final method cannot be overridden in derived class
+```java
+class ChessAlgorithm {
+  final void fun() {          //This cannot be overridden in derv class
+  }
+}
+ .
+```
 - **final class:** final class cannot be inherited. But why someone want to make class=final. 2 reasons(Security, Design decision)
-
+```java
+final class A {		//This will not be inherited
+ . . .
+}
+```
 <a name=st></a>
 ### Static
 - _Types of static:_
