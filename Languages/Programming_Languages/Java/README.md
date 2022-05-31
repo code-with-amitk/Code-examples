@@ -39,8 +39,22 @@
 ## Features of Java
 - **Architecture Neutral:** Compiler generates bytecode which has nothing to do with computer architecture.
 - **Automatic Garbage Collection:** 
-  - Unlike C/C++ programmer need not to allocate/deallocate memory using (malloc/free). Memory is automatically allocated and deallocated hence less bugs.
-  - Looking at heap memory, finding what objects are in use & what not. Deleting the un-used Objects.
+  - Unlike C/C++ programmer need not to worry about freeing the memory. Garbage Collector runs periodically and frees all memory which is not longer needed.
+```java
+public class main{
+	public static void main(String[] args) {
+    {
+		  A obj = new A();
+    }
+    //Object goes out of scope, Memory automatically deleted. While this does not happen in C++.
+	}
+}
+```
+  - _How Garbage Collector works?_
+    - Garbage collector is a mark sweep garbage collector that scans dynamic memory(Heap) for objects, marking those that are referenced/used.
+    - After all possible paths to objects are investigated, those objects that are not marked (that is, not referenced) are known to be garbage and are collected.
+  - _How to make GC Run explicitly?_
+    - Java program can ask the garbage collector to run at any time by calling System.gc.
 - **Distributed:** We can create distributed application in Java using RMI, EJB.
 - **Object Oriented**
 - **Platform Independent:** 
