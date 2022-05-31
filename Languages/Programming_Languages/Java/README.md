@@ -110,8 +110,38 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 ## Keywords
 <a name=ab></a>
 ### abstract
-This class cannot be instantiated. Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
+This provides complete programming interface.
+#### abstract class
+- This class cannot be instantiated. Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
 ```java
+$ Number.java
+abstract class Number{
+}
+
+$ Inte.java
+class Inte extends Number{
+    public static void main(String[] args) {
+        System.out.println("Hi");
+    }
+}
+
+$ javac *.java
+```
+
+#### abstract method
+This should be overriden in derived class
+```java
+$ Number.java
+abstract class Number{
+  abstract void fun();
+}
+
+$ Inte.java
+class Inte extends Number {
+ void fun() {
+ . . .
+ }
+}
 ```
 
 <a name=f></a>
