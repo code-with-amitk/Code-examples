@@ -1,4 +1,17 @@
-## How Object Store (should) be storing data?
+- [Terms: OOL, OQL, ODMG](#t)
+- [How Object Store (should) be storing data?](#h)
+
+<a name=t></a>
+### Terms
+#### Object Definition Language (ODL)
+ODL is Independent of any programming language and helps to create classes and interfaces and also Specify a database schema.
+#### Object Query Language (OQL)
+This is similar to SQL with additional features (object identity, complex objects, operations, inheritance, polymorphism, relationships) 
+#### ODMG (Object Data Management Group)
+
+
+<a name=h></a>
+### How Object Store (should) be storing data?
 ### 1. Storing Videos
 ```c
   1. Object-Store-1(Video)   //uses Storage-Hash-Table
