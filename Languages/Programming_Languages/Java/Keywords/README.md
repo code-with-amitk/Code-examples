@@ -3,6 +3,7 @@
 - [interface](#inf)
 - [final](#fi)
 - [Implements](#im)
+- [Package](#p)
 - [static](#st)
 
 ## Keywords
@@ -95,6 +96,33 @@ final class A {		//This will not be inherited
  . . .
 }
 ```
+
+<a name=p></a>
+### Package
+- Package is groups of related classes and interfaces bundles together for specific purpose.
+- To create package: `package` keyword is used.
+- To use package: `import` keyword is used.
+```java
+$ A.java
+package pack;                         //Package keyword creates a package named pack. Class A gets avilable in pack
+public class A {
+  public void msg() {
+    System.out.println("Hello");
+  }
+}
+
+$ B.java
+import pack.*;                        //Above created package would be used
+public class B{
+  public static void main(String args[]){
+   A obj = new A();
+   obj.msg();
+  }
+}
+
+$ javac *.java
+```
+
 <a name=st></a>
 ### Static
 - _Types of static:_
