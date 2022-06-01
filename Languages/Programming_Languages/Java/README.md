@@ -4,7 +4,9 @@
 - [Memory Layout of Java Program](#ml)
 - [Data types](Data_Types)
 - **Keywords**
+  - [abstract vs interface](#ai)
   - [abstract](#ab)
+  - [interface](#inf)
   - [final](#fi)
   - [Implements](#im)
   - [static](#st)
@@ -109,11 +111,21 @@ Since program runs inside JVM, we will also see How JVM looks on memory.
 
 
 ## Keywords
+<a name=ai></a>
+### abstract vs interface
+||abstract=Virtual Function|interface=Pure Virtual Function|
+|---|---|---|
+|What|Provides 0-100% programming interface|Provides 100% programming interface|
+|Method can have body|yes|no (will not compile)|
+|Implemented using keyword|extends|implements|
+|Multiple Inheritance|not supported|supported|
+|Variables|final, non-final, static and non-static|static and final|
+
 <a name=ab></a>
 ### abstract
 This provides complete programming interface.
 #### abstract class
-- This class cannot be instantiated. Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
+This class cannot be instantiated. Subclass must override abstract methods in superclass, or the subclass itself must be abstract.
 ```java
 $ Number.java
 abstract class Number{
@@ -130,11 +142,13 @@ $ javac *.java
 ```
 
 #### abstract method
-This should be overriden in derived class
+Can/Cannot have a body.
 ```java
 $ Number.java
 abstract class Number{
-  abstract void fun();
+  abstract void fun() {
+    int a;
+  }
 }
 
 $ Inte.java
@@ -144,6 +158,9 @@ class Inte extends Number {
  }
 }
 ```
+
+<a name=inf></a>
+### interface
 
 <a name=f></a>
 ### Final
