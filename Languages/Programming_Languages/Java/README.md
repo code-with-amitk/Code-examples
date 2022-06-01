@@ -160,7 +160,25 @@ class Inte extends Number {
 ```
 
 <a name=inf></a>
-### interface
+### interface = PVF
+- interface can only provide template, function cannot have body.
+- All functions are abstract.
+```java
+$ test.java
+public interface test {
+    public void fun();			//Methods in Interface cannot have body. Complilation error
+}
+
+$ main1.java
+public class main1 implements test{	//implement interface
+    public void fun() {			//Interface function should be overridden
+        System.out.println("test");
+    }
+    public static void main(String[] args){
+        System.out.println("main");
+    }
+}
+```
 
 <a name=f></a>
 ### Final
