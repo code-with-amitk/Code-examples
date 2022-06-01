@@ -1,5 +1,6 @@
 - [abstract vs interface](#ai)
 - [abstract](#ab)
+- [CLASSPATH](#cp)
 - [interface](#inf)
 - [final](#fi)
 - [Implements](#im)
@@ -75,6 +76,10 @@ public class main1 implements test{	//implement interface
     }
 }
 ```
+
+<a name=cp></a>
+### CLASSPATH
+This is path/location which contains all created `*.class` files.
 
 <a name=f></a>
 ### Final
