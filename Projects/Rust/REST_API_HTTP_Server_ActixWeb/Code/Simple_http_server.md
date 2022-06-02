@@ -1,7 +1,7 @@
 **Simple HTTP Server**
 - [How it works](#h)
 
-### Simple HTTP Server
+### [Simple HTTP Server](https://actix.rs/docs/getting-started/)
 <a name=h></a>
 #### How it works
 Server exposes 4 endpoints to http clients.
@@ -52,13 +52,13 @@ pub(crate) mod handlers;
 async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=debug");
 
-    HttpServer::new(move || {                 //4. Start http server
-        App::new()      //Add a App
-            .route("/users", web::get().to(handlers::get_users))            //5. Mapped http://ip:port/users    => get_users()
-            .route("/users/{id}", web::get().to(handlers::get_user_by_id))  //          http://ip:port/users/1  => get_user_by_id()
-            .route("/users", web::post().to(handlers::post_add_user))       //
-            .route("/users/{id}", web::delete().to(handlers::delete_user))
-    })
+    let app = move || App::new()            //4. Create Application using application factory.
+            .route("/users", web::get().to(handlers::get_users))            //Mapped http://ip:port/users    => get_users()
+            .route("/users/{id}", web::get().to(handlers::get_user_by_id))  //       http://ip:port/users/1  => get_user_by_id()
+            .route("/users", web::post().to(handlers::post_add_user))       
+            .route("/users/{id}", web::delete().to(handlers::delete_user));
+            
+    HttpServer::new(app)            //5. Create new http server with application factory. pub fn new<F, U>(factory: F) -> Self
     .bind("127.0.0.1:8080")?        //Run on localhost on a given port
     .run()
     .await
@@ -67,7 +67,9 @@ async fn main() -> std::io::Result<()> {
 
 **src/handlers.rs**
 ```rs
-use actix_web::Responder;
+use actix_web::Responder;]
+
+//Use async functions that accept zero or more parameters.
 pub async fn get_users() -> impl Responder {              //6. GET CRUD Method
     format!("Http GET get_users()")
 }
