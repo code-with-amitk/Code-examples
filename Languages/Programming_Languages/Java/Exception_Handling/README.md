@@ -1,6 +1,7 @@
 **Exception Handling**
 - Examples
   - [1. Catching Divide by 0](#e1)
+  - [2. Finally keyword](#f)
 - [Throwing User defined class](#tu)
 
 
@@ -74,6 +75,32 @@ public class test {
         int s = 1/a;
     }
 }
+```
+<a name=f></a>
+**finally keyword**
+- This code block is always executed after execution of exception handler. This is used for cleanup purpose.
+```java
+$ test.java
+public class test {
+    public static void main(String[] args){
+        try {
+            test t = new test(0);
+        } catch (ArithmeticException e){
+            System.out.println(e);
+        }
+        finally {                                       //Always executed
+            System.out.println("finally");
+        }
+    }
+    test (int a) {
+        if (a <=0)
+            throw new ArithmeticException("Divide by 0");
+    }
+}
+$ javac test.java
+$ java test
+java.lang.ArithmeticException: Divide by 0
+finally
 ```
 
 <a name=tu></a>
