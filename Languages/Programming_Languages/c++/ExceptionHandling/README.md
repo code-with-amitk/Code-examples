@@ -12,6 +12,7 @@
 
 ## Exception
 - Exception is the problem state into which program enters that's not normal. Eg: Divide by Zero.
+- Now exception floats into callstack until handler is found for it.
 - Normally what will happen in this case is Segmentation Fault and abort. But we can place the same code inside try, catch and do something so that program does no coredumps.
 
 <a name=t></a>
