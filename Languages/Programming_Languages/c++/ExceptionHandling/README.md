@@ -11,7 +11,7 @@
 
 
 ## Exception
-- Exception is Problem/error that arises when program is Running. Eg: Divide by Zero.
+- Exception is the problem state into which program enters that's not normal. Eg: Divide by Zero.
 - Normally what will happen in this case is Segmentation Fault and abort. But we can place the same code inside try, catch and do something so that program does no coredumps.
 
 <a name=t></a>
