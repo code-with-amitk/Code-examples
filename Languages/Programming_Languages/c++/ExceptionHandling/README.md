@@ -23,14 +23,15 @@
 
 <a name=e1></a>
 #### Example-1: Catching Divide by 0
+**Program generating coredump**
 ```cpp
-////Coredump generated without try, catch/////
 int main(){
   int c = 0;
   cout << 4/c;                        //Coredumps here
 }
-
-////Catching error(with try catch)/////
+```
+**1a. Catching exception with throw**
+```cpp
 include<iostream>
 #include <stdexcept>
 using namespace std;
