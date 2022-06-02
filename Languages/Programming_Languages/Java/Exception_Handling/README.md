@@ -12,10 +12,13 @@
     /                       \
 java.lang.Exception     java.lang.Error
 ```
-- [Meaning of try,catch,throw](/Languages/Programming_Languages/c%2B%2B/ExceptionHandling#t)
+- [try,catch,throw](/Languages/Programming_Languages/c%2B%2B/ExceptionHandling#t)
 
 <a name=e1></a>
 #### Example-1. Catching Divide by 0
+- Only Usage of **throw is bit different in Java**(wrt C++). 
+  - After function parameter list Possible exceptions are added Comma Seperated.
+  - Java uses throws, c++ uses throw
 ```java
 ///////////Program causing crash/////////////
 $ test.java
@@ -37,16 +40,16 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 $ test.java
 public class test {
     public static void main(String[] args){
-        test t = new test(0);
-    }
-
-    test (int a) {
         try {
-           int s = 1/a;
-        }
-        catch (ArithmeticException e){
+            test t = new test(0);
+        } catch (ArithmeticException e){
             System.out.println(e);
         }
+
+    }
+
+    test (int a) throws ArithmeticException{    //Also note its throws not throw
+        int s = 1/a;
     }
 }
 $ javac test.java
