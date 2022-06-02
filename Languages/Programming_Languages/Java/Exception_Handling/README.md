@@ -1,6 +1,7 @@
 **Exception Handling**
 - Examples
   - [1. Catching Divide by 0](#e1)
+- [Throwing User defined class](#tu)
 
 
 ## Exception Handling
@@ -73,4 +74,34 @@ public class test {
         int s = 1/a;
     }
 }
+```
+
+<a name=tu></a>
+### Throwing User defined class
+- We can create our own class(which extends Exception class) and this can be thrown.
+- **Usage:** User defined class can have attributes which can be used.
+```java
+$ custom_except.java
+class custom_except extends Exception {              //1. Create class extending Exception
+    custom_except(){}
+}
+
+$ A.java
+public class A{
+    public static void main(String[] args) {
+        try {                                        //3. Provide try, catch
+            A obj = new A(0);
+        }
+        catch (custom_except e){                    //4. catch custom exception class
+            System.out.println("custom Exception");
+        }
+    }
+    A(int a) throws custom_except {                 //2. Function should throws custom class
+        if (a<=0)
+            throw new custom_except();
+    }
+}
+$ javac *.java
+$ java A
+custom Exception
 ```
