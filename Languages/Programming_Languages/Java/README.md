@@ -8,7 +8,7 @@
   - [1. Reading stdin & dump on stdout](#i1)
   - [2. Formatted Output](#fo)
 - [Object Oriented: Class, Inheritance, extends](Object_Oriented)
-- [Exception Handling](Exception_Handling)
+- [Exception Handling, finally](Exception_Handling)
 - **Classes**
   - [ArrayList](#al)
   - [Calendar](#cal)
