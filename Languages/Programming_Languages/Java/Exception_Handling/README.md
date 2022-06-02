@@ -34,7 +34,7 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
         at test.<init>(test.java:8)
         at test.main(test.java:3)
 ```
-**Catching exception Using throws:** After function parameter list Possible exceptions are added Comma Seperated.
+**1a. Catching exception Using throws:** After function parameter list Possible exceptions are added Comma Seperated.
 ```java 
 ///////////Catching Exception no Crash/////////////
 $ test.java
