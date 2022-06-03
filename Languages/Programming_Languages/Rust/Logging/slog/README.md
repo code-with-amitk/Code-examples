@@ -96,27 +96,15 @@ use sloggers::Build;
 use slog::Drain;
 use serde::{Deserialize, Serialize};
 
-fn convert_to_severity(level: &str) -> Severity {
-    match level {
-        "trace" => Severity::Trace,
-        "debug" => Severity::Debug,
-        "info" => Severity::Info,
-        "warning" => Severity::Warning,
-        "error" => Severity::Error,
-        "critical" => Severity::Critical,
-        _ => Severity::Warning,
-    }
-}
 fn main() {
-  let log_path = "/home/amit/file.log".to_string();
-  let severity = convert_to_severity("warn");                     //Log level = warn. Log all above warn
+  let log_path = "/home/amit/file.log".to_string();                //Log file path
   
-  let k = FileLoggerBuilder::new(log_path)                        //Log file path
+  let k = FileLoggerBuilder::new(log_path)
     .timezone(TimeZone::Local)
     .format(Format::Full)
     .source_location(SourceLocation::LocalFileAndLine)
     .rotate_size(1024*1024 as u64)                                //Rotate when size > 1MB
-    .level(severity)
+    .level(Severity::Warning)
     .channel_size(4096)
     .overflow_strategy(OverflowStrategy::DropAndReport)
     .build().unwrap();
