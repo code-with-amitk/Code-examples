@@ -10,6 +10,8 @@
     - [2. tokio::spawn = Green Thread](#tos)
   - Python
     - [1. Threading Library](#p1)
+  - Java
+    - [1. Thread Class](#j)
 - [Joinable, Detachable Threads](#jd)
 
 
@@ -213,6 +215,43 @@ print('The main program continues to run in foreground.')
 
 background.join()    # Wait for the background task to finish
 print('Main program waited until background was done.')
+```
+
+### Java
+#### 1. Using Thread class
+```java
+class test implements Runnable {		//Class should implement Runnable Interface to create Thread
+    test() {
+        Thread cur = Thread.currentThread();
+
+        Thread t = new Thread (this, "New thread"); //1. Created child thread
+        t.start();                                  //2. Started child thread. if start() is not called, Child Thread will not start
+        try {
+            for (int i = 0; i < 6; ++i) {
+                System.out.println ("Parent Thread");       //Parent process waits 1sec
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println ("Interrupted");
+        }
+        System.out.println ("exiting main thread");
+    }
+    public void run () {
+        try {
+            for (int i = 0; i < 3; ++i) {
+                System.out.println ("Child Thread");        //Child Thread waits 2sec
+                Thread.sleep(2000);
+            }
+        }
+        catch (InterruptedException e) {
+            System.out.println ("child interrupted");
+        }
+        System.out.println ("exiting child thread");
+    }
+    public static void main (String args[]) {
+        new test();					//1. Calls constructor
+    }
+}
 ```
 
 <a name=jd></a>
