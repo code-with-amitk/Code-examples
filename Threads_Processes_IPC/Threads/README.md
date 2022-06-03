@@ -41,6 +41,7 @@ $ g++ test.cpp -lpthread
 $ ./a.out
 Floating point exception (core dumped)
 ```
+<a name=s1j></a>
 #### 1b. {Java} When child thread dies, Main Process DOES NOT Die
 ```java
 class test implements Runnable {                     //Implement runnable interface if want thread to be created.
