@@ -1,7 +1,8 @@
-- [Threads](#w)
-  - [When Thread dies/panics whole process dies](#tp)
+- Situtations
+  - **1. Child Thread Dies**
+    - [C++. Whole Process Dies](#s1c)
+    - [Java. Whole Process DOES NOT Die](#s1j)
 - [Why threads, When single threaded is better than Multi-Threaded](Why_Threads)
-  - [When single threaded is better than Multi-Threaded](#st)
 - [Memory layout of Threads](#ml)
 - [Terms: yeild](#t)
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
@@ -14,28 +15,64 @@
 - [Upcall](#up)
 - **[Code](#co)**
 
-<a name=w></a>
-## Threads
-<a name=tp></a>
-### When Thread dies/panics whole process dies
+
+
+## Situations
+### 1. Child Thread Dies
+<a name=s1c></a>
+#### 1a. {CPP} When child thread dies, Whole Process Dies
 Because thread is created on process stack, have common CS, HS, DS.
 ```c
-void fun1(){
-    sleep(5);
-    cout <<"thread1";
-}
-void fun2(){
-    exit(1);
+#include <iostream>
+#include <unistd.h>
+using namespace std;
+void fun() {                    //2. Child Thread starts execution
+    int a = 1/0;                //3. Dies. Divide by 0 exception
+    cout << "Child thread";
 }
 int main() {
-    thread t1(fun1);
-    thread t2(fun2);
+    thread t1(fun);            //1. Created child thread. It starts execution immediately
+    sleep(5);
+    cout << "main thread";    //4. Main process also Dies
     t1.join();
-    t2.join();
-    cout << "Dieing";
+    return 0;
 }
+$ g++ test.cpp -lpthread
 $ ./a.out
-Nothing printed
+Floating point exception (core dumped)
+```
+#### 1b. {Java} When child thread dies, Main Process DOES NOT Die
+```java
+class test implements Runnable {                     //Implement runnable interface if want thread to be created.
+    test() {
+        Thread t = new Thread (this, "New thread"); //2. Created child thread
+        t.start();                                  //3. Started child thread. if start() is not called, Thread will not start
+        try {
+            for (int i = 0; i < 3; ++i) {
+                System.out.println ("Parent Thread");    //5. But parent executes properly
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            System.out.println ("Interrupted");
+        }
+        System.out.println ("exiting main thread");
+    }
+    public void run () {                              //4. Child Execution starts and it Dies
+      int k = 1/0;
+    }
+    public static void main (String args[]) {
+        new test();                                   //1. Constructor called
+    }
+}
+$ javac test.java
+$ java test
+Exception in thread "New thread" Parent Thread
+java.lang.ArithmeticException: / by zero
+        at test.run(test.java:16)
+        at java.base/java.lang.Thread.run(Thread.java:829)
+Parent Thread
+Parent Thread
+exiting main thread
 ```
 
 <a name=ml></a>
