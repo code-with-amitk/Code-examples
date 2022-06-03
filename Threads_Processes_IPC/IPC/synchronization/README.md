@@ -7,7 +7,8 @@
 <a name=sy></a>
 ## Synchronization
 Coordination b/w processes/threads to access shared resources so that [deadlock & race conditions](/Threads_Processes_IPC/Terms) can be avoided.
-- **Why?** When multiple threads need to modify a shared resource(eg: global variable) we should lock the resource to guarantee at most 1 thread can do modification.
+- **Ex-1?** When multiple threads need to modify a shared resource(eg: global variable) we should lock the resource to guarantee at most 1 thread can do modification.
+- **Ex-2?** When 2 threads are putting data on top of stack, without synchronization it's immpossible to tell what is on top of the stack at any one time.
 
 <a name=ty></a>
 ## Types of synchronization
