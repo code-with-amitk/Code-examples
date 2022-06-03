@@ -11,7 +11,7 @@
   - Python
     - [1. Threading Library](#p1)
   - Java
-    - [1. Thread Class](#j)
+    - [1. Thread Class](#tc)
 - [Joinable, Detachable Threads](#jd)
 
 
@@ -218,6 +218,7 @@ print('Main program waited until background was done.')
 ```
 
 ### Java
+<a name=tc></a>
 #### 1. Using Thread class
 ```java
 class test implements Runnable {		//Class should implement Runnable Interface to create Thread
@@ -252,6 +253,20 @@ class test implements Runnable {		//Class should implement Runnable Interface to
         new test();					//1. Calls constructor
     }
 }
+$ javac test.java
+$ java test
+$ java test
+Parent Thread
+Child Thread
+Parent Thread
+Child Thread
+Parent Thread
+Parent Thread
+Child Thread
+Parent Thread
+Parent Thread
+exiting child thread
+exiting main thread
 ```
 
 <a name=jd></a>
