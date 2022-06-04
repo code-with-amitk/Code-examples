@@ -4,6 +4,7 @@
 - [Memory Layout of Java Program](#ml)
 - [Data types](Data_Types)
 - [Keywords: abstract, interface, final, implements, static](Keywords)
+- [Streams](Streams)
 - **Input Output**
   - [1. Reading stdin & dump on stdout](#i1)
   - [2. Formatted Output](#fo)
