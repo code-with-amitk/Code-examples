@@ -1,7 +1,7 @@
 - [Arc(Atomically Reference Counted)](#arc)
   - [`Rc<T>` vs `Arc<T>`](#vs)
 - **Code**
-  - [1. Passing mutable Reference to thread](#c1)
+  - [1. update `Arc<Mutex<&mut struct>>` Passing mutable Reference to thread](#c1)
 
 <a name=arc></a>
 ### `Arc<T>` / Atomically Reference Counted
@@ -25,7 +25,7 @@ Memory overhead|    less                     |   More
 
 ### Code
 <a name=c1></a>
-#### Passing mutable Reference to thread
+#### 1. update `Arc<Mutex<&mut struct>>` Passing mutable Reference to thread
 ```rs
 //main.rs
 use std::sync{Arc, Mutex}
