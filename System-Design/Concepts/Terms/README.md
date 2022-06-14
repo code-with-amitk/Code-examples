@@ -60,7 +60,11 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 
 <a name=cap></a>
 ### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#pt))
-Only 2 out 3 can be guaranteed.
+CAP theorem says: Only 2 out 3 can be guaranteed.
+- **What 2 can be combined**
+  - _1. CP:_ When nodes are partitioned, then consistency can be achieved.
+  - _2. AP:_ nodes remain online even if they can't communicate with each other
+  - _3. CA:_ data is consistent between all nodes - as long as all nodes are online 
 
 <a name=con></a>
 ### Consistency
@@ -132,7 +136,8 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
 
 <a name=pt></a>
 ### Partition Tolerance
-Cluster continues to function even if there is a "partition" (communication break) between two nodes (both nodes are up, but can't communicate).
+- Cluster continues to function even if there is a "partition" (communication break) between two nodes (both nodes are up, but can't communicate).
+- This is fault that breaks communication between nodes.
 
 <a name=rt></a>
 ### Response Time
