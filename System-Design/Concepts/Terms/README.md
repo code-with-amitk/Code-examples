@@ -1,21 +1,27 @@
+- [Accuracy](#ac)
 - [Antisnubbing](#ans)
 - [Availability](#av)
 - [Autoscaling](#auto)
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
-- [Consistency / Accuracy](#con)
+- [Consistency](#con)
 - [CAP Theorem](#cap)
 - [Deduplication](#de)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
 - [Latency](#la)
 - [Orchestration](#orc)
+- [Partition Tolerance](#pt)
 - [Reliable](#re)
 - [Response time](#rt)
 - [Scalability](#sc)
 - [Stream](/System-Design/Concepts/MOM_ESB/Apache_Kafka/#st)
 - [Tenant](#ten)
 - [Throughput](#tp)
+
+<a name=ac></a>
+### Accuracy
+System is doing what's it's supposed to do.
 
 <a name=ans></a>
 ### Antisnubbing 
@@ -24,7 +30,8 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 
 <a name=av></a>
 ### Availability
-Every request receives a response, without guarantee that it contains the most recent version of information. 
+- Access data from cluster even if any node in the cluster is down.
+- OR Every request receives a response, without guarantee that it contains the most recent version of information. 
 - **Availabilty Problem** System is down and it cannot take requests and send responses.
   - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
     - *a.* Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
@@ -52,12 +59,13 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
 
 <a name=cap></a>
-### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#la))
+### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#pt))
 Only 2 out 3 can be guaranteed.
 
 <a name=con></a>
-### Consistency / Accuracy
-- Every data read is accurate. With multiple copies of data maintained between master and replicas. Every read receives the most recent write or an error.
+### Consistency
+- Data is the same across all clusters, so you read/write from/to any node and get the same data.
+- OR With multiple copies of data maintained between master and replicas. Every read receives the most recent write or an error.
 - **Consistency Problem?**
   - With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
 
@@ -121,6 +129,10 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
 - cloud Orchestrator is a process/microservice which does following on cloud:
   - Policy enforcement
   - Ensure process-1 has proper permission to connect to process-2 or execute some task on cloud.
+
+<a name=pt></a>
+### Partition Tolerance
+Cluster continues to function even if there is a "partition" (communication break) between two nodes (both nodes are up, but can't communicate).
 
 <a name=rt></a>
 ### Response Time
