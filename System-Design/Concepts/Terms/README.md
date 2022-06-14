@@ -52,7 +52,7 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
 
 <a name=cap></a>
-### CAP Theorem ([Consistency](Consistency) [Availability](#av) [Partition-Tolerance](#la))
+### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#la))
 Only 2 out 3 can be guaranteed.
 
 <a name=con></a>
