@@ -3,7 +3,7 @@
 - [Autoscaling](#auto)
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
-- [Consistency / Accuracy](Consistency)
+- [Consistency / Accuracy](#con)
 - [CAP Theorem](#cap)
 - [Deduplication](#de)
 - [Fault Tolerance](#ft)
@@ -54,6 +54,21 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 <a name=cap></a>
 ### CAP Theorem ([Consistency](Consistency) [Availability](#av) [Partition-Tolerance](#la))
 Only 2 out 3 can be guaranteed.
+
+<a name=con></a>
+### Consistency / Accuracy
+- Every data read is accurate. With multiple copies of data maintained between master and replicas. Every read receives the most recent write or an error.
+- **Consistency Problem?**
+  - With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
+
+#### Consistency patterns
+
+|Type|What|Use case|
+|---|---|---|
+|1.Weak consistency|After a write, reads may or may not see it. A best effort is done.|<ul><li>1.Web-client:Ok to see past 1-2 min data.</li></ul>|
+|2.Eventual consistency|After a write, reads will eventually see it (typically within milliseconds)||
+|3.Strong consistency|After a write, reads will see it. Data is replicated synchronously|<ul><li>1.Stock Exchanges or auctions</li></ul>|
+
 
 <a name=de></a>
 ### Deduplication 
