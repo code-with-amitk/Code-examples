@@ -1,6 +1,13 @@
 **Versioning Control**
 - [git vs gerrit](#vs)
-- [Terms](#terms)
+- [How git works](#how)
+- Terms
+  - [Branching](#b)
+  - [Central repository(upstream)](#u)
+  - [Cherry pick](#cp)
+  - [Clone](#c)
+  - [Fork](#f)
+  - [HEAD, Detached HEAD](#h)
 - **Issues**
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
@@ -18,15 +25,47 @@ git history            |    not clean            |  cleaner
 Permissions            |    not extensive        | Much fine grained
 ```
 
-<a name=terms></a>
+<a name=how></a>
+### How git works
+```c
+<---------- My-PC ----------->
+Working-Dir       Staging-Area         Committed-files         Remote-Repo
+git status
+        - git add ->
+                            - git commit ->
+                                                     - git push ->
+                                                     <- git fetch -
+         <-------- git checkout ------------
+         <-------- git merge ---------------
+```
+
 ## Terms
-- **Central repository(upstream)**: Organization's copy. Production Copy
-- **[Cherry pick:](git-Commands)** means choose commit from 1 branch and apply to other branch. 
-- **Clone:**    Making a local copy of code on your machine 
-- **Fork:** Own duplicated copy of someone else's code. user1 created a repo. User2 wants a local copy of repo. user2 forks the repo. How to Fork?    
+<a name=b></a>
+### Branching
+- Developers can work on branch of repo for (bug fixing, new features). By working on branch, master branch is not affected.
+- **master branch:** generally represents the stable version of your code, which is released or published
+
+<a name=u></a>
+### Central repository(upstream)
+Organization's copy. Production Copy
+
+<a name=cp></a>
+### [Cherry pick](git-Commands)
+means choose commit from 1 branch and apply to other branch. 
+
+<a name=c></a>
+### Clone
+Making a local copy of code on your machine 
+
+<a name=f></a>
+### Fork 
+Own duplicated copy of someone else's code. user1 created a repo. User2 wants a local copy of repo. user2 forks the repo. How to Fork?    
   - Login github > Search for repos > Click Fork.
   - Now under Your Profile you can see the forked repo. git clone it. Changes would not be reflected onto master branch
-- **HEAD** is a reference to the last commit in the currently checked-out branch.
+
+<a name=h></a>
+### HEAD
+Is a reference to the last commit in the currently checked-out branch.
 - **Detached Head**
   - We checkedout a commit and its detached, ie we can do the changes, play around will not affect on git, since its not attached to any branch.
   - We can think detached head as Branch without name.
