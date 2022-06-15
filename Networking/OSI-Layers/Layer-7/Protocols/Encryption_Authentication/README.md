@@ -53,18 +53,21 @@ Layer7 protocol for Authentication+Encryption. Layer-4 can have TCP or UDP.
 <a name=pub></a>
 #### 1. Public Key Exchange
 ```c
-Root-CA
-  |--> Client.crt + RootCA.crt  -> Browser/SSL Client
-  |--> server.crt + RootCA.crt  -> Web Server/SSL Server/HDFC
-
-  Web Browser/SSL-Client                                                                          Web-Server/SSL-Server/HDFC
+                                                      Root-CA
+                     --- publicKey+CSR ------------->  |  <--- publicKey+CSR -------------
+                     <-- Client.crt + RootCA.crt ----- |  ------- server.crt + RootCA.crt ---->
+  Web Browser/SSL-Client                                                                        Web-Server/SSL-Server/HDFC
 //Step-1: Browser has installed self.crt, RootCA.crt
 //Step-2: SSL Client wants to connect to Web-server.
-
   User Logs in with CustID+Pass
   
+                          ---------- SYN ---------->
+                          <---------- SYN,ACK ------
+                          ---------- ACK ---------->
+                          
       ----------------------HANDSHAKE PROTOCOL START----------------------
       Why HS? Client, server authenticate each  other, Negotiate Encryption-Algo, Keys
+      
 ssl3_connect()
 ssl3_accept()
 send_clienthello()
@@ -75,7 +78,7 @@ send_clienthello()
       --------------------------HANDSHAKE PROTOCOL END---------------------
       
 //Step-3: Let Me(Browser) Verify Server I am connecting to is Genuine
- - Checks which RootCA has singed server.crt
+ - Checks which RootCA has signed server.crt
     Issuer: C = <>, ST = <>, L = <>, O = Verisign, OU = <>, CN = <>, emailAddress = <> 
  - Retrieves same RootCA.crt from DB. Gets Public Key from RootCA.crt stored in DB
  - Verifies [Digital Signature] present on server.crt.
