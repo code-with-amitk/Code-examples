@@ -2,7 +2,7 @@
 - [git vs gerrit](#vs)
 - [How git works](#how)
 - Terms
-  - [Branching](#b)
+  - [Branch: feature, master](#b)
   - [Central repository(upstream)](#u)
   - [Cherry pick](#cp)
   - [Clone](#c)
