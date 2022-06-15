@@ -16,11 +16,8 @@
 ```
   c swwifft goats   <-Services
   h dawvctr tpcad   <-Work
-  
-fargate: Container runner
-SWF: Distribute tasks among distributed components
-WAF: Protects WebAPI against Web exploits
-```
+```  
+
 |Config|Sheild|Watch|WAF|Inspector|Fargate|Formation|Trusted-Advisor|Guard Duty|
 |---|---|---|---|---|---|---|---|---|
 |History|DDos|Alarms|WebAPI protection against Web exploits|Vunerablity|Container runner|Template|Recommendation|Threat detection|
