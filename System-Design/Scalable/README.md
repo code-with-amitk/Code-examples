@@ -7,13 +7,13 @@
 - **1. Requirements:**
   - *1a.* Functional(Basic functionality, should work)
   - *1b.* Non-functional(defines quality)
-  - *1c.* Extended:  S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
+  - *1c.* Extended:  S<sup>3</sup> L<sup>3</sup> A<sup>3</sup> C<sup>2</sup> R<sup>2</sup> F<sup>2</sup>
     - Scalable, Secure, SOA
     - Logging, Load, [Latency](Terms)
-    - Cache(Invalidation, negative cache)
     - Available, Accurate, Analyze, Authenticate
+    - Cache(Invalidation, negative cache)
     - Reliable, Redundant(Using DB)
-    - Fast
+    - Fast, Fault Tolerant
 - **2. Back of Envelope Calculations**
   - Storage estimates
   - QPS(Queries per second)
