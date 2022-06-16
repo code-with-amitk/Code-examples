@@ -11,8 +11,8 @@ We can develop: Computer programs, Websites, Web apps, web services and mobile a
 #### Shortcuts 
 ```c
 Call stack  => Cntl + Alt + C
-Threads     => Cntl + Alt + H
-Parallel Stacks => Cntl + Shift + D
+Threads     => Cntl + Alt + H. 		Debug > Windows > Threads
+Parallel Stacks => Cntl + Shift + D. 	Debug > Windows > Parallel Stacks
 Processes   => Cntl + Alt + Z
 ```
 
@@ -52,7 +52,7 @@ Columns in thread window
   Location  : Shows where the thread is running. We can expand this location to show the full call stack for the thread.
   Process Name: An advanced column (hidden by default) shows process to which each thread belongs.
   
-2. Open Parallel stacks to see stacks of all threads. Cntl + shift + D  
+2. Open Parallel stacks to see stacks of all threads. Cntl + shift + D  . Debug > Windows > Parallel Stacks
 
 3. Show Threads in Code. Click on Button in Visual Studio Bar. This will place marker in code where specific threads are.
 ```
