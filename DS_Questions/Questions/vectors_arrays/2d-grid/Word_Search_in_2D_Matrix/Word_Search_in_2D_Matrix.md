@@ -30,6 +30,7 @@ Output: true
 
 #### Code
 - We have applied [BackTracking Template](/DS_Questions/Algorithms/Backtracking#tem)
+
 <a name=cpp></a>
 **CPP**
 ```cpp
