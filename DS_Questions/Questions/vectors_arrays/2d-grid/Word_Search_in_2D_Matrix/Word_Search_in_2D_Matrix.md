@@ -112,7 +112,7 @@ int main(){
 ```
 <a name=co></a>
 #### Complexity
-**Time** O(N.3<sup>L</sup>). 
+- **Time** O(N.3<sup>L</sup>). 
   - N is the number of cells in the board 
   - L is the length of the word to be matched. Intially we have 4 directions but only 3 since we wont go back if ch matches.
 - **Space** O(L). Length of word to be matched.
