@@ -2,11 +2,12 @@
 - **Examples**
   - [Ex-1, 2](#ex1)
 - [BT Template](#tem) Problems solved using BT Template:
-  - [N-Queen-Problem](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
+  - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
+  - [N-Queen-Problem](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
   - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
-  - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
+  - [Word Search in 2D grid](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
 
 <a name=bt></a>
 ## [Backtracking LC Explore Cards](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
