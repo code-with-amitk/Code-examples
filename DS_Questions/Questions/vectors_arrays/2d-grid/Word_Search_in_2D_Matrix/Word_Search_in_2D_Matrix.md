@@ -29,9 +29,9 @@ Output: true
 - Search character by character(in all 4 directions) until word is found or we reach end.
 
 #### Code
+- We have applied [BackTracking Template](/DS_Questions/Algorithms/Backtracking#tem)
 <a name=cpp></a>
 **CPP**
-We have applied [BackTracking Template](/DS_Questions/Algorithms/Backtracking#tem)
 ```cpp
 #include<iostream>
 #include<vector>
