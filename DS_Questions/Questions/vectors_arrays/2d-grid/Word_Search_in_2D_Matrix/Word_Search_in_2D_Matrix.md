@@ -1,7 +1,10 @@
 **Word Search**
 - Approach, Backtracking
   - [Logic](#l)
-  - [Code](#c)
+  - Code
+    - [C++](#cpp)
+    - [Java](#j)
+    - [Rust](#r)
   - [Complexity](#co)
 
 
@@ -25,8 +28,9 @@ Output: true
   - We will keep going in the grid until we find matching character, when mismatch happens we start removing 1 last character(this is backtrack).
 - Search character by character(in all 4 directions) until word is found or we reach end.
 
-<a name=c></a>
 #### Code
+<a name=cpp></a>
+**CPP**
 We have applied [BackTracking Template](/DS_Questions/Algorithms/Backtracking#tem)
 ```cpp
 #include<iostream>
@@ -110,6 +114,68 @@ int main(){
     cout << s.exist(board, word);
 }
 ```
+
+<a name=j></a>
+**Java**
+```java
+class Solution {
+    private int ROW;
+    private int COL;
+    
+    public boolean backtrack(int row, int col, char[][] board, String word, int index) {
+        //Base case
+        if (index >= word.length())
+            return true;
+        
+        //Should not cross boundaries
+        if (row >= ROW || col >= COL || row < 0 || col < 0)
+            return false;
+
+        //Character does not match
+        if (board[row][col] != word.charAt(index))
+            return false;
+        
+        //Iterate thru all directions
+        /*
+                    N(r-1,c)
+            E(r,c-1)   rc      W(r,c+1)
+                    S(r+1,c)
+        */
+        char ch = board[row][col];
+        boolean ret = false;
+        board[row][col] = '#';
+        
+        //Iterate thru all candidates
+        int rowOffset[] = {-1,0,0,1};
+        int colOffset[] = {0,-1,1,0};
+        for (int k=0;k<4;++k){
+            int r = row+rowOffset[k];
+            int c = col+colOffset[k];
+            
+            //Placing candidate, backtrack
+            ret = backtrack(r,c,board,word,index+1);
+            if (ret)
+                break;
+        }
+
+        //Remove the placed candidate so that it can be used in next search
+        board[row][col] = ch;
+        
+        return ret;
+    }
+    
+    public boolean exist(char[][] board, String word) {
+        ROW = board.length;
+        COL = board[0].length;
+        for (int i=0;i<ROW;i++)
+            for (int j=0;j<COL;j++)
+                if(backtrack(i, j, board, word, 0))
+                    return true;
+        return false;
+    }
+}
+```
+
 <a name=co></a>
 #### Complexity
 - **Time** O(N.3<sup>L</sup>). 
