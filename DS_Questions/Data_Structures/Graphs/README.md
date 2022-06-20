@@ -110,7 +110,7 @@ Minimum eccentricity of any vertex.
         2 --> 3 --> 1
 ```
 
-#### Vertex/Node
+#### Vertex = Node
 Interconnected objects are called vertices.
 
 #### Connected Components?
