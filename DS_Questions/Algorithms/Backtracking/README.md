@@ -55,7 +55,7 @@ Most of BT problems can be solved using below pattern.
           
           recursive_backtrack (next_candidate=candidate+1);    //Try next candidate
           
-          remove (candidate);                                  //Remove this candidate
+          remove (candidate);                                  //Mark this as unvisited, Unflag this node.
         }
       }
     }
