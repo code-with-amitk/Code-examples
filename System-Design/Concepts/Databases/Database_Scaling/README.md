@@ -1,6 +1,6 @@
 **DB Scaling Techniques**
 - [1. Replication](#repl)
-  - [1.1 Master Slave](#ms)
+  - [1.1 Master/Leader Slave](#ms)
   - [1.2 Master Master](#mm)
   - [1.3 Consistency problems in replication](#cp)
 - [2. Federation](#fed)
@@ -9,11 +9,11 @@
 
 <a name=repl></a>
 # 1. Replication
-Replication means keeping a copy of the same data on multiple machines that are connected via a network
+Replication means keeping a copy of the **same data** on multiple machines. Each node that stores the copy is called Replica.
 
 ## Types of Replication
 <a name=ms></a>
-### 1.1 Master Slave
+### 1.1 Master/Leader Slave
 - 1 node is designated as Leader/master. Client does RW operations with master, and only Read on any of slave. If master goes down slaves serve as RO DB. Slaves can also replicate among themselves.
 - **How it works**?
   - Master stores session in it'd DB 1st then master writes(or slave reads) data to replicas/slaves(as replication log or change stream).
@@ -22,10 +22,15 @@ Replication means keeping a copy of the same data on multiple machines that are 
   - _a._ Logic is required to promote slave to master    
   - _b._ If high number of slaves, more write operations can lead to replication lag.
 ```c
+//Write only to Master
                                        |-Write--> RO-SlaveReplica-DB-1
-  client  <----RW------->  MasterDB ---|                           
-                                       |-Write--> RO-SlaveReplica-DB-2      <----Read-- Client
+  client  ----Write----->  MasterDB ---|                           
+                           /\          |-Write--> RO-SlaveReplica-DB-2
+                           |                      /\
+  client  ----Read---------|-----------------------|
+//Read to Master or Replica(any)
 ```
+<img src=master_slave.PNG width=400/>
 
 <a name=mm></a>
 ### 1.2 Master-Master
