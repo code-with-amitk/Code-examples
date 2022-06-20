@@ -30,7 +30,7 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
   client  ----Read---------|-----------------------|
 //Read to Master or Replica(any)
 ```
-<img src=master_slave.PNG width=400/>
+<img src=master_slave.PNG width=600/>
 
 <a name=mm></a>
 ### 1.2 Master-Master
