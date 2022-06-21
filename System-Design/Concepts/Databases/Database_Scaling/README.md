@@ -1,5 +1,5 @@
 **DB Scaling Techniques**
-- [1. Replication](1.Replication.md)
+- [1. Replication](1.Replication)
 - [2. Federation](#fed)
 - [3. Sharding](#shard)
 - [4. Range Based Partitioning](#rbp)
