@@ -3,7 +3,10 @@
   - [1. Master/Leader Slave/Follower](#ms)
   - [2. Master Master](#mm)
 - [Synchronous, Asyncronous Replication](#sa)
-- [Consistency problems in replication](#cp)
+- Problems in Replication
+  - [1. Master Node dies. Failover](#p1)
+  - [2. Slave Node outrages, Dying slaves](#p2)
+  - [2. Consistency problems](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/)
 
 
 # Replication
@@ -56,6 +59,23 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 #### ASynchronous configuration
 Unlike semi-synchronous where leader waits for atleast 1 replica to respond, here leader does not wait for any,
 
-<a name=cp></a>
-### [Consistency Problem in Replication](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+## Problems in Replication
+<a name=p1></a>
+### 1. Master/Leader Node Fails(power failure, network outrage, crash etc)
+#### Solution-1: Failover
+- A slave need to be promoted to master(new leader).
+- All clients should connect to new Leader, all slaves should receive updates from new leader.
+- Failover can be manual(By Adminstrator) or Automatic.
+- **Automatic Failover steps**
+  - _1. Leader Election:_ 
+    - All replica nodes choose a replica as a leader(who has most up-to-date DB). [Gettting nodes to agree on 1 leader=Consensus Problem] OR
+    - A controller node(previously appointed) can also choose a leader
+  - _2. Replicas configured to use new leader:_ All replicas will send requests to new leader.
+
+<a name=p2></a>
+### 2. Slave nodes dies(hardware crash, kernel update)
+#### Solution-1. Recover from Replication log on Local Disk
+- Each follower keeps log of data change from Leader. After node boots up, it can use this to build DB state.
+- Follower can connect to leader and request all updates after last entry in replication log.
+
 
