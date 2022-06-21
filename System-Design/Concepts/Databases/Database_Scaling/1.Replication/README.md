@@ -1,7 +1,9 @@
-- Replication
-  - [1. Master/Leader Slave](#ms)
-  - [1. Master Master](#mm)
-  - [1. Consistency problems in replication](#cp)
+**Replication**
+- Types of Replication
+  - [1. Master/Leader Slave/Follower](#ms)
+  - [2. Master Master](#mm)
+- [Synchronous, Asyncronous Replication](#sa)
+- [Consistency problems in replication](#cp)
 
 
 # Replication
@@ -9,7 +11,7 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 
 ## Types of Replication
 <a name=ms></a>
-### 1.1 Master/Leader Slave
+### 1.1 Master/Leader Slave/Follower
 - 1 node is designated as Leader/master. Client does RW operations with master, and only Read on any of slave. If master goes down slaves serve as RO DB. Slaves can also replicate among themselves.
 - **How it works**?
   - Master stores session in it'd DB 1st then master writes(or slave reads) data to replicas/slaves(as replication log or change stream).
@@ -40,6 +42,20 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
   client-2  <----RW-------->  masterReplica-DB-1
 ```
 
+<a name=sa></a>
+### Synchronous, Asynchronous Replication
+#### Semi-Synchronous Configuration
+- Leader does not wait for ACK from all Followers/slaves for sending ACK to user. When Master recieves ACK from any 1 slave(called Synchronous replica) it sends ACK to user.
+- Now if Synchronous replica goes down, master creates some other replica as Synchronous from where response is recieved.
+- So its a Gurantee that user has atleast 2 copies of up-to-date data. 1 master & 2nd with Synchronous replica.
+  - _Why master does not wait for ACK from all replicas?_
+    - if master has 10 slaves and 1 slave is not in sync(maybe due to slow network, hardware failure etc), then we cannot wait for slave's problem to get corrected and then send response to user.
+
+<a name=sync_async.PNG width=400 />
+
+#### ASynchronous configuration
+Unlike semi-synchronous where leader waits for atleast 1 replica to respond, here leader does not wait for any,
+
 <a name=cp></a>
-### [1.3 Consistency Problem in Replication](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+### [Consistency Problem in Replication](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
 
