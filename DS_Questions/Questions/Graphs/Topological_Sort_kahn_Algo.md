@@ -1,9 +1,9 @@
-- [What is Topological Sort](/DS_Questions/Data_Structures/Graphs#t)
+**Topological Sort**
 - [Logic](#l)
 - [Complexity](#c)
 - [Code](#co)
 
-## Topological Sort
+## [Topological Sort](/DS_Questions/Data_Structures/Graphs#t)
 Task: Print topological sort/order of following graph
 ```c
         5 --> 0 <-- 4
@@ -11,7 +11,8 @@ Task: Print topological sort/order of following graph
         \/         \/
         2 --> 3 --> 1
 Result: 
- 5 4 2 3 1 0 or 4 5 3 2 1 0
+ 5 4 2 3 1 0      OR
+ 4 5 3 2 1 0
 ```
 <a name=l></a>
 ### Logic (DFS = stack)
