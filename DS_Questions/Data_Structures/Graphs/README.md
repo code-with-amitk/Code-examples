@@ -99,7 +99,7 @@ Links connecting the nodes. Links can be directed/undirected, weighted/unweighte
 Minimum eccentricity of any vertex.
 
 #### Topological Sort / Topological Order
-- Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b. Modify [DFS](/DS_Questions/Algorithms/Traversals/).
+- Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b.
 - TS is only possible for [DAG](#dag). because DAGs don't have cycles and are directed.
 - Some events should happen before next. Ex: Getting ready in morning (socks before shoes, undergarments before pants).
 - [Logic, Code Topological Sort](/DS_Questions/Questions/Graphs)
