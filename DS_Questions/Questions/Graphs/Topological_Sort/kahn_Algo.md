@@ -4,7 +4,8 @@
 - [Code](#co)
 
 ## [Topological Sort](/DS_Questions/Data_Structures/Graphs#t)
-Task: Print topological sort/order of following graph
+- This Algo is only for DAG(ie Acyclic Graph)
+- Task: Print topological sort/order of following graph
 ```c
         5 --> 0 <-- 4
         |           |
@@ -15,41 +16,46 @@ Result:
  4 5 3 2 1 0
 ```
 <a name=l></a>
-### Logic (DFS = stack)
+### Logic 
 ```c
         5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
         |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
         \/         \/
         2 --> 3 --> 1
 
-a. Perform DFS, when there is no outdegree of node. Push on stack
+1. Create a vector containing in-degrees of nodes
+        |2|2|1|1|0|0| 
+         0 1 2 3 4 5
 
-                                                                        Stack       visited
-start node=5. Perform DFS from Node=5 reach 0.                          
-                 Since 0 has no outdegree. Push on stack                | 0 |        0
-              2-3-1. Since 1 has no outdegree. Push on stack            | 0 1 |      0 1
-      Node=3, while recursing back. 
-              Does node=3 connects to any node whose outdegree=0
-              and not visited? No, push node=3 on stack.                | 0 1 3 |    0 1 3
-      node=2. while recursing back.                    
-              Does node=2 connects to any node whose outdegree=0 
-              and not visisted? No, push node=2 on stack.               |0 1 3 2|   0 1 3 2
-      node=5. no unvisited node, whose outdegree=0.                     |0 1 3 2 5| 0 1 3 2 5
-                                                                        | 0 1 3 2 5 4 |
-                                                                                    top
-b. Topological Sort: Remove elements from stack. 4 5 2 3 1 0
-```
-#### Code Logic
-```c
-- _a._ Find in-degree of all nodes in graph store them in `vector<int>`
-- _b._ Push all nodes having indegree=0 to queue.
-while(queue!empty)
-        - pop top of queue. 
-        - Print
-        - Check all connected nodes of popped node //for(auto i=p[u].begin(); i!=p[u].end(); i++)
-                - Decrement inDegree by 1
-                - if(inDegree ==0)
-                        push on Queue
+2. Create an queue and enqueue all vertices with indegree=0 
+        |4 5|
+        q
+
+3. Iterate through queue until empty.
+- pop top                      	//4
+- push top in out vector	//out |4|
+- Reduce indegree of all connected neighbours of u by 1, if any indegree=0, push on queue.
+	//Neighbors of 4=0,1. Reduce indegree by 1. Since 0,1 does not have indegree=0, nothing to push in q
+        |1|1|1|1|0|0|   
+         0 1 2 3 4 5		 
+
+|5|
+q
+
+pop top	//5			//out |4 5|
+	//Neighbors of 5=0,2
+        |1|1|1|1|0|0| 
+         0 1 2 3 4 5		 
+         
+	Reduce indegree of all connected neighbours of u by 1, if any indegree=0, push on queue.
+        0,2 Both's indegree became 0, hence push both on q.
+        |0|1|0|1|0|0| 
+         0 1 2 3 4 5		 
+	
+	|0 2|
+	q
+
+Repeat
 ```
 <a name=c></a>
 ### Complexity
