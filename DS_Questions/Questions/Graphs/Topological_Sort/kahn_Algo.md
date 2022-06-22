@@ -1,4 +1,4 @@
-**Topological Sort**
+**Topological Sort using Kahn's Algo**
 - [Logic](#l)
 - [Complexity](#c)
 - [Code](#co)
