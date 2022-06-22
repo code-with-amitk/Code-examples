@@ -25,7 +25,8 @@ Result:
 a. Perform DFS, when there is no outdegree of node. Push on stack
 
                                                                         Stack       visited
-start node=5. DFS=0. Since 0 has no outdegree. Push on stack            | 0 |        0
+start node=5. Perform DFS from Node=5 reach 0.                          
+                 Since 0 has no outdegree. Push on stack                | 0 |        0
               2-3-1. Since 1 has no outdegree. Push on stack            | 0 1 |      0 1
       Node=3, while recursing back. 
               Does node=3 connects to any node whose outdegree=0
