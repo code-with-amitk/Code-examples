@@ -7,6 +7,9 @@
   - [1. Master Node dies. Failover](#p1)
   - [2. Slave Node outrages, Dying slaves](#p2)
   - [2. Consistency problems](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/)
+- Implementation of Replication Log
+  - [1. Statement-based replication](#i1)
+  - [2. Write-ahead log (WAL) shipping](#i2)
 
 
 # Replication
@@ -76,9 +79,21 @@ Unlike semi-synchronous where leader waits for atleast 1 replica to respond, her
     - _Solution:_ if 2 leaders are found, 1 leader can be shut down.
 
 <a name=p2></a>
-### 2. Slave nodes dies(hardware crash, kernel update)
+### 3. Slave nodes dies(hardware crash, kernel update)
 #### Solution-1. Recover from Replication log on Local Disk
 - Each follower keeps log of data change from Leader. After node boots up, it can use this to build DB state.
 - Follower can connect to leader and request all updates after last entry in replication log.
 
 
+## Implementation of Replication Log
+Follower/Replica/Slave stays in-sync with master, even recovers from failure using Replication log.
+<a name=i1></a>
+### 1. Statement-based replication
+- leader logs every Insert/Update/Delete statement that it executes and sends that statement log to its followers.
+- Each follower parses and executes that SQL statement as if it had been received from a client
+- **Problems,Solutions:**
+  - _Problems-1._ SQL statements having some timebased/random functions time()/rand() will generate different outputs on Replicas.
+    - Solution: leader can replace any non-deterministic function calls with a fixed value.
+
+<a name=i2></a>
+### 2. Write-ahead log (WAL) shipping
