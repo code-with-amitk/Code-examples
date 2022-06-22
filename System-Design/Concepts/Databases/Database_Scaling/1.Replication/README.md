@@ -71,6 +71,9 @@ Unlike semi-synchronous where leader waits for atleast 1 replica to respond, her
     - All replica nodes choose a replica as a leader(who has most up-to-date DB). [Gettting nodes to agree on 1 leader=Consensus Problem] OR
     - A controller node(previously appointed) can also choose a leader
   - _2. Replicas configured to use new leader:_ All replicas will send requests to new leader.
+  - _3. Old leader need to recognize new leader:(SPLIT BRAIN PROBLEM)_
+    - Now if old master comes up & thinks himself as master, while nodes has made him stepped down then this can be problamatic(both old and new leaders will accept writes and lead to out of sync cluster).
+    - _Solution:_ if 2 leaders are found, 1 leader can be shut down.
 
 <a name=p2></a>
 ### 2. Slave nodes dies(hardware crash, kernel update)
