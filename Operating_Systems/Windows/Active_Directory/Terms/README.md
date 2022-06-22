@@ -10,6 +10,7 @@
 - [RootDN](#rootdn)
 - [samAccountName](#sam)
 - [UPN](#upn)
+  - [upnSuffix](#us)
 
 <a name=cn></a>
 ### cn = common name
@@ -67,4 +68,10 @@ This is Single AV(Attribute value Pair). Eg: DC=Domain Component, CN=Common Name
 
 <a name=upn></a>
 ### UPN / Universal Principal Name
-- User amit under test.local then UPN would be amit@test.local 
+User amit under test.local then UPN would be amit@test.local 
+
+<a name=us></a>
+#### upnSuffix
+- See upn above, instead of amit@test.local we want custom suffix eg: amit@test.com. 
+- Why we need upn suffixes?
+  - 1. We donot want to expose `test.local` externally we want to expose `test.com`
