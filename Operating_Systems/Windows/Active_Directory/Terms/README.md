@@ -9,6 +9,7 @@
 - [RootDSE](#rootdse)
 - [RootDN](#rootdn)
 - [samAccountName](#sam)
+- [Search filter](#sf)
 - [UPN](#upn)
   - [upnSuffix](#us)
 
@@ -64,7 +65,16 @@ This is Single AV(Attribute value Pair). Eg: DC=Domain Component, CN=Common Name
 - **why $ at end?**
   - Machine accounts are always given a trailing dollar sign "$" in their sAMAccountName attribute; this causes them to not be enumerated by certain APIs
   - Computer account and user account can have same names & to identify computer account this is used.
-- 
+
+<a name=sf></a>
+### Search Filter
+Search filters enable to define search criteria and provide more efficient searches.
+```c
+"(objectClass=*)" 	                                          All objects.
+"(&(objectCategory=person)(objectClass=user)(!(cn=andy)))" 	  All user objects but "andy".
+"(sn=sm*)" 	                                                  All objects with a surname that starts with "sm".
+"(&(objectCategory=person)(objectClass=contact)(|(sn=Smith)(sn=Johnson)))" 	All contacts with a surname equal to "Smith" or "Johnson".
+```
 
 <a name=upn></a>
 ### UPN / Universal Principal Name
