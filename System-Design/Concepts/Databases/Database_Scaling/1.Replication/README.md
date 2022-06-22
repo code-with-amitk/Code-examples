@@ -94,6 +94,14 @@ Follower/Replica/Slave stays in-sync with master, even recovers from failure usi
 - **Problems,Solutions:**
   - _Problems-1._ SQL statements having some timebased/random functions time()/rand() will generate different outputs on Replicas.
     - Solution: leader can replace any non-deterministic function calls with a fixed value.
+```c
+  Leader --update/del--|--> DB
+                       |--> replication_log_file
+                                |
+                                |----> Slave-1
+                                |----> Slave-2
+                       
+```
 
 <a name=i2></a>
 ### 2. Write-ahead log (WAL) shipping
