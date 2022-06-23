@@ -5,7 +5,7 @@
   - [bindDN](#bidn)
 - [rdn = Relative Distinguished Name](#rdn)
 - [Group Policy](#gp)
-- [Naming Context](#nc)
+- [Naming Context / Partition](#nc)
 - [RootDSE](#rootdse)
 - [RootDN](#rootdn)
 - [samAccountName](#sam)
@@ -40,8 +40,15 @@ This is Single AV(Attribute value Pair). Eg: DC=Domain Component, CN=Common Name
 - Admin can apply policies on users, computers. 
 
 <a name=nc></a>
-### Naming Context
-- Each DC in a forest controlled by ADDS includes directory partitions. Directory partitions are also known as naming contexts.
+### [Naming Context / Directory Partition](https://docs.microsoft.com/en-us/windows/win32/ad/naming-contexts-and-partitions)
+- AD is partitioned and information is logically stored in partitions. We cannot store whole under 1 head.
+- AD contains following partitions:
+
+|Name|Contains|
+|---|---|
+|1. Configurtion Naming Context (CN=Partitions,CN=Configuration,DC=test,DC=com)|Replication Topology, other data to be replicated in forest|
+|2. Schema Partition||
+|3. Domain Partition||
 
 <a name=rootdn></a>
 ### rootDN
