@@ -6,6 +6,7 @@
 - [rdn = Relative Distinguished Name](#rdn)
 - [Group Policy](#gp)
 - [Naming Context / Partition](#nc)
+- [nCName](#nCName)
 - [RootDSE](#rootdse)
 - [RootDN](#rootdn)
 - [samAccountName](#sam)
@@ -49,6 +50,10 @@ This is Single AV(Attribute value Pair). Eg: DC=Domain Component, CN=Common Name
 |1. Configurtion Naming Context (CN=Partitions,CN=Configuration,DC=test,DC=com)|Replication Topology, other data to be replicated in forest|
 |2. Schema Partition||
 |3. Domain Partition||
+
+<a name=nCName></a>
+### [nCName](https://docs.microsoft.com/en-us/windows/win32/adschema/a-ncname)
+This is dn of Naming Context in AD.
 
 <a name=rootdn></a>
 ### rootDN
