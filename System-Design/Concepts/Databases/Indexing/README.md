@@ -1,6 +1,23 @@
+**Indexing**
+- [How Index works](#h)
+
 ## Indexing
-  - **What?** Indexing is technique to search data in database table faster. This improve search/insert/modify operations time. 
-    
+Technique to search data in database faster. This improve search/insert/modify operations time. 
+
+<a name=h></a>
+### How index works
+#### 1. <Key, value> Database
+- Index is simply a hash-table which stores key and offset in the file.
+- Example: Suppose we want to store this in `key,value` Database store
+```c
+key     Value
+123456:{name: London, attractions: [Big Ben, London Eye]}\n
+42:{name: San Francisco, attractions: [Golden Gate, Bridge]}\n
+```
+Now to access any `<key, value>` in Database we search key in Indexing Hash map and then go the offset in file.
+<img srx=indexing.png width=400 />
+
+
 ### Types of indexing
 - **1. Forward Indexing**
   - Mapping of documents to words. What all keywords a document contains.
