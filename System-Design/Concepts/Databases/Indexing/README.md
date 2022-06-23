@@ -15,7 +15,8 @@ key     Value
 42:{name: San Francisco, attractions: [Golden Gate, Bridge]}\n
 ```
 Now to access any `<key, value>` in Database we search key in Indexing Hash map and then go the offset in file.
-<img srx=indexing.png width=400 />
+
+<img src=indexing.png width=400 />
 
 
 ### Types of indexing
