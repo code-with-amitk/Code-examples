@@ -138,12 +138,24 @@ L5-Data > |Compress| > xyz > |Add-MAC| > MMMxyz > |Encrypt| >
 - Mechanism to inform other end that some thing wrong happened(either in handshake, record protocol). This message consists of two fields. (Alert Message,Criticality of the alert).
 
 <a name=dec></a>
-#### [Decrypting SSL Traffic using Wireshark](https://techzone.cisco.com/t5/Troubleshooting-and-Tools/How-to-Decrypt-SSL-traffic-using-Wireshark/ta-p/355403)
+### [Decrypting Traffic in Wireshark]
+#### [1. SSL Traffic](https://techzone.cisco.com/t5/Troubleshooting-and-Tools/How-to-Decrypt-SSL-traffic-using-Wireshark/ta-p/355403)
 - Get a. Server's: RSA pvt key,  b. Clients's: Pre-master-secret for each session
 - Enter the key in: Wireshark Menu -> Edit -> Prefrences -> Protocol -> ssl -> RSA Key List
+#### [2. Decrypt GSS-API](https://wiki.wireshark.org/Kerberos)
+- _1._ Get keytab for Administrator user from AD
+```
+//Generate keytab
+PS C:\Users\Administrator> ktpass /princ Administrator@test.com /pass Password /crypto RC4-HMAC-NT /ptype KRB5_NT_PRINCIPAL /out test.keytab
+
+//Check keytab is valid
+PS C:\Users\Administrator> klist
+```
+- _2._ wireshark > Edit > Preferences > Protocols > Krb5 > Place keytab > Ok
+- _3._ Encypted GSS-API payload will appear decrypted now.
 
 <a name=dtls></a>
-#### DTLS / Datagram TLS (TLS over UDP)
+### DTLS / Datagram TLS (TLS over UDP)
 - DTLS is port of TLS over UDP.
 - Why UDP?
   - Less Delay(Good Choice for Audio/Video)
