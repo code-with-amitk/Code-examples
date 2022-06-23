@@ -102,7 +102,7 @@ Minimum eccentricity of any vertex.
 - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b.
 - TS is only possible for [DAG](#dag). because DAGs don't have cycles and are directed.
 - Some events should happen before next. Ex: Getting ready in morning (socks before shoes, undergarments before pants).
-- [Logic, Code Topological Sort](/DS_Questions/Questions/Graphs)
+- [Logic, Code Topological Sort](/DS_Questions/Data_Structures/Graphs/Toplogical_Sort)
 ```c
         5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
         |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
