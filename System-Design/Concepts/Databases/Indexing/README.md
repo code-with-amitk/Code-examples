@@ -16,7 +16,7 @@ key     Value
 ```
 Now to access any `<key, value>` in Database we search key in Indexing Hash map and then go the offset in file.
 
-<img src=indexing.png width=400 />
+<img src=indexing.png width=600 />
 
 
 ### Types of indexing
