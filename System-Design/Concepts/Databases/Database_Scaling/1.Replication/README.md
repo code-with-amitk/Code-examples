@@ -10,6 +10,7 @@
 - Implementation of Replication Log
   - [1. Statement-based replication](#i1)
   - [2. Write-ahead log (WAL) shipping](#i2)
+  - [3. Logical (row-based) log replication](#i3)
 
 
 # Replication
@@ -105,6 +106,9 @@ Follower/Replica/Slave stays in-sync with master, even recovers from failure usi
 
 <a name=i2></a>
 ### 2. Write-ahead log (WAL) shipping
+- Provides [Atomicity, Durability](/System-Design/Concepts/)
+- Write to Log file 1st before writing to DB. Every opeartion Insert/Delete/Update is written to log then DB.
+- _Benefit of WAL:_ Suppose node crashes while writing, so when it recovers it can check Log file and actual Disk content so see what's completed and not.
 
 <a name=i3></a>
 ### 3. Logical (row-based) log replication
