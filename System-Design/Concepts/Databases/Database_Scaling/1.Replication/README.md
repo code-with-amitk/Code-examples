@@ -105,3 +105,9 @@ Follower/Replica/Slave stays in-sync with master, even recovers from failure usi
 
 <a name=i2></a>
 ### 2. Write-ahead log (WAL) shipping
+
+<a name=i3></a>
+### 3. Logical (row-based) log replication
+- Master creates a log(called physical log) when it update/delete/insert entry in DB. But a different log(called logical log) is sent to Follower as replication log.
+- Advantage: it segregates master and follower's logs.
+- Logical log will contain all writes to DB.
