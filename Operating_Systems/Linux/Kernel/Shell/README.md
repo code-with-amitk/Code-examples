@@ -36,10 +36,13 @@ main() {
     cout << "#";
     getline (str, cin);              //str =>     cp  test1 test2
     int pid = fork();   
-    if ( pid == 0)        //child
-      execve (cp, params, 0);        //Replaces child with "cp" program. Once cp finishes it exists, never returns to child.
-    else
+    if ( pid == 0) {       //Child
+     //Replaces child with "cp" program. 
+     //Once cp finishes it exists, never returns to child.
+      execve (cp, params, 0);       
+    } else {              //Parent
       waitpid (-1, &status, 0)
+    }
   }
 }
 ```
