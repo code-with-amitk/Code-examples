@@ -6,7 +6,7 @@
     - [2-D Vector (Only for numeral nodes)](#d1)
     - [HashMap of Linked List](#d2)
   -  **Weighted**
-    - [Hashmap of Hashmap](#d3)
+     - [Hashmap of Hashmap](#d3)
 
 ## Undirected/Digraph/Bidirectional Unweighted
 Both sides know each other.  `[1] -- [2] -- [3]`
