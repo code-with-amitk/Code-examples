@@ -1,23 +1,16 @@
 **Directed, Undirected**
-- **Undirected**
-  - [1. Undirected Unweighted](#udu)
-    - [2-D vector](#uduv)
-- **Directed**
-  - [1. Directed, Unweighted](#du)
-    - [1a. 2-D Vector (Only for numeral nodes)](#duv)
-    - [1b. HashMap of Linked List](#duhm)
-  - [2. Directed, Weighted](#dw)
-    - [2a. Hashmap of Hashmap](#dwh)
+- **Undirected Unweighted**
+  - [2-D vector](#u1)
+- **Directed/1Way**
+  - **Unweighted**
+    - [2-D Vector (Only for numeral nodes)](#d1)
+    - [HashMap of Linked List](#d2)
+  -  **Weighted**
+    - [Hashmap of Hashmap](#d3)
 
-## Directed, Undirected
-- **Directed/1 way:** 1 side know other but viceversa not true. `[a] --> [b] --> [c]`. Ex: a. Fans knows celebrity but other side does not. b.  On Facebook the graph of friends is undirected.
-- **Undirected/Digraph/Bidirectional:** Both sides know each other.  `[1] -- [2] -- [3]`
-
-
-### Undirected Graph
-<a name=udu></a>
-#### 1. Undirected Unweighted
-<a name=uduv></a>
+## Undirected/Digraph/Bidirectional Unweighted
+Both sides know each other.  `[1] -- [2] -- [3]`
+<a name=u1></a>
 ##### 1a. 2-D vector
 ```cpp
 
@@ -36,12 +29,13 @@
 index  0     1   2   3     4
 ```
 
-<a name=dg></a>
-### Directed Graph
-<a name=du></a>
-#### 1. Directed, Unweighted
-<a name=duv></a>
-##### 1a. 2-D Vector (Only for numeral nodes)
+
+## 2. Directed Graph/1 Way
+1 side know other but viceversa not true. `[a] --> [b] --> [c]`. Ex: a. Fans knows celebrity but other side does not. b.  On Facebook the graph of friends is undirected.
+
+### Directed Unweighted
+<a name=d1></a>
+#### 2a. 2-D Vector (Only for numeral nodes)
 ```c
   1 --> 2 --> 3
         |
@@ -59,8 +53,8 @@ a[3].push_back(-1);
 	\/
 	d
 ```
-<a name=duhm></a>
-##### 1b. HashMap of Linked List
+<a name=d2></a>
+#### 2b. HashMap of Linked List
 ```c
 0 ---> 1 ---> 3
 |             /\    //Graph
@@ -72,26 +66,27 @@ a[3].push_back(-1);
 |        |      |
                 |->3
  
-vector<vector<int>> v = { {1, 0},{2, 0},{3, 1},{3, 2 }};
-unordered_map<int, list<int>> umGraph;
+                           //from to
+vector<vector<int>> v = { {0, 1},{0, 2},{1, 3},{2, 3}};
+unordered_map<int, list<int>> um;
 
 for (int i = 0; i < v.size(); ++i) {
   list<int> l;
-  int dest = v[i][0];
-  int src = v[i][1];
-  auto it = umGraph.find(src);
-  if (it != umGraph.end()) {		//Element already exists
-    l = it->second;
+  int from = v[i][0];
+  int to = v[i][1];
+  
+  if (um.find(from) != um.end()){	//Node exists
+  	l = it->second;
+  } else {			//Node need to be created
+  	um[from] = l;
   }
-  l.push_back(dest);
-  umGraph[src] = l;
+  l.push_back(to);
 }
 ```
-<a name=dw></a>
-#### 2. Directed, Weighted
-<a name=dwh></a>
-##### 2a. Hashmap of Hashmap
-Directed, Cyclic graph. Paths have cost.
+
+### Directed Weighted Cyclic graph. Paths have cost.
+<a name=d3></a>
+#### 2c. Hashmap of Hashmap
 ```c
   a ---2.0----> b -----3.0----> c
   /\           | /\             |
