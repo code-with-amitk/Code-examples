@@ -3,8 +3,8 @@
   - [2-D vector](#u1)
 - **Directed/1Way**
   - **Unweighted**
-    - [2-D Vector (Only for numeral nodes)](#d1)
-    - [HashMap of Linked List](#d2)
+    - [HashMap of Linked List //Use This](#d1)
+    - [2-D Vector (Only for numeral nodes)](#d2)
   -  **Weighted**
      - [Hashmap of Hashmap](#d3)
 
@@ -35,7 +35,38 @@ index  0     1   2   3     4
 
 ### Directed Unweighted
 <a name=d1></a>
-#### 2a. 2-D Vector (Only for numeral nodes)
+#### 2a. HashMap of Linked List	 //For non-consecutive nodes as well. USE THIS ALWAYS
+```c
+3 ---> 5 ---> 9
+|             /\    //Graph
+-----> 10 -----|
+
+    5,10   9       9
+| 3,/\ | 5,/\ | 10,/\ |      unordered_map<int, list<int>>
+ 
+                           //from to
+vector<vector<int>> v = { {3, 5},{3, 10},{5, 9},{10, 9}};
+
+using ListI = std::list<int>;
+class graph{
+    std::unordered_map<int, ListI> um;
+public:
+    void addNode(int from, int to){
+        ListI l;
+        auto it = um.find(from);
+        if (it != um.end())		//Node exists
+            l = it->second;
+        
+        l.push_back(to);
+        um[from] = l;
+    }
+    std::unordered_map<int, ListI>& GetGraph(){
+        return um;
+    }
+};
+```
+<a name=d2></a>
+#### 2b. 2-D Vector (Only for numeral nodes)
 ```c
   1 --> 2 --> 3
         |
@@ -53,36 +84,7 @@ a[3].push_back(-1);
 	\/
 	d
 ```
-<a name=d2></a>
-#### 2b. HashMap of Linked List
-```c
-0 ---> 1 ---> 3
-|             /\    //Graph
------> 2 -----|
 
-      |->1->2            -->3 
-|     |  |        |     |        |
-| 0 | /\ | 1 | \/ | 2 | /\ | 3 | |    unordered_map<int, list<int>>
-|        |      |
-                |->3
- 
-                           //from to
-vector<vector<int>> v = { {0, 1},{0, 2},{1, 3},{2, 3}};
-unordered_map<int, list<int>> um;
-
-for (int i = 0; i < v.size(); ++i) {
-  list<int> l;
-  int from = v[i][0];
-  int to = v[i][1];
-  
-  if (um.find(from) != um.end()){	//Node exists
-  	l = it->second;
-  } else {			//Node need to be created
-  	um[from] = l;
-  }
-  l.push_back(to);
-}
-```
 
 ### Directed Weighted Cyclic graph. Paths have cost.
 <a name=d3></a>
