@@ -11,6 +11,7 @@
   - [1. Statement-based replication](#i1)
   - [2. Write-ahead log (WAL) shipping](#i2)
   - [3. Logical (row-based) log replication](#i3)
+  - [4. Trigger based replication](#i4)
 
 
 # Replication
@@ -113,5 +114,13 @@ Follower/Replica/Slave stays in-sync with master, even recovers from failure usi
 <a name=i3></a>
 ### 3. Logical (row-based) log replication
 - Master creates a log(called physical log) when it update/delete/insert entry in DB. But a different log(called logical log) is sent to Follower as replication log.
-- Advantage: it segregates master and follower's logs.
+- Advantage: 
+  - _1._ it segregates master and follower's logs.
+  - _2._ A logical log format is easier for external applications to parse(Eg: data analytics, warehouse)
 - Logical log will contain all writes to DB.
+
+<a name=i4></a>
+### 4. Trigger based replication
+- Replication logic is moved to application layer. 
+- Data changes are made available to Application by reading replication log, now application can move this data to other DB or to analytics engine.
+- Involvement of Application into replication induces some bugs.
