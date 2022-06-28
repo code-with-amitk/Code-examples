@@ -15,6 +15,6 @@ DFS
 ### Complexity
 #### Time
 - For Graph represented using Adjacency List:O(V+E). V=vertices(nodes), E=edges
-- - For Graph represented using Adjacency Matrix:O(V<sup>2</sup>)
+- For Graph represented using Adjacency Matrix:O(V<sup>2</sup>)
 #### Space
 O(V). Stack to store vertices
