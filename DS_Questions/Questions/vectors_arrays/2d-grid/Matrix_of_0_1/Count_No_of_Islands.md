@@ -1,17 +1,34 @@
-## [Problem leetcode](https://leetcode.com/problems/number-of-islands/)
-- Given matrix '1's (land) and '0's (water) count islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
-- Example
-```c++
-Input:
-11110
-11010
-11000
-00000
-Output: 1
+**Number of Islands**
+- [Approach-1, Using visited array](#a1)
+  - [Code](#c1)
+- [Approach-2, Modifying incoming array, No extra Space](#a2)
+  - [Code](#c2)
+
+### [Number of Islands](https://leetcode.com/problems/number-of-islands/)
+- Given matrix '1's (land) and '0's (water). We need to count islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
+```cpp
+Example-1
+Input: grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+Output: 1               //Only 1 island
+
+Example-2
+Input: grid = [       
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+]
+Output: 3               //3 islands
 ```
 
-## Logic-1(Using visited array)
-```c++
+<a name=a1></a>
+### Approach-1(Using visited array)
+```cpp
 1. Take visited[][] vector same sized as original 2D vector.
 2. Mark all adjacent `1's` as visited using recursion.
         -> Do not use queue/stack because it will slow adding and removing elements
@@ -19,9 +36,9 @@ Output: 1
 3. Traverse whole array and check unvisited `1's`:
         -> count++ whenever unvisited 1 is found.
 ```
-
-## Code-1
-```c++
+<a name=c1></a>
+#### Code-1
+```cpp
 #include<vector>
 #include<iostream>
 #include<queue>
@@ -66,7 +83,8 @@ public:
 };
 ```
 
-## Logic-2(Modifying incoming array, No extra Space)
+<a name=a2></a>
+### Approach-2(Modifying incoming array, No extra Space)
 - Each visited node is marked as 2
 - Start from index=0,0. Mark Island as 2.
 ```c++
@@ -80,7 +98,8 @@ public:
    2  2  0  0  0
    0  0  0  0  0
 ```
-### Code-2
+<a name=c2></a>
+#### Code-2
 ```c++
 void MarkIslandVisited(std::vector<std::vector<int>>& grid,
                         int i/*row*/, int j/*col*/, int& MaxRows, int& MaxCols){
