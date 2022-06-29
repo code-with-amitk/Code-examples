@@ -1,5 +1,5 @@
 **Number of Islands**
-- [Approach-1, Using visited array](#a1)
+- [Approach-1, Find Connected Components Using visited array](#a1)
   - [Code](#c1)
 - [Approach-2, Modifying incoming array, No extra Space](#a2)
   - [Code](#c2)
@@ -27,7 +27,7 @@ Output: 3               //3 islands
 ```
 
 <a name=a1></a>
-### Approach-1(Using visited array)
+### Approach-1, Find [Connected Components](/DS_Questions/Data_Structures/Graphs#t) (Using visited array)
 ```cpp
 1. Take visited[][] vector same sized as original 2D vector.
 2. Mark all adjacent `1's` as visited using recursion.
@@ -84,7 +84,7 @@ public:
 ```
 
 <a name=a2></a>
-### Approach-2(Modifying incoming array, No extra Space)
+### Approach-2, Find [Connected Components](/DS_Questions/Data_Structures/Graphs#t) (Modifying incoming array, No extra Space)
 - Each visited node is marked as 2
 - Start from index=0,0. Mark Island as 2.
 ```c++
