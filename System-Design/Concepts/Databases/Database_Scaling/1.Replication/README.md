@@ -1,7 +1,7 @@
 **Replication**
 - Types of Replication
-  - [1. Master/Leader Slave/Follower](#ms)
-  - [2. Master Master](#mm)
+  - [1. Master/Slave or Leader/Follower](#ms)
+  - [2. Master/Master or Active/Active or Leader/Leader](#mm)
 - [Synchronous, Asyncronous Replication](#sa)
 - Problems in Replication
   - [1. Master Node dies. Failover](#p1)
@@ -19,7 +19,7 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 
 ## Types of Replication
 <a name=ms></a>
-### 1.1 Master/Leader Slave/Follower
+### 1. Master/Slave or Leader/Follower
 - 1 node is designated as Leader/master. Client does RW operations with master, and only Read on any of slave. If master goes down slaves serve as RO DB. Slaves can also replicate among themselves.
 - **How it works**?
   - Master stores session in it'd DB 1st then master writes(or slave reads) data to replicas/slaves(as replication log or change stream).
@@ -39,8 +39,17 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 <img src=master_slave.PNG width=600/>
 
 <a name=mm></a>
-### 1.2 Master-Master
-- All databases in master-master can RW with client.
+### 2. Master/Master or Active/Active or Leader/Leader
+- There are 2 or more leader nodes
+- As in [Master-Slave](#ms) replication, Client Writes to master and read from any slave
+  - Same concept applies here, Client can write to any 1 of leader. Other leaders will act as slave and read all data from present leader.
+#### Usecases of Master/Master configuration
+- _1. Multi datacenter operation:_ 
+  - if we have slaves placed in different datacenters to tolerate failover. 1 leader in each datacenter. 
+  - Between datacenters leader/leader replication happens. While within datacenter leader/follower replication takes place.
+- _2. Clients with offline operation:_
+  - Suppose we have google drive laptop. if user is offline and writes the data(its saved to disk) and when he comes online sent to other servers.
+  - This laptop(having google drive) can be thought as Leader which sends data to other leaders, failover recovery is high in this case.
 - **Disadv:** 
   - _a._ Load balancer maybe required in front to configure client where to send the requests.    
   - _b._ conflicts becomes more and more as more write nodes comes into picture.
