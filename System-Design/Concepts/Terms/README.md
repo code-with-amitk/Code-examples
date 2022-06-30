@@ -88,7 +88,8 @@ Eliminating duplicate or redundant information. Eg: How server identifies and dr
 
 <a name=ft></a>
 ### Fault Tolerance
-In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
+- In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
+- Failut Tolerance is achieved using [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication)
 
 - **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
@@ -134,8 +135,9 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
 
 <a name=pt></a>
 ### Partition Tolerance
-- Cluster continues to function even if there is a "partition" (communication break) between two nodes (both nodes are up, but can't communicate).
+- System continues to function even if there is a "partition" (communication break) between 2/more nodes (both nodes are up, but can't communicate).
 - This is fault that breaks communication between nodes.
+- Solution:[Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication)
 
 <a name=rt></a>
 ### Response Time
