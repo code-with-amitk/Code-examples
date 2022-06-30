@@ -30,7 +30,7 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 
 <a name=av></a>
 ### Availability
-- Access data from cluster even if any node in the cluster is down.
+- Whole system is up, user can RW successfully irrespective if any node in the cluster is down.
 - OR Every request receives a response, without guarantee that it contains the most recent version of information. 
 - **Availabilty Problem** System is down and it cannot take requests and send responses.
   - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
@@ -68,10 +68,8 @@ CAP theorem says: Only 2 out 3 can be guaranteed.
 
 <a name=con></a>
 ### Consistency
-- Data is the same across all clusters, so you read/write from/to any node and get the same data.
-- OR With multiple copies of data maintained between master and replicas. Every read receives the most recent write or an error.
-- **Consistency Problem?**
-  - With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
+- Means all nodes in a distributed system have a single latest copy of data, so that we can Read from any node.
+- **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
 
 #### Consistency patterns
 
