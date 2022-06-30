@@ -4,8 +4,9 @@
 <a name=ins></a>
 ### Install AD
 ```c
-Server Manager(Run as Administrator) > Roles > Add Role > Next > Active Directory Domain Services (Tick) > Next > 
-Install > On the right hand side click on the Run the Active Directory Domain Services Installation Wizard (dcpromo.exe) link > 
+Server Manager(Run as Administrator) > Manage > Roles > Add Role > 
+    Active Directory Domain Services (Tick) > Install >
+On the right hand side click on the Run the Active Directory Domain Services Installation Wizard (dcpromo.exe) link > 
 Name your Domain (atest.com) >  Forest Function Level (Win Server 2008 R2) > Domain Functional Level (Win Server 2008 R2) > reboot 
 Done
 ```
