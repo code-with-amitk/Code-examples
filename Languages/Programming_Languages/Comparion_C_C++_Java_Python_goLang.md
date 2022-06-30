@@ -1,7 +1,7 @@
 [Rust vs all languages, Rust vs C++](/Languages/Programming_Languages/Rust)
 
-|C|C++|Java|Python|goLang|
-|---|---|---|---|---|
+||C|C++|Java|Python|goLang|
+|---|---|---|---|---|---|
 |TYPE|Procedural(Complied)|Object-oriented(Complied)|OO(Compiled or Interpreted)|Interpretor(/usr/local/bin/python3.8)||
 |VERSION|C98,99,11(2011)|C++98,11.14,17,20|1.0...8.0(present)|1.x,2.x,3.x||
 |SPEED|malloc (fast)|new|slow wrt c++ (see java page)||40% faster wrt python in getting data from DB serialization/deserialization, ranking, aggregation of data|
