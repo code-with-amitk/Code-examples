@@ -71,7 +71,7 @@ User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 -----
 
 <a name=wn></a>
 ### B. Worker Node
-- handles workload. Worker nodes hosts [PODS](#pod). 1 Pod can contain 1 or more [containers](#con).
+- handles workload. Worker nodes hosts [PODS](#pod). 1 Pod can contain 1 or more [containers, Eg: docker](#doc).
 - **Daemons in worker node:** *1. Kubelet:* Process for communication with master, *2. [Docker](#doc):* A container runtime, *3. Kube Proxy:* for communication with other nodes in cluster.
 
 <a name=pod></a>
@@ -80,7 +80,8 @@ User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 -----
 - Pod Contains: 
   - *1.* Container(Eg: [Docker](#doc))
   - *2.* Shared storage, as Volumes
-  - *3.* Networking, as a unique cluster IP address,port,  *4.* other Information 
+  - *3.* Networking, as a unique cluster IP address,port
+  - *4.* other Information 
 
 <img src=kubernets_pod_worker_node.png width=600>
 
