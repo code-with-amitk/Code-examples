@@ -77,7 +77,7 @@ User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 -----
 <a name=pod></a>
 #### POD 
 - Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application). Pods run in isolated pvt enviornment. Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
-- Pod Contains: 
+- Pod Contains:
   - *1.* Container(Eg: [Docker](#doc))
   - *2.* Shared storage, as Volumes
   - *3.* Networking, as a unique cluster IP address,port
