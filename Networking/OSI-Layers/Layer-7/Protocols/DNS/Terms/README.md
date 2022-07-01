@@ -91,11 +91,11 @@ Plain text file which stores resource records of particular domain. Zone file al
 ```c
 ; Authoritative data for test.com
     test.com.     86400    IN    SOA        star boss (9527,7200,7200,241920,86400)
-    star                            IN     A             130.37.56.201       //IP Address of star.test.com is <>
-    flits             86400    IN     A            130.37.16.112       //flits.test.com has IP address <>
+    star                   IN    A          130.37.56.201       //IP Address of star.test.com is <>
+    flits         86400    IN    A          130.37.16.112       //flits.test.com has IP address <>
     test.com.     86400    IN    MX         1 rambo                //Email should be 1st sent to rambo@test.com
     test.com.     86400    IN    MX         2 sambo                //if rambo@test.com fails sambo should be tried as 2nd choice
-    test.com.     86400    IN    NS           star
-    www           86400    IN    CNAME star.cs.vu.nl        //www is aliased to star.cs.vu.nl
-    10.30.20.10.in-addr.arpa. IN PTR    host.domain.com
+    test.com.     86400    IN    NS         star
+    www           86400    IN    CNAME      star.cs.vu.nl        //www is aliased to star.cs.vu.nl
+10.30.20.10.in-addr.arpa.  IN    PTR        host.domain.com
 ```
