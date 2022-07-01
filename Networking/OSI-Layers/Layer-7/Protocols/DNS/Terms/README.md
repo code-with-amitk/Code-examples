@@ -51,7 +51,7 @@ VALUE: Value of RR can be Number, domain name or string.
 ```c
 # host A google.com;  dig hostname;  nslookup hostname
 ```
-### AAAA RECORD
+#### AAAA RECORD
 128bit-IPv6 to hostname map.  (google.com, 2404:6800:4003:c00::65)
 #### CNAME RECORD
 Stores Alternate name(alias) of domain. Example
