@@ -13,6 +13,7 @@
   - [Cookie](#cok)
   - [PAC File](#pac)
 - [Plugin, Helper Application, MIME](#mime)
+- [HTTP Return Codes](#rc)
 
 
 ## HTTP
@@ -285,3 +286,20 @@ function FindProxyForURL(url, host) {
   - *2.* For MIME type=pdf/flash/mpeg/jpg browser uses plugins or helper applications to display the content.
 - **Plug-in?** is a third-party module that is installed as an extension to the browser which helps to display/process the contents. Eg: PDF reader. Browsers usually come preloaded with popular plug-ins.
 - **Helper application?** This is large program, running as a separate process. Eg: Microsoft Word or PowerPoint. If URL points to a PowerPoint file, and when the user clicks on it, PowerPoint is automatically started and handed the content to be displayed. Browsers can be configured to handle a virtually unlimited number of document types with no changes to themselves.
+
+<a name=rc></a>
+### HTTP Return Codes / Response Codes
+#### Informational responses (100–199)
+#### Successful responses (200–299)
+##### 200 OK
+Request Succeeded. GET,HEAD,POST,PUT,TRACE can get 200
+
+#### Redirection messages (300–399)
+#### Client error responses (400–499)
+##### 400 Bad Request
+The server cannot process request due to bad packet from client(e.g., malformed request syntax, invalid request message framing).
+##### 401 Unauthorized (For HTTP it means Unauthenticated)
+Client must authenticate itself to get the requested response. 
+##### 403 Forbidden
+Client is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized, the client's identity is known to the server.
+#### Server error responses (500–599)
