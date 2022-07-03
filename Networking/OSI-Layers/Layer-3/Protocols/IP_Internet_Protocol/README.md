@@ -1,12 +1,5 @@
-- IPv4
-- IPv6
 - [IPv4 vs IPv6](#vs)
 - [IPV4 Addressing Scheme](IP_Addressing_Scheme)
-
-
-### [IPv4](IPv4)
-
-### [IPv6](IPv6)
 
 <a name=vs></a>
 ### IPv4 vs IPv6
