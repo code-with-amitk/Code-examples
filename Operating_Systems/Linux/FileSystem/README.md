@@ -43,7 +43,7 @@ NTFS                         | Windows NT
   - Boot Block: Contains program to load OS(**ie Bootloader**) present on this partition.
   - Superblock: Contains all key parameters about file system
   - Free Blocks: Array of pointers pointing to free blocks
-  - [I-Nodes(info about files)](I_Node_IndexNode.md): array of structure (1 per file) containing all info of file
+  - [I-Nodes(info about files)](#fi): array of structure (1 per file) containing all info of file
   - Root-Dir: This is top of file system tree
   - Files & Directories: Reminder of disk contains other files and directories.
 
