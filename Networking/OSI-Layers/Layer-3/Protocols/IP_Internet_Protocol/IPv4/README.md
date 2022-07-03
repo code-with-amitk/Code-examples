@@ -19,7 +19,7 @@ IPv4
 
 <a name= ch></a>
 ## IPv4 Characteristics
-#### Connectionless
+#### 1. Connectionless
 No state related to IP datagrams is maintained either on source or destination side. Advantages:
 - network layer is much simpler.
 - Transport layer already provides connection-oriented, should not repeat the work.
