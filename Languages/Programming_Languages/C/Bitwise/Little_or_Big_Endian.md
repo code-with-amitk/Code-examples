@@ -1,5 +1,10 @@
 ## Little or Big Endian
 ```c
+hex number = b34f
+Stored as:
+  b3 4f   //Big Endian (IBM z/Architecture processors)
+  4f b3   //Little Endian(Intel x86, x86_64)
+
 164:        1        0        1        0        0        1        0        0
           MSB(2^7)=1                                                   LSB(2^0)=0
 ```
