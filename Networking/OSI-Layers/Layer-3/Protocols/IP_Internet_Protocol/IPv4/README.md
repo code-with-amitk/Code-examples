@@ -1,6 +1,6 @@
 IPv4
 - [Problems: Address Exhaustion](#p)
-- For Host to Host delivery
+- [Characteristics](#ch)
 - [Header](IPv4_Header)
 - [IPv4 Characteristics](IPv4_Characteristics)
 - [Fragmentation Reassembly](Fragmentation_Reassembly)
@@ -16,3 +16,13 @@ IPv4
   - [NAT](https://sites.google.com/site/amitinterviewpreparation/networking/layer3/routing). Permenent solution is IPv6 only.
   - [CIDR](https://sites.google.com/site/amitinterviewpreparation/networking/layer3)
   - IPv6
+
+<a name= ch></a>
+## IPv4 Characteristics
+#### Connectionless
+No state related to IP datagrams is maintained either on source or destination side. Advantages:
+- network layer is much simpler.
+- Transport layer already provides connection-oriented, should not repeat the work.
+- Routers could become overloaded managing too many connections.
+#### 2. Unreliable
+It not guaranteed that an IP data gram will get delivered to the destination or not. If IP packet gets any error in Transit, at source or destination, its discarded and ICMP message is sent back.
