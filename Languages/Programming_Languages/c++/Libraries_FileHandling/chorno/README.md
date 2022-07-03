@@ -11,7 +11,8 @@ Types defined by chrono: clocks, time points, durations
 ### Clock Types
 #### 1. std::chrono::system_clock (Wall Clock)
 - system_clock measures Unix Time (i.e., time since 00:00 1 January 1970)
-- Code: Display present date & time
+
+**Code-1: Display present date & time**
 ```cpp
 #include <iostream>
 #include <ctime>
@@ -28,6 +29,23 @@ int main() {
 $ ./a.out 
 1656857827
 Sun Jul  3 19:47:07 2022
+```
+**Code-2: Time taken to task completion**
+```cpp
+#include <iostream>
+#include <chrono>
+#include <thread>
+int main() {
+
+    using namespace std::chrono;
+    auto start = std::chrono::system_clock::now();
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000) );
+    auto end = std::chrono::system_clock::now();
+    std::chrono::duration<double> diff = end - start;
+    std::cout << diff.count();
+}
+$ ./a.out
+2.00063
 ```
 
 ### 2. Time points
