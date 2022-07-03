@@ -1,8 +1,9 @@
 **Socket Programming**
-- **[Terms](#t)**
+- Terms
   - file, file descriptor, socket
   - [Byte order: Little, Big endian](#bo)
   - [inaddr_any](#ia)
+  - [socket](#so)
 - **Code**
   - [TCP Server, Client](#t)
   - [UDP Server, Client](#u)
@@ -60,6 +61,10 @@ N/W-1 ---192.168.0.14--
                       |
  N/W-3 ---16.21.4.5----
 ```
+
+<a name=so></a>
+### socket
+Its a file descriptor that represents a connection
 
 ## Code
 <a name=t></a>
