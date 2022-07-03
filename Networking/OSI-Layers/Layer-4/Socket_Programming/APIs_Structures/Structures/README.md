@@ -13,6 +13,7 @@ struct addrinfo{
 };
 ```
 ### sockaddr_in, IPv4 only
+holds socket address information for ipv4 sockets
 ```c
 struct sockaddr_in {
     short int          sin_family;  // Address family, AF_INET
@@ -20,6 +21,12 @@ struct sockaddr_in {
     struct in_addr     sin_addr;    // Internet address
     unsigned char      sin_zero[8]; // Same size as struct sockaddr
 }; 
+```
+### in_addr
+```c
+struct in_addr {
+    uint32_t s_addr; // that's a 32-bit int (4 bytes)
+};
 ```
 ### sockaddr_in6
 ```c
