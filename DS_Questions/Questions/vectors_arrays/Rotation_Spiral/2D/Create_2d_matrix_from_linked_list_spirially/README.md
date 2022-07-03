@@ -16,7 +16,7 @@ Output: [[3,0,2,6,8],[5,0,-1,-1,1],[5,2,4,9,7]]
 Explanation: The diagram shows how the values are printed in the matrix.
 Note that the remaining spaces in the matrix are filled with -1.
 ```
-<img src=spiral_from_ll.jpg width=400 />
+<img src=spiral_from_ll.jpg width=200 />
 
 ### Approach
 <a name=c></a>
