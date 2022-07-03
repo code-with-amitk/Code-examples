@@ -1,4 +1,5 @@
 ### addrinfo
+This is used to prepare the socket address structures which would be used subsequently.
 ```c
 struct addrinfo{
     int ai_flags;    //AI_PASSIVE, AI_CANONNAME etc.
