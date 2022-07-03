@@ -1,4 +1,6 @@
 **Spiral Matrix IV**
+- Approach-1
+  - [Code](#c)
 
 
 ### Spiral Matrix IV
