@@ -35,7 +35,13 @@ Means in which order computer stores the bytes in memory.
   - 2. Big Endian = Host Byte Order
 - **Why required?** 
   - All computers store data differently. Internet Protocols says All data should be sent using N/W byte on internet then can be converted as per computer's storage endianess.
-- **APIs** htons(), htonl(), ntohl(), ntohs()
+- **APIs** 
+```c
+htons() host to network short   //convert short int from Host Byte Order to Network Byte Order.
+htonl() host to network long    //
+ntohs() network to host short
+ntohl() network to host long
+```
 
 <a name=ia></a>
 ### inaddr_any
