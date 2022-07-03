@@ -30,7 +30,7 @@ Other Types: /APIs_Structures/APIs/socket
 <a name=bo></a>
 ### Byte Order
 Means in which order computer stores the bytes in memory. 
-- Types of Byte order
+- [Types of Byte order](/Languages/Programming_Languages/C/Bitwise/)
   - 1. Little Endian = N/W byte order
   - 2. Big Endian = Host Byte Order
 - **Why required?** 
