@@ -26,16 +26,19 @@ RAW(SOCK_PACKET, SOCK_RAW)      | Send/recv packet on DL Layer  | IP, Transport,
 
 Other Types: /APIs_Structures/APIs/socket
 ```
+
 <a name=bo></a>
-#### Byte Order
-Means in which order computer stores the bytes in memory.
-- [Little Endian](/Languages/Programming_Languages/C/Bitwise) = N/W byte order
-- [Big Endian](/Languages/Programming_Languages/C/Bitwise) = Host Byte Order
+### Byte Order
+Means in which order computer stores the bytes in memory. 
+- Types of Byte order
+  - 1. Little Endian = N/W byte order
+  - 2. Big Endian = Host Byte Order
 - **Why required?** 
   - All computers store data differently. Internet Protocols says All data should be sent using N/W byte on internet then can be converted as per computer's storage endianess.
 - **APIs** htons(), htonl(), ntohl(), ntohs()
+
 <a name=ia></a>
-#### inaddr_any
+### inaddr_any
 if our server has multiple interfaces, Each interface have different IP address and we want to bind to all interfaces(ie all IP addresses), then instead of inet_addr() we should use inaddr_any
 ```c
 serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");    //Binding port to localhost(127.0.0.1)
