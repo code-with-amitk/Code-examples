@@ -13,7 +13,6 @@
   - [NonBlocking](#nb)
     - [Nonblocking Multichat server using select()](nonblocking_multichat_server.md)
 
-<a name=t></a>
 ## Terms
 - **File:** Everything is File(Network connection, a FIFO, a pipe, a terminal, a real on-the-disk file) Eg: & every file has a File Descriptor associated with it. 
 - **File descriptor:** This is an integer associated with an open file. File can be a n, or just about anything else.
