@@ -28,6 +28,7 @@ Other Types: /APIs_Structures/APIs/socket
 ```
 <a name=bo></a>
 #### Byte Order
+Means in which order computer stores the bytes in memory.
 - [Little Endian](/Languages/Programming_Languages/C/Bitwise) = N/W byte order
 - [Big Endian](/Languages/Programming_Languages/C/Bitwise) = Host Byte Order
 - **Why required?** 
