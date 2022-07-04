@@ -331,6 +331,26 @@ Q: Find whether a process is IO Bound or CPU Bound?
 
 <a name=p></a>
 ### Promise
+<a name=pc></a>
+#### C++ (std::promise)
+- Remember a [future](#fut) object is returned by the [async function](#as).
+- std::future can be stored in std::promise. future can be a value or an exception.
+- std::promise object can be used only once.
 ```cpp
-
+#include <iostream>
+#include <future>
+#include <thread>
+void fun(int a, std::promise<int> pro){
+    pro.set_value(a);
+}
+int main() {
+    std::promise<int> pro;
+    std::future<int> fut = pro.get_future();
+    std::thread t(fun, 9, std::move(pro));
+    std::cout <<  fut.get() << "\n";
+    t.join();
+}
+$ g++ test.cpp -lpthread
+$ ./a.out
+9
 ```
