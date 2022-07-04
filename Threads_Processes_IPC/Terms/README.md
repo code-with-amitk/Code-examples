@@ -37,6 +37,14 @@ Asynchronous can be both single and multithreaded
   - *promise(input side)* For passing value from calling to called thread.
   - *future(output side)* For retreving values returned by called thred into main() thread. `auto returned_value = get_future()`
 
+<a name=a1></a>
+#### async Function
+```cpp
+future fun() {  //aysnc function returns future
+    ...
+}
+```
+
 ### Rust
 <a name=afun></a>
 #### async Function
