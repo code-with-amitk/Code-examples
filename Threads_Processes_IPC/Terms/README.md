@@ -8,6 +8,8 @@
     - [await](#aw)
 - [Atomic](#at)
   - [Atomic Variables](#av)
+  - [C++: get,set atomic](#rc)
+  - [Rust: get,set atomic](#ra)
 - [Bound Waiting](#bw)
 - [Busy Waiting](#busyw)
 - [Concurrent](#con)
@@ -117,7 +119,9 @@ Other tasks in async function can run?  |     yes          |          no        
 <a name=at></a>
 ## [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
 - The end result of Atomic Operation is predictable and correct.
-- If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. Example:
+- If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. 
+- This can used as Inter Process Synchronization.
+- Example:
 ```cpp
 a = 0;
 void fun () {     //2 Threads executing this function
@@ -133,11 +137,20 @@ void fun () {     //2 Threads executing this function
 a. Take a as volatile
 b. Use synchronization methods.
 ```
-
 <a name=av></a>
-### Atomic Variables
+#### Atomic Variables
 - Used for shared-memory communication between threads these are safe to share between threads ie values at end in these variables in not vague/unpredictable after n threads finished operating.
-#### Rust Set,Get Atomic Variables 
+
+<a name=ca></a>
+### C++
+**Set,Get Atomic Variables **
+```cpp
+
+```
+
+<a name=ra></a>
+### Rust 
+**Set,Get Atomic Variables **
 ```rs
 let mut a_atm:AtomicU32 = Atomic:U32::new(100);          //Create and Initialize Atomic variable(a_atm)
 let mut b_atm:AtomicU32 = Atomic:U32::new(5);
