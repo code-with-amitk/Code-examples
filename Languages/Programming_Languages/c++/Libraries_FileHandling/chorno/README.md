@@ -104,8 +104,38 @@ $ ./a.out
 <a name=c4></a>
 #### 4. std::chrono::utc_clock (C++20)
 ```cpp
+#include <iostream>
+#include <chrono>
+#include <thread>
+int main() {
+        auto start = std::chrono::utc_clock::now();        // record start time
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));        // do some work
+        auto end = std::chrono::utc_clock::now();        // record end time
+        std::chrono::duration<double> diff = end - start;
+        std::cout << diff.count();
+}
 ```
 
 ### 2. Time points
+A time point gives the time value from epoch
+```cpp
+#include <iostream>
+#include <chrono>
+#include <iomanip>
+#include <ctime>
+
+int main()
+{
+    using namespace std::literals;
+    const std::chrono::time_point<std::chrono::system_clock> now =
+    std::chrono::system_clock::now();                               //epoch
+
+    const std::time_t tt1 = std::chrono::system_clock::to_time_t(now - 24h);    //timepoint
+    std::cout << "24 hours ago time was: "
+        << std::put_time(std::localtime(&tt1), "%F %T.\n") << std::flush;
+}
+$ ./a.out
+24 hours ago time was: 2022-07-03 10:15:37
+```
 
 ### 3. Durations
