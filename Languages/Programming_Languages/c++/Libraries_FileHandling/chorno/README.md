@@ -1,4 +1,8 @@
 **chrono**
+- Clocks
+  - [1. system_clock](#c1)
+  - [2. steady_clock](#c2)
+  - [3. high_resolution_clock](#c3)
 
 # chrono
 Types defined by chrono: clocks, time points, durations
@@ -9,6 +13,7 @@ Types defined by chrono: clocks, time points, durations
   - _b._ tick rate
 
 ### Clock Types
+<a name=c1></a>
 #### 1. std::chrono::system_clock (Wall Clock)
 - system_clock measures Unix Time (i.e., time since 00:00 1 January 1970)
 
@@ -46,6 +51,57 @@ int main() {
 }
 $ ./a.out
 2.00063
+```
+
+<a name=c2></a>
+#### 2. std::chrono::steady_clock (stopwatch)
+```cpp
+#include <iostream>
+#include <thread>
+#include <chrono>
+using namespace std;
+int main() {
+        auto start = std::chrono::steady_clock::now();              //Start stopwatch
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));   //Run
+        auto end = std::chrono::steady_clock::now();                //Stop stopwatch
+        std::chrono::duration<double> diff = end - start;
+        std::cout << "diff=" << diff.count();
+}
+$ ./a.out
+diff=2.00064
+```
+##### steady_clock vs system_clock
+||steady_clock|system_clock|
+|---|---|---|
+|What|stopwatch|Wallclock|
+|Precision|More|less wrt steady_clock. Because system_clock has to sync with some source to get epoch. if source is faulty clock is faulty|
+
+<a name=c3></a>
+#### 3. std::chrono::high_resolution_clock
+clock with smallest tick period provided by the implementation. It may be an alias of std::chrono::system_clock or std::chrono::steady_clock, or a third, independent clock.
+```cpp
+#include <iostream>
+#include <chrono>
+#include <thread>
+
+int main() {
+        //record start time
+        auto start = std::chrono::high_resolution_clock::now();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
+        // record end time
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end - start;
+
+        std::cout << diff.count() << "\n";
+}
+$ ./a.out
+2.0014
+```
+
+#### 4. std::chrono::utc_clock (C++20)
+```cpp
 ```
 
 ### 2. Time points
