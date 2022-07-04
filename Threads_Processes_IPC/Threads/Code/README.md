@@ -53,9 +53,11 @@ Thread: 3 Created
 ```
 <a name=ct></a>
 ### C++
-- **[thread class](https://www.cplusplus.com/reference/thread/thread/thread/):**
 <a name=m1></a>
-#### 1. Using Object of thread class
+#### 1. Using Object of [thread class](https://www.cplusplus.com/reference/thread/thread/thread/)
+Thread class Object is:
+- NOT CopyConstructible or CopyAssignable
+- it is MoveConstructible and MoveAssignable.
 ```cpp
 #include<thread>
 void fun(int a){
@@ -63,8 +65,17 @@ void fun(int a){
 }
 int main() { 
   int a = 10;
-  std::thread t1(fun, a);            //Creates Thread Object, which is entity that can start execution any time.
+  std::thread t1(fun, a);            //Creates Thread Object, which is entity that can start execution immediately after creation
   t1.join();
+  
+  /* Not copy construtible */
+  //std::thread t2 = t1		     //error: use of deleted function ‘std::thread::thread(std::thread&)’
+  
+  /* Not copy assignable */
+  //std::thread t2(fun,3);           //error: use of deleted function ‘std::thread& std::thread::operator=(const std::thread&)’
+  //t1 = t2;
+  
+  
 }
 ```
 
