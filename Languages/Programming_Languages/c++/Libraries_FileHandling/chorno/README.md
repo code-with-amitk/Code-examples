@@ -1,9 +1,10 @@
 **chrono**
-- Clocks
-  - [1. system_clock](#c1)
-  - [2. steady_clock](#c2)
-  - [3. high_resolution_clock](#c3)
-  - [4. utc_clock](#c4)
+- **Clocks**
+  - [a. system_clock](#c1)
+  - [b. steady_clock](#c2)
+  - [c. high_resolution_clock](#c3)
+  - [d. utc_clock](#c4)
+- [Timepoints](#tp)
 
 # chrono
 Types defined by chrono: clocks, time points, durations
@@ -15,7 +16,7 @@ Types defined by chrono: clocks, time points, durations
 
 ### Clock Types
 <a name=c1></a>
-#### 1. std::chrono::system_clock (Wall Clock)
+#### a. std::chrono::system_clock (Wall Clock)
 - system_clock measures Unix Time (i.e., time since 00:00 1 January 1970)
 
 **Code-1: Display present date & time**
@@ -55,7 +56,7 @@ $ ./a.out
 ```
 
 <a name=c2></a>
-#### 2. std::chrono::steady_clock (stopwatch)
+#### b. std::chrono::steady_clock (stopwatch)
 ```cpp
 #include <iostream>
 #include <thread>
@@ -78,7 +79,7 @@ diff=2.00064
 |Precision|More|less wrt steady_clock. Because system_clock has to sync with some source to get epoch. if source is faulty clock is faulty|
 
 <a name=c3></a>
-#### 3. std::chrono::high_resolution_clock
+#### c. std::chrono::high_resolution_clock
 clock with smallest tick period provided by the implementation. It may be an alias of std::chrono::system_clock or std::chrono::steady_clock, or a third, independent clock.
 ```cpp
 #include <iostream>
@@ -102,7 +103,7 @@ $ ./a.out
 ```
 
 <a name=c4></a>
-#### 4. std::chrono::utc_clock (C++20)
+#### d. std::chrono::utc_clock (C++20)
 ```cpp
 #include <iostream>
 #include <chrono>
@@ -116,6 +117,7 @@ int main() {
 }
 ```
 
+<a name=tp></a>
 ### 2. Time points
 A time point gives the time value from epoch
 ```cpp
