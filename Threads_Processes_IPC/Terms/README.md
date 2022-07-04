@@ -8,8 +8,10 @@
     - [await](#aw)
 - [Atomic](#at)
   - [Atomic Variables](#av)
-  - [C++: get,set atomic](#rc)
-  - [Rust: get,set atomic](#ra)
+  - C++ 
+    - [get,set atomic](#rc)
+  - Rust 
+    - [get,set atomic](#ra)
 - [Bound Waiting](#bw)
 - [Busy Waiting](#busyw)
 - [Concurrent](#con)
@@ -143,9 +145,36 @@ b. Use synchronization methods.
 
 <a name=ca></a>
 ### C++
+- std::atomic is neither copyable nor movable.
 **Set,Get Atomic Variables **
 ```cpp
+#include <iostream>
+#include <atomic>
+#include <thread>
 
+std::atomic_int var (0);        //Atomic Variable
+
+void set(int x) {
+  var.store (x, std::memory_order_relaxed);
+}
+
+void get() {
+  int x;
+  do {
+    x = var.load(std::memory_order_relaxed);  // get value atomically
+  } while (x==0);
+  std::cout << "var: " << x << '\n';
+}
+
+int main () {
+  std::thread t1 (get);
+  std::thread t2 (set, 10);
+  t1.join();
+  t2.join();
+}
+$ g++ test.cpp -lpthread
+$ ./a.out
+var: 10
 ```
 
 <a name=ra></a>
