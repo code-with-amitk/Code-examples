@@ -5,6 +5,7 @@
   - [c. high_resolution_clock](#c3)
   - [d. utc_clock](#c4)
 - [Timepoints](#tp)
+- [Durations](#dur)
 
 # chrono
 Types defined by chrono: clocks, time points, durations
@@ -140,4 +141,11 @@ $ ./a.out
 24 hours ago time was: 2022-07-03 10:15:37
 ```
 
+<a name=dur></a>
 ### 3. Durations
+- This is span of time, defined as some number of ticks of some time unit.
+- For example, "12 seconds" can represented by a duration consisting of 4 ticks of a 3-second time unit.
+```cpp
+template<class Rep, class Period = std::ratio<1>> class duration;
+Rep = count of ticks, tick period
+```
