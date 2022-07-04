@@ -1,8 +1,9 @@
 - [Asynchronous](#as)
-  - [async function](#afun)
-  - [block_on() rust](#bo)
-  - [await](#aw)
   - [Asynchronous vs Multithreaded](#vs1)
+  - Rust 
+    - [async function](#afun)
+    - [block_on()](#bo)
+    - [await](#aw)
 - [Atomic](#at)
   - [Atomic Variables](#av)
 - [Bound Waiting](#bw)
@@ -19,19 +20,24 @@
 
 
 <a name=as></a>
-### Asynchronous
-- Async program are [concurrent](#con) ie work on many tasks at a time but only using 1 thread, it usually returns a [future](#fut)
+## Asynchronous
+Async program are [concurrent](#con) ie work on many tasks at a time but only using 1 thread, it usually returns a [future](#fut)
 ```c
 main () {
   future = send()          //Does not block
   //execution resumes
 }
 ```
-**C++**
+<a name=vs1></a>
+#### Asynchronous vs Multithreaded
+Asynchronous can be both single and multithreaded
+
+### C++
 - Used to create asynchronous task and execute in parallel.
   - *promise(input side)* For passing value from calling to called thread.
   - *future(output side)* For retreving values returned by called thred into main() thread. `auto returned_value = get_future()`
 
+### Rust
 <a name=afun></a>
 #### async Function
 Function prefixed with async & which will run asynchronously in rust.
@@ -62,7 +68,7 @@ fun1 fun2
 ```
 
 <a name=aw></a>
-### await
+#### await
 Inside [async function](#afun) await is used to wait for another async function.
 ```rs
 $ cat main.rs
@@ -88,10 +94,6 @@ Blocks current thread                   |     no           |          yes       
 wait for future to complete             |     yes          |          yes         |
 Other tasks in async function can run?  |     yes          |          no          |
 ```
-
-<a name=vs1></a>
-#### Asynchronous vs Multithreaded
-Asynchronous can be both single and multithreaded
 
 <a name=at></a>
 ## [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
