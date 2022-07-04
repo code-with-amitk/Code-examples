@@ -1,5 +1,7 @@
 - [Asynchronous](#as)
   - [Asynchronous vs Multithreaded](#vs1)
+  - C++
+    - [async function](#a1)
   - Rust 
     - [async function](#afun)
     - [block_on()](#bo)
