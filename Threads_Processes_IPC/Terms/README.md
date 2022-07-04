@@ -16,9 +16,12 @@
 - [Critical Section(requires Mutual Exclusion)](#cs)
 - [CPU Bound](#cb)
 - [Deadlock](#dl)
-- [Future, Promise](#fut)
+- [Future](#fut)
+  - [C++](#fc)
+  - [Rust](#fr)
 - [IO Bound](#io)
 - [Parallelism](#pa)
+- [Promise](#p)
 
 
 <a name=as></a>
@@ -273,9 +276,32 @@ void *thread-2(void *a){
 ```
 
 <a name=fut></a>
-### Future(Rust) = Promise(C++)
-This is a value which is not yet ready. (Same as Javascript=promises). if we wait for some time it will be ready, its something compute heavy(Eg: network channel etc).
-- **Rust**
+### Future
+- This is a value which is not yet ready. (Same as Javascript=promises). 
+- if we wait for some time it will be ready, its something compute heavy(Eg: network channel etc).
+- async function returns a future object.
+<a name=fc></a>
+#### C++
+```cpp
+include <iostream>
+#include <future>
+#include <thread>
+int main() {
+    // future from an async()
+    std::future<int> f2 = std::async(std::launch::async,
+                                []{                 //Creating lambda
+                                 return 8;
+                                });
+    f2.wait();
+    std::cout << "Done!\nResults are:" << f2.get() << '\n';
+}
+$ g++ test.cpp -lpthread
+$ ./a.out
+Done 8
+```
+
+<a name=fr></a>
+#### Rust
 ```rs
 //Example, non working code
 fn main() {
@@ -285,10 +311,6 @@ fn main() {
     let ex: Executor;
     let a = ex.run(fut_x);
 }
-```
-- **Promise**
-```cpp
-
 ```
 
 <a name=io></a>
@@ -306,3 +328,9 @@ Q: Find whether a process is IO Bound or CPU Bound?
 <a name=pa></a>
 ### Parallelism
 2 tasks assigned to 2 threads running on different cores.
+
+<a name=p></a>
+### Promise
+```cpp
+
+```
