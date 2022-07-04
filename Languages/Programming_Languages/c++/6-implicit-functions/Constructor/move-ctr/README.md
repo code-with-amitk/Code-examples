@@ -19,6 +19,9 @@ Move Ctr
 <a name=s></a>
 ### Syntax
 ```cpp
+- 1st parameter is T&& or const T&& or volatile T&& or const volatile T&&, 
+- either there are no other parameters, or the rest of the parameters all have default values.
+   
   class_name ( class_name && )
   class_name ( class_name && ) = default; 
   class_name ( class_name && ) = delete;
