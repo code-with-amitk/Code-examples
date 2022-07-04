@@ -76,7 +76,7 @@ int main() {
   //t1 = t2;
 }
 ```
-**Thread object is MoveConstructible**
+**Thread object is MoveAssignable**
 ```cpp
 #include<thread>
 #include<iostream>
@@ -87,8 +87,7 @@ void fun(int a){
 }
 int main() {
   std::thread t1(fun, 10);
-  std::thread t2;
-  t2 = std::move(t1);
+  std::thread t2 = std::move(t1);
   t2.join();
 }
 $ g++ test.cpp -lpthread
