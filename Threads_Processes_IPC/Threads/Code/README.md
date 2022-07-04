@@ -74,9 +74,26 @@ int main() {
   /* Not copy assignable */
   //std::thread t2(fun,3);           //error: use of deleted function ‘std::thread& std::thread::operator=(const std::thread&)’
   //t1 = t2;
-  
-  
 }
+```
+**Thread object is MoveConstructible**
+```cpp
+#include<thread>
+#include<iostream>
+#include<chrono>
+void fun(int a){
+    std::cout<<"Hello"<<a<<"\n";
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+}
+int main() {
+  std::thread t1(fun, 10);
+  std::thread t2;
+  t2 = std::move(t1);
+  t2.join();
+}
+$ g++ test.cpp -lpthread
+$ ./a.out
+Hello10			//main() does not exit until thread exists
 ```
 
 <a name=m2></a>
