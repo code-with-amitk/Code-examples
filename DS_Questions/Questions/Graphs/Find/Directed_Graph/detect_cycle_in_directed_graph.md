@@ -1,7 +1,7 @@
 **Cycle in Directed Graph**
 - Approach: DFS+Backtracking
-  - [Logic]
-  - [Code]
+  - [Logic](#l)
+  - [Code](#c)
 
 ### Detect Cycle
 - Check is there any cycle in directed graph. Return true if present, else return false.
