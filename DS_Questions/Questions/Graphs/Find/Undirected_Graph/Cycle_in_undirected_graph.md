@@ -1,4 +1,4 @@
-Detect Cycle
+**Detect Cycle**
 - Approach-1, Marking Parent
 
 ### Detect cycle in Undirected Graph
