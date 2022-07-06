@@ -1,10 +1,11 @@
 - [Classic Autosar](#ca)
 - [Adaptive Autosar](#aa)
+- [Code](#c)
 
 <a name=ca></a>
 ## Classic Autosar (Automotive(Aut) Open(o) System(s) Architecture(ar))
 - Present day vehicles has 100 ECUs, which communicate using CAN bus/Ethernet network using their own standards
-- Autosar is an open and standardized automotive software architecture, which standardizes in interfaces between application & ECUs.
+- Autosar is worldwide partnership of manufactures and companies in automotive industry, to standardize interfaces between application & ECUs.
 
 ### Architecture
 ```c
@@ -30,3 +31,6 @@
 
 ### Architecture
 - 1 high-end central application server, ECUs connect via ethernet.
+
+## Code
+1. Download Simulink from [matlab](https://matlab.mathworks.com/)
