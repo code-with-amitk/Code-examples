@@ -23,6 +23,8 @@ http://localhost:8080
 ```
 
 ## Create [CI/CD](/System-Design/Concepts/CI-CD/) Pipeline
+[Good Video](https://www.youtube.com/watch?v=O27bMOrl3G8)
+
 <a name=c1></a>
 ### 1. Write script in jenkins
 ```c
@@ -59,3 +61,13 @@ pipeline {
 <img src=build_test_deploy2.PNG width=500 />
 
 ### 2. Pull script from github (SCM)
+```c
+//1. Install Orchestration Pipeline plugin
+
+//2. Dashboard > TestPipeline > Build Triggers > Pipeline > Definition(Pipeline script from SCM) 
+> git
+   Repository URL: https://github.com/amitkumar50/Code-examples.git
+   Branch : Master
+   Script Path: /System-Design/Concepts/Automation/Jenkins/Jenkinsfile
+```
+<img src=pull_from_git_build.PNG width=400 />
