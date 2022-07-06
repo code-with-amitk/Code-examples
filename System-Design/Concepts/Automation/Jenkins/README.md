@@ -58,7 +58,7 @@ pipeline {
 
 //4. Dashboard > Pipeline_Name > Stage View
 ```
-<img src=build_test_deploy2.PNG width=500 />
+<img src=build_test_deploy.PNG width=500 />
 
 ### 2. Pull script from github (SCM)
 ```c
