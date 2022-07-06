@@ -33,4 +33,5 @@
 - 1 high-end central application server, ECUs connect via ethernet.
 
 ## Code
-1. Download Simulink from [matlab](https://matlab.mathworks.com/)
+1. Download Simulink software from [matlab](https://matlab.mathworks.com/)
+2. [Simulink](https://matlabacademy.mathworks.com/details/simulink-onramp/simulink) traning video
