@@ -66,8 +66,8 @@ pipeline {
 
 //2. Dashboard > TestPipeline > Build Triggers > Pipeline > Definition(Pipeline script from SCM) 
 > git
-   Repository URL: https://github.com/amitkumar50/Code-examples.git
+   Repository URL: https://github.com/amitkumar50/test-repo.git
    Branch : Master
-   Script Path: /System-Design/Concepts/Automation/Jenkins/Jenkinsfile
+   Script Path: Jenkinsfile
 ```
 <img src=pull_from_git_build.PNG width=400 />
