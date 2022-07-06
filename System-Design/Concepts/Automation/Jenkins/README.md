@@ -58,7 +58,7 @@ pipeline {
 
 //4. Dashboard > Pipeline_Name > Stage View
 ```
-<img src=build_test_deploy.PNG width=500 />
+<img src=build_test_deploy.PNG width=600 />
 
 ### 2. Pull script from github (SCM)
 ```c
@@ -70,4 +70,4 @@ pipeline {
    Branch : Master
    Script Path: Jenkinsfile
 ```
-<img src=pull_from_git_build.PNG width=400 />
+<img src=pull_from_git_build.PNG width=600 />
