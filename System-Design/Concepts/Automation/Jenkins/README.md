@@ -1,10 +1,14 @@
-Jenkins
+**Jenkins**
+- [Installation](#i)
+- Create CI/CD Pipeline
+   - [1. Write script in jenkins](#c1)
+   - [2. Pull script from github=SCM](#c2)
 
 ## Jenkins
 Open source automation server which helps to build, test, and deploy the software.
 
-### Installation
-#### Ubuntu
+## Installation
+#### 1. Ubuntu
 ```c
 //Download java. Jenkins mandatorily needs java
 $ apt install openjdk-11-jre-headless
@@ -18,8 +22,9 @@ $ java -j jenkins.war
 http://localhost:8080
 ```
 
-### Create [CI/CD](/System-Design/Concepts/CI-CD/) Pipeline
-#### 1. Write script in jenkins
+## Create [CI/CD](/System-Design/Concepts/CI-CD/) Pipeline
+<a name=c1></a>
+### 1. Write script in jenkins
 ```c
 //1. Install Orchestration Pipeline plugin
 
@@ -51,7 +56,6 @@ pipeline {
 
 //4. Dashboard > Pipeline_Name > Stage View
 ```
+<img src=build_test_deploy.PNG width=500 />
 
-<img src=build_test_deploy.PNG width=400 />
-
-#### 2. Download script from github (SCM)
+### 2. Pull script from github (SCM)
