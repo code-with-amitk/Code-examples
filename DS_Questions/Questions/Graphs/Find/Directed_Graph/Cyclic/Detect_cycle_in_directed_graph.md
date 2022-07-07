@@ -2,7 +2,7 @@
 - Approach-1: DFS+Backtracking (TLE:Time Limit Exceed)
   - [Logic](#l)
   - [Code](#c)
-- [Approach-2: Topological Sort]()
+- [Approach-2: Topological Sort using Kahn's Algo](/DS_Questions/Data_Structures/Graphs/Toplogical_Sort/Detect_Cycle_using_Topological_Sort_Kahn_algo.md)
 
 ### Detect Cycle
 Check is there any cycle in directed graph. Return true if present, else return false.
