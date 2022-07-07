@@ -6,6 +6,7 @@
 - [Bandwidth](#bw)
 - [Consistency](#con)
 - [CAP Theorem](#cap)
+- [Decentralized](#dec)
 - [Deduplication](#de)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
