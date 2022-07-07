@@ -6,7 +6,7 @@
 - [Bandwidth](#bw)
 - [Consistency](#con)
 - [CAP Theorem](#cap)
-- [Decentralized](#dec)
+- [Decentralized](/System-Design/Concepts/Decentralization)
 - [Deduplication](#de)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
@@ -79,16 +79,6 @@ CAP theorem says: Only 2 out 3 can be guaranteed.
 |1.Weak consistency|After a write, reads may or may not see it. A best effort is done.|<ul><li>1.Web-client:Ok to see past 1-2 min data.</li></ul>|
 |2.Eventual consistency|After a write, reads will eventually see it (typically within milliseconds)||
 |3.Strong consistency|After a write, reads will see it. Data is replicated synchronously|<ul><li>1.Stock Exchanges or auctions</li></ul>|
-
-<a name=dec></a>
-### Decentralized
-- [Replication](Replication) and Decentralized as different.
-
-||Replication|Decentralized|
-|---|---|---|
-|What|Ensures mutliple copies of data are created on masters or slaves|Same|
-|Availabilty|Client talks to master to get data. Client can also talk to slaves(but not mandatory)|Client can talk to any node(many different leaders) and will get data, Control is decentralized|
-|Examples|MongoDB is centralized|Cassandra is decentralized|
 
 <a name=de></a>
 ### Deduplication 
