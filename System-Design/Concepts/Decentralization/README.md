@@ -10,6 +10,7 @@
 <a name=v1></a>
 ### Replication vs Decentralization
 - [Replication](Replication) and Decentralized as different.
+
 ||Replication|Decentralized|
 |---|---|---|
 |What|Ensures mutliple copies of data are created on masters or slaves|Same|
