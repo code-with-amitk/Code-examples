@@ -22,7 +22,7 @@ Though data is stored on multiple nodes using replication, but still control is 
 #### Decentralized
 Control is not with any single node. Example in a college every department has its own database and that authority is solely incharge of it.
 
-<a name=m/>
+<a name=m></a>
 ### Methods of decentralization
 Suppose you want to send money to your friend in US, what are different options you have?
 - _1._ Go to bank(centralized authority) & send money. if money transfer charges are increased you have to pay
