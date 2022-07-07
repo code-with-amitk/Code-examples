@@ -1,5 +1,6 @@
 **Decentralization**
 - [Methods of decentralization](#m)
+- [Advantages of decentralization](#a)
 - Comparison
   - [Replication vs Decentralization](#v1)
   - [Centralized vs Decentralized](#v2)
@@ -31,3 +32,13 @@ Suppose you want to send money to your friend in US, what are different options 
 Send this money directly without bank using blockchain technology. Get address of your friend on the blockchain.
 #### Through competition
 Many banks/authorities compete and provide best rates for sending money
+
+<a name=a></a>
+### Advantages of decentralization
+- **Adv:**
+  - No central authority(Availabilty)
+  - reduced costs, competition(hence better technology)
+- **Disadv:**
+  - Storage of pvt keys data on seperate nodes(what if node is malicious, Security)?
+  - Nodes talk to each other(without central authority), if riot happens and we donot want nodes to talk to each other(Security).
+  - Node storing data suddenly goes out of network(Availabilty)
