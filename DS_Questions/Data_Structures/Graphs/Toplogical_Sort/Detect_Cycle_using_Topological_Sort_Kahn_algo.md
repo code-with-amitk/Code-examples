@@ -1,7 +1,8 @@
 **Detect Cycle using Topological Sort**
-- Approach-1, Kahn's Algo
+- **Approach-1, Kahn's Algo**
   - [Logic](#l)
   - [Code](#c)
+  - [Complexity](#co)
 
 
 ### Detect Cycle using Topological Sort
@@ -171,3 +172,8 @@ int main(){
     std::cout << s.findCycle(n, e);
 }
 ```
+
+<a name=co></a>
+#### Complexity
+- **Time:** O(V+E). V=vertices,E=Edges
+  - [Why complexity is not O(VE), as it has 2 nested for loops?](/DS_Questions/Data_Structures/Graphs/Toplogical_Sort/Topological_sort_kahn_Algo.md)
