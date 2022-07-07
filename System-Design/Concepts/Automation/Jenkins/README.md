@@ -16,7 +16,7 @@ $ apt install openjdk-11-jre-headless
 //Download jenkins.war from https://www.jenkins.io/download/
 
 //Start jenkins without install
-$ java -j jenkins.war
+$ java -jar jenkins.war
 
 //Open jenkins in browser
 http://localhost:8080
