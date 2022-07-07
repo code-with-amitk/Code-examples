@@ -1,10 +1,11 @@
 **Cycle in Directed Graph**
-- Approach: DFS+Backtracking
+- Approach-1: DFS+Backtracking (TLE:Time Limit Exceed)
   - [Logic](#l)
   - [Code](#c)
+- [Approach-2: Topological Sort]()
 
 ### Detect Cycle
-- Check is there any cycle in directed graph. Return true if present, else return false.
+Check is there any cycle in directed graph. Return true if present, else return false.
 ```c
 Example-1:    No cycle
   1 --> 2 --> 3
@@ -27,9 +28,12 @@ Example-3:    cycle present
                     |-------
 ```
 
-### Approach (DFS+Backtracking)
-- 
+### Approach (DFS+Backtracking) = TLE(Time Limit Exceed)
+<a name=l1></a>
+#### Logic
 
+
+<a name=c1></a>
 ### Code
 **C++**
 ```cpp
