@@ -16,7 +16,7 @@ Result:
  4 5 3 2 1 0
 ```
 <a name=l></a>
-### Logic 
+#### Logic 
 ```c
         5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
         |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
@@ -27,9 +27,10 @@ Result:
         |2|2|1|1|0|0| 
          0 1 2 3 4 5
 
-2. Create an queue and enqueue all vertices with indegree=0 
+2. Create an queue and enqueue all vertices with indegree=0.
+   Note: if none of nodes has indegree=0 that means graph has a cycle.
         |4 5|
-        q
+         q
 
 3. Iterate through queue until empty.
 - pop top                      	//4
@@ -58,7 +59,7 @@ pop top	//5			//out |4 5|
 Repeat
 ```
 <a name=c></a>
-### Complexity
+#### Complexity
 - **Time:** O(V+E). V=vertices,E=Edges
   - Why complexity is not O(VE), as it has 2 nested for loops?
 ```c 
@@ -79,78 +80,95 @@ Let's Calculate?
              ---------------
              Total       8 = O(V+E)
 ```
+
 <a name=co></a>
-### Code
+#### Code
 ```cpp
-#include<iostream>
-#include<list>
-#include <queue>
 #include <vector>
-using namespace std;
+#include <iostream>
+#include <list>
+#include <queue>
+using vecI = std::vector<int>;
+using vecVecI = std::vector<vecI>;
+using ListI = std::list<int>;
+using QueI = std::queue<int>;
 
 class graph{
-        int vertices;           // No. of vertices
-        list<int> *p;           // Pointer to an array of LL
+    int vertices;                // No. of vertices
+    ListI *p;           // Pointer to an array of LL
 public:
-        graph(int a):vertices(a){
-                p = new list<int>[a];
-        }
-        void addEdge(int u, int y){
-                p[u].push_back(y);
-        }
-        void topologicalSort();
+    graph(int a):vertices(a){
+        p = new std::list<int>[a];
+    }
+    void addEdge(int u, int y){
+        p[u].push_back(y);
+    }
+    ListI* GetList(){
+        return p;
+    }
 };
 
-void graph::topologicalSort(){
-        vector<int> inDegree(vertices,0);
-        queue<int> q;
+class Solution {
+    QueI q;
+public:
+    vecI ToplogicalSort(int numCourses, vecVecI& prerequisites) {
+                vecI out;
         int cnt = 0;
-        vector <int> result;
 
-        //Calculating indegree of all nodes
-        // |2|2|1|1|0|0| 
-        //  0 1 2 3 4 5
-        for (int i=0; i<vertices; i++){         //O(V+E) V=vertices,E=edges
-                for (auto j = p[i].begin(); j != p[i].end(); j++)
-                     inDegree[*j]++;
+        /*Create Graph, number of nodes=numCourses
+            3 <-- 1 <-- 0
+            /\           |
+            |           \/
+            |---------- 2
+        */
+        graph g(numCourses);
+        for (auto& i:prerequisites){
+            g.addEdge(i[1],i[0]);
+        }
+
+        /*Calculate indegree of all nodes
+            |0|1|1|2|
+             0 1 2 3
+        */
+        vecI inDegree(numCourses, 0);
+        ListI* p = g.GetList();
+        //std::cout << "p=" << p << "\n";
+        for (int i=0; i<numCourses; i++){         //O(V+E) V=vertices,E=edges
+            for (auto j = p[i].begin(); j != p[i].end(); j++)
+                inDegree[*j]++;
         }
 
         //Create an queue and enqueue all vertices with indegree=0 
-        for (int i = 0; i < vertices; i++)      //O(V)
-                if (inDegree[i] == 0)
-                    q.push(i);
+        for (int i = 0; i < numCourses; i++)      //O(V)
+            if (inDegree[i] == 0)
+                q.push(i);
 
         while (q.empty() != 1){                 //O(V)
-                int u = q.front(); q.pop();
+            int u = q.front(); q.pop();
 
-                cout<<u<<" ";
+            //std::cout<<u<<" ";
+            out.push_back(u);
 
-                for (auto i = p[u].begin(); i != p[u].end(); i++){      //O(E)
-                        inDegree[*i] = inDegree[*i] - 1;
-                        if(inDegree[*i] == 0)
-                                q.push(*i);
-                }
-
-                cnt++;
+            for (auto i = p[u].begin(); i != p[u].end(); i++){      //O(E)
+                inDegree[*i] = inDegree[*i] - 1;
+                if(inDegree[*i] == 0)
+                    q.push(*i);
+            }
+            cnt++;
         }
-
-        if (cnt != vertices){
-                cout << "There exists a cycle in the graph\n";
-                return;
+         if (cnt != numCourses){
+            //There is a loop
+            out.clear();
         }
-
-        cout << endl;
-}
+        return out;
+    }
+};
 
 int main(){
-        graph g(6);
-        g.addEdge(5, 0);        g.addEdge(5, 2);        //5->0,5->2
-        g.addEdge(4, 0);        g.addEdge(4, 1);        //4->0,4->1
-        g.addEdge(2, 3);                                //2->3
-        g.addEdge(3, 1);                                //3->1  p[3].push_back(1);
-
-        cout << "Topological Sort:\n";
-        g.topologicalSort();
+    Solution s;
+    vecI o = s.ToplogicalSort(4, {{1,0},{2,0},{3,1},{3,2}});
+    for (auto&i:o)
+        std::cout << i << ",";
 }
 /*
 Output:
