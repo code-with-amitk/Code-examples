@@ -28,10 +28,29 @@ Example-3:    cycle present
                     |-------
 ```
 
-### Approach (DFS+Backtracking) = TLE(Time Limit Exceed)
+### Approach-1 (DFS+Backtracking) = TLE(Time Limit Exceed)
 <a name=l1></a>
 #### Logic
+- _1._ Create a graph using `<unordered_map<int, unordered_set<int>>`
+- _2._ Perform these steps for all nodes
+  - _a._ Traverse to node
+  - _b._ Check is there any cycle coming back to node (using [backtracking Template](/DS_Questions/Algorithms/Backtracking#tem))
+```c
+Take unordered_set<int> visited;
+Insert present node in visited.
+Check all neighbors of node.
+	if neighbor is found in visited.	
+		//cycle, return true
+	else
+		//insert neighbor in visited
+All neighbors checked
+erase present node from visited
+```
 
+#### Complexity
+- **Time** O(E+V<sup>2</sup>) 
+  - V=Vertices=Courses. E=Edge=Dependencies
+  - Each vertex is atleast visited twice
 
 <a name=c1></a>
 ### Code
@@ -73,7 +92,7 @@ public:
 class Solution {
     unSet visited;
 
-    bool cycle(unMap& graph, int node) {
+    bool cycle(unMap& graph, int node) {    //Backtrack function
         bool ret = false;
         visited.insert(node);
         auto it = graph.find(node);
@@ -93,6 +112,7 @@ class Solution {
         visited.erase(node);
         return ret;
     }
+    
 public:
     bool findCycle(int n, vecVecI& edges){
         //Create Graph
