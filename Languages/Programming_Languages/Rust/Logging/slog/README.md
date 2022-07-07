@@ -13,8 +13,8 @@
 
 <a name=e></a>
 ### Elements
-#### 1. Drain = Destination for logs
-Drains are responsible for handling logging statements (Records) from Loggers associated with them: filtering, modifying, formatting and writing the log records into given destination(s).
+#### 1. Drain = Destination for logs (console,file etc)
+Drain reads logging statements(modifies if needed) and sends to destination.
 
 #### 2. Logger
 This is logging handle used to execute logging statements
