@@ -20,6 +20,9 @@ $ java -jar jenkins.war
 
 //Open jenkins in browser
 http://localhost:8080
+
+Install Plugins > Manage Plugins
+git, Orchestration Pipeline
 ```
 
 ## Create [CI/CD](/System-Design/Concepts/CI-CD/) Pipeline
@@ -28,9 +31,7 @@ http://localhost:8080
 <a name=c1></a>
 ### 1. Write script in jenkins
 ```c
-//1. Install Orchestration Pipeline plugin
-
-//2. Go to Option > Pipleline > Definition(Pipeline) 
+//1. Go to Option > Pipleline > Definition(Pipeline) 
 pipeline {
    agent any
 
@@ -54,9 +55,9 @@ pipeline {
   }
 }
 
-//3. Save > Build(On Left side bar)
+//2. Save > Build(On Left side bar)
 
-//4. Dashboard > Pipeline_Name > Stage View
+//3. Dashboard > Pipeline_Name > Stage View
 ```
 <img src=build_test_deploy.PNG width=600 />
 
