@@ -1,7 +1,5 @@
 **Course Schedule**
 - [Logic](#l)
-  - [Approach-1(Find Cycle using DFS + Backtracking) => TLE]()
-  - [Approach-2(Find cycle using Toplogical Sort) => Works](/DS_Questions/Data_Structures/Graphs/Toplogical_Sort/)
 
 ### [Course Schedule](https://leetcode.com/problems/course-schedule/)
 - There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. 
@@ -11,6 +9,7 @@
 
 <a name=l></a>
 ### Logic
-- This is about finding cycle in the graph
+- This is about finding cycle in directed graph.
 - if cycle is present its not possible to finish the courses, else yes
 - Courses will be represented as nodes in graph.
+- [Detect Cycle in directed Graph](Detect_cycle_in_directed_graph.md)
