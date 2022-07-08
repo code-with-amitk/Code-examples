@@ -134,7 +134,7 @@ Symmetric | Asymmetric | ECC
 
 <a name=1key></a>
 ### 2. Symmetric / 1 key (DES,3DES,AES,RC4)
-Only 1 key is shared between sender & receiver.
+- Only 1 key is shared between sender & receiver.
 ```c
                 \/  Key-1                      \/ Key-1
     Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
@@ -169,6 +169,10 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
   copy state to ciphertext(ciphertext, state); / return result
 }
 ```
+#### Block, Stream Ciphers
+Symmetric Key algos can be Block or stream ciphers.
+
+
 <a name=sycomp></a>
 #### DES vs 3DES vs AES
 
