@@ -1,11 +1,11 @@
 **Information Security constitutes of 4 parts**
 - **[1. Secrecy / Confidentiality / Encryption](#sec)**
   - **Types of Encryption**
-    - [Assymetric /2 key](#2key)
+    - [Assymetric /2 key (DH, RSA)](#2key)
       - [Algorithms: DH, RSA, Crammer-Shoup, El-Gamal](#aalgo)
       - [ECC](#ecc)
         - [ECC vs Assymetric vs Symmetric](#eccvs)
-    - [Symmetric / 1 key](#1key)
+    - [Symmetric / 1 key (DES,3DES,AES,RC4)](#1key)
       - [Problem with Symmetric Key Algo](#prob)
       - [Algorithms: AES / Rijndael](#salgo)
         - [DES vs 3DES vs AES](#sycomp)
@@ -29,7 +29,7 @@ Conversion of Data/Plain-text into unreadable/cipher text. Once keys are exchang
 
 ## Types of Encryption
 <a name=2key></a>
-### 1. Assymetric /2 key / Public,Pvt Key pair
+### 1. Assymetric /2 key / Public,Pvt Key pair (DH, RSA, 
 - Public key(encrypt), Private key(decrypt). Data encrypted with Public can only be decrypted using Pvt key. Both are mathematically linked. Public Key are published on website publicly.
 - **Example Alice and Bob communication**
   - *1.* Alice created his own Public(Pub_A),Pvt(Pvt_A) key pairs. Published Public key on his website and kept pvt secret.
@@ -139,8 +139,8 @@ Symmetric | Asymmetric | ECC
 ```
 
 <a name=1key></a>
-### 2. Symmetric / 1 key
-Only 1 key is shared between sender & receiver. Examples: DES,3DES,AES,RC4
+### 2. Symmetric / 1 key (DES,3DES,AES,RC4)
+Only 1 key is shared between sender & receiver.
 ```c
                 \/  Key-1                      \/ Key-1
     Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
