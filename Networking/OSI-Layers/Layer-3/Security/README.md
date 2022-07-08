@@ -5,9 +5,7 @@
       - [ECC](#ecc)
         - [ECC vs Assymetric vs Symmetric](#eccvs)
     - [Symmetric / 1 key (DES,3DES,AES,RC4)](#1key)
-      - [Problem with Symmetric Key Algo](#prob)
-      - [Algorithms: AES / Rijndael](#salgo)
-        - [DES vs 3DES vs AES](#sycomp)
+      - [DES vs 3DES vs AES](#sycomp)
     - [Assymetric vs Symmetric](#asvs)
   - [Cipher Algorithms](#ca)
   - **How Encryption is performed at H/W Level**
@@ -141,15 +139,11 @@ Only 1 key is shared between sender & receiver.
                 \/  Key-1                      \/ Key-1
     Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
 ```
+- **Problem with Symmetric Key Algo**
+  - With same plaintext they will produce same ciphertext everytime. [Solution: Chaining](#sb)
+  - 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
 
-<a name=prob></a>
-#### Problem with Symmetric Key Algo
-- With same plaintext they will produce same ciphertext everytime. [Solution: Chaining](#sb)
-- 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
-
-<a name=salgo></a>
-#### Algorithms
-##### a. AES / Rijndael
+#### a. AES / Rijndael
 There are 10 rounds for 128-bit keys, 12 rounds for 192-bit keys and 14 rounds for 256-bit keys.
 ```c
 
@@ -176,7 +170,7 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
 }
 ```
 <a name=sycomp></a>
-##### DES vs 3DES vs AES
+#### DES vs 3DES vs AES
 
 |Algorithm|KeySize(bits)|InputSize(bits)|Stages|
 |---|---|---|---|
