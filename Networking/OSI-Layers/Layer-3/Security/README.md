@@ -7,15 +7,12 @@
     - [Symmetric / 1 key (DES,3DES,AES,RC4)](#1key)
       - [DES vs 3DES vs AES](#sycomp)
     - [Assymetric vs Symmetric](#asvs)
-  - [Cipher Algorithms](#ca)
   - **How Encryption is performed at H/W Level**
     - [a. Permutation / P-box/ Transposition Box](#pb)
     - [b. Substitution / S-box](#sb)
   - **[How safe are 128,256 bit Keys](#how128)**
   - [Encryption at Data link, Transport, Application Layers](#encdta)
-- [2.]
-- [3.]
-- [4.]
+- [Block, Stream Cipher Algorithms](#bs)
 - [Terms](#Terms)
 - [Security Vulnerabilities](#Security_Vulnerabilities)
 
@@ -169,9 +166,6 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
   copy state to ciphertext(ciphertext, state); / return result
 }
 ```
-#### Block, Stream Ciphers
-Symmetric Key algos can be Block or stream ciphers.
-
 
 <a name=sycomp></a>
 #### DES vs 3DES vs AES
@@ -192,13 +186,6 @@ Symmetric Key algos can be Block or stream ciphers.
 |Choice|Depends on Use Case.|1024 was assumed to be secure by 2010. 2048 Bit Key is assumed to be secure by 2030|
 |Algos|<ul><li>DES(Broken in 1999)</li></ul> <ul><li>3-DES(Broken)</li></ul> <ul><li>AES(Key sizes: 128, 192, 256, 384)</li></ul> <ul><li>RC4</li></ul>|<ul><li>RSA (Ronald Rivest, Adi Shamir, Len Adleman)</li></ul> <ul><li>Diffe-Helman</li></ul> <ul><li>Crammer-shoup</li></ul> <ul><li>El-Gamal</li></ul>|
 |Key-size|AES-128, 192, 256|RSA:1024,2048 This is not Key, but sizes of prime numbers. Private Key = (Cipher Text)pow(pvt Key) mod(n) = 103 bit only|
-
-<a name=ca></a>
-### Cipher Algorithms
-1. Substitution Cipher: Each letter or group of letters is replaced by another letter or group of letters. Eg: Caesar ciphers(b becomes E, c becomes F)
-2. Block Ciphers(Mostly used): Encrypt block of characters        
-3. Stream Ciphers(Obsolete): Encrypt Single character at a time
-
 
 ### How Encryption is performed at H/W Level
 ONLY POSITION OF BITS ARE CHANGED
@@ -238,7 +225,6 @@ How Long Hacker(having super Computer) need to crack key?
   - 340,282,366,920,938,463,463 / 31,104,000 = 109,401,481,134,561 (approx) = 109 Trillion
   - **109 Trillion super computers working parallelly for 1 year can produce all combinations of 128 bit key**
 
-
 <a name=encdta></a>
 ### Encryption at DL Layer
 **Encryption at DL/ Link encryption**
@@ -253,6 +239,16 @@ How Long Hacker(having super Computer) need to crack key?
   - _B._ Authentication: whom you are talking to before revealing sensitive information
   - [_C._ Nonrepudiation](/Integrity/Digital_Signature): Sender cannot deny that he has not sent the message.
   - [_D._ Integrity:](Integrity) message you received was really the one sent and not something that a malicious adversary Encryption + Integrity
+
+<a name=bs></a>
+## Block, Stream Ciphers
+Symmetric Key algos can be Block or stream ciphers.
+### 1. Block Ciphers(Mostly used) (eg: AES)
+Encrypt block of characters. Breaks data into fixed sized blocks
+### 2. Stream Ciphers(Obsolete)
+Encrypt Single character at a time, ie works bit by bit.
+#### 3. Substitution Cipher
+Each letter or group of letters is replaced by another letter or group of letters. Eg: Caesar ciphers(b becomes E, c becomes F)
 
 <a name="Terms"></a>
 ### [Security Terms](Terms)
