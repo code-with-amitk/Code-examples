@@ -1,8 +1,7 @@
 **Information Security constitutes of 4 parts**
 - **[1. Secrecy / Confidentiality / Encryption](#sec)**
   - **Types of Encryption**
-    - [Assymetric /2 key (DH, RSA)](#2key)
-      - [Algorithms: DH, RSA, Crammer-Shoup, El-Gamal](#aalgo)
+    - [Assymetric /2 key (DH, RSA, Crammer-Shoup, El-Gamal)](#2key)
       - [ECC](#ecc)
         - [ECC vs Assymetric vs Symmetric](#eccvs)
     - [Symmetric / 1 key (DES,3DES,AES,RC4)](#1key)
@@ -46,10 +45,7 @@ message(plain text) > |Encrypt| > XXX
                                                                        \/
                                      ---sent to Alice--->      XXX > |Decrypt| > message
 ```
-
-<a name=aalgo></a>
-#### Assymetric Key Algorithms
-##### a. DH(Diffe-Helman)
+#### a. DH(Diffe-Helman)
 ```c
 //DH Keys sizes
 Group  | No of Bits |  Combinations  | Strong 
