@@ -32,8 +32,9 @@ for (auto&i:graph)
 
 <a name=co></a>
 #### Complexity
-- **Time:** V:Vertices/Nodes, E:Edges/Neighbors
-  - O(V+E). We traverse only once per node
+> V:Vertices/Nodes, E:Edges/Neighbors
+- **Time:** O(VE)
+  - O(VE). We traverse only once per node
 - **Space:**
   - Storing graph: O(V+E)
   - visited: O(V)
