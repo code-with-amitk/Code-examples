@@ -42,10 +42,11 @@ This can be seen as undirected graph, just we need to find 2 things.
 
 <a name=co></a>
 #### Complexity
-- **Time:** V:Vertices/nodes. E:Edges/Neighbors
-  - Creating Graph: O(V)
+> V:Vertices/nodes. E:Edges/Neighbors
+- **Time:** O(VE)
+  - Creating Graph: O(E)
   - Finding disjoint set: O(V)
-  - Finding cycle in directed Graph
+  - [Finding cycle in directed Graph: O(VE)](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Cycle_in_undirected_graph.md)
 - **Space**
   - Store graph: O(VE)
 
