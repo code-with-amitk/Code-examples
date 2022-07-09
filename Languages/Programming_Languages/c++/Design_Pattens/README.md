@@ -1,16 +1,15 @@
-- [1. Anti_Pattern](#Anti_Pattern)
-- [2. Creational, Structural, Behavioral](#comp)
-  - [2.1 Creational](#cre)
-  - [2.2 Structural](#str)
-  - [2.3 Behavioral](#beh)
-- [3. Design Principles](#dp)
+- [Anti_Pattern](Anti_Pattern)
+- **Creational, Structural, Behavioral**
+  - [Creational: Creating Object](#c)
+  - [Structural: How object is composed](#s)
+  - [Behavioral: Communication b/w objects](#b)
+- [Design Principles](#dp)
 
-<a name=comp></a>
-## 2. Creational, Structural, Behavioral
+## Creational, Structural, Behavioral
 
-<a name=cre></a>
-### [2.1 Creational](Creational)
-- Provides way for creating Objects, while hiding creation Logic. Types
+<a name=c></a>
+### [Creational](Creational)
+Provides way for creating Objects, while hiding creation Logic. Types
 ```console
   DP                  Applications
 Builder           Domino's/McD to create Children Meals
@@ -28,9 +27,9 @@ Singleton         1. Office of President
 Visitor
 ```
 
-<a name=str></a>
-### [2.2 Structural](Structural)
-- How objects are composed? Is 1 object composed of other, is there inheritance relation etc? This is about structure. They Identify relationship between objects. Types:
+<a name=s></a>
+### [Structural](Structural)
+How objects are composed? Is 1 object composed of other, is there inheritance relation etc? This is about structure. They Identify relationship between objects. Types:
 ```console
 Adapter/Wrapper       1. Socket on Wall: Connecting new adapter to socket
 Bridge                1. House hold switch for On/Off the light
@@ -40,24 +39,21 @@ Filter/Criteria
 Proxy
 ```
 
-<a name=beh></a>
-### [2.3 Behavioral](Behavioral)
-- Communication/Interaction with other classes/objects. Types:
-```console
-  DP                            Applications
-Chain of Responsibility
-Command                      1. Home automation system, using remote control
-Interpretor
-Iterator                     1. Musicians: They read musical notes for pitch of sound and duration
-Mediator                     1. Online Auction
-                             2. Air traffic Control
-Observer
-State                        1. Vending Machine: Amount of currency deposited, item selected. State defined.
-Strategy                     1. Modes of transport to Airport: Several options are present: 
-                             Driving own car, taking taxi, City bus etc., Duck Behavior: 1st Example Head 1st Design Patterns
-Template                     1. Beverage Maker Machine
-Visitor
-```
+<a name=b></a>
+### [Behavioral](Behavioral)
+Communication/Interaction with other classes/objects. Types:
+|DP|Applications|
+|---|---|
+|Chain of Responsibility|
+|Command|1. Home automation system, using remote control|
+|Interpretor||
+|Iterator|1. Musicians: They read musical notes for pitch of sound and duration|
+|Mediator|1. Online Auction 2. Air traffic Control|
+|Observer||
+|State|1. Vending Machine: Amount of currency deposited, item selected. State defined.|
+|Strategy|1. Modes of transport to Airport: Several options are present: Driving own car, taking taxi, City bus etc., Duck Behavior: 1st Example Head 1st Design Patterns|
+|Template|1. Beverage Maker Machine|
+|Visitor||
 
 <a name=dp></a>
 ## 3. Design Principles(CREATE DIFFERENT OBJECTS FOR MINUTE THINGS)
