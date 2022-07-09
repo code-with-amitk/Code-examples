@@ -1,4 +1,4 @@
-Disjoint Set
+**Disjoint Set**
 - [Finding Weather Graph has Disjoint set or not](#fds)
 
 ## Disjoint Set
