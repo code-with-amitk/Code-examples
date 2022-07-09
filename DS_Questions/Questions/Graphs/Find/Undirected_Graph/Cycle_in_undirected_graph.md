@@ -1,9 +1,13 @@
 **Detect Cycle**
-- Approach-1, Marking Parent
+- **Approach-1, Marking Parent**
+  - [Logic](#l)
+  - [Complexity](#co)
+  - [Code](#c)
 
 ### Detect cycle in Undirected Graph
 
 ### Approach-1
+<a name=l></a>
 #### Logic
 - _1._ Create adjacency list representation of graph
 ```c
@@ -26,6 +30,15 @@ for (auto&i:graph)
 ```
 - _4._ On reaching neighbour node, if its neighbour==parent continue. ie donot go back to same parent.
 
+<a name=co></a>
+#### Complexity
+- **Time:** V:Vertices/Nodes, E:Edges/Neighbors
+  - O(V+E). We traverse only once per node
+- **Space:**
+  - Storing graph: O(V+E)
+  - visited: O(V)
+
+<a name=c></a>
 #### Code
 ```cpp
 #include <vector>
