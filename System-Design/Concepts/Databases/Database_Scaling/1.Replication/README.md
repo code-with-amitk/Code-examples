@@ -71,7 +71,7 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 <a name=sync_async.PNG width=400 />
 
 #### ASynchronous configuration
-Unlike semi-synchronous where leader waits for atleast 1 replica to respond, here leader does not wait for any,
+Leader does not wait for any replica to ACK.
 
 ## Problems in Replication
 <a name=p1></a>
