@@ -2,6 +2,7 @@
 - Types of Replication
   - [1. Master/Slave or Leader/Follower](#ms)
   - [2. Master/Master or Active/Active or Leader/Leader](#mm)
+  - [3. Leaderless](#ll)
 - [Synchronous, Asyncronous Replication](#sa)
 - Problems in Replication
   - [1. Master Node dies. Failover](#p1)
@@ -58,6 +59,20 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
                                   |RW
   client-2  <----RW-------->  masterReplica-DB-1
 ```
+
+<a name=ll></a>
+### 3. Leaderless Replication
+- There is no leader. All nodes are slave/replicas.
+- Client writes to all nodes simultaneously.
+```c
+                     |--> replica1 -|
+  client1 ---write---|--> replica2 -|
+                     |--> replica3 -|
+  client2 <--read-------------------|
+```
+- **Solution to Problem of crashed node:** Replica3 dies while client1 was writing.
+  - _1. Write back to replica:_ Client2 read backs from all replicas. From replica1,2 it finds recent data version2, while from replica3 finds version1. Client2 will write back recent data to replica3.
+  - _2. Anti-entropy:_ Some background service will keep on checking differences of data on replicas and applies the recent version.
 
 <a name=sa></a>
 ### Synchronous, Asynchronous Replication
