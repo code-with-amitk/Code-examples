@@ -170,6 +170,8 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
 <a name=sycomp></a>
 #### DES vs 3DES vs AES
 
+||DES(1990)|3DES(1998)|AES(2001)|
+
 |Algorithm|KeySize(bits)|InputSize(bits)|Stages|
 |---|---|---|---|
 |DES. Broken in 1999|56|64|19|
