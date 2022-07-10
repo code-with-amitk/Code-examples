@@ -99,6 +99,8 @@ Eliminating duplicate or redundant information. Eg: How server identifies and dr
 <a name=la></a>
 ### Latency 
 Latency is time that request is waiting to be handled ie awaiting service. [Response Time](#rt) means RTT.
+#### How to reduce Latency
+- _1._ For read heavy system, Add more Read Replicas in [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication).
 
 ### Local Rarest First for Piece Selection
 Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
@@ -126,17 +128,10 @@ Node selects k neighbours randomly, sends key-100(data to searched) to them, aga
 
 <a name=re></a>
 ### Reliable
-- System to continue to work correctly, even when things go wrong. Eg a application:
-  - Can tolerate the user making mistakes or using the software in unexpected ways.
-  - Its performance is good enough for the required use case, under the expected load and data volume.
-  - The system prevents any unauthorized access and abuse.
-#### How to make Hard-disk at datacenter Reliable?
-- At datacenter, Hard disks crash, power grid has a blackout, someone unplugs the wrong network cable. 
-- Hard disks have MTTF(mean time to failure) of about 10 to 50 years. Thus, on a storage cluster with 10,000 disks, we should expect on average one disk to die per day.
-- How to keep reliabilty?
-  - Add redundancy to the individual hardware components. Disks may be set up in a RAID configuration.
-  - Servers may have dual power supplies and hot-swappable CPUs, and datacenters may have batteries and diesel generators for backup power. 
-  - When one component dies, the redundant component can take its place while the broken component is replaced.
+- **Meaning?** System to continue to work correctly, even when things go wrong.(Application crash, node(s) goes down under load)
+#### How to make system Reliable?
+- [1. Prevent node failures: Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication/)
+- _2._ Hard Disk Failure: RAID configuration
 
 <a name=orc></a>
 ### Orchestration / Cloud Orchestrator
