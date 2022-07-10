@@ -165,6 +165,9 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
   }
   copy state to ciphertext(ciphertext, state); / return result
 }
+
+//Encryption using openssl
+# openssl enc -aes-256-cbc -in message.txt -out message.bin
 ```
 
 <a name=sycomp></a>
