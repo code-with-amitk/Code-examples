@@ -170,12 +170,10 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
 <a name=sycomp></a>
 #### DES vs 3DES vs AES
 
-||DES(1990)|3DES(1998)|AES(2001)|
-
 |Algorithm|KeySize(bits)|InputSize(bits)|Stages|
 |---|---|---|---|
-|DES. Broken in 1999|56|64|19|
-|Triple-DES. Broken|168| | |
+|DES(1990). Broken in 1999|56|64|19|
+|3DES. Broken|`56*3`=168| | |
 |AES / Rijndael|128,192,256|128,192,256(block-size)|10,12,14|
 |RC4||||
 
