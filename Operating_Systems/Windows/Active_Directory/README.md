@@ -11,6 +11,7 @@
 - [Global Catalog /GC](#gc)
 - [Groups](#groups)
 - [GPO(Group Policy Object)](GPO)
+- [Join/Leave Computer to Domain](#jl)
 - [netlogon](#netlogon)
 - [SID(Security Identifier)](SID)
 - [SOM(Scope of Management)](#som)
