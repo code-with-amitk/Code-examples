@@ -41,9 +41,7 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 
 <a name=mm></a>
 ### 2. Master/Master or Active/Active or Leader/Leader
-- There are 2 or more leader nodes
-- As in [Master-Slave](#ms) replication, Client Writes to master and read from any slave
-  - Same concept applies here, Client can write to any 1 of leader. Other leaders will act as slave and read all data from present leader.
+There are 2 or more leader nodes. Client can write to any 1 of leader. Other leaders will act as slave and read all data from present leader.
 #### Usecases of Master/Master configuration
 - _1. Multi datacenter operation:_ 
   - if we have slaves placed in different datacenters to tolerate failover. 1 leader in each datacenter. 
