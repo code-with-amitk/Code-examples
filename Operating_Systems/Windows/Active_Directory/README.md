@@ -121,6 +121,13 @@ Transitive    n       both(tran & non)        y          y
 - _2. Global Group:_ Global group can contain user accounts that are only from its own domain.
 - _3. Domain Local Group:_  It contains Universal groups, global groups, other domain local groups and accounts from any domain in the forest.
 
+<a name=jl></a>
+### Join/Leave Computer to Domain
+#### Joining Win10 to AD
+Control Panel > System and Security > System > Computer name, domain, and workgroup settings(Change settings) > Enter adminusername,pass (NETBIOS_NAME\Administrator <>) Computer Name > Change > Domains > atest.com //{Change DNS Server to point to AD IP address}
+#### [Leave Win10 from AD](https://www.top-password.com/blog/remove-windows-10-computer-from-domain/)
+
+
 <a name=som></a>
 ## SOM / Scope of Management
 - Site, domain, or OU container are called SOM. SOMs are associated with GPO.
