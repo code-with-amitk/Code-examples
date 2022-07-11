@@ -126,6 +126,8 @@ test-repo$
 
 <a name=ac></a>
 ## Actions
+- Everytime some event happens to your repository on github a action is initiated
+  - Events can be: PR created, PR merged, Issue created, contributor joines etc
 - Action is single task. We can combine actions to create jobs and a custom workflow.
 - **Custom Action?** We can write custom code(action) which can interact with github repository and perform tasks.
 
