@@ -3,7 +3,8 @@
   - [1. Master/Slave or Leader/Follower](#ms)
   - [2. Master/Master or Active/Active or Leader/Leader](#mm)
   - [3. Leaderless](#ll)
-- [Synchronous, Asyncronous Replication](#sa)
+- [Synchronous, Asynchronous Replication](#sa)
+  - [Quorum Reads & Writes](#qrw)
 - Problems in Replication
   - [1. Master Node dies. Failover](#p1)
   - [2. Slave Node outrages, Dying slaves](#p2)
@@ -73,8 +74,8 @@ There are 2 or more leader nodes. Client can write to any 1 of leader. Other lea
   - _2. Anti-entropy:_ Some background service will keep on checking differences of data on replicas and applies the recent version.
 
 <a name=sa></a>
-### Synchronous, Asynchronous Replication
-#### Semi-Synchronous Configuration
+## Synchronous, Asynchronous Replication
+### Semi-Synchronous Configuration
 - Leader does not wait for ACK from all Followers/slaves for sending ACK to user. When Master recieves ACK from any 1 slave(called Synchronous replica) it sends ACK to user.
 - Now if Synchronous replica goes down, master creates some other replica as Synchronous from where response is recieved.
 - So its a Gurantee that user has atleast 2 copies of up-to-date data. 1 master & 2nd with Synchronous replica.
@@ -83,8 +84,21 @@ There are 2 or more leader nodes. Client can write to any 1 of leader. Other lea
 
 <a name=sync_async.PNG width=400 />
 
-#### ASynchronous configuration
+### Asynchronous configuration
 Leader does not wait for any replica to ACK.
+
+<a name=qrw></a>
+### Quorum Reads and Writes
+Quorum needs that for read and write operations atleast 1 node should overlap. Else you are writing to different set of nodes and reading from other.
+```c
+n replicas
+w replicas ACKs the write
+r replicas are quried for read [Consider Leaderless replication]
+if ( w+r > n )
+  // System following Quorum reads and writes
+```
+#### Sloopy Quorum
+n replicas. m get disconnected due to n/w breakdown. Client writes to n-m reachable nodes, later these (n-m) nodes sync to m nodes once they come back.
 
 ## Problems in Replication
 <a name=p1></a>
