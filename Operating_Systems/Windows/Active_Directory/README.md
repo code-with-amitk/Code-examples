@@ -1,4 +1,4 @@
-- [What is Active Directory](#what)
+**Active Directory**
   - [Structure of AD](#struct)
 - **AD Objects**
   - [1. Container Objects](#con)
@@ -18,7 +18,6 @@
 - [UUID/GUID](UUID)
 
 
-<a name=what></a>
 ## AD
 - Centralized DB/Repository of Objects(Users, Groups, Resources, Services). Resources: Print Server, File Servers(Shared Folders), Mail server.
 - **ADDC(AD Domain Controller):** Server storing users,groups,objects.
