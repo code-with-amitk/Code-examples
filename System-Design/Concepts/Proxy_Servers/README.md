@@ -1,4 +1,4 @@
-- Proxy
+**Proxy**
 - **Types or Proxy**
   - [1. Forward/Web/Server Proxy](#fow)
     - [Why needed](#whyf)
