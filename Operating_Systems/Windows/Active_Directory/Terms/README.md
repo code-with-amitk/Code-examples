@@ -1,5 +1,7 @@
+- [AD = Active Directory](#ad)
 - [cn](#cn)
-- [dc](#dc)
+- [DC = Domain Controller](#dc1)
+- [dc = domain component](#dc2)
 - [dn](#dn)
   - [basedn](#bdn)
   - [bindDN](#bidn)
@@ -14,11 +16,19 @@
 - [UPN](#upn)
   - [upnSuffix](#us)
 
+<a name=ad></a>
+### AD
+Active Directory(AD) is a directory service for Windows. Directory service stores users,groups,computers,services
+
 <a name=cn></a>
 ### cn = common name
 user object in ldap
 
-<a name=dc></a>
+<a name=dc1></a>
+### DC = Domain Controller
+Domain Controller(DC) serves the directory maintained by [AD](#ad).
+
+<a name=dc2></a>
 ### dc = domain component
 This is designator of AD DNS namespace. For example for windows-2012.gsslab.pnq.redhat.com it would be dc=gsslab,dc=pnq,dc=redhat,dc=com
 
