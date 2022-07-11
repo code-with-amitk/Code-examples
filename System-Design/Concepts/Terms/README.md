@@ -89,7 +89,9 @@ Eliminating duplicate or redundant information. Eg: How server identifies and dr
 <a name=ft></a>
 ### Fault Tolerance
 - In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
-- Failut Tolerance is achieved using [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication)
+- **Methods to achive Fault Tolerance:**
+  - _1. [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication)_
+  - [2. Sloopy Quorum](/System-Design/Concepts/Databases/Database_Scaling/1.Replication/README.md#qrw)
 
 - **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
