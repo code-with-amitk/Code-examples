@@ -48,5 +48,7 @@ Domain-GPO > cmd > Group Policy Management Editor > Forest > Domains > atest.com
 
 <a name=p></a>
 ### Distribute PAC file URL to joined Machines
-#### [Method-1. Zsaler](https://help.zscaler.com/zia/distributing-pac-file-url-my-users)
-#### [Method-2. Using Registry](https://www.youtube.com/watch?v=A_GjfvR7qhA)
+#### Distribute 
+- [Method-1. Zsaler](https://help.zscaler.com/zia/distributing-pac-file-url-my-users)
+- [Method-2. Using Registry](https://www.youtube.com/watch?v=A_GjfvR7qhA)
+#### [Check PAC URL recieved on joined Machine](https://www.youtube.com/watch?v=A_GjfvR7qhA)
