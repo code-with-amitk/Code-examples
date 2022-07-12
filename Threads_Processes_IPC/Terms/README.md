@@ -292,13 +292,7 @@ Example-1
 #include<pthread.h>
 pthread_mutex_t     a = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t     b = PTHREAD_MUTEX_INITIALIZER;
-main(){
-    pthread_create(&tid1, NULL, thread1, NULL);
-    pthread_create(&tid2, NULL, thread2, NULL);
-    pthread_join(tid1, NULL);     //Wait until thread-1 to terminate
-    pthread_join(tid2, NULL);    ////Wait until thread-2 to terminate
-}
-void *thread-1(void *a){
+void *thread-1(void *k){
     while(1){
         pthread_mutex_lock(&a); 
         pthread_mutex_lock(&b);
@@ -307,13 +301,21 @@ void *thread-1(void *a){
     }
 }
 
-void *thread-2(void *a){
+void *thread-2(void *k){
     while(1){
         pthread_mutex_lock(&b); 
         pthread_mutex_lock(&a);
         pthread_mutex_unlock(&a);
         pthread_mutex_unlock(&b);
     }
+}
+main(){
+  pthread_t tid1;
+  pthread_t tid2;
+  pthread_create(&tid1, NULL, thread1, NULL);
+  pthread_create(&tid2, NULL, thread2, NULL);
+  pthread_join(tid1, NULL);     //Wait until thread-1 to terminate
+  pthread_join(tid2, NULL);    ////Wait until thread-2 to terminate
 }
 ```
 
