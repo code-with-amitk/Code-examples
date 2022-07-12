@@ -1,11 +1,17 @@
-Class Template
+**Class Template**
+- **Rules**
+  - [1. Template statement need to be written again when class function is defined outside class](#r1)
+  - [2. Template can have 0 templated argument](#r2)
+  - [3. On compile time, compiler creates seperate class for different parameter types](#r3)
 
 ## Class Template
-- **What** Generic class which having(Generic member variables, Generic member functions)
-- **Rule-a**
-  - **A.** Template statement need to be written again when template class function is defined outside template class.
-  - **B.** Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data types we would be using.
-  - **C.** If arguments are of other type and template-type of other type. Compiler will ignore Argument type
+Generic class which having(Generic member variables, Generic member functions)
+
+### Rules
+<a name=r1></a>
+#### A. Template statement need to be written again when template class function is defined outside template class
+- _B._ Compiler cannot deduce template parameter type(s) for class template. We need to tell compiler the data types we would be using.
+- _C._ If arguments are of other type and template-type of other type. Compiler will ignore Argument type
 ```c++
 template <class T>            //OR <typename T>
 class A {
@@ -32,32 +38,29 @@ int main() {
 }
 ```
 
-- **Rule-b**
-  - *1.* Template can have 0 templated argument.
-  - *2.* Only 1 copy of static variable is kept per class
+<a name=r2></a>
+#### 2. Template can have 0 templated argument
+- _a._ Only 1 copy of static variable is kept per class
 ```c++
-template < int n >                                //1
-struct st
-{
+template < int n >                                //0 templated arguments
+struct st {
   static const int val = 2 * st<n-1>::val;
 };
 
 template <> 
-struct st < 0 >                                   //1
-{
+struct st < 0 > {                                  //0 templated arguments
   static const int val = 1 ;
 };
 
-int main()
-{
+int main() {
     cout << s<10>::val << endl;                //Output=1024
     return 0;
 }
 ```
 
-- **Rule-3**
-  - *1.* On compile time, compiler creates seperate class for different parameter types.
-```c++
+<a name=r3></a>
+#### 3. On compile time, compiler creates seperate class for different parameter types.
+```cpp
 Test<int>::Test()     //class-1
 Test<double>::Test()  //class-2
 */
@@ -73,8 +76,7 @@ public:
 template<class T>
 int Test<T>::count = 0;
  
-int main()
-{
+int main() {
   Test<int> a;
   Test<int> b;
   Test<double> c;
