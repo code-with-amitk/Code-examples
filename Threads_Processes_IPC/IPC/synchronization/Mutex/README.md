@@ -167,13 +167,10 @@ mutex mtx;
 lock_guard<mutex> lgLock(mtx);           //Mutex(mtx) is owned by lock_guard
 ```
 #### Templated class lock_guard
-- This is **Wrapper over Mutex** that provides a [RAII](/Languages/Programming_Languages/c++/OOPS_Principles), ie lock the mutex (mutex.lock()) no need to worry about unlocking (mutex.unlock()), when lock_guard object goes out of scope, mutex is automatically unlocked.
+- This is **Wrapper over Mutex** that provides a [RAII](/Languages/Programming_Languages/c++/OOPS_Principles), ie lock the mutex (mutex.lock()) no need to worry about unlocking (mutex.unlock()), when lock_guard object goes out of scope, mutex is automatically unlocked(destructor gets called).
 - lock_guard provides mutex for duration of scoped block.
 - We cannot copy lock_guard, because operator = is deleted. Hence its not copy or move assignable.
 - **Why?** If someone locks the mutex and forgets to unlock, then whole process will block.
-- **How it works**
-  - This is used to lock the mutex at object creation, But we donot need to unlock the mutex at exit from thread function (or when lock_guard object goes out of scope).
-  - When lock guard object goes out of scope, destructor is called and mutex is unlocked.
 ```cpp
 template<typename T>
 class lock_guard {
