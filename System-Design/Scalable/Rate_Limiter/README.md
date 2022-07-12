@@ -1,4 +1,6 @@
 **Rate Limiter**
+- [Requirements](#r)
+- [HLD](#h)
 
 ### Rate Limiter
 - Rate limiter blocks bots, or applications to overload web server(DoS Attack). Rate limiting can stop certain kinds of bot attacks.
@@ -11,3 +13,6 @@
 - _2._ System should return error if more than 50 requests are sent.
 #### Non-Functional
 Highly available, Latency should be minimum.
+
+<a name=h></a>
+### HLD
