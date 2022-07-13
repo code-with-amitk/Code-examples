@@ -276,6 +276,7 @@ int main(){
 <a name=cb></a>
 ### CPU Bound 
 Process spends most of time with CPU executing instructions. From Source: Program doing lot of calculations Eg: finding all possible permutations of a string.
+
 <a name=dl></a>
 ### Deadlock
 2 or more threads waits on resources which is/are held by each other. None of thread releases the resource and in turn waits for other to release. 
@@ -316,6 +317,45 @@ main(){
   pthread_create(&tid2, NULL, thread2, NULL);
   pthread_join(tid1, NULL);     //Wait until thread-1 to terminate
   pthread_join(tid2, NULL);    ////Wait until thread-2 to terminate
+}
+```
+**Using [lock_guard]()**
+```cpp
+//f1(), f2() created on process stack
+//Thread1 f1()
+  - takes lock_guard=mutex(lg1)
+  - sleeps for 10ms
+//Thread2 f2()
+  - takes lock_guard=mutex(lg2)
+//Thread1 f1()
+  - Want lock_guard=mutex(lg1) which is already taken by Thread2  //Deadlock
+
+#include<iostream>
+#include<thread>
+#include<mutex>
+using namespace std;
+
+std::mutex m1;
+std::mutex m2;
+
+void f1(){
+        std::lock_guard<std::mutex> lg1(m1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::lock_guard<std::mutex> lg2(m2);
+};
+
+void f2() {
+        std::lock_guard<std::mutex> lg1(m2);
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::lock_guard<std::mutex> lg2(m1);    //What if this statement is commeted, Will it Deadlock? Ans:No
+};
+
+int main() {
+        thread t1(f1);
+        thread t2(f2);
+        t1.join();
+        t2.join();
+        cout << "exiting";
 }
 ```
 
