@@ -122,7 +122,7 @@ class A {
   }
 public:
   void fun(int a) {
-    thread t1(&A::test, this, a);
+    thread t1(&A::test, this, a);        //if we start thread on static function, then this will not be passed
     t1.join();
   }
 };
