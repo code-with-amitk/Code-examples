@@ -3,6 +3,9 @@
   - [POSIX](#cp)
   - [C++](#ct)
     - [1. Using Object of thread class](#m1)
+      - [1. Create Thread. Not copy constructible, nor copy assignable](#m12)
+      - [2. Thread object is MoveAssignable](#m13)
+      - [3. Thread calling methods of class](#m14)
     - [2. Using Functor](#m2)
   - [Windows](#win)
   - [Rust](#ru)
@@ -55,9 +58,23 @@ Thread: 3 Created
 ### C++
 <a name=m1></a>
 #### 1. Using Object of [thread class](https://www.cplusplus.com/reference/thread/thread/thread/)
-Thread class Object is:
-- NOT CopyConstructible or CopyAssignable
-- it is MoveConstructible and MoveAssignable.
+- Thread class Object is: 
+  - NOT CopyConstructible or CopyAssignable.
+  - It is MoveConstructible and MoveAssignable.
+- **thread header file**
+```cpp
+class thread {					//Header thread
+  thread() noexcept;				//1. Default Ctr
+  template <class Fn, class... Args>		//2. Initialization ctr
+    explicit thread (Fn&& fn, Args&&... args);
+  thread (const thread&) = delete;		//3. Copy ctr deleted
+  thread (thread&& x) noexcept;			//4. Move ctr
+  
+  thread& operator=(const thread&) = delete;	//Assignment Operator deleted
+};
+```
+<a name=m12></a>
+**1. Create Thread. Not copy constructible, nor copy assignable**
 ```cpp
 #include<thread>
 void fun(int a){
@@ -76,7 +93,8 @@ int main() {
   //t1 = t2;
 }
 ```
-**Thread object is MoveAssignable**
+<a name=m13></a>
+**2. Thread object is MoveAssignable**
 ```cpp
 #include<thread>
 #include<iostream>
@@ -93,6 +111,25 @@ int main() {
 $ g++ test.cpp -lpthread
 $ ./a.out
 Hello10			//main() does not exit until thread exists
+```
+<a name=m14></a>
+**3. Thread calling methods of class**
+```cpp
+#include<thread>
+class A {
+  void test(int a) {
+    cout << a;
+  }
+public:
+  void fun(int a) {
+    thread t1(&A::test, this, a);
+    t1.join();
+  }
+};
+int main() {
+  A obj;
+  obj.fun(1);
+}
 ```
 
 <a name=m2></a>
