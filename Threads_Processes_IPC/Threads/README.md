@@ -78,18 +78,22 @@ exiting main thread
 
 <a name=ml></a>
 ## Memory Layout of Threads
-Every Thread have its seperate stack on Process stack. This is true for both [user-space](#us) and [kernel-space](#ks) threads.
+Every Thread have its seperate stack inside Process stack. This is true for both [user-space](#us) and [kernel-space](#ks) threads.
 #### Thread1 executing fun1(), Thread2 executing fun2()
 ```c
-<--------------Process Memory layout--------------------------->
-[           Stack             ][ ptr-to-heap ][Data Segment][Code Segment]
- [Thread1 fun1] [Thread2 fun2]
+<-----------------------Process Memory layout------------------------------------>
+ <--------Process Stack--------------> 
+ |<Thread1 stack>|<Thread2 stack>|
+[|fun1           |fun2           |    ][ ptr-to-heap ][Data Segment][Code Segment]
+
 ```			
 #### Memory layout of 2 threads executing same function
 ```c
-<--------------Process Memory layout--------------------------->
-[       Stack   fun()          ][ ptr-to-heap ][Data Segment][Code Segment]
- Thread1, Thread2 accesses fun()
+<-----------------------------Process Memory layout--------------------------->
+<-------Process Stack--------------> 
+[ fun()                             ][ ptr-to-heap ][Data Segment][Code Segment]
+ Thread1
+ Thread2 accesses fun()
 ```
 
 <a name=t></a>		
