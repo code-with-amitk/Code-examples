@@ -209,12 +209,14 @@ fn main() {
 pub struct Test {
     a: i32,
 }
-impl Drop for Test {
+impl Test {
     fn new(&mut self) {
         println!("new()");
     }
+}
+impl Drop for Test {
     fn drop(&mut self){
-        println!("dropping");
+        println!("dropping"); 
     }
 }
 fn main() {
@@ -222,12 +224,14 @@ fn main() {
       let mut k = Test{
         a: 10,
       };
-    }
-    k.new();
+        k.new();
+    }//Drops here
+    println!("Out of scope");
 }
 # cargo run
 new()
 dropping
+Out of scope
 ```
 <a name=fu></a>
 #### Future Trait
