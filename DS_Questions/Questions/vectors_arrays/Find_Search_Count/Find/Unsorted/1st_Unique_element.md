@@ -1,10 +1,10 @@
-**First Unique Element**
+**First Unique Product/Element**
 - [Logic](#l)
 - [Complexity](#co)
-- [Code](#c]
+- [Code](#c)
 
 
-### First Unique Element/{roduct
+### First Unique Element/Product
 - You are given a array of products. You need to find 1st product from array which occurs 1 time only in least possible time.
 ```c
 Example-1:
