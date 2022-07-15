@@ -6,16 +6,20 @@
 <a name=i></a>
 ### insert
 ```cpp
-  iterator insert (const_iterator position, const value_type& val)
+#include<list>
+#include<iterator>
 
-  list<string> dll;
-
-  dll.insert(dll.begin(),"hi");              //insert at begin
-  dll.insert(dll.end(),"there");             //insert at end
+///////// list<int> ////////////
+  list<int> dll;
+  lst.push_front(1);
+  um[key] = dll.begin();
+  //um[key] = dll.end();                    //Crash
   
-  list<string> temp{"Hello", "I", "Great"};  
-  list<string>::iterator it = temp.begin();
-  dll.insert (dll, it.begin(), it.end());
+/////// list of pair ////////////  
+  list<int, string> lst;
+  lst.push_front(make_pair(1, "amit"));   //or {1, "amit"}
+  um[key] = lst.begin();
+  //um[key] = lst.end();                    //Crash
 ```
 
 <a name=d></a>
