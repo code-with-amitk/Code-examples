@@ -12,6 +12,7 @@
   - [1. Round Robin](#rr)
   - [2. Routing Tier First](#rt)
   - [3. Direct Connect](#dc)
+  - [4. Coordinator Service(Zookeeper)](#cs)
 - **Terms**
   - [Skewed](#sk)
   - [Hotspot](#hs)
@@ -111,6 +112,15 @@ Clients aware of partitioning and the assignment of partitions to nodes. Client 
 
 <img src=request_routing.PNG width=600/>
 
+<a name=cs></a>
+#### 4. Coordinator Service(Zookeeper)
+- **Problem In Above 3 approaches:** How routing decision making component knows about changes in the assignment of partitions to nodes?
+- Coordinator service(Zookeeper) will:
+  - Keep track of cluster metadata(ie mapping of partitions to nodes)
+  - Every node in cluster will register to Zookeeper.
+- Examples: LinkedIn's Helix, HBase, SolrCloud and Kafka uses zookeeper.
+
+<img src=zookeeper.PNG width=600 />
 
 ### Terms
 <a name=hs></a>
