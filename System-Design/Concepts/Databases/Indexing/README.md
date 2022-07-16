@@ -23,7 +23,7 @@ Above example is fi.
 
 #### 2. Reverse/Inverted/Secondary Indexing
 Mapping of words to document or set of documents. Indexing is slow as it first checks that word is present or not. Searching is very fast.
-<img src=secondary_indexes.PNG width=500 />
+<img src=secondary_indexes.PNG width=700 />
 
 
 - **Primary vs Clustered vs Secondary Indexing**
