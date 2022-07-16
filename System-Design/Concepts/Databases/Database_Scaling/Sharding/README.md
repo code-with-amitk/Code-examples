@@ -5,6 +5,8 @@
   - [1. By Keys Range](#kr) 
   - [2. By Hash of Keys](#hk)
   - [3. By Reverse indexes](#si)
+- Rebalancing Partitions
+  - 
 - **Terms**
   - [Skewed](#sk)
   - [Hotspot](#hs)
@@ -69,6 +71,15 @@ keys   |a-e        |   |f-o        |   |p-z        |
 
 - **Disadv:**
   - _1. Slower/complicated writes:_ Write to a single document(on 1 partition) may now affect multiple partitions of the index (every term in the document might be on a different partition, on a different node).
+
+### Rebalancing Partitions
+- if partition fails(as nodes do fail) then how to move data to other node? 
+- **Strategies for rebalancing**
+<a name=r1></a>
+#### 1. Fixed number of partitions
+- Create more partitions on 1 node. In cluster of 10 nodes, create 1000 partitions. ie Every node contains 10 partitions.
+- Whenever new node joins it takes few partitions from existing node(until partitions are fairly distributed once again).
+<img src=rebalancing_fixed_no_of_partitions.PNG width=500/>
 
 ### Terms
 <a name=hs></a>
