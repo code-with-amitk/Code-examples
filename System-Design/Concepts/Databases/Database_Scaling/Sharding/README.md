@@ -6,7 +6,7 @@
   - [2. By Hash of Keys](#hk)
   - [3. By Reverse indexes](#si)
 - Rebalancing Partitions
-  - 
+  - [1. Fixed number of partitions](#r1)
 - **Terms**
   - [Skewed](#sk)
   - [Hotspot](#hs)
