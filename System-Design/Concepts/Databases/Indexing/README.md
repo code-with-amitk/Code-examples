@@ -1,5 +1,8 @@
 **Indexing**
 - [How Index works](#h)
+- Types
+  - [1. Forward](#f)
+  - [2. Reverse/Secondary](#r)
 
 ## Indexing
 Technique to search data in database faster. This improve search/insert/modify operations time. 
@@ -16,11 +19,12 @@ Now to access any `<key, value>` in Database we search key in Indexing Hash map 
 
 <img src=indexing.png width=600 />
 
-
 ### Types of indexing
+<a name=f></a>
 #### 1. Forward Indexing
 Above example is fi.
 
+<a name=r></a>
 #### 2. Reverse/Inverted/Secondary Indexing
 Mapping of words to document or set of documents. Indexing is slow as it first checks that word is present or not. Searching is very fast.
 <img src=secondary_indexes.PNG width=700 />
