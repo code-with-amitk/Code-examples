@@ -1,8 +1,12 @@
 **Partition / Shard(MongoDB,ElasticSearch) / Region(HBase) / Bigtable(Tablet) / vNode(Cassandra) / vBucket(CouchBase)**
 - [Partitioning improves Scalabilty](#h)
 - [Partitioning with Replication](#pr)
+- [Types](#ty)
+- **Terms**
+  - [Skewed](#sk)
+  - [Hotspot](#hs)
 
-### Partitioning/Sharding 
+# Partitioning/Sharding 
 <a name=h></a>
 #### How Partioning achieves Scalabilty
 - Different partitions can be placed on different nodes hence a large dataset is distributed across many disks, and the query load can be distributed across many machines/processors.
@@ -17,6 +21,18 @@
   |partition1 partition2 partition3|      |partition3 partition2 partition1|
   | (master)   (slave)    (slave)  |      | (master)   (slave)    (slave)  |
 ```
+
+## Types
+### 1. Partitioning by Key range
+- Each partition/shard holds range of `<key, value>` for particular range.
+- If we know which partition is assigned to which node, then we can make request directly to the appropriate node.
+```c
+       |Partition-1|   |Partition-2|   |Partition-3|
+keys   |a-e        |   |f-o        |   |p-z        |
+```
+- **Adv:** Keys can be kept in sorted order inside the partition.
+- **Disadv:**
+  - _1. Certain types of keys can turn partition into [Hotspot](#hs)_
 
 ### Terms
 <a name=hs></a>
