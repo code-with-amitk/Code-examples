@@ -1,7 +1,7 @@
 **DB Scaling Techniques**
 - [1. Replication](1.Replication)
 - [2. Federation](#fed)
-- [3. Sharding](#shard)
+- [3. Sharding](Sharding)
 - [4. Range Based Partitioning](#rbp)
 
 <a name=fed></a>
@@ -21,32 +21,6 @@
                         |--product query->       |  ProductDB   |
                                                   --------------
 ```                                                                                           
-
-<a name=shard></a>
-## 3. Sharding
-- Data is distributed across the databases, so that each DB only manages subset of data.
-- **Adv:** a. Less data/DB hence more cache hits.
-- **Disadv:** 
-  - *a.* if 1 user or some users becomes hot, then a DB will become hugely loaded and other will remain empty.
-  - *b.* If 1 DB goes down, replica should be up and running.
-  - *c.* Complex SQL queries
-  - *d.* Joining data from multiple shards is more complex.
-```c
-  ------------------         ------------------        -----------------          -----------------
-  | db1 Users(A-G) |         | db2 User(F-L) |        | db3 Users(M-T) |         | db4 Users(U-Z) |
-  ------------------         ------------------        ------------------         ------------------
-```
-
-<a name=rbp></a>
-## 4. Range Based Partitioning
-- One Database is used to store all keys starting from particular character.
-- **Problem:** Since keys are generated on the fly, 1 DB can be hugely loaded and others are free.
-  - *Solution:* [Consitent Hashing](/System-Design/Concepts/Hashing/Consistent_Hashing.md)
-```c
-  ---------------------------------     --------------------------------- 
-  | Db-1 All-Keys(starting with A) |    | Db-2 All-Keys(starting with B) |    ..
-  ----------------------------------    ----------------------------------
-```
 
 ## D. Denormalization
 - Opposite to normalization, denormalization writes redundant copies to data to multiple databases. This improves reads wrt writes. Read:Write ratio increases to 1000:1.
