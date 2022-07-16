@@ -131,27 +131,3 @@ Cluster has become highly [skewed](#sk), all load ends up on 1 partition. 9 out 
 <a name=sk></a>
 #### Skewed
 When partitioning becomes unfair some partitions have more data or queries than others. This makes the partitioning much less effective, this can lead to [hotspot](#hs)
-
-
-- **Adv:** a. Less data/DB hence more cache hits.
-- **Disadv:** 
-  - *a.* if 1 user or some users becomes hot, then a DB will become hugely loaded and other will remain empty.
-  - *b.* If 1 DB goes down, replica should be up and running.
-  - *c.* Complex SQL queries
-  - *d.* Joining data from multiple shards is more complex.
-```c
-  ------------------         ------------------        -----------------          -----------------
-  | db1 Users(A-G) |         | db2 User(F-L) |        | db3 Users(M-T) |         | db4 Users(U-Z) |
-  ------------------         ------------------        ------------------         ------------------
-```
-
-<a name=rbp></a>
-## 4. Range Based Partitioning
-- One Database is used to store all keys starting from particular character.
-- **Problem:** Since keys are generated on the fly, 1 DB can be hugely loaded and others are free.
-  - *Solution:* [Consitent Hashing](/System-Design/Concepts/Hashing/Consistent_Hashing.md)
-```c
-  ---------------------------------     --------------------------------- 
-  | Db-1 All-Keys(starting with A) |    | Db-2 All-Keys(starting with B) |    ..
-  ----------------------------------    ----------------------------------
-```
