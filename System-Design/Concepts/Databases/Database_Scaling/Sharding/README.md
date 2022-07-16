@@ -55,17 +55,20 @@ keys   |a-e        |   |f-o        |   |p-z        |
 
 <a name=si></a>
 ### 3. Partitioning with [reverse/secondary indexes](/System-Design/Concepts/Databases/Indexing)
-#### 3.1 Document Based
+#### 3.1 Document Based / Per Node Indexing
 - [keyword to key mapping](/System-Design/Concepts/Databases/Indexing) is created.
 - if someone want to search keyword, all partitions need to be queried.
 
-#### 3.2 Term Based
+#### 3.2 Term Based / Global Indexing
 - Rather than storing indexes on every partition, We can construct a global index that covers data in all partitions.
 - We should not store that index on one node, since it would likely become a bottleneck and defeat the purpose of partitioning.
 - Example:
   - Colors from `a to r` from all partitions stored at partition=0.
   - Colors from `s to z` stored on partition 1.
 <img src=Partitioning_by_term.PNG width=600 />
+
+- **Disadv:**
+  - _1. Slower/complicated writes:_ Write to a single document(on 1 partition) may now affect multiple partitions of the index (every term in the document might be on a different partition, on a different node).
 
 ### Terms
 <a name=hs></a>
