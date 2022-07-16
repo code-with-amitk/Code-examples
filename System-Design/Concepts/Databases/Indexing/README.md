@@ -6,7 +6,6 @@ Technique to search data in database faster. This improve search/insert/modify o
 
 <a name=h></a>
 ### How index works
-#### 1. <Key, value> Database
 Index is simply a hash-table which stores key and offset in the file.
 ```c
 key     Value
@@ -19,22 +18,13 @@ Now to access any `<key, value>` in Database we search key in Indexing Hash map 
 
 
 ### Types of indexing
-- **1. Forward Indexing**
-  - Mapping of documents to words. What all keywords a document contains.
-  
-| Document | Keywords |
-| --- | --- |
-| doc1 | hello, sky, morning |
-| doc2 | tea, coffee, hi |
-| doc3 | greetings, sky |
+#### 1. Forward Indexing
+Above example is fi.
 
-- **2. Reverse/Inverted Indexing**
-  - Mapping of words to document or set of documents. Indexing is slow as it first checks that word is present or not. Searching is very fast.
-  
-| Word | Documents |
-| --- | --- |
-| hello | doc1 |
-| sky | doc1, doc3 |
+#### 2. Reverse/Inverted/Secondary Indexing
+Mapping of words to document or set of documents. Indexing is slow as it first checks that word is present or not. Searching is very fast.
+<img src=secondary_indexes.PNG width=500 />
+
 
 - **Primary vs Clustered vs Secondary Indexing**
   - *a. Primary indexing:* Anchor attribute we use for searching is the primary key(unique value for entry in table.)
