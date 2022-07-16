@@ -2,7 +2,6 @@
 - [1. Replication](1.Replication)
 - [2. Federation](#fed)
 - [3. Sharding](Sharding)
-- [4. Range Based Partitioning](#rbp)
 
 <a name=fed></a>
 ## 2. Federation/Functional Parition
