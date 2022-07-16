@@ -155,9 +155,10 @@ Node selects k neighbours randomly, sends key-100(data to searched) to them, aga
 
 <a name=sc></a>
 ### Scalability
-- System’s ability to cope with increased load.
-- Scalability means considering questions like “If the system grows in a particular way, what are our options for coping with the growth?” and “How can we add computing
-resources to handle the additional load
+- Means System behaves normally under increased load.
+- **How to achieve scalabilty?**
+  - [1. Sharding/Partitioning DB](/System-Design/Concepts/Databases/Database_Scaling)
+  - [2. Autoscaling](#auto)
 
 <a name=ten></a>
 ### Tenant
