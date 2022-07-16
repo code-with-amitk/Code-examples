@@ -55,6 +55,7 @@ keys   |a-e        |   |f-o        |   |p-z        |
   key -> |Hash Function| -> Hash
 ```
 <img src=Partitioning_by_hash_of_keys.PNG width=500/>
+
 - **Adv:**
   - _1. Reduced Hotspots:_ See Disadv of [Partitioning by Key range](#kr), that is removed. Since for similar keys different hashes are generated.
 - **Disadv:**
