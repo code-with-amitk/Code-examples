@@ -7,6 +7,7 @@
   - [3. By Reverse indexes](#si)
 - Rebalancing Partitions
   - [1. Fixed number of partitions](#r1)
+  - [2. Dynamic partitioning](#r2)
 - **Terms**
   - [Skewed](#sk)
   - [Hotspot](#hs)
@@ -80,6 +81,11 @@ keys   |a-e        |   |f-o        |   |p-z        |
 - Create more partitions on 1 node. In cluster of 10 nodes, create 1000 partitions. ie Every node contains 10 partitions.
 - Whenever new node joins it takes few partitions from existing node(until partitions are fairly distributed once again).
 <img src=rebalancing_fixed_no_of_partitions.PNG width=500/>
+
+<a name=r2></a>
+#### 2. Dynamic partitioning
+> Eg: HBase, RethinkDB perform this.
+- if partition size grows above threshold
 
 ### Terms
 <a name=hs></a>
