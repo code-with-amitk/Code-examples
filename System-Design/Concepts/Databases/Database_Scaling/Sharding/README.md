@@ -1,13 +1,17 @@
 **Partition / Shard(MongoDB,ElasticSearch) / Region(HBase) / Bigtable(Tablet) / vNode(Cassandra) / vBucket(CouchBase)**
 - [Partitioning improves Scalabilty](#h)
 - [Partitioning with Replication](#pr)
-- Types
+- **Types**
   - [1. By Keys Range](#kr) 
   - [2. By Hash of Keys](#hk)
   - [3. By Reverse indexes](#si)
-- Rebalancing Partitions
+- **Rebalancing Partitions**
   - [1. Fixed number of partitions](#r1)
   - [2. Dynamic partitioning](#r2)
+- **Request Routing** 
+  - [1. Round Robin](#rr)
+  - [2. Routing Tier First](#rt)
+  - [3. Direct Connect](#dc)
 - **Terms**
   - [Skewed](#sk)
   - [Hotspot](#hs)
@@ -75,7 +79,7 @@ keys   |a-e        |   |f-o        |   |p-z        |
 
 ### Rebalancing Partitions
 - if partition fails(as nodes do fail) then how to move data to other node? 
-- **Strategies for rebalancing**
+**Strategies for rebalancing**
 <a name=r1></a>
 #### 1. Fixed number of partitions
 - Create more partitions on 1 node. In cluster of 10 nodes, create 1000 partitions. ie Every node contains 10 partitions.
@@ -85,7 +89,28 @@ keys   |a-e        |   |f-o        |   |p-z        |
 <a name=r2></a>
 #### 2. Dynamic partitioning
 > Eg: HBase, RethinkDB perform this.
-- if partition size grows above threshold
+- if partition size grows above threshold(HBase 10GB) it splits into 2 halves.
+- Conversely, if lots of data is deleted and a partition shrinks below some threshold, it is merged with an adjacent partition.
+- **Adv:** Adjusts to load. 
+- **Disadv:** Until it hits the point at which the first partition is split, all writes processed to single node while the other nodes sit idle.
+
+### Request Routing
+<a name=rr></a>
+#### 1. Round Robin
+- Allow clients to contact any node/partition (e.g. via a round-robin load balancer).
+- If that node coincidentally owns the partition to which the request applies, it can handle the request directly; otherwise it forwards the request to the appropriate node.
+
+<a name=rt></a>
+#### 2. Routing tier first
+- Send all requests from clients to a routing tier first, which determines the node that should handle the request and forwards it accordingly
+- This tier is parition aware load balancer
+
+<a name=dc></a>
+#### 3. Direct Connect
+Clients aware of partitioning and the assignment of partitions to nodes. Client can connect directly to the appropriate node, without any intermediary.
+
+<img src=request_routing.PNG width=600/>
+
 
 ### Terms
 <a name=hs></a>
