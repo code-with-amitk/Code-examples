@@ -1,7 +1,10 @@
 **Partition / Shard(MongoDB,ElasticSearch) / Region(HBase) / Bigtable(Tablet) / vNode(Cassandra) / vBucket(CouchBase)**
 - [Partitioning improves Scalabilty](#h)
 - [Partitioning with Replication](#pr)
-- [Types](#ty)
+- Types
+  - [1. By Keys Range](#kr) 
+  - [2. By Hash of Keys](#hk)
+  - [3. By Reverse indexes](#si)
 - **Terms**
   - [Skewed](#sk)
   - [Hotspot](#hs)
@@ -23,6 +26,7 @@
 ```
 
 ## Types
+<a name=kr></a>
 ### 1. Partitioning by Key range
 - Each partition/shard holds range of `<key, value>` for particular range.
 - If we know which partition is assigned to which node, then we can make request directly to the appropriate node.
@@ -32,7 +36,36 @@ keys   |a-e        |   |f-o        |   |p-z        |
 ```
 - **Adv:** Keys can be kept in sorted order inside the partition.
 - **Disadv:**
-  - _1. Certain types of keys can turn partition into [Hotspot](#hs)_
+  - _1. Certain types of keys can turn partition into [Hotspot](#hs):_
+    - Example: if key=timestamp(and IoT devices sending data) and there is huge load in 1 hour then 1 shard will recieve all data, while other will sit idle.
+
+<a name=hk></a>
+### 2. Partitioning by Hash of Keys
+- Hash function takes the key, generates the Hash. Hash is evenly distributed, even for very similar keys, different hash is generated. Hash points to a Partition.
+- Hashes are evenly distributed and points to seperate shard. Each partition now holds range of hashes(rather than range of keys).
+```c
+  key -> |Hash Function| -> Hash
+```
+<img src=Partitioning_by_hash_of_keys.PNG width=500/>
+- **Adv:**
+  - _1. Reduced Hotspots:_ See Disadv of [Partitioning by Key range](#kr), that is removed. Since for similar keys different hashes are generated.
+- **Disadv:**
+  - _1. Range based key search property is lost._ ie Advantage of [Partitioning by Key range](#kr) is lost.
+  - _2. Hotspots still exists:_ In extreme conditions, where keys differ by millisec, same hash gets generated and all load goes to same shard.
+
+<a name=si></a>
+### 3. Partitioning with [reverse/secondary indexes](/System-Design/Concepts/Databases/Indexing)
+#### 3.1 Document Based
+- [keyword to key mapping](/System-Design/Concepts/Databases/Indexing) is created.
+- if someone want to search keyword, all partitions need to be queried.
+
+#### 3.2 Term Based
+- Rather than storing indexes on every partition, We can construct a global index that covers data in all partitions.
+- We should not store that index on one node, since it would likely become a bottleneck and defeat the purpose of partitioning.
+- Example:
+  - Colors from `a to r` from all partitions stored at partition=0.
+  - Colors from `s to z` stored on partition 1.
+<img src=Partitioning_by_term.PNG width=600 />
 
 ### Terms
 <a name=hs></a>
