@@ -7,8 +7,7 @@ Technique to search data in database faster. This improve search/insert/modify o
 <a name=h></a>
 ### How index works
 #### 1. <Key, value> Database
-- Index is simply a hash-table which stores key and offset in the file.
-- Example: Suppose we want to store this in `key,value` Database store
+Index is simply a hash-table which stores key and offset in the file.
 ```c
 key     Value
 123456:{name: London, attractions: [Big Ben, London Eye]}\n
