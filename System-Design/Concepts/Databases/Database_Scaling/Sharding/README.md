@@ -17,7 +17,15 @@
   - [Skewed](#sk)
   - [Hotspot](#hs)
 
-# Partitioning/Sharding 
+# Partitioning/Sharding
+- Replication(Multiple copies of the same data on different nodes). For very large datasets, breaking the data & storing into partitions is called partitioning or sharding.
+- Breaking the Huge data into pieces and storing on different servers.
+```c
+hello world come here
+
+|hello|     |world|     |come|        |here|
+node-1      node-2      node-3        node-4
+```
 <a name=h></a>
 #### How Partioning achieves Scalabilty
 - Different partitions can be placed on different nodes hence a large dataset is distributed across many disks, and the query load can be distributed across many machines/processors.
