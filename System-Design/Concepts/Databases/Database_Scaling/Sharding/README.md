@@ -1,3 +1,5 @@
+**[Self Video](https://youtu.be/jP6du10hFNs)**
+
 **Partition / Shard(MongoDB,ElasticSearch) / Region(HBase) / Bigtable(Tablet) / vNode(Cassandra) / vBucket(CouchBase)**
 - [Partitioning improves Scalabilty](#h)
 - [Partitioning with Replication](#pr)
