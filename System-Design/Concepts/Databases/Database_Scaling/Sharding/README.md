@@ -105,6 +105,7 @@ keys   |a-e        |   |f-o        |   |p-z        |
 - **Disadv:** Until it hits the point at which the first partition is split, all writes processed to single node while the other nodes sit idle.
 
 ### Request Routing
+How client sends/routes the request to a Parititon/Shard?
 <a name=rr></a>
 #### 1. Round Robin
 - Allow clients to contact any node/partition (e.g. via a round-robin load balancer).
