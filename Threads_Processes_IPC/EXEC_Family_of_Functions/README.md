@@ -8,7 +8,8 @@
 
 <a name=what></a>
 ### What is exec
-All functions executes a file, replacing current/running process with a new process. [PCB](/Threads_Processes_IPC/Processes/Process_Table) of new process replaces old.
+- The exec family of functions replaces the current/running process with a new process.
+- All functions executes a file [PCB](/Threads_Processes_IPC/Processes/Process_Table) of new process replaces old.
 - There are 6 different execXX function calls. The differences between them is how the program is found, how the arguments are specified, and what are environment variables.
 - **When exec() fails?** Exec can fail if the file name given does not exist ie not a valid executable file.
 
