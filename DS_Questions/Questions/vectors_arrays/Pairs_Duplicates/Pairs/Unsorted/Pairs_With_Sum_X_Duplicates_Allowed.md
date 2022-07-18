@@ -2,7 +2,8 @@
 - [Approach-1, O(n^2), Brute Force](#a1)
 - [Approach-2, HashTable](#a2)
 - **Multithreaded**
-  - [1. lock_guard](#m1)
+  - [1. lock_guard = mutex](#m1)
+  - [2. condition_variable = semaphore](#m2)
 
 ## [Two Sum](https://leetcode.com/problems/two-sum)
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -97,6 +98,66 @@ public:
         thread t2(&Solution::find, this, ref(v), size/2, size, target);
         t1.join();                                      //Both threads need to be joined before return
         t2.join();                                      //Because if main exits before threads, result will not reflect in out.
+        return out;    
+    }  
+};
+```
+
+<a name=m2></a>
+#### 2. condition_variable = semaphore 
+```cpp
+mutex m;
+condition_variable cv;
+//atomic<bool> bStart(false);
+bool bStart = false;
+
+class Solution {
+    vector<int> out;
+    unordered_map<int,int> umm;
+public:
+    void find1(vector<int>& v, int start, int end, int target){
+        unique_lock<mutex> ulock(m);
+        cv.wait(ulock, []{return (bStart==false);});//wait condition is true go in
+
+        for (int i=start; i<end; ++i) {
+            auto it = umm.find(target-v[i]);
+            if (it == umm.end())
+                umm.insert({v[i], i});
+            else {
+                out.push_back(it->second);
+                out.push_back(i);
+                break;
+            }
+        }
+        bStart = true;
+        ulock.unlock();
+        cv.notify_one();
+    }
+    void find2(vector<int>& v, int start, int end, int target){
+        unique_lock<mutex> ulock(m);
+        cv.wait(ulock, []{return (bStart==true);}); //if wait condition is true go in
+
+        for (int i=start; i<end; ++i) {
+            auto it = umm.find(target-v[i]);
+            if (it == umm.end())
+                umm.insert({v[i], i});
+            else {
+                out.push_back(it->second);
+                out.push_back(i);
+                break;
+            }
+        }
+        bStart = false;
+        ulock.unlock();
+        cv.notify_one();
+    }
+
+    vector<int> twoSum(vector<int>& v, int target) {
+        int size = v.size();
+        thread t1(&Solution::find1, this, ref(v), 0, size/2, target);
+        thread t2(&Solution::find2, this, ref(v), size/2, size, target);
+        t1.join();
+        t2.join();
         return out;    
     }  
 };
