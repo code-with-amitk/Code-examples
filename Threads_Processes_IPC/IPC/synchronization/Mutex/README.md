@@ -219,12 +219,7 @@ T2: 2
 
 <a name=ul></a>
 ### 2. unique_lock
-- This also owns the mutex, then this mutex is handled with unique_lock.
-```cpp
-mutex mtx;
-unique_lock<mutex> ulock(mtx);           //Mutex(mtx) is owned by unique_lock
-```
-- This is similar to [lock_guard](#lg), but supports additional locking strategies(or types of unique_locks):
+- This also owns the mutex, then this mutex is handled with unique_lock. This is similar to [lock_guard](#lg), but supports additional locking strategies(or types of unique_locks)
 ```cpp  
 unique_lock<mutex> ulock(mtx);                    //Lock immdiately
 
