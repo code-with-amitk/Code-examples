@@ -1,6 +1,8 @@
 **Two Sum / Pair with Sum of X**
 - [Approach-1, O(n^2), Brute Force](#a1)
 - [Approach-2, HashTable](#a2)
+- **Multithreaded**
+  - [1. lock_guard](#m1)
 
 ## [Two Sum](https://leetcode.com/problems/two-sum)
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -62,4 +64,40 @@ int main(){
     vector<int> o = s.twoSum(v, target);
     cout << o[0] << "," << o[1] << "\n";
 }
+```
+
+### Multithreaded
+<a name=m1></a>
+#### 1. [Using lock_guard](https://leetcode.com/submissions/detail/750056009/)
+> [What is lock_guard](/Threads_Processes_IPC/IPC/synchronization/Mutex/README.md#lg)
+- Incoming vector is divided into 2 parts. 1st part processed by thread1, other by thread2
+```cpp
+mutex m;
+class Solution {
+    vector<int> out;
+    unordered_map<int,int> um;
+public:
+    void find(vector<int>& v, int start, int end, int target){
+        lock_guard<mutex> lg(m);                      //if you remove lock_guard, corruption will happen
+
+        for (int i=start; i<end; ++i) {
+            auto it = um.find(target-v[i]);
+            if (it == um.end())
+                um.insert({v[i], i});
+            else {
+                out.push_back(it->second);
+                out.push_back(i);
+                break;
+            }
+        }
+    }
+    vector<int> twoSum(vector<int>& v, int target) {
+        int size = v.size();
+        thread t1(&Solution::find, this, ref(v), 0, size/2, target);
+        thread t2(&Solution::find, this, ref(v), size/2, size, target);
+        t1.join();                                      //Both threads need to be joined before return
+        t2.join();                                      //Because if main exits before threads, result will not reflect in out.
+        return out;    
+    }  
+};
 ```
