@@ -1,7 +1,8 @@
 **Find the Celebrity**
 - Approach-1 O(n<sup>2</sup>)
   - [Logic](#l1)
-- Approach-2
+- Approach-2 O(n)
+  - [Logic](#l)
 
 
 ### [Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/)
@@ -94,23 +95,34 @@ int main() {
 ```
 
 ### Approach-2
+<a name=l></a>
 #### Logic //Asking only required questions
+- From every `knows(a,b)` we derive information about a and b
 ```c
-  a --> b
-  |---> c
+  a-->b     //a knows b means
+  - a cannot be celebrity
+  - b can be celebrity
   
-if (knows(a,b)) {   //a knows b
-  - Means a cannot be celebrity
-} 
-else {              //a does not know b
-  //b cannot be celebrity, since all people should know celebrity
-}
+  a   b     //a does not know b means
+  - a can be celebrity
+  - b cannnot be celebrity
 ```
+- _1._ Find celebrity candidate.
+  - Candidate should not know any one.
+  - All people should know the candidates.
+  - As we know there can be only celebrity.
+```c
+//1 is celebrity
+  1 <-- 2
+  /\
+  |
+  |--- 3
 
+//No celebrity
+  1 --> 2 --> 3 --> 4  
 
-
-
-
-
-
-
+//No celebrity
+  1 --> 2 --> 3    4
+                   5
+```
+- _2._ Check whether celebrity candidate 
