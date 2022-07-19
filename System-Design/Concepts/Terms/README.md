@@ -19,6 +19,7 @@
 - [Stream](/System-Design/Concepts/MOM_ESB/Apache_Kafka/#st)
 - [Tenant](#ten)
 - [Throughput](#tp)
+- [Transaction](Transaction)
 
 <a name=ac></a>
 ### Accuracy
@@ -192,11 +193,8 @@ JAMS case:
   (site-3)JAMS_Kallactor-3 -------/
 ```
 
-
 <a name=tp></a>
 ### Throughput
   - Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
   - Measured in Bits/sec(bps), data packets per second (p/s or pps).
 - **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
-
-
