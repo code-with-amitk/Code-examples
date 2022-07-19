@@ -143,11 +143,8 @@ void ping() {								//5. Control reaches ping()
 		
 		//5b. `cv.wait(unique_lock, []{wait_condition});` wait_condition==true.
 		//Hence go in. Print ping
-		cv.wait(ulock, []					
-			{	//Wait until this code block return true
-				return !start;
-			}
-		);
+		cv.wait(ulock, []{ return (start==false;); } );		//if wait condition is true ie start==false, go in
+		
 		if (k++ > 10)						//5e. if we have not printed 10 times, goto pong()
 			return;
 		start = true;
@@ -166,11 +163,8 @@ void pong() {                                                            //2. Co
 		//Wait on condition variable until wait_condition becomes true. 
 		//if wait_condition==false, Donot go in.
 		//Here start is false hence Pong will not be printed
-		cv.wait(ulock, []                                       //Lambda Expression
-			{	//Wait until this code block return true
-				return start;
-			}
-		);
+		cv.wait(ulock, []{ return (start==true;); } );		//if wait condition is true ie start==true, go in
+		
 		if (k++ > 10)
 			return;
 		start = false;
