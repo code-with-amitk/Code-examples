@@ -1,5 +1,7 @@
 - [Accuracy](#ac)
+- [ACID](#acid)
 - [Antisnubbing](#ans)
+- [Atomic](#at)
 - [Availability](#av)
 - [Autoscaling](#auto)
   - [How auto scaling works?](#howa)
@@ -25,10 +27,18 @@
 ### Accuracy
 System is doing what's it's supposed to do.
 
+<a name=acid></a>
+### ACID
+[Atomicity](#at), Consistency, Isolation, and Durability.
+
 <a name=ans></a>
 ### Antisnubbing 
 snub means ignoring someone or something. Time to time, a BitTorrent peer becomes choked/blocked by all peers from which it was receiving fragments because of poor download/upload capacity or absesnce of required fragments. 
 - *Solution:* Finds a better peer than any of the current ones.
+
+<a name=at></a>
+### Atomicity
+
 
 <a name=av></a>
 ### Availability
