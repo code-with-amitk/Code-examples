@@ -1,11 +1,12 @@
 - [Accuracy](#ac)
 - [ACID](#acid)
 - [Antisnubbing](#ans)
-- [Atomic](#at)
+- [Atomicity](#at)
 - [Availability](#av)
 - [Autoscaling](#auto)
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
+- [BASE](#ba)
 - [Consistency](#con)
 - [CAP Theorem](#cap)
 - [Decentralized](/System-Design/Concepts/Decentralization)
@@ -39,7 +40,6 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 <a name=at></a>
 ### Atomicity
 
-
 <a name=av></a>
 ### Availability
 - Whole system is up, user can RW successfully irrespective if any node in the cluster is down.
@@ -69,6 +69,10 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
   - Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
 - **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
 - **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
+
+<a name=ba></a>
+### BASE
+Basically Available, Soft state, and Eventual consistency
 
 <a name=cap></a>
 ### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#pt))
