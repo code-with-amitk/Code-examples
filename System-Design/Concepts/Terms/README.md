@@ -45,7 +45,8 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 - [Atomic in multi-threaded program](/Threads_Processes_IPC/Terms/README.md#at) is different from Atomic in Distributed Systems.
 - In Distributed systems Atomic means
   - When Application is writing to DB and some fault occurs(process crash, LAN cable loose, Disk full) then application will not see DB in inconsistent state.
-  - Atomicity is achieved using [Transactions](Transaction), ie when some transaction fails then its Aborted and DB comes in old state.
+- **How to achieve Atomicity?**
+- Using [Transactions](Transaction), ie when some transaction fails then its Aborted and DB comes in old state.
 
 <a name=av></a>
 ### Availability
