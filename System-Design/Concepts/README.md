@@ -25,7 +25,7 @@ Running programs on someone else's cluster of computers, ie not running program 
 <a name=d></a>
 # Distributed System
 - Collection of computing elements that appears to its users as a 1 system giving 1 system view ie end users does not notice that he is dealing with processes, data and control are dispersed across the nodes.
-- All transactions in distributed systems Follow ACID(Atomic, Consistency, Isolated, Durable)
+- All transactions in distributed systems Follow [ACID](/System-Design/Concepts/Terms/README.md#acid)
 ## Components of DS
 - *1. Middleware* It hides he differences in H/W and OS from each application.  
 - *2. Broker* All application commnicate with each other using broker. 
