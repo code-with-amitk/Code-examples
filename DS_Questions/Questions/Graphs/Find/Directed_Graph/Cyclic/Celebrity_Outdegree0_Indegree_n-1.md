@@ -4,6 +4,7 @@
 - Approach-2 O(n)
   - [Logic](#l)
   - [Complexity](#co)
+  - [Code](#c)
 
 
 ### [Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/)
