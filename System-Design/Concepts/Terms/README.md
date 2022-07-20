@@ -11,8 +11,10 @@
 - [CAP Theorem](#cap)
 - [Decentralized](/System-Design/Concepts/Decentralization)
 - [Deduplication](#de)
+- [Durability](#dur)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
+- [Isolation](#iso)
 - [Latency](#la)
 - [Orchestration](#orc)
 - [Partition Tolerance](#pt)
@@ -30,7 +32,7 @@ System is doing what's it's supposed to do.
 
 <a name=acid></a>
 ### ACID
-[Atomicity](#at), Consistency, Isolation, and Durability.
+[Atomicity](#at), [Consistency](#con), [Isolation](#iso), [Durability](#dur)
 
 <a name=ans></a>
 ### Antisnubbing 
@@ -102,9 +104,14 @@ CAP theorem says: Only 2 out 3 can be guaranteed.
 
 <a name=de></a>
 ### Deduplication 
-Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
-
+- Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
+
+<a name=dur></a>
+### Durability
+- Once [transaction](Transaction) has been committed successfully(ie data is written to DB), then that data will not be forgotten, even in case of hardware fault/ database crashes
+- **How to achieve Durability?**
+  - On Single node system using SSD or Hard-disks. On multinode using [Replication](/System-Design/Concepts/Databases/Database_Scaling)
 
 <a name=ft></a>
 ### Fault Tolerance
@@ -117,6 +124,10 @@ Eliminating duplicate or redundant information. Eg: How server identifies and dr
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
     - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
+
+<a name=iso></a>
+### Isolation
+Concurrently executing [transactions](Transaction) are isolated from each other: they cannot step on each other.
 
 <a name=la></a>
 ### Latency 
