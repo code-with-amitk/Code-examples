@@ -3,6 +3,7 @@
   - [Logic](#l1)
 - Approach-2 O(n)
   - [Logic](#l)
+  - [Complexity](#co)
 
 
 ### [Find the Celebrity](https://leetcode.com/problems/find-the-celebrity/)
@@ -108,9 +109,9 @@ int main() {
   - b cannnot be celebrity
 ```
 - _1._ Find celebrity candidate.
-  - Candidate should not know any one.
-  - All people should know the candidates.
+  - Candidate should not know any one, but all should know candidate.
   - As we know there can be only celebrity.
+  - if we found more than 1 celebrity candidate return -1.
 ```c
 //1 is celebrity
   1 <-- 2
@@ -121,8 +122,78 @@ int main() {
 //No celebrity
   1 --> 2 --> 3 --> 4  
 
-//No celebrity
+//No celebrity. Only 1 celebrity
   1 --> 2 --> 3    4
                    5
 ```
-- _2._ Check whether celebrity candidate 
+- _2._ if step-1 succeed, ie we found only 1 celebrity candidate.
+  - Check for celebrity candidate
+    - _a._ All people know him
+    - _b._ He does not know anyone
+
+<a name=co></a>
+#### Complexity
+- **Time:** O(n)
+  - O(n): Find celebrity candidate
+  - O(n): Check whether celebrity candidate is really a celebrity
+- **Space:** O(1)
+
+<a name=c></a>
+#### Code
+```cpp
+#include<iostream>
+#include<vector>
+#include<unordered_set>
+#include<unordered_map>
+using namespace std;
+using vecVecI = vector<vector<int>>;
+
+class Solution {
+    vecVecI v;
+    unordered_map<int, unordered_set<int>> graph;
+    bool knows(int a, int b){
+        if(v[a][b])
+            return true;
+        return false;
+    }
+public:
+    Solution(vecVecI v):v(v){}
+    int findCelebrity(int n) {
+        int celebCandidate = 0;
+        
+        for (int i=0;i<n;++i){            //1. Find celebrity candidate.
+            if (i == celebCandidate)
+                continue;
+            if (knows(celebCandidate, i))   //1a. if present celebCandidate knows i, He cannot be celebrity
+                celebCandidate = i;
+        }
+        
+        if (isCelebrity(celebCandidate, n))   //2. Check whether candidate we selected is really a celebrity
+            return celebCandidate;
+        return -1;
+    }
+    bool isCelebrity(int celebCandidate, int n) {
+        for (int i=0;i<n;++i) {                     //Iterate over all nodes
+            if (i == celebCandidate)
+                continue;
+
+            //2a. if celebCandidate knows i. 
+            // b. if i does not know celebCandidate.
+            // in both above cases return false
+            if (knows(celebCandidate, i) || (knows(i,celebCandidate) == false))
+                return false;
+        }
+        return true;
+    }
+};
+
+int main() {
+    vecVecI v = {{1,1,0},{0,1,0},{1,1,1}};        //1
+    //vecVecI v = {{1,0,1},{1,1,0},{0,1,1}};      //-1
+    //vecVecI v = {{1,1,1},{1,1,0},{0,0,1}};      //-1
+    //vecVecI v = {{1,0},{1,1}};      //0
+    //vecVecI v = {{1,0},{0,1}};      //-1
+    Solution s(v);
+    cout << s.findCelebrity(2);
+}
+```
