@@ -38,7 +38,12 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 - *Solution:* Finds a better peer than any of the current ones.
 
 <a name=at></a>
-### Atomicity
+### Atomicity (better word should be Abortibilty)
+> Atomic means something that cannot be broken down into smaller parts.
+- [Atomic in multi-threaded program](/Threads_Processes_IPC/Terms/README.md#at) is different from Atomic in Distributed Systems.
+- In Distributed systems Atomic means
+  - When Application is writing to DB and some fault occurs(process crash, LAN cable loose, Disk full) then application will not see DB in inconsistent state.
+  - Atomicity is achieved using [Transactions](Transaction), ie when some transaction fails then its Aborted and DB comes in old state.
 
 <a name=av></a>
 ### Availability
