@@ -120,6 +120,7 @@ Other tasks in async function can run?  |     yes          |          no        
 
 <a name=at></a>
 ## [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
+- if one thread executes an atomic operation, it means that other thread will never see half-finished result.
 - The end result of Atomic Operation is predictable and correct.
 - If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. 
 - This can used as Inter Process Synchronization.
