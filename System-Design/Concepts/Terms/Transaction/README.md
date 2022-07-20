@@ -6,7 +6,8 @@
 Application ---data pkt----> |DB Manager|   | DB |
                                             |----|
 ```
-- Application sends data packet to DbMgr. DB Manager will not write every packet to database but it groups several reads and writes together into a logical unit. This logical Unit is called TRANSACTION. 
+> Not writing every single packet, But group of Reads/Writes together as logical unit.
+- Application sends data packet to DbMgr. DB Manager will not write every packet to database but it groups several reads/writes together into a logical unit. This logical Unit is called TRANSACTION. 
 - Note: Every application does not need transaction.
 - All the reads and writes in a transaction are executed as one operation(either the entire transaction succeeds or it fails). If it fails, the application can safely retry.
 - **Why Transaction is needed?**
