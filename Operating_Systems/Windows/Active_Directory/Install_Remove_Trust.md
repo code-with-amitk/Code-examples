@@ -42,12 +42,23 @@ Active Directory Domains & Trust > Right Click(atest.com) > Properties > Trusts 
 
 <a name=ad></a>
 ### Add another Domain controller in Domain
-**Purpose?** Provide fault tolerance, availabilty(ie high load)
+- **Purpose?** Provide fault tolerance, availabilty(using replication)
+- All domain controller replicate database with each other. All Domain controller have same AD DB.
 ```c
 //win1, win2, win3 all serving atest.com
 
       atest.com
-	win1
+	win1  //root domain controller
 	win2
 	win3
+```
+- **Steps (Add win2 as domain controller)?**
+```c
+WIN2
+1. Make Preferred DNS server as win1.
+2. ping atest.com (Success)
+
+3. Install ADDS on win2, as mentioned in Install(above)
+> while promoting Domain Controller
+  - Add domain controller to existing domain
 ```
