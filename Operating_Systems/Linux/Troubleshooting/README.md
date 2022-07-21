@@ -150,8 +150,9 @@ OR
 # sudo gdb -ex "call teardown_watchdog()" -ex 'call talloc_enable_null_tracking()'  -ex 'call talloc_report_full(0, debug_file)'  -ex 'detach' -ex 'quit' -p $(pidof sssd_nss)
 - Save the domain log and sssd_nss.log and restart SSSD to release the memory.
 ```
-#### 8. STRACE(System call tracer)
-Of process consuming CPU. Attach to process.  
+#### 8. strace(System call tracer)
+- strace runs the specified command until it exits.  It intercepts and records the system calls which are called by a process and the signals which are received by a process.
+- Of process consuming CPU. Attach to process.  
 ```c
 # strace -p `pgrep name-of-process`        //-p: path Trace  only system calls accessing path
 ```
