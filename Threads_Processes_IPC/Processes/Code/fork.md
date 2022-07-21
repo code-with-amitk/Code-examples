@@ -32,34 +32,32 @@ int g_a = 1;    //Initialized
 int g_b;        //Uninitialized
 
 int main(){
-  char *pPtr = nullptr;             //Stack
-  
-  ptr = new char[5];                //Heap
-  memset(pPtr,5,0);
-  strcpy(pPtr,"PARN");
-  
+  string str;                       //Stack
+
+  char *p = new char[7];                //Heap
+  strcpy(p, "Parent");
+
   std::cout << "[Before fork] g_a: " << g_a\
             << ", g_b: " << g_b\
-            << ", pPtr: " << pPtr << std::endl;
+            << ", p: " << p << std::endl;
 
   int k = fork();
 
   if (k==0){      //CHILD
     g_a = 10;                        //DS
-    strcpy(pPtr,"CHLD");            //Stack
+    strcpy(p,"Child");            //Stack
     std::cout << "\n[CHILD] g_a: " << g_a\
               << ", g_b: " << g_b\
-              << ", pPtr: " << pPtr << std::endl;  
+              << ", p: " << p << std::endl;
   }else{
     std::cout << "Parent";
   }
 
-  std::cout << "\n[AFTER] g_a: " << g_a\
+  std::cout << "\n[AFTER fork] g_a: " << g_a\
             << ", g_b: " << g_b\
-            << ", pPtr: " << pPtr << std::endl;
+            << ", p:" << p << std::endl;
 
-  delete pPtr;
-
+  delete p;
   return 0;
 }
 
