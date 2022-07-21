@@ -43,18 +43,24 @@ Thread-1,2 are accessing data using mutex, But thread-3 changed the data without
     - [_1._ Making mutex and data as single entity as done in Rust](#rs)
     - _2._ All times keeping in mind that data should not handled outside mutex guards.
 ```c
+#include<iostream>
+#include<thread>
+#include<mutex>
+
 std::mutex m;
-int a = 5;
+int a = 1;
 void test(int tid) {
     m.lock();
     a++;
+    std::cout << "Thread-" << tid << ", a=" << a << "\n";
     m.unlock();
 }
 int main() {
+    int random_value = 10;
     std::thread t1(test,1);
     a += random_value;                      //But Thread-3=Main changed data without mutex.
     std::thread t2(test,2);                 //Thread-1,2 will access data using mutex.
-    t1.join();                 
+    t1.join();
     t2.join();
     return 0;
 }
