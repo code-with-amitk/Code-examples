@@ -77,6 +77,7 @@ class thread {					//Header thread
 **1. Create Thread. Not copy constructible, nor copy assignable**
 ```cpp
 #include<thread>
+#include<iostream>
 void fun(int a){
   std::cout<<"Hello"<<a<<"\n";
 }
@@ -92,6 +93,7 @@ int main() {
   //std::thread t2(fun,3);           //error: use of deleted function ‘std::thread& std::thread::operator=(const std::thread&)’
   //t1 = t2;
 }
+$ g++ test.cpp -lpthread
 ```
 <a name=m13></a>
 **2. Thread object is MoveAssignable**
