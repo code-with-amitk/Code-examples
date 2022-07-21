@@ -24,6 +24,7 @@
 Because thread is created on process stack, have common CS, HS, DS.
 ```c
 #include <iostream>
+#include <thread>
 #include <unistd.h>
 using namespace std;
 void fun() {                    //2. Child Thread starts execution
