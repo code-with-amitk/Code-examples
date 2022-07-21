@@ -25,4 +25,10 @@ Out
 Out
 Out
 Out
+                          fork()
+                        /       \
+              ---------fork()   fork()-----------
+             |         fork()   fork()          |
+            / \        / \        /\            /\
+                                                                        
 ```
