@@ -14,7 +14,7 @@
 - [Durability](#dur)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
-- [Isolation](#iso)
+- [Isolation](Isolation)
 - [Latency](#la)
 - [Orchestration](#orc)
 - [Partition Tolerance](#pt)
@@ -32,7 +32,7 @@ System is doing what's it's supposed to do.
 
 <a name=acid></a>
 ### ACID
-[Atomicity](#at), [Consistency](#con), [Isolation](#iso), [Durability](#dur)
+[Atomicity](#at), [Consistency](#con), [Isolation](Isolation), [Durability](#dur)
 
 <a name=ans></a>
 ### Antisnubbing 
@@ -125,10 +125,6 @@ CAP theorem says: Only 2 out 3 can be guaranteed.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
     - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
-
-<a name=iso></a>
-### Isolation
-Concurrently executing [transactions](Transaction) are isolated from each other: they cannot step on each other.
 
 <a name=la></a>
 ### Latency 
