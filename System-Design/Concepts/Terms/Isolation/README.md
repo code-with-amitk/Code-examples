@@ -3,7 +3,7 @@
   - [1. Read Committed](#rc)
     - **Methods to Achieve Read Committed**
       - [a. No Dirty Reads](#dr)
-        - Method to achieve No dirty Read
+        - **Method to achieve No dirty Read**
           - [Snapshot Isolation](#si)
       - [b. No Dirty Writes](#dw)
 - **Terms**
