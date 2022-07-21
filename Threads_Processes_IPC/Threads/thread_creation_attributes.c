@@ -26,22 +26,23 @@ Example:
 
 */
 
-
 #include<pthread.h>
 #include<stdio.h>
-
 void *fun(){
     printf("Thread Created\n");
 }
 
-void main(){
-	pthread_t tid;     //typedef int pthread_t; //sysdeps/pthread/bits/pthread.h
+int main(){
+    pthread_t tid;     //typedef int pthread_t; //sysdeps/pthread/bits/pthread.h
 
-/*pthread_create (pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg)
-NULL Attributes*/
-	pthread_create(&tid, NULL, fun, NULL);
+    pthread_attr_t tattr;
+    int ret;
 
-	pthread_join(tid, NULL);
+    //ret = pthread_attr_init(&tattr);    				//Creating with default attributes
+    ret = pthread_attr_setdetachstate(&tattr,PTHREAD_CREATE_DETACHED);  //Detached Thread
+    pthread_create(&tid, &tattr, fun, NULL);
+
+    pthread_join(tid, NULL);
 }
 
 /*
