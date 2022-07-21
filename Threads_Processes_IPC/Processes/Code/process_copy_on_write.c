@@ -4,6 +4,7 @@ COW(Copy On Write):
 */
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /*Code-1: Parent & child process executing same code
 void main(){
