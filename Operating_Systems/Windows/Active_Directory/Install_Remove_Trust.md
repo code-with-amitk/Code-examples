@@ -2,6 +2,7 @@
 - [Install](#ins)
 - [Remove](#rem)
 - [Trust](#t)
+- [Add another Domain controller in Domain](#ad)
 
 ### Active Directory
 <a name=ins></a>
@@ -37,4 +38,16 @@ Between 2 Forests (atest.com, btest.com)
     
 //Add Trust
 Active Directory Domains & Trust > Right Click(atest.com) > Properties > Trusts > New Trust
+```
+
+<a name=ad></a>
+### Add another Domain controller in Domain
+**Purpose?** Provide fault tolerance, availabilty(ie high load)
+```c
+//win1, win2, win3 all serving atest.com
+
+      atest.com
+	win1
+	win2
+	win3
 ```
