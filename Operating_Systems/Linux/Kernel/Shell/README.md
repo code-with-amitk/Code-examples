@@ -31,17 +31,28 @@ Computer program which exposes OS services to User or programs.
 - When user types a command line, the shell extracts the first word from it. Assumes this as program. Finds, forks a child.Child runs the program. shell waits on waitpid().
 - **Example Code:**
 ```c
-main() {
-  while (1) {                              
+#include <iostream>
+#include <string>
+#include <unistd.h>
+#include <sys/wait.h>
+using namespace std;
+
+int main() {
+  string str;
+  int status;
+  char *path = "/bin/cp";
+  char *const args[] = {path, "test1", "test2"};
+  char *const env[] = {};
+  while (1) {
     cout << "#";
-    getline (str, cin);              //str =>     cp  test1 test2
-    int pid = fork();   
+    getline (cin, str);              //str =>     cp  test1 test2
+    int pid = fork();
     if ( pid == 0) {       //Child
-     //Replaces child with "cp" program. 
+     //Replaces child with "cp" program.
      //Once cp finishes it exists, never returns to child.
-      execve (cp, params, 0);       
+      execve (path, args, env);
     } else {              //Parent
-      waitpid (-1, &status, 0)
+      waitpid (-1, &status, 0);
     }
   }
 }
