@@ -157,6 +157,30 @@ OR
 # strace -p `pgrep name-of-process`        //-p: path Trace  only system calls accessing path
 ```
 
+#### 9. ltrace (library call tracer)
+- _objdump:_ Dynamic executables have a [symbol table](/Languages/Programming_Languages/C/Compile/Object_File/Sections/) used by the linker when resolving references that are connected to library functions. objdump dumps that symbol table.
+- ltrace also access this symbol table and trace libraries used by application.
+```c
+$ objdump -T a.out                         
+./a.out:     file format elf64-x86-64
+
+DYNAMIC SYMBOL TABLE:
+0000000000000000      DF *UND*  0000000000000000  GLIBC_2.2.5 __errno_location
+0000000000000000  w   D  *UND*  0000000000000000              _ITM_deregisterTMCloneTable
+0000000000000000      DF *UND*  0000000000000000  GLIBC_2.2.5 printf
+0000000000000000      DF *UND*  0000000000000000  GLIBC_2.2.5 __libc_start_main
+0000000000000000  w   D  *UND*  0000000000000000              __gmon_start__
+
+
+$ ltrace -fS ./a.out
+[pid 469] SYS_brk(0)                                       = 0x7fffd7048000
+[pid 469] SYS_access("/etc/ld.so.nohwcap", 00)             = -2                 //All libraries being accessed
+[pid 469] SYS_access("/etc/ld.so.preload", 04)             = -2
+[pid 469] SYS_openat(0xffffff9c, 0x7f6998222ea8, 0x80000, 0)= 3
+[pid 469] SYS_fstat(3, 0x7fffdef458a0)                      = 0
+..
+```
+
 <a name=ol></a>
 ### Overloaded CPU
 Overloaded CPU? CPU is given more processes(than it's capacity). And (Load Average > 1.0)
