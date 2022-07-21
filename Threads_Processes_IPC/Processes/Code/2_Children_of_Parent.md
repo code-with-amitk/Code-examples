@@ -11,25 +11,41 @@ void error(char* cString) {
   exit(0);
 }
 
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <error.h>
+#include <string>
+#include <iostream>
+extern int errno;
+
+void error(std::string cString) {
+  //perror(cString);
+  printf("%d", errno);
+  exit(0);
+}
+
 int main() {
-  int ret = -1;
-  
-  if (ret = fork() < -1)
-    error ("fork");
-    
-  if (ret == 0){                                     //Child1
-    printf ("Child1: %d\n", getpid());
-  } else {                                           //Parent
-    printf ("Parent: %d\n", getpid());
-    
-    if (ret = fork() < 0)
-      error ("fork");
-      
-    if (ret == 0)                                     //Child2
-      printf ("Child2: %d\n", getpid());
-    else                                              //Parent
-      printf ("Parent: %d\n", getpid());
-  }
+    pid_t child_a, child_b;
+
+    child_a = fork();
+
+    if (child_a == 0) {
+        /* Child A code */
+        sleep(1);
+        std::cout << "Child1:" << getpid() << "\n";
+    } else {
+        child_b = fork();
+        std::cout << "Parent:" << getpid() << "\n";
+
+        if (child_b == 0) {
+            /* Child B code */
+            std::cout << "Child2:" << getpid() << "\n";
+        } else {
+            /* Parent Code */
+            std::cout << "Parent:" << getpid() << "\n";
+        }
+    }
 }
 
 $ a.out
