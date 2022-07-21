@@ -135,21 +135,28 @@ int main() {
 ```
 
 <a name=m2></a>
-#### 2. Using Functor
+#### 2. Using [Functor](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Static_CompileTime/Operator_Overloading/Functor/)
 ```cpp
+#include<thread>
+#include<iostream>
+#include<mutex>
+#include<vector>
+std::mutex m;
+
 void fun(int tid) {
+    int a;
     m.lock();
     a += 5;
-    std::cout << "Thread: " << tid << ", a:" << a <<endl;
+    std::cout << "Thread: " << tid << ", a:" << a << std::endl;
     m.unlock();
 }
-int main()
-{
-    
+
+int main() {
+    std::vector<std::thread> vecThreads;
     for (int i = 0; i < 5; ++i) {
         vecThreads.emplace_back(
             [&]() {                             //Functor to create Threads
-                fun(i); 
+                fun(i);
             }
         );
     }
