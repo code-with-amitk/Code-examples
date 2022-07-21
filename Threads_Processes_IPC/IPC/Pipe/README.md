@@ -53,31 +53,35 @@ Child Writing{
 #include <stdio.h>
 #include <errno.h>              //For errno
 #include <stdlib.h>              //exit()
+#include <sys/wait.h>              //waitpid
+#include <string>
+#include <iostream>
 
-void DumpAndExit(char* str){
-    perror (str);
-    printf ("errno: %d", errono);
-    exit(0);  
+void DumpAndExit(std::string str){
+    std::cout << "Error : " << str << "\n";
+    exit(0);
 }
 
 int main(){
-  int fd[2], pid = -1;
+  int fd[2], pid = -1, status;
 
   if (pipe(fd) < 0)
     DumpAndExit ("pipe");
 
-  if (pid = fork() < 0) {
+  if ((pid = fork()) < 0)
     DumpAndExit ("fork");
-  }
   else if (pid == 0) {                              //Child
+    sleep(1);
+    std::cout << "child\n";
     close(fd[0]);                                   //Close read end
     write(fd[1], "Test", 4);                        //Writes on pipe
   } else {                                         //Parent
+    std::cout << "parent\n";
     close(fd[1]);                                  //close write
-    waitpid(-1);                                   //Parent will wait for child
+    waitpid(pid, &status, 0);                                   //Parent will wait for child
     char buf[4] = {};
     read(fd[0], buf, sizeof(buf));                //reads from pipe
-    printf ("Read from child: %s", buf);
+    printf ("Read from child: %s\n", buf);
   }
 }
 
