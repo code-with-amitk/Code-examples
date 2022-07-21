@@ -36,7 +36,7 @@ It ensures No Dirty Reads, No Dirty writes
 - When writing to DB, we will only overwrite data that has been committed, ie not writing on broken transaction.
 - **How to avoid Dirty Write?** Writing to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
 
-### Terms
+## Terms
 <a name=rs></a>
 #### Read Skew / Nonrepeatable Read (Dirty Read)
 - Suppose person has 2 bank accounts in same bank and has 500 in each account
