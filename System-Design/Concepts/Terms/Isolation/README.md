@@ -31,6 +31,9 @@ It ensures No Dirty Reads, No Dirty writes
 - While transaction is ongoing, any other transactions that tries to read the object are given the old value.
 - Only when new value is committed, all new transactions switch over to reading the new value.
 
+**2. MVCC(Multiversion Concurrency Control)**
+- Instead of keeping 2 copies(as in [Snapshot isolation](#si), MVCC keeps multiple copies(seperate for each query)
+
 <a name=dw></a>
 ### B. No Dirty Writes
 - When writing to DB, we will only overwrite data that has been committed, ie not writing on broken transaction.
