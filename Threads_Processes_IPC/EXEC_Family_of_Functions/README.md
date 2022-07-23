@@ -28,6 +28,7 @@ v: Varaible number argument array `argv[]` is used to pass.
 - wrt execvp, execv does not search the PATH. Instead, the full path to the new executable must be specified.
 ```c
 #include <unistd.h> // execv()
+#include <stdio.h>
 int main() {
   char *const argv[] = {"/bin/ls", "-l", NULL};   //Full path is specified
   execv(argv[0], argv);
@@ -41,7 +42,7 @@ int main() {
 - p: name of the program to run will be taken from filename specified or program will be searhed using PATH variable.
 ```c
 //Program-1
-#include <unistd.h>
+#include <stdio.h>
 void main() {
     printf ("I am prog1");
 }
@@ -49,8 +50,9 @@ void main() {
 
 //Program-2
 #include <unistd.h>
+#include <stdio.h>
 void main(){
-  char *argv[] = {"./PROG1", NULL};
+  char *args[] = {"./PROG1", NULL};
   execvp(args[0], args);
   printf("\nProg2 Last line");    //This line not executed bcoz as soon as the execvp() function is called, this program is replaced by PROG1
 }
