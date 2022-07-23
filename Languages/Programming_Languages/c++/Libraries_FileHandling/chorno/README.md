@@ -30,7 +30,7 @@ Types defined by chrono: clocks, time points, durations
 int main() {
   using namespace std::chrono;
   system_clock::time_point now = system_clock::now();       //now() returns time point representing current time.
-  time_t tt = system_clock::to_time_t ( today );            //to_time_t() returns epoch 1970
+  time_t tt = system_clock::to_time_t ( now );            //to_time_t() returns epoch 1970
   std::cout << tt << "\n";                                  //prints epoch since 1970
   std::cout << ctime(&tt);                                  //print into human redable form
 }
