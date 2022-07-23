@@ -133,54 +133,81 @@ main() {
 ### UDP Server, Client
 ```c
 /////////////   Server  =>    socket(), bind(), recvfrom(), close()   ////////////////////
+# include <stdio.h>
+#include <unistd.h>     //close()
+#include <sys/socket.h>     //socket(), bind(), connect()
+#include <netinet/in.h>     //sockaddr_in
+#include <string.h>     //string
+#include <arpa/inet.h>  //inet_addr
+#include <ctype.h>  //toupper
+#include <stdlib.h> //exit
 int main(){
-  int sockfd, recvBytes,i;          
-  char buffer[1024];          
-  struct sockaddr_in selfAddr, clientAddr;         
+  int sockfd, recvBytes,i;
+  char buffer[1024];
+  const char* addr = "127.0.0.1";
+  int port = 7891;
+  struct sockaddr_in selfAddr, serverAddr, clientAddr;
   socklen_t addr_size, client_addr_size;
-  
-  sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-  serverAddr.sin_family = AF_INET;          
-  serverAddr.sin_port = htons(7891);                      //Server Port
-  serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");    //Server IP
+
+  if((sockfd = socket(AF_INET, SOCK_DGRAM, 0))< 0) {
+        printf("socket creation failed");
+        exit(0);
+    }
+  serverAddr.sin_family = AF_INET;
+  serverAddr.sin_port = htons(port);                      //Server Port
+  serverAddr.sin_addr.s_addr = inet_addr(addr);    //Server IP
   memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
+  memset(clientAddr.sin_zero, '\0', sizeof clientAddr.sin_zero);
 
-  bind(sockfd, (struct sockaddr *) &selfAddr, sizeof(selfAddr));          
+  bind(sockfd, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
+  //listen(sockfd,5);
   addr_size = sizeof clientAddr;
+  printf("Listening on %s:%d\n", addr,port);
 
-  while(1){            
+  while(1){
     recvBytes = recvfrom(sockfd,buffer,1024,0,(struct sockaddr *)&clientAddr, &addr_size);
-    for(i=0;i<recvBytes-1;i++){    
-      buffer[i] = toupper(buffer[i]);    
+    printf("Recieved bytes:%s\n", buffer);
+    for(i=0;i<recvBytes-1;i++){
+      buffer[i] = toupper(buffer[i]);
     }
     sendto(sockfd,buffer,recvBytes,0,(struct sockaddr *)&clientAddr,addr_size);
   }
+  return 0;
 }
 
 /////////////Client   =>    socket(), sendto(), close() /////////////////////////////////
+# include <stdio.h>
+#include <unistd.h>     //close()
+#include <sys/socket.h>     //socket(), bind(), connect()
+#include <netinet/in.h>     //sockaddr_in
+#include <string.h>     //string
+#include <arpa/inet.h>  //inet_addr
 int main(){
-  int sockfd, portNum, nBytes;  
-  char buffer[1024];  
-  struct sockaddr_in serverAddr;  
+  int sockfd, portNum, nBytes;
+  char buffer[1024];
+  struct sockaddr_in serverAddr;
   socklen_t addr_size;
-  
-  sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-  
-  serverAddr.sin_family = AF_INET;  
-  serverAddr.sin_port = htons(7891);                    //Server Port
-  serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");  //Server IP
-  memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);  
-  addr_size = sizeof (serverAddr);    
+  const char* addr = "127.0.0.1";
+  int port = 7891;
 
+  sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+  serverAddr.sin_family = AF_INET;
+  serverAddr.sin_port = htons(port);                    //Server Port
+  serverAddr.sin_addr.s_addr = inet_addr(addr);  //Server IP
+  memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
+  addr_size = sizeof (serverAddr);
+
+  printf("Server Address %s:%d\n",addr,port);
   while(1){
-    printf("Type a sentence to send to server:\n");    
-    fgets(buffer,1024,stdin);    
+    printf("Type a sentence to send to server:\n");
+    fgets(buffer,1024,stdin);
     printf("You typed: %s",buffer);
 
-    nBytes = strlen(buffer) + 1;    
-    sendto(sockfd,buffer,nBytes,0,(struct sockaddr *)&serverAddr,addr_size);    
-
-    nBytes = recvfrom(sockfd,buffer,1024,0,NULL, NULL);       
+    nBytes = strlen(buffer) + 1;
+    sendto(sockfd,buffer,nBytes,0,(struct sockaddr *)&serverAddr,addr_size); 
+    printf("Sent to server: %s\n",buffer);
+    nBytes = recvfrom(sockfd,buffer,1024,0,NULL, NULL);
     printf("Received from server: %s\n",buffer);
   }
 }
