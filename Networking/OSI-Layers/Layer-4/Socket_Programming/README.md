@@ -75,16 +75,20 @@ Its a file descriptor that represents a connection
 #include <unistd.h>     //close()
 #include <sys/socket.h>     //socket(), bind(), connect()
 #include <netinet/in.h>     //sockaddr_in
+#include <string.h>     //string
+#include <arpa/inet.h>  //inet_addr
 
 int main() {
-  int sockfd, newfd;        
-  char buffer[1024];        
-  struct sockaddr_in serverAddr, clientAddr;        
+  int sockfd, newfd;
+  char buffer[1024];
+  const char* addr = "127.0.0.1";
+  int port = 7891;
+  struct sockaddr_in serverAddr, clientAddr;
   socklen_t addr_size;
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   serverAddr.sin_family = AF_INET;
-  serverAddr.sin_port = htons(7891);                          //PORT
-  serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");        //IP
+  serverAddr.sin_port = htons(port);                          //PORT
+  serverAddr.sin_addr.s_addr = inet_addr(addr);        //IP
   memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
 
   bind(sockfd, (struct sockaddr *) &serverAddr, sizeof(serverAddr));
