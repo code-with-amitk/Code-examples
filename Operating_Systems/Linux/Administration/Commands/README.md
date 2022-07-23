@@ -1,3 +1,5 @@
+- [chgrp](#chg)
+- [chown](#cho)
 - [chroot](#ch)
 - [find](#f)
 - [netstat](#net)
@@ -6,6 +8,46 @@
 - [sed](#sed)
 - [systemctl](#sys)
 - [systemd-run](#sysd)
+
+<a name=chg></a>
+### chgrp
+Change the group ownership of a file or directory. All files in Linux belong to an owner and a group.
+```c
+$ touch test_file
+$ ls -ltr
+-rw-r--r-- 1 amit amit    0 Jul 23 08:32 test_file
+
+$ sudo groupadd testgroup   //Add group
+$ cat /etc/group|grep test  
+testgroup:x:1001:
+
+$ sudo chgrp testgroup test_file
+$ ls -ltr
+-rw-r--r-- 1 amit testgroup    0 Jul 23 08:32 test_file
+
+$ sudo groupdel testgroup             //Delete group
+$ ls -ltr                               
+-rw-r--r-- 1 amit 1001    0 Jul 23 08:32 test_file    //Group id listed
+
+$ sudo groupadd testgroup1
+$ ls -ltr                                   //Newly created group has been assigned freed groupid
+-rw-r--r-- 1 amit testgroup1    0 Jul 23 08:32 test_file
+```
+
+<a name=cho></a>
+### chown
+```c
+$ touch test_file
+$ sudo useradd testuser
+$ sudo chown testuser test_file
+-rw-r--r-- 1 testuser amit    0 Jul 23 08:39 test_file    //owner changed
+$ sudo userdel testuser
+$ ls -ltr
+-rw-r--r-- 1 1001 amit    0 Jul 23 08:39 test_file
+
+$ sudo useradd testuser1
+-rw-r--r-- 1 testuser1 amit    0 Jul 23 08:39 test_file   //1001 assigned to new user
+```
 
 <a name=ch></a>
 ### chroot
