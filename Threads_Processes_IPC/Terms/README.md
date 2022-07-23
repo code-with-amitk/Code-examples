@@ -49,13 +49,17 @@ Asynchronous can be both single and multithreaded
 <a name=a1></a>
 #### async Function
 ```cpp
+#include <iostream>
+#include <thread>
+#include <iostream>
+#include <future>
+
 void fun(){
     std::cout << "Hello";
 }
 int main() {
     auto fut = std::async(std::launch::async, fun);
 }
-$ g++ test.cpp -lpthread
 $ ./a.out
 Hello
 ```
