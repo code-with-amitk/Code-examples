@@ -17,7 +17,7 @@
   - [upnSuffix](#us)
 
 <a name=ad></a>
-### AD
+### AD = Directory storing users,groups
 Active Directory(AD) is a directory service for Windows. Directory service stores users,groups,computers,services
 
 <a name=cn></a>
