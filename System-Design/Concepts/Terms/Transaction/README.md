@@ -1,7 +1,9 @@
 **Transaction**
 - [Why Transaction needed](#w)
+- Problems
+  - [Lost Updates](#l)
 
-## Transaction
+# Transaction
 ```c
                                             |----|
 Application ---data pkt----> |DB Manager|   | DB |
@@ -19,3 +21,47 @@ Application ---data pkt----> |DB Manager|   | DB |
 - _1. Better Debugging:_ 
   - if Application is writing 20KB json document to DB. After 10KB node crashes, User will see partially updated values which is Wrong.
 - _2. Safety Gurantees:_ By using transactions, Application can ignore certain error scenarios & concurrency issues, because the DB takes care of them.
+
+## Problems
+<a name=l></a>
+### 1. Lost Updates / Read-Modify-Write Cycle / Later write clobbers the earlier write
+- Transaction-1, Transaction-2 does read some value from the database, modifies it, and writes back the modified value.
+- If two transactions do this concurrently, one of the modifications can be lost, because the second write does not include the first modification.
+#### Solutions
+- **a. Atomic Write Operations / Cursor Stability / Read Lock / MUTEX:**
+  - Take RWlock on the object when it is read so that no other transaction can read it until the update has been.
+  - This is serial execution of Read-Modify-Write cycle.
+- **b. Automatically detecting lost updates:**
+  - Execute Read-Modify-Write in parallel by 2 or more transactions.
+  - if the transaction manager detects a lost update, abort the transaction and force it to retry its read-modify-write cycle
+- **c. Compare and Set:**
+  - Read a value from DB, if its not same as old value read(Do not write).
+
+## Terms
+### Write Skew
+- When 2 transactions update different objects after reading common object causing Race condition.
+```c
+Example:
+There is a hospital where atleast 1 doctor is required to be on shift(always) in hospital.
+Doctors can giveup their shifts if they are Sick, provided atleast 1 of their collegue stays in hospital.
+- Alice & Bob are 2 doctors(on particular shift) feeling unwell and decide to request leave.
+- Both click "Apply leave" button at same time.
+
+Doctors
+  Alice true
+  Bob   true
+  
+    Alice                                     Bob
+  select * from doctors                     select * from doctors
+  where on_call=true and id=12              where on_call=true and id=12
+  > currently oncall=2                      > currently oncall=2
+  
+  if(currently oncall>2)                    if(currently oncall>2)
+  update doctors                            update doctors
+  set on_call=false                         set on_call=false
+  where name=Alice and id=12                where name=Bob and id=12
+
+Doctors
+  Alice false
+  Bob   false
+```
