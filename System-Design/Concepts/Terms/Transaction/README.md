@@ -1,7 +1,14 @@
 **Transaction**
 - [Why Transaction needed](#w)
-- Problems
+- **Problems**
   - [Lost Updates](#l)
+- **Serializability (to avoid Concurrency Problems)**
+  - [1. Actual Serial Execution](#s1)
+  - [2. Two Phase Locking / 2PL](#s2)
+  - [3. Predicate Lock](#s3)
+  - [4. Index range locks / next key lock](#s4)
+- **Terms**
+  - [Write Skew / Phantom](#ws)
 
 # Transaction
 ```c
@@ -37,8 +44,33 @@ Application ---data pkt----> |DB Manager|   | DB |
 - **c. Compare and Set:**
   - Read a value from DB, if its not same as old value read(Do not write).
 
+## Serializability
+Means executing transactions one after other, serially. This is used to avoid concurrency problems.
+<a name=s1></a>
+### 1. Actual Serial Execution
+- _a._ Execute only one transaction at a time, in serial order, on a single thread.
+- _b._ OR Partition the data and execute different pieces on different CPU cores.
+
+<a name=s2></a>
+### 2. Two Phase Locking / 2PL
+- Read/Write:
+  - _Reading:_ No lock
+  - _Writing(mutex):_ This blocks other Writers and Readers as well.
+- _Disadv:_ Can be very slow at high percentiles.
+
+<a name=s3></a>
+### 3. Predicate Lock
+For objects that do not yet exist in the database, but which might be added in the future. Taking lock earlier
+
+<a name=s4></a>
+### 4. Index range locks / next key lock
+- Suppose a meeting room booking example has [reverse index](/System-Design/Concepts/Databases/Indexing/) on room number.
+- Shared Lock is given to 3 transactions which want to book a room number, When 4th transaction comes it need to wait.
+
+
 ## Terms
-### Write Skew
+<a name=ws></a>
+### Write Skew / Phantom
 - When 2 transactions update different objects after reading common object causing Race condition.
 ```c
 Example:
