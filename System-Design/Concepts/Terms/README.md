@@ -16,11 +16,13 @@
 - [Flash Crowd](Flash_Crowd)
 - [Isolation](Isolation)
 - [Latency](#la)
+- [Linearizability](#lin)
 - [Orchestration](#orc)
 - [Partition Tolerance](#pt)
 - [Reliable](#re)
 - [Response time](#rt)
 - [Scalability](#sc)
+- [Serializability](#ser)
 - [Stream](/System-Design/Concepts/MOM_ESB/Apache_Kafka/#st)
 - [Tenant](#ten)
 - [Throughput](#tp)
@@ -132,6 +134,10 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
 #### How to reduce Latency
 - _1._ For read heavy system, Add more Read Replicas in [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication).
 
+<a name=li></a>
+### Linearizability
+All replicas only return very recent data. ie System is very very Strongly consistent.
+
 ### Local Rarest First for Piece Selection
 Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
 
@@ -187,6 +193,10 @@ Node selects k neighbours randomly, sends key-100(data to searched) to them, aga
 - **How to achieve scalabilty?**
   - [1. Sharding/Partitioning DB](/System-Design/Concepts/Databases/Database_Scaling)
   - [2. Autoscaling](#auto)
+
+<a name=ser></a>
+### Serializability
+All [transactions](Transaction) must run serially on single object. Each transaction running to completion before the next transaction starts
 
 <a name=ten></a>
 ### Tenant
