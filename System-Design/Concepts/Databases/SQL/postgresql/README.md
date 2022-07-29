@@ -1,6 +1,7 @@
 - **Install**
   - [Ubuntu](#u)
   - [CentOS 7](#c)
+- [Working on Postgres](#w)
 
 
 ### Install
@@ -43,6 +44,7 @@ Initializing database ... OK
 Active (Running)
 ```
 
+<a name=w></a>
 ### Working on Postgres
 ```c
 //On linux postgres user is created when postgres is installed
@@ -61,7 +63,5 @@ postgres=# \h                       //Lists all available commands
 postgres# createdb testDB                      //Create DB
 postgres-# createuser samplerole –pwprompt     //Create a new role
 
-
-
-
+postgres-# \q                                 //Come out
 ```
