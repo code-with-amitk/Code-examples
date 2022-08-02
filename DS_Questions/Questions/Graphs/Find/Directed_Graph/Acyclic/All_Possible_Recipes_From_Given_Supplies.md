@@ -4,8 +4,9 @@
   - [Complexity](#c)
   - [Code](#co)
 - **Multithreaded Approach**
-  - [1. condition_variable](#cv)
-  - [2. spinlock using std::atomic_flag](#sl)
+  - [1. condition_variable = semaphore](#cv)
+  - [2. std::atomic_flag = spinlock](#sl)
+  - [3. mutex](#m)
 
 
 ### [Find All Possible Recipes from Given Supplies](https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/)
@@ -388,6 +389,121 @@ public:
             }
         }
         spinlock.unlock();
+    }
+};
+```
+
+<a name=m></a>
+#### 3. mutex
+```cpp
+using vecS = std::vector<std::string>;
+using vecVecS = std::vector<vecS>;
+using String = std::string;
+using graph = std::unordered_map<String, std::unordered_set<String>>;
+bool bStart = false;
+
+class os_implementaion{
+public:
+    class Mutex{
+    protected:
+        std::mutex m;       //In Win10 its CRITICAL_SECTION
+    };
+};
+class os_mutex:private os_implementaion::Mutex{
+public:
+    os_mutex(){
+        //Initialize mutex
+    }
+    ~os_mutex(){
+        //Destroy mutex     pthread_mutex_destroy()
+    }
+    void lock(){
+        m.lock();       //EnterCriticalSection()
+    }
+    void unlock(){
+        m.unlock();
+    }
+};
+class WorkerThreadPool {
+    os_mutex m_mutex;
+    bool m_blocked;
+public:
+    WorkerThreadPool(){}
+    void lock(){
+        m_mutex.lock();
+        m_blocked = true;
+    }
+    void unlock(){
+        m_mutex.unlock();
+        m_blocked = false;
+    }
+};
+
+class Solution {
+    WorkerThreadPool w;
+    graph g;
+    std::unordered_map<String, vecS> graph;
+    std::unordered_set<String> s;
+    std::unordered_map<String,int> indegree;   //to store the indegree of all recipes
+    vecS out;
+public:
+    vecS findAllRecipes(vecS& recipes, vecVecS& ingredients, vecS& supplies) {
+         std::thread t1(&Solution::createGraph, this, ref(recipes), ref(ingredients), ref(supplies));
+         std::thread t2(&Solution::kahnAlgo, this);
+         t1.join();
+         t2.join();
+         return out;
+    }
+
+    void createGraph(vecS& recipes, vecVecS& ingredients, vecS& supplies) {
+        w.lock();
+        
+        for(auto&x : supplies)
+            s.insert(x);            //store all the supplies in unordered set
+
+        for(auto&x : recipes)       //initially take the indegree of all recipes to be 0
+            indegree[x] = 0;
+
+        //For every reciepe, check ingredients.
+        //if ingredient is not a supply, That means it can be a recipe
+        //And create a edge to reciepe from ingredient
+        for(int i = 0; i < recipes.size(); i++){
+
+            //Check all ingredients of this reciepe
+            for(int j = 0; j < (int)ingredients[i].size(); j++){
+
+                //Donot include any supplies in Graph
+                if(s.find(ingredients[i][j]) == s.end()){
+                    graph[ingredients[i][j]].push_back(recipes[i]);
+                    indegree[recipes[i]]++;
+                }
+            }
+        }
+        w.unlock();
+    }
+
+    //Perform topological sort on graph using KAHN'S ALGORITHM
+    void kahnAlgo(){
+        w.lock();
+
+    //indegree   |burger, 2|bread, 0|sandwitch, 1|
+        std::queue<String> q;
+        for(auto&i : indegree){
+            if(i.second == 0)
+                q.push(i.first);
+        }
+
+        while(!q.empty()){
+            String front = q.front();
+            q.pop();
+            out.push_back(front);
+            for(auto&i : graph[front]){
+                indegree[i]--;
+                if(indegree[i] == 0)
+                    q.push(i);
+            }
+        }
+        w.unlock();
     }
 };
 ```
