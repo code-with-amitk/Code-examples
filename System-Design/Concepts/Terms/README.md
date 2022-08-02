@@ -7,6 +7,7 @@
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
 - [BASE](#ba)
+- [Consensus](Consensus)
 - [Consistency](#con)
 - [CAP Theorem](#cap)
 - [Decentralized](/System-Design/Concepts/Decentralization)
@@ -16,7 +17,7 @@
 - [Flash Crowd](Flash_Crowd)
 - [Isolation](Isolation)
 - [Latency](#la)
-- [Linearizability](#li)
+- [Linearizability](#lin)
 - [Orchestration](#orc)
 - [Partition Tolerance](#pt)
 - [Reliable](#re)
@@ -135,7 +136,7 @@ Latency is time that request is waiting to be handled ie awaiting service. [Resp
 #### How to reduce Latency
 - _1._ For read heavy system, Add more Read Replicas in [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication).
 
-<a name=li></a>
+<a name=lin></a>
 ### Linearizability
 - This is recency(Means MOST Recent) gurantee. All replicas only return very recent data. ie System is very very Strongly consistent.
 
