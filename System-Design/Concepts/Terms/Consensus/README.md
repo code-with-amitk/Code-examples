@@ -1,7 +1,7 @@
 **Consensus**
 - [Atomic Commit](#ac)
 - **Atomic Commit Problem**
-  - [Solution-1. 2 Phase Commit)(#2pc)
+  - [Solution-1. 2 Phase Commit](#2pc)
 
 
 # Consensus
@@ -21,9 +21,35 @@ Some nodes commit the transaction but others abort it, the nodes become inconsis
 <a name=2pc></a>
 ### Solution-1 (2 Phase Commit)
 - 2PC ensures that either all nodes commit or all nodes abort.
+- A transaction commit must be IRREVOCABLE: ie once node decides to commit, then there is no turning back. Reason: Once data has been committed, it becomes visible to other transactions, and thus other clients may start relying on that data; this principle forms the basis of read committed isolation.
 - **NOTE:** 2PC and 2PL(2 Phase lock) are different. 2PC provides atomic commit in a distributed database, whereas 2PL provides serializable isolation.
 - **How 2PC is achieved?**
-  - _1. Coordinator/Transaction Manager:_ A new component comes in that does not normally appear in single-node transactions. Eg: Narayana, JOTM, BTM, or MSDTC.
-  - 
-- _1. Commit with All:_ A node must only commit once it is certain that all other nodes in the transaction are also going to commit
-    - A transaction commit must be IRREVOCABLE: ie once node decides to commit, then there is no turning back. Reason: Once data has been committed, it becomes visible to other transactions, and thus other clients may start relying on that data; this principle forms the basis of read committed isolation.
+  - _1. Coordinator/Transaction Manager:_ This is a new component comes in that does not normally appear in single-node transactions. Eg: Narayana, JOTM, BTM, or MSDTC.
+```c
+1. Application sends write request.
+2. Coordinator sends Prepare message asking nodes whether they can commit or not?
+  if (all respond yes)
+    Phase-2: Sends Commit
+  else  //if any one says no
+    Phase-2: Send Abort
+
+                                                          <============ Distributed Database ========>
+  Application(RW Data)      Coordinator(Zookeeper)         Node-1            Node-2              Node-n
+            -- write(hello) -->
+                            <<<<<<<<< PHASE-1 of 2PC Start >>>>>>>>>>>>>>>>>>>>>
+                              ------- Prepare --------------->
+                              <--------- yes -----------------
+                              
+                              ------------------------------- Prepare --------->
+                              <----------------- no ----------------------------
+                              
+                              ------------------------------------- Prepare ------------------------>
+                              <------------------------------------ yes -----------------------------
+                              <<<<<<<<< PHASE-1 of 2PC End >>>>>>>>>>>>>>>>>>>>>
+                              
+                              <<<<<<<<< PHASE-2 of 2PC Start >>>>>>>>>>>>>>>>>>>>>
+                              ------------ abort --------------->
+                              ------------------------- abort ----------------->
+                              -------------------------------------- abort --------------------------->
+                              <<<<<<<<< PHASE-2 of 2PC End >>>>>>>>>>>>>>>>>>>>>
+```
