@@ -122,7 +122,7 @@ $ kubectl apply -f test.yaml
 ```
 <a name=cm></a>
 #### [2. ConfigMap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
-- Object used to store configuration of [POD](#ka)
+- Object storing configuration of [POD](#ka)
 - Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
 #### Creating a configmap
 We can copy
