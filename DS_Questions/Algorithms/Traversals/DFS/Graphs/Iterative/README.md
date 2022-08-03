@@ -47,7 +47,7 @@ void dfs(vector<int>& g[], int startingNode) {
 
   s.push(startingNode);
 
-  while (s.empty() != 1){
+  while (!s.empty()){           //empty() return bool
 
     u = s.top();         
     s.pop();
