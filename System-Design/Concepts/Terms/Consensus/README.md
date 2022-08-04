@@ -1,7 +1,7 @@
 **Consensus**
-- [Atomic Commit](#ac)
-- **Atomic Commit Problem**
-  - [Solution-1. 2 Phase Commit](#2pc)
+- [Atomic Commit, AC Problem](#ac)
+- **Solution to AC Problem**
+  - [2 Phase Commit](#2pc)
 
 
 # Consensus
@@ -14,9 +14,7 @@ Several nodes to agree on something. Situations where consensus is needed:
 - **What?**
   - In system where a transaction writing/commits spans over several nodes/partitions, problem is that a transaction may fail on some nodes but succeed on others.
   - Consensus need to be maintained that either they all abort/roll back (if anything goes wrong) or they all commit (if nothing goes wrong) else data becomes inconsistent.
-
-## Atomic Commit Problem
-Some nodes commit the transaction but others abort it, the nodes become inconsistent with each other and so as data.
+- **Atomic Commit Problem?** Some nodes commit the transaction but others abort it, the nodes become inconsistent with each other and so as data.
 
 <a name=2pc></a>
 ### Solution-1 (2 Phase Commit / Blocking Atomic Commit)
