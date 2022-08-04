@@ -28,11 +28,32 @@ Output: [3,4]
 ### Approach (Topological Sort)
 <a name=l></a>
 #### Logic
-- We will remove leaf nodes from graph
+- _1._ Create Graph using adjacency list. indegree vector
 ```c
-
+| 3 | 3 | 3 | 0,1,2,4 | 3,5 | 4 |   //Graph
+  0   1   2     3        4    5
+  
+| 1 | 1 | 1 | 4 | 2 | 1 |            //indegree. Means number of edges
+ 0    1   2   3   4   5
 ```
-
+- _2._ Fill all nodes with indegree=1 into queue.
+```c
+  | 0 1 2 5 |   queue
+```
+- _3._ Iterate through queue and reduce indegree of neighbours of elements of q by 1
+```c
+  | 0 1 2 5 |   queue
+  top   neighbour   indegree
+  0       3         | 0 | 0 | 0 | 3 | 2 | 0 |
+  1       3         | 0 | 0 | 0 | 2 | 2 | 0 |
+  2       3         | 0 | 0 | 0 | 1 | 2 | 0 |
+  5       4         | 0 | 0 | 0 | 1 | 1 | 0 |
+  
+  Now graph is reduced to:  
+  3 -- 4                      (which is the answer)
+```
+- _4._ We will trim all leaf nodes and finally move towards center of graph and this is how topological sort applies here.
+ 
 <a name=co></a>
 #### Code
 ```cpp
