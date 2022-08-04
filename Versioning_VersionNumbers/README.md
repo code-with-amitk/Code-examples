@@ -1,10 +1,13 @@
-Versioning
+**Versioning**
+- Methods for Versioning
+  - [1. Semvers](#sv)
 
 
 ## Versioning
 - How versions are assigned to softwares. 
 
-### [SemVers](https://semver.org/)
+<a name=sv></a>
+### 1. [SemVers](https://semver.org/)
 ```c
 X.Y.Z (Major.Minor.Patch)
     Major version when you make incompatible API changes
