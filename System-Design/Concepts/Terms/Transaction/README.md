@@ -33,7 +33,10 @@ Some Databases support INTERNAL TRANSACTIONS among nodes of database. Eg: VoltDB
 
 <a name=t2></a>
 #### 2. Heterogeneous Transactions
-Databases from different vendors/technologies or Non-DB systems(Eg: Message brokers) communicate.
+- Databases from different vendors/technologies or Non-DB systems(Eg: Message brokers) communicate.
+- **XA(Extended Architecture) Transactions**
+  - This is standard for implementing [2PC/2 Phase Commit](/System-Design/Concepts/Terms/Consensus/README.md#2pc) on hetrogeonous transactions.
+  - Application uses a network driver/client library to communicate with the participanting databases or messaging services. The driver also exposes callbacks through which the coordinator can ask the participant to prepare, commit, or abort.
 
 <a name=w></a>
 ### Why Transaction is needed?
