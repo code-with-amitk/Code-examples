@@ -1,6 +1,6 @@
 **Transaction**
 - [Why Transaction needed](#w)
-- Types
+- **Types**
   - [1. Database-internal distributed transactions](#t1)
   - [2. Heterogeneous distributed transactions](#t2)
 - **Problems**
@@ -25,6 +25,15 @@ Application ---data pkt----> |DB Manager|   | DB |
 - Transaction also means writing complete object to DB, if at half something fails aborting complete object.
 - Note: Every application does not need transaction.
 - All the reads and writes in a transaction are executed as one operation(either the entire transaction succeeds or it fails). If it fails, the application can safely retry.
+
+### Types
+<a name=t1></a>
+#### 1. Database-internal distributed transactions
+Some Databases support INTERNAL TRANSACTIONS among nodes of database. Eg: VoltDB and MySQL Cluster’s NDB.
+
+<a name=t2></a>
+#### 2. Heterogeneous Transactions
+Databases from different vendors/technologies or Non-DB systems(Eg: Message brokers) communicate.
 
 <a name=w></a>
 ### Why Transaction is needed?
