@@ -28,7 +28,7 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
 <a name=r></a>
 ## Representation of Graph
 <a name=l></a>
-#### 1. Adjacency List	//Often used
+### 1. Adjacency List	//Often used
 - Each node keeps list of adjacent neighbours.
 - Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
 ```c
@@ -47,7 +47,7 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
       |            |           |             |               |
 ```
 <a name=el></a>
-#### 2. Edge List
+### 2. Edge List
 - Each node keeps [edges](#t)
 ```cpp
     3 -- 1
@@ -64,7 +64,7 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
   v[1].push_back(3); v[2].push_back(3);
 ```
 <a name=m></a>
-#### 3. Adjacency Matrix/Lookup table/2D Matrix
+### 3. Adjacency Matrix/Lookup table/2D Matrix
 - Shows whether node has connection to other node or not. `0 means No, 1 means yes`
 - For weighted graph values are cost/weights.
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -82,23 +82,23 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
 ```
 
 <a name=t></a>
-## Terms
-#### Degree
+# Terms
+### Degree
 - _Undirected Graph:_ Number of edges incident on it.
 - _Directed Graph:_ 
   - _Indegree of Node:_ Number of edges leading into that node.
   - _Outdegree:_ the number of edges leading away from node.
 
-#### Diameter/Eccentricity
+### Diameter/Eccentricity
 Greatest distance between any pair of vertices.
 
-#### Edge/Arc/Line
+### Edge/Arc/Line
 Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
 
-#### Radius 
+### Radius 
 Minimum eccentricity of any vertex.
 
-#### Topological Sort / Topological Order
+### Topological Sort / Topological Order
 - Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b.
 - TS is only possible for [DAG](#dag). because DAGs don't have cycles and are directed.
 - Some events should happen before next. Ex: Getting ready in morning (socks before shoes, undergarments before pants).
@@ -109,11 +109,13 @@ Minimum eccentricity of any vertex.
         \/         \/
         2 --> 3 --> 1
 ```
+- **Question on Topological Sort:**
+  - [1. Find Minimum Height Tree](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Minimum_Height_Tree/)
 
-#### Vertex = Node
+### Vertex = Node
 Interconnected objects are called vertices.
 
-#### Connected Components?
+### Connected Components?
 This is subgraph in which each pair of nodes is connected with each other via a path. Here 3
 ```c
 1---2    4--5   6
