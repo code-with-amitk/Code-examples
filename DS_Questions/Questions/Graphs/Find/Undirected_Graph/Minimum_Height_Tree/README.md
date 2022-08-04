@@ -1,8 +1,10 @@
 **Minimum Height Trees**
-- Approach(Topological Sort)
+- **Approach-1 (Topological Sort)**
   - [Logic](#l)
   - [Code](#co)
   - [Complexity](#c)
+- **[Approach-2 DFS = TLE](#a2)**
+  - Code
 
 
 ### [Minimum Height Trees](https://leetcode.com/problems/minimum-height-trees/)
@@ -135,4 +137,122 @@ class Solution {
         return out;
     }
 };
+```
+
+<a name=a2></a>
+### Approach-2 DFS=TLE. O(n<sup>2</sup>)
+#### Logic
+- For every node, find height till deepest node. Note that height for all nodes.
+- In end whatever nodes which have least heights, output those
+#### Code
+```c
+#include<iostream>
+#include<vector>
+#include<string>
+#include<thread>
+#include<mutex>
+#include<atomic>
+#include<condition_variable>
+#include<unordered_map>
+#include<queue>
+#include<stack>
+#include<unordered_set>
+#include<atomic>
+using vecI = std::vector<int>;
+using vecVecI = std::vector<vecI>;
+using String = std::string;
+using graph = std::unordered_map<int, std::unordered_set<int>>;
+bool bStart = false;
+std::condition_variable cv;
+std::mutex m;
+
+class Solution {
+    graph g;
+    void add_node(int from, int to){
+            std::unordered_set<int> us;
+            auto it = g.find(from);
+            if (it != g.end())
+                us = it->second;
+
+            us.insert(to);
+            g[from] = us;
+    }
+    void create_graph (int n, vecVecI& edges){
+        for (int i=0;i<edges.size();++i){
+            int from = edges[i][0], to = edges[i][1];
+            add_node(from, to);
+            add_node(to, from);
+        }
+    }
+public:
+    vecI findMinHeightTrees(int n, vecVecI& edges) {
+        vecI out;
+        if (n==1)
+            return {0};
+        create_graph(n, edges);
+
+        graph umHeightNode;
+        std::unordered_set<int> usNodeIterator;
+        int minimum = INT_MAX;
+
+        using mpair = std::pair<int, std::vector<int>>;
+        std::priority_queue <mpair, std::vector<mpair>, std::greater<mpair>> pq;
+        
+        //Perform DFS
+        std::stack<int> st;
+        for (int i=0;i<n; ++i){
+            //We will calculate distance of every node from given node
+            st.push(i);
+            std::vector<bool> visited(n, false);
+                            //distance, node
+            std::unordered_map<int, int> um;
+            um[i] = 0;
+            int distance = 0;
+
+            while (!st.empty()){
+                int node = st.top(); st.pop();
+                visited[node] = true;
+                //Check all unvisited neighbours of this node
+                auto us = g.find(node)->second;
+                for (auto it=us.begin(); it!=us.end();++it){
+                    if (!visited[*it]) {    //Only for unvisited neighbours
+                        int dis = um.find(node)->second + 1;
+                        um[*it] = dis;
+                        st.push(*it);
+                        distance = std::max(dis, distance);
+                    }
+                }
+            }
+            //Insert in unordered_map
+            std::unordered_set<int> usNode;
+            auto it = umHeightNode.find(distance);
+            if (it != umHeightNode.end())
+                usNode = it->second;
+            usNode.insert(i);
+            umHeightNode[distance] = usNode;
+
+            if (minimum >= distance) {
+                usNodeIterator = umHeightNode[distance];
+                minimum = distance;
+            }
+
+            //pq.emplace({distance, i});
+            std::cout << "Max height of tree rooted at:" << i << " is:" << distance << "\n";
+        }
+        for (auto it=usNodeIterator.begin(); it!=usNodeIterator.end();++it)
+            out.push_back(*it);
+
+        return out;
+    }
+};
+
+int main() {
+    Solution s;
+    //int n =4, vecVecI edges = {{1,0},{1,2},{1,3}};
+    //int n=6; vecVecI edges = {{3,0},{3,1},{3,2},{3,4},{5,4}};
+    int n=2; vecVecI edges = {{0,1}};
+    vecI out = s.findMinHeightTrees(n, edges);
+    for (auto&i:out)
+        std::cout << i << ",";
+}
 ```
