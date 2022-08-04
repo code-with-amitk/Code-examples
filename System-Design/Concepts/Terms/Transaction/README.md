@@ -1,5 +1,8 @@
 **Transaction**
 - [Why Transaction needed](#w)
+- Types
+  - [1. Database-internal distributed transactions](#t1)
+  - [2. Heterogeneous distributed transactions](#t2)
 - **Problems**
   - [Lost Updates](#l)
 - **Serializability (to avoid Concurrency Problems)**
