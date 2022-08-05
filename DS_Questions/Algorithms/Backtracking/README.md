@@ -74,9 +74,10 @@ Most of BT problems can be solved using below pattern.
 
 <a name=t></a>
 ### Time Complexity
-Varies on approach taken by backtracking algo.
+> Varies on approach taken by backtracking algo.
 - O(n!): N Queen
-- O(2<sup>n</sup>): Word Break, Word Search in Maze
+- O(2<sup>n</sup>): Word Break
+- O(mn): Word Search in Maze
 - O(2<sup>n</sup>) < O(n!)
 
 - [Word Search in Maze](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
