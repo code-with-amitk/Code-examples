@@ -1,4 +1,4 @@
-- [Backtracking](#bt)
+**Backtracking**
 - **[Examples](#ex)**
 - [BT Template](#tem) Problems solved using BT Template:
   - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
@@ -9,8 +9,8 @@
   - [Word Search in 2D grid](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
   - Graph
     - [Detect cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/detect_cycle_in_directed_graph.md)  
+- [Time Complexity](#t)
 
-<a name=bt></a>
 ## [Backtracking LC Explore Cards](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
 - Backtracking uses Recursion & it is an algorithmic paradigm aimed to improve the time complexity of the [Naive/Brute Force](..) **if possible**.
 - Backtracking **can be imagined** same as tree traversal where we start from root node to search for solutions that are located at the leaf nodes.
@@ -77,5 +77,5 @@ Most of BT problems can be solved using below pattern.
     }
 ```
 
-<a name=tc></a>
+<a name=t></a>
 ### Time Complexity
