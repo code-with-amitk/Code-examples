@@ -13,7 +13,7 @@ Input: maze = [[0,0,1,0,0],[0,0,0,0,0],[0,0,0,1,0],[1,1,0,1,1],[0,0,0,0,0]], sta
 Output: true
 Explanation: One possible way is : left -> down -> left -> down -> right -> down -> right.
 ```
-<img src=maze1.JPG width=500 />
+<img src=maze1.jpg width=500 />
 
 ### Approach DFS
 <a name=l></a>
