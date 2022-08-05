@@ -45,16 +45,11 @@ Most of BT problems can be solved using below pattern.
       }
       
       for (candidate in candidate list) {
-      
-        if (candidate not valid) {
+        if (candidate not valid)
           continue;
-        } 
-        else                                                  //if Candidate is VALID
-        {
+        else {                                                 //if Candidate is VALID
           place_candidate (candidate);                         //Place this candidate on partial solution
-          
           recursive_backtrack (next_candidate=candidate+1);    //Try next candidate
-          
           remove (candidate);                                  //Mark this as unvisited, Unflag this node.
         }
       }
@@ -79,3 +74,4 @@ Most of BT problems can be solved using below pattern.
 
 <a name=t></a>
 ### Time Complexity
+- [Word Search in Maze](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
