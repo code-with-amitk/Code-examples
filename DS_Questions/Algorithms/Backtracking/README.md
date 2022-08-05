@@ -1,6 +1,5 @@
 - [Backtracking](#bt)
-- **Examples**
-  - [Ex-1, 2](#ex1)
+- **[Examples](#ex)**
 - [BT Template](#tem) Problems solved using BT Template:
   - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
@@ -18,11 +17,10 @@
 - Each node represents a partial candidate to final solution, At each node. Once we can determine if a certain node cannot possibly lead to a final solution, we abandon the current node and backtrack to its parent node to explore other possibilities.
 - **How?** Backtracking does not generate all possible solutions, it checks if condition fails, the solution is rejected and the next solution is tried.
 
+<a name=ex></a>
 ### Examples
-<a name=ex1></a>
 #### Example-1
 We are given a set of words represented in the form of a tree. Find word `AIM`.
-
 - **Brute Force Approach**
 
 <img src=backtracking.jpeg width=500></img>
@@ -78,3 +76,6 @@ Most of BT problems can be solved using below pattern.
       solve(n);
     }
 ```
+
+<a name=tc></a>
+### Time Complexity
