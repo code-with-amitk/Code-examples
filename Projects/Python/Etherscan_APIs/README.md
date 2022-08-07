@@ -21,9 +21,12 @@ https://api.etherscan.io/api
    &tag=latest
    &apikey=YourApiKeyToken                      #Create account on etherscan.io, and create API_KEY
 '''
-   
+
+$ sudo apt-get install python3-matplotlib
+
 $ vim test.py
 from requests import get    #For making http requests
+from matplotlib import pyplot as plt
 API_KEY="W2TBAC3SXSHU3RDZN6WWFK66IZ2BGBE2W7"            #API_KEY from etherscan.io after creating account
 address = "0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae"
 BASE_URL = "https://api.etherscan.io/api"
