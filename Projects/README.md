@@ -38,8 +38,3 @@
 #### Rust
 - _1._ [Web Server exposing n REST End points](/Projects/Rust/REST_API_HTTP_Server_ActixWeb/)
 - _2._ [CI/CD as github Action, Read yml file, hash the repo and send to Http Server](/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/)
-
-<a name=p></a>
-#### Python
-- [1. Parser for /var/log/samba/log.*](https://github.com/RedHatInsights/insights-core/pull/2362)
-- [2. Parser for /etc/dirsrv/slapd-<>/dse.ldif](https://github.com/RedHatInsights/insights-core/pull/2362)
