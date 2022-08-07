@@ -12,12 +12,15 @@
 <a name=g1></a>
 ### [1. Get ether balance of My account](https://docs.etherscan.io/api-endpoints/accounts)
 ```py
+# API call we need to make to get account balance
+'''
 https://api.etherscan.io/api  
    ?module=account
    &action=balance
    &address=0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
    &tag=latest
    &apikey=YourApiKeyToken                      #Create account on etherscan.io, and create API_KEY
+'''
    
 $ vim test.py
 from requests import get    #For making http requests
