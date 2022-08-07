@@ -2,7 +2,7 @@
   - [C++](#cpp)
   - [SSL/TLS](#ssl)
   - [Rust](#r)
-  - [Python](#p)
+  - [Python](Python)
 - **OOD/Object Oriented Design**
   - Behavioral
     - [1. Chain of Responsibilty](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Chain-of-Resp/)
