@@ -1,13 +1,13 @@
 **Serde / Serialize DeSerialize**
-- **Examples**
-  - [1. Serializing Structure](#e1)
+- [1. Serialize/Deserialize Structure to/from json using serde_json](#e1)
+- [2. Serialize/Deserialize yaml file to/from string using serde_yaml](#e2)
 
-## Serde
-Framework/library to Serialize/DeSerialize various data formats(JSON, toml, bson(used in mongodb), rusto_dynamodb and many more) and send.
+### Serde library
+Used to Serialize/DeSerialize various data formats(JSON, toml, bson(used in mongodb), rusto_dynamodb and many more) and send.
 
-### Examples
+### Exmples
 <a name=e1></a>
-#### 1. Serializing Structure
+#### 1. Serialize/Deserialize Structure to/from json using serde_json
 ```rs
 $ cargo new serde
 $ vim Cargo.toml
@@ -42,7 +42,6 @@ deserialized = Point { x: 1, y: 2 }
 ```
 
 <a name=e2></a>
-#### 2. Json Object
+#### 2. Serialize/Deserialize yaml file to/from string using serde_yaml
 ```rs
-````
 ```
