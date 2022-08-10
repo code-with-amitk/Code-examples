@@ -1,4 +1,5 @@
-- [Check nth bit on or off](#c)
+- [nth bit on or off](#c)
+- [Equality](#eq)
 - Extract Bits
   - [Extract mth to nth bits](#emn)
   - [Extract last 4 bits](#el)
@@ -26,6 +27,13 @@
 &  0001 0000   (1<<5) 
 --------------
    0000 0000    //off
+```
+
+<a name=eq></a>
+### Equality
+Xor of same numbers is 0
+```c
+5 ^ 5 = 0
 ```
 
 ### Extract Bits
