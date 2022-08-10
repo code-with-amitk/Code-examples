@@ -14,7 +14,10 @@ DFS
 <a name=c></a>
 ### Complexity
 #### Time
-- For Graph represented using Adjacency List:O(V+E). V=vertices(nodes), E=edges
-- For Graph represented using Adjacency Matrix:O(V<sup>2</sup>)
+- **For Graph represented using Adjacency List:O(V+E)** 
+  - V=vertices=nodes, E=edges
+  - Because for every node, we create stack(which contains neighbours of node). Neighbours are traversed using stack.
+  - Then for new node, Stack is only create for unvisited nodes.
+- **Graph represented using Adjacency Matrix: O(V<sup>2</sup>)**
 #### Space
 O(V). Stack to store vertices
