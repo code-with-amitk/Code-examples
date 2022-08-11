@@ -1,4 +1,5 @@
 - [AD = Active Directory](#ad)
+- [Alias](#al)
 - [cn](#cn)
 - [DC = Domain Controller](#dc1)
 - [dc = domain component](#dc2)
@@ -19,6 +20,15 @@
 <a name=ad></a>
 ### AD = Directory storing users,groups
 Active Directory(AD) is a directory service for Windows. Directory service stores users,groups,computers,services
+
+<a name=al></a>
+### Alias
+- It means 2 names of 1 domain. For example: 
+  - atest.com is 1 domain. Now atest-alias.com also points to same domain. Users can login as:
+```c
+amit@atest.com OR
+amit@atest-alias.com
+```
 
 <a name=cn></a>
 ### cn = common name
