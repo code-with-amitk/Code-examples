@@ -37,9 +37,10 @@ Explanation: We can partition the nodes into two sets: {0, 2} and {1, 3},
 <a name=l></a>
 #### Logic (coloring)
 > All same colored nodes are in same set. if 1 node comes in set which is of different color then we cannot seperate nodes into 2 distinct sets.
-- _1._ Color starting node as Red, then color neighbours as opposite color.
-- _2._ Reach neighbour and repeat step-1.
-- _3._ if we reach any node and find that its neighbour is of same color (return false).
+- _1._ Input is already in form of Adjacency list we need not to create seperate graph for it.
+- _2._ Color starting node as Red, then color neighbours as opposite color.
+- _3._ Reach neighbour and repeat step-1.
+- _4._ if we reach any node and find that its neighbour is of same color (return false).
 
 <img src=bipartitegraph.jpg width=300/>
 
