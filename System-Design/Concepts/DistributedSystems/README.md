@@ -12,6 +12,11 @@
       - [Deployment Models of Cloud Computing](#dm)
     - [5. Edge Computing](#ec)
     - [6. HPC(High Performance Computing)](#hpc)
+- **Types of Systems**
+  - Online Systems(Services)
+  - [Offline (Batch Processing)](Batch_Processing_Systems)
+  - [Near Online (Stream Processing)]()
+    
 
 ## Cloud
 Running programs on someone else's cluster of computers, ie not running program locally.
