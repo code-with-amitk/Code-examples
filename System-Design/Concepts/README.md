@@ -1,1 +1,1 @@
-- [Distributed Systems: Cloud, Types of DS(Cluster, Grid, Cloud Computing, Edge, HPC)](Distributed Systems)
+- [Distributed Systems: Cloud, Types of DS{Cluster, Grid, Cloud Computing, Edge, HPC}](DistributedSystems)
