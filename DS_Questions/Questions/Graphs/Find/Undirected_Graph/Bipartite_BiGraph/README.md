@@ -63,15 +63,15 @@ public:
 		
         vecI color(size, -1);	//-1: No color, 0:Red, 1:Blue
 
-		    //Iterate through all nodes even if we have disconnected graph, 
+	//Iterate through all nodes even if we have disconnected graph, 
         for (int i = 0; i < size; ++i) {
 		
-			    //if node is not colored
-			    //bitwise xor of equal numbers of 0
+	  //if node is not colored
+	  //bitwise xor of equal numbers of 0
           if (!(color[i]^-1)) {
 			
-				    //if node is uncolored
-				    //Color it Red & Push on stack. DFS
+	    //if node is uncolored
+	    //Color it Red & Push on stack. DFS
             stack<int> st;
             color[i] = 0;
             st.push(i);
@@ -79,16 +79,16 @@ public:
             while (!st.empty()) {
               int u = st.top();	st.pop();
 
-					    //Traverse All neighbours of node
+	      //Traverse All neighbours of node
               for (int neigh : graph[u]) {
 					
-						    //if neighbor is uncolored, Color neighbor opposite of present Node's color & push on stack
-						    //bitwise xor of equal numbers of 0
+		//if neighbor is uncolored, Color neighbor opposite of present Node's color & push on stack
+		//bitwise xor of equal numbers of 0
                 if (!(color[neigh]^-1)) {
                 
-							    //if color[u]==1, Bitwise with 1 becomes = 0
-							    //if color[u]==0, Bitwise with 1 becomes = 1
-							    //Toggle 1st bit
+		  //if color[u]==1, Bitwise with 1 becomes = 0
+		  //if color[u]==0, Bitwise with 1 becomes = 1
+		  //Toggle 1st bit
                   color[neigh] = color[u] ^ 1;
                   st.push(neigh);
                 } else if (!(color[neigh]^color[u])) { //if neighbour's color and my color are same return false
