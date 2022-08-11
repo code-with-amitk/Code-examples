@@ -2,7 +2,6 @@
 - [Install](#ins)
 - [Remove](#rem)
 - [Trust](#t)
-- [Add another Domain controller in Domain](#ad)
 
 ### Active Directory
 <a name=ins></a>
