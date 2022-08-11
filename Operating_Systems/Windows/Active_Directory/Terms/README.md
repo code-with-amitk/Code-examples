@@ -22,13 +22,20 @@
 Active Directory(AD) is a directory service for Windows. Directory service stores users,groups,computers,services
 
 <a name=al></a>
-### Alias
-- It means 2 names of 1 domain. For example: 
-  - atest.com is 1 domain. Now atest-alias.com also points to same domain. Users can login as:
+### Alias / Domain Alias
+- It means 2 names of 1 domain. For example: atest.com is 1 domain. Now atest-alias.com also points to same domain. Users can login as:
 ```c
 amit@atest.com OR
 amit@atest-alias.com
 ```
+#### How to Add Domain Alias
+- **1. Add UPN Suffix**
+  - [Doc1](https://www.stephenwagner.com/2018/10/16/how-to-add-an-alternative-upn-suffix-to-an-active-directory-domain/)
+  - [Microsoft Doc](https://docs.microsoft.com/en-us/microsoft-365/enterprise/prepare-a-non-routable-domain-for-directory-synchronization?view=o365-worldwide)
+  - We will add different UPN suffixes (aliases) for users.
+  - Add upn Suffix = atest-alias.com. Then go into the properties of user2 and change the UPN suffix to the newly-added atest-alias.com.  With that change applied, the user should then be able to sign in as user@atest-alias.com at the main Windows login screen.
+  - “Active Directory Domains and Trusts” > Properties > Type in your new domain suffix in to the “Alternative UPN suffixes” > Add > Apply
+  - Open User Properties > Account tab > UPN suffix drop-down list > choose the new UPN suffix
 
 <a name=cn></a>
 ### cn = common name
