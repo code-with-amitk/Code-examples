@@ -8,8 +8,8 @@
   - [2. Directory Inode](#di)
 - [File Descriptor Table](#fdt)
 - **File Consistency Check**
-  - 
-
+  - [1. Block Consistency Check](#bcc)
+  - [2. File Consistency Check](#bcc)
 
 
 ## Filesystem
@@ -138,6 +138,7 @@ File descriptor table
 - **Utilities for checking Filesystem consistency:** Unix: fcsk, Windows: sfc
 
 ### Checking File Consistency
+<a name=bcc></a>
 #### 1. Block Consistency Check
 > 1 file will have multiple blocks.
 - **A. Check blocks in Files**
@@ -157,6 +158,7 @@ File descriptor table
   - *table-d.* INCOSISTENT_FILESYSTEM. Block 5, same data block is present in two or more files.
     - Solution:  allocate a free block, copy the contents of block 5 into it, and insert the copy into one of the files
 
+<a name=fcc></a>
 #### 2. File Consistency Check
 - **How to use fsck?** We must unmout file system before running fsck command.
 ```bash
