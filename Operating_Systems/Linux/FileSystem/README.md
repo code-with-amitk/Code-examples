@@ -1,9 +1,11 @@
 - **File System**
   - [1. Windows FS](#w)
   - [2. Linux FS](#l)
+  - [3. HDFS(Hadoop Distributed Filesystem)]
 - **Inode**
   - [1. File Inode](#fi)
   - [2. Directory Inode](#di)
+- [File Descriptor Table](#fdt)
 
 
 
@@ -69,4 +71,20 @@ Data structure maintained by kernel containing file, directory information.
 - File entry inside Directory contains filename(allocated on heap) and file's inode no. 
 - **Why Filename is allocated on Heap?**
   - If we allocate bigger filename on disk ie in directory and later file is deleted it will leave a hole same problem as in contigious disk allocation(See Above).
+
+<a name=fdt></a>
+## File Descriptor Table
+- Every opened file has a entry inside FDT.
+- Mapping of opened file descriptors to [File inode](/Operating_Systems/Linux/FileSystem/I_Node_IndexNode.md).
+- When user opens a file(using system call open()) a file descriptor is provided, Entry is created in file Descriptor table which points to inode of opened file.
+```c
+int fd = open("/home/test", O_RDONLY | O_CREAT);  //fd=3
+
+
+File descriptor table
+..| inode=50(/home/test) |stderr | stdout  | stdin  |
+        3                   2         1         0       <-File descriptors
+
+50 points to inode of file=/home/test
+```
 
