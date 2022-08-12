@@ -173,6 +173,12 @@ File descriptor table
 ```
 
 ### File system Tree
+
+|Directory|What|
+|---|---|
+|/proc/interrupts|interrupts corresponding to installed handlers are shown|
+|/proc/stat|information about total interrupts recieved on System and no of interrupts on each line|
+
 <a name=pi></a>
 #### /proc/interrupts
 - Only interrupts corresponding to installed handlers are shown.
