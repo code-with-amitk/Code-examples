@@ -7,6 +7,8 @@
   - [1. File Inode](#fi)
   - [2. Directory Inode](#di)
 - [File Descriptor Table](#fdt)
+- **File Consistency Check**
+  - 
 
 
 
@@ -37,7 +39,7 @@ NTFS                         | Windows NT
 ### 2. Linux FS
 - Examples: Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
 
-<img src=images/filesystem.PNG width = 600/>
+<img src=images/filesystem.PNG width = 500/>
 
  - **MBR(Master boot record):** Present at sector=0 of disk. MBR locates Active partition and reads parition's 1st block(called boot block). Boot block contains boot loader. Every partition's 1st block is Boot block(even it contains bootable OS or not).
 - **PARTITION TABLE:** Lies at end of MBR. Contains start, end address of each partitions. 1 of partitions is marked ACTIVE.
@@ -68,7 +70,7 @@ Integrating multiple/incompatible file systems into a single structure. But User
 - All system calls(from user space eg: open(),read(),write()) relating to files are directed to the virtual file system for initial processing.
 - **VFS Interface?** VFS can make API calls to each file system to get work done. Also every file system should provide APIs to VFS
 
-<img src=images/virtual_file_system.PNG width = 500 />
+<img src=images/virtual_file_system.PNG width = 400 />
 
 #### Example Flow
 - **1. Registration** Root or other filesystem(permanent fs) gets regitered with VFS. As any file system is mounted it gets registered with VFS.
@@ -105,7 +107,7 @@ Data structure maintained by kernel containing file, directory information.
 ```
 **Advantage:** Whole FAT table need not to be bought into RAM. Only inode structures of files which are opened need to be bought in RAM. if k files are opened of size=n, then kn RAM is occupied.
 
-<img src=images/inode.png width=1400 />
+<img src=images/inode.png width=1300 />
 
 <a name=di></a>
 #### 2. Directory Inode
@@ -128,3 +130,44 @@ File descriptor table
 
 50 points to inode of file=/home/test
 ```
+
+<a name=fcsk></a>
+## File System Consistency / fcsk
+- Consistency means file system is valid/correct or not.
+- **When can filesystem become inconsistent?** Many filesystems read blocks, modify them, and write them out **later**. If the system crashes before all the modified blocks have been written out, the file system can be left in an inconsistent state.
+- **Utilities for checking Filesystem consistency:** Unix: fcsk, Windows: sfc
+
+### Checking File Consistency
+#### 1. Block Consistency Check
+> 1 file will have multiple blocks.
+- **A. Check blocks in Files**
+  - *1. Building occupied,free block tables*
+  - fsck will read all [file inodes]() and builds 2 tables. Initially both tables are memset(0).
+    - Table-1: How many times each block is present in a file
+    - Table-2: how often each block is present in the free list
+
+<img src=images/filesystem-consistency-check-fsck.jpg width=700 />
+
+- **2. Findings from Tables**
+  - *table-a.* CONSISTENT_FILESYSTEM. if filesystem is consistent each block will have a 1 either in the first table or in the second table.
+  - *table-b.* INCOSISTENT_FILESYSTEM. After crash there would be a block that does not occur in either table. This is a missing block.
+    - Solution: file system checker adds them to the free list.
+  - *table-c.* INCOSISTENT_FILESYSTEM. Block number 4, that occurs twice in the free list.
+    - Solution: rebuild the free list.
+  - *table-d.* INCOSISTENT_FILESYSTEM. Block 5, same data block is present in two or more files.
+    - Solution:  allocate a free block, copy the contents of block 5 into it, and insert the copy into one of the files
+
+#### 2. File Consistency Check
+- **How to use fsck?** We must unmout file system before running fsck command.
+```bash
+# init 1              //Goto single user mode:
+
+# umount /dev/sdb1    //Unmount file system (for example /dev/sdb1 under Linux or under FreeBSD use /dev/ad0s1f etc)
+
+# fsck /dev/sdb1      //Now run fsck command:
+
+# mount -a            //Now mount filesystem
+
+# init 2              //Go backto multiuser mode 2/3
+```
+
