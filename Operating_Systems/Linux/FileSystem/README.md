@@ -35,8 +35,8 @@ NTFS                         | Windows NT
 
 <a name=lfs></a>
 ### 2. Linux FS
-Examples: Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
-#### Architecture
+- Examples: Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
+
 <img src=images/filesystem.PNG width = 600/>
 
  - **MBR(Master boot record):** Present at sector=0 of disk. MBR locates Active partition and reads parition's 1st block(called boot block). Boot block contains boot loader. Every partition's 1st block is Boot block(even it contains bootable OS or not).
@@ -65,12 +65,10 @@ Integrating multiple/incompatible file systems into a single structure. But User
   |                         |                              |                          |(remote NFS)
  /usr[ext3]//HD1          /home[ReiserFS]//HD2          /mnt[ISO 9660 CD-ROM]       /test
 ```
-
-#### Architecture
 - All system calls(from user space eg: open(),read(),write()) relating to files are directed to the virtual file system for initial processing.
 - **VFS Interface?** VFS can make API calls to each file system to get work done. Also every file system should provide APIs to VFS
 
-<img src=virtual_file_system.PNG width = 500 />
+<img src=images/virtual_file_system.PNG width = 500 />
 
 #### Example Flow
 - **1. Registration** Root or other filesystem(permanent fs) gets regitered with VFS. As any file system is mounted it gets registered with VFS.
@@ -107,7 +105,7 @@ Data structure maintained by kernel containing file, directory information.
 ```
 **Advantage:** Whole FAT table need not to be bought into RAM. Only inode structures of files which are opened need to be bought in RAM. if k files are opened of size=n, then kn RAM is occupied.
 
-<img src="images/inode.png" width=1400 />
+<img src=images/inode.png width=1400 />
 
 <a name=di></a>
 #### 2. Directory Inode
