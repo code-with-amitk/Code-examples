@@ -37,7 +37,7 @@ NTFS                         | Windows NT
 ### 2. Linux FS
 Examples: Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
 #### Architecture
-<img src=filesystem.PNG width = 600/>
+<img src=images/filesystem.PNG width = 600/>
 
  - **MBR(Master boot record):** Present at sector=0 of disk. MBR locates Active partition and reads parition's 1st block(called boot block). Boot block contains boot loader. Every partition's 1st block is Boot block(even it contains bootable OS or not).
 - **PARTITION TABLE:** Lies at end of MBR. Contains start, end address of each partitions. 1 of partitions is marked ACTIVE.
