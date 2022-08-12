@@ -1,7 +1,8 @@
 - **File System**
-  - [1. Windows FS](#w)
-  - [2. Linux FS](#l)
-  - [3. HDFS(Hadoop Distributed Filesystem)]
+  - [1. Windows FS](#wfs)
+  - [2. Linux FS](#lfs)
+  - [3. Virtual File System](#vfs)
+  - [4. HDFS(Hadoop Distributed Filesystem)]
 - **Inode**
   - [1. File Inode](#fi)
   - [2. Directory Inode](#di)
@@ -12,10 +13,10 @@
 ## Filesystem
 Format of storing data on Hard disk or usb. Every resource in Linux is treated as File, we can read/write on them. Eg: IBM's OS: HPFS(High Performance File System)
 
-<a name=w></a>
+<a name=wfs></a>
 ### 1. Windows File system  
-**Examples**
 ```c
+Examples:
               FS             |    Used By
 -----------------------------|-------------
 FAT16(File allocation table) |  MsDOS
@@ -32,11 +33,11 @@ NTFS                         | Windows NT
   Clusters: Actual data storage    
 ```
 
-<a name=l></a>
+<a name=lfs></a>
 ### 2. Linux FS
-- **Examples:** Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
+Examples: Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
 #### Architecture
-<img src="https://i.ibb.co/SfF0xwG/filesystem.png" width = 600 />
+<img src=filesystem.PNG width = 600/>
 
  - **MBR(Master boot record):** Present at sector=0 of disk. MBR locates Active partition and reads parition's 1st block(called boot block). Boot block contains boot loader. Every partition's 1st block is Boot block(even it contains bootable OS or not).
 - **PARTITION TABLE:** Lies at end of MBR. Contains start, end address of each partitions. 1 of partitions is marked ACTIVE.
@@ -48,6 +49,48 @@ NTFS                         | Windows NT
   - [I-Nodes(info about files)](#fi): array of structure (1 per file) containing all info of file
   - Root-Dir: This is top of file system tree
   - Files & Directories: Reminder of disk contains other files and directories.
+
+<a name=vfs></a>
+### 3. Virtual File System/VFS
+Integrating multiple/incompatible file systems into a single structure. But User will see only 1 file-system hierarchy.
+- **Example**
+  - Linux system could have ext2 as the root file system  //from hard-disk-1
+  - ext3 partition mounted on /usr    //From HD-1
+  - Reiser file system mounted on /home //From HD-2
+  - xfs mounted on /test    //Using NFS
+```c
+                      /(root) [ext2]//HD1
+                         |
+  -------------------------------------------------------------------------------------
+  |                         |                              |                          |(remote NFS)
+ /usr[ext3]//HD1          /home[ReiserFS]//HD2          /mnt[ISO 9660 CD-ROM]       /test
+```
+
+#### Architecture
+- All system calls(from user space eg: open(),read(),write()) relating to files are directed to the virtual file system for initial processing.
+- **VFS Interface?** VFS can make API calls to each file system to get work done. Also every file system should provide APIs to VFS
+
+<img src=virtual_file_system.PNG width = 500 />
+
+#### Example Flow
+- **1. Registration** Root or other filesystem(permanent fs) gets regitered with VFS. As any file system is mounted it gets registered with VFS.
+  - *Information provided at registration to VFS by file-system*
+    - *a.* list of callbacks which VFS should call to communicate with file system.
+- *2.* User opens are file from `/usr` which is mounted using `/ext3`, call reaches VFS
+- *3.* VFS searches [Superblock](/Operating_Systems/Linux/FileSystem/What_is_FileSystem.md) of mounted filesystems and finds root dir of mounted file system and finds `include/unistd.h` there.
+```c
+                    VFS               File-System-1(ext2)
+                     | <--Register-------|                         //1
+                     |                                 File-System-2(ext3)
+                     |<---------Register-----------------|
+     User
+open("/usr/include/unistd.h", O RDONLY)   //2
+  |
+  |-system call--> VFS
+                Search superblock of mounted filesystems      //3
+                Find root dir of mounted File system
+                Find include/unistd.h there
+```
 
 ## Inode / I Node
 Data structure maintained by kernel containing file, directory information.
@@ -64,7 +107,7 @@ Data structure maintained by kernel containing file, directory information.
 ```
 **Advantage:** Whole FAT table need not to be bought into RAM. Only inode structures of files which are opened need to be bought in RAM. if k files are opened of size=n, then kn RAM is occupied.
 
-<img src="https://i.ibb.co/6FymhXC/inode.png" width=1400 />
+<img src="images/inode.png" width=1400 />
 
 <a name=di></a>
 #### 2. Directory Inode
@@ -87,4 +130,3 @@ File descriptor table
 
 50 points to inode of file=/home/test
 ```
-
