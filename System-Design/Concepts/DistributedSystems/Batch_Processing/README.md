@@ -1,5 +1,7 @@
 **Batch Processing**
-- MapReduce
+- **MapReduce**
+  - [MapReduce is similar to this Unix pipeline](#m1)
+  - [Sort-Merge join (on userId) Example](#m2)
 - [Hadoop Distributed File System](#hdfs)
 
 
@@ -13,7 +15,9 @@
 - **Nodes in MapReduce**
   - _1. Mapper:_ Extract `<key, value>` from each input record. 
   - _2. Reducer:_ Combines data.
-- Its similar to this Unix pipeline:
+
+<a name=m1></a>
+#### MapReduce is similar to this Unix pipeline
 ```c
 //////Unix Pipeline//////
 $ cat /var/log/nginx/access.log | awk '{print $7}' | sort | uniq -c | sort -r -n | head -n 5
@@ -32,7 +36,8 @@ filen --|                                                                |--> No
 |Run on| 1 Machine | 1000's of machines|
 |Writes on |Unix Filesystem|[HDFS]()|
 
-**Sort-Merge join (on userId) Example**
+<a name=m2></a>
+#### Sort-Merge join (on userId) Example
 - Mapper:
   - _Mapper-1:_ Seperates data into `<key=userId, value=activity event>`
   - _Mapper-1:_ Seperates data into `<key=userId, value=date of birth>`
