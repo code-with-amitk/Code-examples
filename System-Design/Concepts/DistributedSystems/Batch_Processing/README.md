@@ -1,7 +1,10 @@
 **Batch Processing**
 - **MapReduce**
-  - [MapReduce is similar to this Unix pipeline](#m1)
-  - [Sort-Merge join (on userId) Example](#m2)
+  - [Similar to this Unix pipeline](#m1)
+  - **Joins**
+    - [1. Reducer Side Join / Sort-Merge join (on userId)](#smj)
+    - [2. Map-Side join](#msj)
+  - [Handling Hot Keys](#hhk)
 - [Hadoop Distributed File System](#hdfs)
 
 
@@ -36,15 +39,34 @@ filen --|                                                                |--> No
 |Run on| 1 Machine | 1000's of machines|
 |Writes on |Unix Filesystem|[HDFS]()|
 
-<a name=m2></a>
-#### Sort-Merge join (on userId) Example
+### Joins
+<a name=rsj></a>
+#### 1. Reduce-Side Join / Sort-Merge join (on userId)
+<img src = images/sort-merge-join.PNG width=500 />
+
+- Since this algorithm joins the data at reducer, hence called reducer side join.
+- Roles:
+  - Mapper: Preparing data
+  - Reducer: joins data
 - Mapper:
   - _Mapper-1:_ Seperates data into `<key=userId, value=activity event>`
   - _Mapper-1:_ Seperates data into `<key=userId, value=date of birth>`
 - Sorter: Sort by keys
-- _Reducer:_ Sees reduces meaningful information which userId uses particular url
+- _Reducer(joins):_ Joins the data to meaningful information which userId uses particular url
 
-<img src = images/sort-merge-join.PNG width=500 />
+<a name=msj></a>
+#### 2. Map-Side join
+- In [reduce-side join](#rsj) we do not make any assumptions about input data(its properties/structure), mappers prepares data to be ready for joining.
+- But in Map-Side join certain assumptions about data can be made and that will make joins FASTER. In this approach there is no sorting(& no reducer).
+
+<a name=hhk></a>
+### Handling [Hot Keys / Skewed Join](/System-Design/Concepts/Terms/README.md#hk)
+- In MapReduce we bring all keys to same place that may create a problem of [hot keys](/System-Design/Concepts/Terms/README.md#hk).
+- **a. Pig**
+  - _1._ Runs a sampling job to determine which keys are hot?
+  - _2._ Sends records relating to a hot key to one of several reducers(chosen at random)
+- **b. Hive**
+  - _1._ Hot keys are specified in table's metadata & store records(related to hot keys) in seperate files
 
 <a name=hdfs></a>
 ## Hadoop Distributed File System(derived from GFS-google file system)
