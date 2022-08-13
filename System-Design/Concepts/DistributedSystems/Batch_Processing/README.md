@@ -9,7 +9,16 @@
   - _1. MapReduce(published in 2004):_ Implemented in these open source data systems: Hadoop, CouchDB, and MongoDB on **comodity Hardware**.
 
 ### MapReduce
-- Designed to process large datasets by running tasks in parallel. 
+- Does Batch processing on large datasets, where jobs run on parallel on 1000's of comodity hardwares.
+- Its similar to this Unix pipeline:
+```c
+$ cat /var/log/nginx/access.log | awk '{print $7}' | sort | uniq -c | sort -r -n | head -n 5
+```
+| | Unix Pipeline | MapReduce |
+|---|---|---|
+|Run on| 1 Machine | 1000's of machines|
+|Writes on |Unix Filesystem|[HDFS]()|
+
 - it spread the work across nodes(Commodity hard-wares) and allows those nodes to process the data in parallel. 
 - Results from the initial parallel processing are sent to main nodes where the data is combined to allow for further reductions of the data.
 - There is a Single (RresourceManager[YARN], allocates resources on dataNodes) in cluster. 
