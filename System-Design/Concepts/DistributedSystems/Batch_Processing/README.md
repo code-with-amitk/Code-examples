@@ -10,30 +10,43 @@
 
 ### MapReduce
 - Does Batch processing on large datasets, where jobs run on parallel on 1000's of comodity hardwares.
+- **Nodes in MapReduce**
+  - _1. Mapper:_ Extract `<key, value>` from each input record. 
+  - _2. Reducer:_ Combines data.
 - Its similar to this Unix pipeline:
 ```c
+//////Unix Pipeline//////
 $ cat /var/log/nginx/access.log | awk '{print $7}' | sort | uniq -c | sort -r -n | head -n 5
+
+//////MAPREDUCE PIPELINE////
+file1 ------|
+file2 --|   |                                                            |--> Node(Reducer)
+        \/ \/                                                            |
+        Node(Reader) ----> Node(Mapper)   -------->  Node(Sorter)   -----|--> Node(Reducer)
+        /\                Break into <key,value>    Sort by Keys         |
+filen --|                                                                |--> Node(Reducer)
+                                                                           Combine sorted <key,value>
 ```
 | | Unix Pipeline | MapReduce |
 |---|---|---|
 |Run on| 1 Machine | 1000's of machines|
 |Writes on |Unix Filesystem|[HDFS]()|
 
-- it spread the work across nodes(Commodity hard-wares) and allows those nodes to process the data in parallel. 
-- Results from the initial parallel processing are sent to main nodes where the data is combined to allow for further reductions of the data.
-- There is a Single (RresourceManager[YARN], allocates resources on dataNodes) in cluster. 
-- Every single dataNode has (NM:nodeManager, which executes and monitors tasks)+(AM:applicationMaster, taking inputs from RM).
-- Data analysis uses a two step process: Example: Single word occurance need to be counted from 1 million documents.
-  - *a. map:* counts the words in each document        
-  - *b. reduce:* aggregates the per-document data into word counts spanning the entire collection.    //This process is carried on all nodes in cluster.
+**Sort-Merge join (on userId) Example**
+- Mapper:
+  - _Mapper-1:_ Seperates data into `<key=userId, value=activity event>`
+  - _Mapper-1:_ Seperates data into `<key=userId, value=date of birth>`
+- Sorter: Sort by keys
+- _Reducer:_ Sees reduces meaningful information which userId uses particular url
 
+<img src = images/sort-merge-join.PNG width=500 />
 
 <a name=hdfs></a>
-## Hadoop Distributed File System
-- HDFS is a distributed filesystem(derived from GFS-google file system). Default block size=64MB. (xfs block size=4kb)
-- Data blocks are replicated on multiple nodes. Eg: Block-1 on Node1, Node2. Block2 on Node1, Node3. Hence provides replication in case of failure without data loss. 
-- Cluster has single nameNode(manages metadata) and multiple dataNodes communicating using TCP/IP
+## Hadoop Distributed File System(derived from GFS-google file system)
+- HDFS is 1 big filesystem, where disks from nodes(running on comodity hardware) are used and controlled by namenode(central controller). Default block size=64MB. (xfs block size=4kb). Machine talk over TCP/IP.
+- _Fault Tolerance:_ Data blocks are replicated on multiple nodes. 
 ```c
+Architecture
                          nameNode
                      /TCP        \TCP
             dataNode-1    -TCP   dataNode-2
