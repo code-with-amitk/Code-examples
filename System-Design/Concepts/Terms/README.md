@@ -15,6 +15,7 @@
 - [Durability](#dur)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
+- [Hot keys / Linchpin objects](#hk)
 - [Isolation](Isolation)
 - [Latency](#la)
 - [Linearizability](#lin)
@@ -129,6 +130,10 @@ CAP theorem says: Only 2 out 3 can be guaranteed.
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
     - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
+
+<a name=hk></a>
+### Hot Key / linchpin objects
+One key/node in database that is linked to millions of other keys/nodes in DB. Eg: Celebrities have many millions of followers.
 
 <a name=la></a>
 ### Latency 
