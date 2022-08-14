@@ -4,14 +4,14 @@
   - [1. Forward Lookup](#fl)
   - [2. Reverse Lookup](#rl)
 - **Terms**
-  - CyberSquatting
+  - [CyberSquatting](#cs)
   - Domain Name
   - DNS Queries
   - DNS Zone
   - Name server
     - Recursive
     - Authoritative DNS Server
-  - Resource Records
+  - [Resource Records](#rr)
 
 
 
@@ -43,7 +43,7 @@ The process of looking up a hostname and finding corresponding IP address.
 
 
 
-
+## Terms
 <a name=cs></a>
 ### CyberSquatting
 Selling a domain to interested party at much higher price.
