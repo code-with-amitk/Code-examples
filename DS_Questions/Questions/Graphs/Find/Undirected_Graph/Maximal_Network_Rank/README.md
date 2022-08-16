@@ -1,5 +1,5 @@
 **Maximal Network Rank**
-- **Approach, TLE, Find all edges, O(V<sup>2</sup>E)**
+- **Approach, Find all edges, O(V<sup>2</sup>)**
   - [Logic](#l)
   - [Code](#c)
   - [Complexity](#co)
