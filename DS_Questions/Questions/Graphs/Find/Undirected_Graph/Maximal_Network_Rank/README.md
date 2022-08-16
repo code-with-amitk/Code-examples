@@ -42,31 +42,26 @@ Explanation:
     
 ```
 
-### Approach-1, All pairs, TLE O(V<sup>2</sup>E)
+### Approach-1, O(V<sup>2</sup>)
 <a name=l></a>
 #### Logic
-- _1._ Create graph, Find all outgoing nodes from a particular node, as neighbours(store as string).
-  - Create string with lesser node 1st then greater node.
+- _1._ Create graph, All outgoing nodes from a particular node, as neighbours.
 ```c
-| "01" "03" | "01" "12" "13" | "12" | "03", "13" | "45" | "45" |
-    0              1             2        3         4       5
+| <1,3> | <0,2,3> | <1> | <0,1> | <5> | <4> |
+    0        1        2     3      4     5
 ```
-- _2._ Check every pair of nodes and insert neighbours in `unordered_set<string>` and note length of largest set.
-  - Inserted into unordered_set bcoz not to take duplicate neighbours twice
+- _2._ Find maximal network rank for every pair of nodes and keep record of maximal rank.
 ```c
-                    unordered_set             len
-node=0, node=1      "01" "03" "12" "13"         4
-node=0, node=2      "01" "03" "12"              3
-node=0, node=3      "01" "03" "13"              3
-..
+01  =>  (number_of_neighbours_of_0 + number_of_neighbours_of_1) - 1     //Since 0 and 1 are connected
+02  =>  (number_of_neighbours_of_0 + number_of_neighbours_of_2)         //Since 0 and 2 are not connected
 ```
-- _3._ greatest len is the answer.
+- _3._ Greatest rank is the answer.
 
 <a name=co></a>
 #### Complexity
-- **Time:** O(E) + O(V<sup>2</sup>E) = O(V<sup>2</sup>E)
+- **Time:** O(E) + O(V<sup>2</sup>) = O(V<sup>2</sup>)
   - O(E): Creating Graph
-  - O(V<sup>2</sup>E): Finding Max network path between all pairs, we run 2 for loops then find edges of every node.
+  - O(V<sup>2</sup>E): Finding Max network path between all pairs, we run 2 for loops.
 
 <a name=c></a>
 #### Code
@@ -77,34 +72,34 @@ using vecVecS = std::vector<vecS>;
 using vecVecI = std::vector<vecI>;
 using vecB = std::vector<bool>;
 using String = std::string;
-using USet = std::unordered_set<String>;
+using USet = std::unordered_set<int>;
 class Solution {
 public:
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
-    
         //Create Graph
-        vecVecS graph(n);
+        std::vector<USet> graph(n);
         for (int i=0;i<roads.size();++i) {
-            int from = std::min(roads[i][0], roads[i][1]);
-            int to = std::max(roads[i][0], roads[i][1]);
-            std::stringstream ss;
-            ss << from << to;
-            String s = ss.str();
-            graph[to].push_back(s);
-            graph[from].push_back(s);
+            int to = roads[i][0];
+            int from = roads[i][1];
+            graph[to].insert(from);
+            graph[from].insert(to);
         }
 
         int out = -1;
-        //Traverse every pair of nodes and check network path
-        //between those nodes
         for (int i=0;i<n-1;++i){
             for (int j=i+1;j<n;++j){
-                USet us;
-                for(auto it = graph[i].begin(); it!=graph[i].end();++it)
-                    us.insert(*it);
-                for(auto it = graph[j].begin(); it!=graph[j].end();++it)
-                    us.insert(*it);
-                out = std::max(out, int(us.size()));
+                //Find Rank of all pair
+                //if two nodes are connected  (01)
+                  //Rank = neighbour_count_of_0 + neighbour_count_of_1 - 1
+                //if two nodes are not connected  (02)
+                  //Rank = neighbour_count_of_0 + neighbour_count_of_2
+                int rank = graph[i].size() + graph[j].size();
+
+                //if there is common road, subtract 1
+                if (graph[i].find(j) != graph[i].end())
+                    --rank;
+
+                out = std::max(out, rank);
             }
         }
         return out;        
