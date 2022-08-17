@@ -4,6 +4,8 @@
   - [Code](#c)
   - [Complexity](#co)
 
+- **[Self Video](https://youtu.be/0H1FNT5DlqI)**
+
 ## [Maximal Network Rank](https://leetcode.com/problems/maximal-network-rank/)
 - There is an infrastructure of n cities with some number of roads connecting these cities. Each `roads[i] = [ai, bi]` indicates that there is a bidirectional road between cities ai and bi.
 - The network rank of two different cities is defined as the total number of directly connected roads to either city. 
