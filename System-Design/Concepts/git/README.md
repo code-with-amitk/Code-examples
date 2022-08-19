@@ -1,17 +1,35 @@
 **Versioning Control**
 - [git vs gerrit](#vs)
 - [How git works](#how)
-- Terms
+- **Terms**
   - [Branch: feature, master](#b)
   - [Central repository(upstream)](#u)
   - [Cherry pick](#cp)
   - [Clone](#c)
   - [Fork](#f)
   - [HEAD, Detached HEAD](#h)
+- **Commands**
+  - [add](#add)
+  - [checkout](#co)
+  - [cherry pick](#cp)
+  - [clone](#clone)
+  - [commit](#com)
+  - [diff](#diff)
+  - [log](#log)
+  - [show](#sh)
+  - [stash](#st)
+  - [merge](#mr)
+  - [push](#push)
+  - [pull](#pull)
+  - [status](#st)
+  - [rebase](#re)
+  - [Split pull request](#spl)
+  - [sync with upstream](#sync)
 - **Issues**
+  - [Remove commit after push](#rcap)
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
-- [Actions](#ac)
+- [**Actions**](#ac)
 
 <a name=vs></a>
 ### git vs gerrit
@@ -64,9 +82,13 @@ Own duplicated copy of someone else's code. user1 created a repo. User2 wants a 
   - Now under Your Profile you can see the forked repo. git clone it. Changes would not be reflected onto master branch
 
 <a name=h></a>
-### HEAD
-Is a reference to the last commit in the currently checked-out branch.
-- **Detached Head**
+### Head
+- HEΑD is a pointer, which alwαys points to the latest commit in the brαnch. Whenever we make a commit head point to latest commit. Head is stored in 
+```c
+$ cαt .git/refs/heαds/mαster
+570837e7d58fα4bccd86cb575d884502188b0c49
+```
+#### Detached Head
   - We checkedout a commit and its detached, ie we can do the changes, play around will not affect on git, since its not attached to any branch.
   - We can think detached head as Branch without name.
   - *How to Detach Head?* A situation where we have checked out a commit-id(instead of a branch), THIS means we want commit not branch.
@@ -102,7 +124,244 @@ $ git diff
   - _Other Branches:_ These are like twigs of trunk. Finally trunk is main branch which keeps on going up    
     - Origin: Your fork from original/upstream
 
+## Commands
+<a name=rev></a>
+### Working on Review Comments
+```c
+Open git bash
+$ git clone; cd code
+$ git checkout branch; git branch      //Change to existing branch
+$ git pull origin branch               //Get latest code from repo
+$ git pull my-changes                  //Find command on gerrit UI. Open Change Page > Download Patch > git pull. 
+$ git rebase branch
+$ git status
+-> Do code change
+$ git status              //Make sure changed files are there
+$ git add file1 file2
+$ git commit --amend
+$ gitdir=<>
+$ git push <complete command>
+```
+
+<a name=add></a>
+#### add
+This adds files onto staging area, ie in-between cache
+```c
+Working Directory --------------> Staging Area  --------------------> git repository
+                    git add a.c                   git commit -m ""
+```
+
+<a name=co></a>
+#### checkout
+```c
+  git checkout <branch>           //1. Work on older branch
+  git checkout -b <branch>        //2. Creating a new branch
+```
+
+<a name=cp></a>
+#### Cherry pick
+Means choose commit from 1 branch and apply to other branch. Ex: cherry pick changes from branch1 to master
+```c
+$ git branch
+  master
+  
+gerrit$ git fetch .. && git cherry-pick FETCH_HEAD      //Command from gerrit PR > Download Patch > Cherry Pick
+or
+git$ git cherry-pick -x <commit-hash>                //This will keep original hash intact(for history)
+
+$ git status
+on master branch
+Yout branch is a head of 'origin/master' by 1 commit
+
+gerrit$ gitdir=<>
+gerrit$ git push <>
+```
+
+<a name=clone></a>
+#### clone
+Used to create a clone/copy of the target repository.
+```c
+# git config --global url "ssh://gerritgitmaster/".pushInsteadof "ssh://gerritgit/"
+# git config --global user.name "Amit Kumar"
+# git config --global user.email "name@company.com"
+# git config --global pull.rebase true
+
+//Generate ssh keys and upload on gerrit server
+# ssh-keygen -t rsa -C 'emailID'
+# cat ~/.ssh/id_rsa.pub
+<<<<<<<<<<<<Add this key to gerrit server>>>>>>>>>>>>>>>
+# vim ~/.ssh/config
+Host *
+  ServerAliveInterval 20
+Host gerrit*
+  User <username without @>
+  Port <>
+Host gerritgit-mirror              //This is mirror server
+  HostName <>
+Host gerritgitmaster        //This is master server.
+  Hostname <>
+# chmod 0600 ~/.ssh/config  
+
+//Test connection
+# ssh gerritgitmaster       //ssh master
+..sucess message
+# ssh gerritgit-mirror          //ssh mirror
+--success message
+
+$ git clone ssh://gerritgit-mirror/repo-name
+```
+
+<a name=com></a>
+#### commit
+Move from [staging area](#add) to git repo
+```c
+  # git rev-list -n 1 sssd-1_16_4_21      //finding commit-id of version
+  # git log;   
+  # git commit --amend    
+  # git push origin branch -f     //Changing commit message
+```
+<a name=diff></a>
+#### diff
+```c
+$ git diff --output file        //Output in file
+```
+#### fetch
+Download objects and refs from another repository
+
+<a name=log></a>
+#### log    
+Shows commit logs.
+```c
+  # git log --graph
+  # git log --grep 'openldap' --oneline
+  # git log --since='<date>' --until='<date>' --pretty=oneline --grep openldap     //Look for commits between dates
+  # git log commit-id-1 commit-id-2  --pretty=oneline                              //Look for commits between commit-ids
+```
+<a name=sh></a>
+#### show
+To see code changes that particular commit did
+```c
+  # git show commit
+```
+
+<a name=st></a>
+#### stash
+- Dictionary meaning: store (something) safely in a hidden or secret place. 
+- git stash temporarily saves changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on.
+```c
+$ git status
+On branch main
+Changes to be committed:
+    new file:   style.css
+
+$ git stash
+Saved WIP: 5002d47 our new homepage HEAD is now at 5002d47 our new homepage
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+```
+
+<a name=mr></a>
+#### merge
+Merge 2 or more development histories together.
+
+<a name=push></a>
+#### push
+Pushing the changes onto main branch
+```c
+///gerrit///
+$ git status                  //Check files changed
+$ git diff                    //contents changed in files
+$ git add file1 file2 file3
+$ git commit -F commit-msg-file
+$ git pull                        //Run these 2 else you will get merge conflict
+$ git rebase
+$ gitdir=$(git rev-parse --git-dir); scp -p -P 29481 user-id@<gerrit-server>:hools/commit-msg $(gitdir)/hooks
+$ git push ssh://userId@bracnh HEAD:refs/for/branch%topic=<> , r=reviewer@test.com
+```
+
+<a name=pull></a>
+#### pull
+Synching with latest branch code
+
+<a name=st></a>
+#### status
+tells what's modified by you, what's not modified on local repo
+
+<a name=re></a>
+#### rebase
+Reapply commits on top of another base tip. When we have merge conflicts we do
+```c
+# git rebase master
+```
+
+<a name=spl></a>
+#### [Split pull request]https://www.youtube.com/watch?v=e26Zx9K3cdQ)
+```c
+$ git clone repo
+
+$ git pull origin branch
+
+$ git log --oneline --decorate                        //reset to Head's parent commit(ie 3939039)
+b899500 (HEAD -> main, origin/more_fixes) more testing
+3939039 (origin/main, origin/HEAD) initial commit
+
+$ git reset HEAD~                                    //reset to parent commit
+Unstaged changes after reset:
+M       README.md
+M       src/main.rs
+$ git diff                                            //go a head and create new commits
+
+//Stage code related to feature1. 
+//-p: Interactively choose hunks of patch between the index and the work tree and add them to the index.
+//
+$ git add -p                                          
+...
+Stage this hunk [y,n,q,a,d,e,?]? y
+Stage this hunk [y,n,q,a,d,e,?]? e              //edit
+
+..
+$ git diff --staged
+$ git commit -m "splitted commit"              //commit
+[main 9f0685f] splitted commit
+ 2 files changed, 14 insertions(+), 7 deletions(-)
+ 
+$ git diff                                        //Now commit deleted part
++const MEM_SIZE: usize = 0x2000;
++const CODE_SIZE: usize = 0x1000;
+$ git add .
+$ git commit -m "splitted commit2"                 
+
+//Using this way, git history would be clean
+$ git log --oneline                                //Now 2 seperate commits
+3e98cf8 (HEAD -> main) splitted commit2
+9f0685f splitted commit
+3939039 (origin/main, origin/HEAD) initial commit
+```
+
+<a name=sync></a>
+#### sync with upstream
+```c
+# git fetch origin                           # Updates origin/master
+# git rebase origin/master            # Rebases current branch onto origin/master
+```
+
 ## Issues
+<a name=rcap></a>
+#### Remove commit after push
+```c
+$ git clone
+$ git checkout branch
+$ git log
+  abc           //Note commit ids which need to be removed
+  def
+$ git revert --no-commit abc
+$ git revert --no-commit def
+$ git commit -m "Reverting 2 commits"
+$ git push ssh://amit@git:<path> HEAD:refs/for/master,r=reviwer-1,r=reviewer-2
+```
+
 <a name=rem></a>
 #### Remote head refers to nonexistent ref
 - Head(.git/HEAD) is a file storing reference to checkout branch
