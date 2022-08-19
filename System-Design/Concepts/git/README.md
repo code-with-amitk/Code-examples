@@ -246,20 +246,32 @@ To see code changes that particular commit did
 
 <a name=st></a>
 #### stash
-- Dictionary meaning: store (something) safely in a hidden or secret place. 
+- Dictionary meaning: store (something) safely.
+- _Example:_ You are working on change and customer esclation comes. Now you need to work on customer issue but you cannot drop your existing code. Stash it.
 - git stash temporarily saves changes you've made to your working copy so you can work on something else, and then come back and re-apply them later on.
 ```c
-$ git status
-On branch main
-Changes to be committed:
-    new file:   style.css
+$ git clone https://github.com/amitkumar50/test-repo
+$ cd test-repo/
+$ vim wip1
+change
 
+//Something committed in upstream
+$ git pull
+error: Your local changes to the following files would be overwritten by merge:
+        wip1
+Please commit your changes or stash them before you merge.
+Aborting
 $ git stash
-Saved WIP: 5002d47 our new homepage HEAD is now at 5002d47 our new homepage
-
-$ git status
-On branch main
-nothing to commit, working tree clean
+Saved working directory and index state WIP on master: 29cb07c Update wip1
+$ git pull
+$ git stash list
+stash@{0}: WIP on master: 29cb07c Update wip1
+$ git stash pop
+Auto-merging wip1
+CONFLICT (content): Merge conflict in wip1        //Resolve merge conflict
+$ git add wip1
+$ git commit -m 'test'
+$ git push origin master
 ```
 
 <a name=mr></a>
