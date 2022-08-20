@@ -45,10 +45,13 @@ Output: 3               //3 islands
 #include<chrono>
 using namespace std::chrono;
 using namespace std;
+using vecVecC = vector<vector<char>>;
+using vecI = vector<int>;
+using vecVecI = vector<vecI>;
 
 class Solution {
 public:
-  void markConnectedVisited(vector<vector<char>>& grid, vector<vector<int>>& vis, int f, int s, int row, int col){
+  void markConnectedVisited(vecVecC& grid, vecVecI& vis, int f, int s, int row, int col){
     vis[f][s]=1;
     if (f>0 && (vis[f-1][s] == false) && (grid[f-1][s] == '1')){        //Above Element
       markConnectedVisited (grid, vis, f-1, s, row, col);
@@ -64,12 +67,12 @@ public:
     }
   }
 
-  int numIslands(vector<vector<char>>& grid){
+  int numIslands(vecVecC& grid){
     int rows = grid.size(), cols=grid[0].size(), count = 0;
     if(rows == 0)
         return 0;
 
-    vector<vector<int>> vis(rows, vector<int>(cols,0)); //Visited Array of same size as grid, init to 0
+    vecVecI vis(rows, vecI(cols,0)); //Visited Array of same size as grid, init to 0
 
     for(int i=0; i<rows; i++)                              //O(mn)
       for(int j=0; j<cols; j++)
@@ -100,8 +103,12 @@ public:
 ```
 <a name=c2></a>
 #### Code-2
-```c++
-void MarkIslandVisited(std::vector<std::vector<int>>& grid,
+```cpp
+using vecVecC = vector<vector<char>>;
+using vecI = vector<int>;
+using vecVecI = vector<vecI>;
+
+void MarkIslandVisited(vecVecI& grid,
                         int i/*row*/, int j/*col*/, int& MaxRows, int& MaxCols){
   grid[i][j]=2;
   
@@ -118,7 +125,7 @@ void MarkIslandVisited(std::vector<std::vector<int>>& grid,
     MarkIslandVisited(grid,i-1,j,MaxRows,MaxCols);
 }
 
-int numIslands(std::vector<std::vector<int>> grid){
+int numIslands(vecVecI grid){
   int MaxRows = grid.size();
   int MaxCols = grid[0].size();
   int count = 0;
