@@ -3,16 +3,14 @@
 - [Pseudo code](#pc)
 
 ### Recursive DFS
-**Question:** Find cost of reaching dst node from src in Directed,Cyclic Graph.
+**Question:** Find cost of reaching from node=a to node=b in Directed,Cyclic Graph.
 <a name=l></a>
 #### Logic
-- _1._ Let graph is stored as [Hashmap of hashmap](/DS_Questions/Data_Structures/Graphs/Directed_Undirected#hmhm). Now we need find cost from `a to c`.
-- _2._ Take a visited array. 
-- _3._ Pass graph, visited to dfs() function. 
-  - _Inside dfs() function_
-    - _a._ Inside dfs(), Insert starting node into visited
-    - _b._ Find whether starting node is present in graph or not. if not found return -1; 
-    - _c._ if dst is directly connected neighbour?
+- _1._ Create graph[Hashmap of hashmap](/DS_Questions/Data_Structures/Graphs/Directed_Undirected#hmhm), visited array
+- _2._ Pass graph, visited to dfs() function. 
+    - Inside dfs(), 
+    - _a._ Insert node into visited
+    - _b._ if b is directly connected to a?
       - _c1._ Yes. return cost
       - _c2._ No. Check all connected neighbours of neighbour to be equal to dst.
         - _c21._ if neighbour is already visited(ie present in visited array). Do nothing
