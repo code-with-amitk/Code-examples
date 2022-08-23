@@ -2,17 +2,15 @@
 - **Single Source Shortest Path**
   - 1. Dijkstra Algo. For +ve(non-negative) weights only
     - [1a. Using cost, visited Array](#ev)
-    - 1b. Using minHeap
-      - [1b1. Adjacency Matrix](#am)
-      - [1b2. Adjacency List](#al)
+    - [1b. Using minHeap, Adjacency Matrix](#am)
+    - [1c. Using minHeap. Adjacency List](#al)
   - 2. Bellman Ford, for +ve,-ve weights
 
 
 
 # Single Source Shortest Path
-## 1. Dijkstra Algo
 <a name=ev></a>
-### 1a. Using cost, visited array. O(EV)
+## 1a. Dijkstra Algo Using cost, visited array. O(EV)
 Find shortest path from node(0) to all other nodes in graph.
 ```c
                                  [0] --10--[1]--20-- [2]   
@@ -164,7 +162,8 @@ Vertex           Distance/Cost from Source
 3                80
 ```
 
-## 1b. Dijstra's using MinHeap
+<a name=am></a>
+## 1b. Dijkstra Algo using MinHeap, Adjacency Matrix
 Task: Find Minimum distance of every node from Node=0.
 ```cpp
                                  [0] --10--[1]--20-- [2]   
@@ -190,9 +189,6 @@ Node  Cost
 2     30
 3     40
 ```
-
-<a name=am></a>
-### 1b1. Adjacency Matrix
 #### Logic(very simple) O(ElogV)
 - Step-1. Take cost, visited array, `minHeap<key=cost, value=node>` and initialize.
 ```c
@@ -379,8 +375,7 @@ Node	Cost
 ```
 
 <a name=al></a>
-### 1b2. Dijstra's using Adjacency List
-<a name=co2></a>
+### 1b2. Dijstra's using minHeap, Adjacency List
 #### Code
 ```cpp
 #include<iostream>
