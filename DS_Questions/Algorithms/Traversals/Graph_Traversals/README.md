@@ -1,9 +1,9 @@
 **Traversals**
 - **Single Source Shortest Path**
   - 1. Dijkstra Algo. For +ve(non-negative) weights only
-    - [1a. Using cost, visited Array](#ev)
-    - [1b. Using minHeap, Adjacency Matrix](#am)
-    - [1c. Using minHeap. Adjacency List](#al)
+    - [1a. Using cost, visited Array. O(EV)](#ev)
+    - [1b. Using minHeap, Adjacency Matrix. O(ElogV)](#am)
+    - [1c. Using minHeap. Adjacency List. O(ElogV)](#al)
   - 2. Bellman Ford, for +ve,-ve weights
 
 
