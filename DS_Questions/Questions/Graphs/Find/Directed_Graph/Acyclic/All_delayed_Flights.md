@@ -18,9 +18,19 @@ All Delayed flights = {1,2,3}
 
 <a name=l></a>
 ### Logic
-- _1._ Create [directed non-weighted graph using hashmap of linked-lists](/DS_Questions/Data_Structures/Graphs/Directed_Undirected#d1)
-- _2._ Traverse DFS from all delayed flights in delayed vector.
-  - Just note 1 node once
+- _1._ Create [graph hashmap of linked-lists](/DS_Questions/Data_Structures/Graphs/Directed_Undirected#d1)
+```c
+           2       3               1,3
+graph | 1, /\ | 2, /\ | 3, <> | 4, /\ |
+```
+- _2._ For every delayed node, perform DFS(using stack). and insert reached nodes in set(to avoid duplicates)
+  - We know delayed={1,2}
+```c
+   DFS for              unordered_set
+        1               1,2,3
+        2               2,3
+                        output=> 1,2,3
+```
 
 <a name=c></a>
 ### Code
