@@ -4,8 +4,7 @@
 - [Code](#co)
 
 ## [Topological Sort](/DS_Questions/Data_Structures/Graphs#t)
-- This Algo is only for DAG(ie Acyclic Graph)
-- Task: Print topological sort/order of following graph
+- Print topological sort/order of following graph
 ```c
         5 --> 0 <-- 4
         |           |
