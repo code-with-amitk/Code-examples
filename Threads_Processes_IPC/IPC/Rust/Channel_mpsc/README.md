@@ -1,3 +1,7 @@
+Channel
+
+
+
 ## Channel
 - Channel is similar to [Pipe in Linux](/Threads_Processes_IPC/IPC).
 - It has two halves: a transmitter and a receiver. 
