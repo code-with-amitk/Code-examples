@@ -17,8 +17,8 @@ Result:
 <a name=l></a>
 #### Logic 
 ```c
-        5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
-        |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
+        5 --> 0 <-- 4     //in-degree of node[5]=0. Number of incoming edges
+        |           |     //out-degree of node[5]=2. Number of outgoing edges
         \/         \/
         2 --> 3 --> 1
 
@@ -26,8 +26,8 @@ Result:
         |2|2|1|1|0|0| 
          0 1 2 3 4 5
 
-2. Create an queue and enqueue all vertices with indegree=0.
-   Note: if none of nodes has indegree=0 that means graph has a cycle.
+2. Take queue and enqueue all vertices with indegree=0.
+   - if no node has indegree=0 that means graph has a cycle.
         |4 5|
          q
 
