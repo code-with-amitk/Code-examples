@@ -1,5 +1,5 @@
 **Channel**
-- Types of Channels
+- **Types of Channels**
   - [1. Synchronous](#sync)
     - **mpsc: multiple producer single consumer**
       - [1 Producer, 1 consumer](#1p1c)
@@ -12,42 +12,9 @@
   - **b. Receiver:** Gets the duck. Receivers can be cloned and shared among threads
 
 ## Types of channels
-<a name=async></a>
-### 1. Asynchronous channel (multi-producer, multi-consumer)
-- Neither reciever, nor sender waits on channel(ie sender/reciever can send/recv and leave no need to wait).
-- When all Senders or all Receivers are dropped, the channel becomes closed. When a channel is closed, no more messages can be sent, but remaining messages can still be received.
-- **Kinds of channels**
-  - **1. Bounded channel** with limited capacity.
-  - **2. Unbounded channel** with unlimited capacity.
-```rs
-# Cargo.toml
-[package]
-name = "async_channel"
-version = "0.1.0"
-edition = "2018"
-
-[dependencies]
-async-channel = {version = "1.5"}
-tokio = {version = "0.2.*", features = ["full"] }
-
-# main.rs
-use async_channel;
-async fn fun() {
-    let (s, r) = async_channel::unbounded();
-
-    assert_eq!(s.send("Hello").await, Ok(())); //Sends a message into the channel.
-    assert_eq!(r.recv().await, Ok("Hello"));   //Receives a message from channel. If the channel is empty, this method waits until there is a message.
-}
-
-fn main() {
-    let mut rt = tokio::runtime::Runtime::new().unwrap(); //1. Start tokio runtime
-    let local = tokio::task::LocalSet::new();
-    local.block_on(&mut rt, async move { fun().await });
-}
-```
 
 <a name=sync></a>
-#### 2. Synchronous channel
+#### 1. Synchronous channel
 - Sender waits on channel until reciever recieves the message.
 - When all Senders or all Receivers are dropped, the channel becomes closed. When a channel is closed, no more messages can be sent, but remaining messages can still be received.
 - **mpsc: multiple producer single consumer**
@@ -117,4 +84,38 @@ fn main() {
 }
 $ cargo run
 hi more thread1 from messages                       //See threads are executed in different order hence values recieved in different order
+```
+
+<a name=async></a>
+### 2. Asynchronous channel (multi-producer, multi-consumer)
+- Neither reciever, nor sender waits on channel(ie sender/reciever can send/recv and leave no need to wait).
+- When all Senders or all Receivers are dropped, the channel becomes closed. When a channel is closed, no more messages can be sent, but remaining messages can still be received.
+- **Kinds of channels**
+  - **1. Bounded channel** with limited capacity.
+  - **2. Unbounded channel** with unlimited capacity.
+```rs
+# Cargo.toml
+[package]
+name = "async_channel"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+async-channel = {version = "1.5"}
+tokio = {version = "0.2.*", features = ["full"] }
+
+# main.rs
+use async_channel;
+async fn fun() {
+    let (s, r) = async_channel::unbounded();
+
+    assert_eq!(s.send("Hello").await, Ok(())); //Sends a message into the channel.
+    assert_eq!(r.recv().await, Ok("Hello"));   //Receives a message from channel. If the channel is empty, this method waits until there is a message.
+}
+
+fn main() {
+    let mut rt = tokio::runtime::Runtime::new().unwrap(); //1. Start tokio runtime
+    let local = tokio::task::LocalSet::new();
+    local.block_on(&mut rt, async move { fun().await });
+}
 ```
