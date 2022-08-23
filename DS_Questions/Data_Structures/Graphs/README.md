@@ -103,15 +103,9 @@ Minimum eccentricity of any vertex.
 - Some events should happen before next. Example:
   - _1._ When selecting courses in college, some advanced courses have prerequisites that require you to take some introductory courses first.
 ```c
-	course-A ---> course-B ---> course-C		//Topological order would be A,B,C. ie to reach C, course-A should be completed
+course-A ---> course-B ---> course-C	//Topological order would be A,B,C. ie to reach C, course-A should be completed
 ```
 - [Logic Topological Sort](/DS_Questions/Data_Structures/Graphs/Toplogical_Sort)
-```c
-        5 --> 0 <-- 4     //in-degree of node[5]=0, node[0]=2. In directed graph number of incoming edges
-        |           |     //out-degree of node[5]=2, node[0]=0. number of outgoing edges
-        \/         \/
-        2 --> 3 --> 1
-```
 - **Question on Topological Sort:**
   - [1. Find Minimum Height Tree](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Minimum_Height_Tree/)
   - [2. Course Schedule II](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/CoursesSchedule-2_Topological_Sort.md)
