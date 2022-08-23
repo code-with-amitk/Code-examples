@@ -5,6 +5,8 @@
     - [1b. Using minHeap, Adjacency Matrix. O(ElogV)](#am)
     - [1c. Using minHeap. Adjacency List. O(ElogV)](#al)
   - 2. Bellman Ford, for +ve,-ve weights
+- **Multi source** computes the shortest distances between every pair of vertices in graph
+  - Floyd-Warshall
 
 
 
