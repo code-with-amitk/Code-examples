@@ -163,7 +163,7 @@ Vertex           Distance/Cost from Source
 ```
 
 <a name=am></a>
-## 1b. Dijkstra Algo using MinHeap, Adjacency Matrix
+## 1b. Dijkstra Algo using MinHeap, Adjacency Matrix. O(ElogV)
 Task: Find Minimum distance of every node from Node=0.
 ```cpp
                                  [0] --10--[1]--20-- [2]   
@@ -375,7 +375,7 @@ Node	Cost
 ```
 
 <a name=al></a>
-### 1b2. Dijstra's using minHeap, Adjacency List
+### 1b2. Dijstra's using minHeap, Adjacency List. O(ElogV)
 #### Code
 ```cpp
 #include<iostream>
