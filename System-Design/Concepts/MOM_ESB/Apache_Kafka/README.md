@@ -101,7 +101,7 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 ```
 - **Partition:** Partition is disk partition for storing a topic. 1 topic is stored on multiple paritions. Each partition can be hosted on a different server.
 
-<img src=kafka_partition.JPG width=400/>
+<img src=images/kafka_partition.JPG width=400/>
 
 <a name=kc></a>
 #### Kafka connect
