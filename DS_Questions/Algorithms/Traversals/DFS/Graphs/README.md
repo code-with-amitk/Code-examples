@@ -24,43 +24,59 @@
 ### 1. Recursive DFS
 **Question:** Find cost of reaching from node=a to node=b in Directed,Cyclic Graph.
 #### Logic
-- _1._ Create graph[Hashmap of hashmap](/DS_Questions/Data_Structures/Graphs/Directed_Undirected#hmhm), visited array
-- _2._ Pass graph, visited to dfs() function. 
-    - Inside dfs(), 
+- _1._ Create graph [Adjacency List](/DS_Questions/Data_Structures/Graphs#r), take visited array. Let DFS from node=0
+- _2._ Pass graph, visited to dfs(start=0, graph, visited) function.
+    - Inside dfs(), print node
     - _a._ Insert node into visited
-    - _b._ if b is directly connected to a?
-      - _c1._ Yes. return cost
-      - _c2._ No. Check all connected neighbours of neighbour to be equal to dst.
-        - _c21._ if neighbour is already visited(ie present in visited array). Do nothing
-        - _c22._ jump to unvisited neighbour.
-    - _d._ When all neighbours of present node are searched, delete present node from visited.
+    - _b._ Traverse to unvisited neighbours of node.
+#### Code
+```cpp
+       0 --- 1 -- 2 --- 4
+         \    |   /
+           \  |  /
+              3
+   
+#include<iostream>
+#include<vector>
+using vecI = std::vector<int>;
+using vecB = std::vector<bool>;
+using vecVecI = std::vector<vecI>;
 
-#### Pseudo code
-```c
-  a ---2.0----> b -----3.0----> c
-  /\           | /\             |
-  |---1/2.0----| |------1/3.0---|
-
-main() {
-  unordered_map<char, unordered_map<char, double>> umGraph;   //stores graph  //1
-  unordered_set<char> visited;                                                //2
-  dfs (a, c, cost);
-}
-
-double dfs (char src, char dst, double pro, umGraph, visited) {               //3
-  visited.insert(src);                                                          //a
-  auto it = umGraph.find(src);                                                  //b
-  auto it1 = it->second.find(dst);                                              //c
-  if (it1 != it->second.end())                                                  //c1
-    return cost;
-  else {                                                                        //c2
-    for (all neighbours(k) of neighbour) {
-      if (k is in visited array)                                                //c21
-        continue;
-      dfs (src=neighbour(k), dst, pro, graph, visited);                         //c22
+class Solution {
+public:
+    void dfs(int node, vecI* graph, vecB& visited) {
+        visited[node] = true;                             //4. Mark present node as visited & print
+        std::cout << node << ",";
+        
+        //5. Traverse to unvisited neighbours
+        for (int i=0; i<graph[node].size(); ++i){
+            if (visited[graph[node][i]] == false)
+                dfs(graph[node][i], graph, visited);
+        }
     }
-  }
-  visited.erase(src);                                                           //d
+};
+
+int main() {
+    Solution s;
+    
+    vecI graph[5];                  //1. Create Adjacency list Graph
+    graph[0].push_back(1);
+    graph[0].push_back(3);
+    graph[1].push_back(0);
+    graph[1].push_back(2);
+    graph[1].push_back(3);
+    graph[2].push_back(1);
+    graph[2].push_back(3);
+    graph[2].push_back(4);
+    graph[3].push_back(0);
+    graph[3].push_back(1);
+    graph[3].push_back(2);
+    graph[4].push_back(2);
+
+    vecB visited(5, false);       //2. Take visited array for 5 nodes
+    
+    s.dfs(0, graph, visited);       //3. Start dfs from node=0
+}
 }
 ```
 
