@@ -6,13 +6,12 @@ Graph: 	0 -- 1 -- 2		//4 Nodes, 5 edges
 Traversal 0 1 3 2             
 ```
 ### Logic
-- *1.* Store nodes in Adjacency list
-```console
+- *1.* Graph stored as Adjacency list.
+```c
   vector<int> v[4]
-  v[0] = 1 3
-  v[1] = 0 1 3
-  v[2] = 1 3
-  v[3] = 0 1 2
+  
+  | 1,3 | 0,1,3 | 1,3 | 0,1,2 |
+    0 	    1      2      3
 ```
 - *2.* Take `bool visited[4] = {0}` to store which nodes are visited, which are not.
 - *3.* Take `queue<int>` and push 1st node=0 on it
