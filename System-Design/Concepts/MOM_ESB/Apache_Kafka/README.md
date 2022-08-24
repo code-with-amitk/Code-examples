@@ -20,7 +20,7 @@
 ```c
                           kafka-Broker(192.168.0.1:9092)   //1. broker starts
 consumer(0.2)                                              //2. consumer subscribes to topic
-      --subscribe topic(t1)->Add to topic hashmap
+      --subscribe topic(t1)->
 while(1){
 ..
 }
