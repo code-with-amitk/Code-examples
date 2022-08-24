@@ -21,12 +21,12 @@
   - Store records with fault tolerance
   - Process streams as they occur
 ```c
-Producer1   Producer2   Producer3
+Producer1   Producer2   Producer3   //microservice
   |           |           |
    ------    \/  ---------
         [kafka Broker]
   |-----------|-----------|
-Consumer1   Consumer2   Consumer3
+Consumer1   Consumer2   Consumer3   //microservice
 ```
 - **3 types of message delivery methods:**
   - _1. At-least-once semantics:_ Producer can keep on sending same message until Broker does not ACK.
@@ -68,7 +68,6 @@ Application provides logs to Kafka topics, which sends them to log management ap
 Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages.
 
 ## Terms
-
 <a name=bro></a>
 ### Broker
 server in kafka which recieves message.
@@ -94,25 +93,15 @@ Applications/microservices that publishes/writes messages kakfa [Queue or Topic]
 Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understood easily.
 
 <a name=top></a>
-### Topics
-Messages are categorized into topics. Topic = DB Table or Folder in Filesystem.
+### Topics & Partitions
+**Topics:** Messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
 ```c
+  msg1    msg2    msg3          msg5    msg6    msgk
+  ------topic-1-------           ------topic-n-------
 ```
-- Events which are stored on servers/disks in form of QUEUE. These topics are replicated. Example:
-  - _1._ Temprature changed from 40 to 45   //All are events
-  - _2._ Train changed speed from 80 to 90 etc
-- Events are not deleted after reading, but we can define how long kafka should keep the events. Topics are spread over a number of "buckets" located on different Kafka brokers makes it scalable. A common production setting is a replication factor of 3, i.e., there will always be three copies of topics. 
-- **Usage of topics?** Microservices can talk to each other using topics.
-```
-                    ms-4 (Listening on topic/Consumer
-                      /\  Does processing) ----publishes to other Queue --> |t101|t102|..|
-                      |                                                     kakfa Queue
-                      |
-kafka topics  |t1|t2|t3|t4|...
-                      /\
-ms-1    ms2           |t3
-                    ms-3(Publishing topic/Producer)
-```
+- **Partition:** Partition is disk partition for storing a topic. 1 topic is stored on multiple paritions. Each partition can be hosted on a different server.
+
+<img src=kafka_partition.JPG width=400/>
 
 <a name=kc></a>
 #### Kafka connect
