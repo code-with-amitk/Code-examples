@@ -1,7 +1,7 @@
 **DFS**
 - [Complexity](#co)
-- [1. Recursive DFS](#rec)
-- [2. Iterative DFS](#itr)
+- [1. Recursive (Stack not used)](#rec)
+- [2. Iterative (Stack used)](#itr)
 
 
 ## DFS
