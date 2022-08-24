@@ -2,9 +2,9 @@
 - [How to achieve Singleton](#how)
 - [Can't task of Singleton is done by Global variable?](#c)
 - **Code**
-  - [1. Lazy Initialization]
-  - [2. Eagerly Initialization]
-- [Multithreaded](#mut)
+  - [1. Lazy Initialization](#laz)
+  - [2. Eagerly Initialization](#eag)
+- [Multithreaded](#mul)
 
 ## Singleton DP / Single Object
 Only 1 object of class can be created. And provides Global point of access to it.
