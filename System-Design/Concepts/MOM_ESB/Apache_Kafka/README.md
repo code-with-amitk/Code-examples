@@ -3,8 +3,9 @@
   - Kafka Implementations
     - [librdkafka](#lrdk)
 - **Terms** 
-  - [Producer](#pr)
   - [Consumer](#con)
+  - [Messages](#msg)
+  - [Producer](#pr)
   - [Topic](#tp)
   - [Broker](#br)
   - [Kafka connect](#kc)
@@ -15,7 +16,25 @@
 
 <a name=what></a>
 ## [Kafka](https://kafka.apache.org/intro)
-- Kafka(by Apache foundation) is open source enterprise class [MOM](/System-Design/Concepts/MOM_ESB) works over TCP Protocol written in java. There are multiple replicas of Kakfa written in other languages.
+- Kafka(Apache foundation) is open source distributed streaming platform. It has 3 main capabilities:
+  - RW records like a message queue
+  - Store records with fault tolerance
+  - Process streams as they occur
+```c
+Producer1   Producer2   Producer3
+  |           |           |
+   ------    \/  ---------
+        [kafka Broker]
+  |-----------|-----------|
+Consumer1   Consumer2   Consumer3
+```
+- **3 types of message delivery methods:**
+  - _1. At-least-once semantics:_ Producer can keep on sending same message until Broker does not ACK.
+  - _2. At-most-once semantics:_ Producer sends message once only & never retries, Even if ACK comes or not.
+  - _3. Exactly-once semantics(EOS):_ A message is only seen once by the consumer of the message
+
+
+- enterprise class [MOM](/System-Design/Concepts/MOM_ESB) works over TCP Protocol written in java. There are multiple replicas of Kakfa written in other languages.
 - How kafka messaging works?
 ```c
                           kafka-Broker(192.168.0.1:9092)   //1. broker starts
@@ -49,16 +68,36 @@ Application provides logs to Kafka topics, which sends them to log management ap
 Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages.
 
 ## Terms
-<a name=pr></a>
-#### Producer
-Applications/microservices that publishes/writes messages kakfa [Queue or Topic](#tp)
+
+<a name=bro></a>
+### Broker
+server in kafka which recieves message.
 
 <a name=con></a>
-#### Consumer
+### Consumer
 Registers/Subscribes to a Topic and reads messages as they become available.
 
-<a name=tp></a>
-### Topics/Events/Message
+<a name=msg></a>
+### Message / Record
+- Data in kafka is called message. Each message has timestamp, a value, and an optional key.
+```c
+  key                                 Value                   timestamp
+1234567 failed with the message “Alert: Machine Failed” at “2020-10-02T10:34:11.654Z”
+```
+
+<a name=pr></a>
+### Producer
+Applications/microservices that publishes/writes messages kakfa [Queue or Topic](#tp)
+
+<a name=sch></a>
+### Schemas
+Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understood easily.
+
+<a name=top></a>
+### Topics
+Messages are categorized into topics. Topic = DB Table or Folder in Filesystem.
+```c
+```
 - Events which are stored on servers/disks in form of QUEUE. These topics are replicated. Example:
   - _1._ Temprature changed from 40 to 45   //All are events
   - _2._ Train changed speed from 80 to 90 etc
