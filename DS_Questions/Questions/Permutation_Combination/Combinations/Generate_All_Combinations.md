@@ -10,19 +10,11 @@
 - Given two integers n and k, return all possible combinations of k numbers out of the range `[1, n]`. You may return the answer in any order.
 - Example 1:
 ```c
-Input: n = 4, k = 2
-Output:
-[
-  [2,4],
-  [3,4],
-  [2,3],
-  [1,2],
-  [1,3],
-  [1,4],
-]
+Input: n = 4, k = 2     //Choose 2 numbers out of (1,2,3,4)
+Output: 1,2   1,3   1,4   2,3   2,4   3,4
 
 Example 2:
-Input: n = 1, k = 1
+Input: n = 1, k = 1     //Choose 1 number out of 1
 Output: [[1]]
 ```
 
@@ -48,7 +40,7 @@ Fix 3:               3
 ```
 
 ### Code
-We will use [Backtracking Template](/DS_Questions/Algorithms/Backtracking#tem)
+[Backtracking Template](/DS_Questions/Algorithms/Backtracking#tem)
 <a name=cpp></a>
 #### CPP
 ```c
