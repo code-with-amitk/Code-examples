@@ -1,26 +1,29 @@
-**MOM/Message Oriented Middleware**
+**MOM(Message Oriented Middleware)/Broker**
 
 - **Terms**
   - [1. Message broker](#mb)
-  - [2. Publisher/subscriber](#ps)
 - [ESB(Enterprise Service Bus](#esb)
 
-## MOM(Message Oriented Middleware)
-This is a Message Queue where Processes(written in different languages on diffeernt OS) can communicate with each other. It's high availabile. Examples
+## MOM / Broker
+Message Queue where Processes(written in different languages on diffeernt OS) can communicate with each other. It's high availabile. Examples
   - IBM MQ, Apache(Kafka, RocketMQ), Amazon SQS(Simple Queue Service), Amazon SNS(Simple Notification Service), RabbitMQ
-```console
-                          |      SQS            |             Kafka                |
-    Consumer types       | Single Consumer type | Consumers can be different types |
-On stream data analytics |       no             |               yes                |
+```c
+Producer1   Producer2   Producer3   //microservice
+  |           |           |
+   ------    \/  ---------
+        [MOM Broker]
+  |-----------|-----------|
+Consumer1   Consumer2   Consumer3   //microservice
 ```
+||SQS|Kafka|
+|---|---|---|
+|Consumer types|Single|Different|
+|Onstream Analytics|No|Yes|
 
-### Terms
+## Terms
 <a name=mb></a>
-#### Message broker
+#### Broker
 Service that gathers and routes messages from senders to the right receivers.
-<a name=ps></a>
-#### Publisher/subscriber model/[Observer DP](/Languages/Programming_Languages/c++/Design_Pattens)? 
-Subscribers registers for message publication and once message is published its received by subscriber.
 
 <a name=esb></a>
 ## ESB / Enterprise Service Bus
