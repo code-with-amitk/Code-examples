@@ -94,14 +94,16 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 
 <a name=top></a>
 ### Topics & Partitions
-**Topics:** Messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
+**Topics:** Same type of messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
 ```c
   msg1    msg2    msg3          msg5    msg6    msgk
   ------topic-1-------           ------topic-n-------
 ```
-- **Partition:** Partition is disk partition for storing a topic. 1 topic is stored on multiple paritions. Each partition can be hosted on a different server.
+- **Partition:** //Provide Fault Tolerance
+  - Partition is disk partition for storing a topic. 1 topic is stored on multiple paritions. Each partition can be hosted on a different server.
+  - Within each partition, the broker assigns a monotonically increasing sequence number, or offset, to every message.
 
-<img src=images/kafka_partition.JPG width=400/>
+<img src=images/kafka_partition1.JPG width=400/>
 
 <a name=kc></a>
 #### Kafka connect
