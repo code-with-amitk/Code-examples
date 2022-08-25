@@ -4,7 +4,6 @@
 - **Terms**
   - [Branch: feature, master](#b)
   - [Central repository(upstream)](#u)
-  - [Cherry pick](#cp)
   - [Clone](#c)
   - [Fork](#f)
   - [HEAD, Detached HEAD](#h)
@@ -68,8 +67,13 @@ git status
 Organization's copy. Production Copy
 
 <a name=cp></a>
-### [Cherry pick](git-Commands)
-means choose commit from 1 branch and apply to other branch. 
+### Cherry pick
+means choose commit from 1 branch and apply to other branch. Lets think we want to cherry pick from master to test branch.
+```c
+$ git checkout test               //Move to target branch where you want apply
+$ git cherry pick -x <commit-id>  //commit-id is sha hash of commit made on master
+$ git push test ..
+```
 
 <a name=c></a>
 ### Clone
