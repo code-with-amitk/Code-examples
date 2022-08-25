@@ -103,7 +103,7 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
   - Partition is disk partition for storing a topic. 1 topic is stored on multiple paritions. Each partition can be hosted on a different server.
   - Within each partition, the broker assigns a monotonically increasing sequence number, or offset, to every message.
 
-<img src=images/kafka_partition1.JPG width=400/>
+<img src=images/kafka_partition1.JPG width=600/>
 
 <a name=kc></a>
 #### Kafka connect
