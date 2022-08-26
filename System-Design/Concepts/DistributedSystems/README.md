@@ -15,7 +15,7 @@
 - **Types of Systems**
   - Online Systems(Services)
   - [Offline (Batch Processing)](Batch_Processing_Systems)
-  - [Near Online (Stream Processing)]()
+  - [Near Online (Stream Processing)](Stream_Processing)
     
 
 ## Cloud
