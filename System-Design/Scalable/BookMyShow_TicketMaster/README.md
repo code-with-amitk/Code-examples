@@ -1,11 +1,16 @@
-# BookMyShow.com / TicketMaster.com / Online Ticket Booking system
+**BookMyShow.com / TicketMaster.com / Online Ticket Booking system**
 
 | Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
 | --- | --- | --- | --- | --- | --- |
 
-# [To Cover](https://github.com/amitkumar50/Code-examples/tree/master/System-Design/Scalable)
+- [Requirments](#r)
+- [BOE](#b)
+- [HLD](#hld)
+- [DB Schema](#db)
 
-## 1. Requirements
+
+<a name=r></a>
+### 1. Requirements
 > When user logs into portal.. Portal should..
 - *1.* Show Movies in City. 
   - *a.* Option to select Country > State > City > Show Movies in City
@@ -21,6 +26,7 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 - *4.* After seat selection, take payment.
 - *5.* Send E-Ticket on Phone, Email.
 
+<a name=b></a>
 ## 2. BOE Calculations
 [Self Video](https://youtu.be/oOPEeP1gSwA)
 ### *2a.* Traffic Estimates/Connections to be served/second.
@@ -58,9 +64,10 @@ PVR-Naraina-Delhi 2pm   5pm   9pm
 - {For 5 years} 20 MB + 5x10<sup>9</sup> + 100x10<sup>9</sup> + 5x10<sup>13</sup> = 6 x 10<sup>13</sup> = 60 Tera Bytes / 5 years
 - At anytime website will have 1 lac photos, blogs, 50k movies. Old will be deleted and new will be added.
 
-## 3. HLD 
-### A. 1 User
-```
+<a name=hld></a>
+### 3. HLD 
+#### A. 1 User
+```c
           Server
 Stores all seats,theater listing
 of worldwide theaters                               User
@@ -68,7 +75,7 @@ of worldwide theaters                               User
                                               Prints seatno, date
 ```
 
-### B. 100-1Million Users
+#### B. 100-1Million Users
 [Self Video](https://youtu.be/NIEP7wdJOMA)
 #### Steps
 - *1.*
@@ -96,7 +103,8 @@ of worldwide theaters                               User
 
 <img src="./bookmyshow-hld.png" width=1000 />
 
-## 4. DB Schema
+<a name=db></a>
+### 4. DB Schema
 
 - **Movie-DB**
 
