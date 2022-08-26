@@ -3,7 +3,7 @@
   - Kafka Implementations
     - [librdkafka](#lrdk)
 - **Terms** 
-  - [Consumer](#con)
+  - [Consumer, Consumer Group](#con)
   - [Messages](#msg)
   - [Producer](#pr)
   - [Topic](#tp)
@@ -68,6 +68,7 @@ Application provides logs to Kafka topics, which sends them to log management ap
 Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages.
 
 ## Terms
+
 <a name=bro></a>
 ### Broker
 server in kafka which recieves message.
@@ -75,6 +76,10 @@ server in kafka which recieves message.
 <a name=con></a>
 ### Consumer
 Registers/Subscribes to a Topic and reads messages as they become available.
+
+#### Consumer Group
+- Multiple consumers can listen to same [topic](#topic), kafka creates group of these consumers which are intrested in 1 topic.
+- Topic consists of various partitions, Consumer group is assiged partitions. Consumers in consumer group can read messages sequentially in partition.
 
 <a name=msg></a>
 ### Message / Record
