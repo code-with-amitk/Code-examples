@@ -20,6 +20,7 @@
 - [Latency](#la)
 - [Linearizability](#lin)
 - [Orchestration](#orc)
+- [PACELC Theorem](#pacelc)
 - [Partition Tolerance](#pt)
 - [Reliable](#re)
 - [Response time](#rt)
@@ -156,6 +157,11 @@ Writing data from client to server's memory/disk. Specifically mutation is an op
 ### Optimistic Unchoking
 - Unselfishly provide block(s) to node(s) in Neighbour set.
 - Node uses a part of its available bandwidth for sending data to random peers, so that neighbours donot fall in tit for tat problem.
+
+<a name=pacelc></a>
+### PACELC Theorem (Partition Tolerance(P) Availability(A) Consistency(C) Else(E) Latency(L) Consistency(C))
+- This is extension to CAP theorem.
+- _Theorem:_ In case of network partitioned, one chooses AP or CP Else(E) even when the system is running normally in absence of partitions, one has to choose between latency(L) and consistency(C)
 
 ### Partition Tolerance 
 The system continues to operate despite arbitrary partitioning due to network failures
