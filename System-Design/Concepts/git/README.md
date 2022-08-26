@@ -158,6 +158,7 @@ Working Directory --------------> Staging Area  --------------------> git reposi
 Means choose commit from 1 branch and apply to other branch. Ex: cherry pick changes from branch1 to master
 ```c
 $ git checkout test                               //Move to target branch where you want apply
+$ git pull
 $ git cherry-pick -x <commit-hash>                //This will keep original hash intact(for history)
 $ git status
 Yout branch is a head of 'origin/master' by 1 commit
