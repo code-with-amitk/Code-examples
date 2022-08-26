@@ -66,15 +66,6 @@ git status
 ### Central repository(upstream)
 Organization's copy. Production Copy
 
-<a name=cp></a>
-### Cherry pick
-means choose commit from 1 branch and apply to other branch. Lets think we want to cherry pick from master to test branch.
-```c
-$ git checkout test               //Move to target branch where you want apply
-$ git cherry pick -x <commit-id>  //commit-id is sha hash of commit made on master
-$ git push test ..
-```
-
 <a name=c></a>
 ### Clone
 Making a local copy of code on your machine 
@@ -166,18 +157,10 @@ Working Directory --------------> Staging Area  --------------------> git reposi
 #### Cherry pick
 Means choose commit from 1 branch and apply to other branch. Ex: cherry pick changes from branch1 to master
 ```c
-$ git branch
-  master
-  
-gerrit$ git fetch .. && git cherry-pick FETCH_HEAD      //Command from gerrit PR > Download Patch > Cherry Pick
-or
-git$ git cherry-pick -x <commit-hash>                //This will keep original hash intact(for history)
-
+$ git checkout test                               //Move to target branch where you want apply
+$ git cherry-pick -x <commit-hash>                //This will keep original hash intact(for history)
 $ git status
-on master branch
 Yout branch is a head of 'origin/master' by 1 commit
-
-gerrit$ gitdir=<>
 gerrit$ git push <>
 ```
 
