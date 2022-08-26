@@ -5,24 +5,16 @@
   - [Code](#c)
 
 
-### Is Graph Bipartite?
-- There is an undirected graph with n nodes, from 0 and n - 1.
-- There are no self-edges (`graph[u]` does not contain u).
-- There are no parallel edges (`graph[u]` does not contain duplicate values).
-- If v is in `graph[u]`, then u is in `graph[v]` (the graph is undirected).
-- The graph may not be connected, meaning there may be two nodes u and v such that there is no path between them.
-- A graph is bipartite if the nodes can be partitioned into two independent sets A and B such that every edge in the graph connects a node in set A and a node in set B.
-- Return true if and only if it is bipartite.
-- **WHAT is BIGRAPH / BIPARTITE GRAPH?**
-  - A bipartite graph (or bigraph) is a graph whose nodes can be divided into two disjoint and independent sets {U},{V} such that:
-    - Every edge present in orignal graph connects atleast 1 vertex in {U} to one in {V}.
+### Bipartite / Bigraph?
+- A bipartite(bigraph) is a graph whose nodes can be divided into two disjoint and independent sets {U},{V} such that:
+  - Every edge present in orignal graph connects atleast 1 vertex in {U} to one in {V}
+- Graph is bipartite if the nodes can be partitioned into two independent sets A and B such that every edge in the graph connects a node in set A and a node in set B.
+- undirected graph, no self edges, no parallel edges, can have disjoint sets
 - Example
-```
- 0 ------- 1
+```c
+ 0 ------- 1		//This is bigraph
  |         |
  3 ------- 2
-Input: graph = [[1,3],[0,2],[1,3],[0,2]]
-Output: true
 Explanation: We can partition the nodes into two sets: {0, 2} and {1, 3},
             so that every edge present in original graph connects atleaset 1 node in both sets.
   
@@ -33,7 +25,7 @@ Explanation: We can partition the nodes into two sets: {0, 2} and {1, 3},
   0     2   Set-2
 ```
 
-### Approach-1, DFS
+### Approach-1, DFS + Coloring
 <a name=l></a>
 #### Logic (coloring)
 > All same colored nodes are in same set. if 1 node comes in set which is of different color then we cannot seperate nodes into 2 distinct sets.
