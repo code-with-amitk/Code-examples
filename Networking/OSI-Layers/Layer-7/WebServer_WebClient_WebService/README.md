@@ -1,9 +1,10 @@
-- **Methods of connecting Web Client to Web Server**
-  - [Comparison](#vs)
+- **[Comparison](#vs)**
+- **Ways Web Client connect to Web Server**
   - [1. Normal Pooling / Pull Method](#m1)
   - [2. Long Pooling/Push Method](#m2)
   - [3. WebSockets](#m3)
   - [4. Server Sent Events](#m4)
+  - _5._ Webhooks = HTTP POST
 - **[Web Service](#ws)**
 
 ## Methods of Connection
