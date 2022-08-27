@@ -1,12 +1,9 @@
 **Lambda / FaaS(Function as a service)**
-- [Lambda is Serverless](#sl)
 - [Steps of running code in Lambda](#s)
 - [Create lambda](#c)
 - [Write source, Test in lambda](#w)
 
-## Lambda
-<a name=sl></a>
-### Lambda is [Serverless](/System-Design/Concepts/AWS/) Architecture
+### Lambda is [Serverless](/System-Design/Concepts/AWS/Terms#sl)
 - Some cloud providers call this as FaaS(Function as a service).
 - **Advantages:**
   - *1. Lambda takes care of Scaling:* if load increases Lambda will provision new machines and run code there.
