@@ -1,11 +1,25 @@
-**Databases**
+- [SQL vs NoSQL](#sn)
 - [Object vs Block vs File Storage](#obf)
-- [SQL/Relational/Structured vs NoSQL/nonRelational/unStructured](#sn)
 - [Database vs Datawarehouse](#dd)
 - **[IMDB / In Memory / Embedded DB](#i)**
 
 
 ## Comparisons
+<a name=sn></a>
+### SQL/Relational/Structured vs noSQL/nonRelational/unStructured
+Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
+
+|DB| SQL, Relational, Structured | noSQL, nonRelational, unStructured |
+|---|---|---|
+|Examples |Amazon Aurora <br> Amazon RDS <br> MySQL <br> postgreSQL <br> mariaDB|SEMI:<br> - Amazon S3, Apache Cassandra, dynamoDB <br> UNSTRU:<br> - Amazon S3, Apache CouchDB, MongoDB|
+|Types |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL <br> RDBMS: mySQL|a. KEY-VALUE DB:<br> - redis, Amazon dynamoDB, Voldemort, sled(rust) <br> b. WIDE-COLUMN DB:<br> - Stores data as columns instead of rows. Eg: Cassandra, HBase <br> c. DOCUMENT DB: <br> - Data is stored in documents(XML, JSON, binary) Eg: mongoDB, Amazon dynamoDB. <br> d. GRAPH DB: <br> Data is stored in form of graph.Eg: Neo4J, HyperGraphDB| 
+|Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
+|Huge data support | no(becomes slow) | yes |
+|Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
+|Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
+|Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
+|Schema | fixed | not fixed. defining schema for unstructured data is very tough |
+
 <a name=obf></a>
 ### Object vs Block vs File storage
 
@@ -20,21 +34,6 @@
 |Consistency | Eventual consistent | Strongly consistent| |
 |Use cases |Occasional Changes & Storage|Making large RW changes in file and storing frequently.| |
 
-
-<a name=sn></a>
-### SQL vs noSQL
-Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
-
-|DB| SQL, Relational, Structured | noSQL, nonRelational, unStructured |
-|---|---|---|
-|Examples |Amazon Aurora <br> Amazon RDS <br> MySQL <br> postgreSQL <br> mariaDB|SEMI:<br> - Amazon S3, Apache Cassandra, dynamoDB <br> UNSTRU:<br> - Amazon S3, Apache CouchDB, MongoDB|
-|Types |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL <br> RDBMS: mySQL|a. KEY-VALUE DB:<br> - redis, Amazon dynamoDB, Voldemort, sled(rust) <br> b. WIDE-COLUMN DB:<br> - Stores data as columns instead of rows. Eg: Cassandra, HBase <br> c. DOCUMENT DB: <br> - Data is stored in documents(XML, JSON, binary) Eg: mongoDB, Amazon dynamoDB. <br> d. GRAPH DB: <br> Data is stored in form of graph.Eg: Neo4J, HyperGraphDB| 
-|Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
-|Huge data support | no(becomes slow) | yes |
-|Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
-|Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
-|Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
-|Schema | fixed | not fixed. defining schema for unstructured data is very tough |
 
 <a name=dd></a>
 ### Database vs Datawarehouse
