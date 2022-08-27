@@ -11,7 +11,7 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 
 |DB| SQL, Relational, Structured | noSQL, nonRelational, unStructured |
 |---|---|---|
-|Examples |Amazon Aurora <br> Amazon RDS <br> MySQL <br> postgreSQL <br> mariaDB|SEMI:<br> - Amazon S3, Apache Cassandra, dynamoDB <br> UNSTRU:<br> - Amazon S3, Apache CouchDB, MongoDB|
+|Examples |Amazon(Aurora, RDS), MySQL, postgreSQL, mariaDB|Semistructured: Amazon (S3, dynamoDB), Apache Cassandra<br> Unstructured: Amazon S3, Apache CouchDB, MongoDB|
 |Types |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL <br> RDBMS: mySQL|a. KEY-VALUE DB:<br> - redis, Amazon dynamoDB, Voldemort, sled(rust) <br> b. WIDE-COLUMN DB:<br> - Stores data as columns instead of rows. Eg: Cassandra, HBase <br> c. DOCUMENT DB: <br> - Data is stored in documents(XML, JSON, binary) Eg: mongoDB, Amazon dynamoDB. <br> d. GRAPH DB: <br> Data is stored in form of graph.Eg: Neo4J, HyperGraphDB| 
 |Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
 |Huge data support | no(becomes slow) | yes |
