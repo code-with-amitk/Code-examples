@@ -1,7 +1,7 @@
 - [Anti_Pattern](Anti_Pattern)
 - **Creational, Structural, Behavioral**
-  - [Creational: Creating Object](#c)
-  - [Structural: How object is composed](#s)
+  - [Creational: Object Creation](#c)
+  - [Structural: Relationship b/w Objects](#s)
   - [Behavioral: Communication b/w objects](#b)
 - [Design Principles](#dp)
 
@@ -9,8 +9,8 @@
 
 <a name=c></a>
 ### [Creational](Creational)
-Provides way for creating Objects, while hiding creation Logic. Types
-```console
+For creating Objects, while hiding creation Logic. Types
+```c
   DP                  Applications
 Builder           Domino's/McD to create Children Meals
 Facade
@@ -29,8 +29,8 @@ Visitor
 
 <a name=s></a>
 ### [Structural](Structural)
-How objects are composed? Is 1 object composed of other, is there inheritance relation etc? This is about structure. They Identify relationship between objects. Types:
-```console
+Identify relationship between objects. Types:
+```c
 Adapter/Wrapper       1. Socket on Wall: Connecting new adapter to socket
 Bridge                1. House hold switch for On/Off the light
 Composite             1. Arithmetic Expressions evaluation: 2+3 and (2+3) + (4x6)
