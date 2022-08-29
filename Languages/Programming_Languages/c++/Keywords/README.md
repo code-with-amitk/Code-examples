@@ -24,7 +24,7 @@
     - [2. Don't have access to this pointer or super](#s3)
   - [3. static class](#sc)
 - [this](#this)
-- [volatile](#vo)
+- [volatile variable](#vo)
 
 
 ## const
