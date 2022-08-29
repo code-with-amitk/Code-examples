@@ -292,12 +292,20 @@ int main(){
 
 <a name=vo></a>
 ### Volatile
-- Request to complier to Not Optimize the variable OR Donot place variable on Register.
-- **Optimization?**
-  - _What?_ Complier optimizes the code to use less memory & deliver more speed.
-  - _How?_ 
-    - Complier Optimizations
-    - Programmer Optimization: Less time,space complexity of written code
+- Request to complier to not place variable on Register(ie donot Optimize the variable).
+  - _Optimization:_ 
+    - _1._ Compiler moves some variables from memory to register to perform fast & deliver speed.
+    - _2._ Programmer Optimization: Less time,space complexity of written code
+```c
+int main (){
+   int val;   val++;		//val would be copied from Memory to CPU register, then operation is performed.
+}
+int main (){
+   volatile int value;  val++;	//val not copied from Memory to CPU register.
+}
+```
+- **Why volatile?**
+  - _1._ volatile variable is not placed on register, making sure variable is not changed outside current scope.
 - **Use Case:** 2 Threads are talking on global variable. This variable should not be optimized(ie should be volatile)
   - Let Thread-1 does var++, Compiler optimizes the variable & places on Register. Since threads can execute asynchronously, Thread-2 comes in & tries to read. 
   - Since on variable some CPU operations are going on, its final value is yet no calculated. Thread-2 reads wrong value.
