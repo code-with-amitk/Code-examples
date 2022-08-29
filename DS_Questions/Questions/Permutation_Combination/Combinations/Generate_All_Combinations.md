@@ -1,9 +1,5 @@
 **Combinations**
-- [Logic](#l)
-- Code
-  - [CPP](#cpp)
-  - [Rust](#rs)
-- [Complexity](#c)
+- [Approach-1, Backtracking](#a1)
 
 ### [Combinations](https://leetcode.com/problems/combinations/)
 - [What is Combination](/DS_Questions/Questions/Permutation_Combination)
@@ -18,8 +14,9 @@ Input: n = 1, k = 1     //Choose 1 number out of 1
 Output: [[1]]
 ```
 
-<a name=l></a>
-### Logic = Backtracking
+<a name=a1></a>
+### Approach-1, Backtracking
+#### Logic
 - [What is backtracking](/DS_Questions/Algorithms/Backtracking/)
 - **How Backtracking is used here?**
   - We will take 1 number at a time, fix it at its place then generate all combinations for it. (Eg: Generate all combinations of 1)
@@ -39,10 +36,8 @@ Fix 3:               3
   Add 4:            <1,4>
 ```
 
-### Code
+#### Code (CPP)
 [Backtracking Template](/DS_Questions/Algorithms/Backtracking#tem)
-<a name=cpp></a>
-#### CPP
 ```c
 #include<iostream>
 #include<vector>
@@ -98,12 +93,11 @@ $ ./a.out
 ```rs
 ```
 
-<a name=c></a>
-### Complexity
-#### Time
+#### Complexity
+##### Time
 - O(n!/(n-k)!k!)
 - 4!/2!2! = 6
 - Because loop only runs 6 times for <sup>4</sup>C<sub>2</sub> case.
-#### Space
+##### Space
 - `vector<int> arr` will always be of size k
 - Again=6 ie O(n!/(n-k)!k!) because 6 function stacks are created in all.
