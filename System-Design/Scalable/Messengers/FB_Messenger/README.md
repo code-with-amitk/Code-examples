@@ -42,7 +42,7 @@
   - *11.* user-2 sends ack to ack-service. Ack-service places ack on MOM.
   - *12.* fannout-ack service will receives notification and sends ack to user-1.
 
-<img src="./Facebook_Messenger.jpg" width=1000 />
+<img src="images/Facebook_Messenger1.jpg" width=1000 />
 
 ### Others
   - **Method by which Web client connects Application/Chat Server:** [Web Sockets](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods)
