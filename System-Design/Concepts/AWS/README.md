@@ -31,6 +31,7 @@
 |Analytics||[<ul><li>Athena</li> <li>CodePipeline</li> <li>ElasticSearch/OpenSearch</li> <li>Glue(ETL(Extract, transform, Load))</li></ul>](Analytics)|
 |Application Integration||[SNS, SQS, SWF](Application_Integration)|
 |Artificial Intelligence||[<ul><li>Rekognition = Image recognition</li></ul>](Artificial_Intelligence)|
+|Business Applications|[<ul><li>AWS Connect</li></ul>](Business_Applications)|
 |Compute|Provides compute capacity on cloud.|[<ul> <li>EC2=VM(security groups, AMI(Amazon Machine Image))</li> <li>ELB</li> <li>Elastic Beanstalk(Take(a.out + config files) & create EC2 instance)</li> <li>EMR(Elastic Map Reduce)</li> <li>Lambda</li> <li>LightSail(EC2+OS+Service(eg:wordpress))</li> <li>Outpost</li> </ul>](Compute)|
 |Cost Management||[<ul> <li>Billing</li> <li>Budgets</li> <li>MarketPlace</li> <li>Cost Explorer(Forecast spending</li> </ul>](Cost_Management)|
 |Customer Enablement||[<ul> <li>AWS Free TierPersonal</li> <li>Pricing</li> <li>TCO Calculator(aws vs onprem cost)</li> <li>Support</li> </ul>](Customer_Enablement)|
