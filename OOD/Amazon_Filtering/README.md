@@ -14,4 +14,4 @@ Amazon comments filtering system
 	- Checker:	checks obsene comments & remove
 	- Filter:	Filters comments
 
-<img src=amazon_filtering_ood.JPG width=500 />
+<img src=amazon_filtering_ood.JPG width=800 />
