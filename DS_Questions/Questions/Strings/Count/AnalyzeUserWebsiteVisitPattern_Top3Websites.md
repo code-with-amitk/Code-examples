@@ -1,4 +1,5 @@
 **Analyze User Website Visit Pattern**
+- [Approach-1, HashMap, O(n<sup>3</sup>)](#a1)
 
 ### [Analyze User Website Visit Pattern / Top 3 visited websites](https://leetcode.com/problems/analyze-user-website-visit-pattern/)
 - Users visit websites at particular timestamps.
@@ -22,7 +23,8 @@ The pattern ("cart", "maps", "home") has score 1 (james).
 The pattern ("home", "home", "home") has score 0 (no user visited home 3 times).
 ```
 
-### Approach
+<a name=a1></a>
+### Approach-1, HashMap
 #### Logic
 - _1._ Create `unordered_map< username, map<timestamp, website>>`. This will create a ordered list of websites which user visited.
 ```cpp
