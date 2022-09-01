@@ -33,5 +33,6 @@ productId   sellerId  price   count   category  mfgDate expDate sold/unsold revi
 
 #### C. 1M user, 1B products
 - products.csv will become shared DB
+- Taken from [Build Operational Analytics Pipeline](https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/build-operational-analytics-pipeline-on-AWS-modern-data-architecture.pdf?did=wp_card&trk=wp_card)
 
 <img src=images/price-drop-notification-service.JPG width=900/>
