@@ -1,7 +1,7 @@
 **search-suggestions-system**
 - [Approach-1](#a1)
 
-**[Self Video](https://youtu.be/a1c5W3layRM)**
+### [Self Video](https://youtu.be/a1c5W3layRM)
 
 ### Search Suggestions System/Google Search Suggestion
 - You are given an array of strings products and a string searchWord.
