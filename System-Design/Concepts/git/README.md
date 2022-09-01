@@ -7,6 +7,8 @@
   - [Clone](#c)
   - [Fork](#f)
   - [HEAD, Detached HEAD](#h)
+  - [origin](#o)
+  - [master](#mas)
 - **Commands**
   - [add](#add)
   - [checkout](#co)
@@ -118,6 +120,17 @@ $ git diff
   - _upstream/master:_    Master branch of upstream
   - _Other Branches:_ These are like twigs of trunk. Finally trunk is main branch which keeps on going up    
     - Origin: Your fork from original/upstream
+
+<a name=o></a>
+#### origin
+- "origin" is a shorthand name for the remote repository that a project was originally cloned from.
+```c
+$ git clone https://github.com/amitkumar50/test-repo    //origin=https://github.com/amitkumar50/test-repo
+```
+
+<a name=mas></a>
+#### master
+- master is name of branch on remote repository.
 
 ## Commands
 <a name=rev></a>
