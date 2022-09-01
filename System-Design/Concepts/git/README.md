@@ -281,17 +281,12 @@ Merge 2 or more development histories together.
 
 <a name=push></a>
 #### push
-Pushing the changes onto main branch
+- [origin](#o), [master](#mas)
 ```c
-///gerrit///
-$ git status                  //Check files changed
-$ git diff                    //contents changed in files
-$ git add file1 file2 file3
-$ git commit -F commit-msg-file
-$ git pull                        //Run these 2 else you will get merge conflict
-$ git rebase
-$ gitdir=$(git rev-parse --git-dir); scp -p -P 29481 user-id@<gerrit-server>:hools/commit-msg $(gitdir)/hooks
-$ git push ssh://userId@bracnh HEAD:refs/for/branch%topic=<> , r=reviewer@test.com
+$ git add test.c
+$ git commit -m 'msg'
+$ git push origin branch1         //Push changes on branch1
+$ git push origin master         //Push changes on master
 ```
 
 <a name=pull></a>
