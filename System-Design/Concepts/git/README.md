@@ -9,6 +9,7 @@
   - [HEAD, Detached HEAD](#h)
   - [origin](#o)
   - [master](#mas)
+  - [remote](#re)
 - **Commands**
   - [add](#add)
   - [checkout](#co)
@@ -131,6 +132,10 @@ $ git clone https://github.com/amitkumar50/test-repo    //origin=https://github.
 <a name=mas></a>
 #### master
 - master is name of branch on remote repository.
+
+<a name=re></a>
+#### remote 
+
 
 ## Commands
 <a name=rev></a>
