@@ -33,3 +33,5 @@ productId   sellerId  price   count   category  mfgDate expDate sold/unsold revi
 
 #### C. 1M user, 1B products
 - products.csv will become shared DB
+
+<img src=images/price-drop-notification-service.JPG width=500/>
