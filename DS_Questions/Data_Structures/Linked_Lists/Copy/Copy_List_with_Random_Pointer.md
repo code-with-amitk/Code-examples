@@ -1,6 +1,7 @@
 **Copy Custom Linked list**
 - [Approach-1, Hashmap & Recursion](#a1)
 
+## [Self Video](https://youtu.be/pM_GZ2tbLUA)
 
 ### [Copy List with Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)
 Deep Copy the given linked list and return the copied linked list.
