@@ -48,7 +48,7 @@ Returns: JSON containing information about
   - For this, We need to store information of all places/things on earth so that when user queries a place/thing & all places that falls in 10 km radius are relyaed back.
   - This information will be huge, to store places/things information we will use ***SQL DB***.
   - For searching information faster we will use ***GRIDS(Tree data structure)***.    
-![ImgUrl](https://i.ibb.co/PhCRgbC/2dgrid.png)   
+<img src=images/grid.png width=500 />
 
 ### How place/thing information is stored?
   1. Using grids
