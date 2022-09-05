@@ -51,7 +51,6 @@ Decoupling modules. High-level modules should not depend on low-level modules. B
 <a name=op></a>
 ### Other Principles
 - *a. DRY(Donot repeat yourself):* If you have a block of code in more than two places, consider making it a separate method
-- *b.  Favour composition over inheritance*
 - *c. ODR(One Definition Rule):*    A compiled source code(also called compilation unit/translation unit) will have only 1 definition but can have multiple declarations.
 - *d. Separation of concerns:* Dividing code into distinct sections so that each section addresses separate concern. Concern here means problems that code is going to address  
 
@@ -59,6 +58,7 @@ Decoupling modules. High-level modules should not depend on low-level modules. B
 ### Head 1st Design Patterns Principles
 #### 1. Identify the aspects of application that vary and separate them from what stays the same.
 #### 2. Program to an interface, not an implementation.
+#### 3. Favour composition over inheritance
 
 ### RAII(Resource Acquisition is Initialization) OR SBRM(Scope Bound Resource Management):
 - Resource(Anything that exists in limited supply eg: socket, files, disk, mutex, Heap, threads etc) lifetime should be bounded to object lifetime. Means when object's lifetime ends, resources are also freed in reverse order of allocation.
