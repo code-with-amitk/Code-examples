@@ -5,18 +5,16 @@
 
 ## To Cover
 - **1. Requirements:**
-  - *1a.* Functional(Basic functionality, should work)
-  - *1b.* Non-functional(defines quality)
-  - *1c.* Extended:  S<sup>3</sup> L<sup>3</sup> A<sup>3</sup> C<sup>2</sup> R<sup>2</sup> F<sup>2</sup>
+  - *1a. Functional(Basic functionality, should work)*
+  - *1b. Non-functional(defines quality)*
+  - *1c. Extended:  S<sup>3</sup> L<sup>3</sup> A<sup>3</sup> C<sup>2</sup> R<sup>2</sup> F<sup>2</sup>: *   
     - Scalable, Secure, SOA
     - Logging, Load, [Latency](Terms)
     - Available, Accurate, Analyze, Authenticate
     - Cache(Invalidation, negative cache)
     - Reliable, Redundant(Using DB)
     - Fast, Fault Tolerant
-- **2. Back of Envelope Calculations**
-  - Storage estimates
-  - QPS(Queries per second)
+- **2. Back of Envelope Calculations:** Storage estimates, QPS(Queries per second)
 - **3. API Design**
 - **4. HLD:** _For 2, 100, 1 lac users_
 - **5. Database schema**
