@@ -35,7 +35,7 @@ Output: ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 
 <a name=a1></a>
 ### Approach, sort with Comparator
 #### Logic
-- _1._ Store digitLogs into vector and letterLogs into `vector<pair<key, value>>`
+- _1._ Store digitLogs into vector and letterLogs into `vector<pair<key, value>>` seperately.
   - Reach 1st whitespace, if 2nd word is not alphanumeric then its digit, store in digitLog else in letterLog
 - _2._ sort using custom c++ sort
 #### Code
