@@ -1,6 +1,7 @@
 **Reorder Data in Log Files**
 - [Approach-1, Sort with Comparator](#a1)
 
+### [Self Video](https://youtu.be/wjb466ecTJA)
 
 ### Reorder Data in Log Files
 - Array representing logs is given, format: `identifier log`. There are two types of logs in array:
