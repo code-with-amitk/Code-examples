@@ -29,4 +29,4 @@
 
 <a name=h2></a>
 ### 1 M Clients
-<img src=images/scale_on_cloud.png width=500 />
+<img src=images/scale_on_cloud.jpg width=500 />
