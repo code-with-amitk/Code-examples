@@ -36,7 +36,7 @@ Output: ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 
 ### Approach, sort with Comparator
 #### Logic
 - _1._ Store digitLogs into vector and letterLogs into `vector<pair<key, value>>` seperately.
-  - Reach 1st whitespace, if 2nd word is not alphanumeric then its digit, store in digitLog else in letterLog
+  - Reach 1st whitespace, if 2nd word is not Alphabet or digit, if digit store in digitLog else in letterLog
 - _2._ sort using custom c++ sort
 #### Code
 **CPP**
@@ -59,7 +59,7 @@ public:
             //Reach 1st space, ie b/w word1 & word2
             while (s[i] != ' ') ++i;
 
-            //if 2nd word is digit insert in digitLogs
+            //if 2nd word is not alphabet, it should be digit insert in digitLogs
             //else insert in letterLogs
             if (!std::isalpha(s[i+1]))
                 digitLogs.push_back(s);
