@@ -24,3 +24,4 @@
 ```
 
 ### 1 lac Clients
+<img src=images/scale_on_cloud.png width=500 />
