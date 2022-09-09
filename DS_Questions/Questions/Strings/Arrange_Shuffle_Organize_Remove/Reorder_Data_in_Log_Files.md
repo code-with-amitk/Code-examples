@@ -27,8 +27,9 @@ Digit Logs:
     dig2          3 6
 
 Output: ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"]
-  - Letter logs are re-arranged as per Value=Log
-  - Digit logs are copied in same order
+  - Letter logs will come 1st, sorted as per value(ie log)
+    - if 2 values(ie log) in letterLog are same, these are sorted based on key
+  - Digit logs are copied in same order as they appear
 ```
 
 <a name=a1></a>
