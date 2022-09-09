@@ -3,7 +3,7 @@
 
 **Donot Spend major time on Minor Things. Eg: BOE**
 
-## To Cover
+### To Cover (SD is Iterative process. Start from 1 then scale to 1M)
 - **1. Requirements:**
   - *1a. Functional(Basic functionality, should work)*
   - *1b. Non-functional(defines quality)*
