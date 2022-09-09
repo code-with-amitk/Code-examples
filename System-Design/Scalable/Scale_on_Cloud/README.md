@@ -1,14 +1,18 @@
 **Scale on Cloud**
+- [Requirements](#r)
+- HLD
+  - [1 Client & server on same Machine](#h1)
+  - [1 M Clients](#h2)
 
 ### Requirements
-- Functional
-  - _1._ Write application that serves 1M users
-  - _2._ Accessible from desktop and mobile
+- Functional: Write application that serves 1M users
 - [Non-Functional](/System-Design/Scalable)
 
 ## HLD
 > Start from 1 since, journey of 1000 miles begins with 1 step.
-### One Client & server on same Machine
+
+<a name=h1></a>
+### 1 Client & server on same Machine
 ```c
       |--------------------------------------|        1. Server listening on REST endpoint http://localhost:9091/user/{id}
       |                       SERVER         |        2. Client sends HTTP Req to server 
@@ -23,5 +27,6 @@
       |--------------------------------------|
 ```
 
-### 1 lac Clients
+<a name=h2></a>
+### 1 M Clients
 <img src=images/scale_on_cloud.png width=500 />
