@@ -46,12 +46,60 @@ Sorting
 
   [1,5] [4,3] [10,4]    //This is correct order
 ```
-- _2._ Traverse sorted array from back, Find least defense value.
+- _2._ Now array is sorted on order of:
+  - Attacks as ascending, Defence as decending.
+  - if there is deviation in above rule, attack order is taken 1st preference.
+    - These deviation points are the weakeset players which we want to find.
+  - Traverse sorted array from back, and find the deviation points.
 ```c
+leastDefenceVal = 0
+count = 0
+
   [1,5] [4,3] [10,4]
     0     1      2
     
-  i  defense
-  2   4
-  
+  i  defence    leastDefenceVal=max(val,defence)  if(defence<leastDefenceVal) count++
+  2   4                   4                             0
+  1   3                   4                             1
+  0   5                   5                             1
+```
+
+#### Code
+```cpp
+using vecVecI = vector<vector<int>>;
+class Solution {
+public:
+    int numberOfWeakCharacters(vector<vector<int>>& properties) {
+        
+        //Sort array based on:
+        //  ascending order of attacks (Preferred)
+        //  decending order of defence
+        //if there is a situation where above rule does not hold {Deviation}
+        //  sort on attacks
+        sort (properties.begin(), properties.end(), [](auto&a, auto&b){
+            if (a[0] == b[0]){
+                if (a[1] > b[1])
+                    return true;
+                else
+                    return false;
+            }
+            else if (a[0] < b[0])
+                return true;
+            else
+                return false;
+        });
+        
+        int weakCharacters = 0, maxDefense = 0;
+        
+        //Iterate sorted vector from back and find 
+        //deviation points
+        //Deviation points are the weakest players
+        for (int i = properties.size() - 1; i >= 0; i--) {
+            maxDefense = max(maxDefense, properties[i][1]);
+            if (properties[i][1] < maxDefense)
+                weakCharacters++;
+        }
+        return weakCharacters;
+    }
+};
 ```
