@@ -1,7 +1,7 @@
 **The Number of Weak Characters in the Game**
 - [Approach-1, Sorting with Comparator](#a1)
 
-## The Number of Weak Characters in the Game
+## [The Number of Weak Characters in the Game](https://leetcode.com/problems/the-number-of-weak-characters-in-the-game/solution/)
 - A game that contains multiple characters, and each of the characters has two main properties: attack and defense.
 - `Properties[i] = [attacki, defensei]` represents the properties of the ith character in the game.
 - A character i is said to be weak if there exists another character j where attackj > attacki and defensej > defensei.
@@ -103,3 +103,7 @@ public:
     }
 };
 ```
+
+#### Complexity
+- **Time:** O(nlogn)//sorting + O(n)//Traversing = O(nlogn)
+- **Space:** O(1)
