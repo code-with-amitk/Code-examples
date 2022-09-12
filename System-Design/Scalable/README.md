@@ -1,4 +1,4 @@
-|Power of 2|Name|
+|Power of 2|Name|Value|
 |---|---|---|
 |10|1K (Kilo)|10<sup>3</sup>|
 |20|1M (Mega)|10<sup>6</sup>|
