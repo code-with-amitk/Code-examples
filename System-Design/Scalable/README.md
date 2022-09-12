@@ -1,5 +1,12 @@
-| Mega/Million 10<sup>6</sup> | Giga/Billion 10<sup>9</sup> | Tera/Trillion 10<sup>12</sup> | Peta/Quadrillion 10<sup>15</sup> | Exa/Quintillion 10<sup>18</sup> | Zeta/Sextillion 10<sup>21</sup> |
-| --- | --- | --- | --- | --- | --- |
+|Power of 2|Name|
+|---|---|---|
+|10|1K (Kilo)|10<sup>3</sup>|
+|20|1M (Mega)|10<sup>6</sup>|
+|30|1G (Giga)|10<sup>9</sup>|
+|40|1T (Tera)|10<sup>12</sup>|
+|50|1P (Peta)|10<sup>15</sup>|
+|60|1E (Exa)|10<sup>18</sup>|
+|70|1Z (Zeta)|10<sup>21</sup>|
 
 **Donot Spend major time on Minor Things. Eg: BOE**
 
