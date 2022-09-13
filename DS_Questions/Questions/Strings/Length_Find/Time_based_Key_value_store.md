@@ -1,23 +1,24 @@
+**Time based key valu store**
+- 
+
 ## [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
 - Create a timebased key-value store class TimeMap, that supports two operations.
 - `1. set(string key, string value, int timestamp):` Stores the key and value, along with the given timestamp.
-- `2. get(string key, int timestamp):` Returns a value such that set(key, value, timestamp_prev) was called previously, with timestamp_prev <= timestamp.
+- `2. get(string key, int timestamp):` Returns a value such that set(key, value, ts). ts <= timestamp.
   - If there are multiple such values, it returns the one with the largest timestamp_prev.
   - If there are no values, it returns the empty string ("").
 - Example
 ```c
-inputs = ["TimeMap","set","set","set","set","get","get","set","get","get"]
-inputs = [[],
-        ["key1","value1",1],  //set
-        ["key2","value2",2],  //set
-        ["key3","value3",3],  //set
-        ["key1","value4",4],  //set
-        ["key1","value10",10],  //set
-        ["key1",1],           //get.  output: value1
-        ["key1",4],           //get.  output: value4
-        ["key1",3],           //get.  output: value1
-        ]
-Explanation:
+input:
+["TimeMap", "set", "get", "get", "set", "get", "get"]
+[[], ["foo", "bar", 1], ["foo", 1], ["foo", 3], ["foo", "bar2", 4], ["foo", 4], ["foo", 5]]
+
+|foo, bar, 1|foo, bar2, 4|
+
+get(foo,1) => bar     //Value at timestamp<=1 for key=foo is bar
+get(foo,3) => bar     //Value at timestamp<=3 for key=foo is bar
+get(foo,4) => bar2    //Value at timestamp<=4 for key=foo is bar2
+get(foo,3) => bar2
 ```
 
 ### Approach-1  //map Seperate Chaining, Linear search, O(nm)
