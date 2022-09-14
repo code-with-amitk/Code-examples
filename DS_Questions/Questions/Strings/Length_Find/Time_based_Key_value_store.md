@@ -1,7 +1,7 @@
-**Time based key valu store**
-- 
+**Time based key value store**
+- [Approach-1](#a1)
 
-## [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
+### [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
 - Create a timebased key-value store class TimeMap, that supports two operations.
 - `1. set(string key, string value, int timestamp):` Stores the key and value, along with the given timestamp.
 - `2. get(string key, int timestamp):` Returns a value such that set(key, value, ts). ts <= timestamp.
@@ -21,19 +21,20 @@ get(foo,4) => bar2    //Value at timestamp<=4 for key=foo is bar2
 get(foo,3) => bar2
 ```
 
-### Approach-1  //map Seperate Chaining, Linear search, O(nm)
-- **Logic**
-  - *1.* Create map having all <value, timestamp> of same key chained together(Seperate Chaining), if more than 1 key to be inserted having different `<value,timestamp>`.
+<a name=a1></a>
+### Approach-1  //map, Linear search, O(nm)
+#### Logic
+- *1.* Create map having all <value, timestamp> of same key chained together(Seperate Chaining), if more than 1 key to be inserted having different `<value,timestamp>`.
 ```c
 set()
           [value1, 1], [value4, 4], [value10, 10]
             /\
   | key1, vector | key2, vector<value2, 2> | key3, vector<value3, 3> |
 ```
-  - *2.* `get(key)`
-    - if key has associated chain, Eg: key1, search chain linearly in reverse order ie from timestamp=10 to 1.
-    - if key does not have associated chain, send value back. Eg: key3
-- **Complexity**
+- *2.* `get(key)`
+  - if key has associated chain, Eg: key1, search chain linearly in reverse order ie from timestamp=10 to 1.
+  - if key does not have associated chain, send value back. Eg: key3
+#### Complexity
   - **Time:** O(nm)
     - n: Total Number of keys
     - m: Number of repeated keys to be inserted.
@@ -42,8 +43,8 @@ set()
   - **Space:** O(nk + nl)
     - k: Max key length
     - l: Max value length
-- **Code**
-```c++
+#### Code
+```cpp
 class TimeMap {
   using ValueTimestamp = pair<string, int>;
   unordered_map<string, vector<ValueTimestamp>> um;
