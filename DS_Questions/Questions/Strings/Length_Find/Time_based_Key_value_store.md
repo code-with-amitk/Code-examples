@@ -1,5 +1,5 @@
 **Time based key value store**
-- [Approach-1](#a1)
+- [Approach-1, `map<key, vector<value,timestamp>`](#a1)
 
 ### [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
 - Create a timebased key-value store class TimeMap, that supports two operations.
