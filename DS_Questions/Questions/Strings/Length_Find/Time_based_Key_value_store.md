@@ -1,5 +1,6 @@
 **Time based key value store**
-- [Approach-1, `map<key, vector<value,timestamp>`](#a1)
+- [Approach-1, `map<key, vector<value,timestamp>`, Linear Search](#a1)
+- [Approach-2, `map<key, vector<value,timestamp>`, Binary Search](#a2)
 
 ### [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
 - Create a timebased key-value store class TimeMap, that supports two operations.
@@ -76,8 +77,9 @@ int main(){
 }  
 ```
 
+<a name=a1></a>
 ### Approach-2  //map Seperate Chaining, Binary search, O(nlogm)
-- **Logic**
+#### Logic
   - *1.* Create map having all <value, timestamp> of same key chained together(Seperate Chaining), if more than 1 key to be inserted having different `<value,timestamp>`.
 ```c
 set()
@@ -89,7 +91,7 @@ set()
     - if key has associated chain, Eg: key1, Perform binary search on chain
     - if key does not have associated chain, send value back. Eg: key3
   - *3.* if timestamp is not found return "", else return prev to present iterator->first. Since [upper_bound()](/DS_Questions/Searches/BinarySearch/C++_STL) return ForwardIterator ie +1 to upper index.
-- **Complexity**
+#### Complexity
   - **Time:** O(nlogm)
     - n: Total Number of keys
     - m: Number of repeated keys to be inserted. logm: Time taken in binary search
@@ -98,7 +100,7 @@ set()
   - **Space:** O(nk + nl)
     - k: Max key length
     - l: Max value length
-- **Code**
+#### Code
 ```c++
 class TimeMap {
   using ValueTimestamp = pair<string, int>;
