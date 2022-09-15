@@ -7,19 +7,40 @@
 - [Algorithms](#a)
 
 ### Rate Limiter
-- Rate limiter blocks bots, or applications to overload web server(DoS Attack). Rate limiting can stop certain kinds of bot attacks.
-- Because Application server has a limit to server x number of connections/sec. if more connections comes in server can crash.
+#### What is RL
+- Restricts number of incoming HTTP GET/REST API calls from client to server, which can overload the server.
+  - Eg: Only 2 HTTP Posts/sec, 10 accounts creation allowed from same IP address.
+  - Companies: Twitter allows 300 tweets/3 hours, Google docs 300 read users/1min.
+- RL thortles(control) requests based on IP, user ID, other properties. RL can inform users who are thortled.
+#### Advatanges of RL
+- Prevents intentional,unintentional DDoS attacks.
+- Reduces costs. if more requets come in, more servers will be spawned and more cost.
+#### Types of RL
+- **1. Client side:** We might not have much control over client side implementation.
+- **2. Server side**
 
 <a name=r></a>
 ### Requirements
 #### Functional
-- _1._ System handles 50 requests/sec.
-- _2._ System should return error if more than 50 requests are sent.
+- _1._ RL should thortle(block) 51st requests. ie only 50 requests/sec are allowed.
+- _2._ RL should inform user who is thortled.
 #### Non-Functional
-Highly available, Latency should be minimum.
+- Highly available
+- Low Latency. After placing RL system should return HTTP response in least time.
 
 <a name=h></a>
 ### HLD
+> journey of 1000 miles begins with 1 step
+#### 1 requests/sec design
+- Let our RL service only allows 1 req/sec, on 2nd it drops & send HTTP 429(too many requests) to client
+```c
+  HTTP-Client         RL-Service          Application
+      |   --------->     |      -------->     |
+      |
+      |   --------->    
+      |   <-HTTP429-
+  
+```
 #### Services
 - **1. Client Identifier Builder Service**
   - This builds clientID based on clientIP, Port(or some combination that identifies the client)
