@@ -9,6 +9,7 @@ Design a duck game with these initial settings:
  model           no      no      yes
 
 During the game, player can attach a rocket to duck and make it fly.
+- Design should be closed for modification, open for extension.
 ```
 
 ### 2. Objects
