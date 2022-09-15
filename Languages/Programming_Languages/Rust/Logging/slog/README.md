@@ -4,10 +4,19 @@
   - [1. Configure log level at compile time](#c1)
   - [2. Configure log level from function](#c2)
 
-## slog /Structured logging for Rust
+## [slog /Structured logging for Rust](https://docs.rs/slog/latest/slog/enum.Level.html)
 - [Advantages over log crate](https://docs.rs/slog/latest/slog/#core-advantages-over-log-crate)
 - **log levels:** if I configure warn, then warn,debug should be seen in logs. That means log levels above me.
 ```c
+pub enum Level {
+    Critical,
+    Error,
+    Warning,
+    Info,
+    Debug,
+    Trace,
+}
+
 error (highest priority)
 warn
 info
@@ -15,7 +24,7 @@ debug
 trace (lowest priority)
 
 log level = warn.   warn,error Logs should be seen
-log level = debug.  debug, warn, error Logs should be seen
+log level = debug.  debug, info, warn, error Logs should be seen
 ```
 - **Notable Features**
   - _1._ When release build is prepared: slog by default removes trace and debug level statements. warn,info,error are kept.
