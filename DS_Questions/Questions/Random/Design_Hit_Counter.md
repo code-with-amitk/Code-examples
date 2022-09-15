@@ -1,6 +1,8 @@
 **Design Hit Counter**
 - [Approach-1, Linear Search](#a1)
 
+### [Self Video(Linear Search)](https://youtu.be/jW9BETuQaqw)
+
 ### [Design Hit Counter](https://leetcode.com/problems/design-hit-counter/)
 - Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the **past 300 seconds**).
 - Your system should accept a timestamp parameter (in seconds granularity), and you may assume that calls are being made to the system in chronological order (i.e., timestamp is monotonically increasing). Several hits may arrive roughly at the same time.
