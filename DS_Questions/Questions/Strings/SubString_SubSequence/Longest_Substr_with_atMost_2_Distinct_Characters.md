@@ -18,6 +18,7 @@ cca, caa, ccaa, aab, aabb, abbb, aabbb
 ```
 
 ### Approach-1, Hashmap O(n<sup>2</sup>)
+#### [Self Video](https://youtu.be/Zs-_FwdeZwA)
 #### Logic
 - _1._ Take a `hashmap<char, count>` which stores count of characters.
 - _2._ if sizeof(hashmap)>2 calculate total count & update maxi variable
