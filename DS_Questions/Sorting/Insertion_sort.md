@@ -12,6 +12,7 @@
 <a name=pc></a>
 #### Pseudo Code
 <img src=images/insertion_sort.JPG width=500/>
+
 ```c
 for j=1 in to A.size()
   //A[j]      //Card to be placed at correct position
