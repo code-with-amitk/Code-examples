@@ -1,6 +1,9 @@
 **:heartbeat: In computer science, the mental representation for a problem is often closely related to its solution.:heartbeat:**
 
 ### Merge Sort
+
+### [Self Video](https://youtu.be/Yb7n-eImWL0)
+
 #### Phases
 - *1. Divide* Divide problem into subproblems.
 - *2. Conquer:* Solve each subproblem recursively.
