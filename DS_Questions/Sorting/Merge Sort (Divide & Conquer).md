@@ -3,16 +3,11 @@
 ### Merge Sort
 #### Phases
 - *1. Divide* Divide problem into subproblems.
-- *2. Conquer:* Repeatedly solve each subproblem independently.
-- *3. Combine:* The result to form the original problem.
+- *2. Conquer:* Solve each subproblem recursively.
+- *3. Combine:* Solutions to the subproblems into the solution for the original problem.
 
 <img src="https://cdn-codespeedy.pressidium.com/wp-content/uploads/2019/07/merge-sort-in-C.jpeg" width="500" />
 
-#### Complexity
-  - **Time: O(nlogn)**
-    - n: To divide the array, complete array needed to be traversed
-    - logn: Array is divided in binary tree format.
-  - **Space: O(n)** A auxillary subarrays are created and merged back to original array.
 #### Logic
   - *1.* Keep dividing input array into 2 halves recursively(as in binary search), until reach array of size=2
   - *2.* Pass array `{10,5} left=0,mid=0,right=0` to MergeSubArrays() function.
@@ -20,13 +15,45 @@
     - *2b.* Create a local copy, rightArr = {5}
     - *2c.* Traverse leftArr, rightArr. Whichever has smaller element merge to original array
     - *2d.* If any subarray(leftArr or rightArr) is exhausted, Merge remainining elements to original array
+```c
+      10  5  4  2  7  6   << v
+      0   1  2  3  4  5   << index
+      
+      fun(v, left=0, right=5) {
+        if (left>=right)
+          return;
+          
+        mid = (left+right)/2;   //2
+        fun(v, left=0, mid=2);
+        fun(v, mid+1=3, right=5);
+        combine(v, left, mid, right);
+      }
+
+  fun(v, 0, 2) {
+    mid = 1
+    fun(v,0,1)
+    fun(v,1,2)
+    combine()
+  }
+
+fun(v,0,1) {
+  mid = 0
+  fun(v,0,0)
+  fun(v,1,1)
+  combine(v,0,1,1)
+}
+
+combine(&v,left,mid,right)
+  //original array becomes 5 10 4 2 7 6
+  
+```
 #### Code  //Top Down Approach
 ```c++
 #include<iostream>
 #include<vector>
 using vec1d = std::vector<int>;
 
-void MergeSubArrays(vec1d& v, int left, int mid, int right) {
+void combine(vec1d& v, int left, int mid, int right) {
 
   //Create 2 sub arrays: left, right
   int leftArrSize=mid-left+1;
@@ -74,7 +101,7 @@ void MergeSort(vec1d& v, int left, int right){            //1
   int mid = (left+right)/2;
   MergeSort(v, left, mid);
   MergeSort(v, mid+1, right);
-  MergeSubArrays(v, left, mid, right);
+  combine(v, left, mid, right);
 }
 
 int main(){
@@ -84,3 +111,8 @@ int main(){
     std::cout<<i<< " ";
 }
 ```
+#### Complexity
+  - **Time: O(nlogn)**
+    - n: To divide the array, complete array needed to be traversed
+    - logn: Array is divided in binary tree format.
+  - **Space: O(n)** A auxillary subarrays are created and merged back to original array.
