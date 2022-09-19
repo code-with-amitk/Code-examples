@@ -6,8 +6,6 @@
 - *2. Conquer:* Solve each subproblem recursively.
 - *3. Combine:* Solutions to the subproblems into the solution for the original problem.
 
-<img src="images/merge_sort.JPG" width="500" />
-
 #### Logic
   - *1.* Keep dividing input array into 2 halves recursively(as in binary search), until reach array of size=2
   - *2.* Pass array `{10,5} left=0,mid=0,right=0` to MergeSubArrays() function.
@@ -45,8 +43,10 @@ fun(v,0,1) {
 
 combine(&v,left,mid,right)
   //original array becomes 5 10 4 2 7 6
-  
 ```
+
+<img src="images/merge_sort.JPG" width="500" />
+
 #### Code  //Top Down Approach
 ```c++
 #include<iostream>
