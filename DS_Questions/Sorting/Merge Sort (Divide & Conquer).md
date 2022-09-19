@@ -6,7 +6,7 @@
 - *2. Conquer:* Solve each subproblem recursively.
 - *3. Combine:* Solutions to the subproblems into the solution for the original problem.
 
-<img src="https://cdn-codespeedy.pressidium.com/wp-content/uploads/2019/07/merge-sort-in-C.jpeg" width="500" />
+<img src="images/merge_sort.JPEG" width="500" />
 
 #### Logic
   - *1.* Keep dividing input array into 2 halves recursively(as in binary search), until reach array of size=2
