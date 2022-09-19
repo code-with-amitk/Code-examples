@@ -6,7 +6,7 @@
 
 ### [Self Video](https://youtu.be/EAxqcbpGs_w)
 
-### Insertion Sort (Placing Card at correct position in hand)
+### Insertion Sort(From Cormen book. CRLS) (Placing Card at correct position in hand)
 <a name=l></a>
 #### Logic
 - _1._ Compare each value to value on its left. if (value_on_left > value) swap. Repeat till index=0
