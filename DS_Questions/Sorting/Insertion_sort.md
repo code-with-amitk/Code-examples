@@ -11,9 +11,10 @@
 
 <a name=pc></a>
 #### Pseudo Code
+<img src=images/insertion_sort.JPG width=500/>
 ```c
 for j=1 in to A.size()
-  key = A[j]
+  //A[j]      //Card to be placed at correct position
   
   // Insert A[j] into the sorted seqeuence
   i = j-1
@@ -34,15 +35,16 @@ int main() {
     for (int j=1;j<v.size();++j) {
 
         int i = j-1;
-        while (i>=0 && v[i]>v[j]){
+        int k = j;
+        while (i>=0 && v[i]>v[k]){
             //Swap the values
             v[i] = v[i]^v[j];
-            v[j] = v[j]^v[i];
-            v[i] = v[i]^v[j];
+            v[k] = v[k]^v[i];
+            v[i] = v[i]^v[k];
             
             if(i)
                 i = i-1;
-            j--;
+            k--;
         }
     }
     for (auto&i:v)
