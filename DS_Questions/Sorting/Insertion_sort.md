@@ -4,6 +4,8 @@
 - [Code](#c)
 - [Complexity](#co)
 
+### [Self Video](https://youtu.be/EAxqcbpGs_w)
+
 ### Insertion Sort (Placing Card at correct position in hand)
 <a name=l></a>
 #### Logic
