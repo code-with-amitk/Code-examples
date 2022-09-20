@@ -35,10 +35,10 @@ If (MaxHere+array_element < 0)
 
 MaxHere = 0, MaxSoFar = 0
         
-|| -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
+|element| -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
 |---|---|---|---|---|---|---|---|---|---|
-|int MaxHere| 0 if(MaxHere+array_element<0) MaxHere=0 | 1=0+1 | 0 (1-3=-2. Take 0 when sum<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
-|int MaxSoFar| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
+|MaxHere| 0 (0-2<0) | 1=0+1 | 0 (1-3=-2. Take 0 when sum<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
+|MaxSoFar| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
 
 <a name=c1></a>
 #### Code
