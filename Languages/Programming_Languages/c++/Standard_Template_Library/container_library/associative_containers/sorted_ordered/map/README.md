@@ -1,12 +1,10 @@
 **Map**
-- **Inserting element**
+- **Insert**
   - [insert()](#mins)
   - [emplace()](#emp)
 - [erase](#merase)
 - [Multidimentional Maps](#mdm)
-
-
-
+- [`map <key, value, comparator>`](#m2)
 
 
 ## Map<key, value>
@@ -46,4 +44,32 @@ Find key and erase.
 Map inside map
 ```cpp   
 map<int, map<string, string>>
+```
+
+<a name=m2></a>
+### `map <key, value, comparator>`
+#### Store keys in reverse order
+```c
+class cmp {
+public:
+        bool operator()(const string& a, const string& b) const {
+                 if (a.length() > b.length())
+                         return true;
+                 return false;
+        }
+};
+
+int main() {
+        map<std::string, int, cmp> m;
+        m["a"] = 1;
+        m["aa"] = 2;
+        m["aaa"] = 3;
+
+        for (auto&i:m)
+                cout << i.first  << "\n";
+}
+$ ./a.out
+aaa
+aa
+a
 ```
