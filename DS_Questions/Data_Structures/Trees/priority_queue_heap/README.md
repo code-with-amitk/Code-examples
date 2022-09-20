@@ -11,6 +11,7 @@
 - If you use arrays to implement Heaps then you don't need to store pointer as done in trees and its space advantage. 
 
 <img src=images/binary_heap.JPG width=500/>
+
 ```c
 PARENT(i) return [i/2]
 LEFT(i)   return [2i]
