@@ -38,8 +38,8 @@ else
         
 |element| -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
 |---|---|---|---|---|---|---|---|---|---|
-|MaxHere| 0 (0-2<0) | 1=0+1 | 0 (1-3<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
-|MaxSoFar| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
+|MaxHere(//a)| 0 (0-2<0) | 1=0+1 | 0 (1-3<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
+|MaxSoFar(//b)| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
 
 <a name=c1></a>
 #### Code
@@ -52,9 +52,9 @@ public:
   
     for (int i = 0; i < a.size(); i++) { 
         maxHere = maxHere + a[i]; 
-        maxSoFar = std::max(maxHere, maxSoFar);
+        maxSoFar = std::max(maxHere, maxSoFar);   //b
         if (maxHere < 0) 
-            maxHere = 0; 
+            maxHere = 0;                        //a
     } 
     return maxSoFar;         
   }
