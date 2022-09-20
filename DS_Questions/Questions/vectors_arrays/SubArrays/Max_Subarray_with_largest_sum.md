@@ -29,8 +29,10 @@ Output:  6    //SubArray [4,-1,2,1] has the maximum possible sum of 6.
 ```cpp
 Input array: -2, 1, -3, 4, -1, 2, 1, -5, 4
         
-If (MaxHere+array_element < 0)
+if (MaxHere + array_element < 0)
   MaxHere = 0
+else
+  maxHere = maxHere + array_element
 ```
 
 MaxHere = 0, MaxSoFar = 0
@@ -50,14 +52,13 @@ public:
     int MaxHere = 0; 
   
     for (int i = 0; i < a.size(); i++) { 
-        MaxHere = MaxHere + a[i]; 
-        if (MaxSoFar < MaxHere) 
-            MaxSoFar = MaxHere; 
-  
-        if (MaxHere < 0) 
-            MaxHere = 0; 
+        maxHere = maxHere + a[i]; 
+        if (maxHere < 0) 
+            maxHere = 0; 
+        
+        maxSoFar = std::max(maxHere, maxSoFar);
     } 
-    return MaxSoFar;         
+    return maxSoFar;         
   }
 };
 ```
