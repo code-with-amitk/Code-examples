@@ -6,7 +6,7 @@
 
 
 ### [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
-Find the contiguous subarray within an array, A which has the largest sum.
+Find max subarray with largest sum. Subarrays are contigious.
 ```c
 Ex-1
 Input:    A = [1, 2, 3, 4, -10]
