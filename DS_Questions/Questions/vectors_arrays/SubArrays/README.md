@@ -1,5 +1,10 @@
+- [Subarray](#sa)
 - [Sequence](#seq)
 - [Sub-sequence](#subs)
+
+<a name=sa></a>
+### Subarray
+- Contigous, maintains relative order
 
 <a name=seq></a>
 ### Sequence
