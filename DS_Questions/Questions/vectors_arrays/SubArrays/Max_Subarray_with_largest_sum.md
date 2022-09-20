@@ -17,7 +17,7 @@ Input:   A = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 Output:  6    //SubArray [4,-1,2,1] has the maximum possible sum of 6.
 ```
 
-### [Self Video](https://youtu.be/zXB9SQ5kqJA)
+### [Self Video](https://youtu.be/G1EpmNrd1W8)
 
 ### Approach(Kadane's Algo)
 <a name=l1></a>
