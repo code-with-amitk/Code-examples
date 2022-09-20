@@ -28,14 +28,13 @@ Output:  6    //SubArray [4,-1,2,1] has the maximum possible sum of 6.
   - MaxSoFar: 
 ```cpp
 Input array: -2, 1, -3, 4, -1, 2, 1, -5, 4
-        
+  
+MaxHere = 0, MaxSoFar = INT_MIN
 if (MaxHere + array_element < 0)
   MaxHere = 0
 else
   maxHere = maxHere + array_element
 ```
-
-MaxHere = 0, MaxSoFar = 0
         
 |element| -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -48,15 +47,14 @@ MaxHere = 0, MaxSoFar = 0
 class Solution {
 public:
   int maxSubArray(vector<int>& a) {
-    int MaxSoFar = INT_MIN
-    int MaxHere = 0; 
+    int maxSoFar = INT_MIN
+    int maxHere = 0; 
   
     for (int i = 0; i < a.size(); i++) { 
         maxHere = maxHere + a[i]; 
+        maxSoFar = std::max(maxHere, maxSoFar);
         if (maxHere < 0) 
             maxHere = 0; 
-        
-        maxSoFar = std::max(maxHere, maxSoFar);
     } 
     return maxSoFar;         
   }
