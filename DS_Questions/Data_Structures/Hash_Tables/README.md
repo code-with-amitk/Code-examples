@@ -46,35 +46,27 @@ ADVANTAGES of Tree over HT       |                                              
 
 <a name=int></a>
 ### HT Internal Implementation
-> LH* Network
+> It can be implemented in several different ways
+#### Implementation-1 (Array of linked lists)
+<img src=images/ht_implementation_array_of_ll.JPG width=500/>
 
-Files are organized into buckets(Size is power of 2) stored either on RAM/disk/distributed servers. Hash function generates the bucket number which stores the key.
-- **Example:**
-  - Lets consider student data to be stored in hash table.
-  - Each student data is stored in seperate file and File pointers are stored in Buckets (Similar to [Inode](/Operating_Systems/Linux/FileSystem/I_Node_IndexNode.md))
-  - Hash Function generates bucket number as output with enrollment number(key) as input.
-  - **Split Coordinator:** 
-    - Once buckets on server gets full, splitting is done using SC. Making buckets/keys to half.
-    - SC also supports the merging of buckets.
-  - *Dsiadvantage?* Clients maintain views to the global system state, ie overall bucket information.
-```html
-  | Name | Roll-No | Class | Sub-1 | Sub-2 | Sub-3 | .. | Enrollment No(Unique Key) |
-  | Amit |   5     | 10    | Math  | Sci   | Eng   |    | 12345                     | <- File-1
-  | Ram  |   35    | 10    | Math  | Sci   | Eng   |    | 23241                     | <- File-2
+```c
+    
+  | ll1  |  ll2 | ll3 | ll4 |..
+    0       1     2       3
+  array < linked_list<key, value> >
   
-  file1		file2		file3		file4
-  0x40		0xac		0x45		0x34		//Files stored at different addresses
-  
-  |file1 file2 file3 file4|		|...|
-  |0x40  0xac  0x45  0x34 |		|...|
-  Bucket-1. Size=4			Bucket-2. Size=8
+  insert(key, value)
+    key > |Hash_Function| > 41 % array_length(4) = 1
+    -> Move to index=1 and store (key,value) into linked list
 
-  server1		server2			server3
- bucket-1,2		Bucket-3,4,5		Bucket-6,7,10
-
-
-Enrollment-Number(Key)  -> hash_function ->  Bucket-3
+  search(key)
+    key > |Hash_Function| > 41 % array_length(4) = 1
+    -> Reach index=1 and search key.
 ```
+
+#### Implementation-2 (Array of BST)
+- In place of plain linked list, we can use BST making searching O(logn) complexity.
 
 ## Hash Collision
 When hash function provides same index for 2 different keys.
