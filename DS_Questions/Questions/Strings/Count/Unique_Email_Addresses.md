@@ -1,8 +1,8 @@
 **Unique Email Addresses**
+- [Approach-1, Split string. O(n)](#a1)
 
 
-
-### Unique Email Addresses
+### [Unique Email Addresses](https://leetcode.com/problems/unique-email-addresses/)
 - Every valid email consists of a local name and a domain name, separated by the '@' sign. Besides lowercase letters, the email may contain one or more '.' or '+'.
 - For example, in "alice@leetcode.com", "alice" is the local name, and "leetcode.com" is the domain name.
 - **Rules**
@@ -24,6 +24,7 @@ Input: emails = ["a@leetcode.com","b@leetcode.com","c@leetcode.com"]
 Output: 3
 ```
 
+<a name=a1></a>
 ### Approach-1, Split string. O(n)
 - _1._ Seperate localname, domainname. 
 - _2._ Apply rules on localname.
