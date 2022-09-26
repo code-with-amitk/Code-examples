@@ -35,7 +35,35 @@ r    t      g   p
 <a name=ty></a>
 ## Types of Tree
 #### 1. Binary Trees
-Types: Full BT, Complete BT, Perfact BT, Balanced BT, Degenerated or Pathological BT
+- Every node will have **upto 2 Children**.
+- Types: Full BT, Complete BT, Perfact BT, Balanced BT, Degenerated or Pathological BT
+
+##### 1a. Complete BT
+- Binary tree(having max 2 children) in which every level of the tree is fully filled(means 2 children), except for perhaps the last level.
+- Last level is filled as left, not right.
+<img src=cbt.JPG width=500/>
+
+#### 1b. Full BT
+- Binary Tree where every node has 0 or 2 children.
+```c
+        1                        1
+       / \                      / \
+      2   3                    2   3
+     /    /\                       /\ 
+    4     5 6                      5 6
+    Not Full BT               Full BT
+```
+
+##### 1c. Perfact BT
+- BT which full and complete.
+```c
+        1
+       / \
+      2   3
+     /\   /\
+    4 5   6 7 
+      
+```
 
 #### 2. Binary Search Tree(BST)/Ordered
 Mainly used for Searching. Duplicate elements cannot exist. `Left-child < parent, right-child > parent`. Insert/search/delete: O(log(n))
