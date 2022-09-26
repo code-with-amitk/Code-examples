@@ -7,7 +7,7 @@
 - **Usage of Trie:** Trie is used to store the entire (English) language for quick prefix lookups. It can tell us if a string is a prefix of any valid words.
 - Data structure used for efficient storage/retrieval/deletion of strings.
 
-<img src=images/trie.JPG width=500/>
+<img src=images/trie.JPG width=100/>
 
 # Implementations
 ## 1. APPROACH-1(Using Hash-table/unordered_map)
