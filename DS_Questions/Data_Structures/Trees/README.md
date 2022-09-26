@@ -41,7 +41,7 @@ r    t      g   p
 ##### 1a. Complete BT
 - Binary tree(having max 2 children) in which every level of the tree is fully filled(means 2 children), except for perhaps the last level.
 - Last level is filled as left, not right.
-<img src=cbt.JPG width=500/>
+<img src=images/cbt.JPG width=500/>
 
 #### 1b. Full BT
 - Binary Tree where every node has 0 or 2 children.
