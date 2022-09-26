@@ -24,7 +24,7 @@ Insert(2).  //Insert at right bottom.   O(logn)
                         Swap 2 with parent    Swap 2 with parent
 ```
 
-
+### Max Heap 
 <img src=images/binary_heap.JPG width=500/>
 
 ```c
