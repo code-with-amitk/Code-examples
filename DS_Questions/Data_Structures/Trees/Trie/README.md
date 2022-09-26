@@ -1,17 +1,14 @@
-# Trie(Prefix tree/Digital search tree/Retrieval tree)
+**Trie**
+
+
+### Trie / Prefix tree / Digital search tree / Retrieval tree
+- Trie is variant of an n-arytree in which characters are stored at each node. Each path down the tree may represent a word.
+- **Null nodes or * Nodes:** are often used to indicate complete words.
+- **Usage of Trie:** Trie is used to store the entire (English) language for quick prefix lookups. It can tell us if a string is a prefix of any valid words.
 - Data structure used for efficient storage/retrieval/deletion of strings.
-```c++
-Example of Storing strings:  ten,test
-                                                root    //Always empty
-                                                   |
-                                                   t
-                                                   |
-                                                   e
-                                                 / |
-                                                n  s
-                                                   |
-                                                   t
-```
+
+<img src=images/trie.JPG width=500/>
+
 # Implementations
 ## 1. APPROACH-1(Using Hash-table/unordered_map)
 ### Data structure
