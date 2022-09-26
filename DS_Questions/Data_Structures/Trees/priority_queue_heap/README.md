@@ -5,10 +5,25 @@
 - [Priority Queue](#pq)
 
 ## Heap
-- Heap is a data structure that can be viewed as **Nearly complete Binary tree**,  Each node of the tree corresponds to an element of the array.
-- Root of tree is either greatest(max_heap) or smallest(min_heap). Min,Max search = O(1)
-- Duplicates are allowed in heap.
-- If you use arrays to implement Heaps then you don't need to store pointer as done in trees and its space advantage. 
+- Heap is [complete BT](../). Root of tree is either greatest(max_heap) or smallest(min_heap). Min,Max search = O(1). Duplicates are allowed in heap.
+### Min Heap 
+Root is least. It's totally filled other than the rightmost elements on the last level.
+```c
+       4
+     /   \
+    50    7
+   / \    /
+  55 90  87
+
+Insert(2).  //Insert at right bottom.   O(logn)
+       4                      4                      2
+     /   \                  /   \                  /   \
+    50    7       =>       50    2        =>      50     4
+   / \    / \             / \    / \             / \    / \
+  55 90  87  2           55 90  87  7           55 90  87  7
+                        Swap 2 with parent    Swap 2 with parent
+```
+
 
 <img src=images/binary_heap.JPG width=500/>
 
