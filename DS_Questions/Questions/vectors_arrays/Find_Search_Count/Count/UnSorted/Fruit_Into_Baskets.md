@@ -2,7 +2,7 @@
 - [Approach-1, Brute Force. O(n<sup>2</sup>)](#a1)
 - [Approach-2, Sliding Window](#a1)
 
-### Fruit Into Baskets
+### [Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/)
 - You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array fruits where `fruits[i]` is the type of fruit the ith tree produces.
 - You want to collect as much fruit as possible. However, there some Restrictions:
   - You only have 2 baskets, and each basket can only 1 type of fruit. Example: all 0's or all 1's etc. no limit on amount of fruits in basket.
