@@ -6,7 +6,7 @@
 - [HLD](#h)
 - [Algorithms](#a)
 
-### Rate Limiter
+# Rate Limiter (API GW is RL)
 #### What is RL
 - Restricts number of incoming HTTP GET/REST API calls from client to server, which can overload the server.
   - Eg: Only 2 HTTP Posts/sec, 10 accounts creation allowed from same IP address.
@@ -16,50 +16,74 @@
 - Prevents intentional,unintentional DDoS attacks.
 - Reduces costs. if more requets come in, more servers will be spawned and more cost.
 #### Types of RL
-- **1. Client side:** We might not have much control over client side implementation.
-- **2. Server side**
+- **1. Client side:** We might not have much control over client side implementation, hence its not good place to keep RL.
+- **2. Server side:** Good place to keep RL, bcoz we have full control.
 
 <a name=r></a>
-### Requirements
-#### Functional
+## Requirements
+### Functional
 - _1._ RL should thortle(block) 51st requests. ie only 50 requests/sec are allowed.
 - _2._ RL should inform user who is thortled.
-#### Non-Functional
-- Highly available
+### Non-Functional
+- Highly available/Fault Tolerant
 - Low Latency. After placing RL system should return HTTP response in least time.
 
 <a name=h></a>
-### HLD
+## HLD
 > journey of 1000 miles begins with 1 step
-#### 1 requests/sec design
+### 1 requests/sec design
 - Let our RL service only allows 1 req/sec, on 2nd it drops & send HTTP 429(too many requests) to client
-```c
-  HTTP-Client         RL-Service          Application
-      |   --------->     |      -------->     |
-      |
-      |   --------->    
-      |   <-HTTP429-
-  
+- Counters(How many requests allowed to go thru etc) stored in redis cache
+```c                     
+  HTTP-Client              RL-Service                   Cache(Redis)
+      |   ---2req/sec--->       -------- 2 requests ------->
+                                                      for requests:
+                                                       if (counter>1)
+                                                          reject
+                                                       else {
+                                                          counter++
+                                                          send Allowed
+                                                       }
+                                <---- Allow 1 -----------
+                              ------------------ req-1 -------------------> Application_Server
+    <-HTTP429(too many req)- For req-2
 ```
+### 1lac requests/sec design
+#### RL can use **[Token Bucket Algorithm](https://github.com/amitkumar50/pvt-research/blob/master/Projects/3.Clear2Pay/Projects/2.LeakyBucket_TokenBucket_RTShaper/README.md)**
+- _How many buckets needed?_ 
+  - A. Thortle based on API Requests: 1 bucket/REST endpoint.
+    - Endpoints Examples(Twitter): Post(), become_follower(), like_post()   //3 buckets, ie 1 per REST Endpoint
+  - B. Thortle based on IP Address: 1 bucket/IP Address
+  - C. Thortle incoming packets: 1 global bucket
+#### RL Server Side Design
+- RL will sit on seperate middleware. RL will be multithreaded application(multipod), all will communicate with same Cache(Redis)
+- Counters(How many requests allowed to go thru etc) stored in redis cache
+```c
+Client            DNS
+    - fb.com ->
+ <- ip of nearst DC-
+ ---------- HTTP GET -------> LB  -|---> RL-1(pod1) -|
+                                   |                 |
+                                   |---> RL-2(pod2) -|
+                                                     |
+                                                    Redis(Cache)
+```
+- **Available/Fault Tolerant:** Running RL on multipod (multi data center env).
+- **Low Latency:** Multipod, multithreaded.
+- **Monitoring:** After RL is running, it is important to gather analytics data to check whether the rate limiter is effective. Primarily, we want to make sure:
+  - The rate limiting rules are effective, not too strict(many valid requests are dropped). In this case, we want to relax the rules a little bit. I
+  - For flash crowd we may replace the algorithm to support burst traffic. Token bucket is a good fit here.
+#### RL Client Side
+- Use client cache to avoid making frequent API calls.
+- Understand the limit and do not send too many requests in a short time frame.
+- Include code to catch exceptions or errors so your client can gracefully recover from exceptions.
+- Add sufficient back off time to retry logic.
+
+### Design-2
 #### Services
-- **1. Client Identifier Builder Service**
-  - This builds clientID based on clientIP, Port(or some combination that identifies the client)
-- **2. Rules Retriever Service**
-  - Every client is allowed x requests/sec, this is stored in DB retrieved by this service
-  - Stores rules in Memory
-- **3. Rate Limiter Service**
-  - Recieves client_id's key from client_id_builder service, checks in Cache
-- **4. DB Handler Service:**
-  - Frontend of DB which performs CRUD operations on DB
-```c
-    if(key is found in cache) {
-      if (number_of_requests/sec > x)
-        return Http error
-    }
-    else
-      Ask from Rules Retriever
-```
-**Design**
+- **1. Client Identifier Builder Service:** This builds clientID based on clientIP, Port(or some combination that identifies the client)
+- **2. Rules Retriever Service:** Every client is allowed x requests/sec, this is stored in cache
+- **3. Rate Limiter Service:** Recieves client_id's key from client_id_builder service, checks in Cache
 ```c
 Client    internet        
       -----request------> |CLIENT_IDENTIFER_BUILDER_SERVICE|
@@ -94,9 +118,3 @@ Client    internet
                                                                             Drop Packet
                                                                                     ---- Rule ---> |FIREWALL|
 ```
-<a name=a></a>
-#### Algorithms
-- **1. Sliding Window Protocol**
-  - Application server will convey window size to Rate Limiter. Rate limiter will send packet as per window size.
-- **2. Token Bucket Algorithm**
-  - Rate Limiter or Application server will maintain a Token bucket, based on available tokens packets can be forwarded to Application server.
