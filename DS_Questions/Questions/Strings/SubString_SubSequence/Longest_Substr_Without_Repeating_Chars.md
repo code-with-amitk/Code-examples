@@ -161,7 +161,7 @@ int lengthOfLongestSubstring(String s) {
                 left = temp+1;
             }
             um[s[i]]=i;
-            out = std::max(len, i-left);
+            out = std::max(out, i-left);
         }
         return out+1;
 }
