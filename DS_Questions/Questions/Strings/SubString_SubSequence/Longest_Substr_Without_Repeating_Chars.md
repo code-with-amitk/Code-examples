@@ -156,7 +156,7 @@ int lengthOfLongestSubstring(String s) {
             auto it = um.find(s[i]);
             if (it != um.end()) {
                 int temp = it->second;
-                for (int j=start;j<it->second;++j)    //Delete all chars from left till
+                for (int j=left;j<it->second;++j)    //Delete all chars from left till
                     um.erase(s[j]);
                 left = temp+1;
             }
