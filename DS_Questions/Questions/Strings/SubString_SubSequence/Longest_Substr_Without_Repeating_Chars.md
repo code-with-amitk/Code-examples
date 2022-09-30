@@ -60,37 +60,86 @@ input:    a  b  c  d  e  a  f  e  d
          left
          
          i   unordered_map<char, index>   left    out=i-left
-         0      a,0                       0       0           //<a,0> not in map insert
-         1      b,1                       0       1
-         2      c,2                       0       2
-         3      d,3                       0       3
-         4      e,4                       0       4
-         5    //key=a found
-              //Delete a, increment left  1       5-1=4
-              //insert new key,value
-              |a,5|b,1|c,2|d,3|e,4|
-              
+         0    |a,0|                        0       0           //<a,0> not in map insert
           a  b  c  d  e  a  f  e  d
           0  1  2  3  4  5  6  7  8
-             |
-            left
+          |
+        left,i
+         
+         1     |a,0|b,1|                    0       1
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8
+          |  |
+        left i
+        
+         2      |a,0|b,1|c,2|               0       2
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8
+          |     |
+        left    i
+        
+         3      |a,0|b,1|c,2|d,3|           0       3
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8
+          |        |
+        left       i
+        
+         4      |a,0|b,1|c,2|d,3|e,4|       0       4
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8
+          |           |
+        left          i
+
+         5    //key=a found
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8
+          |              |
+        left             i
+              //Delete all entries in map from left to it->second+1
+              |b,1|c,2|d,3|e,4|
+                        
+              //insert new key,value(a,5) in map
+              |b,1|c,2|d,3|e,4|a,5|     
               
-          6   |a,5|b,1|c,2|d,3|e,4|f,6|   1       6-1=5
+              //increment left by it->second+1  
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8     left=1    out=5-1=4
+             |           |
+            left         i    
+
+              
+          6   |b,1|c,2|d,3|e,4|a,5|f,6|   1       6-1=5
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8
+             |              |
+            left            i    
           
           7   //key=e found
-              //Delete all chars from 
-              //index 1 to index 4
-              |a,5|f,6|                    5       7-5=2
-              
           a  b  c  d  e  a  f  e  d
           0  1  2  3  4  5  6  7  8
-                         |
-                        left
-              |a,5|f,6|e,7|                 5       7-5=2
+             |                 |
+            left               i    
+              //Delete all entries in map from left to it->second
+              //ie delete from char=b to char=e
+              |b,1|c,2|d,3|e,4|a,5|f,6| //original
+              |a,5|f,6|
+              
+              //insert new key,value<e,7> in map
+              |a,5|f,6|e,7|
+              
+         7    //increment left by it->second+1
+          a  b  c  d  e  a  f  e  d
+          0  1  2  3  4  5  6  7  8   left=5    out=7-5=2
+                         |     |
+                       left    i
+            
+         8     a  b  c  d  e  a  f  e  d
+               0  1  2  3  4  5  6  7  8   left=5    out=8-5=3
+                              |        |
+                            left       i
+               |a,5|f,6|e,7|d,8|
 
-          8   |a,5|f,6|e,7|d,8|             5       8-5=3
-
-return ++out;
+return out+1;
 ```
 #### Complexity
 - **Time:** O(nm). 
@@ -107,7 +156,7 @@ int lengthOfLongestSubstring(String s) {
             auto it = um.find(s[i]);
             if (it != um.end()) {
                 int temp = it->second;
-                for (int j=start;j<it->second;++j)    //Delete all chars from start till
+                for (int j=start;j<it->second;++j)    //Delete all chars from left till
                     um.erase(s[j]);
                 left = temp+1;
             }
