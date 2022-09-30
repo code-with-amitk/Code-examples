@@ -2,7 +2,9 @@
 - [Approach-1, Naive O(n<sup>2</sup>)](#a1)
 - [Approach-2, Sliding Window O(nm)](#a2)
 
-## [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+### [Self Video](https://youtu.be/_CBE8M-P1rs)
+
+### [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 - Given a string s, find the length of the longest substring without repeating characters. Substring is always continious.
 - Examples
 ```c
