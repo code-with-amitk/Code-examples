@@ -28,7 +28,7 @@
 - keys are stored in ring of servers
 #### Example
 - server0(stores keys 0-10), server1(11-20), server2(21-30)
-<img src=images/Consistent Hashing1.png width=400/>
+<img src=images/Consistent_Hashing1.png width=400/>
 
 **Deletion of server1:**
  - server2 stores keys present on server1.
