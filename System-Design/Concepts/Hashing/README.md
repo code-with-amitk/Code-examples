@@ -1,4 +1,5 @@
-**Hashing**
+- Hashing
+- [Consistent Hashing](#ch)
 
 ### Hashing
 - To store `data=<key,value>` on server, We need to find which server we need to store data.
@@ -21,12 +22,13 @@
   4     4%3 = 1
 ```
 
+<a name=ch></a>
 ### Consistent Hashing / Consistent Hash Ring = (Solution to above problem)
 - Consistent hashing is technique where only k/n keys need to be rehashed, where k is the number of keys, and n is the number of servers.
 - keys are stored in ring of servers
 #### Example
 - server0(stores keys 0-10), server1(11-20), server2(21-30)
-<img src=images/Consistent_Hashing1.png width=400/>
+<img src=images/Consistent Hashing1.png width=400/>
 
 **Deletion of server1:**
  - server2 stores keys present on server1.
