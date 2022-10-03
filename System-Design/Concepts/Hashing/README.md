@@ -28,21 +28,21 @@
 - keys are stored in ring of servers
 #### Example
 - server0(stores keys 0-10), server1(11-20), server2(21-30)
-<img src=images/Consistent_Hashing1.png width=100/>
+<img src=images/Consistent_Hashing1.png width=150/>
 
 **Deletion of server1:**
  - server2 stores keys present on server1.
  - REHASHING: Only keys 11-20 need to rehashed not all.
-<img src=images/Consistent_Hashing_Deletion.png width=100/>
+<img src=images/Consistent_Hashing_Deletion.png width=150/>
 
 **Addition of server4:**
  - server4 takes nearly half of keys stored on server1.
  - REHASHING: Only keys 11-15 need to be reshashed for storage on server4.
-<img src=images/Consistent_Hashing_Addition.png width=100/>
+<img src=images/Consistent_Hashing_Addition.png width=150/>
 
 #### Problem with Consistent Hashing
 - 1 server/node can become hot, ie it can eventually hold many more keys wrt other, which leads to slow response time and increased latency
 - **Solution:** Virtual nodes
  - Whenever any node goes towards becoming hotspot, new node is added which shares the keys. Hence some virtual nodes combined create 1 single node.
  - As load reduces virtual nodes are bought down.
-<img src=images/Consistent_Hashing_VirtualNodes.png width=100/>
+<img src=images/Consistent_Hashing_VirtualNodes.png width=150/>
