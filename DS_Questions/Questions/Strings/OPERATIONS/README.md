@@ -174,7 +174,7 @@ algorithm also aza competitive cs3233 i i kk love love programming za zz
 ```
 
 <a name=sub></a>
-## str.substr(pos, length)
+## str.substr(pos=0, length=n)
 - pos: start position of the substring 
 - len: number of characters in a substring
 ```c++
@@ -182,6 +182,9 @@ algorithm also aza competitive cs3233 i i kk love love programming za zz
                  //012345678
   std::cout << a.substr(1, 2); //From pos=1, Len=2
   
+  std::cout << a.substr(0);     //"Hello T11"
+  std::cout << a.substr(1);     //"ello T11"
+  std::cout << a.substr(2);     //"lo T11"
 //O/p: el
 ```
 
