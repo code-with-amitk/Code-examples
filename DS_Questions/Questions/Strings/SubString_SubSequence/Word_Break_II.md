@@ -42,7 +42,7 @@ substring = ab
 
 <a name=a2></a>
 ### Approach-2, Plain Backtrack
-### [Self Video]()
+### [Self Video](https://youtu.be/28D_r-Zhf7o)
 - [Good Video](https://www.youtube.com/watch?v=fNVs1J2KCyo)
 #### Logic
 - _1._ Insert wordDict into set for O(1) search
