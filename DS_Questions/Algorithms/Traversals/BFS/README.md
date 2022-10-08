@@ -1,4 +1,4 @@
-BFS / Level Order Traversal
+**BFS / Level Order Traversal**
 - [When to apply](#w)
 - [BFS Template](#t)
 - Examples
