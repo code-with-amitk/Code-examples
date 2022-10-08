@@ -34,7 +34,7 @@ Any of these conditions:
 #### BFS Template
 ```c
 main() {
-	set<int> visited;
+	unordered_set<int> visited;
 	
 	//1. Push 1st/start node into queue and mark visited
 	queue<int> q;
