@@ -2,6 +2,8 @@
 - [Approach-1, Using BFS Template](#a1)
 - [Approach-2, Inserting NULL as level seperator](#a2)
 
+## [Self Video, BFS Template](https://youtu.be/ranS-TE-kMU)
+
 ### [Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 - Given the root of a binary tree, return the level order traversal of its nodes values. (i.e., from left to right, level by level).
 ```c
