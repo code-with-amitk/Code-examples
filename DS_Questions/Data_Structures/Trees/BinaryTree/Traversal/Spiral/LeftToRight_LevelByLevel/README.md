@@ -1,8 +1,6 @@
 **Level Order Traversal**
-- Approach-1 / Queue
-  - [Logic](#log1)
-  - [Complexity](#c)
-  - [Code](#cpp1)
+- [Approach-1, Using BFS Template](#a1)
+- [Approach-2, Inserting NULL as level seperator](#a2)
 
 ### [Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
 - Given the root of a binary tree, return the level order traversal of its nodes values. (i.e., from left to right, level by level).
@@ -17,11 +15,65 @@ Input: root = [3,9,20,null,null,15,7]
 Output: [[3],[9,20],[15,7]]       
 ```
 
-## Approach-1 / Queue
-<a name=log1></a>
-### Logic
-- _1._ if tree is empty return null
-- _2._ if not empty push root on queue. Push null on queue. NULL is level seperator. After every level we will insert null.
+<a name=a1></a>
+### Approach-1 / BFS Template
+- [BFS Template](/DS_Questions/Algorithms/Traversals/BFS#t)
+#### Logic
+- [BFS Template](/DS_Questions/Algorithms/Traversals/BFS#t)
+#### Code
+```cpp
+using vecI = vector<int>;
+using vecVecI = vector<vector<int>>;
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        queue<TreeNode*> q;
+        vecVecI out;
+        vecI level;
+        
+        if (!root)
+            return out;
+        
+        q.push(root);
+        out.push_back({root->val});
+        
+        //Traverse whole tree
+        while (!q.empty()){
+            int size = q.size();
+            
+            //Traverse each level
+            for (int i=0;i<size;++i) {
+                TreeNode* f = q.front(); q.pop();
+                
+                if (f->left) {
+                    q.push(f->left);
+                    level.push_back(f->left->val);
+                }
+                if (f->right) {
+                    q.push(f->right);
+                    level.push_back(f->right->val);
+                }
+
+            }//for
+            if (level.size())
+                out.push_back(level);
+            level.clear();
+        
+        }//while
+        return out;
+    }
+};
+```
+#### Complexity
+- **Time:** O(n). n=Number of nodes
+- **Space:** O(m). m=Number of nodes a particular level
+
+<a name=a2></a>
+### Approach-2 / Inserting NULL as level seperator
+#### Logic
+- _1._ Take `queue<Node*>`.
+- _2._ Push root on queue. Push null on queue. NULL is level seperator. After every level we will insert null.
 ```c
  |3|null|
 ```
@@ -35,13 +87,11 @@ Output: [[3],[9,20],[15,7]]
  |9|20|null|
 ```
 
-<a name=c></a>
-### Complexity
+#### Complexity
 - **Time:** O(n). n=number of nodes
 - **Space:** O(m). m=Max number of nodes on any level
 
-<a name=cpp1></a>
-### Code
+#### Code
 ```cpp
 /**
  * Definition for a binary tree node.
