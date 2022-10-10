@@ -56,6 +56,13 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 
 <a name=av></a>
 ### Availability
+```c
+--System------|
+              |----------> Client-1
+  ..          |
+  node-n down |----------> Client-2
+--------------|
+```
 - Whole system is up, user can RW successfully irrespective if any node in the cluster is down.
 - OR Every request receives a response, without guarantee that it contains the most recent version of information. 
 - **Availabilty Problem** System is down and it cannot take requests and send responses.
@@ -97,7 +104,14 @@ Basically Available, Soft state, and Eventual consistency
 
 <a name=con></a>
 ### Consistency
-- Means all nodes in a distributed system have a single latest copy of data, so that we can Read from any node.
+```c
+--System--|
+          |----------> Client-1
+  ..      |
+          |---------> Client-2
+----------|
+```
+- Means All clients will get(same, latest data) that means all nodes in a distributed system have a single latest copy of data.
 - **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
 
 #### Consistency patterns
