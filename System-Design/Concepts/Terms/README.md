@@ -63,8 +63,8 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
   node-n down |----------> Client-2
 --------------|
 ```
+- Any client which requests data gets a response even if some of the nodes are down (without guarantee that it contains the most recent version of information).
 - Whole system is up, user can RW successfully irrespective if any node in the cluster is down.
-- OR Every request receives a response, without guarantee that it contains the most recent version of information. 
 - **Availabilty Problem** System is down and it cannot take requests and send responses.
   - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
     - *a.* Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
@@ -111,7 +111,7 @@ Basically Available, Soft state, and Eventual consistency
           |---------> Client-2
 ----------|
 ```
-- Means All clients will get(same, latest data) that means all nodes in a distributed system have a single latest copy of data.
+- Means All clients will get(same, latest data) to whatever node they connect to in system.
 - **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
 
 #### Consistency patterns
