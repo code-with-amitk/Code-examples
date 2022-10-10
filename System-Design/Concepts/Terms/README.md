@@ -90,11 +90,10 @@ Basically Available, Soft state, and Eventual consistency
 
 <a name=cap></a>
 ### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#pt))
-CAP theorem says: Only 2 out 3 can be guaranteed.
-- **What 2 can be combined**
-  - _1. CP:_ When nodes are partitioned, then consistency can be achieved.
-  - _2. AP:_ nodes remain online even if they can't communicate with each other
-  - _3. CA:_ data is consistent between all nodes - as long as all nodes are online 
+- CAP theorem says: Only 2 out 3 can be guaranteed.
+  - _1. CA:_ data is consistent between all nodes - as long as all nodes are online 
+  - _2. CP:_ When nodes are partitioned, then consistency can be achieved.
+  - _3. AP:_ nodes remain online even if they can't communicate with each other
 
 <a name=con></a>
 ### Consistency
