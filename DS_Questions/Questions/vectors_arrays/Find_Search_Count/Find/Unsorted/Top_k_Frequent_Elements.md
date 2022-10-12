@@ -1,5 +1,5 @@
 **Top K frequent elements**
-- [Approach-1, map and maxHeap](#a1)
+- [Approach-1, map and maxHeap, O(nlogn)](#a1)
 
 ### [Top K frequent elements](https://leetcode.com/problems/top-k-frequent-elements/)
 - Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
@@ -14,7 +14,7 @@ Output: [1]
 ```
 
 <a name=a1></a>
-### Approach-1, map and maxHeap
+### Approach-1, map and maxHeap, O(nlogn)
 #### Logic
 - _1._ Count frequency of elements using unordered_map
 ```c
