@@ -25,8 +25,9 @@
 ```
 ![ImgURL](https://i.ibb.co/vxFKzqD/max-heap.png)
 
-- **Max Heap of `pairs<key, value>`:** Elements are sorted as per values.
 ```c
+- Max Heap of `pairs<key, value>`: Elements are sorted as per values.
+
 create:    <2,gggg> <2,bb> <2,c> <2,aaaa>
     
           <2,gggg>
