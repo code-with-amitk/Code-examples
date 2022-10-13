@@ -39,9 +39,10 @@
        /
     <2,a>   
 ```
-- **Insertion=10**
+- **Insertion = O(logn)** 
   - Always insert element at bottom rightmost spot so as to maintain the complete tree property.
 ```c
+Insert 10
     13                  13
    /  \                /  \
   6    5      =>      6   10
@@ -49,6 +50,7 @@
 3  4  1  10         3  4  1  5
   Swap 5,10       Until 10 finds correct spot
 ```
+- **Delete = O(logn)** Rebalance is needed
 
 <a name=mih></a>
 #### B. Min Heap `priority_queue <int, vector<int>, greater<int>>`
