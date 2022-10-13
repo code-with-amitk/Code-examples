@@ -23,7 +23,7 @@
 ```c
   a[] = {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}.    //Indexes of non-leaf nodes = (N/2 - 1) = 4,6,5,3,1
 ```
-<img src=images/max-heap.PNG width=300></img>
+<img src=images/max-heap.PNG width=600></img>
 
 ```c
 - Max Heap of `pairs<key, value>`: Elements are sorted as per values.
