@@ -29,6 +29,9 @@ set services user-identification device-information authentication-source-networ
 set services user-identification device-information end-user-profile profile-name a domain-name <>
 set services user-identification device-information end-user-profile profile-name a-group device-identity string <>
 set services user-identification identity-maangement connection connect-method https
+
+delete services user-identification identity-maangement connection connect-method https        //To delete config
+
 set services user-identification identity-maangement connection port 443
 set services user-identification identity-maangement connection primary address jims-IP        //Primary
 set services user-identification identity-maangement connection primary client-id test 
