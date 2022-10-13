@@ -7,7 +7,7 @@
 |Time Complexity | Space Compelxity |Algorithms|
 |---|---|---|
 |O(n<sup>2</sup>)| O(1) | Bubble, Selection, Insertion Sort |
-| O(nlogn) | Merge:O(n), Other: O(1) | Merge, Heap/Quick(Best) Sort |
+| O(nlogn) | Merge:O(n), Other: O(1) | Merge, Heap, Quick(Best) Sort |
 | O(n) | Bucket:O(n) | Counting, Radix, [Bucket Sort](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Top_k_Frequent_Elements.md#a2) |
 
 - O(1): space complexity constant ie No extra space needed
