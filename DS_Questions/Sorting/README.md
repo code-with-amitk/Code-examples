@@ -4,11 +4,11 @@
 <a name=c></a>
 ### Complexities
 
-|Algorithms|Time Complexity | Space Compelxity |
+|Time Complexity | Space Compelxity |Algorithms|
 |---|---|---|
-| Bubble/Selection/Insertion Sort |O(n<sup>2</sup>)| O(1) |
-| Merge/Heap/Quick(Best) Sort | O(nlogn) | Merge:O(n), Other: O(1) |
-| Counting/Radix/Bucket Sort | O(n) | |
+|O(n<sup>2</sup>)| O(1) | Bubble, Selection, Insertion Sort |
+| O(nlogn) | Merge:O(n), Other: O(1) | Merge, Heap/Quick(Best) Sort |
+| O(n) | Bucket:O(n) | Counting, Radix, [Bucket Sort](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Top_k_Frequent_Elements.md#a2) |
 
 - O(1): space complexity constant ie No extra space needed
 - Worst-Case-Quick-Sort: We can use randomized version of quick sort which produces O(nlogn) in almost all cases with very high probability.
