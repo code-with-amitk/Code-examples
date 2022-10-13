@@ -2,6 +2,8 @@
 - [Approach-1, unordered_map + maxHeap, O(nlogn)](#a1)
 - [Approach-2, unordered_map + Bucket sort, O(n)](#a2)
 
+### [Self Video, Both Approaches](https://youtu.be/LWCU01gFTIs)
+
 ### [Top K frequent elements](https://leetcode.com/problems/top-k-frequent-elements/)
 - Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
 ```c
