@@ -21,20 +21,33 @@
   - Heapify only non-leaf nodes. Indexes of non-leaf nodes = (N/2 - 1)
     - Heapfiy a node means, exchange node with either left or right child who is greatest.
 ```c
-  a[] = {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}.    //Indexes of non-leaf nodes = (N/2 - 1) = 4,6,5,3,1
-```
-<img src=images/max-heap.PNG width=600></img>
+  a[] = {1, 3, 5, 4, 6, 13}.
 
-```c
+     1          1             5             5             13
+    / \        / \           /  \          /  \          / \
+   3   5      6   5         6    1   =>   6    13  =>   6    5
+  / \   /    /\  /         / \   /       / \   /       /\   /
+  4  6 13   3 4  13       3   4  13      3  4  1      3  4  1
+            Heapify=3     Heapify=1     
+
 - Max Heap of `pairs<key, value>`: Elements are sorted as per values.
-
-create:    <2,gggg> <2,bb> <2,c> <2,aaaa>
+ <2,gggg> <2,bb> <2,c> <2,aaaa>
     
           <2,gggg>
           /       \
        <2,bb>     <2,c>
        /
     <2,a>   
+```
+- **Insertion=10**
+  - Always insert element at bottom rightmost spot so as to maintain the complete tree property.
+```c
+    13                  13
+   /  \                /  \
+  6    5      =>      6   10
+ / \   / \           / \   /\
+3  4  1  10         3  4  1  5
+  Swap 5,10       Until 10 finds correct spot
 ```
 
 <a name=mih></a>
