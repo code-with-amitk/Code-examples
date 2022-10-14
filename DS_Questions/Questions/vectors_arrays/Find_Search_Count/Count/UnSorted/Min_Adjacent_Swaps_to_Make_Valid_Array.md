@@ -1,6 +1,8 @@
 **Minimum Adjacent Swaps to Make a Valid Array**
 - [Approach-1, O(n). Find min,max indexes and swap](#a1)
 
+### [Self Video](https://youtu.be/vr9VCtXAAbY)
+
 ### [Minimum Adjacent Swaps to Make a Valid Array / Count Swaps to Make a Valid Array](https://leetcode.com/problems/minimum-adjacent-swaps-to-make-a-valid-array/)
 - Only Swaps of adjacent elements are allowed
 - Make a valid array meets the following conditions:
