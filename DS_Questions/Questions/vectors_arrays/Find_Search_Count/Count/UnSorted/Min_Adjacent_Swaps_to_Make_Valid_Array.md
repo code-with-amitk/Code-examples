@@ -34,7 +34,7 @@ It can be shown that 6 swaps is the minimum swaps required to make a valid array
 nums = [3,4,5,5,3,1]
         0 1 2 3 4 5
   
-  min_element   max_element_indexes   max_element   max_element_indexes
+  min_element   min_element_indexes   max_element   max_element_indexes
     1           {5}                   5             {2,3}
 ```
 - _2._ Number of steps
