@@ -1,5 +1,6 @@
 **Merge k Sorted Lists**
 - [Approach-1, Read, sort, create. O(mn)](#a1)
+- [Approach-2, Recursively merge 2 LL at a time. O(mn)](#a2)
 
 ### Merge k Sorted Lists
 - You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
@@ -78,7 +79,8 @@ public:
   - O(mn): Iterate thru vector and create linked list
 - **Space:** O(mn)
 
-### Approach-2
+<a name=a2></a>
+### Approach-2, Recursively merge 2 LL at a time. O(mn)
 #### Logic
 - _1._ From m linked lists, merge 2 linked lists at a time.
 #### Code
