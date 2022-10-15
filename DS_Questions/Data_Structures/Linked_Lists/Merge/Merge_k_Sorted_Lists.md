@@ -77,3 +77,55 @@ public:
   - O(logmn): sorting the vector
   - O(mn): Iterate thru vector and create linked list
 - **Space:** O(mn)
+
+### Approach-2
+#### Logic
+- _1._ From m linked lists, merge 2 linked lists at a time.
+#### Code
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+    ListNode *merge(ListNode *l1, ListNode *l2){
+        if (!l1) 
+                return l2; 
+        if (!l2) 
+                return l1; 
+  
+        if (l1->val < l2->val) { 
+                l1->next = merge(l1->next, l2); 
+                return l1; 
+        }else{ 
+                l2->next = merge(l1, l2->next); 
+                return l2; 
+        } 
+    }
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        ListNode* head = nullptr;
+        if (!lists.size())
+            return head;
+        
+        while(lists.size()>1) {
+            head = merge(head, lists[0]);
+            lists.erase(lists.begin());
+        }
+        
+        if (lists.size()==1)
+            head = merge(head, lists[0]);
+
+        return head;
+    }
+};
+```
+#### Complexity
+- **Time:** O(mn). m=size of 1 linked list, n=number of ll
+- **Space:** O(2m). At a time merging of 2 linked lists takes this space.
