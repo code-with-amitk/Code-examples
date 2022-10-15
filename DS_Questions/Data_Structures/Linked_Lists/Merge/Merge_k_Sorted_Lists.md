@@ -2,7 +2,7 @@
 - [Approach-1, Read, sort, create. O(mn)](#a1)
 - [Approach-2, Recursively merge 2 LL at a time. O(mn)](#a2)
 
-### Merge k Sorted Lists
+### [Merge k Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
 - You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
 - Merge all the linked-lists into one sorted linked-list and return it.
 ```c
