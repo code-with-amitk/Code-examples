@@ -4,6 +4,7 @@
   - [1. Running 1 test in vscode](#otest)
   - [2. Running multiple test in vscode](#mtest)
   - [3. Group multiple tests in 1 class](#mc)
+- [Fixtures](#fix)
 
 ## pytest
 <a name=w></a>
@@ -119,4 +120,39 @@ test_class.py:8: AssertionError
 FAILED test_class.py::TestClass::test_2 - AssertionError: assert 'k' in 'this'
 1 failed, 2 passed in 3.99s
 PS C:\Users\amitk\source\repos\python>
+```
+
+<a name=fix></a>
+### Fixtures
+- In testing, a fixture provides a context for the tests. Context may be: environment or content.
+- Any function is a fixture if we decorate it with @pytest.fixture.
+```py
+# cat fixtures.py
+import pytest
+class Fruit:
+    def __init__(self, name):
+        self.name = name
+    def __eq__(self, other):
+        return self.name == other.name
+
+@pytest.fixture
+def apple_fruit():
+    return Fruit("apple")
+@pytest.fixture
+def guvava_fruit():
+    return Fruit("guvava")
+@pytest.fixture
+def fruit_basket(apple_fruit):
+    return [Fruit("banana"), apple_fruit]
+    
+#apple_fruit = [apple]  #guvava_fruit = [guvava]    #fruit_basket = [banana, apple]
+def test_apple_in_basket(apple_fruit, fruit_basket):    #Pass
+    assert apple_fruit in fruit_basket
+def test_guvava_in_basket(guvava_fruit, fruit_basket):    #Fail
+    assert guvava_fruit in fruit_basket
+
+# pytest .\fixtures.py
+fixtures.py:24: AssertionError
+==================================================== short test summary info ==================================================== 
+FAILED fixtures.py::test_guvava_in_basket - assert <fixtures.Fruit object at 0x000002973F21F1F0> in [<fixtures.Fruit object at ...================================================== 1 failed, 1 passed in 0.48s ===============================================
 ```
