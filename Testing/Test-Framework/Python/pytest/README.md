@@ -3,6 +3,7 @@
 - Running tests in pytest
   - [1. Running 1 test in vscode](#otest)
   - [2. Running multiple test in vscode](#mtest)
+  - [3. Group multiple tests in 1 class](#mc)
 
 ## pytest
 <a name=w></a>
@@ -75,5 +76,47 @@ collected 1 item
 
 func.py .                                                                                                   [100%]  <<< completed
 ======================================================= 1 passed in 0.21s ======================================================= 
+PS C:\Users\amitk\source\repos\python>
+```
+
+<a name=mc></a>
+#### 3. Group multiple tests in 1 class
+```py
+//In vscode
+# vim test_class.py
+class TestClass:
+    def test_1(self):
+        x = "this"
+        assert "h" in x     #Pass h is present in x
+
+    def test_2(self):
+        x = "this"
+        assert "k" in x     #Fail k not present in x
+
+    def test_3(self):
+        class Person:
+            name = "John"
+            age = 36
+            country = "Norway"
+        x = "hello check"
+        assert hasattr(Person, 'age')   #Pass Object(Person) has attribute age
+
+//In vscode terminal
+PS C:\Users\amitk\source\repos\python> pytest -q test_class.py
+.F.                                                                                                                        [100%]
+=========================================================== FAILURES ============================================================ 
+_______________________________________________________ TestClass.test_2 ________________________________________________________ 
+
+self = <test_class.TestClass object at 0x000001DC99A33580>
+
+    def test_2(self):
+        x = "this"
+>       assert "k" in x     #Fail k not present in x
+E       AssertionError: assert 'k' in 'this'
+
+test_class.py:8: AssertionError
+==================================================== short test summary info ==================================================== 
+FAILED test_class.py::TestClass::test_2 - AssertionError: assert 'k' in 'this'
+1 failed, 2 passed in 3.99s
 PS C:\Users\amitk\source\repos\python>
 ```
