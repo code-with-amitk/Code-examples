@@ -51,17 +51,29 @@ ADVANTAGES of Tree over HT       |                                              
 <img src=images/ht_implementation_array_of_ll.JPG width=500/>
 
 ```c
-    
   | ll1  |  ll2 | ll3 | ll4 |..
     0       1     2       3
   array < linked_list<key, value> >
+    key   value
+    hi    10320
+    abc   980
+    aa    897
+    qs    897
+    pl    63
   
-  insert(key, value)
-    key > |Hash_Function| > 41 % array_length(4) = 1
-    -> Move to index=1 and store (key,value) into linked list
+int Hash_Function(string key, int arr_len) {
+  convert key to ascii      //hi=104105
+  return key % arr_len      //104105 % 4 = 1
+}
+ 
+int index = Hash_Function("hi", 4);   //index=1
 
-  search(key)
-    key > |Hash_Function| > 41 % array_length(4) = 1
+  insert(key=hi, value=10320)
+    hi > |Hash_Function| > 1
+    -> Move to index=1 and store (key=hi,value=10320) into linked list
+
+  search(key=hi)
+    key > |Hash_Function| > 1
     -> Reach index=1 and search key.
 ```
 
