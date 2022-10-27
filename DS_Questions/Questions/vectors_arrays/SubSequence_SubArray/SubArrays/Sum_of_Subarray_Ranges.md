@@ -1,5 +1,5 @@
 **Sum of Subarray Ranges**
-- [Approach-1, Naive, 2 pointers, 3 loops. O(n3). TLE](#a1)
+- [Approach-1, Naive, 2 pointers, 3 loops. O(n<sup>3</sup>). TLE](#a1)
 
 ### [Sum of Subarray Ranges](https://leetcode.com/problems/sum-of-subarray-ranges/)
 - You are given an integer array nums. The range of a subarray of nums is the difference between the largest and smallest element in the subarray.
@@ -19,7 +19,7 @@ Explanation: The 6 subarrays of nums are the following:
 ```
 
 <a name=a1></a>
-### Approach-1, Naive, 2 pointers, 3 loops. O(n3). TLE
+### Approach-1, Naive, 2 pointers, 3 loops. O(n<sup>3</sup>). TLE
 #### [Logic. Find All Subarrys](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Find_All_SubSeq.md)
 #### Code
 ```cpp
