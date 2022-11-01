@@ -1,6 +1,6 @@
 **Top K frequent elements**
-- [Approach-1, unordered_map + maxHeap, O(nlogn)](#a1)
-- [Approach-2, unordered_map + Bucket sort, O(n)](#a2)
+- [Approach-1, (unordered_map(O(n)) + maxHeap(O(nlogn)) => O(nlogn)](#a1)
+- [Approach-2, (unordered_map(O(n)) + Bucket sort(O(n)) => O(n)](#a2)
 
 ### [Self Video, Both Approaches](https://youtu.be/LWCU01gFTIs)
 
