@@ -1,6 +1,6 @@
 **Product of Array Except Self**
 - [Approach-1, Brute-Force: Find product of all elements, Divide by number, But uses / operator hence invalid O(n)](#a1)
-- [Approach-2](#a2)
+- [Approach-2, Left and Right Product arrays, Space:O(n), Time:O(n)](#a2)
 
 
 ### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self)
@@ -56,7 +56,6 @@ using vec1d = std::vector<int>;
                 }
             }
         }
-        
         if(hasZero){
             for (int i=0;i<nums.size();++i){
                 if(zeroIndex == i)
@@ -77,24 +76,46 @@ using vec1d = std::vector<int>;
 ```
 
 <a name=a2></a>
-### Approach-2   //Left and Right Product arrays //Space:O(n), Time:O(n)
-~[ImgURL](https://leetcode.com/problems/product-of-array-except-self/Figures/238/diag-1.png)
-
+### Approach-2. Left and Right Product arrays, Space:O(n), Time:O(n)
 #### Logic
-  - Calculate left and right product arrays.
-  - Output array = `leftArray*RightArray` 
+- _1._ Calculate left product Array.
 ```c
-a[]   =     {2, 3, 4, 5}
+a[]   =     {1, 2, 3, 4}
              0  1  2  3
-                                                                                    Time        Space
-leftArr  = 1                  a[0]                    a[0]*a[1]   a[0]*a[1]*a[2]    //O(n)      O(n)
-RightArr = a[1]*a[2]*a[3]     a[2]*a[3]               a[3]        1                 //O(n)      O(n)
-                   
-out = leftArr*RightAr                   
-out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]    //O(n)      O(n)
+
+left[i] =  left[i-1]*nums[i-1];
+	i	value
+	0	1
+	1	1*1 = 1
+	2	1*2 = 2
+	3	2*3 = 6
+	
+leftArr  = 1    a[0]   a[0]*a[1]   a[0]*a[1]*a[2]
 ```
-- **Code**
-```c++
+- _2._ Calculate right product Array.
+```c
+a[]   =     {1, 2, 3, 4}
+             0  1  2  3
+
+right[j] = right[j+1]*nums[j+1];
+	j	value
+	3	1
+	2	4*1 = 4
+	1	4*3 = 12
+	0	12*2 = 24
+
+RightArr = a[1]*a[2]*a[3]     a[2]*a[3]    a[3]    1
+```
+- _3._ Calculate Output array = `leftArray*RightArray`
+```c
+left[] =  {1,1,2,6}
+right[] = {24,12,4,1}
+product[] = {24,12,8,6}
+
+out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]
+```
+#### Code
+```cpp
   using vec1d = std::vector<int>;
     vector<int> productExceptSelf(vector<int>& nums) {      //vec1d nums = {1,2,3,4};
         vec1d out(nums.size(), 1);
@@ -124,8 +145,8 @@ out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]
     }
 ```
 #### Complexity
-- **Time:** 3O(n)
-- **Space:** 3O(n)       
+- **Time:** O(n)
+- **Space:** O(n)       
 
 
 ### Approach-4    //Space:O(n), Time:2O(n)
