@@ -1,6 +1,14 @@
+**Product of Array Except Self**
+- [Approach-1, Brute-Force: Find product of all elements, Divide by number, But uses / operator hence invalid O(n)](#a1)
+- [Approach-2](#a2)
+
+
 ### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self)
-- Given an array arr[] construct a Product Array prod[] (of same size) such that prod[i] is equal to the product of all the elements of arr[] except arr[i]. 
-- **Solve in Time:O(n), Space:O(1). Without Division Operator**
+- Given an array `arr[]` construct a Product Array `prod[]` (of same size) such that `prod[i]` is equal to the product of all the elements of `arr[]` except `arr[i]`.
+- **Should be acheived:**
+  - **Space Complexity: O(1)**
+  - **Time Complexity: O(n)**
+  - **Without Division Operator**
 ```c
 Example-1:
   Input = {1,2,3,4}
@@ -10,29 +18,71 @@ Example-2:
   Input = {10,3,5,6,2}
   Output = {180,600,360,300,900}    //180=3*5*6*2, 600=10*5*6*2 so on
 ```
-### Approach-1(Brute-force)/Naive: O(n<sup>2</sup>)
-- Run 2 nested for() loops, Calculate the product and store in 2nd array
 
-### Approach-2(Using Division Operator) //But division is not allowed
-- *1.* Find product of all elements on right
-- *2.* Find `out[i] = (out[i-1]*prev-a)/present-number
+<a name=a1></a>
+### Approach-1, Brute-Force: Find product of all elements, Divide by number. O(n)
+- **BUT It uses division operator. Hence INVALID**
+#### Logic
+- Find complete product and replace `nums[i] = product/nums[i]`
 ```c
-a[]   =     {2, 3, 4, 5}
-             0  1  2  3
-             
-out[]       {60,    1         1         1}  //1
-                60*2/3=40  40*3/4=30  30*4/5=24
+[1,2,3,4]
+product = 24	//O(n)
+
+[24/1, 24/2, 24/3, 24/4]
+```
+#### Code
+```cpp
+class Solution {
+public:
+using vec1d = std::vector<int>;
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int64_t all_product = 1;
+        int zeroIndex = -1;
+        int times = 0;
+        bool hasZero = false;
+        
+        for (int i=0;i<nums.size();++i) {
+            if (nums[i]!=0)
+                all_product *= nums[i];
+            else {
+                hasZero = true;
+                zeroIndex = i;
+                times++;
+                if(times==2) {
+                    int i=0;
+                    while(i<nums.size())                
+                        nums[i++]=0;
+                    return nums;
+                }
+            }
+        }
+        
+        if(hasZero){
+            for (int i=0;i<nums.size();++i){
+                if(zeroIndex == i)
+                    nums[i] = all_product;
+                else
+                    nums[i]=0;
+            }
+            return nums;
+        }
+        
+        for (int i=0;i<nums.size();++i){
+            if (nums[i])
+                nums[i] = all_product/nums[i];
+        }
+        return nums;
+    }
+};
 ```
 
-### Approach-3   //Left and Right Product arrays //Space:3O(n), Time:3O(n)
+<a name=a2></a>
+### Approach-2   //Left and Right Product arrays //Space:O(n), Time:O(n)
 ~[ImgURL](https://leetcode.com/problems/product-of-array-except-self/Figures/238/diag-1.png)
 
-- **Logic:** 
+#### Logic
   - Calculate left and right product arrays.
-  - Output array = leftArray*RightArray
-- **Complexity**
-  - **Time:** 3O(n)
-  - **Space:** 3O(n)        
+  - Output array = `leftArray*RightArray` 
 ```c
 a[]   =     {2, 3, 4, 5}
              0  1  2  3
@@ -73,6 +123,10 @@ out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]
         return out;
     }
 ```
+#### Complexity
+- **Time:** 3O(n)
+- **Space:** 3O(n)       
+
 
 ### Approach-4    //Space:O(n), Time:2O(n)
 - **logic:**
