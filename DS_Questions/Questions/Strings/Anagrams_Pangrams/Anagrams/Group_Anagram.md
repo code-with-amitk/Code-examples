@@ -1,5 +1,5 @@
 **Group Anagrams**
-- [Approach-1. Sort+hashmap](#a1)
+- [Approach-1. Sort+hashmap. O(nmlogm)](#a1)
 
 ### [Group Anagram](https://leetcode.com/problems/group-anagrams/)
 - Given an array of strings strs, group the anagrams together. You can return the answer in any order.
