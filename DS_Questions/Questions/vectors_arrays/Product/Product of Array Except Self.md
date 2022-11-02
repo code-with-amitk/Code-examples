@@ -1,6 +1,7 @@
 **Product of Array Except Self**
 - [Approach-1, Brute-Force: Find product of all elements, Divide by number, But uses / operator hence invalid O(n)](#a1)
 - [Approach-2, Left and Right Product arrays, Space:O(n), Time:O(n)](#a2)
+- [Approach-3, Store Left product in Output Array then Right Product into output array, Space:O(1), Time:O(n)](#a3)
 
 
 ### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self)
@@ -78,7 +79,7 @@ using vec1d = std::vector<int>;
 <a name=a2></a>
 ### Approach-2. Left and Right Product arrays, Space:O(n), Time:O(n)
 #### Logic
-- _1._ Calculate left product Array.
+- _1._ Calculate left product Array from left to right.
 ```c
 a[]   =     {1, 2, 3, 4}
              0  1  2  3
@@ -91,8 +92,9 @@ left[i] =  left[i-1]*nums[i-1];
 	3	2*3 = 6
 	
 leftArr  = 1    a[0]   a[0]*a[1]   a[0]*a[1]*a[2]
+-------------------------->
 ```
-- _2._ Calculate right product Array.
+- _2._ Calculate right product Array from right to left.
 ```c
 a[]   =     {1, 2, 3, 4}
              0  1  2  3
@@ -105,6 +107,7 @@ right[j] = right[j+1]*nums[j+1];
 	0	12*2 = 24
 
 RightArr = a[1]*a[2]*a[3]     a[2]*a[3]    a[3]    1
+<---------------------------------------------------
 ```
 - _3._ Calculate Output array = `leftArray*RightArray`
 ```c
@@ -148,72 +151,63 @@ out[]    = a[1]*a[2]*a[3]     a[0]*a[2]*a[3]     a[0]*a[1]*a[3]   a[0]*a[1]*a[2]
 - **Time:** O(n)
 - **Space:** O(n)       
 
-
-### Approach-4    //Space:O(n), Time:2O(n)
-- **logic:**
-  - *1.* Traverse from left to right, Find Left Product array store in output array (instead of left Array).
-  - *2.* Traverse from Right to Left, Store running product in variable and update output array.
+<a name=a3></a>
+### Approach-3, Store Left product in Output Array then Right Product into output array, Space:O(1), Time:O(n)
+#### logic
+- _1._ Traverse from left to right, Find Left Product array store in output array (instead of left Array)
 ```c
+a[]   =     {1, 2, 3, 4}
+             0  1  2  3
 
-in		2		3		4		5
-      		0   		1   		2   		3
-
-out		1		1		1		1
-
-Traverse from left to right, Find Left Product array store in output array.   //1
-out[0]=1
-from 0 to n
-out[i] = out[i-1] * in[i-1]
-
-out		1		1*2		2*3		6*4
-		1		  2		 6		 24
-		
-Traverse from Right to Left.              //2
- - Store running product in variable
+output[i] = output[i-1]*nums[i-1];
+	i	value
+	0	1
+	1	1*1 = 1
+	2	1*2 = 2
+	3	2*3 = 6
+	
+output = 1    a[0]   a[0]*a[1]   a[0]*a[1]*a[2]
+	 1    1         2        6
+---------------------------->
+```
+- _2._ Traverse from Right to Left, Store running product in variable and update output array.
+```c	
 int var = 1;
 from n to 0
-out[i] = out[i]*var
-var = var*in[i]
+output[i] =* var
+var =* a[i]
 
-in		2		      3		     4		      5
-out		1		      2   	     6  	     24
+a[]   =     {1, 		2, 		3, 		4}
+             0  		1  		2  		3
 
- 							       	     24*1 //out*var
-								     var=5
-						   6*5 //out*var
-						   var=5*4
-						   
-				      2*20  //out*var          
-    				     var=20*3
-		1*60  //out*var
-		
-		60		20		30		24
+var = 1
+output =    {1    		1   		2        	6}
 ```
-- **Code**
+#### Code
 ```c
 class Solution {
 public:
 using vec1d = std::vector<int>;
     vector<int> productExceptSelf(vector<int>& nums) {
-        vec1d out(nums.size(), 1);
+        vec1d output(nums.size(), 1);
 
         for (int i=0;i<nums.size();++i){
           if (i==0)
-            out[i] = 1;
+            output[i] = 1;
           else
-            out[i] = out[i-1]*nums[i-1];
+            output[i] = output[i-1]*nums[i-1];
         }
 
         int var = 1;
         int j = nums.size()-1;
         while(j>=0){
 
-            out[j] *= var;
+            output[j] *= var;
             var *= nums[j];
           --j;
         }
 
-        return out;
+        return output;
     }
 };
 ```
