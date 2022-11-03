@@ -4,7 +4,7 @@
 - [Search key in chord](#search)
 
 <a name=what></a>
-## Chord
+## Chord = Consistent Hashing
 - Each real node where `<key,value>` is stored maybe comprised of n virtual machines. Analysis will be for 1 of Virtual machine.
 - Nodes are arranged in circular ring. Every node maintains the finger/routing table to reach nodes further away in the ring in clockwise direction.
 ```c
