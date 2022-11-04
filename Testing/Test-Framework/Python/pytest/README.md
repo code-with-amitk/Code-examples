@@ -179,7 +179,7 @@ FAILED fixtures.py::test_guvava_in_basket - assert <fixtures.Fruit object at 0x0
 ```
 
 <a name=plug></a>
-### Using plugins with pytest
+### [Using plugins with pytest](https://testautomationu.applitools.com/pytest-tutorial/chapter10.html)
 - [What is Python Plugin?](/Languages/ScriptingLanguages/Python/Plugins/)
 #### pytest-html plugin
 - This plugin will generate html reports from pytest.
