@@ -1,5 +1,6 @@
 **Robot Framework**
 - [RF vs Pytest](#vs)
+- [Architecture](#arc)
 
 ### Robot Framework
 - RF is an open source framework which is mostly used for automation. This framework can also be used for robotic process Automation(RPA).
@@ -14,3 +15,7 @@
 |Technical Skills needed|low|comparatively high|
 |Can test|Desktop applications, Web applications, Mobile applications, and SOAP-based services.||
 |When?|If you are a beginner having less experience in the automation domain, go for RF|If you have a good programming skill and want to build complex automation, go for Pytest|
+
+<a name=arc></a>
+#### Architecture
+https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#high-level-architecture
