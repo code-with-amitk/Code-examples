@@ -6,6 +6,7 @@
   - [3. Group multiple tests in 1 class](#mc)
 - [Catching exception in function](#catch)
 - [Fixtures](#fix)
+- [Using plugins with pytest](#plug)
 
 ## pytest
 <a name=w></a>
@@ -124,7 +125,7 @@ PS C:\Users\amitk\source\repos\python>
 ```
 
 <a name=catch></a>
-### Catching exception in function
+### [Catching exception in function](https://testautomationu.applitools.com/pytest-tutorial/chapter3.html)
 ```py
 # Function raising an exception
 def fun():
@@ -175,4 +176,25 @@ def test_guvava_in_basket(guvava_fruit, fruit_basket):    #Fail
 fixtures.py:24: AssertionError
 ==================================================== short test summary info ==================================================== 
 FAILED fixtures.py::test_guvava_in_basket - assert <fixtures.Fruit object at 0x000002973F21F1F0> in [<fixtures.Fruit object at ...================================================== 1 failed, 1 passed in 0.48s ===============================================
+```
+
+<a name=plug></a>
+### Using plugins with pytest
+- [What is Python Plugin?](/Languages/ScriptingLanguages/Python/Plugins/)
+#### pytest-html plugin
+- This plugin will generate html reports from pytest.
+- **Install plugin**
+```py
+In vscode
+> pip install pytest-html
+```
+
+- **Use Plugin**
+```py
+$ test.py
+def fun():
+    num = 1/0
+fun()
+
+$ pytest test.py --html=test.html   //This html report page gets generated
 ```
