@@ -15,6 +15,7 @@
 - [Durability](#dur)
 - [Fault Tolerance](#ft)
 - [Flash Crowd](Flash_Crowd)
+- [Gossip Protocol](#gos)
 - [Hot keys / Linchpin objects](#hk)
 - [Isolation](Isolation)
 - [Latency](#la)
@@ -145,6 +146,20 @@ Basically Available, Soft state, and Eventual consistency
 - **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
   - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
     - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
+
+<a name=gp></a>
+### [Gossip Protocol](https://www.educative.io/answers/what-is-gossip-protocol)
+- Each node maintains State Information of other nodes.
+```c
+State information of node-A?
+  - Is node-A alive(responding to heartbeat msgs)
+  - What key range node-A hold?
+```
+- Each node share state information about (himself and nodes it knows about) with 1 random node every second or so.
+- Each node monitors a small random subset of nodes and sends data to those.
+- **Seed Node**
+  - Seed node is a node(Similar to [Zookeeper](/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs)) which are aware about presently active nodes in cluster.
+  - In cluster, some nodes may join/leave and member nodes get this information from seed node
 
 <a name=hk></a>
 ### Hot Key / linchpin objects
