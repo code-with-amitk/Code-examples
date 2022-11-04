@@ -4,6 +4,7 @@
   - [1. Running 1 test in vscode](#otest)
   - [2. Running multiple test in vscode](#mtest)
   - [3. Group multiple tests in 1 class](#mc)
+- [Catching exception in function](#catch)
 - [Fixtures](#fix)
 
 ## pytest
@@ -120,6 +121,25 @@ test_class.py:8: AssertionError
 FAILED test_class.py::TestClass::test_2 - AssertionError: assert 'k' in 'this'
 1 failed, 2 passed in 3.99s
 PS C:\Users\amitk\source\repos\python>
+```
+
+<a name=catch></a>
+### Catching exception in function
+```py
+# Function raising an exception
+def fun():
+    num = 1/0
+fun()
+$ pytest test.py
+
+# Exception caught
+import pytest
+def fun():
+    with pytest.raises(ZeroDivisionError) as e:
+        num = 1/0
+    assert 'Hit Zero Division Error, Dude' in str(e.value)
+fun()
+$ pytest test.py
 ```
 
 <a name=fix></a>
