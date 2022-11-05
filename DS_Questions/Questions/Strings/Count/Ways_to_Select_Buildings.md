@@ -1,6 +1,8 @@
 **Number of Ways to Select Buildings**
 - [Approach-1, Count 1s, 0s Before and After. Time:O(n), Space:O(n)](#a1)
 
+### [Self Video](https://youtu.be/YEnD9lElZh8)
+
 ### [Number of Ways to Select Buildings](https://leetcode.com/problems/number-of-ways-to-select-buildings/description/)
 - Given a binary string s which represents the types of buildings along a street where:
   - `s[i] = '0'` denotes that the ith building is an office and
