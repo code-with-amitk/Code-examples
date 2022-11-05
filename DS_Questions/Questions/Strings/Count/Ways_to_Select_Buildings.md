@@ -1,6 +1,7 @@
-Number of Ways to Select Buildings
+**Number of Ways to Select Buildings**
+- [Approach-1, Count 1s, 0s Before and After. Time:O(n), Space:O(n)](#a1)
 
-### Number of Ways to Select Buildings
+### [Number of Ways to Select Buildings](https://leetcode.com/problems/number-of-ways-to-select-buildings/description/)
 - Given a binary string s which represents the types of buildings along a street where:
   - `s[i] = '0'` denotes that the ith building is an office and
   - `s[i] = '1'` denotes that the ith building is a restaurant.
@@ -20,6 +21,7 @@ The following sets of indices selected are valid:
 No other selection is valid. Thus, there are 6 total ways.
 ```
 
+<a name=a1></a>
 ### Approach-1, Count Zero,One's Before After
 #### Logic
 - _1._ Only 2 types of patterns can be present. "010" or "101". ie The possible sequences of selected buildings is either "101" or "010".
