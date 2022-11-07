@@ -1,6 +1,6 @@
 - Hashing
 - [Consistent Hashing](#ch)
-  - [Problem in Consistent Hashing: Hotnode](#p)
+  - [Problem in Consistent Hashing: Hotspot](#p)
 
 ### Hashing
 - In DHT(Distributed Hash Table), All `data=<key,value>` pairs are not stored same server, rather x number of servers are present.
@@ -48,7 +48,8 @@ ce(99101)	-->	 |ascii%2|	-->  1
 <a name=p></a>
 #### Problem with Consistent Hashing
 - 1 server/node can become hot, ie it can eventually hold many more keys wrt other, which leads to slow response time and increased latency
-- **Solution:** Virtual nodes
-  - Whenever any node goes towards becoming hotspot, new node is added which shares the keys. Hence some virtual nodes combined create 1 single node.
+- **Solution:** Virtual nodes (vnodes)
+  - Whenever any node becomes hotspot, new node(s) are added which shares the keys. Hence some virtual nodes combined create 1 single node.
+  - Earlier S1 was storing keys(500-2000), but now 4 nodes(S1_a, S1_b, S1_c, S1_d) distributes keys amongst themselves and stores a subrange.
   - As load reduces virtual nodes are bought down.
 <img src=images/Consistent_Hashing_VirtualNodes.png width=250/>
