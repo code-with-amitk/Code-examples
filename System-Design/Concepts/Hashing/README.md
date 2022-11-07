@@ -1,5 +1,6 @@
 - Hashing
 - [Consistent Hashing](#ch)
+  - [Problem in Consistent Hashing: Hotnode](#p)
 
 ### Hashing
 - In DHT(Distributed Hash Table), All `data=<key,value>` pairs are not stored same server, rather x number of servers are present.
@@ -44,6 +45,7 @@ ce(99101)	-->	 |ascii%2|	-->  1
   - REHASHING: Only keys 11-15 need to be reshashed for storage on server4.
 <img src=images/Consistent_Hashing_Addition.png width=150/>
 
+<a name=p></a>
 #### Problem with Consistent Hashing
 - 1 server/node can become hot, ie it can eventually hold many more keys wrt other, which leads to slow response time and increased latency
 - **Solution:** Virtual nodes
