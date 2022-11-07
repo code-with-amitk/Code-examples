@@ -2,25 +2,30 @@
 - [Consistent Hashing](#ch)
 
 ### Hashing
-- To store `data=<key,value>` on server, We need to find which server we need to store data.
-- **Problem:** When a server is added/removed all keys need to be rehashed, and if 10 million keys & reshash takes 1 microsec. Time taken=10 seconds.
+- In DHT(Distributed Hash Table), All `data=<key,value>` pairs are not stored same server, rather x number of servers are present.
+- To store `data=<key,value>`, We need to find out of x on which server data should be stored. We can do using hashing
 ```c
-//4 servers storing data
- key    Hash-Function=key%4            Server0   Server1   Server2   Server3
-  0     0%4 = 0              keys=>   0,4      1,5       2,6        3,7
-  1     1%4 = 1
-  2     2%4 = 2
-  3     3%4 = 3
-  4     4%4 = 0
+key				        hash-function	storage-server
+ab(9798)	-->	  |ascii%3|	--> 0
+bc(9899)	-->	  |ascii%3|	--> 1
+ce(99101)	-->	 |ascii%3|	--> 2
+																																				server0 [ab]
+																																				server1 [bc]
+																																				server2	[ce]
+									
+Server2 goes down or removed.
+New Hash-Function = |ascii%2|.
 
-//Let server1 goes down, then Hash=key%3 and all keys need to be rehashed
- key    Hash=key%3            Server0   Server2   Server3
-  0     0%3 = 0       keys=>   0,3      1,4         2           //Note key=4 was on server0 now on server2. key=2 now on server3
-  1     1%3 = 1
-  2     2%3 = 2
-  3     3%3 = 0
-  4     4%3 = 1
+RESHASHING: Data need to moved to remaining servers, existing keys are again passed thru new hash-function.
+
+key				       hash-function	  storage-server
+ab(9798)	-->	 |ascii%2|	  -->  0
+bc(9899)	-->	 |ascii%2|	  -->  1
+ce(99101)	-->	|ascii%2|	  -->  1
+																																				server0 [ab]
+																																				server1 [bc, ce]
 ```
+**Issue in Rehashing:** if hash function takes 1microsec and 10M keys to be rehashed. `10M * 1microsec = 10 sec`. Time is consumed in rehashing.
 
 <a name=ch></a>
 ### Consistent Hashing / Consistent Hash Ring = (Solution to above problem)
