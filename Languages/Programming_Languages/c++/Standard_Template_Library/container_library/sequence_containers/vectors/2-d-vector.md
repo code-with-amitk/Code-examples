@@ -1,19 +1,24 @@
+- [Initialization](#in)
+- [2. Inserting row into 2-D vector](#i)
+
 ## 2D Vector
 - This is 2-D Array but of arbitary size.
+
+<a name=in></a>
 ### 1. Initialization of 2d vector
-- **1. Initialization list**
-```c++
+#### 1. Initialization list
+```cpp
   vector<vector<int>> vec = {
     {1,2,3},
     {4,5,6}
   };
 ```
-- **2. m row, n col**
+#### 2. m row, n col
 ```c++
   int row=2,col=3;
   vector<vector<int>> vec(row, vector<int>(col,0));    //vec[2][3] initialized to 0
 ```
-- **3. m rows, variable cols**
+#### 3. m rows, variable cols
 ```c++
   int row=2;
   vector<vector<int>> vec(row);
@@ -23,7 +28,8 @@
   vec[1][0] = 2;
 ```
 
-## 2. Inserting row into 2-D vector
+<a name=i></a>
+### 2. Inserting row into 2-D vector
 ```c++
   std::vector<std::vector<int> > vec2D;
   std::vector<int> vec1D;
