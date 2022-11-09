@@ -11,7 +11,7 @@ Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 ```
 
 ### Approach-2, Backtracking
-#### [Logic = Backtrack Template](DS_Questions/Algorithms/Backtracking#tem)
+#### [Logic = Backtrack Template](/DS_Questions/Algorithms/Backtracking#tem)
 #### Code
 ```cpp
 #include<iostream>
@@ -21,34 +21,35 @@ using vecI = vector<int>;
 using vecVecI = vector<vector<int>>;
 
 class Solution {
-    vecVecI out;
+    vecVecI all_sets;       //All Solutions combined
 public:
     void bt(int start, int end, vecI& temp, vecI& nums) {
         //Base case
         if (start > end)
             return;
 
-        out.push_back (temp);
+        all_sets.push_back (set1);
 
         //Candidate = temp
         for (int i=start; i<end; ++i) {
 
-            //Place Candidate
-            temp.push_back (nums[i]);
-            bt (i+1, end, temp, nums);
+            //Place Candidate on 1 solution out of many
+            set1.push_back (nums[i]);
+            bt (i+1, end, set1, nums);
 
-            //Remove Candidate
-            temp.pop_back();
+            //Remove Candidate from solution
+            set1.pop_back();
         }
     }
 
     vecVecI subsets(vecI& nums) {
         //Create 1st Candidate
-        vecI temp;
+        vecI set1;
 
-        //bt(.., candidate)
-        bt(0, nums.size(), temp, nums);
-        return out;
+        //bt(start, end, candidate)
+        bt(0, nums.size(), set1, nums);
+        
+        return all_sets;
     }
 };
 int main() {
