@@ -5,6 +5,7 @@
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
+  - [Subsets](/DS_Questions/Questions/vectors_arrays/Order_Arrangment/Find_All_Subsets.md)
   - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
   - [Word Search in 2D grid](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
   - Graph
