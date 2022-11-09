@@ -10,6 +10,7 @@ Input: nums = [1,2,3]
 Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 ```
 
+<a name=bt></a>
 ### Approach-2, Backtracking
 #### [Logic = Backtrack Template](/DS_Questions/Algorithms/Backtracking#tem)
 #### Code
