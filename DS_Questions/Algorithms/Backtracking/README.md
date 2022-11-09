@@ -37,33 +37,28 @@ Select one way and try to move forward towards the destination. if we reach a po
 ### Backtracking Template
 Most of BT problems can be solved using below pattern.
 ```c
-    vec<> solution;
+    vec<> solutions;
+    
     void recursive_backtrack(int row, int col, &candidate){
-      if (row == size && col == size){                  //Base case. We reached last cell
-        solution = candidate;
+      if (base_case reached){                  //Base case.
+        solutions.push_back (solution);        //Copy solution-1 into solutions vector
         return;
       }
       
       for (candidate in candidate list) {
         if (candidate not valid)
           continue;
-        else {                                                 //if Candidate is VALID
-          place_candidate (candidate);                         //Place this candidate on partial solution
-          recursive_backtrack (next_candidate=candidate+1);    //Try next candidate
-          remove (candidate);                                  //Mark this as unvisited, Unflag this node.
+        else {                                                    //VALID candidate
+          solution.push_back (candidate);                         //Place this candidate on 1 solution
+          recursive_backtrack (next_candidate=candidate+1);      //Try next candidate
+          remove (candidate);                                    //Mark this as unvisited, Unflag this node.
         }
       }
     }
     
     return-type solve (int n) {
-      /*
-        candidate:
-          n-queen problem:         empty board
-          Generate combinations:   empty string ""
-          Suduko solver:           empty board
-      */
-        canditate = create-1st-candidate;
-        recursive_backtrack (0, 0, candidate);             //Start from row=0,col=0
+        create-1st-candidate;
+        recursive_backtrack (start, end, 1stcandidate);             //Start from row=0,col=0
         return vecs_final_board;
     }
     
