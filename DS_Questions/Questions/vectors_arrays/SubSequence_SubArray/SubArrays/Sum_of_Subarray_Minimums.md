@@ -1,6 +1,7 @@
 **Sum of Subarray Minimums**
 - [Approach-1, Naive, 2 pointers, 3 loops. O(n<sup>3</sup>). TLE](#a1)
 - [Approach-2, Naive, 2 loops. O(n<sup>2</sup>). TLE](#a2)
+- [Approach-3, Monotonic Stack. O(n)](#a3)
 
 ### 907. Sum of Subarray Minimums
 Given an array of integers arr, find the sum of min(b), where b ranges over every (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 10<sup>9</sup> + 7
