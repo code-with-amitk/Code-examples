@@ -1,6 +1,8 @@
 - **Monotonic Stack**
   - [Increasing subseqeunce](#i1)
   - [Decreasing subseqeunce](#i1)
+- **Questions on Monotonic Stack**
+  - [Sum of Subarray Minimums](/DS_Questions/Questions/vectors_arrays/SubSequence_SubArray/SubArrays/Sum_of_Subarray_Minimums.md)
 
 ## Monotonic Stack
 - This contains increasing subsequence or decreasing subsequence(BUT NOT LONGEST/SMALLEST) and done in O(nm) time.
