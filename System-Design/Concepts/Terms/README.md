@@ -7,6 +7,7 @@
   - [How auto scaling works?](#howa)
 - [Bandwidth](#bw)
 - [BASE](#ba)
+- [Clock Skew Problem](#csp)
 - [Consensus](Consensus)
 - [Consistency](#con)
 - [CAP Theorem](#cap)
@@ -95,6 +96,13 @@ Theoritical maximum at which data can be tranferred over link. Practical is Thro
 <a name=ba></a>
 ### BASE
 Basically Available, Soft state, and Eventual consistency
+
+<a name=csp></a>
+### Clock Skew Problem
+- **On 1 machine:** We can write `<key,value>` at timestamp=t1, then another write on on timestamp=t2, where t2>t1. DB can safely overwrite the original value.
+- **Problem of clock skew on distributed system:**
+  - Different clocks(on different machines) tend to run at different rates, so we cannot assume that time t on node a happened before time t + 1 on node b .
+  - 
 
 <a name=cap></a>
 ### CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#pt))
