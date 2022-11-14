@@ -1,5 +1,5 @@
 **Combination Sum 3**
-- [Approach-1, Backtracking](#a1)
+- [Approach-1, Backtracking. Time:O(9!k / (9-k)!)](#a1)
 
 ### [216. Combination Sum III](https://leetcode.com/problems/combination-sum-iii/description/)
 - Find all valid combinations of k numbers that sum up to n such that the following conditions are true:
