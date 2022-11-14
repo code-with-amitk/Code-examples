@@ -89,13 +89,13 @@ Leader does not wait for any replica to ACK.
 
 <a name=qrw></a>
 ### Quorum Reads and Writes
-Quorum needs that for read and write operations atleast 1 node should overlap. Else you are writing to different set of nodes and reading from other.
+- **What is Quorum?** Quorum is group of nodes in leaderless replication, where client writes to all nodes and also reads from all nodes.
+- **quorum condition?** w + r > n. if system follow this equation, it's following Quorum reads & writes.
+  - Lets suppose there are 3 leaderless replicas(n1,n2,n3)(n=3) in cluster and 2(n1,n2) are online and 1(n3) is not online(making system update).
+  - _Write:_ Now when client writes to all 3 nodes, 2(n1,n2) reponds with ACK (w = 2). Later when n3 comes up its takes updates from n1 & n2.
+  - _Read:_ Client will send read request to all 3 nodes. 2 will send recent data(newer version number)(r = 2) while n3 will send stale data.
 ```c
-n replicas
-w replicas ACKs the write
-r replicas are quried for read [Consider Leaderless replication]
-if ( w+r > n )
-  // System following Quorum reads and writes
+w=2 + r=2 > n=3
 ```
 #### Sloopy Quorum
 n replicas. m get disconnected due to n/w breakdown. Client writes to n-m reachable nodes, later these (n-m) nodes sync to m nodes once they come back.
