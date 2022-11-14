@@ -1,6 +1,7 @@
 **Backtracking**
 - **[Examples](#ex)**
 - [BT Template](#tem) Problems solved using BT Template:
+  - [Combination Sum III](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
   - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
