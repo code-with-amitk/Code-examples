@@ -16,9 +16,11 @@ Output: [ [1,1,6],  [1,2,5],  [1,7],  [2,6] ]
 ### Approach-1, Backtracking
 - [What is Backtracking, BackTracking Template](/DS_Questions/Algorithms/Backtracking/)
 #### Logic
-<img src=combination_sum_2-bt-tree.jpg width=500 />
+- **[Use backtracking Template](/DS_Questions/Algorithms/Backtracking/)**
+- 1.
+<img src=combination_sum_2-bt-tree.jpg width=600 />
 
-#### Code-1 (Returning all combinations (With Duplicates))
+#### Code-1 (Combinations With Duplicates)
 ```cpp
 using vecVecI = vector<vector<int>>;
 using vecI = vector<int>;
