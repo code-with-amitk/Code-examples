@@ -12,6 +12,8 @@ Input: candidates = [10,1,2,7,6,1,5], target = 8
 Output: [ [1,1,6],  [1,2,5],  [1,7],  [2,6] ]
 ```
 
+### [Self Video](https://youtu.be/12ZdQH1g0QI)
+
 <a name=a1></a>
 ### Approach-1, Backtracking
 - [What is Backtracking, BackTracking Template](/DS_Questions/Algorithms/Backtracking/)
