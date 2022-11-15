@@ -1,8 +1,11 @@
 **Backtracking**
 - **[Examples](#ex)**
 - [BT Template](#tem) Problems solved using BT Template:
-  - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
-  - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
+  - Combinations
+    - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
+    - Combination Sum
+      - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
+      - [Combination Sum II. Time: O(2<sup>n</sup>)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_2)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
