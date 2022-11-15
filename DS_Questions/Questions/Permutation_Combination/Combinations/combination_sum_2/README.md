@@ -1,5 +1,5 @@
 **Combination Sum 2**
-- [Approach-1. Backtracking](#a1)
+- [Approach-1. Backtracking. O(2<sup>n</sup>)](#a1)
 
 
 ### [40. Combination Sum II](https://leetcode.com/problems/combination-sum-ii/description/)
