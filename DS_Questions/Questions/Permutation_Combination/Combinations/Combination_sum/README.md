@@ -21,6 +21,8 @@ Output: [[2,2,2,2],[2,3,3],[3,5]]
 ### Approach-1, Backtracking
 #### Logic. [Backtracking Template]()
 
+<img src=combination_sum_bt_graph.jpg width=500/>
+
 #### Code
 ```cpp
 using vecVecI = vector<vector<int>>;
