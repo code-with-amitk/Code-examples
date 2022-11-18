@@ -1,6 +1,7 @@
 - **Install**
   - [Ubuntu](#u)
   - [CentOS 7](#c)
+  - [WSL](#w)
 - [Working on Postgres](#w)
 
 
@@ -45,19 +46,57 @@ Active (Running)
 ```
 
 <a name=w></a>
-### Working on Postgres
+#### [WSL Ubuntu](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-database)
+##### 1. Install
 ```c
-//On linux postgres user is created when postgres is installed
-# sudo passwd postgres
-<new password>
-# su - postgres                 //Switch to postgres user
--bash-4.2$
+$ sudo apt update
+$ sudo apt install postgresql postgresql-contrib
+$ psql --version                                                    //Install complete check version
+psql (PostgreSQL) 10.22 (Ubuntu 10.22-0ubuntu0.18.04.1)
 
-$ psql postgres                 //switch to the PostgreSQL client shell
-psql (9.2.24)
-Type "help" for help.
+$ sudo service postgresql status
+$ sudo service postgresql start
+$ sudo service postgresql stop              //After using
+```
+##### 2. Reset admin user password
+- The `default admin user, postgres`, needs a password assigned in order to connect to a database. 
+```c
+$ sudo passwd postgres      //To set a password
+You will get a prompt to enter your new password.
+Close and reopen your terminal.
 
-postgres=#
+$ sudo service postgresql restart
+```
+##### 3. Connect to postgres using psql shell
+```c
+$ sudo -u postgres psql
+postgres $ \h
+```
+
+### [Working on Postgres](https://www.postgresql.org/docs/13/sql-commands.html)
+- You are on postgres shell
+#### 1. Create Database
+Postgres is cluster of databases. It has 3 predefined builtin databases
+```c
+postgres=# \h                       //Lists all available commands
+postgres=# \l
+                              List of databases
+   Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges
+-----------+----------+----------+---------+---------+-----------------------
+ postgres  | postgres | UTF8     | C.UTF-8 | C.UTF-8 |
+ template0 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+           |          |          |         |         | postgres=CTc/postgres
+ template1 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+           |          |          |         |         | postgres=CTc/postgres
+```
+**Create your own Database:** We will create our own database and create tables inside it. All new databases are created from template0.
+```c
+postgres=# create database test;
+postgres=# \l
+postgres=# \c test                          //Jump to recently created database
+You are now connected to database "test" as user "postgres".
+```
+```c
 postgres=# \h                       //Lists all available commands
 
 postgres# createdb testDB                      //Create DB
