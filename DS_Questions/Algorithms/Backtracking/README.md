@@ -9,6 +9,10 @@
       - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
+  - Permutations
+    - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
+    - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
+    - [Alternating Parity Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/alternating-parity-permutation.md)
   - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
   - [Subsets](/DS_Questions/Questions/vectors_arrays/Order_Arrangment/Find_All_Subsets.md)
   - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
