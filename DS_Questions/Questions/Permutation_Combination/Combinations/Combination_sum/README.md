@@ -22,6 +22,11 @@ Output: [[2,2,2,2],[2,3,3],[3,5]]
 <a name=bt></a>
 ### Approach-1, Backtracking
 #### Logic. [Backtracking Template](/DS_Questions/Algorithms/Backtracking/)
+- _1._ Whenever question is (combination, permutations, suduko, N queen) it's BT problem
+- _2._ In BT we create candidate vector, start placing items on candidate vector, if condition is satified place in output set and remove last insert element into candidate vector
+- _3._ Start with empty vector cand. And call recursive_backtrack() function.
+- _4._ Base cases: if `sum of elements in vector > target || sum of elements in vector == target`
+- _5._ We need to consider same element it `2 2 2 2` is valid combination hence while calling rb() pass present element again ie i is not incremented to i+1
 
 <img src=combination_sum_bt_graph.jpg width=700/>
 
@@ -57,11 +62,17 @@ public:
         }
     }
     vecVecI combinationSum(vecI& nums, int target) {
+    
+        /// Create Empty Candidate list
         vecI cand;
         int start_index = 0;      //Start from 1st element index=0
         int sum = 0;
+        
         rb (nums, cand, target, start_index, sum);
         return out;
     }
 };
 ```
+#### Complexity
+- **Time:** 
+- **Space:** O(n). `vector<int> cand` can contain max n elements at any point of time
