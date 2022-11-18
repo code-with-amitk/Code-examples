@@ -1,4 +1,5 @@
 **Combination sum**
+- [Approach-1, Backtracking](#bt)
 
 ### [39. Combination Sum](https://leetcode.com/problems/combination-sum/description/)
 - Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.
@@ -18,8 +19,9 @@ Input: candidates = [2,3,5], target = 8
 Output: [[2,2,2,2],[2,3,3],[3,5]]
 ```
 
+<a name=bt></a>
 ### Approach-1, Backtracking
-#### Logic. [Backtracking Template]()
+#### Logic. [Backtracking Template](/DS_Questions/Algorithms/Backtracking/)
 
 <img src=combination_sum_bt_graph.jpg width=700/>
 
