@@ -75,6 +75,13 @@ Most of BT problems can be solved using below pattern.
 
 <a name=t></a>
 ### Time Complexity
-> Varies on approach taken by backtracking algo.
-- O(mn): Word Search in Maze
-- O(2<sup>n</sup>) < O(n!)
+- BT is unfolded as a DFS traversal in a n-ary tree. The total number of steps during the backtracking = **number of nodes in the tree**.
+- So, How many number of nodes?
+```c
+  1st iteration = n elements
+  T = target value
+  O(n ^ T)
+```
+- Varies on approach taken by backtracking algo.
+  - O(mn): Word Search in Maze
+  - O(2<sup>n</sup>) < O(n!)
