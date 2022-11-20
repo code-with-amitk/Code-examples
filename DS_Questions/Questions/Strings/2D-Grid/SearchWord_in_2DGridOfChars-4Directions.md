@@ -1,3 +1,6 @@
+**word search**
+- 
+
 ### [Word Search](https://leetcode.com/problems/word-search/)
 - Given 2D board and a word, find if the word exists in the grid traversing horizontally & vertically
 - The same letter cell cann not be used more than once.
@@ -22,78 +25,66 @@ word = "ABCCED", Output: true
 #include<string>
 #include<vector>
 using namespace std;
-
+using VecC = vector<char>;
+using VecVecC = vector<VecC>;
 class Solution {
+    int maxROws, maxCols;
+    string target;
 public:
-        bool matchSingleCharacter( vector<vector<char>>& board,
-                              string& word, int row, int col,
-                              int presentIndex)
-        {
-                int numberOfRows = board.size();
-                int numberOfColomns = board[0].size();
+    bool recursive_backtrack(int row, int col, VecVecC& board, int presentIndex){
+    
+        /// Base cases
+        if (presentIndex >= target.size())
+            return true;
 
-                //Not crossing array boundaries
-                if ((row < 0 || row >= numberOfRows||
-                     col < 0 || col >= numberOfColomns))
-                        return false;
+        /// Should not cross boundaries
+        if (row >= maxRows || col >= maxCols || row < 0 || col < 0)
+            return false;
 
-                if ((word[presentIndex] == board[row][col]) && (presentIndex == (word.length()-1))){
-                //      cout<<"presentIndex="<<presentIndex<<"\n";
-                        return true;
-                }
-
-                //if character does not match on board & word.
-                if (board[row][col] != word[presentIndex])
-                        return false;
-
-                board[row][col] = '#';
-
-                return matchSingleCharacter (board, word, row+1, col, presentIndex+1)||
-                       matchSingleCharacter (board, word, row-1, col,presentIndex+1)||
-                       matchSingleCharacter (board, word, row, col+1, presentIndex+1)||
-                       matchSingleCharacter (board, word, row, col-1, presentIndex+1);
+        /// Character does not match
+        if (board[row][col] != target[presentIndex])
+            return false;
+        
+        //Iterate thru all directions
+        /*
+                    N(r-1,c)(-1,0)
+        (0,-1)E(r,c-1)   rc      W(r,c+1)(0,1)
+                    S(r+1,c)(1,0)
+        */
+        bool ret = false;
+        
+        int ch = board[row][col];
+        board[row][col] = '#';
+		
+        int rowOffset[] = {-1,0,0,1};
+        int colOffset[] = {0,-1,1,0};
+        for (int k=0;k<4;++k){
+            int r = row+rowOffset[k];
+            int c = col+colOffset[k];
+            //Placing candidate, backtrack
+            ret = recursive_backtrack(r, c, board, index+1);
+            if (ret)
+                break;
         }
 
-        bool exist(vector<vector<char>>& board, string word)
-        {
-                int numberOfRows = board.size();
-                int numberOfColomns = board[0].size();
-
-                //if board has 1 alphabet and word also has 1
-                if(numberOfRows == 1 &&
-                   numberOfColomns == 1 &&
-                   word.length() == 1 &&
-                   board[0][0] == word[0])
-                {
-                        return true;
-                }
-
-                for(int i = 0; i < numberOfRows; i++)
-                {
-                        for(int j = 0; j < numberOfColomns; j++)
-                        {
-                                if(board[i][j] == word[0])
-                                {
-                                        if (matchSingleCharacter(board, word, i, j, 0))
-                                                return true;
-                                }
-                        }
-                }
-                return false;
+        board[row][col] = ch;
+        return ret;
+    }
+    
+    bool exist(vecVecC& board, string word) {
+        maxROws = board.size();
+        maxCols = board[0].size();
+        target = word;
+        int presentIndex = 0;   //This is index of character in target word to be searched
+        
+        /// Iterate thru every character on board
+        for (int i=0; i < maxRows; ++i) {
+            for (int j=0; j < maxCols; ++j) {
+                if (recursive_backtrack(i, j, board, presentIndex))
+                    return true;
+            }
         }
+        return false;
+    }
 };
-
-int main()
-{
-        Solution s;
-        vector<vector<char>> v =
-        {
-                {'a','b','c','e'},
-                {'s','f','c','s'},
-                {'a','d','e','e'}
-        };
-        //cout<<s.exist(v, "abcced");   //1
-        cout<<s.exist(v, "see");        //1
-        cout<<s.exist(v, "aab");
-}
 ```
