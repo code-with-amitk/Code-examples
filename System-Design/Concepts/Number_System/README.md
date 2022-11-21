@@ -29,7 +29,7 @@ p1   p2   p3   p4   p5   p6
 ```
 - 62<sup>6</sup> = 56,800,235,584 = 56 Billion URLs
 - **Converting Decimal to Base62 format**
-<img src=images/dec_to_base62.jpg width=300/>
+<img src=images/dec_to_base62.jpg width=800/>
 
 ### 5. BASE 64 NUMBER SYSTEM
   - Has 62 values (a-z,A-Z,0-9) and 2 other values(!@) to represent a number.
