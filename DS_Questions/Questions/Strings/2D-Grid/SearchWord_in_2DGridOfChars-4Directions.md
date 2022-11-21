@@ -1,13 +1,15 @@
 **word search**
-- 
+- [Approach-1, Backtracking](#a1)
 
 ### [Word Search](https://leetcode.com/problems/word-search/)
 - Given 2D board and a word, find if the word exists in the grid traversing horizontally & vertically
 - The same letter cell cann not be used more than once.
 - Example: 
-<img src=https://assets.leetcode.com/uploads/2020/11/04/word2.jpg width=300 />
+<img src=https://assets.leetcode.com/uploads/2020/11/04/word2.jpg width=200 />
 word = "ABCCED", Output: true
 
+<a name=a1></a>
+### Approach-1, Backtracking
 ### Logic
 ```c++
 - Start from board[0][0]
