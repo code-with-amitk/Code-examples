@@ -9,6 +9,8 @@
       - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
+  - Palindrome
+    - (Palindrome Partitioning)[/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md]
   - Permutations
     - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
     - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
@@ -18,7 +20,7 @@
   - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
   - [Word Search in 2D grid. Time:O(2<sup>n</sup>)](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
   - Graph
-    - [Detect cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/detect_cycle_in_directed_graph.md)  
+    - [Detect cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/detect_cycle_in_directed_graph.md)
 - [Time Complexity](#t)
 
 ## [Backtracking LC Explore Cards](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
