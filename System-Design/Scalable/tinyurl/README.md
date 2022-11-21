@@ -1,74 +1,81 @@
-# Tinyurl
+**URL Shorterning**
+- 
+
+## Tinyurl
 - **What?** This service will provide shortened aliases redirecting to long URLs. Users are redirected to longURL as they hit short URL.
 - **Why?** Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.
-
-- **This is Read Heavy Application. Read:Write=100:1**
-  - Read Request = Redirection = 100
-  - Write Request = Create shortURL = 1
+- **This is Read Heavy Application. Read:Write=100:1:**
+  - _Why?_ For 1 long URL, 1 short URL will be generated. Now this short URL will be used multiple places(tweets,docs etc). Everytime short url is hit, long url is read.
+    - Read Request = Redirection = 100
+    - Write Request = Create shortURL = 1
 
 ## [To Cover](/System-Design/Scalable/README.md)
 
-## 1. Requirements
-- **a. Functional**
-  - Given a URL, service should generate a shorter and unique alias of it.
-  - When users access short link, our service should redirect them to the original link.
-  - Users should be able to pick a custom short link for their URL.
-  - Links should expire after default time span.
-- **b. Non-Functional**
-  - Highly available. 
-  - Minimum latency
-- **c. Extended**
-  - Analytics; e.g., how many times a redirection happened?
+### 1. Requirements
+#### a. Functional
+  - Generate short url of long.
+  - On click of shorturl, redirection should happen to long url.
+#### b. Non-Functional
+- custom short url picking allowed
+- Links should expire after default time span.
+- Highly available, Minimum latency
+#### c. Extended
+- Analytics; e.g., how many times a redirection happened?
 
-## 2. BOE
+### 2. BOE  //Ask from Interviewer: What is traffic Volume?
+- 100 M hits/day. 100M urls generated/day. 100M/86400 = 1000 urls/sec
 
-|World Population|InternetUsers(60%)|TinyURL Writes(10-15% of Internet users)/month|
-|---|---|---|
-|7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.15 = 630 Million|
+#### QPS/Traffic Estimates
+- Writes = 1000 urls/sec
+- Reads = 10000 urls/sec
 
-- Writes=630M/month. Reads=630x100=63B/month
-
-- **Traffic Estimates/QPS(Queries per sec)**
-  - Writes = 630M / 30x24x60x60 = 240~250 Requests/sec = 250
-  - Reads = 250x1000 = 250k
-  - Total = 250k/sec
-
-- **Storage Estimates**
-  - Writes:
-    - Long URL length=256 bytes, Short URL=6 bytes. 1 request requires 256+6=262 bytes.
-    - 630M(month) x 12x5 = 38 Billion. 38 x 262 = 10 TB to be stored for 5 years
-  - Reads: 10TBx100 = 1PB for 5 years
-
-- **Bandwidth Estimates**
-  - Writes: Incoming reuqests:250/sec. Each request size=250bytes. 250x250 = 62kB/sec
-  - Reads: 62MB/sec
+#### Storage Estimates
+- Long url=256 bytes. Short url=6bytes. Total=262 bytes
+- Storage(5 years): 10 M x 30 x 12 x 5 x 262 = 4TB
   
-- **Cache Estimates**
+#### Cache Estimates
   - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
   - Following 80:20 rule, 20% of URLs are often hit.
     - Total requests/day = 250k x 12 = 30000k = 30M
     - We will Cache only 20%. 30M x .2 = 6M. //there will be many duplicate requests (of the same URL), our actual memory usage will be less than 6M
     
     
-## 3. System APIs
+### 3. API Design //REST
+- _1. Short URL:_ Http POST request for generating shorturl of long and storing on server 
 ```c
-    //REST API
-createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)    
-  Parameters
-    api_dev_key(string): Developer key of registered account.
-    original_url(string): To be shortened
-    custom_alias(optional): Custom key for URL
-    user_name(optional): Username to be used for encoding
-    expire_date(string): Optional expiration date of URL
-  Returns
-    short_url(string)
-    
-deleteURL(api_dev_key, url_key)    
-  url_key: String representing the shortened URL to be retrieved; a successful deletion returns ‘URL Removed’.
+POST api/v1/data(longurl)
+
+string shorturl url_shortening(string longurl)
+```
+- _2. URL Redirection:_ HTTP GET request to longurl from short url.
+```c
+GET api/v1/data(shorturl)
+string longurl url_redirection(string shorturl)
+
+client                        server1
+      ----GET shorturl------>
+      <----301 redirect longurl-
+      ------longurl--------------------------> server2
+```
+- _3. Delete URL:_ 
+```c
+DELETE api/v1/shorturl
+
+void deleteURL(api_dev_key, url_key)
+  api_key: uuid(unique id of user)
 ```
 
-## 5. HLD / System Design
-
+### 5. HLD 
+#### 1 user, 1 server
+```c
+client                                  server
+  ---------POST api/v1/longurl--------->
+                                     longurl => |Hash_Fun| => shorturl
+                                     shorturl
+                                      |----> unordered_map (In memory)
+                                      |----> file (on disk)
+```
+#### 10 M Users
 **Steps**
 - *0.* Generating short-url for Long-url. There are 2 methods:
   - *a.* Runtime: As we get write request, generate short-url. This makes system slow.
