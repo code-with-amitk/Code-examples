@@ -1,5 +1,8 @@
 **URL Shorterning**
-- 
+- [1. Requirements](#req)
+- [2. BOE](#boe)
+- [3. API Design](#api)
+- [4. HLD](#hld)
 
 ## Tinyurl
 - **What?** This service will provide shortened aliases redirecting to long URLs. Users are redirected to longURL as they hit short URL.
@@ -11,6 +14,7 @@
 
 ## [To Cover](/System-Design/Scalable/README.md)
 
+<a name=req></a>
 ### 1. Requirements
 #### a. Functional
   - Generate short url of long.
@@ -22,24 +26,22 @@
 #### c. Extended
 - Analytics; e.g., how many times a redirection happened?
 
+<a name=boe></a>
 ### 2. BOE  //Ask from Interviewer: What is traffic Volume?
 - 100 M hits/day. 100M urls generated/day. 100M/86400 = 1000 urls/sec
-
 #### QPS/Traffic Estimates
 - Writes = 1000 urls/sec
 - Reads = 10000 urls/sec
-
 #### Storage Estimates
 - Long url=256 bytes. Short url=6bytes. Total=262 bytes
 - Storage(5 years): 10 M x 30 x 12 x 5 x 262 = 4TB
-  
 #### Cache Estimates
   - To improve performance lets cache some URLs. Let's assume we will cache data for 1 day.
   - Following 80:20 rule, 20% of URLs are often hit.
     - Total requests/day = 250k x 12 = 30000k = 30M
     - We will Cache only 20%. 30M x .2 = 6M. //there will be many duplicate requests (of the same URL), our actual memory usage will be less than 6M
-    
-    
+
+<a name=api></a>
 ### 3. API Design //REST
 - _1. Short URL:_ Http POST request for generating shorturl of long and storing on server 
 ```c
@@ -65,7 +67,8 @@ void deleteURL(api_dev_key, url_key)
   api_key: uuid(unique id of user)
 ```
 
-### 5. HLD 
+<a name=hld></a>
+### 4. HLD 
 #### 1 user, 1 server
 ```c
 client                                  server
