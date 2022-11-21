@@ -8,7 +8,7 @@ Technique to represent numbers in the computer system architecture, every value 
 ### Binary(Base 2)
 - Uses 2 digits(0, 1). Every number is represented using 0 and 1. Base of binary number system is 2, because it has only two digits.
 - Converting number to Binary format:
-<image src=images/dec_to_binary.jpg width=400/>
+<image src=images/dec_to_binary.jpg width=300/>
 
 ### 2. Octal(Base 8)
 Has 8 digits(0 to 7). Every number represents with 0,1,2,3,4,5,6 and 7 in this number system. Base of octal number system is 8, because it has only 8 digits.
@@ -27,7 +27,6 @@ p1   p2   p3   p4   p5   p6
 62 x 62 x 62 x 62 x 62 x 62   = 62pow6 ways
 ```
 - 62<sup>6</sup> = 56,800,235,584 = 56 Billion URLs
-
 
 ### 5. BASE 64 NUMBER SYSTEM
   - Has 62 values (a-z,A-Z,0-9) and 2 other values(!@) to represent a number.
