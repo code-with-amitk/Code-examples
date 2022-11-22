@@ -28,6 +28,7 @@
   - [Split pull request](#spl)
   - [sync with upstream](#sync)
 - **Issues**
+  - [submit including parent](#sp)
   - [Remove commit after push](#rcap)
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
@@ -361,6 +362,11 @@ $ git log --oneline                                //Now 2 seperate commits
 ```
 
 ## Issues
+<a name=mer></a>
+#### Merge Conflict
+- _1._ Use rebase button on gerrit UI to resolve merge conflict.
+- _2._ If you want to make changes in PR.
+
 <a name=rcap></a>
 #### Remove commit after push
 ```c
@@ -391,10 +397,11 @@ test-repo$ cat .git/refs/heads/master       <<ref does not exist
   257143e8aded4f0fca7712105581567162cab60c
 test-repo$
 ```
-<a name=mer></a>
-#### Merge Conflict
-- _1._ Use rebase button on gerrit UI to resolve merge conflict.
-- _2._ If you want to make changes in PR.
+
+<a name=sb></a>
+#### submit including parent
+- _Why?_ When parent of this commit is abandoned.
+- _Solution:_ Close, Open New.
 
 <a name=ac></a>
 ## Actions
