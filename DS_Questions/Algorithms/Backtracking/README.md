@@ -81,7 +81,8 @@ Most of BT problems can be solved using below pattern.
 
 <a name=t></a>
 ### Time Complexity
-- BT is unfolded as a DFS traversal in a n-ary tree. The total number of steps during the backtracking = **number of nodes in the tree**.
+- BT is unfolded as a **DFS traversal in a n-ary tree**.
+- **Time Complexity:** (Max Number of nodes on 1 level) x (Number of levels).
 - So, How many number of nodes?
 ```c
   1st iteration = n elements
