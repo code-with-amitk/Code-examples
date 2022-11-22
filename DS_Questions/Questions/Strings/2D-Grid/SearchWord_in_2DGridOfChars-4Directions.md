@@ -10,7 +10,7 @@ word = "ABCCED", Output: true
 
 <a name=a1></a>
 ### Approach-1, Backtracking
-### Logic
+#### Logic
 ```c++
 - Start from board[0][0]
 - if(board[i][j] == word[0])
@@ -21,8 +21,38 @@ word = "ABCCED", Output: true
         -> if alphabets keep matching replace with '#'
            so that it should not be retravelled.
 ```
+- **Backtrack Tree**
+```c
+A B C E A B		//Search:ABCCED
+S F C S B C
+A D E E R Z
+						[]
+				-------------------------------------------
+				|			|		
+				A(0,0)			A(0,4)
+			------------------		----------------
+			|	|			|		|
+			AB	AS			AB(1,4)		AB
+			|	(stop)			|
+  		-------------------------		-----------------
+  		|     |					|	|	|
+ 		ABC	ABF				ABS	ABR	ABC
+  		|	(stop)
+	-------------------
+	|	   |	   |
+	ABCE	  ABCC	   
+	(stop)	   |
+	 --------------------------------
+	 |		|		|
+	 ABCCS		ABCCF		ABCCE		//At any level 3 directions can be traversed.
+	 (stop)		(stop)		|
+	 			-----------------------------
+				|		|
+				ABCCEE		ABCCED
+				(stop)		(found)
+```
  ### Code
- ```c++
+ ```cpp
 #include<iostream>
 #include<string>
 #include<vector>
@@ -101,3 +131,10 @@ public:
     }
 };
 ```
+
+#### [Complexity Analysis for Backtracking](/DS_Questions/Algorithms/Backtracking/README.md#t)
+- **Time:** O(N x 3<sup>L</sup>)
+  - Look at backtrack Tree above. At any level 3 children are allowed, since we cannot traverse back to path from where we came. if levels=L. Complexity = 3<sup>L</sup>
+  - N=Number of letters in grid. From Every letter there can be a path to target word.
+- **Space:** 
+  - O(k) where k is the length of the word to be matched.
