@@ -56,6 +56,7 @@ Web Client call these [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protoco
   - GET: Get list of all records in web service
   - PUT: Update a record in web service
   - DELETE: delete 1 record in web service
+  - PATCH: If we want to update only 1 field of object.
 ```
 
 <a name=vs></a>
