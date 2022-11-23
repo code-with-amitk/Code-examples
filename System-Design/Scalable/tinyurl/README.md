@@ -4,6 +4,8 @@
 - [3. API Design](#api)
 - [4. HLD](#hld)
 
+### FACT(Erez,Navita): Interviewers quickly want to see HLD/Blocks(not BOE).
+
 ## Tinyurl
 - **What?** This service will provide shortened aliases redirecting to long URLs. Users are redirected to longURL as they hit short URL.
 - **Why?** Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.
