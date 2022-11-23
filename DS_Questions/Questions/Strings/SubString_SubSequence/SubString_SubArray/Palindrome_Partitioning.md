@@ -53,18 +53,21 @@ using vecS = vector<string>;
 using vecVecS = vector<vector<string>>;
 class Solution {
     vecVecS out;
+    string input;
 public:
-    vecVecS partition(string input) {
+    vecVecS partition (string str) {
         //1. Create Empty candidate
         vecS cand;
         int startIndex = 0;
         
+        input = str;
+        
         //2. Call recursive backtrack
-        rb (input, startIndex, cand);
+        rb (startIndex, cand);
         return out;
     }
 
-    void rb (string &input, int startIndex, vecS &cand) {
+    void rb (int startIndex, vecS &cand) {
         // Base case
         if (startIndex >= input.size())
             out.push_back(cand);
@@ -79,7 +82,7 @@ public:
                 cand.push_back(input.substr(startIndex, i - startIndex + 1));
                 
                 //6. Call rb() to search next candidate
-                rb (input, i + 1, cand);
+                rb (i + 1, cand);
                 
                 //7. Remove last added substring from candidate vector
                 cand.pop_back();
