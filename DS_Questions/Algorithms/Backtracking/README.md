@@ -10,7 +10,7 @@
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - Palindrome
-    - (Palindrome Partitioning)[/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md]
+    - [Palindrome Partitioning](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md)
   - Permutations
     - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
     - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
