@@ -25,7 +25,7 @@ Substrings =      //Question is not about substrings
   b
 ```
 - **Backtrack Tree**
-<img src=Palindrome_Partitioning_bt_tree.jpg width=500/>
+<img src=Palindrome_Partitioning_bt_tree.jpg width=300/>
 
 - _1._ Create substrings using backtracking
 - _2._ Check whether substring is palindrome or not?
@@ -86,5 +86,9 @@ public:
 };
 ```
 #### Complexity
-- **Time**
-- **Space**
+- **Time:** N=number of characters. O(N x 2<sup>N</sup>)
+  - 2<sup>N</sup> is max substrings(number of nodes generated) in bt tree.
+  - N. substrings for N lettered word.
+    - "aaa". then 3 substrings to be generated which are palindromes.  
+- **Space:** O(N). N=number of characters.
+  - At anytime max substring that can be generated is of length N.
