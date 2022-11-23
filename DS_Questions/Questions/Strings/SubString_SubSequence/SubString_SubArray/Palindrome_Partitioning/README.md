@@ -24,23 +24,9 @@ Substrings =      //Question is not about substrings
   a,ab
   b
 ```
-- Backtrack Tree
-```c
-                                    []
-                                    |
-            ------------------------
-            |                         
-           {a}                  
-            |
-       -------------------------
-     /        \           \     \
-   {a}{a}     {a}{ab}     {aa}  {aab}
-   /                       /
- {a}{a}{b}              {aa}{b}
- 
-Palindromic Combinations:
-{a}{a}{b}, {aa}{b}
-```
+- **Backtrack Tree**
+<img src=Palindrome_Partitioning_bt_tree.jpg width=500/>
+
 - _1._ Create substrings using backtracking
 - _2._ Check whether substring is palindrome or not?
   - if its not palindrome, donot push substring on candidate vector
