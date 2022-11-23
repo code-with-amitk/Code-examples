@@ -91,7 +91,7 @@ client                                  server
 - *9.* DB Fetcher,Updater will recieve notification and finds short-url from DB. Creates mapping in DB.
 - *10.* DB Fetcher,Updater will put long-url-id, short-url on MOM.
 - *11.* Fanout service receives notification. Gets connection information from conn-db and sends shorturl to user.
-- *12.* CDN caches the short-url to long-url for x timeout as seen in Http Header
+- *12.* CDN caches the short-url to long-url for x timeout as seen in Http Header.
 
 <img src="./TinyURL.jpg" width=1000 />
 
