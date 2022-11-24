@@ -93,7 +93,7 @@ postgres=# \l
 ```c
 postgres=# create database test;
 postgres=# \l
-postgres=# \c test                          //Jump to recently created database
+postgres=# \c test                          //Connect to DB
 You are now connected to database "test" as user "postgres".
 ```
 ```c
