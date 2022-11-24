@@ -3,6 +3,7 @@
 - [User Identification](#ui)
 - [Set Logging](#sl)
 - [Counters, Status](#cs)
+- [Policies, Authentication Tables](#p)
 
 ### Commands
 <a name=ui></a>
@@ -64,9 +65,10 @@ Exiting configuration mode
 > exit
 > cat /var/log/test.txt
 ```
+
 <a name=cs></a>
 #### Counters, Status
-````c
+```c
 # run show services user-identification identity-management counters
 # run show services user-identification identity-management status
             Primary server :
@@ -95,4 +97,28 @@ Exiting configuration mode
 
 //////////////reboot: Needed when you change config////////////////
 # reboot
+```
+
+<a name=p></a>
+### Policies, Authentication Tables
+```c
+1. On qa-central or dav-central.
+$ get_vsrx_tanant <tanent-id>
+  TenantPop: uuid1
+    srx: ip-address-1
+  TenantPop: uuid2
+    srx: ip-address-2
+  TenantPop: uuid3
+    srx: ip-address-3
+    
+2. Login to any srx
+$ ssh root@ip-address-2
+Password:
+# run show services user-identification authentication-table authentication-source all
+Total entries: 8
+Key            Username       groups(Ref by policy)   state
+1.2.3.4        administrator                          Valid
+4.5.6.6        amit                                   Valid             //user=amit logged with IP
+
+# run show services user-identification authentication-table authentication-source all extensive
 ```
