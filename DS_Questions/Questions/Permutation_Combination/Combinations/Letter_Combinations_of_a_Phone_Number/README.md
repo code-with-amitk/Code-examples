@@ -124,6 +124,6 @@ public:
 	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
 	27		12		3 x 4
 	277		48		3 x 4 x 4
-	2777		192		3 x 4 x 4 x 4
+	2777		192		3 x 4 x 4 x 4	//lesser than m^n
 ```
 - **Space:** O(n). max Number of characters in candidate string=4.
