@@ -45,6 +45,12 @@ Total Combinations = 27
 
 <img src=images\Letter_combination_of_a_phone_number.jpg width=900 />
 
+- Backtrack Tree
+```c
+"2347" = "abc" "def" "ghi" "pqrs"
+```
+<img src=images\Letter_combination_of_a_phone_number-2347.jpg width=900 />
+
 #### Code
 ```cpp
 class Solution {
