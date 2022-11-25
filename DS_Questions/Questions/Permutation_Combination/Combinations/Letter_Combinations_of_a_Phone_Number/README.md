@@ -24,8 +24,7 @@ Output: ["a","b","c"]
 - **Backtracking Problems:** Combinations, Permutations, N-Queen, Suduko, Word Search in Grid
 #### Logic = Backtracking
 ```c
-"234"
-"abc" "def" "ghi"
+"234" = "abc" "def" "ghi"
 ```
 - _1._ Create a map of digits vs word
 ```c
@@ -36,8 +35,12 @@ Output: ["a","b","c"]
 adg	adh	adi
 ```
 - _3._ Break condition is when newly formed word length = input length. Since 1 phone number key press = 1 letter.
-
 - Backtrack Tree
+```c
+"234" = "abc" "def" "ghi".
+Total Combinations = 27
+```
+
 <img src=images\Letter_combination_of_a_phone_number.jpg width=900 />
 
 #### Code
@@ -59,46 +62,68 @@ class Solution {
     vecS out;
     string input;
 public:
-    vector<string> letterCombinations(string digits) {
-      if (!digits.size())
-          return out;
-	    input = digits;
+	vector<string> letterCombinations(string digits) {
+      		if (!digits.size())
+          		return out;
+	    	input = digits;
       
-      /// 1. Create map
-	    create_map ();
+      		/// 1. Create map
+	    	create_map ();
 
-	    string cand;
+	    	string cand;
       
-      /// Start with empty candidate
-	    rb (0, cand);
+		/// Start with empty candidate
+		rb (0, cand);
       
-      return out;
-    }
-    void rb (int startIndex, string cand) {
+		return out;
+    	}
+	
+	void rb (int startIndex, string cand) {
     
-      /// Base case
-	    if (cand.size() >= input.size()) {
+      		/// Base case
+	    	if (cand.size() >= input.size()) {
 		    out.push_back(cand);
 		    return;
-	    }
+	    	}
 
-	    auto it = um.find(input[startIndex]);
-	    string letters_for_numbers = it->second;
+	    	auto it = um.find(input[startIndex]);
+		string letters_for_numbers = it->second;
       
-      /// Iterate thru all possible candidates
-	    for (int i=0; i<letters_for_numbers.size(); ++i) {
+		/// Iterate thru all possible candidates
+		for (int i=0; i<letters_for_numbers.size(); ++i) {
       
-        /// Place this candidate on 1 solution
-		    cand += letters_for_numbers[i];
+        		/// Place this candidate on 1 solution
+			cand += letters_for_numbers[i];
         
-		    rb (startIndex+1, cand);
-        
-        /// Mark this as unvisited, remove the element
-		    cand.pop_back();
-	    }
-    }
+			rb (startIndex+1, cand);
+        	
+        		/// Mark this as unvisited, remove the element
+			cand.pop_back();
+		}
+	}
 };
 ```
 #### Complexity
-- **Time:** 
-- **Space:** 
+- **Time:** n=number of digits. m=alphabets in digit. O(m<sup>n</sup>)
+```c
+// digit made of 3 alphabets
+	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
+	2		3		3 ^ 1
+	23		9		3 ^ 2
+	234		27		3 ^ 3
+	2345		81		3 ^ 4
+
+// digit made of 4 alphabets
+	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
+	7		4		4 ^ 1
+	79		16		4 ^ 2
+	779		64		4 ^ 3
+	7799		256		4 ^ 4
+
+// mixed case
+	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
+	27		12		3 x 4
+	277		48		3 x 4 x 4
+	2777		192		3 x 4 x 4 x 4
+```
+- **Space:** O(n). max Number of characters in candidate string=4.
