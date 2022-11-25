@@ -22,11 +22,21 @@ Output: ["a","b","c"]
 <a name=a1></a>
 ### Approach-1, Backtracking
 - **Backtracking Problems:** Combinations, Permutations, N-Queen, Suduko, Word Search in Grid
-#### Logic
+#### Logic = Backtracking
 ```c
 "234"
 "abc" "def" "ghi"
 ```
+- _1._ Create a map of digits vs word
+```c
+ | 1 "" | 2 "abc" | 3 "def" | 4 "ghi" | 5 "jkl" | 6 "mno" | ...
+```
+- _2._ Take 1 alhpabet from 1st word, and generate 3 letter word
+```c
+adg	adh	adi
+```
+- _3._ Break condition is when newly formed word length = input length. Since 1 phone number key press = 1 letter.
+
 - Backtrack Tree
 <img src=images\Letter_combination_of_a_phone_number.jpg width=900 />
 
@@ -89,3 +99,6 @@ public:
     }
 };
 ```
+#### Complexity
+- **Time:** 
+- **Space:** 
