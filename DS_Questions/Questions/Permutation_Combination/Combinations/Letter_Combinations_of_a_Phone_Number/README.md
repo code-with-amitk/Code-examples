@@ -1,6 +1,8 @@
 **Letter Combinations of a Phone Number**
 - [Approach-1, Backtracking](#a1)
 
+### [Self Video](https://youtu.be/jVrKsWnH6Mo)
+
 ### [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/)
 - Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
 - A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
