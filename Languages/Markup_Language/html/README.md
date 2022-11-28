@@ -1,0 +1,75 @@
+**html / hypertext markup language**
+- [Tags](#t)
+- [Attributes](#a)
+- [Formatting elements](#f)
+
+## html
+	doctype: 	Tells about type of page
+  
+<a name=t></a>
+### Tags
+#### html
+Root element of page
+#### title
+Tile of Page
+#### body
+Contents of page
+#### h1,h2,h3:	Headings
+Search engines use the headings to index the structure and content of your web pages
+#### p
+Paragraph. Starts with newline & is block of text.
+#### a
+links
+#### img
+Defines images
+#### `<br>`
+line break, Newline
+#### `<hr>`
+Horizontal Rules. used to separate content. Add a line
+#### `<pre>`
+Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
+
+<a name=a></a>
+### Attributes
+provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
+#### alt
+alt="Girl with a jacket". specifies an alternate text for an image
+#### style
+To add color, font, size, and more. https://www.w3schools.com/html/html_styles.asp
+```html
+				<p style="color:red;font-size:300%;"> .. </p>
+				<body style="background-color:powderblue;">		//Background of page
+```
+#### lang
+lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
+```html
+				<html lang="en">
+```
+#### title
+Defines some extra information about an element. The value of the title attribute will be displayed as a tooltip when you mouse over the element
+```html
+				<p title="I'm a tooltip">This is a paragraph.</p>
+```
+
+<a name=f></a>
+### Formatting elements
+#### `<b>` 
+Bold text
+#### `<strong>`
+Important text
+#### `<i>` 
+Italic text
+#### `<em>` 
+Emphasized text
+#### `<mark>` 
+Marked text
+#### `<small>`
+Smaller text
+#### `<del>` 
+Deleted text
+#### `<ins>` 
+Inserted text
+#### `<sub>`
+Subscript text
+#### `<sup>`
+Superscript text
