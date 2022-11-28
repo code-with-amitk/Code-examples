@@ -3,7 +3,7 @@
 - [SubSequence, substring](#s)
 
 <a name=c></a>
-### continuous vs contiguous
+### continuous, contiguous
 - **Continuous:** Continuing in time or space without interruption. Working or moving, without break or irregularity. 
 - **Contiguous:** means neighboring, close to each other or connected in space or time. Having a common boundary or edge; abutting; touching.
 
