@@ -2,9 +2,10 @@
 - [Tags](#t)
 - [Attributes](#a)
 - [Formatting elements](#f)
+- [CSS, Cascading Style Sheets](#css)
 
 ## html
-	doctype: 	Tells about type of page
+doctype: 	Tells about type of page
   
 <a name=t></a>
 ### Tags
@@ -73,3 +74,31 @@ Inserted text
 Subscript text
 #### `<sup>`
 Superscript text
+
+<a name=css></a>
+### Cascading Style Sheets (CSS)
+- Used to format the layout of a webpage
+- With CSS, you can control the color, font, the size of text, the spacing between elements
+- CSS can be added to HTML documents in 3 ways:
+#### 1. Inline
+using the style attribute inside HTML elements
+```c
+<h1 style="color:blue;">A Blue Heading</h1>
+<p style="color:red;">A red paragraph.</p>
+```
+#### 2. Internal
+- using `<style>` element in the `<head>` section. Example:
+```c
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+</style>
+</head>
+<body>	
+```
+#### 3. External
+`<link>` element to link to an external CSS file
