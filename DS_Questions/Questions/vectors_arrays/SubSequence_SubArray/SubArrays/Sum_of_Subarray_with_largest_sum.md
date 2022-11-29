@@ -62,40 +62,46 @@ public:
 <a name=a1></a>
 ### Approach-2 (Kadane's Algo)
 #### Logic
-- Only consider +ve subarrays in array. Do not consider -ve.
-- Use 2 variables:
-  - MaxHere: Maximum upto this array entry
-  - MaxSoFar: 
-```cpp
-Input array: -2, 1, -3, 4, -1, 2, 1, -5, 4
-  
-MaxHere = 0, MaxSoFar = INT_MIN
-if (MaxHere + array_element < 0)
-  MaxHere = 0
-else
-  maxHere = maxHere + array_element
+- _1._ Take variable maxHere. This variable stores maximum sum till present element.
+  - Initialize maxHere = 0
+  - if (maxHere + present_element `<` 0). maxHere = 0.
+```c
+maxHere=0;
+maxHere = maxHere + present_element;
+if (maxHere + present_element < 0)
+    maxHere = 0;
+    
+arr         1 3 -6 9 -10 -4 -3 6
+index       0 1  2 3   4  5  6 7       
+       
+maxHere     1 4  0 9  0   0  0 6
+
+maxHere=0
+i   maxHere
+0   1
+1   4
+2   0       4-6<0
+3   9
+4   0       9-10<0
+5   0       0-4<0
+6   0       0-3<0
+7   6
 ```
-        
-|element| -2 | 1 | -3 | 4 | -1 | 2 | 1 | -5 | 4 |
-|---|---|---|---|---|---|---|---|---|---|
-|MaxHere(//a)| 0 (0-2<0) | 1=0+1 | 0 (1-3<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
-|MaxSoFar(//b)| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
 
 #### Code
 ```cpp
 class Solution {
 public:
-  int maxSubArray(vector<int>& a) {
-    int maxSoFar = INT_MIN
-    int maxHere = 0; 
-  
-    for (int i = 0; i < a.size(); i++) { 
-        maxHere = maxHere + a[i]; 
-        maxSoFar = std::max(maxHere, maxSoFar);   //b
-        if (maxHere < 0) 
-            maxHere = 0;                        //a
-    } 
-    return maxSoFar;         
+  int maxSubArray(vector<int>& nums) {
+        int maxHere = 0;
+        int out = INT_MIN;
+        for (int i=0;i<nums.size();++i){
+            maxHere += nums[i];
+            out = max(out, maxHere);
+            if(maxHere < 0)
+                maxHere = 0;
+        }
+        return out;       
   }
 };
 ```
