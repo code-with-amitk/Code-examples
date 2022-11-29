@@ -15,7 +15,7 @@ Input:   A = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 Output:  6    //SubArray [4,-1,2,1] has the maximum possible sum of 6.
 ```
 
-### [Self Video](https://youtu.be/G1EpmNrd1W8)
+### [Self Video](https://youtu.be/P3qC0tj50DI)
 
 <a name=a1></a>
 ### Approach-1. Brute Force. TLE
