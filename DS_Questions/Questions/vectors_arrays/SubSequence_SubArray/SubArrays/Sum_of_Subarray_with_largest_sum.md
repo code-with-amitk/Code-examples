@@ -89,6 +89,7 @@ i   maxHere
 ```
 
 #### Code
+**C++**
 ```cpp
 class Solution {
 public:
@@ -104,4 +105,23 @@ public:
         return out;       
   }
 };
+```
+**Rust**
+```rs
+impl Solution {
+    pub fn max_sub_array(nums: Vec<i32>) -> i32 {
+        let mut max_here = 0;
+        let mut out = core::i32::MIN;
+        for i in nums.iter() {
+            max_here += i;
+            if max_here > out {
+                out = max_here;
+            }
+            if max_here < 0 {
+                max_here = 0;
+            }
+        }
+        out
+    }
+}
 ```
