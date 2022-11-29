@@ -1,5 +1,6 @@
 **Maximum Subarray**
-- [Approach-1, Kadane's Algo](#a1)
+- [Approach-1, Brute Force. O(n<sup>2</sup>)](#a1)
+- [Approach-2, Kadane's Algo. O(n)](#a2)
 
 
 ### [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
@@ -17,7 +18,49 @@ Output:  6    //SubArray [4,-1,2,1] has the maximum possible sum of 6.
 ### [Self Video](https://youtu.be/G1EpmNrd1W8)
 
 <a name=a1></a>
-### Approach(Kadane's Algo)
+### Approach-1. Brute Force. TLE
+- _1._ What all subarrays can exist?
+```c
+{1, 2, 3, 4, -10}
+1
+1,2
+1,2,3
+1,2,3,4
+1,2,3,4,-10
+2
+2,3
+2,3,4
+2,3,4,-10
+3
+3,4
+3,4,-10
+4
+4,-10
+-10
+```
+- _2._ Use 2 nested for loops and find all subarrays.
+#### Code
+```c
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int max = INT_MIN;
+
+        for (int i=0;i<nums.size();++i) {
+            int sum = 0;
+            for (int j=i;j<nums.size();++j) {
+                sum += nums[j];
+                if (sum>max)
+                    max = sum;
+            }
+        }
+        return max;
+    }
+};
+```
+
+<a name=a1></a>
+### Approach-2 (Kadane's Algo)
 #### Logic
 - Only consider +ve subarrays in array. Do not consider -ve.
 - Use 2 variables:
