@@ -1,11 +1,8 @@
 **Maximum Subarray**
-- Approach, Kadane's Algo
-  - [Logic](#l1)
-  - Code
-    - [CPP](#c1)
+- [Approach-1, Kadane's Algo](#a1)
 
 
-### [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+### [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
 Find max subarray with largest sum. Subarrays are contigious.
 ```c
 Ex-1
@@ -19,8 +16,8 @@ Output:  6    //SubArray [4,-1,2,1] has the maximum possible sum of 6.
 
 ### [Self Video](https://youtu.be/G1EpmNrd1W8)
 
+<a name=a1></a>
 ### Approach(Kadane's Algo)
-<a name=l1></a>
 #### Logic
 - Only consider +ve subarrays in array. Do not consider -ve.
 - Use 2 variables:
@@ -41,7 +38,6 @@ else
 |MaxHere(//a)| 0 (0-2<0) | 1=0+1 | 0 (1-3<0) | 4=0+4 | 3=4-1 | 5=3+2 | 6=5+1 | 1=6-5 | 5=4+1 |
 |MaxSoFar(//b)| 0 | 1 | 1 | 4 | 4 | 5 | 6 | 6 | 6 |
 
-<a name=c1></a>
 #### Code
 ```cpp
 class Solution {
