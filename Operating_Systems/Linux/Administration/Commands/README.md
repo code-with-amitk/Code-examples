@@ -170,13 +170,20 @@ For performing file operations(Search Text, Find and replace, Insert, delete) wi
 ```c
 //Replace Commands
   $ grep -rl oldtext . | xargs sed -i 's/oldtext/newtext/g'    //Replace all occurence of oldtext with newtext in all files recursively
-    
   $ sed 's/unix/linux/2' test.txt       //Replace 2nd occurence of unix with linux
-    
   $ sed '3 s/unix/linux/' test.txt      //Replace occurence only on 3rd line
-    
   $ sed '1,3 s/unix/linux/' test.txt    //Replace occurence only on 1st,3rd line
-```    
+```
+#### Replace in file
+```c
+# cat test.txt
+Saturday after school
+
+# sed -i -e 's/Saturday/Tuesday' test.txt
+
+# cat test.txt
+Tuesday after school
+```
 
 <a name=sys></a>
 ### systemctl
