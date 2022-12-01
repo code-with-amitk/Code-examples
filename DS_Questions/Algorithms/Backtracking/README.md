@@ -8,6 +8,7 @@
       - [Combination Sum II. Time: O(2<sup>n</sup>)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_2)
       - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
       - [Letter Combinations of a Phone Number](/DS_Questions/Questions/Permutation_Combination/Combinations/Letter_Combinations_of_a_Phone_Number/)
+    - [Jump Game](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Jump_Game_1.md)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - Palindrome
