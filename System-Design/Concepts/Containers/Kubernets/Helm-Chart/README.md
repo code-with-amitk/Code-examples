@@ -1,6 +1,7 @@
 **Helm Chart**
 - Install/Upgrade/Rollback application on cluster using helm
   - [1. Create Helm Chart](#hc1)
+    - Charts.yaml, values.yaml, templates/deployment.yaml, templates/configmap-jams.yaml
   - [2. Download, Install minikube/Cluster](#hc2)
   - [3. Install application on cluster using helm](#hc3)
   - [4. Access the application on cluster](#hc4)
