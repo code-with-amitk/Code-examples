@@ -1,4 +1,4 @@
-- [Question](#ques)
+**Jump Game**
 - [1. Approach-1. Backtracking. O(2<sup>n</sup>)](#apr1)
   - [1.1 C++](#apr1cpp)
   - [1.2 Rust](#apr1rust)
@@ -6,8 +6,7 @@
   - [2.1 C++](#apr2cpp)
   - [2.2 Rust](#apr2rust)
 
-<a name=ques></a>
-## [Can we reach end / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
+## [55. Jump Game / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
 - Array of non-negative integers, which represents max JUMPS from that position. We are initially positioned at the 0th index of the array, Determine can we reach LAST index?
 - Each element in the array represents **maximum jump/ladder length** from that position, we can choose smaller jump from that position also.
 - **Examples**
