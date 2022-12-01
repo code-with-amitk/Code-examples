@@ -1,12 +1,8 @@
 **Jump Game**
-- [1. Approach-1. Backtracking. O(2<sup>n</sup>)](#apr1)
-  - [1.1 C++](#apr1cpp)
-  - [1.2 Rust](#apr1rust)
-- [2. Approach-2. DP, Top Down. O(n<sup>2</sup>)](#apr2)
-  - [2.1 C++](#apr2cpp)
-  - [2.2 Rust](#apr2rust)
+- [Approach-1. Backtracking. O(2<sup>n</sup>) TLE](#apr1)
+- [Approach-2. DP, Top Down. O(n<sup>2</sup>)](#apr2)
 
-## [55. Jump Game / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
+### [55. Jump Game / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
 - Array of non-negative integers, which represents max JUMPS from that position. We are initially positioned at the 0th index of the array, Determine can we reach LAST index?
 - Each element in the array represents **maximum jump/ladder length** from that position, we can choose smaller jump from that position also.
 - **Examples**
@@ -25,7 +21,9 @@ which makes it impossible to reach the last index.
 ```
 
 <a name=apr1></a>
-## 1. Approach  //[Backtracking](/DS_Questions/Algorithms)  //O(2<sup>n</sup>), Time limit exceed
+### Approach-1, Backtracking. O(2<sup>n</sup>) TLE
+- [Backtracking Template](/DS_Questions/Algorithms)
+- _Why Backtracking?_ We need to find all ways/combinations to reach end.
 ```c
 a = 3  2  1  0  4
     0  1  2  3  4
@@ -38,52 +36,58 @@ a = 3  2  1  0  4
             [3]          No
              |
             No
-//See calculation of [2]->[3]->No gets repeated.            
+//See calculation of [2]->[3]->No gets repeated.
 ```
-- **Logic:** Jump from position 0 to 4, 0 to 3, 0 to 2, 0 to 1. if no jump is possible return false.
-- **Complexity**
-  - **Time:** O(2<sup>n</sup>)
-    -  There are 2<sup>n</sup> ways of jumping from the first position to the last, n is the length of input array.
-  - **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
-- **Code** 
-<a name=apr1cpp></a>
-### 1.1 C++
-```c++
+#### Logic
+- _1._ Start from index=0. Jump to all possible indexes from 0.
+```c
+nums = [2,3,1,1,4]
+        0 1 2 3 4
+
+From index=0, we can jump to index=2 and index=1
+```
+- _2._ Jump to index=2, check whether I can reach end from here, if not jump to all possible indexes
+#### Complexity
+- **Time:** O(2<sup>n</sup>)
+  -  There are 2<sup>n</sup> ways of jumping from the first position to the last, n is the length of input array.
+- **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
+
+#### Code
+**C++**
+```cpp
 class Solution {
-  using vec = vector<int>;
+    int lastIndex;
 public:
-  
-  bool fun(vec& a, int i){     //i=index
-    int size = a.size();
+    bool rb (vector<int>& nums, int index) {
+        bool ret = false;
+        
+        // Base case
+        // if from present index I can reach end, return true
+        if (nums[index] >= lastIndex - index)
+            return true;
 
-    //Reached last index or beyond
-    if (i >= size -1)
-      return true;
-
-    //Jump from present+1 index
-    for (int j = i+1; j < a[i]+i+1; ++j) {
-       if (fun(a, j))
-          return true;
+        // All possible candidates
+        // Start from last possible index where I can reach
+        for (int i=nums[index]; i>0; --i) {
+            // Jump to index
+            ret = rb (nums, i + index);
+            if (ret)
+                break;
+        }
+        return ret;
     }
-    return false;
-  }
-
-  bool canJump(vec& a) {
-    //Start jump from index=0
-    return fun(a, 0);
-  }
+    bool canJump(vector<int>& nums) {
+        lastIndex = nums.size() - 1;
+        
+        // Start jump from index=0
+        return rb (nums, 0);
+    }
 };
-int main() {
-    vec a = { 3,2,1,0,4 };
-    Solution s;
-    cout << s.canJump(a);
-}
 ```
-<a name=apr1rust></a>
-### 1.2 Rust
+- **Rust**
   - _1._ vector.len() return usize `pub fn len(&self) -> usize` should be typecasted
   - _2._ Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types), typecasted
-```rust
+```rs
 fn fun(v:&Vec<i32>, i:i32) -> bool {
     let size = v.len() as i32;                  //1
     if i >= (size -1) {
@@ -115,7 +119,7 @@ fn main() {
 ```
 
 <a name=apr2></a>
-## 2. Approach-2         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
+### Approach-2, DP with Backtracking         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 - **Logic**
   - 1. Create a bool dpArray which tells whether we can reach end from particular index or not.
     - if end can be reached from index. `dp[index] = true`
