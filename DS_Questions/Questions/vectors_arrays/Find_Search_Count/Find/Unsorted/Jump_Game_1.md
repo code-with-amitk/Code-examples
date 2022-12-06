@@ -1,6 +1,6 @@
 **Jump Game**
-- [Approach-1. Backtracking. O(2<sup>n</sup>) TLE](#apr1)
-- [Approach-2. DP, Top Down. O(n<sup>2</sup>)](#apr2)
+- [Approach-1. Backtracking. O(2<sup>n</sup>) TLE](#a1)
+- [Approach-2. DP, Top Down. O(n)](#a2)
 
 ### [55. Jump Game / Selecting Ladder to reach end](https://leetcode.com/problems/jump-game/)
 - Array of non-negative integers, which represents max JUMPS from that position. We are initially positioned at the 0th index of the array, Determine can we reach LAST index?
@@ -20,7 +20,7 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum jump 
 which makes it impossible to reach the last index.
 ```
 
-<a name=apr1></a>
+<a name=a1></a>
 ### Approach-1, Backtracking. O(2<sup>n</sup>) TLE
 - [Backtracking Template](/DS_Questions/Algorithms)
 - _Why Backtracking?_ We need to find all ways/combinations to reach end.
@@ -123,7 +123,7 @@ fn main() {
 }
 ```
 
-<a name=apr2></a>
+<a name=a2></a>
 ### Approach-2, DP with Backtracking         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
 #### Problem with Approach-1
 - if we see backtrack tree some functions are called again and again. if we store result when we visited those for 1st time in `vector<bool>` we can avoid complete repetative recursive stack.
