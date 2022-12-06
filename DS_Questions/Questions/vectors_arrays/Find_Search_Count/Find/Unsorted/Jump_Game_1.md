@@ -25,18 +25,22 @@ which makes it impossible to reach the last index.
 - [Backtracking Template](/DS_Questions/Algorithms)
 - _Why Backtracking?_ We need to find all ways/combinations to reach end.
 ```c
+Backtrack Tree
 a = 3  2  1  0  4
     0  1  2  3  4
-                        [0]                     //From index 0. 3 possible jumps.
-                0/      1|       2\
-               [1]      [2]       [3]       //From index=1. 2 possible jumps. 
-              /  \       |         |        //From index=2. 1 possible jump.
-            [2]  [3]    [3]       No        //From index=3. No possible jump. Cannot reach end.
-             |           |
-            [3]          No
-             |
-            No
-//See calculation of [2]->[3]->No gets repeated.
+                                 []
+                  ------------------------------------         
+                  |                 |         |      |
+                  0                 1         2      3(f)
+           -------------         ---------    |
+           |     |     |         |       |    3(f)
+           3(f)  2     1         3       2
+                /     / \                 \
+               3(f)  3(f) 2                 3(f)
+                           \
+                            3(f)
+                            
+rb(2) -> rb(3) function will get called again and again.
 ```
 #### Logic
 - _1._ Start from index=0. Jump to all possible indexes from 0.
@@ -49,8 +53,9 @@ From index=0, we can jump to index=2 and index=1
 - _2._ Jump to index=2, check whether I can reach end from here, if not jump to all possible indexes
 #### Complexity
 - **Time:** O(2<sup>n</sup>)
-  -  There are 2<sup>n</sup> ways of jumping from the first position to the last, n is the length of input array.
-- **Space:** O(n)O(n). Recursion requires additional memory for the stack frames.
+  - Look at backtrack tree. For n=5 elements, consider only n-1=4 elements.
+  - For n elements there can be n levels and every node can have n children. So its traversing n array tree.
+- **Space:** O(n). Recursion requires additional memory for the stack frames.
 
 #### Code
 **C++**
@@ -120,115 +125,82 @@ fn main() {
 
 <a name=apr2></a>
 ### Approach-2, DP with Backtracking         //[Dynamic Programming, Top Down](/DS_Questions/Algorithms)
-- **Logic**
-  - 1. Create a bool dpArray which tells whether we can reach end from particular index or not.
-    - if end can be reached from index. `dp[index] = true`
-    - if end cannot be reached from index. `dp[index] = false`
-    - Initially all elements of dpArray are Bad `vector<bool> dpArray(array.size()-1, false);`
-    - Last element of dpArray is always good. Since element can reach itself always.
-    - This array is calculated in reverse(ie from last to 1st). if 1st index is good, we can reach end.
+#### Problem with Approach-1
+- if we see backtrack tree some functions are called again and again. if we store result when we visited those for 1st time in `vector<bool>` we can avoid complete repetative recursive stack.
+#### Logic
+- _1._ Take a `vector<bool> dp` of same size as input array
+- _2._ Intialize all elements to true. Initialize elements of dp array to false whose which are 0 in original array
 ```c
-array	2	4	2	1	0	2	0
-Indexes	0	1	2	3	4	5	6
-dpArray	1	1	0	0	0	1	1    //Good=1, Bad=0
-vector<bool> dpArray(array.size()-1, false);    //Initially all dpArray is bad 
-
-index=0, We can reach end.  index=0 --> index=1 --> index=5 --> end     //Index=0 is good
-index=1, We can reach end.  index=1 --> index=5 --> end                 //Index=1 is good
-index=2, We cannot reach end.
-                            index=2 --> index=4 -> Stop at index 4      //Index=2 is bad
-                            index=2 --> index=3 -> Stop at index 4
-index=3, Bad
-index=4, We cannot jump from here and its not last index.               //Index=4 is bad
-index=5, Good
-index=6, This is last index and not jump is needed.                     //Index=6 is good
+a =  3  2  1  0  4
+     0  1  2  3  4
+dp = t  t  t  f  t
 ```
-  - *2.* Modify above backtracking algorithm, such that the recursive step first checks if the index is known (GOOD / BAD). 
-    - If it is known then return True / False. Otherwise perform the backtracking steps as before. 
-    - Once value of the current index is determined, store in dpArray.
-- **Complexity**
-  - **Time:** O(n<sup>2</sup>) 
-    - For every element in the array, we are looking at the next `a[i]` elements to its right which is GOOD index. 
-    - `a[i]` can be at most n, where n is the length of array a.
-  - **Space:** O(2n)=O(n). First n originates from recursion. Second n comes from the usage of the dpArray table.
-- **Code**
+- _3._ Check dp array as 1st step when we enter rb() function, `if dp[index] == false`, return false.
+- _4._ update `dp[index] = false` when found, cannot reach end from index ie after for loop.
+#### Complexity
+- **Time:** O(n) 
+  - After nearly 1st filling of dp array we return, instantly.
+```c
+                                     []
+                        ---------------------------
+                        |         |        |       |
+                        0         1(f)     2(f)    3(f)
+                       /  \
+                    3(f)   2(f)
+                           /
+                          3(f) 
 
-<a name=apr2cpp></a>
-### 2.1 C++
+```
+- **Space:** O(n). Usage of the dpArray table.
+#### Code
+- **C++**
 ```c++
 class Solution {
-  //We have to take 3 states, bcoz if we take dpArray as bool array, i cannot distinguish
-  //which indexes are calculated, since only after calculation we should set dp[i]=false
-  enum class State{                                 
-    Good,
-    Bad,
-    Unknown
-  };
-  using vecS = vector<state>;
-  using vecI = vector<int>;
+    int lastIndex;
 public:
-  bool fun(int i, vecI& a, vecS& dp){
-  
-//if this is replaced with below. Then we will not consider skipping Bad indexes.
-//if(dp[i])
-//   return true;
+    bool rb (vector<int>& nums, vector<bool>& dp, int index) {
 
-    if (dp[i] != State::Unknown)
-      return dp[i] == State::Good ? true : false;
-
-    for (int j=i+1; j<=a[i]+i+1; ++j) {
-      if (fun (j, a, dp) ) {
-        dp[i] = State::Good;
-        return true;
-      }
-    }
-    dp[i] = State::Bad;
-    return false;
-  }
-
-  bool canJump(vecI& a) {
-    vecS dp(a.size(), State::Unknown);
-    dp[a.size()-1] = State::Good;       //Last index can always reach itself
-
-    return fun(0, a, dp);
-  }
-};
-int main() {
-  vec a = {3,2,1,0,4};
-  Solution s;
-  cout<<s.canJump(a);
-}
-```
-<a name=apr2rust></a>
-### 2.2 Rust
-```rust
-impl Solution {  
-    pub fn fun(v:&Vec<i32>, i:i32, dp:&mut Vec<i32>) -> bool {
-    if dp[i as usize] != 2 {
-        if dp[i as usize] == 1 {
-            return true;
-        } 
-        else 
-        {
+        // Check dp array 1st, if cannot reach end from this element
+        // return false
+        if (dp[index] == false)
             return false;
+
+        bool ret = false;
+        // Base case
+        if (nums[index] >= lastIndex - index)
+            return true;
+
+        for (int i=nums[index]; i>0; --i) {
+            // Jump to index
+            ret = rb (nums, dp, i + index);
+            if (ret)
+                break;
         }
+        
+        // We cannot reach end from present index, set dp[index]=false
+        if (ret == false)
+            dp[index] = false;
+
+        return ret;
     }
 
-    for j in i+1 .. v[i as usize]+i+1 {
-        if Solution::fun(&v,j, dp) {
-            dp [i as usize] = 1;
-            return  true;
+    bool canJump(vector<int>& nums) {
+        if (nums.size() == 1)
+            return true;
+            
+        // Whichever element in 0 in nums array
+        // make that dp[i] = false, because for sure we 
+        // cannot reach end from that element
+        vector<bool> dp(nums.size(), true);
+        for (auto&i:nums){
+            if (!i) {
+                int index = &i-&nums[0];
+                dp[index]=false;
+            }
         }
+        
+        lastIndex = nums.size() - 1;
+        return rb (nums, dp, 0);
     }
-    dp [i as usize] = 0;
-    false
-    }      
-    
-    pub fn can_jump(v: Vec<i32>) -> bool {
-    //let dp = vec![state::unknown; v.len()];
-    let mut dp = vec![2; v.len()];
-    dp [v.len() - 1] = 1;       //Last index is reachable
-    Solution::fun (&v, 0, &mut dp)       
-    }
-}
+};
 ```
