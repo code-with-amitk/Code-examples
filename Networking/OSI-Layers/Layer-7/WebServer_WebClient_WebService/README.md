@@ -4,7 +4,7 @@
   - [2. Long Pooling/Push Method](#m2)
   - [3. WebSockets](#m3)
   - [4. Server Sent Events](#m4)
-  - _5._ Webhooks = HTTP POST
+  - _5._ Webhooks = HTTP POST. Send data as its available
 - **[Web Service](#ws)**
 
 ## Methods of Connection
