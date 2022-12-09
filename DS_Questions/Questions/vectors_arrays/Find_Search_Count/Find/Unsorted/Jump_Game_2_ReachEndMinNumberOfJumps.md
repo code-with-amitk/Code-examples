@@ -83,7 +83,7 @@ public:
 };
 ````
 
-## [Self Video]()
+## [Self Video](https://youtu.be/RwVjXPZgA2k)
 
 <a name=a2></a>
 ### Approach-2 / Greedy / Pick largest ladder / O(n)
