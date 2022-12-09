@@ -86,35 +86,49 @@ public:
 <a name=a2></a>
 ### Approach-2 / Greedy / O(n)
 - [What is Greedy Approach](/DS_Questions/Algorithms/Greedy)
-#### Logic
-  - _1._ Always always picks the largest subarray, but also check how can we reach by choosing larger subarray.
-  - _2._ Initialize three integer variables
-    - jumps to count the number of jumps
-    - currentJumpEnd to mark the end of the range that we can jump to
-    - farthest to mark the farthest place that we can reach. Set each variable to zero.
-  - _3._ Iterate over input. Note that we exclude the last element from our iteration because as soon as we reach the last element, we do not need to jump anymore.
-    - Update farthest to `i + nums[i]` if the latter is larger.
-    - If we reach currentJumpEnd, it means we finished the current jump, and can begin checking the next jump by setting currentJumpEnd = farthest.
+#### Logic (Choose largest ladder from range)
+- _1._ Pick largest ladder from range.
+  - end: max range this ladder can reach.
+```c
+nums = [2 3 6 1 2 4 3 1 2 1]
+        0 1 2 3 4 5 6 7 8 9
+
+maxLadder = 0, jumps=0, end=0
+i  largestLadder = max(largestLadder, i+nums[i])   end jumps
+0   (0,0+2) 2                                        2   1
+1   (2, 1+3) 4                                       2   1
+2   (4, 2+6) 8                                         
+    //We reached end, what present Ladder can help us
+    //Pick largestLadder which we found till this point
+                                                     8   2  //We found ladder with which we can reach 8
+3   (8, 3+1) 8
+4   (8, 2+4) 8
+5   (8, 5+4) 9  //Found bigger ladder will use this
+                //After our present ladder ends
+6   (9, 6+3) 9
+7   (9, 7+1) 8
+8   (9, 8+2) 10  //Found bigger ladder prev big, will use this
+                 //After our present ladder ends
+                                                    10  3   //Present ladder ended, use largestLadder found
+9   (10, 9+1)10
+```
 #### Complexity
-  - Time: O(n). Traversed once
-  - Space: O(1)
+- Time: O(n). Traversed once
+- Space: O(1)
 #### Code
 ```c
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int jumps = 0, currentJumpEnd = 0, farthest = 0;
+        int jumps = 0, ends = 0, largestLadder = 0;
         
         for (int i = 0; i < nums.size() - 1; i++) {
         
-            // we continuously find the how far we can reach in the current jump
-            farthest = max(farthest, i + nums[i]);
+            largestLadder = max(largestLadder, i + nums[i]);
             
-            // if we have come to the end of the current jump,
-            // we need to make another jump
-            if (i == currentJumpEnd) {
+            if (i == ends) {
                 jumps++;
-                currentJumpEnd = farthest;
+                ends = largestLadder;
             }
         }
         return jumps;
