@@ -106,7 +106,7 @@ i  largestLadder = max(largestLadder, i+nums[i])   end jumps
 5   (8, 5+4) 9  //Found bigger ladder will use this
                 //After our present ladder ends
 6   (9, 6+3) 9
-7   (9, 7+1) 8
+7   (9, 7+1) 9
 8   (9, 8+2) 10  //Found bigger ladder prev big, will use this
                  //After our present ladder ends
                                                     10  3   //Present ladder ended, use largestLadder found
@@ -124,8 +124,12 @@ public:
         
         for (int i = 0; i < nums.size() - 1; i++) {
         
+            // if ladder present at presentIndex=i is greater than largest
+            // pick up larger ladder
             largestLadder = max(largestLadder, i + nums[i]);
             
+            // When we reached end of our present ladder
+            // Climb the largest element found so far and increment jumps by 1
             if (i == ends) {
                 jumps++;
                 ends = largestLadder;
