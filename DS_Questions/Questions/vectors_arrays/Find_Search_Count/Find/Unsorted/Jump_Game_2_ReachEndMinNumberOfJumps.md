@@ -1,6 +1,6 @@
 **Jump Game 2**
 - [Approach-1. BackTracking. TLE. O(2<sup>n</sup>)](#a1)
-- [Approach-2. Greedy](#a2)
+- [Approach-2. Greedy. Find largest ladder. O(n)](#a2)
 
 
 <a name=prob></a>
@@ -84,7 +84,7 @@ public:
 ````
 
 <a name=a2></a>
-### Approach-2 / Greedy / O(n)
+### Approach-2 / Greedy / Find Largest ladder / O(n)
 - [What is Greedy Approach](/DS_Questions/Algorithms/Greedy)
 #### Logic (Choose largest ladder from range)
 - _1._ Pick largest ladder from range.
