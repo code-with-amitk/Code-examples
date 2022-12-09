@@ -2,6 +2,7 @@
 - [Approach-1. BackTracking. TLE. O(2<sup>n</sup>)](#a1)
 - [Approach-2. Greedy. Pick largest ladder. O(n)](#a2)
 
+## [Self Video](https://youtu.be/RwVjXPZgA2k)
 
 <a name=prob></a>
 ### [Jump Game 2 / Jump Game II / Reach end in Minimum No of Jumps](https://leetcode.com/problems/jump-game-ii/)
@@ -82,8 +83,6 @@ public:
     }
 };
 ````
-
-## [Self Video](https://youtu.be/RwVjXPZgA2k)
 
 <a name=a2></a>
 ### Approach-2 / Greedy / Pick largest ladder / O(n)
