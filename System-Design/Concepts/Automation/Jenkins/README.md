@@ -1,4 +1,5 @@
 **Jenkins**
+- Terms
 - [Installation](#i)
 - Create CI/CD Pipeline
    - [1. Write script in jenkins](#c1)
@@ -6,6 +7,10 @@
 
 ## Jenkins
 Open source automation server which helps to build, test, and deploy the software.
+
+### Terms
+#### Agent
+A machine, or container, which connects to a Jenkins controller and executes tasks when directed by the controller
 
 ## Installation
 #### 1. Ubuntu
