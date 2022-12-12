@@ -17,6 +17,17 @@ Pages A,B have backlinks to C.
 |     ---------------
 |--------|           
 ```
+#### Page Rank Formula
+```c
+u = Page
+Bu = Pages point to u
+Fu = Pages to which u points. Nu = Number of links from u to all other pages.
+c = constant normalization factor
+
+Page Rank = c x sumof ( Rv )
+                       ----
+                        Nv
+```
 
 ### Terms
 #### Backlinks / incoming links
