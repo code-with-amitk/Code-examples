@@ -9,26 +9,32 @@ doctype: 	Tells about type of page
   
 <a name=t></a>
 ### Tags
-#### html
-Root element of page
-#### title
-Tile of Page
-#### body
-Contents of page
-#### h1,h2,h3:	Headings
-Search engines use the headings to index the structure and content of your web pages
-#### p
-Paragraph. Starts with newline & is block of text.
 #### a
 links
-#### img
-Defines images
+#### body
+Contents of page
 #### `<br>`
 line break, Newline
+#### div
+defines a division or a section in an HTML document. [div example](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_div_test)
 #### `<hr>`
 Horizontal Rules. used to separate content. Add a line
+#### h1,h2,h3:	Headings
+Search engines use the headings to index the structure and content of your web pages
+#### html
+Root element of page
+#### img
+Defines images
+#### label
+defines a label for several elements. provide a usability improvement for mouse users
+#### p
+Paragraph. Starts with newline & is block of text.
 #### `<pre>`
 Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
+#### span
+used to color a part of a text. [Example](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_span)
+#### title
+Tile of Page
 
 <a name=a></a>
 ### Attributes
