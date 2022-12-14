@@ -1,5 +1,5 @@
-Page Rank
-- Terms: Backlinks
+**Page Rank**
+- [Terms: Backlinks, Rank Sink Problem, Dangling links](#t)
 
 
 ## [Page Rank](http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf)
@@ -35,6 +35,8 @@ Page Rank: (Summation of ranks of all pages pointing to target page) / (Number o
 #### Backlinks / incoming links
 - Backlinks (also known as “inbound links”, “incoming links” or “one way links”) are links from one website to a page on another website.
 - More the backlinks up it will be on search results on google.
+#### Dangling links
+Hyperlinks which does not point to anywhere.
 #### Rank Sink Problem
 if there are 2 pages which point to each other and does not point to any other page, then how page rank is calculated?
 ```c
