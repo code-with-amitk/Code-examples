@@ -16,6 +16,7 @@
 - [Keywords: Lazy, RWlock, self, Self](Keywords)
 - [Class in Rust](#class)
 - [Control Flow: for, loop, while, match=switch, if, if let](Control_Flow)
+- [Containers: std::cell](Containers)
 - [Functions, Associated Functions=Methods, Closure=Lambda, impl block](Functions)
 - [Frameworks: Actix_web](Frameworks)
 - [Crates, Packages, Modules](#cpm)
