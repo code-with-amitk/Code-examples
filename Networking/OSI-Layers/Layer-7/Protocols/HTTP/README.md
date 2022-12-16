@@ -14,6 +14,7 @@
   - [PAC File](#pac)
 - [Plugin, Helper Application, MIME](#mime)
 - [HTTP Return Codes](#rc)
+- [Intermediaries: proxy, gateway, and tunnel](#int)
 
 
 ## HTTP
@@ -303,3 +304,8 @@ Client must authenticate itself to get the requested response.
 ##### 403 Forbidden
 Client is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized, the client's identity is known to the server.
 #### Server error responses (500–599)
+
+<a name=int></a>
+### Intermediaries
+HTTP enables the use of intermediaries to satisfy requests through a chain of connections. 
+#### 1. Proxy
