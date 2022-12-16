@@ -3,13 +3,13 @@
   - [Approach-1: Extra space](#a1)
   - [Approach-2(Without Extra Space)](#a2)
 - **Code**
-  - [Recursive](#r)
-  - [Iterative](#it)
-- [Complexity](#comp)
+  - C++
+    - [Recursive](#cr)
+    - [Iterative](#ci)
 
 ### [My Video. See it before Editing the page](https://youtu.be/ZTNCu_IiuZc)
 
-### [Same Tree](https://leetcode.com/problems/same-tree/)
+### [100. Same Tree](https://leetcode.com/problems/same-tree/)
 Compare 2 binary trees, return 1 if equal else 0.
 ```c
 Input: p = [1,2,3], q = [1,2,3]
@@ -26,20 +26,20 @@ Output: false
 ```
 
 <a name=a1></a>
-### Approach-1: Extra space
-Traverse tree1 and tree2 and save in vector1 and vector2. if vectors are same return 1 else 0
+#### Approach-1: Extra space
+Traverse tree1 and tree2 in inorder traversal and save in vector1 and vector2. if vectors are same return 1 else 0
 
 <a name=a2></a>
-#### Approach-2(Without Extra Space)
+### Approach-2(Without Extra Space)
 - Recursively iterate through same nodes of both trees, if at any level not found same, return false. else return true.
 - Checks to perform and return false:
   - _1._ if root nodes are not equal
   - _2._ if values of any node not same
   - _3._ if left subtree is empty & right is not empty and viceversa.
 
-### Code
-<a name=r></a>
-#### Recursive:CPP
+#### Code
+<a name=cr></a>
+- **C++: Recursive**
  ```cpp
 struct TreeNode {
     int val;
@@ -51,23 +51,29 @@ struct TreeNode {
 };
 
     bool isSameTree(TreeNode* a, TreeNode* b) {
-        if ((a == nullptr && b) ||
-            (b==nullptr && a))
+        // if a is empty and b is not empty
+        // OR b is empty and a is not empty
+        if ((!a && b) || (!b && a))
             return false;
+            
+        // if a and b both are empty, return true
+        if (!a && !b)
+            return true;
 
-        return test(a,b);
+        return check(a,b);
     }
     
-    bool test(TreeNode* a, TreeNode* b) {
-    
-         //base case that both children of both nodes of tree a,b are empty
+    bool check(TreeNode* a, TreeNode* b) {
+          bool ret1 = true, ret2 = true;
+          
+        // Symetrical trees
         if (a == nullptr && b == nullptr)
             return true;
         
         if (a->val != b->val)
             return false;
             
-        //We cannot proceed if either a or b has non symmetrical subtrees under
+        // Non symmetrical subtrees, return false
         if ((a->left==nullptr && b->left) ||
             (b->left==nullptr && a->left) ||
             (a->right==nullptr && b->right) ||
@@ -75,8 +81,10 @@ struct TreeNode {
            )
             return false;
         
-        return test(a->left, b->left) && test(a->right, b->right);
-
+        ret1 = check(a->left, b->left);
+        ret2 = check(a->right, b->right);
+        
+        return ret1 && ret2;
     }
 
 int main(){
@@ -88,18 +96,17 @@ int main(){
     TreeNode* p3b = new TreeNode(3);
     TreeNode* p1b = new TreeNode(1, p2b, p3b);
     
-     //Logic without Extra Space
    cout << identicalTrees(p1a, p1b));
 }
 ```
 
-<a name=i></a>
-#### Iterative
-- [We will use following approach To convert Itertive to recursive](/DS_Questions/Algorithms/Recursion/README.md#ci)
-- Take stack.
-  - _1._ Push a,b root on stack.
-  - _2._ Pop top 2 elements compare and repeat step-1
-  - _3._ if stack becomes empty(that means no more child nodes are there to be added) return true.
+<a name=ci></a>
+- **C++: Iterative**
+  - [We will use following approach To convert Itertive to recursive](/DS_Questions/Algorithms/Recursion/README.md#ci)
+  - Take stack.
+    - _1._ Push a,b root on stack.
+    - _2._ Pop top 2 elements compare and repeat step-1
+    - _3._ if stack becomes empty(that means no more child nodes are there to be added) return true.
 ```cpp
 class Solution {
 public:
