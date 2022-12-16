@@ -14,7 +14,7 @@
   - [PAC File](#pac)
 - [Plugin, Helper Application, MIME](#mime)
 - [HTTP Return Codes](#rc)
-- [Intermediaries: proxy, gateway, and tunnel](#int)
+
 
 
 ## HTTP
