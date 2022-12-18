@@ -15,6 +15,8 @@ links
 Contents of page
 #### `<br>`
 line break, Newline
+#### combobox
+used for building forms in HTML. It is formed with select element and input type=”text” element.
 #### div
 defines a division or a section in an HTML document. [div example](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_div_test)
 #### `<hr>`
