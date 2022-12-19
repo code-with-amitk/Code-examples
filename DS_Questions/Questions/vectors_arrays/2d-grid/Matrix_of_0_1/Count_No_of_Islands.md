@@ -1,10 +1,10 @@
 **Number of Islands**
-- [Approach-1, Find Connected Components Using visited array](#a1)
+- [Approach-1, DFS Graph. Connected Components](#a1)
   - [Code](#c1)
 - [Approach-2, Modifying incoming array, No extra Space](#a2)
   - [Code](#c2)
 
-### [Number of Islands](https://leetcode.com/problems/number-of-islands/)
+### [200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
 - Given matrix '1's (land) and '0's (water). We need to count islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
 ```cpp
 Example-1
@@ -27,24 +27,13 @@ Output: 3               //3 islands
 ```
 
 <a name=a1></a>
-### Approach-1, Find [Connected Components](/DS_Questions/Data_Structures/Graphs#t) (Using visited array)
+### Approach-1, Find [Connected Components](/DS_Questions/Data_Structures/Graphs#t). DFS
+- **Logic-1**
+- _1._ Take visited[][] vector same sized as original 2D vector.
+- _2._ Mark all adjacent `1's` as visited using recursion.
+  - Do not use queue/stack because it will slow adding and removing elements to queue.
+- _3._ Traverse whole array and check unvisited `1's`: count++ whenever unvisited 1 is found.
 ```cpp
-1. Take visited[][] vector same sized as original 2D vector.
-2. Mark all adjacent `1's` as visited using recursion.
-        -> Do not use queue/stack because it will slow adding and removing elements
-           to queue.
-3. Traverse whole array and check unvisited `1's`:
-        -> count++ whenever unvisited 1 is found.
-```
-<a name=c1></a>
-#### Code-1
-```cpp
-#include<vector>
-#include<iostream>
-#include<queue>
-#include<chrono>
-using namespace std::chrono;
-using namespace std;
 using vecVecC = vector<vector<char>>;
 using vecI = vector<int>;
 using vecVecI = vector<vecI>;
@@ -86,56 +75,58 @@ public:
 };
 ```
 
-<a name=a2></a>
-### Approach-2, Find [Connected Components](/DS_Questions/Data_Structures/Graphs#t) (Modifying incoming array, No extra Space)
-- Each visited node is marked as 2
-- Start from index=0,0. Mark Island as 2.
-```c++
-   1  1  1  1  0
-   1  1  0  1  0
-   1  1  0  0  0
-   0  0  0  0  0
---become-->   
-   2  2  2  2  0
-   2  2  0  2  0
-   2  2  0  0  0
-   0  0  0  0  0
-```
-<a name=c2></a>
-#### Code-2
+
+- **Logic-2 (Modify input array):**
+  - _1._ Each visited node is marked as 2
+  - _2._ Start from index=0,0. Mark Island as 2.
 ```cpp
-using vecVecC = vector<vector<char>>;
-using vecI = vector<int>;
-using vecVecI = vector<vecI>;
-
-void MarkIslandVisited(vecVecI& grid,
-                        int i/*row*/, int j/*col*/, int& MaxRows, int& MaxCols){
-  grid[i][j]=2;
-  
-  if (i<=MaxRows-2 and grid[i+1][j]==1)   //below
-    MarkIslandVisited(grid,i+1,j,MaxRows,MaxCols);
-
-  if (j<=MaxCols-2 and grid[i][j+1]==1)     //right
-    MarkIslandVisited(grid,i,j+1,MaxRows,MaxCols);
-
-  if (j>0 and grid[i][j-1]==1)    //back
-    MarkIslandVisited(grid,i,j-1,MaxRows,MaxCols);
-
-  if (i>0 and grid[i-1][j]==1)    //above
-    MarkIslandVisited(grid,i-1,j,MaxRows,MaxCols);
-}
-
-int numIslands(vecVecI grid){
-  int MaxRows = grid.size();
-  int MaxCols = grid[0].size();
-  int count = 0;
-
-  for (int i=0; i<MaxRows; ++i)
-    for (int j=0; j<MaxCols; ++j)
-      if (grid[i][j] == 1){
-        ++count;
-        MarkIslandVisited(grid,i,j,MaxRows,MaxCols);
-      }
-  return count;
-}
+   1  1  1  1  0      2 2 2 2 0
+   1  1  0  1  0      2 2 0 2 0
+   1  1  0  0  0      2 2 0 0 0 
+   0  0  0  0  0      0 0 0 0 0
+```
+#### Complexity
+- **Time:** O(mxn). m=rows, n=cols
+- **Space:** O(1)
+#### CPP
+```cpp
+class Solution {
+    int rows, cols;
+    vector<int> rowDirections = {-1,0,0,1};
+    vector<int> colDirections = {0,-1,1,0};
+public:
+    // Return true if any 1 is found in 4 directions
+    bool checkAllDirections(int row, int col, vector<vector<char>>& grid){
+        if (row < 0 || col < 0 || row >= rows || col >= cols)
+            return false;
+        if (grid[row][col] == '1')
+            return true;
+        return false;
+    }
+    void searchNeighbours (int row, int col, vector<vector<char>>& grid) {
+        grid[row][col] = '2';
+        // Check all 4 directions
+        for (int i=0;i<4;++i){
+            int r = row+rowDirections[i];
+            int c = col+colDirections[i];
+            if (checkAllDirections(r, c, grid)) {
+                searchNeighbours (r, c, grid);
+            }            
+        }
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int count = 0;
+        rows = grid.size();
+        cols = grid[0].size();
+        for (int i=0;i<rows;++i){
+            for (int j=0;j<cols;++j){
+                if (grid[i][j] == '1') {
+                    count += 1;
+                    searchNeighbours (i, j, grid);
+                }
+            }
+        }
+        return count;
+    }
+};
 ```
