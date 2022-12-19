@@ -58,7 +58,7 @@ HttpCode delete (longitude, lattitude, name)
   - User queries something as `Schools near me`.
   - Yelp/Google-map sends `(lattitude,longitude)` of user's device and on DB all locations within `10 km` radius of `(lattitude,longitude)` are relayed back to user.
   - Information of areas/things to be stored in ***SQL DB***.
-  - For searching information faster we will use ***GRIDS(Tree data structure)***.
+  - For searching information faster we will use **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)**.
   
 #### 1. **GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
