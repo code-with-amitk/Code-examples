@@ -1,8 +1,5 @@
 **Number of Islands**
 - [Approach-1, DFS Graph. Connected Components](#a1)
-  - [Code](#c1)
-- [Approach-2, Modifying incoming array, No extra Space](#a2)
-  - [Code](#c2)
 
 ### [200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
 - Given matrix '1's (land) and '0's (water). We need to count islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
