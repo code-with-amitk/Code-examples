@@ -89,8 +89,8 @@ public:
 ```cpp
 class Solution {
     int rows, cols;
-    vector<int> rowDirections = {-1,0,0,1};
-    vector<int> colDirections = {0,-1,1,0};
+    vector<int> rowDirections = {-1,0,0,1}; //N,E,W,S
+    vector<int> colDirections = {0,-1,1,0}; //N,E,W,S
 public:
     // Return true if any 1 is found in 4 directions
     bool checkAllDirections(int row, int col, vector<vector<char>>& grid){
