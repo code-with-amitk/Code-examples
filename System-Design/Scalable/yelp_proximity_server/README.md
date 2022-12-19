@@ -60,7 +60,7 @@ HttpCode delete (longitude, lattitude, name)
   - Information of areas/things to be stored in ***SQL DB***.
   - For searching information faster we will use ***GRIDS(Tree data structure)***.    
 
-<img src=images/grid.png width=500 />
+<img src=./images/grid.png width=500 />
   
 #### 1. **GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
