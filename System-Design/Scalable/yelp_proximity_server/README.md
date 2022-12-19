@@ -1,26 +1,30 @@
-## Yelp or Proximity Server?
-- Used to discover nearby attractions like places, events, restaurants, theaters, etc.
+**Yelp or Proximity Server**
+- [1. Requirements](#r)
+- [2. BOE Calculations](#b)
+- [3. System APIs](#s)
+- [4. HLD](#h)
+- [5. Database Schema](#d)
+- [6. Requirements(Non functional)](#rn)
 
-## Need To cover(RBSHD):
-  1. Requirements(Functional)
-  2. BOE Calculations
-  3. System APIs
-  4. HLD
-  5. Database Schema
-  6. Requirements(Non functional)
-  
-## 1. Requirements(Functional)
+
+## Yelp or Proximity Server?
+Used to discover nearby attractions like places, events, restaurants, theaters, etc.
+
+<a name=r></a> 
+### 1. Requirements(Functional)
   - service should work
   - Add/delete/update places
   - Given longitude/lattitude nearby places should be listed for given radius
   - Users should be able to give reviews, ratings, open/close times, pictures, text, and a rating
 
-## 2. BOE
+<a name=b></a>
+### 2. BOE
   - 500k Places
   - 10k user/sec
   
-## 3. System APIs
-  - Get Place/person/thing information
+<a name=sa></a> 
+### 3. System APIs
+1. Get Place/person/thing information
 ```
 <structure> search(dev_key, searchTerm, userLocation, radius, max_results, category, sort, long, lat)
 Parameters:
@@ -38,21 +42,25 @@ Returns: JSON containing information about
   - reviews
   - photos
   - ratings
-  - open/close time
-  
+  - open/close time  
+```
+2. Update/Delete
+```c
+struct old_info {lattitude, longitude, name, desc}
+struct new_info {lattitude, longitude, name, desc}
+HttpCode update (old_info, new_info)
+
+HttpCode delete (longitude, lattitude, name)
 ```
 
-## 4. HLD
+<a name=h></a>
+### 4. HLD
   - User queries something as `Schools near me`.
   - Yelp/Google-map sends `(lattitude,longitude)` of user's device and on DB all locations within `10 km` radius of `(lattitude,longitude)` are relayed back to user.
-  - For this, We need to store information of all places/things on earth so that when user queries a place/thing & all places that falls in 10 km radius are relyaed back.
-  - This information will be huge, to store places/things information we will use ***SQL DB***.
+  - Information of areas/things to be stored in ***SQL DB***.
   - For searching information faster we will use ***GRIDS(Tree data structure)***.    
-<img src=images/grid.png width=500 />
 
-### How place/thing information is stored?
-  1. Using grids
-  2. Using SQL DB
+<img src=images/grid.png width=500 />
   
 #### 1. **GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
