@@ -3,6 +3,8 @@
   - Code
     - [CPP](#cpp)
     - [Rust](#r)
+    - [Python3](#p)
+    - [Java](#j)
 
 
 ### [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
@@ -67,5 +69,65 @@ public:
 <a name=r></a>
 **Rust**
 ```rs
+impl Solution {
+    pub fn is_palindrome(s: String) -> bool {
+
+        // Convert string to lower case
+        // if character is not alphanumeric, replace with ""
+        let s = s.to_lowercase().replace(|c:char| !c.is_alphanumeric(), "").into_bytes();
+
+        // if string becomes empty or its len=1, return true
+        if s.is_empty() || s.len() == 1 {
+            return true;
+        }
+
+        // 2 pointers. 
+        // Front pointer=0, end pointer=last
+        let mut front = 0;
+        let mut end = s.len() - 1;
+
+        loop {
+            let fc = s.get(front).unwrap();
+            let ec = s.get(end).unwrap();
+
+            if fc == ec {
+                front += 1;
+                end -= 1;
+            }
+            else {
+                return false;
+            }
+            if front > end {
+                break;
+            }
+        }
+        return true;
+    }
+}
+```
+<a name=p></a>
+**Python**
+```py
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        front = 0;
+        end = len(s)-1;
+
+        while front < end:
+            if s[front] == ' ' or s[front].isalnum() == False:
+                front += 1;
+            elif s[end] == ' ' or s[end].isalnum() == False:
+                end -= 1;
+            elif s[front].lower() == s[end].lower():
+                front += 1;
+                end -= 1;
+            else:
+                return False;
+        return True;
+```
+
+<a name=j></a>
+**Java**
+```java
 
 ```
