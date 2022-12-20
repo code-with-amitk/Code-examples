@@ -1,7 +1,9 @@
- **Clone Graph**
- - [Logic](#l)
- - Code
-  - [CPP](#c)
+**Clone Graph**
+- [Approach-1, DFS](#a1)
+  - [Logic](#l)
+  - Code
+    - [CPP](#c)
+    - [Java](#j)
  
 ### 133. Clone Graph
 - Given a reference of a node in a connected undirected graph. Return a deep copy (clone) of the graph.
@@ -29,6 +31,11 @@ Explanation: There are 4 nodes in the graph.
 - _1._ We will perform [DFS in graph](/DS_Questions/Algorithms/Traversals/DFS/Graphs/). In DFS we traverse all negihbours, keep on marking node visited(to avoid revisit).
 - _2._ `unordered_map<old_node*, new_node*> visited;` is used to keep visited nodes. For every node in graph we will clone a new node. key=original_node, value=clone
 - _3._ if entry is present in map, we will return the entry else create a new node and return clone.
+
+#### Complexity
+- **Time:** O(V+E). V=vertices, E=edges. DFS has time complexity of V+E.
+  - O(n). n is number of nodes. At each node visits to neighbouring nodes is reduced, as node is found in map
+- **Space:**
 
 #### Code
 <a name=cpp></a>
