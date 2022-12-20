@@ -20,6 +20,7 @@
   - [HashMap](#hm)
   - [java.lang.Math](#math)
   - [Scanner](#s)
+- [Collections: HashMap](Collections)
 
 
 <a name=a></a>
