@@ -3,7 +3,7 @@
  - Code
   - [CPP](#c)
  
-### Clone Graph
+### 133. Clone Graph
 - Given a reference of a node in a connected undirected graph. Return a deep copy (clone) of the graph.
 - Each node in the graph contains a value (int) and a list `(List[Node])` of its neighbors.
 ```c
@@ -23,14 +23,18 @@ Explanation: There are 4 nodes in the graph.
 4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
 ```
 
-<a name=l></a>
-### Logic
-Perform DFS, and while doing traversal copy the node into new node.
+<a name=a1></a>
+### Approach-1, DFS
+#### Logic
+- _1._ We will perform [DFS in graph](/DS_Questions/Algorithms/Traversals/DFS/Graphs/). In DFS we traverse all negihbours, keep on marking node visited(to avoid revisit).
+- _2._ `unordered_map<old_node*, new_node*> visited;` is used to keep visited nodes. For every node in graph we will clone a new node. key=original_node, value=clone
+- _3._ if entry is present in map, we will return the entry else create a new node and return clone.
 
-### Code
+#### Code
 <a name=cpp></a>
-#### C++
+- **CPP**
 ```cpp
+/*
 // Definition for a Node.
 class Node {
 public:
@@ -49,29 +53,44 @@ public:
         neighbors = _neighbors;
     }
 };
+*/
 
 class Solution {
-                  //orig, new
-    unordered_map<Node*, Node*> visited;         //Original, Newnode. We return newNode if original is queried
+    unordered_map<Node*, Node*> visited;
 public:
-    Node* cloneGraph(Node* node) {
-        if(!node)
-            return nullptr;
-        
+    Node* dfs(Node* node){
+        Node* clone = nullptr;
+
+        // if node is visited
+        // then return clone of node because we
+        // need to create new graph with new nodes
         auto it = visited.find(node);
         if (it != visited.end())
             return it->second;
-        
-        //Create clone of present node
-        Node* clone = new Node(node->val);
+
+        // If node is not visited, create a deep copy
+        // Store copy as value of original node
+        clone = new Node(node->val);
         visited.insert({node, clone});
-        
-        //Iterate thru all neighbors of given node and clone
+
+        // Visit all neighbors
         for (auto it:node->neighbors){
-            clone->neighbors.push_back(cloneGraph(it));
+            Node* t = dfs(it);
+            clone->neighbors.push_back(t);
         }
         return clone;
     }
     
+    Node* cloneGraph(Node* node) {
+        if (!node)
+            return nullptr;
+        return dfs(node);
+    }
 };
+```
+
+<a name=java></a>
+- **Java**
+```rs
+
 ```
