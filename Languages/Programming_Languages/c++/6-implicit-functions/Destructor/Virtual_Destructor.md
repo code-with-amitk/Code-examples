@@ -6,15 +6,12 @@
 ```c++
 class Base{
 public:
-  virtual void f1(){}
   ~Base(){ cout<<"~base\n";  }      //Base class dtr not virtual
 };
-
 class derv:public Base{
 public:
   ~derv(){ cout<<"~derv\n"; }
 };
-
 int main(){
   Base *p = new derv();
   delete p;
@@ -27,7 +24,6 @@ int main(){
 ```c++
 class Base{
 public:
-  virtual void f1(){}
   virtual ~Base(){ cout<<"~base\n";  }
 };
 
@@ -41,5 +37,6 @@ int main(){
   delete p;
 }
 # ./a.out
+~derv
 ~base
 ```
