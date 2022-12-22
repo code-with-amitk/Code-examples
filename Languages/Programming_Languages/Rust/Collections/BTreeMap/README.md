@@ -4,7 +4,7 @@
 
 <a name=btm></a>
 ### [BTreeMap <key, value>](https://doc.rust-lang.org/std/collections/struct.BTreeMap.html)
-- Map implemented using BTree, suitable for storage of data in Databases, since Databases uses BTree internally.
+- Map implemented using [BTree](/DS_Questions/Data_Structures/Trees/SelfBalancedBST/README.md#bt), suitable for storage of data in Databases, since Databases uses BTree internally.
 - Has unique keys
 ```c
 Complexity       Insert      Search    Delete
