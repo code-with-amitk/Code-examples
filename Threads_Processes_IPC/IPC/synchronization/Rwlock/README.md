@@ -6,7 +6,7 @@
 
 <a name=rwl></a>
 ### RWlock
-- This type of lock allows a n number of readers(when no writer is inside) or at most one writer at any point in time.
+- Allows a n readers(when no writer is inside) or at most one writer at any point in time.
 - **Rwlock vs Mutex**
 ```c
                         rwlock                  |             mutex
