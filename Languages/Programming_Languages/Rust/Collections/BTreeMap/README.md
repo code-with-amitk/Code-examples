@@ -1,5 +1,7 @@
 **BTreeMap**
 - [Insert(key,value), len(), iterate over all element, delete](#c)
+- Examples
+  - [1. Insert `<key,value>` into BTreeMap](#ex1)
 
 
 <a name=btm></a>
@@ -12,8 +14,9 @@ Map              O(1)         O(1)      O(1)
 BS Tree,BTree    O(logn)     O(logn)   O(logn)
 ```
 
-<a name=c></a>
-### Code
+### Examples
+<a name=ex1></a>
+#### 1. Insert `<key,value>` into BTreeMap
 ```rs
 use std::collections::BTreeMap;
 #[derive(Debug, Clone)]
@@ -57,10 +60,7 @@ fn main() {
     for (key, val) in &btm {                          //Iterate over all elements in btm
         println!("{:?}, {:?}", key, val);
     }
-    
     btm.remove("uuid1");
-    
     println!("{}",btm.len());                   //1
 }
-
 ```
