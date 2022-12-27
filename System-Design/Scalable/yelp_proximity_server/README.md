@@ -10,6 +10,7 @@
 ## Yelp/Proximity Server/Google Maps
 - **What?** Used to discover nearby places(eg: schools near me), events, restaurants, theaters, etc.
 - Yelp App on phone sends `(lattitude,longitude)` of user's device and yelp server sends locations within `10 km` radius of `(lattitude,longitude)` to the user.
+  - (lattitude,longitude) are like coordinates of point on earth.
 
 <a name=r></a> 
 ### 1. Requirements(Functional)
