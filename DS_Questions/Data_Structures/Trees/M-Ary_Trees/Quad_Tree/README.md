@@ -4,6 +4,26 @@
 ## Quad Tree
 - Each node has **EXACTLY 4 children**, except leaf node.
 - It is used to partition a `two-dimensional space` by recursively subdividing it into four quadrants or regions.
+```c
+  N                 node
+E   W            /  |  \  \
+  S            NW  WS   ES NE //4 chidren
+  
+             y axis
+               |        4,4
+               |  1,3
+ -1,1          |
+---------------|------------------x axis
+               |
+-4,-2          |    2,-2
+               |
+               
+                 1,3(root)   
+             /   |    \    \
+           4,4  2,-2  -1,1  null
+                        \
+                        -4,-2
+```
 - Quadtree can be constructured from a 2D area using the following steps:
   - Divide the current two dimensional space into four boxes.
   - If a box contains one or more points in it, create a child object, storing in it the 2D space of the box
