@@ -1,6 +1,6 @@
 **3Sum**
 - [Approach-1, 3 for loops. O(n<sup>3</sup>)](#a1)
-- [Approach-2, Sort+3 Pointers. O(nlogn)](#a2)
+- [Approach-2, Sort+3 Pointers. O(n<sup>2</sup>)](#a2)
   - [Logic](#l)
   - [Complexity](#com)
   - [CPP](#cpp)
@@ -32,7 +32,7 @@ Output: []
   return out;    
 ```
 
-### Approach-2  //Sort + 3 pointer search
+### Approach-2  //Sort + 3 pointer search. O(n<sup>2</sup>)
 <a name=l></a>
 #### Logic
 ```cpp
