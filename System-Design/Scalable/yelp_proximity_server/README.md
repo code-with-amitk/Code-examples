@@ -14,10 +14,9 @@
 
 <a name=r></a> 
 ### 1. Requirements(Functional)
-  - service should work
-  - Add/delete/update places
-  - Given longitude/lattitude nearby places should be listed for given radius
-  - Users should be able to give reviews, ratings, open/close times, pictures, text, and a rating
+- Add/delete/update places.
+- Given `(longitude, lattitude)` nearby places should be listed for given radius.
+- Users should be able to give reviews, ratings, open/close times, pictures, text, and a rating
 
 <a name=b></a>
 ### 2. BOE
