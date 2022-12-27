@@ -7,8 +7,9 @@
 - [6. Requirements(Non functional)](#rn)
 
 
-## Yelp or Proximity Server?
-Used to discover nearby attractions like places, events, restaurants, theaters, etc.
+## Yelp/Proximity Server/Google Maps
+- **What?** Used to discover nearby places(eg: schools near me), events, restaurants, theaters, etc.
+- Yelp App on phone sends `(lattitude,longitude)` of user's device and yelp server sends locations within `10 km` radius of `(lattitude,longitude)` to the user.
 
 <a name=r></a> 
 ### 1. Requirements(Functional)
@@ -55,10 +56,8 @@ HttpCode delete (longitude, lattitude, name)
 
 <a name=h></a>
 ### 4. HLD
-  - User queries something as `Schools near me`.
-  - Yelp/Google-map sends `(lattitude,longitude)` of user's device and on DB all locations within `10 km` radius of `(lattitude,longitude)` are relayed back to user.
-  - Information of areas/things to be stored in ***SQL DB***.
-  - For searching information faster we will use **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)**.
+- Information of places to be stored in ***SQL DB***.
+- For searching information faster we will use **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)**.
   
 #### 1. **GRIDS**
   ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
