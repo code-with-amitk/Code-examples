@@ -3,7 +3,9 @@
 - [Approach-2, Sort+3 Pointers. O(n<sup>2</sup>)](#a2)
   - [Logic](#l)
   - [Complexity](#com)
-  - [CPP](#cpp)
+  - Code
+    - [CPP](#cpp)
+    - [Java](#j)
 
 
 ### [3sum](https://leetcode.com/problems/3sum/)
@@ -124,4 +126,68 @@ public:
         return out;
     }
 };
+```
+<a name=j></a>
+**Java**
+```java
+import java.util.StringTokenizer;  
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        // sort the nums
+        Arrays.sort(nums);
+
+        HashSet<String> sTriplet = new HashSet();  
+
+        for (int i=0;i<nums.length;++i){
+            int first_element = nums[i];
+
+            int start = i+1, end = nums.length-1;
+            while (start < end){
+                int sum = nums[start] + nums[end];
+                if (sum > -first_element)
+                    --end;
+                else if (sum < -first_element)
+                    ++start;
+                else {  //Found
+                    // Create String from Triplet and store in HashSet
+                    sTriplet.add(Integer.toString(first_element)+","+
+                                Integer.toString(nums[start])+","+
+                                Integer.toString(nums[end]));
+
+                    // Donot break, Search other triplets from this 1st element
+                    // {-2,0,1,1,2}. => {-2,0,2} {-2,1,1}
+                    // if we break will loose 2nd triplet
+                    //break;
+                    start++;
+
+                    // Skip all elements, where prev_element == present_element
+                    while (start<end && nums[start] == nums[start-1])
+                        ++start;
+                }
+            }
+            // Skip all same elements
+            // This condition is helpful when input is like:
+            // [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 ...]
+            while (start < end && nums[start] == nums[start+1])
+                start++;
+        }
+
+        //Create List out of HashSet
+        Iterator<String> i=sTriplet.iterator();
+        List<List<Integer>> out = new ArrayList<>();
+        while (i.hasNext()){
+            List<Integer> temp = new ArrayList<>();
+            String s = i.next();
+            StringTokenizer st = new StringTokenizer(s, ",");
+            while (st.hasMoreTokens()) {  
+                String str = st.nextToken();
+                int istr = Integer.parseInt(str);
+                temp.add(istr);
+            }
+            out.add(temp);
+        }
+        return out;
+    }
+}
 ```
