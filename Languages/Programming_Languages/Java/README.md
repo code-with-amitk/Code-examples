@@ -1,15 +1,5 @@
 **Java**
 - [About](#a)
-- [Features](#f)
-- [Memory Layout of Java Program](#ml)
-- [Data types](Data_Types)
-- [Keywords: abstract, interface, final, implements, static](Keywords)
-- [Streams](Streams)
-- **Input Output**
-  - [1. Reading stdin & dump on stdout](#i1)
-  - [2. Formatted Output](#fo)
-- [Object Oriented: Class, Inheritance, extends](Object_Oriented)
-- [Exception Handling, finally](Exception_Handling)
 - **Classes**
   - [ArrayList](#al)
   - [Calendar](#cal)
@@ -20,6 +10,17 @@
   - [java.lang.Math](#math)
   - [Scanner](#s)
 - [Collections: HashMap, Hashset](Collections)
+- [Data types](Data_Types)
+- [Exception Handling, finally](Exception_Handling)
+- [Features](#f)
+- **Input Output**
+  - [1. Reading stdin & dump on stdout](#i1)
+  - [2. Formatted Output](#fo)
+- [Keywords: abstract, interface, final, implements, static](Keywords)
+- [Memory Layout of Java Program](#ml)
+- [Object Oriented: Class, Inheritance, extends](Object_Oriented)
+- [Streams](Streams)
+- [String: Tokenize, convert](String)
 
 
 <a name=a></a>
