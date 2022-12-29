@@ -1,6 +1,7 @@
 **Collections**
 - [Hashmap](#hm)
 - [Hashset](#hs)
+- [List](#li)
 
 ## Collections
 <a name=hm></a>
@@ -42,4 +43,22 @@ class HashSet1{
       Iterator<String> i=set.iterator();  
       while(i.hasNext())  
            System.out.println(i.next());
+```
+
+<a name=li></a>
+### `List<>` / ArrayList
+- List is interface whose object cannot be created, we need to create for Arraylist.
+```java
+/// 1-D List
+List<Integer> temp = new ArrayList<>();
+temp.add(1);
+temp.add(2);
+
+/// 2-D Arraylist
+List<List<Integer>> list = new ArrayList<List<Integer>>();
+list.add(temp);
+or 
+List<List<Integer>> list = new ArrayList<>();
+
+
 ```
