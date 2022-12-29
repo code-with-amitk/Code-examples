@@ -1,5 +1,6 @@
 **Collections**
 - [Hashmap](#hm)
+- [Hashset](#hs)
 
 ## Collections
 <a name=hm></a>
@@ -15,4 +16,10 @@
       boolean a = hash_map.containsKey(20));          //return true/false if key is present or not
       
       String value = hash_map.get(15);          //Return value for key
+```
+
+<a name=hs></a>
+### Hashset
+```java
+
 ```
