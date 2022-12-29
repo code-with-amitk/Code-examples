@@ -17,10 +17,9 @@
   - [List`<>`](#li)
   - [NumberFormat](#nf)
   - [Object](#o)
-  - [HashMap](#hm)
   - [java.lang.Math](#math)
   - [Scanner](#s)
-- [Collections: HashMap](Collections)
+- [Collections: HashMap, Hashset](Collections)
 
 
 <a name=a></a>
@@ -207,22 +206,6 @@ toString(): Returns string representation of object.
   System.out.println(Thread.currentThread().toString());
 ```
 
-<a name=hm></a>
-### HashMap `<key,value>`
-- Writing on Key that is already existant Overrides the old entry. No ordering is maintained.
-```
-map <--implements-- AbstractMap <--extends-- HashMap
-```
-#### Code
-```java
-HashMap<Integer,String> hm = new HashMap <Integer,String>();
-hm.add(100,"Ravi");
-hm.add(200,"Hari");
-hm.add(300,"Mani");
-
-for (Map.Entry temp:hm.entrySet())
-  S.o.p(temp.getValue());
-```
 #### Functions
 ```java
             Function              |                 Meaning
