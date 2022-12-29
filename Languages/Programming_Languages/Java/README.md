@@ -1,15 +1,13 @@
 **Java**
 - [About](#a)
 - **Classes**
-  - [ArrayList](#al)
   - [Calendar](#cal)
   - [Integer](#int)
-  - [List`<>`](#li)
   - [NumberFormat](#nf)
   - [Object](#o)
   - [java.lang.Math](#math)
   - [Scanner](#s)
-- [Collections: HashMap, Hashset](Collections)
+- [Collections: HashMap, Hashset, List(ArrayList)](Collections)
 - [Data types](Data_Types)
 - [Exception Handling, finally](Exception_Handling)
 - [Features](#f)
@@ -165,11 +163,6 @@ int get(Calendar.DAY_OF_WEEK);       //Returns the day of the given calendar fie
 ```c
 String s = Integer.toString(int i);       //Converts int to string
 ```
-
-<a name=li></a>
-### `List<>`
-- List is interface which is implemented by some concreate classes: AbstractList, AbstractSequentialList, ArrayList, AttributeList, CopyOnWriteArrayList, LinkedList, RoleList, RoleUnresolvedList, Stack, Vector
-- Since List`<>` is a interface, we cannot create object of List class.
 
 <a name=nf></a>
 ### NumberFormat
