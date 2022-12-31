@@ -56,15 +56,14 @@ HttpCode delete (longitude, lattitude, name)
 
 <a name=h></a>
 ### 4. HLD
-- Information of places to be stored in ***SQL DB***.
-- For searching information faster we will use **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)**.
-  
-#### 1. **GRIDS**
-  ![ImgUrl](https://i.ibb.co/mCbqctM/quadtree.png)
-  
-  - Whole whole world map is divided into grids.
-  - Grid is a `Node in QuadTree` data structure. QuadTree can reside on multiple servers.
-  - Grid stores the `DB server ID` which contains all place's information b/w lattitude,longitude range. (lattitude-start,longitude-start) & (lattitude-end,longitude-end) ie Places residing within a longitude and latitude.
+- Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
+- Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids.
+```c
+Quad Tree 
+             []
+          / | \ \
+```
+
     
 ```
   struct gridNode{
