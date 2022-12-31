@@ -1,6 +1,8 @@
 **String**
 - [Tokenize](#tok)
-- [Convert: String to int](#con)
+- [Convert](#con)
+  - String to int
+  - int to string
 
 ## String
 - java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
@@ -34,4 +36,10 @@ public class StringToIntExample1{
     int i=Integer.parseInt(s);
   }
 }
+```
+#### int to string
+- Using `Integer.toString()` method converts int to String. The toString() is the static method of Integer class
+```java
+int i=10;  
+String s=Integer.toString(i);//Now it will return "10"  
 ```
