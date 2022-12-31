@@ -9,7 +9,7 @@
 
 <a name=tok></a>
 ### Tokenize
-java.util.StringTokenizer class allows you to break a String into tokens.
+[java.util.StringTokenizer](../Classes) class allows you to break a String into tokens.
 ```java
 import java.util.StringTokenizer;  
 public class Simple {  
@@ -38,7 +38,7 @@ public class StringToIntExample1{
 }
 ```
 #### int to string
-- Using `Integer.toString()` method converts int to String. The toString() is the static method of Integer class
+- Using `Integer.toString()` method converts int to String. The toString() is the static method of [Integer class](../Classes)
 ```java
 int i=10;  
 String s=Integer.toString(i);//Now it will return "10"  
