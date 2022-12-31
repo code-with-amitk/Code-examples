@@ -58,6 +58,7 @@ HttpCode delete (longitude, lattitude, name)
 ### 4. HLD
 - Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
 - Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids.
+- 1 grid can reside on multiple servers.
 ```c
 Quad Tree 
              []
@@ -75,18 +76,18 @@ Quad Tree
 ```
   - ***Case-1: User queries `Schools near me`***
     - User's device provides self lattitude,longitude. appropriate grid which serves enquired lattitude,longitude is searched in tree.
-    
-```
+```c
+(lat, lon) => (lattitude, longitude)
+
     User
   Schools near me
-  Google-map sends self
-(lattitude-s,longitude-s)--->  APP-SERVER
-                          lattitude-s,longitude-s
-                                    |-------search in quadTree------>  QUADTREE(root)
-                                    |                                     / | \ \
-                                    |                                     Node-60
-                                    |                               lattitude-start < lattitude-s < lattitude-end
-                                    |                               longitude-start < longitude-s < longitude-end                                                           |    <---gridId of Node-60--------
+1. Google-map sends self
+  (lat,lon)     --->      APP-SERVER
+                          lat,lon
+                             -------search (lat,lon)------>  QUADTREE(root) //DBs arranged in quadtree format
+                                                              jump to appropriate child
+                                                                   Lat_endchild1 < lat && Lon_endchild1 < lon
+                            <-----gridId of node=60------------    Look at child2
                         gridId->|Hash|->serverID(n)
                         //serverID is DB number where info is stored
                                     |
