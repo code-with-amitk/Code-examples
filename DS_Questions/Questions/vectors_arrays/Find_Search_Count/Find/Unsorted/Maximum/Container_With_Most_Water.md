@@ -7,6 +7,7 @@
     - [Java](#j)
     - [Python](#py)
     - [C](#c)
+    - [Rust](#r)
 
 ### [11. Container with most water](https://leetcode.com/problems/container-with-most-water/)
 - Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
@@ -118,5 +119,30 @@ int maxArea(int* height, int heightSize){
             right--;
     }
     return out;
+}
+```
+<a name=r></a>
+**Rust**
+```rs
+impl Solution {
+    pub fn max_area(height: Vec<i32>) -> i32 {
+        let mut left = 0;
+        let mut right = height.len()-1;
+        let mut out = 0;
+        loop {
+            if left >= right {
+                break;
+            }
+            let mut area = std::cmp::min(height[left], height[right]) * ((right-left) as i32);
+            out = std::cmp::max(out, area);
+            if height[left] < height[right]{
+                left += 1;
+            }
+            else {
+                right -= 1;
+            }
+        }
+        out
+    }
 }
 ```
