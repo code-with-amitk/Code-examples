@@ -8,6 +8,7 @@
     - [Python](#py)
     - [C](#c)
     - [Rust](#r)
+    - [Javascript](#js)
 
 ### [11. Container with most water](https://leetcode.com/problems/container-with-most-water/)
 - Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of the line i is at (i, ai) and (i, 0). Find two lines, which, together with the x-axis forms a container, such that the container contains the most water.
@@ -145,4 +146,25 @@ impl Solution {
         out
     }
 }
+```
+<a name=js></a>
+**Javascript**
+```js
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function(height) {
+    let left = 0, right = height.length-1, out = 0
+    while (left < right){
+        let area = Math.min(height[left], height[right]) * (right-left)
+        out = Math.max(out, area)
+
+        if (height[left] < height[right])
+            left++
+        else
+            right--
+    }
+    return out
+};
 ```
