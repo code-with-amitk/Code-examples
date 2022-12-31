@@ -95,3 +95,28 @@ class Solution:
                 right -= 1
         return out
 ```
+<a name=c></a>
+**C**
+```c
+int max(int num1, int num2) {
+    return (num1 > num2 ) ? num1 : num2;
+}
+
+int min(int num1, int num2) {
+    return (num1 > num2 ) ? num2 : num1;
+}
+
+int maxArea(int* height, int heightSize){
+    int left=0, right=heightSize-1, out=0;
+    while (left < right) {
+        int area = min(height[left], height[right]) * (right-left);
+        out = max(out, area);
+
+        if (height[left] < height[right])
+            left++;
+        else
+            right--;
+    }
+    return out;
+}
+```
