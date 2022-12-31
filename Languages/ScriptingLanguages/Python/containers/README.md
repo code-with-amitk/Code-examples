@@ -24,6 +24,11 @@ For storage of collection of objects. Can store different data types.
 |3. Range Object| immutable | Sequence of numbers generated during execution |
 |4. str | Immutable | Sequence to store textual data. |
 
+#### Lists
+```py
+list.sort()     //to sort list
+```
+
 <a name=mt></a>
 ### Mapping Container `<key, value=object>`
 - These are Mutable. Key cannot be mutable. Hence these cannot be used as key(set, list)
