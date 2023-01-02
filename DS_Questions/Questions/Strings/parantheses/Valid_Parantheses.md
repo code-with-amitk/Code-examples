@@ -1,7 +1,13 @@
 **Is valid parantheses**
-- [Logic](#l)
-- [Complexity](#com)
-- [Code](#c)
+- [Approach-1, Stack. O(n)](#a1)
+  - [Logic](#l)
+  - [Complexity](#com)
+  - Code
+    - [CPP](#cpp)
+    - [C](#c)
+    - [Java](#j)
+    - [Python](#p)
+    - [Rust](#r)
 
 ### [Valid Parantheses](https://leetcode.com/problems/valid-parentheses/)
 - Input string can contain any of these '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
@@ -16,8 +22,9 @@
 4. Input: "([)]"        Output: false
 5. Input: "(((((((()"   Output: false
 ```
-<a name=l></a>
-### Logic
+<a name=a1></a>
+### Approach-1, Stack. O(n)
+#### Logic
 ```c
 a. if 1st character is ')',']','}' return false
 b. Take a stack.
@@ -33,64 +40,35 @@ b. Take a stack.
                 return false
 ```        
 <a name=com></a>
-### Complexity
+#### Complexity
 - TIME: O(n)
 - SPACE: O(n)
 
-<a name=c></a>
-### Code        
-```c
-#include<iostream>
-#include<string>
-#include<stack>
-
-using namespace std;
-
+#### Code
+<a name=cpp></a>
+**CPP**
+```cpp
 class Solution {
 public:
-        bool isValid(string st) {
-
-                if(!st.size())
-                        return true;
-                if(st[0] == ')' || st[0] == ']' || st[0] =='}')
-                        return false;
-
-                stack<char> s;
-                char top;
-
-                for(auto i:st){
-
-                        if(i=='(' || i=='[' || i=='{')
-                                s.push(i);
-                        else{
-                                if(s.empty()!= 1){
-                                        top = s.top(); s.pop();
-                                }else
-                                        return false;
-
-                                if((top == '(' && i != ')') ||
-                                   (top == '[' && i != ']') ||
-                                   (top == '{' && i != '}'))
-                                        return false;
-                        }
-                }
-                if(s.size())
-                        return false;
-                return true;
+    bool isValid(string s) {
+        if (s.length()==1)
+            return false;
+        stack<char> st;
+        for (auto&i:s) {
+            if (i==')' || i=='}' || i==']') {
+                if (!st.size())
+                    return false;
+                char top = st.top();
+                if ((top == '(' && i != ')') ||
+                    (top == '{' && i != '}') ||
+                    (top == '[' && i != ']') )
+                    return false;
+                st.pop();
+            } else
+                st.push(i);
         }
+        return !st.size() ? true : false;
+        //return true;
+    }
 };
-
-int main(){
-//      string s = "()[]{}";
-//      string s = "())";
-//      string s = "([)]";      
-//      string s = "(((((((()";
-//      string s = "";
-//      string s = "(((((())))))";
-//      string s = "([)]";
-//      string s = "]";
-        string s = "()";
-        Solution a;
-        cout<<a.isValid(s);
-}
 ```
