@@ -1,7 +1,7 @@
 **Min Stack**
 - [Approach-1, O(logn). Using multiset, multimap](#a1)
 
-### 155. Min Stack
+### [155. Min Stack](https://leetcode.com/problems/min-stack/description/)
 - Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 - Implement the MinStack class:
 ```c
