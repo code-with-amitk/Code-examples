@@ -1,5 +1,9 @@
 **Min Stack**
 - [Approach-1, O(logn). Using multiset, multimap](#a1)
+- [Approach-2. O(1). 2 stacks](#a2)
+- [Approach-3. O(1). 1 stack](#a3)
+  - Code
+    - [CPP](#cpp)
 
 ### [155. Min Stack](https://leetcode.com/problems/min-stack/description/)
 - Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
@@ -87,4 +91,83 @@ public:
  * int param_3 = obj->top();
  * int param_4 = obj->getMin();
  */
+```
+
+<a name=a2></a>
+### Approach-2. O(1). 2 Stacks
+#### Logic
+- _1._ Take 2nd stack, in which we insert min values only.
+#### Code
+```cpp
+class MinStack {
+    stack<int> s1, s2;
+public:
+    MinStack() { }
+    
+    void push(int val) {
+        s1.push(val);
+        // Insert on s2 stack only when s2 is empty or
+        // incoming value <= s2.top()
+        if (s2.empty() || val <= s2.top())
+            s2.push(val);
+    }
+    
+    void pop() {
+        // if s1 and s2 have same values remove from both
+        if (s2.top() == s1.top())
+            s2.pop();
+        s1.pop();
+    }
+    
+    int top() {
+        return s1.top();
+    }
+    
+    int getMin() {
+        return s2.top();
+    }
+};
+```
+
+<a name=a3></a>
+### Approach-3. O(1). 1 stack
+#### Logic
+- _1._ Store pair = {value, minimum value} inside the stack.
+- _2._ Whenever getMin() is called return 2nd value from pair.
+#### Code
+<a name=cp></a>
+**CPP**
+```cpp
+class MinStack {
+        //number, minInStack
+    stack<pair<int, int>> st;
+public:
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+        if (st.empty())
+            st.push({val, val});
+        else {
+            auto it = st.top();
+            if (val <= it.second)
+                st.push({val, val});
+            else 
+                st.push({val, it.second});
+        }
+    }
+    
+    void pop() {
+        st.pop();
+    }
+    
+    int top() {
+        return st.top().first;
+    }
+    
+    int getMin() {
+        return st.top().second;
+    }
+};
 ```
