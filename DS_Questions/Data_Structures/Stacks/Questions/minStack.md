@@ -4,6 +4,7 @@
 - [Approach-3. O(1). 1 stack](#a3)
   - Code
     - [CPP](#cpp)
+    - [C](#c)
 
 ### [155. Min Stack](https://leetcode.com/problems/min-stack/description/)
 - Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
@@ -170,4 +171,55 @@ public:
         return st.top().second;
     }
 };
+```
+<a name=c></a>
+**C**
+```c
+typedef struct {
+    int value;
+    int min;
+} MinStack;
+int top = -1;
+
+MinStack* minStackCreate() {
+    MinStack* obj = (MinStack*)malloc(sizeof(MinStack)*30000);
+    memset(obj, 0, sizeof(MinStack)*30000);
+    return obj;
+}
+
+void minStackPush(MinStack* obj, int val) {
+    if (top==-1){
+        ++top;
+        obj[top].value = val;    
+        obj[top].min = val;
+    }
+    else {
+        int minValue = minStackTop(obj);
+        ++top;
+        if (minValue <= val)
+            obj[top].min = minValue;
+        else
+            obj[top].min = val;
+        obj[top].value = val;
+    }
+}
+
+void minStackPop(MinStack* obj) {
+    obj[top].min = 0;
+    obj[top].value = 0;
+    top--;
+}
+
+int minStackTop(MinStack* obj) {
+  return obj[top].value;
+}
+
+int minStackGetMin(MinStack* obj) {
+    return obj[top].min;
+}
+
+void minStackFree(MinStack* obj) {
+    free(obj);
+    obj = NULL;
+}
 ```
