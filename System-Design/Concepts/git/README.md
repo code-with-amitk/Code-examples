@@ -153,8 +153,11 @@ $ git status
 $ git status              //Make sure changed files are there
 $ git add file1 file2
 $ git commit --amend
+  // Check Change-Id should be same. Check on gerrit
+  
 $ gitdir=<>
-$ git push <complete command>
+
+$ git push <complete command> topic=<should-be-same-as-prev>
 ```
 
 <a name=add></a>
