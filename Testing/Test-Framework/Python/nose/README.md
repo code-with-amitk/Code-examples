@@ -56,4 +56,14 @@ def test_is_knight(value):
     assert value.startswith('Mr')
 
 > nose2 -v --pretty-assert
+'Miss New'
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\amitk\source\repos\Python-Based-Test-Scripting\nose2\example1\test.py", line 5, in test_is_knight
+    assert value.startswith('Mr')
+AssertionError
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.091s
+FAILED (failures=1, errors=1)
 ```
