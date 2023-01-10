@@ -1,7 +1,7 @@
 **Max area of island**
 - [Approach-1. DFS](#a1)
-  - [Logic]
-  - [Complexity]
+  - [Logic](#l)
+  - [Complexity](#co)
   - Code
     - [CPP](#cpp)
 
@@ -34,7 +34,7 @@ Ouput: 6
     - if row,col crosses bounds, return 0.
     - else check all directions N,E,W,S and all 1 if element==1
 - *2.* Mark element as visited by making element=0
-<a name=c></a>
+<a name=co></a>
 #### Complexity
 - m rows, n cols
 - **Time:** O(m x n)
