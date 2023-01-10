@@ -4,6 +4,7 @@
   - [Complexity](#co)
   - Code
     - [CPP](#cpp)
+    - [C](#c)
 
 ### [Max Area of Island](https://leetcode.com/problems/max-area-of-island/)
 - Grid of 0,1. Group of 1's (representing land), 0=water.
@@ -91,4 +92,53 @@ public:
         return iMaxArea;
     }
 };
+```
+<a name=c></a>
+**C**
+```c
+int dirR[4] = {-1,0,1,0};
+int dirC[4] = {0,1,0,-1};
+int iRow, iCol;
+
+bool checkNeighbours(int** grid, int row, int col) {
+    if (row < 0 || col < 0 || row >= iRow || col >= iCol)
+        return false;
+    if (grid[row][col] == 1)
+        return true;
+    return false;
+}
+int dfs(int** grid, int row, int col) {
+    grid[row][col] = 0;    //Mark as visited
+
+    // We are here because we have a cell with value 1
+    // Cell with value 1 has area = 1;
+    int presentArea = 1;            
+    // Check all 4 directions
+    for (int i=0;i<4;++i){
+        int r = row + dirR[i];
+        int c = col + dirC[i];
+        if (checkNeighbours(grid, r, c)) {
+            presentArea += dfs (grid, r, c);
+        }
+    }
+    //printf("pa:%d\n", presentArea);
+    return presentArea;
+}
+#define MAX(a,b) a > b ? a : b;
+
+int maxAreaOfIsland(int** grid, int gridSize, int* gridColSize){
+    iRow = gridSize;
+    iCol = gridColSize[0];
+    int iMaxArea = 0;
+    for (int i=0;i<iRow;++i ){
+        for (int j=0;j<iCol;++j ){
+            if (grid[i][j] == 1) {
+                printf("Inside");
+                int ret = dfs (grid, i, j);
+                iMaxArea = MAX (iMaxArea, ret);
+            }
+        }
+    }
+    return iMaxArea;
+}
 ```
