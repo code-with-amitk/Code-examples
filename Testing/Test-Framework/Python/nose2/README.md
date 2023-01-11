@@ -1,12 +1,27 @@
-**nose**
+**nose2**
+- [Features](#f)
 - Comparison
   - [nose vs unittest](#c1)
   - [nose2 vs nose vs unittest2](#c2)
 - Examples
   - [Ex-1. nose2 provides more tools wrt unittest (Eg: startswith())](#e1)
 
-## nose
-- This is extension of pytest (unitest). Hence it provides more tools wrt unittest.
+## nose2
+- nose2 is successor to nose and extension of pytest (unitest). Hence it provides more tools wrt unittest.
+### Advantages
+**Plugins**
+- Nose2 provides a better plugin API and simplifies internal interfaces and processes. 
+- There are many plugins that built-in the Nose2 module, and these plugins are loaded by default.
+
+<a name=f></a>
+### Features
+- **1. Test Discovery:** 
+  - All testcase files must begin with `test_`
+  - The plugin looks for modules (or test files) in packages and directories whose names start with test
+- **2. Parameterized Tests:**
+  - Unlike Nose that required installing a separate package for test parameterization, Nose2 supports inherently.
+- **3. Fixtures in Nose2**
+  - Nose2 has support for fixtures at class, module, and test (or method) levels, similar to pytest.
 
 ### Comparison
 <a name=c1></a>
