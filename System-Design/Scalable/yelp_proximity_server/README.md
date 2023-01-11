@@ -20,8 +20,11 @@
 
 <a name=b></a>
 ### 2. BOE
-  - 500k Places
-  - 10k user/sec
+- **Storage Estimates:** 
+  - 500k Places to be stored
+  - Each place {string name, string address, double lat, double long, `vector<string> reviews`, string photos_url}  = 2000 KB
+  - 500k * 2000k = 1 TB / year
+- **QPS:** 10k user/sec
   
 <a name=sa></a> 
 ### 3. System APIs
