@@ -84,14 +84,14 @@ Quad Tree
                return, redirect to
         <----- approapriate Datacenter
 
-    User
+  1. User
   (lat,lon)     <---------------- Data center ----------------------------------------------------------->
-      ------>    LB     APP-SERVER
+      ------>    LB     2. APP-SERVER
                   -----> lat,lon 
-                        2. Create transaction_id(tid),
+                        Create transaction_id(tid),
                         get token     ---org secret-->  IAM(provides validation tokens)
                                       <---------------
-                        3. Send
+                        Send on kafka
                         (lat,lon,tid,token,topic=xx)
                                 -----------------> Kafka
 
