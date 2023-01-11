@@ -28,19 +28,17 @@
   
 <a name=sa></a> 
 ### 3. System APIs
-1. Get Place/person/thing information
+**search()  //Get Place/person/thing information**
 ```
-<structure> search(dev_key, searchTerm, userLocation, radius, max_results, category, sort, long, lat)
+json search(dev_key, searchTerm, struct userLocation {lat, long}, radius=10km, max_results=20, category(optional), sort(optional))
 Parameters:
   - dev_key: Id of registered user
   - searchTerm: This is the string which is to be searched
-  - userLocation: Location of user performing the search
+  - struct userLocation{lat, long}: Location of user performing the search
   - radius(optional): Radius in meters to be searched
   - maximum_results_to_return (number): Number of strings to be returned as result.
   - category(optional): Type of service resturant, gym, hotel etc.
   - sort (Optional) Best matched (0 - default), Minimum distance (1), Highest rated (2).
-  - longitude
-  - lattitude
 Returns: JSON containing information about 
   - list of businesses matching the search query. 
   - reviews
@@ -48,7 +46,7 @@ Returns: JSON containing information about
   - ratings
   - open/close time  
 ```
-2. Update/Delete
+**2. update() / delete()**
 ```c
 struct old_info {lattitude, longitude, name, desc}
 struct new_info {lattitude, longitude, name, desc}
@@ -59,47 +57,68 @@ HttpCode delete (longitude, lattitude, name)
 
 <a name=h></a>
 ### 4. HLD
-- Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree data structure](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
-- Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids.
-- 1 grid can reside on multiple servers.
+- Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree format](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
+- Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids. 1 grid can reside on multiple servers.
 ```c
 Quad Tree 
-             []
+           [root]
           / | \ \
-```
 
-    
-```
-  struct gridNode{
-    uint32 gridId;        //gridId hash gives the DB where (latt-start,long-start,latt-end,long-end) are stored
+  struct gridNode_or_dbNode {
+    uint32 gridId_or_dbID;            //gridId hash gives the DB where (latt-start,long-start,latt-end,long-end) are stored
     double lattitude-start,lattitude-end;
     double longitude-start,longitude-end;
     struct grid *child[4];
-  }
+  }  
 ```
-  - ***Case-1: User queries `Schools near me`***
-    - User's device provides self lattitude,longitude. appropriate grid which serves enquired lattitude,longitude is searched in tree.
+- ***Case-1: User queries `Hotels near me`***
+  - User's device provides self (lattitude,longitude). Search is started from `[root]` node of quadTree & based on (start,end) lat, long stored, query is passed to appropriate child
 ```c
 (lat, lon) => (lattitude, longitude)
 
     User
   Schools near me
 1. Google-map sends self
-  (lat,lon)     --->      APP-SERVER
-                          lat,lon
-                             -------search (lat,lon)------>  QUADTREE(root) //DBs arranged in quadtree format
-                                                              jump to appropriate child
+  (lat,lon) --->  CDN
+               if info is not stale
+               return, redirect to
+        <----- approapriate Datacenter
+
+    User
+  (lat,lon)     <---------------- Data center ----------------------------------------------------------->
+      ------>    LB     APP-SERVER
+                  -----> lat,lon 
+                        2. Create transaction_id(tid),
+                        get token     ---org secret-->  IAM(provides validation tokens)
+                                      <---------------
+                        3. Send
+                        (lat,lon,tid,token,topic=xx)
+                                -----------------> Kafka
+
+                        4. DB-SEARCHER <---------------
+                        (subscribed to topic=xx)
+                        verifies token ---------------------> IAM
+                                       <------------------------
+                         Creates dbID of quadtree(root)
+                         yy->|Hash|->x
+                          ---- search in db(id=x)(lat,lon) -->  QUADTREE(root) //DBs arranged in quadtree format
+                                                                jump to appropriate child
                                                                    Lat_endchild1 < lat && Lon_endchild1 < lon
-                            <-----gridId of node=60------------    Look at child2
-                        gridId->|Hash|->serverID(n)
-                        //serverID is DB number where info is stored
-                                    |
-                                    |                                        DB-n
-                                    |---get info(lattitude-s,longitude-s)---> |
-                                    |                                  Search DB for all (lattitude,longitude) 
-                                    |                                  pairs within 10km of (lattitude-s,longitude-s)
-                                    | <------create AJAX/REST information-----|  
-     <------information-----------  |                     
+                         DB-SEARCHER <---- gridId of child-2 ----  Look at child-2
+                         gridId-child1->|Hash|->yy
+                                  --- search in db=yy (lat,lon) ->  child-2
+                                  <---- gridId of child-10 ----     Look at child-10
+                         gridId-child10->|Hash|->zz
+                                  --- search in db=zz (lat,lon) ->  child-10
+                               <---- hotels in 10km of (lat,lon) -------
+                          Create json
+                          (json,transaction_id)----------------> Kafka
+                          
+                          5. SENDER uServer <-----------------------
+                          Get user's hostname using tid
+                          Send json(Hotels in 10km) to user
+  6. User
+       <--json(Hotels in 10km)--
 ```
   - ***GRID SIZE***: Dynamically adjust the grid size such that whenever grid gets lot of places(maybe > 500) break it down to create smaller grids.
     - So, whenever a grid reaches 500 things, ***break it down into four grids*** of equal size and distribute places among them.
