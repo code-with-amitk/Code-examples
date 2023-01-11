@@ -8,7 +8,7 @@
 
 ## nose2
 - nose2 is successor to nose and extension of pytest (unitest). Hence it provides more tools wrt unittest.
-### Advantages
+### [Advantages & Disadvatanges](https://blog.testproject.io/2020/10/27/top-python-testing-frameworks)
 **Plugins**
 - Nose2 provides a better plugin API and simplifies internal interfaces and processes. 
 - There are many plugins that built-in the Nose2 module, and these plugins are loaded by default.
