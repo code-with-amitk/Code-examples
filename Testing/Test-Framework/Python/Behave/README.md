@@ -1,5 +1,7 @@
 **Behave**
 - [How Behave works](#h)
+- Examples
+  - [1. Testing product-j](#e1)
 
 ### Behave / BDD(Behaviour-driven Development)
 #### BDD?
@@ -27,6 +29,8 @@ Test
     |- steps
       |- mytest.py
 ```
+
+### Examples
 <a name=e1></a>
 #### Example-1 (Testing Product)
 ```py
