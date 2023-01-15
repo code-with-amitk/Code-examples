@@ -46,7 +46,8 @@ class HashSet1{
 ```
 
 <a name=li></a>
-### `List<>` / ArrayList
+### `List<>`
+#### ArrayList = vector in C++
 - List is interface whose object cannot be created, we need to create for Arraylist.
 ```java
 /// 1-D List
