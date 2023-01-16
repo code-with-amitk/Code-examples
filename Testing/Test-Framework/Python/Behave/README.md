@@ -8,8 +8,8 @@
 - [Agile software development technique](System-Design/Concepts/Scrum/README.md#ag) that encourages collaboration between developers, QA and non-technical or business participants in a software project
 - BDD focuses on obtaining a clear understanding of desired software behavior through discussion with stakeholders.
 - It extends TDD by writing test cases in a natural language that non-programmers can read. 
-- [BDD Practices](https://cucumber.io/docs/gherkin/)
-  - Gherkin is a plain-text language with a simple structure
+- [BDD Practices](https://cucumber.io/docs/bdd/)
+- [Gherkin](https://cucumber.io/docs/gherkin/) is a plain-text language with a simple structure
 
 <a name=h></a>
 ### How Behave works?
