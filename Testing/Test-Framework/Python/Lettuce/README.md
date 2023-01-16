@@ -7,7 +7,7 @@ This is also a BDD framework as [Behave](../Behave)
 
 <a name=vs></a>
 #### Lettuce vs Behave
-|Lettuce | Behave|
+||Lettuce | Behave|
 |---|---|---|
 |Decorators|Single decorator for step definitions||
 |context variable(world)|This is a shared holder of attributes. It never gets cleaned up during the run.||
