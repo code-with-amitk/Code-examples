@@ -16,10 +16,7 @@
 
 <a name=what></a>
 ## [Kafka](https://kafka.apache.org/intro)
-- Kafka(Apache foundation) is open source distributed streaming platform. It has 3 main capabilities:
-  - RW records like a message queue
-  - Store records with fault tolerance
-  - Process streams as they occur
+Kafka(Apache) is distributed,scalable,fault tolerant,open source publish-subscribe messaging system. It can store the messages, replay back(to subscribers)
 ```c
 Producer1   Producer2   Producer3   //microservice
   |           |           |
@@ -28,25 +25,22 @@ Producer1   Producer2   Producer3   //microservice
   |-----------|-----------|
 Consumer1   Consumer2   Consumer3   //microservice
 ```
-- **3 types of message delivery methods:**
-  - _1. At-least-once semantics:_ Producer can keep on sending same message until Broker does not ACK.
-  - _2. At-most-once semantics:_ Producer sends message once only & never retries, Even if ACK comes or not.
-  - _3. Exactly-once semantics(EOS):_ A message is only seen once by the consumer of the message
-
-
-- enterprise class [MOM](/System-Design/Concepts/MOM_ESB) works over TCP Protocol written in java. There are multiple replicas of Kakfa written in other languages.
-- How kafka messaging works?
+**How kafka messaging works?**
 ```c
                           kafka-Broker(192.168.0.1:9092)   //1. broker starts
-consumer(0.2)                                              //2. consumer subscribes to topic
+consumer                                                   //2. consumer subscribes to topic
       --subscribe topic(t1)->
 while(1){
 ..
 }
-                                                        producer(0.3) //3. Producer produces topic
+                                                        Producer //3. Producer produces topic
                            Broker<--|topic=t1,payload="test"|--
   <--|topic=t1,payload="test"|-
 ```
+- **3 types of message delivery methods:**
+  - _1. At-least-once semantics:_ Producer can keep on sending same message until Broker does not ACK.
+  - _2. At-most-once semantics:_ Producer sends message once only & never retries, Even if ACK comes or not.
+  - _3. Exactly-once semantics(EOS):_ A message is only seen once by the consumer of the message
 
 ### kafka Implementations
 <a name=lrdk></a>
@@ -101,11 +95,20 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 ### Topics & Partitions
 **Topics:** Same type of messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
 ```c
+  msg1= {                         msg2= {
+    deviceid=1                      deviceid=2
+    info = {                        info = {
+      create_time,                    create_time,
+      device_config{core,speed}       device_config{core,speed}
+    }                               }
+  }                               }
+---------topic=Device_Ready-------------------------------------
+  
   msg1    msg2    msg3          msg5    msg6    msgk
-  ------topic-1-------           ------topic-n-------
+  ------topic-2-------           ------topic-n-------
 ```
 - **Partition:** //Provide Fault Tolerance
-  - Partition is disk partition for storing a topic. 1 topic is stored on multiple paritions. Each partition can be hosted on a different server.
+  - Partition is disk partition for storing a topic. 1 topic can be stored on multiple paritions. Each partition can be hosted on a different server.
   - Within each partition, the broker assigns a monotonically increasing sequence number, or offset, to every message.
 
 <img src=images/kafka_partition1.JPG width=600/>
