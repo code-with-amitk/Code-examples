@@ -1,18 +1,61 @@
-- [Append](#a)
+- [Create](#c)
 - **[List Comprehension](#lc)**
   - [1. List of Squares](#e1)
   - [2. Combining elements of 2 lists if they are not equal](#e2)
   - [3. List of double value](#e3)
   - [4. Create List containing all combinations of Cubiod sides not equal to n](#e4)
-- **Create list**
-  - [1D,2D,3D,4D list](#c1)
-  - [Nesting](#c2)
 - [Declartion](#d)
 - [insert](#i)
 - [Remove element](#r)
 - [Slice](#s)
 - [List as Stack](#ass)
 - [List as Queue](#asq)
+
+<a name=c></a>
+### Create
+```py
+a = []                           //1D list
+listofzeros = [0] * n            //1D list of zeros of size=n
+
+a = [[1, 2],                            //2-D List.Every row can different no of coloumns. `a[0][2]:Index error`
+     ['test', 4, 50.2],
+     ['play', 1990, 8, 9]
+    ]
+
+a = [                                         //3-D List. Packing 2 or more Matrices.
+        [
+            [1,2,3],
+            [4,5,6],
+        ],
+        [
+            [7,8,9],
+            [10,11,12],
+        ]
+   ]
+
+a  =   [                                  //4-D List. Packing 2 or more 3-D Matrices.
+            [
+                [
+                    [1,2,3],
+                    [4,5,6],
+                ],
+                [
+                    [7,8,9],
+                    [10,11,12],
+                ],
+            ],
+            [
+                [
+                    [13,14,15],
+                    [16,17,18],
+                ],
+                [
+                    [19,20,21],
+                    [22,23,24],
+                ]
+            ]
+       ]
+```
 
 
 <a name=a></a>
@@ -86,60 +129,6 @@ if __name__ == '__main__':
         )
 ```
 
-## Create list
-<a name=c1></a>
-### 1D,2D,3D,4D list
-```py
-//////////////1-D List//////////////
-a = input("Input some comma seprated numbers : ")     #1,2,3,4
-print('List',l)                                       #[1,2,3,4]
-
-///////////////2-D list/////////////////
-a = [[1, 2],                            //Every row can different no of coloumns. `a[0][2]:Index error`
-     ['test', 4, 50.2],
-     ['play', 1990, 8, 9]
-    ]
-print(a[0][1])  #2
-#print(a[0][2])  #list index out of range
-print(a[1][2])  #50.2
-
-
-/////////////////3-D List//////////////
-a = [                                         //Packing 2 or more Matrices.
-        [
-            [1,2,3],
-            [4,5,6],
-        ],
-        [
-            [7,8,9],
-            [10,11,12],
-        ]
-   ]
-
-///////////////4-D list////////////////
-a  =   [                                  //Packing 2 or more 3-D Matrices.
-            [
-                [
-                    [1,2,3],
-                    [4,5,6],
-                ],
-                [
-                    [7,8,9],
-                    [10,11,12],
-                ],
-            ],
-            [
-                [
-                    [13,14,15],
-                    [16,17,18],
-                ],
-                [
-                    [19,20,21],
-                    [22,23,24],
-                ]
-            ]
-       ]
-```
 
 <a name=d></a>
 ### list Declaration
