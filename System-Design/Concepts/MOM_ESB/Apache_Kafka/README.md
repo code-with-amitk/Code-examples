@@ -6,7 +6,7 @@
   - [Consumer, Consumer Group](#con)
   - [Messages](#msg)
   - [Producer](#pr)
-  - [Topic](#tp)
+  - [Topics & Partitions](#tp)
   - [Broker](#br)
   - [Kafka connect](#kc)
   - Offset
@@ -91,7 +91,7 @@ Applications/microservices that publishes/writes messages kakfa [Queue or Topic]
 ### Schemas
 Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understood easily.
 
-<a name=top></a>
+<a name=tp></a>
 ### Topics & Partitions
 **Topics:** Same type of messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
 ```c
