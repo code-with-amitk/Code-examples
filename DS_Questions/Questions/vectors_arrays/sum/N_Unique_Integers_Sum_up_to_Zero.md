@@ -5,6 +5,9 @@
   - Code
     - [CPP](#cpp)
     - [Rust](#r)
+    - [Java](#j)
+    - [Python](#p)
+    - [C](#c)
 
 ### 1304. Find N Unique Integers Sum up to Zero
 - Given an integer n, return any array containing n unique integers such that they add up to 0.
