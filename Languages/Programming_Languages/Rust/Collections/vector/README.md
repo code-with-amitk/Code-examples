@@ -21,27 +21,20 @@
 
 <a name=cin></a>
 ### Create, Initialize
-#### Allocate Empty vector
 ```rs
-//Both are same//
-let mut v:Vec<i32> = Vec::new();
-println!("size={:?}", v.len());     //0
+let mut v:Vec<i32> = Vec::new();    //v.len() = 0
+let mut v:Vec<i32> = vec![];    //v.len() = 0
 
-let mut v:Vec<i32> = vec![];
-println!("size={:?}", v.len());     //0
-```
-#### Declare
-```rs
-  let v : Vec<i32>;              
-```
-#### Initialize
-```rs
-  let v1: Vec<i32> = [1,2,3].to_vec();  //Initialize
-  let v2: Vec<i32> = vec![14,25,35];
-  let v3: Vec<String> = vec!["test".to_string(), "test1".to_string()];
+//Declaration
+let v : Vec<i32>;              
+
+// Initialize
+let v1: Vec<i32> = [1,2,3].to_vec();  //Initialize
+let v2: Vec<i32> = vec![14,25,35];
+let v3: Vec<String> = vec!["test".to_string(), "test1".to_string()];
   
-                  //init_value,size
-  let mut v = vec![0; 5];             //Creating vector of size=5 with init value=0  
+//Create vector of size=5 with init value=0
+let mut v = vec![0; 5];
 ```
 
 <a name=2d></a>
