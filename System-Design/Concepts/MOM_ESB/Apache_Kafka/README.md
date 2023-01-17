@@ -62,10 +62,9 @@ Application provides logs to Kafka topics, which sends them to log management ap
 Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages.
 
 ## Terms
-
 <a name=bro></a>
 ### Broker
-server in kafka which recieves message.
+Server which recieve and store kafka messages.
 
 <a name=con></a>
 ### Consumer
@@ -108,8 +107,9 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
   ------topic-2-------           ------topic-n-------
 ```
 - **Partition:** //Provide Fault Tolerance
-  - Partition is disk partition for storing a topic. 1 topic can be stored on multiple paritions. Each partition can be hosted on a different server.
-  - Within each partition, the broker assigns a monotonically increasing sequence number, or offset, to every message.
+  - Partition is disk partition for storing a topic. 1 topic can be stored on multiple paritions hosted on different [Kafka Brokers](bro).
+  - Each message is assigned a unique ID(sequence number, offset) which monotonically increases on that Partition.
+    - Offset sequences are unique only to each partition. This means, to locate a specific message, we need to know the Topic, Partition, and Offset number.
 
 <img src=images/kafka_partition1.JPG width=600/>
 
