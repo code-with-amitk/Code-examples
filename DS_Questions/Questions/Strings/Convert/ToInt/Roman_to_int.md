@@ -1,10 +1,16 @@
 **Roman to Integer**
-- Approach-1
+- [Approach-1, Left to Right. O(n)](#a1)
   - [Logic](#l)
   - [Complexity](#co)
   - Code
     - [CPP](#cpp)
     - [C](#c)
+- [Approach-2, Right to left. O(n)](#a2)
+  - [Logic](#l2)
+  - [Complexity](#co2)
+  - Code
+    - [CPP](#cpp2)
+    - [Rust](#r)
 
 ### [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/description/)
 - Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
@@ -42,7 +48,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ```
 
 <a name=a1></a>
-### Approach-1
+### Approach-1,Left to Right. O(n)
 <a name=l></a>
 #### Logic
 - Store symbol and its int equivalent in hashmap
@@ -114,4 +120,55 @@ int romanToInt(char * s){
     }
     return iNumber;
 }
+```
+
+<a name=a2></a>
+### Approach-2, Right to Left. O(n)
+<a name=l2></a>
+#### Logic
+- Store char and corresponding value in HashMap.
+- Traverse from right to left.
+- if (presentValue < prevValue)
+  - out -= presentValue  
+- else
+  - out += presentValue
+<a name=co2></a>
+#### Complexity
+- **Time:** O(n)
+- **Space:** O(1). Everytime same hashmap is allocated
+#### Code
+<a name=cpp2></a>
+**CPP**
+```cpp
+class Solution {
+    unordered_map<char, int> umValue;
+public:
+    void storePlaceValue() {
+        umValue['I'] = 1;
+        umValue['V'] = 5;
+        umValue['X'] = 10;
+        umValue['L'] = 50;
+        umValue['C'] = 100;
+        umValue['D'] = 500;
+        umValue['M'] = 1000;
+    }
+    int romanToInt(string s) {
+        storePlaceValue();
+        int iNumber = 0;
+        for (int i=s.size()-1; i>=0; --i) {
+            int myPlaceValue = umValue.find(s[i])->second;
+            int prevPlaceValue = 0;
+            if (i<s.size()-1)
+                prevPlaceValue = umValue.find(s[i+1])->second;
+            myPlaceValue < prevPlaceValue ?
+            iNumber -= myPlaceValue :
+            iNumber += myPlaceValue;
+        }
+        return iNumber;
+    }
+};
+```
+**Rust**
+```rs
+
 ```
