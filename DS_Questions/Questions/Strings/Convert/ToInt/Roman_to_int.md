@@ -154,21 +154,83 @@ public:
     }
     int romanToInt(string s) {
         storePlaceValue();
-        int iNumber = 0;
+        int iSum = 0, iprevValue = 0;
         for (int i=s.size()-1; i>=0; --i) {
-            int myPlaceValue = umValue.find(s[i])->second;
-            int prevPlaceValue = 0;
-            if (i<s.size()-1)
-                prevPlaceValue = umValue.find(s[i+1])->second;
-            myPlaceValue < prevPlaceValue ?
-            iNumber -= myPlaceValue :
-            iNumber += myPlaceValue;
+            int iPresentValue = umValue.find(s[i])->second;
+            iPresentValue < iprevValue ?
+            iSum -= iPresentValue :
+            iSum += iPresentValue;
+            
+            iprevValue = iPresentValue;
         }
-        return iNumber;
+        return iSum;
     }
 };
 ```
 **Rust**
 ```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn roman_to_int(s: String) -> i32 {
+        let mut hm = HashMap::new();
+        hm.insert('I', 1);
+        hm.insert('V', 5);
+        hm.insert('X', 10);
+        hm.insert('L', 50);
+        hm.insert('C', 100);
+        hm.insert('D', 500);
+        hm.insert('M', 1000);
 
+        let mut prev_value = 0;
+        let mut sum = 0;
+
+        /// Traverse from back, reverse iterate
+        for i in s.chars().rev() {
+            /// get() return Option<&value>
+            if let Some(present_value) = hm.get(&i) {
+                if *present_value < prev_value {
+                    sum -= *present_value;
+                } else {
+                    sum += *present_value;
+                }
+                prev_value = *present_value;
+            } else {
+                /// Bad case, Will never happen
+                break;
+            }
+        }
+        sum
+    }
+}
+```
+**Java**
+```java
+class Solution {
+    public int romanToInt(String s) {
+        HashMap<Character, Integer> hash_map = new HashMap<Character, Integer>();
+        hash_map.put('I', 1);
+        hash_map.put('V', 5);
+        hash_map.put('X', 10);
+        hash_map.put('L', 50);
+        hash_map.put('C', 100);
+        hash_map.put('D', 500);
+        hash_map.put('M', 1000);
+
+        int prev_value = 0, sum = 0;
+        // Reverse iterate String
+        for (int i=s.length()-1; i>=0; --i) {
+            int present_value = hash_map.get(s.charAt(i));
+            if (present_value < prev_value)
+                sum -= present_value;
+            else
+                sum += present_value;
+            prev_value = present_value;
+        }
+        return sum;
+    }
+}
+```
+<a name=p></a>
+**Python**
+```py
 ```
