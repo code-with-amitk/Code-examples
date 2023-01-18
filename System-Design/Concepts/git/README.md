@@ -145,9 +145,9 @@ $ git clone https://github.com/amitkumar50/test-repo    //origin=https://github.
 Open git bash
 $ git clone; cd code
 $ git checkout branch; git branch      //Change to existing branch
-$ git pull origin branch               //Get latest code from repo
+$ git pull                  
 $ git pull my-changes                  //Find command on gerrit UI. Open Change Page > Download Patch > git pull. 
-$ git rebase branch
+$ git rebase master                    //Bring changes on top of master
 $ git status
 -> Do code change
 $ git status              //Make sure changed files are there
