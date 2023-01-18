@@ -5,7 +5,7 @@
 - **Operations**
   - [Create](#cre)
   - [Concatenate](#con)
-  - [Print](#print)
+  - [Print](#p)
   - [Convert](#convert)
   - [Reverse](#reverse)
   - [Tokenize](#t)
@@ -88,7 +88,7 @@ Using `+` operator
     let s3 = format!("{} {}",s1,s2);            //Test Foo  
 ```
 
-<a name=print></a>
+<a name=p></a>
 ### Print
 - _chars():_ returns char types
 ```rs
