@@ -64,11 +64,18 @@ Kafka could be used in front of Logstash to receive large data volumes and allow
 ## Terms
 <a name=bro></a>
 ### Broker
-Server which recieve and store kafka messages.
+- Server which recieve and store kafka messages. There is always cluster of Brokers for storing the [topics](#tp)
+#### Replication & Fault Tolerance
+- Every topic can be replicated to multiple Kafka brokers to make the data fault-tolerant and highly available. Each topic partition has one leader broker and multiple replica (follower) brokers
+  - **Leader:**
+    - Node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
+  - **Follower:**
+    - Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down.
 
 <a name=con></a>
 ### Consumer
-Registers/Subscribes to a Topic and reads messages as they become available.
+- Registers/Subscribes to a Topic and reads messages as they become available.
+- Consumers can read messages from any offset they choose.
 
 #### Consumer Group
 - Multiple consumers can listen to same [topic](#topic), kafka creates group of these consumers which are intrested in 1 topic.
@@ -92,7 +99,9 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 
 <a name=tp></a>
 ### Topics & Partitions
-**Topics:** Same type of messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
+**Topics:** 
+- Same type of messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
+- Messages written to partitions are immutable and cannot be updated.
 ```c
   msg1= {                         msg2= {
     deviceid=1                      deviceid=2
