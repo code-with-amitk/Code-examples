@@ -88,3 +88,30 @@ public:
 ```
 <a name=c></a>
 **C**
+```c
+char cArr[7] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+int iArr[7] = {1,5,10,50,100,500,1000};
+int GetValue(char c) {
+    int i=0;
+    while (c != cArr[i]) {
+        ++i;
+    }
+    return iArr[i];
+}
+int romanToInt(char * s){
+    int iNumber = 0, i = 0;
+    while (s[i] != '\0') {
+        int presentIndexValue = GetValue(s[i]);
+        int nextIndexValue = 0;
+        if (s[i+1] != '\0')
+            nextIndexValue = GetValue(s[i+1]);
+        if (presentIndexValue < nextIndexValue) {
+            iNumber += (nextIndexValue-presentIndexValue);
+            ++i;
+        } else
+            iNumber += presentIndexValue;
+        ++i;
+    }
+    return iNumber;
+}
+```
