@@ -1,7 +1,7 @@
 
 - [Built-in: int,float,complex,bool](#b)
 - [Sequence Type: list, tuple, Range, str](#st)
-- [Mapping Type: Dictionary](#mt)
+- [Mapping Type: HashMap(Dictionary)](#mt)
 - [Set Type: Dictionary](#st)
 
 ## Types in Python
@@ -28,18 +28,6 @@ For storage of collection of objects. Can store different data types.
 ```py
 list.sort()     //to sort list
 ```
-
-<a name=mt></a>
-### Mapping Container `<key, value=object>`
-- These are Mutable. Key cannot be mutable. Hence these cannot be used as key(set, list)
-
-|Type|Represented by|
-|---|---|
-|1. Dictionary| {} |
-|2. OrderedDict|  |
-
-- Example: Dictionary
-- Dictionary Comprehension: y
 
 <a name=st></a>
 ### Set Container
