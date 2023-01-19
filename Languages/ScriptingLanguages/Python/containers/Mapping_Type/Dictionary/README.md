@@ -1,8 +1,5 @@
 - [Comprehension](#dc)
-- **Create**
-  - [Homogenoeus keys](#hk)
-  - [Hetrogeneous keys](#hek)
-  - [Using dict() constructor](#d)
+- [Create](#cr)
 - [Enumerate](#e)
 - **Remove**
   - [Remove keys from dict](#r)
@@ -10,37 +7,35 @@
 
 
 
-## Dictionaries / {Key, value} / Hashmap
+### Dictionaries / {Key, value} / Hashmap / Represented by {}
 - Keys are immutable(non changable). If we try entering value of existant key, the old value associated with that key is overwritten.
 - Example of keys: 
   - strings, numbers
   - Tuples if they contain only strings, numbers, or tuple
   - Lists cannot be used as keys as lists can be modified in place using index assignment
 
+<a name=cr></a>
+### Create
+```py
+hm = {'a':1, 'b':2}                           //Homogenoeus keys
+hm['c']=3
+
+hm = {'name': 'John', 1: [2, 4, 3]}            //Hetrogeneous keys
+
+hm = dict([('a', 1), ('b', 2), ('c', 3)])   //Using dict() constructor
+print(hm)      #{'a': 1, 'b': 2, 'c': 3}
+
+hm = {                                        
+        "a" : 1,
+        "b" : 2,
+     }
+```
+
 <a name=dc></a>
 ### Comprehension
 Make new dictionary where each element is the result of some operation in just 1 line or few lines, rather than writing whole function. Example-1: Squaring
 ```py
 print({i: i**2 for i in (2, 3, 4)})     #{2:4, 3:9, 4:16} 
-```
-
-### Create
-<a name=hk></a>
-#### Homogenoeus keys
-```py
-dic = {'a':1, 'b':2}
-dic['c']=3
-```
-<a name=hek></a>
-#### Hetrogeneous keys
-```
-d = {'name': 'John', 1: [2, 4, 3]}
-```
-<a name=d></a>
-#### Using dict() constructor
-```py
-f = dict([('ab', 4), ('cd', 5), ('ef', 6)])
-print(f)                            #{'ab': 4, 'cd': 5, 'ef': 6}
 ```
 
 <a name=e></a>
