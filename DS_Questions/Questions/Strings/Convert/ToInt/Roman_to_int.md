@@ -11,6 +11,8 @@
   - Code
     - [CPP](#cpp2)
     - [Rust](#r)
+    - [Java](#j)
+    - [Python](#p)
 
 ### [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/description/)
 - Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
@@ -233,4 +235,27 @@ class Solution {
 <a name=p></a>
 **Python**
 ```py
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        roman_lib = {
+            'I' : 1,
+            'V' : 5,
+            'X' : 10,
+            'L' : 50,
+            'C' : 100,
+            'D' : 500,
+            'M' : 1000,
+        }
+
+        sum = 0
+        prev_value = 0
+        for i in reversed(s):
+            present_value = roman_lib[i]
+            if present_value < prev_value:
+                sum -= present_value
+            else:
+                sum += present_value
+            prev_value = present_value
+        
+        return sum
 ```
