@@ -17,15 +17,17 @@ else:                           //Optional
 
 <a name=for></a>
 ### for statement
-Iterates over the items of any sequence (a list or a string), in the order that they appear in the sequence
 ```py
-... words = ['cat', 'window', 'defenestrate']               //Iterate over list
->>> for w in words:
-...     print(w, len(w))
+words = ['cat', 'window', 'defenestrate']               //Iterate over list
+for w in words:
+  print(w, len(w))
 
-/////////////Iterting from (0, 3)////////
-for x in range(0, 4):
-  print (x)           #0,1,2,3
+for i in range(0, 4):                       //Iterate over range
+  print (i)           #0,1,2,3
+
+str = "abc"
+for i in reversed(str):                   //Reverse Print
+  print (i)                               //cba
 ```
 
 <a name=m></a>
