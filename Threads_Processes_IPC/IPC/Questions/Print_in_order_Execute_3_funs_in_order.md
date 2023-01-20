@@ -1,5 +1,6 @@
 **Print in Order**
-- [Approach-1. 1 shared variable accessed by all threads](#a1)
+- [Approach-1. 1 Mutex. Not work](#a1)
+- [Approach-2. 1 shared variable accessed by all threads](#a2)
   - **Code**
     - CPP
       - [1. condition_variable](#cv)
@@ -28,7 +29,70 @@ Explanation: The input [1,3,2] means thread A calls first(), thread B calls thir
 ```
 
 <a name=a1></a>
-## Approach-1, 1 shared variable accessed by all threads
+### Approach-1, 1 mutex
+#### Logic
+- _1._ Lock mutex before entering into functions
+- _2._ Take 2 bools to decide on order of function execution
+- **When this approach works?**
+```c
+main () {
+  thread t1 (first);    //t1 reaches first(), lock mutex. a=true. unlock
+  thread t2 (second);   //t2 finds mutex lock, waits.                   . acquires lock. b=true
+  thread t3 (third);
+}
+```
+- **When approach not work?**
+```c
+main () {
+  thread t1 (first);
+  thread t3 (third);
+  thread t2 (second);
+}
+```
+**Code**
+```c
+class Foo {
+    bool a,b;
+    mutex m;
+public:
+    Foo() {
+        a = false;
+        b = false;
+    }
+
+    void first(function<void()> printFirst) {
+        m.lock();
+        printFirst();
+        a = true;
+        m.unlock();
+    }
+
+    void second(function<void()> printSecond) {
+        m.lock();
+        if (a==false) {
+            m.unlock();
+            return;
+        }
+        printSecond();
+        b =true;
+        m.unlock();
+    }
+
+    void third(function<void()> printThird) {
+        m.lock();
+        if (a==false || b==false) {
+            m.unlock();
+            return;        
+        }
+        printThird();
+        m.unlock();
+    }
+};
+```
+
+
+<a name=a2></a>
+## Approach-2, 1 shared variable accessed by all threads
 ### Code
 #### CPP
 <a name=cv></a>
