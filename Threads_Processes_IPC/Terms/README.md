@@ -28,6 +28,7 @@
 - [Promise](#p)
 - [Race Condition](#rc)
 - [Reentrant](#re)
+- [Spurious wakeup](#sw)
 
 <a name=as></a>
 ## Asynchronous
@@ -448,4 +449,39 @@ int main(){
   t1.join();
   t2.join();
 }  
+```
+
+<a name=sw></a>
+### Spurious wakeup. Spurious means Fake/False
+- It means Thread waking up unneccessrily. A spurious wakeup happens when a thread wakes up from waiting on a condition variable that's been signaled, & it discovers that the condition it was waiting for isn't satisfied.
+- It's called spurious because the thread has seemingly been awakened for no reason.
+- **How Spurious Wakup happens?**
+  - Thread waiting on condition, condition met, thread is signalled. Between thread going inside function another thread changes the conditional variable and waken up thread finds condition is not satified. This happens on Race condition.
+- **How to avoid Spurious wakeup?**
+  - One way to avoid this is using busy waiting.
+```c
+bool check = false;
+condition_variable cv;
+mutex m;
+fun1 () {
+  m.lock();  
+  // Execute
+  check = true;
+  m.unlock();
+}
+fun2 () {
+  m.lock();  
+  /*if (check == false)             //This can lead to spurious wakeup
+    return;*/
+    
+  while (check == false);          //Busy wait, avoids spurious wakeup
+  
+  // Execute
+  m.unlock();
+}
+
+int main () {
+  thread t1(fun1);    //OS can schedule any thread 1st
+  thread t2(fun2);
+}
 ```
