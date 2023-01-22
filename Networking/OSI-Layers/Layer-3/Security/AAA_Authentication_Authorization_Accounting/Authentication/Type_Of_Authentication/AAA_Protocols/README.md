@@ -8,3 +8,4 @@
 |Windows NT|y|y|y|
 |Kerberos|y|n|n|
 |LDAP|n|y|n|
+|SASL|
