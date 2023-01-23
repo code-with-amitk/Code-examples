@@ -118,11 +118,11 @@ Applications/microservices that publishes/writes messages kakfa [Queue or Topic]
 ### Replication & Fault Tolerance
 - Every topic can be replicated to multiple Kafka brokers to make the data fault-tolerant and highly available. [Digram](#con). Each topic partition has one leader broker and multiple replica (follower) brokers
 #### Leader
-    - Node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
-    - Partition Leader information is stored on [Zookeeper](System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs).
-    - All Read/Write operation as performed by Partition Leader, hence All producers & consumers talk to zookeeper to address of leader of partition.
+- Node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
+- Partition Leader information is stored on [Zookeeper](System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs).
+- All Read/Write operation as performed by Partition Leader, hence All producers & consumers talk to zookeeper to address of leader of partition.
 #### Follower
-    - Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down
+- Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down
 
 <a name=sch></a>
 ### Schemas
