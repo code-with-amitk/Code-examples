@@ -3,13 +3,14 @@
   - Kafka Implementations
     - [librdkafka](#lrdk)
 - **Terms** 
+  - [Broker](#br)
   - [Consumer, Consumer Group](#con)
   - [Messages](#msg)
+  - [Offset](#off)
   - [Producer](#pr)
   - [Topics & Partitions](#tp)
-  - [Broker](#br)
+  - [Replication & Fault Tolerance](#rf)
   - [Kafka connect](#kc)
-  - Offset
   - [Streams](#st)
 - Configuring kafka to communicate over JSON
   - [1. Install kafka and zookeeper](#install)
@@ -62,24 +63,39 @@ Application provides logs to Kafka topics, which sends them to log management ap
 Kafka could be used in front of Logstash to receive large data volumes and allow Logstash to perform more-expensive operations at its own pace without losing messages.
 
 ## Terms
-<a name=bro></a>
+<a name=br></a>
 ### Broker
-- Server which recieve and store kafka messages. There is always cluster of Brokers for storing the [topics](#tp)
-#### Replication & Fault Tolerance
-- Every topic can be replicated to multiple Kafka brokers to make the data fault-tolerant and highly available. Each topic partition has one leader broker and multiple replica (follower) brokers
-  - **Leader:**
-    - Node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
-  - **Follower:**
-    - Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down.
+- TCP Server(listening on 9092) which recieve Topics(`<key=id,value=payload>`) and store them. There is always cluster of Brokers for storing the [topics](#tp)
+- **Bootstrap Broker:**
+  - On Init, kafka needs(at least one) broker called the bootstrap brokers. The client will connect to the bootstrap brokers specified by the bootstrap.servers configuration property and query cluster Metadata information which contains the full list of brokers, topic, partitions and their leaders in the Kafka cluster.
 
 <a name=con></a>
 ### Consumer
 - Registers/Subscribes to a Topic and reads messages as they become available.
-- Consumers can read messages from any offset they choose.
+- Consumers can read messages from any Partition they choose.
 
 #### Consumer Group
 - Multiple consumers can listen to same [topic](#topic), kafka creates group of these consumers which are intrested in 1 topic.
-- Topic consists of various partitions, Consumer group is assiged partitions. Consumers in consumer group can read messages sequentially in partition.
+- Various partitions can contain One topic. One consumer is assigned 1 partition.
+```c
+                      |----- Kafka Broker-1 ---------|
+                      |                              |
+                      | |(Partition-1) t1, t2, ... | |
+    |---------------> | |(Partition-3) t3, t4, ... | |      |----- Consumer Group 1(Topic-1)----|
+    |                 |------------------------------|      |                                   |
+  Producer                                                  | |consumer1, consumer2, consumer3| |
+    |                 |------ Kafka Broker-2 --------|      |                                   |
+    |---------------> |                              |      |-----------------------------------|
+                      | |(Partition-2) t1, t5, ... | |
+                      | |(Partition-3) t9, t8, ... | |
+                      |------------------------------|
+
+consumer1 will read topic1(t1) from Partition-1(Broker-1)
+consumer2 will read topic1(t1) from Partition-2(Broker-2)
+This ensures consumer group has all data stored on different partitions for Topic-1
+```
+- By using consumer groups, consumers can be parallelized so that multiple consumers can read from multiple partitions on a topic, allowing a very high
+message processing throughput
 
 <a name=msg></a>
 ### Message / Record
@@ -89,9 +105,24 @@ Kafka could be used in front of Logstash to receive large data volumes and allow
 1234567 failed with the message “Alert: Machine Failed” at “2020-10-02T10:34:11.654Z”
 ```
 
+<a name=off></a>
+### Offset
+- Each message is assigned a unique ID(sequence number, offset), which monotonically increases on that [Partition](#tp)
+- Offset sequences are unique only to each partition. This means, to locate a specific message, we need to know the Topic, Partition, and Offset number.
+
 <a name=pr></a>
 ### Producer
 Applications/microservices that publishes/writes messages kakfa [Queue or Topic](#tp)
+
+<a name=rf></a>
+### Replication & Fault Tolerance
+- Every topic can be replicated to multiple Kafka brokers to make the data fault-tolerant and highly available. [Digram](#con). Each topic partition has one leader broker and multiple replica (follower) brokers
+#### Leader
+    - Node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
+    - Partition Leader information is stored on [Zookeeper](System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs).
+    - All Read/Write operation as performed by Partition Leader, hence All producers & consumers talk to zookeeper to address of leader of partition.
+#### Follower
+    - Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down
 
 <a name=sch></a>
 ### Schemas
@@ -99,7 +130,7 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 
 <a name=tp></a>
 ### Topics & Partitions
-**Topics:** 
+#### Topics
 - Same type of messages are grouped into topics. Topic is like DB Table or Folder in Filesystem. Topics are replicated.
 - Messages written to partitions are immutable and cannot be updated.
 ```c
@@ -115,10 +146,9 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
   msg1    msg2    msg3          msg5    msg6    msgk
   ------topic-2-------           ------topic-n-------
 ```
-- **Partition:** //Provide Fault Tolerance
-  - Partition is disk partition for storing a topic. 1 topic can be stored on multiple paritions hosted on different [Kafka Brokers](bro).
-  - Each message is assigned a unique ID(sequence number, offset) which monotonically increases on that Partition.
-    - Offset sequences are unique only to each partition. This means, to locate a specific message, we need to know the Topic, Partition, and Offset number.
+#### Partition (Provide Fault Tolerance)
+- Partition is disk partition for storing a topic. 1 topic can be stored on multiple paritions hosted on different [Brokers](#br).
+- See Diagram on [Consumer Groups](#con);
 
 <img src=images/kafka_partition1.JPG width=600/>
 
@@ -126,17 +156,8 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 #### Kafka connect
 Software/Library/Modules which fetches data from legacy systems(Eg: database, some SaS products) and put that into kafka queue for it to be consumed by other consumers.
 
-<a name=br></a>
-### Broker 
-- A TCP server that listens(default 9092) for Topics(`<key=id,value=payload>`) from producers & provides topics to subscribed consumers.
-- **Bootstrap Broker:**
-  - On Init, kafka needs(at least one) broker called the bootstrap brokers. The client will connect to the bootstrap brokers specified by the bootstrap.servers configuration property and query cluster Metadata information which contains the full list of brokers, topic, partitions and their leaders in the Kafka cluster.
-
-#### Offset 
-A unique ID for a message within a Partition. This is how Kafka maintains the ordering and sequencing of messages.
-
 <a name=st></a>
-### Kafka Streams
+### Streams
 This is not message from 1 application to other, but real-time flow of records. Records are `<key,value>` pairs.
 ```c
   --|key=a,value=x|---|key=c,value=z|---|key=b,value=y|-->
