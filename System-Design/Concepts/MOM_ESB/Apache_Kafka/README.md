@@ -5,6 +5,7 @@
 - **Terms** 
   - [Broker](#br)
   - [Consumer, Consumer Group](#con)
+  - [High-water mark](#hwm)
   - [Messages](#msg)
   - [Offset](#off)
   - [Producer](#pr)
@@ -75,8 +76,11 @@ Kafka could be used in front of Logstash to receive large data volumes and allow
 - Consumers can read messages from any Partition they choose.
 
 #### Consumer Group
-- Multiple consumers can listen to same [topic](#topic), kafka creates group of these consumers which are intrested in 1 topic.
-- Various partitions can contain One topic. One consumer is assigned 1 partition.
+- Its possible that multiple consumers are intrested in listening to one [topic](#topic), kafka creates group of these consumers which are intrested in 1 topic.
+- 1 partition can contain multiple topics. But all consumers in (consumer group 1) are interested in topic=1 only.
+- consumer1 reads topic1 from partition-1, consumer2 reads topic1 from partition2.
+- One consumer is assigned 1 partition. Different consumers can be responsible for different partitions
+- **Advantages of approach?** By using consumer groups, consumers can be parallelized so that multiple consumers can read from multiple partitions on a topic, allowing a very high message processing throughput.
 ```c
                       |----- Kafka Broker-1 ---------|
                       |                              |
@@ -94,8 +98,14 @@ consumer1 will read topic1(t1) from Partition-1(Broker-1)
 consumer2 will read topic1(t1) from Partition-2(Broker-2)
 This ensures consumer group has all data stored on different partitions for Topic-1
 ```
-- By using consumer groups, consumers can be parallelized so that multiple consumers can read from multiple partitions on a topic, allowing a very high
-message processing throughput
+
+<a name=hwm></a>
+### High-water mark
+- When subscriber reads from Leader. [Leader](#rf) never returns messages which have not been replicated to a minimum set of [ISRs](#isr).
+- Leader keeps track of highest water mark. Highest watermark is the [offset](#off) for that partition replication.
+- Example(in figure below): Leader does not return messages greater than offset ‘4’, as it is the highest offset message that has been replicated to all followers.
+
+<img src=images/high-water-mark.JPG width=600/>
 
 <a name=msg></a>
 ### Message / Record
@@ -118,11 +128,14 @@ Applications/microservices that publishes/writes messages kakfa [Queue or Topic]
 ### Replication & Fault Tolerance
 - Every topic can be replicated to multiple Kafka brokers to make the data fault-tolerant and highly available. [Digram](#con). Each topic partition has one leader broker and multiple replica (follower) brokers
 #### Leader
-- Node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
+- Leader is responsible for partitions(not topics).
+- Every partition has one Kafka broker acting as a leader.
 - Partition Leader information is stored on [Zookeeper](System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs).
 - All Read/Write operation as performed by Partition Leader, hence All producers & consumers talk to zookeeper to address of leader of partition.
-#### Follower
-- Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down
+#### Follower/Replica
+Followers replicate the leader’s data to serve as a ‘backup’ partition & can become leader when leader goes down
+##### In sync Replica (ISR)
+An ISR is a broker that has the latest data for a given partition. A leader is always an in-sync replica. Only ISRs are eligible to become partition leaders.
 
 <a name=sch></a>
 ### Schemas
@@ -143,11 +156,11 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
   }                               }
 ---------topic=Device_Ready-------------------------------------
   
-  msg1    msg2    msg3          msg5    msg6    msgk
-  ------topic-2-------           ------topic-n-------
+  msg1    msg2    msg3                       msg5    msg6    msgk
+  ------topic=Device_Ready-------           ------topic-n-------
 ```
 #### Partition (Provide Fault Tolerance)
-- Partition is disk partition for storing a topic. 1 topic can be stored on multiple paritions hosted on different [Brokers](#br).
+- Partition is disk partition for storing topics. 1 topic can be stored on multiple paritions hosted on different [Brokers](#br).
 - See Diagram on [Consumer Groups](#con);
 
 <img src=images/kafka_partition1.JPG width=600/>
