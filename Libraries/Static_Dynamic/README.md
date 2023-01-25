@@ -106,7 +106,7 @@ int MySum(int a, int b){
 Project Properties 
   - Configuration: Active(Debug)    Platform: Win32
   - C/C++ > General > Additional Include Directories                         //Include Header file
-  - Linker > library Dependencies (Provide complete path of StaticLib1.lib)  //Link the Library
+  - Linker > General > Additional library Dependencies (Provide complete path of StaticLib1.lib)  //Link the Library
   - Linker > Input > Additional Dependencies > StaticLib1.lib                //Add Library Name
 ```
 
