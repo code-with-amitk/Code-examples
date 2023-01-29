@@ -10,6 +10,8 @@
       - [1. Joint parametrization of multiple test methods belonging to same class](#adv2)
       - [2. Reuse of test data and test logic via subclass inheritance](#adv2)
 - [Fixtures](#fix)
+  - [Example-1: Fruit Basket](#ex1)
+  - [Example2: Testing HashMap using Fixtures](#ex2)
   - [Advatages/Disadvatanges of Fixtures](#advd)
 - [Using plugins with pytest](#plug)
 
@@ -285,6 +287,7 @@ FAILED Adv2-Reuse of test data and test logic via subclass inheritance.py::TestS
 - **What?**
   - A fixture in Python is a fixed state of data that is used as a baseline for running tests.
   - It provides a known set of inputs and expected outputs, allowing developers to test the behavior of their code under controlled conditions. 
+<a name=ex1></a>
 - **Example-1: Fruit Basket**
 ```py
 # cat fixtures.py
@@ -334,6 +337,7 @@ fixtures.py:24: AssertionError
 ==================================================== short test summary info ==================================================== 
 FAILED fixtures.py::test_guvava_in_basket - assert <fixtures.Fruit object at 0x000002973F21F1F0> in [<fixtures.Fruit object at ...================================================== 1 failed, 1 passed in 0.48s ===============================================
 ```
+<a name=ex2></a>
 - **Example2: Testing HashMap using Fixtures**
 ```py
 import pytest
