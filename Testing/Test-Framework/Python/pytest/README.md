@@ -4,8 +4,9 @@
 - Running tests in pytest
   - [1. Running 1 test in vscode](#otest)
   - [2. Running multiple test in vscode](#mtest)
-  - [3. Group multiple tests in 1 class](#mc)
-- [Catching exception in function](#catch)
+  - [3. Catching exception in function](#catch)
+  - [4. Group multiple tests in 1 class](#mc)
+    - [Advantages of Running testcases in class](#adv)
 - [Fixtures](#fix)
 - [Using plugins with pytest](#plug)
 
@@ -90,15 +91,41 @@ func.py .                                                                       
 PS C:\Users\amitk\source\repos\python>
 ```
 
-<a name=mc></a>
-#### 3. Group multiple tests in 1 class
+<a name=catch></a>
+### [3. Catching exception in function](https://testautomationu.applitools.com/pytest-tutorial/chapter3.html)
 ```py
-//In vscode
-# vim test_class.py
-class TestClass:
-    def test_1(self):
-        x = "this"
-        assert "h" in x     #Pass h is present in x
+# Function raising an exception
+def fun():
+    num = 1/0
+fun()
+$ pytest test.py
+
+# Exception caught
+import pytest
+def fun():
+    with pytest.raises(ZeroDivisionError) as e:
+        num = 1/0
+    assert 'Hit Zero Division Error, Dude' in str(e.value)
+fun()
+$ pytest test.py
+```
+
+<a name=mc></a>
+### 4. Group multiple tests in 1 class
+```py
+"""
+1. Test class is a class which contains multiple test cases
+    which can be executed simultanously
+2. Class name should always begin with Test (not test)
+"""
+class TestClass:       #Class name should begin with Test (not test)
+#class ABC:            #This will not execute
+
+    def test_1(self):   #Testcase names should start with test
+    #def atest(self):   #Will not execute
+    #def Test_1(self):   #Will not execute
+        x = "this"          #create a object
+        assert "h" in x     #Testcase Passed as h is present in x
 
     def test_2(self):
         x = "this"
@@ -114,7 +141,7 @@ class TestClass:
 
 //In vscode terminal
 PS C:\Users\amitk\source\repos\python> pytest -q test_class.py
-.F.                                                                                                                        [100%]
+.F.                                                                  [100%]   << All Test cases executed
 =========================================================== FAILURES ============================================================ 
 _______________________________________________________ TestClass.test_2 ________________________________________________________ 
 
@@ -131,24 +158,84 @@ FAILED test_class.py::TestClass::test_2 - AssertionError: assert 'k' in 'this'
 1 failed, 2 passed in 3.99s
 PS C:\Users\amitk\source\repos\python>
 ```
-
-<a name=catch></a>
-### [Catching exception in function](https://testautomationu.applitools.com/pytest-tutorial/chapter3.html)
+<a name=adv></a>
+#### Advantages of Running testcases in class
+- **1. Joint parametrization of multiple test methods belonging to same class.**
+  - With pytest parametrization decorator, @pytest.mark.parametrize, can be used to make inputs available to multiple methods within a class. 
 ```py
-# Function raising an exception
-def fun():
-    num = 1/0
-fun()
-$ pytest test.py
+"""
+decorator, @pytest.mark.parametrize: 
+    is used to make inputs available to multiple methods within a class
 
-# Exception caught
+inputs parameter1 and parameter1 are available to each of the methods TestClass
+    test_1() and 
+    test_2()
+"""
 import pytest
-def fun():
-    with pytest.raises(ZeroDivisionError) as e:
-        num = 1/0
-    assert 'Hit Zero Division Error, Dude' in str(e.value)
-fun()
-$ pytest test.py
+@pytest.mark.parametrize(
+    ("parameter1", "parameter2"),
+    [
+        ("a", "b"),     #parameter1
+        ("c", "d"),     #parameter2
+    ],
+)
+class TestClass:
+    def test_1(self, parameter1: str, parameter2: str) -> None:     #Parameter names should be same as declared above
+        print("\ntest_1", parameter1, parameter2)
+
+    def test_2(self, parameter1: str, parameter2: str) -> None:
+        print("\ntest_2", parameter1, parameter2)
+        assert "a" in parameter1                        #Check a is present in parameter1
+        assert "h" in parameter2                        #Check h is present in parameter1
+
+
+> pytest.exe .\JointParametrizationOfMultipleTestMethodsOfSameClass.py
+====================================================== test session starts =======================================================
+platform win32 -- Python 3.10.8, pytest-7.1.3, pluggy-1.0.0
+rootdir: C:\Users\amitk\source\repos\Python-Based-Test-Scripting\pytest\Group_Multiple_tests_in_1_class
+plugins: html-3.2.0, metadata-2.0.4
+collected 4 items
+
+JointParametrizationOfMultipleTestMethodsOfSameClass.py ..FF                                                                [100%]
+
+============================================================ FAILURES ============================================================ 
+_____________________________________________________ TestClass.test_2[a-b] ______________________________________________________ 
+
+self = <JointParametrizationOfMultipleTestMethodsOfSameClass.TestClass object at 0x0000020EDB7D27A0>, parameter1 = 'a'
+parameter2 = 'b'
+
+    def test_2(self, parameter1: str, parameter2: str) -> None:
+        print("\ntest_2", parameter1, parameter2)
+        assert "a" in parameter1                        #Check a is present in parameter1
+>       assert "h" in parameter2                        #Check h is present in parameter1
+E       AssertionError: assert 'h' in 'b'
+
+JointParametrizationOfMultipleTestMethodsOfSameClass.py:25: AssertionError
+------------------------------------------------------ Captured stdout call ------------------------------------------------------
+
+test_2 a b
+_____________________________________________________ TestClass.test_2[c-d] ______________________________________________________ 
+
+self = <JointParametrizationOfMultipleTestMethodsOfSameClass.TestClass object at 0x0000020EDB7D2830>, parameter1 = 'c'
+parameter2 = 'd'
+
+    def test_2(self, parameter1: str, parameter2: str) -> None:
+        print("\ntest_2", parameter1, parameter2)
+>       assert "a" in parameter1                        #Check a is present in parameter1
+E       AssertionError: assert 'a' in 'c'
+
+JointParametrizationOfMultipleTestMethodsOfSameClass.py:24: AssertionError
+------------------------------------------------------ Captured stdout call ------------------------------------------------------ 
+
+test_2 c d
+==================================================== short test summary info ===================================================== 
+FAILED JointParametrizationOfMultipleTestMethodsOfSameClass.py::TestClass::test_2[a-b] - AssertionError: assert 'h' in 'b'
+FAILED JointParametrizationOfMultipleTestMethodsOfSameClass.py::TestClass::test_2[c-d] - AssertionError: assert 'a' in 'c'
+================================================== 2 failed, 2 passed in 0.46s =================================================== 
+```
+- **2. Reuse of test data and test logic via subclass inheritance**
+```py
+
 ```
 
 <a name=fix></a>
