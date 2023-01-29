@@ -6,7 +6,9 @@
   - [2. Running multiple test in vscode](#mtest)
   - [3. Catching exception in function](#catch)
   - [4. Group multiple tests in 1 class](#mc)
-    - [Advantages of Running testcases in class](#adv)
+    - Advantages of Running testcases in class
+      - [1. Joint parametrization of multiple test methods belonging to same class](#adv2)
+      - [2. Reuse of test data and test logic via subclass inheritance](#adv2)
 - [Fixtures](#fix)
 - [Using plugins with pytest](#plug)
 
@@ -158,9 +160,10 @@ FAILED test_class.py::TestClass::test_2 - AssertionError: assert 'k' in 'this'
 1 failed, 2 passed in 3.99s
 PS C:\Users\amitk\source\repos\python>
 ```
-<a name=adv></a>
+
 #### Advantages of Running testcases in class
-- **1. Joint parametrization of multiple test methods belonging to same class.**
+<a name=adv1></a>
+##### 1. Joint parametrization of multiple test methods belonging to same class
   - With pytest parametrization decorator, @pytest.mark.parametrize, can be used to make inputs available to multiple methods within a class. 
 ```py
 """
@@ -233,9 +236,47 @@ FAILED JointParametrizationOfMultipleTestMethodsOfSameClass.py::TestClass::test_
 FAILED JointParametrizationOfMultipleTestMethodsOfSameClass.py::TestClass::test_2[c-d] - AssertionError: assert 'a' in 'c'
 ================================================== 2 failed, 2 passed in 0.46s =================================================== 
 ```
-- **2. Reuse of test data and test logic via subclass inheritance**
+<a name=adv2></a>
+##### 2. Reuse of test data and test logic via subclass inheritance
 ```py
+# in file `test_example.py`
+class TestClass:
+    a: int = 3
+    b: int = 4
+    def test_a_positive(self) -> None:
+        assert self.a >= 0
 
+class TestSubclass(TestClass):      #Subclass of TestClass
+    c: int = 8
+
+    def test_a_even(self) -> None:  #Checking Method from base class
+        assert self.a % 2 == 0
+
+    def test_b(self) -> None:       #Checking Method from base class
+        assert self.b == 4
+        
+> pytest.exe '.\Adv2-Reuse of test data and test logic via subclass inheritance.py'
+====================================================== test session starts =======================================================
+platform win32 -- Python 3.10.8, pytest-7.1.3, pluggy-1.0.0
+rootdir: C:\Users\amitk\source\repos\Python-Based-Test-Scripting\pytest\Group_Multiple_tests_in_1_class
+plugins: html-3.2.0, metadata-2.0.4
+collected 4 items
+
+Adv2-Reuse of test data and test logic via subclass inheritance.py ..F.       [100%]  << All test cases executed
+
+============================================================ FAILURES ============================================================ 
+____________________________________________________ TestSubclass.test_a_even ____________________________________________________ 
+
+self = <Adv2-Reuse of test data and test logic via subclass inheritance.TestSubclass object at 0x000001DC2FF53190>
+
+    def test_a_even(self) -> None:  #Checking Method from base class
+>       assert self.a % 2 == 0
+E       assert (3 % 2) == 0
+E        +  where 3 = <Adv2-Reuse of test data and test logic via subclass inheritance.TestSubclass object at 0x000001DC2FF53190>.a
+Adv2-Reuse of test data and test logic via subclass inheritance.py:12: AssertionError
+==================================================== short test summary info ===================================================== 
+FAILED Adv2-Reuse of test data and test logic via subclass inheritance.py::TestSubclass::test_a_even - assert (3 % 2) == 0
+================================================== 1 failed, 3 passed in 4.27s =================================================== 
 ```
 
 <a name=fix></a>
