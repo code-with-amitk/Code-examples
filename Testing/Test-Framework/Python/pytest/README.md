@@ -1,5 +1,6 @@
 **pytest**
 - [Why pytest is better?](#w)
+  - [pytest as Automation testing tool](#at)
 - Running tests in pytest
   - [1. Running 1 test in vscode](#otest)
   - [2. Running multiple test in vscode](#mtest)
@@ -17,7 +18,14 @@
 - _4._ Easier to Manage State and Dependencies
 - _5._ Easy to Filter Tests
 - _6._ Allows Test Parametrization
-- _7._ Has a Plugin-Based Architecture 
+- _7._ Has a Plugin-Based Architecture
+<a name=at></a>
+#### pytest as Automation testing tool
+- **Automation Testing?**
+  - Automation testing requires minimal tester intervention, because Automation testing uses software tools to execute test cases.
+  - It is faster & more accurate than manual testing as human errors are zeroed.
+- **Pytest with Selenium**
+  - open-source tool for automating web browsers
 
 ### Run test with pytest in vscode
 <a name=otest></a>
