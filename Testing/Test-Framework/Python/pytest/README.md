@@ -10,6 +10,7 @@
       - [1. Joint parametrization of multiple test methods belonging to same class](#adv2)
       - [2. Reuse of test data and test logic via subclass inheritance](#adv2)
 - [Fixtures](#fix)
+  - [Advatages/Disadvatanges of Fixtures](#advd)
 - [Using plugins with pytest](#plug)
 
 ## pytest
@@ -281,30 +282,50 @@ FAILED Adv2-Reuse of test data and test logic via subclass inheritance.py::TestS
 
 <a name=fix></a>
 ### Fixtures
-- In testing, a fixture provides a context for the tests. Context may be: environment or content.
-- Any function is a fixture if we decorate it with @pytest.fixture.
+- **What?**
+  - A fixture in Python is a fixed state of data that is used as a baseline for running tests.
+  - It provides a known set of inputs and expected outputs, allowing developers to test the behavior of their code under controlled conditions. 
+- **Example-1: Fruit Basket**
 ```py
 # cat fixtures.py
+
 import pytest
+
+"""
+1. Created 3 fixtures (ie 3 fruit objects)
+  [apple]
+  [guvava]
+  [banana, apple]
+"""
+@pytest.fixture             #Any function decorated with this decorator is fixture. This is fixture
+def apple_fruit():
+    return Fruit("apple")
+    
+@pytest.fixture             #This is fixture
+def guvava_fruit():
+    return Fruit("guvava")
+    
+@pytest.fixture             #This is fixture
+def fruit_basket(apple_fruit):
+    return [Fruit("banana"), apple_fruit]
+    
+#apple_fruit = [apple]  #guvava_fruit = [guvava]    #fruit_basket = [banana, apple]
+
 class Fruit:
     def __init__(self, name):
         self.name = name
     def __eq__(self, other):
         return self.name == other.name
-
-@pytest.fixture
-def apple_fruit():
-    return Fruit("apple")
-@pytest.fixture
-def guvava_fruit():
-    return Fruit("guvava")
-@pytest.fixture
-def fruit_basket(apple_fruit):
-    return [Fruit("banana"), apple_fruit]
     
-#apple_fruit = [apple]  #guvava_fruit = [guvava]    #fruit_basket = [banana, apple]
-def test_apple_in_basket(apple_fruit, fruit_basket):    #Pass
+"""
+2. Function to test [apple] is present in [fruit_basket] or not
+"""
+def test_apple_in_basket(apple_fruit, fruit_basket):      #Pass
     assert apple_fruit in fruit_basket
+
+"""
+3. Function to test [guvava] is present in [fruit_basket] or not
+"""
 def test_guvava_in_basket(guvava_fruit, fruit_basket):    #Fail
     assert guvava_fruit in fruit_basket
 
@@ -313,6 +334,36 @@ fixtures.py:24: AssertionError
 ==================================================== short test summary info ==================================================== 
 FAILED fixtures.py::test_guvava_in_basket - assert <fixtures.Fruit object at 0x000002973F21F1F0> in [<fixtures.Fruit object at ...================================================== 1 failed, 1 passed in 0.48s ===============================================
 ```
+- **Example2: Testing HashMap using Fixtures**
+```py
+import pytest
+
+"""
+1. Create a fixture which declares a HashMap (ie Key,value) pairs
+"""
+@pytest.fixture
+def dict():
+    data = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
+    return data
+
+"""
+2. Function to check if Hashmap has value1 for key1
+"""
+def test_fixture1(dict):
+    assert dict['key1'] == 'value1'
+
+def test_fixture2(dict):
+    assert dict['key2'] == 'value1'
+```
+
+<a name=advf></a>
+#### Advatages/Disadvatanges of Fixtures
+- **Advantages**
+  - _1._  fixture can be reused in multiple tests, hence reduce code duplication and promote consistency.
+- **Disadvantages**
+  - _1._ They require small differences in the data that might litter the test objects. 
+  - _2._ Because of the additional indirection layer, it might even be worse.
+  - _3._ Finding the ideal level of fixture use requires some practise and consideration, as with most abstractions.
 
 <a name=plug></a>
 ### [Using plugins with pytest](https://testautomationu.applitools.com/pytest-tutorial/chapter10.html)
