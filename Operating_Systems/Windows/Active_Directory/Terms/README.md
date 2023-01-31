@@ -43,7 +43,8 @@ user object in ldap
 
 <a name=dc1></a>
 ### DC = Domain Controller
-Domain Controller(DC) serves the directory maintained by [AD](#ad).
+- Domain Controller(DC) serves the directory maintained by [AD](#ad).
+- Events are recieved from DC. Users/Groups from AD
 
 <a name=dc2></a>
 ### dc = domain component
