@@ -1,4 +1,8 @@
-### [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+**Search in Rotated Sorted Array / Search in V Shaped Array**
+- [Approach-1, 2 times Binary Search](#a1)
+- [Approach-2, 1 pass Binary Search](#a2)
+
+### [113. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 - Array is rotated at some point [0,1,2,4,5,6,7] becomes [4,5,6,7,0,1,2]
 - If target is found in the array return its index, otherwise, return -1.
 - Examples
@@ -10,13 +14,15 @@ Input: nums = [4,5,6,7,0,1,2], target = 3
 Output: -1
 ```
 
+<a name=a1></a>
 ### Approach-1 //2 times Binary Search
+#### Logic
 - *1.* Find point of rotation ie `arr[mid+1]<arr[mid]` using Binary Search. This divides the array into 2 halves.
 - *2.* Search target element in two sub-arrays(Again using Binary Search)
-- **Complexity**
+#### Complexity
   - **Time:** 2O(logn)
   - **Space:** O(1)
-### Code-Approach-1
+#### Code
 ```c++
 class Solution {
 public:
@@ -98,28 +104,27 @@ public:
     }
 };
 ```
-  
+
+<a name=a2></a>
 ### Approach-2  //1 pass Binary Search
-- *1.* Left subarray is sorted. `v[mid] >= v[start]`
-  - *1a.* Element lies in left subarray
-```c  
-if (v[mid] >= ele and ele >= v[start])
+#### Logic
+```c
+v[] = [4,5,6,7,0,1,2], target = 2
+       0 1 2 3 4 5 6
+
+if (v[mid] >= target and target >= v[start])
   - Search in left subarray
 else
   - Search in right array
+
+   start   end    mid   v[mid]    
+    0       6      3       7      (7>=1 and 2>=4)   Search in right subarray
+    4       6      5       1      (1>=2 and 2>=2)   Search in right subarray          
 ```  
-  - *1b.* Element lies in right sub array 
-```c  
-if (ele >= v[mid] and ele <= v[end])
-  - Search in right subarray
-else
-  - Search in left array
-```  
-- **Complexity**
+#### Complexity
   - **Time:** O(nlogn)
   - **Space:** O(1)
-
-### Code-2
+#### Code
 ```c++
 #include<iostream>
 #include<vector>
