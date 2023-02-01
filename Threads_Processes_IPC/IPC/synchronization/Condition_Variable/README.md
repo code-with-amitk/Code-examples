@@ -10,7 +10,7 @@
 
 <a name=cv></a>
 ## Conditional Variable / Condition Variable / shared variable
-- This block 1 thread/or multiple threads, until another thread modifies a shared variable (the condition), and notifies the condition_variable.
+- This block 1/multiple thread(s) until another thread modifies a shared variable (the condition), and notifies the condition_variable.
 - **Advantages?**
   - Avoids [busy waiting](/Threads_Processes_IPC/Terms#busyw), which spinlock does. For instance, if you have a thread (or multiple threads) that can't continue onward until a queue is empty, the busy waiting approach would be to just doing something.
 - **Similar to [Semaphores]**
@@ -163,6 +163,7 @@ void pong() {                                                            //2. Co
 		//Wait on condition variable until wait_condition becomes true. 
 		//if wait_condition==false, Donot go in.
 		//Here start is false hence Pong will not be printed
+		
 		cv.wait(ulock, []{ return (start==true;); } );		//if wait condition is true ie start==true, go in
 		
 		if (k++ > 10)
