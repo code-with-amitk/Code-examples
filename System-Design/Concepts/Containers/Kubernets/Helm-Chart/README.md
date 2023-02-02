@@ -5,7 +5,6 @@
   - [2. Download, Install minikube/Cluster](#hc2)
   - [3. Install application on cluster using helm](#hc3)
   - [4. Access the application on cluster](#hc4)
-- [RBAC](#rbac)
 
 ## Helm Chart
 This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) used to install/upgrade service in cluster.
@@ -327,10 +326,3 @@ REVISION        UPDATED                         STATUS          CHART           
 ```c
 Open URL: http://1.2.3.4:8888
 ```
-
-<a name=rbac></a>
-## RBAC (Role-based Access Control)
-RBAC are rules which defines access controls of user. With RBAC we can:
-- Grant privileged operations (creating cluster-wide resources, like new roles) to administrators
-- limit a user's ability to create resources (pods, persistent volumes, deployments) to specific namespaces, or in cluster-wide scopes (resource quotas, roles, custom resource definitions)
-- limit a user's ability to view resources either in specific namespaces or at a cluster-wide scope
