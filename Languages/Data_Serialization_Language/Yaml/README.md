@@ -7,7 +7,7 @@
 - Different yaml files
   - [configmap.yaml]
   - [deployment.yaml]
-- [kind in yaml file](/System-Design/Concepts/Containers/Kubernets/README.md#ko)
+- [objects types](#ot)
 
 ### [YAML](https://yaml.org/spec/)
 - YAML(rhymes with “camel”) is a human-friendly, cross language, Unicode based **data serialization language**.
@@ -120,4 +120,13 @@ kind: service
 config:
   port: {{ .Values.jams.port }}
   ip: {{ .Values.jams.ip }}
+```
+
+<a name=ot></a>
+### [Object types](/System-Design/Concepts/Containers/Kubernets/README.md#ko)
+```
+test.yaml
+  kind: service
+  kind: Role
+  kind: clusterRole
 ```
