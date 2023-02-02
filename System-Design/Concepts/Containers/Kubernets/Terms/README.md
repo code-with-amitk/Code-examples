@@ -45,8 +45,8 @@ data:
 ```
 
 <a name=dep></a>
-#### 2. Deployment. kind: deployment
-Represent an application running on your cluster
+#### [2. Deployment. kind: deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+Provide declrative updates for pods.
 ```yaml
 //test.yaml
 apiVersion: apps/v1       #(Required) Which version of the Kubernetes API you're using to create this object
