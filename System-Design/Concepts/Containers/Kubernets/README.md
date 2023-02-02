@@ -11,6 +11,7 @@
       - Types of k8 objects
         - [1. deployment](#dep)
         - [2. configmap](#cm)
+        - [3. service](#ser)
   - [Configure kubernets Cluster](#cfgk)
   - [Commands](#kcmd)
 
@@ -143,7 +144,27 @@ data:
     worry=None
 ```
 
-
+<a name=ser></a>
+#### 3. Services
+- In Kubernetes, Service/microservice = `logical set of Pods`.
+- Application is not aware to which pod its communicating, even at t=1 and t=n number of pods serving application(s) need maybe different.
+- Service exposes REST endpoints(eg: POST) & application interacts with service by calling these endpoints.
+##### Defining a service object = service-object-amit1
+  - Kubernetes will assign this Service a IP address/"cluster IP", which is used by the Service proxies
+  - The controller will scans all Pods, those matching selector POST/REST Requests are sent to them.
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-object-amit1
+spec:
+  selector:
+    app.kubernetes.io/name: MyApp   //Every pod has this label
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376        //Every pod listens on this TCP port
+```
 
 <a name=cfgk></a>
 ## Configure kubernets Cluster(1 master, n workers)
