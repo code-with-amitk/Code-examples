@@ -1,28 +1,32 @@
 **YAML (YAML Ain't Markup Language)**
-- [yaml vs xml vs json](#vs)
-- [design Goals](#d)
-- [Data types](#dt)
-- Data Structures 
-  - [Key, Value pairs](#kv)
-  - [Objects](#o)
-  - [List or Arrays](#l)
-  - [Multiline string](#ml)
-  - [Place holders {{ }}](#ph)
+- About
+  - [yaml vs xml vs json](#vs)
+- **Data Types, Data Structures**
+  - [Data types](#dt)
+  - [Data Structures: (Key, Value pairs), Objects, (List or Arrays), Multiline string, Place holders {{ }}](#ds)
 - Different yaml files
   - [configmap.yaml]
   - [deployment.yaml]
+- [kind in yaml file](/System-Design/Concepts/Containers/Kubernets/README.md#ko)
 
-## [YAML](https://yaml.org/spec/)
+### [YAML](https://yaml.org/spec/)
 - YAML(rhymes with “camel”) is a human-friendly, cross language, Unicode based **data serialization language**.
   - Serialization language means Applications written in Different languages(Rust,c++,python) can send data to each other using SL. Other SA are XML, json.
 - **YAML is designed for these use cases**
   - configuration files, log files, interprocess messaging, cross-language data sharing, object persistence and debugging of complex data structures.
-- **Features**
+#### Features
   - YAML is case sensitive
   - tabs not allowed. spaces are allowed instead.
+#### Design Goals
+- Easily readable by humans.
+- Portable between programming languages.
+- Match the native data structures of dynamic languages.
+- One-pass processing.
+- Easy to implement and use.
+
 
 <a name=vs></a>
-### yaml vs xml vs json
+#### yaml vs xml vs json
 xml,json are defined using special characters. 
   - xml has `<>`
   - json has `{} []`
@@ -52,14 +56,6 @@ microservices:
 }
 ```
 
-<a name=d></a>
-### Design Goals
-- Easily readable by humans.
-- Portable between programming languages.
-- Match the native data structures of dynamic languages.
-- One-pass processing.
-- Easy to implement and use.
-
 <a name=dt></a>
 ### Data Types
 #### 1. Scalars (numbers, strings)
@@ -70,14 +66,14 @@ All others are complex types
 <a name=ds></a>
 ### Data Structures
 [Online yaml validator](http://www.yamllint.com/)
-<a name=kv></a>
+
 #### Key, Value pairs
 ```yml
 name: Amit
 age: 35
 version: 2.0
 ```
-<a name=o></a>
+
 #### Objects
 Just indent kv pairs inside a object. name,age,version are its attributes
 ```yml
@@ -89,7 +85,7 @@ person1:
   
 person1.age     #Accessing the value
 ```
-<a name=l></a>
+
 #### List or Arrays
 ```yml
 # Format1
@@ -103,7 +99,7 @@ test:
 # Format2
 test: [a,1]
 ```
-<a name=ml></a>
+
 #### Multiline string, Block Pipe |
 - All lines are interpreted as seperate lines.
 - The pipe is used when you want newlines to be kept as newlines.
@@ -114,7 +110,7 @@ multiline: |
     this is 2nd line
     this is 3rd line
 ```
-<a name=ph></a>
+
 #### Place holders {{ }}
 Instead of providing the values directly, we can provide {{ .Values.service.port }}, which will be replaced parameters in values.yaml.j2.
 ```yml
