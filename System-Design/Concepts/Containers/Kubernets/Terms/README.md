@@ -90,10 +90,10 @@ $ kube-apiserver --authorization-mode=Example,RBAC --other-options --more-option
 - The RBAC API declares 4 kinds of Kubernetes object:
   - _1. Role:_ define a role within a namespace
   - _2. ClusterRole:_ define a role clusterwise
-  - _3. RoleBinding:_
+  - _3. RoleBinding:_ grants the permissions defined in a role to a user or set of users
   - _4. ClusterRoleBinding:_
 
-##### Role
+##### 1. Role
 - Example: Role granting Read access to pods
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -107,3 +107,23 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
+##### 3. RoleBinding
+- Grants the permissions defined in a role to Subjects. Subjects can be user or set of users.
+- Example
+  - user:jane can read pods in default namespace
+```yml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+- kind: User
+  name: jane            #can read pods in default namespace
+  apiGroup: rbac.authorization.k8s.io
+roleRef:                                  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: Role                              # this must be Role or ClusterRole
+  name: pod-reader                        # You need to already have a Role named "pod-reader" in that namespace.
+  apiGroup: rbac.authorization.k8s.io
+
+```
