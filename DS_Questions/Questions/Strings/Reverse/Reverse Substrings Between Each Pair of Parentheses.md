@@ -1,7 +1,8 @@
 **Reverse Substrings Between Each Pair of Parentheses**
-- [Approach-1, Naive. O(n<sup>2</sup>)](#a1)
+- [Approach-1, Using `vector<int>` O(n<sup>2</sup>)](#a1)
+- [Approach-2, stack O(n<sup>2</sup>)](#a2)
 
-### [Reverse Substrings Between Each Pair of Parentheses](https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/description/)
+### [1190. Reverse Substrings Between Each Pair of Parentheses](https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/description/)
 - You are given a string s that consists of lower case English letters and brackets.
 - Reverse the strings in each pair of matching parentheses, starting from the innermost one.
 - Your result should not contain any brackets.
@@ -71,6 +72,61 @@ public:
         return out;
     }
 };
+```
 
-#
+<a name=a2></a>
+### Approach-2. Stack. O(n<sup>2</sup>)
+#### Logic
+- _1._ Take a stack of string. `stack<string>`
+- _2._ Keep building string until we find `(`. On finding `(` push string to stack
+```c
+a(u(love)i)b
+
+stack |  u   |
+      |  a   |
+       ------
+out = love
+```
+- _3._ On finding ')'
+  - pop last element from stack
+  - reverse present out
+  - Add both above, store in out
+```c
+  pop last = u
+  reverse out = evol
+  Add = uevol
+
+stack | a |
+       ---
+```
+#### Complexity
+- **Time:** O(n<sup>2</sup>). Traverse and build string. Reverse string on finding `)`
+- **Space:** O(n)
+#### Code
+**CPP**
+```cpp
+class Solution {
+public:
+    string reverseParentheses(string s) {
+        // out to store output string
+        string out;
+        stack<string> st;
+        for (int i=0; i<s.length(); ++i){
+            if (s[i] == '(') {    //Finding `(` push string to stack
+                st.push(out);
+                out.clear();
+            } else if (s[i] == ')'){
+                // Finding ')'
+                // pop last element from stack
+                // reverse present out
+                // Add both above, store in out
+                reverse(out.begin(), out.end());
+                out = st.top() + out;
+                st.pop();
+            } else            // Keep building string until we find `(`. 
+                out += s[i];
+        }
+        return out;
+    }
+};
 ```
