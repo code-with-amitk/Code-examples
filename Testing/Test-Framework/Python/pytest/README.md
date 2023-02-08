@@ -285,7 +285,7 @@ FAILED Adv2-Reuse of test data and test logic via subclass inheritance.py::TestS
 <a name=fix></a>
 ### Fixtures
 - **What?**
-  - A fixture in Python is a fixed state of data that is used as a baseline for running tests.
+  - Fixture can be thought of a function which always returns fixed state of data that is used as a baseline for running tests.
   - It provides a known set of inputs and expected outputs, allowing developers to test the behavior of their code under controlled conditions. 
 <a name=ex1></a>
 - **Example-1: Fruit Basket**
