@@ -1,7 +1,7 @@
 **Java**
 - [About](#a)
 - [Classes: Calendar, Integer, NumberFormat, Object, java.lang.Math, Scanner](Classes)
-- [Collections: HashMap, Hashset, List(ArrayList)](Collections)
+- [Collections: HashMap, Hashset, List(ArrayList= vector(C++))](Collections)
 - [Data types](Data_Types)
 - [Exception Handling, finally](Exception_Handling)
 - [Features](#f)
