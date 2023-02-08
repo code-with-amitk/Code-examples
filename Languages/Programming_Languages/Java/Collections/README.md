@@ -54,6 +54,7 @@ class HashSet1{
 List<Integer> temp = new ArrayList<>();
 temp.add(1);
 temp.add(2);
+temp.get(1);      //Access element at index 0
 
 /// 2-D Arraylist
 List<List<Integer>> list = new ArrayList<List<Integer>>();
