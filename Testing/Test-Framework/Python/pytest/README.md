@@ -372,6 +372,7 @@ def test_fixture2(dict):
 <a name=plug></a>
 ### [Using plugins with pytest](https://testautomationu.applitools.com/pytest-tutorial/chapter10.html)
 - [What is Python Plugin?](/Languages/ScriptingLanguages/Python/Plugins/)
+- Plugin can be thought as a shared library, which when added provides some functions to be used by application
 #### pytest-html plugin
 - This plugin will generate html reports from pytest.
 - **Install plugin**
@@ -379,7 +380,6 @@ def test_fixture2(dict):
 In vscode
 > pip install pytest-html
 ```
-
 - **Use Plugin**
 ```py
 $ test.py
