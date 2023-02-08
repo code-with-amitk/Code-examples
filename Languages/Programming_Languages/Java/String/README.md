@@ -3,6 +3,7 @@
 - [Convert](#con)
   - String to int
   - int to string
+- [Reverse](#r)
 
 ## String
 - java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
@@ -43,3 +44,6 @@ public class StringToIntExample1{
 int i=10;  
 String s=Integer.toString(i);//Now it will return "10"  
 ```
+
+<a name=r></a>
+### Reverse
