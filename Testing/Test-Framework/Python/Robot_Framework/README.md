@@ -1,7 +1,8 @@
 **Robot Framework**
 - [RF vs Pytest](#vs)
 - [Architecture](#arc)
-- Test Cases
+- [Test Cases](Test_Cases)
+- [Terms: Test Libraries, Resource files, Variable Files](#t)
 
 ### Robot Framework
 - RF is an open source framework which is mostly used for automation. This framework can also be used for robotic process Automation(RPA).
@@ -20,13 +21,11 @@
 <a name=arc></a>
 ### [Architecture](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#high-level-architecture)
 
-### Test Cases
-- Test cases are created in test case files.
-- **Test Suite:** Group of test cases in a file are test suites.
-<a name=t1></a>
-#### 1. Indivisual test cases
-Test case file
 
-<a name=t2></a>
-#### 2. Test Suite Directory
-Directory contaning test case files. This will also have a initialization file.
+
+<a name=t></a>
+### Terms
+In addition to test cases(test case file, test suite directory) there can be:
+- **Test libraries:** containing the lowest-level keywords.
+- **Resource files:** with variables and higher-level user keywords.
+- **Variable files:** to provide more flexible ways to create variables than resource files.
