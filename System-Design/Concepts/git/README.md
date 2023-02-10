@@ -23,8 +23,8 @@
   - [merge](#mr)
   - [push](#push)
   - [pull](#pull)
+  - [rebase](#rebase)
   - [status](#st)
-  - [rebase](#re)
   - [Split pull request](#spl)
   - [sync with upstream](#sync)
 - **Issues**
@@ -247,6 +247,31 @@ Shows commit logs.
   # git log --since='<date>' --until='<date>' --pretty=oneline --grep openldap     //Look for commits between dates
   # git log commit-id-1 commit-id-2  --pretty=oneline                              //Look for commits between commit-ids
 ```
+<a name=mr></a>
+#### merge
+Merge 2 or more development histories together.
+
+<a name=push></a>
+#### push
+- [origin](#o), [master](#mas)
+```c
+$ git add test.c
+$ git commit -m 'msg'
+$ git push origin branch1         //Push changes on branch1
+$ git push origin master         //Push changes on master
+```
+
+<a name=pull></a>
+#### pull
+Synching with latest branch code
+
+<a name=rebase></a>
+#### rebase
+Reapply commits on top of another base tip. When we have merge conflicts we do
+```c
+# git rebase master
+```
+
 <a name=sh></a>
 #### show
 To see code changes that particular commit did
@@ -284,34 +309,9 @@ $ git commit -m 'test'
 $ git push origin master
 ```
 
-<a name=mr></a>
-#### merge
-Merge 2 or more development histories together.
-
-<a name=push></a>
-#### push
-- [origin](#o), [master](#mas)
-```c
-$ git add test.c
-$ git commit -m 'msg'
-$ git push origin branch1         //Push changes on branch1
-$ git push origin master         //Push changes on master
-```
-
-<a name=pull></a>
-#### pull
-Synching with latest branch code
-
 <a name=st></a>
 #### status
 tells what's modified by you, what's not modified on local repo
-
-<a name=re></a>
-#### rebase
-Reapply commits on top of another base tip. When we have merge conflicts we do
-```c
-# git rebase master
-```
 
 <a name=spl></a>
 #### [Split pull request]https://www.youtube.com/watch?v=e26Zx9K3cdQ)
