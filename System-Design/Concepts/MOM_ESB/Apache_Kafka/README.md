@@ -105,7 +105,7 @@ This ensures consumer group has all data stored on different partitions for Topi
 - Leader keeps track of highest water mark. Highest watermark is the [offset](#off) for that partition replication.
 - Example(in figure below): Leader does not return messages greater than offset ‘4’, as it is the highest offset message that has been replicated to all followers.
 
-<img src=images/high-water-mark.JPG width=600/>
+<img src=./images/high-water-mark.JPG width=600/>
 
 <a name=msg></a>
 ### Message / Record
@@ -163,7 +163,7 @@ Schemas are imposed on messages (Eg: XML, JSON) so that messages can be understo
 - Partition is disk partition for storing topics. 1 topic can be stored on multiple paritions hosted on different [Brokers](#br).
 - See Diagram on [Consumer Groups](#con);
 
-<img src=images/kafka_partition1.JPG width=600/>
+<img src=./images/kafka_partition1.JPG width=600/>
 
 <a name=kc></a>
 #### Kafka connect
