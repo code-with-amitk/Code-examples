@@ -25,7 +25,7 @@ Directory contaning test case files. This will also have a initialization file.
 #### 1. Space Seperated Format
 - **Seperator** is Space. keywords and their arguments, are separated from each others with two or more spaces.
 ```robot
-$ vim test_1.robot
+$ vim space_sepearted_format.robot
 *** Settings ***
 Documentation     Example using the space separated format.
 Library           OperatingSystem
