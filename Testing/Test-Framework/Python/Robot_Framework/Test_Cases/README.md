@@ -102,7 +102,7 @@ Pipe separated format :: Example using the pipe separated format.     | PASS |
 ==============================================================================
 ```
 
-<a name=ref></a>
+<a name=ret></a>
 #### 3. reStructuredText format
 - Stored in `rst` or `rest` extension
 ```robot
