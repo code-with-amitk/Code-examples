@@ -5,6 +5,7 @@
   - [1. Space Seperated Format](#ssf)
   - [2. Pipe Seperated Format](#psf)
   - [3. reStructuredText format](#ret)
+- [Dividing data into multiple rows](#dd)
 
 
 <a name=tc></a>
@@ -104,6 +105,8 @@ Pipe separated format :: Example using the pipe separated format.     | PASS |
 
 <a name=ret></a>
 #### 3. reStructuredText format
+- This is  is a lightweight markup language designed to be both (a) processable by documentation-processing software such as Docutils, and (b) easily readable by human programmers who are reading and writing Python source code
+-  File format for textual data used primarily in the Python
 - Stored in `rst` or `rest` extension
 ```robot
 reStructuredText example
@@ -159,3 +162,6 @@ restructuredFormat :: Example using the reStructuredText format.      | PASS |
 ==============================================================================
 ```
 
+<a name=dd></a>
+### Dividing data into multiple rows
+- if data does not fit in 1 row, it can be placed into multiple lines using ellipsis (`...`).
