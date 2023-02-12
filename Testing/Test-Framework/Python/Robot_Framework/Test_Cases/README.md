@@ -6,6 +6,7 @@
   - [2. Pipe Seperated Format](#psf)
   - [3. reStructuredText format](#ret)
 - [Dividing data into multiple rows](#dd)
+- [Arguments to functions](#varg)
 
 
 <a name=tc></a>
@@ -165,3 +166,14 @@ restructuredFormat :: Example using the reStructuredText format.      | PASS |
 <a name=dd></a>
 ### Dividing data into multiple rows
 - if data does not fit in 1 row, it can be placed into multiple lines using ellipsis (`...`).
+
+<a name=varg></a>
+### Variable number of arguments
+- **Remove files:** This keyword takes variable number of arguments
+- **Join:** keyword takes atleast 1 argument.
+```robot
+*** Test Cases ***
+Example
+    Remove Files    ${TEMPDIR}/f1.txt    ${TEMPDIR}/f2.txt    ${TEMPDIR}/f3.txt
+    @{paths} =    Join Paths    ${TEMPDIR}    f1.txt    f2.txt    f3.txt    f4.txt
+```
