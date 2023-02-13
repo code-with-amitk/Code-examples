@@ -14,23 +14,6 @@
     - [3. Repetable Reads](#rr)
     - [4. Serializable](#ser)
 
-# Isolation
-- Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
-
-<a name=isol></a>
-## Isolation levels in Databases
-- _a._ Serializable.
-- _b._ Repeatable reads.
-- _c._ Read committed.
-- _d._ Read uncommitted.
-
-| Isolation Level |Dirty read| Non-repeatable read| Phantom read|
-|---|---|---|---|
-|1. Read Uncommitted |Yes |Yes |Yes|
-|2. Read Committed| No| Yes| Yes|
-|3. Repeatable Read| No| No| Yes|
-|4. Serializable| No| No| No|
-
 # Terms
 <a name=p></a>
 ## Phenomena
@@ -102,4 +85,20 @@ balance      400                            500
 - This happens when a transaction reads a Table row while another transaction, modifies it prior to the first transaction to finish.
 <img src=images/lost_update.JPG width=500/>
 
+# Isolation
+- Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
+
+<a name=isol></a>
+## Isolation levels in Databases
+- _a._ Serializable.
+- _b._ Repeatable reads.
+- _c._ Read committed.
+- _d._ Read uncommitted.
+
+| Isolation Level |Dirty read| Non-repeatable read| Phantom read|
+|---|---|---|---|
+|1. Read Uncommitted |Yes |Yes |Yes|
+|2. Read Committed| No| Yes| Yes|
+|3. Repeatable Read| No| No| Yes|
+|4. Serializable| No| No| No|
 
