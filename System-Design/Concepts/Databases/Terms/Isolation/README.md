@@ -39,6 +39,7 @@ Example: post is a table
 ### Dirty Read
 - A dirty read occurs, a transaction reads uncommitted changes of some other ongoing transaction.
 <img src=images/dirty_read1.JPG width=500/>
+
 #### How to avoid Dirty Read?
 - _1._ Reading to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
 - **2. Snapshot Isolation/Keeping old value until new is committed:** For every object that is written:
