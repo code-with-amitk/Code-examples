@@ -96,7 +96,7 @@ balance      400                            500
 <a name=isol></a>
 ## 4 Isolation levels in Databases
 
-| Isolation Level |Dirty read| Non-repeatable read| Phantom read|
+| Isolation Level |[Dirty read](#dr)| [Non-repeatable read](#nrr)| [Phantom read](#pr)|
 |---|---|---|---|
 |1. Read Uncommitted |Yes |Yes |Yes|
 |2. Read Committed| No| Yes| Yes|
