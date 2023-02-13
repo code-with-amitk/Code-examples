@@ -43,7 +43,7 @@ Example: post is a table
   - Writer takes a write lock.
   - DB remembers both(old committed value and new ongoing transaction value)
   - While transaction is ongoing, any other transactions that tries to read the object are given the old value.
-  - Only when new value is committed, all new transactions switch over to reading the new value.
+  - Only when new value is committed, a:ll new transactions switch over to reading the new value.
 - **3. MVCC(Multiversion Concurrency Control)**
   - Instead of keeping 2 copies(as in [Snapshot isolation](#si), MVCC keeps multiple copies(seperate for each query)
 <img src=images/dirty_read.JPG width=500/>
@@ -87,13 +87,13 @@ balance      400                            500
 
 # Isolation
 - Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
+- Complete Isolation/correctness of data commited by transaction can only be achieved using Locking, ie 1 transaction locks the db row, commits and then another transaction is allowed to do the change.
+  - **Disadvantage of locking:** 0 Concurrency, less Scalability.
+  - **Solution:** SQL-92 introduced 4 Isolation levels(ie isolation is provided at multiple levels in transaction). 
+    - DB Client can choose the Isolation level based on desired concurrency and data correctness.
 
 <a name=isol></a>
-## Isolation levels in Databases
-- _a._ Serializable.
-- _b._ Repeatable reads.
-- _c._ Read committed.
-- _d._ Read uncommitted.
+## 4 Isolation levels in Databases
 
 | Isolation Level |Dirty read| Non-repeatable read| Phantom read|
 |---|---|---|---|
@@ -102,3 +102,8 @@ balance      400                            500
 |3. Repeatable Read| No| No| Yes|
 |4. Serializable| No| No| No|
 
+- Isolation levels provided by vendors:
+```c
+ Read Committed (Oracle, SQL Server, PostgreSQL)
+ Repeatable Read (MySQL)
+```
