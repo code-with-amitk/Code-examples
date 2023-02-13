@@ -29,14 +29,16 @@
 ### Dirty Write
 - **Means** after [1 transaction](/System-Design/Concepts/Terms/Transaction) into DB, data is not consistent.
 - **When happens?** When 2 concurrent transactions are allowed to modify the same row at the same time, ie 2nd transaction can overwrite 1st transaction's pending change.
-- **How to avoid Dirty Write?** Writing to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
-
 Example: post is a table
 <img src=images/dirty_write.JPG width=500/>
+- **How to avoid Dirty Write?** Writing to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
+
+
 
 <a name=dr></a>
 ### Dirty Read
 - A dirty read occurs, a transaction reads uncommitted changes of some other ongoing transaction.
+<img src=images/dirty_read1.JPG width=500/>
 #### How to avoid Dirty Read?
 - _1._ Reading to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
 - **2. Snapshot Isolation/Keeping old value until new is committed:** For every object that is written:
@@ -46,7 +48,6 @@ Example: post is a table
   - Only when new value is committed, a:ll new transactions switch over to reading the new value.
 - **3. MVCC(Multiversion Concurrency Control)**
   - Instead of keeping 2 copies(as in [Snapshot isolation](#si), MVCC keeps multiple copies(seperate for each query)
-<img src=images/dirty_read.JPG width=500/>
 
 <a name=nrr></a>
 ### Non repeatable read
