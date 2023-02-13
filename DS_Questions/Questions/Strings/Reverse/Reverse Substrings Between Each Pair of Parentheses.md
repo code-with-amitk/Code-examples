@@ -82,8 +82,8 @@ public:
 ```c
 a(u(love)i)b
 
-stack |  u   |
-      |  a   |
+stack |  u   |  //Found (, push u
+      |  a   |  //Found (, push a
        ------
 out = love
 ```
@@ -95,6 +95,7 @@ out = love
   pop last = u
   reverse out = evol
   Add = uevol
+  out = uevol
 
 stack | a |
        ---
