@@ -1,19 +1,38 @@
 **Isolation**
-- **Achieving Isolation**
-  - [1. Read Committed](#rc)
-    - **Methods to Achieve Read Committed**
-      - [a. No Dirty Reads](#dr)
-        - **Method to achieve No dirty Read**
-          - [Snapshot Isolation](#si)
-      - [b. No Dirty Writes](#dw)
 - **Terms**
+  - [Dirty Reads](#dr)
+  - [Dirty Writes](#dw)
   - [Read Skew](#rs)
+- [Isolation Levels](#isol)
+  - [1. Read Committed](#rc)
+  - [2. Read uncommitted](#ruc)
+  - [3. Repetable Reads](#rr)
+  - [4. Serializable](#ser)
+
+  - **Methods to Achieve Read Committed**
+    - [a. No Dirty Reads](#dr)
+      - **Method to achieve No dirty Read**
+        - [Snapshot Isolation](#si)
+    - [b. No Dirty Writes](#dw)
 
 
 # Isolation
-Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
+- Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
 
-# Achieving Isolation
+<a name=isol></a>
+## Isolation levels in Databases
+- _a._ Serializable.
+- _b._ Repeatable reads.
+- _c._ Read committed.
+- _d._ Read uncommitted.
+
+| Isolation Level |Dirty read| Non-repeatable read| Phantom read|
+|---|---|---|---|
+|1. Read Uncommitted |Yes |Yes |Yes|
+|2. Read Committed| No| Yes| Yes|
+|3. Repeatable Read| No| No| Yes|
+|4. Serializable| No| No| No|
+
 <a name=rc></a>
 ## 1. Read Committed
 It ensures No Dirty Reads, No Dirty writes
