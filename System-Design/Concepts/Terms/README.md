@@ -18,7 +18,6 @@
 - [Flash Crowd](Flash_Crowd)
 - [Gossip Protocol](#gos)
 - [Hot keys / Linchpin objects](#hk)
-- [Isolation](Isolation)
 - [Latency](#la)
 - [Linearizability](#lin)
 - [Orchestration](#orc)
