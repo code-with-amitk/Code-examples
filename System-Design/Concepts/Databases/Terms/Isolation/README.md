@@ -87,7 +87,8 @@ balance      400                            500
 
 # Isolation
 - Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
-- Complete Isolation/correctness of data commited by transaction can only be achieved using Locking, ie 1 transaction locks the db row, commits and then another transaction is allowed to do the change.
+- **How to achieve Complete Isolation:**
+  - Complete isolation(Correctness of data) commited by transaction can only be achieved using Locking, ie 1 transaction locks the db row, commits and then another transaction is allowed to do the change.
   - **Disadvantage of locking:** 0 Concurrency, less Scalability.
   - **Solution:** SQL-92 introduced 4 Isolation levels(ie isolation is provided at multiple levels in transaction). 
     - DB Client can choose the Isolation level based on desired concurrency and data correctness.
