@@ -97,7 +97,7 @@ balance      400                            500
 
 <a name=lu></a>
 ### Lost update
-This happens when a transaction reads a Table row while another transaction, modifies it prior to the first transaction to finish.
+- This happens when a transaction reads a Table row while another transaction, modifies it prior to the first transaction to finish.
 <img src=images/lost_update.JPG width=500/>
 
 
