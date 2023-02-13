@@ -47,6 +47,8 @@
 - **Means** after [1 transaction](/System-Design/Concepts/Terms/Transaction) into DB, data is not consistent.
 - **When happens?** When 2 concurrent transactions are allowed to modify the same row at the same time, ie 2nd transaction can overwrite 1st transaction's pending change.
 - **How to avoid Dirty Write?** Writing to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
+
+Example: post is a table
 <img src=images/dirty_write.JPG width=500/>
 
 <a name=dr></a>
