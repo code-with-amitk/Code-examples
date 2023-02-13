@@ -13,11 +13,6 @@
     - [2. Read uncommitted](#ruc)
     - [3. Repetable Reads](#rr)
     - [4. Serializable](#ser)
-- **Methods to Achieve Read Committed**
-  - [a. No Dirty Reads](#dr)
-    - **Method to achieve No dirty Read**
-      - [Snapshot Isolation](#si)
-  - [b. No Dirty Writes](#dw)
 
 # Isolation
 - Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
@@ -104,8 +99,5 @@ balance      400                            500
 ### Lost update
 This happens when a transaction reads a Table row while another transaction, modifies it prior to the first transaction to finish.
 <img src=images/lost_update.JPG width=500/>
-
-#### Method to achieve No Dirty Read
-<a name=si></a>
 
 
