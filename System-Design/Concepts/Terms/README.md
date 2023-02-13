@@ -40,7 +40,7 @@ System is doing what's it's supposed to do.
 
 <a name=acid></a>
 ### ACID
-[Atomicity](#at), [Consistency](#con), [Isolation](Isolation), [Durability](#dur)
+[Atomicity](#at), [Consistency](#con), [Isolation](/System-Design/Concepts/Databases/Terms/Isolation), [Durability](#dur)
 
 <a name=ans></a>
 ### Antisnubbing 
