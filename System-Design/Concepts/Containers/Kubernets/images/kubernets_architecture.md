@@ -1,3 +1,4 @@
+<!--
 @startuml
 
 package "Master Node" {
@@ -29,3 +30,4 @@ package "WORKER_NODE-2" {
 [API_service] --> [Kubelet Kubectl_Proxy]
 
 @enduml
+-->
