@@ -1,31 +1,27 @@
-**Container Orchestration**
-- [Kubernets](#Kub)
-  - [Kubernets Architecture](#ka) 
-    - [Master Node](#mn)
-    - [Worker Node](#wn)
-      - [Pod](#pod)
-      - [Namespaces](#ns)
-  - [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap](Terms)
-  - [Configure kubernets Cluster](#cfgk)
-  - [Commands](#kcmd)
+**Kubernets: Container Orchestrator**
+- [Docker vs Kubernets](/System-Design/Concepts/Containers/Docker#vs)
+- [Kubernets Architecture](#ka) 
+  - [Master Node](#mn)
+  - [Worker Node](#wn)
+    - [Pod](#pod)
+    - [Namespaces](#ns)
+- [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap](Terms)
+- [Configure kubernets Cluster](#cfgk)
+- [Commands](#kcmd)
 
 
-## Container Orchestration
+## Kubernets: Container Orchestrator
 **Orhestration?** Managing the lifecycles of containers. These are GUI/tools to automate following tasks: Deployment, Scaling up/down, Movement of containers from one host to another, Load balancing, Health monitoring.
-  - *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
-
-<a name=kub></a>
-# Kubernets
-Cluster having different microservices inside it.
+- *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
+- Kubernets Cluster has different microservices inside it.
 ```c
   |--------------k8s cluster------------|
   | micro_service1      micro_service4  |
   |                                     |
-  |   micro_service2                    |
-  |                                     |
-  |           micro_servicen            |
+  |   micro_service2    micro_servicen  |
   |-------------------------------------|
 ```
+
 <a name=ka></a>
 ## Kubernets Architecture
 ```c
