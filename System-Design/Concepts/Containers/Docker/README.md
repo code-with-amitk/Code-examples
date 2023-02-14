@@ -1,10 +1,6 @@
 **Docker**
-- Docker Terms
-  - [Docker Host](#t1)
-  - [Docker Image](#t2)
-  - [Docker File](#t3)
-  - [Docker Registry](#t4)
-  - [Docker Compose](#t5)
+- [Docker vs Kubernets](#vs)
+- [Docker Terms: Docker Host, Image, File, Registry, Compose](#terms)
 - [Storing Data in Docker](#sd)
 - [Docker Commands](#dcm)
 - **Docker Networking**
@@ -15,7 +11,7 @@
     - [Example: Nginx container binds directly to port 80 on the Docker host](#egn)
     
     
-# Docker
+## Docker
 - Docker is one of [container](../) implementation. Others are Rocket, Drawbridge, LXC.
 - *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
