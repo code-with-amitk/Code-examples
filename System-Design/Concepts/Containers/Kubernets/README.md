@@ -1,5 +1,5 @@
 **Kubernets: Container Orchestrator**
-- [Docker vs Kubernets](/System-Design/Concepts/Containers/Docker#vs)
+- [Docker vs Kubernets](/System-Design/Concepts/Containers/Docker/README.md#vs)
 - [Kubernets Architecture](#ka) 
   - [Master Node](#mn)
   - [Worker Node](#wn)
@@ -15,16 +15,16 @@
 - *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
 - Kubernets Cluster has different microservices inside it.
 ```c
-  |--------------k8s cluster------------|
-  | micro_service1      micro_service4  |
-  |                                     |
-  |   micro_service2    micro_servicen  |
-  |-------------------------------------|
+  <--------------------k8s cluster----------------------------------->
+    |----control-plane,master-------|   |---------Worker node-----|
+    | micro_service1                |   |micro_service2           |
+    |               micro_service4  |   |       micro_servicen    |
+    |-------------------------------|   |-------------------------|
 ```
 
 <a name=ka></a>
 ## Kubernets Architecture
-<img src=images/kubernets_architecture.JPG width=500/>
+<img src=images/kubernets_architecture.JPG width=800/>
 
 <a name=mn></a>
 ### A. Master Node
