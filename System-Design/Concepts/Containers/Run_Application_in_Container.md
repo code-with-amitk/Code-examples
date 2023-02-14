@@ -38,7 +38,7 @@ amit_image   latest    4d70121b42fc   2 minutes ago   77.8MB
 
 <a name=e2></a>
 ### Ex2: Complex Application, HTTP Server
-- _1._ Get [dockerfile](#dterms) and Application to run
+- _1._ Get [dockerfile](../Docker) and Application to run
 ```c
 # tar tvf application.tgz
 application.Dockerfile      //See how file looks like below
@@ -48,7 +48,7 @@ application.out
 ```c
 # docker build . -f Application.Dockerfile --tag tag1   //--tag=<tag-name-of-image> <directory-name-where-docker-file-is-present>
 ````
-- _3._ Store docker image created in step-2 to [Docker repository](#dterms)
+- _3._ Store docker image created in step-2 to [Docker repository](../Docker)
 ```c
 # docker tag tag1 artifactory/application/tag1
 # docker push artifactory/application/tag1
@@ -60,7 +60,7 @@ application1 initializing...
 listening on port 453
 application1 started
 ```
-- _5._ To run container inside [kubernets](#Kub) cluster.
-  - we need (Docker image(build in steps1-4) + [helm chart](#Kubernets/README.md#hc)) to run this container in kubernets.
+- _5._ To run container inside [kubernets](../Kub) cluster.
+  - we need (Docker image(build in steps1-4) + [helm chart](../Kubernets/README.md#hc)) to run this container in kubernets.
   
 <img src=docker_image_to_container.PNG width=600/>
