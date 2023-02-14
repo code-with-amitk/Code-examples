@@ -7,7 +7,7 @@
   - [4. Access the application on cluster](#hc4)
 
 ## Helm Chart
-This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) used to install/upgrade service in cluster.
+This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) used to install/upgrade service in [kubernets cluster](..).
 
 <a name=hc1></a>
 ### [1. Create Helm Chart](https://opensource.com/article/20/5/helm-charts)
