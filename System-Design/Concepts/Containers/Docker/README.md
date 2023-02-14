@@ -1,4 +1,4 @@
-- **Docker**
+**Docker**
 - Docker Terms
   - [Docker Host](#t1)
   - [Docker Image](#t2)
