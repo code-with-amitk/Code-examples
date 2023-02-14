@@ -140,16 +140,18 @@ balance      400                            500
 |Lost Update Yes| Yes| Yes| Yes| Yes|
 
 <a name=rr></a>
-#### 3. Read Read
+#### 3. Reapetable Read
+- Not supported by
+  - Oracle, 
 
 |Phenomena| SQL Server| PostgreSQL| MySQL|
 |---|---|---|---|
 |Dirty Write| No| No| No|
 |Dirty Read| No| No| No|
-|Non-Repeatable| Read No| No| No|
+|Non-Repeatable Read| No| No| No|
 |Phantom Read| Yes| No| No|
 |Read Skew| No| No| No|
-|Write Skew| No| Yes Yes
+|Write Skew| No| Yes| Yes|
 |Lost Update| No| No| Yes
 
 <a name=dil></a>
