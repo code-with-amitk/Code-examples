@@ -133,7 +133,7 @@ balance      400                            500
 |---|---|---|---|---|---|
 |Dirty Write| No| No| No| No| No|
 |Dirty Read No| No| No| No| No|
-|Non-Repeatable Read Yes| Yes| Yes| Yes| Yes|
+|Non-Repeatable Read| Yes| Yes| Yes| Yes| Yes|
 |Phantom Read Yes| Yes| Yes| Yes| Yes|
 |Read Skew Yes| Yes| Yes| Yes| Yes|
 |Write Skew Yes| Yes| Yes| Yes| Yes|
