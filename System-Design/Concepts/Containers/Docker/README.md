@@ -25,6 +25,13 @@
 $ docker run -----> [Docker Client]
                              --------------> [Docker Daemon/dockerd]
 ```
+<a name=vs></a>
+### Docker vs Kubernets
+||Docker|Kubernets|
+|---|---|---|
+|What|Platform for developers|Container Orchestration system|
+|Used for|To build,distribute applications in containers|Managing cluster of containers|
+|Use case|Run containers on 1 host|Run containers on cluster of machines, providing scaling, self-healing, and rollback|
 
 <a name=dterms></a>
 ### Docker Terms
