@@ -116,7 +116,7 @@ balance      400                            500
 #### 1. Read Uncommitted
 
 |Phenomena | SQL Server| PostgreSQL| MySQL|
-|---|---|---|---|---|
+|---|---|---|---|
 |Dirty Write| No| No| No|
 |Dirty Read| Yes| No| Yes|
 |Non-Repeatable Read| Yes| Yes| Yes|
@@ -129,8 +129,8 @@ balance      400                            500
 #### 2. Read Committed
 - Dirty writes and dirty reads not allowed
 
-|Phenomena| Oracle| SQL Server| SQL Server| MVCC| PostgreSQL| MySQL|
-|---|---|---|---|---|---|---|
+|Phenomena| Oracle| SQL Server| SQL Server MVCC| PostgreSQL| MySQL|
+|---|---|---|---|---|---|
 |Dirty Write| No| No| No| No| No|
 |Dirty Read No| No| No| No| No|
 |Non-Repeatable Read Yes| Yes| Yes| Yes| Yes|
