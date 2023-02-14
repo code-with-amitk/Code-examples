@@ -28,6 +28,7 @@ $ docker run -----> [Docker Client]
 |What|Platform for developers|Container Orchestration system|
 |Used for|To build,distribute applications in containers|Managing cluster of containers|
 |Use case|Run containers on 1 host|Run containers on cluster of machines, providing scaling, self-healing, and rollback|
+|To install App in container|docker run|helm install|
 
 <a name=dterms></a>
 ### Docker Terms
