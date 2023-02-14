@@ -16,7 +16,7 @@
     
     
 # Docker
-- Docker is one of [container](#con) implementation. Others are Rocket, Drawbridge, LXC.
+- Docker is one of [container](../) implementation. Others are Rocket, Drawbridge, LXC.
 - *Docker Inc.* is the company that sells the commercial version of Docker. Docker is also available as open source.
 - **Docker Daemon / dockerd?** Manages Docker objects(Eg: Images, containers, networks, and volumes). dockerd also communicate with other daemons to manage Docker services.
 - **Docker client / docker?** Users interact with docker client.
