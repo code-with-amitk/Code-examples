@@ -22,10 +22,11 @@ package "WORKER_NODE-1" {
 package "WORKER_NODE-2" {
   [Kubelet Kubectl_Proxy]
     package "POD" { 
-        
+
     }
 }
-
+[user] --> "Master Node" : *.yaml
 [API_service] --> [Kubelet Kubectl_Proxy]
+
 
 @enduml
