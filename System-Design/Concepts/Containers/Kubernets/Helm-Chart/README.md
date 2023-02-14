@@ -9,6 +9,7 @@
 <a name=what></a>
 ## Helm Chart
 - This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) used to install/upgrade service in [kubernets cluster](..).
+- When a chart is installed, Helm generates Kubernetes objects based on the templates and deploys them to the cluster
 - Format of helm chart
 ```c
 mychart
@@ -54,39 +55,36 @@ drwxr-xr-x. 2 root root    6 Feb 13 23:58 charts
 - **3. Run kubernets Cluster or [run minikube](../)**
 ```c
 $ kubectl get nodes
-NAME                                             STATUS   ROLES                  AGE   VERSION
-nylab-vlan118-dhcp-set3-653.englab.juniper.net   Ready    control-plane,master   53d   v1.21.1
+NAME                    STATUS   ROLES                  AGE   VERSION
+linux-server-hostname   Ready    control-plane,master   53d   v1.21.1
 ```
 
 - **4. Install/Upgrade/Rollback application on kubernets cluster using helm**
 ```c
-# helm install --dry-run --debug ./mychart --generate-name
-
-$ helm install --dry-run --debug ./mychart --set service.internalPort=8080
+# helm install --dry-run --debug ./mychart --generate-name  --set service.internalPort=8089
 
 $ helm upgrade app1{chartname}      //Upgrade the microservice instead of install
 $ helm rollback app1{chartname}     //rollback to older version
 $ helm delete --purge {chartname}   //Delete chart
 
-$ helm install my-cherry-chart buildachart/ --values buildachart/values.yaml
-NAME: my-cherry-chart
-LAST DEPLOYED: Mon Mar  7 03:09:47 2022
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-NOTES:
+
 1. Get the application URL by running these commands:
   export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services cherry-chart)
   export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
   echo http://$NODE_IP:$NODE_PORT
 http://1.2.3.4:8888
+```
 
-//Check installation status
-# helm history my-cherry-chart
+- **5. Check installation status**
+a. helm list
+```c
+# helm list --all
+```
+b. helm history
+```c
+# helm history mychart
 REVISION        UPDATED                         STATUS          CHART                   APP VERSION     DESCRIPTION
 1               Mon Mar  7 03:09:47 2022        deployed        buildachart-0.1.0       1.16.0          Install complete
-
-# helm list --all
 ```
 
 ### 4. Access the application on cluster
