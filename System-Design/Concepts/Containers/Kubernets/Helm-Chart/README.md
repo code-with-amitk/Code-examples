@@ -36,10 +36,12 @@ mychart
 # which helm
 /usr/local/bin/helm
 ```
+
 - **2. Create helm chart**
 ```c
-# helm create mychart
+# helm create mychart     //This is helm chart for ngnix
 Creating mychart
+
 # cd mychart/
 # ls -ltr
 total 8
@@ -48,7 +50,14 @@ drwxr-xr-x. 3 root root  162 Feb 13 23:58 templates
 -rw-r--r--. 1 root root 1143 Feb 13 23:58 Chart.yaml
 drwxr-xr-x. 2 root root    6 Feb 13 23:58 charts
 ```
-- **3. Run a Cluster or [run minikube](../)**
+
+- **3. Run kubernets Cluster or [run minikube](../)**
+```c
+$ kubectl get nodes
+NAME                                             STATUS   ROLES                  AGE   VERSION
+nylab-vlan118-dhcp-set3-653.englab.juniper.net   Ready    control-plane,master   53d   v1.21.1
+```
+
 - **4. Install/Upgrade/Rollback application on kubernets cluster using helm**
 ```c
 # helm install --dry-run --debug ./mychart --generate-name
@@ -76,7 +85,6 @@ http://1.2.3.4:8888
 # helm history my-cherry-chart
 REVISION        UPDATED                         STATUS          CHART                   APP VERSION     DESCRIPTION
 1               Mon Mar  7 03:09:47 2022        deployed        buildachart-0.1.0       1.16.0          Install complete
-
 
 # helm list --all
 ```
