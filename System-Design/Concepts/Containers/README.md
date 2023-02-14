@@ -1,6 +1,7 @@
 - **Containers**
   - [What](#wc)
-  - [Steps of Building a Container Image(also called docker image) & running application in container](#bc)
+  - [Container vs VM](#vs)
+  - [Run Application in Container](Run_Application_in_Container)
 - **Docker**
   - Docker Terms
     - [Docker Host](#t1)
@@ -19,10 +20,9 @@
 - [Container Orchestration/Kubernets](Kubernets)
 
 
-
 # Container
 <a name=wc></a>
-### What is container?
+#### What is container?
 This is a self contained package that contains everything that your binary/application need to run.
 ```c
     |-------------------------------------------------------------------------|
@@ -36,33 +36,15 @@ This is a self contained package that contains everything that your binary/appli
 
 <img src=TraditionalOS_vs_Containers.jpg width=400/>
 
-<a name=bc></a>
-### Steps of Building a [Container Image(also called docker image)](#dterms) & running application in container
-- _1._ Get [dockerfile](#dterms) and Application to run
+<a name=vs></a>
+#### Container vs VM
 ```c
-# tar tvf application1.tgz
-application1.Dockerfile      //See how file looks like below
-application1.out
+                 Container   |     VM
+-----------|-----------------|--------------------  
+size       |    smaller      | Bigger wrt container
+capability |    smaller      | big
+What       | Pacakaged s/w   | Copy of OS 
 ```
-- _2._ Create a docker image
-```c
-# docker build . -f Application.Dockerfile --tag tag1   //--tag=<tag-name-of-image> <directory-name-where-docker-file-is-present>
-````
-- _3._ Store docker image created in step-2 to [Docker repository](#dterms)
-```c
-# docker tag tag1 artifactory/application-1/tag1
-# docker push artifactory/application-1/tag1
-```
-- _4._ Deploy docker image into container. Now Application1.out will start running. 
-```c
-# docker container run artifactory/application-1/tag1
-application1 initializing...
-listening on port 453
-application1 started
-```
-- _5._ To run container inside [kubernets](#Kub) cluster.
-  - we need (Docker image(build in steps1-4) + [helm chart](#Kubernets/README.md#hc)) to run this container in kubernets.
-<img src=docker_image_to_container.PNG width=600/>
 
 <a name=add></a>
 **Advantages**
@@ -72,15 +54,7 @@ application1 started
 
 **Disadvantages:** Some application may not be suited for a containerized environment. Ex: applications accessing low-level hardware information.
 
-<a name=vs></a>
-### Container vs VM
-```c
-                 Container   |     VM
------------|-----------------|--------------------  
-size       |    smaller      | Bigger wrt container
-capability |    smaller      | big
-What       | Pacakaged s/w   | Copy of OS 
-```
+
 
 <a name=doc></a>
 # Docker
