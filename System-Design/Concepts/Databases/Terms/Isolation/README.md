@@ -58,6 +58,7 @@ Example: post is a table
 
 <a name=pr></a>
 ### Phantom read
+- Associated with multiple Table(s) or rows from table.
 - When 1st transaction is updating n DB rows(Still not committed whole transaction) and 2nd transaction comes in (reads some of DB rows) and makes business decision.
 - **How to avoid?** Using range lock
 <img src=images/phantom_read.JPG width=500/>
