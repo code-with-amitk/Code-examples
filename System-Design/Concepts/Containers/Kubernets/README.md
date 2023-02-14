@@ -24,24 +24,8 @@
 
 <a name=ka></a>
 ## Kubernets Architecture
-```c
+<img src=images/kubernets_architecture.JPG width=500/>
 
-User               |------MASTER_NODE--------|      |--------WORKER_NODE-1 -------|
-   --*.yaml-->     |Controller  API_service <--------> Kubelet Kubectl_Proxy--------> Worker_Node-2
-                   |                         |      |                  |------------> Worker_Node-3
-                   |Scheduler     etcd       |      |                             |
-                   |-------------------------|      |  |------POD---------------| |
-                                                    |  | |-container1(docker)-| | |
-                                                    |  | | Application-1,libs | | |
-                                                    |  | |--------------------| | |
-                                                    |  |                        | |
-                                                    |  | |-container2(docker)-| | |
-                                                    |  | | Application-1,libs | | |
-                                                    |  | |--------------------| | |
-                                                    |  |                        | |
-                                                    |  |------------------------| |
-                                                    |-----------------------------|
-```
 <a name=mn></a>
 ### A. Master Node
 - User Intercts with Master node(using yaml file). Master node create/destroy worker nodes.
