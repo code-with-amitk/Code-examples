@@ -9,10 +9,11 @@
     - [Lost Update](#lu)
 - **Isolation**
   - [Isolation Levels](#isol)
-    - [1. Read Committed](#rc)
-    - [2. Read uncommitted](#ruc)
+    - [1. Read uncommitted](#ruc)
+    - [2. Read Committed](#rc)
     - [3. Repetable Reads](#rr)
     - [4. Serializable](#ser)
+    - [Default Isolation Levels in Postgres, Oracle,](#dil)
 
 # Terms
 <a name=p></a>
@@ -111,3 +112,35 @@ balance      400                            500
  Read Committed (Oracle, SQL Server, PostgreSQL)
  Repeatable Read (MySQL)
 ```
+<a name=ruc></a>
+#### 1. Read Uncommitted
+
+|Phenomena | SQL Server| PostgreSQL| MySQL|
+|---|---|---|---|---|
+|Dirty Write| No| No| No|
+|Dirty Read| Yes| No| Yes|
+|Non-Repeatable Read| Yes| Yes| Yes|
+|Phantom Read| Yes| Yes| Yes|
+|Read Skew| Yes| Yes| Yes|
+|Write Skew| Yes| Yes| Yes|
+|Lost Update| Yes| Yes| Yes|
+
+<a name=rc></a>
+#### 2. Read Committed
+- Dirty writes and dirty reads not allowed
+
+|Phenomena| Oracle| SQL Server| SQL Server| MVCC| PostgreSQL| MySQL|
+|---|---|---|---|---|---|---|
+|Dirty Write| No| No| No| No| No|
+|Dirty Read No| No| No| No| No|
+|Non-Repeatable Read Yes| Yes| Yes| Yes| Yes|
+|Phantom Read Yes| Yes| Yes| Yes| Yes|
+|Read Skew Yes| Yes| Yes| Yes| Yes|
+|Write Skew Yes| Yes| Yes| Yes| Yes|
+|Lost Update Yes| Yes| Yes| Yes| Yes|
+
+<a name=dil></a>
+### Default Isolation Levels in Postgres, Oracle
+|DB|Default Isolation Level|
+|---|---|
+|Postgres, Oracle, | Read Committed(no dirty reads allowed) |
