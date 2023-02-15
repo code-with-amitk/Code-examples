@@ -1,4 +1,5 @@
 - [Different Options to Install kubernets](#opt)
+  - [1. minikube](#mk)
 
 
 <a name=opt></a>
@@ -10,6 +11,11 @@ There are several ways of Installing kubernets cluster.
 |2. Managed Kubernetes services|Provided by AWS, Axure, GCP|
 |3. Kubernetes distributions|Eg: Red Hat OpenShift, Rancher, and VMware Tanzu|
 
+<a name=mk></a>
+### 1. minikube
+**Ubuntu 20.04**
+```c
+```
 
 <a name=cfgk></a>
 ## Configure kubernets Cluster(1 master, n workers)
