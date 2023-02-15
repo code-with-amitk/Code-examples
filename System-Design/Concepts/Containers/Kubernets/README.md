@@ -1,11 +1,9 @@
-**Kubernets: Container Orchestrator**
 - [Docker vs Kubernets](/System-Design/Concepts/Containers/Docker/README.md#vs)
 - [Kubernets Architecture](#ka) 
   - [Master Node](#mn)
   - [Worker Node](#wn)
     - [Pod](#pod)
-    - [Namespaces](#ns)
-- [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap](Terms)
+- [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace](Terms)
 - [Configure kubernets Cluster](#cfgk)
 - [Commands](#kcmd)
 
@@ -51,17 +49,6 @@
 
 <img src=kubernets_pod_worker_node.png width=600>
 
-<a name=ns></a>
-#### Namespaces
-- Collection of pods ie Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
-- 3 predefined namespaces:
-  - _a. Default_ 
-  - _b. Kube-system:_ resources created by kubernets
-  - _c. Kube-public:_ reserved for future
-```c
-$ kubectl create namespace test                       //Creating new namespace
-$ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
-```
 
 <a name=cfgk></a>
 ## Configure kubernets Cluster(1 master, n workers)
