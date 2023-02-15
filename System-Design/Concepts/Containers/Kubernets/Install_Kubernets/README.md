@@ -37,6 +37,42 @@ VERSION="20.04.2 LTS (Focal Fossa)"
 NAME       STATUS   ROLES           AGE     VERSION
 minikube   Ready    control-plane   2m36s   v1.26.1
 ```
+**Windows**
+```ps
+//1. Run on powershell
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+//2. Add the binary in to your PATH.
+//Make sure to run PowerShell as Administrator.
+
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
+  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
+}
+
+cmd> minikube start
+cmd> minikube kubectl -- get po -A
+NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
+kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
+kube-system            etcd-minikube                               1/1     Running   0               2d17h
+kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
+kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
+kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
+kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
+kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
+kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
+kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
+
+cmd> minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
 
 <a name=cfgk></a>
 ## Configure kubernets Cluster(1 master, n workers)
