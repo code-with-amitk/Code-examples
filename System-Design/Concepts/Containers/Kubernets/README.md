@@ -4,7 +4,7 @@
   - [Worker Node](#wn)
     - [Pod](#pod)
 - [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace](Terms)
-- [Installing Kubernets](Install Kubernets)
+- [Installing Kubernets](Install_Kubernets)
 - [Commands](#kcmd)
 
 
