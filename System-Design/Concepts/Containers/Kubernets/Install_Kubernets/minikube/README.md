@@ -1,7 +1,7 @@
 - Installation
   - [Ubuntu](#u)
   - [Windows](#w)
-- [Install postgres on minikube](#ip)
+- [postgres on minikube](#ip)
 
 
 ### Installation
@@ -76,7 +76,7 @@ kubeconfig: Configured
 ```
 
 <a name=ip></a>
-### Install postgres on minikube
+### postgres on minikube
 https://itnext.io/basic-postgres-database-in-kubernetes-23c7834d91ef
 ```c
 # helm version
