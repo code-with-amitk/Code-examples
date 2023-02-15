@@ -173,7 +173,7 @@ if array if sorted: 1,2,3,4,5,6,7,8
         push into max_heap
 ```
 
-<img src=images/295. Find Median from Data Stream.png width=500/>
+<img src=images/295_Find_Median_from_Data_Stream.png width=500/>
 
 #### Complexity
 **Time:** O(logn)
