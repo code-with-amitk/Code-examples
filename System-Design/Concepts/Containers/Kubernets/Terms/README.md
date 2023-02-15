@@ -6,6 +6,8 @@
     - [4. RBAC](#rbac)
     - [5. secrets. kind: secrets](#sec)
     - [6. service. kind: service](#ser)
+- [Namespace](#ns)
+
 
 ## [Kubernets Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 A Kubernetes object always exist once we create them. k8 objects stores:
@@ -160,3 +162,14 @@ spec:
       targetPort: 9376        //Every pod listens on this TCP port
 ```
 
+<a name=ns></a>
+## Namespaces
+- Collection of pods ie Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
+- 3 predefined namespaces:
+  - _a. Default_ 
+  - _b. Kube-system:_ resources created by kubernets
+  - _c. Kube-public:_ reserved for future
+```c
+$ kubectl create namespace test                       //Creating new namespace
+$ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
+```
