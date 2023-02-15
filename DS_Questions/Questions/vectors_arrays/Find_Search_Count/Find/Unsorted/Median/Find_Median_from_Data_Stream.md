@@ -161,4 +161,60 @@ if array if sorted: 1,2,3,4,5,6,7,8
     else
         median = max_heap.top()
 ```
-- _2._ Rules of adding into heaps
+- _2._ Steps of execution:
+  - max_heap can have atmost 1 element more than min_heap
+  - _a._ Always Incoming number always be added to max_heap 1st.
+  - _b._ max_heap to min_heap
+    - Always Pop top of max_heap and push into min_heap. Because we may have recieved a larger element that should be present on min_heap
+  - _c._ min_heap to max_heap
+```
+    if sizeof(min_heap) > sizeof(max_heap)
+        pop top from min_heap. 
+        push into max_heap
+```
+#### Complexity
+**Time:** O(logn)
+- O(logn). Insert into max or min heap. Rebalancing
+- O(1). pop top 
+**Space:**
+- O(n). Combined 2 heaps will hold n elements
+
+#### Code
+**CPP**
+```cpp
+class MedianFinder {
+    priority_queue <int, vector<int>, greater<int>> min_heap;
+    priority_queue<int> max_heap;
+public:
+    MedianFinder() { }
+
+    void addNum(int num) {
+        // Always Insert in maxHeap 1st
+        max_heap.push(num);
+
+        // Pop max_heap and provide to min_heap
+        // This is because, max_heap may have received a larger 
+        // element which should be in min_heap
+        int top = max_heap.top();   max_heap.pop();
+        min_heap.push(top);
+
+        // if sizeof(minHeap) > sizeof(maxHeap)
+        // offer min_heap top to max_heap
+        // max_heap can have only 1 element more than min_heap
+        if (min_heap.size() > max_heap.size()) {
+            int top = min_heap.top(); min_heap.pop();
+            max_heap.push(top);
+        }
+    }
+    
+    double findMedian() {
+        // if sizeof(max_heap) != sizeof(min_heap)
+        //      median = max_heap.top()
+        // else
+        //      median = (max_heap.top() + min_heap.top())/2
+        if (max_heap.size() != min_heap.size())
+            return (double)max_heap.top();
+        return (double)(max_heap.top() + min_heap.top())/2;
+    }
+};
+```
