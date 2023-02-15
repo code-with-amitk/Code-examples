@@ -15,6 +15,27 @@ There are several ways of Installing kubernets cluster.
 ### 1. minikube
 **Ubuntu 20.04**
 ```c
+# sudo -s
+# cat /etc/os-release
+NAME="Ubuntu"
+VERSION="20.04.2 LTS (Focal Fossa)"
+
+// Install kubectl
+# sudo snap install kubectl --classic
+
+// Install minikube
+# sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+// Install docker driver
+# sudo apt-get install docker.io
+
+// Start minikube
+# minikube start --driver=docker --force
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+# kubectl get nodes
+NAME       STATUS   ROLES           AGE     VERSION
+minikube   Ready    control-plane   2m36s   v1.26.1
 ```
 
 <a name=cfgk></a>
