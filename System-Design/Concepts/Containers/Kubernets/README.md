@@ -22,34 +22,43 @@
 
 <a name=ka></a>
 ## Kubernets Architecture
-<img src=images/kubernets_architecture.JPG width=800/>
+<img src=images/kubernets_architecture1.JPG width=800/>
 
 <a name=mn></a>
-### A. Master Node
+### A. Master Node / Control Plane
 - User Intercts with Master node(using yaml file). Master node create/destroy worker nodes.
-- **Daemon in master node**
-  - *1. Controller Manager:* Monitors created containers/worker nodes. When worker node finishes the task(or load on cluster is low). VM/Worker node is bought down and when load becomes high a new worker node/VM is spawned again.
-  - *2. API Service:* Manages all communication with Worker nodes(using kubelet)
-  - _3. Scheduler:_ For placing pods across nodes to balance resource consumption.
-  - 4. _etcd:_ Database that hosts cluster state information.
+#### Daemon in master node
+- **1. API Server:** Manages all communication with Worker nodes(using kubelet).
+- **2. etcd `<key,value>` store:** Stores state of kubernets cluster.
+- **3. Scheduler:** Schedules pods to run on worker nodes.
+- **4. Controller Manager:** Runs controllers that monitors state of cluster and maintains desired state.
+  - _Replication Controller:_ Manages replication sets.
+  - _Node Controller:_ Monitor health of worker nodes.
+- **5. Add-ons:** Provides additional functionality.
 
 <a name=wn></a>
 ### B. Worker Node
 - handles workload. Worker nodes hosts [PODS](#pod). 1 Pod can contain 1 or more [containers, Eg: docker](#doc).
-- **Daemons in worker node:** *1. Kubelet:* Process for communication with master, *2. [Docker](#doc):* A container runtime, *3. Kube Proxy:* for communication with other nodes in cluster.
+#### Daemon in Worker node
+- **1. Kubelets:** Recieves instructions from master node to run/manage container.
+- **2. Container Runtime:** This actually runs the container. Several runtimes kubernets supports:
+  - Docker
+  - containerd
+  - CRI-O
+- **3. Kube-proxy:** for communication with other nodes in cluster
+- **4. Add-Ons:** Additional functionality.
+- **5. Node status & Meta-data:** Each worker node maintains meta-data about itself. Example:
+  - IP Address, hostname
+  - Current status (Ready, Not Ready, Out of Disk space etc)
 
 <a name=pod></a>
 #### POD 
-- Complete package which Kubernets creates to install application on Worker Node. Pod can contain multiple containers(application). Pods run in isolated pvt enviornment. Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
-- Pod Contains:
-  - *1.* Container(Eg: [Docker](#doc))
-  - *2.* Shared storage, as Volumes
-  - *3.* Networking, as a unique cluster IP address,port
-  - *4.* other Information 
-
-<img src=kubernets_pod_worker_node.png width=600>
-
-
+- POD is smallest deployable unit in kubernets.
+- Each POD has its own:
+  - IP & namespace.
+- Containers in POD share resources and can communicate using 'localhost'.
+- Complete package which Kubernets creates to install application on Worker Node. 
+- Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
 
 
 <a name=kcmd></a>
