@@ -1,77 +1,14 @@
 - [Different Options to Install kubernets](#opt)
-  - [1. minikube](#mk)
-
+  - [Minikube](minikube)
 
 <a name=opt></a>
 ### Different Options to Install kubernets
 There are several ways of Installing kubernets cluster.
 |Option|What|
 |---|---|
-|1. minikube|single node Kubernetes cluster locally on your machine(not for production)|
+|[1. minikube](minikube)|single node Kubernetes cluster locally on your machine(not for production)|
 |2. Managed Kubernetes services|Provided by AWS, Axure, GCP|
 |3. Kubernetes distributions|Eg: Red Hat OpenShift, Rancher, and VMware Tanzu|
-
-<a name=mk></a>
-### 1. minikube
-**Ubuntu 20.04**
-```c
-# sudo -s
-# cat /etc/os-release
-NAME="Ubuntu"
-VERSION="20.04.2 LTS (Focal Fossa)"
-
-// Install kubectl
-# sudo snap install kubectl --classic
-
-// Install minikube
-# sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
-// Install docker driver
-# sudo apt-get install docker.io
-
-// Start minikube
-# minikube start --driver=docker --force
-* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
-
-# kubectl get nodes
-NAME       STATUS   ROLES           AGE     VERSION
-minikube   Ready    control-plane   2m36s   v1.26.1
-```
-**Windows**
-```ps
-//1. Run on powershell
-New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
-Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
-
-//2. Add the binary in to your PATH.
-//Make sure to run PowerShell as Administrator.
-
-$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
-if ($oldPath.Split(';') -inotcontains 'C:\minikube'){ `
-  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine) `
-}
-
-cmd> minikube start
-cmd> minikube kubectl -- get po -A
-NAMESPACE              NAME                                        READY   STATUS    RESTARTS        AGE
-kube-system            coredns-64897985d-hwhgc                     1/1     Running   0               2d17h
-kube-system            etcd-minikube                               1/1     Running   0               2d17h
-kube-system            kube-apiserver-minikube                     1/1     Running   10 (112m ago)   2d17h
-kube-system            kube-controller-manager-minikube            1/1     Running   0               2d17h
-kube-system            kube-proxy-6cq9t                            1/1     Running   0               2d17h
-kube-system            kube-scheduler-minikube                     1/1     Running   0               2d17h
-kube-system            storage-provisioner                         1/1     Running   19 (105m ago)   2d17h
-kubernetes-dashboard   dashboard-metrics-scraper-58549894f-qwp9k   1/1     Running   0               2d17h
-kubernetes-dashboard   kubernetes-dashboard-ccd587f44-9gdfz        1/1     Running   15 (106m ago)   2d17h
-
-cmd> minikube status
-minikube
-type: Control Plane
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-```
 
 
 <a name=cfgk></a>
