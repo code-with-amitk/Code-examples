@@ -164,7 +164,8 @@ spec:
 
 <a name=ns></a>
 ## Namespaces
-- Collection of pods ie Virtual clusters inside kubernets cluster. Multiple pods can run inside a namespace.
+- Namespace divides cluster into smaller units to isolate services,volumes and manage.
+- Namespace contains pods.
 - 3 predefined namespaces:
   - _a. Default_ 
   - _b. Kube-system:_ resources created by kubernets
