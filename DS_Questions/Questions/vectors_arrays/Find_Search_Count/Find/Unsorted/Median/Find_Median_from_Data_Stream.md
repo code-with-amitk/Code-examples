@@ -2,6 +2,7 @@
 - [Approach-1. `vector<int>`, push_back(), sort. O(nlogn). TLE](#a1)
 - [Approach-2. `vector<int>`. binary search position. insert. O(n). TLE](#a2)
 - [Approach-3. `multiset<int>`. O(logn) + O(n/2) = O(n/2). Works](#a3)
+- [Approach-4. maxHeap, minHeap. O(logn). Works](#a4)
 
 ### [295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/description/)
 - The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.
@@ -138,4 +139,26 @@ public:
 };
 ```
 
+<a name=a4></a>
+### Approach-4. maxHeap, minHeap. O(logn). Works
+#### Logic
+```c
+input = [4, 5, 2, 7, 1, 8, 3, 6]
 
+if array if sorted: 1,2,3,4,5,6,7,8
+    max_heap            min_heap
+    /   4  \            /  5  \
+   / 2  1 3 \          / 8 6 7 \
+   ----------          ---------
+```
+- _1._ Take 2 heaps. max_heap, min_heap.
+  - max_heap will store lower half elements
+  - min_heap will store upper half elements
+  - Then median =
+```c
+    if (max_heap.size() == min_heap.size())
+        median = (max_heap.top() + min_heap.top() )/2
+    else
+        median = max_heap.top()
+```
+- _2._ Rules of adding into heaps
