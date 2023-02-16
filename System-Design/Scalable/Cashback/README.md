@@ -1,4 +1,4 @@
-**Cashback **
+**Cashback**
 - [Requirements](#r)
 
 ## Cashback System
@@ -17,3 +17,9 @@ System should meet needs of the users and merchants.
 - _1. Reporting and Analytics:_ Provide detailed reports and analytics on transaction history, cashback earned, and other key metrics to Users,Merchants.
 - _2. Security and Privacy:_ Must ensure the security and privacy of user and merchant data, including the use of encryption, secure authentication protocols, and data backup procedures.
 - _3. Customer Support:_ help with account issues, transaction problems, and cashback redemption inquiries.
+
+### BOE
+- Storage will be decided on number of transactions.
+- Some users will do multiple, while some will not do any transaction. So we will assume 1 transaction/user.
+- India: 80CR people using paytm. 80Cr transactions/day
+Storage Estimates
