@@ -1,5 +1,6 @@
 **Cashback**
 - [Requirements](#r)
+- [BOE](#b)
 
 ## Cashback System
 **What is Cashback?**
@@ -22,4 +23,8 @@ System should meet needs of the users and merchants.
 - Storage will be decided on number of transactions.
 - Some users will do multiple, while some will not do any transaction. So we will assume 1 transaction/user.
 - India: 80CR people using paytm. 80Cr transactions/day
-Storage Estimates
+#### Storage Estimates
+- **Transactions Storage:** 1KB = 1 transaction. 80x10<sup>9</sup> x 10 kB = 80TB/Day. 
+- User, Merchant data storage is seperate
+
+> Note: These are only estimates, actual may depend on variety of factors, including user behavior, market conditions, and system performance.
