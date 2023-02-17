@@ -10,6 +10,7 @@
 - [Named Arguments](#na)
 - [Error messages](#em)
 - [Tagging](#tag)
+- [Test setup and teardown](#st)
 
 
 <a name=tc></a>
@@ -259,3 +260,81 @@ Value of TEST3 = ${TEST3}
 ### Tagging
 - Tags are used for classifying test cases and also user keywords. 
 - Tags are free text and Robot Framework itself has no special meaning for them except for the reserved tags.
+- **Usage of Tags:**
+  - They are shown in test reports, logs and, of course, in the test data, so they provide metadata to test cases.
+  - Statistics about test cases (total, passed, failed and skipped) are automatically collected based on them.
+  - They can be used to include and exclude as well as to skip test cases.
+- **Ways to specify tags:**
+  - Test Tags in the Setting section
+  - `[Tags]` with each test case
+  - `--settag` command line option
+  - Set Tags, Remove Tags, Fail and Pass Execution keywords
+```robot
+*** Settings ***
+Test Tags       requirement: 42    smoke
+
+*** Variables ***
+${HOST}         10.0.1.42
+
+*** Test Cases ***
+No own tags
+    [Documentation]    This test has tags 'requirement: 42' and 'smoke'.
+    No Operation
+
+Own tags
+    [Documentation]    This test has tags 'requirement: 42', 'smoke' and 'not ready'.
+    [Tags]    not ready
+    No Operation
+
+Own tags with variable
+    [Documentation]    This test has tags 'requirement: 42', 'smoke' and 'host: 10.0.1.42'.
+    [Tags]    host: ${HOST}
+    No Operation
+
+Set Tags and Remove Tags keywords
+    [Documentation]    This test has tags 'smoke', 'example' and 'another'.
+    Set Tags    example    another
+    Remove Tags    requirement: *
+```
+
+<a name=st></a>
+### Test setup and teardown
+- Robot Framework has similar test setup and teardown functionality as many other test automation frameworks. 
+- **Test setup:** is something that is executed before a test case, 
+- **Test teardown:** is executed after a test case. 
+- In Robot Framework setups and teardowns are just normal keywords with possible arguments.
+- **Keywords**
+  - **1. teardown:** 
+    - Always executed even when a test case fails.
+    - In addition, all the keywords in the teardown are also executed even if one of them fails. 
+```robot
+*** Settings ***
+Test Setup       Open Application    App A
+Test Teardown    Close Application
+
+*** Test Cases ***
+Default values
+    [Documentation]    Setup and teardown from setting section
+    Do Something
+
+Overridden setup
+    [Documentation]    Own setup, teardown from setting section
+    [Setup]    Open Application    App B
+    Do Something
+
+No teardown
+    [Documentation]    Default setup, no teardown at all
+    Do Something
+    [Teardown]
+
+No teardown 2
+    [Documentation]    Setup and teardown can be disabled also with special value NONE
+    Do Something
+    [Teardown]    NONE
+
+Using variables
+    [Documentation]    Setup and teardown specified using variables
+    [Setup]    ${SETUP}
+    Do Something
+    [Teardown]    ${TEARDOWN}
+```
