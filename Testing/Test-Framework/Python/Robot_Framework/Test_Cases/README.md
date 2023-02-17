@@ -8,6 +8,7 @@
 - [Dividing data into multiple rows](#dd)
 - [Arguments to functions](#varg)
 - [Named Arguments](#na)
+- [Error messages](#em)
 
 
 <a name=tc></a>
@@ -204,4 +205,51 @@ List files
     
 # robot test.robot
 TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+```
+
+<a name=em></a>
+### Error messages
+- The error message assigned to a failed test case is got directly from the failed keyword. Often the error message is created by the keyword itself, but some keywords allow configuring them.
+- By default error messages are normal text, but they can contain HTML formatting. This is enabled by starting the error message with marker string *HTML*. This marker will be removed from the final error message shown in reports and logs. Using HTML in a custom message is shown in the second example below
+```robot
+*** Test Cases ***
+Normal Error
+    Fail    This is a rather boring example...
+
+HTML Error
+    ${number} =    Get Number
+    Should Be Equal    ${number}    42    *HTML* Number is not my <b>MAGIC</b> number.
+    
+# robot test.robot
+==============================================================================
+Error Message
+==============================================================================
+Normal Error                                                          | FAIL |
+This is a rather boring example...
+------------------------------------------------------------------------------
+HTML Error                                                            | FAIL |
+No keyword with name 'Get Number' found.
+------------------------------------------------------------------------------
+Error Message                                                         | FAIL |
+2 tests, 0 passed, 2 failed
+==============================================================================
+```
+
+### Variable Names
+- We can define variable names using `$`
+```
+*** Variables ***
+${TEST1}      ${1234}
+${TEST2}      ${5678}
+
+*** Test Cases ***
+Value of TEST1 = ${TEST1}
+Value of TEST2 = ${TEST2}
+Value of TEST3 = ${TEST3}
+    # ...
+    
+# robot test.robot
+Value of TEST1 = 1234
+Value of TEST2 = 5678 
+Value of TEST3 = ${TEST3}  
 ```
