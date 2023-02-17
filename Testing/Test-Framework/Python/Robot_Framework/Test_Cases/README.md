@@ -337,4 +337,46 @@ Using variables
     [Setup]    ${SETUP}
     Do Something
     [Teardown]    ${TEARDOWN}
+    
+$ robot test.robot
+==============================================================================
+Robot Files                                                                   
+==============================================================================
+Robot Files.TestSuite                                                         
+==============================================================================
+Default values :: Setup and teardown from setting section             | FAIL |
+Setup failed:
+No keyword with name 'Open Application' found.
+
+Also teardown failed:
+No keyword with name 'Close Application' found.
+------------------------------------------------------------------------------
+Overridden setup :: Own setup, teardown from setting section          | FAIL |
+Setup failed:
+No keyword with name 'Open Application' found.
+
+Also teardown failed:
+No keyword with name 'Close Application' found.
+------------------------------------------------------------------------------
+No teardown :: Default setup, no teardown at all                      | FAIL |
+Setup failed:
+No keyword with name 'Open Application' found.
+------------------------------------------------------------------------------
+No teardown 2 :: Setup and teardown can be disabled also with spec... | FAIL |
+Setup failed:
+No keyword with name 'Open Application' found.
+------------------------------------------------------------------------------
+Using variables :: Setup and teardown specified using variables       | FAIL |
+Setup failed:
+Variable '${SETUP}' not found.
+
+Also teardown failed:
+Variable '${TEARDOWN}' not found.
+------------------------------------------------------------------------------
+Robot Files.TestSuite                                                 | FAIL |
+5 tests, 0 passed, 5 failed
+==============================================================================
+Robot Files                                                           | FAIL |
+5 tests, 0 passed, 5 failed
+==============================================================================
 ```
