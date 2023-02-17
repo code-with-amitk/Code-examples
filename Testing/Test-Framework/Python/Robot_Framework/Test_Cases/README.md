@@ -7,6 +7,7 @@
   - [3. reStructuredText format](#ret)
 - [Dividing data into multiple rows](#dd)
 - [Arguments to functions](#varg)
+- [Named Arguments](#na)
 
 
 <a name=tc></a>
@@ -176,4 +177,31 @@ restructuredFormat :: Example using the reStructuredText format.      | PASS |
 Example
     Remove Files    ${TEMPDIR}/f1.txt    ${TEMPDIR}/f2.txt    ${TEMPDIR}/f3.txt
     @{paths} =    Join Paths    ${TEMPDIR}    f1.txt    f2.txt    f3.txt    f4.txt
+```
+
+<a name=na></a>
+### Named Arguments
+- named arguments are a way to pass arguments to keywords using the name of the argument rather than the position of the argument in the argument list. 
+- Named arguments are also sometimes referred to as keyword arguments or named parameters.
+- **Advantages:**
+  - Named arguments are particularly useful when a keyword has a large number of arguments or when the order of the arguments is not clear. 
+  - By using named arguments, you can make your code more readable and easier to understand.
+- Example:  
+```robot
+*** Settings ***
+Library    Telnet    prompt=$    default_log_level=DEBUG    //This uses named arguments syntax with library keywords
+
+*** Test Cases ***
+Example
+    Open connection    10.0.0.42    port=5002    alias=example
+    List files    options=-lh
+    List files    path=/tmp    options=-l
+
+*** Keywords ***
+List files
+    [Arguments]    ${path}=.    ${options}=
+    Execute command    ls ${options} ${path}
+    
+# robot test.robot
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
 ```
