@@ -9,6 +9,7 @@
 - [Arguments to functions](#varg)
 - [Named Arguments](#na)
 - [Error messages](#em)
+- [Tagging](#tag)
 
 
 <a name=tc></a>
@@ -253,3 +254,8 @@ Value of TEST1 = 1234
 Value of TEST2 = 5678 
 Value of TEST3 = ${TEST3}  
 ```
+
+<a name=tag></a>
+### Tagging
+- Tags are used for classifying test cases and also user keywords. 
+- Tags are free text and Robot Framework itself has no special meaning for them except for the reserved tags.
