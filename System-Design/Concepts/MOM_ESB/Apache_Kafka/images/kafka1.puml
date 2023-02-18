@@ -1,0 +1,55 @@
+@startuml kafka
+
+package "Kafka Cluster" as kc {
+  package "Broker1(master)"{
+    package Partition1 as p1 {
+      package "topic = Orders"{
+        json Toy {
+            "product":"Toy",
+            "Id":"124",
+            "customer_name": "amit",
+            "customer_address": "213 Town Asia"
+        }
+        json Toy_ {
+            "product":"Toy1",
+            "Id":"-",
+            "customer_name": "-",
+            "customer_address": "-"
+        }
+      }
+    }
+    package Partition2 as p2{
+      package "topic = Orders_" as to1{
+        json Mobile {
+            "product":"RedMi Note 4",
+            "Id":"-",
+            "customer_name": "_",
+            "customer_address": "--"
+        }
+        json Mobile_ {
+            "product":"RedMi Note 412",
+            "Id":"--",
+            "customer_name": "---",
+            "customer_address": "----"
+        }
+      }
+      note top of to1: <size:16>**Topic**</size> Contains same type of Messages
+    }
+    note top of p2: This is NOT Disk partition\n1 partition cannot contains 2 topics.\n1 Partition=1 Topic\n- This stores messages in ordered fashion\n- <size:16>**Offset:**</size> Postition of message inside Partition.
+  }
+  package "Broker2(master)" as bm2{ }
+  note top of bm2: Kafka is multimaster system. No node is slave
+  package "Broker3(master)"{ }
+}
+note top of kc: Kafka cluster contains multiple Brokers
+
+package "Consumer Group" as cg{
+  package "Consumer1" as c1 {}
+  package "Consumer2" as c2 {}
+}
+note top of cg: Group of consumers which are intrested in 1 topic.\n **1 consumer reads 1 partition**\n Kafka provides **scalable and fault-tolerant** using this.
+
+c2 --> p2
+c1 --> p1
+
+@enduml
