@@ -5,8 +5,8 @@
 
 <a name=what></a>
 ## [Kafka](https://kafka.apache.org/intro)
-Kafka(Apache) is distributed,scalable,fault tolerant,open source publish-subscribe messaging system. It can store the messages, replay back(to subscribers)
-**How kafka messaging works?**
+- Kafka(Apache) is distributed,scalable,fault tolerant,open source publish-subscribe messaging system. It can store the messages, replay back(to subscribers)
+- **How kafka messaging works?**
 ```c
                           kafka-Broker(192.168.0.1:9092)   //1. broker starts
 consumer                                                   //2. consumer subscribes to topic
