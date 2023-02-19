@@ -71,20 +71,41 @@ Cashback (or Rewards)
 ```
 #### 2. ERD Diagram
 ```c
-  1         *
-  ----------
-User    Transaction 
+  1 -------- * (Cashback)
+  1 -------- * (Trasaction)
+User
+
+  1 -------- * (Trasactions)
+Merchant    
+
+  1 -------- * (User)
+  1 -------- * (Merchant)
+Transaction
 
   1          *
   ------------
-Merchant    Cashback
-
-  1          *
-  ------------
-User        Merchant
+Cashback     User
 
   1             1
   ---------------
 Transaction   Cashback
-
 ```
+#### 3. DB Tables
+**4 Main tables**
+```c
+Users
+| user_id(pk) | name | email_id | password | address | DOB | etc |
+
+Merchants
+| MerchantID(pk) | Name | Email | Address | etc
+
+Transactions 
+| TransactionID(pk) | UserID(fk) | MerchantID(fk) | Amount | Date | etc
+
+Cashback
+| cashbackID | UserID(fk) | TransactionID(fk) |  Amount |  Date | etc
+```
+#### Nosql vs SQL
+- **Not use nosql DB:**
+  - Nosql DB are eventual consistent, but this system might need strong consistency
+  - nosql does not support complex queries & require join and aggregation.
