@@ -7,6 +7,8 @@
 - [Installing Kubernets](Install_Kubernets)
 - Commands
   - [namespace](#ns)
+  - [services](#svc)
+  - [Pods](#p)
 
 
 ## Kubernets: Container Orchestrator
@@ -67,40 +69,31 @@
 <a name=ns></a>
 #### namespace
 ```c
-# kubectl get namespaces    //Get all namespaces
+# kubectl get namespaces    //Get all namespaces on node
+NAME              STATUS   AGE
+default           Active   4d8h
+keycloak          Active   3d22h
+kube-node-lease   Active   4d8h
+kube-public       Active   4d8h
+kube-system       Active   4d8h
 ```
-#### PODS
-<a name=ser></a>
+
+<a name=svc></a>
 #### Services
 ```c
-//ssh to kubernets VM running microservices
-# kubectl get svc -A                        //List all services on this VM
-$ kubectl get service --all-namespaces      //IP Addresses of all services in cluster in all namespaces
-NAMESPACE     NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE
-default       kubernetes                 ClusterIP   10.32.0.1       <none>        443/TCP         6d
-kube-system   csi-attacher-doplugin      ClusterIP   10.32.159.128   <none>        12345/TCP       6d
-kube-system   csi-provisioner-doplugin   ClusterIP   10.32.61.61     <none>        12345/TCP       6d
-kube-system   kube-dns                   ClusterIP   10.32.0.10      <none>        53/UDP,53/TCP   6d
-kube-system   kubernetes-dashboard       ClusterIP   10.32.226.209   <none>        443/TCP 
-$ kubectl -n name_space get service         //Get all services within namespace
+# kubectl get pods --namespace=default          //Services inside namespace
+
+# kubectl get pods                              //All services
 ```
-<a name=pc></a>
-#### Pods
+
+<a name=p></a>
+#### PODS
 ```c
+# kubectl get pods --namespace=default          //Pods inside namespace
+
 $ kubectl get pods -A                             //List all pods
-NAMESPACE               POD-NAME                  READY   STATUS      RESTARTS   AGE
-nsa                     pod1                      1/1     Running     0          48d      //2 pods in namespace=nsa
-nsa                     pod2                      0/2     Completed   0          7d3h
-nsb                     pod1                      0/2     Completed   0          7d3h
-nsb                     pod2                      0/2     Completed   0          7d3h
 
 $ kubectl get pods -A | grep kafka                //All pods named kafka*
-Namespace              Pod-name         READY   STATUS      RESTARTS   AGE
-n1                      kafka-0         2/2     Running     0          38d
-n1                      kafka-1         2/2     Running     0          38d
-n1                      kafka-2         2/2     Running     0          38d
-
-$ kubectl -n namespace get pods                 //All pods in namespace
 
 //////////Commands from inside the POD//////////////
 $ kubectl exec -it testing{pod_name} -n namespace /bin/bash   //Go inside POD
