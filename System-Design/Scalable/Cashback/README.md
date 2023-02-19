@@ -2,6 +2,7 @@
 - [Requirements](#r)
 - [BOE](#b)
 - [API Design](#api)
+- [DB Design](#db)
 
 ## Cashback System
 **What is Cashback?**
@@ -56,4 +57,34 @@ Http_code connect_to_payment_gateway (MerchantID, gatewayID, merchant_token)    
 // Reporting & Analytics APIs
 json_response get_cashback_report (userId|merchantId, auth_token, startTime, endTime)    //Get detailed reports and analytics on the cashback transactions
 json_response get_activity_report (userId|merchantId, auth_token, startTime, endTime)    //Get detailed reports on user activity
+```
+
+<a name=db></a>
+### 4. DB Design
+- [How to do DB Design?](/System-Design/Database_Design/)
+#### 1. Nouns/Entities
+```c
+User
+Merchant
+Transaction
+Cashback (or Rewards)
+```
+#### 2. ERD Diagram
+```c
+  1         *
+  ----------
+User    Transaction 
+
+  1          *
+  ------------
+Merchant    Cashback
+
+  1          *
+  ------------
+User        Merchant
+
+  1             1
+  ---------------
+Transaction   Cashback
+
 ```
