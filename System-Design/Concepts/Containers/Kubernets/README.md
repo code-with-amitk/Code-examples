@@ -5,7 +5,8 @@
     - [Pod](#pod)
 - [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace](Terms)
 - [Installing Kubernets](Install_Kubernets)
-- [Commands](#kcmd)
+- Commands
+  - [namespace](#ns)
 
 
 ## Kubernets: Container Orchestrator
@@ -63,6 +64,12 @@
 
 <a name=kcmd></a>
 ### Kubernets commands (kubectl -h)
+<a name=ns></a>
+#### namespace
+```c
+# kubectl get namespaces    //Get all namespaces
+```
+#### PODS
 <a name=ser></a>
 #### Services
 ```c
