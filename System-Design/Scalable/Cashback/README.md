@@ -93,18 +93,67 @@ Transaction   Cashback
 #### 3. DB Tables
 **4 Main tables**
 ```c
-Users
+// Users Table
 | user_id(pk) | name | email_id | password | address | DOB | etc |
 
-Merchants
+CREATE TABLE users (
+   user_id serial PRIMARY KEY,  
+   name varchar(50) NOT NULL,
+   email varchar(150) NOT NULL,
+   address varchar(255) NOT NULL,
+   dob DATE
+);
+
+
+// Merchants table
 | MerchantID(pk) | Name | Email | Address | etc
 
-Transactions 
+CREATE TABLE merchants (
+   merchant_id serial PRIMARY KEY,
+   name varchar(50) NOT NULL, 
+   email varchar(150) NOT NULL,
+   address varchar(255) NOT NULL
+);
+
+
+// Transactions Table
 | TransactionID(pk) | UserID(fk) | MerchantID(fk) | Amount | Date | etc
 
-Cashback
+CREATE TABLE transactions (
+   transaction_id serial PRIMARY KEY,
+   amount integer,
+   order_date DATE,
+   user_id INTEGER NOT NULL,
+   merchant_id INTEGER NOT NULL,
+   CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
+   CONSTRAINT merchant_id FOREIGN KEY (merchant_id) REFERENCES merchants (merchant_id)
+);
+
+
+// Cashback Table
 | cashbackID | UserID(fk) | TransactionID(fk) |  Amount |  Date | etc
+
+CREATE TABLE cashback (
+   cashback_id serial PRIMARY KEY,
+   amount integer,
+   order_date DATE,
+   user_id INTEGER NOT NULL,
+   transaction_id INTEGER NOT NULL,
+   CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
+   CONSTRAINT transaction_id FOREIGN KEY (transaction_id) REFERENCES transactions (transaction_id)
+);
+
+# \dt
+            List of relations
+ Schema |     Name     | Type  |  Owner
+--------+--------------+-------+----------
+ public | cashback     | table | postgres
+ public | merchants    | table | postgres
+ public | transactions | table | postgres
+ public | users        | table | postgres
+
 ```
+
 #### Nosql vs SQL
 - **Not use nosql DB:**
   - Nosql DB are eventual consistent, but this system might need strong consistency
