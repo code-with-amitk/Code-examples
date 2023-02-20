@@ -4,7 +4,9 @@
     - [CentOS 7](#c)
     - [WSL](#w)
   - [On kubernets minikube](/System-Design/Concepts/Containers/Kubernets/Install_Kubernets/minikube#ip)
-- [Working on Postgres](#w)
+- Postgres Commands
+  - [database](#db)
+  - [Tables](#tb)
 
 ## Install
 ### Standalone Box
@@ -76,6 +78,7 @@ postgres $ \h
 
 ### [Postgres Commands](https://www.postgresql.org/docs/13/sql-commands.html)
 - You are on postgres shell
+<a name=db></a>
 #### Database
 Postgres is cluster of databases.
 ```c
@@ -102,6 +105,7 @@ postgres-# createuser samplerole –pwprompt     //Create a new role
 
 postgres-# \q                                 //Come out
 ```
+<a name=tb></a>
 #### Table
 **Create Tables**
 ```c
