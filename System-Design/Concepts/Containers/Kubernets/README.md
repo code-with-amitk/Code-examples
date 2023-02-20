@@ -9,6 +9,7 @@
   - [namespace](#ns)
   - [services](#svc)
   - [Pods](#p)
+    - [Connect to postgres pod](#cp) 
 
 
 ## Kubernets: Container Orchestrator
@@ -81,9 +82,9 @@ kube-system       Active   4d8h
 <a name=svc></a>
 #### Services
 ```c
-# kubectl get pods --namespace=default          //Services inside namespace
+# kubectl get services --namespace=default          //Services inside namespace
 
-# kubectl get pods                              //All services
+# kubectl get services                              //All services
 ```
 
 <a name=p></a>
@@ -94,13 +95,35 @@ kube-system       Active   4d8h
 $ kubectl get pods -A                             //List all pods
 
 $ kubectl get pods -A | grep kafka                //All pods named kafka*
+```
 
+<a name=cp></a>
+#### Connect to Postgres POD
+```c
+// Command shows notes provided by the chart of a named release
+# helm get notes postgres
+
+// Get postgres password to connect to postgres
+# kubectl get secret --namespace default postgres-postgresql -o jsonpath="{.data.postgres-password}" | base64 -d
+password
+
+// Port on which postgres is running
+# kubectl get svc -A | grep post
+
+// Connect to postgresDB (username=postgres, password=taken from above, database=postgres)
+// By default postgres listens on 5432
+# kubectl run postgres-postgresql-client --rm --tty -i --restart='Never' --namespace default --image docker.io/bitnami/postgresql:15.2.0-debian-11-r0 --env="PGPASSWORD=<password>" --command -- psql --host postgres-postgresql -U postgres -d postgres -p 5432
+postgres=#
+```
+
+**Other PODS**
+```c
 //////////Commands from inside the POD//////////////
 $ kubectl exec -it testing{pod_name} -n namespace /bin/bash   //Go inside POD
 
 root@testing:/opt/# ping namespace.service_name               //Pinging service
-
 ```
+
 <a name=lc></a>
 #### Logs of Container in Pod
 ```c
