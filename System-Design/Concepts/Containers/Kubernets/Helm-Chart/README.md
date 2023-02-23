@@ -1,12 +1,7 @@
 **Helm Chart**
-- [What is helm](#what)
-- **Install/Upgrade/Rollback application on kubernets Cluster using helm chart**
-  - [1. Create Helm Chart](#hc1)
-  - [2. Download, Install minikube/Cluster](#hc2)
-  - [3. Install application on cluster using helm](#hc3)
-  - [4. Access the application on cluster](#hc4)
+- [Files inside helm chart](#fi)
+- [Install/Upgrade/Rollback application using helm](#iu)
 
-<a name=what></a>
 ## Helm Chart
 - This is collection of yaml files/[jinja templates](/Languages/Templating_Language/Jinja2) used to install/upgrade service in [kubernets cluster](..).
 - When a chart is installed, Helm generates Kubernetes objects based on the templates and deploys them to the cluster
@@ -23,6 +18,7 @@ mychart
 |   `-- service.yaml
 `-- values.yaml
 ```
+<a name=fi></a>
 ### [Files inside Helm chart](Files_in_HelmChart)
 ```c
     chart.yaml.j2
@@ -31,14 +27,16 @@ mychart
     templates/deployment.yaml
 ```
 
-## Install/Upgrade/Rollback application on kubernets Cluster using helm
-- **1. Login to kubernets cluster and check helm:**
+<a name=iu></a>
+### Install/Upgrade/Rollback application using helm
+#### 1. Login to kubernets cluster
 ```c
 # which helm
 /usr/local/bin/helm
 ```
 
-- **2. Create helm chart**
+#### 2. helm create
+- Create helm chart
 ```c
 # helm create mychart     //This is helm chart for ngnix
 Creating mychart
@@ -52,14 +50,12 @@ drwxr-xr-x. 3 root root  162 Feb 13 23:58 templates
 drwxr-xr-x. 2 root root    6 Feb 13 23:58 charts
 ```
 
-- **3. Run kubernets Cluster or [run minikube](../)**
-```c
-$ kubectl get nodes
-NAME                    STATUS   ROLES                  AGE   VERSION
-linux-server-hostname   Ready    control-plane,master   53d   v1.21.1
-```
-
-- **4. Install/Upgrade/Rollback application on kubernets cluster using helm**
+#### 3. `helm install [RELEASE_NAME] [CHART] [flags]`
+- Install/Upgrade/Rollback application in 1 or more containers(inside PODS)
+  - How many containers/PODS to be created depends on manifest files 
+  - present inside templates/yaml files. How many replicas to run etc 
+- `[CHART]` Downloads the Helm chart package from a remote or local repository, unpacks it.
+- Generates a set of Kubernetes objects and deploys them to the target cluster.
 ```c
 # helm install --dry-run --debug ./mychart --generate-name  --set service.internalPort=8089
 
@@ -75,7 +71,7 @@ $ helm delete --purge {chartname}   //Delete chart
 http://1.2.3.4:8888
 ```
 
-- **5. Check installation status**
+#### 4. Check installation status
 a. helm list
 ```c
 # helm list --all
@@ -87,7 +83,7 @@ REVISION        UPDATED                         STATUS          CHART           
 1               Mon Mar  7 03:09:47 2022        deployed        buildachart-0.1.0       1.16.0          Install complete
 ```
 
-### 4. Access the application on cluster
+#### 5. Access the application on cluster
 ```c
 Open URL: http://1.2.3.4:8888
 ```
