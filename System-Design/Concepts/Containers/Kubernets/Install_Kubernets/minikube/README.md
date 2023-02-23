@@ -1,7 +1,7 @@
 - Installation
   - [Ubuntu](#u)
   - [Windows](#w)
-- [postgres on minikube](#ip)
+- [Install postgres on minikube](#ip)
 
 
 ### Installation
@@ -77,7 +77,8 @@ kubeconfig: Configured
 
 <a name=ip></a>
 ### postgres on minikube
-https://itnext.io/basic-postgres-database-in-kubernetes-23c7834d91ef
+- https://itnext.io/basic-postgres-database-in-kubernetes-23c7834d91ef
+- [helm install](/System-Design/Concepts/Containers/Kubernets/Helm-Chart/README.md#iu)
 ```c
 # helm version
 version.BuildInfo{Version:"v3.7.0", GitCommit:"eeac83883cb4014fe60267ec6373570374ce770b", GitTreeState:"clean", GoVersion:"go1.16.8"}
