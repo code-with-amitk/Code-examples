@@ -56,6 +56,7 @@ drwxr-xr-x. 2 root root    6 Feb 13 23:58 charts
   - present inside templates/yaml files. How many replicas to run etc 
 - `[CHART]` Downloads the Helm chart package from a remote or local repository, unpacks it.
 - Generates a set of Kubernetes objects and deploys them to the target cluster.
+- **Application Binary is not provided in helm install:** Helm chart describes the application you want to deploy.
 ```c
 # helm install --dry-run --debug ./mychart --generate-name  --set service.internalPort=8089
 
