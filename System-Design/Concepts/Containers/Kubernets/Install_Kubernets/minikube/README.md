@@ -76,7 +76,7 @@ kubeconfig: Configured
 ```
 
 <a name=ip></a>
-### postgres on minikube
+### Install postgres on minikube
 - https://itnext.io/basic-postgres-database-in-kubernetes-23c7834d91ef
 - [helm install](/System-Design/Concepts/Containers/Kubernets/Helm-Chart/README.md#iu)
 ```c
