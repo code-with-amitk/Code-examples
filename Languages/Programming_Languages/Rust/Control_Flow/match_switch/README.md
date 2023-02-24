@@ -49,15 +49,24 @@ $ test.exe
 ```
 <a name=iflet></a>
 #### [if let](https://doc.rust-lang.org/book/ch06-03-if-let.html)
-- Problem in above code: Lot of unused code(ie We want to do Something with Some(3) but nothing with None or any other value). To satisfy the match expression, we have to add `_ => ()` after processing just one variant, which is a lot of boilerplate code to add.
-- Just match one pattern while ignore rest.
-```rs
-fn main() {
-    if let Some(3) = 3 {
-        println!("Something")
-    }
+- This allows to combine an if statement with a pattern matching expression. It is a shorthand way to write a match expression that only handles one specific pattern.
+```c
+if let pattern = expression {
+    // code to run if the pattern matches
 }
 ```
+- Here, pattern is a pattern that we want to match against expression. If the pattern matches, the code block inside the curly braces will be executed.
+```rs
+let a = Some(42);
+if let Some(b) = a {
+    println!("The b is {}", b);
+} else {
+    println!("There is no number");
+}
+```
+- In this example, a is an `Option<i32>` that contains the value 42.
+- The if let statement checks if a is a Some variant and binds the inner value to number. 
+- Since a is a Some variant, the code inside the curly braces will be executed and "The number is 42" will be printed to the console.
 
 <a name=patval></a>
 ### Patterns that Bind to Values
