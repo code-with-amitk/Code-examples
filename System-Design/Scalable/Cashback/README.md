@@ -179,4 +179,7 @@ CREATE TABLE cashback (
 - Provides insights into cashback program performance, such as transaction volume, cashback redemption rates, and user engagement
 - Integration with payment gateways
 
+**Diagram Image**
 <image src=images/cashback_system.png width=900/>
+
+**Text File Diagram:** /images/cashback_system.txt
