@@ -3,6 +3,7 @@
 - [BOE](#b)
 - [API Design](#api)
 - [DB Design](#db)
+- [HLD](#hld)
 
 ## Cashback System
 **What is Cashback?**
@@ -158,3 +159,24 @@ CREATE TABLE cashback (
 - **Not use nosql DB:**
   - Nosql DB are eventual consistent, but this system might need strong consistency
   - nosql does not support complex queries & require join and aggregation.
+
+<a name=hld></a>
+### HLD
+#### 1. User interface:
+- User initiates transaction
+- Transaction data is sent to transaction processing system
+#### 2. Transaction processing system:
+- Transaction data is received and processed
+- Cashback amount is calculated based on the cashback rules engine
+- Cashback amount is added to the user's cashback balance in the database
+#### 3. Cashback rules engine:
+- Defines the rules and conditions for cashback, such as transaction amount, product category, or promotion type
+- Calculates cashback amount based on the rules
+#### 4. Database:
+- Stores user information, transaction data, and cashback balances
+- Updates user's cashback balance with the calculated cashback amount
+#### 5. Analytics and reporting:
+- Provides insights into cashback program performance, such as transaction volume, cashback redemption rates, and user engagement
+- Integration with payment gateways
+
+<image src=images/cashback_system.png width=900/>
