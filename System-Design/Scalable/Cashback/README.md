@@ -161,7 +161,7 @@ CREATE TABLE cashback (
   - nosql does not support complex queries & require join and aggregation.
 
 <a name=hld></a>
-### HLD
+### 4. HLD
 #### 1. User interface:
 - User initiates transaction
 - Transaction data is sent to transaction processing system
@@ -183,3 +183,4 @@ CREATE TABLE cashback (
 <image src=images/cashback_system.png width=900/>
 
 **[Text File Diagram](/images/cashback_system.txt)**
+[fa](/System-Design/Scalable/Cashback/images/cashback_system.txt)
