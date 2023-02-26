@@ -1,0 +1,75 @@
+@startuml
+
+box "Customer" #LightGray
+actor       User as user
+participant App as app
+end box
+
+box "Common" #LightCyan
+participant LoadBalancer as lb 
+participant APIGateway as apigw
+participant Validator as val
+participant Kafka_Queue as q
+end box
+
+box "Business Logic" #LightBlue
+participant Transaction_Processing_System as tps
+participant Kafka as kafka
+participant Cashback_Rules_Engine as cre
+participant AnalyticsAndReporting as ana
+end box
+
+box "DataBase" #LightGreen
+database TransactionTable as tdb
+database UserTable as userdb
+database CashbackTable as cbdb
+database MerchantTable as merdb
+end box
+
+box "Payment_Gateway" #LightSkyBlue
+participant PaymentGateway as pg
+end box
+
+user -> app: Make Purchase
+app -> lb: HTTPS(Transaction details\n(tid, product-id,amnt,payment method))
+lb -> apigw: HTTPS(request)
+note over apigw: Provides Rate Limiting\nAuthentication\nRouting\nSecurity Functions
+
+apigw -> val: HTTPS(request)
+note over val: Provides Validation\nFormatting\nTranslation
+
+val -> q: Publish HTTPS(Request)
+note over q: Apacha Kafka\nRabbitMQ\nAmazon SQS\nGoogle Cloud Pub/Sub\nAzure Service Bus
+
+q -> tps: Subscribed HTTP(Request)
+note over tps: Processes transaction
+tps -> tdb: Store transaction
+
+tps -> kafka: Transaction(tid, userid, \namount, merchant info)
+kafka -> cre: Transaction(tid=x, userid=y, \namount, merchantId=z)
+cre -> cre: Calculate Cashback
+note over cre: Cashback may depend on\n1. User status\n2.Current offers\n3.Promotions
+
+note over cre: Get Transaction details
+cre -> tdb: "SELECT * FROM transaction\n WHERE userid=y"
+cre <-- tdb: transaction info
+
+note over cre: Get Merchant details
+cre -> merdb: "SELECT * FROM merchant\n WHERE merchant_id=z"
+cre <-- merdb: merchant info
+
+note over cre: Get Merchant\nCashback details
+cre -> cbdb: "SELECT * FROM cashback\n WHERE merchant_id=z and \nproduct=0"
+cre <-- cbdb: cashback
+
+note over cre: Calculate cashback\nfor transaction
+note over cre: Update usercashback\nin Cashback table
+cre -> cbdb: "UPDATE TABLE cashback\n WHERE user=y.."
+cre <-- cbdb: 200 OK
+
+cre -> ana: Data
+note over ana: Analyze data 
+
+cre -> pg: Data
+pg -> user: Send Msg\nCashback
+@enduml
