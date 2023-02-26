@@ -182,4 +182,4 @@ CREATE TABLE cashback (
 **Diagram Image**
 <image src=images/cashback_system.png width=900/>
 
-**Text File Diagram:** /images/cashback_system.txt
+**[Text File Diagram](/images/cashback_system.txt)**
