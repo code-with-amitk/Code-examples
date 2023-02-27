@@ -84,6 +84,11 @@ kube-system       Active   4d8h
 // Pods inside namespace
 # kubectl get pods --namespace=default          
 
+// Detailed information of pod, image its running
+# kubectl describe pod <pod-name> -n <namespace> | grep Image:
+
+// Logs of pod
+# kubectl logs <pod-name> -n <namespace>
 ```
 
 <a name=cp></a>
