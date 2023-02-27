@@ -23,7 +23,7 @@
 
 <a name=ka></a>
 ## Kubernets Architecture
-<img src=/System-Design/Concepts/Containers/Kubernets/images/kubernets_architecture3.png width=1200/>
+<img src="/System-Design/Concepts/Containers/Kubernets/images/kubernets_architecture3.png" width=1200/>
 
 <a name=mn></a>
 ### A. Master Node / Control Plane
