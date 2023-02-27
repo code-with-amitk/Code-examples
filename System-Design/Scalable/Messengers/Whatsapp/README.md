@@ -2,6 +2,8 @@
 - [1. Requirements](#req)
 - [2. BOE](#boe)
 - [3. APIs](#api)
+- [4. DB](#db)
+  - [What DBs Used](#wd)
 
 <a name=req></a>
 ### 1. Requirements
@@ -40,3 +42,47 @@
 - **Why Signal protocol**
   - This is designed as lightweight and optimized for mobile devices.
   - Contains additional features(such as message queuing, message retries, and message acknowledgments) that are not in REST APIs.
+
+<a name=db></a>
+### 4. DB Schema
+#### Entities
+- User
+- Message
+- Push Notification Settings
+- Groups
+- contact list
+
+#### Relationship
+```c
+User 1----------* Message
+User 1----------1 Push Notification Settings
+Message 1----------1 Notification
+User 1----------* Groups
+User 1----------1 contact list
+```
+
+#### DB Tables
+```c
+// User Table
+| user_id(pk) | name | Phone_no | password | Profile picture | settings | etc |
+
+// Messages Table: store information about each message
+| message_id(pk) | from_user_id(fk) | to_user_id(fk) | content_url | timestamp |
+Note:
+ - content(audio, video) is stored on HDFS or Amazon S3
+ - Server generates unique id which is stored here
+ - When a recipient receives a message with an image or video, the WhatsApp server retrieves the file from the file storage system using the unique id & sends the file to the recipient's device.
+
+// Push Notification Settings Table: Store information about each user's push notification settings
+| notification_id(pk) | user_id(fk) | how_frequent_to_push | etc |
+
+// Groups Table: store information about each group chat
+| group_id(pk) | user_id(fk) | list_of_members_in_group | group_chat_url | group_profile_picture
+
+// Contact list Table: store information about each user's contacts
+| contact_list_id(pk) | user_id(fk) | map <user_id, phone_no> | map <user_id, diplay_names> |
+
+```
+<a name=wd></a>
+#### What databases Whatsapp uses to store data?
+
