@@ -1,6 +1,7 @@
 **Whatsapp**
 - [1. Requirements](#req)
 - [2. BOE](#boe)
+- [3. APIs](#api)
 
 <a name=req></a>
 ### 1. Requirements
@@ -33,3 +34,9 @@
 - Postgres, MySQL, Oracle DB can store upto 1 PB of data. But remember as database size grows, DB queries start taking time. Need to implement sharding,caching,indexing
 - Servers needed: 70 (for 1 year). Data can be recycled.
 
+<a name=api></a>
+### 3. APIs
+- Whatsapp does not use REST APIs, rather it uses proprietary messaging protocol that is based on the **Signal Protocol**
+- **Why Signal protocol**
+  - This is designed as lightweight and optimized for mobile devices.
+  - Contains additional features(such as message queuing, message retries, and message acknowledgments) that are not in REST APIs.
