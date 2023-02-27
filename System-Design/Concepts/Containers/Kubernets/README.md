@@ -67,34 +67,23 @@
 
 <a name=kcmd></a>
 ### Kubernets commands (kubectl -h)
-<a name=ns></a>
-#### namespace
 ```c
-# kubectl get namespaces    //Get all namespaces on node
+
+//Get all namespaces on node
+# kubectl get namespaces    
 NAME              STATUS   AGE
 default           Active   4d8h
 keycloak          Active   3d22h
 kube-node-lease   Active   4d8h
 kube-public       Active   4d8h
 kube-system       Active   4d8h
-```
 
-<a name=svc></a>
-#### Services
-```c
-# kubectl get services --namespace=default          //Services inside namespace
+// Services inside namespace
+# kubectl get services --namespace=default          
 
-# kubectl get services                              //All services
-```
+// Pods inside namespace
+# kubectl get pods --namespace=default          
 
-<a name=p></a>
-#### PODS
-```c
-# kubectl get pods --namespace=default          //Pods inside namespace
-
-$ kubectl get pods -A                             //List all pods
-
-$ kubectl get pods -A | grep kafka                //All pods named kafka*
 ```
 
 <a name=cp></a>
