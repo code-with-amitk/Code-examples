@@ -43,6 +43,10 @@
   - This is designed as lightweight and optimized for mobile devices.
   - Contains additional features(such as message queuing, message retries, and message acknowledgments) that are not in REST APIs.
 
+- [Signal Protocol Architecture Txt](images/signal_protocol_whatsapp.txt)
+
+<img src=images/signal_protocol_whatsapp.png width=500/>
+
 <a name=db></a>
 ### 4. DB Schema
 #### Entities
