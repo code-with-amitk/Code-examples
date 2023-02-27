@@ -180,6 +180,6 @@ CREATE TABLE cashback (
 - Integration with payment gateways
 
 **Diagram Image**
-<image src=images/cashback_system.png width=900/>
+<image src=images/cashback_system.svg width=900/>
 
 **[Text File Diagram](/System-Design/Scalable/Cashback/images/cashback_system.txt)**
