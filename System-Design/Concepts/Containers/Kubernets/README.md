@@ -5,11 +5,8 @@
     - [Pod](#pod)
 - [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace](Terms)
 - [Installing Kubernets](Install_Kubernets)
-- Commands
-  - [namespace](#ns)
-  - [services](#svc)
-  - [Pods](#p)
-    - [Connect to postgres pod](#cp) 
+- [Commands](#com)
+  - [Connect to postgres pod](#cp) 
 
 
 ## Kubernets: Container Orchestrator
@@ -65,9 +62,10 @@
 - Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
 
 
-<a name=kcmd></a>
+<a name=com></a>
 ### Kubernets commands (kubectl -h)
 ```c
+# kubectl cluster-info
 
 //Get all namespaces on node
 # kubectl get namespaces    
@@ -89,6 +87,9 @@ kube-system       Active   4d8h
 
 // Logs of pod
 # kubectl logs <pod-name> -n <namespace>
+
+// Update image on pod
+
 ```
 
 <a name=cp></a>
