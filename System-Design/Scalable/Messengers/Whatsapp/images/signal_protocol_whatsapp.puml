@@ -1,0 +1,32 @@
+@startuml
+
+actor       Alice as alice
+participant Alice_Whatsapp as awa
+participant MessagingServer as ms
+participant Bob_Whatsapp as bwa
+actor       Bob as bob
+
+alice -> awa: Create account
+note over awa: Unique Id=PhoneNumber
+
+awa -> awa: Startup. Generate public,pvt keys=apub,apvt
+awa -> ms: Public key
+
+bwa -> bwa: Startup. Generate public key=bpub,bpvt
+bwa -> ms: Public key
+
+alice -> awa: Send Msg
+
+awa -> ms: Get Bob public key
+ms -> awa: bpub
+
+awa -> awa: encrypt Msg
+note over awa: 1. Encrypt Msg using apvt. apvt(Msg)\n2.Header=Encrypt apvt with bpub. bpub(apvt)
+
+awa -> bwa: Encrypted Msg.
+note over bwa: Msg[apvt(Msg)], Header[bpub(apvt)]
+bwa -> bwa: Decrypt.
+note over bwa:  Decrypt Header. Gets apvt\nDecrypt Msg using apvt
+
+
+@enduml
