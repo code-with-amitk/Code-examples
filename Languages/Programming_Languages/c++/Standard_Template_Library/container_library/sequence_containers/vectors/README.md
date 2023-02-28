@@ -10,6 +10,7 @@
   - [1 Element](#one)
   - [Delete Range](#r)
   - [Erase all](#erase)
+- [Merge](#merge)
 - Search/Print
   - [Min Element](#min)
   - [Max Element](#max)
@@ -104,6 +105,23 @@ cout<<v.at(3);            //terminate called after throwing an instance of 'std:
 ```cpp
 //void clear() noexcept
   v.clear();
+```
+
+<a name=merge></a>
+## Merge
+```cpp
+  using itr = std::vector<int>::iterator;
+  std::vector<int> v1 = {1, 3, 5, 7};
+  std::vector<int> v2 = {2, 4, 6, 8};
+
+  itr it1 = v1.begin();
+  itr it2 = v2.begin();
+  
+  /* OutputIt merge( InputIt1 first1, InputIt1 last1,
+                 InputIt2 first2, InputIt2 last2,
+                 OutputIt d_first );
+  */
+  std::merge(it1, v1.end(), it2, v2.end(), v1.begin());
 ```
 
 ## Search
