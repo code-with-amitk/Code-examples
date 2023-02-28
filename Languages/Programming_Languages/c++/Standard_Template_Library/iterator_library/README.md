@@ -8,6 +8,8 @@
   - [4. Bidirectional](#bi)
   - [5. Random Access](#ra)
   - [6. Continuous(C++17)](#types)
+- Examples
+  - [1. Merge 2 sorted vectors using iterator](#e1)
 
 
 ## Iterator
@@ -160,4 +162,11 @@ int main(){
 6 5 4 3 2 1
 1 3 5
 5
+```
+
+### Examples
+<a name=e1></a>
+#### 1. Merge 2 sorted vectors using iterator
+```cpp
+
 ```
