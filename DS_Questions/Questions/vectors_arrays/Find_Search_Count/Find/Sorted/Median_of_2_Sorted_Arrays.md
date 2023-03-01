@@ -43,10 +43,14 @@ public:
         if (merged.size() % 2 == 0) {
             // Even number of elements, median is average of middle two
             
+            // nth_element find element that should be at nth position in array
+            // it does not sorts the array, but find the element
+            // Complexity: O(n)
             std::nth_element(merged.begin(), merged.begin() + mid, merged.end());
             int a = merged[mid];
             std::nth_element(merged.begin(), merged.begin() + mid - 1, merged.end());
             int b = merged[mid - 1];
+            
             return (double)(a + b) / 2.0;
         } else {
             // Odd number of elements, median is middle element
