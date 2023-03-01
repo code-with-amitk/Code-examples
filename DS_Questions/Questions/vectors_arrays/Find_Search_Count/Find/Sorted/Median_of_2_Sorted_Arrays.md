@@ -1,5 +1,5 @@
 **Median of Two Sorted Arrays**
-- [Approach-1. Merge, Find Median. O(m+n)](#a1)
+- [Approach-1. Brute Force. Merge, Find Median. O(m+n)](#a1)
 
 ### [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
 - Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
@@ -17,7 +17,7 @@ Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
 ```
 
 <a name=a1></a>
-### Approach-1. Merge, Find Median. O(m+n)
+### Approach-1. Brute Force. Merge, Find Median. O(m+n)
 - Combine input vectors into 3rd vector.
 - if sizeof(created vector) is even, median=sum_of_2_middle_elements/2. Odd=middle_element
 #### Complexity
