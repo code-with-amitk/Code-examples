@@ -2,8 +2,12 @@
 - [1. Requirements](#req)
 - [2. BOE](#boe)
 - [3. APIs](#api)
-- [4. DB](#db)
-  - [What DBs Used](#wd)
+- _4. DB Schema_
+  - [DB Tables](#dbt)
+  - [All Tables in 1 DB or Multiple DBs(Having distributed tables)](#1orm)
+  - [SQL or NoSql or HDFS](#sn)
+- _Use cases_
+  - [1. Client sends Large Video/Image file](#u1)
 
 <a name=req></a>
 ### 1. Requirements
@@ -40,6 +44,7 @@
 ### 3. APIs
 - Whatsapp does not use REST APIs, rather it uses proprietary messaging protocol that is based on the **Signal Protocol**
 - **Why Signal protocol**
+  - This is Application layer protocol sitting over IP network.
   - This is designed as lightweight and optimized for mobile devices.
   - Contains additional features(such as message queuing, message retries, and message acknowledgments) that are not in REST APIs.
 
@@ -55,6 +60,7 @@
 - Push Notification Settings
 - Groups
 - contact list
+- Public,Pvt keys
 
 #### Relationship
 ```c
@@ -65,17 +71,32 @@ User 1----------* Groups
 User 1----------1 contact list
 ```
 
+<a name=dbt></a>
 #### DB Tables
 ```c
 // User Table
-| user_id(pk) | name | Phone_no | password | Profile picture | settings | etc |
+| user_id(pk) | username | Phone_no | password | Profile picture | settings | preferences | etc |
+
+// Contact table: Contains information about a user's contacts
+| contact_id(pk) | user_id(fk) | contact_phone_no | contact_display_name | status | last_seen |
+  - user_id: is the user who owns the contact
+  - status: Current status of contact he's online or offline
+  - last_seen: stores the timestamp of the last time the contact was seen online
+  
+// Public key table: Stores public key of registered users
+| key_id(pk) | user_id(fk) | public_key | key_type(RSA, Ecliptic curve) | key_status(Active,Revoked) |
+  - key_id: uniquely identify each public key record
+  - user_id:  identifies the user associated with the public key
+  - public_key: stores the actual public key for the user
+    => No need to save this encrypted but while sending use SSL/TLS so that its not tempered by MoM.
 
 // Messages Table: store information about each message
 | message_id(pk) | from_user_id(fk) | to_user_id(fk) | content_url | timestamp |
 Note:
  - content(audio, video) is stored on HDFS or Amazon S3
  - Server generates unique id which is stored here
- - When a recipient receives a message with an image or video, the WhatsApp server retrieves the file from the file storage system using the unique id & sends the file to the recipient's device.
+ - When a recipient receives a message with an image or video, the WhatsApp server retrieves the file from the file storage
+   system using the unique id & sends the file to the recipient's device.
 
 // Push Notification Settings Table: Store information about each user's push notification settings
 | notification_id(pk) | user_id(fk) | how_frequent_to_push | etc |
@@ -85,8 +106,46 @@ Note:
 
 // Contact list Table: store information about each user's contacts
 | contact_list_id(pk) | user_id(fk) | map <user_id, phone_no> | map <user_id, diplay_names> |
-
 ```
-<a name=wd></a>
-#### What databases Whatsapp uses to store data?
 
+<a name=1orm></a>
+#### All Tables in 1 DB or Multiple DBs(Having distributed tables)
+> It's a design decision. No hard and fast rule.
+##### All tables in 1 database
+- Simplify management and maintenance, reduce the overall complexity of the system
+- Easier to ensure consistency and integrity across all tables.
+- Easier to implement backups and disaster recovery.
+
+**Multiple DBs(Having distributed tables)**
+- _Storing Frequently accessed Tables(Eg: User, contact tables) in multiple DBs:_
+  - Reduce contention and improve overall response times by reducing the load on the main database and improving data access times
+  - When multiple applications or users are accessing the same database simultaneously, there can be contention for resources such as CPU, memory, and I/O. 
+- _Storing less frequently accessed tables(Eg:Public key table) in multiple DBs:_
+  - help reduce the overall size and complexity of the main database and make it easier to manage
+
+<a name=sn></a>
+#### SQL or NoSql or HDFS
+- User, contact, Public key on Postgres(SQL)
+- NoSQL(MongoDb):
+  - Storing chatlogs, media files, and message metadata
+- Hadoop HDFS(Distributed file systems): 
+  - To store and analyze large data sets
+
+### Use cases
+<a name=u1></a>
+#### 1. Client sends Large Video/Image file
+```c
+      Alice
+1GB > [converter] > MPEG/MP4
+                      \/
+                  [Fragementation]
+                      \/
+                  f1,f2..fn
+                      \/
+                  [Encrypt each fragment] < Alice Pvt key
+                      \/
+                            -----------Payload[f1]-------------->
+```
+<a name=u2></a>
+#### 2. Last Seen
+- Implemented using field last_seen in [contact table](#db).
