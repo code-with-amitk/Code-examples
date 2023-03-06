@@ -6,8 +6,14 @@
   - [DB Tables](#dbt)
   - [All Tables in 1 DB or Multiple DBs(Having distributed tables)](#1orm)
   - [SQL or NoSql or HDFS](#sn)
+- **5. HLD**
+  - [a. Alice send msg to Bob](#hld1)
+  - [b. Alice read Msg Feed](#hld2)
 - _Use cases_
   - [1. Client sends Large Video/Image file](#u1)
+  - [2. Last Seen](#u2)
+- Non-Fun Req
+  - [1. Scalable](#sca)
 
 <a name=req></a>
 ### 1. Requirements
@@ -15,6 +21,7 @@
 - User Authentication
 - Sender Send messages (txt, videos, Audio, Images)
 - Status display of Receipents (Online, Offline, last seen)
+- Read all messages(for user) when whatspp Mobile app is turned on.
 #### Non-Functional
 - Available
 - Fast
@@ -106,7 +113,21 @@ Note:
 
 // Contact list Table: store information about each user's contacts
 | contact_list_id(pk) | user_id(fk) | map <user_id, phone_no> | map <user_id, diplay_names> |
+
+// Presence Table:  Whenever phone comes online, it sends presence signal to Presence server to mark online
+| user phone number | bool present | expiry timestamp |
+
+// Rocksdb: Opensource nosql database for storing messages to be delivered to users which comes online long after
+| key = userPhoneNo | value = <[metadata = userid, device information, registration key][data = payload]>
 ```
+
+### 5. HLD
+#### a. Alice send msg to Bob
+
+
+#### b. Alice read msg feed
+
+
 
 <a name=1orm></a>
 #### All Tables in 1 DB or Multiple DBs(Having distributed tables)
@@ -149,3 +170,9 @@ Note:
 <a name=u2></a>
 #### 2. Last Seen
 - Implemented using field last_seen in [contact table](#db).
+
+### Non Functional Req
+<a name=sca></a>
+#### Scalable
+- _1. multipod:_ Application servers run on multiple pods(in different clusters) and can be scaled up whenever load occurs
+- _2. Caching:_ We need not to go to database for every query, Store frequently asked information in cache.
