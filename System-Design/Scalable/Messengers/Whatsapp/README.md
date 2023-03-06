@@ -19,9 +19,9 @@
 ### 1. Requirements
 #### Functional
 - User Authentication
-- Sender Send messages (txt, videos, Audio, Images)
+- [Sender Send messages (txt, videos, Audio, Images)](#hld1)
 - Status display of Receipents (Online, Offline, last seen)
-- Read all messages(for user) when whatspp Mobile app is turned on.
+- [Read all messages(for user) when whatspp Mobile app is turned on](#hld2)
 #### Non-Functional
 - Available
 - Fast
@@ -122,11 +122,11 @@ Note:
 ```
 
 ### 5. HLD
+<a name=hld1></a>
 #### a. Alice send msg to Bob
 
-
+<a name=hld2></a>
 #### b. Alice read msg feed
-
 
 
 <a name=1orm></a>
