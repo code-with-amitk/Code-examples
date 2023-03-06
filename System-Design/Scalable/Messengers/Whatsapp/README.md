@@ -119,6 +119,23 @@ Note:
 
 // Rocksdb: Opensource nosql database for storing messages to be delivered to users which comes online long after
 | key = userPhoneNo | value = <[metadata = userid, device information, registration key][data = payload]>
+
+//Routing DB: Stores routing information of user
+| userId/PhoneNo | IPAddress |
+
+// Message Db: Stores messages of users who are offline for long time and comes online after 10-15 days
+| Message Id | SenderId | RecipientId | Timestamp | MsgType | MsgContent | EncryptionKey | DeliveryStatus | ReadStatus | MetaData | userId(fk)
+  MessageId: Identifier of each message
+  SenderId: The user ID or phone number of the message sender
+  RecipientId:  user ID or phone number of the message recipient.
+  Timestamp: date and time when the message was sent or received
+  Message Type: The type of message (text, image, video, etc.)
+  Message Content: The actual content of the message, such as the text, image, or video file.
+  Encryption Key: If the message is encrypted, a key used to decrypt it
+  Delivery Status: A flag indicating whether the message has been delivered to the recipient
+  Read Status: A flag indicating whether the message has been read by the recipient
+  Metadata: Additional information about the message, such as its size, location, or sender/receiver device information
+  userId(fk): user-related actions such as message filtering, notifications, or archiving
 ```
 
 ### 5. HLD
