@@ -83,9 +83,9 @@ kube-system       Active   4d8h
 # kubectl get pods --namespace=default          
 
 // Detailed information of pod, image its running
-# kubectl describe pod <pod-name> -n <namespace> | grep Image:
+# kubectl describe pod <pod-name> -n <namespace> | grep Image
 
-// Logs of pod
+// LOGS OF POD
 # kubectl logs <pod-name> -n <namespace>
 
 // Update image on pod
