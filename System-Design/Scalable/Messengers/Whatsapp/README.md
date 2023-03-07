@@ -97,13 +97,16 @@ User 1----------1 contact list
   - public_key: stores the actual public key for the user
     => No need to save this encrypted but while sending use SSL/TLS so that its not tempered by MoM.
 
-// Messages Table: store information about each message
-| message_id(pk) | from_user_id(fk) | to_user_id(fk) | content_url | timestamp |
-Note:
+// Message DB: Stores messages of users who are offline for long time and comes online after 10-15 days
+| Message Id | SenderId | RecipientId | Timestamp | MsgType | MsgContent(Video URL) | EncryptionKey | DeliveryStatus | ReadStatus | MetaData | chunkid1,chunkid2..|
+
  - content(audio, video) is stored on HDFS or Amazon S3
  - Server generates unique id which is stored here
  - When a recipient receives a message with an image or video, the WhatsApp server retrieves the file from the file storage
    system using the unique id & sends the file to the recipient's device.
+ - MsgType
+  - Video: When MsgType=Video, Video Chunks are stored on Amazon S3 and chunk Id's are stored on Msg Table
+  - Audio
 
 // Push Notification Settings Table: Store information about each user's push notification settings
 | notification_id(pk) | user_id(fk) | how_frequent_to_push | etc |
