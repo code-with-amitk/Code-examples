@@ -1,12 +1,15 @@
-## S3(Simple Storage Service)
-- Each object has Metadata(name of the object, size and date) and object itself.
-- S3 has buckets(there are stored as per regions) for storing the objects. each bucket can have 100's of objects.
+**Amazon S3**
+
+### S3(Simple Storage Service)
+- S3 stores everything in buckets. each bucket can have 100's of objects
+- Example: There is 1 large Video, We will store Video chunks on S3.
 ```c
-  |          |    |          |
-  |o1 o3 o100|    |o7 o5 o239|
-  ------------    ------------
-    Bucket-1        Bucket-n
+  <key=bucket-id, Value=Video_url(or video)>
+      11, xyz
+      12, abc
+      ..
 ```
+
 - **S3 Storage classes**
 
 |Class|What|
