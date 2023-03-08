@@ -1,5 +1,6 @@
 - [SQL vs NoSQL](#sn)
-  - [SQL cannot be scaled Horizontally](#s1)
+  - [1. Why SQL cannot store Huge data?](#w1)
+  - [2. Why SQL cannot be scaled Horizontally?](#w2)
 - [Object vs Block vs File Storage](#obf)
 - [Database vs Datawarehouse](#dd)
 - **[IMDB / In Memory / Embedded DB](#i)**
@@ -15,14 +16,19 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 |Examples |Amazon(Aurora, RDS), MySQL, postgreSQL, mariaDB|Semistructured: Amazon (S3, dynamoDB), Apache Cassandra<br> Unstructured: Amazon S3, Apache CouchDB, MongoDB|
 |Types |ORDBMS(Object RDBMS):RDBMS build on OOD.Eg:PostGreSQL <br> RDBMS: mySQL|a. KEY-VALUE DB:<br> - redis, Amazon dynamoDB, Voldemort, sled(rust) <br> b. WIDE-COLUMN DB:<br> - Stores data as columns instead of rows. Eg: Cassandra, HBase <br> c. DOCUMENT DB: <br> - Data is stored in documents(XML, JSON, binary) Eg: mongoDB, Amazon dynamoDB. <br> d. GRAPH DB: <br> Data is stored in form of graph.Eg: Neo4J, HyperGraphDB| 
 |Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
-|Huge data support | no(becomes slow) | yes |
+|Huge data support | [no(becomes slow). Can store upto ~1TB](#w1) | yes |
 |Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
-|Scaling | [Vertical. No Horizontal](#s1) | Horizontal, cheaper, raw data can be pushed:no schema, pro |
+|Scaling | [Vertical. No Horizontal](#w2) | Horizontal, cheaper, raw data can be pushed:no schema, pro |
 |Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 |Schema | fixed | not fixed. defining schema for unstructured data is very tough |
 
-<a name=s1></a>
-#### 1. Why SQL cannot be scaled Horizontally?
+<a name=w1></a>
+#### 1. Why SQL cannot store Huge data?
+- _1. Limit on Table Size:_ if a Table grows beyond (1GB~1TB), queries becomes slow
+- _2. Backups, Replication slow:_ if a Table grows beyond (1GB~1TB), backups takes time
+
+<a name=w2></a>
+#### 2. Why SQL cannot be scaled Horizontally?
 - _1. Rigid Database Model:_ makes it difficult to break & distribute data on several nodes(scale horizontally)
 - _2. Transactions:_ SQL DB relies on transactions(locking entire row or table) which will be difficult on multiple nodes.
 - _3. Complex quries & joins:_ SQL db handles complex queries & joins across tables which is difficult on multiple nodes.
