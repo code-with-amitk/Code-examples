@@ -1,4 +1,4 @@
-- [Kubernets Objects](#ko)
+- [Kubernets, Resource & Objects](#ko)
   - Types of k8 objects
     - [1. configmap. kind: configmap](#cm)
     - [2. deployment. kind: deployment](#dep)
@@ -9,16 +9,41 @@
 - [Namespace](#ns)
 
 
-## [Kubernets Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
-A Kubernetes object always exist once we create them. k8 objects stores:
-- Containerized applications configuration, Resources available to those applications, Policies of those applications(restart,upgrades etc)
-### Types of k8 objects
+## [Kubernets Resources,Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+- **Kubernets Resource = C++ Class** Resource is a blueprint for creating objects.
+- **kubernets Object = C++ Object** is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
 
-<a name=cm></a>
-#### [1. ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
+### Types of k8 Resources
+#### 1. POD
+A basic unit of deployment in Kubernetes that runs one or more containers.
+
+#### 2. Services
+- In Kubernetes, Service/microservice = `logical set of Pods`.
+- Application is not aware to which pod its communicating, even at t=1 and t=n number of pods serving application(s) need maybe different.
+- Service exposes REST endpoints(eg: POST) & application interacts with service by calling these endpoints.
+##### Defining a service object = service-object-amit1
+  - Kubernetes will assign this Service a IP address/"cluster IP", which is used by the Service proxies
+  - The controller will scans all Pods, those matching selector POST/REST Requests are sent to them.
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-object-amit1
+spec:
+  selector:
+    app.kubernetes.io/name: MyApp   //Every pod has this label
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376        //Every pod listens on this TCP port
+```
+#### 3. Deployment
+A higher-level resource that manages the creation and scaling of replica sets, which in turn manage pods.
+#### 4. [1. ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
 - Object storing configuration of [POD](#ka)
 - Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
-#### Creating a configmap
+- A Kubernetes resource that stores configuration data in key-value pairs.
+##### Creating a configmap
 We can copy
 ```yaml
 # cat test.properties
@@ -46,48 +71,14 @@ data:
     worry=None
 ```
 
-<a name=dep></a>
-#### [2. Deployment. kind: deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
-Provide declrative updates for pods.
-```yaml
-//test.yaml
-apiVersion: apps/v1       #(Required) Which version of the Kubernetes API you're using to create this object
-kind: Deployment          #(Required) What kind of object you want to create
-metadata:                 #(Required) Data that helps uniquely identify the object
-  name: nginx-deployment
-spec:                     #(Required) What state you desire for the object
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2 # tells deployment to run 2 pods matching the template
-
-$ kubectl apply -f test.yaml
-```
-
-<a name=job></a>
-#### [3. Job, kind: Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
-- This object will create 1 or more pods and execute continously until job completes.
-- **Job Completion:** As job successful completes. Deletion of Job happens and clean up the Pods.
-- **Job suspention:** Suspending a Job will delete its active Pods until the Job is resumed again.
-- **Example job:** computes π to 2000 places and prints it out.
-```yaml
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: pi                #Name of Job
-spec:
-  template:
-    spec:
-      containers:
-      - name: pi
-        image: perl:5.34.0
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
-      restartPolicy: Never
-  backoffLimit: 4
-```
-
-<a name=rbac></a>
-#### [4. RBAC (Role-based Access Control)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
+#### [5. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
+- Object that contains a small amount of sensitive data such as a password, a token, or a key.
+- The other way is to put this sensitive data into application using configmap, but using a Secret means that you don't need to include confidential data in your application code
+- **Why secrets object?**
+  - Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
+#### 6. ClusterRole 
+Defines set of permissions or access control rules for resources across an entire Kubernetes cluster. it applies to all namespaces in the cluster.
+#### [7. RBAC (Role-based Access Control)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - Roles are provided to indivisual users in organization. These roles actually defines access to computer(or n/w resource) in organization.
 - We need to start apiserver with authorization-mode.
 ```c
@@ -132,34 +123,43 @@ roleRef:                                  # "roleRef" specifies the binding to a
   name: pod-reader                        # You need to already have a Role named "pod-reader" in that namespace.
   apiGroup: rbac.authorization.k8s.io
 ```
-
-<a name=sec></a>
-#### [5. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
-- Object that contains a small amount of sensitive data such as a password, a token, or a key.
-- The other way is to put this sensitive data into application using configmap, but using a Secret means that you don't need to include confidential data in your application code
-- **Why secrets object?**
-  - Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
-
-<a name=ser></a>
-#### 6. Services
-- In Kubernetes, Service/microservice = `logical set of Pods`.
-- Application is not aware to which pod its communicating, even at t=1 and t=n number of pods serving application(s) need maybe different.
-- Service exposes REST endpoints(eg: POST) & application interacts with service by calling these endpoints.
-##### Defining a service object = service-object-amit1
-  - Kubernetes will assign this Service a IP address/"cluster IP", which is used by the Service proxies
-  - The controller will scans all Pods, those matching selector POST/REST Requests are sent to them.
-```yml
-apiVersion: v1
-kind: Service
-metadata:
-  name: service-object-amit1
-spec:
+#### 8. ServiceAccount
+A resource that provides an identity for a pod or a set of pods to access other resources in the cluster.
+#### [9. Deployment. kind: deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+Provide declrative updates for pods.
+```yaml
+//test.yaml
+apiVersion: apps/v1       #(Required) Which version of the Kubernetes API you're using to create this object
+kind: Deployment          #(Required) What kind of object you want to create
+metadata:                 #(Required) Data that helps uniquely identify the object
+  name: nginx-deployment
+spec:                     #(Required) What state you desire for the object
   selector:
-    app.kubernetes.io/name: MyApp   //Every pod has this label
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 9376        //Every pod listens on this TCP port
+    matchLabels:
+      app: nginx
+  replicas: 2 # tells deployment to run 2 pods matching the template
+
+$ kubectl apply -f test.yaml
+```
+#### [11. Job, kind: Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+- This object will create 1 or more pods and execute continously until job completes.
+- **Job Completion:** As job successful completes. Deletion of Job happens and clean up the Pods.
+- **Job suspention:** Suspending a Job will delete its active Pods until the Job is resumed again.
+- **Example job:** computes π to 2000 places and prints it out.
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi                #Name of Job
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl:5.34.0
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+  backoffLimit: 4
 ```
 
 <a name=ns></a>
