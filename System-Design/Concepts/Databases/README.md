@@ -1,4 +1,6 @@
 - [SQL vs NoSQL](#sn)
+  - Why?
+  - [SQL cannot be scaled Horizontally](#s1)
 - [Object vs Block vs File Storage](#obf)
 - [Database vs Datawarehouse](#dd)
 - **[IMDB / In Memory / Embedded DB](#i)**
@@ -16,9 +18,17 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 |Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
 |Huge data support | no(becomes slow) | yes |
 |Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
-|Scaling | Vertical | Horizontal, cheaper, raw data can be pushed:no schema, pro |
+|Scaling | [Vertical](#s1) | Horizontal, cheaper, raw data can be pushed:no schema, pro |
 |Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 |Schema | fixed | not fixed. defining schema for unstructured data is very tough |
+
+#### Why
+<a name=s1></a>
+##### Why SQL cannot be scaled Horizontally?
+- _1. Rigid Database Model:_ makes it difficult to break & distribute data on several nodes(scale horizontally)
+- _2. Transactions:_ SQL DB relies on transactions(locking entire row or table) which will be difficult on multiple nodes.
+- _3. Complex quries & joins:_ SQL db handles complex queries & joins across tables which is difficult on multiple nodes.
+- _4. Replication:_ SQL Db does replication of data. Now when data is distributed this can be challenging.
 
 <a name=obf></a>
 ### Object vs Block vs File storage
