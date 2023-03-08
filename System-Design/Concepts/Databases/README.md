@@ -1,6 +1,6 @@
 - [SQL vs NoSQL](#sn)
   - Why?
-  - [SQL cannot be scaled Horizontally](#s1)
+    - [SQL cannot be scaled Horizontally](#s1)
 - [Object vs Block vs File Storage](#obf)
 - [Database vs Datawarehouse](#dd)
 - **[IMDB / In Memory / Embedded DB](#i)**
