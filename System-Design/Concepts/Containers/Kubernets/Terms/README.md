@@ -1,18 +1,21 @@
 - [Kubernets, Resource & Objects](#ko)
-  - Types of k8 objects
-    - [1. configmap. kind: configmap](#cm)
-    - [2. deployment. kind: deployment](#dep)
-    - [3. Job. kind: Job](#job)
-    - [4. RBAC](#rbac)
-    - [5. secrets. kind: secrets](#sec)
-    - [6. service. kind: service](#ser)
+  - Types of k8 Resources
+    - POD
+    - Services
+    - Deployment
+    - Configmap
+    - Secrets
+    - [ClusterRole](#cr)
+    - RBAC
 - [Namespace](#ns)
 
 
+<a name=ko></a>
 ## [Kubernets Resources,Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 - **Kubernets Resource = C++ Class** Resource is a blueprint for creating objects.
 - **kubernets Object = C++ Object** is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
 
+<a name=t></a>
 ### Types of k8 Resources
 #### 1. POD
 A basic unit of deployment in Kubernetes that runs one or more containers.
@@ -39,7 +42,7 @@ spec:
 ```
 #### 3. Deployment
 A higher-level resource that manages the creation and scaling of replica sets, which in turn manage pods.
-#### 4. [1. ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
+#### 4. [ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
 - Object storing configuration of [POD](#ka)
 - Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
 - A Kubernetes resource that stores configuration data in key-value pairs.
@@ -78,6 +81,21 @@ data:
   - Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
 #### 6. ClusterRole 
 Defines set of permissions or access control rules for resources across an entire Kubernetes cluster. it applies to all namespaces in the cluster.
+```yaml
+$ test.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:                       //Metadata of clusterRole
+  name: my-cluster-role
+  annotations:                  //Annotations: any number of key-value pairs, and can be used to provide additional context
+    my-annotation: "example"
+    namespace:     "test"
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+
+```
 #### [7. RBAC (Role-based Access Control)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
 - Roles are provided to indivisual users in organization. These roles actually defines access to computer(or n/w resource) in organization.
 - We need to start apiserver with authorization-mode.
