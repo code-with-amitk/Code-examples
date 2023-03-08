@@ -1,5 +1,5 @@
 **Find Leaves of Binary Tree**
-- [Approach-1. O(nlogn). Height of every Node, multimap](#a1)
+- [Approach-1. O(nlogn). DFS with Sorting = Height of every Node, multimap](#a1)
 
 ### [366. Find Leaves of Binary Tree](https://leetcode.com/problems/find-leaves-of-binary-tree/description/)
 - Given the root of a binary tree, collect a tree's nodes as if you were doing this:
@@ -20,7 +20,7 @@ Explanation:
 ```
 
 <a name=a1></a>
-### Approach-1. O(nlogn). Height of every Node, multimap
+### Approach-1. O(nlogn). DFS with Sorting = Height of every Node, multimap
 - Find height of everynode, store in multimap
 ```c
 [Height]
