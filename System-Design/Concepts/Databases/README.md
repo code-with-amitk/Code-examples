@@ -1,6 +1,5 @@
 - [SQL vs NoSQL](#sn)
-  - Why?
-    - [SQL cannot be scaled Horizontally](#s1)
+  - [SQL cannot be scaled Horizontally](#s1)
 - [Object vs Block vs File Storage](#obf)
 - [Database vs Datawarehouse](#dd)
 - **[IMDB / In Memory / Embedded DB](#i)**
@@ -22,9 +21,8 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 |Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 |Schema | fixed | not fixed. defining schema for unstructured data is very tough |
 
-#### Why
 <a name=s1></a>
-##### Why SQL cannot be scaled Horizontally?
+#### 1. Why SQL cannot be scaled Horizontally?
 - _1. Rigid Database Model:_ makes it difficult to break & distribute data on several nodes(scale horizontally)
 - _2. Transactions:_ SQL DB relies on transactions(locking entire row or table) which will be difficult on multiple nodes.
 - _3. Complex quries & joins:_ SQL db handles complex queries & joins across tables which is difficult on multiple nodes.
