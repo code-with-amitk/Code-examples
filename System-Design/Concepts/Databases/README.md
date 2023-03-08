@@ -18,7 +18,7 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 |Storage format | Table(Records searched using primary key) | <key, value> or xml or json or objects |
 |Huge data support | no(becomes slow) | yes |
 |Storage | May be on 1 or multiple servers | Always on multiple low cost nodes[commodity hardware] |
-|Scaling | [Vertical](#s1) | Horizontal, cheaper, raw data can be pushed:no schema, pro |
+|Scaling | [Vertical. No Horizontal](#s1) | Horizontal, cheaper, raw data can be pushed:no schema, pro |
 |Tech Support | Good, query-writing:simple | Poor, query-writing:complex |
 |Schema | fixed | not fixed. defining schema for unstructured data is very tough |
 
