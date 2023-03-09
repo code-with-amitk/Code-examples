@@ -32,6 +32,7 @@
   - [Remove commit after push](#rcap)
   - [Remote head refers to nonexistent ref](#rem)
   - [Merge Conflict](#mer)
+  - [Source branch is 12 commits behind target branch](#cb)
 - [**Actions**](#ac)
 
 <a name=vs></a>
@@ -405,6 +406,24 @@ test-repo$
 #### submit including parent
 - _Why?_ When parent of this commit is abandoned.
 - _Solution:_ Close, Open New.
+
+<a name=cb></a>
+#### Source branch is 12 commits behind target branch
+```c
+  source=amit_sdc                 target=master_sdc
+  
+$ git branch
+amit_sdc
+$ git pull              //pull all changes from amit_sdc
+
+$ git fetch origin master_sdc   //Download objects and refs from another repository
+
+$ git merge origin/master_sdc   //Merge 2 or more development histories together. ie amit_sdc, master_sdc
+
+$ git branch
+amit_sdc
+$ git push origin amit_sdc
+```
 
 <a name=ac></a>
 ## Actions
