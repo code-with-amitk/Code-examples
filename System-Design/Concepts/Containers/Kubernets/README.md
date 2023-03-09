@@ -3,7 +3,7 @@
   - [Master Node](#mn)
   - [Worker Node](#wn)
     - [Pod](#pod)
-- [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace](Terms)
+- [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace, Nodeport](Terms)
 - [Installing Kubernets](Install_Kubernets)
 - [Commands](#com)
   - [Connect to postgres pod](#cp) 
@@ -24,6 +24,8 @@
 <a name=ka></a>
 ## Kubernets Architecture
 <img src="/System-Design/Concepts/Containers/Kubernets/images/kubernets_architecture3.png" width=1200/>
+
+- 1 service can run on 2 Containers(jams-dbcreate, jams-server)
 
 <a name=mn></a>
 ### A. Master Node / Control Plane
