@@ -23,9 +23,9 @@
 
 <a name=ka></a>
 ## Kubernets Architecture
-<img src="/System-Design/Concepts/Containers/Kubernets/images/kubernets_architecture3.png" width=1200/>
+<img src="/System-Design/Concepts/Containers/Kubernets/images/kubernets_architecture4.png" width=1200/>
 
-- 1 service can run on 2 Containers(jams-dbcreate, jams-server)
+- **1 service can run on 2 Containers(jams-dbcreate, jams-server)**
 
 <a name=mn></a>
 ### A. Master Node / Control Plane
