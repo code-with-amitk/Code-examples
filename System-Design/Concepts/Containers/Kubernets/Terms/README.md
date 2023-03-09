@@ -8,6 +8,7 @@
     - [ClusterRole](#cr)
     - RBAC
 - [Namespace](#ns)
+- [Nodeport](#np)
 
 
 <a name=ko></a>
@@ -191,4 +192,25 @@ spec:
 ```c
 $ kubectl create namespace test                       //Creating new namespace
 $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
+```
+
+<a name=np></a>
+## Nodeport
+- When we create a NodePort service in Kubernetes, Kubernetes will dynamically allocate a port (in the range of 30000-32767) for a Application running container. Eg:30001
+- Then this port=30001 is mapped to targetPort=8080 internally.
+- **Why NodePort?** 2 Applications can use same internal ports. Eg: App1 uses 8080 & App2 uses 8080. And with NodePort both can be accessed using external port without port change on application level.
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: jams-server         //Application using Nodeport. Kubernets will assign an IP=30001
+spec:
+  selector:
+    app: my-app             //Run application on pods with Label = my-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080      //30001 is mapped to 8080 internally.
+
 ```
