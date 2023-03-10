@@ -3,6 +3,7 @@
 - [_2._ Smart Pointers](#sp)
   - [2a. Unique ptr](#up)
   - [2b. Shared ptr (Reference Counted. Multiple Owners Allowed)](#shp)
+    - [How shared_ptr is implemented internally?](#hsp)
 - _3. WEAK POINTER weak_ptr_
 
 
@@ -135,4 +136,43 @@ int main(){
   ptr1.reset();                               //Deleting ptr1
   //cout<<*ptr;                              //Segmentation Fault
 }
+```
+
+<a name=hsp></a>
+##### How shared_ptr is implemented internally?
+- shared_ptr maintains 2 things.
+```c
+  int reference_count;
+  T* data;                  //and a pointer to the object being shared
+```
+- Creation of shared_ptr: reference_count=1
+- On every new shared_ptr creation: reference_count++
+- Deletion/Reset: reference_count--
+```c
+template<typename T>
+class shared_ptr {
+    struct ControlBlock {   //stores a pointer to the object being shared (T* ptr_) and a reference count (int ref_count_).
+        T* ptr_;
+        int ref_count_;
+    };    
+    ControlBlock* data_;
+public:
+    shared_ptr(T* ptr) {
+        data_ = new ControlBlock;
+        data_->ptr_ = ptr;
+        data_->ref_count_ = 1;
+    }
+    
+    shared_ptr(const shared_ptr& other) {
+        data_ = other.data_;
+        data_->ref_count_++;
+    }
+    
+    ~shared_ptr() {
+        if (--data_->ref_count_ == 0) {
+            delete data_->ptr_;
+            delete data_;
+        }
+    }    
+};
 ```
