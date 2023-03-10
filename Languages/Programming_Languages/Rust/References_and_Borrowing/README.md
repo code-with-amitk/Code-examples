@@ -15,7 +15,9 @@
 
 <a name="bow"></a> 
 ## Borrowing = Reference (&var)
-- **What?** Means passing the reference of a variable. Borrowing means that needed to be returned(we cannot change).
+- Means passing the reference of a variable.
+  - **Mutable Reference/Mutable Borrow:** Allow the borrower to modify the data.
+  - **Immutable Reference:** Donot allow the borrower to modify the data.
 ```rust
 fn print( a : &Vec<i32>) {
   println!("{}"a.len());            //1
