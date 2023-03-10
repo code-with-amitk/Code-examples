@@ -111,7 +111,7 @@ fn fun() -> i32 {
 
 <a name="own"></a>
 ### Ownership
-- Means code/variable owns a memory and is allowed to free it.
+- Variable or data can have single owner at a time. When a value is assigned to a variable, that variable becomes the owner of the value. When the owner goes out of scope, Rust automatically deallocates the memory used by the value.
 - **Memory management approaches**
   - _1._ Some languages have garbage collection(java,python,ruby) that constantly looks for no longer used memory as the program runs 
   - _2._ C,C++ the programmer must explicitly allocate and free the memory.
