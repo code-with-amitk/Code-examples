@@ -2,7 +2,7 @@
 - _1._ Raw/Normal
 - [_2._ Smart Pointers](#sp)
   - [2a. Unique ptr](#up)
-  - [2b. Shared ptr](#shp)
+  - [2b. Shared ptr (Reference Counted. Multiple Owners Allowed)](#shp)
 - _3. WEAK POINTER weak_ptr_
 
 
