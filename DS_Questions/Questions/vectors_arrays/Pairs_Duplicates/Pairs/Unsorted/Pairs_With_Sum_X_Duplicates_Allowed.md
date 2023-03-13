@@ -1,6 +1,10 @@
 **Two Sum / Pair with Sum of X**
 - [Approach-1, O(n^2), Brute Force](#a1)
 - [Approach-2, HashTable](#a2)
+  - [Logic](#l)
+  - Code
+    - [CPP](#cpp)
+    - [Rust](#rs)
 - **Multithreaded**
   - [1. lock_guard = mutex](#m1)
   - [2. condition_variable = semaphore](#m2)
@@ -34,6 +38,8 @@ Use 2 for loops iterate over element, find duplicate
 #### Complexity
 Time:O(n), Space:O(n)
 #### Code
+<a name=cpp></a>
+**CPP**
 ```cpp
 #include<iostream>
 #include<vector>
@@ -66,6 +72,30 @@ int main(){
     cout << o[0] << "," << o[1] << "\n";
 }
 ```
+<a name=rs></a>
+**Rust**
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut hm = HashMap::new();
+
+        // Iterate through each element and find in HashMap
+        for (idx, num) in nums.into_iter().enumerate() {
+            match hm.get(&(target - num)) {
+                Some (a) => {
+                    return vec![*a as i32, idx as i32]
+                },
+                None => {
+                    hm.insert(num, idx);
+                },
+            }
+        }
+        unreachable!()
+    }
+}
+```
+
 
 ### Multithreaded
 <a name=m1></a>
