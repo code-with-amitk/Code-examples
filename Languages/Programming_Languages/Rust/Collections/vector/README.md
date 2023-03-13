@@ -70,6 +70,14 @@ OR
 ### Access
 <a name=itr></a>
 ### [Using iterator](/Languages/Programming_Languages/Rust/Iterators)
+```rs
+let v = vec![3,2,4];
+//idx= index    0,1,2
+//num= number   3,2,4
+for (idx, num) in v.into_iter().enumerate() {
+  println("index={}, value={}", idx, num);
+}
+```
 
 <a name=ind></a>
 #### Using index
