@@ -3,8 +3,9 @@
   - [2d vector](#2d)
 - [Initialize](#init)
 - [Update](#update)
-- Access
-  - [using iterator](#itr)
+- Access, Iterate
+  - [into_iter()](#itr)
+  - [Using for loop syntax](#fls)
   - [using index](#ind)
 - [length of vector](#len)
 - _last element_
@@ -81,15 +82,24 @@ OR
     }
 ```
 
-### Access
+### Access, Iterate
 <a name=itr></a>
-### [Using iterator](/Languages/Programming_Languages/Rust/Iterators)
+### [into_iter()](/Languages/Programming_Languages/Rust/Iterators)
 ```rs
 let v = vec![3,2,4];
-//idx= index    0,1,2
-//num= number   3,2,4
 for (idx, num) in v.into_iter().enumerate() {
   println("index={}, value={}", idx, num);
+}
+index=0, value=3
+index=1, value=2
+index=2, value=4
+```
+
+<a name=fls></a>
+#### Using for loop syntax
+```rs
+for i in &vec {
+  prinln!("{}", i);
 }
 ```
 
