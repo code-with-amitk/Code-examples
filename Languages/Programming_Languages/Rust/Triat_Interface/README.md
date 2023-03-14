@@ -11,6 +11,7 @@
       - [1.2 Using where clause](#usingplus)
 - **Traits provided by Standard library**
   - [Clone](#clone)
+  - [Copy](#copy)
   - [Default](#di)
   - [Drop = Destructor](#dr)
   - Fn, FnMut, or FnOnce, Dref
@@ -173,7 +174,7 @@ pub fn test<T, U>(t: &T, u: &U) -> i32
 - Clone is used for types which need to be explicitly duplicated(Eg complex data structures like vectors and strings). 
 - Cloning creates a new instance of the value, with its own memory on the heap. This allows the original and the cloned value to have separate memory, and any changes made to one value will not affect the other.
 
-<a name=clone></a>
+<a name=copy></a>
 #### Copy Trait
 - Copy Trait is only implemented for types that copied safely BITWISE. Eg: float, int etc
 - Copy Triat is not implemented for vector. if we create a copy of vector, then there would be 2 owners of same data which voilates [Rust ownership Rule](/Languages/Programming_Languages/Rust#own)
