@@ -1,3 +1,4 @@
+**Vector**
 - [Create, Initialize](#cin)
   - [2d vector](#2d)
 - [Initialize](#init)
@@ -15,9 +16,22 @@
 - [Store enum in vector](enumvec)
 
 
-## [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
-- Same as in C++, Storing more than 1 value of same type contigously in memory. Remember All collections are allocated on HEAP.
+## [vec or Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
+- Same as in C++, Storing more than 1 value of same type contigously in memory. Remember All collections are **allocated on HEAP**.
 - Stack is implemented using vector in rust
+- **How vector is internally implemented in Rust?**
+```rs
+- All parts are stored together
+struct Vec {
+  length: u32,            //Present size of vector
+  ptr: RefCell,           //Pointer to allocate Memory on Heap
+  capacity: u32,          //Max size vector can hold, after this vector need to be resized/reallocated
+}
+
+- In C++: Same but 3 items can be stored seperately
+```
+- **Copy trait not implemented for vector?**
+  - Copy Trait is only implemented for types that copied safely BITWISE. if we create a copy of vector, then there would be 2 owners of same data which voilates [Rust ownership Rule](/Languages/Programming_Languages/Rust#own). But vector implements [Clone Trait](/Languages/Programming_Languages/Rust/Triat_Interface/README.md#clone).
 
 <a name=cin></a>
 ### Create, Initialize
