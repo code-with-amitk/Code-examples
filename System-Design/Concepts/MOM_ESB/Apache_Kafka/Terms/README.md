@@ -23,9 +23,16 @@
 - Registers/Subscribes to a Topic and reads messages as they become available.
 - Consumers can read messages from any Partition they choose.
 
+
 #### Consumer Group (For Scalability & Fault Tolerance)
-- Consumer group is a group of consumers which are intrested in 1 topic.
-- 1 consumer is responsible for reading 1 partition only.
+- Kafka consumers are separate physical nodes & each consumer is identified by a unique consumer ID within kafka.
+- Consumer Group is a information that is stored on `special topic=__consumer_offsets` with in kafka broker.
+- Consumer Group is group of consumers which are intrested in 1 topic.
+- 1 consumer reads 1 partition
+- **topic="__consumer_offsets"**
+  - This is a special topic stores all information of consumers of a group.
+  - It maintain committed offsets, consumes messages, consumerId etc.
+- Kafka provides **scalable and fault-tolerant** using this.
 - **Advantages of approach?** By using consumer groups, consumers can be parallelized so that multiple consumers can read from multiple partitions on a topic, allowing a very high message processing throughput.
 
 <a name=hwm></a>
