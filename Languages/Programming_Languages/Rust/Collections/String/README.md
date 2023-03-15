@@ -24,8 +24,8 @@ let a:string = "test";
 ```
 
 <a name=vs></a>
-### str vs String
-||str(String Slice or Reference)|String|
+### &str vs String
+||&str(String Slice or Reference)|String|
 |---|---|---|
 |What|Part of string `string[starting_index, ending_index)`||
 |Mutable(changable)| no(Cannot grow) | yes(Can grow) |
