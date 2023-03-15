@@ -27,6 +27,6 @@ while(1){
   - _2. Analytics and stream processing:_ Applications sends real-time usage information to Kafka Topics. Data analytics tools can be added on top of the target data store.
   - _3. Log Aggregation:_ Application provides logs to Kafka topics, which sends them to log management applications(eg ElasticSearch, Logstash, Kibana)
 
-<img src=images/kafka1.png width=1300/>
+<img src=images/kafka3.png width=1300/>
 
 
