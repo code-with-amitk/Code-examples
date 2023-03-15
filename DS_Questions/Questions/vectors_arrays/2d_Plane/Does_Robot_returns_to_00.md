@@ -1,3 +1,6 @@
+**Robot Bounded In Circle**
+- [Approach-1. Limit Cycle Trajectory](#a1)
+
 ## [Robot Bounded In Circle](https://leetcode.com/problems/robot-bounded-in-circle/)
 - On an infinite plane, a robot initially stands at (0, 0) and faces north. The robot can receive one of 3 instructions:
 - "G":Go straight 1 unit; "L":Turn 90 degrees to the left; "R":Turn 90 degrees to the right.
@@ -33,16 +36,18 @@ Explanation: The robot moves from (0, 0) -> (0, 1) -> (-1, 1) -> (-1, 0) -> (0, 
   - If robot returns to the initial point(0,0) after one cycle, that's the limit cycle trajectory.
   - If the robot does not face north at the end of the first cycle, that's the limit cycle trajectory.
 
+<a name=a1></a>
 ### Approach    //Identify Limit Cycle Trajectory
-- **Logic**
+#### Logic
   - *1.* Take 4 points identifying the directions N=(0,1), E=(1,0), S=(0,-1), W=(-1,0)
   - *2.* Take variable `face` which tells about position of robot. N=0,E=1,S=2,W=3
   - *3.* Take x=0,y=0 identifying the position of robot. Initially at 0,0.
   - *4.* Iterate through input string and change x,y coordinates as per values in input string.
-- **Complexity?**
-  - **Time:** O(n). Passing thru string only once
-  - **Space:** [O(1)](/DS_Questions). We have allocated 4x4 vector and using it all times.
-- **Code**
+#### Complexity?
+- **Time:** O(n). Passing thru string only once
+- **Space:** [O(1)](/DS_Questions). We have allocated 4x4 vector and using it all times.
+#### Code
+**CPP**
 ```c++
 bool isRobotBounded(string instructions) {
 /*
