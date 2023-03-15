@@ -1,7 +1,6 @@
 - **string literal, type, slice (or str)**
-  - [Compared](#vs)
-  - [str](#s1)
-  - [String](#s2)
+  - [String Literal](#sl)
+  - [str vs String](#vs)
 - **Operations**
   - [Create](#cre)
   - [Concatenate](#con)
@@ -16,53 +15,22 @@
 ## string literal, String, String slice(or str)
 - String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
 
-<a name=vs></a>
-### str vs String
+<a name=sl></a>
+### String literal
 - Both have different ownership and mutability characteristics.
 - **String literal:** string local variable, stored on stack
 ```rs
 let a:string = "test";
 ```
 
+<a name=vs></a>
+### str vs String
 ||str(String Slice or Reference)|String|
 |---|---|---|
 |What|Part of string `string[starting_index, ending_index)`||
 |Mutable(changable)| no(Cannot grow) | yes(Can grow) |
 |How created|<ul><li>1. Using String Literal `let s = "test";`</li><li>or 2. Convert bytes to str</li></ul>|<ul><li>let mut s = String::from("he");</li><li>s.push_str(", world!");</li></ul>|
 |Allocated on| Data Segment(String is nothing but bytes) | Heap | 
-
-```c
-               |          What                         |        Example                 |   Stored on  |
----------------|---------------------------------------|--------------------------------|--------------|--
-string slice   | Reference to part of a String         | let s = "T11 is Consistency";  |
-(or str)         string[starting_index, ending_index)  | let a = &s[0..3];  //T11
-                 
-String         | Allocated on heap and can grow        | let mut s = String::from("he");
-                                                       | s.push_str(", world!");
-                                                       | println!("{}", s);                 
-```
-<a name=s1></a>
-### str
-- str is [Immutable Reference](/Languages/Programming_Languages/Rust). Immutable means which cannot be changed.
-
-<a name=s2></a>
-### String
-string is growable, mutable, owned, UTF-8 encoded string type. string allocated on heap is shallow copy
-```rs
-  let s1:String = String::from("test");
-  //let s2 = s1;                              //Shallow copy, ie s2,s1 both point to same memory. COMPLIER ERROR
-  let s2 = s1.clone();                        //Deep Copy. Deep copy is costly operation.
-  
-  let a:i32 = 5;
-  let b = a;                                  //Data on stack is always deep copied
-```
-Its not allow to index into a String to get a character is that indexing operations because some [UTF-8](/Languages/Programming_Languages/C/Character_Sets/) characters are formed more than 1 byte. Eg: characters from 127-159 are used for creating characters using shift,cntrl keys. With string rust cannot determine exact sizeof string.
-```rust
-  let hello = "Здравствуйте";                 
-  let answer = &hello[0];                   //Complilation error
-  
-  let answer = &hello[0..4];                //Allowed
-```
 
 ## Operations
 <a name=cre></a>
