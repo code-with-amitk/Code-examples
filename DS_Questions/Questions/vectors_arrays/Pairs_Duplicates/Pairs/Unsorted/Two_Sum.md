@@ -1,6 +1,6 @@
 **Two Sum / Pair with Sum of X**
 - [Approach-1, O(n^2), Brute Force](#a1)
-- [Approach-2, HashTable](#a2)
+- [Approach-2, HashMap](#a2)
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
