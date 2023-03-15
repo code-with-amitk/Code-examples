@@ -25,10 +25,11 @@
 
 
 #### Consumer Group (For Scalability & Fault Tolerance)
-- Kafka consumers are separate physical nodes & each consumer is identified by a unique consumer ID within kafka.
-- Consumer Group is a information that is stored on `special topic=__consumer_offsets` with in kafka broker.
-- Consumer Group is group of consumers which are intrested in 1 topic.
-- 1 consumer reads 1 partition
+- Kafka consumers are separate physical nodes which want to read messages.
+- Internally inside kafka each consumer is identified by a unique consumer ID and other attributes.
+- Consumer informations is stored in Consumer Group.
+- A Consumer Group is group consumers which are intrested in 1 topic.
+- 1 consumer reads 1 partition only
 - **topic="__consumer_offsets"**
   - This is a special topic stores all information of consumers of a group.
   - It maintain committed offsets, consumes messages, consumerId etc.
