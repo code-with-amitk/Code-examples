@@ -17,12 +17,23 @@
 - String and string slices are [UTF-8 encoded](/Languages/Programming_Languages/C/Character_Sets/)
 
 <a name=vs></a>
-### Compared
+### str vs String
+- Both have different ownership and mutability characteristics.
+- **String literal:** string local variable, stored on stack
+```rs
+let a:string = "test";
+```
+
+||str(String Slice or Reference)|String|
+|---|---|---|
+|What|Part of string `string[starting_index, ending_index)`||
+|Mutable(changable)| no(Cannot grow) | yes(Can grow) |
+|How created|<ul><li>1. Using String Literal `let s = "test";`</li><li>or 2. Convert bytes to str</li></ul>|<ul><li>let mut s = String::from("he");</li><li>s.push_str(", world!");</li></ul>|
+|Allocated on| Data Segment(String is nothing but bytes) | Heap | 
+
 ```c
                |          What                         |        Example                 |   Stored on  |
 ---------------|---------------------------------------|--------------------------------|--------------|--
-string literal | string local variable                 | let a:string = "test";         |   Stack     
-
 string slice   | Reference to part of a String         | let s = "T11 is Consistency";  |
 (or str)         string[starting_index, ending_index)  | let a = &s[0..3];  //T11
                  
