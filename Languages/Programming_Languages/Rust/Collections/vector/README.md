@@ -5,6 +5,7 @@
 - [Update](#update)
 - Access, Iterate
   - [into_iter()](#itr)
+    - [into_iter().enumerate()](#intoe)
   - [Using for loop syntax](#fls)
   - [using index](#ind)
 - [length of vector](#len)
@@ -84,7 +85,21 @@ OR
 
 ### Access, Iterate
 <a name=itr></a>
-### [into_iter()](/Languages/Programming_Languages/Rust/Iterators)
+#### [into_iter()](/Languages/Programming_Languages/Rust/Iterators)
+- This function consumes the vector and produce an iterator that takes [ownership](../../) of each element in the vector. Taking Ownership means original vector is consumed and can no longer be used.
+- That means elements are moved, rather of being copied.
+- `into_iter()` returns an iterator that produces each element of the vector in turn.
+```rs
+let vec = vec![1, 2, 3];
+for i in vec.into_iter() {
+    // i takes ownership of each element in vec
+    println!("{}", i);
+}
+// vec is consumed and can no longer be used here
+```
+<a name=intoe></a>
+##### into_iter().enumerate()
+- enumerate() method is used on iterators to produce an iterator that yields tuples containing the index and the value of each element.
 ```rs
 let v = vec![3,2,4];
 for (idx, num) in v.into_iter().enumerate() {
