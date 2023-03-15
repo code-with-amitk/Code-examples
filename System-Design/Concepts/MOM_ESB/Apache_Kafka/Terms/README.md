@@ -32,8 +32,11 @@
 - **topic="__consumer_offsets"**
   - This is a special topic stores all information of consumers of a group.
   - It maintain committed offsets, consumes messages, consumerId etc.
-- Kafka provides **scalable and fault-tolerant** using this.
-- **Advantages of approach?** By using consumer groups, consumers can be parallelized so that multiple consumers can read from multiple partitions on a topic, allowing a very high message processing throughput.
+- **Scalability & fault-tolerant using Consumer Group**
+  - Consumer1 reads from Partition1
+  - Consumer2 reads from Partition2
+  - Along with consumer offset, Topic offset is maintained.
+  - Consumer1 does not need to read Partition2 and viceversa.
 
 <a name=hwm></a>
 ### High-water mark
