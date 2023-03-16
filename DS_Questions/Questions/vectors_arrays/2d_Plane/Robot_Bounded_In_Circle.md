@@ -72,8 +72,8 @@ start Direction=N
 class Solution {
 public:
     bool isRobotBounded(string instructions) {
-        pair<int,int> direction = {0,1};
-        pair<int,int> position = {0,0};     //Starting Direction=North
+        pair<int,int> direction = {0,1};     //Starting Direction=North
+        pair<int,int> position = {0,0};
 
         for (auto &i:instructions) {
             switch (i) {
@@ -98,10 +98,12 @@ public:
                         R. New Direction=West. x=y, y=-x    (-1,0)
                         R. New Direction=North. x=y, y=-x   (0,1)
                 */
+                    // x = -y,  y = x
                     direction = {-direction.second , direction.first};
                     break;
                 }
                 case 'R':{
+                    // x = y,  y = -x
                     direction = {direction.second, -direction.first};
                     break;
                 }
