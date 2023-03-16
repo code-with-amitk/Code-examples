@@ -64,54 +64,76 @@ start Direction=N
 
 #### Complexity
 - **Time:** O(n). Passing thru string only once
-- **Space:** [O(1)](/DS_Questions). We have allocated 4x4 vector and using it all times.
-
+- **Space:** [O(1)](/DS_Questions).
 #### Code
 <a name=cpp></a>
 **CPP**
 ```cpp
-bool isRobotBounded(string instructions) {
+class Solution {
+public:
+    bool isRobotBounded(string instructions) {
+        pair<int,int> direction = {0,1};
+        pair<int,int> position = {0,0};     //Starting Direction=North
+
+        for (auto &i:instructions) {
+            switch (i) {
 /*
               N(0,1)
     W(-1,0)    0,0     E(1,0)
               S(0,-1)
 */
-  vector<vector<int>> direction = {                             //1
-    {0,1},  //N
-    {1,0},  //E
-    {0,-1}, //S
-    {-1,0}  //W
-  };
-/*
-             N(face=0)
-   W(face=3)           E(face=1)
-             S(face=2)
-*/
-  int face = 0;           //Robot Facing North                 //2
-  
-  int x = 0, y = 0;       //Initial position of robot          //3
-        
-  for (auto i : instructions) {                                //4
-    if (i == 'L')
-      face = (face + 3) % 4;
-    else if (i == 'R')
-      face = (face + 1) % 4;
-    else {
-      x += direction[face][0];
-      y += direction[face][1];   
-    }    
-  }
-        
-  //After 1 cycle, robot returned to 0,0
-  if(x == 0 && y == 0)
-    return true;
-        
-  //After 1 cycle, robot does not face north
-  if(face != 0)
-    return true;
-        
-  return false;
-}
+                case 'L':{
+                /*
+                             N (0,1)
+                    W(-1,0)             E(1,0)
+                            S(0,-1)
+                  present Direction N(x=0,y=1)
+                        L. New Direction=West. x=-y, y=x    (-1,0)
+                        L. New Direction=South. x=-y, y=x   (0,-1)
+                        L. New Direction=East. x=-y, y=x   (1,0)
+                        L. New Direction=North. x=-y, y=x   (0,1)
+                    present Direction N(x=0,y=1)
+                        R. New Direction=East. x=y, y=-x    (1,0)
+                        R. New Direction=South. x=y, y=-x   (0,-1)
+                        R. New Direction=West. x=y, y=-x    (-1,0)
+                        R. New Direction=North. x=y, y=-x   (0,1)
+                */
+                    direction = {-direction.second , direction.first};
+                    break;
+                }
+                case 'R':{
+                    direction = {direction.second, -direction.first};
+                    break;
+                }
+                case 'G':{
+                /*
+                        New Position = old_position + direction
+                        postition = (0,0).
+                            Dir=N. G.    = (0,0)+(0,1) = 0,1
+                        L
+                        postition = (0,1).
+                            Dir=L. G.    = (0,1)+(-1,0) = -1,1
+                        R
+                        postition = (-1,1).
+                            Dir=R. G.    = (-1,1)+(0,1) = -1,2
+
+                */
+                    position = {position.first + direction.first, 
+                                position.second + direction.second};
+                    break;
+                }
+                default:
+                    continue;
+            }
+        }
+        cout << "position.0 " << position.first << ",position.1 " << position.second <<"\n";
+        if (position.first == 0 && position.second == 0)
+            return true;
+        else if (direction.first != 0 || direction.second != 1)
+            return true;
+        return false;
+    }
+};
 ```
 <a name=rs></a>
 **Rust**
