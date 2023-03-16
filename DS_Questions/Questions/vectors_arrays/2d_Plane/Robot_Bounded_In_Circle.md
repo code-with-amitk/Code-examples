@@ -1,5 +1,10 @@
 **Robot Bounded In Circle**
 - [Approach-1. Add Direction to position. O(n)](#a1)
+  - [Logic](#l)
+  - [Complexity](#c)
+  - Code
+    - [CPP](#cpp)
+    - [Rust](#rs)
 
 ## [1041. Robot Bounded In Circle](https://leetcode.com/problems/robot-bounded-in-circle/)
 - On an infinite plane, a robot initially stands at (0, 0) and faces north. The robot can receive one of 3 instructions:
@@ -62,6 +67,7 @@ start Direction=N
 - **Space:** [O(1)](/DS_Questions). We have allocated 4x4 vector and using it all times.
 
 #### Code
+<a name=cpp></a>
 **CPP**
 ```cpp
 bool isRobotBounded(string instructions) {
@@ -107,6 +113,7 @@ bool isRobotBounded(string instructions) {
   return false;
 }
 ```
+<a name=rs></a>
 **Rust**
 ```rs
 impl Solution {
