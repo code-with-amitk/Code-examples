@@ -6,6 +6,8 @@
     - [CPP](#cpp)
     - [Rust](#rs)
 
+## [Self Video](https://youtu.be/0bkQJuLlUI0)
+
 ## [1041. Robot Bounded In Circle](https://leetcode.com/problems/robot-bounded-in-circle/)
 - On an infinite plane, a robot initially stands at (0, 0) and faces north. The robot can receive one of 3 instructions:
 - "G":Go straight 1 unit; "L":Turn 90 degrees to the left; "R":Turn 90 degrees to the right.
