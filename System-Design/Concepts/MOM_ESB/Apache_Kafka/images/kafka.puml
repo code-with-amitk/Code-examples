@@ -1,0 +1,132 @@
+@startuml kafka
+allowmixing
+package "Producer" as pro {
+}
+
+package "Kafka Cluster" as kc {
+  package "Broker2(master)" as bm2{ }
+  package "Broker1(master)"{
+    package Partition1 as p1 {
+      package "topic = Orders"{
+        json Message_Toy1 {
+            "name":"Car",
+            "Id":"124",
+            "customer_name": "amit",
+            "customer_address": "213 Town Asia"
+        }
+        json Message_Toy2 {
+            "name":"Bus",
+            "Id":"-",
+            "customer_name": "-",
+            "customer_address": "-"
+        }
+        rectangle "Messages"{
+          rectangle "Msg1" as m1
+          rectangle "Msg2" as m2
+          m1 -> m2
+          rectangle "Msg3" as m3
+          m2 -> m3
+        }
+      }
+    }
+    package Partition2 as p2{
+      package "topic = Orders_" as to1{
+        json Message_Mobile1 {
+            "product":"RedMi Note 4",
+            "Id":"-",
+            "customer_name": "_",
+            "customer_address": "--"
+        } 
+        json Message_Mobile2 {
+            "product":"Samsung Pro",
+            "Id":"--",
+            "customer_name": "---",
+            "customer_address": "----"
+        }
+        rectangle "Messages"{
+          rectangle "Msg5" as m5
+          rectangle "Msg6" as m6
+          m5 -> m6
+          rectangle "Msg7" as m7
+          m6 -> m7
+        }
+      }
+    }
+    package Partition_n as pn{
+      package "Topic=__consumer_offsets" as conf{
+        object Consumer_Group {
+          <#lightblue,#black>|=  ConsumerName  |=  Id  |=  Topic |=  Committed_Offset  |=  State  |
+          <#white>|  Consumer1  |  uid1  | Orders | Read_till_Msg1 | Alive |
+          <#white>|  Consumer2  |  uid2  | Orders | Read_till_Msg6 | Alive |
+        }
+        rectangle "topic_orders_offset"{
+          rectangle "Read till Message 6"
+        }
+      }
+    }
+  }
+}
+note bottom of Consumer_Group
+<b>CONSUMER GROUP
+Kafka consumers are separate physical nodes which want to read messages.
+Internally inside kafka each consumer is identified by a unique consumer ID and other attributes.
+Consumer informations is stored in Consumer Group.
+A Consumer Group is group consumers which are intrested in 1 topic.
+1 Consumer will read 1 paritition only.
+
+<b>Scalability & fault-tolerant using Consumer Group
+Consumer1 reads from Partition1
+Consumer2 reads from Partition2
+Along with consumer offset, Topic offset is maintained.
+Consumer1 does not need to read Partition2 and viceversa.
+end note
+
+note bottom of Consumer_Group
+<b>"topic=__consumer_offsets"
+
+This is a special topic stores all information of consumers of a group.
+It maintain committed offsets, consumes messages, consumerId etc.
+end note
+
+note top of kc
+Kafka cluster contains multiple Brokers.
+Kafka is multimaster system. No node is slave
+end note
+
+note top of kc
+<b>PARTITION
+This is NOT Disk partition
+Partition stores topics.
+{1 Partition=1 Topic} 1 partition cannot contains 2 topics.
+end note
+
+note top of kc
+<b>TOPIC
+Topic is collection of same type of Messages(stored in ordered fashion).
+Topics are stored in Partitions.
+<size:16><b>Offset:</size> Postition of message inside Partition.
+<b>1 Topic can be stored on Multiple partitions.
+end note
+
+note top of pn
+
+Each partition of "__consumer_offsets" stores offset for specific consumer group.
+end note
+
+note bottom of m1 #LightCoral
+<b>Consumer1 reading Partition1
+
+Consumer1 offset=m1
+end note
+
+note bottom of m6 #LightCoral
+<b>Consumer2 reading Partition2
+
+Consumer2 offset=m6
+end note
+
+/'For Top to down layout of packages'/
+p1 -[hidden]-> p2
+p2 -[hidden]-> pn
+
+@enduml
