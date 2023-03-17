@@ -17,11 +17,11 @@
 - **kubernets Object = C++ Object** is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
 
 <a name=t></a>
-### Types of k8 Resources/Objects
-#### 1. POD
+## Types of k8 Resources/Objects
+### 1. POD
 A basic unit of deployment in Kubernetes that runs one or more containers.
 
-#### 2. Services
+### 2. Services
 - In Kubernetes, Service/microservice = `logical set of Pods`.
 - Application is not aware to which pod its communicating, even at t=1 and t=n number of pods serving application(s) need maybe different.
 - Service exposes REST endpoints(eg: POST) & application interacts with service by calling these endpoints.
@@ -41,9 +41,11 @@ spec:
       port: 80
       targetPort: 9376        //Every pod listens on this TCP port
 ```
-#### 3. Deployment
+
+### 3. Deployment
 A higher-level resource that manages the creation and scaling of replica sets, which in turn manage pods.
-#### 4. [ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
+
+### 4. [ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
 - Object storing configuration of [POD](#ka)
 - Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
 - A Kubernetes resource that stores configuration data in key-value pairs.
@@ -75,18 +77,43 @@ data:
     worry=None
 ```
 
-#### [5. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
+### [5. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
 - Kubernets on AWS, Secrets is used to store sensitive information(Eg: passwords, API keys, and other credentials), that should not be exposed in plaintext within Kubernetes manifests or configuration files.
-- **How Secrets are created?**
+- *Why secrets object?* Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
+
+#### Creating Secrets
   - _1._ Using Kubernetes command line interface (CLI) OR 
   - _2._ Using the AWS Management Console. 
-- __How secrets are accessed?__
-  - _1._ Mounted as a volume within a pod OR 
-  - _2._ Can be provided as environment variable inside container
-- **Why secrets object?**
-  - Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
+#### Access the secrets
+##### 1. Mounted as a volume within a pod OR 
+##### 2. Provided as environment variable inside container
+a. Secret Created
+```c
+# k get -n namespace secret
+jams_database
 
-#### 6. ClusterRole 
+# k get -n namespace secret jams_database -o yaml   // contents inside secret
+data:
+ host: kaslknaldk
+ name: 9u2ioihas019
+ password: end823985
+ user: 4062ksndjsdf92
+ 
+# echo end823985 | base64 --decode                  // Decrypt content
+test123    
+```
+b. Accessed using manifest by application
+```yaml
+templates/job-db-create.yaml
+  - name: DB_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: {{ .Release.Name }}-database
+        key: password
+```
+
+
+### 6. ClusterRole 
 Defines set of permissions or access control rules for resources across an entire Kubernetes cluster. it applies to all namespaces in the cluster.
 ```yaml
 $ test.yaml
