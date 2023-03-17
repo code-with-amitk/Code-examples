@@ -92,6 +92,9 @@ kube-system       Active   4d8h
 
 // LOGS OF POD
 # kubectl logs <pod-name> -n <namespace>
+
+// Commands from inside the POD
+$ kubectl exec -t pod-name -n namespace (echo $TEST //command)
 ```
 
 #### Secrets
@@ -130,14 +133,6 @@ password
 // By default postgres listens on 5432
 # kubectl run postgres-postgresql-client --rm --tty -i --restart='Never' --namespace default --image docker.io/bitnami/postgresql:15.2.0-debian-11-r0 --env="PGPASSWORD=<password>" --command -- psql --host postgres-postgresql -U postgres -d postgres -p 5432
 postgres=#
-```
-
-**Other PODS**
-```c
-//////////Commands from inside the POD//////////////
-$ kubectl exec -it testing{pod_name} -n namespace /bin/bash   //Go inside POD
-
-root@testing:/opt/# ping namespace.service_name               //Pinging service
 ```
 
 <a name=lc></a>
