@@ -3,7 +3,7 @@
   - [Master Node](#mn)
   - [Worker Node](#wn)
     - [Pod](#pod)
-- [Terms: configMap, Objects(kind: service, kind: Role, kind: configmap, namespace, Nodeport](Terms)
+- [Terms: configMap, Objects(service, deployment, configmap, secrets, clusterrole, rbac), Nodeport, namespace](Terms)
 - [Installing Kubernets](Install_Kubernets)
 - [Commands](#com)
   - [Connect to postgres pod](#cp) 
