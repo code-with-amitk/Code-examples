@@ -65,7 +65,7 @@
 
 
 <a name=com></a>
-### Kubernets commands (kubectl -h)
+## Kubernets commands (kubectl -h)
 ```c
 # kubectl cluster-info
 
@@ -77,11 +77,14 @@ keycloak          Active   3d22h
 kube-node-lease   Active   4d8h
 kube-public       Active   4d8h
 kube-system       Active   4d8h
-
-// Services inside namespace
+```
+#### Services inside namespace
+```c
 # kubectl get services --namespace=default          
+```
 
-// Pods inside namespace
+#### Pods
+```c
 # kubectl get pods --namespace=default          
 
 // Detailed information of pod, image its running
@@ -89,9 +92,25 @@ kube-system       Active   4d8h
 
 // LOGS OF POD
 # kubectl logs <pod-name> -n <namespace>
+```
 
-// Update image on pod
+#### Secrets
+```c
+// Lists all secrets stored in k8
+# k get -n namespace secret
+jams_database ..
 
+// Contents inside secret
+# k get -n namespace secret jams_database -o yaml
+data:
+ host: kaslknaldk
+ name: 9u2ioihas019
+ password: end823985
+ user: 4062ksndjsdf92
+ 
+ // Decrypt content
+# echo end823985 | base64 --decode
+test123                           // Plaintext Password
 ```
 
 <a name=cp></a>
