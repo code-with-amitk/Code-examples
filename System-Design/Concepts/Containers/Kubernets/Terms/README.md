@@ -17,7 +17,7 @@
 - **kubernets Object = C++ Object** is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
 
 <a name=t></a>
-### Types of k8 Resources
+### Types of k8 Resources/Objects
 #### 1. POD
 A basic unit of deployment in Kubernetes that runs one or more containers.
 
@@ -76,10 +76,16 @@ data:
 ```
 
 #### [5. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
-- Object that contains a small amount of sensitive data such as a password, a token, or a key.
-- The other way is to put this sensitive data into application using configmap, but using a Secret means that you don't need to include confidential data in your application code
+- Kubernets on AWS, Secrets is used to store sensitive information(Eg: passwords, API keys, and other credentials), that should not be exposed in plaintext within Kubernetes manifests or configuration files.
+- **How Secrets are created?**
+  - _1._ Using Kubernetes command line interface (CLI) OR 
+  - _2._ Using the AWS Management Console. 
+- __How secrets are accessed?__
+  - _1._ Mounted as a volume within a pod OR 
+  - _2._ Can be provided as environment variable inside container
 - **Why secrets object?**
   - Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
+
 #### 6. ClusterRole 
 Defines set of permissions or access control rules for resources across an entire Kubernetes cluster. it applies to all namespaces in the cluster.
 ```yaml
