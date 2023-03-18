@@ -16,6 +16,7 @@
   - [cherry pick](#cp)
   - [clone](#clone)
   - [commit](#com)
+  - [delete](#del)
   - [diff](#diff)
   - [log](#log)
   - [show](#sh)
@@ -231,6 +232,13 @@ Move from [staging area](#add) to git repo
   # git commit --amend    
   # git push origin branch -f     //Changing commit message
 ```
+
+<a name=del></a>
+#### delete
+```c
+$ git branch -d <branch-name>
+```
+
 <a name=diff></a>
 #### diff
 ```c
