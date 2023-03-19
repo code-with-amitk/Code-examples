@@ -328,16 +328,18 @@ SLOW HARD DISK & FAST CPU? CPU writes into hard Disk buffer, Since Disk is Slow,
 # cp test test1
     No space left on device
 ```
+
 #### 1. Do we have enough free disk space, on Which filesystem I am?
 ```c
 # df -h        //Disk Free, Shows local and network file system
-Filesystem  Size    Used     Avail    Use%    Mounted on
-/dev/root   24G      19G      19G     100%     /          //a. Compress big log files. [Delete unwanted/big files].  b. Check /var/log/messages for: IO Errors. 
-devtmpfs    2.0G       0     2.0G      0%     /dev
-tmpfs       2.0G       0     2.0G      0%     /dev/shm
-tmpfs       2.0G    1.6M     2.0G      1%     /run
-tmpfs       2.0G       0     2.0G      0%     /tmp
+Filesystem   Size     Used    Avail    Use%  Mounted on
+/dev/map/root 11G    3.8G     6.0G     39%    /          // root file system mounted on "/" has only 6.0G available
+devtmpfs     2.0G       0     2.0G      0%    /dev
+tmpfs        2.0G       0     2.0G      0%    /dev/shm
+tmpfs        2.0G    1.6M     2.0G      1%    /run
+tmpfs        2.0G       0     2.0G      0%    /tmp
 ```
+
 #### 2. Do we have free [INODES] on filesystem? When 0 sized files are created, it occupies inodes and used Inodes becomes=100%
 ```c
     # df -i
@@ -346,6 +348,7 @@ tmpfs       2.0G       0     2.0G      0%     /tmp
         devtmpfs    100100     1       100100      0%     /dev
         tmpfs          99019    2002    71920      3%    /dev/shm
 ```
+
 #### 3. Are Number of Disk/Blocks I/O High?
 ```c
     # vmstat  1  2  -S  k  -t        //interval  sample-count  -S(printStat)  k(Kilobyte)  -t(printTimestamp) 
@@ -360,6 +363,7 @@ tmpfs       2.0G       0     2.0G      0%     /tmp
         System: system operations/sec.    in: Interrupts/sec   cs: Number of context switches
         CPU: us: Time spend in user-space(73,78,85 percent),  sy: Time spent in kernel space,  id: Ideal time,  wa: Waiting IO
 ```
+
 #### 4. IOPS not too low?  IOPS(Inputs Outputs Per second): Max Reads, writes on non-contiguous Disk location.
 ```c
     # iostat -xd
