@@ -95,6 +95,13 @@ kube-system       Active   4d8h
 
 // Commands from inside the POD
 $ kubectl exec -t pod-name -n namespace (echo $TEST //command)
+
+// Connect to postgres pod
+# k exec -it -n atom-generic-db patroni-0 -- sh
+# ls /var
+backups  cache  lib  local  lock  log  mail  opt  run  spool  tmp
+# find / -name pg_hba.conf
+/home/postgres/pgdata/pgroot/data/pg_hba.conf
 ```
 
 #### Secrets
