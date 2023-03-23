@@ -1,5 +1,4 @@
 - **Containers**
-  - [What](#wc)
   - [Container vs VM](#vs)
   - [Run Application in Container](Run_Application_in_Container)
 - [Docker](Docker)
@@ -7,18 +6,24 @@
 
 
 # Container
-<a name=wc></a>
-#### What is container?
-This is a self contained package that contains everything that your binary/application need to run.
+- **What?** 
+  - This is a self contained package that contains everything that your binary/application need to run.
+  - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
 ```c
-    |-------------------------------------------------------------------------|
-    | binary(*.exe), runtime(tokio-1.2), libraries(utc.so...), other packages |
-    |----------------------------Container------------------------------------|
+    |-----------------------|
+    | binary(*.exe),        |
+    | runtime(tokio-1.2),   |
+    | libraries(utc.so...), |
+    | other packages        |
+    |------Container--------|
 ```
-- Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
+- **Issues without containers?**
+  - Applications is comprised of a language runtime, libraries(internal, _shared(eg: ibc and libssl)_), and your source code.
+    - These external/shared libraries are shared components in the OS that you have installed on (/var/lib/..)
+  - Problem occur when an application-1 developed have dependency on a shared library(libcv1) that isn’t available on production OS or different version is available(libcv2)
+  - Also, multiple applications on a 1 machine require all programs to share same versions of shared libraries on production system, which makes application tightly coupled.
 - **Containerization** means Packaging software code and all its dependencies in a bundle.
-- **Issue without containers?** When an company develops an S/W-Application, its tightly coupled with Libraries provided by particular OS Version. If OS update happens, libraries would get updated and Application may break, as it depends on particular OS version libraries.
-- Isolated(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
+- **Isolated**(Isolation is achieved using kernel namespace, [cgroups](/Operating_Systems/Linux/Resource_Control)) processes running on single host. Isolated from other processes.
 
 <img src=TraditionalOS_vs_Containers.jpg width=400/>
 
