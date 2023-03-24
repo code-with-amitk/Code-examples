@@ -1,7 +1,6 @@
 **Backtracking**
-- **[Examples](#ex)**
 - [BT Template](#tem) Problems solved using BT Template:
-  - Combinations
+  - **Combinations**
     - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
     - Combination Sum
       - [Combination Sum](/DS_Questions/Questions/Permutation_Combination/Combinations/Combination_sum/)
@@ -13,7 +12,7 @@
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
   - Palindrome
     - [Palindrome Partitioning](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md)
-  - Permutations
+  - **Permutations**
     - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
     - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
     - [Alternating Parity Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/alternating-parity-permutation.md)
@@ -31,7 +30,6 @@
 - Each node represents a partial candidate to final solution, At each node. Once we can determine if a certain node cannot possibly lead to a final solution, we abandon the current node and backtrack to its parent node to explore other possibilities.
 - **How?** Backtracking does not generate all possible solutions, it checks if condition fails, the solution is rejected and the next solution is tried.
 
-<a name=ex></a>
 ### Examples
 #### Example-1
 We are given a set of words represented in the form of a tree. Find word `AIM`.
