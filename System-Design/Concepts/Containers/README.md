@@ -9,6 +9,9 @@
 - **What?** 
   - This is a self contained package that contains everything that your binary/application need to run.
   - Only 1 Application can run inside container and all its dependent libraries. Each container has its own: Network interface, IP address, file system, All containers share the kernel of the host.
+
+<img src=images/container.png width=500 />
+
 ```c
     |-----------------------|
     | binary(*.exe),        |
