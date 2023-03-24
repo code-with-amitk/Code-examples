@@ -1,3 +1,4 @@
+- [Ambassador API Gateway](#aagw)
 - [Kubernets, Resource & Objects](#ko)
   - Types of k8 Resources
     - [ClusterRole](#cr)
@@ -12,6 +13,13 @@
 - [Namespace](#ns)
 - [Nodeport](#np)
 
+<a name=aagw></a>
+## Ambassador API Gateway
+- This is Kubernetes-native API Gateway for controlling and managing traffic between microservices within a Kubernetes cluster. Built on top of Envoy Proxy.
+- It integrates with Kubernetes Service objects to route traffic to the appropriate microservices based on the service name and port.
+- **Advatanges**
+  - _1. Supports Multiple Protocols:_ HTTP/1.1, HTTP/2, WebSocket, gRPC, and OpenAPI/Swagger
+  - _2. Other Functions:_ traffic splitting, load balancing, rate limiting, and authentication.
 
 <a name=ko></a>
 ## [Kubernets Resources,Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
@@ -164,24 +172,35 @@ roleRef:                                  # "roleRef" specifies the binding to a
 A object that provides an identity for processes running inside a pod.
 
 ### 7. Services
-- In Kubernetes, Service/microservice = `logical set of Pods`.
-- Application is not aware to which pod its communicating, even at t=1 and t=n number of pods serving application(s) need maybe different.
-- Service exposes REST endpoints(eg: POST) & application interacts with service by calling these endpoints.
-##### Defining a service object = service-object-amit1
-  - Kubernetes will assign this Service a IP address/"cluster IP", which is used by the Service proxies
-  - The controller will scans all Pods, those matching selector POST/REST Requests are sent to them.
+- In Kubernetes, Service(or microservice) is logical set of Pods. Service exposes REST endpoints(eg: POST) & other services interact by calling these endpoints.
+##### Service Object
+- **What?** To define a logical set of Pods and a policy for accessing them.
+- **What's present in Object?** _1. IP address/"cluster IP:_ Other services to access the this pod.
+  - _0. apiVersion:_ The version of the Kubernetes API that is used to create the Service object.
+    - Format: `group/version`. This is a REQUIRED field in all kubernets objects.
+    - Version
+      - apiVersion: v1    //refers to the core Kubernetes API
+      - `apiVersion: ambassador/v1 & getambassador.io/v2`     //refer to custom APIs defined by the Ambassador API Gateway.Provide additional functionality specific to  [Ambassador API Gateway](#aagw).
+  - _1. Name of service:_
+  - _2.  selector:_ This is used to define the set of Pods that the Service will target. Selects Pods with the label "app=MyApp"
+  - _3. Service Stable IP Address._ It also exposes port 80 on the Service's stable IP address
+  - _4. targetport:_ Port 80 is mapped to port 8080 on the Pods
+  - _5. type:_ Defines type of the Service, which can be ClusterIP, NodePort, LoadBalancer, or ExternalName.
+    - _ClusterIP:_ Service which exposes a set of Pods internally to the cluster, using a stable IP address.
 ```yml
-apiVersion: v1
+apiVersion: v1                              //0
 kind: Service
 metadata:
-  name: service-object-amit1
+  name: {{ .Values.image.app }}-metrics     //1
 spec:
   selector:
-    app.kubernetes.io/name: MyApp   //Every pod has this label
+    app: MyApp                              //2
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 9376        //Every pod listens on this TCP port
+    - name: http
+      protocol: TCP
+      port: 80                              //3
+      targetPort: 8080                      //4
+  type: LoadBalancer                        //5
 ```
 
 ### [8. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
