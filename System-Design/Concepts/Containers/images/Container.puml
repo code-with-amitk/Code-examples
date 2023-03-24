@@ -1,0 +1,61 @@
+@startuml container
+
+package "Traditional" as T {
+  folder "Host OS" {
+    folder "libcv0_2 rustv0_47 pythonv1_2" {
+        frame "App JAMS 1_4" {
+        }
+        frame "App JAMS 1_6 [CANNOT RUN]" #Red {
+        }
+        frame "App SRX 1_2" {
+        }
+    }
+  }
+}
+note top of T #LightPink
+<b>Issues without containers?
+
+1. App-1 have dependency on shared library(libcv1)
+App-1 have dependency on shared library(libcv2)
+Both cannot run on production.
+
+2. All programs to share same versions of shared libraries.
+which makes application tightly coupled.
+end note
+
+
+package "POD" as P {
+  folder "Container-A(OS=Alpine)" as A {
+    folder "Container-B (Runtime=rustc)" {
+        folder "Container-C rust 0_47" {
+          frame "App JAMS 1_4" {
+          }
+        }
+        folder "Container-D rust 1_62" {
+          frame "App JAMS 1_7_0" {
+          }
+        }
+    }
+    folder "Container-E (Runtime=C)" {
+        folder "Container-F libc v1_6" {
+            frame "App SRX 22_4" {
+            }
+        }
+        folder "Container-G libc v0_2" {
+            frame "App SRX 1_2" {
+            }
+        }
+    }
+    folder "Container-H (Runtime=golang)" {
+        frame "App Auth_uservice" {
+        }
+    }
+  }
+}
+
+note bottom of A #LightBlue
+<b>Alpine
+This is minimal Linux. size=6MB
+end note
+
+@enduml
