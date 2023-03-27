@@ -61,31 +61,24 @@ From index=0, we can jump to index=2 and index=1
 **C++**
 ```cpp
 class Solution {
-    int lastIndex;
 public:
-    bool rb (vector<int>& nums, int index) {
-        bool ret = false;
-        
-        // Base case
-        // if from present index I can reach end, return true
-        if (nums[index] >= lastIndex - index)
+    bool canJump(vector<int>& nums) {
+        int start = 0;
+        //candidate Nothing
+        return bt (start, nums);
+    }
+    bool bt (int start, vector<int>& nums) {
+        // Base Case
+        if (start >= nums.size()-1)
             return true;
 
-        // All possible candidates
-        // Start from last possible index where I can reach
-        for (int i=nums[index]; i>0; --i) {
-            // Jump to index
-            ret = rb (nums, i + index);
-            if (ret)
-                break;
+        // Check all candidates
+        for (int i=nums[start]; i>0; --i){
+            // If found solution, return
+            if (bt (i+start, nums))
+                return true;
         }
-        return ret;
-    }
-    bool canJump(vector<int>& nums) {
-        lastIndex = nums.size() - 1;
-        
-        // Start jump from index=0
-        return rb (nums, 0);
+        return false;
     }
 };
 ```
