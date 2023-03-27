@@ -5,6 +5,7 @@
       - [1 Producer, 1 consumer](#1p1c)
       - [Multiple Producer 1 consumer](#mp1c)
   - [2. Asynchronous](#async)
+    - [Create Message Queue](#cmq)
 
 ## Channel = [Pipe in Linux](/Threads_Processes_IPC/IPC).
 - It has two halves: a transmitter(sender) and a receiver. 
@@ -118,4 +119,36 @@ fn main() {
     let local = tokio::task::LocalSet::new();
     local.block_on(&mut rt, async move { fun().await });
 }
+```
+
+<a name=cmq></a>
+#### Create Message Queue
+```rs
+Cargo.toml
+[package]
+name = "queue_using_channel"
+version = "0.1.0"
+edition = "2021"
+[dependencies]
+async-channel = "1.5.0"
+tokio = { version = "1.16.1", features = ["full"] }
+
+# src/main.rs
+use async_channel::{Receiver, Sender};
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+	// Create a channel that can transmit String values
+    let (sender, receiver): (Sender<String>, Receiver<String>) = async_channel::unbounded();
+    let message = "Hello, world!".to_string();
+
+	// Send a message to the queue
+	// await because sending a message is an asynchronous operation that may take some time to complet
+    sender.send(message).await?;
+    let received_message = receiver.recv().await?;
+    println!("Received message: {}", received_message);
+    Ok(())
+}
+
+$ cargo run
+Received message: Hello, world!
 ```
