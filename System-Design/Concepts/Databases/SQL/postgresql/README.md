@@ -1,9 +1,8 @@
-- **Install**
-  - **On standalone box**
+- **Install: On standalone box**
     - [Ubuntu](#u)
     - [CentOS 7](#c)
     - [WSL](#w)
-  - [On kubernets minikube](/System-Design/Concepts/Containers/Kubernets/Install_Kubernets/minikube#ip)
+- [Install On kubernets minikube](/System-Design/Concepts/Containers/Kubernets/Install_Kubernets/minikube#ip)
 - Postgres Commands
   - [database](#db)
   - [Tables](#tb)
@@ -107,8 +106,12 @@ postgres-# \q                                 //Come out
 ```
 <a name=tb></a>
 #### Table
-**Create Tables**
 ```c
+> \dt           //List Tables
+> \dt+          //List Tables (more information)
+
+
+///// Create Tables //////
 // Users Table
 | user_id(pk) | name | email_id | password | address | DOB | etc |
 
@@ -131,15 +134,13 @@ CREATE TABLE transactions (
    //CONSTRAINT fk_constraint_name1 FOREIGN KEY (column1) REFERENCES parent_table1 (parent_column),
    CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (user_id),   //Create Foriegn Key
 );
-```
-**Insert Data**
-```c
-// INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
 
+///////////////// Insert Data /////////////////
+// INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
 # INSERT INTO users (name, email, address, dob) VALUES ('amit', 'amit@test.com', '123 MV', '1985-05-23');
-```
-**Print Table**
-```
+
+
+////////////////  Print Table //////////////
 # SELECT * FROM users;
  user_id | name |     email     | address |    dob
 ---------+------+---------------+---------+------------
