@@ -1,11 +1,17 @@
 **Serde / Serialize DeSerialize**
+- [serde_json](#sj)
 - [1. Serialize/Deserialize Structure to/from json using serde_json](#e1)
 - [2. Serialize/Deserialize YAML file to/from Structure using serde_yaml](#e2)
 
-### Serde library
+## Serde library
 Used to Serialize/DeSerialize various data formats(JSON, toml, bson(used in mongodb), rusto_dynamodb and many more) and send.
 
-### Exmples
+<a name=sj></a>
+### serde_json
+- This is rust library for Serialize/Deserialize json data.
+- We can encode and decode JSON to and from Rust data structures.
+
+### Examples
 <a name=e1></a>
 #### 1. Serialize/Deserialize Structure to/from json using serde_json
 ```rs
