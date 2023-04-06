@@ -5,7 +5,7 @@
     - [CPP](#cpp)
     - [Rust](#r)
 
-## For every problem, How To Fit HashMap in it. HashMap Structure
+## For every problem, How To Fit HashMap in it. Think HashMap Structure
 
 ### [2032. Two Out of Three](https://leetcode.com/problems/two-out-of-three/description/)
 Given three integer arrays nums1, nums2, and nums3, return a distinct array containing all the values that are present in at least two out of the three arrays. You may return the values in any order.
