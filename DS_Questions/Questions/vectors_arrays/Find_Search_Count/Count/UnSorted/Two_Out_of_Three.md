@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Rust](#r)
 
 ## For every problem, How To Fit HashMap in it. HashMap Structure
 
@@ -78,4 +79,72 @@ public:
         return out;
     }
 };
+```
+
+<a name=rs></a>
+**Rust**
+```rs
+use std::collections::HashMap;
+
+struct Solution{
+}
+
+#[derive(Debug)]
+struct PresentIn {
+    a: bool,
+    b: bool,
+    c: bool,
+}
+impl Solution {
+    pub fn two_out_of_three(nums1: Vec<i32>, nums2: Vec<i32>, nums3: Vec<i32>) -> Vec<i32> {
+        let mut out:Vec<i32> = Vec::new();
+        let mut hm:HashMap<i32, PresentIn> = HashMap::new();
+
+        for i in nums1 {
+            // if i is not present in HashMap insert {i,<t,f,f>}
+            if hm.contains_key(&i) == false {   //Not present
+                hm.insert(i, PresentIn{a:true, b:false, c:false});
+            }
+        }
+        for i in nums2 {
+            if let Some(val) = hm.get_mut(&i) {
+                // if i is found, set {i,<-,t,->}
+                val.b = true;
+            }
+            else {
+                // if not found set {i,<f,t,f>}
+                hm.insert(i, PresentIn{a:false, b:true, c:false});
+            }
+        }
+        for i in nums3 {
+            if let Some(val) = hm.get_mut(&i) {
+                // if i is found, set {i,<-,-,t>}
+                val.c = true;
+            }
+            else {
+                // if not found set {i, <f,f,t>}
+                hm.insert(i, PresentIn{a:false, b:false, c:true});
+            }
+        }
+        for (k,v) in hm {
+            let mut total = 0;
+            if v.a == true {
+                total += 1;
+            }
+            if v.b == true {
+                total += 1;
+            }
+            if v.c == true {
+                total += 1;
+            }
+            if total >= 2 {
+                out.push(k);
+            }
+        }
+        out
+    }
+}
+fn main(){
+    println!("{:?}",Solution::two_out_of_three(vec![1,1,2,3], vec![2,3], vec![3]));
+}
 ```
