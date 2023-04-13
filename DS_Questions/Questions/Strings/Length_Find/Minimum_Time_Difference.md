@@ -4,6 +4,7 @@
   - [Complexity](#c)
   - Code
     - [CPP](#cpp)
+    - [Rust](#r)
 
 ### Minimum Time Difference
 - Given a list of 24-hour clock time points in "HH:MM" format, return the minimum minutes difference between any two time-points in the list.
@@ -84,4 +85,83 @@ public:
         return hrs*60 + sec;
     }
 };
+```
+
+**Rust**
+```rs
+use std::{collections::HashSet};
+impl Solution {
+    pub fn find_min_difference(time_points: Vec<String>) -> i32 {
+        let mut v:Vec<i32> = Vec::new();
+        let mut hs:HashSet<i32> = HashSet::new();
+        let mut out = std::i32::MAX;
+        loop{
+            // Store time into vector
+            for i in time_points {
+                let val = match Self::convert(i) {
+                    Ok(v) => v,
+                    Err(e) => {
+                        println!("{}", e);
+                        break;
+                    }
+                };
+                v.push(val);
+
+                // if any duplicate entry in HashSet return 0
+                let hs_value =  hs.get(&val);
+                if hs_value.is_some() {
+                    return 0;
+                } else {
+                    hs.insert(val);
+                }
+            }
+
+            // Sort the vector
+            v.sort();
+
+            out = v[1] - v[0];
+
+            // Insert 0th element to last in vector
+            v.push(v[0]+24*60);
+
+            // Iterate through vector from 1st element and find v[i+1]-v[i]
+            for i in 1..v.len()-1 {
+                let diff = v[i +1] - v[i];
+                out = std::cmp::min(out, diff);
+            }
+            break;
+        }
+        out
+    }
+    pub fn convert(i:String) -> Result<i32,String> {
+        let result;
+        loop {
+            let hrs = Self::substr(&i, 0, 2);
+            let h = match hrs.parse::<i32>(){
+                Ok(h)=>h,
+                Err(e) => {
+                    let err = format!("Failed to parse h: {}", e);
+                    result = Err(err);
+                    break;
+                },
+            };
+            let sec = Self::substr(&i, 3, 2);
+            let s = match sec.parse::<i32>(){
+                Ok(h)=>h,
+                Err(e) => {
+                    let err = format!("Failed to parse s: {}", e);
+                    result = Err(err);
+                    break;
+                },
+            };
+            result = Ok(h*60+s);
+            break;
+        }
+        result
+    }
+    fn substr(s: &str, start: usize, length: usize) -> &str {
+        let end = start + length;
+        &s[start..end]
+    }
+}
 ```
