@@ -70,18 +70,21 @@ data:
 ```
 
 ### [3. Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
-Provide declrative updates for pods. A higher-level resource that manages the creation and scaling of replica sets, which in turn manage pods.
+ - "Deployment" object defines how an application should be deployed and managed in a cluster. 
+ - It defines declarative configuration for running a containerized application and declares desired number of replicas of the application is always running.
 ```yaml
-//test.yaml
+$ cat templates/Deployment.yaml
 apiVersion: apps/v1       #(Required) Which version of the Kubernetes API you're using to create this object
 kind: Deployment          #(Required) What kind of object you want to create
 metadata:                 #(Required) Data that helps uniquely identify the object
-  name: nginx-deployment
+  name: {{ .Values.image.app }}   //Taken from values.yaml
 spec:                     #(Required) What state you desire for the object
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: {{ .Values.replicaCount }}
+  volumes:                //specifies the storage volumes that should be available to containers within the deployment
+    - name: jams-cfg-vol
+      configMap:
+        name: jamc-config
+    - name: jams-srx-cfg-vol
 
 $ kubectl apply -f test.yaml
 ```
