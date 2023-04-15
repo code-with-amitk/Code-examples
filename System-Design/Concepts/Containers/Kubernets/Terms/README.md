@@ -53,29 +53,20 @@ rules:
 ##### Creating a configmap
 We can copy
 ```yaml
-# cat test.properties
-name=Amit
-age=25
-life=Great
-worry=None
-
-# kubectl create configmap amit-configmap --from-file=test.properties   //Create configmap
-
-# kubectl get configmaps amit-configmap -o yaml                         //View configmap. 
+# cat templates/configmap-jams.yaml
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  creationTimestamp: "2022-02-17T12:41:43Z"
-  name: amit-configmap
-  namespace: fs-central
-  resourceVersion: "55390398"
-  uid: 65e65104-d94c-4054-9359-16f5dc221b53
+king: ConfigMap
+metadata:           //Metadata store additional data about the ConfigMap and is typically defined as a key-value pair
+  name: jams-config
+  labels:
+    app: {{ .Values.image.app }}    //Pick from values.yaml
 data:
-  test.properties: |
-    name=Amit
-    age=25
-    life=Great
-    worry=None
+  jams_config.yaml: |-
+    servicename: jamsc
+    kafka:
+      brokers: {{ .Values.kafka.brokers }}    //Pick from values.yaml
+      topics:
+        {{- toYaml .Values.kafka.topics | nindent 10 }}
 ```
 
 ### [3. Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
