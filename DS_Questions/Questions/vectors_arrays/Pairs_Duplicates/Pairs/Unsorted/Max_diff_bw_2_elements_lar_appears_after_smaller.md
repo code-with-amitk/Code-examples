@@ -1,6 +1,10 @@
 **Max difference between two elements, larger appears after smaller / Best Time to Buy and Sell Stock**
 - [Approach-1, Naive](#a1)
 - [Approach-2, Sliding Window. O(1)](#a2)
+  - [Logic](#l)
+  - Code
+    - [CPP](#cpp)
+    - [Rust](#r)
 
 
 ### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
@@ -41,6 +45,7 @@ Find difference of every element with other element using 2 for loops.
 
 <a name=a2></a>
 ### 2. Approach-2. Sliding Window   //Time:O(n), Space:O(1)
+<a name=l></l>
 #### Logic
   - *1.* maxDiff = 0;   minElement = INT_MAX
   - *2.* Iterate thru the elements.
@@ -69,6 +74,8 @@ i    minElement     maxdiff
 
 ```
 #### Code
+<a name=cpp></a>
+**CPP**
 ```cpp
   int maxProfit(vector<int>& prices) {        
     int minElement = INT_MAX;
@@ -83,4 +90,24 @@ i    minElement     maxdiff
     }
     return maxDiff;
   }
+```
+<a name=rs></a>
+**Rust**
+```rs
+impl Solution {
+    pub fn max_profit(prices: Vec<i32>) -> i32 {
+        let mut minElement = std::i32::MAX;
+        let mut maxDiff = 0;        //max_profit
+
+        for i in prices.into_iter() {
+            if i < minElement {
+                minElement = i;
+            }
+            if i - minElement > maxDiff {
+                maxDiff = i - minElement;
+            }
+        }
+        maxDiff
+    }
+}
 ```
