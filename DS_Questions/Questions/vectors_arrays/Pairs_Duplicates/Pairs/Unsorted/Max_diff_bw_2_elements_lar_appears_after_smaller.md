@@ -44,11 +44,29 @@ Find difference of every element with other element using 2 for loops.
 #### Logic
   - *1.* maxDiff = 0;   minElement = INT_MAX
   - *2.* Iterate thru the elements.
-```c  
+```c
     if (element < minElement)               //if smaller element is found update minElement
         minElement = element
     if (element - minElement > maxDiff)     //if difference is greater than stored
         maxDiff = element - minElement;
+
+  [7, 1, 5, 3, 6, 4]
+   0  1  2  3  4  5
+ 
+i    minElement     maxdiff
+0       7           0             [7,  1,  5,  3,  6,  4]
+                                  min
+1       1           0             [7,  1,  5,  3,  6,  4]
+                                      min
+2       1           4             [7,  1,  5,  3,  6,  4]
+                                      min  i
+3       1           4             [7,  1,  5,  3,  6,  4]
+                                      min      i
+4       1           5             [7,  1,  5,  3,  6,  4]
+                                      min          i
+5       1           5             [7,  1,  5,  3,  6,  4]
+                                      min              i
+
 ```
 #### Code
 ```cpp
