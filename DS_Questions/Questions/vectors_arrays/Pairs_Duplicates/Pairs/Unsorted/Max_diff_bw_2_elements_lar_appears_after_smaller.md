@@ -1,6 +1,6 @@
 **Max difference between two elements, larger appears after smaller / Best Time to Buy and Sell Stock**
 - [Approach-1, Naive](#a1)
-- [Approach-2, O(1)](#a2)
+- [Approach-2, Sliding Window. O(1)](#a2)
 
 
 ### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
@@ -40,7 +40,7 @@ Find difference of every element with other element using 2 for loops.
 ```
 
 <a name=a2></a>
-### 2. Approach-2   //Time:O(n), Space:O(1)
+### 2. Approach-2. Sliding Window   //Time:O(n), Space:O(1)
 #### Logic
   - *1.* maxDiff = 0;   minElement = INT_MAX
   - *2.* Iterate thru the elements.
