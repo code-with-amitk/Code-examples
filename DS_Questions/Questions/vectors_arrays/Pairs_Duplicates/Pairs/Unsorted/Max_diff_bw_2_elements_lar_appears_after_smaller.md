@@ -6,6 +6,7 @@
     - [CPP](#cpp)
     - [Rust](#r)
 
+### [Self Video](https://youtu.be/hGHCEoVaTMs)
 
 ### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 - Array of `prices[i]` is given shows the price of a given stock on the ith day.
