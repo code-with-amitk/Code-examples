@@ -7,15 +7,16 @@
 - In DHT(Distributed Hash Table), All `data=<key,value>` pairs are not stored same server, rather x number of servers are present.
 - To store `data=<key,value>`, We need to find out of x on which server data should be stored. We can do using hashing
 ```c
+ -----------	 -----------	 -----------
+| server-0 |	| server-1 |	| server-2 |
+ ----------	 ----------	 -----------
+ 
 key			hash-function	storage-server
 ab(9798)	-->	 |ascii%3|  --> 0
 bc(9899)	-->	 |ascii%3|  --> 1
 ce(99101)	-->	 |ascii%3|  --> 2
-					server0 [ab]
-					server1 [bc]
-					server2	[ce]
-Server2 goes down or removed.
-New Hash-Function = |ascii%2|.
+
+Server2 goes down or removed. New Hash-Function = |ascii%2|.
 
 RESHASHING: Data need to moved to remaining servers, existing keys are again passed thru new hash-function.
 
