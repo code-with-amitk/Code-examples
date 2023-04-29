@@ -1,7 +1,7 @@
 - Hashing
 - [Consistent Hashing](#ch)
-  - [Problem in Consistent Hashing: Hotspot](#p)
-    - Solution: vnodes
+  - [Problems in Consistent Hashing](#p)
+  - [Solutions](#sol)
 
 ## Hashing
 - In DHT(Distributed Hash Table), All `data=<key,value>` pairs are not stored same server, rather x number of servers are present.
@@ -48,10 +48,21 @@ ce(99101)	-->	 |ascii%2|	-->  1
 <img src=images/Consistent_Hashing_Addition.png width=150/>
 
 <a name=p></a>
-### Problem with Consistent Hashing
-#### 1. One server/node can become hot
-1 server/node can eventually hold many more keys wrt other, which leads to slow response time and increased latency
-#### Solution: Virtual nodes (vnodes)
+### Problems with Consistent Hashing
+#### 1. Hotspot
+- One server/node can become hot
+- 1 server/node can eventually hold many more keys wrt other, which leads to slow response time and increased latency
+
+#### 2. Adding and removing nodes
+- Time, administrative cost of removing/adding node in cluster is high(which can lead to customer revenue loss).
+
+#### 3. Node rebuilding
+- When a node dies, it data is copied to other new node(which comes up).
+- This consumes node's resources(cpu, memory) which will lead to node's performance degradation.
+
+<a name=sol></a>
+### Solution
+#### 1. Virtual nodes (vnodes)
 - Whenever any node becomes hotspot, new node(s) are added which shares the keys. Hence some virtual nodes combined create 1 single node.
 - Earlier S1 was storing keys(500-2000), but now 4 nodes(S1_a, S1_b, S1_c, S1_d) distributes keys amongst themselves and stores a subrange.
 - As load reduces virtual nodes are bought down.
