@@ -1,5 +1,7 @@
 **Set**
 - [Create](#scre)
+- [Erase](#er)
+- [Find](#f)
 - [Insert](#sins)
 - [Implementing set](implementing_set.cpp)
 
@@ -44,6 +46,13 @@ Elements are stored in ascending order(by default).
   cout << '\n';
 ```
 
+<a name=er></a>
+### Erase
+```cpp
+void erase (iterator position);                           //Erase 1 element
+erase(element);                     //Erase all elements
+```
+
 <a name=sins></a>
 ### Insert
 ```cpp
@@ -53,4 +62,20 @@ Elements are stored in ascending order(by default).
   
   if(s.find({x,y}) != s.end())                //FINDING pairs {}
     return true;
+```
+
+<a name=f></a>
+### Find
+```cpp
+    set<int> s;
+ 
+    s.insert(1);
+    s.insert(4);
+    s.insert(2);
+    s.insert(5);
+    s.insert(3);
+ 
+    // iterator pointing to
+    // position where 3 is
+    auto pos = s.find(3);
 ```
