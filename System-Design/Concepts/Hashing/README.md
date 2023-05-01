@@ -41,13 +41,15 @@ ce(99101)	-->	 |ascii%2|	-->  1
 ## Consistent Hashing / Consistent Hash Ring = (Solution to above problem)
 - Consistent hashing is technique where only k/n keys need to be rehashed, where k is the number of keys, and n is the number of servers.
 - keys are stored in ring of servers
-#### Example
+#### Storing data
 - server0(stores keys 0-10), server1(11-20), server2(21-30)
+
 <img src=images/Consistent_Hashing1.png width=150/>
 
-**Deletion of server1:**
-  - server2 stores keys present on server1.
-  - REHASHING: Only keys 11-20 need to rehashed not all.
+#### Deletion of server1
+- Server2 stores keys present on server1.
+- REHASHING: Only keys 11-20 need to rehashed not all.
+
 <img src=images/Consistent_Hashing_Deletion.png width=150/>
 
 **Addition of server4:**
