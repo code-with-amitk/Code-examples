@@ -40,7 +40,8 @@ ce(99101)	-->	 |ascii%2|	-->  1
 <a name=ch></a>
 ## Consistent Hashing / Consistent Hash Ring = (Solution to above problem)
 - Consistent hashing is technique where only k/n keys need to be rehashed, where k is the number of keys, and n is the number of servers.
-- keys are stored in ring of servers
+- keys are stored in ring of servers.
+- Range assigned to each node is also called TOKEN.
 #### Storing data
 - server0(stores keys 0-10), server1(11-20), server2(21-30)
 
@@ -74,6 +75,8 @@ ce(99101)	-->	 |ascii%2|	-->  1
 ### Solution
 #### 1. Virtual nodes (vnodes)
 - Whenever any node becomes hotspot, new node(s) are added which shares the keys. Hence some virtual nodes combined create 1 single node.
+- vnodes are distributed across cluster.
+- **Fault Tolerance:** vnodes have copies of replicated data from other vnodes.
 - Earlier S1 was storing keys(500-2000), but now 4 nodes(S1_a, S1_b, S1_c, S1_d) distributes keys amongst themselves and stores a subrange.
 - As load reduces virtual nodes are bought down.
 - _Fault Tolerance:_ vnodes can carry other node's data for fault tolerance.
