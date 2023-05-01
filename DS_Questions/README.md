@@ -12,15 +12,15 @@
 <a name=apr></a>
 ## Approach (UAWCTS(U Amit Will Conquer This Season))
 **Google Interview:** https://www.youtube.com/watch?v=XKu_SEDAykw
-1. Understand Clearly. Repeat
-	- Note key points from question. {ON PAPER}
-	- Repeat in your own words
-	- Ask 3 clarifying questions(from interviewer)
-2. Approach{ON PAPER}: Naive, Optimized. {O(logn) or O(n)}. Thought-out loud
-3. Walk{ON PAPER}: Walk approach on given input
-4. Code. Write Modularized code. meaningful function,variable names. 
-5. Test cases: doctest(-1,0,1,-inf,+inf)
-6. Scale on Multiple machines
+1. Understand Clearly. Repeat          {5 min}
+  - Note key points from question. {ON PAPER}
+  - Repeat in your own words
+  - Ask 3 clarifying questions(from interviewer)
+2. Approach{ON PAPER}: Naive, Optimized. {O(logn) or O(n)}. Thought-out loud {5 min}
+3. Walk{ON PAPER}: Walk approach on given input          {10 min}
+4. Code. Write Modularized code. meaningful function,variable names.  {10 min}
+5. Test cases: doctest(-1,0,1,-inf,+inf)       {10 min}
+6. Scale on Multiple machines                  {5 min}
 
 
 <a name=bigo></a>
