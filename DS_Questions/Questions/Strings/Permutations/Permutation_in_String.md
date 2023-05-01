@@ -115,6 +115,7 @@ freq = b,1   c,1   a,1    //match
 #### Code
 <a name=cpp></a>
 **CPP**
+https://leetcode.com/problems/permutation-in-string/solutions/1762469/c-sliding-window-optimized-well-explained/
 ```cpp
 class Solution {
     bool areVectorsEqual(vector<int> a, vector<int> b){
