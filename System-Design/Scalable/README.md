@@ -11,7 +11,7 @@
 **Donot Spend major time on Minor Things. Eg: BOE**
 
 ### To Cover (SD is Iterative process. Start from 1 then scale to 1M)
-- **1. Requirements:**
+- **1. Requirements: 2 min**
   - *1a. Functional(Basic functionality, should work)*
   - *1b. Non-functional(defines quality)*
   - *1c. Extended:  S<sup>3</sup> L<sup>3</sup> A<sup>3</sup> C<sup>2</sup> R<sup>2</sup> F<sup>2</sup>: *   
@@ -21,12 +21,12 @@
     - Cache(Invalidation, negative cache)
     - Reliable, Redundant(Using DB)
     - Fast, Fault Tolerant
-- **2. Back of Envelope Calculations:** Storage estimates, QPS(Queries per second)
-- **3. API Design**
-- **4. HLD:** _For 2, 100, 1 lac users_
-- **5. Database schema**
+- **2. Back of Envelope Calculations: 3 min** Storage estimates, QPS(Queries per second)
+- **3. API Design. 5 min**
+- **4. HLD: 20 min** _For 2, 100, 1 lac users_
+- **5. Database schema: 10 min**
 - **6. Tradeoffs/Bottlenecks & correction**
-- **7. Adjusting to changing requirements**
+- **7. Adjusting to changing requirements: 5 min**
   
 | | CDN | AWS Cloud |
 | --- | --- | --- |
