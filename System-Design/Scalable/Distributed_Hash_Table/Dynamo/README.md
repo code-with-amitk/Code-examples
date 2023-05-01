@@ -29,3 +29,4 @@ object {
 
 <a name=hld></a>
 ### HLD
+- Dynamo uses [Consistent Hashing]()
