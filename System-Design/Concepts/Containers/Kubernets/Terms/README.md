@@ -117,11 +117,11 @@ spec:
 A basic unit of deployment in Kubernetes that runs one or more containers.
 
 ### [5. RBAC (Role-based Access Control)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
-- Roles are provided to indivisual users in organization. These roles actually defines access to computer(or n/w resource) in organization.
-- We need to start apiserver with authorization-mode.
-```c
-$ kube-apiserver --authorization-mode=Example,RBAC --other-options --more-options
-```
+- **What?** RBAC is mechanism used in kubernets to control access to a resource(eg: configmaps, secrets etc).
+- **RBAC use in multipod implementation?**
+  - _1._ Control resources access between multiple pods.
+  - _2._ Pods donot interfere with each other in accessing specific resources.
+  - _3._ 
 - The RBAC API declares 4 kinds of Kubernetes object:
   - _1. Role:_ define a role within a namespace
   - _2. ClusterRole:_ define a role clusterwise
