@@ -163,8 +163,9 @@ roleRef:                                  # "roleRef" specifies the binding to a
 ```
 
 #### c. CapabilityMapping
-- Container will have Runtime(linux), CM is a way to give capabilities to a process running within linux container.
-- Example: Giving capabilites to process to modify n/w config, mouting file system, accessing h/w devices
+- Container will have Runtime(linux), CM can:
+  - _1._ Give capabilities to a process running within linux container, Eg(process to modify n/w config, mouting file system, accessing h/w devices etc)
+  - _2._ [JAMS capability mapping](https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/Problem_Req/Jul22_Jan23.md#f1) When mapping-a is enabled, service can call method1,2. When mapping-b is enabled, service can call method3,4. 
 
 ### 6. ServiceAccount
 A object that provides an identity for processes running inside a pod.
