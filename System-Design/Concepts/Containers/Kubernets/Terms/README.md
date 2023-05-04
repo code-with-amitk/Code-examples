@@ -121,14 +121,14 @@ A basic unit of deployment in Kubernetes that runs one or more containers.
 - **RBAC use in multipod implementation?**
   - _1._ Control resources access between multiple pods.
   - _2._ Pods donot interfere with each other in accessing specific resources.
-  - _3._ 
 - The RBAC API declares 4 kinds of Kubernetes object:
-  - _1. Role:_ define a role within a namespace
-  - _2. ClusterRole:_ define a role clusterwise
-  - _3. RoleBinding:_ grants the permissions defined in a role to a user or set of users
-  - _4. ClusterRoleBinding:_
+  - _a. Role:_ define a role within a namespace
+  - _b. ClusterRole:_ define a role clusterwise
+  - _c. RoleBinding:_ grants the permissions defined in a role to a user or set of users
+  - _d. ClusterRoleBinding:_
+  - _e._ Capability Mapping
 
-#### 1. Role
+#### a. Role
 - Example: Role granting Read access to pods
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -142,7 +142,7 @@ rules:
   verbs: ["get", "watch", "list"]
 ```
 
-#### 2. RoleBinding
+#### b. RoleBinding
 - Grants the permissions defined in a role to Subjects. Subjects can be user or set of users.
 - Example
   - user:jane can read pods in default namespace
@@ -161,6 +161,10 @@ roleRef:                                  # "roleRef" specifies the binding to a
   name: pod-reader                        # You need to already have a Role named "pod-reader" in that namespace.
   apiGroup: rbac.authorization.k8s.io
 ```
+
+#### c. CapabilityMapping
+- Container will have Runtime(linux), CM is a way to give capabilities to a process running within linux container.
+- Example: Giving capabilites to process to modify n/w config, mouting file system, accessing h/w devices
 
 ### 6. ServiceAccount
 A object that provides an identity for processes running inside a pod.
