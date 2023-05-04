@@ -46,9 +46,15 @@ substring   longest_substr_without_repeating_char (k=1 replacement allowed)
     AAB       3 (AAB=AAA)
     AABA      4 (AABA=AAAA)
     AABAC     Not allowed. Freq(A=3,B=1,C=1). With k=1, We can only replace B or C
+              max_freq=3. window_size=5
+              if (window_size - max_freq > k)  //Here window_size=substr
+               - Not allowed. We cannot replace k characters and make continious substr
     
     A         1
     AB        2
     ABA       3
     ABAC      Not allowed. Freq(A=2,B=1,C=1). With k=1, We can only replace B or C
+              window_size = 4, max_freq = 2.
+              (window_size - max_freq > k)
+                Not allowed
 ```
