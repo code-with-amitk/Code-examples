@@ -122,24 +122,36 @@ A basic unit of deployment in Kubernetes that runs one or more containers.
   - _1._ Control resources access between multiple pods.
   - _2._ Pods donot interfere with each other in accessing specific resources.
 - The RBAC API declares 4 kinds of Kubernetes object:
-  - _a. Role:_ define a role within a namespace
+  - _a. Role:_
   - _b. ClusterRole:_ define a role clusterwise
   - _c. RoleBinding:_ grants the permissions defined in a role to a user or set of users
   - _d. ClusterRoleBinding:_
   - _e._ Capability Mapping
 
 #### a. Role
-- Example: Role granting Read access to pods
+- This is authorization object that controls access to kubernets resources(eg: pods, deployments, services) based on specific verbs(eg: create, get, update etc)
+- 
 ```yaml
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1    //API version of RBAC being defined
 kind: Role
-metadata:
-  namespace: default
-  name: pod-reader
 rules:
-- apiGroups: [""] # "" indicates the core API group
-  resources: ["pods"]
-  verbs: ["get", "watch", "list"]
+  - apiGroups:                //Rule1: Grant Permission to create Tokenreviews is granted in group(authentication.k8s.io)
+      - authentication.k8s.io
+    verbs:
+      - create
+    resources:
+      - tokenreviews
+      
+  - apiGroups:                //Rule2: Grant Permission to get jobs in group(batch)
+      - batch
+    verbs:
+      - get
+    resources:
+      - jobs
+      
+  - apiGroups: ["coordination.k8s.io"]    //Rule3: Grant Permission to perform actions in group(coordination.k8s.io)
+    resources: ["leases"]
+    verbs: ["get", "watch", "list", "delete", "update", "create", "patch"]
 ```
 
 #### b. RoleBinding
@@ -168,7 +180,7 @@ roleRef:                                  # "roleRef" specifies the binding to a
   - _2._ [JAMS capability mapping](https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/Problem_Req/Jul22_Jan23.md#f1) When mapping-a is enabled, service can call method1,2. When mapping-b is enabled, service can call method3,4. 
 
 ### 6. ServiceAccount
-A object that provides an identity for processes running inside a pod.
+This object allows pod to authenticate and access other parts of cluster using RBAC.
 
 ### 7. Services
 - In Kubernetes, Service(or microservice) is logical set of Pods. Service exposes REST endpoints(eg: POST) & other services interact by calling these endpoints.
