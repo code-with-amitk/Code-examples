@@ -24,19 +24,20 @@ Explanation: Replace the one 'B' in the middle with 'A' and form "AAAACBA".
 The substring "AAAA" has the longest repeating letters, which is 4.
 ```
 
-### Approach-1. Naive. Brute Force. O(n<sup>2</sup>)
-1. Take all substrings. O(n<sup>2</sup>)
+### Approach-1. Sliding Window
+1. Take all windows.
+- Count freq of elements in window
+- if (window_size - max_element_in_window > k)
 ```c
 "A A B A C B A"
  0 1 2 3 4 5 6
+ | |
+ s e
+
+window_start  window_end  window_size  freq_of_elements
+ 0            1           2            A=2
  
-All substring
- Fixing A(index=0):  A, AA, AAB, AABA, AABAC, AABACB, AABACBA,
- Fixing A(index=1):  A, AB, ABA, ABAC, ABACB, ABACBA
- Fixing B(index=2):  B, BA, BAC, BACB, BACBA
- Fixing A(index=3):  A, AC, ACB, ACBA
- Fixing C(index=4):  C, CB, CBA
- ..
+ if 
 ```
 2. For every substring find _longest substring without repeating character._
 ```c
