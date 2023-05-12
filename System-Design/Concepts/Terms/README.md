@@ -113,13 +113,13 @@ Basically Available, Soft state, and Eventual consistency
 <a name=con></a>
 ### Consistency
 ```c
---System--|
-          |----------> Client-1
-  ..      |
-          |---------> Client-2
-----------|
+node-1  ------\
+              client
+node-2  -----/
+
+Client will get same date if it connects to node-1 or node-2.
 ```
-- Means All clients will get(same, latest data) to whatever node they connect to in system.
+- Client will get(same, latest data) to whatever node they connect to in system.
 - **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
 
 #### Consistency patterns
