@@ -56,16 +56,15 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 - Using [Transactions](Transaction), ie when some transaction fails then its Aborted and DB comes in old state.
 
 <a name=av></a>
-### Availability
+### Availability  (System is Available)
 ```c
---System------|
-              |----------> Client-1
-  ..          |
-  node-n down |----------> Client-2
---------------|
+|----------System--------|
+| node1(up)              |
+|          node2(down)   |  => Client
+|  noden(down)           |
+|------------------------|
 ```
-- Any client which requests data gets a response even if some of the nodes are down (without guarantee that it contains the most recent version of information).
-- Whole system is up, user can RW successfully irrespective if any node in the cluster is down.
+- Even if some of nodes are down in system, If client requests data, it will get a response(without guarantee that it contains the most recent version of information).
 - **Availabilty Problem** System is down and it cannot take requests and send responses.
   - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
     - *a.* Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
@@ -111,7 +110,7 @@ Basically Available, Soft state, and Eventual consistency
   - _3. AP:_ nodes remain online even if they can't communicate with each other
 
 <a name=con></a>
-### Consistency
+### Consistency (System is consistent)
 ```c
 node-1  ------\
               client
@@ -198,8 +197,8 @@ Writing data from client to server's memory/disk. Specifically mutation is an op
 - This is extension to CAP theorem.
 - _Theorem:_ In case of network partitioned, one chooses AP or CP Else(E) even when the system is running normally in absence of partitions, one has to choose between latency(L) and consistency(C)
 
-### Partition Tolerance 
-The system continues to operate despite arbitrary partitioning due to network failures
+### Partition Tolerance (System is PT)
+Some nodes are not connected to system(network failure, node down), even then system continues to operate and provide responses.
 
 ### Path Folding / Location Swapping 
 - During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
