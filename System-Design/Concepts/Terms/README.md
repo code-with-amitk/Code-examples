@@ -65,6 +65,7 @@ snub means ignoring someone or something. Time to time, a BitTorrent peer become
 |------------------------|
 ```
 - Even if some of nodes are down in system, If client requests data, it will get a response(without guarantee that it contains the most recent version of information).
+- OR Every read will get response without gurantee its most recent data or not.
 - **Availabilty Problem** System is down and it cannot take requests and send responses.
   - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
     - *a.* Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
@@ -115,10 +116,9 @@ Basically Available, Soft state, and Eventual consistency
 node-1  ------\
               client
 node-2  -----/
-
-Client will get same date if it connects to node-1 or node-2.
 ```
 - Client will get(same, latest data) to whatever node they connect to in system.
+- OR Every read operation will recieve most recent Write (or error).
 - **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
 
 #### Consistency patterns
@@ -198,7 +198,7 @@ Writing data from client to server's memory/disk. Specifically mutation is an op
 - _Theorem:_ In case of network partitioned, one chooses AP or CP Else(E) even when the system is running normally in absence of partitions, one has to choose between latency(L) and consistency(C)
 
 ### Partition Tolerance (System is PT)
-Some nodes are not connected to system(network failure, node down), even then system continues to operate and provide responses.
+System will continue to function even when network partitions occur, causing messages between nodes to be delayed or lost.
 
 ### Path Folding / Location Swapping 
 - During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
