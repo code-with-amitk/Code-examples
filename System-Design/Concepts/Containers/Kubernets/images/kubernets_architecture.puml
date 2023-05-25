@@ -1,32 +1,98 @@
-@startuml
+@startuml kubernets_architecture
 
-package "Master Node" {
-  [Controller]
-  [Scheduler]
-  [API_service]
-  [etcd]
-}
-
-package "WORKER_NODE-1" {
-  [Kubelet Kubectl_Proxy]
-    package "POD" {
-        frame "Container-2(docker)" {
-            [Application-2, libs]
-        }
-        frame "Container-1(docker)" {
-            [Application-1, libs]
-        }
-    }
+package "Master Node/Control Plan" {
+  /'-[hidden]-> is used for left to right layout'/
+  [Controller Manager] -[hidden]> [Scheduler]
+  [Scheduler] -[hidden]> [etcd]
+  [etcd] -[hidden]> [Add Ons]
+  [Add Ons] -[hidden]> [API Server]
+  [API Server]
 }
 
 package "WORKER_NODE-2" {
-  [Kubelet Kubectl_Proxy]
-    package "POD" { 
-
+  [Kubelet Kubectl_Proxy_] -[hidden]-> [Kube-Proxy_]  
+  [Kube-Proxy_] -[hidden]->  [Node status & Meta-data_]
+  [Node status & Meta-data_] -[hidden]-> [Add On's_]
+  folder "Container Run Time" {
+    node "Namespace_2" {
+      node "POD_a2" {
+          frame "Container-22(docker)" {
+          }
+      }
     }
+  }
 }
-[user] --> "Master Node" : *.yaml
-[API_service] --> [Kubelet Kubectl_Proxy]
 
+top to bottom direction
+package "WORKER_NODE-1" {
+  /'-[hidden]-> is used for top to bottom layout'/
+  [Kubelet Kubectl_Proxy] -[hidden]-> [Kube-Proxy]  
+  [Kube-Proxy] -[hidden]->  [Node status & Meta-data]
+  [Node status & Meta-data] -[hidden]-> [Add On's]
+  folder "Container Run Time" {
+    node "Namespace_1" {
+      node "POD_a" {
+          frame "Container-2(Service=JAMS_Server)\n\nlocalhost:9191" {
+              [Application-2\n\njams-dbcreate] -[hidden]-> [Runtime-2]
+              [Runtime-2] -[hidden]-> [Depedencies-2]
+          }
+          frame "Container-1(Service=JAMS_Server)\n\nlocalhost:9192" {
+              [Application-1\n\njams-server\n\nTargetPort=8080] -[hidden]-> [Runtime-1]
+              [Runtime-1] -[hidden]-> [Depedencies-1]
+          }
+          frame "Network Namespace" {
+              [Enable Communication b/w \nContainers in this POD]
+          }
+      }
+
+      node "POD_b" {
+          frame "Container(XYZ)" {
+              [Application-n\n\nTargetPort=8080] -[hidden]-> [Runtime-n] 
+              [Runtime-n] -[hidden]-> [Depedencies-n]
+          }
+      }
+    }
+  }
+}
+
+note as N1 #LightGreen
+<b>NAMESPACE
+
+divides cluster into smaller units
+to isolate services,volumes and manage.
+end note
+
+note top of POD_a #LightBlue
+<b>POD
+
+This is smallest deployable unit in kubernets.
+Each POD has its own IP & namespace.
+Containers in POD share resources and
+ can communicate using 'localhost'.
+end note
+
+note as N3 #aqua
+<b>NETWORKING inside POD
+
+Containers inside POD communicate using localhost or IP Addresses:Port.
+Each POD has its own <b>Network Namespace
+end note
+
+note top of POD_a #LightPink
+<b>SERVICE
+
+1 service can have multiple Applications.
+Each Application can run inside a Container
+(same or different POD).
+end note
+
+/'
+[user] --> "Master Node/Control Plan" : .yaml
+'/
+[API Server] -l-> [Kubelet Kubectl_Proxy]
+[API Server] <-- [Kubelet Kubectl_Proxy]
+
+[API Server] -l-> [Kubelet Kubectl_Proxy_]
+[API Server] <-- [Kubelet Kubectl_Proxy_]
 
 @enduml
