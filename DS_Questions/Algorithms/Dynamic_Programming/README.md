@@ -77,7 +77,7 @@ for i from 2 to n:
 
 <a name=tem></a>
 ### DP Template
-> Eg: [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/Climb_Stairs_1or2_steps.md)
+> Eg: [Climbing Stairs](DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md)
 - _1. Define State:_ state means reaching nth stair or nth number etc. Eg: state=number of ways to jump to nth stair
 - _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
