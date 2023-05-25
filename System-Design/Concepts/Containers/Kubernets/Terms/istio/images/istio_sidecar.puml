@@ -1,0 +1,36 @@
+@startuml
+
+package POD1 {
+    frame "container-a" {
+        [microservice1]
+    }
+    frame "container-b" {
+        [istio sidecar1]
+    }
+}
+
+package POD2 {
+    frame "container-c" {
+        [microservice2]
+    }
+    frame "container-d" {
+        [istio sidecar2]
+    }
+}
+/'-[hidden]> is used for left to right layout'/
+"container-a" -[hidden]> "container-b"
+"container-c" -[hidden]> "container-d"
+
+"container-b" <--> "container-d"
+
+"container-a" <--> "container-b"
+
+"container-c" <--> "container-d"
+
+note as N1  #LightGreen
+a<-->b HTTP
+c<-->d HTTP
+b<-->d HTTPS
+end note
+
+@enduml
