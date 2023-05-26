@@ -11,6 +11,7 @@
   - [Minimum Cost Climbing Stairs](/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md)
   - [Delete and Earn](/DS_Questions/Questions/Number/Delete_and_Earn_or_Max_Gains.md)
   - [Longest Common Subsequence](/DS_Questions/Questions/Strings/SubString_SubSequence/Longest_Common_SubSequence_in_2_strings.md)
+  - [Paint House](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Paint_House.md)
 
 
 ## [Dynamic Programming / Tabular Method / Caching LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/)
