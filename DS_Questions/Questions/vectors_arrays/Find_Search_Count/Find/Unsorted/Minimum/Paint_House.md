@@ -1,4 +1,5 @@
-Paint House
+**Paint House**
+- [Approach-1. Dynamic Programming](#a1)
 
 ### [256. Paint House](https://leetcode.com/problems/paint-house/description/)
 - There is a row of n houses, where each house can be painted one of three colors: red, blue, or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
@@ -17,6 +18,7 @@ Input: costs = [[7,6,2]]
 Output: 2
 ```
 
+<a name=a1></a>
 ### Approach-1. Dynamic Programming
 **[Why DP?](/DS_Questions/Algorithms/Dynamic_Programming/)**
 #### Logic
