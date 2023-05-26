@@ -1,5 +1,10 @@
 **Paint House**
 - [Approach-1. Dynamic Programming](#a1)
+  - [Logic](#l)
+  - Code
+    - [CPP](#cpp)
+    - [Rust](#r)
+    - [Go](#go)
 
 ### [256. Paint House](https://leetcode.com/problems/paint-house/description/)
 - There is a row of n houses, where each house can be painted one of three colors: red, blue, or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
