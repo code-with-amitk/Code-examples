@@ -11,7 +11,7 @@
 - [Reference = Borrowing](#bow)
 - [Smart Pointers](#smart)
 - [Data Types](#datatypes)
-- [Collections: HashMap=unordered_map, HashSet=unordered_set, vector, string, str](Collections)
+- [Collections: HashMap=unordered_map, HashSet=unordered_set, vector, string, str, minHeap, maxHeap](Collections)
 - [Iterators](#itr)
 - [Keywords: Lazy, RWlock, self, Self](Keywords)
 - [Class in Rust](#class)
