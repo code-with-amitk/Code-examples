@@ -27,6 +27,35 @@ Output: 2
 ### Approach-1. Dynamic Programming
 **[Why DP?](/DS_Questions/Algorithms/Dynamic_Programming/)**
 #### Logic
+```c
+                Red     Blue    Green
+    House-1     17      2       17        |   00  01  02
+    House-2     16      16      5         |   10  11  12
+    House-3     14      3       19        |   20  21  22
+    House-4     5       8       7         |   30  31  32
+    House-5     12      21      13        |   40  41  42
+    
+- cost of painting house-2
+    - With red color = 16 + min(2(01), 17(02))    = 18
+    - With blue color = 16 + min(17(00), 17(02))  = 33
+    - With green color = 5 + min(17(00), 2(01))   = 7
+
+dp array
+    house-1     17      2       17
+    house-2     18      33      7
+    
+- cost of painting house-3
+    - With red color = 14 + min(33(01), 7(02))    = 21
+    - With blue color = 3 + min(18(00), 7(02))  =   10
+    - With green color = 19 + min(18(00), 33(01))   = 37
+
+dp array
+    house-1     17      2       17
+    house-2     18      33      7
+    house-2     21      10      37
+
+...
+```
 #### Complexity
 #### Code
 ```cpp
