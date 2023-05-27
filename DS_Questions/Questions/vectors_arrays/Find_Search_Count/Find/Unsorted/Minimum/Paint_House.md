@@ -136,3 +136,28 @@ int minCost(int** costs, int costsSize, int* costsColSize){
     return fmin(dp[rows-1][0], fmin(dp[rows-1][1], dp[rows-1][2]));
 }
 ```
+<a name=rs></a>
+**Rust**
+```rs
+impl Solution {
+    pub fn min_cost(costs: Vec<Vec<i32>>) -> i32 {
+
+        let rows = costs.len();
+        let cols = costs[0].len();
+        let mut dp:Vec<Vec<i32>> = vec![vec![0; cols]; rows];
+
+        dp[0][0] = costs[0][0];
+        dp[0][1] = costs[0][1];
+        dp[0][2] = costs[0][2];
+
+        use std::cmp::min;
+        for i in 1..rows {
+            dp[i][0] = costs[i][0] + min(dp[i-1][1], dp[i-1][2]);
+            dp[i][1] = costs[i][1] + min(dp[i-1][0], dp[i-1][2]);
+            dp[i][2] = costs[i][2] + min(dp[i-1][0], dp[i-1][1]);
+        }
+
+        min(dp[rows-1][0], min(dp[rows-1][1], dp[rows-1][2]))
+    }
+}
+```
