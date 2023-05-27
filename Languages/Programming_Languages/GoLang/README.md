@@ -1,3 +1,4 @@
 - [Array, Slice, Vector](Array_vector)
+- [Loops: for](#loop)
 - [package, import](Package)
 - [Variables](Variables)
