@@ -72,9 +72,24 @@ func main() {
 ```go
 package main
 func main() { 
-  // Declare a 2D vector
+  // Method-1: Declare a 2D vector
   var test [][]int     
   
+  // Method-2: Declare an empty 2D vector
+  test := make([][]int, rows)
+  // Initialize each row with specific length
+  for i := range vector {
+    test[i] = make([]int, cols)
+  }
+  
+  // Method-3: Declare an empty 2D vector
+  var test [][]int
+  // Initialize each row with specific length
+  for i := 0; i < rows; i++ {
+    test = append(test, make([]int, cols))
+  }
+
+
   // Initialize the 2D vector with values
   test = [][]int {
     1,2,3
