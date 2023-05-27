@@ -1,1 +1,1 @@
-- [package](Package)
+- [package, import](Package)
