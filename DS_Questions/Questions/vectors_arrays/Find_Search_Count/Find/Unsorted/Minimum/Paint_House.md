@@ -1,5 +1,5 @@
 **Paint House**
-- [Approach-1. Dynamic Programming](#a1)
+- [Approach-1. Dynamic Programming. O(mn)](#a1)
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
@@ -57,7 +57,9 @@ dp array
 
 ...
 ```
-#### Complexity
+#### Complexity. O(mn)
+- Traverse every element and crate dp array
+
 #### Code
 <a name=cpp></a>
 **CPP**
