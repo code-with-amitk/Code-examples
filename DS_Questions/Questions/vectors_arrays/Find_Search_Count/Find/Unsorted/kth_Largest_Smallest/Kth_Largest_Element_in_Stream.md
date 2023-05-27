@@ -4,6 +4,7 @@
   - [Complexity](#c)
   - Code
     - [CPP](#cpp)
+    - [Rust](#rs)
 
 ### [703. Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/description/)
 - Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -68,5 +69,49 @@ public:
  * Your KthLargest object will be instantiated and called as such:
  * KthLargest* obj = new KthLargest(k, nums);
  * int param_1 = obj->add(val);
+ */
+```
+<a name=rs></a>
+**Rust**
+```rs
+use std::collections::BinaryHeap;
+use std::cmp::Reverse;
+
+struct KthLargest {
+    size: usize,
+    min_heap: BinaryHeap<Reverse<i32>>,
+}
+
+
+/** 
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl KthLargest {
+
+    fn new(k: i32, nums: Vec<i32>) -> Self {
+        let mut mh: BinaryHeap<Reverse<i32>> = BinaryHeap::new();
+        for i in nums {
+            mh.push(Reverse(i));
+        }
+        KthLargest {
+            min_heap: mh,
+            size: k as usize,
+        }
+    }
+    
+    fn add(&mut self, val: i32) -> i32 {
+        self.min_heap.push(Reverse(val));
+        while self.min_heap.len() > self.size {
+            self.min_heap.pop();
+        }
+        self.min_heap.peek().unwrap().0
+    }
+}
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * let obj = KthLargest::new(k, nums);
+ * let ret_1: i32 = obj.add(val);
  */
 ```
