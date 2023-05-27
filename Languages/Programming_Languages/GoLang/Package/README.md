@@ -4,7 +4,7 @@
   - [main](#main)
 
 
-## Package in Go = [namespace in C++](Languages/Programming_Languages/c++/namespaces) = [crates in Rust](Languages/Programming_Languages/Rust/Crates_Packages_Modules)
+## Package in Go = [C++(namespace)](Languages/Programming_Languages/c++/namespaces) = [Rust(crates)](Languages/Programming_Languages/Rust/Crates_Packages_Modules)
 - The package statement is always the first line in a Go file. It specifies the package name that the file belongs to.
 
 <a name=why></a>
