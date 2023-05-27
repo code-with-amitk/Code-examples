@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [C](#c)
     - [Rust](#r)
     - [Go](#go)
 
@@ -58,6 +59,8 @@ dp array
 ```
 #### Complexity
 #### Code
+<a name=cpp></a>
+**CPP**
 ```cpp
 class Solution {
 public:
@@ -100,4 +103,36 @@ public:
         return min(dp[rows-1][0], min(dp[rows-1][1], dp[rows-1][2]));
     }
 };
+```
+<a name=c></a>
+**C**
+```c
+int minCost(int** costs, int costsSize, int* costsColSize){
+/*
+    costs:  rows=5, cols=3
+                Red     Blue    Green
+    House-1     17      2       17
+    House-2     16      16      5
+    House-3     14      3       19
+    House-4     5       8       7
+    House-5     12      21      13
+*/
+    int rows = costsSize;
+    int cols = 3;
+
+    // Take a dp Array
+    int dp[rows][3];
+
+    dp[0][0] = costs[0][0];
+    dp[0][1] = costs[0][1];
+    dp[0][2] = costs[0][2];
+
+    for (int i=1;i<rows;++i) {
+        dp[i][0] = costs[i][0] + fmin(dp[i-1][1], dp[i-1][2]);
+        dp[i][1] = costs[i][1] + fmin(dp[i-1][0], dp[i-1][2]);
+        dp[i][2] = costs[i][2] + fmin(dp[i-1][0], dp[i-1][1]);
+    }
+
+    return fmin(dp[rows-1][0], fmin(dp[rows-1][1], dp[rows-1][2]));
+}
 ```
