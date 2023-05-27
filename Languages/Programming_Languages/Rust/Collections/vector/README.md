@@ -56,14 +56,9 @@ let mut v = vec![0; 5];
 <a name=2d></a>
 #### 2d vector
 ```rs
-  let mut v: Vec<Vec<i32>> = Vec::with_capacity(row*col);
-  v.push(vec!(0,1));  
-  v.push(vec!(1,2));
+  let empty_matrix: Vec<Vec<i32>> = vec![vec![0; columns]; rows];
 OR         
   let mut v : Vec<Vec<usize>> = vec![Vec::with_capacity(row); col];
-  v[a as usize].push(b as usize);
-OR  
-  let mut v = vec![vec![0; row]; col];  
 ```
 
 <a name=update></a>
