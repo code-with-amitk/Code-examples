@@ -7,6 +7,8 @@
     - [Rust](#r)
     - [Go](#go)
 
+## [Self Video Paint House](https://youtu.be/rlRIn2cK0Qw)
+
 ### [256. Paint House](https://leetcode.com/problems/paint-house/description/)
 - There is a row of n houses, where each house can be painted one of three colors: red, blue, or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
 - The cost of painting each house with a certain color is represented by an n x 3 cost matrix costs.
