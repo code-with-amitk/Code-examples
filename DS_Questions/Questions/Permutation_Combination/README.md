@@ -1,7 +1,8 @@
 
-| | Permutations (non identical Items) | Combinations(Identical Items) |
+| | Permutations (Arragement) | Combinations(Choice) |
 |---|---|---|
 |Formula| <sup>n</sup>P<sub>r</sub> = n!/(n-r)! | <sup>n</sup>C<sub>r</sub> = n!/(n-r)!r! |
+|| Greater than Comb | Smaller than Per |
 
 ### [My Video](https://youtu.be/ijLshCenMEk)
 
