@@ -9,6 +9,7 @@
 ```go
 func main() {
   arr := [6]int{1,2,3,4,5,6}    //[n values] type {}
+  var len = len(arr);
 }
 ```
 
