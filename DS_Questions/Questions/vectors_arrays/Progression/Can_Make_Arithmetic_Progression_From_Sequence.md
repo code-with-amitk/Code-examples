@@ -4,6 +4,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Rust](#r)
 
 ### Can Make Arithmetic Progression From Sequence
 - A sequence of numbers is called an arithmetic progression if the difference between any two consecutive elements is the same.
@@ -66,6 +67,52 @@ diff = (max - min) / (size(arr) - 1)  = (10-2)/(5-1) = 8/4 = 2
 #### Code
 **CPP**
 ```cpp
+class Solution {
+public:
+    bool canMakeArithmeticProgression(vector<int>& arr) {
+      if (arr.size() == 2)
+        return true;
+
+        unordered_set<int> us;
+        // find min and max. Store elements in set
+        int min = INT_MAX, max = INT_MIN;
+        for (auto&i:arr) {
+          min = i < min ? i : min;
+          max = i > max ? i : max;
+          us.insert(i);
+        }
+
+        // All elements are same
+        if (us.size() == 1)
+          return true;
+
+        // This is the difference of AP
+        int diff = (max - min) / (arr.size()-1);
+
+        // Difference is not integer
+        if (diff == 0)
+          return false;
+
+        // Iterate thru array and find element in set
+        for (auto &i:arr) {
+            int find = 0;
+            // i+diff should be present in unordered_set
+            if (i < max)
+              find = i+diff;
+            else    //Max element
+              find = i-diff;
+            
+            if (us.find(find) == us.end())
+              return false;
+
+        }
+        return true;
+    }
+};
+```
+<a name=r></a>
+**Rust**
+```rs
 class Solution {
 public:
     bool canMakeArithmeticProgression(vector<int>& arr) {
