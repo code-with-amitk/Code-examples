@@ -1,16 +1,18 @@
 **[HashSet](https://doc.rust-lang.org/std/collections/struct.HashSet.html) = unordered_set`<key>` C++**
-- Create
-  - [From vector](#vec)
+- [Create](#c)
 - [Iterate](#itr)
 - [Search a key](#search)
 
+<a name=c></a>
 ### Create
-<a name=vec></a>
-#### From vector
 ```rs
+// From Vector
 let vec: Vec<i32> = vec![1, 2, 3, 4];
 let hash_set: HashSet<i32> = vec.into_iter().collect();          //Moving data ownership
 let hash_set: HashSet<usize> = vec.iter().cloned().collect();    //Cloning the data
+
+// Empty
+let hs:HashSet<i32> = HashSet::new();
 ```
 
 <a name=itr></a>
