@@ -1,10 +1,14 @@
 **Can Make Arithmetic Progression From Sequence**
 - [Approach-1. sort O(nlogn)](#a1)
-- [Approach-2. Without sort. Time:O(n),Space:O(n)](#a2)
+- [Approach-2. unordered_set. Time:O(n),Space:O(n)](#a2)
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
     - [Rust](#r)
+- [Approach-3. Swap element to correct place. Time:O(n),Space:O(1)](#a3)
+  - [Logic](#l3)
+  - Code
+    - [CPP](#cpp3)
 
 ### Can Make Arithmetic Progression From Sequence
 - A sequence of numbers is called an arithmetic progression if the difference between any two consecutive elements is the same.
@@ -152,6 +156,87 @@ public:
               return false;
 
         }
+        return true;
+    }
+};
+```
+
+<a name=a3></a>
+### Approach-3. Swap element to correct place. Time: O(n), Space:O(1)
+#### Logic
+- _1._ Iterate through array and Find min, max elements
+  - if (max-min==0) return false. All elements are same
+  - if max-min does not divide completely by number of element. It's not correct AP
+```c
+arr = [2,11,8,5,14,17,20]
+min=2, max=20
+```
+- _2._ Calculate Difference of Arithematic Progression.
+  - if (differnce == 0). return false its not correct AP
+```c
+diff = (max - min) / (size(arr) - 1)  = (20-2)/(7-1) = 18/6 = 3
+// All elements differ from each other by 3
+```
+- _3._ Now traverse array
+  - Check whether element is at its proper place in array (Eg: 11 should be at index=3). if its not swap
+```c
+arr = [2,11,8,5,14,17,20]
+correct_position = (arr[i] - min) / d;
+                 =  (11 - 2)/3 = 3    //11 should be at index=3
+```
+#### Complexity
+- **Time:** O(n)
+- **Space:** O(1)
+#### Code
+**CPP**
+```c
+class Solution {
+public:
+    bool canMakeArithmeticProgression(vector<int>& arr) {
+        if (arr.size() <= 2)
+			return true;
+		
+		// Find min and mx elements
+        int min = INT_MAX, max = INT_MIN;
+        for (int num : arr) {
+            min = std::min(min, num);
+            max = std::max(max, num);
+        }
+		
+		// Difference of AP array
+		int d = (max - min) / (arr.size() - 1);
+
+		if (max-min == 0)
+			return true;
+		
+		// if difference is 0 it means all elements are not in AP
+		if (d == 0)
+			return false;
+			
+    // if max-min does not divide completely by number of element. It's not correct AP
+    if ((max - min) % (arr.size() - 1) != 0) 
+			return false;
+        
+		for (int i=0; i<arr.size(); ++i) {
+    
+			// Element found at its place
+			if (arr[i] == min + i * d)
+				continue;
+				
+			// if difference of any 2 elements in AP is not completely 
+			// divisible by Arithmetic Progression Difference then
+			// this term is not in AP
+			else if ((arr[i] - min) % d != 0)
+				return false;
+        
+			else {
+				// This element is correct, but not at correct place
+				int correct_pos = (arr[i] - min) / d;	//This is correct place of element
+				if (arr[correct_pos] == arr[i])
+					return false;
+				std::swap(arr[i], arr[correct_pos]);
+			}				
+		}
         return true;
     }
 };
