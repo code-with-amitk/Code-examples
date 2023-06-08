@@ -3,6 +3,8 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Python](#py)
+    - [Rust](#r)
 
 ### [1318. Minimum Flips to Make a OR b Equal to c](https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/)
 Given 3 positives numbers a, b and c. Return the minimum flips required in some bits of a and b to make ( a OR b == c ). (bitwise OR operation).
@@ -69,4 +71,57 @@ public:
         return flips;
     }
 };
+```
+<a name=py></a>
+**Python**
+```py
+class Solution:
+    def minFlips(self, a: int, b: int, c: int) -> int:
+        a1:unsigned = a;
+        b1:unsigned = b;
+        c1:unsigned = c;
+        d = 1;
+        flips = 0;
+        for i in range(1,32):
+            if ((d&c1) == 0):
+                if (d&a1):
+                    flips += 1;
+                if (d&b1):
+                    flips +=1;
+            else:  #d&c1 = 1
+                if (((d&a1) != d) and ((d&b1) != d)):
+                    flips+=1;
+            d=d<<1;
+        return flips;
+```
+<a name=r></a>
+**Rust**
+```rs
+impl Solution {
+    pub fn min_flips(a: i32, b: i32, c: i32) -> i32 {
+        let a1:u32 = a as u32;
+        let b1:u32 = b as u32;
+        let c1:u32 = c as u32;
+        let mut d:u32 = 1;
+        let mut flips:i32 = 0;
+
+        for i in 1..32 {
+            if (d&c1) == 0 {
+                if d&a1 == d{
+                    flips += 1;
+                }
+                if d&b1 == d{
+                    flips += 1;
+                }
+            }
+            else {  //d&c1 = 1
+                if ((d&a1) != d) && ((d&b1) != d) {
+                    flips += 1;
+                }
+            }
+            d=d<<1;
+        }
+        flips
+    }
+}
 ```
