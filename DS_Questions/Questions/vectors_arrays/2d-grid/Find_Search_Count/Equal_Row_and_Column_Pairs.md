@@ -2,6 +2,7 @@
 - [Approach-1. O(n<sup>3</sup>)](#a1)
   - Code
     - [CPP](#cpp1)
+- [Approach-2. 102ms](#a2)
 
 ### [2352. Equal Row and Column Pairs](https://leetcode.com/problems/equal-row-and-column-pairs/description/)
 Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal.
@@ -63,6 +64,46 @@ public:
             }
         }
         return out;
+    }
+};
+```
+
+### Approach-2
+#### Code
+<a name=cpp2></a>
+**CPP**
+```cpp
+class Solution {
+    int out, rows;
+public:
+    int equalPairs(vector<vector<int>>& grid) {
+        out = 0;
+        rows = grid.size(); //nxn matrix
+
+        map<vector<int>, int> m;
+        //                          column, count
+        // Keep coloumns in map<vector<int>, int>>
+        for (int i=0;i<rows;++i){
+            vector<int> v;
+            for (int j=0;j<rows;++j)
+                v.push_back(grid[j][i]);
+            
+            auto it = m.find(v);
+            if (it == m.end())
+                m.emplace(v, 1);
+            else
+                it->second++;
+        }
+
+        //Traverse rows, if row is found in map increment count by 1
+        for (auto &row:grid) {
+            auto it = m.find(row);
+            if (it != m.end())
+                out += it->second;
+//            if (m.find(row) != m.end())
+//                out += m[row];
+        }
+      return out;
     }
 };
 ```
