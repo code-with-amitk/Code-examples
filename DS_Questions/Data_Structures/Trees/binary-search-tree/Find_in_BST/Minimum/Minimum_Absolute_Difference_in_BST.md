@@ -1,5 +1,7 @@
 **Minimum Absolute Difference in BST**
-- [Approach-1. Inorder & 2 loops. O(n<sup>2</sup>)](#a1)
+- [Approach-1. Inorder Traversal & 2 loops. O(n<sup>2</sup>)](#a1)
+- Approach-2. Inorder Traversal & Sorting. Compare adjacent elements. O(nlogn)
+- Approach-3. Inorder Traversal & Insert in map. Compare adjacent elements. O(nlogn)
 
 
 ### [530. Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/description/)
