@@ -1,6 +1,7 @@
 - [Rust vs All Languages](#all)
 - [Rust vs C++](#rcpp)
   - [1. Memory safety Using Ownership & borrow checker](#a1)
+  - [2. Built-in support for concurrent programming and thread safety](#a2)
 
 
 <a name=all></a>
@@ -19,8 +20,8 @@
 <a name=rcpp></a>
 ### Rust vs C++
 <a name=a1></a>
-#### Memory safety Using Ownership & borrow checker
-- What is ownership
+#### 1. Memory safety Using Ownership & borrow checker
+- [What is ownership](/Languages/Programming_Languages/Rust)
 - Use-after-free or data races are detected at compile-time in rust using 
 ```c
 Example:
@@ -38,10 +39,54 @@ fn main() {
   a.push_back(4);          //Compilation Error. This avoid 
 }
 ```
+<a name=a2></a>
+#### 2. Built-in support for concurrent programming and thread safety
+- Example: 2 threads (thread1 and thread2) concurrently access/modify a shared variable (shared_data).
+  - **Rust**
+    - Rust's built-in support for concurrency and thread safety ensures that the shared variable is protected from data races.
+    - The borrow checker enforces ownership rules & guarantees thread safety and eliminates data races at compile-time.
+  - **C++**
+    - It's the developer's responsibility to synchronize access to shared data using synchronization primitives(Eg: mutexes or locks). Failure to do so correctly can result in data races and undefined behavior.
+```c
+///////////////// Rust //////////////////////
+use std::thread;
+fn main() {
+    let mut shared_data = 0;
+    let thread1 = thread::spawn(|| {
+        for _ in 0..5 {
+            shared_data += 1;
+        }
+    });
+    let thread2 = thread::spawn(|| {
+        for _ in 0..5 {
+            shared_data += 1;
+        }
+    });
+    thread1.join().unwrap();      thread2.join().unwrap();
+    println!("Final shared data value: {}", shared_data);
+}
+
+/////////////////// C++ //////////////////////////
+#include <thread>
+int main() {
+    int shared_data = 0;
+    std::thread thread1([&shared_data]() {
+        for (int i = 0; i < 5; i++)
+            shared_data++;
+    });
+
+    std::thread thread2([&shared_data]() {
+        for (int i = 0; i < 5; i++)
+            shared_data++;
+    });
+
+    thread1.join();    thread2.join();
+    std::cout << "Final shared data value: " << shared_data << std::endl;
+}
+```
 - No implicit copies as in C++
 - Rust uses LLVM complier which has inherent advantages over g++
 - No invisible copy constructors, move operators etc (as in c++). Whatever is runtime cost that's visible in code.
-- Safe parallelism wrt C++
 - Pacakge Repository (crates) better
 - Compiler Errors are more informative
 - Memory safety                    
