@@ -1,6 +1,6 @@
 - What/Why Rust
-  - [Rust vs All Languages](#All)
-  - [Rust vs C++](#Rustcpp)
+  - [Rust vs All Languages](Comparison_Rust_vs_Other_Lang)
+  - [Rust vs C++](Comparison_Rust_vs_Other_Lang)
 - [Install on linux/windows](#install)
 - [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
 - [Cargo: cargo build, cargo test, cargo doc, cargo publish](Cargo_BuildSystem)
@@ -31,48 +31,6 @@
 - [Threading](#th)
 - [macros](macros)
 - [Logging: env_Logger, log4rs](Logging)
-
-### What/Why Rust
-<a name="All"></a>
-#### Rust vs All Languages
-- No Garbage collector(Java,python has garbage collectors)               //Garbage collector is runtime heavy
-- No monolithic runtime.
-- Statically typed(with type inference), Catching the bugs at compile time reduces runtime crashes. Compiler does lot of heavy lifting.
-  - No Type confusion
-    - Pointer to int cannot be assigned to pointer to float
-  - improves code quality, security, no runtime errors
-- Thread safety
-  - No data races: No 2 threads doing same thing to shared resource Wow!!
-- Memory and ownership checking     //Borrow checker
-- No need to call delete(),free(). Compiler will insert free()/delete() knows when memory is not used.
-
-<a name="Rustcpp"></a>
-#### Rust vs C++
-- No implicit copies as in C++
-- Rust uses LLVM complier which has inherent advantages over g++
-- No invisible copy constructors, move operators etc (as in c++). Whatever is runtime cost that's visible in code.
-- Safe parallelism wrt C++
-- Pacakge Repository (crates) better
-- Compiler Errors are more informative
-- Memory safety                    
-  - No segfaults(no segfault reported in last 5 years)
-  - No Memory leaks
-  - No out of bounds read/writes
-  - No double frees
-  - No dangling pointers
-  - No uninitialized variables
-- Default in rust is move not copy
-```rs
-fn print(a:Vec<i32>) {
-  println!("{}"a.len());
-}
-fn main() {
-  let mut v = Vec::new();
-  v.push(1);
-  print(v);                               //Now v is moved not copied.
-  //println!("{}", v[0]);                 //Compiler error
-}
-```
 
 <a name=install></a>
 ### Install
