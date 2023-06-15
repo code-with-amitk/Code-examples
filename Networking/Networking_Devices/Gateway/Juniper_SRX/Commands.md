@@ -1,7 +1,8 @@
 **Commands**
 - [get ip addresses](#g)
 - [User Identification](#ui)
-- [Set Logging](#sl)
+- [Logging](#sl)
+  - [Batch query logs](#bql)
 - [Counters, Status](#cs)
 - [Policies, Authentication Tables](#p)
 
@@ -64,6 +65,19 @@ Entering configuration mode
 Exiting configuration mode
 > exit
 > cat /var/log/test.txt
+```
+<a name=bql></a>
+**Batch query logs**
+```c
+set groups jims-server services user-identification identity-management traceoptions file jims_query.log
+set groups jims-server services user-identification identity-management traceoptions file size 10M
+set groups jims-server services user-identification identity-management traceoptions level all
+set groups jims-server services user-identification identity-management traceoptions flag all
+set groups jims-server services user-identification identity-management traceoptions flag jims-validator-query
+
+show log jims-query.log
+or 
+goto shell prompt and open /var/log/jims-query.log
 ```
 
 <a name=cs></a>
