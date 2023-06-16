@@ -1,8 +1,7 @@
 
-| | Permutations (Arragement) | Combinations(Choice) |
+| | Permutations(Arragement) (Greater than comb) | Combinations(Choice) (Smaller than Perm) |
 |---|---|---|
 |Formula| <sup>n</sup>P<sub>r</sub> = n!/(n-r)! | <sup>n</sup>C<sub>r</sub> = n!/(n-r)!r! |
-|| Greater than Comb | Smaller than Per |
 
 ### [My Video](https://youtu.be/ijLshCenMEk)
 
