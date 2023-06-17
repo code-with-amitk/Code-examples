@@ -4,6 +4,7 @@
   - Code
     - [CPP](#cpp)
 
+## [Self Video](https://youtu.be/5jhZ5msqziM)
 
 ### [1569. Number of Ways to Reorder Array to Get Same BST](https://leetcode.com/problems/number-of-ways-to-reorder-array-to-get-same-bst/description/)
 - Given an array nums that represents a permutation of integers from 1 to n. We are going to construct a binary search tree (BST) by inserting the elements of nums in order into an initially empty BST. Find the number of different ways to reorder nums so that the constructed BST is identical to that formed from the original array nums.
