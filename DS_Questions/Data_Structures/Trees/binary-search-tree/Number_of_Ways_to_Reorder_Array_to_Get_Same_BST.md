@@ -36,6 +36,76 @@ Explanation: The following 5 arrays will yield the same BST:
 <a name=a1></a>
 ### Approach-1.Valid Combinations on left and right
 #### Logic
+**Understanding problem:**
+- _1._ We need to find all combinations of input which will yeild same bst.
+```c
+Input: nums = [3,4,5,1,2]
+    3
+  /   \
+ 1     4     
+  \      \
+   2      5
+```
+- _2._  Consider this combination=`[3,1,2,4,5]`. This will create same bst as input.
+```c
+  3
+/    
+1          //Place 3, Then Place 1, Then place 2
+ \
+  2
+    
+// Now place 4 and after 4, place 5.
+    3
+  /   \
+  1    4   
+  \     \
+    2    5        //This is same BST as input.
+```
+- Similarly other combinations will also generate same bst.
+```c
+[3,1,4,2,5]
+[3,1,4,5,2]
+[3,4,1,2,5]
+[3,4,1,5,2]
+```
+- **Things we can derive from generated Combinations**
+  - _1._ Root node of tree is always at index=0
+  - _2._ All elements less than root node(1,2) will come in left subtree. All elements greter than root node will come in right subtree.  //BST property
+  - _3._ To generate same BST(as input), relative ordering of left subtree elements and right subtree elements should be same.
+    - ie 2 should always come after 1 in all generated combinations.
+    - 5 should always come after 4 in all generated combinations.
+```c
+3  __  _4_  __  _5_    //1,2
+3  __  _4_  _5_  __    //1,2
+3  _4_  __  __  _5_    //1,2
+3  _4_  __  _5_  __   //1,2
+```
+- So, we need to place 2 numbers(left subtree) at 4 places. 1st place is always occupied by root node.
+```c
+  n-1
+    C
+     2  //Left subtree elements
+```
+- For right subtree we need to place 2 numbers(4,5) at 4 places. 1st place is always occupied by root node.
+```c
+  n-1
+    C
+     2  //right subtree elements
+```
+- **Why we need recursion (DFS) here?**
+  - We wil calculate <sup>n</sup>C<sub>r</sub> or left and right subtrees, but left, right subtrees might also be arranged differntly hence we need all possible ways.
+```c
+      10
+      / \
+     5    15
+    / \   / \
+   2   7  17 20
+      /    \
+     6      18
+```
+- **[Pascal Traingle](DS_Questions/Questions/vectors_arrays/2d-grid/Pascal_Traingle.md):** Stores all combinations, hence we need not to calculate combination product reptedly.
+  - Pascal traingle represents combination tree.
+
 #### Code
 <a name=cpp></a>
 **CPP**
@@ -47,9 +117,13 @@ class Solution {
 public:
     long long dfs(vector<int>& nums, vvLL& pascal_triangle) {
         int size = nums.size();
+
+        // if less than 3 elements, there is only possible way to arrange elements.
         if (size <= 2)
             return 1;
-            
+
+        // Count elements less than root, they will come in left subtree
+        // elements greater than root, they will come in right subtree
         vector<int> left, right;
         for (int i=1;i<size;++i) {
             if (nums[i] < nums[0])
@@ -60,8 +134,8 @@ public:
         
         long long left_comb = dfs(left, pascal_triangle)% mod;
         long long right_comb = dfs(right, pascal_triangle) % mod;
-        
 
+        // Calculate Combination:
         //n-1
         //   C
         //    left_elements
@@ -73,41 +147,19 @@ public:
     int numOfWays(vector<int>& nums) {
         int n = nums.size();
         
-        // Pascal Traingle representing Combinations
+        //1. Create Pascal Traingle representing Combinations
         vvLL pascal_triangle(n+1, vLL(n+1,0));
-     
         for (int i=1;i<=n;++i) {
             pascal_triangle[i] = vLL(i+1, 1);
             for (int j=1;j<i;++j)
                 pascal_triangle[i][j] = (pascal_triangle[i-1][j-1] + pascal_triangle[i-1][j]) % mod;
         }
 
+        // 2. Find all combinationss of every subtree using recursion
         long long a = (dfs (nums, pascal_triangle) % mod);
+
+        // Ans = (All combinations) - 1. Since input is also 1 combination which need not to be included.
         return  (a -1);
-
-        // root is always index=0
-        // Count all numbers which are less than nums[0]
-        // int left_elements = 0;
-        // for (auto&i:nums){
-        //     if (i < nums[0])
-        //         left_elements++;
-        // }
-
-        // // Left Combination: Number of ways to arrange left eleemnt(1,2)
-        // // in 4 places. Because 1st position is always for root
-        // // nums.size()-1        //Because 1st position is always for root
-        // //    C
-        // //      left_elements
-        // int left_ways = (combination(nums.size()-1, left_elements))%mod;
-
-        // // Right Combination: Number of ways to arrange right eleement(4,5)
-        // // in 4 places. Because 1st position is always for root
-        // // nums.size()-1    //Because 1st position is always for root
-        // //    C
-        // //      right_elements
-        // int right_elements = nums.size()-1-left_elements;
-        // int right_ways = (combination(nums.size()-1, right_elements))%mod;
-        // return (left_ways+right_ways - 1);
     }
 };
 ```
