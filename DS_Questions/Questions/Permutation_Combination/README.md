@@ -2,6 +2,7 @@
   - Questions
 - [Combinations/Choice (Smaller than Perm)](#c)
   - Questions
+    - [Pascal Traingle = Combination Tree](DS_Questions/Questions/vectors_arrays/2d-grid/Pascal_Traingle.md)
     - [Number of Ways to Reorder Array to Get Same BST](/DS_Questions/Data_Structures/Trees/binary-search-tree/Number_of_Ways_to_Reorder_Array_to_Get_Same_BST.md)
 
 ### [My Video](https://youtu.be/ijLshCenMEk)
