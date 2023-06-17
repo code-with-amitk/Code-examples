@@ -1,5 +1,5 @@
 **Number of Ways to Reorder Array to Get Same BST**
-- [Approach-1. Valid Combinations on lfet and right](#a1)
+- [Approach-1. Valid Combinations on left and right](#a1)
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
