@@ -11,7 +11,8 @@ FROM ubuntu:latest			//Create docker image from latest ubuntu
 CMD echo "Hello First"
 ENTRYPOINT echo "Hello second"
 
-# docker build -t amit_image .	//Create docker image named hello_test
+ // Create docker image and store on Docker image Cache (locally)
+# docker build -t amit_image .	
 Sending build context to Docker daemon  22.02kB
 Step 1/3 : FROM ubuntu:latest
  ---> 58db3edaf2be
@@ -25,8 +26,8 @@ Removing intermediate container 9ab1e4373f5c
  ---> 4d70121b42fc
 Successfully built 4d70121b42fc
 
-
-# docker images		//List images
+// Lost locally availble images from docker cache
+# docker images
 # docker image ls
 REPOSITORY   TAG        IMAGE ID       CREATED         SIZE
 amit_image   latest    4d70121b42fc   2 minutes ago   77.8MB
