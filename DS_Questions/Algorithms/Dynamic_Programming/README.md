@@ -5,12 +5,13 @@
   - [2. Bottom Up](#bu)
 - [DP Template](#tem)
 - Examples
-  - [House Robber](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Sum_Money_House_Robber.md)
   - [Climbing Stairs](/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md)
-  - [Fibonacci Series](/DS_Questions/Questions/Number/Fibonacci_Number.md)
-  - [Minimum Cost Climbing Stairs](/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md)
   - [Delete and Earn](/DS_Questions/Questions/Number/Delete_and_Earn_or_Max_Gains.md)
+  - [Fibonacci Series](/DS_Questions/Questions/Number/Fibonacci_Number.md)
+  - [House Robber](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Sum_Money_House_Robber.md)
   - [Longest Common Subsequence](/DS_Questions/Questions/Strings/SubString_SubSequence/Longest_Common_SubSequence_in_2_strings.md)
+  - [Minimum Cost Climbing Stairs](/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md)
+  - [Number of Increasing Paths in a Grid](DS_Questions/Questions/vectors_arrays/2d-grid/Find_Search_Count/Number_of_Increasing_Paths_in_a_Grid.md)
   - [Paint House](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Paint_House.md)
 
 
