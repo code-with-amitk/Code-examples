@@ -1,18 +1,9 @@
-# My Solution
+## Quarterly Results {.tabset .tabset-fade .tabset-pills}
 
-## Code Snippets
+### By Product
 
-### C++ {.tabset}
-#### abc
-```cpp
-test
-```
-#### def
-```cpp
-test
-```
+(tab content)
 
-### java {.tabset}
-```java
-test
-```
+### By Region
+
+(tab content)
