@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My HTML Document</title>
-</head>
-<body>
+## title {.tabset .tabset-fade}
+content above tabbed region.
 
-## Quarterly Results {.tabset .tabset-fade .tabset-pills}
+### tab Social-Media
 
-### By Product
+tab content Social-Media
 
-(tab content)
+### tab Contact
 
-### By Region
+tab content  Contact
 
-(tab content)
+### tab Revisions
 
-  <h1>Hello, World!</h1>
-  <p>This is my HTML document written inside a GitHub README.</p>
-</body>
-</html>
+tab content  Revisions
+
+### tab Articles
