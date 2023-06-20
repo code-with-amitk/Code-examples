@@ -1,5 +1,7 @@
 **K Radius Subarray Averages**
 - [Approach-1. Sliding Window. O(n)](#a1)
+- Code
+  - [CPP](#cpp)
 
 ### [Self Video](https://youtu.be/axTIIfymxAs)
 
