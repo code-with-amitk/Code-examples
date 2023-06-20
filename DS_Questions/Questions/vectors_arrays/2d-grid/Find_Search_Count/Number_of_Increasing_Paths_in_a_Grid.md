@@ -28,3 +28,13 @@ Explanation: The strictly increasing paths are:
 - Paths with length 2: [1 -> 2].
 The total number of paths is 2 + 1 = 3.
 ```
+#### Code
+```cpp
+// C++ Code snippet
+int main() {
+    cout << "test";
+}
+
+# Python code snippet
+print ("Hello world");
+```
