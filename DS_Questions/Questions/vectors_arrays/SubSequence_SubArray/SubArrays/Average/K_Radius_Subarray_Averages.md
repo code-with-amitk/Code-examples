@@ -1,6 +1,8 @@
 **K Radius Subarray Averages**
 - [Approach-1. Sliding Window. O(n)](#a1)
 
+### [Self Video](https://youtu.be/axTIIfymxAs)
+
 ### [2090. K Radius Subarray Averages](https://leetcode.com/problems/k-radius-subarray-averages/description/)
 - You are given a 0-indexed array nums of n integers, and an integer k.
 - The k-radius average for a subarray of nums centered at some index i with the radius k is the average of all elements in nums between the indices i - k and i + k (inclusive). If there are less than k elements before or after the index i, then the k-radius average is -1.
