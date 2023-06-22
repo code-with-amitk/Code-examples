@@ -1,5 +1,5 @@
 **Minimum Cost to Make Array Equal**
-- [Approach-1. Convex Function. Binary Search. O(logn)](#a1)
+- [Approach-1. Convex Function. Binary Search. O(n)](#a1)
   - [Logic](#l)
   - [Complexity](#com)
   - Code
@@ -80,7 +80,7 @@ Since 38 > 20. Move to left
 
 <a name=com></a>
 #### Complexity
-- **Time:**  O(logn)
+- **Time:**  O(n) + O(logn) = O(n)
 - **Space:** O(1)
 
 #### Code
