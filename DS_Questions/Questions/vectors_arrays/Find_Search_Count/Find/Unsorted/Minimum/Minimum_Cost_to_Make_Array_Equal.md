@@ -5,6 +5,8 @@
   - Code
     - [CPP](#cpp)
 
+## [Self Video](https://youtu.be/7UYWakgzkVo)
+
 ### [2448. Minimum Cost to Make Array Equal](https://leetcode.com/problems/minimum-cost-to-make-array-equal/description/)
 - You are given two 0-indexed arrays nums and cost consisting each of n positive integers.
 - You can do the following operation any number of times:
