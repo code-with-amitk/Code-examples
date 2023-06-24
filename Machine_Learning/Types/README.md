@@ -52,3 +52,4 @@
 
 <a name=ssl></a>
 ## 3. Semisupervised learning
+- lot of unlabeled data and a little bit of labeled data
