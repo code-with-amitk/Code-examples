@@ -5,6 +5,9 @@
   - [c. Logisitic Regression](#lr)
 - [2. Unsupervised Learning](#ul)
   - [a. Clustering](#cl)
+  - [b. Visualization and dimensionality reduction](#v)
+  - [c. Association rule learning](#arl)
+- [3. Semisupervised learning](#ssl)
 
 <a name=sl></a>
 ## 1. Supervised Learning
@@ -13,17 +16,17 @@
 
 ### Types of Supervised learning
 <a name=c></a>
-**1. Classification (give yes/no)**
+**1a. Classification (give yes/no)**
 - _a. Spam Filterning:_ Algo is trained with many example emails along with their class (spam or ham), and it must learn how to classify new emails. Each email has a label.
 
 <a name=r></a>
-**2. Regression: (give % or numeric value)**
+**1b. Regression: (give % or numeric value)**
 - _Predictors(Predict something):_
   - Predict whether based on inputs.
   - Predict price of car provided with some inputs((mileage, age, brand, etc.)
 
 <a name=lr></a>
-**3. Logistic Regression (yes/no with %)**
+**1c. Logistic Regression (yes/no with %)**
 - Mix of classfication & Regression.
 - Example: 20% of chances being a spam.
 
@@ -33,9 +36,19 @@
 ### Types of Unsupervised learning
 <a name=cl></a>
 **2a. Clustering:**
-- 
-- Examples: (k-Means, Hierarchical Cluster Analysis (HCA), Expectation Maximization)
-  - _2. Visualization and dimensionality reduction:_ Principal Component Analysis (PCA), Kernel PCA, Locally-Linear Embedding (LLE), t-distributed Stochastic Neighbor Embedding (t-SNE)
-  - _3. Association rule learning:_ Apriori, Eclat
- 
+- Algorithms used: (k-Means, Hierarchical Cluster Analysis (HCA), Expectation Maximization)
 
+<a name=v></a>
+**2b. Visualization and dimensionality reduction**
+- With unlabelled data this algorithm provides ouput which can be plotted on 2-D, 3-D plane.
+- Algorithms used: Principal Component Analysis (PCA), Kernel PCA, Locally-Linear Embedding (LLE), t-distributed Stochastic Neighbor Embedding (t-SNE)
+
+<a name=v></a>
+**2c. Association rule learning:**
+- This provides output as relations between attributes.
+- Algorithms used: Apriori, Eclat
+- Examples:
+  - _1. Supermarket data analysis:_ suppose you own a supermarket. Sales logs may reveal that people who purchase sauce, potato chips also buy bread. Thus, you may want to place these items close to each other.
+
+<a name=ssl></a>
+## 3. Semisupervised learning
