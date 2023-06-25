@@ -1,4 +1,4 @@
-**ML Types**
+**ML Learning Types**
 - [1. Supervised Learning](#sl)
   - [a. Classification](#c)
   - [b. Regression](#r)
@@ -53,3 +53,10 @@
 <a name=ssl></a>
 ## 3. Semisupervised learning
 - lot of unlabeled data and a little bit of labeled data
+- Algorithms: Deep belief networks (DBNs), 
+- Examples:
+  - _1. FB Photos:_ When we load photos, we provide labels to few and leave others. AI identifies photos.
+
+<a name=rl></a>
+### 4. Reinforcement learning
+- Agent(AI Program) can observe the environment, select and perform actions, and get rewards in return
