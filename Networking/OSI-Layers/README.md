@@ -1,4 +1,6 @@
 ## Layers, Design Issues
+- [Layers](#l)
+- [Header sizes](#hs)
 
 |Layer|Design Issues|Duties|Protocols|
 |---|---|---|---|
@@ -11,6 +13,7 @@
 |Data Link(Hop to Hop)|Framing, Error control, Flow control|Detect/correct PHY layer errors. Used to deliver data frame within same network|L2TP|
 |Physical(Electrical or Optical Cabling)|Making sure sender sends 1 and recr receives 1 not 0|Send 0,1s on network|
 
+<a name=hs></a>
 ## Header Sizes
 
 |Ethernet Header|IP Header|TCP Header|UDP Header| Total
