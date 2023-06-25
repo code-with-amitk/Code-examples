@@ -46,24 +46,23 @@ Suitable For    Large Org              Medium Org          Small Org
 <a name=ip4valid></a>
 #### Valid IPv4 Addresses
 - First and last address in any network or subnet can't be assigned to any individual host. Eg: 192.168.123.0 and 192.168.123.255
-- Because binary addresses with a host portion of all ones and all zeros are invalid.
   - 0 address is invalid bcoz it's specifies a network not host. 192.168.123.0 is N/W not host
   - 255 address is invalid bcoz it's used to broadcast a message to every host on a network. 192.168.123.255 is broadcast address
 ```c
 0.0.0.0 Invalid Address(N/W ID)
 255.255.255.255 - Broadcast Address
 ```
-  - 
 
 <a name=les></a>
 ## 2. Classless Addressing
 - No portion for n/w & hosts is separated. Subnet mask/netmask is used to get n/w and host parts. 
-- It means with subnet mask decides how many hosts are possible on a network.
+- Subnet mask decides how many hosts are possible on a network.
 
 <a name=submask></a>
 ### 1. Subnet Mask / Prefix / Netmask
 Number of ON bits in 32 bit address going from left to right defines n/w address. 1's defines network and 0's defines host.
 ```console
+<---1's defines n/w   ---> <-host->
 11111111.11111111.11111111.00000000    =   255.255.255.0   
 ```
 
@@ -149,8 +148,14 @@ _Why gaps in subnet mask not valid?_
 
 ## Address Types
 <a name=inside></a>
-### A. Inside Network
-- IETF decided to give 192.168.x.x to nodes on private/closed networks. These IPs cannot be public because 2<sup>32</sup> = 4294967296 addresses would soon deplete if given to Public IPs.
+### A. Private Network / Private IP Address Space
+- IETF decided not to give following to nodes on public networks. These IPs cannot be public because 2<sup>32</sup> = 4294967296 addresses would soon deplete if given to Public IPs. These can be used by private networks
+| CIDR | IP Address Range | Hosts | Used By |
+|---|---|---|---|
+| 10.0.0.0/8 | 10.0.0.0 - 10.255.255.255 | (24 bits for hosts) 2<sup>24</sup>-2 = 16777216-2 = 16777214 | Big Software Companies |
+| 172.16.0.0/12 | 172.16.0.0 - 172.31.255.255 | (20 bits for hosts) 2<sup>20</sup>-2 = 15728640-2 = 15728638 | Middle level network |
+| 192.168.0.0/16 | 192.168.0.0 - 192.168.255.255 | (16 bits for hosts) 2<sup>16</sup>-2 = 65536-2 = 65534 | Home network |
+
 - Class C can have 2<sup>16</sup> hosts = 65536 IP Addresses. 
 
 <a name=hrouter></a>
