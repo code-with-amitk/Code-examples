@@ -1,4 +1,5 @@
-- [Good Microsoft Article](https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting)
+[Good Microsoft Article](https://docs.microsoft.com/en-us/troubleshoot/windows-client/networking/tcpip-addressing-and-subnetting)
+
 - IP Addressing Scheme
 - Types of IP Addressing
   - [1. Classful Addressing. Ancient](#ful)
