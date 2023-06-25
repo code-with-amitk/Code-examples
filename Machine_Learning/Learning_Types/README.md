@@ -1,13 +1,18 @@
-**ML Learning Types**
-- [1. Supervised Learning](#sl)
-  - [a. Classification](#c)
-  - [b. Regression](#r)
-  - [c. Logisitic Regression](#lr)
-- [2. Unsupervised Learning](#ul)
-  - [a. Clustering](#cl)
-  - [b. Visualization and dimensionality reduction](#v)
-  - [c. Association rule learning](#arl)
-- [3. Semisupervised learning](#ssl)
+- **ML Learning Types**
+  - [1. Supervised Learning](#sl)
+    - [a. Classification](#c)
+    - [b. Regression](#r)
+    - [c. Logisitic Regression](#lr)
+  - [2. Unsupervised Learning](#ul)
+    - [a. Clustering](#cl)
+    - [b. Visualization and dimensionality reduction](#v)
+    - [c. Association rule learning](#arl)
+  - [3. Semisupervised learning](#ssl)
+  - [4. Reinforcement learning](#rl)
+- **[Modes of Learning](#mol)**
+  - _1._ Batch
+  - _2._ Online Mode
+- **[Instance-Based, Model-based Learning](#im)**
 
 <a name=sl></a>
 ## 1. Supervised Learning
@@ -60,3 +65,20 @@
 <a name=rl></a>
 ### 4. Reinforcement learning
 - Agent(AI Program) can observe the environment, select and perform actions, and get rewards in return
+
+<a name=mol></a>
+## Modes of Learning
+### 1. Online Mode
+- As data comes, data is fed.
+- Examples: Stock prices
+### 2. Batch Mode
+Model is be trained using all the available data
+
+ <a name=im></a>
+### Instance-Based, Model-based Learning
+#### Instance Based Learning
+- Learning based on number of instances of particular word.
+- Examples
+  - _1. Spam Filtering:_ Model measures similarity between two emails (by coutning number of similar words in 2 emails).
+ 
+#### Modelbased Learning
