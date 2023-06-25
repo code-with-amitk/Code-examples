@@ -1,20 +1,5 @@
-- Protocols
-- [Security](#sec)
-- [VPN](#vpn)
-- [Routing](#rou)
-
-### [Protocols](Protocols)
-- IGMP, ICMP, IPv4, IPv6
-
-<a name=sec></a>
-### [Security](Security)
-  - AAA, Encryption, Hash_MessageDigest_MAC_HMAC, Integrity, Security_Vulnerabilities,
+- [Protocols: IGMP, ICMP, IPv4, IPv6](Protocols)
+- [Routing. NAT](Routing)
+- [Security: AAA, Encryption, Hash_MessageDigest_MAC_HMAC, Integrity, Security_Vulnerabilities](Security)
   - Terms: Confusion, Difussion, Decryption, Kerckhoff’s principle, Rounds, Whitening
-
-<a name=vpn></a>
-### [VPN](VPN)
-
-<a name=rou></a>
-### [Routing](Routing)
-  - NAT, 
-  - 
+- [VPN](VPN)
