@@ -1,1 +1,1 @@
-- [Types of ML](Types)
+- [Types of ML. Supervised Learning, Unsupervised Learning, Semisupervised Learning, Supervised Learning](Types)
