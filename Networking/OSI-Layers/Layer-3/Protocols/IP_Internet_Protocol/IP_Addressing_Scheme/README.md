@@ -14,12 +14,14 @@
 - [Subnetting](#subnetting)
 - [Supernetting /Prefix Aggregation/ Route Aggregation/ Route Summarization](#supernetting)
 - Address Types
-  - [A. Inside Network](#inside)
-	  - [Inside Local IP Address](#inlocal)
-	  - [Inside Global IP Address](#inglobal)
+  - [A. Private IP Addresses](#inside)
+    - [Inside Local IP Address](#inlocal)
+    - [Inside Global IP Address](#inglobal)
   - [B. Outside Network](#outside)	
 	  - [Inside Global Address](#insideg)	
 	  - [Outside Global Address](#outsideg)
+  - [C. Reserved and Documentation Addresses](#rd)
+    - [Carrier-grade NAT](#cgn) 
 
 ## IPV4 Addressing Scheme
 - This is used to identify Host and network part from an IP address.
@@ -150,11 +152,11 @@ _Why gaps in subnet mask not valid?_
 ### A. Private Network / Private IP Address Space
 - IETF decided not to give following to nodes on public networks. These IPs cannot be public because 2<sup>32</sup> = 4294967296 addresses would soon deplete if given to Public IPs. These can be used by private networks
 
-| CIDR | IP Address Range | Hosts | Used By |
-|---|---|---|---|
-| 10.0.0.0/8 | 10.0.0.0 - 10.255.255.255 | (24 bits for hosts) 2<sup>24</sup>-2 = 16777216-2 = 16777214 | Big Software Companies |
-| 172.16.0.0/12 | 172.16.0.0 - 172.31.255.255 | (20 bits for hosts) 2<sup>20</sup>-2 = 15728640-2 = 15728638 | Middle level network |
-| 192.168.0.0/16 | 192.168.0.0 - 192.168.255.255 | (16 bits for hosts) 2<sup>16</sup>-2 = 65536-2 = 65534 | Home network |
+| CIDR | Host Bits | Hosts | IP Address Range | Used By |
+|---|---|---|---|---|
+| 10.0.0.0/8 | 24 | 2<sup>24</sup>-2 = 16777216-2 = 16777214 | 10.0.0.0 - 10.255.255.255 | Big Software Companies |
+| 172.16.0.0/12 | 20 | 2<sup>20</sup>-2 = 15728640-2 = 15728638 |  172.16.0.0 - 172.31.255.255 |Middle level network |
+| 192.168.0.0/16 | 16 | 2<sup>16</sup>-2 = 65536-2 = 65534 |  192.168.0.0 - 192.168.255.255 | Home network |
 
 <a name=inlocal></a>
 #### Inside Local IP Address
@@ -174,3 +176,19 @@ _Why gaps in subnet mask not valid?_
 <a name=outsideg></a>
 #### Outside Global Address 
 - IP address assigned to a host on the outside network by the host owner as a result of translation and comes from a globally routable address range.
+
+<a name=rd></a>
+### C. Reserved and Documentation Addresses
+- Reserved for other special purposes such as documentation, testing, and benchmarking
+
+| CIDR Range | Usage | Host Bits | Hosts | IP Address Range |
+|---|---|---|---|---|
+| 192.0.2.0/24 | Documentation and example code | 8 | 2<sup>8</sup>-2=254 | 192.0.2.1 - 192.0.2.254 |
+| 198.51.100.0/24 | Documentation and example code | 8 | | |
+| 203.0.113.0/24 | Documentation and example code | 8 | | |
+| 198.18.0.0/25 | Benchmarking network devices | 7 | | |
+| 100.64.0.0/10 | Carrier-grade NAT space | 22 |  2<sup>22</sup>-2=4194302 | |
+
+<a name=cgn></a>
+#### Carrier-grade NAT 
+- This space refers to a range of IP addresses designated specifically for large-scale NAT deployments by internet service providers (ISPs) or network operators.
