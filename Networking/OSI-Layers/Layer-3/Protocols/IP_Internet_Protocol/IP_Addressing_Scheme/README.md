@@ -150,6 +150,7 @@ _Why gaps in subnet mask not valid?_
 <a name=inside></a>
 ### A. Private Network / Private IP Address Space
 - IETF decided not to give following to nodes on public networks. These IPs cannot be public because 2<sup>32</sup> = 4294967296 addresses would soon deplete if given to Public IPs. These can be used by private networks
+
 | CIDR | IP Address Range | Hosts | Used By |
 |---|---|---|---|
 | 10.0.0.0/8 | 10.0.0.0 - 10.255.255.255 | (24 bits for hosts) 2<sup>24</sup>-2 = 16777216-2 = 16777214 | Big Software Companies |
