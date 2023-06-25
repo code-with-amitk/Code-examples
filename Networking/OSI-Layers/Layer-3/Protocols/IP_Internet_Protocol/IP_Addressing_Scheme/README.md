@@ -15,7 +15,6 @@
 - [Supernetting /Prefix Aggregation/ Route Aggregation/ Route Summarization](#supernetting)
 - Address Types
   - [A. Inside Network](#inside)
-	  - [Why my Home Router IP is 192.168.0.1?](#hrouter)
 	  - [Inside Local IP Address](#inlocal)
 	  - [Inside Global IP Address](#inglobal)
   - [B. Outside Network](#outside)	
@@ -156,12 +155,6 @@ _Why gaps in subnet mask not valid?_
 | 10.0.0.0/8 | 10.0.0.0 - 10.255.255.255 | (24 bits for hosts) 2<sup>24</sup>-2 = 16777216-2 = 16777214 | Big Software Companies |
 | 172.16.0.0/12 | 172.16.0.0 - 172.31.255.255 | (20 bits for hosts) 2<sup>20</sup>-2 = 15728640-2 = 15728638 | Middle level network |
 | 192.168.0.0/16 | 192.168.0.0 - 192.168.255.255 | (16 bits for hosts) 2<sup>16</sup>-2 = 65536-2 = 65534 | Home network |
-
-- Class C can have 2<sup>16</sup> hosts = 65536 IP Addresses. 
-
-<a name=hrouter></a>
-#### Why my Home Router IP is 192.168.0.1? 
-- In home less than even 50 devices are connected. Most broadband devices are connected on n/w {192.168.0.0 - 192.168.0.254} means you can connect upto 254 devices.
 
 <a name=inlocal></a>
 #### Inside Local IP Address
