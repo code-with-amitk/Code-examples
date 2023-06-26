@@ -4,6 +4,7 @@
   - Code
     - [CPP](#cpp)
 
+### [Self Video](https://youtu.be/tYEpt_P0hI0)
 
 ### [2462. Total Cost to Hire K Workers](https://leetcode.com/problems/total-cost-to-hire-k-workers/description/)
 - You are given a 0-indexed integer array costs where `costs[i]` is the cost of hiring the ith worker.
