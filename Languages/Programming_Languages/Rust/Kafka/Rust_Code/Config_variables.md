@@ -1,8 +1,14 @@
 https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md
 
 **rdkafka config variables**
+- [queued.max.messages.kbytes](#qmm)
 - [max.poll.interval.ms](mpim)
 - [session.timeout.ms](stm)
+
+<a name=qmm></a>
+### queued.max.messages.kbytes
+- maximum size in kilobytes (KB) that the local consumer queue can reach before additional messages from the broker are fetched.
+- Default=65536
 
 <a name=mpim></a>
 ### [max.poll.interval.ms](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md)
