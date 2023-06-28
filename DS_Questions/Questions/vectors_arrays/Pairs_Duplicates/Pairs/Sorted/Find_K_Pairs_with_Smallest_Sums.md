@@ -2,6 +2,10 @@
 - [Approach-1. 2 for loops. minHeap. O(n<sup>2</sup>) TLE](#a1)
   - Code
     - [CPP](#cpp)
+- [Approach-2. Only look till sum is smaller than stored](#a2)
+  - [Complexity](#com)
+  - Code
+    - [CPP](#cpp1)
 
 
 ### [Find K Pairs with Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/)
@@ -47,6 +51,61 @@ public:
             out.push_back(temp);
         }
         return out;
+    }
+};
+```
+
+<a name=a2></a>
+### Approach-2. Only look till sum is smaller than stored
+<a name=com></a>
+#### Complexity
+- **Time complexity:** O(mn/k)
+- **Space complexity:** O(k)
+#### Code
+<a name=cpp1></a>
+**CPP**
+```cpp
+// Declare type alias
+using vvI = std::vector<std::vector<int>>;
+using vI = std::vector<int>;
+
+class Solution {
+public:
+    vvI kSmallestPairs(vI& nums1, vI& nums2, int k) {
+                           //sum    no1, no2
+        priority_queue<pair<int,pair<int,int>>> pq;
+
+        for (auto&i:nums1) {
+            for (auto&j:nums2) {
+
+                int sum = i+j;
+
+                // Only store k elements in pq
+                if (pq.size() < k) {
+                    pq.push ({sum, {i,j}});
+                }
+                else if (sum < pq.top().first) {
+                    // if sum of elements < top element.
+                    // Remove top and place this element
+                    pq.pop();
+                    pq.push ({sum, {i,j}});
+                }
+                else {
+                    // if (present sum > top of pq)
+                    // break, because after these eleemnts we cannot find 
+                    // sum < top of pq
+                    break; 
+                }
+              }
+          }
+
+          vvI ans;
+
+        while(!pq.empty()){
+            ans.push_back({pq.top().second.first,pq.top().second.second});
+            pq.pop();
+        }      
+        return ans;
     }
 };
 ```
