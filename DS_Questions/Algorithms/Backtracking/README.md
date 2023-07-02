@@ -10,6 +10,7 @@
     - [Jump Game](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Jump_Game_1.md)
   - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
   - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
+  - [Fair Distribution of Cookies](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Fair_Distribution_of_Cookies.md)
   - Palindrome
     - [Palindrome Partitioning](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md)
   - **Permutations**
