@@ -5,6 +5,8 @@
   - Code
     - [CPP](#cpp)
 
+## [Self Video](https://youtu.be/P-nc8bnWBSY)
+
 ### Buddy Strings
 - Given two strings s and goal, return true if you can swap two letters in s so the result is equal to goal, otherwise, return false.
 - Swapping letters is defined as taking two indices i and j (0-indexed) such that i != j and swapping the characters at `s[i] and s[j]`.
