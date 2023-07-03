@@ -18,8 +18,10 @@ VLAN-2(Port 8-17)
 VLAN-3(Port 18-21)
 ```
 <img src=images/VLAN.jpg width=500/>
+
 - Typical VLAN uses 12 bits of Tag, Making 4096 VLANs present at a time
-```
+
+```c
 //802.11Q Tag identifies VLAN Header
   Inter-Frame-Gap | Dst_MAC_Addr | Src_MAC_Addr | 802.11Q Tag(4byte) | Ether type|IPHdr|
 ```
