@@ -1,4 +1,5 @@
 - [Broadcast Domain](#bd)
+- [VLAN](#vlan)
 
 <a name=bd></a>
 ### Broadcast Domain
@@ -16,6 +17,7 @@ VLAN-1(Port 1-7): If packet comes on port 2. It will be forwarded on 1,3,4,5,6 o
 VLAN-2(Port 8-17)
 VLAN-3(Port 18-21)
 ```
+<img src=images/VLAN.jpg width=500/>
 - Typical VLAN uses 12 bits of Tag, Making 4096 VLANs present at a time
 ```
 //802.11Q Tag identifies VLAN Header
