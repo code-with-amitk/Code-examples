@@ -1,33 +1,8 @@
-- [Artificial Intelligence, Machine Learning, Deep Learning](#vs)
-- **Tensorflow**
-  - Terms
-    - [Tensor](#t)
-  - [Code](#c1)
+
+- [Code](#c1)
 - **Opencv**
   - [How it works?](#how)
   - [Source Code](#c2)
-
-<a name=vs></a>
-## Artificial Intelligence, Machine Learning, Deep Learning
-```c
-           |       AI                          |       ML                 |      DL 
------------|-----------------------------------|--------------------------|-------------------------
-Originated |     1950                          |       1960               |   1970
-What       | Simulated Intelligence in Machines| Machine making decisions | Using Neural networks to solve complex problems
-                                                 without being programmed |
-Objective  | Building machines which can       | Algo which can learn thru |Neural n/w to identify patterns 
-             think like humans                 | data
-```
-
-## Tensorflow
-- This is ML Open source library(EXPOSING APIs) for numerical computation and large-scale ML supports CPUs & GPUs. 
-- Python Front-end APIs & backend written in c++ for high performance.
-
-### Terms
-<a name=t></a>
-#### Tensor
-- Multi-dimensional arrays used to store numbers during computation.
-- String tensors don’t exist in Numpy (or in most other libraries), because tensors are preallocated contiguous memory segments, and strings, being variable length. 
 
 <a name=c1></a>
 ### Code
