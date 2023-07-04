@@ -7,7 +7,9 @@
   - [Logic](#l2)
   - [Complexity](#co2)
   - [Code](#c2)
-- **Approach-3, Using Bitwise Operators, Time:O(n), Space:O(1)**
+- **Approach-3. minHeap. Time:O(n). Space:O(n)**
+- **APproach-4. Sort. Time:O(nlogn). Space:O(1)**
+- **Approach-5, Using Bitwise Operators, Time:O(n), Space:O(1)**
   - [Logic](#l3)
   - [Complexity](#co3)
   - [Code](#c3)
