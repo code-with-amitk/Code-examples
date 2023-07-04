@@ -1,11 +1,12 @@
 - [What](#w)
+- [Numpy Array Operations](#o)
 
 <a name=w></a>
 ## Numpy
 - **What?** Python library providing multidimensional numeric arrays. NumPy converts input datasets into usable form.
 
-### Numpy Array
-#### Operations
+<a name=o></a>
+### Numpy Array Operations
 ```py
 import numpy as np
 arr = np.array([[0, 1, 2], [3, 4, 5]], dtype=np.float32)    #Converting python lists TO NumPy arrays
