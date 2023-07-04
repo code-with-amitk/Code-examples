@@ -17,6 +17,8 @@
     - [CPP11](#cpp11)
     - [Python](#py)
 
+## [Self Video](https://youtu.be/8ssa9_aIyPM)
+
 ## [Single Number II / All elements appears 3 times(or n times) and 1 element appears once](https://leetcode.com/problems/single-number-ii/)
 - Given an integer array where every element appears 3 times except for one, which appears exactly once. Find the single element and return it.
 - In Time:O(n), Space:O(1). Example
