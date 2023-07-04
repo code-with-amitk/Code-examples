@@ -1,1 +1,2 @@
 - [Types of ML. Supervised Learning, Unsupervised Learning, Semisupervised Learning, Supervised Learning](Types)
+- [Terms: AI vs ML, Tensors, overfitting, underfitting, Bias, variance, ](Terms)
