@@ -19,12 +19,15 @@ VLAN-3(Port 18-21)
 ```
 <img src=images/VLAN.jpg width=500/>
 
-- Typical VLAN uses 12 bits of Tag, Making 4096 VLANs present at a time
-
+#### Requirements
+- _1. 802.1Q VLAN capable switch:_ Switch should support 802.1Q VLAN trunking. VLAN uses 12 bits of Tag, Making 4096 VLANs present at a time
 ```c
 //802.11Q Tag identifies VLAN Header
   Inter-Frame-Gap | Dst_MAC_Addr | Src_MAC_Addr | 802.11Q Tag(4byte) | Ether type|IPHdr|
 ```
+- _2. NIC supporting hardware VLAN tagging or long frame support:_
+  - Each VLAN frame has a 4 byte 802.1Q tag added in the header, so the frame size can be up to 1522 bytes.
+  - other NICs may drop the packets at 1500 MTU.
 - Types of Ports on VLAN Switch?
   - 1. Access Ports: This belongs to 1 VLAN. Nodes/devices in 1 VLAN are connected using this
   - 2. Trunk Port: They carry data b/w VLAN Switches. Each VLAN sets different value in 802.1Q, means each VLAN is identified by different 802.1Q.
