@@ -61,6 +61,18 @@ vector<int> v(4, 10);           //vector of 4 ints, initialized to 10
 
 <a name=trav></a>
 ## Traverse / Iterate
+- **for_each():** Takes a range of elements and applies a given function (unary operation) to each element individually. for_each() does not return any value.
+```c
+  template< class InputIt, class UnaryFunction >
+  UnaryFunction for_each( InputIt first, InputIt last, UnaryFunction f );
+
+  vector<int> v = {1,2,3,4};
+  int i = 10;
+                            //i is global. element is each element of v
+  for_each (v.begin(), v.end(),[&i](int element) {
+    element += i;                                 //Add 10 to each element of v
+  });
+```
 - *By index*
 ```c++
   for(int i=0;i<v.size();i++)
