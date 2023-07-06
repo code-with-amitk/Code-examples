@@ -1,8 +1,11 @@
 **Minimum Size Subarray Sum**
 - [Approach-1. O(n<sup>2</sup>)](#a1)
 - [Approach-2. Sliding Window O(mn)](#a2)
+  - [Logic](#l)
   - Code
     - [CPP](#cpp)
+
+## [Self Video](https://youtu.be/ZJxLAncsAso)
 
 ### [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/description/)
 - Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray  whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
@@ -14,7 +17,12 @@ Explanation: The subarray [4,3] has the minimal length under the problem constra
 ```
 
 ### Approach-1. O(n<sup>2</sup>). Check every subarray
-
+<a name=l></a>
+#### Logic
+- Take sliding window
+- expand window when `(window sum) < target`
+- contract window when `(window sum) <= target`
+- Note number of elements in window
 <a name=a2></a>
 ### Approach-2. Sliding Window O(mn). 
 #### Code
