@@ -5,7 +5,8 @@
 - [IPv6 Header](#hdr)
 - [IPv6 Address Notation](#not)
   - [Rules of Shrinking IPv6 Address](#shrink)
-- [IPV6 Subnet Mask](#smask)
+- IPv6 Addressing Scheme
+  - [Subnet Mask](#smask)
 - [IPv6 URI](#uri)
 - [Configuring IPv6 on Node](#conf)
 
@@ -89,9 +90,10 @@ to
 2001:0:3238:DFE1:63::FEFB 
 ```
 
+## IPv6 Addressing Scheme
 <a name=smask></a>
-## IPV6 Subnet Mask
-  - IPv6 has fixed mask `/64`. Means from 128 bits. 64 are given to hosts(Enough hosts) and 64 to networks. But providers can again provide a smaller mask to organization.
+### Subnet Mask
+- IPv6 has fixed mask `/64` (ie 64 bits). 64 are given to hosts, and 64 to networks. We can do subnetting/supernetting.
 ```c
   Example: 2001:0DB8:0000:CD30:0000:0000:0000:0000/60      Means 60 Bits from Left are considered as Network Address[same as IPv4]
   Equivalent to    2001:DB8:0:CD30::/60
