@@ -36,9 +36,9 @@ The substring "AAAA" has the longest repeating letters, which is 4.
 1. Take all windows.
   - Count freq of elements in window
   - if (window_size - max_freq_element_in_window > k)
-    - window_start++
+    - Shrink Window. window_start++
   - else
-    - increase window
+    - Expand window. window_end++
     - longest_repeating_char_with_replacement = max_freq_element_in_window+k (Because we can replace k more chars to have longest string)
 ```c
 "A A B A C B A"
