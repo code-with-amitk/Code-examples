@@ -17,16 +17,9 @@
 |---|---|---|
 | 0 | Scalar | `[0]` |
 | 1 | vector | `[1,2,3,4]` |
-| 2 | Matrix / 2D Tensor | <ul><li>`[1,2,3]`</li><li>`[4,5,6]`</li></ul> |
-
-| Outer Table Header 1 | Outer Table Header 2 |
-|----------------------|----------------------|
-| Outer Table Content 1| Outer Table Content 2|
-|                      |                      |
-| Inner Table Header 1 | Inner Table Header 2 |
-|----------------------|----------------------|
-| Inner Table Content 1| Inner Table Content 2|
-| Inner Table Content 3| Inner Table Content 4|
+| 2 | Matrix / 2D Tensor | |`[1,2,3]`| |
+|   |                    | |---|       |
+|   |                    | |`[4,5,6]`| |
 
 
 ## Matrix = Tensor
