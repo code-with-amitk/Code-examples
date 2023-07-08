@@ -2,7 +2,7 @@
 - [Overfitting](#of)
 - [Bias](#sb)
 - [Tensorflow](#tf)
-- [Tensor](Tensor)
+- [New Page: Tensor, vectors, scalar](Tensor)
 - [Underfitting](#uf)
 
 
@@ -32,6 +32,7 @@ Objective  | Building machines which can       | Algo which can learn thru |Neur
 ## Tensorflow
 - This is ML Open source library(EXPOSING APIs) for numerical computation and large-scale ML supports CPUs & GPUs. 
 - Python Front-end APIs & backend written in c++ for high performance.
+
 
 <a name=uf></a>
 ## Underfitting
