@@ -9,6 +9,16 @@
     - Rank/axis = dimension
     - Shape
 
+## Tensor = Matrix
+- This is matrix(as in maths)
+
+## Types of Tensors
+|Dimension/Rank/Axis/Ndim|Name|Example|
+|---|---|---|
+| 0 | Scalar | `[0]` |
+| 1 | vector | `[1,2,3,4]` |
+| 2 | Matrix / 2D Tensor | <ul><li>`[1,2,3]`</li><li>`[4,5,6]`</li></ul> |
+
 ## Matrix = Tensor
 <a name=ty></a>
 ### Types of Tensors
