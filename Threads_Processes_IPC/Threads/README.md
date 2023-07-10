@@ -2,6 +2,7 @@
   - **1. Child Thread Dies**
     - [C++. Whole Process Dies](#s1c)
     - [Java. Whole Process DOES NOT Die](#s1j)
+    - [Rust. Other threads keep running](#s1r)
 - [Why threads, When single threaded is better than Multi-Threaded](Why_Threads.md)
 - [Memory layout of Threads](#ml)
 - [Terms: yeild](#t)
