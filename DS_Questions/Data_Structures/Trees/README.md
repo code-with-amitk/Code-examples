@@ -1,10 +1,17 @@
 **Tree**
+- Representation
+  - [C++](cpp)
+  - [Rust](#r)
 - [Terms](#term)
 - [Types of Tree](#ty)
 
 ## Tree
 - Tree has a root, root has 0 or more children. children may or may not have links back to their parent nodes. 
 - Tree cannot contain cycles. A tree is type of graph, but not all graphs are trees. A tree is a connected graph without cycles. Eg: Family tree, Unix file system.
+
+### Representation
+<a name=cpp></a>
+#### CPP
 ```c
         a                  <-Level 0
     /   |   \    <-Edge
@@ -19,6 +26,31 @@ r    t      g   p
     }OR
     vector <Node *> children;
 ```
+<a name=r></a>
+#### Rust
+```rs
+#[derive(Debug, PartialEq, Eq)]
+pub struct TreeNode {
+    pub val: i32,
+    pub left: Option<Rc<RefCell<TreeNode>>>,                //TreeNode*
+    pub right: Option<Rc<RefCell<TreeNode>>>,
+}
+
+impl TreeNode {
+    #[inline]
+    pub fn new(val: i32) -> Self {
+        TreeNode {
+            val,
+            left: None,
+            right: None,
+        }
+    }
+}
+```
+- Tree node pointer `Option<Rc<RefCell<TreeNode>>>`
+  - Option: `Option<T>` is an enum that represents an optional value (Some or None)
+  - Rc: `Rc<T>` (Reference Counted) is a type in Rust that provides shared ownership of a value.
+  - RefCell: `RefCell<T>`. Allows mutable borrowing of a value even when it is shared
 
 <a name=term></a>
 ## Terms
