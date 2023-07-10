@@ -11,17 +11,24 @@
 
 ### Self, self
 #### Self
-Self is the type of the current object. It may appear either in a trait or an impl
+Self is the type of the current object.
 ```rs
-trait Clone {
-    fn clone(&self) -> Self;
+struct test {};
+impl test {
+    fn new() -> Self {    /// This function will return object of type=test
+        test {
+        }
+    }
 }
 ```
 #### self
-- self is first argument of a method in triat or impl.
-- There is no implicit this argument passed to a type's methods: you have to explicitly pass the "current object" as a method parameter
+- self is first argument of a method that represents instance of struct or enum.
+- Same as this in C++.
 ```rs
-impl MyType {
-    fn doit(&self, a: u32) { ... }
+struct test{ };
+impl test {
+    /// self indicates it takes address of struct object on which method is called.
+    fn fun (&self) {
+    }
 }
 ```
