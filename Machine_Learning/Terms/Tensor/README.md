@@ -9,12 +9,13 @@
 - Multi-dimensional numpy arrays used to store numbers during computation.
 
 ## Types of Tensors
-| Dimension/Rank/Axis/Ndim | Name | Example| Shape(Rows,cols) |
-|---|---|---|---|
-| 0 | Scalar | `[0]` | (0) |
-| 1 | vector | `[1,2,3,4]` | (4) |
-| 2 | Matrix / 2D Tensor | {{1,2,3},{4,5,6}} | (2,3) |
-| 3 | 3D Tensor | {{{1,2,3},{4,5,6}},{{1,2,3},{4,5,6}}} | (2,2,3) |
+| Dimension/Rank/Axis/Ndim | Name | Representation | Examples | Shape(Rows,cols) | Processed By (Keras) |
+|---|---|---|---|---|---|
+| 0 | Scalar | `[0]` | | (0) | |
+| 1 | vector | `[1,2,3,4]` | | (4) | |
+| 2 | Matrix / 2D Tensor | {{1,2,3},{4,5,6}} | Samples | (2,3) | Dense Class/Layer |
+| 3 | 3D Tensor | {{{1,2,3},{4,5,6}},{{1,2,3},{4,5,6}}} | Timestamped data | (2,2,3) | Recurrent layers(eg: LSTM layer) |
+| 4 | 4D Tensor | 3D tensors packed together | | 2D convolution layers (Conv2D)|
 
 ```py
 /////////// 2-D Tensor //////////////
