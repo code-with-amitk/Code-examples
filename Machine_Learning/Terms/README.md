@@ -1,6 +1,8 @@
 - [Artificial Intelligence, Machine Learning, Deep Learning](#vs)
 - [Overfitting](#of)
 - [Bias](#sb)
+- [CNTK](#cntk)
+- [Keras](#keras)
 - [Tensorflow](#tf)
 - [New Page: Tensor, vectors, scalar](Tensor)
 - [Underfitting](#uf)
@@ -27,6 +29,21 @@ Objective  | Building machines which can       | Algo which can learn thru |Neur
 ## Bias/Sampling Bias
 - We should use a training data set that is representative of the cases we want model to predict.
 - if the sample is too small, you will have sampling noise (i.e., nonrepresentative data as a result of chance), but even very large samples can be nonrepresentative if the sampling method is flawed. This is called sampling bias.
+
+<a name=cntk></a>
+## CNTK
+This is Microsoft Cognitive Toolkit (CNTK) backend, plugged with keras.
+
+<a name=keras></a>
+## Keras
+- Library(in Python) which provides functions/APIs to build deep-learning models.
+- Different backends can be plugged with keras
+```c
+                  Keras
+     Tensorflow / Theano / CNTK
+      CUDA           BLAS,Eigen
+      GPU            CPU
+```
 
 <a name=tf></a>
 ## Tensorflow
