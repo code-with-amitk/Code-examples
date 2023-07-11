@@ -3,6 +3,10 @@
 - [Bias](#sb)
 - [CNTK](#cntk)
 - [Keras](#keras)
+- [Layer](#layer)
+- [Loss Function](#lf)
+- [Optimizer, stochastic gradient descent (SGD)](#opt)
+- [Overfitting](#of)
 - [Tensorflow](#tf)
 - [New Page: Tensor, vectors, scalar](Tensor)
 - [Underfitting](#uf)
@@ -19,6 +23,18 @@ What       | Simulated Intelligence in Machines| Machine making decisions | Usin
 Objective  | Building machines which can       | Algo which can learn thru |Neural n/w to identify patterns 
              think like humans                 | data
 ```
+
+<a name=af></a>
+## Activation Function
+- Without an activation function(eg: relu, softmax), [Dense layer](#layer) would always perform linear operations(a dot product, an addition) on input tensors.
+- Adding activation function to a layer introduces non-linearity into the model, allowing it to learn more complex relationships between the input and output data
+- Non-linear activation functions such as ReLU, Sigmoid, and Tanh can help the model to better fit the training data and make more accurate predictions on new data.
+
+<a name=of></a>
+## Optimizer, stochastic gradient descent (SGD)
+- Tells how parameters should be tuned to make model produce expected output. Presently ML model is showing [loss function](#lf).
+- Goal of gradient descent is to identify the model parameters that provide the maximum accuracy.
+- Gradient-descent process must be based on a _single scalar loss value;_ so, for multiloss networks, all losses are combined (via averaging) into a single scalar quantity.
 
 <a name=of></a>
 ## Overfitting
@@ -43,6 +59,19 @@ This is Microsoft Cognitive Toolkit (CNTK) backend, plugged with keras.
      Tensorflow / Theano / CNTK
       CUDA           BLAS,Eigen
       GPU            CPU
+```
+
+<a name=layer></a>
+## Layer
+- Neural network is created by cascading multiple layers.
+
+<a name=lf></a>
+## Loss Function
+- Function that compares expected and actual values. Measures how well the neural network models the training data.
+- Loss function should be minimum.
+```c
+Loss function = (Actual O/P) - (Expected output)
+
 ```
 
 <a name=tf></a>
