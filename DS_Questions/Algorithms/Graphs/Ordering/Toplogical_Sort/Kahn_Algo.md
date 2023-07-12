@@ -10,7 +10,7 @@
         |           |
         \/         \/
         2 --> 3 --> 1
-Result: 
+Result: Ascending order of outdegrees
  5 4 2 3 1 0      OR
  4 5 3 2 1 0
 ```
