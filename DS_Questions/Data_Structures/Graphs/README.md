@@ -3,7 +3,8 @@
   - [1. Adjacency List](#l)
   - [2. Edge List](#el)
   - [3. Adjacency Matrix/Lookup table](#m)
-- **[Terms: Degree, Diameter, Edge/Arc/Line, Radius, Topological Sort, Vertex/Node, Connected Components](#t)**
+- **[Terms:Degree, Diameter, Edge/Arc/Line, Radius, Vertex/Node, Connected Components](#t)**
+  - [Topological Sort](DS_Questions/Algorithms/Graphs/Ordering/Toplogical_Sort)
 - **Types of Graphs**
   - [1. Cyclic/Acyclic](#cyclic)
     - [1a. DAG/Directed Acyclic Graph](#dag)
@@ -97,20 +98,6 @@ Links connecting the nodes. Links can be directed/undirected, weighted/unweighte
 
 ### Radius 
 Minimum eccentricity of any vertex.
-
-### Topological Sort / Topological Order
-- In [DAG](#dag), Print/visit of directed graph such that for edge(ab) where a->b, a should be printed before b.
-- Some events should happen before next. Example:
-  - _1._ When selecting courses in college, some advanced courses have prerequisites that require you to take some introductory courses first.
-```c
-course-A ---> course-B ---> course-C	//Topological order would be A,B,C. ie to reach C, course-A should be completed
-```
-- [Logic Topological Sort](/DS_Questions/Data_Structures/Graphs/Toplogical_Sort)
-- **Question on Topological Sort:**
-  - [1. Find Minimum Height Tree](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Minimum_Height_Tree/)
-  - [2. Course Schedule II](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/CoursesSchedule-2_Topological_Sort.md)
-  - [3. Detect Cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/Detect_cycle_in_directed_graph.md)
-  - [4. Order of alphabets in Alien Dictionary](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Order_of_alphabets_in_Alien_Dictionary.md)
 
 ### Vertex = Node
 Interconnected objects are called vertices.
