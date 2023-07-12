@@ -4,7 +4,7 @@
   - [2. Edge List](#el)
   - [3. Adjacency Matrix/Lookup table](#m)
 - **[Terms:Degree, Diameter, Edge/Arc/Line, Radius, Vertex/Node, Connected Components](#t)**
-  - [Topological Sort](DS_Questions/Algorithms/Graphs/Ordering/Toplogical_Sort)
+  - [Topological Sort](/DS_Questions/Algorithms/Graphs/Ordering/Toplogical_Sort/README.md)
 - **Types of Graphs**
   - [1. Cyclic/Acyclic](#cyclic)
     - [1a. DAG/Directed Acyclic Graph](#dag)
