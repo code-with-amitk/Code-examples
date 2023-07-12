@@ -15,6 +15,7 @@ course-A ---> course-B ---> course-C	//Topological order would be A,B,C. ie to r
 #### Question on Topological Sort
 - [Course Schedule II](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/CoursesSchedule-2_Topological_Sort.md)
 - [Detect Cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/Detect_cycle_in_directed_graph.md)
+- [Find All Possible Recipes from Given Supplies](DS_Questions/Questions/Graphs/Find/Directed_Graph/Acyclic/All_Possible_Recipes_From_Given_Supplies.md)
 - [Find Minimum Height Tree](/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Minimum_Height_Tree/)
 - [Find Eventual Safe States](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/Find_Eventual_Safe_States.md)
 - [Order of alphabets in Alien Dictionary](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Order_of_alphabets_in_Alien_Dictionary.md)
