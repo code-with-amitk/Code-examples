@@ -23,7 +23,10 @@ Every path starting at nodes 2, 4, 5, and 6 all lead to either node 5 or 6.
 ### Approach-1. Topological Sort
 <a name=l></a>
 #### Logic
-- _1._ We need to find all those nodes in graph which donot have cycle
+- _1._ Question statement is tricky,
+  - But under the hood, we need to find all those nodes in graph which **donot have cycle**.
+  - if a node is part of a cycle, it cannot be "eventually safe" as it will have at least one outgoing edge that leads back to the cycle.
+  - Therefore, by eliminating nodes with no outgoing edges and their corresponding edges, we gradually remove nodes that are part of cycles until only the "eventually safe" nodes remain.
 - _2._ We can find nodes having cycles using topological sort.
 #### Code
 <a name=cpp></a>
