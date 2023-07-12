@@ -10,9 +10,12 @@
         |           |
         \/         \/
         2 --> 3 --> 1
-Result: Ascending order of outdegrees
+Result: Decending order of outdegrees
  5 4 2 3 1 0      OR
+ 5 4 3 2 1 0	OR
  4 5 3 2 1 0
+ 4 5 2 3 1 0	OR
+ ...
 ```
 <a name=l></a>
 #### Logic 
