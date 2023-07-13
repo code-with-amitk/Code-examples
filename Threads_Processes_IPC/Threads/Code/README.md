@@ -1,4 +1,6 @@
-**[Details about Thread APIs](../)**
+
+## [HTML Page](https://amitkumar50.github.io/Threads_Processes_IPC/Threads/Code.html)
+
 - Creating Threads
   - [POSIX](POSIX)
   - [C++](C++)
