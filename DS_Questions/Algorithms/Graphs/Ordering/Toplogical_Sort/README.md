@@ -13,6 +13,7 @@ course-A ---> course-B ---> course-C	//Topological order would be A,B,C. ie to r
 
 <a name=q></a>
 #### Question on Topological Sort
+- [CoursesSchedule I](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/CoursesSchedule-1_Detect_cycle_Directed_Graph.md)
 - [Course Schedule II](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/CoursesSchedule-2_Topological_Sort.md)
 - [Detect Cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/Cyclic/Detect_cycle_in_directed_graph.md)
 - [Find All Possible Recipes from Given Supplies](DS_Questions/Questions/Graphs/Find/Directed_Graph/Acyclic/All_Possible_Recipes_From_Given_Supplies.md)
