@@ -7,45 +7,14 @@
 <a name=tok></a>
 ### Tokio
 - This is [asynchronous](/Threads_Processes_IPC/Terms) [runtime](https://www.quora.com/What-does-the-runtime-system-do-in-C) in rust, used for writing networking applications.
+- [Runtime?](https://www.quora.com/What-does-the-runtime-system-do-in-C)
 - **Spawning?** Execute concurrently to other tasks. The spawned task may execute on the current thread, or it may be sent to a different thread to be executed.
 - **tokio::spawn() function**
   - This is used to asynchronously spawn a new concurrent task or "green thread" It allows you to execute asynchronous code concurrently, without blocking the main thread of execution.
 
-||tokio::spawn|tokio::task::spawn_loca|
-|---|---|---|
-|What|spawns async task|spawns async task|
-|What|Spwaned Task can run on any thread managed by Tokio|Task should run on same thread that called tokio::spawn_local()|
-|Return|`[JoinHandle](super::JoinHandle)`||
-
-<a name=ts></a>
-### tokio::spawn
-- [Runtime?](https://www.quora.com/What-does-the-runtime-system-do-in-C), [Tokio?](/Libraries/Tokio/)
-```rs
-$ Cargo.toml
-[dependencies]
-futures = { version = "0.3.*" }
-tokio = {version = "0.2.*", features = ["full"] }
-
-$ main.rs
-use tokio::task;
-
-fn fun() {
-  println!("fun");
-}
-
-async fn fun(arg) {
-    let threadpool_future = task::spawn_blocking(||fun());    //3. Call blocking or CPU-intensive function in seperate thread
-    todo!()
-}
-
-fn main() {
-    let mut rt:Runtime = tokio::runtime::Runtime::new().unwrap();     //1. Start tokio runtime
-    let local:LocalSet = tokio::task::LocalSet::new();
-    local.block_on (&mut rt, async move {
-      fun(arg).await
-    });            //2. Spawn a future
-}
-```
+#### [Creating Threads](Threads_Processes_IPC/Threads/Code/Rust/README.md)
+- tokio::spwan
+- tokio::spawn_blocking
 
 ### Examples
 <a name=mr></a>
