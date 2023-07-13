@@ -14,8 +14,34 @@
 ### Approach-1. Topological Sort
 <a name=l></a>
 #### Logic
-- This is about finding cycle in directed graph.
-- if cycle is present its not possible to finish the courses, else yes
+- This is about finding cycle in directed graph. if cycle is present its not possible to finish the courses, else yes
+```c
+input = [[1,0], [2,1], [4,3], [5,4], [3,5]]
+ 0 -> 1 -> 2     3->4->5
+                 /\    |
+                  |----|
+output = false
+
+1. Create incomingNodes graph
+  |   |  0  |  1  | 5 | 3 | 4 |
+    0    1     2    3   4   5
+
+2. Create outdegree(number of edges going out) vector.
+  | 1 |  1  |  0  | 1 | 1 | 1 |
+    0    1     2    3   4   5
+
+3. Push all nodes having outdegree=0 in queue
+queue | 2 |
+  - pop queue. element    //This is like removing node from graph
+  - Reduce outdegree of all elements which have edge coming to popped node by 1.
+  | 1 |  0  |  0  | 1 | 1 | 1 |
+    0    1     2    3   4   5
+  - if recently reduced outdegree == 0. Push in queue.
+queue | 1 |
+
+4. Finally if outdegree has any element>0, that means there is a cycle in graph.
+```
+
 #### Code
 <a name=cpp></a>
 **CPP**
