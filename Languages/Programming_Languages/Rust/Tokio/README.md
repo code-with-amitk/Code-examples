@@ -12,7 +12,7 @@
 - **tokio::spawn() function**
   - This is used to asynchronously spawn a new concurrent task or "green thread" It allows you to execute asynchronous code concurrently, without blocking the main thread of execution.
 
-#### [Creating Threads](Threads_Processes_IPC/Threads/Code/Rust/README.md)
+#### [Creating Threads](/Threads_Processes_IPC/Threads/Code/Rust/README.md)
 - tokio::spwan
 - tokio::spawn_blocking
 
