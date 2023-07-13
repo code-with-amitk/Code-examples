@@ -3,7 +3,7 @@
 - [Complexity](#c)
 - [Code](#co)
 
-## [Topological Sort](/DS_Questions/Data_Structures/Graphs#t)
+## Topological Sort
 - Print topological sort/order of following graph
 ```c
         5 --> 0 <-- 4
@@ -24,7 +24,6 @@ Result: Decending order of outdegrees
         |           |     //out-degree of node[5]=2. Number of outgoing edges
         \/         \/
         2 --> 3 --> 1
-
 1. Create a vector containing in-degrees of nodes
         |2|2|1|1|0|0| 
          0 1 2 3 4 5
