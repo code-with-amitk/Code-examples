@@ -118,7 +118,7 @@ fun1 fun2
 |Return|`[JoinHandle](super::JoinHandle)`||
 
 <a name=vs3></a>
-### block_on() vs spawn_blocking()
+#### block_on() vs spawn_blocking()
 > future::executor::block_on(), tokio::task::spawn_blocking() These are 2 different approaches to execute async tasks in tokio
 
 || block_on() | spawn_blocking() |
