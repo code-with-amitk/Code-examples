@@ -1,4 +1,4 @@
-**Task != OS Thread**
+- **Task != OS Thread**
 - Ways to execute Async Tasks
   - [1. tokio::spawn()](#tos)
   - [2. tokio::task::spawn_blocking()](#tosb)
