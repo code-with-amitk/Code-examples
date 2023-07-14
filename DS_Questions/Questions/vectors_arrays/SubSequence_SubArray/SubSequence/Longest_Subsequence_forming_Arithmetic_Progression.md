@@ -1,8 +1,10 @@
 **Longest Arithmetic Subsequence of Given Difference**
 - Approach-1. Hashtable. Time: O(n), Space: O(n)
-  - [Logic]
+  - [Logic](#l)
   - Code
     - [CPP](#cpp)
+
+## [Self Video. Do See](https://youtu.be/M42PQJvQe98)
 
 ### [1218. Longest Arithmetic Subsequence of Given Difference](https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/description/)
 - Given an integer array arr and an integer difference, return the length of the longest subsequence in arr which is an arithmetic sequence such that the difference between adjacent elements in the subsequence equals difference.
