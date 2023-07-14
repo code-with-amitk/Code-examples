@@ -31,17 +31,34 @@ edition = "2018"
 futures = { version = "0.3.*" }
 tokio = {version = "0.2.*", features = ["full"] }
 
+///////////////////////////////////////////////
 $ cat main.rs
 use tokio::task;
-fn fun_thread() {
+fn fun() {
     println!("thread-1");
+    std::thread::sleep::from_sec(10);
 }
 #[tokio::main]
 async fn main() {
-    let join:JoinHandle<()> = task::spawn(async {		//spawn() returns `struct JoinHandle`
-        fun_thread()
+
+    /* spawn() returns `struct JoinHandle`
+        This is similar to joining a thread in other programming languages.
+        It allows you to wait for the task to complete and 
+        obtain the result or handle any potential errors.
+    */
+    let handle = task::spawn(async {
+        fun()
     });
-    assert!(join.await.is_err());
+    match handle {
+        Ok(_) => {
+            // Task completed successfully
+            println!("Task completed successfully");
+        }
+        Err(e) => {
+            // Task encountered an error
+            println!("Task encountered an error: {:?}", e);
+        }
+    }
 }
 $ cargo build
 $ cargo run
