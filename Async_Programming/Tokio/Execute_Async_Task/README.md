@@ -2,6 +2,7 @@
 - Ways to execute Async Tasks
   - [1. tokio::spawn()](#tos)
   - [2. tokio::task::spawn_blocking()](#tosb)
+  - [3. futures::executor::block_on()](#bo)
 
 
 ### Task. (Tasks/Green Thread != OS Thread)
@@ -68,4 +69,24 @@ fn main() {
       fun(arg).await
     });            //2. Spawn a future
 }
+```
+
+<a name=bo></a>
+#### 3. futures::executor::block_on() 
+Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
+```rs
+$ cat Cargo.toml
+[dependencies]
+futures = "0.3"
+
+$ cat main.rs
+use futures::executor::block_on;
+async fn fun1() { print!("fun1"); }
+async fn fun2() { print!("fun2"); }
+fn main() {
+    block_on(fun1());                       //main() blocks until fun1(),fun2() does not compelte
+    block_on(fun2());
+}
+$ main.exe
+fun1 fun2
 ```
