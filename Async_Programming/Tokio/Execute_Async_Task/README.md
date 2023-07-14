@@ -8,7 +8,7 @@
     - [spawn() vs spawn_blocking()](#vs1)
     - [spawn() vs spawn_local()](#vs2)
   - Future vs Tokio
-    - [block_on() vs spawn_blocking()](#v3)
+    - [block_on() vs spawn_blocking()](#vs3)
 
 
 ### Task. (Tasks/Green Thread != OS Thread)
