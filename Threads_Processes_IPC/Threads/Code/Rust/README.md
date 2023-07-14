@@ -1,12 +1,12 @@
 - **Comparison**
-  - [std::thread::spawn() vs tokio::spawn()](#vs1)
+  - [`std::thread::spawn() vs tokio::spawn()`](#vs1)
 - **Create Threads**
-  - [1. thread::spawn() = OS Thread](#ts)
+  - [1. `thread::spawn() = OS Thread`](#ts)
 
 ### Comparison
 <a name=vs1></a>
-#### std::thread::spawn() vs tokio::spawn()
-| | std::thread::spawn() | tokio::spawn |
+#### `std::thread::spawn() vs tokio::spawn()`
+| | `std::thread::spawn()` | tokio::spawn |
 |---|---|---|
 | Provided by | Standards library | tokio runtime(executes within tokio runtime) |
 | Blocking | yes(Runs independently of the Tokio runtime) | no |
@@ -14,7 +14,7 @@
 
 ### Creating Threads
 <a name=ts></a>
-#### 1. std::thread::spawn() = OS Thread
+#### 1. `std::thread::spawn()` = OS Thread
 ```rs
 $ cargo new thread1
 
