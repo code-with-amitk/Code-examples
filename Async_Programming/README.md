@@ -4,7 +4,7 @@
     - [async function](#a1)
   - Rust 
     - [async function](#afun)
-    - [block_on()](#bo)
+    - [block_on()](/Async_Programming/Tokio/Execute_Async_Task/README.md#bo)
     - [await](#aw)
 - [Future](#fut)
   - [C++](#fc)
@@ -58,25 +58,7 @@ async fn fun() {
 }
 ```
 
-<a name=bo></a>
-#### block_on() 
-Block/sleep the caller until async function does not run to completion. block_on() returns [future](/Languages/Programming_Languages/Rust/Triat_Interface).
-```rs
-$ cat Cargo.toml
-[dependencies]
-futures = "0.3"
 
-$ cat main.rs
-use futures::executor::block_on;
-async fn fun1() { print!("fun1"); }
-async fn fun2() { print!("fun2"); }
-fn main() {
-    block_on(fun1());                       //main() blocks until fun1(),fun2() does not compelte
-    block_on(fun2());
-}
-$ main.exe
-fun1 fun2
-```
 
 <a name=aw></a>
 #### await
