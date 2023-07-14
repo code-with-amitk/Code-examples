@@ -4,17 +4,7 @@
 - **Examples**
   - [Mini Redis](#mr)
 
-<a name=tok></a>
-### Tokio
-- This is [asynchronous](/Threads_Processes_IPC/Terms) [runtime](https://www.quora.com/What-does-the-runtime-system-do-in-C) in rust, used for writing networking applications.
-- [Runtime?](https://www.quora.com/What-does-the-runtime-system-do-in-C)
-- **Spawning?** Execute concurrently to other tasks. The spawned task may execute on the current thread, or it may be sent to a different thread to be executed.
-- **tokio::spawn() function**
-  - This is used to asynchronously spawn a new concurrent task or "green thread" It allows you to execute asynchronous code concurrently, without blocking the main thread of execution.
 
-#### [Creating Threads](/Threads_Processes_IPC/Threads/Code/Rust/README.md)
-- tokio::spwan
-- tokio::spawn_blocking
 
 ### Examples
 <a name=mr></a>
