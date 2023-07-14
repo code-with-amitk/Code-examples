@@ -1,5 +1,5 @@
 - **Task != OS Thread**
-- **Ways to execute Async Tasks**
+- **Ways to create Async Tasks**
   - [1. tokio::spawn()](#tos)
   - [2. tokio::task::spawn_blocking()](#tosb)
   - [3. futures::executor::block_on()](#bo)
