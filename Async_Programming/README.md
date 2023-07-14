@@ -14,7 +14,7 @@
 
 <a name=as></a>
 ## Asynchronous
-Async program are [concurrent](#con) ie work on many tasks at a time but only using 1 thread, it usually returns a [future](#fut)
+Async program are [concurrent](/Threads_Processes_IPC/Terms/README.md#con) ie work on many tasks at a time but only using 1 thread, it usually returns a [future](#fut)
 ```c
 main () {
   future = send()          //Does not block
