@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Rust](#rs)
 
 ## [Self Video. Do See](https://youtu.be/M42PQJvQe98)
 
@@ -43,6 +44,7 @@ index
 ```
 #### Code
 <a name=cpp></a>
+**CPP**
 ```cpp
 class Solution {
 public:
@@ -63,4 +65,26 @@ public:
         return longest;
     }
 };
+```
+
+<a name=rs></a>
+**Rust**
+```rs
+impl Solution {
+    pub fn longest_subsequence(arr: Vec<i32>, difference: i32) -> i32 {
+        let mut hm:std::collections::HashMap<i32, i32> = std::collections::HashMap::new();
+        let mut longest = 1;
+
+        for i in arr {
+            if let Some(kv) = hm.get_key_value (&(i-difference)) {
+                let val1 = kv.1 + 1;
+                hm.insert(i, val1);
+                longest = std::cmp::max(longest, val1);
+            } else {
+                hm.insert (i, 1);
+            }
+        }
+        longest
+    }
+}
 ```
