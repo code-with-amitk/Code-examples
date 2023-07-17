@@ -1,10 +1,10 @@
-/*      add_two_numbers.cpp
-https://leetcode.com/problems/add-two-numbers/
+**Add 2 numbers**
 
+### [Add 2 numbers](https://leetcode.com/problems/add-two-numbers/description/)
 - Given two non-empty linked lists representing two non-negative integers.
 - The digits are stored in reverse order and each of their nodes contain a single digit.
 - Add the two numbers and return it as a linked list.
-
+```c
 Ex-1:
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4) = 342+465 = 807
 Output: 2+5 -> 4+6 -> 3+4 = 7 -> 0 -> 8
@@ -16,8 +16,10 @@ Output: 2+5 -> 4+0 -> 3 = 7 -> 4 -> 3
 Ex-3:
 Input: (2 -> 4 -> 3) + (0)   = 342+0 = 342
 Output: 2+0 -> 4 -> 3
+```
 
-*******************Logic********************
+### Approach-1
+#### Logic
 a. Take head pointers of 2 Linked lists
 b. if l1 && l2 both are NULL
         return NULL
@@ -30,14 +32,15 @@ d. if addition of ((l1->val + l2->val) > 10),
                 18/10 = 1 (present value)
                 18%10 = 8 (carry to be added to next addition)
 
-COMPLEXITY: length(list1)=n, length(list2)=m
-TIME: O(m+n)
+#### Complexity
+> length(list1)=n, length(list2)=m
+- **TIME: O(m+n)**
      - We have to iterate through the lists to add them 
 
-SPACE: O(n+1)   //Considering n>m
-********************************************
-*/
-
+- **SPACE**: O(n+1)   //Considering n>m
+#### Code
+**CPP**
+```cpp
 #include<iostream>
 #include<vector>
 #include<algorithm>
@@ -110,3 +113,4 @@ int main(){
                 p = p->next;
         }
 }
+```
