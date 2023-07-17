@@ -8,7 +8,7 @@
 - You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 - You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 
-<img src=https://assets.leetcode.com/uploads/2021/04/09/sumii-linked-list.jpg width=500 />
+<img src=https://assets.leetcode.com/uploads/2021/04/09/sumii-linked-list.jpg width=200 />
 
 ```c
 Input: l1 = [7,2,4,3], l2 = [5,6,4]
