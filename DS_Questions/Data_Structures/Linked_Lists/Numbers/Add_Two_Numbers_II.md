@@ -38,15 +38,20 @@ Output: [7,8,0,7]
  * };
  */
 class Solution {
-    void pushToLinkedList(ListNode*& head, ListNode*& tail, int value) {
-        ListNode* newNode = new ListNode(value);
-        if (head == nullptr) {
+    ListNode* createOutLL (stack<int>& s) {
+        ListNode *head = nullptr, *tail = nullptr;
+        while (!s.empty()) {
+            ListNode* newNode = new ListNode(s.top());
+            s.pop();
+            if (head == nullptr) {
             head = newNode;
             tail = newNode;
-        } else {
-            tail->next = newNode;
-            tail = newNode;
+            } else {
+                tail->next = newNode;
+                tail = newNode;
+            }
         }
+        return head;
     }
     void createStack(stack<int>&s, ListNode* ll) {
         while (ll != nullptr) {
@@ -56,13 +61,12 @@ class Solution {
     }
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        stack<int> stack1, stack2;
+        stack<int> stack1, stack2, out;
 
         // Push values from linkedlist to stacks
         createStack(stack1, l1);
-        createStack(stack1, l2);
+        createStack(stack2, l2);
 
-        ListNode *head = nullptr, *tail = nullptr;
         int carry = 0;
 
         while (!stack1.empty() || !stack2.empty() || carry != 0) {
@@ -77,10 +81,11 @@ public:
             }
             carry = sum / 10;
             int digit = sum % 10;
-            pushToLinkedList(head, tail, digit);
+            out.push(digit);
         }
 
-        return head;
+        // Create output linkedlist
+        return createOutLL(out);
     }
 };
 ```
