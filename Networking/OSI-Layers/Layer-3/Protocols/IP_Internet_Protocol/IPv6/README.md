@@ -10,7 +10,6 @@
 - [IPv6 URI](#uri)
 - [Configuring IPv6 on Node](#conf)
 
-
 <a name=why></a>
 ### Why IPv6
 - There are no new IPv4 addresses which can be allocated to new orgnizations.
