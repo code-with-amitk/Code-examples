@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Rust](#rs)
 
 ### [Add Two Numbers II](https://leetcode.com/problems/add-two-numbers-ii/description/)
 - You are given two non-empty linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
@@ -90,4 +91,57 @@ public:
 };
 ```
 
- 
+<a name=rs></a>
+**Rust**
+```rs
+// Definition for singly-linked list.
+// #[derive(PartialEq, Eq, Clone, Debug)]
+// pub struct ListNode {
+//   pub val: i32,
+//   pub next: Option<Box<ListNode>>
+// }
+// 
+// impl ListNode {
+//   #[inline]
+//   fn new(val: i32) -> Self {
+//     ListNode {
+//       next: None,
+//       val
+//     }
+//   }
+// }
+impl Solution {
+    pub fn add_two_numbers(mut l1: Option<Box<ListNode>>, mut l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        let mut st1 = vec![];
+        while let Some(t) = l1 {
+            st1.push(t.val);
+            l1 = t.next;
+        }
+
+        let mut st2 = vec![];
+        while let Some(t) = l2 {
+            st2.push(t.val);
+            l2 = t.next;
+        }
+
+        let mut node = None;
+        let mut carry = 0;
+        loop {
+            carry += st1.pop().unwrap_or(0) + st2.pop().unwrap_or(0);
+            if carry == 0 && st1.is_empty() && st2.is_empty() {
+                break;
+            }
+
+            node = Some(Box::new(ListNode {
+                val: carry % 10,
+                next: node,
+            }));
+            carry /= 10;
+        }
+        if node.is_none() {
+            node = Some(Box::new(ListNode::new(0)));
+        }
+        node
+    }
+}
+```
