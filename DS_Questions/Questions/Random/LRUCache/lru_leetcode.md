@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+    - [Python](#py)
 
 ### [Self Good Video](https://www.youtube.com/watch?v=mhcTL2lqwI0)
 
@@ -125,4 +126,49 @@ public:
  * int param_1 = obj->get(key);
  * obj->put(key,value);
  */
+```
+<a name=py></a>
+**Python**
+```cpp
+"""
+    dll | 5 | 4 | 1 | 3 | 2 |
+        MRU              LRU
+
+    hashmap <key, value=address_of_dll_node>
+"""
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.capa = capacity
+        self.hm = {}    # Hashmap
+        self.dll = []  # Double linked list
+
+    def get(self, key: int) -> int:
+        # key is not present in Hashmap
+        if key not in self.hm:
+            return -1
+
+        # Remove the key from the dll and insert it at the front (MRU)
+        self.dll.remove(key)
+        self.dll.insert(0, key)
+
+        return self.hm[key]
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.hm:
+            # key present in hashmap
+            # Remove from dll, insert at front MRU.
+            self.hm[key] = value
+            self.dll.remove(key)
+            self.dll.insert(0, key)
+        else:
+            # key not present in hashmap
+            if len(self.dll) >= self.capa:
+                # sizeof(dll) is greater than capacity. DLL full
+                # Remove LRU element, remove from hm
+                lru_key = self.dll.pop()
+                self.hm.pop(lru_key)
+
+            # Insert the new key at the front (MRU)
+            self.dll.insert(0, key)
+            self.hm[key] = value
 ```
