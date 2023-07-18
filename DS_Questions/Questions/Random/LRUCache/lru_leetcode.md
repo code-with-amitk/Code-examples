@@ -79,6 +79,7 @@ public:
         }
 
         // if key found, Move entry to front ie MRU(Most recently used)
+        // void splice (const_iterator position, list& x, const_iterator i)
         dll.splice(dll.begin(), dll, it->second);
         return it->second->second;
     }
