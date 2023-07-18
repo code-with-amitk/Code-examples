@@ -1,6 +1,6 @@
 - [Class,Object: isinstance(),issubclass(), copy objects](Objects-and-Classes)
 - [Concepts: GIL, Memory Management, PEP 8, Picking/Unpickling, Scope Resolution](#Concepts)
-- [Containers: HashMap/Dictionary](containers)
+- [Containers: HashMap/Dictionary, dequeu=doubly linked list](containers)
 - [Control Flow: if, for, range(), match statement](Control_Flow)
 - Feature of Python
   - [Dynamically Typed](#st)
