@@ -13,7 +13,6 @@
   - **b. Receiver:** Gets the duck. Receivers can be cloned and shared among threads
 
 ## Types of channels
-
 <a name=sync></a>
 #### 1. Synchronous channel
 - Sender waits on channel until reciever recieves the message.
