@@ -36,7 +36,7 @@ Explanation: You need to remove two [1,2] to make the rest of the intervals non-
 - **Space:** O(1)
 #### Code
 <a name=cpp></a>
-**CPP(Simple)**
+**CPP98**
 ```cpp
 bool comp(vector<int> &a,vector<int> &b) {
 	return a[1]<b[1];
@@ -47,7 +47,7 @@ public:
 		int out = 0;
 
 		if (!intervals.size()) 
-            return 0;
+            		return 0;
 
 		/*	Sort on endi
 			[[1,2],[2,3],[3,4],[1,3]]
@@ -66,11 +66,11 @@ public:
 				- where present_endi > next_starti
 		*/
 		for(int i=1;i<intervals.size();++i) {
-      int a2 = intervals[i][0], b2 = intervals[i][1];
+      			int a2 = intervals[i][0], b2 = intervals[i][1];
 			if(b1 > a2)
 				out++;
-      else
-        b1 = b2;
+      			else
+        			b1 = b2;
 		}
 		return out;
 	}
@@ -82,35 +82,34 @@ public:
 class Solution {
 public:
 	int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-       int out = 0;
+       		int out = 0;
 
-        if (!intervals.size())
-            return 0;
+        	if (!intervals.size())
+			return 0;
 
     		/*	Sort on endi
     			[[1,2],[2,3],[3,4],[1,3]]
     			becomes
     			[[1,2],[1,3],[2,3],[3,4]]
     		*/                                            //[] lambda not taking any outside param
-        std::sort(intervals.begin(), intervals.end(), [](const std::vector<int>& a, const std::vector<int>& b) {
-            return a[1] < b[1];
-        });
+		std::sort(intervals.begin(), intervals.end(), [](const std::vector<int>& a, const std::vector<int>& b) {
+            		return a[1] < b[1];
+        	});
 
-        int b1 = intervals[0][1];
-
+        	int b1 = intervals[0][1];
     		/*	if (present_endi > next_starti)
     				- out++. This is overlapping interval
     			else
     				- point a to next element, because we need to reach element 
     				- where present_endi > next_starti
     		*/                                                  //& = lambda taking all outside param
-				std::for_each(intervals.begin()+1, intervals.end(), [&](const vector<int>& v) {
-					int a2 = v[0], b2 = v[1];
-					if (b1>a2)
-						out++;
-					else
-						b1 = b2;
-				});
+		std::for_each(intervals.begin()+1, intervals.end(), [&](const vector<int>& v) {
+			int a2 = v[0], b2 = v[1];
+			if (b1>a2)
+				out++;
+			else
+				b1 = b2;
+		});
         return out;
     }
 };
