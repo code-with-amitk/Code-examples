@@ -7,7 +7,7 @@
 - [Functions: decorator, generator, filter(), format(), input(), join(), lambda, map(), range(), xrange(), reduce(), split() & rsplit(), strip(), type(), `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__()`, call by value, call by reference](#Functions)
 - [Keywords: self, yeild](Keywords)
 - [Threading](/Threads_Processes_IPC/Threads/Code#p1)
-- [Types: Arrays, Dictionary, List, OrderedDict, Sets, Tuples](containers)
+- [Types: Arrays, Dictionary, vector=List, OrderedDict, Sets, Tuples](containers)
 - [Input,Output: Taking input from keyboard](Input_Output)
 
 ### Python
