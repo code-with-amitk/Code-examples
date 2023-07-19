@@ -8,6 +8,7 @@
 - [insert](#i)
 - [Remove element](#r)
 - [sort](#sort)
+  - [custom sort / sort using comparator](#cs)
 - [Slice](#s)
 - [List as Stack](#ass)
 - [List as Queue](#asq)
@@ -171,7 +172,7 @@ list_of_lists.sort()    # [[3, 1, 2], [6, 9, 8], [7, 4, 5]]
 ```
 
 <a name=cs></a>
-#### custom sort
+#### custom sort / sort using comparator
 ```py
 # Example list of lists
 list_of_lists = [[3, 1, 2], [7, 4, 5], [6, 9, 8]]
