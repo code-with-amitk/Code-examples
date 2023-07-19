@@ -7,6 +7,7 @@
 - [Declartion](#d)
 - [insert](#i)
 - [Remove element](#r)
+- [sort](#sort)
 - [Slice](#s)
 - [List as Stack](#ass)
 - [List as Queue](#asq)
@@ -159,6 +160,29 @@ if __name__ == '__main__':
     l.insert(index, element)
 ```
 
+<a name=sort></a>
+### sort 
+```py
+# Example list of lists
+list_of_lists = [[3, 1, 2], [7, 4, 5], [6, 9, 8]]
+
+# Sort the list of lists based on the first element of each sublist (ascending order)
+list_of_lists.sort()    # [[3, 1, 2], [6, 9, 8], [7, 4, 5]]
+```
+
+<a name=cs></a>
+#### custom sort
+```py
+# Example list of lists
+list_of_lists = [[3, 1, 2], [7, 4, 5], [6, 9, 8]]
+
+# Define a custom comparator function to sort based on the second element of each sublist (ascending order)
+def custom_comparator(s):
+    return s[1]
+
+list_of_lists = sorted(list_of_lists, key=custom_comparator)
+# [[3, 1, 2], [7, 4, 5], [6, 9, 8]]    # sorted based on 2nd element
+```
 <a name=r></a>
 ### remove element from list
 ```py
