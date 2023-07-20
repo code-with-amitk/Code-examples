@@ -30,6 +30,7 @@
 - [Design Guidelines](#dg)
 - [Threading](#th)
 - [macros](macros)
+- [notify-rs](notify-rs)
 - [Logging: env_Logger, log4rs](Logging)
 
 <a name=install></a>
