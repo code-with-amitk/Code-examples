@@ -13,6 +13,7 @@
   - [Minimum Cost Climbing Stairs](/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md)
   - [Number of Increasing Paths in a Grid](DS_Questions/Questions/vectors_arrays/2d-grid/Find_Search_Count/Number_of_Increasing_Paths_in_a_Grid.md)
   - [Paint House](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Paint_House.md)
+  - [Power (x,n)](/DS_Questions/Questions/Random/Power/Power_x_to_n.md)
 
 
 ## [Dynamic Programming / Tabular Method / Caching LC Explore Cards](https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/)
