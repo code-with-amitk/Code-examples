@@ -75,20 +75,21 @@ class Solution {
     double num;
 public:
     double fun (int n) {
-        uint32_t quo = n/2, remainder = n%2;
         if (!n)
             return 1;
         if (n==1)
             return num;
 
-        auto it = um.find(quo);
+        auto it = um.find(n/2);
         if (it == um.end())
-            um[quo] = fun(quo);
-        
-        if (!remainder)
-            return um[quo]*um[quo];
+            um[n/2] = fun(n/2);
 
-        return num*um[quo]*um[quo];
+        // if power is factor of 2 return (power/2 * power/2)
+        if (n%2 == 0)
+            return um[n/2] * um[n/2];
+
+        //if not factor of 2 return (num * power/2 * power/2)
+        return num * um[n/2] * um[n/2];
     }
     double myPow(double x, int n) {
         num = x;
@@ -105,25 +106,28 @@ public:
 ```py
 class Solution:
     def __init__(self):
-        self.um = {}
- 
+        self.um = {}    
+
     def myPow(self, x: float, n: int) -> float:
         if n < 0:
             x = 1/x
             n = -n
         return self.fun(x, n)
 
-    def fun(self, x: float, n: int) -> float:
+    def fun (self, x: float, n: int) -> float:
         if n == 0:
             return 1
         if n == 1:
             return x
 
-        if n // 2 not in self.um:                #n//2 means quotient
+        # Fill um to not recalcuate values
+        if n // 2 not in self.um:
             self.um[n // 2] = self.fun(x, n//2)
 
+        # if power is factor of 2 return (power/2 * power/2)
         if n % 2 == 0:
             return self.um[n // 2] * self.um[n // 2]
-        if n % 2 == 1:
-            return x * self.um[n // 2] * self.um[n // 2]
+
+        # if not factor of 2 return (num * power/2 * power/2)
+        return x * self.um[n // 2] * self.um[n // 2]
 ```
