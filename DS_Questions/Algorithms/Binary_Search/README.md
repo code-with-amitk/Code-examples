@@ -1,2 +1,10 @@
-Binary Search
+```c
+- Use mid = left + (right - left) // 2 to calculate the middle index.
+- This is the recommended way because it prevents potential integer overflow when dealing with large values of left and right.
+    #mid = (left + right)//2
+    mid = left + (right-left)//2
+```
+**Questions**
 - [Minimum Cost to Make Array Equal](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Cost_to_Make_Array_Equal.md)
+- [Peak Index in a Mountain Array
+](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Increasing_Decresing_Mountain_Array.md)
