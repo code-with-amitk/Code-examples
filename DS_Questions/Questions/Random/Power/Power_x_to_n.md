@@ -7,6 +7,7 @@
     - [CPP](#cpp)
     - [Python](#py)
 
+## [Self Video](https://youtu.be/8heSCZ2j-7M)
 
 ### [50. pow(x,n)](https://leetcode.com/problems/powx-n/solution/)
 - Implement pow(x, n), which calculates x raised to the power n (i.e. x<sup>n</sup>).
