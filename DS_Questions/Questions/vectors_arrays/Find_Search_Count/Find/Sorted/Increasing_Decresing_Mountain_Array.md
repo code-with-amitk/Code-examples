@@ -74,5 +74,24 @@ class Solution:
             return self.binarysearch (arr, mid+1, right)
         else:
             return self.binarysearch (arr, left, mid-1)
+```
+<a name=cpp></a>
+**CPP**
+```cpp
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        return binarysearch(arr, 0, arr.size());
+    }
+    int binarysearch (vector<int>& arr, int left, int right) {
+        int mid = left + (right-left)/2;
 
+        if (arr[mid+1] < arr[mid] and arr[mid-1] < arr[mid])
+            return mid;
+        else if (arr[mid+1] > arr[mid])
+            return binarysearch (arr, mid+1, right);
+        else
+            return binarysearch (arr, left, mid-1);
+    }
+};
 ```
