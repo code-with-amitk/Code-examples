@@ -1,4 +1,12 @@
 **Minimum Speed to Arrive on Time**
+- [Approach-1. Linear Search. TLE](#a1)
+- [Approach-2. Binary Search. O(log(10000000))=7](#a2)
+  - [Logic](#l)
+  - [Complexity](#com)
+  - Code
+    - [CPP98](#cpp98)
+    - [CPP11](#cpp11)
+    - [Python](#py)
 
 ### [1870. Minimum Speed to Arrive on Time](https://leetcode.com/problems/minimum-speed-to-arrive-on-time/description/)
 - You are given a floating-point number hour, representing the amount of time you have to reach the office. To commute to the office, you must take n trains in sequential order. You are also given an integer array dist of length n, where dist[i] describes the distance (in kilometers) of the ith train ride.
@@ -83,8 +91,8 @@ Taking speed=3      1/3=.33      3/3=1    2/3=.67
 - **Time:** O(logn)
 - **Space:** O(1)
 #### Code
-<a name=cpp></a>
-**CPP**
+<a name=cpp98></a>
+**CPP98**
 ```cpp
 class Solution {
 public:
@@ -121,4 +129,40 @@ public:
         return out;
     }
 };
+```
+
+**Python**
+```py
+import math
+class Solution:
+    def __init__(self):
+        self.min_speed = 1
+        self.max_speed = 10000000
+        self.out = -1
+
+    def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
+        # Binary Search
+
+        while self.min_speed <= self.max_speed:
+            calc_time = 0.0
+
+	    # // is floor division. 3//2 = 1
+	    # / is division.        3/2  = 1.5
+            mid_speed = (self.min_speed + self.max_speed) // 2
+
+            for i in range(0, len(dist)-1):
+                calc_time += math.ceil(dist[i] / mid_speed)		#math.ceil() to round it up to the next integer.
+
+            # Keep decimal part and add to calc_time
+            calc_time += dist[-1] / mid_speed
+
+            if calc_time > hour:
+                # We are taking more time than required. Increase speed
+                self.min_speed = mid_speed + 1
+            else:
+                # reduce speed
+                self.out = mid_speed
+                self.max_speed = mid_speed - 1
+
+        return int(self.out)
 ```
