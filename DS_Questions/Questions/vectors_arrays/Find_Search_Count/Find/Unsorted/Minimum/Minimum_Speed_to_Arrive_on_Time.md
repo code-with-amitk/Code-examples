@@ -109,7 +109,7 @@ public:
 
         while (min_speed <= max_speed) {
             double calc_time = 0;
-            int mid_speed = (min_speed + max_speed) / 2;
+            int mid_speed = min_speed + (max_speed - min_speed) / 2;
 
             for (int i=0;i<dist.size()-1;++i)
                 calc_time += round_to_next_int(((double) dist[i])/mid_speed);
@@ -148,7 +148,7 @@ class Solution:
 
 	    # // is floor division. 3//2 = 1
 	    # / is division.        3/2  = 1.5
-            mid_speed = (self.min_speed + self.max_speed) // 2
+            mid_speed = self.min_speed + (self.max_speed - self.min_speed) // 2
 
             for i in range(0, len(dist)-1):
                 calc_time += math.ceil(dist[i] / mid_speed)		#math.ceil() to round it up to the next integer.
