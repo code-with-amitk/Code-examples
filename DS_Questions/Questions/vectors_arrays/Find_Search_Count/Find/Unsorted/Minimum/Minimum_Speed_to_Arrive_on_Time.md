@@ -8,6 +8,8 @@
     - [CPP11](#cpp11)
     - [Python](#py)
 
+## [Self Video. Must See if donot understand problem or solution](https://youtu.be/fifbEctl3sI)
+
 ### [1870. Minimum Speed to Arrive on Time](https://leetcode.com/problems/minimum-speed-to-arrive-on-time/description/)
 - You are given a floating-point number hour, representing the amount of time you have to reach the office. To commute to the office, you must take n trains in sequential order. You are also given an integer array dist of length n, where dist[i] describes the distance (in kilometers) of the ith train ride.
 - Each train can only depart at an integer hour, so you may need to wait in between each train ride.
