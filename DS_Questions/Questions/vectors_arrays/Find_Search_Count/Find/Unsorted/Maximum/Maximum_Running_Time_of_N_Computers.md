@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#cpp)
+- Approach-2. Binary Search. But not clear how to use
 
 ### [2141. Maximum Running Time of N Computers](https://leetcode.com/problems/maximum-running-time-of-n-computers/description/)
 - You have n computers. You are given the integer n and a 0-indexed integer array batteries where the ith battery can run a computer for batteries[i] minutes. You are interested in running all n computers simultaneously using the given batteries.
