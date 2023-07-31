@@ -15,5 +15,5 @@
 | push at end | dq.push_back(x) | self.dq.append(x) | dq.push_back(x) |
 | Front, Back element | dq.front(), dq.back() | `self.dq[0],self.dq[-1]` | dq.front(),dq.back() |
 | Pop front, back | dq.pop_front(), dq.pop_back() | self.dq.pop(), self.dq.popleft() | dq.pop_front(), dq.pop_back() |
-| Check empty | !dq.empty() | bool(self.dq) | !dq.is_empty() |
+| Check empty | !dq.empty() | bool(self.dq) != False | !dq.is_empty() |
 | size | dq.size() | len(self.dq) | dq.len() |
