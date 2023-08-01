@@ -1,25 +1,6 @@
 - [Vector, How vector works](#what)
   - [Arraylist vs Vector](#vs)
-- [Initialize](#ini)
-- Insert
-  - [At end: `push_back(), emplace_back()`](#emp)
-  - [At any place `insert(position, value)`](#any)
-- [Traverse/Iterate](#trav)
-- [Erase/Delete/Remove](#e)
-  - Delete Last: pop_back()
-  - [1 Element](#one)
-  - [Delete Range](#r)
-  - [Erase all](#erase)
-- [Merge](#merge)
-- Search/Print
-  - [Min Element](#min)
-  - [Max Element](#max)
-  - [Any](#any)
-  - [Last](#last)
-  - [lower_bound (uses binary search)](#lb)
-- [Reverse](#reverse)
-- [Convert to min_heap, max_heap](#conv)
-
+- [Functions](#fun)
 <a name=what></a>
 ## Vector
 - Dynamic Allocated Array, Elements are stored in contiguous location.
@@ -28,9 +9,10 @@
 #### Arraylist vs vector
 - Vectors are synchronized by default but ArrayLists are not. Means if multiple threads accesses vectors then no synchronization needed but required in AL.    
 
+<a name=fun></a>
 ### Functions
 ||C++|Rust|Python|
-|---|---|---|
+|---|---|---|---|
 |Initialize|<ul><li>`vector<int> v(size, init_value)`</li> <li>v.assign(3,10);//10 10 10</li></ul>|
 |push_back()|<ul><li>push_back() allocates element somewhere else then insert into vector at back.v.push_back(11)</li> <li>emplace() also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy. v.emplace_back(11)</li></ul>|||
 |Insert|vec.insert(v.begin() + 2, 7)|
