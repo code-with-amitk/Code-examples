@@ -28,140 +28,20 @@
 #### Arraylist vs vector
 - Vectors are synchronized by default but ArrayLists are not. Means if multiple threads accesses vectors then no synchronization needed but required in AL.    
 
-<a name=ini></a>
-## Initialize
-```c
-vector<int> v(size, init_value);
-vector<int> v(4, 10);           //vector of 4 ints, initialized to 10
-```
-
-## Insert
-<a name=emp></a>
-#### Insert At end `[push_back(), emplace_back()]`
-- _void push_back(T&& value), void emplace_back(T&& value)_
-  - push_back() allocates element somewhere else then insert into vector at back.
-  -  emplace() also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy
-```c++
-  vector<int> v(2,10);      //size=5, Each element value=10
-  v.push_back(11);          //10 10 11
-  
-  v.emplace_back(11);       //10 10 11
-```
-<a name=any></a>
-#### Insert At any place `insert(position, value)`
-```cpp
-  vector<int> v = { 1, 2, 3};
-  it = vec.insert(v.begin() + 2, 7);      //1 2 7 3
-```
-- *void assign(size, val):*  Replaces the contents with count copies of value
-```c++
-  vector<int> v;
-  v.assign(3,10);            //10 10 10  
-```
-
-<a name=trav></a>
-## Traverse / Iterate
-- **for_each():** Takes a range of elements and applies a given function (unary operation) to each element individually. for_each() does not return any value.
-```c
-  template< class InputIt, class UnaryFunction >
-  UnaryFunction for_each( InputIt first, InputIt last, UnaryFunction f );
-
-  vector<int> v = {1,2,3,4};
-  int i = 10;
-                            //i is global. element is each element of v
-  for_each (v.begin(), v.end(),[&i](int element) {
-    element += i;                                 //Add 10 to each element of v
-  });
-```
-- *By index*
-```c++
-  for(int i=0;i<v.size();i++)
-    cout<<v[i];
-```
-- *begin(), end()*
-```c++
-  for(auto i=v.begin();i!=v.end();i++)
-    cout<<*i;
-```
-- *`vector<int>::iterator itr`*
-```c++
-  vector<int>::iterator itr;
-  for(itr=v.begin(); itr!=v.end(); itr++)
-    cout<<*itr;
-```
-- *vector.at(position):* Returns a reference to the element at position n in the vector.
-  - This is same operator`[]` but .at() checks the bounds of array while `operator[]` does not. at() throws `out_of_range` exception when index is out of bounds.
-```c++
-vector<int> v = {1,2,3};
-cout<<v.at(2);            //3
-cout<<v.at(3);            //terminate called after throwing an instance of 'std::out_of_range' coredumped
-```
-
-<a name=e></a>
-## Erase/Delete/Remove
-<a name=one></a>
-#### Delete 1 element
-```cpp
-  //iterator erase(const_iterator pos)
-  v.erase(v.begin()+position-1);
-```
-<a name=r></a>
-#### Delete range
-```cpp
-  //iterator erase(const_iterator first, const_iterator last )
-  v.erase(v.begin()+position1-1, v.begin()position2-1);
-```
-<a name=erase></a>
-#### Delete all
-- Erases all elements from the container. After this call, size() returns 0. 
-```cpp
-//void clear() noexcept
-  v.clear();
-```
-
-<a name=merge></a>
-## Merge
-```cpp
-  using itr = std::vector<int>::iterator;
-  std::vector<int> v1 = {1, 3, 5, 7};
-  std::vector<int> v2 = {2, 4, 6, 8};
-
-  itr it1 = v1.begin();
-  itr it2 = v2.begin();
-  
-  /* OutputIt merge( InputIt1 first1, InputIt1 last1,
-                 InputIt2 first2, InputIt2 last2,
-                 OutputIt d_first );
-  */
-  std::merge(it1, v1.end(), it2, v2.end(), v1.begin());
-```
-
-## Search
-<a name=max></a>
-#### Max Element
-```cpp
-vector<int> a = {4,5,2};
-cout << *max_element(a.begin(), a.end());
-cout << "Index of max element=" << max_element(a.begin(), a.end()) - a.begin();
-```
-<a name=min></a>
-#### Min Element
-```cpp
-vector<int> a = {4,2,5};
-cout << *min_element(a.begin(), a.end());
-cout << "Index of max element=" << min_element(a.begin(), a.end()) - a.begin();
-```
-<a name=any></a>
-#### Any Element
-```cpp
-vector<string> v = {"test", "self"};
-iterator = find(v.begin(), v.end(), "test");
-```
-<a name=last></a>
-#### last element
-```cpp
-cout << v.back();
-```
+### Functions
+||C++|Rust|Python|
+|---|---|---|
+|Initialize|<ul><li>`vector<int> v(size, init_value)`</li> <li>v.assign(3,10);//10 10 10</li></ul>|
+|push_back()|<ul><li>push_back() allocates element somewhere else then insert into vector at back.v.push_back(11)</li> <li>emplace() also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy. v.emplace_back(11)</li></ul>|||
+|Insert|vec.insert(v.begin() + 2, 7)|
+|Traverse|<ul><li>**for_each** for_each (v.begin(), v.end(),`[&i]`(int element{element += i;});</li> <li>**Iterator** `for(auto i=v.begin();i!=v.end();i++) cout<<*i;`</li></ul>|||
+|At position|v.at(2)|
+|Delete|<ul><li>**1 element** v.erase(v.begin()+position-1);</li> <li>**Range** `v.erase(v.begin()+position1, v.begin()position2);`</li> <li>**All** v.clear();</li></ul>|||
+|Merge|std::merge(it1, v1.end(), it2, v2.end(), v1.begin());|||
+|Search|<ul><li>**max element** `*max_element(a.begin(), a.end());`</li> <li>**min element** *min_element(a.begin(), a.end())</li> <li>**Any element** iterator = find(v.begin(), v.end(), "test")</li></ul>|||
+|Last Element|v.back()|||
+|Reverse|reverse (v.begin(), v.begin()+3)|||
+|Convert to heap|<ul><li>**min heap** make_heap(a.begin(), a.end(), greater<int>())</li> <li>**max heap** make_heap(a.begin(), a.end())</li></ul>||||
 
 <a name=lb></a>
 #### lower_bound
@@ -183,22 +63,4 @@ int main() {
   cout << *it;                            //5
   cout << "index:" << it - a.begin();     //2
 }
-```
-
-
-<a name=reverse></a>
-### `reverse[first, last)`
-- Reverses from first to last. Including first and excluding last.
-```cpp
-  vector<int> v = {1, 2, 3};
-  reverse (v.begin(), v.end());
-  reverse (v.begin(), v.begin()+3);    //reverse From [0, 2)
-```
-
-<a name=conv></a>
-## Convert to min_heap, max_heap
-```cpp
-  vector<int> a = {2,3,4,1};
-  make_heap(a.begin(), a.end(), greater<int>());    //To min_Heap
-  make_heap(a.begin(), a.end());                    //To max_heap
 ```
