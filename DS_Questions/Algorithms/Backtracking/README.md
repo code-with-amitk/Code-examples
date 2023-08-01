@@ -1,28 +1,6 @@
 **Backtracking**
-- [BT Template](#tem) Problems solved using BT Template:
-  - **Combinations**
-    - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
-    - Combination Sum
-      - [Combination Sum](/DS_Questions/Questions/Permutation_Combination/Combinations/Combination_sum/)
-      - [Combination Sum II. Time: O(2<sup>n</sup>)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_2)
-      - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
-      - [Letter Combinations of a Phone Number](/DS_Questions/Questions/Permutation_Combination/Combinations/Letter_Combinations_of_a_Phone_Number/)
-    - [Jump Game](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Jump_Game_1.md)
-  - [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
-  - [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
-  - [Fair Distribution of Cookies](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Fair_Distribution_of_Cookies.md)
-  - Palindrome
-    - [Palindrome Partitioning](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md)
-  - **Permutations**
-    - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
-    - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
-    - [Alternating Parity Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/alternating-parity-permutation.md)
-  - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
-  - [Subsets](/DS_Questions/Questions/vectors_arrays/Order_Arrangment/Find_All_Subsets.md)
-  - [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
-  - [Word Search in 2D grid. Time:O(2<sup>n</sup>)](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
-  - Graph
-    - [Detect cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/detect_cycle_in_directed_graph.md)
+- [Template](#t)
+- [Problems](#p)
 - [Time Complexity](#t)
 
 ## [Backtracking LC Explore Cards](https://leetcode.com/explore/learn/card/recursion-ii/472/backtracking/2654/)
@@ -46,7 +24,7 @@ We are given a set of words represented in the form of a tree. Find word `AIM`.
 Select one way and try to move forward towards the destination. if we reach a point where we can’t move towards the destination?
   - Backtrack on path and try to explore other paths.
 
-<a name=tem></a>
+<a name=t></a>
 ### Backtracking Template
 Most of BT problems can be solved using below pattern.
 ```c
@@ -79,6 +57,32 @@ Most of BT problems can be solved using below pattern.
       solve(n);
     }
 ```
+
+<a name=p></a>
+### Backtracking Problems 
+- **Combinations**
+  - [Generate All Combinations](/DS_Questions/Questions/Permutation_Combination/Combinations)
+  - Combination Sum
+    - [Combination Sum](/DS_Questions/Questions/Permutation_Combination/Combinations/Combination_sum/)
+    - [Combination Sum II. Time: O(2<sup>n</sup>)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_2)
+    - [Combination Sum III. Time: O(9!k / (9-k)!)](/DS_Questions/Questions/Permutation_Combination/Combinations/combination_sum_3.md)
+    - [Letter Combinations of a Phone Number](/DS_Questions/Questions/Permutation_Combination/Combinations/Letter_Combinations_of_a_Phone_Number/)
+  - [Jump Game](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Jump_Game_1.md)
+- [Generate All Parantheses](/DS_Questions/Questions/Strings/parantheses/Generate_All_Parantheses.md)
+- [N-Queen-Problem. Time:O(n!)](/DS_Questions/Questions/vectors_arrays/2d-grid/N-Queens)
+- [Fair Distribution of Cookies](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Fair_Distribution_of_Cookies.md)
+- Palindrome
+  - [Palindrome Partitioning](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md)
+- **Permutations**
+  - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
+  - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
+  - [Alternating Parity Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/alternating-parity-permutation.md)
+- [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
+- [Subsets](/DS_Questions/Questions/vectors_arrays/Order_Arrangment/Find_All_Subsets.md)
+- [Sudoku Solver](/DS_Questions/Questions/vectors_arrays/2d-grid/Sudoku_Solver)
+- [Word Search in 2D grid. Time:O(2<sup>n</sup>)](/DS_Questions/Questions/vectors_arrays/2d-grid/Word_Search_in_2D_Matrix/Word_Search_in_2D_Matrix.md)
+- **Graph**
+  - [Detect cycle in Directed Graph](/DS_Questions/Questions/Graphs/Find/Directed_Graph/detect_cycle_in_directed_graph.md)
 
 <a name=t></a>
 ### Time Complexity
