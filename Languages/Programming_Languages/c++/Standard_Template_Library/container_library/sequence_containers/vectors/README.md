@@ -14,7 +14,7 @@
 ||C++|Rust|Python|
 |---|---|---|---|
 |Initialize|<ul><li>`vector<int> v(size, init_value)`</li> <li>v.assign(3,10);//10 10 10</li></ul>|
-|push_back()|<ul><li>push_back() allocates element somewhere else then insert into vector at back.v.push_back(11)</li> <li>emplace() also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy. v.emplace_back(11)</li></ul>|||
+|push_back()|<ul><li>**push_back()** allocates element somewhere else then insert into vector at back. `v.push_back(11)`</li> <li>**emplace()** also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy. `v.emplace_back(11)`</li></ul>|||
 |Insert|vec.insert(v.begin() + 2, 7)|
 |Traverse|<ul><li>**for_each** for_each (v.begin(), v.end(),`[&i]`(int element{element += i;});</li> <li>**Iterator** `for(auto i=v.begin();i!=v.end();i++) cout<<*i;`</li></ul>|||
 |At position|v.at(2)|
