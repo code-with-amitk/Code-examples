@@ -21,9 +21,10 @@
 |Insert|vec.insert(v.begin() + 2, 7)|
 |Last Element|v.back()|||
 |Merge|std::merge(it1, v1.end(), it2, v2.end(), v1.begin());|||
-|Search|<ul><li>**max element** `*max_element(a.begin(), a.end());`</li> <br> <li>**min element** *min_element(a.begin(), a.end())</li> <li>**Any element** iterator = find(v.begin(), v.end(), "test")</li></ul>|||
 |Reverse|reverse (v.begin(), v.begin()+3)|||
-|Slice|||<ul><li>**1st to last** `list[1:]`</li><li>**last 3** `print(a[-3:])#[5,6,7]`</li></ul>|
+|Search|<ul><li>**max element** `*max_element(a.begin(), a.end());`</li> <br> <li>**min element** *min_element(a.begin(), a.end())</li> <li>**Any element** iterator = find(v.begin(), v.end(), "test")</li></ul>|||
+|Slice|||<ul><li>**1st to last** `list[1:]`</li><li>**last 3** `print(a[-3:])`</li></ul>|
+|Sort|||<ul><li>**Simple Sort:** list.sort()</li> <br> <li>**Custom Sort:** `def fun(s): return s[1] sorted(list, key=fun)`</li> </ul>|
 |Traverse|<ul><li>**for_each** for_each (v.begin(), v.end(),`[&i]`(int element{element += i;});</li> <br> <li>**Iterator** `for(auto i=v.begin();i!=v.end();i++) cout<<*i;`</li></ul>|||
 
 <a name=lb></a>
