@@ -120,6 +120,7 @@ node-2  -----/
 - Client will get(same, latest data) to whatever node they connect to in system.
 - OR Every read operation will recieve most recent Write (or error).
 - **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
+- **Solution:** Consensus Algorithm
 
 #### Consistency patterns
 
