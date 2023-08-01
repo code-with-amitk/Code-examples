@@ -91,6 +91,32 @@ public:
 <a name=py></a>
 **Python**
 ```rs
+class Solution:
+    def __init__(self):
+        self.n = 0
+        self.k = 0
+        self.out = [[]]
+
+    def bt(self, start: int, cand_set: List[int]):
+        if len(cand_set) == self.k:
+            self.out.append(cand_set.copy())
+            return
+
+        for i in range(start, self.n+1):
+            cand_set.append(i)
+            self.bt(i+1, cand_set)
+            cand_set.pop()
+
+    def combine(self, n1: int, k1: int) -> List[List[int]]:
+        self.n = n1
+        self.k = k1
+        cand_set = []
+        start = 1
+        self.bt (start, cand_set)
+
+        # out = [[],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+        # Return from index 1 to end
+        return self.out[1:]
 ```
 
 <a name=rs></a>
