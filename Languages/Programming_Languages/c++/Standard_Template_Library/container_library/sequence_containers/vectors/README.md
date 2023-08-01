@@ -1,4 +1,4 @@
-- [Vector, How vector works](#what)
+- [Vector(C++), List(Python)](#what)
   - [Arraylist vs Vector](#vs)
 - [Functions](#fun)
 <a name=what></a>
@@ -11,19 +11,19 @@
 
 <a name=fun></a>
 ### Functions
-||C++|Rust|Python|
+||C++|Rust|Python = `List []`|
 |---|---|---|---|
-|Initialize|<ul><li>`vector<int> v(size, init_value)`</li> <li>v.assign(3,10);//10 10 10</li></ul>|
-|push_back()|<ul><li>**push_back()** allocates element somewhere else then insert into vector at back. `v.push_back(11)`</li> <li>**emplace()** also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy. `v.emplace_back(11)`</li></ul>|||
-|Insert|vec.insert(v.begin() + 2, 7)|
-|Traverse|<ul><li>**for_each** for_each (v.begin(), v.end(),`[&i]`(int element{element += i;});</li> <li>**Iterator** `for(auto i=v.begin();i!=v.end();i++) cout<<*i;`</li></ul>|||
 |At position|v.at(2)|
-|Delete|<ul><li>**1 element** v.erase(v.begin()+position-1);</li> <li>**Range** `v.erase(v.begin()+position1, v.begin()position2);`</li> <li>**All** v.clear();</li></ul>|||
+|Convert to heap|<ul><li>**min heap** make_heap(a.begin(), a.end(), greater<int>())</li> <li>**max heap** make_heap(a.begin(), a.end())</li></ul>||||
+|Delete|<ul><li>**1 element** v.erase(v.begin()+position-1);</li> <li>**Range** `v.erase(v.begin()+position1, v.begin()position2);`</li> <li>**All** v.clear();</li></ul>||**last element** <ul><li>element = list.pop()</li></ul>|
+|Initialize|<ul><li>`vector<int> v(size, init_value)`</li> <li>v.assign(3,10);//10 10 10</li></ul>||`a = []`|
+|push_back()|<ul><li>**push_back()** allocates element somewhere else then insert into vector at back. `v.push_back(11)`</li> <li>**emplace()** also inserts at back, it But constructs elements inside the stl only. *Adv:* Does in place insertion, avoids unneccessary copy. `v.emplace_back(11)`</li></ul>||list.append(4)|
+|Insert|vec.insert(v.begin() + 2, 7)|
+|Last Element|v.back()|||
 |Merge|std::merge(it1, v1.end(), it2, v2.end(), v1.begin());|||
 |Search|<ul><li>**max element** `*max_element(a.begin(), a.end());`</li> <li>**min element** *min_element(a.begin(), a.end())</li> <li>**Any element** iterator = find(v.begin(), v.end(), "test")</li></ul>|||
-|Last Element|v.back()|||
 |Reverse|reverse (v.begin(), v.begin()+3)|||
-|Convert to heap|<ul><li>**min heap** make_heap(a.begin(), a.end(), greater<int>())</li> <li>**max heap** make_heap(a.begin(), a.end())</li></ul>||||
+|Traverse|<ul><li>**for_each** for_each (v.begin(), v.end(),`[&i]`(int element{element += i;});</li> <li>**Iterator** `for(auto i=v.begin();i!=v.end();i++) cout<<*i;`</li></ul>|||
 
 <a name=lb></a>
 #### lower_bound
