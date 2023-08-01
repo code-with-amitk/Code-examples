@@ -6,7 +6,7 @@
   - Code
     - [CPP98](#cpp98)
     - [CPP11](#cpp11)
-    - [Python](#py)
+    - [Python](#py) 
 
 ## [Self Video. Must See if donot understand problem or solution](https://youtu.be/fifbEctl3sI)
 
