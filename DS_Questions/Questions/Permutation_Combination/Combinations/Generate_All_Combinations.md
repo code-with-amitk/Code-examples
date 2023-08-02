@@ -7,6 +7,8 @@
     - [Python](#py)
     - [Rust](#rs)
 
+## [Self Video. Use if you forgot](https://youtu.be/QkKRtiyHXA8)
+
 ### [77. Combinations](https://leetcode.com/problems/combinations/)
 - [What is Combination](/DS_Questions/Questions/Permutation_Combination)
 - Given two integers n and k, return all possible combinations of k numbers out of the range `[1, n]`. You may return the answer in any order.
