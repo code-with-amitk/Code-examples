@@ -1,4 +1,7 @@
 **Consensus**
+- **Ways to achieve Consensus**
+  - [1. Byzantine fault tolerance-based = voting](#w1)
+  - [2. Leader-based consensus mechanisms](#w2)
 - **Situations of consensus**
   - [1. Leader Election](#le)
 - [Atomic Commit, AC Problem](#ac)
@@ -10,7 +13,16 @@
 
 
 # Consensus
-Several nodes to agree on something.
+Consensus is a process of agreement between distrusting nodes on a final state of data.
+
+### Ways to achieve Consensus
+<a name=w1></a>
+#### 1. Byzantine fault tolerance-based = voting
+when a certain number of messages are received, then an agreement is reached
+
+<a name=w2></a>
+#### 2. Leader-based consensus mechanisms
+Nodes to compete for the leader-election lottery and the node that wins it proposes a final value
 
 ### Situations where consensus is needed
 #### 1. Leader Election
