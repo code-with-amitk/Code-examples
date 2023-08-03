@@ -1,5 +1,10 @@
 **Letter Combinations of a Phone Number**
 - [Approach-1, Backtracking](#a1)
+  - [Logic](#l)
+  - [Complexity](#com)
+  - Code
+    - [CPP](#cpp)
+    - [Python](#py)
 
 ### [Self Video](https://youtu.be/jVrKsWnH6Mo)
 
@@ -24,6 +29,7 @@ Output: ["a","b","c"]
 <a name=a1></a>
 ### Approach-1, Backtracking
 - **Backtracking Problems:** Combinations, Permutations, N-Queen, Suduko, Word Search in Grid
+<a name=l></a>
 #### Logic = Backtracking
 ```c
 "234" = "abc" "def" "ghi"
@@ -51,7 +57,34 @@ Total Combinations = 27
 ```
 <img src=images\Letter_combination_of_a_phone_number-2347.jpg width=900 />
 
+<a name=com></a>
+#### Complexity
+- **Time:** n=number of digits. m=alphabets in digit. O(m<sup>n</sup>)
+```c
+// digit made of 3 alphabets
+	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
+	2		3		3 ^ 1
+	23		9		3 ^ 2
+	234		27		3 ^ 3
+	2345		81		3 ^ 4
+
+// digit made of 4 alphabets
+	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
+	7		4		4 ^ 1
+	79		16		4 ^ 2
+	779		64		4 ^ 3
+	7799		256		4 ^ 4
+
+// mixed case
+	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
+	27		12		3 x 4
+	277		48		3 x 4 x 4
+	2777		192		3 x 4 x 4 x 4	//lesser than m^n
+```
+- **Space:** O(n). max Number of characters in candidate string=4.
 #### Code
+<a name=cpp></a>
+**CPP**
 ```cpp
 class Solution {
     using vecS = vector<string>;
@@ -111,27 +144,40 @@ public:
 	}
 };
 ```
-#### Complexity
-- **Time:** n=number of digits. m=alphabets in digit. O(m<sup>n</sup>)
-```c
-// digit made of 3 alphabets
-	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
-	2		3		3 ^ 1
-	23		9		3 ^ 2
-	234		27		3 ^ 3
-	2345		81		3 ^ 4
+<a name=cpp></a>
+**Python**
+```py
+class Solution:
+    def __init__(self):
+        self.hm = {"2":"abc","3":"def","4":"ghi","5":"jkl",
+        "6":"mno","7":"pqrs","8":"tuv","9":"wxyz"}
+        self.len = 0
+        self.out = []
+        self.input = ""
 
-// digit made of 4 alphabets
-	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
-	7		4		4 ^ 1
-	79		16		4 ^ 2
-	779		64		4 ^ 3
-	7799		256		4 ^ 4
+    def letterCombinations(self, digits: str) -> List[str]:
+        self.len = len(digits)
+        self.input = digits
+        if self.len == 0:
+            return []
+        # Start from index = 0, candidate_set = ""
+        self.bt (0, "") 
+        return self.out
+    
+    def bt (self, start: int, cand):
+        # Base case
+        if len(cand) == self.len:
+            self.out.append(cand)
+            return
+        
+        # Iterate through all candidates
+        letters = self.hm[self.input[start]]
 
-// mixed case
-	digits		Combinations	count_of_alphabets_in_digit ^ number_of_digits
-	27		12		3 x 4
-	277		48		3 x 4 x 4
-	2777		192		3 x 4 x 4 x 4	//lesser than m^n
+        # range(0,6) => from 0 to 5
+        for i in range(0, len(letters)):
+            cand += letters[i]
+            self.bt (start+1, cand)
+            cand = cand[:len(cand)-1]
 ```
-- **Space:** O(n). max Number of characters in candidate string=4.
+
+
