@@ -1,3 +1,4 @@
+- [Functions in C++, Rust, Python](/Languages/Programming_Languages/c++/Standard_Template_Library/container_library/associative_containers/unsorted_unordered/README.md#fun_hm)
 - [Comprehension](#dc)
 - [Create](#cr)
 - [Enumerate](#e)
@@ -8,28 +9,12 @@
 
 
 ### Dictionaries / {Key, value} / Hashmap / Represented by {}
-- Keys are immutable(non changable). If we try entering value of existant key, the old value associated with that key is overwritten.
+- Keys are **immutable(non changable)**. If we try entering value of existant key, the old value associated with that key is overwritten.
 - Example of keys: 
   - strings, numbers
   - Tuples if they contain only strings, numbers, or tuple
   - Lists cannot be used as keys as lists can be modified in place using index assignment
 
-<a name=cr></a>
-### Create
-```py
-hm = {'a':1, 'b':2}                           //Homogenoeus keys
-hm['c']=3
-
-hm = {'name': 'John', 1: [2, 4, 3]}            //Hetrogeneous keys
-
-hm = dict([('a', 1), ('b', 2), ('c', 3)])   //Using dict() constructor
-print(hm)      #{'a': 1, 'b': 2, 'c': 3}
-
-hm = {                                        
-        "a" : 1,
-        "b" : 2,
-     }
-```
 
 <a name=dc></a>
 ### Comprehension
