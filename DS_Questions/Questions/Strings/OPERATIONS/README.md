@@ -1,16 +1,3 @@
-- [Append](#ap)
-- **Compare**
-  - [compare()](#co1)
-- **Create / Convert**
-  - [A. int, double to string using stringstream](#ss1)
-  - [B. String to `vector<int>` using stringstream](#ss2)
-  - [C. String to int istringstream, stringstream](#ss3)
-  - [D. Convert to lowercase](#con)
-- [Erase](#er)
-- [Find](#f)
-- [insert](#in)
-- [Replace](#rep)
-- [size](#sz)
 - Sort
   - [Lexiographical](#lex)
 - [Substring](#sub)
@@ -22,28 +9,17 @@
     - [strtok](#strt)
 - [Traversal. Forward, Reverse](#tra)
 
+||C++|Rust|Python|
+|---|---|---|---|
+|Append|s1.append(s2)|||
+|Compare|s1.compare(s2)|||
+|Convert|<ul><li>**Lowercase** `transform(sl.begin(), sl.end(), sl.begin(), ::tolower)`</li> <br> <li>**int,double to str** `int a=4; stringstream ss; ss<<a; cout<<ss.str()`</li> <br> <li>**string to int** `string str="ab"; int i; istringstream(str)>>i;`</li> <br> <li>**string to int** `string str="ab"; int i; stringstream(str)>>i;`</li> </ul>|||
+|Erase|<ul><li>**substring** `s.erase(3, s.size()-1)`</li> <br> </ul>|||
+|Find|<ul><li>**substring** `(index = s1.find(s2)) != string::npos)`</li> <br> </ul>|||
+|Size|<ul><li>**str.length()** Inbuilt in str class</li> <br> <li>**str.size()** To make consistent with other STL container</li></ul>|||
+|substr|str.substr(pos=0, length=n)|||
 
-<a name=ap></a>
-## string& Append (const string& str);
-```c++
-  string s1="Ram ";
-  string s2="Shyam";
-  s1.append(s2);          //Ram Shyam
-```
 
-## Create
-<a name=ss1></a>
-#### A. int, double to string
-```cpp
-///Using stringstream
-#include<sstream>
-int main(){
-  stringstream ss;  
-  int a=4;   string b="fail";   char c='e';
-  ss<<a<<b<<c;
-  cout<<ssc.str()<<endl;  //4faile
-}
-```
 <a name=ss2></a>
 #### B. String to `vector<int>`
 ```c++
@@ -54,104 +30,6 @@ stringstream ss(s.substr(s.rfind(" ") + 1));      //ss=444
 int a;
 ss>>std::hex>>a;                                  //a=Hex of 444
 v.push_back(a);
-```
-<a name=ss3></a>
-#### C. String to int
-```c++
-////1. istringstream////////
-  string a ="12";
-  uint64_t val;
-  istringstream(a) >> dec >> val;
-  cout<<hex<<val;                     //12
-  
-////2. Stringstream/////////
-  string str = "4", str1 = "5";
-  int a;  
-  stringstream ss (str);  
-  ss >> a;
-  cout << a << "\n";                  //4
-
-  ss.clear(); ss.str(str1);           //Resuing stringstream
-  ss >> a;
-  cout << a << "\n";                  //5
-```
-<a name=con></a>
-#### D. String to lowercase
-```c
-  string sl = "Amit Kumar";
-  
-  transform(sl.begin(), sl.end(), sl.begin(), ::tolower);
-```
-
-## Compare
-<a name=co1></a>
-#### A. int s1.compare(s2)
-```cpp
-  string s1 = "abc";
-  string pat = "abe";
-  
-  if(!s1.compare(s2))
-    cout<<"s1";          //s1
-  else
-    cout<<"s2";
-
-compare returns:        
-  0: if both strings are equal.
-  value < 0 : if s1 is shorter than s2 or,first character that doesn't match is smaller than s2.
-  value > 0 : if s1 is longer than str or,first character that doesn't match is greater
-```
-
-<a name=er></a>
-## erase(starting_pos, length)
-Erases portion of string, reducing its length
-```cpp
-  string s="Hunger for Success";
-  
-  s.erase(0, 7);                                      //Erase from index=0 to index=7
-  cout<<s<<", size="<<s.size()<<endl;                 //for success, size=11
-  
-  s.erase(3, s.size()-1);                             //Erase from index=3 to end
-  cout<<s<<", size="<<s.size()<<endl;                 //for, size=3
-```
-
-<a name=f></a>
-## find()
-Returns 0th index of character/substring if found, else string::npos
-```cpp
-  int index = -1;
-  string str1 = "Failing Reveals your weaknesses!";
-  if ((index = str1.find("your")) != string::npos)
-    cout << index;
-    
-  O/P: 16
-```
-
-<a name=ins></a>
-## insert(position, string)
-Inserts additional characters into the string right before the character indicated by pos.
-```cpp
-  string s = "your ass out";
-  s.insert(0, "work ");                 
-  
-  cout<<s<<endl;           //work your ass out
-```
-
-<a name=sz></a>
-## Size Of String
-#### str.length() & str.size()
-```c
-           | str.length()                       | str.size()
------------|------------------------------------|-------------------
-    What   | Returns no of characters in string | same
-    Why    | inbuilt for string class           | To make consistent with other STL container
-Complexity |      O(1)                          | O(1)
-> Both are same anyone can be used.
-```
-**Code**
-```c++
-  string st = "LoveWork";
-  cout<<st.size()<<endl;          //8
-  cout<<st.length()<<endl;        //8
 ```
 
 ### Sort
@@ -171,21 +49,6 @@ AlGoRiThM";
 }
 # ./a.out
 algorithm also aza competitive cs3233 i i kk love love programming za zz
-```
-
-<a name=sub></a>
-## str.substr(pos=0, length=n)
-- pos: start position of the substring 
-- len: number of characters in a substring
-```c++
-  std::string a = "Hello T11";
-                 //012345678
-  std::cout << a.substr(1, 2); //From pos=1, Len=2
-  
-  std::cout << a.substr(0);     //"Hello T11"
-  std::cout << a.substr(1);     //"ello T11"
-  std::cout << a.substr(2);     //"lo T11"
-//O/p: el
 ```
 
 ## Tokenize
