@@ -11,12 +11,12 @@
 
 ||C++|Rust|Python|
 |---|---|---|---|
-|Append|s1.append(s2)|||
+|Append|s1.append(s2)||str1 += str2|
 |Compare|s1.compare(s2)|||
 |Convert|<ul><li>**Lowercase** `transform(sl.begin(), sl.end(), sl.begin(), ::tolower)`</li> <br> <li>**int,double to str** `int a=4; stringstream ss; ss<<a; cout<<ss.str()`</li> <br> <li>**string to int** `string str="ab"; int i; istringstream(str)>>i;`</li> <br> <li>**string to int** `string str="ab"; int i; stringstream(str)>>i;`</li> </ul>|||
 |Erase|<ul><li>**substring** `s.erase(3, s.size()-1)`</li> <br> </ul>|||
 |Find|<ul><li>**substring** `(index = s1.find(s2)) != string::npos)`</li> <br> </ul>|||
-|Size|<ul><li>**str.length()** Inbuilt in str class</li> <br> <li>**str.size()** To make consistent with other STL container</li></ul>|||
+|Size|<ul><li>**str.length()** Inbuilt in str class</li> <br> <li>**str.size()** To make consistent with other STL container</li></ul>||len(str)|
 |substr|str.substr(pos=0, length=n)|||
 
 
