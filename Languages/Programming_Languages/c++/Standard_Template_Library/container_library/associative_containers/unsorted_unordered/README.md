@@ -8,22 +8,9 @@
   - [Count](#count1)
 
 **unordered_map`<key, value>`**
-  - **Create**
-    - [Constructors](#umctr)
-    - [Map of Structures](#umstruct)
-    - [Map of Maps](#mapmap)
-  - [Insert](#uminsert)
-  - [Print](#umprint)
-    - [random (k,v) with same probability in O(1)](/DS_Questions/Questions/Random/Implement_Class/RandomisedSet_Insert_Delete_GetRandom_in_O1.md)
-  - **Find/Search**
-    - [1. using index ](#f1)
-    - [2. using count()](#f2)
-    - [3. using find()](#f3)
-    - [4. Smallest key](#f4)
-    - [5. Smallest Value](#f5)
-    - [6. Count Number of occurences of value](#f6)
-  - [Remove/Delete](#erase)
-  - [Count](#c1)
+- [Functions in C++, Rust, Python](#fun_hm)
+- [Map of Structures](#umstruct)
+- [Map of Maps](#mapmap)
 
 
 
