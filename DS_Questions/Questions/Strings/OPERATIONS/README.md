@@ -19,7 +19,7 @@
 |Convert|<ul><li>**Lowercase** `transform(sl.begin(), sl.end(), sl.begin(), ::tolower)`</li> <br> <li>**int,double to str** `int a=4; stringstream ss; ss<<a; cout<<ss.str()`</li> <br> <li>**string to int** `string str="ab"; int i; istringstream(str)>>i;`</li> <br> <li>**string to int** `string str="ab"; int i; stringstream(str)>>i;`</li> </ul>||**int to str** a = str(s)|
 |Erase|<ul><li>**substring** `s.erase(3, s.size()-1)`</li> <br> </ul>|||
 |Find|<ul><li>**substring** `(index = s1.find(s2)) != string::npos)`</li> <br> </ul>|||
-|Size|<ul><li>**str.length()** Inbuilt in str class</li> <br> <li>**str.size()** To make consistent with other STL container</li></ul>||len(str)|
+|Size|<ul><li>**str.length()** Inbuilt in str class</li> <br> <li>**str.size()** To make consistent with other STL container</li></ul>|s.len()|len(str)|
 |substr|str.substr(pos=0, length=n)|||
 
 
