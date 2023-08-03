@@ -8,7 +8,7 @@
   - [Count](#count1)
 
 **unordered_map`<key, value>`**
-- [Functions in C++, Rust, Python](#fun_hm)
+- [Functions in C++, Rust, Python](#funhm)
 - [Map of Structures](#umstruct)
 - [Map of Maps](#mapmap)
 
@@ -50,7 +50,7 @@ S.insert(std::make_pair(0, 1));
 ### unordered_map`<key, value>`
 - `<key,value>` pair with unique keys. *Time Complexity* Normal: O(1), Worst case: O(n)
 
-<a name=fun_hm></a>
+<a name=funhm></a>
 #### Functions in C++, Rust, Python
 ||C++|Rust|Python(Dictionary)|
 |---|---|---|---|
