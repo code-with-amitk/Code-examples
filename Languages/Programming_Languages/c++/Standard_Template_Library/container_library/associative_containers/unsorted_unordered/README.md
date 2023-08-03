@@ -52,9 +52,9 @@ S.insert(std::make_pair(0, 1));
 
 <a name=funhm></a>
 #### Functions in C++, Rust, Python
-||C++|Rust|Python(Dictionary)|
+||C++|Rust|Python({} Dictionary)|
 |---|---|---|---|
-|Create|unordered_map<string, int> um||<ul><li>**Empty:** self.hm = {} </li> <br> <li>**key,val:** self.hm={1:1, 2:2} </li></ul>|
+|Create|unordered_map<string, int> um | <ul><li>**Empty:** use std::collections::HashMap; let hm:HashMap = HashMap::new() </li> <br> <li>**init:** `let hm:HashMap = HashMap::From([(1:"a"),(2:"b")]);` </li></ul>|<ul><li>**Empty:** self.hm = {} </li> <br> <li>**key,val:** self.hm={1:1, 2:2} </li></ul>|
 |Delete/Erase|<ul><li>`um.erase(key)`</li> <br> <li>**Range:** um.erase(start,end)<li> <br> </ul>|||
 |Find|<ul><li>`value = um[key]`</li> <br> <li>value=count(key)</li> <br> <li>**Smallest Key:** min_element(um.begin(), um.end())<li> <br> </ul>||`value = um[key]`|
 |Insert|<ul><li>`um[key] = value`</li> <br> <li>`um.insert(make_pair(key,val))`</li> <br> </ul>||<ul><li>`self.hm={1:1, 2:2}`</li> <br> </ul>|
