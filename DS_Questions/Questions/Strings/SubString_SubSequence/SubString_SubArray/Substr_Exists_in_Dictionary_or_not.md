@@ -113,19 +113,19 @@ public:
         dp[0] = true;
 
         for (int i = 1; i <= s.size(); i++) {
-			    // For all substrings str="test"
+	  // For all substrings str="test"
           for (int j = 0; j < i; j++) {
 
             // if substring till index=j is present in dictionary
             // then only we will search further substrings
             if (dp[j] == true) {
-              // substrings = test, est, st, t
-  					  string substr = s.substr(j, i-j);
-  					  if (us.find(substr) != us.end()) {
+              //substrings = test, est, st, t
+              string substr = s.substr(j, i-j);
+              if (us.find(substr) != us.end()) {
                 // if substr is found, update found at index=j
-    						dp[i] = true;
-    						break;
-  					  }
+    		dp[i] = true;
+    		break;
+              }
             }
           }
         }
