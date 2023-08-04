@@ -8,6 +8,8 @@
   - [Complexity](#com)
   - Code
     - [CPP](#cpp)
+    - [Rust](#rs)
+    - [Python](#py)
 
 ### [139. Word Break](https://leetcode.com/problems/word-break/)
 - Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
@@ -132,4 +134,55 @@ public:
         return dp[s.size()];
     }
 };
+```
+<a name=rs></a>
+**Rust**
+```rs
+use std::collections::HashSet;
+//use substring::Substring;
+impl Solution {
+    pub fn word_break(s: String, word_dict: Vec<String>) -> bool {
+        let mut hs:HashSet<String> = HashSet::new();
+        for word in word_dict {
+            hs.insert(word);
+        }
+
+        let mut dp:Vec<bool> = vec![false; s.len()+1];
+        dp[0] = true;
+
+        for i in 1..=s.len() {
+            for j in 0..i {
+                if dp[j] == true {
+                    //let substr = s.substring(j, i-j);
+                    let substr = &s[j..i];
+                    if let Some(value) = hs.get(substr) {
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+        }
+        dp[s.len()]
+    }
+}
+```
+<a name=py></a>
+**Python**
+```py
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        hs = set()
+        for i in range(0,len(wordDict)):
+            hs.add(wordDict[i])
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+
+        for i in range(0, len(s)+1):
+            for j in range(0,i):
+                if dp[j]:
+                    substr = s[j:i]
+                    if substr in hs:
+                        dp[i] = True
+                        break
+        return dp[-1]
 ```
