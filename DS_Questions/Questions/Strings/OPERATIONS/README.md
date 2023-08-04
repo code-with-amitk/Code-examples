@@ -10,6 +10,8 @@
     - [strtok](#strt)
 - [Traversal. Forward, Reverse](#tra)
 
+### [HTML String Page](https://amitkumar50.github.io/Languages/Programming/C++/String.html)
+
 <a name=fun></a>
 ### Functions C++,Rust,Python
 ||C++|Rust|Python|
