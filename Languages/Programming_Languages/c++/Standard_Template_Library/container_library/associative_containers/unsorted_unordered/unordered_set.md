@@ -7,7 +7,7 @@
   - Remove Delete
   - [Count](#count1)
 
-## [Function Compared C++,Rust,Python](https://amitkumar50.github.io/Languages/Programming/C++/STL/Containers/Associative_Containers/Unsorted_Unordered/unordered_set.html)
+## [HTML Function Compared C++,Rust,Python](https://amitkumar50.github.io/Languages/Programming/C++/STL/Containers/Associative_Containers/Unsorted_Unordered/unordered_set.html)
 
 ### unordered_set`<key>`
 Keys are stored in HashMap, hence unordered not in ascending,descending order.
