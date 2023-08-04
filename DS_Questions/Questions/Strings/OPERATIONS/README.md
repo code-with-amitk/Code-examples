@@ -14,10 +14,12 @@
 ### Functions C++,Rust,Python
 ||C++|Rust|Python|
 |---|---|---|---|
-|Append|s1.append(s2)||str1 += str2|
+|Append|s1.append(s2)|s1.push(char);|str1 += str2|
 |Compare|s1.compare(s2)|||
 |Convert|<ul><li>**Lowercase** `transform(sl.begin(), sl.end(), sl.begin(), ::tolower)`</li> <br> <li>**int,double to str** `int a=4; stringstream ss; ss<<a; cout<<ss.str()`</li> <br> <li>**string to int** `string str="ab"; int i; istringstream(str)>>i;`</li> <br> <li>**string to int** `string str="ab"; int i; stringstream(str)>>i;`</li> </ul>||**int to str** a = str(s)|
-|Erase|<ul><li>**substring** `s.erase(3, s.size()-1)`</li> <br> </ul>|||
+|Erase/pop_back|<ul><li>**substring** `s.erase(3, s.size()-1)`</li> <br> <li>**Remove last char** s1.pop_back();</li></ul>|<ul><li>**Remove last char** `s1.pop()`</li></ul>|<ul><li>**Remove last char** `s1 = s1[:len(s1)-1]`</li></ul>|
+|Element at index|`str[i]`|let digit = str.chars().nth(start as usize).unwrap().to_digit(10).unwrap() as i32;|`str[i]`|
+|Iterate chars in string|`for (int i=0; i<letters.size(); ++i)`|`for letter in letters.chars()`|`for i in range(0, len(letters)):`|
 |Find|<ul><li>**substring** `(index = s1.find(s2)) != string::npos)`</li> <br> </ul>|||
 |Size|<ul><li>**str.length()** Inbuilt in str class</li> <br> <li>**str.size()** To make consistent with other STL container</li></ul>|s.len()|len(str)|
 |substr|str.substr(pos=0, length=n)|||
