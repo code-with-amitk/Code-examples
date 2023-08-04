@@ -4,6 +4,10 @@
 - [Approach-1. DFS(using Recursion). O(2<sup>n</sup>). TLE](#a1)
   - [Logic](#l)
 - [Approach-2. DFS(with storage) = Dynamic Programming](#a2)
+  - [Logic](#l1)
+  - [Complexity](#com)
+  - Code
+    - [CPP](#cpp)
 
 ### [139. Word Break](https://leetcode.com/problems/word-break/)
 - Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
@@ -75,6 +79,7 @@ public:
 
 <a name=a2></a>
 ### Approach-2. DFS(with storage) = Dynamic Programming
+<a name=l1></a>
 #### Logic
 - We will just store results of [Approach-1's logic](#l)
 - Notice some subproblems are solved again and again (Eg: o, og) etc.
@@ -98,19 +103,33 @@ dp[0] = 0   //means "" substring is always present in wordDict.
 <a name=cpp></a>
 **CPP**
 ```cpp
+class Solution {
+public:
     bool wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string> Dict(wordDict.begin(), wordDict.end());
-        vector<bool> dp(s.size());
+        unordered_set<string> us(wordDict.begin(), wordDict.end());
+
+        // dp[i]=true means till this index, substring is present in dictionary
+        vector<bool> dp(s.size(), false);
         dp[0] = true;
 
         for (int i = 1; i <= s.size(); i++) {
-            for (int j = 0; j < i; j++) {
-                if (dp[j] and Dict.find(s.substr(j, i - j)) != Dict.end()) {
-                    dp[i] = true;
-                    break;
-                }
+			    // For all substrings str="test"
+          for (int j = 0; j < i; j++) {
+
+            // if substring till index=j is present in dictionary
+            // then only we will search further substrings
+            if (dp[j] == true) {
+              // substrings = test, est, st, t
+  					  string substr = s.substr(j, i-j);
+  					  if (us.find(substr) != us.end()) {
+                // if substr is found, update found at index=j
+    						dp[i] = true;
+    						break;
+  					  }
             }
+          }
         }
         return dp[s.size()];
-    }  
+    }
+};
 ```
