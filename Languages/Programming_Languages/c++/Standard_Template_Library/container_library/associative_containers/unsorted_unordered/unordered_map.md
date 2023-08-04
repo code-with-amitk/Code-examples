@@ -37,3 +37,14 @@
     
     unordered_map <string, unique_ptr<stData> > um;    
 ```
+
+
+<a name=mapmap></a>
+#### Map of Maps
+```cpp
+    using map1 = unordered_map<uint32_t, uint32_t>;
+    using map2 = unordered_map <string, map1>;
+    map2 um;
+    map1 temp = { { 1,2 } };
+    um[A] = temp;    
+```
