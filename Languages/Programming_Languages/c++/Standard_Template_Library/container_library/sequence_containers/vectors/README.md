@@ -27,6 +27,7 @@
 |Reverse|reverse (v.begin(), v.begin()+3)|||
 |Search|<ul><li>**max element** `*max_element(a.begin(), a.end());`</li> <br> <li>**min element** *min_element(a.begin(), a.end())</li> <li>**Any element** iterator = find(v.begin(), v.end(), "test")</li></ul>|||
 |Slice|||<ul><li>**1st to last** `list[1:]`</li><li>**last 3** `print(a[-3:])`</li></ul>|
+|Size|vec.size()|vec.len()|len(vec)|
 |Sort|||<ul><li>**Simple Sort:** list.sort()</li> <br> <li>**Custom Sort:** `def fun(s): return s[1] sorted(list, key=fun)`</li> </ul>|
 |Traverse|<ul><li>**for_each** for_each (v.begin(), v.end(),`[&i]`(int element{element += i;});</li> <br> <li>**Iterator** `for(auto i=v.begin();i!=v.end();i++) cout<<*i;`</li></ul>|||
 
