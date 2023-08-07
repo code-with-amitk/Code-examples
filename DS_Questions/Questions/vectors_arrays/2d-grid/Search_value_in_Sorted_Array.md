@@ -152,3 +152,33 @@ class Solution:
             return True
         return False
 ```
+<a name=rs></a>
+**Rust**
+```rs
+impl Solution {
+    pub fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
+        let rows = matrix.len();
+        let cols = matrix[0].len();
+        let mut left = 0;
+        let mut right = rows*cols-1;
+
+        while left < right {
+            let mut mid = (left+right)/2;
+            let row = mid/cols;
+            let col = mid%cols;
+
+            if matrix[row][col] == target {
+                return true;
+            } else if (matrix[row][col] > target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        if matrix [rows-1][cols-1] == target {
+            return true;
+        }
+        false
+    }
+}
+```
