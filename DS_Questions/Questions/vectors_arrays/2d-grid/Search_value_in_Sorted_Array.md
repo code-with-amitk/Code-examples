@@ -9,6 +9,8 @@
     - [Python](#py)
     - [Rust](#rs)
 
+### [Self Video](https://leetcode.com/problems/search-a-2d-matrix/description/)
+
 ## [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
 - Example: Given below matrix search Target=3, output=true
 
