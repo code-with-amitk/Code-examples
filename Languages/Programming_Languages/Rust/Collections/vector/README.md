@@ -1,24 +1,17 @@
 **Vector**
 - [Create, Initialize](#cin)
   - [2d vector](#2d)
-- [Initialize](#init)
-- [Update](#update)
 - Access, Iterate
   - [into_iter()](#itr)
     - [into_iter().enumerate()](#intoe)
-  - [Using for loop syntax](#fls)
-  - [using index](#ind)
-- [length of vector](#len)
-- _last element_
-  - [1. last() -> Option<&T>](#plast)
-  - [2. Pop](#pop)
-  - [3. Append push](#push)
 - Print
   - [Any Element](#any)
 - [Store enum in vector](enumvec)
 
+### [HTML Page](https://amitkumar50.github.io/Languages/Programming/C++/STL/Containers/Seqeunce_Containers/vector.html)
+### [Function in C++,Rust,Python](Languages/Programming_Languages/c++/Standard_Template_Library/container_library/sequence_containers/vectors/README.md)
 
-## [vec or Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
+### [vec or Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html#method.push)
 - Same as in C++, Storing more than 1 value of same type contigously in memory. Remember All collections are **allocated on HEAP**.
 - Stack is implemented using vector in rust
 - **How vector is internally implemented in Rust?**
@@ -34,24 +27,6 @@ struct Vec {
 ```
 - **Copy trait not implemented for vector?**
   - Copy Trait is only implemented for types that copied safely BITWISE. if we create a copy of vector, then there would be 2 owners of same data which voilates [Rust ownership Rule](/Languages/Programming_Languages/Rust#own). But vector implements [Clone Trait](/Languages/Programming_Languages/Rust/Triat_Interface/README.md#clone).
-
-<a name=cin></a>
-### Create, Initialize
-```rs
-let mut v:Vec<i32> = Vec::new();    //v.len() = 0
-let mut v:Vec<i32> = vec![];    //v.len() = 0
-
-//Declaration
-let v : Vec<i32>;              
-
-// Initialize
-let v1: Vec<i32> = [1,2,3].to_vec();  //Initialize
-let v2: Vec<i32> = vec![14,25,35];
-let v3: Vec<String> = vec!["test".to_string(), "test1".to_string()];
-  
-//Create vector of size=5 with init value=0
-let mut v = vec![0; 5];
-```
 
 <a name=2d></a>
 #### 2d vector
@@ -111,59 +86,6 @@ index=2, value=4
 for i in &vec {
   prinln!("{}", i);
 }
-```
-
-<a name=ind></a>
-#### Using index
-```rs
-fn main() {
-    let mut v : Vec<i32> = vec![1,2,3];
-    let mut i : i32 = 0;
-    //println("{}", v[i]);        //Complier Error: type `[{integer}]` cannot be indexed by `i32`
-    println("{}", v[i as usize]); //Fix: Typecast i to usize.
-```
-_Complier Error: type `[{integer}]` cannot be indexed by `i32`?_ Means Arrays need to be indexed by a [usize type](/Languages/Programming_Languages/Rust/Data_Types). 
-- Solutions:
-  - _1._ Typecast          //Not recommended
-  - _2._ Keep indexing variable seperate from normal variables.
-
-<a name=len></a>
-#### Length
-```rs
-let v = vec![1,2,3];
-v.len();        //3
-```
-
-### Last Element
-<a name=plast></a>
-#### 1. const fn last(&self) -> Option`<&T>`
-- Returns the last element of the slice, or None if it is empty.
-```rs
-if v.last() != None {
-  println!("{}", v.last());
-}
-```
-
-<a name=pop></a>
-#### 2. Remove last element
-- Removes the last element from a vector and returns it, or None if it is empty.
-```rs
-pub fn pop(&mut self) -> Option<T>
-v.pop()
-```
-
-<a name=push></a>
-#### 3. Push at end
-- Appends an element to the back of a collection
-```rs
-vec.push(3);
-```
-
-### Print
-<a name=any></a>
-#### 1. Any element
-```rs
-let mut a = v[v.len()-1];
 ```
 
 <a name=enumvec></a>
