@@ -91,6 +91,12 @@ while (left < right) {
     right = mid;
 }
 ```
+
+<a name=com></a>
+#### Complexity
+- **Time:** O(log(mn)). Binary search
+- **Space:** O(1)
+
 #### Code
 <a name=cpp></a>
 **CPP**
