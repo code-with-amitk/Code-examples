@@ -109,7 +109,7 @@ public:
         int left = 0, right = rows * cols - 1;
 
         while (left < right){
-            int mid = (left + right)/2;
+            int mid = left + (right - left)/2;
             int row = mid/cols, col = mid%cols;
 
             if(matrix[row][col] == target)
@@ -138,7 +138,7 @@ class Solution:
 
         while left < right:
             # (Floor Division)15//2=7, 15/2=7.5
-            mid = (left+right)//2
+            mid = left + (right - left)//2
             row = mid//cols
             col = mid%cols
 
@@ -163,7 +163,7 @@ impl Solution {
         let mut right = rows*cols-1;
 
         while left < right {
-            let mut mid = (left+right)/2;
+            let mut mid = left + (right - left)/2;
             let row = mid/cols;
             let col = mid%cols;
 
