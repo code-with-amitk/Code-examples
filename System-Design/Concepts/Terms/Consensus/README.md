@@ -1,7 +1,7 @@
 **Consensus**
-- **Ways to achieve Consensus**
-  - [1. Byzantine fault tolerance-based = voting](#w1)
-  - [2. Leader-based consensus mechanisms](#w2)
+- **Types of Consensus Mechanisms**
+  - [1. Byzantine fault tolerance-based / voting](#w1)
+  - [2. Proof Based /  leader-based / the Nakamoto consensus](#w2)
 - **Situations of consensus**
   - [1. Leader Election](#le)
 - [Atomic Commit, AC Problem](#ac)
@@ -12,17 +12,23 @@
 - [Disadv/Problems in Consensus](#dis)
 
 
-# Consensus
+## Consensus
 Consensus is a process of agreement between distrusting nodes on a final state of data.
 
-### Ways to achieve Consensus
+### Categories of Consensus
 <a name=w1></a>
-#### 1. Byzantine fault tolerance-based = voting
+#### 1. Byzantine fault tolerance-based / voting
 when a certain number of messages are received, then an agreement is reached
 
 <a name=w2></a>
-#### 2. Leader-based consensus mechanisms
+#### 2. Proof Based /  leader-based / the Nakamoto consensus
 Nodes to compete for the leader-election lottery and the node that wins it proposes a final value
+- **1. POW(Proof of Work):**
+  - relies on proof that enough computational resources have been spent before proposing a value for acceptance by the network
+  - Bitcoin uses it.
+- **2. POS(Proof of Stake):**
+  - Relies on idea that a node or user has enough stake in the system; for example the user has invested enough in the system.
+  - Eg: Ethereum uses it.
 
 ### Situations where consensus is needed
 #### 1. Leader Election
