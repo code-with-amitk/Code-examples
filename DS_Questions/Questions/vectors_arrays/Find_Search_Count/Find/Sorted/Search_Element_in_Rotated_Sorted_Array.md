@@ -5,6 +5,7 @@
   - Code
     - [CPP](#cpp)
     - [Python](#py)
+    - [Rust](#rs)
 - [Approach-2, 1 pass Binary Search](#a2)
 
 ### [113. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
@@ -107,6 +108,53 @@ class Solution:
         return a
       
       return self.binarySearch (v, left, len(v)-1, target)
+```
+
+<a name=rs></a>
+**Rust**
+```rs
+impl Solution {
+
+    fn binarySearch (v: &Vec<i32>, mut left: i32, mut right: i32, target: i32) -> i32 {
+        while (left <= right) {
+          let mut mid = left + (right-left)/2;
+          if (v[mid as usize] == target) {
+              return mid;
+          } else if (v[mid as usize] > target) {
+              right = mid-1;
+          } else {
+              left = mid+1;
+          }
+        }
+        -1
+    }
+    pub fn search(v: Vec<i32>, target: i32) -> i32 {
+      let mut left:i32 = 0;
+      let mut right:i32 = v.len() as i32 -1;
+
+      // Find rotation point/smallest value in array
+      while (left <= right) {
+        let mut mid = left + (right-left)/2;
+        if (v[mid as usize] > v[v.len() as usize - 1]) {
+          left = mid+1;
+        } else {
+          right = mid-1;
+        }
+      }
+
+      if (v[left as usize] == target) {
+        return left;
+      }
+
+      let a = Self::binarySearch (&v, 0, left-1, target);
+      if (a != -1) {
+        return a;
+      }
+
+      // else binary search in left
+      Self::binarySearch (&v, left, v.len() as i32 -1, target)
+    }
+}
 ```
 
 <a name=a2></a>
