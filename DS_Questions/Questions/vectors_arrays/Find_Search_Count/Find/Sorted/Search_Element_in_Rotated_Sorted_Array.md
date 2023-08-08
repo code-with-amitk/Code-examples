@@ -1,5 +1,9 @@
 **Search in Rotated Sorted Array / Search in V Shaped Array**
 - [Approach-1, 2 times Binary Search](#a1)
+  - [Logic](#l)
+  - [Complexity](#com)
+  - Code
+    - [CPP](#cpp)
 - [Approach-2, 1 pass Binary Search](#a2)
 
 ### [113. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
@@ -16,92 +20,54 @@ Output: -1
 
 <a name=a1></a>
 ### Approach-1 //2 times Binary Search
+<a name=l></a>
 #### Logic
 - *1.* Find point of rotation ie `arr[mid+1]<arr[mid]` using Binary Search. This divides the array into 2 halves.
-- *2.* Search target element in two sub-arrays(Again using Binary Search)
+- *2.* Search target element in two sub-arrays(Again using Binary Search).
+<a name=com></a>
 #### Complexity
   - **Time:** 2O(logn)
   - **Space:** O(1)
 #### Code
-```c++
+**CPP**
+```cpp
 class Solution {
 public:
-    using vec = vector<int>;
-    
-  int BinarySearch (vec& v, int start, int end, int ele){
-    int mid = (start+end)/2;
-
-    if (start > end)
-      return -1;
-
-    if (v[mid] == ele)
-      return mid;
-
-    if (mid == v.size()-1)
-      return -1;
-
-    if(ele < v[mid])
-      mid = BinarySearch(v,start,mid-1,ele);
-    else
-      mid = BinarySearch(v,mid+1,end,ele);
-
-    return mid;
-  }
-  
-//Rotation Point
-  int FindPivot(vec& v, int start, int end){
-    if (start > end)
-      return -1;
-    
-    if (start == end)
-      return start;
-
-    int mid = (start+end)/2;
-
-  /*Case-1: We found pivot element
-  9  10  1
-     mid
-  */
-    if (mid < end and v[mid+1] < v[mid])
-      return mid;
-
-  /*Case-2: We found Pivot element
-  9  10  1
-        mid
-  */        
-    if (mid > start and v[mid-1] > v[mid])
-      return mid - 1;
-
-  /*9  10  1  2  3
-             mid
-  Search in left half
-  */
-    if (v[start] >= v[mid])
-      return FindPivot(v, start, mid - 1);
-
-    //Search in right half
-    return FindPivot(v, mid+1, end);
-  }
-    
-  int search(vector<int>& v, int target) {
-    int end = v.size() - 1;
-    int start = 0, mid = -1;
-    
-    int pivot = FindPivot(v, start, end);
-
-    if (pivot == -1) 
-        return BinarySearch(v, start, end, target); 
-  
-    // If we found a pivot, then first compare with pivot 
-    // and then search in two subarrays around pivot 
-    if (v[pivot] == target) 
-        return pivot; 
-  
-    if (v[0] <= target) 
-        return BinarySearch(v, start, pivot - 1, target); 
-  
-    return BinarySearch(v, pivot + 1, end, target);    
+  using vec = vector<int>;    
+  int binarySearch (vec& v, int left, int right, int target) {
+    while (left <= right) {
+      int mid = left + (right-left)/2;
+      if (v[mid] == target)
+        return mid;
+      else if (v[mid] > target)
+        right = mid-1;
+      else
+        left = mid+1;
     }
+    return -1;
+  }
+  int search(vec& v, int target){
+    int left = 0, right = v.size()-1;
+
+    // Find rotation point/smallest value in array
+    while (left <= right) {
+      int mid = left + (right-left)/2;
+      if (v[mid] > v[v.size()-1])
+        left = mid+1;
+      else
+        right = mid-1;
+    }
+
+    if (v[left] == target)
+      return left;
+
+    int a = binarySearch (v, 0, left-1, target);
+    if (a != -1)
+      return a;
+
+    // else binary search in right
+    return binarySearch (v, left, v.size()-1, target);
+  }
 };
 ```
 
