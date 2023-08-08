@@ -8,6 +8,8 @@
     - [Rust](#rs)
 - [Approach-2, 1 pass Binary Search](#a2)
 
+### [Self Video](https://youtu.be/ewY3YY7MYoU)
+
 ### [113. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 - Array is rotated at some point [0,1,2,4,5,6,7] becomes [4,5,6,7,0,1,2]
 - If target is found in the array return its index, otherwise, return -1.
