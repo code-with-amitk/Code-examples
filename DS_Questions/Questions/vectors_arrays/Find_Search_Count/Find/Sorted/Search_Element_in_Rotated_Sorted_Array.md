@@ -4,6 +4,7 @@
   - [Complexity](#com)
   - Code
     - [CPP](#cpp)
+    - [Python](#py)
 - [Approach-2, 1 pass Binary Search](#a2)
 
 ### [113. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
@@ -69,6 +70,43 @@ public:
     return binarySearch (v, left, v.size()-1, target);
   }
 };
+```
+
+<a name=py></a>
+**Python**
+```py
+class Solution:
+    def binarySearch (self, v: List[int], left: int, right: int, target:int) -> int:
+      while left <= right:
+        mid = left + (right-left)//2
+        if v[mid] == target:
+          return mid
+        elif v[mid] > target:
+          right = mid-1
+        else:
+          left = mid+1
+      return -1
+
+    def search(self, v: List[int], target: int) -> int:
+      left = 0
+      right = len(v)-1
+
+      #Find rotation point/smallest value in array
+      while left <= right:
+        mid = left + (right-left)//2
+        if v[mid] > v[-1]:
+          left = mid+1
+        else:
+          right = mid-1
+      
+      if v[left] == target:
+        return left
+      
+      a = self.binarySearch (v, 0, left-1, target)
+      if a != -1:
+        return a
+      
+      return self.binarySearch (v, left, len(v)-1, target)
 ```
 
 <a name=a2></a>
