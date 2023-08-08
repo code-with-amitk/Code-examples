@@ -11,3 +11,4 @@
 - [Peak Index in a Mountain Array
 ](/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Increasing_Decresing_Mountain_Array.md)
 - [Search a 2D Matrix](/DS_Questions/Questions/vectors_arrays/2d-grid/Search_value_in_Sorted_Array.md)
+- [Search in Rotated Sorted Array / Search in V Shaped Array](DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Search_Element_in_Rotated_Sorted_Array.md)
