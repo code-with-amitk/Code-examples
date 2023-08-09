@@ -9,7 +9,7 @@ class Solution {
 public:
     void spiral(vecVecI& v, int tmp1, int tmp2, int m, int n){
         int i;
-        if (tmp1 >= m && tmp2 >= n)
+        if (tmp1 >= m || tmp2 >= n)
             return;
 
         //Print top row.
