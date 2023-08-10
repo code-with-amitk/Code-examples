@@ -66,6 +66,49 @@ public:
 ```
 ==== Python
 ```py
+class Solution:
+    def search(self, v: List[int], target: int) -> bool:
+        left = 0
+        right = len(v)-1
+
+        while left <= right:
+            mid = left + (right-left)//2;
+            
+            if v[mid] == target:
+                return True
+
+            # If the elements at mid, left, and right are equal 
+            # increment left and decrement right to handle duplicates.
+            if v[mid] == v[left] and v[mid] == v[right]:
+                while left <= right and v[left] == v[mid]:
+                    left += 1
+
+                # Move the right pointer to the leftmost non-duplicate element.
+                while left <= right and v[right] == v[mid]:
+                    right -= 1
+
+            # Now we donot have any duplicate elements
+            # This means left half of array is sorted
+            # Eg: 2 3 4 5 0 1
+            #        mid
+            elif v[mid] >= v[left]:
+                if v[left] <= target and target < v[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+
+            # Condition: v[mid] < v[left]. This means right half is sorted
+            # Eg: 8 9 10 0 1 2 3.      target=2
+            #          mid
+            else:
+                # if target is in right half, search in right
+                # else search in left half
+                if v[mid] < target and target <= v[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+
+        return False
 ```
 ==== Rust
 ```rs
