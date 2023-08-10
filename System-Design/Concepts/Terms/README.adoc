@@ -5,7 +5,7 @@
 System is doing what's it's supposed to do.
 
 == ACID
-<<atomicity, Atomicity>>, [Consistency](#con), [Isolation](/System-Design/Concepts/Databases/Terms/Isolation), [Durability](#dur)
+<<atomicity, Atomicity>>, <<con, Consistency>>, link:/System-Design/Concepts/Databases/Terms/Isolation[Isolation], <<dur, Durability>>
 
 == Antisnubbing 
 - snub means ignoring someone or something. 
@@ -69,6 +69,7 @@ Basically Available, Soft state, and Eventual consistency
   - _2. CP:_ When nodes are partitioned, then consistency can be achieved.
   - _3. AP:_ nodes remain online even if they can't communicate with each other
 
+[[con]]
 == Consistency (System is consistent)
 ```c
 node-1  ------\
@@ -93,6 +94,7 @@ node-2  -----/
 - Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
 - **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 
+[[dur]]
 == Durability
 - Once [transaction](Transaction) has been committed successfully(ie data is written to DB), then that data will not be forgotten, even in case of hardware fault/ database crashes
 - **How to achieve Durability?**
