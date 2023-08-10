@@ -14,13 +14,14 @@ System is doing what's it's supposed to do.
 
 [[atomicity]]
 == Atomicity (better word should be Abortibilty)
-> Atomic means something that cannot be broken down into smaller parts.
-- [Atomic in multi-threaded program](/Threads_Processes_IPC/Terms/README.md#at) is different from Atomic in Distributed Systems.
+- Atomic means something that cannot be broken down into smaller parts.
+- link:/Threads_Processes_IPC/Terms/README.md#at[Atomic in multi-threaded program] is different from Atomic in Distributed Systems.
 - In Distributed systems Atomic means
   - When Application is writing to DB and some fault occurs(process crash, LAN cable loose, Disk full) then application will not see DB in inconsistent state.
 - **How to achieve Atomicity?**
-- Using [Transactions](Transaction), ie when some transaction fails then its Aborted and DB comes in old state.
+- Using link:Transaction[Transaction], ie when some transaction fails then its Aborted and DB comes in old state.
 
+[[ava]]
 == Availability  (System is Available)
 ```c
 |----------System--------|
@@ -29,31 +30,32 @@ System is doing what's it's supposed to do.
 |  noden(down)           |
 |------------------------|
 ```
-- Even if some of nodes are down in system, If client requests data, it will get a response(without guarantee that it contains the most recent version of information).
-- OR Every read will get response without gurantee its most recent data or not.
-- **Availabilty Problem** System is down and it cannot take requests and send responses.
-  - [Availability patterns / Solutions](/System-Design/Concepts/Databases/Database_Scaling/)
-    - *a.* Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
-    - *b.* Using Replication
+* Even if some of nodes are down in system, If client requests data, it will get a response(without guarantee that it contains the most recent version of information).
+* OR Every read will get response without gurantee its most recent data or not.
+* *Availabilty Problem* System is down and it cannot take requests and send responses.
+** link:/System-Design/Concepts/Databases/Database_Scaling/[Availability patterns / Solutions]
+** a. Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
+** b. Using Replication
 
 == Autoscaling
 In cloud, infrastructure can increase/decrese based on demand. 
 
 === How auto scaling works?
-  - A group is defined in which similar VM instances are placed.
-  - Policies are defined. Example:
-    - _1._ Based on CPU Utilization. Autoscalar collects CPU Utilization of VM instances in group and decides to fork new/tear a VM based on that.
-    - _2._ Scaling based on HTTP load etc
+* A group is defined in which similar VM instances are placed.
+* Policies are defined. Example:
+** 1. Based on CPU Utilization. Autoscalar collects CPU Utilization of VM instances in group and decides to fork new/tear a VM based on that.
+** 2. Scaling based on HTTP load etc
 
 == Bandwidth
-Theoritical maximum at which data can be tranferred over link. Practical is Throughput. 
-- *Bandwidth Throttling:* Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
-  - *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
+* Theoritical maximum at which data can be tranferred over link. Practical is Throughput. 
+** *Bandwidth Throttling:* Intentional slowing or speeding of an internet service by an Internet service provider (ISP). 
+** *Advantages?* To reduce bandwidth congestion, To reduce a user's usage of bandwidth.
 
-- **Biased Neighbour Selection?** BitTorrent peer chooses most of its neighbors from the local ISP and only a few peers from other ISPs reducing traffic, this is assisted by [Tracker](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). 
-  - Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
-- **[Bootstraping?](Bootstraping)** How new node enters into network(Basically Distributed File sharing network).
-- **Broker,Super Peers:** As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
+=== Biased Neighbour Selection? 
+* BitTorrent peer chooses most of its neighbors from the local ISP and only a few peers from other ISPs reducing traffic, this is assisted by link:/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md[Tracker] 
+** Tracker sends 35-k times peers from same ISP. Tracker uses Internet topology maps in autonomous system (AS) mappings to identify ISP boundaries.
+* *link:Bootstraping[Bootstraping?]* How new node enters into network(Basically Distributed File sharing network).
+* *Broker,Super Peers:* As part of middleware layer, broker/super peer will facilitate communication b/w nodes(Weak peers). Super peer can attach to other super peer for replication. Weak peer can attach to another better super peer.
 
 == BASE
 Basically Available, Soft state, and Eventual consistency
@@ -63,11 +65,11 @@ Basically Available, Soft state, and Eventual consistency
 - **Problem of clock skew on distributed system:**
   - Different clocks(on different machines) tend to run at different rates, so we cannot assume that time t on node a happened before time t + 1 on node b .
 
-== CAP Theorem ([Consistency](#con) [Availability](#av) [Partition-Tolerance](#pt))
-- CAP theorem says: Only 2 out 3 can be guaranteed.
-  - _1. CA:_ data is consistent between all nodes - as long as all nodes are online 
-  - _2. CP:_ When nodes are partitioned, then consistency can be achieved.
-  - _3. AP:_ nodes remain online even if they can't communicate with each other
+== CAP Theorem <<con,Consistency>>, <<ava,Availability>> <<pt,Partition-Tolerance>>
+* CAP theorem says: Only 2 out 3 can be guaranteed.
+** 1. CA: data is consistent between all nodes - as long as all nodes are online 
+** 2. CP: When nodes are partitioned, then consistency can be achieved.
+** 3. AP: nodes remain online even if they can't communicate with each other
 
 [[con]]
 == Consistency (System is consistent)
@@ -76,10 +78,10 @@ node-1  ------\
               client
 node-2  -----/
 ```
-- Client will get(same, latest data) to whatever node they connect to in system.
-- OR Every read operation will recieve most recent Write (or error).
-- **Consistency Problem?** With mutiple databases doing sync([master slave](/System-Design/Concepts/Databases/Database_Scaling) etc), client should be returned accurate and most recent information.
-- **Solution:** Consensus Algorithm
+* Client will get(same, latest data) to whatever node they connect to in system.
+* OR Every read operation will recieve most recent Write (or error).
+* *Consistency Problem?* With mutiple databases doing sync(link:/System-Design/Concepts/Databases/Database_Scaling[master slave] etc), client should be returned accurate and most recent information.
+* *Solution:* Consensus Algorithm
 
 == Consistency patterns
 |===
@@ -91,26 +93,26 @@ node-2  -----/
 |===
 
 == Deduplication 
-- Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
-- **End Game / End Mode:** To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
+* Eliminating duplicate or redundant information. Eg: How server identifies and drops duplicate packet when recieved.
+* *End Game / End Mode:* To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 
 [[dur]]
 == Durability
-- Once [transaction](Transaction) has been committed successfully(ie data is written to DB), then that data will not be forgotten, even in case of hardware fault/ database crashes
-- **How to achieve Durability?**
-  - On Single node system using SSD or Hard-disks. On multinode using [Replication](/System-Design/Concepts/Databases/Database_Scaling)
+* Once link:Transaction[Transaction] has been committed successfully(ie data is written to DB), then that data will not be forgotten, even in case of hardware fault/ database crashes
+* *How to achieve Durability?*
+** On Single node system using SSD or Hard-disks. On multinode using [Replication](/System-Design/Concepts/Databases/Database_Scaling)
 
 == Fault Tolerance
-- In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
-- **Methods to achive Fault Tolerance:**
-  - [1. Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication)_
-  - [2. Sloopy Quorum](/System-Design/Concepts/Databases/Database_Scaling/1.Replication/README.md#qrw)
-  - [3. Partitions in Kafka](/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#pr)
+* In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
+* *Methods to achive Fault Tolerance:*
+** link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication[1. Replication]
+** link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication/README.md#qrw[2. Sloopy Quorum]
+** link:/System-Design/Concepts/MOM_ESB/Apache_Kafka/README.md#pr[3. Partitions in Kafka]
 
-- **Flooding:** Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
-- **Free Riding:** Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
-  - *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
-    - Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
+* **Flooding:* Searching method in distributed enviornment. Node-1 floods data to be searched to all connected nodes. Generates Huge traffic. To mitigate traffic, TTL can be used.
+* *Free Riding:* Having selfish peers who do not contribute to the [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md) just wanted to take file from swarm.
+** *Solution* Node will only send packet to that whose is in his [Neighbour set(NS)](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md)
+*** Example: Swarm=User-2...User-10. User-1 decides to connect user-2 for file. Now User-2 will only send file to user-1 when user-1 is in swarm downloaded from Tracker server. It means User-1 is also sending fragments.
 
 
 == link:https://www.educative.io/answers/what-is-gossip-protocol[Gossip Protocol]
@@ -120,11 +122,11 @@ State information of node-A?
   - Is node-A alive(responding to heartbeat msgs)
   - What key range node-A hold?
 ```
-- Each node share state information about (himself and nodes it knows about) with 1 random node every second or so.
-- Each node monitors a small random subset of nodes and sends data to those.
-- **Seed Node**
-  - Seed node is a node(Similar to [Zookeeper](/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs)) which are aware about presently active nodes in cluster.
-  - In cluster, some nodes may join/leave and member nodes get this information from seed node
+* Each node share state information about (himself and nodes it knows about) with 1 random node every second or so.
+* Each node monitors a small random subset of nodes and sends data to those.
+* *Seed Node*
+** Seed node is a node(Similar to [Zookeeper](/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.md#cs)) which are aware about presently active nodes in cluster.
+** In cluster, some nodes may join/leave and member nodes get this information from seed node
 
 == Hot Key / linchpin objects
 One key/node in database that is linked to millions of other keys/nodes in DB. Eg: Celebrities have many millions of followers.
@@ -132,32 +134,33 @@ One key/node in database that is linked to millions of other keys/nodes in DB. E
 == Latency 
 Latency is time that request is waiting to be handled ie awaiting service. [Response Time](#rt) means RTT.
 === How to reduce Latency
-- _1._ For read heavy system, Add more Read Replicas in [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication).
+* 1. For read heavy system, Add more Read Replicas in [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication).
 
 == Linearizability
-- This is recency(Means MOST Recent) gurantee. All replicas only return very recent data. ie System is very very Strongly consistent.
+* This is recency(Means MOST Recent) gurantee. All replicas only return very recent data. ie System is very very Strongly consistent.
 
 == Local Rarest First for Piece Selection
-Nodes independently maintains a list of the fragments which are least number of copies amongst [swarm](/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md). Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
+* Nodes independently maintains a list of the fragments which are least number of copies amongst link:/System-Design/Scalable/Distributed_Downloading_Systems/BitTorrent/Terms.md[Swarm]. Whenever a new client joins in, he is given this list and he starts downloading the rarest fragment.
 
-== Mutation? 
-Writing data from client to server's memory/disk. Specifically mutation is an operation that changes the contents or metadata of a data. Example: Write, append in distributed file system is a mutation.
-  - _Long Mutation:_ Not changing the data set longer time. Keeping data persistant for longer time.
+== Mutation
+* Writing data from client to server's memory/disk. Specifically mutation is an operation that changes the contents or metadata of a data. Example: Write, append in distributed file system is a mutation.
+** *Long Mutation:* Not changing the data set longer time. Keeping data persistant for longer time.
 
 == Optimistic Unchoking
-- Unselfishly provide block(s) to node(s) in Neighbour set.
-- Node uses a part of its available bandwidth for sending data to random peers, so that neighbours donot fall in tit for tat problem.
+* Unselfishly provide block(s) to node(s) in Neighbour set.
+* Node uses a part of its available bandwidth for sending data to random peers, so that neighbours donot fall in tit for tat problem.
 
 == PACELC Theorem (Partition Tolerance(P) Availability(A) Consistency(C) Else(E) Latency(L) Consistency(C))
-- This is extension to CAP theorem.
-- _Theorem:_ In case of network partitioned, one chooses AP or CP Else(E) even when the system is running normally in absence of partitions, one has to choose between latency(L) and consistency(C)
+* This is extension to CAP theorem.
+* *Theorem:* In case of network partitioned, one chooses AP or CP Else(E) even when the system is running normally in absence of partitions, one has to choose between latency(L) and consistency(C)
 
+[[pt]]
 == Partition Tolerance (System is PT)
 System will continue to function even when network partitions occur, causing messages between nodes to be delayed or lost.
 
 == Path Folding / Location Swapping 
-- During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
-- *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
+* During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
+* *Disadvantage:* Man In Middle can advertise route to destination, get connected and perform attacks.
 
 == Policy Based Search
 Node keeps track of neighbours who responded positively & sends request to them again
@@ -168,32 +171,32 @@ Node selects k neighbours randomly, sends key-100(data to searched) to them, aga
 == Reliable
 - **Meaning?** System to continue to work correctly, even when things go wrong.(Application crash, node(s) goes down under load)
 === How to make system Reliable?
-- [1. Prevent node failures: Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication/)
-- _2._ Hard Disk Failure: RAID configuration
+* link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication/[1. Prevent node failures: Replication]
+* *2.* Hard Disk Failure: RAID configuration
 
 == Orchestration / Cloud Orchestrator
-- Since process/microservices communicate via APIs. There should be some process to authenticate/authorize them.
-- cloud Orchestrator is a process/microservice which does following on cloud:
-  - Policy enforcement
-  - Ensure process-1 has proper permission to connect to process-2 or execute some task on cloud.
+* Since process/microservices communicate via APIs. There should be some process to authenticate/authorize them.
+* cloud Orchestrator is a process/microservice which does following on cloud:
+** Policy enforcement
+** Ensure process-1 has proper permission to connect to process-2 or execute some task on cloud.
 
 == Partition Tolerance
-- System continues to function even if there is a "partition" (communication break) between 2/more nodes (both nodes are up, but can't communicate).
-- This is fault that breaks communication between nodes.
-- Solution:[Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication)
+* System continues to function even if there is a "partition" (communication break) between 2/more nodes (both nodes are up, but can't communicate).
+* This is fault that breaks communication between nodes.
+* Solution:link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication[Replication]
 
 == Response Time
-- Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
-- The response time is what the client sees, includes (actual time to process the request (the service time), network delays and queueing delays).
+* Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
+* The response time is what the client sees, includes (actual time to process the request (the service time), network delays and queueing delays).
 
 == Scalability
-- Means System behaves normally under increased load.
-- **How to achieve scalabilty?**
+* Means System behaves normally under increased load.
+* *How to achieve scalabilty?*
   - link:/System-Design/Concepts/Databases/Database_Scaling[1. Sharding/Partitioning DB]
   - link:#auto[2. Autoscaling]
 
 == Serializability
-All [transactions](Transaction) must run serially on single object. Each transaction running to completion before the next transaction starts
+All link:Transaction[Transaction] must run serially on single object. Each transaction running to completion before the next transaction starts
 
 == Split Brain
 In link:/System-Design/Concepts/Databases/Database_Scaling/[Master slave replication], When in any situation 2 nodes think themselves as masters/leaders the probelms start occuring and that is called split brain.
@@ -231,6 +234,6 @@ JAMS case:
 ```
 
 === Throughput
-  - Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
-  - Measured in Bits/sec(bps), data packets per second (p/s or pps).
-- **Tit for Tat Strategy:**  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
+* Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
+* Measured in Bits/sec(bps), data packets per second (p/s or pps).
+* *Tit for Tat Strategy:*  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
