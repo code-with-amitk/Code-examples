@@ -3,7 +3,7 @@
 
 === Blockchain
 * This is append-only, immutable distributed ledger that is updateable only via consensus/agreement among peers. There is no single authority of this ledger.
-* This is [Peer to Peer](/Networking/OSI-Layers/Layer-7/P2P_OverlayNetwork/) network running over TCP. Same as HTTP,FTP over TCP
+* This is link:(/Networking/OSI-Layers/Layer-7/P2P_OverlayNetwork/)[Peer to Peer] network running over TCP. Same as HTTP,FTP over TCP
 
 === Why to learn blockchain
 * *Decentralization:* no need for a trusted third party or intermediary to validate transactions; instead a consensus mechanism is used to agree on the validity of transactions.
@@ -35,11 +35,27 @@ struct block {
 }
 ```
 
+==== Ethereum
+Framework/platform for creating smart contracts. Etherum runs solidity programming language.
+
+==== Ether
+Ether is intended as a utility currency to pay for use of the Ethereum platform
+
 ==== Genesis Block
 1st block in blockchain. This is hardcoded at time when blockchain started.
 
 ==== Smart Contracts
-These are the programs that run on blockchain having business logic.
+* These are the programs that run on blockchain having business logic.
+* Represents aggrement b/w 2 parties & allows parties to securly conduct business. Properties:
+** _1. Immutable(cannot be changed):_ SC creates logs which are immutable, those cannot be changed.
+** _2. Distributed:_ Output of contract is Validated/verified by other nodes on the network.
+
+==== Solidity
+* High level Object oriented programming language for writing smart contracts.
+* Features;
+** _1._ Based on C,C++,python
+** _2._ Statically typed: Checking happens at compile time.
+** _3. Supports inheritance:_ 1 smart contract can be used by other.
 
 === Features
 ==== Distributed consensus
