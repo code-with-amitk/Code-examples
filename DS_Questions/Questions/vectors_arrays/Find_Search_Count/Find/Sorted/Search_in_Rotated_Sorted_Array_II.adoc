@@ -8,6 +8,10 @@
 
 == Approach-1. Binary Search
 === Logic
+* 1. Use binary search
+* 2. If the elements at mid, left, and right are equal, skip all duplicate elements (This is done using while and linearly)
+* 3. Is left half of array is sorted & target is in left subarray, then search in left
+* 4. else search in right
 
 === Code
 ==== CPP
@@ -25,10 +29,15 @@ public:
             //If the elements at mid, left, and right are equal 
             //increment left and decrement right to handle duplicates.
             if (v[mid] == v[left] && v[mid] == v[right]) {
-                ++left;
-                --right;
-            } 
-            //This means left half of array is sorted
+                while (left <= right && v[left] == v[mid])
+                    ++left;
+                
+                // Move the right pointer to the leftmost non-duplicate element.
+                while (left <= right && v[right] == v[mid])
+                    --right;
+            }
+            // Now we donot have any duplicate elements
+            // This means left half of array is sorted
             // Eg: 2 3 4 5 0 1
             //        mid
             else if (v[mid] >= v[left]) {
@@ -51,7 +60,6 @@ public:
                     right = mid - 1;
             }
         }
-        
         return false;
     }
 };
