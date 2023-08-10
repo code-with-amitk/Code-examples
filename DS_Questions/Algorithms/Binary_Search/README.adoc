@@ -1,0 +1,16 @@
+:toc:
+:toclevels: 4
+==== Binary search
+```c
+- Use mid = left + (right - left) // 2 to calculate the middle index.
+- This is the recommended way because it prevents potential integer overflow when dealing with large values of left and right.
+    #mid = (left + right)//2
+    mid = left + (right-left)//2
+```
+
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Maximum_Running_Time_of_N_Computers.md[Maximum Running Time of N Computers]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Cost_to_Make_Array_Equal.md[Minimum Cost to Make Array Equal]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Speed_to_Arrive_on_Time.md[Minimum Speed to Arrive on Time]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Increasing_Decresing_Mountain_Array.md[Peak Index in a Mountain Array]
+==== link:/DS_Questions/Questions/vectors_arrays/2d-grid/Search_value_in_Sorted_Array.md[Search a 2D Matrix]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Search_Element_in_Rotated_Sorted_Array.md[Search in Rotated Sorted Array / Search in V Shaped Array]
