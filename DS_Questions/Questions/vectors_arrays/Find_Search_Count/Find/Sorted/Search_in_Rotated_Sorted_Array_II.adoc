@@ -112,4 +112,58 @@ class Solution:
 ```
 ==== Rust
 ```rs
+impl Solution {
+    pub fn search(v: Vec<i32>, target: i32) -> bool {
+        let mut left = 0;
+        let mut right = v.len() - 1;
+
+        while left <= right {
+            let mut mid = left + (right - left) / 2;
+            if (v[mid] == target) {
+                return true;
+            }
+
+            //If the elements at mid, left, and right are equal
+            //increment left and decrement right to handle duplicates.
+            if (v[mid] == v[left] && v[mid] == v[right]) {
+                while (left <= right && v[left] == v[mid]) {
+                    left += 1;
+                }
+
+                // Move the right pointer to the leftmost non-duplicate element.
+                while (left <= right && v[right] == v[mid]) {
+                    right -= 1;
+                }
+            }
+            // Now we donot have any duplicate elements
+            // This means left half of array is sorted
+            // Eg: 2 3 4 5 0 1
+            //        mid
+            else if (v[mid] >= v[left]) {
+                // if target is in left subarray ie between left and mid
+                // search in left half only right=mid-1
+                if (v[left] <= target && target < v[mid]) {
+                    right = mid - 1;
+                }
+                else {
+                    left = mid + 1;
+                }
+            }
+            //Condition: v[mid] < v[left]. This means right half is sorted
+            //Eg: 8 9 10 0 1 2 3.      target=2
+            //          mid
+            else {
+                //if target is in right half, search in right
+                //else search in left half
+                if (v[mid] < target && target <= v[right]) {
+                    left = mid + 1;
+                }
+                else {
+                    right = mid - 1;
+                }
+            }
+        }
+        false
+    }
+}
 ```
