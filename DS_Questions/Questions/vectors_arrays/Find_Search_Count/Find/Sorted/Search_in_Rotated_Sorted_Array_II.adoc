@@ -1,0 +1,53 @@
+== Search in Rotated Sorted Array II
+There is an integer array nums sorted in non-decreasing order (not necessarily with distinct values).
+Before being passed to your function, nums is rotated at an unknown pivot index k (0 <= k < nums.length) such that the resulting array is [nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]] (0-indexed). For example, [0,1,2,4,4,4,5,6,6,7] might be rotated at pivot index 5 and become [4,5,6,6,7,0,1,2,4,4]
+
+=== Approach-1. Binary Search
+==== Logic
+==== Code
+===== CPP
+```cpp
+class Solution {
+public:
+    bool search(vector<int>& v, int target) {
+        int left = 0, right = v.size() - 1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (v[mid] == target)
+                return true;
+
+            //If the elements at mid, left, and right are equal 
+            //increment left and decrement right to handle duplicates.
+            if (v[mid] == v[left] && v[mid] == v[right]) {
+                ++left;
+                --right;
+            } 
+            //This means left half of array is sorted
+            // Eg: 2 3 4 5 0 1
+            //        mid
+            else if (v[mid] >= v[left]) {
+                // if target is in left subarray ie between left and mid
+                // search in left half only right=mid-1
+                if (v[left] <= target && target < v[mid])
+                    right = mid - 1;
+                else
+                    left = mid + 1;
+            } 
+            //Condition: v[mid] < v[left]. This means right half is sorted
+            //Eg: 8 9 10 0 1 2 3.      target=2
+            //          mid
+            else {
+                //if target is in right half, search in right
+                //else search in left half
+                if (v[mid] < target && target <= v[right])
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+        }
+        
+        return false;
+    }
+};
+```
