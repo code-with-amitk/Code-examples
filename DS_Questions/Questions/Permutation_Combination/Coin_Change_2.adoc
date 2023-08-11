@@ -37,16 +37,33 @@ Explanation: the amount of 3 cannot be made up just with coins of 2.
 * This involves reusing previously computed solutions to subproblems
 
 ==== LOGIC
-* Watch Videos for explanation, because its pretty complex.
-* link:https://youtu.be/7pRO5Zuiijo[Self-Youtube-Video]
-* link:https://youtu.be/C8bmCYohJkw[Video2]
+* Watch Videos for explanation, because its pretty complex. link:https://youtu.be/7pRO5Zuiijo[Self-Youtube-Video] link:https://youtu.be/C8bmCYohJkw[Video2]
+* 1. How this is DP Problem(overlapping subproblems)
 ```c
 coins =[1, 2, 5], target=5
-No of ways in which 
+Provided coins    No of ways to make 5
+     1            1 (1+1+1+1+1)
+     2            0
+     1,2           No of ways to make 5 using only 1  =  1                  //Overlapping subproblem
+                  +No of ways to make 5 using only 2  =  0                  //Overlapping subproblem
+                  +No of ways to make 5 using only (1,2) = 2(1+1+1+2, 1+2+2)
+                  = 3
+    1,2,5          No of ways to make 5 using only 1  =  1      //already calculated
+                  +No of ways to make 5 using only 2  =  0      //already calculated
+                  +No of ways to make 5 using only 5  =  1
+                  +No of ways to make 5 using only 1,2  =  3    //already calculated
+                  = 5
+```
+* 2. We will take DP array. coins=[1,2,3]. target=5
+```c
+Provided Coins    No of ways to create 1,2,3,5 --->
+    \/            1    2    3    4    5
+    1
+    2
+    3                                answer
 ```
 
 ==== Code
-
 ===== CPP
 ```cpp
 //n=value to be made
