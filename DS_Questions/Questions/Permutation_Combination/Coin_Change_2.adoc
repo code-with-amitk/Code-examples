@@ -21,13 +21,33 @@ Output: 0
 Explanation: the amount of 3 cannot be made up just with coins of 2.
 ```
 
-=== Watch Video for explanation, because its pretty complex.
+
+=== Approach-1. Backtracking. TLE
+==== Why TLE?
+* Solving using backtracking, it's likely to be less efficient and more difficult to implement correctly due to the exponential nature of the problem space
+
+=== Approach-2. Dynamic Programming
+==== Why DP?
+===== Overlapping subproblems
+* Here we need to calculate the number of combinations for different amounts of money. 
+* As we break down the problem into smaller subproblems (using different coin denominations), you'll find that there's a significant amount of overlap in the subproblems. 
+
+===== Optimal substructure
+* solution to a larger problem can be built using solutions to smaller subproblems.
+* This involves reusing previously computed solutions to subproblems
+
+==== LOGIC
+* Watch Videos for explanation, because its pretty complex.
 * link:https://youtu.be/7pRO5Zuiijo[Self-Youtube-Video]
 * link:https://youtu.be/C8bmCYohJkw[Video2]
+```c
+coins =[1, 2, 5], target=5
+No of ways in which 
+```
 
-=== Code
+==== Code
 
-==== CPP
+===== CPP
 ```cpp
 //n=value to be made
 //c=denominations of coins
