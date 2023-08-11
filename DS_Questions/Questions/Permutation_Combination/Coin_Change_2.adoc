@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 4
 
-=== link:https://leetcode.com/problems/coin-change-2[Coin Change]
+=== link:https://leetcode.com/problems/coin-change-2[518. Coin Change II]
 - You are given coins of different denominations and a total amount of money. Find number of combinations that make up that amount. There is infinite number of each kind of coin.
 - Examples
 ```c
