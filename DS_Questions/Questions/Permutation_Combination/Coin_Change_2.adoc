@@ -66,55 +66,116 @@ Provided Coins    No of ways to create 1,2,3,5 --->
 ==== Code
 ===== CPP
 ```cpp
-//n=value to be made
-//c=denominations of coins
-long getWays(int n, vector<long> c){
-  if(!n)
-    return 1;
-  if(n && !c.size())
-    return 0;
-    
-  sort(c.begin(), c.end());
+int beforeMain() {			//Speeds up cout.
+	ios_base::sync_with_stdio( false );
+  cin.tie(NULL);
+  return 0;
+}
 
-  int denominations = c.size();
+int static r = beforeMain();		//Call function before main
 
-  long ways[denominations][n+1];
-  ways[0][0] = 1;
+#define endl '\n';
 
-  for(int i=0;i<n+1;i++){ 
-    if(i%c[0] == 0)
-      ways[0][i] = 1;
-    else
-      ways[0][i] = 0;
-  }
-  
-  //Making 1st col as 1
-  for(int i=0;i<denominations;i++)
-    ways[i][0] = 1;
+class Solution {
+public:
+    int change(int amount, vector<int>& coins) {
 
-  for(int i=1;i<denominations;i++){
-    for(int j=1;j<n+1;j++){
-      if(j < c[i]){
-        ways[i][j] = ways[i-1][j];
-      }else{
-        ways[i][j] = ways[i-1][j] + ways[i][j - c[i]];
+      if (amount == 0)
+        return 1;
+      if (amount && coins.size() == 0)
+        return 0;        
+
+      sort(coins.begin(), coins.end());
+
+      int num_of_coins = coins.size();
+
+      /*
+      This is 2D Dynamic Programming Array representing no of ways to
+      form denomination from given coins
+      - Every entry represents number of ways denomination can be formed
+      rows represents number of coins of each type. (num_of_coins)
+      cols represents no of ways amount can be formed from given coins (amount+1)
+      if we have 3 coins(1,2,3) and amount = 4. dp[3][5]
+          0 1 2 3 4
+        1
+        2
+        3
+      */
+      vector<vector<int>> dpways(num_of_coins, vector(amount+1,0));
+      dpways[0][0] = 1;
+
+      // Fill 1st row
+      for (int i=0; i<amount+1; i++)
+        i%coins[0] ? dpways[0][i] = 0 : dpways[0][i] = 1;
+        // if (i%coins[0] == 0)
+        //   dpways[0][i] = 1;
+        // else
+        //   dpways[0][i] = 0;
+
+      // Fill 1st col
+      for (int i=0;i<num_of_coins;i++)
+        dpways[i][0] = 1;
+
+      for (int i=1;i<num_of_coins;i++) {
+        for (int j=1;j<amount+1;j++){
+          j < coins[i] ? dpways[i][j] = dpways[i-1][j] : dpways[i][j] = dpways[i-1][j] + dpways[i][j - coins[i]];
+          // if(j < coins[i])
+          //   dpways[i][j] = dpways[i-1][j];
+          // else
+          //   dpways[i][j] = dpways[i-1][j] + dpways[i][j - coins[i]];
+        }
       }
+      return dpways[num_of_coins-1][amount];        
     }
-  }
+};
+```
 
-  /*for(int i=0;i<denominations;i++){
-    for(int j=0;j<n+1;j++){
-      cout<<ways[i][j]<<" ";
-    }
-    cout<<"\n";
-  }*/
+==== Python
+```py
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+      if amount == 0:
+        return 1
+      if amount and len(coins)==0:
+        return 0
+      
+      coins.sort()
+      num_of_coins = len(coins)
 
-  return ways[denominations-1][n];
-}
+      """
+      This is 2D Dynamic Programming Array representing no of ways to
+      form denomination from given coins
+      - Every entry represents number of ways denomination can be formed
+      rows represents number of coins of each type. (num_of_coins)
+      cols represents no of ways amount can be formed from given coins (amount+1)
+      if we have 3 coins(1,2,3) and amount = 4. dp[3][5]
+          0 1 2 3 4
+        1
+        2
+        3
+      """
+      #dpways = [[0 for _ in range(cols)] for _ in range(rows)]
+      dpways = [[0 for _ in range(amount+1)] for _ in range(num_of_coins)]
+      dpways[0][0] = 1
 
-int main(){
-  int n = 4;
-  vector<long> v = {1,2,3};
-  cout<<getWays(n,v);             //4
-}
+      # Fill 1st row
+      for i in range (0, amount+1):
+        if i%coins[0] == 0:
+          dpways[0][i] = 1
+        else:
+          dpways[0][i] = 0
+
+      # Fill 1st col
+      for i in range(0, num_of_coins):
+        dpways[i][0] = 1
+
+      for i in range(1, num_of_coins):
+        for j in range(1, amount+1):
+          if j < coins[i]:
+            dpways[i][j] = dpways[i-1][j]
+          else:
+            dpways[i][j] = dpways[i-1][j] + dpways[i][j - coins[i]]
+
+      # Last element of matrix is the answer
+      return dpways[num_of_coins-1][amount]
 ```
