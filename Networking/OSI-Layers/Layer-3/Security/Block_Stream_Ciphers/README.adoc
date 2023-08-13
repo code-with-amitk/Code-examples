@@ -1,0 +1,23 @@
+:toc:
+:toclevels: 5
+
+== Cipher
+* Cipher means encryption algorithms.
+
+=== 1. Stream Cipher
+* Does encryption on bit by bit level using key stream of bits.
+```c
+plaintext = abc = 0001001 00101010 00101011
+key stream      = 0010010 00100101 00111110
+```
+
+==== Types of Stream Ciphers
+===== Asynchronous
+* key stream is independent of data.
+===== Synchronous
+* key stream dependents on data and key.
+ 
+=== 2. Block Cipher / Fiestel Ciphers (Eg: AES(Rijndael))
+* Break plain text into blocks of fixed length and apply encryption block by block.
+==== SPN?
+* Block ciphers are built using substitution-permutation network.
