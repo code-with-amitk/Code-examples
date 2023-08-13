@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-= 1. Secrecy / Confidentiality / Encryption / Cryptography
+== 1. Secrecy / Confidentiality / Encryption / Cryptography
 Conversion of Data/Plain-text into unreadable/cipher text.
 
 == Types of Encryption
