@@ -14,6 +14,7 @@ key stream      = 0010010 00100101 00111110
 ==== Types of Stream Ciphers
 ===== Asynchronous
 * key stream is independent of data.
+
 ===== Synchronous
 * key stream dependents on data and key.
  
