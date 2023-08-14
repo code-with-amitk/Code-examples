@@ -1,18 +1,7 @@
-**[Kth Largest Element in unsorted Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)**
-- **Approach-1 / Sort / O(nlogn)**
-  - [Complexity](#co1)
-  - [Code](#cpp1)
-- **Approach-2 / Max-heap / O(nlogn)**
-  - [Logic](#l2)
-  - [Complexity](#co2)
-  - [Code](#cpp2)
-- **Approach-3 / Quick Select / O(n)**
-  - [Logic](#l3)
-  - [Complexity](#co3)
-  - [Code](#cpp3)
+:toc:
+:toclevels: 5
 
-## Problem
-Find the kth largest element in an unsorted array. Examples
+== link:https://leetcode.com/problems/kth-largest-element-in-an-array/description/[215. kth largest element in array]
 ```c
 Input: [3,2,1,5,6,4] and k = 2
 Output: 5
@@ -21,13 +10,12 @@ Input: [3,2,3,1,2,4,5,5,6] and k = 4
 Output: 4 
 ```
 
-### Approach-1 / Sort
-<a name=co1></a>
-#### Complexity
-- **Time:** O(nlogn)
-- **Space:** O(1)
-<a name=cpp1></a>
-#### Code
+=== Approach-1. Sort. O(nlogn)
+==== Complexity
+* Time: O(nlogn)
+* Space: O(1)
+
+==== Code
 ```cpp
 int findKthLargest(vector<int>& nums, int k) {
   sort (nums.begin(),nums.end());
@@ -35,36 +23,40 @@ int findKthLargest(vector<int>& nums, int k) {
 }   
 ```
 
-### Approach-2 / Max-Heap
-<a name=l2></a>
-#### Logic
-- *1.* Insert elements in maxHeap. Max element will be at top
-- *2.* Pop max Heap k times.
-<a name=co2></a>
-#### Complexity
-- **Time:** [Rebalancing Max heap O(nlogn)]()
-- **Space:** O(n)
-<a name=cpp2></a>
-#### Code
-```cpp
-int findKthLargest(vector<int>& nums, int k) {
-  priority_queue<int> pq;
-  int top = 0;
-  for(auto i:nums)
-    pq.push(i);
+=== Approach-2. Min-Heap. O(nlogn)
+==== Logic
+* 1. Take min_heap of size=k. 
+* 2. min_heap will contain k elements, min at top.
+* 3. Kth largest element will be = top of min heap.
+==== Complexity
+* Time: [Rebalancing Min heap O(nlogn)]()
+* Space: O(n)
 
-  while (k-- > 0){
-    top = pq.top();
-    pq.pop();
-  }
-  return top;
-}
+==== Code
+```cpp
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        // Take min_heap of size k
+        priority_queue<int, vector<int>, greater<int>> minheap;
+        for (auto&i:nums) {
+            if (minheap.size() < k)
+                minheap.push(i);
+            else {
+                if (i > minheap.top()) {
+                    minheap.pop();
+                    minheap.push(i);
+                }
+            }
+        }
+        return minheap.top();
+    }
+};
 ```
 
-### Approach-3 / Quick-Select
-<a name=qs></a>
-#### Quick Select
-Quick select Algo works same as [Quick Sort](/DS_Questions/Sorting) & is developed by Tony Hoore(inventor of Quick sort).
+=== Approach-3 / Quick-Select. O(n)
+==== Quick-Select
+* Quick select Algo works same as link:/DS_Questions/Sorting[Quick Sort]
 ```c
 Input = {7, 10, 4, 3, 20, 15}, k = 3
 3rd=k largest element = 10        //20,15,10
@@ -75,11 +67,10 @@ Input = {7, 10, 4, 3, 20, 15}, k = 3
 Input = {7, 10, 4, 3, 20, 15}, k = 4
 4th largest = 3rd smallest = 7      //3,4,7,10,15,20
 ```
-We will find k smallest element.
-- Quick Select is similar to QuickSort. The difference is, instead of recurring for both sides(after finding pivot), it recurs only for the part that contains the kth smallest element, This reduces the expected complexity from O(n log n) to O(n).
+* We will find k smallest element.
+** Quick Select is similar to QuickSort. The difference is, instead of recurring for both sides(after finding pivot), it recurs only for the part that contains the kth smallest element, This reduces the expected complexity from O(n log n) to O(n).
 
-<a name=l3></a>
-#### Logic
+==== Logic
 ```c
 {7, 10, 4, 3, 20, 15}, k = 3          //Step-1. Choose pivot same as Quick sort
  |
@@ -93,15 +84,13 @@ We will find k smallest element.
     Found kth smallest element
     return
 ```
+==== Complexity
+* _1. Time:_ Good, Average case:O(n). Worst case: O(n<sup>2</sup>). link:/DS_Questions/Sorting[What is worst case of Quick sort]
+** _Guranteed O(n)_: Whenever we get worst case input, just shuffle the input. Done in code below. //Blum-Floyd-Pratt-Rivest-Tarjan algorithm
+* _Space:_ O(1). No extra space
 
-<a name=co3></a>
-#### Complexity
-- **Time:** Good, Average case:O(n). Worst case: O(n<sup>2</sup>). [What is worst case of Quick sort](/DS_Questions/Sorting)
-  - _Guranteed O(n)_: Whenever we get worst case input, just shuffle the input. Done in code below. //Blum-Floyd-Pratt-Rivest-Tarjan algorithm
-- **Space:** O(1). No extra space
-
-<a name=cpp3></a>
-#### Code
+==== Code
+===== CPP
 ```cpp
 class Solution {
 using vec = vector<int>;   
