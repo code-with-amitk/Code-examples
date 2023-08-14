@@ -85,7 +85,7 @@ Input = {7, 10, 4, 3, 20, 15}, k = 4
     return
 ```
 ==== Complexity
-* _1. Time:_ Good, Average case:O(n). Worst case: O(n<sup>2</sup>). link:/DS_Questions/Sorting[What is worst case of Quick sort]
+* _1. Time:_ Good, Average case:O(n). Worst case: O(n^2^). link:/DS_Questions/Sorting[What is worst case of Quick sort]
 ** _Guranteed O(n)_: Whenever we get worst case input, just shuffle the input. Done in code below. //Blum-Floyd-Pratt-Rivest-Tarjan algorithm
 * _Space:_ O(1). No extra space
 
