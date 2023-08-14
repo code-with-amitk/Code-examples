@@ -2,7 +2,7 @@
 :toclength: 4
 
 === HTML Page
-* link:https://amitkumar50.github.io/Languages/Programming/C++/STL/Containers/Seqeunce_Containers/vector.html[Python C++ Rust HTML Page]
+* link:https://www.amitkumar50.github.io/Languages/Programming/C++/STL/Containers/Seqeunce_Containers/vector.html[Python C++ Rust HTML Page]
 
 === Vector
 * Dynamic Allocated Array, Elements are stored in contiguous location.
