@@ -49,18 +49,19 @@ Recursively do this for left and right sub-arrays.
 ==== Code
 ===== CPP
 ```cpp
-int partition(vector<int>& v, int start, int end) {  
-    int pivot = v[end];   //or int pivot = v[left + (right - left) / 2];
-    int i = start, j = end;
-    while(i <= j) {
-        while(v[i] < pivot)
-            i++;
-        while(v[j] > pivot)
-            j--;
-        if(i <= j)
-          swap(v[i++], v[j--]);
+int partition(vector<int>& v, int left, int right) {
+    int pivot = v[left + (right - left) / 2];    //or pivot = v[end];  OR any
+    while (left <= right) {
+        while(v[left] < pivot)
+            left++;
+        while(v[right] > pivot)
+            right--;
+        if (left <= right)
+          swap(v[left], v[right]);
+        left++;
+        right--;
     }
-    return i;
+    return left;
 }
 
 void qs(vector<int>& v, int start, int end){
