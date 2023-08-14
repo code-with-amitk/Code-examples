@@ -156,3 +156,46 @@ int main() {
     cout << findKthLargest (a, 3);    //10
 }
 ```
+
+===== Python
+```py
+class Solution:
+    # Standard partition process of QuickSort(). It considers the last element as pivot
+    # and moves all smaller element to left of it and greater elements to right
+    def partition(self, arr:List[int], left:int, right:int) -> int:
+        pivot = arr[right]    #OR pivot = arr[left + (right-left)/2];
+        i = left
+        for j in range(left, right):
+            if arr[j] <= pivot:
+                #swap(arr[i], arr[j])
+                arr[i], arr[j] = arr[j], arr[i]
+                i += 1
+        #swap(arr[i], arr[right])
+        arr[i], arr[right] = arr[right], arr[i]
+        return i
+ 
+    def kthSmallest(self, arr:List[int], left:int, right:int, k:int) -> int:
+        # If k is smaller than number of elements in array
+        if k > 0 and k <= right - left + 1:
+
+            # Partition the array around last element and get position of pivot element in sorted array
+            index = self.partition(arr, left, right)
+
+            # If position is same as k
+            if index - left == k - 1:
+                return arr[index]
+
+            # If position is more, recur for left subarray
+            if index - left > k - 1:
+                return self.kthSmallest(arr, left, index - 1, k)
+
+            # Else recur for right subarray
+            return self.kthSmallest(arr, index + 1, right,
+                                k - index + left - 1)
+
+        # If k is more than number of elements in array
+        return sys.maxsize
+
+    def findKthLargest(self, a: List[int], k: int) -> int:
+        return self.kthSmallest(a, 0, len(a) - 1, len(a)-k+1)
+```
