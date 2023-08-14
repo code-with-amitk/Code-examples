@@ -97,38 +97,39 @@ using vec = vector<int>;
 
 //Standard partition process of QuickSort(). It considers the last element as pivot
 //and moves all smaller element to left of it and greater elements to right
-int partition(vec& arr, int l, int r)
-{
-    int x = arr[r], i = l;
-    for (int j = l; j <= r - 1; j++) {
-        if (arr[j] <= x) {
+int partition(vec& arr, int left, int right) {
+    int pivot = arr[right];    //OR pivot = arr[left + (right-left)/2];
+    int i = left;
+    for (int j = left; j <= right - 1; j++) {
+        if (arr[j] <= pivot) {
             swap(arr[i], arr[j]);
             i++;
         }
     }
-    swap(arr[i], arr[r]);
+    swap(arr[i], arr[right]);
     return i;
-}    
-              //arr, left, right, k
-int kthSmallest(vec& arr, int l, int r, int k) {
+}
+
+//arr, left, right, k
+int kthSmallest(vec& arr, int left, int right, int k) {
 
     // If k is smaller than number of elements in array
-    if (k > 0 && k <= r - l + 1) {
+    if (k > 0 && k <= right - left + 1) {
 
         // Partition the array around last element and get position of pivot element in sorted array
-        int index = partition(arr, l, r);
+        int index = partition(arr, left, right);
 
         // If position is same as k
-        if (index - l == k - 1)
+        if (index - left == k - 1)
             return arr[index];
 
         // If position is more, recur for left subarray
-        if (index - l > k - 1)
-            return kthSmallest(arr, l, index - 1, k);
+        if (index - left > k - 1)
+            return kthSmallest(arr, left, index - 1, k);
 
         // Else recur for right subarray
-        return kthSmallest(arr, index + 1, r,
-                            k - index + l - 1);
+        return kthSmallest(arr, index + 1, right,
+                            k - index + left - 1);
     }
 
     // If k is more than number of elements in array
@@ -136,18 +137,18 @@ int kthSmallest(vec& arr, int l, int r, int k) {
 }    
 public:
     int findKthLargest(vector<int>& a, int k) {
-    //4,3,7,10,15,20. 3rd Largest = 4th smallest = 10
-    //3rd largest = n - 3 + 1 smallest
-    //            = 6 - 3 + 1 = 4th smallest
-    
-    //Guranteed O(n)
-    //Randomize the input, so that even when the worst case input would be provided the algorithm wouldn't be affected.
-    //So all what it is needed to be done is to shuffle input.
-    auto rng = std::default_random_engine {};
-    std::shuffle(std::begin(a), std::end(a), rng); 
+      //4,3,7,10,15,20. 3rd Largest = 4th smallest = 10
+      //3rd largest = n - 3 + 1 smallest
+      //            = 6 - 3 + 1 = 4th smallest
       
-    return  kthSmallest(a, 0, a.size() - 1, a.size()-k+1);
-  }
+      //Guranteed O(n)
+      //Randomize the input, so that even when the worst case input would be provided the algorithm wouldn't be affected.
+      //So all what it is needed to be done is to shuffle input.
+      auto rng = std::default_random_engine {};
+      std::shuffle(std::begin(a), std::end(a), rng); 
+        
+      return  kthSmallest(a, 0, a.size() - 1, a.size()-k+1);
+    }
 };
 
 int main() {
