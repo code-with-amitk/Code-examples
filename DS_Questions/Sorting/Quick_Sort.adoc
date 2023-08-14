@@ -41,10 +41,9 @@ Recursively do this for left and right sub-arrays.
 
 ==== Complexity
 * Time:
-** Worst: n^2^.
-*** When input array is sorted or reverse sorted. this makes picked pivot as always extreme(smallest or largest) element.
-*** Avg: O(nlogn)
-*** Best: O(n)
+** Worst: n^2^. When input array is sorted or reverse sorted. this makes picked pivot as always extreme(smallest or largest) element.
+** Avg: O(nlogn)
+** Best: O(n)
 * Space: O(1)
 
 ==== Code
