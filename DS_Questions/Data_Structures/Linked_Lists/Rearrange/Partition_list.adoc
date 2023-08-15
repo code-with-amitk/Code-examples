@@ -1,0 +1,77 @@
+:toc:
+:toclevels: 6
+
+=== link:https://leetcode.com/problems/partition-list/[86. Partition List]
+* Given the head of a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
+* You should preserve the original relative order of the nodes in each of the two partitions.
+```c
+Example 1:
+Input: head = [1,4,3,2,5,2], x = 3
+Output: [1,2,2,4,3,5]
+
+Example 2:
+Input: head = [2,1], x = 2
+Output: [1,2]
+```
+
+=== Approach-1. O(n)
+==== Logic
+* create 2 linked list out of input linked list
+** smaller_than_x which contains all elements smaller than x
+** greater_than_x which contains all elements greater or equal to x
+* Place smaller_than_x linked list before greater_than_x
+
+==== Code
+===== CPP
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* partition(ListNode* head, int x) {
+        ListNode left(0);
+        ListNode* smaller_than_x = &left;
+        /*
+        Take 2 dummy nodes 
+        |-left-|               |-right-|
+        |0,null|               |0,null |
+        |------|               |-------|
+         /\                     /\
+          |                      |
+          *smaller_than_x       *greater_equal_to_x
+        */
+        
+        ListNode right(0);
+        ListNode* greater_equal_to_x = &right;
+
+        // Traverse whole linked list and partition
+        // into 2 sepearte linked lists.
+        while (head) {
+            if (head->val < x) {
+                // if node->val < x. Make node as part of smaller_than_x 
+                smaller_than_x->next = head;
+                smaller_than_x = smaller_than_x->next;
+            } else {
+                // if node->val > x. Make node as part of greater_equal_to_x
+                greater_equal_to_x->next = head;
+                greater_equal_to_x = greater_equal_to_x->next;
+            }
+            head = head->next;
+        }
+        
+        smaller_than_x->next = right.next;
+        greater_equal_to_x->next = nullptr;
+        
+        return left.next;
+    }
+};
+
+```
