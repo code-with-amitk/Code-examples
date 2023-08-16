@@ -44,6 +44,23 @@ Ether is intended as a utility currency to pay for use of the Ethereum platform
 ==== Genesis Block
 1st block in blockchain. This is hardcoded at time when blockchain started.
 
+[[mining]]
+==== Mining 
+* Let's suppose Alice wants to send 1 BTC(bitcoin) to Bob. 
+* Alice creates a transaction and sends it on blockchain network.
+```c
+Transaction
+  src_add = Alice_hash    //Hash is public address of entity on blockchain
+  amount = 1 BTC
+  dst_add = Bob_Hash
+```
+* Other nodes reads the transaction, but to add this block on blockchain, some complex computation/puzzles need to be solved.
+** Nodes(Miners) race to solve the puzzle, and miner who solves it 1st is rewarded with 0.001 BTC.
+** Miner-1, solves the puzzle and sends to network for verification. Other miners verifies it using link:/System-Design/Concepts/Terms/Consensus[consensus] and transaction is added as a node to ledger=blockchain.
+
+==== POW(Proof of Work) 
+The work done by <<mining, miner(ie mining)>> to solve the puzzle is called POW.
+
 ==== Smart Contracts
 * These are the programs that run on blockchain having business logic.
 * Represents aggrement b/w 2 parties & allows parties to securly conduct business. Properties:
