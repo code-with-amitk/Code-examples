@@ -11,9 +11,7 @@ when a certain number of messages are received, then an agreement is reached
 ==== 2. Proof Based /  leader-based / the Nakamoto consensus
 Nodes to compete for the leader-election lottery and the node that wins it proposes a final value
 
-===== 1. POW(Proof of Work)
-* relies on proof that enough computational resources have been spent before proposing a value for acceptance by the network
-* Bitcoin uses it.
+===== link:BlockChain/README.adoc[1. POW(Proof of Work)]
 
 ===== 2. POS(Proof of Stake)
 * Relies on idea that a node or user has enough stake in the system; for example the user has invested enough in the system.
