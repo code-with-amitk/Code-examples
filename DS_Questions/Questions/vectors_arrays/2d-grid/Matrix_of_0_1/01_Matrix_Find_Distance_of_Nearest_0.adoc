@@ -1,9 +1,9 @@
-**01 Matrix**
-- [Approach-1, Brute Force, TLE](#a1)
+:toc:
+:toclevels: 6
 
-### [01 Matrix](https://leetcode.com/problems/01-matrix/)
-Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
-The distance between two adjacent cells is 1.
+=== link:https://leetcode.com/problems/01-matrix/[542. 01 Matrix]
+* Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
+* The distance between two adjacent cells is 1.
 ```c
 Example-1
 Input
@@ -26,10 +26,9 @@ Output
           1 2 1
 ```
 
-<a name=a1></a>
-### Approach-1, Brute Force, TLE
-#### Logic
-- _1._ Take a output matrix of same size as input matrix. Initialize 0 and inf for 1.
+=== Approach-1, Brute Force, TLE
+==== Logic
+* 1. Take a output matrix of same size as input matrix. Initialize 0 and inf for 1.
 ```c
 Input
           0 0 0
@@ -41,13 +40,14 @@ temp
           inf inf inf
 
 ```
-- _2._ Traverse temp array and Calculate distance of every cell starting from 00..22 and note the min distance
+* 2. Traverse temp array and Calculate distance of every cell starting from 00..22 and note the min distance
 ```c
 src[i][j]   dst[k][l]   distance = abs(k-i)+abs(l-i)
   00          11            2
   01          11            1     //We will note this
 ```
-#### Code
+==== Code
+===== CPP
 ```cpp
 using vecVecI = vector<vector<int>>;
 
@@ -86,6 +86,6 @@ public:
     }
 };
 ```
-#### Complexity
-- **Time:** O(n<sup>2</sup>m<sup>2</sup>)
-- **Space:** O(mn)
+==== Complexity
+* *Time:* O(n^2^ m^2^)
+* *Space:* O(mn)
