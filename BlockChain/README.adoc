@@ -35,6 +35,13 @@ struct block {
 }
 ```
 
+==== Electrum
+* This is Bitcoin client which allows to interact with the Bitcoin network(bitcoin network is blockchain). With client we can send and receive transactions, and manage your Bitcoin holdings.
+* There are two main types of Bitcoin clients:
+** *1. Full Node:* These clients download and validate the entire Bitcoin blockchain
+** *2. Lightweight Node:* These clients do not download the entire blockchain. Instead, they rely on full nodes to verify transactions for them. Examples:
+*** Mycelium, Electrum, Exodus
+
 ==== Ethereum
 Framework/platform for creating smart contracts. Etherum runs solidity programming language.
 
