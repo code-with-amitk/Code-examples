@@ -21,8 +21,19 @@
 * Privacy
 
 === Terms
+[[address]]
 ==== Address (Sender or Receiver)
-* Bitcoin address of node is calculated using Hash of Public key generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
+* Bitcoin address of node is calculated using Hash of Public key.
+* Public generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
+* Hash is generated using RIPEMD160 + <</Networking/OSI-Layers/Layer-3/Security/Hash_MessageDigest_MAC_HMAC/README.adoc, SHA256>>.
+```c
+K(public key) = k(pvt key) * G(constant)
+K --> |SHA256| --256bit--> |RIPEMD160| --> 160bit(Address)
+160bit(Address) --> |Encode(Base58 Check)| --> Bitcoin Address
+```
+
+==== Base58, Base58-Check Encoding
+<<address, Public Address>> generated using hash of public key in blockchain is still 160bits long.
 
 ==== Block
 This is a Node(singly linked list). This is a transactions bundled together.
