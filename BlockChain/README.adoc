@@ -21,6 +21,9 @@
 * Privacy
 
 === Terms
+==== Address (Sender or Receiver)
+* Bitcoin address of node is calculated using Hash of Public key generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
+
 ==== Block
 This is a Node(singly linked list). This is a transactions bundled together.
 ```c
@@ -50,6 +53,10 @@ Ether is intended as a utility currency to pay for use of the Ethereum platform
 
 ==== Genesis Block
 1st block in blockchain. This is hardcoded at time when blockchain started.
+
+==== Keys (Public, Pvt)
+* In blockchain, Public Pvt keys are generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
+* secp256k1 ECC is not same as RSA or DH.
 
 [[mining]]
 ==== Mining 
