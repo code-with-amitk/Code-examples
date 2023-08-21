@@ -124,8 +124,12 @@ Transaction
 ** Nodes(Miners) race to solve the puzzle, and miner who solves it 1st is rewarded with 0.001 BTC.
 ** Miner-1, solves the puzzle and sends to network for verification. Other miners verifies it using link:/System-Design/Concepts/Terms/Consensus[consensus] and transaction is added as a node to ledger=blockchain.
 
+[[pow]]
 ==== POW(Proof of Work) 
-The work done by <<mining, miner(ie mining)>> to solve the puzzle is called POW.
+* The work done by <<mining, miner(ie mining)>> to solve the puzzle is called POW.
+* Miner who solves the puzzle is rewarded some bitcoins and transaction fee.
+* *Problems with POW:*
+** 1. Miners compete to solve complex mathematical puzzles using computational power, More power more chances to solve 1st, this means more bitcoins goes with people/companies who own huge machines.
 
 ==== Smart Contracts
 * These are the programs that run on blockchain having business logic.
