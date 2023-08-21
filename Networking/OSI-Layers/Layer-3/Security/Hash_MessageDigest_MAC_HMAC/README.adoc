@@ -12,11 +12,11 @@ Determine if their content has been corrupted or not.
 
 ==== Hashing Algos Compared
 |===
-| Hashing Algo | SHA3/Keccak(or 512) | SHA2(or 256)(not broken) | SHA1,SHA0(broken) | MD4,MD5(broken)| Argon2
+| Hashing Algo | SHA1,SHA0(broken) |SHA256 (or v2)(not broken) | SHA3/Keccak(or 512) | MD4,MD5(broken)
 
-|Published|2015|2012|1995|2015
-|Input(bytes)|2128 bit|2128 bit|264 bit|infinite|
-|Output Hash(bits)|512|256|160|128|
+| Published | 1995 | 2012 | 2015 | 2015
+| Input | 2128 bit | 2128 bit | 264 bit | infinite
+| Output Hash(bits)| 160 | 256 | 512 | 128
 |===
 
 ==== Hashing Algos
