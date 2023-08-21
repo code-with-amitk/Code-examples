@@ -82,7 +82,7 @@ The work done by <<mining, miner(ie mining)>> to solve the puzzle is called POW.
 ** _3. Supports inheritance:_ 1 smart contract can be used by other.
 
 ==== Wallet
-In the context of blockchain(eg: bitcoin, tezoz), a wallet is a digital tool that allows you to store, manage, and interact with your Bitcoin holdings. It's used to create and manage Bitcoin addresses, which are used to send and receive Bitcoin transactions. A Bitcoin wallet consists of two main components:
+* In the context of blockchain(eg: bitcoin, tezoz), a wallet is a digital tool that allows you to store, manage, and interact with your Bitcoin holdings. It's used to create and manage Bitcoin addresses, which are used to send and receive Bitcoin transactions. A Bitcoin wallet consists of two main components:
 * *1. Public Addresses(Hash number):* These are account numbers in blockchain network. You share these addresses with others when you want to receive Bitcoin. They are derived from your wallet's public key.
 * *2. Private Keys:* These are secret keys that helps control/access bitcoins associated with your addresses. Whoever has access to the private key has control over the Bitcoin at that address.
 
