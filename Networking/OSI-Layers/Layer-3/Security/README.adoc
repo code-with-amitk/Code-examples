@@ -57,6 +57,7 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
 
 === 2. Assymetric /2 key / Public,Pvt Key pair (DH, RSA)
 * Public key(encrypt), Private key(decrypt). Data encrypted with Public can only be decrypted using Pvt key. Both are mathematically linked. Public Key are published on website publicly.
+
 ==== Example Alice and Bob communication
 * 1. Alice created his own Public(Pub_A),Pvt(Pvt_A) key pairs. Published Public key on his website and kept pvt secret.
 * 2. Bob also created his own public(Pub_B), Pvt(Pvt_B) key pairs and published on his website.
