@@ -111,11 +111,11 @@ Group  | No of Bits |  Combinations  | Strong
 Public Key = (e,n). Private Key = (d,n)
   
 * B. Divide Plain-text into blocks  input=10101111. {block1=1010 block2=1111}
-* C. Encrypt:  cipher text(C) = Block-of-plain-text<sup>e</sup> (mod n) 
+* C. Encrypt:  cipher text(C) = Block-of-plain-text^e^ (mod n) 
 ```c
   C = P^3 mod(33)
 ```  
-* D. Decrypt: Plain text(P) = C<sup>d</sup> (mod n)
+* D. Decrypt: Plain text(P) = C^d^ (mod n)
 ```c
   P = C^7 mod(33)
 ```
@@ -139,8 +139,7 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
 
 
 ==== Ecliptic Curve Cryptography / ECC / 2 key
-* Public, Pvt keys are calculated using elliptic curves over (finite field/Galois field? Field containing finite number of elements rather than real numbers).
-* Ecliptic curve: y<sup>2</sup> = x<sup>3</sup> + a<sup>x</sup> + b. Place x and y in equation and get Public, Pvt key pairs.
+* Public, Pvt keys are calculated using elliptic curve(y^2^ = x^3^ + a^x^ + b) over (finite field/Galois field? Field containing finite number of elements rather than real numbers).
 * *Advantage of ECC?* Smaller keys in ECC provides equivalent security to larger non-ECC based algos. 
 * *Applications of ECC?*
 ** Calculating keys for following: Key agreement, Digital Signature, Pseudo-random generators.
@@ -149,6 +148,10 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
 *** Allows two parties, each having an elliptic-curve public–private key pair, to establish a shared secret over an insecure channel. 
 *** This shared secret maybe used directly as key or derive another key. 
 *** The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher.
+
+===== 1. secp256k1 ECC
+* *Private Key:* 
+** Find source of randomness(called entropy). This is a random number between (1 & (2^256^ = 10^77^))
 
 ==== ECC vs Symmetric vs Asymmetric
 |===
@@ -169,7 +172,7 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
 |Usage||To exchange keys for symmetric algorithms, once the keys are established symmetric key algorithms used to encrypt data|
 |Risk|Distribution of keys||
 |Choice|Depends on Use Case.|1024 was assumed to be secure by 2010. 2048 Bit Key is assumed to be secure by 2030|
-|Algos|<ul><li>DES(Broken in 1999)</li></ul> <ul><li>3-DES(Broken)</li></ul> <ul><li>AES(Key sizes: 128, 192, 256, 384)</li></ul> <ul><li>RC4</li></ul>|<ul><li>RSA (Ronald Rivest, Adi Shamir, Len Adleman)</li></ul> <ul><li>Diffe-Helman</li></ul> <ul><li>Crammer-shoup</li></ul> <ul><li>El-Gamal</li></ul>|
+|Algos|DES(Broken in 1999), 3-DES(Broken), AES(Key sizes: 128, 192, 256, 384), RC4|RSA (Ronald Rivest, Adi Shamir, Len Adleman), Diffe-Helman, Crammer-shoup, El-Gamal|
 |Key-size|AES-128, 192, 256|RSA:1024,2048 This is not Key, but sizes of prime numbers. Private Key = (Cipher Text)pow(pvt Key) mod(n) = 103 bit only|
 |===
 
@@ -204,8 +207,8 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
 ```
 
 === How Long Hacker(having super Computer) need to crack key? 
-* 1 super computer can perform 10<sup>17</sup> FLOPS (a hundred quadrillion FLOPS floating point operations per second)
-* Per Year = 3600(hour) x 24 x 30 x 12 = 31,104,000 x  10<sup>17</sup>= 31,104,00 Quintillion Operations.
+* 1 super computer can perform 10^17^ FLOPS (a hundred quadrillion FLOPS floating point operations per second)
+* Per Year = 3600(hour) x 24 x 30 x 12 = 31,104,000 x  10^17^ = 31,104,00 Quintillion Operations.
 * 340,282,366,920,938,463,463 / 31,104,000 = 109,401,481,134,561 (approx) = 109 Trillion
 * **109 Trillion super computers working parallelly for 1 year can produce all combinations of 128 bit key**
 
