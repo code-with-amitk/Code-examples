@@ -33,7 +33,56 @@ K --> |SHA256| --256bit--> |RIPEMD160| --> 160bit(Address)
 ```
 
 ==== Base58, Base58-Check Encoding
-<<address, Public Address>> generated using hash of public key in blockchain is still 160bits long.
+===== Base58
+* <<address, Public Address>> generated using hash of public key in blockchain is still 160bits long.
+* In order to represent long numbers in a compact way, many computer systems use mixed-alphanumeric representations with a base (or radix) higher than 10.
+* _Base64:_ (26 lower case, 26 capitals, 10 numerals & 2 more characters(maybe +, /)
+* _Base58:_ (26 lower case, 26 capitals(without the four (0, O, l, I))
+
+===== Base58-Check
+* 58 Digit (where last 4 digits = checksum for error check)
+* Decoding software will calculate the checksum of the data and compare it to the checksum included in the code.
+
+====== C++ Code (Generate Base64Check address)
+* <<keys, Private key in blockchain is random number between (1- 2^256^)>>
+```cpp
+#include <bitcoin/bitcoin.hpp>
+int main() {
+   // 1. Take a random Private secret key.
+   bc::ec_secret secret = bc::decode_hash("038109007313a5807b2eccc082c8c3fbb988a973cacf1a7df9ce725c31b14776");
+
+   // 2. Get public key.
+   bc::ec_point public_key = bc::secret_to_public_key(secret);
+   std::cout << "Public key: " << bc::encode_hex(public_key) << std::endl;
+
+ // Create Bitcoin address.
+ // Normally you can use:
+ // bc::payment_address payaddr;
+ // bc::set_public_key(payaddr, public_key);
+ // const std::string address = payaddr.encoded();
+ // Compute hash of public key for P2PKH address.
+ const bc::short_hash hash = bc::bitcoin_short_hash(public_key);
+ bc::data_chunk unencoded_address;
+ // Reserve 25 bytes
+ // [ version:1 ]
+ // [ hash:20 ]
+ // [ checksum:4 ]
+ unencoded_address.reserve(25);
+ // Version byte, 0 is normal BTC address (P2PKH).
+ unencoded_address.push_back(0);
+Bitcoin Addresses | 75
+ // Hash data
+ bc::extend_data(unencoded_address, hash);
+ // Checksum is computed by hashing data, and adding 4 bytes from hash.
+ bc::append_checksum(unencoded_address);
+ // Finally we must encode the result in Bitcoin's base58 encoding
+ assert(unencoded_address.size() == 25);
+ const std::string address = bc::encode_base58(unencoded_address);
+ std::cout << "Address: " << address << std::endl;
+ return 0;
+}
+
+```
 
 ==== Block
 This is a Node(singly linked list). This is a transactions bundled together.
@@ -65,6 +114,7 @@ Ether is intended as a utility currency to pay for use of the Ethereum platform
 ==== Genesis Block
 1st block in blockchain. This is hardcoded at time when blockchain started.
 
+[[keys]]
 ==== Keys (Public, Pvt)
 * In blockchain, Public Pvt keys are generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
 * secp256k1 ECC is not same as RSA or DH.
