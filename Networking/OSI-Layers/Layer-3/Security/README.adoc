@@ -98,12 +98,12 @@ Group  | No of Bits |  Combinations  | Strong
 ```   
 
 ==== b. RSA (Ronald Rivest, Adi Shamir, Len Adleman)
-Steps of RSA
-* A. Pre-calculate Public, pvt key
-** 1. Choose 2 numbers p(1024 bit),q(1024 bit).  {p=3,q=11}
-** 2. Find n = p`*`q, z =(p-1)(q-1)  {n=33, z=20}
-** 3. Choose a number d relatively prime to z.   {d=7} //7 and 20 has no common factor
-** 4. Find e. So that e × d = 1 mod(z)
+* Steps of RSA
+** A. Pre-calculate Public, pvt key
+*** 1. Choose 2 numbers p(1024 bit),q(1024 bit).  {p=3,q=11}
+*** 2. Find n = p`*`q, z =(p-1)(q-1)  {n=33, z=20}
+*** 3. Choose a number d relatively prime to z.   {d=7} //7 and 20 has no common factor
+*** 4. Find e. So that e × d = 1 mod(z)
 ```c
     e x 7 = 1 mod(20)
     e = mod(20)/7 = 3 (approx)
