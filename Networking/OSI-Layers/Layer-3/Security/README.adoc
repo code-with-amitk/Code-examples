@@ -149,9 +149,13 @@ Public Key (n,  e)        Private Key (n, d) or 5-value
 *** This shared secret maybe used directly as key or derive another key. 
 *** The key, or the derived key, can then be used to encrypt subsequent communications using a symmetric-key cipher.
 
-===== 1. secp256k1 ECC
-* *Private Key:* 
-** Find source of randomness(called entropy). This is a random number between (1 & (2^256^ = 10^77^))
+[[secp256k1]]
+===== 1. secp256k1 ECC Algorithm (Used in Bitcoin)
+* *Private Key:* This is just a random number between (1 & (2^256^ = 10^77^)). But should be generated using good source of randomness(called entropy).
+```c
+|random_no_generator| -->   k (Pvt key)
+```
+* *K(Public Key)* = k(pvt Key) * G(constant called Generator point). //G is same for all users
 
 ==== ECC vs Symmetric vs Asymmetric
 |===
