@@ -59,7 +59,19 @@ TPS ≈ 3333 TPS
 ====================                                      |
   tezos blockchain      <--RPC calls--> [Tezos Node] <> Backend  <---APIs---->   Frontend  <--> User
 ====================    <---smart contract--|
+ other tezos nodes
+====================
 ```
 * *Frontend:* In React, Angular, or Vue.js
 * *Backend:* Use Node.js, Python, or Ruby
-* *Tezos Node:* This is client application of Tezos blockchain and should run on client. This is seperate from tezos blockchain.
+==== Tezos Node (hosted on machine or cloud)
+* This is client application of Tezos blockchain and should run on client. This is seperate from tezos blockchain.
+* Like link:/BlockChain#1-bitcoin-core-fullnode-bitcoin-client[bitcoin core client], this will have complete copy of blockchain
+* *Function:* 1. Communicate with other nodes to reach consensus on the state of the blockchain
+
+====== Components of Tezos node
+* _1.  P2P Network Layer:_ communicates with other Tezos nodes in a peer-to-peer (P2P) network.
+* _2. Consensus Layer:_ Handles unique consensus mechanism called "Liquid Proof of Stake" (LPoS).
+* _3. Chain Data Management:_ stores and manages the blockchain data
+* _4. Mempool:_ Holds pending transactions that have been broadcast to the network but haven't yet been included in a block
+* _5. Validation and Verification:_ 
