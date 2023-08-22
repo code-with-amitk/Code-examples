@@ -165,7 +165,7 @@ Transaction
 ** _3. Accessibility:_ Only those having specialized mining hardware, have more bitcoins.
 
 ==== Smart Contract
-* These are the programs that run on blockchain having business logic.
+* These are the programs that run on blockchain having business logic. This get automatically executed when certain conditions are met. These are secure and unstoppable.
 * Represents aggrement b/w 2 parties & allows parties to securly conduct business. Properties:
 ** _1. Immutable(cannot be changed):_ SC creates logs which are immutable, those cannot be changed.
 ** _2. Distributed:_ Output of contract is Validated/verified by other nodes on the network.
