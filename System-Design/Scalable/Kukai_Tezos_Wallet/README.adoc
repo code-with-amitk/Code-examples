@@ -17,3 +17,49 @@
 * _4. Smart Contract Interaction:_ Users can interact with smart contracts on the Tezos network through Kukai's interface
 * _5. Transaction Fees and Gas:_ Provide information about transaction fees ("gas fees" in etherum) and helps users estimate the appropriate fee for their transactions.
 
+==== Non-Functional
+* _1. Response Time:_ Acceptable response times for various user interactions, such as loading balances, sending transactions, or interacting with smart contracts
+** Loading Balance: less than 1 sec
+** Sending Transactions: 2-3 sec
+** Interacting with Smart Contracts: 3-5 sec. Since it might more complex operations.
+* _2. Scalable:_ Plan for the application's ability to handle increased user activity and transaction volume without a significant drop in performance.
+* _3. Data Encryption:_ Sensitive user data, private keys, and other confidential information must be stored and transmitted using encryption protocols.
+* _4. Reliable:_ 
+** How application should handle errors, such as failed transactions, connection issues, or unexpected behavior
+** Ensure that data stored on the blockchain or in associated databases remains accurate and consistent
+
+=== BOE
+==== Transactions per Second (TPS)
+* Required Response time:(2-3 seconds) and let's suppose total 10,000 users are using tezos blockchain having kukai (wallet) installed locally on their systems.
+```c
+TPS = Concurrent Users / Response Time per Transaction
+TPS = 10,000 users / 3 seconds (assuming the higher end of the 2-3 second range)
+TPS ≈ 3333 TPS
+```
+
+=== API Design
+|===
+| Requirement | API 
+
+| 1. Create new Tezos wallet for a user | link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/Methods[POST] /api/wallets
+| 2. Import an existing Tezos wallet | POST /api/wallets/import
+| 3. Retrieve wallet details by wallet ID | link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/Methods[GET] /api/wallets/:walletId
+| 4. Get the Tezos balance of a wallet | GET /api/wallets/:walletId/balance
+| 5. Initiate a transaction to send XTZ or tokens to another address | POST /api/transactions/send
+| 6. Smart contract detials(Retrieve contract details and information) | GET /api/contracts/:contractAddress
+| 7. Transaction Fees and Gas | GET /api/fees/estimate
+|===
+
+=== HLD
+```c
+                                        | User Local DB(stores user IDs, wallet addresses) |
+                                                          |
+                                                        cache
+                                                          |
+====================                                      |
+  tezos blockchain      <--RPC calls--> [Tezos Node] <> Backend  <---APIs---->   Frontend  <--> User
+====================    <---smart contract--|
+```
+* *Frontend:* In React, Angular, or Vue.js
+* *Backend:* Use Node.js, Python, or Ruby
+* *Tezos Node:* This is client application of Tezos blockchain and should run on client. This is seperate from tezos blockchain.
