@@ -1,42 +1,42 @@
-## [To Cover](/System-Design/Scalable/)
+:toc:
+:toclevels: 6
 
-- [Requirements](#Requirements)
-  - [Functional](#Functional)
-- [BOE](#BOE)
-- [API_Design](#API_Design)
-- [HLD](#HLD)
-  - [Uploading_Video](#Uploading_Video)
-  - [Playing_Video](#Playing_Video)
-- [DB_Schema](#DB_Schema)
-  - [Video_Metadata_DB](#Video_Metadata_DB)
-- [Load_Balancing](#Load_Balancing)
-- [Cache](#Cache)
+== link:(/System-Design/Scalable/)[To Cover]
 
-## Requirements
-### Functional
-  - Video: Upload, search, Comment, like, dislike, share
-  - Channel: Can create, Statistics(Views, comments etc)
-  - Subscribe
-  - Support ads
-  - Live Stream
+=== Requirements
 
-## BOE
-> 7 Billion world population. 20% use youtube => 140 Million users / day. 
+==== Functional
+* Video: Upload, Watch, search, Comment, like, dislike, share
+* Channel: Can create, Statistics(Views, comments etc)
+* Subscribe
+* Support ads
+* Live Stream
 
-- **Bandwidth Estimates**
-  - 
-- **Storage Estimates**
-  - ***Read/Write*** or View/Upload = 200/1
-    - Read = Views: 50k/sec
-    - Uploads = 250/sec. 15000/min = 15k/min. 900k/hour. 27 Million/month. 9 Billion/Year. 50 Billion/5 years.
-  - ***Storage Requirements***
-    - 1 sec video need 1 MB
-    - 250 sec = 250 MB
-    - 5 year = 50*10^9*10^6 = 50*10^15 = 50 Quadtrillion bytes
-      - But this will change when video compression is done at storage
+==== Non-Functional
+* Video upload, watching should be fast
+* highly available
+* scalable
 
-## API_Design
-- Upload API
+=== BOE
+*Ask Interviewer:* 
+
+* What are DAU(Daily active users)? = 5 Million
+* What is average Video Size? = 300 MB
+
+==== Storage Estimates
+* Assuming 10% of DAU upload 1 video/day.
+* Videos uploaded in 1 day = 5x10^5^. Space needed = 5x10^5^ x 300M = 150x10^12^ = 150TB/day
+* 5 years = 150 x 30 x 365 x 5 = 8x10^18^ = 8 Exa bytes
+
+==== QPS(Queries/sec)
+* DAU = 5 Million. 1 user watch 5 videos/day
+* QPS = 25M/86400 = 250
+
+==== Bandwidth Estimates
+
+
+=== API_Design
+==== Upload API
 ```c
 uploadVideo(api_dev_key, video_title, vide_description, tags[], category_id, default_language, 
                         recording_details, video_contents)
@@ -54,7 +54,7 @@ Returns: (string)
 - A successful upload will return HTTP 202 (request accepted)
 - once the video encoding is completed the user is notified by email with a link to access the video. 
 ```
-- Search API
+==== Search API
 ```c
 searchVideo(api_dev_key, search_query, user_location, maximum_videos_to_return, page_token)
 Parameters:
@@ -68,7 +68,7 @@ Returns(JSON)
 A JSON containing information about the list of video resources matching the search query. 
 Each video resource will have a video title, a thumbnail, a video creation date, and a view count.
 ```
-- Stream video
+==== Stream video
 ```c
 streamVideo(api_dev_key, video_id, offset, codec, resolution)
 api_dev_key (string): The API developer key of a registered account of our service.
@@ -80,8 +80,8 @@ Returns: (STREAM)
 A media stream (a video chunk) from the given offset.
 ```
 
-## HLD
-### Uploading_Video
+=== HLD
+==== Uploading_Video
 - Thumbnails
   - Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
 - Metadata of video:
@@ -91,7 +91,7 @@ A media stream (a video chunk) from the given offset.
   - total views
   - likes, dislikes
 ![ImgUrl](https://i.ibb.co/TqQghZ2/youtube.png)  
-```
+```c
 User                App-server        
     --- video-n---->
     TCP(fragments)             -------Processing-Queue----------
@@ -105,7 +105,7 @@ User                App-server
             CDN <--Pushing ----
 <-Your Video--
 ```
-
+```c
 - **HOW VIDEOS ARE STORED?**
   - Store videos on multiple DB backends using sharding.
     1. [Approach-1, Wll not follow] Sharding based on userId's
@@ -118,8 +118,8 @@ User                App-server
     3. [Appraoch-3] Consistent Hashing (will follow)
         - CH is used to balance load among servers.
 - Less popular videos (1-20 views per day) that are not cached by CDNs can be served by our servers in various data centers.      
-
-### Playing_Video
+```
+==== Playing_Video
 ```c
   user        
     -videoID->  CDN                     [Cache]==[App-server]         <<<DB-servers>>       
@@ -134,8 +134,8 @@ User                App-server
 - **DETECTING DUPLICATE VIDEOS**
   - At time of uploading the videos, a service can run video matching algorithms (e.g., Block Matching, Phase Correlation, etc.) to find duplications.
 
-## DB_Schema
-### 5.1 Video_Metadata_DB
+=== DB_Schema
+==== 5.1 Video_Metadata_DB
 - MySQL DB
 ```c
 - ***Table for each video***
@@ -151,10 +151,10 @@ User                App-server
 | --- | --- | --- | --- | --- |
 ```
 
-## Load_Balancing
-- Load between cache servers is balanced using ***[Consistent Hashing](https://github.com/amitkumar50/Code-examples/blob/master/System-Design/Concepts/Hashing/Consistent_Hashing.md)***
+=== Load_Balancing
+- Load between cache servers is balanced using link:/System-Design/Concepts/Hashing/Consistent_Hashing.md[Consistent Hashing]
 
-## Cache
+=== Cache
 - memcached in front of 'App-servers'.
 - Cache Eviction Policy: LRU. Discard least recently viewed contents from cache.
 
