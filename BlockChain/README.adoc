@@ -112,17 +112,32 @@ Ether is intended as a utility currency to pay for use of the Ethereum platform
 
 [[mining]]
 ==== Mining 
-* Let's suppose Alice wants to send 1 BTC(bitcoin) to Bob. 
-* Alice creates a transaction and sends it on blockchain network.
+* Let's suppose Alice wants to send 1 BTC(bitcoin) to Bob, alice sends message on network.
+* Miner Nodes(Verfiers of transaction) recieve the Alice's message and starts a race to solve complex computational puzzle. 
+* Node(Miner) who solves it 1st is rewarded with some transaction fee(0.001 BTC) + bitcoin reward. 
+* Miner-1, solves the puzzle and sends to network for verification. Other miners verifies it using link:/System-Design/Concepts/Terms/Consensus[consensus] and transaction is added as a node to ledger=blockchain.
 ```c
 Transaction
   src_add = Alice_hash    //Hash is public address of entity on blockchain
   amount = 1 BTC
   dst_add = Bob_Hash
 ```
-* Other nodes reads the transaction, but to add this block on blockchain, some complex computation/puzzles need to be solved.
-** Nodes(Miners) race to solve the puzzle, and miner who solves it 1st is rewarded with 0.001 BTC.
-** Miner-1, solves the puzzle and sends to network for verification. Other miners verifies it using link:/System-Design/Concepts/Terms/Consensus[consensus] and transaction is added as a node to ledger=blockchain.
+===== How bitcoin can be issued?
+* _1. Using crypto exchange:_ Here if someone sells the bitcoin, its purchased by other
+* _2. Mining:_ Miners are rewarded transaction fee + Bitcoins. Once a miner verifies a transaction and adds to blockchain.
+===== Rate of bitcoin Issuance?
+* 2012: 25 bitcoins/block. ie on verification of 1 transaction, adding to blockchain. 25 bitcoins
+* 2016: 12.5
+* 2140: 0. (All 21 million bitcoin will be issued). Miners will be rewarded solely through the transaction fees.
+* 210000 is around every 4 years with a 10 minute block interval
+===== Why only 21Million bitcoins. Inflation?
+* The finite and diminishing issuance creates a fixed monetary supply that resists inflation.
+===== Deflation?
+* But with limited supply of currency(ie 21Million), will it not cause deflation?
+* *Deflation?*
+** less money more products. Purchasing power of money keep on increasing
+** People will stock the money, instead of spending it hoping prices will fall more
+** _But deflation is not bad as inflation._ Stocking instincts can be supressed by sellers providing discounts and stockers tend to spend money.
 
 [[pow]]
 ==== POW(Proof of Work) 
