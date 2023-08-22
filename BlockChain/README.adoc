@@ -107,6 +107,7 @@ Holds complete blockchain in local system. Requires ~500GB of space.
 
 ===== 3. Kukai (Lightweight Tezos client)
 * This is wallet service on <<blockcha, Tezos blockchain>>. Tezos is based on link:/System-Design/Concepts/Terms/Consensus/README.adoc#2-posproof-of-stake-ethereum-uses-it[Proof of stake], while Bitcoin core, electrum are <<pow, Proof of work blockchains>>
+* link:/System-Design/Scalable/Kukai_Tezos_Wallet[kukai System Design]
 
 ==== Ethereum
 Framework/platform for creating smart contracts. Etherum runs solidity programming language.
