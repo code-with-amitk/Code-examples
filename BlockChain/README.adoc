@@ -164,7 +164,7 @@ Transaction
 ** _2. Centralization Concerns:_ More power more chances to solve 1st, this means more bitcoins goes with people/companies who own huge machines.
 ** _3. Accessibility:_ Only those having specialized mining hardware, have more bitcoins.
 
-==== Smart Contracts
+==== Smart Contract
 * These are the programs that run on blockchain having business logic.
 * Represents aggrement b/w 2 parties & allows parties to securly conduct business. Properties:
 ** _1. Immutable(cannot be changed):_ SC creates logs which are immutable, those cannot be changed.
