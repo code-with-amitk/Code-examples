@@ -29,6 +29,7 @@
 ** Ensure that data stored on the blockchain or in associated databases remains accurate and consistent
 
 === BOE
+
 ==== Transactions per Second (TPS)
 * Required Response time:(2-3 seconds) and let's suppose total 10,000 users are using tezos blockchain having kukai (wallet) installed locally on their systems.
 ```c
@@ -38,6 +39,7 @@ TPS ≈ 3333 TPS
 ```
 
 === API Design
+
 |===
 | Requirement | API 
 
@@ -64,6 +66,7 @@ TPS ≈ 3333 TPS
 ```
 * *Frontend:* In React, Angular, or Vue.js
 * *Backend:* Use Node.js, Python, or Ruby
+
 ==== Tezos Node (hosted on machine or cloud)
 * This is client application of Tezos blockchain and should run on client. This is seperate from tezos blockchain.
 * Like link:/BlockChain#1-bitcoin-core-fullnode-bitcoin-client[bitcoin core client], this will have complete copy of blockchain
