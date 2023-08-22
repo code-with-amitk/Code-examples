@@ -58,7 +58,7 @@ You are in 'detached HEAD' state.
 HEAD is now at 4cd80c9 test2
 ```
   - _[Merge changes/commmits from detached head](https://stackoverflow.com/questions/7124486/what-to-do-with-commit-made-in-a-detached-head)_
-```console
+```c
 branch2 is 6 commits behind master.
 
 $ git checkout branch2
@@ -75,7 +75,7 @@ $ vim test1/hello-rust.rs                           //Done changes in Detached h
 $ git diff
 +       println!("There");
  }
- ```
+```
 * *.git/HEAD?* Stores commit-id of most recent/latest commit on the branch.
 * *Master/Trunk/Main/Head Branch:* Main branch (as of tree). Like trunk of tree. 
   - _upstream/master:_    Master branch of upstream
