@@ -125,13 +125,16 @@ Transaction
 ===== How bitcoin can be issued?
 * _1. Using crypto exchange:_ Here if someone sells the bitcoin, its purchased by other
 * _2. Mining:_ Miners are rewarded transaction fee + Bitcoins. Once a miner verifies a transaction and adds to blockchain.
+
 ===== Rate of bitcoin Issuance?
 * 2012: 25 bitcoins/block. ie on verification of 1 transaction, adding to blockchain. 25 bitcoins
 * 2016: 12.5
 * 2140: 0. (All 21 million bitcoin will be issued). Miners will be rewarded solely through the transaction fees.
 * 210000 is around every 4 years with a 10 minute block interval
+
 ===== Why only 21Million bitcoins. Inflation?
 * The finite and diminishing issuance creates a fixed monetary supply that resists inflation.
+
 ===== Deflation?
 * But with limited supply of currency(ie 21Million), will it not cause deflation?
 * *Deflation?*
