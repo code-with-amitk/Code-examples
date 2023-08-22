@@ -4,6 +4,9 @@
 === Blockchain
 * This is append-only, immutable distributed ledger that is updateable only via consensus/agreement among peers. There is no single authority of this ledger.
 * This is link:(/Networking/OSI-Layers/Layer-7/P2P_OverlayNetwork/)[Peer to Peer] network running over TCP. Same as HTTP,FTP over TCP
+* *Examples blockchains*
+** _Tezos:_ Uses Proof of Stake
+** _Bitcoin:_ Use <<pow, Proof of Work>>
 
 === Why to learn blockchain
 * *Decentralization:* no need for a trusted third party or intermediary to validate transactions; instead a consensus mechanism is used to agree on the validity of transactions.
