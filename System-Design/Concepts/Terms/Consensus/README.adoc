@@ -1,21 +1,31 @@
 :toc:
 :toclevels: 5   // Set the desired depth of the table of contents
 
-=== Consensus
+== Consensus
 Consensus is a process of agreement between distrusting nodes on a final state of data.
 
-=== Categories of Consensus
-==== 1. Byzantine fault tolerance-based / voting
+== Categories of Consensus
+=== 1. Byzantine fault tolerance-based / voting
 when a certain number of messages are received, then an agreement is reached
 
-==== 2. Proof Based /  leader-based / the Nakamoto consensus
+=== 2. Proof Based /  leader-based / the Nakamoto consensus
 Nodes to compete for the leader-election lottery and the node that wins it proposes a final value
 
-===== link:/BlockChain/README.adoc#pow[1. POW(Proof of Work) bitcoin uses it]
+==== link:/BlockChain/README.adoc#pow[1. POW(Proof of Work) bitcoin uses it]
 
-===== 2. POS(Proof of Stake) (Ethereum uses it)
+==== 2. POS(Proof of Stake) (Ethereum uses it)
 * *Why POS came in?* Due to link:/BlockChain/README.adoc#pow[problems in POW(Proof of Work)], POS emerged.
-* *How POS Works?*
+
+===== How POS Works?
+```c
+  Proposer                                  Validator-1                  Validator-2
+                                      (Hold coins to stake)
+1. Create block
+(having transaction)  -|--broadcasted---->  block is Good
+                       |------------------------------------------------> block is good
+Block included on chain
+Reward distributed to both
+```
 ** 1. Validators/forgers/stakers(same as <</BlockChain/README.adoc#mining, miners in POW system>>) validate transactions based on:
 *** a. Number of coins they hold
 *** b. And how many coins they are willing to "stake" as collateral.
