@@ -1,0 +1,19 @@
+:toc:
+:toclevels: 6
+
+=== link:/BlockChain/README.adoc#blockchain:[Tezos(XTZ)?]
+
+=== Kukai?
+* DApp(link:/System-Design/Concepts/Decentralization.adoc[Decentrailized App]) lightweight wallet service(Similar to link:/BlockChain#electrum[Electrum]) on Tezos blockchain that helps:
+** Creating user-friendly wallet interface(Users to manage their Tezos assets)
+** Interact with smart contracts, and engage with the Tezos ecosystem
+* kukai does not hold complete blockchain like bitcoin core client.                                                                                                          
+
+=== Requirements
+==== Functional
+* 1. Users can create, import, and manage Tezos wallets. 
+* 2. Store private keys for users.
+* 3. Users can securely send, receive, and store XTZ and other tokens.
+* _4. Smart Contract Interaction:_ Users can interact with smart contracts on the Tezos network through Kukai's interface
+* _5. Transaction Fees and Gas:_ Provide information about transaction fees ("gas fees" in etherum) and helps users estimate the appropriate fee for their transactions.
+
