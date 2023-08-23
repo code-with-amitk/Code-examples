@@ -1,0 +1,180 @@
+:toc:
+:toclevels: 6
+
+=== HTTP
+* Client-server/Request-Response protocol. Default port 80, other can be used. Uses TCP, does not use UDP. link:/Networking/OSI-Layers/Layer-4/Protocols[Google's QUIC] uses HTTP over UDP
+* HTTP Clients: Web-browser, Any process can create socket and get information from server.
+
+=== Features
+* *1. CONNECTIONLESS:* HTTP-client(browser) initiates an HTTP request and after a request is made, the client disconnects from the server and waits for a response. server processes the request and re-establishes the connection with the client to send a response back.
+* *2. MEDIA INDEPENDENT:* Any type of data can be sent by HTTP as long as both the client and the server know how to handle the data content.
+* *3. STATELESS:* No session information is stored either by client or server.
+* *4. Persistant & Parallel Connection:* 2 access requests can be sent back-2-back without waiting for response to arrive.
+```html
+  Client                         Server
+     <-----TCP-3-way-handshake---->
+     --------GET Page-1----------->
+     --------GET Page-2----------->
+     <-------Page-1---------------
+     <-------Page-2---------------
+```
+
+=== HTTPv1 vs HTTPv2 vs HTTPv3
+|===
+||Http-1.1|Http-2|Http-3
+
+|Year|1997|2015|2019
+|Transport Protocol|TCP|TCP|UDP
+|Connections|HTTP client(Browser) makes different connection for every request with server|Sends multiple requests on 1 connection only|Sends packets over UDP
+|Bandwidth consumption|More|Less. Less headers are sent|Even less
+|===
+
+==== Problems in HTTP-2
+* *1. Sending Multiple requests in 1 packet:* if you send req-1(page1), req-2(page2), req-3(page3) in 1 packet and that packet is lost. None of page can be loaded, Everything comes to halt. We need to send whole packet again. This is called HEAD OF LINE BLOCKING.
+** *Solution:* HTTP-3 using UDP. Every packet on different UDP.
+
+=== Advatanges, Disadvatanges/pitfalls of HTTP
+==== Advantages
+** *1. Flexible.* Whenever there are additional capabilities needed by an application, HTTP has the capability to extend. These can include Flash players and Acrobat reader.
+** *2. Less connections.* With HTTP2 and HTTP3 multiple requests can be sent in 1 packet.
+** *3. Network BW:* Less dues to less connections as HTTP2, HTTP3 sends multiple requests in 1 connection.
+** *4. Error reporting:* Reports errors without closing the TCP connection.
+
+==== Disadvantages
+* *1.* Can only be used for point to point connection.
+* *2.* Does not have push capabilities as in [Long Pooling or server sent Events](/Networking/OSI-Layers/Layer5/WebServer_to_WebClient_Connection_Methods).
+* *3.* HTTPv2 does not offer reliable exchange (without retry logic).
+
+=== Methods
+* *Method?* Operations are called methods for requesting web page or content.
+* *Safe methods?* Those which donot change state of server. Eg: GET, HEAD
+* *Read only methods?* GET, OPTIONS, HEAD
+* *Idempotent methods?* A operation that will produce the same results if executed once or multiple times. Eg: GET, HEAD, PUT, DELETE, TRACE, OPTIONS
+* *CRUD Operations:* Protocol should support minimum these operations/methods.
+```c
+  Create = POST
+  Read = GET
+  Update = PUT
+  Delete = DELETE
+```
+|===
+|Method|Description|Example
+
+|GET| Reading data(page,object etc) from web server|GET `www.test.com/index.html` HTTP/1.1
+|HEAD| Read a Web page’s header(not page). For checking validity of URL
+|POST| Send data to server, Server will create entry. Eg: Form submittion.|POST `www.test.com/form.html` HTTP/1.1 
+|PUT| Update existing data on web server.
+|DELETE| Remove data from web server
+|TRACE| For debugging. Instructs the server to send back the message. Useful when requests are not processed correctly and the client wants to know what request the server actually got
+|CONNECT| Connect to server using proxy or web cache
+|OPTIONS| Query options(What methods,headers can be used for the page) from server
+|PATCH|Make partial update on resource. As compared to `PUT method` PUT should only be used if you’re replacing a resource in its entirety and PATCH for partial update.
+|HEAD| it requests the headers that are returned if the specified resource would be requested with an HTTP GET method. Usage of this method is to decide to download a large resource(or not) to save bandwidth
+|===
+                                                                                                                                                         
+==== GET
+* link:Networking/OSI-Layers/Layer-7/Protocols/DNS/[_Step-1._ DNS Resolution]. got IP address.
+* link:/Networking/OSI-Layers/Layer-4/Protocols/TCP#estb[_Step-2._ TCP Connection Estbd SYN,SYNACK,ACK]
+* _Step-3._ Broweser sends this plain text to server
+```html
+    Client						SERVER(www.freebsd.org)
+GET /hello.txt HTTP/1.1 --------------------------------->
+User-Agent: curl/7.64.1
+Host: www.example.com
+Accept-Language: en, mi
+
+         <----- HTTP/1.1 200 OK ----------------------------------
+							HTTP/1.1 200 OK
+							Date: Mon, 27 Jul 2009 12:28:53 GMT
+							Server: Apache
+							Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+							ETag: "34aa387-d-1568eb00"
+							Accept-Ranges: bytes
+							Content-Length: 51
+							Vary: Accept-Encoding
+							Content-Type: text/plain
+			Hello World! My content includes a trailing CRLF.
+         ----------------    TCP-FIN    ---------------------------->
+```
+                                                                                                                                                         
+=== Message Format
+```html
+  METHOD space REQUEST_HEADER space REQUEST_URI space HTTP_VERSION crlf
+
+Examples:
+  GET Accept www.test.com/index.html HTTP/1.1
+  PUT Cookie www.test.com/abc.html HTTP/1.1
+```
+
+=== HTTP Caching
+* *Why?* User(s) often request same Web page that they have used before and page contents(eg: images, CSS, scripts) donot change so often. Its network BW consumption and time wastage to fetch these resources again when browser has a copy.
+* *What?* Caching less frequently changing pages need to be cached.
+
+- **Cache Design** Conditional GET is sent with [Request Header (if Modified)](#hea)
+```http
+
+<-------------------Web Browser------->
+  User    front-end   Cache(Hard-Disk)                
+   - page1 ->
+            --- Find page-1 ->
+                       Cache Valid?
+            <-- Page-1 ------
+                       Else                                          WEB-SERVER
+                          -------------- Conditional GET ----------> (Program)  //Cache asks is my copy valid(using REQUEST HEADER)?
+                          <-----------  Page Not Modified   -------- 
+                          <---- Modified Page(Expires Header=1 day)-      //Expires header tells Http when to fetch the page again.
+```
+
+=== Headers
+* **Request Header?** The request line (e.g., the line with the GET method) may be followed by additional lines with more information.
+* **Reponse Header?** Responses may also have response headers.
+* **Headers**
+```c
+User-Agent:    Request Information about the browser and its platform
+Accept:     Request The type of pages the client can handle
+Accept-Charset:    Request The character sets that are acceptable to the client
+Accept-Encoding:    Request The page encodings the client can handle
+Accept-Language:    Request The natural languages the client can handle
+If-Modified-Since:    Request Time and date to check freshness
+If-None-Match:    Request Previously sent tags to check freshness
+Host: Request   The server’s DNS name
+Authorization:    Request A list of the client’s credentials
+Referer Request:   The previous URL from which the request came
+Cookie:  Request Previously set cookie sent back to the server
+Set-Cookie:    Response Cookie for the client to store
+Server:    Response Information about the server
+Content-Encoding:    Response How the content is encoded (e.g., gzip)
+Content-Language:    Response The natural language used in the page
+Content-Length:    Response The page’s length in bytes
+Content-Type:    Response The page’s MIME type
+Content-Range:     Response Identifies a portion of the page’s content
+Last-Modified:     Response Time and date the page was last changed
+Expires Response:    Time and date when the page stops being valid
+Location Response:     Tells the client where to send its request
+Accept-Ranges:     Response Indicates the server will accept byte range requests
+Date:    Both Date and time the message was sent
+Range:     Both Identifies a portion of a page
+Cache-Control:     Both Directives for how to treat caches
+ETag:    Both Tag for the contents of the page
+Upgrade:     Both The protocol the sender wants to switch to
+```
+
+=== Plugin, Helper Application, MIME
+* *How Browser Display Information?* Using MIME Type
+* When a server returns a page, it also returns some additional information(MIME type) about the page. MIME type tells how browser should display the page.
+* A page may consist of a video(MPEG format), a document(PDF format), a photograph(JPEG format) or any one of hundreds of other file types.
+** *1.* Pages of type text/html are just displayed directly, as are pages in a few other built-in types. 
+** *2.* For MIME type=pdf/flash/mpeg/jpg browser uses plugins or helper applications to display the content.
+* *Plug-in?* is a third-party module that is installed as an extension to the browser which helps to display/process the contents. Eg: PDF reader. Browsers usually come preloaded with popular plug-ins.
+* *Helper application?* This is large program, running as a separate process. Eg: Microsoft Word or PowerPoint. If URL points to a PowerPoint file, and when the user clicks on it, PowerPoint is automatically started and handed the content to be displayed. Browsers can be configured to handle a virtually unlimited number of document types with no changes to themselves.
+
+=== HTTP Return Codes / Response Codes
+* Informational responses (100–199)
+* Successful responses (200–299)
+* 200 OK: Request Succeeded. GET,HEAD,POST,PUT,TRACE can get 200
+* Redirection messages (300–399)
+* Client error responses (400–499)
+**  400 Bad Request: The server cannot process request due to bad packet from client(e.g., malformed request syntax, invalid request message framing).
+** 401 Unauthorized (For HTTP it means Unauthenticated): Client must authenticate itself to get the requested response. 
+** 403 Forbidden: Client is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized, the client's identity is known to the server.
+* Server error responses (500–599)
