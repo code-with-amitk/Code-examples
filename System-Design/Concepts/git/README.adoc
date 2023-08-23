@@ -35,18 +35,18 @@ git status
 ==== Clone
 Making a local copy of code on your machine 
 
-=== Fork
+==== Fork
 Own duplicated copy of someone else's code. user1 created a repo. User2 wants a local copy of repo. user2 forks the repo. How to Fork?    
 * Login github > Search for repos > Click Fork.
 * Now under Your Profile you can see the forked repo. git clone it. Changes would not be reflected onto master branch
 
-=== Head
+==== Head
 * HEΑD is a pointer, which alwαys points to the latest commit in the brαnch. Whenever we make a commit head point to latest commit. Head is stored in 
 ```c
 $ cαt .git/refs/heαds/mαster
 570837e7d58fα4bccd86cb575d884502188b0c49
 ```
-==== Detached Head
+===== Detached Head
 * We checkedout a commit and its detached, ie we can do the changes, play around will not affect on git, since its not attached to any branch.
 * We can think detached head as Branch without name.
 * *How to Detach Head?* A situation where we have checked out a commit-id(instead of a branch), THIS means we want commit not branch.
@@ -92,7 +92,13 @@ $ git clone https://github.com/amitkumar50/test-repo    //origin=https://github.
 * master is name of branch on remote repository.
 
 ==== remote 
+This is branch hosted on server, seperate from local copy, but local copy is cloned from remote.
 
+===== remote ref (Remote reference)
+Pointer to specific commit within remote repository. This may point to HEAD or other point
+
+===== remote ref HEAD
+Pointer to HEAD of remote repository.
 
 === Commands
 ==== Working on Review Comments
