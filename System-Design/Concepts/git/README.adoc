@@ -310,6 +310,9 @@ $ git log --oneline                                //Now 2 seperate commits
 ```
 
 === Issues
+==== couldn't find remote ref HEAD
+
+
 ==== Merge Conflict
 - _1._ Use rebase button on gerrit UI to resolve merge conflict.
 - _2._ If you want to make changes in PR.
