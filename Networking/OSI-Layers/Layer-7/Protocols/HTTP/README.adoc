@@ -61,7 +61,7 @@
 |Method|Description|Example
 
 |GET| Reading data(page,object etc) from web server|GET `www.test.com/index.html` HTTP/1.1
-|HEAD| Read a Web page’s header(not page). For checking validity of URL
+|HEAD| Read a Web page’s header(not page). For checking validity of URL|
 |POST| Send data to server, Server will create entry. Eg: Form submittion.|POST `www.test.com/form.html` HTTP/1.1 
 |PUT| Update existing data on web server.
 |DELETE| Remove data from web server
