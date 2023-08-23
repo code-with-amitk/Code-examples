@@ -8,20 +8,18 @@
 ==== Functional
 * Video: Upload, Watch, search, Comment, like, dislike, share
 * Channel: Can create, Statistics(Views, comments etc)
-* Subscribe
-* Support ads
-* Live Stream
+* Subscribe, Support ads, Live Stream
 
 ==== Non-Functional
-* Video upload, watching should be fast
+* Fast: Video upload, watching should be fast
 * highly available
 * scalable
 
 === BOE
 *Ask Interviewer:* 
 
-* What are DAU(Daily active users)? = 5 Million
-* What is average Video Size? = 300 MB
+** What are DAU(Daily active users)? = 5 Million
+** What is average Video Size? = 300 MB
 
 ==== Storage Estimates
 * Assuming 10% of DAU upload 1 video/day.
@@ -35,9 +33,14 @@
 ==== Bandwidth Estimates
 
 
-=== API_Design
-==== Upload API
+=== API_Design (Upload, Search, Play)
+* link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc#methods[HTTP Methods]
+* *Upload API*
 ```c
+URL: http://youtube.com:8080/v1/upload
+POST /video/
+Request: { "title": "video", "description": "video1", "file_url": "https://example.com/video.mp4" }
+
 uploadVideo(api_dev_key, video_title, vide_description, tags[], category_id, default_language, 
                         recording_details, video_contents)
 Parameters:                        
@@ -54,8 +57,11 @@ Returns: (string)
 - A successful upload will return HTTP 202 (request accepted)
 - once the video encoding is completed the user is notified by email with a link to access the video. 
 ```
-==== Search API
+* *Search Video*
 ```c
+URL: http://youtube.com:8080/v1/upload
+GET /videos/{video_id}
+
 searchVideo(api_dev_key, search_query, user_location, maximum_videos_to_return, page_token)
 Parameters:
 api_dev_key (string): The API developer key of a registered account of our service.
@@ -68,8 +74,11 @@ Returns(JSON)
 A JSON containing information about the list of video resources matching the search query. 
 Each video resource will have a video title, a thumbnail, a video creation date, and a view count.
 ```
-==== Stream video
+* *Play video:* Done using embedded player on phone or browser. Rather application calls player APIs and player calls youtube
 ```c
+URL: http://youtube.com:8080/v1/upload
+GET /videos/{video_id}
+
 streamVideo(api_dev_key, video_id, offset, codec, resolution)
 api_dev_key (string): The API developer key of a registered account of our service.
 video_id (string): A string to identify the video.
@@ -81,7 +90,7 @@ A media stream (a video chunk) from the given offset.
 ```
 
 === HLD
-==== Uploading_Video
+==== Uploading Video
 - Thumbnails
   - Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
 - Metadata of video:
