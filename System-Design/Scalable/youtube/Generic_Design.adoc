@@ -91,15 +91,18 @@ A media stream (a video chunk) from the given offset.
 
 === HLD
 ==== Uploading Video
-- Thumbnails
-  - Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
-- Metadata of video:
+* *Thumbnails:* Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
+* Metadata of video:
+```c
   - title
   - file path in the system
   - uploading user
   - total views
   - likes, dislikes
-![ImgUrl](https://i.ibb.co/TqQghZ2/youtube.png)  
+```
+
+image::link=/System-Design/Scalable/youtube/images/youtube.png[video Processing]
+
 ```c
 User                App-server        
     --- video-n---->
