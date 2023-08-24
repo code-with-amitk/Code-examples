@@ -91,11 +91,13 @@ Certificate:
 ```
 
 ==== SAN(Subject Alt Name)/Multi-domain SSL Certificate 
-* SAN certificate has ability to cover multiple hostnames. In place of hostnames other values can also be given example Email Address, IP Address, URIs, DNS Name, Directory Names, Other names.
-* This means this certificate is issued by CA for multiple hostnames, IP addresses. These hosts, IP Addresses can use this certificate for authenticating themselves where ever required.
+* SAN certificate secures multiple hostnames, IP Addresses, Email addresses, URIs, other names with 1 certificate.
+* This means this certificate is issued by 1 CA for multiple hostnames, IP addresses. These hosts, IP Addresses can use this certificate for authenticating themselves where ever required.
 * Examples:
 ```c
     X509v3 extensions:
         X509v3 Subject Alternative Name:
             DNS: *.example.com, DNS: *.test.org, www.rempo.edu
+            IP Address=127.0.0.1
+            DNS Name=abc.test.com
 ```
