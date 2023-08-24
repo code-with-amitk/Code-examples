@@ -1,0 +1,140 @@
+:toc:
+:toclevels: 6
+
+=== link:https://leetcode.com/problems/text-justification/[68. Text Justification]
+Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+
+You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+
+Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+For the last line of text, it should be left-justified, and no extra space is inserted between words.
+
+Note:
+A word is defined as a character sequence consisting of non-space characters only.
+Each word's length is guaranteed to be greater than 0 and not exceed maxWidth.
+The input array words contains at least one word.
+```c 
+Example 1:
+Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
+Output:
+[
+   "This    is    an",
+   "example  of text",
+   "justification.  "
+]
+```
+
+=== Approach-1
+==== Logic
+* Find number of words, spaces that can fit in every line
+* if (number of words == 1) || (last word)  //Left Justify
+```
+  Fit in word in left and place all spaces after it
+```
+* else  //Middle justify
+```c
+  - Find number of spaces to be placed between words and at end
+    /*
+        This is an      //words = 3
+        spaces = 8
+        spacesBetweenWords = 8/2 = 4
+        extraSpaces = 8%2 = 0
+
+        This____is____an
+    */
+```
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> result;
+
+        // i keeps track of current word begin processed
+        int i = 0;
+        
+        // Iterate until all words are not processed
+        while (i < words.size()) {
+
+            // present_line_len is length of present line
+            int present_line_len = words[i].size();
+            int j = i + 1;
+            
+            /* 
+            //1. present_word_length <= maxWidth
+                j < words.size() <= maxWidth
+
+            //2. present_line_len + Next_word_length + space <= maxwidth
+            present_line_len + words[j].size() + (j - i)
+                    present_line_len             //present line length
+                    words[j].size()    //next word length
+                    (j-i)               //Spaces
+
+                if condition-1 && condition-2 are true
+                    //Add new word to present_line
+            */ 
+            while (j < words.size() && present_line_len + words[j].size() + (j - i) <= maxWidth) {
+                present_line_len += words[j].size();
+                j++;
+            }
+            
+            /*
+                Words, Spaces calculated
+                "This is an"
+                words = 3
+                spaces = 8
+            */
+            int numWords = j - i;
+            int numSpaces = maxWidth - present_line_len;
+            
+            if (numWords == 1 || j >= words.size()) {
+                /*
+                if word is big & cannot accomodate any other word in line
+                OR
+                This is last word (j >= words.size())
+                Left Justify. Pack the word in left and place all spaces.
+                */
+                string line = words[i];
+                for (int k = i + 1; k < j; k++) {
+                    line += " " + words[k];
+                }
+                line += string(maxWidth - line.size(), ' ');
+                result.push_back(line);
+            } else {
+                // Middle-justification for multiple words
+                /*
+                    This is an      //words = 3
+                    spaces = 8
+                    spacesBetweenWords = 8/2 = 4
+                    extraSpaces = 8%2 = 0
+
+                    This____is____an
+                */
+                int spacesBetweenWords = numSpaces / (numWords - 1);
+                int extraSpacesToBePutAtEnd = numSpaces % (numWords - 1);
+                
+                // 1st Word on this line
+                string line = words[i];     //line = "This"
+
+                // Iterate till last word to be inserted in this line
+                for (int k = i + 1; k < j; k++) {
+                    int spaces;
+                    
+                    if (k-i > extraSpacesToBePutAtEnd)
+                        spaces = spacesBetweenWords;
+                    else
+                        spaces = spacesBetweenWords + 1;
+
+                    // Put spaces between words and add next word
+                    line += string(spaces, ' ') + words[k];
+                }
+                result.push_back(line);
+            }   
+            i = j;
+        }   
+        return result;
+    }
+};
+```
