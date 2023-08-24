@@ -60,3 +60,42 @@ Certificate:
          f1:2b:33:0a:ea:03:f9:01:b6:96:4c:c0:59:86:8d:e5:37:c0:
          4d:7f:b9:3f:50:1e:dd:51:fc..
 ```
+
+=== x509v3 Extensions
+* These are Optional fields in certificates for providing additional Information is related to use/handling of certificates. Each extension includes [KEY = OID(Object Identifier)] and [Value= ANS.1 structure]
+* Types of Extensions? Critical or non-critical.
+** a. Critical Extension:  if certificate has critical-extension and recipient cannot recognize or cannot process information present in critical-extension, it rejects cert.
+** b. Non-Critical Extension:  if certificate has non-critical-extension, recipient can ignore(if it cannot recognize) but must be processed if recognized.
+
+==== AIA(Authority Information Access)/OCSP Distribution Point    //non-critical
+* Contains 2 types of information/accessMethod OID:
+** 1. CA-Issuer-Access-Method(id-ad-caIssuers):    Information about how to get the issuer of this certificate.
+** 2. OCSP-access-method(id-ad-ocsp):    Address of the OCSP responder from where revocation of this certificate can be checked
+```c
+    X509v3 extensions:
+            Authority Information Access: 
+                CA Issuers - URI:http://ocsp.grilledcheese.us/cheddarcheeseroot.crt
+                OCSP - URI:http://ocsp.grilledcheese.us/
+```
+
+==== CRL Distribution point(cRLDistributionPoints)    //non-critical
+* Provides a mechanism for the certificate validator to retrieve a CRL(Certificate Revocation List) which can be used to verify whether the given certificate is revoked. A cRLDistributionPoints extension can contain one or more DistributionPoints where the CRL can be retrieved from. Each DistributionPoint consists of three fields,each of which is optional:
+** a. distributionPoint : it contains either a SEQUENCE of general names or a single value. One distributionPoint can contain one or more general names which show where the CRL is stored
+** b. reasons
+** c. CRLIssuer: If the certificate issuer is not the CRL issuer, then the cRLIssuer field MUST be present and contain the Name of the CRL issuer.  If the certificate issuer is also the CRL issuer, then conforming CAs MUST omit the cRLIssuer field and MUST include the distributionPoint field.
+```c
+    X509v3 extensions:
+            X509v3 CRL Distribution Points: 
+                Full Name:
+                  URI:http://crl.grilledcheese.us/whoremovedmycheese.crl
+```
+
+==== SAN(Subject Alt Name)/Multi-domain SSL Certificate 
+* SAN certificate has ability to cover multiple hostnames. In place of hostnames other values can also be given example Email Address, IP Address, URIs, DNS Name, Directory Names, Other names.
+* This means this certificate is issued by CA for multiple hostnames, IP addresses. These hosts, IP Addresses can use this certificate for authenticating themselves where ever required.
+* Examples:
+```c
+    X509v3 extensions:
+        X509v3 Subject Alternative Name:
+            DNS: *.example.com, DNS: *.test.org, www.rempo.edu
+```
