@@ -1,0 +1,86 @@
+:toc:
+:toclevels: 6
+
+=== link:https://leetcode.com/problems/interleaving-string/description/[97. Interleaving String]
+Given strings s1, s2, and s3, find whether s3 is formed by an interleaving of s1 and s2.
+```c
+Example-1
+Input: s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbcac"
+Output: true
+Explanation: One way to obtain s3 is:
+Split s1 into s1 = "aa" + "bc" + "c", and s2 into s2 = "dbbc" + "a".
+Interleaving the two splits, we get "aa" + "dbbc" + "bc" + "a" + "c" = "aadbbcbcac".
+Since s3 can be obtained by interleaving s1 and s2, we return true.
+
+Example 2:
+Input: s1 = "aabcc", s2 = "dbbca", s3 = "aadbbbaccc"
+Output: false
+Explanation: Notice how it is impossible to interleave s2 with any other string to obtain s3.
+```
+
+=== Approach-1. Backtracking. TLE
+==== Logic
+==== Code
+===== CPP
+```cpp
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        return backtrack(s1, 0, s2, 0, s3, 0);
+    }
+
+    bool backtrack(string& s1, int p1, string& s2, int p2, string& s3, int p3) {
+        if (p3 == s3.size()) {
+            return p1 == s1.size() && p2 == s2.size();
+        }
+
+        bool match1 = p1 < s1.size() && s1[p1] == s3[p3];
+        bool match2 = p2 < s2.size() && s2[p2] == s3[p3];
+
+        if (match1 && match2) {
+            return backtrack(s1, p1 + 1, s2, p2, s3, p3 + 1) || 
+                   backtrack(s1, p1, s2, p2 + 1, s3, p3 + 1);
+        } else if (match1) {
+            return backtrack(s1, p1 + 1, s2, p2, s3, p3 + 1);
+        } else if (match2) {
+            return backtrack(s1, p1, s2, p2 + 1, s3, p3 + 1);
+        } else {
+            return false;
+        }
+    }
+};
+```
+
+=== Approach-2. Dynamic Programming
+==== Logic
+==== Code
+===== CPP
+```cpp
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int len1 = s1.size(), len2 = s2.size(), len3 = s3.size();
+        
+        if (len1 + len2 != len3)
+            return false;
+        
+        vector<vector<bool>> dp(len1 + 1, vector<bool>(len2 + 1, false));
+        
+        // Base case: empty strings match with an empty string
+        dp[0][0] = true;
+        
+        for (int i = 0; i <= len1; ++i) {
+            for (int j = 0; j <= len2; ++j) {
+                int p = i + j - 1;
+                
+                if (i > 0)
+                    dp[i][j] = dp[i][j] || (dp[i - 1][j] && s1[i - 1] == s3[p]);
+                
+                if (j > 0)
+                    dp[i][j] = dp[i][j] || (dp[i][j - 1] && s2[j - 1] == s3[p]);
+            }
+        }
+        return dp[len1][len2];
+    }
+};
+```
