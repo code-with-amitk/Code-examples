@@ -20,33 +20,62 @@ Explanation: Notice how it is impossible to interleave s2 with any other string 
 
 === Approach-1. Backtracking. TLE
 ==== Logic
+* 1. Take 3 pointers, pointing to 2 strings.
+```c
+s1 = aax, s2 = aby, s3 = aaxaby
+     |         |         |
+     p1        p2        p3
+```
+* 2. Compare p1,p3. if they match increment p1,p3.
+** if p1,p3 does not match. Compare p2,p3 if they match increment p2,p3
+** if none match return false.
+
 ==== Code
 ===== CPP
 ```cpp
 class Solution {
+    string s1,s2,s3;
 public:
-    bool isInterleave(string s1, string s2, string s3) {
-        return backtrack(s1, 0, s2, 0, s3, 0);
+    bool isInterleave(string s11, string s22, string s33) {
+        s1=s11, s2=s22, s3=s33;
+        /* p1=pointer to s1, p2=pointer to s2, p3=pointer to s3
+        Pointer to current elements of s1,s2,s3
+        */
+        int p1=0,p2=0,p3=0;
+        return backtrack(p1,p2,p3);
     }
 
-    bool backtrack(string& s1, int p1, string& s2, int p2, string& s3, int p3) {
-        if (p3 == s3.size()) {
+    bool backtrack(int p1, int p2, int p3) {
+        // Base Case
+        // if reached end of s3
+            //s1,s2 also reached end return true
+            //s1,s2 not reached end, return false
+        if (p3 == s3.size()) 
             return p1 == s1.size() && p2 == s2.size();
-        }
 
-        bool match1 = p1 < s1.size() && s1[p1] == s3[p3];
-        bool match2 = p2 < s2.size() && s2[p2] == s3[p3];
 
-        if (match1 && match2) {
-            return backtrack(s1, p1 + 1, s2, p2, s3, p3 + 1) || 
-                   backtrack(s1, p1, s2, p2 + 1, s3, p3 + 1);
-        } else if (match1) {
-            return backtrack(s1, p1 + 1, s2, p2, s3, p3 + 1);
-        } else if (match2) {
-            return backtrack(s1, p1, s2, p2 + 1, s3, p3 + 1);
-        } else {
-            return false;
+        for (int i=p3;i<s3.size();++i) {
+            bool match1 = p1 < s1.size() && s1[p1] == s3[i];//character found in s1
+            bool match2 = p2 < s2.size() && s2[p2] == s3[i];//character found in s2
+
+            if (match1 && match2)
+                /* Exists same character in s1,s2 and s3
+                    - Check next char of s1,s3
+                    - Check next char of s2,s3
+                */
+                return backtrack(p1 + 1, p2, i + 1) || 
+                    backtrack(p1, p2 + 1, i + 1);
+            else if (match1)
+                // char_of_s1 matches char_of_s3. Increment only those
+                return backtrack(p1 + 1,  p2, i + 1);
+            else if (match2)
+                // char_of_s2 matches char_of_s3. Increment only those
+                return backtrack(p1, p2 + 1, i + 1);
+            else
+                // None of character s1,s2 matches s3
+                return false;
         }
+        return false;
     }
 };
 ```
