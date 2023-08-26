@@ -1,0 +1,40 @@
+:toc:
+:toclevels: 6
+
+=== System Design Architectural Patterns
+|===
+| Pattern Name | Detials | Type | Advantages
+
+|1.Command and Query Responsibility Segregation (CQRS)
+a|
+* User -command-> Thread-1(Command center) -write-> DB
+* DB -read-> Thread-2(Read service)
+| Synchronous Event Driven 
+| less complex
+
+|2. Two-Phase Commit (2PC) 
+a|
+* (Prepare Phase). Coordinator tells service to prepare data
+* (Commit Phase). Coordinator tells service to send data
+** Ech service is unlocked 1 byt 1 to send data
+| Synchronous Event Driven
+| Consistent, Resistant to error
+
+|3. Saga (eg: AWS)
+a|
+* services communicate using Bus/Queue
+| Asynchronous Event Driven
+| Longer transactions can be handled
+
+|4. Replicated Load-Balanced Services (RLBS)
+a|
+* Duplicate services sit behind load balancer
+| 
+| Consistent performance, Quick recoverly
+
+|5. Sharded Services
+a|
+* Multiple services, each completing specific task
+| Asynchronous
+| Simple to debug
+|===
