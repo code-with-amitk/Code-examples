@@ -3,38 +3,46 @@
 
 === System Design Architectural Patterns
 |===
-| Pattern Name | Detials | Type | Advantages
+| Pattern Name | Detials | Diag
 
-|1.Command and Query Responsibility Segregation (CQRS)
+|1.Command and Query Responsibility Segregation (CQRS) (Synchronous Event Driven)
 a|
 * User -command-> Thread-1(Command center) -write-> DB
 * DB -read-> Thread-2(Read service)
-| Synchronous Event Driven 
-| less complex
+* *Adv:* less complex
+| 
 
-|2. Two-Phase Commit (2PC) 
+|2. Two-Phase Commit (2PC) (Synchronous Event Driven)
 a|
 * (Prepare Phase). Coordinator tells service to prepare data
 * (Commit Phase). Coordinator tells service to send data
+* *Adv:* Consistent, Resistant to error
 ** Ech service is unlocked 1 byt 1 to send data
-| Synchronous Event Driven
-| Consistent, Resistant to error
+| 
 
-|3. Saga (eg: AWS)
+|3. Saga (eg: AWS) (Asynchronous Event Driven)
 a|
 * services communicate using Bus/Queue
-| Asynchronous Event Driven
-| Longer transactions can be handled
+* *Adv:* Longer transactions can be handled
+| 
 
 |4. Replicated Load-Balanced Services (RLBS)
 a|
 * Duplicate services sit behind load balancer
+* *Adv:* Consistent performance, Quick recoverly
 | 
-| Consistent performance, Quick recoverly
 
-|5. Sharded Services
+|5. Sharded Services (Asynchronous)
 a|
 * Multiple services, each completing specific task
-| Asynchronous
-| Simple to debug
+* *Adv:* Simple to debug
+| 
+
+|6. Side car
+a|
+* Extend primary container functionality by attaching an auxiliary container(called sidecar)
+* Provides support functionalities, such as logging, monitoring, service discovery, security etc
+* *Adv:* Modularity and Extensibility
+| image:/System-Design/System_Design_Patterns/images/sidecar_container.png?raw=true[video Processing]
+
 |===
