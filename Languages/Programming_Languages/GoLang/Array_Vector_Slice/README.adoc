@@ -1,11 +1,8 @@
-- [Array](#ar)
-- [Slice](#sl)
-- Vector
-  - [2D vector](#2dv)
+:toc:
+:toclevels: 6
 
-<a name=ar></a>
-### Array
-- **resize of array:** Not possible since, size is part of declaration
+=== Array
+* *resize of array:* Not possible since, size is part of declaration
 ```go
 func main() {
   arr := [6]int{1,2,3,4,5,6}    //[n values] type {}
@@ -13,16 +10,15 @@ func main() {
 }
 ```
 
-<a name=sli></a>
-### Slice = C++(vector`<int>`) = [Rust(vec`<i32>`)](Languages/Programming_Languages/Rust/Collections)
-- This is just a Reference to underlying array
-- A slice represents a view of contiguous sequence of elements in memory.
-- Slices are used to borrow a portion of an array or a whole array, allowing to work with subsets of data without needing to copy or own the data
-- **Denoted by `[]`**
-- **Slice contains 3 components**
-  - _1. Pointer to underlying array:_ A slice holds a reference to the underlying array that stores the elements.
-  - _2. Length:_ number of elements in slice.
-  - _3. Capacity:_ maximum number of elements it can hold 
+=== Slice = C++(vector`<int>`) = link:Languages/Programming_Languages/Rust/Collections[Rust(vec`<i32>`)]
+* This is just a Reference to underlying array
+* A slice represents a view of contiguous sequence of elements in memory.
+* Slices are used to borrow a portion of an array or a whole array, allowing to work with subsets of data without needing to copy or own the data
+* *Denoted by `[]`*
+* *Slice contains 3 components*
+** _1. Pointer to underlying array:_ A slice holds a reference to the underlying array that stores the elements.
+** _2. Length:_ number of elements in slice.
+** _3. Capacity:_ maximum number of elements it can hold 
 ```go
 package main
 
@@ -67,9 +63,8 @@ func main() {
 }
 ```
 
-### Vector
-<a name=2dv></a>
-#### 2D Vector = `[][]` = slice of slices
+=== Vector
+==== 2D Vector = `[][]` = slice of slices
 ```go
 package main
 func main() { 
