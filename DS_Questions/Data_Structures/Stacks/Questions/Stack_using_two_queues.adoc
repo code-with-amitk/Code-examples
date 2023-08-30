@@ -23,42 +23,17 @@ Output
 
 === Approach-1. Using 1 queue
 ==== Logic
-* 1. Take 2 queues q1, q2. {1,2,3}
-* 2. push(). Push all elements in q1
+* 1. push(). Take 1 queue. Push all elements to same
+** if size > 1
+*** Remove elements from front and push at back of queue
 ```c
-q1 {1,2,3}
-q2 {}
-```
-* 3. top(). 
-** 3a. Pop all elements from q1 except last and push in q2.
-** 3b. return last element from q1
-** 3c. Push last element to q2, empty q1 and again 
-** 3d. Insert all elements from q2 to q1
-```c
-q1 {3}
-q2 {1,2}        //3a
-return top = 3    //3b
+q {1}        //Push 1
+q {1 2}      //Push 2 
+    {2 1}        //Remove 1 and push back
 
-q1 {}            //3c
-q2 {1,2,3}      
-
-q1 {1,2,3}      //3d. Insert all elements from q2 to q1
-q2 {}
-```
-* 4 pop()
-** 4a. Pop all elements from q1 except last and push in q2.
-** 4b. return last element from q1 and pop
-** 4c. insert all elements from q2 to q1
-```c
-q1 {3}
-q2 {1,2}                //4a
-
-return top = 3 & pop()   //4b
-q1 {}
-q2 {1,2}
-
-q1 {1,2}                //4c. Insert all elements from q2 to q1
-q2 {}
+q {2 1 3}        //Push 3
+    {1 3 2}        //Remove 2, push back
+    {3 2 1}        //Remove 1, push back
 ```
 
 ==== Complexity
@@ -66,59 +41,50 @@ q2 {}
 * O(1)
 
 ===== Space: O(n)
-* 2 queues of size n
+* queue size=n
 
 ==== Code
 ===== CPP
 ```cpp
 class MyStack {
-    queue<int> q1, q2;
-
-    //Insert all elements from q2 to q1
-    void PushFromQ2toQ1() {
-        while (!q2.empty()) {
-            q1.push(q2.front());
-            q2.pop();
-        }
-    }
-
-    //Pop all elements from q1 except last and push in q2. This last element is top()
-    int getQ1Last() {
-        while (q1.size() > 1) {
-            q2.push(q1.front());
-            q1.pop();
-        }
-        return q1.front();
-    }
+    queue<int> q;
 public:
-    MyStack() {}
-
-    //Push all elements in q1
+    MyStack() {      
+    }
+    
     void push(int x) {
-        q1.push(x);
+		q.push(x);        // Push all elements to queue
+        // Remove elements from front and push at back of queue
+		for(int i=0;i<q.size()-1;++i){
+			q.push(q.front());
+			q.pop();
+		}
     }
-
     int pop() {
-        int ele = getQ1Last();      //Pop all elements from q1 except last and push in q2. This last element is top()
-        q1.pop();                  //Remove last element from q1
-        PushFromQ2toQ1();          //Insert all elements from q2 to q1
-        return ele;
-    }
-
-    int top() {
-        int ele = getQ1Last();    //Pop all elements from q1 except last and push in q2. This last element is top()
-        q2.push(ele);            //Push last element to q2, empty q1 and again 
-        q1.pop();                //empty q1
-        PushFromQ2toQ1();        //Insert all elements from q2 to q1
+        int ele = q.front();
+        q.pop();
         return ele;
     }
     
+    int top() {
+        return q.front();
+    }
+    
     bool empty() {
-        if (q1.empty())
+        if (q.empty())
             return true;
         return false;
     }
 };
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
 ```
 ===== Python
 ```py
