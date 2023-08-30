@@ -124,6 +124,7 @@ class MyStack:
 # param_3 = obj.top()
 # param_4 = obj.empty()
 ```
+
 ===== Rust
 ```rs
 use std::collections::VecDeque;
