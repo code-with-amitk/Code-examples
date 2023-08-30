@@ -21,7 +21,7 @@ Output
 [null, null, null, 2, 2, false]
 ```
 
-=== Approach-1
+=== Approach-1. Using 1 queue
 ==== Logic
 * 1. Take 2 queues q1, q2. {1,2,3}
 * 2. push(). Push all elements in q1
@@ -119,4 +119,42 @@ public:
         return false;
     }
 };
+```
+===== Python
+```py
+import queue
+class MyStack:
+
+    def __init__(self):
+        self.q = queue.Queue()
+
+    def push(self, x: int) -> None:
+        self.q.put(x)
+        for _ in range(0, self.q.qsize()-1):
+            self.q.put(self.q.get())
+
+    def pop(self) -> int:
+        return self.q.get()     # get() = top+pop
+
+    def top(self) -> int:
+        top_element = self.q.get()  # get=top + pop
+        self.q.put(top_element)     # push elment again, Now this comes at end
+
+        # Move top_element to front
+        for _ in range(0, self.q.qsize() - 1):
+            self.q.put(self.q.get())
+        return top_element
+
+    def empty(self) -> bool:
+        if self.q.empty() == True:
+            return True
+        return False
+
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
 ```
