@@ -1,0 +1,146 @@
+:toc:
+:toclevels: 6
+
+  
+== Twitter?
+Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc. This is read heavy system.
+
+=== 1. Requirements
+==== Functional
+* Register on system
+* post tweet(text, photos, video)
+* view timeline: User can view his own
+* search tweet: user can search any tweet
+* Add himself as follower
+
+==== Non-Functional 
+* Scalable
+* Reliable
+
+==== Extended
+* Retweet, reply
+
+=== 2. API Design (API for every requirement)
+[[register]]
+register (user_created_userid, system_generated_user_uuid(user_id), name, email, current_timestamp, location)
+```
+POST https://lb_fqdn:port/v1/register?user_id=12312asa1&name=amit&photo_url=https://photo.com/photo1.png&current_time_stamp=
+```
+
+[[posttweet]]
+posttweet (user_id, tweet_content(txt,video,photo), content_url, current_timestamp)
+```
+POST https://lb_fqdn:port/v1/posttweet?user_id=12312asa1&tweet_content(txt,video,photo)=...&content_url=...&current_timestamp=...
+```
+
+[[viewtimeline]]
+viewtimeline (user_id, current_time)
+```
+GET  https://lb_fqdn:port/v1/viewtimeline?user_id=12312asa1&current_time=..
+```
+
+[[searchTweeet]]
+searchTweeet (user_id, tweet_id)
+```
+GET  https://lb_fqdn:port/v1/searchTweeet?user_id=12312asa1&tweet_id=..
+```
+
+[[addFollower]]
+addFollower (user_id, followee_user_id)
+```
+PUT  https://lb_fqdn:port/v1/addFollower?user_id=12312asa1&followee_user_id=..
+```
+
+=== 3. BOE Calculation
+* *Ask Interviewer: How many DAU?* DAU = 100M
+
+==== QPS(Queries/sec)
+```
+DAU = 100M. Active/sec = 100M/86400 = 1000/sec
+```
+
+==== Storage Estimates
+* *Ask Interviewer: How post tweet(writes)?* 10% of DAU = 10M
+```
+1 tweet size = 8k(header)+1M(payload) =~ 1MB
+1 day storage needed:   10M x 1M = 10TB/day. 
+5 years storage neede:  10TB x (365x5 ~ 2000) = 20PB
+```
+
+==== Bandwidth Estimate (bytes coming into system/sec)
+10TB/day. 10TB/86400 = 100MB/sec
+
+=== 4. DB Schema (What are entities in system)
+==== Tables
+* user (user_id, email, phone_no, profile_image_url)
+* tweet (user_id, tweet_id, tweet_txt_url, tweet_photo_url, tweet_video_url, no_of_likes, no_of_shares, category, timestamp)
+* follower_table (user_id_followee, user_id_follower)  //Each row contains information who follows whom
+
+=== 5. HLD
+* *1-6.* Same as link:/System-Design/Scalable/facebook/News%20Feed[Facebook news feed]
+
+==== <<register, Req-1 Register User>>
+* User Client will hit <<register, register REST endpoint>> and server store user data in link:/System-Design/Concepts/Databases/README.adoc#sqlrelationalstructured-vs-nosqlnonrelationalunstructured[postgres-sql](user table), photo in link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Object Store]
+```
+User ---data---> (REST)Application_server  -----------> (user_table) Postgres DB 
+                            |---profile_photo---> Object Store (amazon S3)
+     <--ACK----
+```
+
+==== <<posttweet, Req-2 Post Tweet>>
+* User Client will hit <<posttweet, posttweet REST endpoint>> with data
+
+- *8.* DB Updater will store Tweet on Object store and update UserTable on meta-data server SQL. DB Updater will push on userId, timestamp on ACK Sender service MOM.
+  - Meta-data is data about data. Eg: For each tweet meta-data can be Userid, timestamp, tweetid.
+- *9.* ACK sender service will get connection information from conn_db and send ACK to Application.
+
+<img src=Twitter.jpg width=1000 />
+
+<a name=fo></a>
+#### Fanout
+- _1._ UserId=x posts a tweet. Cache is maintained for all users following userid=x. See [DB tables](#db)
+- _2._ Push tweet to follower's timeline using web api.
+- **Celebrity case (40M followers or above)**
+  - if we try to write tweet to all followers, we need to write single tweet 40M times.
+  - Solution: Fetch celeb tweet seperately and merge with follower's timeline
+
+
+
+#### Storing Tweets(text,photos,videos)
+can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
+  - *a.* As mentioned in [Shard-DB Disadv point-a](/System-Design/Concepts/Databases/Database_Scaling).
+  - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
+    - We can create tweetID = timestamp+tweetid = xxx 0001
+- **[Replication](/System-Design/Concepts/Databases/Database_Scaling):** Master slave
+#### Cache 
+Application servers, before hitting database, can quickly check if the cache has desired tweets. Memcache
+  - [Where Cache can be placed?](/System-Design/Concepts/Cache) 
+  - [Cache Eviction LRU](/DS_Questions/Questions/Random/LRUCache)
+  - Cache Storage policy (80-20 rule): 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
+
+<a name=lb></a>
+## 6. Load Balancers
+  - [Where Load Balancer can be placed?](/System-Design/Concepts/Load_Balancer)
+1. Between client and application servers
+2. Between application servers & DB
+3. Between Aggregation servers & cache servers.
+
+<a name=to></a>
+## 7. [Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+- *1.* If high number of clients are connected system may respond slow.
+  - *Solution:*
+    - Provide MOM between Application server & clients which will queue client requests.
+    - Provide MOM between synchronization server & clients. MOM can queue millions of requests.
+- *2.* Sharding based on Hash of tweetid/userid can fail on overloaded environment.
+  - Solutions: 
+    - Consistent hashing
+    - Monitoring the load using [Artificial Intelligence](https://sites.google.com/site/amitinterviewpreparation/machine-learning) based models, New tweets per day/second, what is the daily peak, Timeline delivery stats, how many tweets per day/second our service is delivering, Average latency that is seen by the user to refresh timeline.
+  - *3.* Efficient timeline generation system
+    - *Solution:* fb news feed timeline generation
+  - *4.* Effective tweet ranking solution?
+  - *5.* Suggestion to user for Whom to follow? 
+    - This feature will improve user engagement. We can suggest friends of people someone follows, Famous people for the suggestions, people having more followers. As only a few suggestions can be made at any time, use Machine Learning (ML) to shuffle and re-prioritize
+  - *6.* How to show top news? 
+    - Use crawler to search (news, support, financial, entertainment, etc.) use [ML – supervised learning or Clustering](https://sites.google.com/site/amitinterviewpreparation/machine-learning).
+
+## 
