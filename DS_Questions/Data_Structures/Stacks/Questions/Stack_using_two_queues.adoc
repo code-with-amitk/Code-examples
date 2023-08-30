@@ -124,3 +124,44 @@ class MyStack:
 # param_3 = obj.top()
 # param_4 = obj.empty()
 ```
+===== Rust
+```rs
+use std::collections::VecDeque;
+
+pub struct MyStack {
+    dq: VecDeque<i32>,
+}
+
+impl MyStack {
+    fn new() -> Self {
+        Self {
+            dq: VecDeque::new(),
+        }
+    }
+
+    fn push(&mut self, x: i32) {
+        self.dq.push_back(x);
+        for _ in 0..self.dq.len() - 1 {
+            if let Some(front) = self.dq.pop_front() {
+                self.dq.push_back(front);
+            }
+        }
+    }
+
+    fn pop(&mut self) -> i32 {
+        if let Some(front) = self.dq.pop_front() {
+            front
+        } else {
+            0
+        }
+    }
+
+    fn top(&self) -> i32 {
+        *self.dq.front().unwrap_or(&0)
+    }
+
+    fn empty(&self) -> bool {
+        self.dq.is_empty()
+    }
+}
+```
