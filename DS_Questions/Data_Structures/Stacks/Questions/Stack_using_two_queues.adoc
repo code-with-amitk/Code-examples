@@ -170,7 +170,7 @@ impl MyStack {
 ===== Golang
 ```go
 type MyStack struct {
-    q []int
+    q []int		//Go does not have inbuilt queue ds. With slice(dynamic array) we can simulate queue
 }
 
 func Constructor() MyStack {
