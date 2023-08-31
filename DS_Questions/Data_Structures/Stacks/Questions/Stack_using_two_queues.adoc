@@ -166,3 +166,51 @@ impl MyStack {
     }
 }
 ```
+
+==== Golang
+```go
+type MyStack struct {
+    q []int
+}
+
+func Constructor() MyStack {
+    return MyStack{}
+}
+
+func (this *MyStack) Push(x int)  {
+    this.q = append(this.q, x)
+    // Append 1st element to last of queue=slice
+    // Remove 1st element from queue
+    // Do this before last element
+    for i:=0; i< len(this.q)-1; i++ {
+        this.q = append(this.q, this.q[0])
+        this.q = this.q[1:]    //Pop. Remove 1st element
+    }
+}
+
+func (this *MyStack) Pop() int {
+    var a = this.q[0]   //1st element
+    this.q = this.q[1:]    //Remove 1st element
+    return a
+}
+
+func (this *MyStack) Top() int {
+    return this.q[0]
+}
+
+func (this *MyStack) Empty() bool {
+    if len(this.q) == 0 {
+        return true
+    }
+    return false
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Push(x);
+ * param_2 := obj.Pop();
+ * param_3 := obj.Top();
+ * param_4 := obj.Empty();
+ */
+```
