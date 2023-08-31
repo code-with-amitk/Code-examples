@@ -5,22 +5,22 @@
 == Twitter?
 Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc. This is read heavy system.
 
-=== 1. Requirements
-==== Functional
+== 1. Requirements
+=== Functional
 * Register on system
 * post tweet(text, photos, video)
 * view timeline: User can view his own
 * search tweet: user can search any tweet
 * Add himself as follower
 
-==== Non-Functional 
+=== Non-Functional 
 * Scalable
 * Reliable
 
-==== Extended
+=== Extended
 * Retweet, reply
 
-=== 2. API Design (API for every requirement)
+== 2. API Design (API for every requirement)
 [[register]]
 register (user_created_userid, system_generated_user_uuid(user_id), name, email, current_timestamp, location)
 ```
@@ -52,15 +52,15 @@ PUT  https://lb_fqdn:port/v1/addFollower?user_id=12312asa1&followee_user_id=..
 ```
 
 [[boe]]
-=== 3. BOE Calculation
+== 3. BOE Calculation
 * *Ask Interviewer: How many DAU?* DAU = 100M
 
-==== QPS(Queries/sec)
+=== QPS(Queries/sec)
 ```
 DAU = 100M. Active/sec = 100M/86400 = 1000/sec
 ```
 
-==== Storage Estimates
+=== Storage Estimates
 * *Ask Interviewer: How post tweet(writes)?* 10% of DAU = 10M
 ```
 1 tweet size = 8k(header)+1M(payload) =~ 1MB
@@ -68,23 +68,23 @@ DAU = 100M. Active/sec = 100M/86400 = 1000/sec
 5 years storage neede:  10TB x (365x5 ~ 2000) = 20PB
 ```
 
-==== Bandwidth Estimate (bytes coming into system/sec)
+=== Bandwidth Estimate (bytes coming into system/sec)
 10TB/day. 10TB/86400 = 100MB/sec
 
 [[db]]
-=== 4. DB Schema (What are entities in system)
-==== Tables
+== 4. DB Schema (What are entities in system)
+=== Tables
 * user (user_id, email, phone_no, profile_image_url)
 * connection_table (user_id, connection_info, timestamp)
 * tweets (user_id, tweet_id, tweet_txt_url, tweet_photo_url, tweet_video_url, no_of_likes, no_of_shares, category, timestamp)
 * follower_table (user_id_followee, user_id_follower)  //Each row contains information who follows whom
 
-=== 5. HLD
+== 5. HLD
 * *1-6.* Same as link:/System-Design/Scalable/facebook/News%20Feed[Facebook news feed]
 
 image::Twitter.jpg?raw=true[Design]
 
-==== <<register, Req-1 Register User>>
+=== <<register, Req-1 Register User>>
 * User Client will hit <<register, register REST endpoint>> and server store user data in link:/System-Design/Concepts/Databases/README.adoc#sqlrelationalstructured-vs-nosqlnonrelationalunstructured[postgres-sql](user table, connection table), photo in link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Object Store]
 ```
 User ---data---> (REST)Application_server  -----------> (user_table) Postgres DB 
@@ -92,7 +92,7 @@ User ---data---> (REST)Application_server  -----------> (user_table) Postgres DB
      <--ACK----
 ```
 
-==== <<posttweet, Req-2 Post Tweet>>
+=== <<posttweet, Req-2 Post Tweet>>
 * User Client will hit <<posttweet, posttweet REST endpoint>> with data
 * Application server will add entry to <<db, tweets table>>. Store link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[photo, video on Object Store]
 * ACK sender by getting connection info from <<db, connection table>>.
@@ -102,7 +102,7 @@ User ---postweet(data)---> (REST)Application_server  -----------> (tweet_table) 
      <--ACK------------------------
 ```
 
-==== <<viewtimeline, Req-3 View Timeline>>
+=== <<viewtimeline, Req-3 View Timeline>>
 * User Client will hit <<viewtimeline, viewtimeline REST endpoint>>.
 * Application server will:
 ** 1. Find all followees of user using <<db, follower table>>
@@ -124,15 +124,14 @@ SELECT tweets.*, users.* FROM tweets
  JOIN follows ON follows.followee_id = users.id
  WHERE follows.follower_id = current_user
 ```
-====== Problems: Huge Data to Fanout + Timeline creation at runtime
+==== Problems: Huge Data to Fanout + Timeline creation at runtime
 * **Ask Interviewer?** How many people user should be following? Ans:1000
 * We know <<boe, DAU=100M. Req/sec=100M/86400=1000. On Peak=3000 timeline read req/sec>>. 
 ** Every user will see his timeline. Hence timeline requests = 3000/sec.
 * <<boe, 1 tweet size=~ 1MB>>. 1 followee does 1 tweet. 1MB x 1000 = 1GB/user request
 * Fanout data = 1GB x 3000 = 3TB/sec
 
-======= Solution: Calculate timeline before time
-
+===== Solution: Calculate timeline before time
 * Suppose usr=amit follows usr=mike.
 * Calculate timeline of usr=amit ahead of time and store in link:/System-Design/Concepts/Cache[Cache]
 * When usr=mike posts a tweet, add mike's tweet to pre-calculated timeline of usr=amit.
