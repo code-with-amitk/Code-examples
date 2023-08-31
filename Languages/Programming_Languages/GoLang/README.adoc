@@ -83,6 +83,24 @@ func main() {
 }
 ```
 
+=== Loops
+==== for
+```
+ for initialization; condition; increment/decrement {
+    // Code to be executed
+ }
+
+for i := 1; i < 10; i++ {}
+```
+
+==== while
+```
+for i < len(arr) {
+ ...
+ i++;
+}
+```
+
 === Package/Modules in Go = link:/Languages/Programming_Languages/c%2B%2B/namespaces[C++(namespace)] = link:/Languages/Programming_Languages/Rust/Crates_Packages_Modules[Rust(crates)]
 - The package statement is always the first line in a Go file. It specifies the package name that the file belongs to.
 - This is unique namespace for (variables, functions, types, etc.) defined within the package.
@@ -105,7 +123,39 @@ import (              //import multiple packages
 fmt.Println("Hello, world!")
 ```
 
+=== Pointers
+ a. & operator generates pointer to operand
+ b. * operator derefences pointer's value
+ c. Unlike C there is no pointer arithematic in go
+```
+package main
+import "fmt"
+func main() {
+        a := 1
+        ptr := &a                       //Points to a
+        fmt.Println(*ptr)               //1
+        //ptr = ptr + 1;                //c
+}
+# /usr/local/go/bin/go build pointer.go
+# ./pointer
+1
+```
+
 === Statements
+==== defer statement
+defer statement defers execution of a function until the surrounding function returns.
+```
+package main
+import "fmt"
+func main() {
+        defer fmt.Println("world")
+        fmt.Println("hello")
+}
+# /usr/local/go/bin/go build defer-statement.go
+# ./defer-statement
+hello
+world
+```
 ==== if statement
 a. Expression not surrounded by parentheses ( ) but the braces { } are required.
 b. if statement can start with Short statement to execute before condition.
@@ -116,7 +166,6 @@ import (
         "fmt"
         "math"
 )
-
 func main() {
         a := 1.1 
         if a < 4 {                              //1a
@@ -130,12 +179,37 @@ func main() {
                 fmt.Println(v)
         }
 }
-/*
 # /usr/local/go/bin/go build if-statement.go
 # ./if-statement
 Hi
 There
-*/
+```
+
+==== Switch
+ a. breaks statement is provided automatically in go
+ b. Unlike C,C++ swtich only runs the selected case, not all cases that follow
+ c. Switch cases, Need Not to be constants. values involved need not to be integers.
+```
+package main
+import (
+        "fmt"
+        "runtime"
+)
+func main() {
+        switch os := runtime.GOOS; os {
+        case "darwin":
+                fmt.Println("OS X")             //a. go provides break automatically
+        case "linux":                           //c. switch case need not to be constants
+                fmt.Println("Linux")
+        case "ubuntu":
+                fmt.Println("Ubuntu")
+        default:
+                fmt.Printf("%s.\n", os)
+        }
+}
+# /usr/local/go/bin/go build switch.go
+# ./switch
+Linux
 ```
 
 === Variables
