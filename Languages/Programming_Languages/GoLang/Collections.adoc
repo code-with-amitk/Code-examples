@@ -74,7 +74,7 @@ func main() {
 The standard library doesn't provide a heap implementation, but you can create your own heaps using slices 
 
 ===== Queue (implemented using slice)
-```
+```go
 package main
 import "fmt"
 type test struct {		//Declare a struct having slice which will act as queue
@@ -106,7 +106,7 @@ func (this *MyStack) Empty() bool {	//Size()
 ==== (struct = class)
 - Class is defined as struct type. Example: Person is defined of type struct.
 - The struct type can be considered similar to a class, as it allows you to define fields and associated methods.
-```
+```go
 package main
 import "fmt"
 
