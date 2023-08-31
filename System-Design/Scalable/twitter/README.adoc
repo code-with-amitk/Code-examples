@@ -70,17 +70,21 @@ DAU = 100M. Active/sec = 100M/86400 = 1000/sec
 ==== Bandwidth Estimate (bytes coming into system/sec)
 10TB/day. 10TB/86400 = 100MB/sec
 
+[[db]]
 === 4. DB Schema (What are entities in system)
 ==== Tables
 * user (user_id, email, phone_no, profile_image_url)
-* tweet (user_id, tweet_id, tweet_txt_url, tweet_photo_url, tweet_video_url, no_of_likes, no_of_shares, category, timestamp)
+* connection_table (user_id, connection_info, timestamp)
+* tweets (user_id, tweet_id, tweet_txt_url, tweet_photo_url, tweet_video_url, no_of_likes, no_of_shares, category, timestamp)
 * follower_table (user_id_followee, user_id_follower)  //Each row contains information who follows whom
 
 === 5. HLD
 * *1-6.* Same as link:/System-Design/Scalable/facebook/News%20Feed[Facebook news feed]
 
+image::Twitter.jpg?raw=true[Design]
+
 ==== <<register, Req-1 Register User>>
-* User Client will hit <<register, register REST endpoint>> and server store user data in link:/System-Design/Concepts/Databases/README.adoc#sqlrelationalstructured-vs-nosqlnonrelationalunstructured[postgres-sql](user table), photo in link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Object Store]
+* User Client will hit <<register, register REST endpoint>> and server store user data in link:/System-Design/Concepts/Databases/README.adoc#sqlrelationalstructured-vs-nosqlnonrelationalunstructured[postgres-sql](user table, connection table), photo in link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Object Store]
 ```
 User ---data---> (REST)Application_server  -----------> (user_table) Postgres DB 
                             |---profile_photo---> Object Store (amazon S3)
@@ -89,12 +93,8 @@ User ---data---> (REST)Application_server  -----------> (user_table) Postgres DB
 
 ==== <<posttweet, Req-2 Post Tweet>>
 * User Client will hit <<posttweet, posttweet REST endpoint>> with data
-
-- *8.* DB Updater will store Tweet on Object store and update UserTable on meta-data server SQL. DB Updater will push on userId, timestamp on ACK Sender service MOM.
-  - Meta-data is data about data. Eg: For each tweet meta-data can be Userid, timestamp, tweetid.
-- *9.* ACK sender service will get connection information from conn_db and send ACK to Application.
-
-<img src=Twitter.jpg width=1000 />
+* Application server will add entry to <<db, tweets table>>. Store link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[photo, video on Object Store]
+* ACK sender by getting connection info from <<db, connection table>>.
 
 <a name=fo></a>
 #### Fanout
