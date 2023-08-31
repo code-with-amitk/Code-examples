@@ -1,9 +1,10 @@
-**Class**
+:toc:
+:toclevels: 6
 
 
-### Class
-- Class is defined as struct type. Example: Person is defined of type struct.
-- The struct type can be considered similar to a class, as it allows you to define fields and associated methods.
+=== Class
+* Class is defined as struct type. Example: Person is defined of type struct.
+* The struct type can be considered similar to a class, as it allows you to define fields and associated methods.
 ```go
 package main
 
@@ -28,5 +29,4 @@ func main() {
 	// Call the SayHello method
 	person.SayHello()
 }
-
 ```
