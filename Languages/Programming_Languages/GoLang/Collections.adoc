@@ -77,8 +77,26 @@ The standard library doesn't provide a heap implementation, but you can create y
 ```
 package main
 import "fmt"
-type queue struct {		//Declare a struct named queue
-    items []interface{}
+type test struct {		//Declare a struct having slice which will act as queue
+    q []int
+}
+func Constructor() test {
+    return test{}
+}
+func (this *test) Push(x int)  {
+    this.q = append(this.q, x)		//Push() append x to queue
+}
+func (this *MyStack) Pop() {
+    this.q = this.q[1:]   		//Pop() Remove 1st element
+}
+func (this *MyStack) Top() int {
+    return this.q[0]			//Top()
+}
+func (this *MyStack) Empty() bool {	//Size()
+    if len(this.q) == 0 {
+        return true
+    }
+    return false
 }
 ```
 
