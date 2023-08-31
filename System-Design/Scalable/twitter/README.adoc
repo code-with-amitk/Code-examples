@@ -95,9 +95,35 @@ User ---data---> (REST)Application_server  -----------> (user_table) Postgres DB
 * User Client will hit <<posttweet, posttweet REST endpoint>> with data
 * Application server will add entry to <<db, tweets table>>. Store link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[photo, video on Object Store]
 * ACK sender by getting connection info from <<db, connection table>>.
+```c
+User ---postweet(data)---> (REST)Application_server  -----------> (tweet_table) Postgres DB 
+                                        |---profile_photo---> Object Store (amazon S3)
+     <--ACK------------------------
+```
 
-<a name=fo></a>
-#### Fanout
+==== <<viewtimeline, Req-3 View Timeline>>
+* User Client will hit <<viewtimeline, viewtimeline REST endpoint>>.
+* Application server will:
+** 1. Find all followees of user using <<db, follower table>>
+** 2. Will go to <<db, tweets_table>> and find all tweets of all followees
+** 3. Order them in sorted by time and return
+```c
+User ---viewtimeline---> (REST)Application_server                   Followee_table
+                                          --1. Find all followees of user-->
+                                          <-- <usr1, usr2..> --
+
+                                                                            Tweets_table
+                                          -- 2. Find all tweets of followees --> 
+                                          <-- <tweet1, tweet2..> --
+                            Sort tweets by time
+  <------ timeline--------------
+
+SELECT tweets.*, users.* FROM tweets
+ JOIN users ON tweets.sender_id = users.id
+ JOIN follows ON follows.followee_id = users.id
+ WHERE follows.follower_id = current_user
+```
+**Ask Interviewer?** How many people user should be following? Ans:
 - _1._ UserId=x posts a tweet. Cache is maintained for all users following userid=x. See [DB tables](#db)
 - _2._ Push tweet to follower's timeline using web api.
 - **Celebrity case (40M followers or above)**
