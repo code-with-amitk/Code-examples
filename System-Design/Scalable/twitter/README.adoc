@@ -1,5 +1,5 @@
 :toc:
-:toclevels: 6
+:toclevels: 7
 
   
 == Twitter?
@@ -51,6 +51,7 @@ addFollower (user_id, followee_user_id)
 PUT  https://lb_fqdn:port/v1/addFollower?user_id=12312asa1&followee_user_id=..
 ```
 
+[[boe]]
 === 3. BOE Calculation
 * *Ask Interviewer: How many DAU?* DAU = 100M
 
@@ -123,13 +124,17 @@ SELECT tweets.*, users.* FROM tweets
  JOIN follows ON follows.followee_id = users.id
  WHERE follows.follower_id = current_user
 ```
-**Ask Interviewer?** How many people user should be following? Ans:
-- _1._ UserId=x posts a tweet. Cache is maintained for all users following userid=x. See [DB tables](#db)
-- _2._ Push tweet to follower's timeline using web api.
-- **Celebrity case (40M followers or above)**
-  - if we try to write tweet to all followers, we need to write single tweet 40M times.
-  - Solution: Fetch celeb tweet seperately and merge with follower's timeline
+====== Problems: Huge Data to Fanout + Timeline creation at runtime
+* **Ask Interviewer?** How many people user should be following? Ans:1000
+* We know <<boe, DAU=100M. Req/sec=100M/86400=1000. On Peak=3000 timeline read req/sec>>. 
+** Every user will see his timeline. Hence timeline requests = 3000/sec.
+* <<boe, 1 tweet size=~ 1MB>>. 1 followee does 1 tweet. 1MB x 1000 = 1GB/user request
+* Fanout data = 1GB x 3000 = 3TB/sec
 
+======= Solution: Calculate timeline before time
+* Suppose usr=amit follows usr=mike.
+* Calculate timeline of usr=amit ahead of time and store in link:/System-Design/Concepts/Cache[Cache]
+* When usr=mike posts a tweet, add mike's tweet to pre-calculated timeline of usr=amit.
 
 
 #### Storing Tweets(text,photos,videos)
