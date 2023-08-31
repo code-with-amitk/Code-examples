@@ -132,6 +132,7 @@ SELECT tweets.*, users.* FROM tweets
 * Fanout data = 1GB x 3000 = 3TB/sec
 
 ======= Solution: Calculate timeline before time
+
 * Suppose usr=amit follows usr=mike.
 * Calculate timeline of usr=amit ahead of time and store in link:/System-Design/Concepts/Cache[Cache]
 * When usr=mike posts a tweet, add mike's tweet to pre-calculated timeline of usr=amit.
