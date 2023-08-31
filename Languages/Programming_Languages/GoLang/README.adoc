@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-=== link:Collections.adoc[Collections]
+=== link:Collections.adoc[Collections(Array, Slice, stack, queue, map, channel, heap]
 
 === link://https://tour.golang.org/basics/7[Functions]
 ```go
