@@ -36,7 +36,7 @@ func main() {
 
 // INITIALIZATION
   arr := []int {1,2,3,4,5,6}        //Length of the slice is determined by the number of elements provided
-  arr_slice := arr[1:4]             //Creates a new slice from index 1 to 3 (exclusive) from existant array
+  new_slice := arr[1:4]             //Creates a new slice from index 1 to 3 (exclusive) from existant array
   
 // SLICE MODIFICATION: Changing elements of a slice modifies the corresponding elements of its underlying array 
   slc[0] = 899
@@ -70,11 +70,20 @@ func main() {
 }
 ```
 
-===== Heaps
+===== Heaps (implemented using slice)
 The standard library doesn't provide a heap implementation, but you can create your own heaps using slices 
 
-===== Stack
-Stacks can be implemented using slices
+===== Queue (implemented using slice)
+```
+package main
+import "fmt"
+type queue struct {		//Declare a struct named queue
+    items []interface{}
+}
+```
+
+===== Stack (implemented using slice)
+
 
 ==== (struct = class)
 - Class is defined as struct type. Example: Person is defined of type struct.
@@ -82,10 +91,12 @@ Stacks can be implemented using slices
 ```
 package main
 import "fmt"
-// Define a struct type
-type Person struct {
+
+type student struct {		// Define a struct type
 	name string
 	age  int
+	marks []int		// slice = dynamic ints
+	misc []interface{}	// misc is a slice that can hold values of any type
 }
 
 // Define a method associated with the Person struct
