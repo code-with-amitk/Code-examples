@@ -30,13 +30,16 @@ Go doesn't have a built-in set data type, but you can simulate sets using maps.
 ```go
 package main
 func main() {
+
 // SLICE DECLARATION
-  var arr []int                       //var is used to declare a variable. T=int type of the elements that the slice can hold
-  slice := make([]int, 5)             //make([]T, length). Creates a slice with length 5 and capacity 5
+  var arr []int                       //Empty vector
+  slice := make([]int, 5)             //Slice size=5
 
 // INITIALIZATION
-  arr := []int {1,2,3,4,5,6}        //Length of the slice is determined by the number of elements provided
-  new_slice := arr[1:4]             //Creates a new slice from index 1 to 3 (exclusive) from existant array
+  arr := []int {1,2,3,4,5,6}        //Length=6. number of elements provided
+  for i:=0; i<5; i++ {
+    slice[i] = 0;
+  }
   
 // SLICE MODIFICATION: Changing elements of a slice modifies the corresponding elements of its underlying array 
   slc[0] = 899
@@ -68,6 +71,36 @@ func main() {
     slc3 = append(slc3,60)
     fmt.Println(slc3)
 }
+```
+
+====== 2D Vector
+```go
+  // Method-1: Declare a 2D vector
+  var test [][]int     
+  
+  // Method-2: Declare an empty 2D vector
+  test := make([][]int, rows)
+  // Initialize each row with specific length
+  for i := range vector {
+    test[i] = make([]int, cols)
+  }
+  
+  // Method-3: Declare an empty 2D vector
+  var test [][]int
+  // Initialize each row with specific length
+  for i := 0; i < rows; i++ {
+    test = append(test, make([]int, cols))
+  }
+
+
+  // Initialize the 2D vector with values
+  test = [][]int {
+    1,2,3
+    4,5,6
+  }
+  
+  // Accessing elements in the 2D vector
+  fmt.Println(vector[0][0]) // Output: 1
 ```
 
 ===== Heaps (implemented using slice)
@@ -134,37 +167,3 @@ func main() {
 
 ===== Linked Lists
 Not a built-in type, you can implement linked lists in Go using structs and pointers.
-
-==== Vector
-===== 2D Vector = `[][]` = slice of slices
-```go
-package main
-func main() { 
-  // Method-1: Declare a 2D vector
-  var test [][]int     
-  
-  // Method-2: Declare an empty 2D vector
-  test := make([][]int, rows)
-  // Initialize each row with specific length
-  for i := range vector {
-    test[i] = make([]int, cols)
-  }
-  
-  // Method-3: Declare an empty 2D vector
-  var test [][]int
-  // Initialize each row with specific length
-  for i := 0; i < rows; i++ {
-    test = append(test, make([]int, cols))
-  }
-
-
-  // Initialize the 2D vector with values
-  test = [][]int {
-    1,2,3
-    4,5,6
-  }
-  
-  // Accessing elements in the 2D vector
-  fmt.Println(vector[0][0]) // Output: 1
-}
-```
