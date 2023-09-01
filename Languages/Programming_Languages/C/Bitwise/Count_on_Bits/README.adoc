@@ -1,37 +1,17 @@
-**Count ON Bits / Number of On bits in number is also called its Hamming Weight**
-- Approach-1: Check every bit using left shift One. 32 Iterations
-  - [Logic](#l1)
-  - [Complexity](#c1)
-  - Code
-    - [C++](#cpp1)
-    - [Rust](#r1)
-- Approach-2: Bit Manipulation Trick
-  - [Logic](#l2)
-  - [Complexity](#c2)
-  - Code
-    - [C++](#cpp2)
-    - [Rust](#r2)
-- [Approach-3: `__builtin_popcount()`](#pc)
-- Approach-4: Lookup Table
-  - [Code 32 bit](#cpp32)
-  - [Code 64 bit](#cpp64)
+:toc:
+:toclevels: 6
 
+=== link:https://www.youtube.com/watch?v=qB-7AH1pRO4[Self Youtube Video]
 
-## [Self Youtube Video](https://www.youtube.com/watch?v=qB-7AH1pRO4)
+=== Approach-1: Check every bit using left shift 1
+==== Logic
+* Check every 32 bits of number. If the bit is 1, we add one to the number of 1-bits. All times 32 iterations.
+===== Complexity
+* *Time:* O(1)
+* *Space:* O(1)
 
-
-### Approach-1: Check every bit using left shift 1
-<a name=l1></a>
-#### Logic
-Check every 32 bits of number. If the bit is 1, we add one to the number of 1-bits. All times 32 iterations.
-<a name=c1></a>
-#### Complexity
-- **Time:** O(1)
-- **Space:** O(1)
-
-#### Code
-<a name=cpp1></a>
-**C++**
+==== Code
+===== CPP
 ```c
 ////32 bit number/////
     int CountOnes(uint32_t a){
@@ -57,8 +37,7 @@ Check every 32 bits of number. If the bit is 1, we add one to the number of 1-bi
         return ones;
     }
 ```
-<a name=r1></a>
-**Rust**
+===== Rust
 ```rs
 use std::mem;
 impl Solution {
@@ -78,10 +57,9 @@ impl Solution {
 }
 ```
 
-### Approach-2: Bit Manipulation Trick
-Unlike approach-1(where while loop is run 32 times always), Here we will run while loop only that many times, that we have on bits.
-<a name=l2></a>
-#### Logic
+=== Approach-2: Bit Manipulation Trick. Hamming Weight
+* Unlike approach-1(where while loop is run 32 times always), Here we will run while loop only that many times, that we have on bits.
+==== Logic
 ```c
 Find on bits in number=556. Output=4.
 
@@ -101,14 +79,12 @@ Step-3: Perform same steps until number becomes 0.
 ```
 <img src=counting_on_bits.png width=300/>
 
-<a name=c2></a>
-#### Complexity
-- **Time** Depends on the number of 1-bits in number. In the worst case, all bits in n are 1-bits. In case of a 32-bit integer, the run time is O(1).
-- **Space** O(1), since no additional space is allocated
+==== Complexity
+* *Time* Depends on the number of 1-bits in number. In the worst case, all bits in n are 1-bits. In case of a 32-bit integer, the run time is O(1).
+* *Space* O(1), since no additional space is allocated
 
-#### Code
-<a name=cpp2></a>
-**C++**
+==== Code
+===== C++
 ```c
   int hammingWeight(uint32_t a) {
         int ones = 0;
@@ -119,8 +95,7 @@ Step-3: Perform same steps until number becomes 0.
         return ones;
   }
 ```
-<a name=r2></a>
-**Rust**
+==== Rust
 ```rs
 impl Solution {
     pub fn hammingWeight (n: u32) -> i32 {
@@ -135,9 +110,8 @@ impl Solution {
 }
 ```
 
-<a name=pc></a>
-### Approach-3. `__builtin_popcount()`
-This function uses CPU specific instructions, which will always be orders of magnitude faster than any algorithm you manage to come up with.
+=== Approach-3. `__builtin_popcount()`
+* This function uses CPU specific instructions, which will always be orders of magnitude faster than any algorithm you manage to come up with.
 ```cpp
 #include <stdio.h>
 int main() {
@@ -146,8 +120,8 @@ int main() {
 }
 ```
 
-### Approach-4. Lookup Table
-**What is lookup table?** This is precalculated table which stores number of on bits in a number.
+=== Approach-4. Lookup Table
+* *What is lookup table?* This is precalculated table which stores number of on bits in a number.
 - 2<sup>8</sup> = 256
 ```c
 ///8 bit lookup table///
@@ -169,9 +143,8 @@ Lookup Table(on bits)  {0, 1, 1, 2, 1, 2, 2, 3, 1, .., 7, 8}       //size=256 by
 Number                  0  1  2  3  4  5  6  7  8  ...254 255
 ```
 
-<a name=cpp32></a>
-#### Code (32 Bit integer). 
-- _1._ Create lookup table(at compile time), Iterate over every 8 bits(1 byte) of number and check in table.
+==== Code (32 Bit integer). 
+* 1. Create lookup table(at compile time), Iterate over every 8 bits(1 byte) of number and check in table.
 ```c
 //////////Logic to generate lookup table at compile time//////////////
 #define B2(n) n, n + 1, n + 1, n + 2
@@ -193,9 +166,8 @@ int main() {
 }
 ```
 
-<a name=cpp64></a>
-#### Code (64 Bit integer)
-**Method-1:** Using same 8 bit lookup table(as above), Checking every 8 bits
+==== Code (64 Bit integer)
+* Method-1: Using same 8 bit lookup table(as above), Checking every 8 bits
 ```c
 int CountOnes(uint64_t a){        
   return lookup [a & 0xff] +       //First 8 bits.
@@ -211,7 +183,7 @@ int main() {
   cout << CountOnes(489626271694);    //33 bits
 }
 ```
-**Method-2:** Using 16 bit lookup table
+* Method-2: Using 16 bit lookup table
 - 2<sup>16</sup> = 65536
 ```c
 ///16 bit lookup table///
