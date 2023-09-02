@@ -53,7 +53,7 @@ image:images/web-proxy-cache.png?raw=true[Web proxy cache]
                                                 <-table1-    table1|expiry-time ------
 ```
 
-==== 2. Redis
+===== 2. Redis
 
 === Problem with Caching
   - link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Consistency Problem]
