@@ -135,10 +135,16 @@ SELECT tweets.*, users.* FROM tweets
 ==== Problems: Huge Data to Fanout + Timeline creation at runtime
 * <<reads_per_sec, Outgoing bytes/sec = 1PB/sec>>
 
-===== Solution: Calculate timeline of user before time
+===== Sol-1: Calculate timeline of user before time and store in Cache
 * Suppose usr=amit follows usr=mike.
-* Calculate timeline of usr=amit ahead of time and store in link:/System-Design/Concepts/Cache[Cache], But for 
+* Calculate timeline of usr=amit ahead of time and store in link:/System-Design/Concepts/Cache/README.adoc[Cache=Redis or memcached].
 * When usr=mike posts a tweet, add mike's tweet to pre-calculated timeline of usr=amit.
+* But at this scale=1Petabyte/sec outflow data Cache will not work
+
+===== Sol-2: Calculate timeline of user before time and store in Big data Storage 
+a. Storage like(eg: link:/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/README.adoc#1-apache-hbase[Apache HBase], Apache Cassandra, or link:System-Design/Concepts/AWS/Storage/Object_Store/S3.adoc[Amazon S3] or GCP) which can store and scale to Petabytes
+b. link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc[Data Sharding]
+c. Cache hotdata set using link:/System-Design/Concepts/Cache/README.adoc[Redis or memcached]
 
 #### Storing Tweets(text,photos,videos)
 can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
@@ -146,21 +152,14 @@ can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) 
   - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
     - We can create tweetID = timestamp+tweetid = xxx 0001
 - **[Replication](/System-Design/Concepts/Databases/Database_Scaling):** Master slave
-#### Cache 
-Application servers, before hitting database, can quickly check if the cache has desired tweets. Memcache
-  - [Where Cache can be placed?](/System-Design/Concepts/Cache) 
-  - [Cache Eviction LRU](/DS_Questions/Questions/Random/LRUCache)
-  - Cache Storage policy (80-20 rule): 20% of users will generate mostly used tweets, we need to store these tweets only in cache.
 
-<a name=lb></a>
-## 6. Load Balancers
-  - [Where Load Balancer can be placed?](/System-Design/Concepts/Load_Balancer)
+=== Load Balancers
+- link:/System-Design/Concepts/Load_Balancer[Where Load Balancer can be placed?]
 1. Between client and application servers
 2. Between application servers & DB
 3. Between Aggregation servers & cache servers.
 
-<a name=to></a>
-## 7. [Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+=== link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Overall Tradeoffs/Bottlenecks & correction]
 - *1.* If high number of clients are connected system may respond slow.
   - *Solution:*
     - Provide MOM between Application server & clients which will queue client requests.
