@@ -22,7 +22,7 @@ App/Webserver <--->[Cache]<-->[Database]
 |===
 
 === Where Caches can be placed?
-==== link:/Networking/OSI-Layers/Layer5/Protocols/HTTP/HTTP_Caching/README.md[1. HTTP Cache]
+==== link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc#http-caching[1. HTTP Cache]
 
 ==== 2. Web Browser Cache
 * *What?* Browser stores local copies of web resources for faster retrieval the next time the resource is required.
