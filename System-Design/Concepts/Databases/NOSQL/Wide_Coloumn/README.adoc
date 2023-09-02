@@ -1,0 +1,15 @@
+:toc:
+:toclevels: 6
+
+== Wide Coloumn DB
+* DB that can store multiple values against 1 key.
+```c
+  |Key|values|
+  |a  |b,c,f,ga,c,ca,s12,123...|
+```
+
+=== 1. Apache HBase
+* HBase is modeled after [Google’s BigTable] and runs on top of link:System-Design/Concepts/DistributedSystems/Batch_Processing/README.adoc[Hadoop Distributed File System]
+* Written in Java.
+* **Writes Data only Once**
+  - HBase groups data together to store new data in a memory buffer and, once the buffer is full, it dumps the data to the disk.
