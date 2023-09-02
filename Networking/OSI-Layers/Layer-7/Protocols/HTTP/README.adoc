@@ -111,7 +111,7 @@ Examples:
 * *What?* Caching less frequently changing pages need to be cached.
 
 - **Cache Design** Conditional GET is sent with [Request Header (if Modified)](#hea)
-```http
+```c
 
 <-------------------Web Browser------->
   User    front-end   Cache(Hard-Disk)                
