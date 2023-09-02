@@ -60,8 +60,9 @@ PUT  https://lb_fqdn:port/v1/addFollower?user_id=12312asa1&followee_user_id=..
 DAU = 100M. Active/sec = 100M/86400 = 1000/sec
 ```
 
+[[storage_estimates]]
 === Storage Estimates
-* *Ask Interviewer: How post tweet(writes)?* 10% of DAU = 10M
+* *Ask Interviewer: How many tweet(writes)?* 10% of DAU = 10M
 ```
 1 tweet size = 8k(header)+1M(payload) =~ 1MB
 1 day storage needed:   10M x 1M = 10TB/day. 
@@ -70,6 +71,12 @@ DAU = 100M. Active/sec = 100M/86400 = 1000/sec
 
 === Bandwidth Estimate (bytes coming into system/sec)
 10TB/day. 10TB/86400 = 100MB/sec
+
+[[reads_per_sec]]
+=== Timeline Reads/sec. Outgoing Tweets/sec
+* **Ask Interviewer Followers/user?** All users will not have same number of followers. 
+** 0.1% have 1M Followers=0.1% x 100M = 1M users have 1M followers. 10% have 1000-10k followers(Let's ignore these).
+** Outgoing Tweets. DAU(100M). 1M(followers)
 
 [[db]]
 == 4. DB Schema (What are entities in system)
@@ -125,7 +132,9 @@ SELECT tweets.*, users.* FROM tweets
  WHERE follows.follower_id = current_user
 ```
 ==== Problems: Huge Data to Fanout + Timeline creation at runtime
-* **Ask Interviewer?** How many people user should be following? Ans:1000
+
+
+
 * We know <<boe, DAU=100M. Req/sec=100M/86400=1000. On Peak=3000 timeline read req/sec>>. 
 ** Every user will see his timeline. Hence timeline requests = 3000/sec.
 * <<boe, 1 tweet size=~ 1MB>>. 1 followee does 1 tweet. 1MB x 1000 = 1GB/user request
