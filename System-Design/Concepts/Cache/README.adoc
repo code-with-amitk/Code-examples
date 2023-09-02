@@ -40,7 +40,7 @@ image:https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/response
 
 image:images/web-proxy-cache.png?raw=true[Web proxy cache]
 
-==== link:https://github.com/amitkumar50/Code-examples/blob/master/networking/OSI-Layers/Layer5/ApplicationServer_WebServer.md[4. Application Server] and DB
+==== link:/Networking/OSI-Layers/Layer-7/ApplicationServer_WebServer/README.adoc[4. Application Server] and DB
 ===== 1. Memcached 
 * This is  Distributed Hash-Table ie <key,value> across multiple nodes. Implemented as LRU.
 * Sits on separate machine b/w Application server and DB. Multiple servers work in conjunction to act as single larger logical data cache. 
