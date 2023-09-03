@@ -96,6 +96,7 @@ for i := 1; i < 10; i++ {}
 ```
 
 ==== while
+There is no while loop in go
 ```
 for i < len(arr) {
  ...
@@ -144,6 +145,30 @@ import (              //import multiple packages
 
 // Use functions in package using dot statement
 fmt.Println("Hello, world!")
+```
+
+==== error package
+ errors package is a standard package provided by go's standard library. It is used to create and manipulate errors in a consistent and idiomatic way
+```go
+package main
+import (
+    "errors"
+    "fmt"
+)
+func divide(a, b int) (int, error) {	//Function returning int AND error
+    if b == 0 {
+        return 0, errors.New("division by zero")
+    }
+    return a / b, nil
+}
+func main() {
+    result, err := divide(10, 2)
+    if err != nil {
+        fmt.Println("Error:", err)
+        return
+    }
+    fmt.Println("Result:", result)
+}
 ```
 
 === Pointers
