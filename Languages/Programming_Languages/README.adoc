@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-=== Comparison (C++, Java, Rust, Python, Go)
+=== Comparison (C, C++, Java, Python, Go)
 |===
 ||C|C++|Java|Python|goLang
 
@@ -22,6 +22,7 @@
 |CONCURRENCY||||create threads,processes|are very cheap only few KBs. Go runtime handles all complexity.
 |LENGTH OF PROG|large|large|large|very shorter relatively|large
 |VAR DECLARATION|yes|yes|yes|no|yes
+|semicolon at end| y | y | y | n | n
 |===
 
 [[st]]
