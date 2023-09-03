@@ -146,19 +146,6 @@ a. Storage like(eg: link:/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/RE
 b. link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc[Data Sharding]
 c. Cache hotdata set using link:/System-Design/Concepts/Cache/README.adoc[Redis or memcached]
 
-#### Storing Tweets(text,photos,videos)
-can be stored on [Shard-DB](/System-Design/Concepts/Databases/Database_Scaling) based on userId, TweetId. But all approaches has issues
-  - *a.* As mentioned in [Shard-DB Disadv point-a](/System-Design/Concepts/Databases/Database_Scaling).
-  - *b.* if we shard by userId and try generating timeline. App server need to visit every shard and will create latency.
-    - We can create tweetID = timestamp+tweetid = xxx 0001
-- **[Replication](/System-Design/Concepts/Databases/Database_Scaling):** Master slave
-
-=== Load Balancers
-- link:/System-Design/Concepts/Load_Balancer[Where Load Balancer can be placed?]
-1. Between client and application servers
-2. Between application servers & DB
-3. Between Aggregation servers & cache servers.
-
 === link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Overall Tradeoffs/Bottlenecks & correction]
 - *1.* If high number of clients are connected system may respond slow.
   - *Solution:*
