@@ -25,35 +25,33 @@ node-1      node-2      node-3        node-4
   | (master)   (slave)    (slave)  |      | (master)   (slave)    (slave)  |
 ```
 
-== Types
-=== 1. Partitioning by Key range
-- Each partition/shard holds range of `<key, value>` for particular range.
-- If we know which partition is assigned to which node, then we can make request directly to the appropriate node.
+== Types of Sharding
+=== 1. By Key range
+Each partition/shard holds range of `<key, value>` for particular range. If we know which partition is assigned to which node, then we can make request directly to the appropriate node.
 ```c
        |Partition-1|   |Partition-2|   |Partition-3|
 keys   |a-e        |   |f-o        |   |p-z        |
 ```
-- **Adv:** Keys can be kept in sorted order inside the partition.
-- **Disadv:**
-  - _1. Certain types of keys can turn partition into [Hotspot](#hs):_
-    - Example: if key=timestamp(and IoT devices sending data) and there is huge load in 1 hour then 1 shard will recieve all data, while other will sit idle.
+- *Adv:* Keys can be kept in sorted order inside the partition.
+- *Disadv:*
+  - _1. Certain types of keys can turn partition into <<hotspot, Hotspot>>. Eg: if a shard stores all tweets of a celebrity user
 
-=== 2. Partitioning by Hash of Keys
-- Hash function takes the key, generates the Hash. Hash is evenly distributed, even for very similar keys, different hash is generated. Hash points to a Partition.
-- Hashes are evenly distributed and points to seperate shard. Each partition now holds range of hashes(rather than range of keys).
+=== 2. By Hash of Keys
 ```c
-  key -> |Hash Function| -> Hash
+  key -> |Hash Function| -> Hash of Shard
 ```
+Hash is so generated that keys are equally distributed amongst shards
 
 image:Partitioning_by_hash_of_keys.PNG?raw=true[Partitioning_by_hash_of_keys]
 
-- **Adv:**
-  - _1. Reduced Hotspots:_ See Disadv of [Partitioning by Key range](#kr), that is removed. Since for similar keys different hashes are generated.
-- **Disadv:**
-  - _1. Range based key search property is lost._ ie Advantage of [Partitioning by Key range](#kr) is lost.
-  - _2. Hotspots still exists:_ In extreme conditions, where keys differ by millisec, same hash gets generated and all load goes to same shard.
+* *Adv:*
+** Similar keys different hashes are generated, hence hotspots are avoided.
 
-=== 3. Partitioning with link:/System-Design/Concepts/Databases/Indexing[reverse/secondary indexes]
+* *Disadv:*
+** _1. Range based key search property is lost._ ie Advantage of [Partitioning by Key range](#kr) is lost.
+** - _2. Hotspots still exists:_ In extreme conditions, where keys differ by millisec, same hash gets generated and all load goes to same shard.
+
+=== 3. link:/System-Design/Concepts/Databases/Indexing[By reverse/secondary indexes]
 
 ==== 3.1 Document Based / Per Node Indexing
 - link:/System-Design/Concepts/Databases/Indexing[keyword to key mapping] is created.
@@ -113,6 +111,7 @@ image:request_routing.PNG?raw=true[request_routing]
 image:zookeeper.PNG?raw=true[zoo]
 
 === Terms
+[[hotspot]]
 ==== Hotspot
 Cluster has become highly [skewed](#sk), all load ends up on 1 partition. 9 out of 10 nodes are idle, and bottleneck is the 1 busy node. The partition with disproportion ately high load is called a hot spot.
 
