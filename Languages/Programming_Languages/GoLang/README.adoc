@@ -235,6 +235,17 @@ func main() {
 Linux
 ```
 
+=== String
+==== Convert
+```go
+import (
+  "strconv"
+}
+func test(a int) {
+    var s string = strconv.Itoa(a)	//Convert int to String
+}
+```
+
 === Variables
 ==== Declaration & Initialization
 ```go
