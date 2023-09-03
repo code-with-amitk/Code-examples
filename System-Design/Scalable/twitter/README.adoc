@@ -146,6 +146,27 @@ a. Storage like(eg: link:/System-Design/Concepts/Databases/NOSQL/Wide_Coloumn/RE
 b. link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc[Data Sharding]
 c. Cache hotdata set using link:/System-Design/Concepts/Cache/README.adoc[Redis or memcached]
 
+=== <<searchTweeet, Req-4 Search Tweet>>
+word to tweet mapping is stored as link:/System-Design/Concepts/Databases/Indexing[reverse indexing]
+```c
+client -----> Load_balancer -------> Application_Server
+                search tweet(word=xyz)
+                                              --------SELECT * from tweets_table
+                                                      where title contains=xyz--->  Tweets_table
+                                    Arrange with time
+  <--------------------------------
+
+```
+
+=== <<addFollower, Req-5 Add self as follower>>
+```c
+client ---------> Load_balancer -----------> Application_Server
+        PUT user_id=11&followee_user_id=xy   REST API(add_follower)
+                                              --------INSERT_INTO follower_table
+                                                      where followee=xy --->  Follower_table
+  <----------------ACK-----------------------
+```
+
 === link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Overall Tradeoffs/Bottlenecks & correction]
 - *1.* If high number of clients are connected system may respond slow.
   - *Solution:*
@@ -162,5 +183,3 @@ c. Cache hotdata set using link:/System-Design/Concepts/Cache/README.adoc[Redis 
     - This feature will improve user engagement. We can suggest friends of people someone follows, Famous people for the suggestions, people having more followers. As only a few suggestions can be made at any time, use Machine Learning (ML) to shuffle and re-prioritize
   - *6.* How to show top news? 
     - Use crawler to search (news, support, financial, entertainment, etc.) use [ML – supervised learning or Clustering](https://sites.google.com/site/amitinterviewpreparation/machine-learning).
-
-## 
