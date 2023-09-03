@@ -1,12 +1,13 @@
 :toc:
 :toclevels: 6
 
+=== Comparison (C++, Java, Rust, Python, Go)
 |===
 ||C|C++|Java|Python|goLang
 
 |TYPE|Procedural|Object-oriented|OO|OO|OO
 |Compiled|y|y|y|n(Interpreted)|y
-|[[st,Statically typed]]|y|y|y|n|y
+|<<st,Statically typed>>|y|y|y|n|y
 |VERSION|C98,99,11(2011)|C++98,11.14,17,20|1.0...8.0(present)|1.x,2.x,3.x|
 |SPEED|malloc (fast)|new|slow wrt c++ (see java page)||40% faster wrt python in getting data from DB serialization/deserialization, ranking, aggregation of data
 |MEMORY|less wrt java|same as C|More(maintaining reference is heavy)|Heavy|
@@ -23,7 +24,7 @@
 |VAR DECLARATION|yes|yes|yes|no|yes
 |===
 
-<<st>>
+[[st]]
 === Statically typed
 * Type of variable and function parameters is known at compile time, example
 * Compiler enforces type safety by ensuring that variables are used in a way that is consistent with their declared types.
