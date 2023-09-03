@@ -128,12 +128,9 @@ slc[]=1,	slc[]=2,	slc[]=3
 ```
 
 === Package/Modules in Go = link:/Languages/Programming_Languages/c%2B%2B/namespaces[C++(namespace)] = link:/Languages/Programming_Languages/Rust/Crates_Packages_Modules[Rust(crates)]
-- The package statement is always the first line in a Go file. It specifies the package name that the file belongs to.
-- This is unique namespace for (variables, functions, types, etc.) defined within the package.
+Every Go program must run inside a package hence package statement is always the first line in a Go file. It specifies the package name that the file belongs to. main package is entry point for an executable program. When we create a Go program, it must have a main package, and within that package, there must be a main function.
 
-==== main package
-- main package is a special package in Go. It is the entry point for an executable program.
-- When we create a Go program, it must have a main package, and within that package, there must be a main function.
+This is unique namespace for (variables, functions, types, etc.) defined within the package.
 
 ==== import statement
 import keyword is used to include external packages/modules in Go program.
