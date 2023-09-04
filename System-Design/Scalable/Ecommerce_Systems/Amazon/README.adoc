@@ -1,0 +1,24 @@
+:toc:
+:toclevels: 6
+
+== Requirements
+=== Functional
+1. Seller can Add/Update products to system: Name, Price, images, delivery time, information, category
+2. Service should Render home page at user login
+3. User can Search keyword(product)
+4. User can apply filters & get result
+
+=== Non-Functional
+1. Scalable. On Flash Sale days, should withstand load
+2. Reliable. After user pays, system should provide Ack
+3. Secure. As payment is involved
+4. Fast
+
+=== Extended
+1. Logs generation for debugging
+2. Good auth mechanism
+
+=== API Design
+
+
+
