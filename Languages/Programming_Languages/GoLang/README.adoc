@@ -172,9 +172,7 @@ func main() {
 ```
 
 === Pointers
- a. & operator generates pointer to operand
- b. * operator derefences pointer's value
- c. Unlike C there is no pointer arithematic in go
+`& operator` generates pointer to operand. `* operator` derefences pointer's value. Unlike C there is no pointer arithematic in go
 ```
 package main
 import "fmt"
@@ -187,6 +185,21 @@ func main() {
 # /usr/local/go/bin/go build pointer.go
 # ./pointer
 1
+```
+
+==== Singly Linked List
+```go
+ type ListNode struct {
+     Val int
+     Next *ListNode
+ }
+func test(node *ListNode) bool {
+	if node == nil {		// nil, Not NULL
+		return false
+	}
+	var val int = node.Val
+	var next ListNode* = node.Next		//Value accessed from pointer using .
+}	
 ```
 
 === Statements
