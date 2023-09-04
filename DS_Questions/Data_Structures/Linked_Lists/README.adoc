@@ -1,0 +1,4 @@
+:toc:
+:toclevels: 6
+
+link:https://amitkumar50.github.io/DS_Questions/Data_Structures/Linked_List/Compared_c++_rust_python_go.html[Compared C,C++,Rust,Python,Go]
