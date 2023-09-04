@@ -1,0 +1,128 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/linked-list-cycle/description/[Linked List Cycle]
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+=== link:https://amitkumar50.github.io/DS_Questions/Data_Structures/Linked_List/Compared_c++_rust_python_go.html[Linked List compared C++,Python,Go,Rust,C]
+=== Approach-1. Fast, Slow pointer. O(1)
+==== Logic
+Take 2 pointers, 1 fast(jumps 2 nodes at 1 time), 1 slow(jumps 1 node at a time)
+
+sit in while loop until fast!=slow. if fast reaches end(No loop), if fast==slow(loop present)
+
+==== Code
+===== C
+```c
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+bool hasCycle(struct ListNode *head) {
+    if (!head || !head->next)
+        return false;
+    
+    struct ListNode *fast = head->next;
+    struct ListNode *slow = head;
+
+    while (fast != slow){
+        if (!fast || !fast->next)
+            return false;
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return true;
+}
+```
+
+===== C++
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if (!head || head->next == nullptr) 
+            return false;
+
+        ListNode* fast = head->next;
+        ListNode* slow = head;
+        while (fast != slow) {
+            if (!fast || fast->next == nullptr)
+                return false;
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return true;
+    }
+};
+```
+
+===== Rust
+        
+===== Python
+```py
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if head == None or head.next == None:
+            return False
+        fast = head.next
+        slow = head
+
+        while fast != slow:
+            if fast == None or fast.next == None:
+                return False
+
+            fast = fast.next.next
+            slow = slow.next
+        
+        return True
+```
+
+===== Go
+```go
+/**
+
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func hasCycle(head *ListNode) bool {
+    if head == nil || head.Next == nil {
+        return false
+    }
+    
+    var slow *ListNode = head
+    var fast *ListNode = head.Next
+
+    for (fast != slow) {
+        if fast == nil || fast.Next == nil {
+            return false
+        }
+        fast = fast.Next.Next
+        slow = slow.Next
+    }
+    return true
+}
+```
