@@ -4,9 +4,9 @@
 == Requirements
 === Functional
 1. Seller can Add/Update products to system: Name, Price, images, delivery time, information, category
-2. Service should Render home page at user login
-3. User can Search keyword(product)
-4. User can apply filters & get result
+2. User can create his profile
+3. Service should Render home Screen at user login
+4. User can Search keyword(product), with/without filters
 
 === Non-Functional
 1. Scalable. On Flash Sale days, should withstand load
@@ -17,8 +17,44 @@
 === Extended
 1. Logs generation for debugging
 2. Good auth mechanism
+  
+== API Design (as per Requirement)
+link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc[http methods]
 
-== API Design
+[[addUpdateProduct]]
+addUpdateProduct (bool new_product, product_id, name, description, images_url, video_url)
+```c
+PUT https://<server-hostname>:port/v1/update/addUpdateProduct ? new_product=true & product_id=<> & name=<> & description=<> &
+```
+
+[[userCreateProfile]]
+userCreateProfile (user_name, age, address, phone_no, country, pin_code, longitude, lattitude)
+```c
+POST https://<server-hostname>:port/v1/create/userCreateProfile ? user_name=name & age=<> & phone_no=<> & country=<> &
+```
+
+[[renderHomeScreen]]
+renderHomeScreen (user_id, auth_cookie, longitude, lattitude)
+```c
+POST https://<server-hostname>:port/v1/request/homeScreen ? user_id=<> & auth_cookie=<> & longitude=<> &
+```
+
+[[searchProduct]]
+searchProduct (user_id, product_name, product_id(optional), filters(optional))
+```c
+POST https://<server-hostname>:port/v1/request/homeScreen ? user_id=<> & product_name=<> & product_id=<> & filters=<>
+```
+
+== BOE Calculations
+=== QPS(Queries/Sec)
+* *Ask Interviewer: DAU?* 100M
+```c
+100M/86400 = 1000 req/sec
+```
+
+=== BW Estimates. (bytes coming into system/sec)
 
 
+=== Storage Estimates (Writes/sec)
 
+=== Home Screen Rendering
