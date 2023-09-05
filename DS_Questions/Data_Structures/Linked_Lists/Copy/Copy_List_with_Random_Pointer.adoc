@@ -1,5 +1,5 @@
 :toc:
-:toclevels: 9
+:toclevels: 6
 
 === link:https://youtu.be/pM_GZ2tbLUA[Self Video]
 
@@ -48,25 +48,65 @@ public:
 */
 
 class Solution {
+                      //orig_node, new_node
     std::unordered_map<Node*, Node*> um;
 public:
     Node* copyRandomList(Node* head) {
-        Node* head1 = head;
-        Node* head2 = head;
-        if(!head)
+        // Base case
+        if (!head)
             return head;
 
-        auto it = um.find(head1);
-        if (it != um.end()){
+        // if original_head is present in HashMap return value from HashMap
+        if (um.find(head) != um.end())
             return it->second;
-        }
 
-        Node* temp = new Node(head->val);
-        um[head1] = temp;
-        temp->next = copyRandomList (head->next);
-        temp->random = copyRandomList (head->random);
-        return temp;
+        // if hashmap not does have {orig_node, new_node}.
+        // Allocate New Node. with next=null, random=null
+        // Place <key=orig_node,value=new_node> on HashMap
+        // and return new_node
+        Node* new_node = new Node(head->val);
+        um[head] = new_node;
+        new_node->next = copyRandomList (head->next);
+        new_node->random = copyRandomList (head->random);
+        return new_node;
     }
 };
 ```
 
+===== Go
+```go
+/**
+ * Definition for a Node.
+ * type Node struct {
+ *     Val int
+ *     Next *Node
+ *     Random *Node
+ * }
+ */
+
+var hm = make(map[*Node]*Node)    //Hashmap. Type of variable is determined
+
+func copyRandomList(head *Node) *Node {
+
+    if head == nil {
+        return nil
+    }
+
+    value := hm[head]
+    if value != nil {
+        return value
+    }
+
+    // Create new Node
+    newNode := &Node{Val: head.Val}
+
+    // Copy pair into hashmap {key=original_node, value=new_node}
+    hm[head] = newNode
+
+    // Recursively copy the next and random nodes
+    newNode.Next = copyRandomList(head.Next)
+    newNode.Random = copyRandomList(head.Random)
+
+    return newNode
+}
+```
