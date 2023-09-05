@@ -1,10 +1,10 @@
 :toc:
 :toclevels: 6
 
-=== Collections
+== Collections
 go library provides built-in collection types to handle different data structures.
 
-==== Array (fixed size)
+=== Array (fixed size)
 * An array in Go is a fixed-size collection of elements of the same type. Once you define the size of an array, it cannot be changed
 ```go
 func main() {
@@ -13,15 +13,15 @@ func main() {
 }
 ```
 
-==== channels
+=== channels
 - Communication and synchronization between goroutines=Tasks in Rust (concurrently executing functions). They provide a way to send and receive data safely between goroutines.
 
-==== Maps / Dictionary(Python) / unordered_map(C++) / Hash_map(Rust)
+=== Maps / Dictionary(Python) / unordered_map(C++) / Hash_map(Rust)
 
-===== Sets
+==== Sets
 Go doesn't have a built-in set data type, but you can simulate sets using maps.
 
-==== Slice [] (Dynamic Array) = C++(vector`<int>`) = link:Languages/Programming_Languages/Rust/Collections[Rust(vec`<i32>`)]
+=== Slice [] (Dynamic Array) = C++(vector`<int>`) = link:Languages/Programming_Languages/Rust/Collections[Rust(vec`<i32>`)]
 * A slice represents a view of contiguous sequence of elements in memory.
 * *Slice contains 3 components*
 ** _1. Pointer to underlying array:_ A slice holds a reference to the underlying array that stores the elements.
@@ -73,7 +73,7 @@ func main() {
 }
 ```
 
-====== 2D Vector
+===== 2D Vector
 ```go
   // Method-1: Declare a 2D vector
   var test [][]int     
@@ -103,10 +103,10 @@ func main() {
   fmt.Println(vector[0][0]) // Output: 1
 ```
 
-===== Heaps (implemented using slice)
+==== Heaps (implemented using slice)
 The standard library doesn't provide a heap implementation, but you can create your own heaps using slices 
 
-===== Queue (implemented using slice)
+==== Queue (implemented using slice)
 ```go
 package main
 import "fmt"
@@ -133,10 +133,10 @@ func (this *MyStack) Empty() bool {	//Size()
 }
 ```
 
-===== Stack (implemented using slice)
+==== Stack (implemented using slice)
 
 
-==== (struct = class)
+=== (struct = class)
 - Class is defined as struct type. Example: Person is defined of type struct.
 - The struct type can be considered similar to a class, as it allows you to define fields and associated methods.
 ```go
@@ -165,5 +165,7 @@ func main() {
 }
 ```
 
-===== Linked Lists
+==== Linked Lists
 Not a built-in type, you can implement linked lists in Go using structs and pointers.
+
+====== link:https://github.com/amitkumar50/amitkumar50.github.io/blob/source/docs/DS_Questions/Data_Structures/Linked_List/Compared_c%2B%2B_rust_python_go.html[Operations]
