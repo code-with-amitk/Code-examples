@@ -1,8 +1,9 @@
-Database Design
+:toc:
+:toclevels: 6
 
-### Database Design
+== Database Design (Eg: Amazon)
 
-1. List all objects/Nouns/Entities:
+=== 1. List all objects/Nouns/Entities:
 ```c
 - product
 - user
@@ -13,26 +14,26 @@ Database Design
 - report
 ```
 
-2. Find ERD amongst them:
+=== 2. Find relationship amongst them:
 ```c
-	   1	 *
-user ----- product
+    1      *
+user ----- product		//1 user can buy multiple products
 
-		    1     *
-company ------- product
+      1         *
+seller ------- product		//1 seller can sell multiple products
 
-		    1      *
+      1         *
 product -------- reviews
 
-		    1   		*
+      1   		*
 survey ---------- questions
 
-		     1		1
+      1		 1
 question ------- answer
 ```
 
-3. Create Tables
-a. Data Tables
+=== 3. Create Tables
+==== a. Data Tables
 ```c
 - product
 	name, productid(pk), price, exe_size, companyid(fk), category
@@ -54,7 +55,8 @@ a. Data Tables
 
 - report
 ```
-b. Relationship tables (should be separate from User,Product tables)
+
+==== b. Relationship tables (should be separate from User,Product tables)
 ```c
 Responder table	//user who has responded to survey=x of product=y
   entryid, userid, survery-id, productid
