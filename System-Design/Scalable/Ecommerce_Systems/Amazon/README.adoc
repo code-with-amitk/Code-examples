@@ -75,6 +75,15 @@ users, products, reviews, sellers, questions, answers, wishlists
 
 === Relationship in entities
 ```c
+      |------* wishlists
+user 1 ----- * products
+
+                        
+product 1 ----- * reviews 1  ----- * responses
+         |------ * images
+
+seller 1 ----- * products
+question 1 ---- * answers
 ```
 
 === Actual Tables
