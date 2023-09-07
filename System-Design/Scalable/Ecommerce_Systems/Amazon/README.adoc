@@ -78,12 +78,12 @@ users, products, reviews, sellers, questions, answers, wishlists
 ```
 
 === Actual Tables
-* User table(user_id(primary key), name, email, activation_timestamp, country, age, wishlists, //Array<addresses> (use seperate address table for scalabilty)//)
+* User table(user_id(primary key), name, email, activation_timestamp, country, age, wishlists, +++<del>+++ Array<addresses> +++</del>+++(use seperate address table for scalabilty))
 * User_Addresses table(address_id(pk), user_id(fk))
-* Products table(product_id(primary key), description_txt, seller_id(fk), //Array<images_url>, Array<video_urls>(use seperate media table for scalabilty)//)
+* Products table(product_id(primary key), description_txt, seller_id(fk), +++<del>+++ Array<images_url>, Array<video_urls>+++</del>+++(use seperate media table for scalabilty))
 * Product Media table(id, product_id(fk), image_url/video_url, caption, description)
 * Seller table (seller_id, name, address, email, phone, pan, gst_no)
-* Review table(review_id, product_id(fk), review_description, //Array<image_url>, Array<video_url>(Will go in review media table)//, user_id(fk))
+* Review table(review_id, product_id(fk), review_description, +++<del>+++ Array<image_url>, Array<video_url> +++</del>+++ (Will go in review media table), user_id(fk))
 * Review Media Table (similar to product media table)
 * Wishlist (id, user_id(fk), number_of_items, Array<product_id>, name, created_date)
 * Question (id, product_id(fk), description, user_id_who_raised_question(fk))
