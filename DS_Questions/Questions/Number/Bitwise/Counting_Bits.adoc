@@ -223,3 +223,32 @@ func countBits(n int) []int {
     return dp;
 }
 ```
+
+===== C
+```c
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* countBits(int n, int* returnSize){
+    int *count = (int*) malloc(sizeof(int) *(n +1));
+    count[0]=0;
+    *returnSize = n+1;
+    if (n==0)
+        return count;
+
+    count[1] = 1;
+    int present = 0;        //present pow of 2
+    int next = 2;  //next pow of 2
+
+    for (int i=2; i<=n; ++i) {
+        if (i == next) {
+            present = next;
+            next *= 2;
+            count[i] = 1;
+        } else {
+            count [i] = count[i-present] + count[present];
+        }
+    }
+    return count;
+}
+```
