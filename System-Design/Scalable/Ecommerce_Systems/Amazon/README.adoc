@@ -111,3 +111,17 @@ sequenceDiagram
     loadbalancer -->> AppServer : REST API(addUpdateProduct)
     AppServer -->> Products-table(DB) : Add entry
 ```
+
+=== <<searchProduct, Req-4: User can Search keyword(product), with/without filters>>
+```mermaid
+sequenceDiagram
+    participant user
+    Note right of user: type product-name in search bar
+    user ->> loadbalancer: (user_id, product_name, filters(optional))
+    loadbalancer -->> AppServer: REST API(searchProduct)
+    AppServer -->> Cache: Product list
+    Cache -) AppServer: No
+    AppServer -->> Products-table(DB): SELECT * from table where description=product-name
+    Note right of Products-table(DB): create search response
+    Products-table(DB) -) AppServer: product list
+```
