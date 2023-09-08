@@ -1,12 +1,19 @@
 :toc:
 :toclevels: 6
 
-== Requirements
+== 1. Requirements
 === Functional
-1. Seller can Add/Update products to system: Name, Price, images, delivery time, information, category
-2. User can create his profile
-3. Service should Render home Screen at user login
-4. User can Search keyword(product), with/without filters
+[[addUpdateProduct]]
+* 1. Seller can Add/Update products to system: Name, Price, images, delivery time, information, category
+
+[[userCreateProfile]]
+* 2. User can create his profile
+
+[[renderHomeScreen]]
+* 3. Service should Render home Screen at user login
+
+[[searchProduct]]
+* 4. User can Search keyword(product), with/without filters
 
 === Non-Functional
 1. Scalable. On Flash Sale days, should withstand load
@@ -18,34 +25,30 @@
 1. Logs generation for debugging
 2. Good auth mechanism
   
-== API Design (as per Requirement)
+== 2. API Design (as per Requirement)
 link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc[http methods]
 
-[[addUpdateProduct]]
-addUpdateProduct (bool new_product, product_id, name, description, images_url, video_url)
+<<addUpdateProduct, addUpdateProduct>> (bool new_product, product_id, name, description, images_url, video_url)
 ```c
 PUT https://<server-hostname>:port/v1/update/addUpdateProduct ? new_product=true & product_id=<> & name=<> & description=<> &
 ```
 
-[[userCreateProfile]]
-userCreateProfile (user_name, age, address, phone_no, country, pin_code, longitude, lattitude)
+<<userCreateProfile, userCreateProfile>> (user_name, age, address, phone_no, country, pin_code, longitude, lattitude)
 ```c
 POST https://<server-hostname>:port/v1/create/userCreateProfile ? user_name=name & age=<> & phone_no=<> & country=<> &
 ```
 
-[[renderHomeScreen]]
-renderHomeScreen (user_id, auth_cookie, longitude, lattitude)
+<<renderHomeScreen, renderHomeScreen>> (user_id, auth_cookie, longitude, lattitude)
 ```c
 POST https://<server-hostname>:port/v1/request/homeScreen ? user_id=<> & auth_cookie=<> & longitude=<> &
 ```
 
-[[searchProduct]]
-searchProduct (user_id, product_name, product_id(optional), filters(optional))
+<<searchProduct, searchProduct>> (user_id, product_name, product_id(optional), filters(optional))
 ```c
 POST https://<server-hostname>:port/v1/request/homeScreen ? user_id=<> & product_name=<> & product_id=<> & filters=<>
 ```
 
-== BOE Calculations
+== 3. BOE Calculations
 === QPS(Queries/Sec)
 * *Ask Interviewer: DAU?* 100M
 ```c
@@ -69,7 +72,7 @@ What we will store?
 20GB + 10PB + 10TB =~ 10PB
 ```
 
-== DB Schema (List all objects?)
+== 4. DB Schema (List all objects?)
 === Entities
 users, products, reviews, sellers, questions, answers, wishlists
 
@@ -94,6 +97,17 @@ question 1 ---- * answers
 * Seller table (seller_id, name, address, email, phone, pan, gst_no)
 * Review table(review_id, product_id(fk), review_description, +++<del>+++ Array<image_url>, Array<video_url> +++</del>+++ (Will go in review media table), user_id(fk))
 * Review Media Table (similar to product media table)
-* Wishlist (id, user_id(fk), number_of_items, Array<product_id>, name, created_date)
+* Wishlist (id, user_id(fk), number_of_items, +++<del>+++Array<product_id>+++</del>+++ (use products table), name, created_date)
 * Question (id, product_id(fk), description, user_id_who_raised_question(fk))
 * Answer (id, question_id(fk), description, user_id_who_answered(fk))
+
+== 5. HLD
+=== <<addUpdateProduct, Req-1: Seller can Add/Update products to system>>
+```mermaid
+sequenceDiagram
+    participant seller
+    Note right of seller: Fill product info on UI
+    seller ->> loadbalancer: product info
+    loadbalancer -->> AppServer : REST API(addUpdateProduct)
+    AppServer -->> Products-table(DB) : Add entry
+```
