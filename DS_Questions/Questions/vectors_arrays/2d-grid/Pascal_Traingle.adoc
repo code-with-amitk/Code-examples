@@ -77,3 +77,29 @@ public:
     }
 };
 ```
+===== Python
+```py
+class Solution:
+    def generate(self, n: int) -> List[List[int]]:
+        out = []
+
+        # Create vector<int> of 1 row value=1
+        temp = [1] * (1)
+        out.append(temp)
+
+        if n == 1:
+            return out
+        
+        # Start from 1st row
+        # i==1 {1,1}
+        for i in range(1,n):   #Always start from 2nd row
+            temp = [1] * (i+1)
+
+            # Create row from prev row, when i>=2
+            for j in range(1, i):
+                if i>=2:
+                    temp[j] = out[i-1][j-1]+out[i-1][j]
+            out.append(temp)
+        
+        return out
+```
