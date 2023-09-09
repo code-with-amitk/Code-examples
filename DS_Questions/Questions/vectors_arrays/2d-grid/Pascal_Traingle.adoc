@@ -137,3 +137,36 @@ impl Solution {
     }
 }
 ```
+
+===== Go
+```go
+func generate(n int) [][]int {
+    var out [][]int
+
+    // Create vector<int> of 1 row value=1
+    out = append(out, []int{1})
+
+    if n == 1 {
+        return out
+    }
+
+    // Start from 1st row
+    // i==1 {1,1}
+    for i:=1; i<n; i++ {   //Always start from 2nd row
+        temp := make([]int, i+1)
+        for v:=0; v<i+1; v++ {
+            temp[v] = 1;
+        }
+
+        // Create row from prev row, when i>=2
+        for j:=1; j<i; j++ {           //skip 1st, last col as they are 1 always
+            if i>=2 {
+                temp[j] = out[i-1][j-1]+out[i-1][j]
+            }
+        }
+        out = append(out, temp)
+    }
+
+    return out
+}
+```
