@@ -103,3 +103,37 @@ class Solution:
         
         return out
 ```
+
+===== Rust
+```rs
+impl Solution {
+    pub fn generate(n: i32) -> Vec<Vec<i32>> {
+        let mut out: Vec<Vec<i32>> = Vec::new();
+
+        // Create vector<int> of 1 row value=1
+        let mut temp:Vec<i32> = vec![1; 1];
+        out.push(temp);
+
+        // if n==1, return
+        if n==1 {
+            return out;
+        }
+
+        // Start from 1st row
+        // i==1 {1,1}
+        for i in 1..n {   //Always start from 2nd row
+            let mut temp = vec![(i+1); 1];
+
+            // Create row from prev row, when i>=2
+            for j in 1..i { //skip 1st, last col as they are 1 always
+                if i >= 2 {
+                    temp[j as usize] = out[i as usize - 1][j as usize - 1]
+                                        + out[i as usize - 1][j as usize];
+                }
+            }
+            out.push(temp);
+        }
+        out
+    }
+}
+```
