@@ -1,0 +1,44 @@
+:toc:
+:toclevels: 6
+
+== Terms
+==== ODL/Object Definition Language
+ODL is Independent of any programming language and helps to create classes and interfaces and also Specify a database schema.
+
+==== OQL/Object Query Language
+This is similar to SQL with additional features (object identity, complex objects, operations, inheritance, polymorphism, relationships) 
+
+==== ODMG/Object Data Management Group
+
+== How Object Store (should) be storing data?
+```c
+  hashmap  <key=video_id, value = vector<meta_data_virtual_address, video_file_virtual_address>>
+  
+  |Video_id     |Virtual Address of Video File in Memory|
+  |-------------|---------------------------------------|
+  | 2412as      |           0x004                       |
+  | aw1as2      |           0x505                       |       
+
+// Similar for photos
+```
+
+== Examples of Object Store
+=== Amazon S3(Simple Storage Service)
+S3 stores everything in buckets. each bucket can have 100's of objects. Example: There is 1 large Video, We will store Video chunks on S3.
+```c
+  <key=bucket-id, Value=Video_url(or video)>
+      11, xyz
+      12, abc
+      ..
+```
+
+* *S3 Storage classes*
+|===
+|Class|What
+
+|1. S3|Durable, immediately available and frequently accessed
+|2. S3-IA(Infrequently accessed)|For data that is accessed less frequently
+|3. S3 – RRS (Reduced Redundancy Storage)| Less durable with availabilty. Used for data that is easily reproducible, such thumbnails
+|===
+
+image::https://i.ibb.co/q0xNcyW/s3.png?raw=true[amazon s3]
