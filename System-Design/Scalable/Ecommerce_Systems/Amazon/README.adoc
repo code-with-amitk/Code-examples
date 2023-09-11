@@ -105,23 +105,34 @@ question 1 ---- * answers
 === <<addUpdateProduct, Req-1: Seller can Add/Update products to system>>
 ```mermaid
 sequenceDiagram
-    participant seller
-    Note right of seller: Fill product info on UI
-    seller ->> loadbalancer: product info
-    loadbalancer -->> AppServer : REST API(addUpdateProduct)
-    AppServer -->> Products-table(DB) : Add entry
+  participant seller
+  Note right of seller: Fill product info on UI
+  seller ->> loadbalancer: product info
+  loadbalancer -->> AppServer : REST API(addUpdateProduct)
+  AppServer -->> Products-table(DB) : Add entry
 ```
 
 === <<searchProduct, Req-4: User can Search keyword(product), with/without filters>>
 ```mermaid
 sequenceDiagram
-    participant user
-    Note right of user: type product-name in search bar
-    user ->> loadbalancer: (user_id, product_name, filters(optional))
-    loadbalancer -->> AppServer: REST API(searchProduct)
-    AppServer -->> Cache: Product list
-    Cache -) AppServer: No
-    AppServer -->> Products-table(DB): SELECT * from table where description=product-name
-    Note right of Products-table(DB): create search response
-    Products-table(DB) -) AppServer: product list
+  participant u as ClientMobileApp
+  box datacenter
+  participant lb as loadbalancer
+  participant app as AppServer
+  participant ca as Cache
+  participant ptdb as Products-table(DB)
+  end
+
+  Note right of user: type product-name in search bar
+  u ->> lb: (user_id, product_name=smartphone, filters(optional))
+  
+  lb ->> app: REST API(searchProduct)
+  app ->> ca: Product list
+  ca -) app: No
+  app ->> ptdb: SELECT * from table where description=smartphone(Pagination=on)
+  Note right of ptdb: create search response
+  ptdb -->> app: product list(1-50 items of 1 million entries)
+  app -->> ca: Update
+  app -->> u: Product list(Pagination 1-50 entries)
 ```
+link:/System-Design/Concepts/Pagination.adoc[Pagination]
