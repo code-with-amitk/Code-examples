@@ -69,39 +69,39 @@ image:Partitioning_by_term.PNG?raw=true[Partitioning_by_term]
 - **Disadv:**
   - _1. Slower/complicated writes:_ Write to a single document(on 1 partition) may now affect multiple partitions of the index (every term in the document might be on a different partition, on a different node).
 
-=== Rebalancing Partitions
+== Rebalancing Partitions
 - if partition fails(as nodes do fail) then how to move data to other node? 
 **Strategies for rebalancing**
 
-==== 1. Fixed number of partitions
+=== 1. Fixed number of partitions
 - Create more partitions on 1 node. In cluster of 10 nodes, create 1000 partitions. ie Every node contains 10 partitions.
 - Whenever new node joins it takes few partitions from existing node(until partitions are fairly distributed once again).
 <img src=rebalancing_fixed_no_of_partitions.PNG width=500/>
 
-==== 2. Dynamic partitioning
+=== 2. Dynamic partitioning
 > Eg: HBase, RethinkDB perform this.
 - if partition size grows above threshold(HBase 10GB) it splits into 2 halves.
 - Conversely, if lots of data is deleted and a partition shrinks below some threshold, it is merged with an adjacent partition.
 - **Adv:** Adjusts to load. 
 - **Disadv:** Until it hits the point at which the first partition is split, all writes processed to single node while the other nodes sit idle.
 
-=== Request Routing
+== Request Routing
 How client sends/routes the request to a Parititon/Shard?
 
-==== 1. Round Robin
+=== 1. Round Robin
 - Allow clients to contact any node/partition (e.g. via a round-robin load balancer).
 - If that node coincidentally owns the partition to which the request applies, it can handle the request directly; otherwise it forwards the request to the appropriate node.
 
-==== 2. Routing tier first
+=== 2. Routing tier first
 - Send all requests from clients to a routing tier first, which determines the node that should handle the request and forwards it accordingly
 - This tier is parition aware load balancer
 
-==== 3. Direct Connect
+=== 3. Direct Connect
 Clients aware of partitioning and the assignment of partitions to nodes. Client can connect directly to the appropriate node, without any intermediary.
 
 image:request_routing.PNG?raw=true[request_routing]
 
-==== 4. Coordinator Service(Zookeeper)
+=== 4. Coordinator Service(Zookeeper)
 - **Problem In Above 3 approaches:** How routing decision making component knows about changes in the assignment of partitions to nodes?
 - Coordinator service(Zookeeper) will:
   - Keep track of cluster metadata(ie mapping of partitions to nodes)
@@ -110,10 +110,10 @@ image:request_routing.PNG?raw=true[request_routing]
 
 image:zookeeper.PNG?raw=true[zoo]
 
-=== Terms
+== Terms
 [[hotspot]]
-==== Hotspot
+=== Hotspot
 Cluster has become highly [skewed](#sk), all load ends up on 1 partition. 9 out of 10 nodes are idle, and bottleneck is the 1 busy node. The partition with disproportion ately high load is called a hot spot.
 
-==== Skewed
+=== Skewed
 When partitioning becomes unfair some partitions have more data or queries than others. This makes the partitioning much less effective, this can lead to [hotspot](#hs)
