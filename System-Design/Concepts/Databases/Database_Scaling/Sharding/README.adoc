@@ -86,7 +86,11 @@ image:Partitioning_by_term.PNG?raw=true[Partitioning_by_term]
 - **Disadv:** Until it hits the point at which the first partition is split, all writes processed to single node while the other nodes sit idle.
 
 == Request Routing
-How client sends/routes the request to a Parititon/Shard?
+How client/application server sends requests to a Parititon/Shard?
+
+It Application server code responsibilty to keep knowledge of data present on shards, send query & Aggregate results.
+
+Database frameworks(Eg: Diesel Rust or other) can create DB queries, open/close DB but complete knowledge of what data is on which shard should lie with Application server.
 
 === 1. Round Robin
 - Allow clients to contact any node/partition (e.g. via a round-robin load balancer).
