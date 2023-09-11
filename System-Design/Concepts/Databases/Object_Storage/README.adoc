@@ -1,14 +1,13 @@
 :toc:
 :toclevels: 6
 
-== Terms
-==== ODL/Object Definition Language
-ODL is Independent of any programming language and helps to create classes and interfaces and also Specify a database schema.
-
-==== OQL/Object Query Language
-This is similar to SQL with additional features (object identity, complex objects, operations, inheritance, polymorphism, relationships) 
-
-==== ODMG/Object Data Management Group
+== Why store images,video on Object store?
+Object store & distributed file storage system are optimized for serving large binary files efficiently. How?
+* *1. Data Sharding and Distribution:* Object storage systems break large files into smaller chunks or objects. These objects are distributed across multiple servers or nodes within the storage cluster. This distribution allows for parallelism in data retrieval, improving read performance.
+* *2. HTTP-Based Access:* Object storage is typically accessed via HTTP(S) protocols. This means that clients can retrieve objects using HTTP GET requests.
+* *3. Better Caching at CDN:* The use of HTTP also enables the use of content delivery networks (CDNs) for caching and global distribution of content, further improving access times.
+* *4. Data Compression:* Data is compressed which reduces storage footprint of large files and optimize the use of storage resources.
+* *5. Geo-Replication:* For global accessibility, object storage systems may support geo-replication.
 
 == How Object Store (should) be storing data?
 ```c
@@ -42,3 +41,12 @@ S3 stores everything in buckets. each bucket can have 100's of objects. Example:
 |===
 
 image::https://i.ibb.co/q0xNcyW/s3.png?raw=true[amazon s3]
+
+== Terms
+==== ODL/Object Definition Language
+ODL is Independent of any programming language and helps to create classes and interfaces and also Specify a database schema.
+
+==== OQL/Object Query Language
+This is similar to SQL with additional features (object identity, complex objects, operations, inheritance, polymorphism, relationships) 
+
+==== ODMG/Object Data Management Group
