@@ -1,0 +1,5 @@
+:toc:
+:toclevels:6
+
+== Pagination
+Server instead of returning 1 million results at once, it paginate the results. ie it return a subset of results, say 20 or 50 products, along with information on how to fetch the next set of results. This way, it doesn't overwhelm the client or server with a massive response.
