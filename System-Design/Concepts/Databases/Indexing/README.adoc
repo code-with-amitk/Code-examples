@@ -6,13 +6,15 @@ Technique to search data in database faster. This improve search/insert/modify o
 
 === Types of Indexing
 ==== 1. Forward Indexing
-Index is a hash-table which stores key and offset in the file.
+Index is a hash-table which stores key and offset in the file. We search key in Hash map and then go the offset in file.
 ```c
-key     Value
-123456:{name: London, attractions: [Big Ben, London Eye]}\n
-42:{name: San Francisco, attractions: [Golden Gate, Bridge]}\n
+key     Value=byte_offset
+123456    0
+42        64
+
+key=123456 has info={name: London, attractions: [Big Ben, London Eye]}
+key=42 has info={name: San Francisco, attractions: [Golden Gate, Bridge]}
 ```
-Now to access any `<key, value>` in Database we search key in Indexing Hash map and then go the offset in file.
 
 image:indexing.png?raw=true[indexing]
 
