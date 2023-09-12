@@ -106,3 +106,39 @@ public:
     }
 };
 ```
+
+===== Python
+```py
+class Solution:
+    def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
+        # key=groupsize, value = vector<indexes having groupSizes>
+        um = {}
+        out = []
+		
+        for index, group_size in enumerate(groupSizes):
+            if group_size in um:
+                # if key=group_size is present in hashmap
+                # insert index(ie value) into map
+                um[group_size].append(index)
+            else:
+                # if key is not prsent. 
+                # Create key, value pair. Value=List[indexes]
+                um[group_size] = [index]
+				
+        for key, values in um.items():
+            temp = []
+            if key == len(values):
+                out.append(values)
+            else:
+                i = 0
+                # split into groups of size = key
+                while values:
+                    temp.append(values.pop())
+                    i += 1
+                    if i == key:
+                        out.append(temp)
+                        temp = []
+                        i = 0
+
+        return out
+```
