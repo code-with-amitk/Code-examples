@@ -142,3 +142,56 @@ class Solution:
 
         return out
 ```
+
+===== Rust
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn group_the_people(group_sizes: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut hm:HashMap<i32, Vec<i32>> = HashMap::new();
+        let mut out:Vec<Vec<i32>> = Vec::new();
+
+        let mut index:i32 = 0;
+        for i in 0..group_sizes.len() {
+            let key = group_sizes[i];
+            let value = i as i32;
+
+            if let Some(vec) = hm.get_mut(&key) {
+                vec.push(value);
+            } else {
+                let mut t:Vec<i32> = Vec::new();
+                t.push(i as i32);
+                hm.insert(key, t);
+            }
+        }
+
+        for (key, values) in hm.iter() {
+            let mut temp:Vec<i32> = Vec::new();
+
+            if *key == values.len() as i32 {
+                out.push(values.clone());
+            }
+            else {
+                let mut i = 0;
+                loop {
+                    if values.len() <= 0 {
+                        break;
+                    }
+                    if let Some(l) = values.last() {
+                        temp.push(*l);
+                        values.pop();
+                    }
+                    i += 1;
+                    if i == *key {
+                        out.push(temp.clone());
+                        temp.clear();
+                        i=0;
+                    }
+                }
+            }
+        }
+
+        return out;
+    }
+}
+```
