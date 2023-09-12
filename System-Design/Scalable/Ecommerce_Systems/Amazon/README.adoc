@@ -120,10 +120,10 @@ sequenceDiagram
   participant lb as loadbalancer
   participant app as AppServer
   participant ca as Cache
-  participant ptdb1 as Products-table-1(DB)
+  participant ptdb1 as Products-table1<br>(db1)Shard
   end
   box datacenter2
-  participant ptdb2 as Products-table-2(DB)
+  participant ptdb2 as Products-table2<br>(db2)Shard
   end
 
   Note right of u: type product-name in search bar
@@ -140,4 +140,5 @@ sequenceDiagram
   app -->> ca: Update
   app -->> u: Product list(Pagination 1-50 entries)
 ```
-link:/System-Design/Concepts/Pagination.adoc[Pagination], link:/System-Design/Concepts/Databases/Database_Scaling/Sharding[Sharding]
+* All pages are not fetched at once, Application server fetches 1-50 pages using link:/System-Design/Concepts/Pagination.adoc[Pagination] & send to client
+* Product=smartphone data is stored on different link:/System-Design/Concepts/Databases/Database_Scaling/Sharding[Shards], link:System-Design/Concepts/Databases/Indexing/README.adoc[Reverse indexing] is used to search word in documents.
