@@ -1,26 +1,9 @@
-- [Call by value, Call By Reference](#vr)
-- Function
-  - [1. Used as Object](#o)
-  - [2. Passed as arguments](#arg)
-  - [3. As Mutable Objects](#mut)
-- [Variable no of Arguments](#var)
-- **Types of Functions**
-  - [Inner, function inside function](#func)
-- **Function Arguments**
-  - [Arguments taking default value](#default)
-  - [kwarg, keyword Arguments](#kwarg)
-  - [Special Parameters](#special)
-- [Decorator](#dec)
-- [Generator](#gen)
-- [Lambda](#lam)
-- [Built-in methods: Dunder/Magic, `__iter__(), __contains__, __repr__(), __str__(), __doc__, __init__`](Builtin_Methods)
-- [Mostly used Functions: split() & rsplit(), string.strip(`[char]`), type(), format(), range(), input(str)](Mostly_Used_Functions)
-- [filter(), map(), reduce()](filter_map_reduce)
+:toc:
+:toclevels: 6
 
-<a name=vr></a>
-### Call by value, Call By Reference
-- **Pass by value:** Copy of the actual object is passed. Changing the value of the copy of the object will not change the value of the original object.
-- **Pass by reference:** Reference to the actual object is passed. Changing the value of the new object will change the value of the original object.
+== Call by value, Call By Reference
+* *Pass by value:* Copy of the actual object is passed. Changing the value of the copy of the object will not change the value of the original object.
+* *Pass by reference:* Reference to the actual object is passed. Changing the value of the new object will change the value of the original object.
   - In Python, **arguments are passed by reference**.
 ```py
 def appendNumber(arr):
@@ -33,8 +16,7 @@ appendNumber(arr)   #Call by reference
 print(arr)  #Output: => [1, 2, 3, 4]
 ```
 
-<a name=o></a>
-### Function used as Object
+== Function used as Object
 Means functions can be used as variable
 ```py
 def fun():
@@ -42,8 +24,8 @@ def fun():
 test = fun
 print(test())        #Hello
 ```
-<a name=arg></a>
-### Function passed as argument to other function
+
+== Function passed as argument to other function
 ```py
 def f(a,b):
     return a+b
@@ -51,8 +33,8 @@ def f1(var):
     print("hello",var)
 f1(f(1,2))              #Passing function f() as argument of f1() //hello 3
 ```
-<a name=mut></a>
-### Function as Mutable Objects
+
+== Function as Mutable Objects
 - MUTABLE OBJECTS(list,dictionary etc): Are shared between subsequent calls
 ```py
 def fun2(a, L=[]):
@@ -62,8 +44,8 @@ print(fun2(1))     #[1]
 print(fun2(2))     #[1,2]
 print(fun2(3))     #[1,2,3]
 ```
-<a name=var></a>
-### Variable no of arguments
+
+== Variable no of arguments
 ```py
 def fun(*arg):
     for var in arg:
@@ -74,9 +56,8 @@ fun ( 1, 2 )
 fun ( 'te', 90 )
 ```
 
-## Types of Functions
-<a name=inner></a>
-### Inner, function inside function
+== Types of Functions
+=== Inner, function inside function
 Note that the order in which the inner functions are defined does not matter. 
 ```py
 def parent():
@@ -90,9 +71,8 @@ def parent():
 parent()        #O/P: parent fun2 fun1
 ```
 
-## Function Arguments
-<a name=default></a>
-### Arguments taking default value
+== Function Arguments
+=== Arguments taking default value
 ```py
 def fun1(a, c='Again'):            #c is default arguments
     if a == 1:
@@ -101,11 +81,10 @@ def fun1(a, c='Again'):            #c is default arguments
         print('Test3')
 fun1(1)                 #Test1
 ```
-<a name=kwarg></a>
-### kwarg, Keyword Arguments
+=== kwarg, Keyword Arguments
 kwarg MUST follow positional arguments
-<a name=special></a>
-### Special Parameters
+
+=== Special Parameters
 ```py
 def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
       -----------    ----------     ----------
@@ -139,11 +118,10 @@ def kwd_only_arg(*, arg):
 kwd_only_arg(arg=3)     #3
 ```
 
-<a name=dec></a>
-### Decorator
-- Functions that add functionality to an existing function, without changing the structure of the existing function itself.
-- They are represented the `@decorator_name` in Python and are called in a **bottom-up fashion**. 
-- Example-1
+=== Decorator
+* Functions that add functionality to an existing function, without changing the structure of the existing function itself.
+* They are represented the `@decorator_name` in Python and are called in a **bottom-up fashion**. 
+* Example-1
 ```py
 # decorator function to convert to lowercase
 def lowercase_decorator(function):
@@ -170,8 +148,7 @@ def hello():
 hello()                   # output => [ hello , world ]
 ```
 
-- _Example-2:_
-  - Decorators can accept arguments for functions can further modify those arguments before passing it to the function itself.
+* Example-2: Decorators can accept arguments for functions can further modify those arguments before passing it to the function itself.
 ```py
 # decorator function to capitalize names
 def names_decorator(function):
@@ -188,8 +165,43 @@ def say_hello(name1, name2):
 say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
 ```
 
-<a name=gen></a>
-### Generator
+== enumerate() function
+This is used to iterate over an iterable (Eg: list, tuple, or string). It returns a tuple(index, value of each item)
+```py
+# enumerate(iterable, start=0(optional))
+
+# Iterate over List=vector
+my_list = ['apple', 'banana', 'cherry']
+for index, fruit in enumerate(my_list):
+    print(f"Index: {index}, Value: {fruit}")
+
+# Iterate over hashmap=Dictionary
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+for index, key in enumerate(my_dict):
+    print(f"Index: {index}, Key: {key}, Value: {my_dict[key]}")
+```
+
+== Lambda / Anonymous function
+- Can accept any number of arguments, but can only have a single expression.
+- **Use-case:** Require an anonymous function for a short time period. 
+
+=== Ways to use Lambda
+==== 1. Assigning lambda functions to a variable
+```py
+mul = lambda a, b : a * b
+print(mul(2, 5))    # output => 10
+```
+
+==== 2. Wrapping lambda functions inside another function
+```py
+def myWrapper(n):
+ return lambda a : a * n
+ 
+mulFive = myWrapper(5)
+print(mulFive(2))    # output => 10
+```
+
+== Generator
 - This function returns an iterable collection of items in a set manner. Use [yeild keyword](/Languages/ScriptingLanguages/Python/Keywords) to return a generator object.
 - Example: Generator for fibonacci numbers
 ```py
@@ -213,23 +225,4 @@ x.__next__()    # error
 ## iterating using loop
 for i in fib(10):
    print(i)    # output => 0 1 1 2 3 5 8
-```
-
-<a name=lam></a>
-## Lambda / Anonymous function
-- Can accept any number of arguments, but can only have a single expression.
-- **Use-case:** Require an anonymous function for a short time period. 
-### Ways to use Lambda
-#### 1. Assigning lambda functions to a variable
-```py
-mul = lambda a, b : a * b
-print(mul(2, 5))    # output => 10
-```
-#### 2. Wrapping lambda functions inside another function
-```py
-def myWrapper(n):
- return lambda a : a * n
- 
-mulFive = myWrapper(5)
-print(mulFive(2))    # output => 10
 ```
