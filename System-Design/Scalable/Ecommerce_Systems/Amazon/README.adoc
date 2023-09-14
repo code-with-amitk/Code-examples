@@ -118,7 +118,7 @@ sequenceDiagram
   participant u as ClientMobileApp
   box datacenter1
   participant lb as loadbalancer
-  participant app as AppServer
+  participant app as multipod<br>AppServer
   participant ca as Cache
   participant ptdb1 as Products-table1<br>(db1)Shard
   end
@@ -140,5 +140,6 @@ sequenceDiagram
   app -->> ca: Update
   app -->> u: Product list(Pagination 1-50 entries)
 ```
+* App server checks link:System-Design/Concepts/Cache/DB_Caches[Cache] before going to Database. We can use Redis here.
 * All pages are not fetched at once, Application server fetches 1-50 pages using link:/System-Design/Concepts/Pagination.adoc[Pagination] & send to client
 * Product=smartphone data is stored on different link:/System-Design/Concepts/Databases/Database_Scaling/Sharding[Shards], link:System-Design/Concepts/Databases/Indexing/README.adoc[Reverse indexing] is used to search word in documents.
