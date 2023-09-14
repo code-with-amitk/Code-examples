@@ -28,6 +28,7 @@ If the caching strategy is efficient, the number of trips to memcached wrt DB (1
 - Volatile random removing keys, that have an expiration time set, randomly
 - Volatile TTL removing keys, that have an expiration time set, by the shortest time to live first.
 
+== Caches
 === Memcached(in Memory) vs Redis(in Memory)
 |===
 ||Memcached|Redis(Recommended bcoz of speed)
@@ -60,3 +61,5 @@ d. slab allocator: Memory manager for cache item data structures.
 ```
 
 ==== Redis
+
+== link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Consistency Problem]
