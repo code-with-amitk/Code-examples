@@ -5,7 +5,7 @@
 * Port to Port/Process to process delivery
 
 [[Characteristics]]
-== TCP Characteristics
+== TCP Characteristics = Advantages
 |===
 |Characteristic|Description
 
@@ -24,7 +24,7 @@
 |===
 
 === <<Characteristics, Advantages of TCP>>
-=== Disadvantages
+=== Disadvantages of TCP (Why Google Developed link:/Networking/OSI-Layers/Layer-4/Protocols/Google_QUIC[Quic]
 1. Transport semantics are not application specific and finally application has to bear burden of solving them. Examples:
 * Application-1 want to send message with unlimited boundaries.
 * Application-2 want to send message with preserved boundaries.
@@ -33,7 +33,7 @@
 2. Congestion Control is Problem
 * 2a. Congestion Control is based on packet losses as a signal of congestion. More packets getting lost we need congestion control.
 ** This maybe a not good Congestion signal and can be replaced by anything else. Eg: Packet Transmission error rate, Since networks are getting faster and faster, Developers are revisting Congestion control.
-*** Solution: [QUIC](../../Google_QUIC/Features_Characteristics)
+*** Solution: link:/Networking/OSI-Layers/Layer-4/Protocols/Google_QUIC[Quic]
 
 3. Slow Start
 * During TCP-3-way handshake window size exchanged is relatively small, cannot be Max.
@@ -45,12 +45,11 @@
 * Similar problem will be seen when streaming video using TCP. Once the Segment is lost, the TCP will try retrieving even if other Segments of the video are watchable. Solution: QUIC
 
 5. 3 Way Handshake can take large time on large latency devices, low BW Network. Eg:
-* Web server connecting to slow mobile device. Solution: [QUIC](/Networking/OSI-Layers/Layer-4/Protocolsw)
+* Web server connecting to slow mobile device. Solution: link:/Networking/OSI-Layers/Layer-4/Protocols/Google_QUIC[Quic]
 
 6. TCP may not work faster in LAN, its designed for WAN.
 
 7. Cannot distinguish between Packet lost and retransmission in wireless network. In wireless network packet losses are there(more wrt to wired).
-
 
 == State Transition Diagram
 image::TCP_State_Diagram.gif?raw=true[State transition diag]
