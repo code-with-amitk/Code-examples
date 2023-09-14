@@ -1,24 +1,30 @@
-**React**
-- [Terms](#t)
-- **React Elements**
-  - [Render element to DOM](#r1)
-- [Libraries](#lib)
+:toc:
+:toclevels: 6
 
 
-## React
-React is a declarative & flexible frontend JS library for building 
-  - frontend large scale, data driven UIs.
-  - Andriod, ios apps, Desktop applications
-  - Virtual Reality Application using react VR.
+== React
+React is a declarative & flexible frontend JS library for building
+* frontend large scale, data driven UIs.
+* Andriod, ios apps, Desktop applications
+* Virtual Reality Application using react VR.
 
-<a name=t></a>
-### Terms
-- **Component:** This is Small,Isolated piece of code that takes parameters/props/properties as input, return hierarchy of views to display. Each react component can operate independently, this allows you to build complex UIs from simple components.
-- **DOM API** is a collection of objects that JavaScript can use to interact with the browser to modify the DOM.
+== Terms
+=== Component 
+React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
 
-## React Element
-<a name=r1></a>
-#### Render element to DOM
+React components are JavaScript functions that return markup:
+```js
+function MyButton() {
+  return (
+    <button>I'm a button</button>
+  );
+}
+```
+=== DOM API
+This is a collection of objects that JavaScript can use to interact with the browser to modify the DOM.
+
+== React Element
+=== Render element to DOM
 ```js
 var ch1 = React.createElement("h1", null, "Chapter-1")                          //1: Create element without properties
 var ch2 = React.createElement("h1", {id:"t", 'data-type:"title"}, "Chapter-2")  //2: Create element with properties
@@ -39,10 +45,8 @@ ReactDOM.render(ch1, document.getElementById('react-container'))    //3. Render 
 </body>
 ```
 
-<a name=r2></a>
-#### pros.children
-- data-reactroot: This is tree's root
-- 
+=== pros.children
+data-reactroot: This is tree's root
 ```js
 React.createElement(
  "parent",                                  //This is root element
@@ -56,7 +60,9 @@ arr[] = [child1, child2, child3]          //React creates an array of these chil
 pros.children = arr
 ```
 
-<a name=lib></a>
-### Libraries
-**1. React library** To create views. 
-**2. ReactDOM library** To render the UI in the browser.
+== Libraries
+=== 1. React library
+To create views. 
+
+=== 2. ReactDOM library
+To render the UI in the browser.
