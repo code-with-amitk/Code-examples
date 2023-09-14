@@ -1,15 +1,11 @@
-- [Reconstruct Itinerary](#q)
-- [Approach-1](#ap1)
-  - [Logic](#l1)
-  - [Complexity](#comp)
-  - [Code](#c1)
+:toc:
+:toclevels: 6
 
-<a name=q></a>
-### Reconstruct Itinerary
-- You are given a list of airline tickets where `tickets[i] = [fromi, toi]` represent the departure and the arrival airports of one flight. Reconstruct the itinerary in order and return it.
-- All of the tickets belong to a man who departs from "JFK", thus, the itinerary must begin with "JFK". If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string.
-- For example, the itinerary `["JFK", "LGA"]` has a smaller lexical order than `["JFK", "LGB"]`.
-- You may assume all tickets form at least one valid itinerary. You must use all the tickets once and only once.
+== link:https://leetcode.com/problems/reconstruct-itinerary/description/?envType=daily-question&envId=2023-09-14[Reconstruct Itinerary]
+* You are given a list of airline tickets where `tickets[i] = [fromi, toi]` represent the departure and the arrival airports of one flight. Reconstruct the itinerary in order and return it.
+* All of the tickets belong to a man who departs from "JFK", thus, the itinerary must begin with "JFK". If there are multiple valid itineraries, you should return the itinerary that has the smallest lexical order when read as a single string.
+* For example, the itinerary `["JFK", "LGA"]` has a smaller lexical order than `["JFK", "LGB"]`.
+* You may assume all tickets form at least one valid itinerary. You must use all the tickets once and only once.
 ```c
 Input: tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
 Output: ["JFK","ATL","JFK","SFO","ATL","SFO"]
@@ -23,12 +19,10 @@ Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","
       <------------------
 ```
 
-<a name=ap1></a>
-### Approach-1
-<a name=l1></a>
-#### Logic
-- _1._ Create directed graph. Graph can have duplicate entries. Since person can travel same airport multiple times.
-```
+=== Approach-1
+==== Logic
+1. Create directed graph. Graph can have duplicate entries. Since person can travel same airport multiple times.
+```c
 //map = multiset = Balanced BST(RBT)
 
 map<key=airport, value=multiset<airport>>
@@ -40,7 +34,7 @@ map<key=airport, value=multiset<airport>>
 	             \
                      SFO
 ```
-- _2._ Start from airport="JFK", jump to connected airport(from value) and remove multiset. Pushback on vector while unwinding the stack.
+2. Start from airport="JFK", jump to connected airport(from value) and remove multiset. Pushback on vector while unwinding the stack.
 ```c
                                  visit(jfk) //1
                                    while(2)
@@ -88,8 +82,7 @@ map<key=airport, value=multiset<airport>>
 ```
 - _3._ Reverse the vector to obtain route.
 
-<a name=comp></a>
-#### Complexity
+==== Complexity
 ```c
 n : number of airports
 m : number of airports connected to n
@@ -97,8 +90,8 @@ m : number of airports connected to n
 - **Time:** O(nm)
 - **Space:** O(n+m)
 
-<a name=c1></a>
-#### Code
+==== Code
+===== CPP
 ```cpp
 #include <iostream>
 #include <vector>
