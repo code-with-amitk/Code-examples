@@ -40,20 +40,4 @@ image:https://www.imperva.com/learn/wp-content/uploads/sites/13/2019/01/response
 
 image:images/web-proxy-cache.png?raw=true[Web proxy cache]
 
-==== link:/Networking/OSI-Layers/Layer-7/ApplicationServer_WebServer/README.adoc[4. Application Server] and DB
-===== 1. Memcached 
-* This is  Distributed Hash-Table ie <key,value> across multiple nodes. Implemented as LRU.
-* Sits on separate machine b/w Application server and DB. Multiple servers work in conjunction to act as single larger logical data cache. 
- * *Stores* User sessions, User profile, some historical data etc.
-```c
-          WebServer   App-server/DB-Client     DB-frontEnd          MEMCACHED         DB
-                                  ---query table1--->    ---table1---->
-                                                         <--NULL------
-                                                  --------query table1------------>
-                                                <-table1-    table1|expiry-time ------
-```
-
-===== 2. Redis
-
-=== Problem with Caching
-  - link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Consistency Problem]
+==== link:/Networking/OSI-Layers/Layer-7/ApplicationServer_WebServer/README.adoc[4. Application Server] and DB: link:/System-Design/Concepts/Cache/DB_Caches[Redis,Memcached]
