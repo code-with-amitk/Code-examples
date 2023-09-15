@@ -23,14 +23,15 @@ Web Server asks web browser to store some information on user's PC. Information 
  store information
  in Cookie file
 ```
-=== Where Cookie is stored on my Computer?
+=== Example?
+```c
 * _Path:_ "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie(SQL Lite DB)"
 * _In Browser:_ Right-click on your browser window > Inspect > Applications tab > Cookies > Check installed cookies
-```c
 # cat "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie"
-creation_utc      top_frame_site_key  host_key      name  encrypted_value  path    expires_utc     secure httponly  last_access_utc  expires persistent  priority
-13268758066855308		    .microsoft.com  MC1    129109aksknz1   /    13300294067855308   1	    0      13292307116001488  1        1          0
+cookie_name      cookie_value				domain			valid_timestamp			cookie_len	cookie_priority
+cookie_1	lwyMCcUDlsziLcAF/AOF3W1gCBO1aeb291	.google.com	/	2024-10-09T14:58:52.469Z	51			High
 ```
+cookie_value is application specific and only server side application understand it
 
 === Stolen Cookie? 
 * If hacker steals and installs your cookies into their web browser, hacker will get access your account.
