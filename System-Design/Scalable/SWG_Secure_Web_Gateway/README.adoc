@@ -1,0 +1,47 @@
+:toc:
+:toclevels: 6
+
+== SWG (secure web gateway)?
+* SWG is network security solution that helps organizations protect: 
+1. Their users and data from web-based threats(internet-borne viruses, malware)
+2. Enforce security policies for internet usage.
+
+=== 1. Requirements
+==== Functional
+[[req1]]
+1. *URL Filtering:* Some URLs are marked as filtered and policies are enforced on their access.
+
+[[req2]]
+2. *Web Traffic Filtering:* Inspect/filter web traffic in real-time, allow/block access to websites based on predefined security policies.
+
+[[req3]]
+3. *Malware and Threat Protection:* Scan & block web content for malware, viruses, and other malicious code.
+
+[[req4]]
+4. *Data Loss Prevention (DLP):* Enforce DLP policies to prevent sensitive data from being leaked or shared.
+
+[[req5]]
+5. *SSL/TLS Inspection:* SWGs can decrypt and inspect encrypted web traffic to detect threats hidden within encrypted connections. This is crucial as many threats now use encryption to evade detection.
+
+[[req6]]
+6. *User Authentication:* Integrate with identity and access management systems to enforce security policies based on user roles and permissions.
+
+[[req7]]
+7. *Reporting and Analytics:* Generate reports and provide insights into web usage patterns and security incidents.
+
+[[req8]]
+8. *Cloud-Based or On-Premises:* Can be deployed in the cloud/on-premises, or as hybrid solution, depending on an organization's requirements and preferences.
+
+[[req9]]
+9. *Mobile Device Support:* Protect mobile devices, ensuring that users are secured even when they access the internet from smartphones and tablets.
+
+==== Non-Functional
+Scalable, Reliable
+
+=== 2. BOE
+
+=== 3. API Design
+
+=== 4. DB Schema
+
+=== 5. HLD
