@@ -9,31 +9,34 @@
 == 1. Requirements
 === Functional
 [[req1]]
-* 1. *URL Filtering:* Some URLs are marked as filtered and policies are enforced on their access.
+* 1. *Centralized Control:* Using SWG cloud perform centralized control and management of web traffic filtering policies.
 
 [[req2]]
-* 2. *Web Traffic Filtering:* Inspect/filter web traffic in real-time, allow/block access to websites based on predefined security policies.
+* 2. *URL Filtering:* Some URLs are marked as filtered and policies are enforced on their access.
 
 [[req3]]
-* 3. *Malware and Threat Protection:* Scan & block web content for malware, viruses, and other malicious code.
+* 3. *Web Traffic Filtering:* Inspect/filter web traffic in real-time, allow/block access to websites based on predefined security policies.
 
 [[req4]]
-* 4. *Data Loss Prevention (DLP):* Enforce DLP policies to prevent sensitive data from being leaked or shared.
+* 4. *Malware and Threat Protection:* Scan & block web content for malware, viruses, and other malicious code.
 
 [[req5]]
-* 5. *SSL/TLS Inspection:* SWGs can decrypt and inspect encrypted web traffic to detect threats hidden within encrypted connections. This is crucial as many threats now use encryption to evade detection.
+* 5. *Data Loss Prevention (DLP):* Enforce DLP policies to prevent sensitive data from being leaked or shared.
 
 [[req6]]
-* 6. *User Authentication:* Integrate with identity and access management systems to enforce security policies based on user roles and permissions.
+* 6. *SSL/TLS Inspection:* SWGs can decrypt and inspect encrypted web traffic to detect threats hidden within encrypted connections. This is crucial as many threats now use encryption to evade detection.
 
 [[req7]]
-* 7. *Reporting and Analytics:* Generate reports and provide insights into web usage patterns and security incidents.
+* 7. *User Authentication:* Integrate with identity and access management systems to enforce security policies based on user roles and permissions.
 
 [[req8]]
-* 8. *Cloud-Based or On-Premises:* Can be deployed in the cloud/on-premises, or as hybrid solution, depending on an organization's requirements and preferences.
+* 8. *Reporting and Analytics:* Generate reports and provide insights into web usage patterns and security incidents.
 
 [[req9]]
-* 9. *Mobile Device Support:* Protect mobile devices, ensuring that users are secured even when they access the internet from smartphones and tablets.
+* 9. *Cloud-Based or On-Premises:* Can be deployed in the cloud/on-premises, or as hybrid solution, depending on an organization's requirements and preferences.
+
+[[req10]]
+* 10. *Mobile Device Support:* Protect mobile devices, ensuring that users are secured even when they access the internet from smartphones and tablets.
 
 === Non-Functional
 Scalable, Reliable
@@ -45,5 +48,23 @@ Scalable, Reliable
 == 4. DB Schema
 
 == 5. HLD
-=== <<req1, 1. URL Filtering>>
+=== <<req1, 1. Centralized Control>>
+* Send all traffic to SWG cloud, this makes easier for organizations to enforce consistent web access policies across all users and devices.
 
+==== Types of Users
+===== Roaming User
+** Roaming means user(HCL Employee) not connected to company VPN, sitting in airport coffee shop & want to browse internet.
+** He Opens `google.com`, browser redirects him to *POP(Poing of presense)*. POP forwards to *Celo(Central Lokation)* which does all monitoring.
+
+===== Branch office(on prem) users
+
+==== Methods of sending traffic to SWG
+===== 1. GRE/IPSec Tunnel (For Branch offices ie OnPrem)
+* *GRE*
+** No IPSec negotation and encryption. Since webtraffic is already encrypted GRE encryption not needed.
+* *link:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/FS/README.adoc[Flow on pvt git]
+
+== Terms
+=== Service Location (Tenant Specific)
+* SL is created in UI (for tenant=customer). When SL is created on pre-created POP, n number of firewall instances(vsrx) are created to serve users for tenant.
+* SL is identified by (tenantid + POPid).
