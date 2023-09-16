@@ -1,32 +1,54 @@
 :toc:
 :toclevels: 6
   
-=== DNS / Domain Name Service / Port 53
+== DNS / Domain Name Service / Port 53
 * Protocol for converting hostname to IP address and viceversa. 
 * DNS uses udp by default, fall back to tcp if on udp cannot communicate.
+* *Advantages of DNS*
+** 1. To send packet across network we need IP Address and only DNS can provide.
+** 2. No need for memorizing IP addresses
+* *Disadv*
+** 1. Registry only controlled by [ICANN](Terms) which can become bais to some country/organization.
+** 2. [DNS Messages](DNS_Messages) does not have information of client asking the information, hacker can bisect the message and send his own message.
+** 3. [TLD's](Terms) can be bottleneck.
 
-==== Advantages of DNS
-* 1. To send packet across network we need IP Address and only DNS can provide.
-* 2. No need for memorizing IP addresses
-
-==== Disadv
-* 1. Registry only controlled by [ICANN](Terms) which can become bais to some country/organization.
-* 2. [DNS Messages](DNS_Messages) does not have information of client asking the information, hacker can bisect the message and send his own message.
-* 3. [TLD's](Terms) can be bottleneck.
-
-=== Name resolution
+== Name resolution
 The process of looking up a hostname and finding corresponding IP address.
 
 ==== 1. Forward Lookup (hostname to IP conversion)
-- [DNS Query](DNS_Messages), [Recursive DNS Server, Root Nameserver, Authoritative NameServer](Terms)
+```mermaid
+sequenceDiagram
+  participant u as User
+  participant o as Office DNS Server<br>ISP<br>DNS Server<br>Recursive DNS Server
+  participant r as Root Nameserver
+  participant tld as .com TLD Server
+  participant auth as Authoritative<br>DNS server
 
-<img src=forward-lookup.JPG width=900 />
+  Note over u: open yahoo.com<br>domain to IP mapping not found<br>Create |MAC|IP|udp dstport=53|<br>|DNS Query{hdr question=1}<br>{body qname:yahoo.com,Type=A,class=IN}|
+  u ->> o: DNS Query(yahoo.com)
+  Note over o: Cannot find domain to IP<br>Find Rootname server IP from<br> zone file
+  o ->> r: DNS QUery(yahoo.com)
+  Note over r: Find TLD server<br> for .com
+  r ->> tld: DNS Query(yahoo.com)
+  tld -->> r: IP of Authoritative<br>DNS server
+  r -->> o: IP of Authoritative<br>DNS server
+  o ->> auth: DNS Query(yahoo.com)
+  auth -->> o: DNS Response<br>|Type=A,TTL:23,Address:x.x.x.x|
+  o -->> u: DNS Response<br>|{hdr question=1}<br>{body ans:1,ans:x.x.x.x}|
+```
+- [DNS Query](DNS_Messages), [Recursive DNS Server, Root Nameserver, Authoritative NameServer](Terms)
 
 ==== 2. Reverse Lookup (IP to hostname)
 * *Why?* Case-1: Spam received in mailbox, From-IP header is parsed. Now Email client wants to know from where this Email arrived? Is this IP Address authentic or spam. So Machine enquires ISP for reverse query, giving IP address and asking for URL(if exists)).
-<img src=reverse-lookup.png width=600 />
+```mermaid
+sequenceDiagram
+  participant u as User/Desktop
+  participant o as Office DNS Server<br>ISP<br>DNS Server<br>Recursive DNS Server
 
-
+  Note over u: Got mail from 1.2.3.4<br>Create reverse DNS<br>4.3.2.1.in-addr.arpa.
+  u ->> o: 4.3.2.1.in-addr.arpa. Find URL
+  o ->> u: yahoo.com
+```
 
 == Terms
 
