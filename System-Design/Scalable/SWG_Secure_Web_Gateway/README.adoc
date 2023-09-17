@@ -58,15 +58,13 @@ Scalable, Reliable
 * *2. Branch office(on prem) users*
 
 ==== Methods of sending traffic to SWG
-===== link:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/FS/README.adoc[1. ON-PREM=Branch Office Customers. GRE/IPSec Tunnel]
+===== link:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/FS/Methods_of_sending_traffic_to_SWG.adoc[1. On prem/Branch Office Customers=GRE/IPSec Tunnel]
 ** No IPSec negotation and encryption. Since webtraffic is already encrypted GRE encryption not needed.
 ** Every user has pvt IP(ie all traffic comes without link:/Networking/OSI-Layers/Layer-3/Routing/NAT[NAT] to identify the user.
 ** *Problems:* 1. User wants higher throughput? Configure more tunnels at CPE router, because tunnels may be exhausted.
-** *link:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/FS/README.adoc[FLOW DIAGRAM on pvt git]*
 
-===== linK:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/FS/README.adoc[2. For Roaming Users. PAC File]
+===== link:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/FS/Methods_of_sending_traffic_to_SWG.adoc[2. Roaming Users=PAC File]
 * link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/Terms.adoc#pacproxy-auto-configuration-file[What is PAC File]
-* 
 
 == Terms
 === Service Location (Tenant Specific)
