@@ -1,0 +1,90 @@
+:toc:
+:toclevels: 6
+
+=== link:https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/description/?envType=daily-question&envId=2023-09-18[1337. The K Weakest Rows in a Matrix]
+You are given an m x n binary matrix mat of 1's (representing soldiers) and 0's (representing civilians). The soldiers are positioned in front of the civilians. That is, all the 1's will appear to the left of all the 0's in each row.
+
+A row i is weaker than a row j if one of the following is true:
+
+The number of soldiers in row i is less than the number of soldiers in row j.
+Both rows have the same number of soldiers and i < j.
+Return the indices of the k weakest rows in the matrix ordered from weakest to strongest.
+```c
+Example 1:
+
+Input: mat = 
+[[1,1,0,0,0],
+ [1,1,1,1,0],
+ [1,0,0,0,0],
+ [1,1,0,0,0],
+ [1,1,1,1,1]], 
+k = 3
+Output: [2,0,3]
+Explanation: 
+The number of soldiers in each row is: 
+- Row 0: 2 
+- Row 1: 4 
+- Row 2: 1 
+- Row 3: 2 
+- Row 4: 5 
+The rows ordered from weakest to strongest are [2,0,3,1,4].
+```
+
+=== Approach-1. O(nlogn)
+==== Logic
+* 1. Count 1's in each row and store in map. key=count of 1's, value=vector<int> having rows
+```c
+[[1,1,0,0,0],  //2
+ [1,1,1,1,0],  //4
+ [1,0,0,0,0],  //1
+ [1,1,0,0,0],  //2
+ [1,1,1,1,1]]  //5
+
+|1,<1>|2,<0,3>|4,<1>|5,<4>|
+```
+* 2. Traverse through map and get 1st k elements
+
+==== Complexity
+* Time: O(mn) + O(n)//Traverse in map
+* Space: O(mn)
+
+==== Code
+===== CPP
+```cpp
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        vector<int> out;
+            //count of 1 in row, <row index>
+        map<int, vector<int>> m;
+
+        for (int i=0;i<mat.size();++i) {
+            int count = 0;  //Count of soliders
+            for (int j=0;j<mat[0].size();j++) {
+                if (mat[i][j] == 1)
+                    count++;
+            }
+            auto it = m.find(count);
+            if (it != m.end())
+                it->second.push_back(i);
+            else {
+                vector<int> temp;
+                temp.push_back(i);
+                m.emplace(count,temp);
+            }
+        }
+
+        auto it = m.begin();
+        while (k>0 && it!=m.end()) {
+            int temp=0;
+            while(k>0 && temp < it->second.size()) {
+                out.push_back(it->second[temp]);
+                temp++;
+                k--;
+            }
+            it++;
+        }
+        return out;
+    }
+};
+```
