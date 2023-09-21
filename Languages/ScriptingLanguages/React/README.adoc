@@ -20,7 +20,7 @@ function MyButton() {
   );
 }
 ```
-=== link:https://create-react-app.dev/docs/getting-started/[Create React App]
+== link:https://create-react-app.dev/docs/getting-started/[Create React App]
 ```c
 npx create-react-app my-app
 cd my-app
