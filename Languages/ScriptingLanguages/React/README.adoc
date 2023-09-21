@@ -20,8 +20,13 @@ function MyButton() {
   );
 }
 ```
-=== DOM API
-This is a collection of objects that JavaScript can use to interact with the browser to modify the DOM.
+=== link:https://create-react-app.dev/docs/getting-started/[Create React App]
+```c
+npx create-react-app my-app
+cd my-app
+npm start
+open http://localhost:3000/ to see your app.
+```
 
 == React Element
 === Render element to DOM
