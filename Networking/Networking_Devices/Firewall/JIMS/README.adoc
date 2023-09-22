@@ -1,9 +1,5 @@
-**JIMS / Juniper Identity Management Service**
-- [JIMS b/w AD and SRX](#bw)
-  - [JIMS Clients](#clients)
-- **Queries to JIMS**
-  - [IP Query](#ip)
-  - [Batch Query](#bq)
+:toc:
+:toclevels: 6
 
 === What
 * JIMS is a Windows Application installed on windows machine near AD.
@@ -40,8 +36,7 @@ sequenceDiagram
  ser -->> srx: login<br>user1(1.2.3.4)(group1)
 ```
 
-<a name=bw></a>
-## JIMS b/w AD and SRX
+=== JIMS b/w AD and SRX
 - _1._ JIMS communicates with Microsoft Domain Controllers or  in AD(Active Directory) domains & collect event log information. 
   - Using the event log information, JIMS determines the IP-addresses(devices) associated with users, stores in cache.
 - _2._ JIMS gets group information from AD. ie groups to which user belongs, stored in cache.
@@ -50,9 +45,8 @@ sequenceDiagram
 <img src=JIMS_SRX.JPG width=700/>
 <img src=JIMS.jpg width=700/>
 
-## Queries to JIMS
-<a name=ip></a>
-#### IP Query
+=== Queries to JIMS
+==== IP Query
 This is a feature to be enabled on SRX device. SRX will send query message(over HTTP/HTTPS) to JIMS to get user information based on IP Address of user's device.
 ```c
                   JIMS                                          SRX_Device (IP Query enabled)
@@ -64,6 +58,5 @@ option-1
   no-ip-query	: Disable IP query. IP query is enabled by default.
   query-delay-time : Time after which the SRX Series device sends the query. Rather than allow the SRX Series device to respond automatically by sending a user query immediately, you can set a query-delay-time parameter, specified in seconds, that allows the SRX Series device to wait for a period of time before sending the query. Default: 15. Range: 0-60 seconds
 ```
-<a name=bq></a>
-#### batch query
+==== batch query
 Get information for group of users.
