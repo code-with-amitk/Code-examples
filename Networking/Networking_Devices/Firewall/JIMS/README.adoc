@@ -5,17 +5,39 @@
   - [IP Query](#ip)
   - [Batch Query](#bq)
 
-## What
-JIMS is a Windows Application which sits on layer-5 and between SRX devices and AD or Exchange Servers(in AD). Why?
-  - It fetch user information(device,username,groups) from AD, creates a report & provides to SRX or vSRX device.
-  - It can Supports upto 250 Domain Controllers, 250k users, 100 SRX devices.
-```c
-  AD                      JIMS
-   -----user,group info-->
-                         create report                  SRX_Device
-                                <-------- btach query-----
-                                      ----report----> 
-                                                      Enforce user policies
+=== What
+* JIMS is a Windows Application installed on windows machine near AD.
+** It fetch user information(device,username,groups) from AD, creates a report & provides to SRX or vSRX device.
+** It can Supports upto 250 Domain Controllers, 250k users, 100 SRX devices.
+```mermaid
+sequenceDiagram
+  participant o as syslog server<br><br>VPN G/w<br><br>Captive Portal
+  participant u as user
+  box customer premises
+  participant ad as AD
+  participant col as JIMS Collector
+  participant ser as JIMS-server
+  participant srx as SRX
+  end
+
+  box Cloud
+  participant srv as JIMS-server
+  participant vsrx as JVSRXMS
+  end
+
+ col ->> ad: ldapquery<br>Read users to <br>group mapping
+ ad -->> col: group1(user1,user4)<br>group2(user5,user8)
+
+ Note over u: Login to domain
+ Note over u: No internet<br>Check cached credentials
+ u ->> ad: if internet present<br>(user/pass)
+ Note over ad: Event log<br>login<br>user1(1.2.3.4)
+ col ->> ad: ReadEventLogs()
+ ad -->> col: login/logout<br>user1(1.2.3.4)
+ col ->> ser: login<br>user1(1.2.3.4)(group1)
+ o ->> col: login/logout events
+ srx ->> ser: IP query
+ ser -->> srx: login<br>user1(1.2.3.4)(group1)
 ```
 
 <a name=bw></a>
