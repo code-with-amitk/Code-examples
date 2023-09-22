@@ -1,0 +1,66 @@
+:toc:
+:toclevels: 6
+
+=== 392. Is Subsequence
+Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+```c
+Example 1:
+Input: s = "abc", t = "ahbgdc"
+Output: true
+
+Example 2:
+Input: s = "axc", t = "ahbgdc"
+Output: false
+```
+
+=== Approach-1. Check every char of s in t.
+==== Logic
+1. Compare 1st char of s in t.
+2. if char is found, remove 1st char and continue until sizeof(s)>0
+==== Complexity
+* Time: O(mn). m=sizeof(t), n=sizeof(s)
+
+==== Code
+===== CPP-11
+```cpp
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        bool isSubSeq = false;
+        // Iterate through t
+        for_each(t.begin(), t.end(), [&](char ele){
+            // if 1st char of s == present char of t
+            // erase 1st char from s
+            if (s.size() && s.front() == ele)
+                s.erase(0,1);
+            // if we erased all chars for s, ie all chars are found in t
+            // subseq is found inside t. return true
+            if (!s.size()) {
+                isSubSeq = true;
+                return;
+            }
+        });
+        // if (t="" && s="") return true
+        return !s.size() && !t.size() ? true : isSubSeq;
+    }
+};
+```
+===== CPP-98
+```cpp
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        if (!s.size() && !t.size())
+            return true;
+        for (int i=0;i<t.size();++i) {
+            if (s.size() && s[0] == t[i])
+                s.erase(0,1);
+            if (!s.size())
+                return true;
+        }
+        return false;
+    }
+};
+```
