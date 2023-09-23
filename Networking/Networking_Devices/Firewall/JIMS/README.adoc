@@ -13,6 +13,7 @@ sequenceDiagram
   participant ad as AD
   participant col as JIMS Collector
   participant ser as JIMS-server
+  participant sled as SLED
   participant srx as SRX
   end
 
@@ -21,8 +22,15 @@ sequenceDiagram
   participant vsrx as JVSRXMS
   end
 
+ rect rgb(224, 224, 224) 
+ par READ USERS,GROUPS
  col ->> ad: ldapquery<br>Read users to <br>group mapping
  ad -->> col: group1(user1,user4)<br>group2(user5,user8)
+ col ->> ser: user1: group1(user1,user4)<br>group2(user5,user8)
+ ser ->> sled: user1: group1(user1,user4)<br>group2(user5,user8)
+ Note over sled: Store mapping
+ end end
+
 
  Note over u: Login to domain
  Note over u: No internet<br>Check cached credentials
@@ -32,8 +40,31 @@ sequenceDiagram
  ad -->> col: login/logout<br>user1(1.2.3.4)
  col ->> ser: login<br>user1(1.2.3.4)(group1)
  o ->> col: login/logout events
- srx ->> ser: IP query
- ser -->> srx: login<br>user1(1.2.3.4)(group1)
+ ser ->> sled: login/logout<br>user1(1.2.3.4)
+ Note over sled: user:1.2.3.4
+
+ rect rgb(191, 223, 255)
+ par GET OAUTH TOKEN
+ Note over srx: Admin configure<br>jims user/pass
+ srx ->> ser: HTTP GET token<br> user/pass
+ Note over ser: Veify user/pass
+ ser ->> srx: oauth token (expire 8hours)
+ end
+ end
+
+ rect rgb(255, 255, 153)
+ Note over srx: Need info of<br>IP=4.5.6.7
+ srx ->> ser: IP query(4.5.6.7)
+ ser -->> srx: login<br>user1(4.5.6.7)(group1)
+ end
+
+ rect rgb(255, 204, 204)
+ par BATCH QUERY
+ srx ->> srx: Every 5 sec
+ srx ->> ser: Batch Query
+ ser -->> srx: login<br>user1(4.5.6.7)(group1)
+ end
+ end
 ```
 
 === JIMS b/w AD and SRX
