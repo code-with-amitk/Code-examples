@@ -68,26 +68,15 @@ sequenceDiagram
 ```
 
 === JIMS b/w AD and SRX
-- _1._ JIMS communicates with Microsoft Domain Controllers or  in AD(Active Directory) domains & collect event log information. 
-  - Using the event log information, JIMS determines the IP-addresses(devices) associated with users, stores in cache.
-- _2._ JIMS gets group information from AD. ie groups to which user belongs, stored in cache.
-- _3._ With IP address(device),username, and group relationship information, JIMS generates a report and sends it to the SRX Series devices. if CSO is present report is sent to that as well.
-- _4._ Each SRX Series device receives the report(IP address(device),username,user group relationship information) and generates authentication entries that are used to enforce user-based and group-based security policy control over access to protected corporate resources and the Internet.
-<img src=JIMS_SRX.JPG width=700/>
-<img src=JIMS.jpg width=700/>
+1. JIMS collects users,groups, event logs from Active Directory. From link:/Operating_Systems/Windows/Active_Directory/Computer_Object[Event logs] JIMS determines the IP-addresses(devices) associated with users.
+2. On IP,Batch query JIMS provides report(IP address(device),username,groups). SRX creates policies to enforce user-based and group-based security policy control over access to protected corporate resources and the Internet.
 
 === Queries to JIMS
 ==== IP Query
-This is a feature to be enabled on SRX device. SRX will send query message(over HTTP/HTTPS) to JIMS to get user information based on IP Address of user's device.
+Provide user information from IP Address of user's device.
 ```c
-                  JIMS                                          SRX_Device (IP Query enabled)
+                  JIMS                                          SRX_Device
                     <-- Give user info (IP=x.y.z.g)/HTTP_HTTPS---
-                    
-/////////SRX///////////
-user@host# set services user-identification device-information authentication-source network-access-controller option-1
-option-1
-  no-ip-query	: Disable IP query. IP query is enabled by default.
-  query-delay-time : Time after which the SRX Series device sends the query. Rather than allow the SRX Series device to respond automatically by sending a user query immediately, you can set a query-delay-time parameter, specified in seconds, that allows the SRX Series device to wait for a period of time before sending the query. Default: 15. Range: 0-60 seconds
 ```
 ==== batch query
 Get information for group of users.
