@@ -30,7 +30,7 @@
 
 === SSL Client validating SSL Server Certificate & viceversa
 ==== 1. Mutual TLS / Public Key Exchange
-* link:/Networking/OSI-Layers/Layer-3/Security/Integrity/Digital_Signature.adoc[Digital Signature] of CA is included in link:[Digital Signature Section of certificate]
+* link:/Networking/OSI-Layers/Layer-3/Security/Integrity/Digital_Signature.adoc[Digital Signature] of CA is included in link:/Networking/OSI-Layers/Layer-7/Protocols/Encryption_Authentication/Certificates.adoc[Digital Signature Section of certificate]
 ```mermaid
 sequenceDiagram
   participant r as Root CA
