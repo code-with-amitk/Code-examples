@@ -1,0 +1,132 @@
+:toc:
+:toclevels: 6
+
+== SSL/TLS
+* SSL/TLS are Layer7 protocol for Authentication+Encryption. Layer-4 can have TCP or UDP.
+* TLS Implementation: NSS, openSSL, gnuTLS, Boring SSL(by Google written in C, C++, Go, assembly), GNUTLS(By GnuTLS project)
+
+=== SSL vs TLS
+|===
+||SSL(predecessor of TLS)|TLS
+
+|Versions|v2,v3|v1(based on sslv3), v1.2(2008), v1.3(2018 to present): MD5,SHA224 support removed. Handshake messages not encrypted after "Server-hello"
+|Why||Lot of security vulnerabilities were found in SSL
+|Encryption Algo's||Stronger wrt SSL
+|On-Record-Layer|Uses MAC|Uses HMAC
+|Vulnerabilities present|POODLE,DROWN|
+|===
+
+=== NSS(TLS Implementation) vs Openssl
+|===
+||NSS(Network Security Services)|OpenSSL
+
+|Developed By|Mozilla, AOL, Red Hat, Sun, Oracle, Google and others|OpenSSL project
+|Open Source|Yes|Yes
+|License|MPL 2.0|OpenSSL-SSLeay dual-license
+|Written|C, assembly|C, assembly
+|Recent Version|3.62|1.1.1k
+|Supports PKCS#11(Smart card tokens)|Yes|No
+|===
+
+=== SSL Client validating SSL Server Certificate & viceversa
+==== 1. Mutual TLS / Public Key Exchange
+* link:/Networking/OSI-Layers/Layer-3/Security/Integrity/Digital_Signature.adoc[Digital Signature] of CA is included in link:[Digital Signature Section of certificate]
+```mermaid
+sequenceDiagram
+  participant r as Root CA
+  participant c as SSL Client
+  participant s as SSL Server
+ 
+ rect rgb(204,255, 204)
+ par Get Signed Cert from Root CA
+ c ->> r: publicKey+CSR
+ r -->>c: SIGNED Client.crt<br>+ RootCA.crt
+ Note over c:Client cert is SIGNED by ROOT CA<br><br>CA Added his Digital Signature to cert<br>CA encrypted Hash of cert with its PVt key
+ s ->> r: publicKey+CSR
+ r -->>s: SIGNED server.crt + RootCA.crt
+ Note over s:server cert is SIGNED by ROOT CA<br><br><br>CA Added his Digital Signature to cert<br>CA encrypted Hash of cert with its PVt key
+ end
+ end
+
+ Note over c: Browser installed self.crt, RootCA.crt<br><br>User type google.com
+
+ rect rgb(255, 204, 229)
+ par 3 Way TCP Handshake
+ c ->> s: SYN
+ s ->>c: SYN+ACK
+ c ->>s: ACK
+ end
+ end
+
+ rect rgb(191, 223, 255)
+ par HANDSHAKE PROTOCOL=Select Cipher Suite, Random Numbers, Compression Method
+ Note over c: ssl3_connect()<br>ssl3_accept()<br>send_clienthello()
+ c ->> s:Client_Hello |version|SessionId=0|Cipher_suite_list|Random_no=RNc|Comp_methods|
+ Note over s: start_handshake() <br> send_hello_req()
+ s ->> c: Server_Hello|version|SessionId=4|Cipher_suite_selected|Random_no=RNs|Comp_method_selected|
+ Note over c: Cipher suite <br> Comp Method selected
+ s ->> c: SERVER-CERT + DS-of-CA |version|Len| [server.crt + DS-of-CA]
+ Note over s: send_server_done()
+ s ->> c: SERVER-HELLO-DONE |version|length|type=hello-done|
+ end
+ end
+
+ rect rgb(224, 224, 224)
+ par VALIDATE Server.crt
+ Note over c: Browser has preinstalled Root CA certs in cert store
+ Note over c: Checks which RootCA has signed server.crt get its <br> Issuer: C = <>, ST = <>, L = <>, O = Verisign, OU = <>, CN = <>, emailAddress = <>
+ Note over c: Retrieve same RootCA.crt from DB<br>Gets Public Key from RootCA.crt stored in DB<br>Verify [Digital Signature] present on server.crt<br><br>Decrypt DS of received server.crt using Public key of CA=Hash<br>server.crt > [sha256] > Hash<br>if Hash Match. Good
+ end
+ end
+ 
+ s->> c:CERTIFICATE-REQ(Optional)
+ c-->>s:Client-Certificate<br>Client Certificate will have EKU value of OID=1.3.6.1.5.5.7.3.2
+ Note over s:Verify using same Method
+
+ Note over c:Generate Pre-Master-Secret-Key(from RNc,RNs)<br>Encrypt using Server's Public-key=PMSK
+ c->>s:CLIENT-KEY-EXCHANGE |version|length|type=22(handshake)|PMSK|
+ Note over s:Decrypt Pre-Master-Secret-Key using Pvt Key
+ Note over c:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)<br> Generate Session-key(from Master-key)
+ Note over s:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)<br> Generate Session-key(from Master-key)
+
+rect rgb(191, 223, 255)
+par RECORD PROTOCOL start
+Note over c:SSL_write(ssl,buf,strlen(buf)) / BIO_write<br>SSL_read(ssl,buf,strlen(buf)) / BIO_read
+Note over c: L5 Data >|Compress| > xyz > |Add MAC| > MMMxyz<br> Encyrpt MMMxyz using Session-key
+c->>s: Encrypted Data
+s-->>c:close_notify_message
+c->>s:close_notify_message
+end
+end
+```
+
+===== ALERT-PROTOCOL
+* Mechanism to inform other end that some thing wrong happened(either in handshake, record protocol). This message consists of two fields. (Alert Message,Criticality of the alert).
+
+== Decrypting Traffic in Wireshark
+=== link:https://techzone.cisco.com/t5/Troubleshooting-and-Tools/How-to-Decrypt-SSL-traffic-using-Wireshark/ta-p/355403[1. SSL Traffic]
+* Get a. Server's: RSA pvt key,  b. Clients's: Pre-master-secret for each session
+* Enter the key in: Wireshark Menu -> Edit -> Prefrences -> Protocol -> ssl -> RSA Key List
+
+=== link:https://wiki.wireshark.org/Kerberos[2. Decrypt GSS-API]
+* 1. Get keytab for Administrator user from AD
+```c
+//Generate keytab
+PS C:\Users\Administrator> ktpass /princ Administrator@test.com /pass Password /crypto RC4-HMAC-NT /ptype KRB5_NT_PRINCIPAL /out test.keytab
+
+//Check keytab is valid
+PS C:\Users\Administrator> klist
+```
+* 2. wireshark > Edit > Preferences > Protocols > Krb5 > Place keytab > Ok
+* 3. Encypted GSS-API payload will appear decrypted now.
+
+== DTLS / Datagram TLS (TLS over UDP)
+* DTLS is port of TLS over UDP.
+* Why UDP?
+  - Less Delay(Good Choice for Audio/Video)
+  - No retransmissions (for lost packets)
+  - No Connection Setup (Handshakes)
+  - For Multicast, UDP is used
+  - If TCP is used sender has to take care of Each recipient's receiving rate
+  - Packet Header of UDP(8bytes) is much smaller than TCP(20 bytes)
+WHICH PACKET IS DELIVERED RELIABLY IN DTLS?
