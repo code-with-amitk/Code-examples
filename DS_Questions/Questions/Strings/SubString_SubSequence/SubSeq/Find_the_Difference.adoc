@@ -60,4 +60,35 @@ public:
 ```
 ===== CPP11
 ```cpp
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        // Fill t in Hashset
+        unordered_map<char, int> um;
+        for_each(t.begin(), t.end(), [&um](const char& ele){
+            um[ele]++;
+        });
+        
+        // Find every char in set, if not found return that
+        char out = 'A';
+        //um, out are passed as reference ie can be changed inside lambda
+        for_each(s.begin(), s.end(), [&um, &out](const char ele){
+            auto it = um.find(ele);
+            if (it == um.end()) {
+                out = ele;
+                return;     //break cannot be used in lambda. This break will exit lambda not function
+            } else {
+                um[ele]--;
+                if (um[ele] == 0)
+                    um.erase(it);
+            }
+        });
+
+        if (out != 'A')
+            return out;
+        for (auto&i:um)
+            out = i.first;
+        return out;
+    }
+};
 ```
