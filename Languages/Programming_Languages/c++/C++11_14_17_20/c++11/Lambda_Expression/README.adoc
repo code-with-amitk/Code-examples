@@ -102,7 +102,7 @@ Passing outside variables into lambda. Variables passed can be modified inside l
   auto p8  =  [ =, &i ]  (int a, int b)  ->  int {  i=95;  return a + b + i; };
 ```
 
-== 1. Open /dev/mem
+=== Open /dev/mem
 ```c++
 int main(){
   int fd;
@@ -111,4 +111,21 @@ int main(){
 }
 ```
 
+=== return from lambda
+```cpp
+int main() {
+  string s = "abcdfg";
+  for_each(s.begin(), s.end(), [&um, &out](const char ele){
+      auto it = um.find(ele);
+      if (it == um.end()) {
+          out = ele;
+          return;     //break cannot be used in lambda. This break will exit lambda not function
+      } else {
+          um[ele]--;
+          if (um[ele] == 0)
+              um.erase(it);
+      }
+  });
+}
+```
 
