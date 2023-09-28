@@ -1,0 +1,37 @@
+:toc:
+:toclevels: 6
+
+== pfsense
+* pfSense is both a router and a firewall.
+
+== Installation
+=== On VirtualBox (on Home Laptop)
+==== Network Settings
+* We need to create 2 virtual network adaptors(VNA). 
+* Virtual NA is not physical NIC, these network adapters are software-based and are created within VirtualBox to connect your virtual pfSense.
+** *1. Adapter1/WAN Adapter:*
+** *2. Adapter2/LAN Adapter:*
+
+*Present Configuration*
+```mermaid
+mindmap
+  root((Netgear_ISP_Router))
+    Wifi /
+      My Asus Laptop
+      Lenovo Laptop
+      Amit Phone
+      Yogi Phone
+```
+
+*Configuration (With pfsense)*
+```mermaid
+mindmap
+  root((Netgear_ISP_Router))
+    Wifi /
+        id))Laptop / Wifi Bridged Adapter/wlp03((
+            Laptop Ubuntu/ pfsense / VirtualBox
+                d))Laptop /LAN Adapter/Virtual / internal network((
+                    Asus Laptop
+                    Amit Phone
+                    Yogi Phone
+```
