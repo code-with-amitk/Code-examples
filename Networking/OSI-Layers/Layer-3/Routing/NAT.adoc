@@ -1,0 +1,50 @@
+:toc:
+:toclevels: 6
+
+
+== NAT / Network Address Translation
+* NAT is used to map internal IPv4 addresses to 1/more public IP addresses when communicating with devices on the internet. It allow multiple devices on a local network to share 1 public IP.
+
+=== Why NAT?
+1. *Not Enough IPv4 addresses:* Organization may not have enough Public IP Addresses to make all pvt nodes assign seperate public IP to communicate with External servers. But even NAT is not permanent Solution. IPv6 is.
+2. *security:* NAT acts as a firewall by hiding the internal network's structure. When devices on the local network communicate with the internet, their internal IP addresses are replaced with the public IP address of the NAT device. This makes it harder for external threats to directly target devices on the local network.
+3. *Load Balancing:* Some NAT implementations support load balancing, distributing outbound traffic among multiple public IP addresses, improving network performance and redundancy.
+
+
+== Types of NAT
+=== A. Static/Basic NAT
+* 1 to 1 Translation of IP Addresses.
+* Private Address Space/Pool has corresponding Public Address Space/Pool. 
+* Every computer on the network must be allocated a single dedicated routable IP address.
+
+=== B. Dynamic NAT
+* Router maintains Pool of Public IP Addresses at beginning.
+* When device want to communicate to node on internet, 1 public IP address is picked and assigned to device.
+* The assigned public IP address remains reserved for that local device until its session is completed or a timeout occurs.
+* Once the session is closed or times out, the public IP address can be returned to the pool for use by another local device. 
+```mermaid
+sequenceDiagram
+    participant p1 as PC1(10.0.0.1)
+    participant p2 as PC2(10.0.0.2)
+    participant r as Router
+    participant d as Dest=google(213.31.80.2)
+
+    Note over r: Pool of public IP Addresses<br>179.2.2.1<br>179.2.2.2<br>179.2.2.3<br>..
+    Note over p1: User opens google.com<br>Using DNS get IP=213.31.80.2
+
+    p1 ->> r: HTTP GET(srcIP=10.0.0.1,dstIP=213.31.80.2)
+    Note over r: Provide 179.2.2.1 to PC1<br>Pool of public IP Addresses:<br>179.2.2.2<br>179.2.2.3<br><br>Mapping(10.0.0.1,179.2.2.1)
+    r ->> d: HTTP GET(srcIP=179.2.2.1,dstIP=213.31.80.2)
+    d -->> r: Web Page
+    Note over r: Check<br>Mapping of 179.2.2.1<br>Mapped to PC1
+    r -->> p1: Web Page
+```
+
+=== C. Port Address Translation / PAT / IP Masquerading / NAPT(N/W address & Port Translation)/ NAT Overloading
+* Router will use only Single Public IP Address, but maintains a port number(identifier) for every internal device.
+```c
+|Inside Local IP:Port| Port |	Outside Global IP |
+
+|10.0.0.3: 1650 |	1 | 213.31.80.2 |
+|10.0.0.4: 1722 | 2 | 213.31.80.2 |
+```
