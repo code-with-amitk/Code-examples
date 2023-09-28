@@ -1,0 +1,40 @@
+:toc:
+:toclevels: 6
+
+
+== Firewall
+* Every packet entering/leaving company will pass thru firewall.
+* Firewall rules are defined at firewall(Eg: firewalld/srx). Packets matching the rules are forwarded normally. Packets failing the rules are dropped. Example
+```c
+  Allowed Ports: 80(HTTP), 25(Mail)
+  Blocked Ports:  79(Finger Service to look at email)  //Drop all incoming packets to 79
+``` 
+
+=== Firewall Duties
+- Stateful packet processing ie keep track of sessions
+- NAT & PAT
+- VPN Establishment
+- Can implement other security elements, eg: SSL,ALG(Application level gateway),IDP(Intrusion detection & Prevention) etc
+
+== Types of firewalls
+=== Packet Filtering Firewall
+Filters network packets based on criteria such as source and destination IP addresses, port numbers, and protocols. Permit or deny traffic based on these criteria. 
+
+=== Stateful Firewalls  
+* keep track of the state of active connections and make decisions based on the state of the traffic. 
+* Drawback: It cannot inspect Application layer traffic.
+
+=== Application Layer Firewall (ALG)
+Inspect traffic at the application layer of the OSI model (Layer 7). They understand specific application protocols (e.g., FTP, SIP, H.323) 
+
+=== Unified Threat Management (UTM)
+UTM firewalls are all-in-one security appliances that incorporate multiple security features like firewalling, antivirus, anti-spam, content filtering, and more into a single device. 
+
+=== Intrusion Detection System (IDS) and Intrusion Prevention System (IPS)
+* These systems analyze network traffic for signs of suspicious or malicious activity and can take actions to block or alert on such activity.
+* pfSense can be configured to function as an IDS/IPS by using packages like Snort or Suricata. 
+
+== Zones in firewall
+=== DMZ (DeMilitarized Zone) 
+* Part of company, here Public-facing servers can be placed. Eg: Web servers(with minumum and none secure information)
+** *Why?* Outsiders can contact Web-server(hosting company website) and no internal machine is compromised.
