@@ -9,11 +9,24 @@
 sequenceDiagram
   participant pc as PC1
   participant r as Router
-  participant j as JIMS-Collector
+  participant j as JIMS-Collector<br>Port=514
+  participant js as JIMS-server
+  participant db as DB
+  participant srx as SRX
 
   Note over r: Syslog Server
-  Note over j: Syslog Client
+  Note over j: Syslog Client<br>Insert IP,port of syslog server<br>1.3.4.5 50
   Note over pc: Login,h/w failure,security event
-  pc ->> r: Event
+  pc ->> r: Event<br> username, device name<br> domain, groups<br> and/or IP address mappings
   r ->> j: Event(syslog)
+  j ->> js: Event
+  js ->> db: Event
+  srx ->> js: query(ip or batch)
+  js -->> srx: response from db
 ```
+
+=== regex
+We can configure regular expressions(regex) to define a search pattern within syslog message. JIMS server executes the regex associated with the particular connection, in the specified sequence order.
+
+== Configure syslog server, client(JIMS Collector)
+
