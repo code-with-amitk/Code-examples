@@ -2,7 +2,7 @@
 :toclevels: 6
 
 == Daemon
-Process running in background to perform system tasks. 
+Process running in background to perform system tasks.
 
 == Service
 1 or more daemon/processes combined together for servicing the user. Eg: File server, Apache/httpd service(shows 5-6 processes in ps), sshd, systemd
