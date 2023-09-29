@@ -1,14 +1,10 @@
-- [Daemon](#d)
-- [Service](#s)
-- [Process](#p)
-  - [Converting Process to service](#cov)
+:toc:
+:toclevels: 6
 
-<a name=d></a>
-## Daemon
+== Daemon
 Process running in background to perform system tasks. 
 
-<a name=s></a>
-## Service
+== Service
 1 or more daemon/processes combined together for servicing the user. Eg: File server, Apache/httpd service(shows 5-6 processes in ps), sshd, systemd
 ```c
 # ps -aux|grep systemd
@@ -19,11 +15,10 @@ root    669  0.0  0.0  112121  1212   ?    Ss    2020  1:11  /usr/lib/systemd/sy
 root    904  0.0  0.0  129492  8589   ?    Ss    2020  1:11  /usr/lib/systemd/systemd-logind
 ```        
 
-<a name=p></a>
-## Process
+== Process
 1 or more threads of execution together.
-<a name=con></a>
-#### Converting Process to service
+
+=== Converting Process to service
 ```c
 # g++ test.cpp -o AmitService -std=c++11
 int main(){        
