@@ -1,0 +1,213 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/monotonic-array/description/?envType=daily-question&envId=2023-09-29[896. Monotonic Array]
+An array is monotonic if it is either monotone increasing or monotone decreasing.
+
+An array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums is monotone decreasing if for all i <= j, nums[i] >= nums[j].
+
+Given an integer array nums, return true if the given array is monotonic, or false otherwise.
+```c
+Example 1:
+Input: nums = [1,2,2,3]
+Output: true
+
+Example 2:
+Input: nums = [6,5,4,4]
+Output: true
+
+Example 3:
+Input: nums = [1,3,2]
+Output: false
+```
+
+== Approach-1. O(n). 2 Pass. Two Iterations. Check Increasing,decreasing seperately
+=== Logic
+* 1. Check Monotonic Increasing?
+** Traverse array, if n[i] > n[i+1], that means its not increasing
+```c
+[4,3,8,1]
+inc = false
+```
+* 2. Check Monotonic Decreasing?
+** Traverse array, if n[i] < n[i+1], that means its not decreasing
+```c
+[4,3,8,1]
+dec = false
+```
+* 3. if both inc=false,dec=false it neither increasing, nor decreasing, return false
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        bool inc = true, dec = true;
+        // Check increaseing monotonic
+        for (auto it=nums.begin(); it!=nums.end()-1; it++){
+            if (*it > *(it+1))
+                inc = false;
+        }
+        for (auto it=nums.begin(); it!=nums.end()-1; it++){
+            if (*it < *(it+1))
+                dec = false;
+        }
+        return !inc && !dec ? false : true;
+    }
+};
+```
+
+==== Python
+```py
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        #Check if mono increasing
+        inc = True
+        dec = True
+        for i in range (0, len(nums)-1):
+            if nums[i] > nums[i+1]:
+                inc = False
+        for i in range (0, len(nums)-1):
+            if nums[i] < nums[i+1]:
+                dec = False
+        if inc == False and dec == False:
+            return False
+        return True
+```
+
+==== Rust
+```rs
+impl Solution {
+    pub fn is_monotonic(nums: Vec<i32>) -> bool {
+        let mut inc = true;
+        let mut dec = true;
+        // Check increasing monotonic
+        for i in 0..nums.len()-1 {
+            if (nums[i as usize] > nums[i+1 as usize]) {
+                inc = false;
+            }
+        }
+        // Check decreasing monotonic
+        for i in 0..nums.len()-1 {
+            if (nums[i as usize] < nums[i+1 as usize]) {
+                dec = false;
+            }
+        }
+        if inc == false && dec == false {
+            return false;
+        }
+        return true;
+    }
+}
+```
+
+==== Go
+```go
+func isMonotonic(nums []int) bool {
+    inc := true
+    dec := true
+    // Check increasing
+    for i :=0; i<len(nums)-1; i++ {
+        if nums[i] > nums[i+1] {
+            inc = false
+            break
+        }
+    }
+    // Check decreasing
+    for i :=0; i<len(nums)-1; i++ {
+        if nums[i] < nums[i+1] {
+            dec = false
+            break
+        }
+    }
+    if inc == false && dec == false {
+        return false
+    }
+    return true
+}
+```
+
+== Approach-2. 1 Pass. 1 iteration. O(n). Check Increasing, decreasing in same pass
+=== Logic
+* 1. In Approach-1 we used 2 seperate loops to Check Monotonic Increasing, Decreasing. But here we use only 1 loop.
+** Traverse array
+*** if n[i] > n[i+1], that means its not increasing
+*** if n[i] < n[i+1], that means its not decreasing
+
+=== Code
+==== CP
+```cpp
+class Solution {
+public:
+    bool isMonotonic(vector<int>& nums) {
+        bool inc = true, dec = true;
+        // Check increaseing, decreasing monotonic
+        for (auto it=nums.begin(); it!=nums.end()-1; it++){
+            if (*it > *(it+1))
+                inc = false;
+            if (*it < *(it+1))
+                dec = false;
+        }
+        return !inc && !dec ? false : true;
+    }
+};
+```
+==== Python
+```py
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        #Check if mono increasing
+        inc = True
+        dec = True
+        for i in range (0, len(nums)-1):
+            if nums[i] > nums[i+1]:
+                inc = False
+            if nums[i] < nums[i+1]:
+                dec = False
+        if inc == False and dec == False:
+            return False
+        return True
+```
+==== Go
+```go
+func isMonotonic(nums []int) bool {
+    inc := true
+    dec := true
+    // Check increasing, decreasing
+    for i :=0; i<len(nums)-1; i++ {
+        if nums[i] > nums[i+1] {
+            inc = false
+        }
+        if nums[i] < nums[i+1] {
+            dec = false
+        }
+    }
+    if inc == false && dec == false {
+        return false
+    }
+    return true
+}
+```
+==== Rust
+```rs
+impl Solution {
+    pub fn is_monotonic(nums: Vec<i32>) -> bool {
+        let mut inc = true;
+        let mut dec = true;
+        // Check increasing, decreasing monotonic
+        for i in 0..nums.len()-1 {
+            if (nums[i as usize] > nums[i+1 as usize]) {
+                inc = false;
+            }
+            if (nums[i as usize] < nums[i+1 as usize]) {
+                dec = false;
+            }
+        }
+        if inc == false && dec == false {
+            return false;
+        }
+        return true;
+    }
+}
+```
