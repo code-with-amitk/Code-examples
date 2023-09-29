@@ -28,5 +28,34 @@ sequenceDiagram
 === regex
 We can configure regular expressions(regex) to define a search pattern within syslog message. JIMS server executes the regex associated with the particular connection, in the specified sequence order.
 
-== Configure syslog server, client(JIMS Collector)
+== Send Syslog to collector
+=== 1. Only hit, collector does not parse
+```mermaid
+sequenceDiagram
+  participant c as Collector
+  participant s as Syslog_Source(Ubuntu Machine)
 
+  Note over c: UI > Identity Producer <br> > Syslog Sources (Enter IP of syslog server)
+  Note over s: `echo "UDP Syslog Message" >> /dev/udp/<collector_ip>/514`
+  s ->> c: Syslog message
+```
+
+=== 2. Parsing using Regular expression
+```mermaid
+sequenceDiagram
+  participant s as Syslog_Source(Ubuntu Machine)
+  participant c as Collector
+
+  Note over s: apt install rsyslog
+  Note over s: vim /etc/rsyslog.conf<br>module(load="imudp")<br>input(type="imudp", port="514")<br>*.* @<collector-ip>:514
+  Note over s: systemctl rsyslog restart
+
+  Note over c: UI > Identity Producer <br> > Syslog Sources (Enter IP of syslog server)
+  Note over c: Click on Add Syslog Regular Expression Builder <br> Description: test<br> Type: Create User/Device Only
+
+  Note over s: Enter logger command, See below
+  s ->> c: Syslog message
+```
+```c
+$ logger "KMD_VPN_UP_ALARM_USER: VPN PSK from 1.2.3.4 is up. Local-ip:2.3.4.5 gateway name: test, vpn name: test-psk, tunnel_id:123, local tunnel-if:st012, domain: test.com, group: grp, username=test_user, Local IKE-ID: 3.4.5.6, Remote IKE-ID: test@abc.com, VR id: 6, Traffic-selector: TS1, Traffic-selector local ID: ipv1(6.7.8.9), SA Type: Static"
+```
