@@ -28,9 +28,9 @@ mindmap
 mindmap
   root((Netgear_ISP_Router))
     Wifi /
-        id))Laptop / Wifi Bridged Adapter/wlp03((
+        id))Laptop / Wifi Bridged Adapter/wlp03/ 192.162.1.8((
             Laptop Ubuntu/ pfsense / VirtualBox
-                d))Laptop /LAN Adapter/Virtual / internal network((
+                d))Laptop /LAN Adapter/Virtual / internal network/192.168.1.1((
                     Asus Laptop
                     Amit Phone
                     Yogi Phone
