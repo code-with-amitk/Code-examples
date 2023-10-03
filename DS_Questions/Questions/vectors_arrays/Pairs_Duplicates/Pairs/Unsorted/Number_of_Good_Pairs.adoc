@@ -1,0 +1,124 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/number-of-good-pairs/[1512. Number of Good Pairs]
+Given an array of integers nums, return the number of good pairs.
+
+A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+```c
+Example 1:
+Input: nums = [1,2,3,1,1,3]
+Output: 4
+Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+
+Example 2:
+Input: nums = [1,1,1,1]
+Output: 6
+Explanation: Each pair in the array are good.
+```
+
+== Approach-1. O(n^2^)
+Fix element then iterate through rest of elements, if element found again, increment pair by 1.
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& v) {
+      int pairs = 0, size=v.size();
+
+      for(int i=0;i<size-1;i++){
+        for(int j=i+1;j<size;j++){
+          if(v[i] == v[j])
+            pairs++;
+        }
+      }
+    return pairs;
+    }
+};
+```
+
+== Approch-2. O(n). Count using HashMap
+=== Logic
+1. Count number of occurences of element
+```c
+nums = [1,2,3,1,1,3]
+number  count_arr
+  1        3
+  2        1
+  3        2
+```
+2. Count count_arr and find pairs. count*(count-1)/2
+```c
+3*(3-1)/2 = 3
+1*(1-1)/2 = 0
+2*(2-1)/2 = 1
+Total = 4
+```
+=== Complexity
+* *Time:* O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& v) {
+      int out = 0;
+      unordered_map<int, int> um;
+      for (auto&i:v) 
+        um[i]++;
+      for (auto&i:um){
+        out += i.second*(i.second-1)/2;
+      }
+      return out;
+    }
+};
+```
+==== Python
+```py
+class Solution:
+    def numIdenticalPairs(self, nums: List[int]) -> int:
+      um = {}
+      out = 0
+      for i in nums:
+        if i in um:
+            um[i] += 1
+        else:
+            um[i] = 1
+      for key,value in um.items():
+        out += (value*(value-1))//2
+      return out
+```
+==== Go
+```go
+func numIdenticalPairs(nums []int) int {
+    var out = 0
+    // key[value]
+    hm := make(map[int]int)
+    for i:=0; i<len(nums);i++ {
+      hm[nums[i]]++
+    }
+    for _, value := range hm {
+      out += (value-1)*value/2
+    }
+    return out
+}
+```
+==== Rust
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn num_identical_pairs(nums: Vec<i32>) -> i32 {
+      let mut hm:HashMap<i32, i32> = HashMap::new();
+      for i in 0..nums.len() {
+          *hm.entry(nums[i]).or_insert(0) += 1;
+      }
+      let mut out = 0;
+      for (_, value) in &hm {
+        out += value*(value-1)/2;
+      }
+      out
+    }
+}
+```
