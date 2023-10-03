@@ -68,8 +68,8 @@ public:
       unordered_map<int, int> um;
       for (auto&i:v) 
         um[i]++;
-      for (auto&i:um){
-        out += i.second*(i.second-1)/2;
+      for (const auto& [key, value] : um) {
+        out += value*(value-1)/2;
       }
       return out;
     }
