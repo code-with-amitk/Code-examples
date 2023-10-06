@@ -2,7 +2,7 @@
 :toclevels: 5   // Set the desired depth of the table of contents
 
 [[blockcha]]
-=== Blockchain
+== Blockchain
 * This is append-only, immutable distributed ledger that is updateable only via consensus/agreement among peers. There is no single authority of this ledger.
 * This is link:(/Networking/OSI-Layers/Layer-7/P2P_OverlayNetwork/)[Peer to Peer] network running over TCP. Same as HTTP,FTP over TCP
 * *Examples blockchains*
@@ -18,15 +18,18 @@
 * *Cost saving:* As no third party is required in the blockchain model.
 
 === Limitations of Blockchain
-* Scalability
+* *Denial-of-Service Attack:* An attacker can overload a node by sending a lot of data or Huge block or transactions which too long to execute.
+** How to mitigate? bitcoin & many cryptocurrencies have a maximum possible block size limit.
+* *Scalability:* Very few nodes can maitain complete blockchain because of its big size.
 * Adaptability
 * Regulation
 * Relatively immature technology
 * Privacy
+* *Sybil Attack:* A single person controls few nodes and persuades few other nodes to block user(bob) from the network completely. This can result in transaction censoring for user(bob). This can result in double spending.
+** How to Avoid? look for nodes with suspiciously-low hashrate.
 
-=== Terms
 [[address]]
-==== Address (Sender or Receiver)
+== Blockchain Address (Sender or Receiver)
 * Bitcoin address of node is calculated using Hash of Public key.
 * Public generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
 * Hash is generated using RIPEMD160 + <</Networking/OSI-Layers/Layer-3/Security/Hash_MessageDigest_MAC_HMAC/README.adoc, SHA256>>.
@@ -36,18 +39,18 @@ K --> |SHA256| --256bit--> |RIPEMD160| --> 160bit(Address)
 160bit(Address) --> |Encode(Base58 Check)| --> Bitcoin Address      //Base58-Check(RIPEMD160(SHA256(K)))
 ```
 
-==== Base58, Base58-Check Encoding
-===== Base58
+== Base58, Base58-Check Encoding
+=== Base58
 * <<address, Public Address>> generated using hash of public key in blockchain is still 160bits long.
 * In order to represent long numbers in a compact way, many computer systems use mixed-alphanumeric representations with a base (or radix) higher than 10.
 * _Base64:_ (26 lower case, 26 capitals, 10 numerals & 2 more characters(maybe +, /)
 * _Base58:_ (26 lower case, 26 capitals(without the four (0, O, l, I))
 
-===== Base58-Check
+=== Base58-Check
 * 58 Digit (where last 4 digits = checksum for error check)
 * Decoding software will calculate the checksum of the data and compare it to the checksum included in the code.
 
-====== C++ Code (Generate Base64Check address)
+==== C++ Code (Generate Base64Check address)
 * 1. <<keys, Private key in blockchain is random number between (1- 2^256^)>>
 * 2. <<key, Public key = (pvt key) x G>>
 * 3. <<address, Address of node = Base58-Check(RIPEMD160(SHA256(K)))>>
@@ -79,9 +82,13 @@ int main() {
 }
 ```
 
-==== Block
-This is a Node(singly linked list). This is a transactions bundled together.
+== What is Block?
+* Blockchain is composed of blocks(Header + payload). 
+* Header is metadata, while payload is actual transaction data.
 ```c
+Header/Metadata => |block number | timestamp (when the block was created) | block hash | nonce |
+Data/Payload =>  |Sender address | Recipient address | amount of transaction | fee |
+
 struct block {
   struct block_header* bh;
   struct block* prev_block;   //This is Hash pointer(not normal pointer)
@@ -93,96 +100,104 @@ struct block {
 }
 ```
 
-==== BlockChain Clients
+=== Genesis Block. link:https://www.blockchain.com/explorer/blocks/btc/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f[Bitcoin block#0]
+1st block in blockchain. This is hardcoded at time when blockchain started. This is same as other blocks, just it does not have pointer to prev block.
+
+=== Block creation
+* The only way to add new information to the blockchain is to add a block to the end of it.
+* Only Qualified users create blocks and send them to other nodes.
+** If the block is valid, other users accept it.
+** If it’s invalid, they ignore it and may punish block creator. The valid block propagates through the network in a few seconds.
+
+[[pow]]
+==== POW(Proof of Work)
+* There are 2 types of blockchain systems: POW & POS(Proof of Stake)
+* In POW system, to add a new block <<mining, mining>> needed to be done. Miner who solves the puzzle(finds hash of transaction) is rewarded some bitcoins and transaction fee.
+* *Problems with POW:*
+** _1. Energy efficiency:_ Miners compete to solve complex mathematical puzzles using huge computational power.
+** _2. Centralization Concerns:_ More power more chances to solve 1st, this means more bitcoins goes with people/companies who own huge machines.
+** _3. Accessibility:_ Only those having specialized mining hardware, have more bitcoins.
+
+== BlockChain Clients
 * There are two main types of Bitcoin clients:
 ** *1. Full Node:* These clients download and validate the entire Bitcoin blockchain
 ** *2. Lightweight Node:* These clients do not download the entire blockchain. Instead, they rely on full nodes to verify transactions for them. Examples:
 
-===== 1. Bitcoin Core (Fullnode Bitcoin client)
+=== 1. Bitcoin Core (Fullnode Bitcoin client)
 Holds complete blockchain in local system. Requires ~500GB of space.
 
-===== 2. Electrum (Lightweight Bitcoin client)
+=== 2. Electrum (Lightweight Bitcoin client)
 * It allows to interact with the Bitcoin network(bitcoin network is blockchain). With client we can send and receive transactions, and manage your Bitcoin holdings.
 *** Mycelium, Electrum, Exodus
 
-===== 3. Kukai (Lightweight Tezos client)
+=== 3. Kukai (Lightweight Tezos client)
 * This is wallet service on <<blockcha, Tezos blockchain>>. Tezos is based on link:/System-Design/Concepts/Terms/Consensus/README.adoc#2-posproof-of-stake-ethereum-uses-it[Proof of stake], while Bitcoin core, electrum are <<pow, Proof of work blockchains>>
 * link:/System-Design/Scalable/Kukai_Tezos_Wallet[kukai System Design]
 
-==== Ethereum
+== Ethereum
 Framework/platform for creating smart contracts. Etherum runs solidity programming language.
 
-==== Ether
+=== Ether
 Ether is intended as a utility currency to pay for use of the Ethereum platform
 
-==== Genesis Block
-1st block in blockchain. This is hardcoded at time when blockchain started.
-
 [[keys]]
-==== Keys (Public, Pvt)
+== Keys (Public, Pvt)
 * In blockchain, Public Pvt keys are generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
 * secp256k1 ECC is not same as RSA or DH.
 
 [[mining]]
-==== Mining 
+== Mining 
 * Let's suppose Alice wants to send 1 BTC(bitcoin) to Bob, alice sends message on network.
-* Miner Nodes(Verfiers of transaction) recieve the Alice's message and starts a race to solve complex computational puzzle. 
+* Miner Nodes(Verfiers of transaction) recieve the Alice's message and starts a race to find HASH of desired diffculty(defined by software). 
 * Node(Miner) who solves it 1st is rewarded with some transaction fee(0.001 BTC) + bitcoin reward. 
 * Miner-1, solves the puzzle and sends to network for verification. Other miners verifies it using link:/System-Design/Concepts/Terms/Consensus[consensus] and transaction is added as a node to ledger=blockchain.
+* As more and more miners join the network, the total hash rate — the combined computing power of all miners — increases
 ```c
 Transaction
   src_add = Alice_hash    //Hash is public address of entity on blockchain
   amount = 1 BTC
   dst_add = Bob_Hash
 ```
-===== How bitcoin can be issued?
+
+== How bitcoin can be issued?
 * _1. Using crypto exchange:_ Here if someone sells the bitcoin, its purchased by other
 * _2. Mining:_ Miners are rewarded transaction fee + Bitcoins. Once a miner verifies a transaction and adds to blockchain.
 
-===== Rate of bitcoin Issuance?
+=== Rate of bitcoin Issuance?
 * 2012: 25 bitcoins/block. ie on verification of 1 transaction, adding to blockchain. 25 bitcoins
 * 2016: 12.5
 * 2140: 0. (All 21 million bitcoin will be issued). Miners will be rewarded solely through the transaction fees.
 * 210000 is around every 4 years with a 10 minute block interval
 
-===== Why only 21Million bitcoins. Inflation?
+=== Why only 21Million bitcoins. Inflation?
 * The finite and diminishing issuance creates a fixed monetary supply that resists inflation.
 
-===== Deflation?
+=== Deflation?
 * But with limited supply of currency(ie 21Million), will it not cause deflation?
 * *Deflation?*
 ** less money more products. Purchasing power of money keep on increasing
 ** People will stock the money, instead of spending it hoping prices will fall more
 ** _But deflation is not bad as inflation._ Stocking instincts can be supressed by sellers providing discounts and stockers tend to spend money.
 
-[[pow]]
-==== POW(Proof of Work) 
-* The work done by <<mining, miner(ie mining)>> to solve the puzzle is called POW.
-* Miner who solves the puzzle is rewarded some bitcoins and transaction fee.
-* *Problems with POW:*
-** _1. Energy efficiency:_ Miners compete to solve complex mathematical puzzles using huge computational power.
-** _2. Centralization Concerns:_ More power more chances to solve 1st, this means more bitcoins goes with people/companies who own huge machines.
-** _3. Accessibility:_ Only those having specialized mining hardware, have more bitcoins.
-
-==== Smart Contract
+== Smart Contract
 * These are the programs that run on blockchain having business logic. This get automatically executed when certain conditions are met. These are secure and unstoppable.
 * Represents aggrement b/w 2 parties & allows parties to securly conduct business. Properties:
 ** _1. Immutable(cannot be changed):_ SC creates logs which are immutable, those cannot be changed.
 ** _2. Distributed:_ Output of contract is Validated/verified by other nodes on the network.
 
-==== Solidity
+=== Solidity
 * High level Object oriented programming language for writing smart contracts.
 * Features;
 ** _1._ Based on C,C++,python
 ** _2._ Statically typed: Checking happens at compile time.
 ** _3. Supports inheritance:_ 1 smart contract can be used by other.
 
-==== Wallet
+== Wallet
 * In the context of blockchain(eg: bitcoin, tezoz), a wallet is a digital tool that allows you to store, manage, and interact with your Bitcoin holdings. It's used to create and manage Bitcoin addresses, which are used to send and receive Bitcoin transactions. A Bitcoin wallet consists of two main components:
 * *1. Public Addresses(Hash number):* These are account numbers in blockchain network. You share these addresses with others when you want to receive Bitcoin. They are derived from your wallet's public key.
 * *2. Private Keys:* These are secret keys that helps control/access bitcoins associated with your addresses. Whoever has access to the private key has control over the Bitcoin at that address.
 
-=== Features
-==== Distributed consensus
-==== Transaction verification
+== Features
+=== Distributed consensus
+=== Transaction verification
 Only valid transactions are included in blockchain. When a node publishes a transactions its verified based on a predetermined set of rules, then its included.
