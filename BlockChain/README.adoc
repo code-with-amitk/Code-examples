@@ -6,7 +6,7 @@
 * This is append-only, immutable distributed ledger that is updateable only via consensus/agreement among peers. There is no single authority of this ledger.
 * This is link:(/Networking/OSI-Layers/Layer-7/P2P_OverlayNetwork/)[Peer to Peer] network running over TCP. Same as HTTP,FTP over TCP
 * *Examples blockchains*
-** _Tezos:_ Uses <<pos, Proof of Stake>>
+** _Tezos:_ Uses link:/System-Design/Concepts/Terms/Consensus/README.adoc[Proof of Stake]
 ** _Bitcoin:_ Use <<pow, Proof of Work>>
 
 === Why to learn blockchain
@@ -111,7 +111,7 @@ struct block {
 
 [[pow]]
 ==== POW(Proof of Work)
-* There are 2 types of blockchain systems: POW & POS(Proof of Stake)
+* There are 2 types of blockchain systems: POW & link:/System-Design/Concepts/Terms/Consensus/README.adoc[POS(Proof of Stake)]
 * In POW system, to add a new block <<mining, mining>> needed to be done. Miner who solves the puzzle(finds hash of transaction) is rewarded some bitcoins and transaction fee.
 * *Problems with POW:*
 ** _1. Energy efficiency:_ Miners compete to solve complex mathematical puzzles using huge computational power.
