@@ -83,7 +83,7 @@ int main() {
 ```
 
 == What is Block?
-* Blockchain is composed of blocks(Header + payload). 
+* Blockchain is composed of blocks(Header + payload). Block stores the transactions.
 * Header is metadata, while payload is actual transaction data.
 ```c
 Header/Metadata => |block number | timestamp (when the block was created) | block hash | nonce |
@@ -108,6 +108,10 @@ struct block {
 * Only Qualified users create blocks and send them to other nodes.
 ** If the block is valid, other users accept it.
 ** If it’s invalid, they ignore it and may punish block creator. The valid block propagates through the network in a few seconds.
+
+=== Transaction
+* 1 block can store 1 or multiple transactions. Whenever a transaction(s) happens on blockchain, a block is created and stored on chain.
+* Transactions are used to record various activities, such as cryptocurrency transfers, smart contract executions, and other changes to the blockchain's state. 
 
 [[pow]]
 ==== POW(Proof of Work)
