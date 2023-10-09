@@ -1,7 +1,6 @@
 :toc:
 :toclevels: 6
 
-RORSUC
 == Requirements
 === Functional
 * 1. Take input from user in 2-3 multiple ways
