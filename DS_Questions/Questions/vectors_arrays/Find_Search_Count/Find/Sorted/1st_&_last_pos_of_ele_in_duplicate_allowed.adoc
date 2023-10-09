@@ -1,9 +1,11 @@
-## [Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
-- Given sorted array in ascending order, find the starting and ending position of a given target value.
-- Duplicates are allowed. If target is not found in the array, return [-1, -1].
-- **Algorithm must take O(log n) runtime complexity**.
-- **Examples**
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/[Find First and Last Position of Element in Sorted Array]
+* Given sorted array in ascending order, find the starting and ending position of a given target value. Duplicates are allowed. If target is not found in the array, return [-1, -1].
+* *Algorithm must take O(log n) runtime complexity*
 ```c
+Examples:
 Input: nums = [5,7,7,8,8,8,8,8,8,10], target = 8
                0 1 2 3 4 5 6 7 8 9
 Output: [3,8]
@@ -12,19 +14,22 @@ Input: nums = [5,7,7,8,8,10], target = 6
 Output: [-1,-1]
 ```
 
-### Approach-1     //Binary + Linear search. O(mlogn)
+== Approach-1     //Binary + Linear search. O(mlogn)
+=== Logic
 ```c
 a = [5,7,7,8,8,8,8,8,8,10], target = 8
      0 1 2 3 4 5 6 7 8 9
 ```
-- **Logic**
-  - _1._ Find index of element using binary search. It will find index=4. O(logn)
-  - _2._ Search linearly 1st and last index of element. O(m)
-- **Complexity**
-  - **Time:** O(mlogn)
-  - **Space:** O(1)
-- **Code**
-```c++
+1. Find index of element using binary search. It will find index=4. O(logn)
+2. Search linearly 1st and last index of element. O(m). m= number of target elements
+
+=== Complexity
+* Time: O(mlogn)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
 class Solution {
   using vec = vector<int>;    
   int Find(vec& a, int index, bool isFirst){
@@ -69,15 +74,15 @@ public:
 };
 ```
 
-## Approach-2     //Modified Binary Search. Iterative Approach(Not Recursive)  O(logn)
+== Approach-2     //Modified Binary Search. Iterative Approach(Not Recursive)  O(logn)
+=== Logic
 ```c
 a = [5,7,8,8,8,8,8,8,8,10], target = 8
      0 1 2 3 4 5 6 7 8 9
 ```
-- **Logic**
-  - We will use binary search only. But once we found element:
-    - if (mid == index0 || mid-1 < mid) //Found 1st Occurence
-    - if (mid == a.size()-1 || mid+1 > mid) //Found last Occurence
+1. Use binary search to find target element. But once we found element:
+* if (mid == index0 || mid-1 < mid) //Found 1st Occurence
+* if (mid == a.size()-1 || mid+1 > mid) //Found last Occurence
 ```c
 //1st Binary search
 5  7  8  8  8  8  8  8  8  10
@@ -87,20 +92,23 @@ a = [5,7,8,8,8,8,8,8,8,10], target = 8
 if (mid==0 || a[mid-1] < a[mid])           //Either i am at 0th index or reached 1st occurence
   //Found 1st occurence
 else
-  //Search on left
+  // Binary Search on left
   end = mid - 1
 
 if (mid==a.size()-1 || a[mid+1] > a[mid])  //Either i am on last index or reached end occurence
   //Found last occurence
 else
-  //Search on right
+  // Binary Search on right
   begin = mid + 1
 ```
-- **Complexity**
-  - **Time:** O(nlogn) + O(nlogn) = O(nlogn)
-  - **Space:** O(1)
-- **Code**
-```c++
+
+=== Complexity
+* Time: O(nlogn) + O(nlogn) = O(nlogn)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
 class Solution {
   using vec = vector<int>;
   
