@@ -94,7 +94,16 @@ Search filters enable to define search criteria and provide more efficient searc
 == UPN / Universal Principal Name
 User amit under test.local then UPN would be amit@test.local 
 
-=== upnSuffix
-- See upn above, instead of amit@test.local we want custom suffix eg: amit@test.com. 
-- Why we need upn suffixes?
-  - 1. We donot want to expose `test.local` externally we want to expose `test.com`
+=== UPN Suffix / upnSuffix
+```c
+  amit@test.local
+  UPN  |-suffix-|
+```
+
+=== UPN Suffix Alias or Suffix Alias
+* Instead of amit@test.local we can use custom suffix eg: amit@test.focal 
+* Why we need upn suffixes alias? We donot want to expose `test.local` externally we want to expose hence we expose `test.focal`
+```c
+  amit@test.local    =    amit@test.focal
+```
+* It means user has multiple domain names, he can login with any of them.
