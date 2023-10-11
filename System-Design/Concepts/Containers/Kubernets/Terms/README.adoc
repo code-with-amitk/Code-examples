@@ -1,34 +1,19 @@
-- [Ambassador API Gateway](#aagw)
-- [Kubernets, Resource & Objects](#ko)
-  - Types of k8 Resources
-    - [ClusterRole](#cr)
-    - ConfigMap
-    - Deployment
-    - Job
-    - POD
-    - RBAC
-    - Services
-    - Secrets
-    - ServiceAccount
-- [Namespace](#ns)
-- [Nodeport](#np)
+:toc:
+:toclevels: 6
 
-<a name=aagw></a>
-## Ambassador API Gateway
+== Ambassador API Gateway
 - This is Kubernetes-native API Gateway for controlling and managing traffic between microservices within a Kubernetes cluster. Built on top of Envoy Proxy.
 - It integrates with Kubernetes Service objects to route traffic to the appropriate microservices based on the service name and port.
-- **Advatanges**
+- *Advatanges*
   - _1. Supports Multiple Protocols:_ HTTP/1.1, HTTP/2, WebSocket, gRPC, and OpenAPI/Swagger
   - _2. Other Functions:_ traffic splitting, load balancing, rate limiting, and authentication.
 
-<a name=ko></a>
-## [Kubernets Resources,Objects](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
-- **Kubernets Resource = C++ Class** Resource is a blueprint for creating objects.
-- **kubernets Object = C++ Object** is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
+== link:https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/[Kubernets Resources,Objects]
+* *Kubernets Resource = C++ Class* Resource is a blueprint for creating objects.
+* *kubernets Object = C++ Object* is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
 
-<a name=t></a>
-## Types of k8 Resources/Objects
-### 1. ClusterRole 
+== Types of k8 Resources/Objects
+=== 1. ClusterRole 
 Defines set of permissions or access control rules for resources across an entire Kubernetes cluster. it applies to all namespaces in the cluster.
 ```yaml
 $ test.yaml
@@ -46,11 +31,12 @@ rules:
 
 ```
 
-### [2. ConfigMap. kind: configmap](https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object)
-- Object storing configuration of [POD](#ka)
-- Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
-- A Kubernetes resource that stores configuration data in key-value pairs.
-##### Creating a configmap
+=== link:https://kubernetes.io/docs/concepts/configuration/configmap/#configmap-object[2. ConfigMap. kind: configmap]
+* Object storing configuration of [POD](#ka)
+* Unlike most Kubernetes objects(Eg: [Deployment](#dep) that have a spec), a ConfigMap has data and binaryData fields. Both the data field and the binaryData are optional
+* A Kubernetes resource that stores configuration data in key-value pairs.
+
+==== Creating a configmap
 We can copy
 ```yaml
 # cat templates/configmap-jams.yaml
@@ -69,7 +55,7 @@ data:
         {{- toYaml .Values.kafka.topics | nindent 10 }}
 ```
 
-### [3. Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+=== link:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[3. Deployment]
  - "Deployment" object defines how an application should be deployed and managed in a cluster. 
  - It defines declarative configuration for running a containerized application and declares desired number of replicas of the application is always running.
 ```yaml
@@ -89,7 +75,7 @@ spec:                     #(Required) What state you desire for the object
 $ kubectl apply -f test.yaml
 ```
 
-### [4. Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/)
+=== link:https://kubernetes.io/docs/concepts/workloads/controllers/job/[4. Job]
 This object runs a specific task to completion. will create 1 or more pods and execute continously until job completes.
 ```yaml
 apiVersion: batch/v1
@@ -113,24 +99,14 @@ spec:
   backoffLimit: 4
 ```
 
-### 4. POD
+=== 4. POD
 A basic unit of deployment in Kubernetes that runs one or more containers.
 
-### [5. RBAC (Role-based Access Control)](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)
-- **What?** RBAC is mechanism used in kubernets to control access to a resource(eg: configmaps, secrets etc).
-- **RBAC use in multipod implementation?**
-  - _1._ Control resources access between multiple pods.
-  - _2._ Pods donot interfere with each other in accessing specific resources.
-- The RBAC API declares 4 kinds of Kubernetes object:
-  - _a. Role:_
-  - _b. ClusterRole:_ define a role clusterwise
-  - _c. RoleBinding:_ grants the permissions defined in a role to a user or set of users
-  - _d. ClusterRoleBinding:_
-  - _e._ Capability Mapping
+=== link:https://kubernetes.io/docs/reference/access-authn-authz/rbac/[5. RBAC (Role-based Access Control)]
+*  refers to the authorization mechanism that allows one Kubernetes service or workload to access another service or resource within a cluster based on predefined roles and permissions(eg: configmaps, secrets etc). The RBAC API declares 4 kinds of Kubernetes object
 
-#### a. Role
-- This is authorization object that controls access to kubernets resources(eg: pods, deployments, services) based on specific verbs(eg: create, get, update etc)
-- 
+==== a. Role & RoleBindings
+Defines who (subjects) can perform actions/verbs(create, get, update etc) on which resources(eg: pods, deployments, services). Roles specify the permissions, and RoleBindings associate these roles with service accounts, users, or groups. 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1    //API version of RBAC being defined
 kind: Role
@@ -154,10 +130,9 @@ rules:
     verbs: ["get", "watch", "list", "delete", "update", "create", "patch"]
 ```
 
-#### b. RoleBinding
-- Grants the permissions defined in a role to Subjects. Subjects can be user or set of users.
-- Example
-  - user:jane can read pods in default namespace
+==== b. RoleBinding
+* Grants the permissions defined in a role to Subjects. Subjects can be user or set of users.
+* Example: user:jane can read pods in default namespace
 ```yml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -174,21 +149,22 @@ roleRef:                                  # "roleRef" specifies the binding to a
   apiGroup: rbac.authorization.k8s.io
 ```
 
-#### c. CapabilityMapping
-- Container will have Runtime(linux), CM can:
-  - _1._ Give capabilities to a process running within linux container, Eg(process to modify n/w config, mouting file system, accessing h/w devices etc)
-  - _2._ [JAMS capability mapping](https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/Problem_Req/Jul22_Jan23.md#f1) When mapping-a is enabled, service can call method1,2. When mapping-b is enabled, service can call method3,4. 
+==== c. CapabilityMapping
+* Container will have Runtime(linux), CM can:
+** 1. Give capabilities to a process running within linux container, Eg(process to modify n/w config, mouting file system, accessing h/w devices etc)
+** 2. link:https://github.com/amitkumar50/pvt-research/blob/master/Projects/Juniper/Problem_Req/Jul22_Jan23.md#f1[JAMS capability mapping] When mapping-a is enabled, service can call method1,2. When mapping-b is enabled, service can call method3,4. 
 
-### 6. ServiceAccount
+=== 6. ServiceAccount
 This object allows pod to authenticate and access other parts of cluster using RBAC.
 
-### 7. Services
-- In Kubernetes, Service(or microservice) is logical set of Pods. Service exposes REST endpoints(eg: POST) & other services interact by calling these endpoints.
-##### Service Object
-- **What?** To define a logical set of Pods and a policy for accessing them.
-- **What's present in Object?** _1. IP address/"cluster IP:_ Other services to access the this pod.
-  - _0. apiVersion:_ The version of the Kubernetes API that is used to create the Service object.
-    - Format: `group/version`. This is a REQUIRED field in all kubernets objects.
+=== 7. Services
+In Kubernetes, Service(or microservice) is logical set of Pods. Service exposes REST endpoints(eg: POST) & other services interact by calling these endpoints.
+
+==== Service Object
+* To define a logical set of Pods and a policy for accessing them.
+* What's present in Object? _1. IP address/"cluster IP:_ Other services to access the this pod.
+** 0. apiVersion:_ The version of the Kubernetes API that is used to create the Service object.
+** Format: `group/version`. This is a REQUIRED field in all kubernets objects.
     - Version
       - apiVersion: v1    //refers to the core Kubernetes API
       - `apiVersion: ambassador/v1 & getambassador.io/v2`     //refer to custom APIs defined by the Ambassador API Gateway.Provide additional functionality specific to  [Ambassador API Gateway](#aagw).
@@ -214,13 +190,14 @@ spec:
   type: LoadBalancer                        //5
 ```
 
-### [8. Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
-- Kubernets on AWS, Secrets is used to store sensitive information(Eg: passwords, API keys, and other credentials), that should not be exposed in plaintext within Kubernetes manifests or configuration files.
-- *Why secrets object?* Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
-#### Creating Secrets
-##### 1. Using Kubernetes command line interface (CLI) OR 
-##### 2. Using the AWS Management Console. 
-##### 3. Using yaml file
+=== link:https://kubernetes.io/docs/concepts/configuration/secret/[8. Secrets]
+* Kubernets on AWS, Secrets is used to store sensitive information(Eg: passwords, API keys, and other credentials), that should not be exposed in plaintext within Kubernetes manifests or configuration files.
+* *Why secrets object?* Secrets can be created independently of the Pods that use them, now there is no risk of the Secret data being exposed during the creating, viewing, and editing Pods
+
+==== Creating Secrets
+===== 1. Using Kubernetes command line interface (CLI) OR 
+===== 2. Using the AWS Management Console. 
+===== 3. Using yaml file
 ```c
 // This yaml file stores sensitive data(eg: passwords or API keys), in an encrypted format within a Kubernetes cluster
 
@@ -240,9 +217,10 @@ data:                           //key-value pairs of sensitive data that will be
   password: {{ .Values.identityDB.password | b64enc }}           //if values is in values.yaml file store after encoding in base64 format using the b64enc function
 {{ - end - }}
 ```
-#### Access the secrets
-##### 1. Mounted as a volume within a pod OR 
-##### 2. Provided as environment variable inside container
+
+==== Access the secrets
+===== 1. Mounted as a volume within a pod OR 
+===== 2. Provided as environment variable inside container
 a. Secret Created
 ```c
 # k get -n namespace secret
@@ -281,11 +259,10 @@ $ kubectl create namespace test                       //Creating new namespace
 $ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
 ```
 
-<a name=np></a>
-## Nodeport
-- When we create a NodePort service in Kubernetes, Kubernetes will dynamically allocate a port (in the range of 30000-32767) for a Application running container. Eg:30001
-- Then this port=30001 is mapped to targetPort=8080 internally.
-- **Why NodePort?** 2 Applications can use same internal ports. Eg: App1 uses 8080 & App2 uses 8080. And with NodePort both can be accessed using external port without port change on application level.
+== Nodeport
+* When we create a NodePort service in Kubernetes, Kubernetes will dynamically allocate a port (in the range of 30000-32767) for a Application running container. Eg:30001
+* Then this port=30001 is mapped to targetPort=8080 internally.
+* *Why NodePort?*w 2 Applications can use same internal ports. Eg: App1 uses 8080 & App2 uses 8080. And with NodePort both can be accessed using external port without port change on application level.
 ```yaml
 apiVersion: v1
 kind: Service
