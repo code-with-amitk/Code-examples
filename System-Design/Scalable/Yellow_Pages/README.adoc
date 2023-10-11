@@ -1,22 +1,34 @@
 :toc:
 :toclevels: 6
 
-== Requirements
+== What is yellow pages
+=== Present day Problem?
+* if user want information in xls tabular format, (Eg: All dental hospitals in marathalli, Bangalore). He will be presented multiple websites or google search results(which are not accurate).
+* There are multiple busineses(Eg: automobile, grocery) which are even not listed.
+
+=== Solution
+* Presenting yellow pages, which will take input from user and based on category will provide address,rating,phone number in tabular format. With this user can directly dial a phone number and reach the business.
+* AI model will generate comparison chart for customer ratings, user reviews etc.
+
+== 1. Requirements
 === Functional
-* 1. Take input from user in 2-3 multiple ways
-** a. Text box (hospitals near me)
-** b. 4-5 dropdowns
-** then provide information in tabular format.
-```c
-Category            State                  City          District
-  |- Automobile      |- Andhra Pradesh      |- Akola      |- 
-  |- Clothing        |- Himachal Pradesh    |- Mumbai
-  |- Hospitals*      |- Maharastra*         |- Pune*
-  |- Schools         |- Uttar Pradesh       |- Satara
-  |- Shoes
-```
+[[get_business_info]]
+* 1. Frontend UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
+** 1a. Get businesses (country,state,area,category=hospitals,subcategory=dental) information
+** Options to take user input
+*** a. Option-1: Text box (hospitals near me)
+*** b. Option-2: 4-5 dropdowns
+
+link:https://docs.google.com/document/d/1a8nwbQII8LqIQlF5NEk2cyviRNx15zgvtY672yCCOP4/edit?usp=sharing[Diagram]
 
 === Non-Functional
 1. Highly available
 2. Fast
 3. Display relevant results(sorted by nearest)
+4. Results should not be stale
+
+== 2. API Design (API for every requirement)
+1. <<get_business_info, Get Business info>>
+```c
+GetBusinessInfo ()
+```
