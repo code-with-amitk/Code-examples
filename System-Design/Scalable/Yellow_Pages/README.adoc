@@ -12,12 +12,23 @@
 
 == 1. Requirements
 === Functional
+1. Friendly UI(web and mobile)
+
+[[set_business_info]]
+2. From UI(maybe antd) business owner can save their business information(country,state,area,category..) into DB.
+
 [[get_business_info]]
-* 1. Frontend UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
+* 3. Search Engine: UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
 ** 1a. Get businesses (country,state,area,category=hospitals,subcategory=dental) information
 ** Options to take user input
 *** a. Option-1: Text box (hospitals near me)
 *** b. Option-2: 4-5 dropdowns
+
+4. AI model to generate comparison charts based on customer reviews etc.
+
+5. User registration, this will used for authentic reviews.
+
+6. Data Validation. Ensure business data is authentic & cleaning required on periodic basis.
 
 link:https://docs.google.com/document/d/1a8nwbQII8LqIQlF5NEk2cyviRNx15zgvtY672yCCOP4/edit?usp=sharing[Diagram]
 
@@ -28,7 +39,36 @@ link:https://docs.google.com/document/d/1a8nwbQII8LqIQlF5NEk2cyviRNx15zgvtY672yC
 4. Results should not be stale
 
 == 2. API Design (API for every requirement)
-1. <<get_business_info, Get Business info>>
+2. <<set_business_info, Set Business information>>
 ```c
-GetBusinessInfo ()
+pub const SET_BUSINESS_INFO:&str = "/query/v1/set_business_info/{country}/{state}/{region}/{category}/{name}";
+
+// Listen on REST end-point
+let server = HttpServer::new (||{
+  .service (web::resource(SET_BUSINESS_INFO).route(web::post().to(Self::set_business_information))
+});
+```
+
+3. <<get_business_info, Get Business information>>
+```c
+pub const GET_BUSINESS_INFO:&str = "/query/v1/get_business_info/{country}/{state}/{region}/{category}";
+
+// Listen on REST end-point
+let server = HttpServer::new (||{
+  .service (web::resource(GET_BUSINESS).route(web::get().to(Self::get_business_information))
+});
+
+// Function doing business logic
+get_business_information() {
+  - Parse country, state, region etc
+  - Read info from in memory cache (if present)
+}
+```
+
+== 3. DB Schema
+* Let's identify entities in system.
+```c
+a. business table: Have list of all businesses
+b. user information
+c. business_images
 ```
