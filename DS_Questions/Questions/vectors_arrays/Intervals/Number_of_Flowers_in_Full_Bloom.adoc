@@ -1,0 +1,106 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/number-of-flowers-in-full-bloom/?envType=daily-question&envId=2023-10-11[2251. Number of Flowers in Full Bloom]
+You are given a 0-indexed 2D integer array flowers, where flowers[i] = [starti, endi] means the ith flower will be in full bloom from starti to endi (inclusive). You are also given a 0-indexed integer array people of size n, where people[i] is the time that the ith person will arrive to see the flowers.
+
+Return an integer array answer of size n, where answer[i] is the number of flowers that are in full bloom when the ith person arrives.
+```c
+Input: flowers = [[1,6],[3,7],[9,12],[4,13]], poeple = [2,3,7,11]
+Output: [1,2,2,2]
+Explanation: The figure above shows the times when the flowers are in full bloom and when the people arrive.
+For each person, we return the number of flowers in full bloom during their arrival.
+```
+
+=== Approach-1. Brute Force. O(mn). TLE
+==== Logic
+1. From people array. person=0 arrive at time=2, person=1 arrive at time=3, person=2 arrive at time=7, person=3 arrive at time=11.
+2. Find all bloosm flowers at these times only ie(2,3,7,11)
+```c
+flowers = [[1,6],[3,7],[9,12],[4,13]], poeple = [2,3,7,11]
+
+  1  2  3  4  5  6  7  8  9  10  11  12  13
+  |--------------|
+        |-----------|     |-----------|
+           |-----------------------------|
+     /\ /\         /\            /\
+```
+==== Complexity
+* Time: O(mn). m=Flowers array length. n=number of people coming to see flowers
+* Space: O(n)
+
+==== Code
+===== CPP
+```cpp
+class Solution {
+public:
+    vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
+        //1. Take output array of same size as people
+        vector<int> bloosm(people.size(), 0);
+
+        // 2. We only need to find flowers blossmed at times when people came to see
+        for (int i=0;i<bloosm.size();++i) {
+            // 3. if flower_blossm_start_time <= person_arriving_time <= flower_bloosm_end_time. Person will see flower bloosmed
+            for (int j=0;j<flowers.size();j++) {
+                int start = flowers[j][0];
+                int end = flowers[j][1];
+                if (start <= people[i] && people[i] <= end)
+                    bloosm[i]++;
+            }
+        }
+        return bloosm;
+    }
+};
+```
+
+=== Approach-2. Sort flowers array. TLE
+==== Logic
+1. Sort the flowers array. 
+2. if person_arrival_time < flower_bloosm_start_time break. Because that person cannot see that flower bloosming.
+```c
+flowers = [[1,6],[3,7],[9,12],[4,13]], poeple = [2,3,7,11]
+ sorted = [[1,6],[3,7],[4,13],[9,12]]
+  1  2  3  4  5  6  7  8  9  10  11  12  13
+  |--------------|
+        |-----------|
+           |-----------------------------|
+                          |-----------|
+     /\ /\         /\            /\
+```
+==== Complexity
+* Time: O(nlogn) + O(mn). m=Flowers array length. n=number of people coming to see flowers
+* Space: O(m)
+
+==== Code
+===== CPP
+```cpp
+class Solution {
+public:
+    vector<int> fullBloomFlowers(vector<vector<int>>& flowers, vector<int>& people) {
+        //1. Take output array of same size as people
+        vector<int> bloosm(people.size(), 0);
+
+        //2. sort flowers array
+        sort(flowers.begin(), flowers.end());
+
+        for (int i=0;i<bloosm.size();++i) {
+            // 3. if flower_blossm_start_time <= person_arriving_time <= flower_bloosm_end_time. Person will see flower bloosmed
+            for (int j=0;j<flowers.size();j++) {
+                int start = flowers[j][0];
+                int end = flowers[j][1];
+
+                // if flower_bloosm_start_time > person_arrival_time, this person will not see flower bloosm
+                if (start > people[i])
+                    break;
+                // if flower_bloosm_end_time < person_arrival_time, this person will not see flower bloosm, since its already over
+                if (end < people[i])
+                    continue;
+
+                if (start <= people[i] && people[i] <= end)
+                    bloosm[i]++;
+            }
+        }
+        return bloosm;
+    }
+};
+```
