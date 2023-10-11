@@ -125,8 +125,11 @@ flowers = [[1,6],[3,7],[9,12],[4,13]], poeple = [2,3,7,11]
  bloom_start = [1,3,4,9]
  bloosm_end = [6,7,12,13]
 ```
-3. Binary search people's time bloosm_start. if 
+3. Binary search people's time bloosm_start. Find element index which is greater than me in start, end arrays
+
 ==== Complexity
+* Time: O(nlogn). Binary search
+
 ==== Code
 ===== CPP
 ```cpp
@@ -145,12 +148,17 @@ public:
         vector<int> out;
         for (auto i:people) {
             // Binary Search in bloosm_start array
+            // upper_bound: Find 1st element which is greater than target else returns last
+            // [1,3,4,9], poeple = [2,3,7,11]. Search 2. Will find 3
             int flower_starting_bloosm_index = upper_bound(bloosm_start.begin(), bloosm_start.end(), i) - bloosm_start.begin();
 
             // Binary Search in bloosm_end array
+            // lower_bound: Find 1st element which has a value not less than target.
+            // [6,7,12,13], poeple = [2,3,7,11]. Search 2. Will find 6
             int flower_bloosm_end_index = lower_bound(bloosm_end.begin(), bloosm_end.end(), i) - bloosm_end.begin();
 
-            out.push_back(flower_starting_bloosm_index-flower_bloosm_end_index);
+            //index(start=1) - index(end=0) = 1. Only 1 flower
+            out.push_back(flower_starting_bloosm_index - flower_bloosm_end_index);
         }
         return out;
     }
