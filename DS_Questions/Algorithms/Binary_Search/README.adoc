@@ -5,9 +5,10 @@
   mid = left + (right-left)//2
 ```
 
-==== link:(/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Maximum_Running_Time_of_N_Computers.md)[Maximum Running Time of N Computers]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Maximum_Running_Time_of_N_Computers.md[Maximum Running Time of N Computers]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Cost_to_Make_Array_Equal.md[Minimum Cost to Make Array Equal]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Speed_to_Arrive_on_Time.md[Minimum Speed to Arrive on Time]
+==== link:/DS_Questions/Questions/vectors_arrays/Intervals/Number_of_Flowers_in_Full_Bloom.adoc[Number of flowers in full bloom]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Increasing_Decresing_Mountain_Array.md[Peak Index in a Mountain Array]
 ==== link:/DS_Questions/Questions/vectors_arrays/2d-grid/Search_value_in_Sorted_Array.md[Search a 2D Matrix]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Search_Element_in_Rotated_Sorted_Array.md[Search in Rotated Sorted Array / Search in V Shaped Array]
