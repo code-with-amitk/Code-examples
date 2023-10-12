@@ -47,3 +47,80 @@ public:
     }
 };
 ```
+
+== Approach-2. Binary Search
+=== Logic
+* Find peak point using binary search
+* Then 1st search target in left array of peak. If element is found return index.
+* if target is not found in left array, then search in right, if element is found return index
+* if element is not found in either left or right of peak, return -1.
+
+=== Complexity
+* Time: O(logn). Search Peak, Search element in left arr of peak, search element in right array of peak
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+/**
+ * // This is the MountainArray's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * class MountainArray {
+ *   public:
+ *     int get(int index);
+ *     int length();
+ * };
+ */
+
+class Solution {
+public:
+    int findMountainPeak(MountainArray &mountainArr, int n) {
+        int left = 0, right = n - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int midVal = mountainArr.get(mid);
+            int midRightVal = mountainArr.get(mid + 1);
+            if (midVal < midRightVal) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return left; // or right, they are equal at this point
+    }
+    int findInMountainArray(int target, MountainArray &mountainArr) {
+        int n = mountainArr.length();
+        int peak = findMountainPeak(mountainArr, n);
+        
+        // Search in the left of the peak
+        int left = 0, right = peak;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int midVal = mountainArr.get(mid);
+            if (midVal == target) {
+                return mid;
+            } else if (midVal < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        // Search in the right of the peak
+        left = peak + 1, right = n - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int midVal = mountainArr.get(mid);
+            if (midVal == target) {
+                return mid;
+            } else if (midVal < target) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        
+        return -1; // Target not found
+    }
+};
+```
