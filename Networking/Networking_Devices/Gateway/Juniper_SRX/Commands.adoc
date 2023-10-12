@@ -1,21 +1,14 @@
-**Commands**
-- [get ip addresses](#g)
-- [User Identification](#ui)
-- [Logging](#sl)
-  - [Batch query logs](#bql)
-- [Counters, Status](#cs)
-- [Policies, Authentication Tables](#p)
+:toc:
+:toclevels: 6
 
-### Commands
-<a name=ui></a>
-#### Get IP Addresses
+== Commands
+=== Get IP Addresses
 ```c
 > cli
 > show interfaces terse
 ```
 
-<a name=ui></a>
-#### User Identification
+=== User Identification
 ```c
 root# cli
 root> edit
@@ -51,8 +44,7 @@ root# commit
 root# set services user-identification identity-maangement connection primary client-secret test
 root# commit
 ```
-<a name=sl></a>
-#### Set Logging
+=== Set Logging
 ```c
 exit
 exit
@@ -80,8 +72,7 @@ or
 goto shell prompt and open /var/log/jims-query.log
 ```
 
-<a name=cs></a>
-#### Counters, Status
+=== Counters, Status
 ```c
 # run show services user-identification identity-management counters
 # run show services user-identification identity-management status
@@ -113,8 +104,9 @@ goto shell prompt and open /var/log/jims-query.log
 # reboot
 ```
 
-<a name=p></a>
-### Policies, Authentication Tables
+== Policies, Authentication Tables
+* Security policy refers to a set of rules that determine how network traffic is controlled, inspected, and allowed or denied
+* Rules: Permit, deny or tunnel
 ```c
 1. On qa-central or dav-central.
 $ get_vsrx_tanant <tanent-id>
@@ -136,3 +128,10 @@ Key            Username       groups(Ref by policy)   state
 
 # run show services user-identification authentication-table authentication-source all extensive
 ```
+=== 1. Domain based policies
+* Policies are created to manage traffic between different security domains/zones.
+* For example, you might have separate zones for the internal network, the DMZ, and external networks. Policies define how traffic is allowed or denied between these zones.
+
+=== 2. Group based policies
+* Policies can also be based on user groups. User group policies can be configured to apply different rules based on group membership. 
+* For example, you can create rules for specific groups of users, granting or denying access to certain resources or applications.
