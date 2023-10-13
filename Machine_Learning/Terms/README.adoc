@@ -1,59 +1,39 @@
-- [Artificial Intelligence, Machine Learning, Deep Learning](#vs)
-- [Overfitting](#of)
-- [Bias](#sb)
-- [CNTK](#cntk)
-- [Keras](#keras)
-- [Layer](#layer)
-- [Loss Function](#lf)
-- [Optimizer, stochastic gradient descent (SGD)](#opt)
-- [Overfitting](#of)
-- [Tensorflow](#tf)
-- [New Page: Tensor, vectors, scalar](Tensor)
-- [Underfitting](#uf)
+:toc:
+:toclevels: 6
 
 
-<a name=vs></a>
-## Artificial Intelligence, Machine Learning, Deep Learning
-```c
-           |       AI                          |       ML                 |      DL 
------------|-----------------------------------|--------------------------|-------------------------
-Originated |     1950                          |       1960               |   1970
-What       | Simulated Intelligence in Machines| Machine making decisions | Using Neural networks to solve complex problems
-                                                 without being programmed |
-Objective  | Building machines which can       | Algo which can learn thru |Neural n/w to identify patterns 
-             think like humans                 | data
-```
+== Artificial Intelligence, Machine Learning, Deep Learning
+|===
+||AI|ML|DL
 
-<a name=af></a>
-## Activation Function
+|Originated|1950|1960|1970
+|What|Simulated Intelligence in Machines|Machine making decisions without being programmed|Using Neural networks to solve complex problems
+|Objective|Building machines which can think like humans|Algo which can learn thru data|Neural n/w to identify patterns
+|===
+
+== Activation Function
 - Without an activation function(eg: relu, softmax), [Dense layer](#layer) would always perform linear operations(a dot product, an addition) on input tensors.
 - Adding activation function to a layer introduces non-linearity into the model, allowing it to learn more complex relationships between the input and output data
 - Non-linear activation functions such as ReLU, Sigmoid, and Tanh can help the model to better fit the training data and make more accurate predictions on new data.
 
-<a name=of></a>
-## Optimizer, stochastic gradient descent (SGD)
+== Optimizer, stochastic gradient descent (SGD)
 - Tells how parameters should be tuned to make model produce expected output. Presently ML model is showing [loss function](#lf).
 - Goal of gradient descent is to identify the model parameters that provide the maximum accuracy.
 - Gradient-descent process must be based on a _single scalar loss value;_ so, for multiloss networks, all losses are combined (via averaging) into a single scalar quantity.
 
-<a name=of></a>
-## Overfitting
+== Overfitting
 - Means that the model performs well on the training data, but it does not generalize well(ie produces good results on real world/unseen data), because there is too of much uneccessary data(noise) in traning data.
 - **Regularization:** Constraining a model to make it simpler and reduce the risk of overfitting.
 
-<a name=bs></a>
-## Bias/Sampling Bias
+== Bias/Sampling Bias
 - We should use a training data set that is representative of the cases we want model to predict.
 - if the sample is too small, you will have sampling noise (i.e., nonrepresentative data as a result of chance), but even very large samples can be nonrepresentative if the sampling method is flawed. This is called sampling bias.
 
-<a name=cntk></a>
-## CNTK
+== CNTK
 This is Microsoft Cognitive Toolkit (CNTK) backend, plugged with keras.
 
-<a name=keras></a>
-## Keras
-- Library(in Python) which provides functions/APIs to build deep-learning models.
-- Different backends can be plugged with keras
+== Keras
+* Library(in Python) which provides functions/APIs to build deep-learning models. Different backends can be plugged with keras
 ```c
                   Keras
      Tensorflow / Theano / CNTK
@@ -61,12 +41,10 @@ This is Microsoft Cognitive Toolkit (CNTK) backend, plugged with keras.
       GPU            CPU
 ```
 
-<a name=layer></a>
-## Layer
+== Layer
 - Neural network is created by cascading multiple layers.
 
-<a name=lf></a>
-## Loss Function
+== Loss Function
 - Function that compares expected and actual values. Measures how well the neural network models the training data.
 - Loss function should be minimum.
 ```c
@@ -74,16 +52,13 @@ Loss function = (Actual O/P) - (Expected output)
 
 ```
 
-<a name=tf></a>
-## Tensorflow
+== Tensorflow
 - This is ML Open source library(EXPOSING APIs) for numerical computation and large-scale ML supports CPUs & GPUs. 
 - Python Front-end APIs & backend written in c++ for high performance.
 
 
-<a name=uf></a>
-## Underfitting
+== Underfitting
 - Does not produces good results on traning data.
 
-<a name=v></a>
-### Variance
+== Variance
 - Variance is the tendency to learn random things unrelated to the real signal 
