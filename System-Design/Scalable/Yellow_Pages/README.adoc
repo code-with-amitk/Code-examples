@@ -12,10 +12,10 @@
 
 == 1. Requirements
 === Functional
-1. Friendly UI(web and mobile)
+* 1. Friendly UI(web and mobile)
 
 [[set_business_info]]
-2. From UI(maybe antd) business owner can save their business information(country,state,area,category..) into DB.
+* 2. From UI(maybe antd) business owner can save their business information(country,state,area,category..) into DB.
 
 [[get_business_info]]
 * 3. Search Engine: UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
