@@ -95,3 +95,65 @@ class Solution:
         
         return out
 ```
+
+==== Rust
+```rs
+impl Solution {
+    pub fn get_row(row_index: i32) -> Vec<i32> {
+        // 1st & last element of every row is 1
+        let mut pascalArr: Vec<Vec<i32>> = vec![vec![1; row_index as usize+1]; row_index as usize+1];
+        let mut out:Vec<i32> = Vec::new();
+
+        if row_index == 0 {
+            out.push(1);
+            return out;
+        }
+
+        // Create passal traingle
+        for r in 2..row_index+1 {
+            for c in 1..r {
+                pascalArr[r as usize][c as usize] = pascalArr[r as usize-1][c as usize-1] + pascalArr[r as usize-1][c as usize];
+            }
+        }
+
+        for i in 0..row_index+1 {
+            out.push(pascalArr[row_index as usize][i as usize]);
+        }
+
+        out
+    }
+}
+```
+
+==== Go
+```go
+func getRow(rowIndex int) []int {
+    pascalArr := make([][]int, rowIndex+1)
+	for i := 0; i < rowIndex+1; i++ {
+		pascalArr[i] = make([]int, rowIndex+1)
+		for j := 0; j < rowIndex+1; j++ {
+			pascalArr[i][j] = 1
+		}
+    }
+
+    var out []int
+    if rowIndex == 0 {
+        var out []int
+        out = append(out, 1)
+        return out
+    }
+    
+    // Create passal traingle
+    for r:=2; r<rowIndex+1;r++ {
+        for c:=1; c<r; c++  {
+            pascalArr[r][c] = pascalArr[r-1][c-1] + pascalArr[r-1][c]
+        }
+    }
+
+    for i:=0; i<rowIndex+1; i++ {
+        out = append(out, pascalArr[rowIndex][i])
+    }
+
+    return out
+}
+```
