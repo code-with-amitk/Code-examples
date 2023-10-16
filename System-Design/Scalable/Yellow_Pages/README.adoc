@@ -19,24 +19,25 @@
 
 [[get_business_info]]
 * 3. Search Engine: UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
-** 1a. Get businesses (country,state,area,category=hospitals,subcategory=dental) information
+** a. Get businesses (country,state,area,category=hospitals,subcategory=dental) information
 ** Options to take user input
 *** a. Option-1: Text box (hospitals near me)
 *** b. Option-2: 4-5 dropdowns
 
-4. AI model to generate comparison charts based on customer reviews etc.
+=== Extended
+* 1. AI model to generate comparison charts based on customer reviews etc.
 
-5. User registration, this will used for authentic reviews.
+* 2. User registration, this will used for authentic reviews.
 
-6. Data Validation. Ensure business data is authentic & cleaning required on periodic basis.
+* 3. Data Validation. Ensure business data is authentic & cleaning required on periodic basis.
 
 link:https://docs.google.com/document/d/1a8nwbQII8LqIQlF5NEk2cyviRNx15zgvtY672yCCOP4/edit?usp=sharing[Diagram]
 
 === Non-Functional
-1. Highly available
-2. Fast
-3. Display relevant results(sorted by nearest)
-4. Results should not be stale
+* 1. Highly available
+* 2. Fast
+* 3. Display relevant results(sorted by nearest)
+* 4. Results should not be stale
 
 == 2. API Design (API for every requirement)
 2. <<set_business_info, Set Business information>>
@@ -68,7 +69,8 @@ get_business_information() {
 == 3. DB Schema
 * Let's identify entities in system.
 ```c
-a. business table: Have list of all businesses
-b. user information
-c. business_images
+a. business_table: Have list of all businesses
+b. user_table: All registered users
+c. reviews_table: All reviews given by users to business
+d. rating_table: rating(1-5) given by user to business
 ```
