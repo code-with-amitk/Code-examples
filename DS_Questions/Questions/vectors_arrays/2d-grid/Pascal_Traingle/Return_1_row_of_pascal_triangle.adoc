@@ -22,7 +22,7 @@ Input: rowIndex = 1
 Output: [1,1]
 ```
 
-== Approach-1. O(^n^2)
+== Approach-1. O(n^2^)
 === Logic
 * 1st and last elements of every row are always 1.
 ```c
