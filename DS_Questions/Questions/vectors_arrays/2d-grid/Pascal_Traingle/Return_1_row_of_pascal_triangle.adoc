@@ -1,0 +1,97 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/pascals-triangle-ii/description/[119. Pascal's Triangle II]
+Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+image::https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif?raw=true[pascal triangle]
+
+```c
+Example 1:
+Input: rowIndex = 3
+Output: [1,3,3,1]
+
+Example 2:
+Input: rowIndex = 0
+Output: [1]
+
+Example 3:
+Input: rowIndex = 1
+Output: [1,1]
+```
+
+== Approach-1. O(^n^2)
+=== Logic
+* 1st and last elements of every row are always 1.
+```c
+pascalArr[row][0]=1; 
+pascalArr[row][size]=1. 
+
+Other elements = `v[row][col] = v[row-1][col-1] + v[row-1][col]`
+```
+* Create a pascal Array till rowIndex
+```c
+    0  1  2  3  4
+0   1
+1   1  1
+2   1  2  1
+3   1  3  3  1
+4   1  4  6  4  1
+```
+* Return only asked array only taking rowIndex elements.
+
+=== Complexity
+* Time: O(n^2^). n=rowIndex
+* Space: O(n^2^)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        // 1st & last element of every row is 1
+        vector<vector<int>> pascalArr (rowIndex+1, vector<int>(rowIndex+1, 1));
+
+        vector<int> out;
+        if (rowIndex == 0)
+            return {1};
+        
+        // Create passal traingle
+        for (int r=2;r<rowIndex+1;r++) {
+            for (int c=1;c<r;c++)
+                pascalArr[r][c] = pascalArr[r-1][c-1] + pascalArr[r-1][c];
+        }
+
+        for (int i=0;i<rowIndex+1;++i)
+            out.push_back(pascalArr[rowIndex][i]);
+
+        return out;
+    }
+};
+```
+
+==== Python
+```py
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        # 2D pascal Traingle
+        pascalArr = [[1 for _ in range(rowIndex+1)] for _ in range(rowIndex+1)]
+
+        out = []
+
+        if rowIndex == 0:
+            return [1]
+        
+        # Create passal traingle
+        for r in range(2,rowIndex+1):
+            for c in range(1,r):
+                pascalArr[r][c] = pascalArr[r-1][c-1] + pascalArr[r-1][c]
+
+        for i in range(0,rowIndex+1):
+            out.append(pascalArr[rowIndex][i])
+        
+        return out
+```
