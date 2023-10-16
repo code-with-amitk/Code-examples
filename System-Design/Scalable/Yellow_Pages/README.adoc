@@ -70,6 +70,8 @@ get_business_information() {
 * Let's identify entities in system.
 ```c
 a. business_table: Have list of all businesses
+|name|country|state|district|pin-code|category|
+
 b. user_table: All registered users
 c. reviews_table: All reviews given by users to business
 d. rating_table: rating(1-5) given by user to business
