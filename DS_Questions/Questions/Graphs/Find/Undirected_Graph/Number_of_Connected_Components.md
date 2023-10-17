@@ -45,19 +45,29 @@ Output: 1
 Input: [[0,1],[1,2],[3,4]]
 
 adjacenyList 
-        |     |      |     |    |     |
-        |1    |0,2   |1    |4   |3    |
-index   |0    |1     |2    |3   |4    |
+neighbour |1    |0,2   |1    |4   |3    |
+node        0      1     2    3    4   
 0 is connected to 1
 1 is connected to 0,2
 2 is connected to 1
 3 is connected to 4
 4 is connected to 3
 ```
-- _2._ Take bool array called visited, to track number of nodes traversed. size=no of nodes
-- _3._ Start from 1st node, traverse all nodes using DFS(stack) until any unvisited node is left.
-- _4._ Perform DFS using stack
-- _5._ For every disjoint graph, perform DFS. Number of seperate DFS performed=connected Components.
+- _2._ Take bool array called visited=no of nodes. Initialize all to 0.None of nodes is visited yet
+```c
+	|0|0|0|0|0|
+	 0 1 2 3 4 
+```
+- _3._ Start from 1st node(ie node=0), traverse all nodes using DFS(stack) until any unvisited node is left. Perform DFS
+```c
+stack s |0|
+while (!s.empty()) {
+   ele = 0	//top
+   pop
+   check all unvisited neighbours of ele, if any fill in stack
+}
+```
+- _4._ For every disjoint graph, perform DFS. Number of seperate DFS performed=connected Components.
 
 <a name=comp></a>
 #### Complexity
