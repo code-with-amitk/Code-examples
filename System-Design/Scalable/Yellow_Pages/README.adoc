@@ -68,33 +68,33 @@ get_business_information() {
 
 == 3. DB Schema
 * Let's identify entities in system.
-a. business_table: Have list of all businesses
+* a. business_table: Have list of all businesses
 ```c
 |business-id(primary key)|name|category|location-id(foriegn key)|phone number|Email|Esclation-Email|website|
 |Description|Hours of Operation|Rating|Creation Date|Last Updated at|Verification Status|
 ```
-b. user_table: All registered users
+* b. user_table: All registered users
 ```c
 |user-id(primary key)|name(optional)|username|password(hashed, salted)|email|profile info|
 ```
-c. reviews_table: All reviews given by users to business
+* c. reviews_table: All reviews given by users to business
 ```c
 |review-id(primary key)|business-id(foriegn-key)|user-id|rating|text|Review Date|
 // Review can have image as well, which is stored in review_image table with image-id mapped to review-id
 ```
-d. review_image_table
+* d. review_image_table
 ```c
 |image-id(primary key)|review0id(foriegn key)|description|image_url|upload date|
 ```
-e. Categories Table: This table defines the categories of businesses available on the platform.
+* e. Categories Table: This table defines the categories of businesses available on the platform.
 ```c
 |Category ID (Primary Key)|Category Name|Category Description|
 ```
-f. location table: Stores geographic information, which is helpful for location-based searches.
+* f. location table: Stores geographic information, which is helpful for location-based searches.
 ```c
 |Location ID (Primary Key)|City|State|Zip Code|Latitude and Longitude (for mapping and distance calculations)|
 ```
-g. Business Owners Table (if business owners can claim their listings)
+* g. Business Owners Table (if business owners can claim their listings)
 ```c
 |Business Owner ID (Primary Key)|User ID (linked to the User Table)|Business ID (linked to the Businesses Table)|Claim Status|
 ```
