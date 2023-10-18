@@ -15,10 +15,10 @@
 * 1. Friendly UI(web and mobile)
 
 [[set_business_info]]
-* 2. From UI(maybe antd) business owner can save their business information(country,state,area,category..) into DB.
+* 2. *Business owner save business information to system:* From UI(maybe antd) Business information(country,state,area,category..) into DB.
 
 [[get_business_info]]
-* 3. Search Engine: UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
+* *3. Customer can search Businesses information:* UI(maybe antd), taking input from user & calling REST APIs of application_server(microservice) running on AWS central(region) then provide info to user.
 ** a. Get businesses (country,state,area,category=hospitals,subcategory=dental) information
 ** Options to take user input
 *** a. Option-1: Text box (hospitals near me)
@@ -40,7 +40,7 @@ link:https://docs.google.com/document/d/1a8nwbQII8LqIQlF5NEk2cyviRNx15zgvtY672yC
 * 4. Results should not be stale
 
 == 2. API Design (API for every requirement)
-2. <<set_business_info, Set Business information>>
+2. <<set_business_info, Business owner can save Business information>>
 ```c
 pub const SET_BUSINESS_INFO:&str = "/query/v1/set_business_info/{country}/{state}/{region}/{category}/{name}";
 
@@ -68,11 +68,33 @@ get_business_information() {
 
 == 3. DB Schema
 * Let's identify entities in system.
-```c
 a. business_table: Have list of all businesses
-|name|country|state|district|pin-code|category|
-
+```c
+|business-id(primary key)|name|category|location-id(foriegn key)|phone number|Email|Esclation-Email|website|
+|Description|Hours of Operation|Rating|Creation Date|Last Updated at|Verification Status|
+```
 b. user_table: All registered users
+```c
+|user-id(primary key)|name(optional)|username|password(hashed, salted)|email|profile info|
+```
 c. reviews_table: All reviews given by users to business
-d. rating_table: rating(1-5) given by user to business
+```c
+|review-id(primary key)|business-id(foriegn-key)|user-id|rating|text|Review Date|
+// Review can have image as well, which is stored in review_image table with image-id mapped to review-id
+```
+d. review_image_table
+```c
+|image-id(primary key)|review0id(foriegn key)|description|image_url|upload date|
+```
+e. Categories Table: This table defines the categories of businesses available on the platform.
+```c
+|Category ID (Primary Key)|Category Name|Category Description|
+```
+f. location table: Stores geographic information, which is helpful for location-based searches.
+```c
+|Location ID (Primary Key)|City|State|Zip Code|Latitude and Longitude (for mapping and distance calculations)|
+```
+g. Business Owners Table (if business owners can claim their listings)
+```c
+|Business Owner ID (Primary Key)|User ID (linked to the User Table)|Business ID (linked to the Businesses Table)|Claim Status|
 ```
