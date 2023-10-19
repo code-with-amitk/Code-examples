@@ -40,7 +40,7 @@ link:https://docs.google.com/document/d/1a8nwbQII8LqIQlF5NEk2cyviRNx15zgvtY672yC
 * 4. Results should not be stale
 
 == 2. API Design (API for every requirement)
-2. <<set_business_info, Business owner can save Business information>>
+* 2. <<set_business_info, Business owner can save Business information>>
 ```c
 pub const SET_BUSINESS_INFO:&str = "/query/v1/set_business_info/{country}/{state}/{region}/{category}/{name}";
 
@@ -50,7 +50,7 @@ let server = HttpServer::new (||{
 });
 ```
 
-3. <<get_business_info, Get Business information>>
+* 3. <<get_business_info, Get Business information>>
 ```c
 pub const GET_BUSINESS_INFO:&str = "/query/v1/get_business_info/{country}/{state}/{region}/{category}";
 
@@ -98,3 +98,5 @@ get_business_information() {
 ```c
 |Business Owner ID (Primary Key)|User ID (linked to the User Table)|Business ID (linked to the Businesses Table)|Claim Status|
 ```
+
+== 4. HLD
