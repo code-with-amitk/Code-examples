@@ -3,10 +3,10 @@
 
 
 == React
-React is a declarative & flexible frontend JS library for building
-* frontend large scale, data driven UIs.
-* Andriod, ios apps, Desktop applications
-* Virtual Reality Application using react VR.
+* React is a declarative & flexible frontend JS library for building
+** frontend large scale, data driven UIs.
+** Andriod, ios apps, Desktop applications
+** Virtual Reality Application using react VR.
 
 == Terms
 === Component 
@@ -20,6 +20,7 @@ function MyButton() {
   );
 }
 ```
+
 == link:https://create-react-app.dev/docs/getting-started/[Create React App]
 ```c
 npx create-react-app my-app
