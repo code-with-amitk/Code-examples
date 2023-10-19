@@ -54,3 +54,35 @@ public:
     }
 };
 ```
+
+==== CPP11
+```cpp
+class Solution {
+public:
+    bool backspaceCompare(string s, string t) {
+        stack<char> st1;
+        stack<char> st2;
+        for_each(s.begin(),s.end(),[&st1](const char &ch){
+            if (ch=='#' && st1.size())
+                st1.pop();
+            else if (ch!='#')
+                st1.push(ch);
+        });
+        for_each(t.begin(),t.end(),[&st2](const char &ch){
+            if (ch=='#' && st2.size())
+                st2.pop();
+            else if (ch!='#')
+                st2.push(ch);
+        });
+        if (st1.size() != st2.size())
+            return false;
+        while (!st1.empty()) {
+            if (st1.top() != st2.top())
+                return false;
+            st1.pop();
+            st2.pop();
+        }
+        return true;
+    }
+};
+```
