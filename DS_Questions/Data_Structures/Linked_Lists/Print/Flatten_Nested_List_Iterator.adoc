@@ -1,13 +1,14 @@
-**Flatten Nested List Iterator**
+:toc:
+:toclevels: 7
 
-### [341. Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/description/)
-- You are given a nested list of integers nestedList. 
-- Each element is either an integer or a list whose elements may also be integers or other lists. Example
+== link:https://leetcode.com/problems/flatten-nested-list-iterator/description/[341. Flatten Nested List Iterator]
+* You are given a nested list of integers nestedList. 
+* Each element is either an integer or a list whose elements may also be integers or other lists. Example
 ```c
   [[1,1],2,[1,1]]
 ```
-- There is a `class NestedIterator` in which following functions(isInteger(), getInteger(), getList()) are already defined
-- **Your Task:** Implement following functions(constructor, next(), hasNext()) of same class.
+* There is a `class NestedIterator` in which following functions(isInteger(), getInteger(), getList()) are already defined
+* *Your Task:* Implement following functions(constructor, next(), hasNext()) of same class.
 ```c
 class NestedIterator {
 public:
@@ -81,12 +82,13 @@ Output: [1,4,6]
 Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
 ```
 
-### Approach-1. stack
-### Logic
-- _1._ Use stack to store the nested List nodes.
-- _2._ Store 1st item on top of stack means, start filling from back to 1st.
-#### Code
-**CPP**
+== Approach-1. stack
+=== Logic
+* 1. Use stack to store the nested List nodes.
+* 2. Store 1st item on top of stack means, start filling from back to 1st.
+
+=== Code
+==== CPP
 ```cpp
 class NestedIterator {
     stack<NestedInteger> st;
