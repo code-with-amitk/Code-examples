@@ -23,7 +23,7 @@ function MyButton() {
 }
 
 // 2. Nest it into another component.
-export default function MyApp() {    //export default keywords specify the main component in the file
+export default function MyApp() {    //int main() //export default keywords specify the main component in the file
   return (
     <div>
       <h1>Welcome to my app</h1>
