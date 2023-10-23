@@ -111,7 +111,7 @@ class Solution:
         return False
 ```
 
-==== Javascript
+=== Javascript
 ```js
 var isPowerOfFour = function(n) {
     if (n == 0 || n == 2 || n == 3) {
