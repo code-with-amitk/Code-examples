@@ -38,7 +38,7 @@ class Solution:
         return False
 ```
 
-== Approach-2. Bitwise. Check on bits of number
+== Approach-2. Bitwise. Check on bits of number. O(logn)
 === Logic
 * 1. Number is power of 4 if following 2 conditions are satisfied:
 ** a. Number has only 1 bit set
@@ -60,7 +60,7 @@ class Solution:
         # b. number of off bits before on are even
 
         #Check if there is only one bit set in n
-        if n!=0 and n&n-1 == 0:
+        if n&n-1 == 0:
             #number of off bits before on are even
             while n > 1:
                 n >>= 1
@@ -69,6 +69,44 @@ class Solution:
                 return True
             else:
                 return False
+ 
+        return False
+```
+
+== Approach-3. Checking Bits of number. O(1)
+== Logic
+* Number is power of 4 if below 2 conditions are met
+```c
+a. only 1 bit is set
+and
+b. number & 0xAAAA = 0. (this means count of off bits before on bits is even or there is no ON bit at odd place)
+0xAAAA = 1010 1010 1010 1010
+```
+
+== Code
+=== Python
+```py
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        if n == 0 or n == 2 or n == 3:
+            return False
+        if n==1:
+            return True
+
+        count = 0
+        """
+        Number is power of 4 if below 2 conditions are met
+        a. only 1 bit is set
+        and
+        b. number & 0xAAAA = 0. (this means count of off bits before on bits is even or there is no ON bit at odd place)
+        0xAAAA = 1010 1010 1010 1010
+        """
+
+        #Check if there is only one bit set in n
+        if n&n-1 == 0:
+            #number of off bits before on are even
+            if n & 0xAAAAAAAA == 0:
+                return True
  
         return False
 ```
