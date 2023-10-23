@@ -129,3 +129,21 @@ var isPowerOfFour = function(n) {
     return false
 };
 ```
+
+=== Typescript
+```ts
+function isPowerOfFour(n: number): boolean {
+    if (n == 0 || n == 2 || n == 3) {
+        return false
+    }
+    if (n == 1) {
+        return true
+    }
+    if ((n & (n - 1)) === 0) {
+      if ((n & 0xAAAAAAAA) === 0) {
+            return true
+        }
+    }
+    return false
+};
+```
