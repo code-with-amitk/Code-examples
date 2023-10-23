@@ -1,55 +1,34 @@
-- [Atomic](#at)
-  - [Atomic Variables](#av)
-  - C++ 
-    - [get,set atomic](#rc)
-  - Rust 
-    - [get,set atomic](#ra)
-- [Bound Waiting](#bw)
-- [Busy Waiting](#busyw)
-- [Concurrent](#con)
-- [Condition Variable](#cv)
-- [Context Switch](#cos)
-- [Critical Section(requires Mutual Exclusion)](#cs)
-- [CPU Bound](#cb)
-- [Deadlock](#dl)
-- [IO Bound](#io)
-- [Parallelism](#pa)
-- [Race Condition](#rc)
-- [Reentrant](#re)
-- [Spurious wakeup](#sw)
+:toc:
+:toclevels: 6
 
 
-<a name=at></a>
-## [Atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
-> Atomic means something that cannot be broken down into smaller parts
-- if one thread executes an atomic operation, it means that other thread will never see half-finished result.
-- The end result of Atomic Operation is predictable and correct.
-- If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. 
-- This can used as Inter Process Synchronization.
-- Example:
+== link:https://en.cppreference.com/w/cpp/atomic/atomic[Atomic]
+* Atomic means something that cannot be broken down into smaller parts
+* if one thread executes an atomic operation, it means that other thread will never see half-finished result.
+* The end result of Atomic Operation is predictable and correct.
+* If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. 
+* This can used as Inter Process Synchronization. Example:
 ```cpp
 a = 0;
 void fun () {     //2 Threads executing this function
   a += 12;
 }
 
-/////////Problem without Atomic////////
+=== Problem without Atomic
 - Thread-1 enters fun() does a=12, At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
 - Thread-2 does a=12
 - Thread-1 comes back and has previous value (12), instead of writing(24), it ends up in writing (12). But value should be 24.
   
-/////Solution(Make operation a+=12 atomic):////////
+=== Solution(Make operation a+=12 atomic):
 a. Take a as volatile
 b. Use synchronization methods.
 ```
-<a name=av></a>
-#### Atomic Variables
+
+=== Atomic Variables
 - Used for shared-memory communication between threads these are safe to share between threads ie values at end in these variables in not vague/unpredictable after n threads finished operating.
 
-<a name=ca></a>
-### C++
+==== C++
 - std::atomic is neither copyable nor movable.
-**Set,Get Atomic Variables **
 ```cpp
 #include <iostream>
 #include <atomic>
@@ -80,9 +59,7 @@ $ ./a.out
 var: 10
 ```
 
-<a name=ra></a>
-### Rust 
-**Set,Get Atomic Variables **
+==== Rust 
 ```rs
 let mut a_atm:AtomicU32 = Atomic:U32::new(100);          //Create and Initialize Atomic variable(a_atm)
 let mut b_atm:AtomicU32 = Atomic:U32::new(5);
@@ -105,12 +82,10 @@ fn main() {
 }
 ```
 
-<a name=bw></a>
-### Bound Waiting
+== Bound Waiting
 Process-2 waits outside critical section while process-1 is executing inside.
 
-<a name=busyw></a>
-### Busy Waiting
+== Busy Waiting
 **spinlock is Busy waiting**
 - Thread-1(or process-1) is in Critical section and has set atomic variable var=1, before entering into CS.
 - Thread-2 keeps checking var continously in while(1) to be 0 and enter CS.
@@ -120,44 +95,40 @@ Process-2 waits outside critical section while process-1 is executing inside.
 - [Device driver writes to Device Controller's register](/Device_Drivers/Linux/#how) for reading memory address & device driver sits in loop, continuously polling the device to see if it is done 
 - When IO is completed data(if any) is returned to driver. Device driver returns control to user space process. User space process was said to be in busy waiting.
 
-<a name=con></a>
-### Concurrent (opposite of sequential)
+== Concurrent (opposite of sequential)
 Alternate between two tasks, then you are working on both tasks concurrently, but not in [parallelism](#pa)
 
-<a name=cv></a>
-### Conditional Variable / Condition Variable / shared variable
+== Conditional Variable / Condition Variable / shared variable
 - This is used for synchronization.
 - This block 1 thread/or multiple threads, until another thread modifies a shared variable (the condition), and notifies the condition_variable.
 - Implemented as class in C++. [Code](/Threads_Processes_IPC/IPC/synchronization/Condition_Variable)
 
-<a name=cos></a>
-### Context Switch
+== Context Switch
 - Means giving CPU from 1 process to other by scheduler.
 - Each process is given a time interval(called its quantum) during which it is allowed to run. If the process keeps on running after the quantum also, CPU is preempted(fetched) from process and given to another process. 
 - When the scheduler switches the CPU from executing process-1 to another process-2, the state of the current running process-1 is stored in its PCB. 
-#### Tasks Done before CS
+
+=== Tasks Done before CS
 - **Suppose CS needed to be done from processA to processB**
   - _a._ Save processA registers, Remove Physical to Virtual Map (in MMU), Flush TLB for processA.
   - _b._ Load processB registers, Update Physical to Virtual Map (in MMU), Update TLB for processB.
 - **Context switch from ProcessB to processA:** perform operations a and b again.
   - _c._ Additionally, Flushing memory caches(L1,L2,L3), reloading memory caches
-#### Is context switch good? No(its wastage of CPU time). 
+
+=== Is context switch good? No(its wastage of CPU time). 
 - _Smaller Quantum:_ Suppose quantum is of 4millisec, Context switch(saving loading registers, caches etc) is of 1millisec. 4 1 4 1 4 1 ... After 100millisec. 20millisec wasted in context switch(that's waste of CPU time).
 - _Larger Quantum:_ Suppose quantum is of 100millisec, Context switch is 1millisec. 100 1 100 1. if 50 processes are in queue. last process will get CPU after 5 seconds. That's too long.
 - _Reasonable Quantum:_ 20-50millisec
 
- <a name=cs></a>
-### Critical Section(requires Mutual Exclusion)
+== Critical Section(requires Mutual Exclusion)
   - Piece of code where 2 processes/threads are not allowed to execute concurrently. 
   - Ex: shared data structures, peripheral device, or network connection. CS should be accessed using synchronization. Eg: semaphore
 - **Pareto Principle** 90% of CPU cycles are spent in 10% of code. Means we have to focus & parallelly implement this 10% of code
 
-<a name=cb></a>
-### CPU Bound 
+== CPU Bound 
 Process spends most of time with CPU executing instructions. From Source: Program doing lot of calculations Eg: finding all possible permutations of a string.
 
-<a name=dl></a>
-### Deadlock
+== Deadlock
 2 or more threads waits on resources which is/are held by each other. None of thread releases the resource and in turn waits for other to release. 
 ```c
 Example-1
@@ -238,10 +209,7 @@ int main() {
 }
 ```
 
-
-
-<a name=io></a>
-### IO Bound 
+=== IO Bound 
 Process spends most of time in IO. From source: Program doing lot of File RW operations.
 ```c
 Q: Find whether a process is IO Bound or CPU Bound?
@@ -252,17 +220,14 @@ Q: Find whether a process is IO Bound or CPU Bound?
  }
  ```
 
-<a name=pa></a>
-### Parallelism
+== Parallelism
 2 tasks assigned to 2 threads running on different cores.
 
 
-<a name=rc></a>
-### Race Condition
+== Race Condition
 2 or more threads/processes are accessing/writing same shared resource(file, global variables etc) then at end result is unpredictable or wrong.
 
-<a name=re></a>
-### Reentrant
+== Reentrant
   - Making second call same function while a previous call has not yet finished.
   - *Example:*
     - Suppose 2 threads can excute same function `fun()`.
@@ -286,8 +251,7 @@ int main(){
 }  
 ```
 
-<a name=sw></a>
-### Spurious wakeup. Spurious means Fake/False
+== Spurious wakeup. Spurious means Fake/False
 - It means Thread waking up unneccessrily. A spurious wakeup happens when a thread wakes up from waiting on a condition variable that's been signaled, & it discovers that the condition it was waiting for isn't satisfied.
 - It's called spurious because the thread has seemingly been awakened for no reason.
 - **How Spurious Wakup happens?**
