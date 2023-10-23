@@ -1,0 +1,74 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/power-of-four/description/[342. Power of Four]
+Given an integer n, return true if it is a power of four. Otherwise, return false.
+
+An integer n is a power of four, if there exists an integer x such that n == 4x.
+```
+Example 1:
+Input: n = 16
+Output: true
+
+Example 2:
+Input: n = 5
+Output: false
+```
+
+== Approach-1. Divide
+=== Logic
+* Divide number by 4, if reminder=0, number=number/4
+* perform above steps until number of reduced to number less than 4
+* if final number got is 1, number of power of 4 else not
+
+=== Code
+==== Python
+```py
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        if n == 0:
+            return False
+        if n==1:
+            return True
+        
+        while n%4 == 0:
+            n = n//4
+        if n==1:
+            return True
+        return False
+```
+
+== Approach-2. Bitwise. Check on bits of number
+=== Logic
+* 1. Number is power of 4 if following 2 conditions are satisfied:
+** a. Number has only 1 bit set
+** b. count of off bits before on bits is even
+
+=== Code
+==== Python
+```py
+class Solution:
+    def isPowerOfFour(self, n: int) -> bool:
+        if n == 0 or n == 2 or n == 3:
+            return False
+        if n==1:
+            return True
+
+        count = 0
+        # Number is power of 4 if 
+        # a. only 1 bit is set
+        # b. number of off bits before on are even
+
+        #Check if there is only one bit set in n
+        if n!=0 and n&n-1 == 0:
+            #number of off bits before on are even
+            while n > 1:
+                n >>= 1
+                count += 1
+            if count%2 == 0:
+                return True
+            else:
+                return False
+ 
+        return False
+```
