@@ -3,10 +3,8 @@
 
 
 == React
-* React is a declarative & flexible frontend JS library for building
-** frontend large scale, data driven UIs.
-** Andriod, ios apps, Desktop applications
-** Virtual Reality Application using react VR.
+* React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images.
+* React lets you combine them into reusable, nestable components.
 
 == Features
 === Add components to Page
