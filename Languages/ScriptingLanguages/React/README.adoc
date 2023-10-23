@@ -8,18 +8,95 @@
 ** Andriod, ios apps, Desktop applications
 ** Virtual Reality Application using react VR.
 
-== Terms
-=== Component 
-React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
-
-React components are JavaScript functions that return markup:
+== Features
+=== Add components to Page
+==== 1. Button
+* React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+* React components are JavaScript functions that return markup
+* Now that you’ve declared MyButton, you can nest it into another component.  React component names must always start with a capital letter.
 ```js
+// 1. Declare a React component. This is React component. React components are JavaScript functions that return markup.
 function MyButton() {
   return (
-    <button>I'm a button</button>
+    <button>
+      I'm a button
+    </button>
+  );
+}
+
+// 2. Nest it into another component.
+export default function MyApp() {    //export default keywords specify the main component in the file
+  return (
+    <div>
+      <h1>Welcome to my app</h1>
+      <MyButton />
+    </div>
   );
 }
 ```
+
+==== 2. Image
+```js
+<img className="avatar" />
+
+// Then you write the CSS rules for it in a separate CSS file
+.avatar {
+  border-radius: 50%;
+}
+```
+
+=== Conditions
+==== 1. if else
+```js
+let content;
+if (isLoggedIn) {
+  content = <AdminPanel />;
+} else {
+  content = <LoginForm />;
+}
+return (
+  <div>
+    {content}
+  </div>
+);
+```
+
+=== Event Handling / Counting
+==== 1. Button click
+```js
+function MyButton() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}
+```
+
+==== 2. Count number of time button clicked (Add state to your component)
+```js
+import { useState } from 'react';
+function MyButton() {
+  const [count, setCount] = useState(0);    //Declare a state variable inside your component
+  // ...
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+=== Hooks
+Functions starting with use are called Hooks. useState is a built-in Hook provided by React. 
 
 == link:https://create-react-app.dev/docs/getting-started/[Create React App]
 ```c
