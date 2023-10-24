@@ -6,6 +6,53 @@
 * React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images.
 * React lets you combine them into reusable, nestable components.
 
+=== Why React came?
+* Why React came, when HTML,CSS,JS was doing job of creating pages.
+* How HTML page is loaded? HTML page is converted to DOM elements. In javascript & sometimes in HTML, we might need to code DOM(which becomes complicated)
+* How React help? Developer codes for components in React & converting components to DOM is taken care by React
+
+==== Components?
+* These are reusable, modularized piece of code. React application is Tree of components with App as root
+```js
+      App      //Root Component
+    /    \
+  comp1  comp2
+        /    \  \
+      comp3  4  5
+```
+
+== Install & Run (Vite app=React)
+=== Install node and vscode
+```c
+Install nodejs: https://nodejs.org/en/download
+C:\Users\amitk>node -v
+v20.9.0
+
+Code Editor(VSCode): Extension: Prettier Code format extension
+```
+=== Run vite app 
+```c
+C:\Users\amitk\source\repos\React>npm create vite@4.1.0
+Need to install the following packages:
+create-vite@4.1.0
+Ok to proceed? (y)
+√ Project name: ... react-app
+√ Select a framework: » React
+√ Select a variant: » TypeScript
+
+Scaffolding project in C:\Users\amitk\source\repos\React\react-app...
+
+Done. Now run:
+
+  cd react-app
+  npm install
+  npm run dev
+C:\Users\amitk\source\repos\React\react-app> npm install
+C:\Users\amitk\source\repos\React\react-app> npm run dev
+VITE v4.5.0  ready in 2441 ms
+  ➜  Local:   http://localhost:5173/
+```
+
 == Features
 === Add components to Page
 ==== 1. Button
