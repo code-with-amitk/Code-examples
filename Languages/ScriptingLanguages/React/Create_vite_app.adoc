@@ -1,0 +1,46 @@
+:toc:
+:toclevels: 6
+
+== Install & Run (Vite app=React)
+=== Install node and vscode
+```c
+Install nodejs: https://nodejs.org/en/download
+C:\Users\amitk>node -v
+v20.9.0
+
+Code Editor(VSCode): Extension: Prettier Code format extension
+```
+=== Run vite app 
+```c
+C:\Users\amitk\source\repos\React>npm create vite@4.1.0
+Need to install the following packages:
+create-vite@4.1.0
+Ok to proceed? (y)
+√ Project name: ... react-app
+√ Select a framework: » React
+√ Select a variant: » TypeScript
+
+Scaffolding project in C:\Users\amitk\source\repos\React\react-app...
+
+Done. Now run:
+
+  cd react-app
+  npm install
+  npm run dev
+C:\Users\amitk\source\repos\React\react-app> npm install
+C:\Users\amitk\source\repos\React\react-app> npm run dev
+VITE v4.5.0  ready in 2441 ms
+  ➜  Local:   http://localhost:5173/
+```
+
+=== Folder walkthru
+```c
+|
+|-- node_modules: All 3rd party libraries exist (donot touch)
+|-- public: Contains public facing images,video files etc
+|-- src: This is src folder of our application. Application has 1 component called App component.
+      |- App.js
+index.html: We have <div id="root"></div>. This is container for application
+tsconfig.js: Typescript setting file. Tells compiler how to compile typescript code to javascript
+vite.config.js: Config file for vite
+```
