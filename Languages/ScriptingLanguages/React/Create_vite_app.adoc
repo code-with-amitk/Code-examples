@@ -111,7 +111,7 @@ export default App;
 http://localhost:5173/
 ```
 
-=== 2. Create Basic ListGroup
+=== 2. Create Basic ListGroup, Fragment Component
 ==== a. Use link:https://getbootstrap.com/[bootstrap]
 bootstrap is css library, which gives classes to applications to style their applications.
 ```js
@@ -145,18 +145,29 @@ src
 ```c
 //1. Create Function based React component.
 
+import { Fragment } from "react";
+
 function ListGroup() {
-    //This is syntax of JSX(Javascript XML code)
   return (
-    <ul className="list-group">
-      <li className="list-group-item">An item</li>
-      <li className="list-group-item">A second item</li>
-      <li className="list-group-item">A third item</li>
-      <li className="list-group-item">A fourth item</li>
-      <li className="list-group-item">And a fifth one</li>
-    </ul>
+    /*
+    In React we cannot return 2 components from 1 function.
+    h1, ul are 2 seperate components.
+    if we want to keep 2 or more components in 1 function, use Fragment component
+    */
+    <Fragment>
+      <h1>ListGroup</h1>
+      <ul className="list-group">
+        <li className="list-group-item">An item</li>
+        <li className="list-group-item">A second item</li>
+        <li className="list-group-item">A third item</li>
+        <li className="list-group-item">A fourth item</li>
+        <li className="list-group-item">And a fifth one</li>
+      </ul>
+    </Fragment>
   );
 }
+
+export default ListGroup;
 
 //2. To use above created component
 // we need to export it as Default created Object
@@ -180,4 +191,43 @@ function App() {
 // 5. Export App component(as default) from this class
 // so that it can be used somewhere else
 export default App;
+```
+
+=== 3. Create Dynamic list(improved version of 2). Using BRACES {}
+* With braces we can render anything in javascript
+```js
+//src/ListGroup.tsx
+
+import { Fragment } from "react";
+
+function ListGroup() {
+  const items = ["India", "US", "Germany"];
+  /* Take each item from list and convert to li element
+   Since we want         to render items inside u object
+   Place code inside {}, because
+  everything inside <ul></ul> should be markup*/
+  return (
+    /*
+    In React we cannot return 2 components from 1 function.
+    h1, ul are 2 seperate components.
+    if we want to keep 2 or more components in 1 function, use Fragment component
+    */
+    <Fragment>
+      <h1>ListGroup</h1>
+      <ul className="list-group">
+        {items.map((item, index) => (
+          <li
+            className="list-group-item"
+            key={item}
+            onClick={() => console.log(item, index)}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </Fragment>
+  );
+}
+
+export default ListGroup;
 ```
