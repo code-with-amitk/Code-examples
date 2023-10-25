@@ -44,3 +44,69 @@ index.html: We have <div id="root"></div>. This is container for application
 tsconfig.js: Typescript setting file. Tells compiler how to compile typescript code to javascript
 vite.config.js: Config file for vite
 ```
+
+== Creating Components
+=== Virtual DOM
+* When Application starts React takes this component Tree and build a Virtual DOM(a javascript datastructure)
+** Virtual DOM: This is lightweight in memory representation of Component tree. Updating DOM on changing compoent tree is Done by React DOM
+
+=== 1. Create Message-Component(Hello World)
+* We will build a Component Tree, where
+** App(root component)
+** Message(child Component)
+
+*Component Tree*
+```mermaid
+classDiagram
+    class App["App Component"]
+    class Message["Message Component(Hello World)"]
+    App --> Message
+```
+
+*Virtual DOM*
+```mermaid
+classDiagram
+    class div["div"]
+    class h1["h1"]
+    div --> h1
+```
+* 1. Create new file Message.tsx(Typescript file) in src folder
+```c
+//src/Message.tsx
+// Follow CamelCase (also called Pascal Case)
+
+//1. Create Function based React component.
+function Message() {
+    //This is syntax of JSX(Javascript XML code)
+    //Under the hood, it will get converted to Javascript code
+    //React.createElement("h1", null, "Hello World");
+    return <h1>Hello World</h1>;
+}
+
+//2. To use above created component
+// we need to export it as Default created Object
+export default Message;
+```
+* 2. src\App.tsx. Delete everything from file and start afresh
+```c
+//Steps 1,2 are in src/Message.tsx file
+
+// import Message component
+import Message from "./Message";
+
+//3. Create a Component called App, which contains <div>
+// <div> calls other components
+function App() {
+  //4. Message component is used as regular HTML components.
+  // We need to close the imported component
+  return <div><Message></Message></div>;
+}
+
+// 5. Export App component(as default) from this class
+// so that it can be used somewhere else
+export default App;
+```
+* 3. npm run dev
+```c
+http://localhost:5173/
+```
