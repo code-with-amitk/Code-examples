@@ -110,3 +110,74 @@ export default App;
 ```c
 http://localhost:5173/
 ```
+
+=== 2. Create Basic ListGroup
+==== a. Use link:https://getbootstrap.com/[bootstrap]
+bootstrap is css library, which gives classes to applications to style their applications.
+```js
+PS C:\Users\amitk\source\repos\React\react-app> npm i bootstrap@5.2.3
+
+changed 24 packages, and audited 79 packages in 7s
+
+9 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+* b. Use bootstrap.css
+** Delete every thing from src\App.css
+** Delete src\index.css completely
+** Provide path of bootstrap.css in src\main.tsx
+```
+//import './index.css'                        << Remove this
+import 'bootstrap/dist/css/bootstrap.css'    //Insert this
+```
+
+==== b. Create component
+* 1. Create a folder `components` inside src. We will place all our components in this folder.
+```js
+src
+|-components
+  |-ListGroup.tsx
+```
+* 2. Take list group code from here: link:https://getbootstrap.com/docs/5.3/components/list-group/[List Group].
+** Replace class with className.
+```c
+//1. Create Function based React component.
+
+function ListGroup() {
+    //This is syntax of JSX(Javascript XML code)
+  return (
+    <ul className="list-group">
+      <li className="list-group-item">An item</li>
+      <li className="list-group-item">A second item</li>
+      <li className="list-group-item">A third item</li>
+      <li className="list-group-item">A fourth item</li>
+      <li className="list-group-item">And a fifth one</li>
+    </ul>
+  );
+}
+
+//2. To use above created component
+// we need to export it as Default created Object
+export default ListGroup;
+```
+* 2. src\App.tsx. Delete everything from file and start afresh
+```c
+//Steps 1,2 are in src/components/Listgruop.tsx file
+
+// import Listgruop component
+import Listgruop from "./components/Listgruop";
+
+//3. Create a Component called App, which contains <div>
+// <div> calls other components
+function App() {
+  //4. Message component is used as regular HTML components.
+  // We need to close the imported component
+  return <div><Listgruop></Listgruop></div>;
+}
+
+// 5. Export App component(as default) from this class
+// so that it can be used somewhere else
+export default App;
+```
