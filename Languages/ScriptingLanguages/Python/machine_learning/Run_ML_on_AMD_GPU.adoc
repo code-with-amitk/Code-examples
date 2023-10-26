@@ -1,0 +1,43 @@
+:toc:
+:toclevels: 6
+
+== link:https://learn.microsoft.com/en-us/windows/ai/directml/gpu-tensorflow-windows[Enable TensorFlow with DirectML on Windows]
+=== 1. Windows version (>10, 1709)
+You can check your build version number by running winver via the Run command (Windows logo key + R).
+
+=== 2. Install miniconda
+* https://docs.conda.io/en/latest/miniconda.html#windows-installers
+* miniconda is installed in C:\Users\amitk\
+
+=== 3. Create python env using conda, Activate
+```c
+cmd>
+C:\Users\amitk\source\repos\Python\ML> C:\Users\amitk\miniconda3\Scripts\conda create --name directml python=3.6
+..
+
+C:\Users\amitk\source\repos\Python\ML>"c:\Users\amitk\miniconda3\Scripts\activate" directml
+(directml) C:\Users\amitk\source\repos\Python\ML>
+```
+
+=== 4. Install the TensorFlow with DirectML package
+```c
+(directml) C:\Users\amitk\source\repos\Python\ML>pip install tensorflow-directml
+..
+```
+
+=== 5. Add 2 tensors on GPU
+```py
+(directml) C:\Users\amitk\source\repos\Python\ML>python
+Python 3.6.13 |Anaconda, Inc.| (default, Mar 16 2021, 11:37:27) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import tensorflow.compat.v1 as tf
+>>>
+>>> tf.enable_eager_execution(tf.ConfigProto(log_device_placement=True))
+>>>
+>>> print(tf.add([1.0, 2.0], [3.0, 4.0]))
+2023-10-26 10:50:50.890594: I tensorflow/stream_executor/platform/default/dso_loader.cc:97] Successfully opened dynamic library dxgi.dll
+2023-10-26 10:50:50.900401: I tensorflow/stream_executor/platform/default/dso_loader.cc:97] Successfully opened dynamic library d3d12.dll
+2023-10-26 10:50:51.365531: I tensorflow/core/common_runtime/dml/dml_device_cache.cc:250] DirectML device enumeration: found 1 compatible adapters.
+2023-10-26 10:50:51.367876: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+2023-10-26 10:50:51.371564: I tensorflow/core/common_runtime/dml/dml_device_cache.cc:186] DirectML: creating device on adapter 0 (AMD Radeon R7 Graphics)
+```
