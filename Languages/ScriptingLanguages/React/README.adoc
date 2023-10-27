@@ -23,9 +23,11 @@
 
 == link:./Create_vite_app.adoc[Install React, Create Vite App]
 
-== Features
-=== Add components to Page
-==== 1. Button
+== Features/Terms
+=== Component
+This is javascript function or class that returns HTML/React element.
+
+=== Button
 * React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
 * React components are JavaScript functions that return markup
 * Now that you’ve declared MyButton, you can nest it into another component.  React component names must always start with a capital letter.
@@ -47,16 +49,6 @@ export default function MyApp() {    //int main() //export default keywords spec
       <MyButton />
     </div>
   );
-}
-```
-
-==== 2. Image
-```js
-<img className="avatar" />
-
-// Then you write the CSS rules for it in a separate CSS file
-.avatar {
-  border-radius: 50%;
 }
 ```
 
@@ -110,8 +102,63 @@ function MyButton() {
 }
 ```
 
+=== Image
+```js
+<img className="avatar" />
+
+// Then you write the CSS rules for it in a separate CSS file
+.avatar {
+  border-radius: 50%;
+}
+```
+
 === Hooks
 Functions starting with use are called Hooks. useState is a built-in Hook provided by React. 
+
+=== Props(Properties) = Function Arguments
+* Props is way to pass data from 1 component to other. 
+** Button is name of the component being used in the JSX code
+** name="test": This is a prop being passed to the Button component with the value "test".
+** FunOnClick={() => console.log("Hi")}: This is another prop being passed to the Button component. The prop is a function that will be executed when the button is clicked. The function logs "Hi" to the console.
+```tsx
+<Button name="test" FunOnClick={() => console.log("Hi")} />
+```
+
+==== Declare props
+* ButtonProps is prop which takes 2 arguments and passes to component=function(Button).
+```tsx
+interface ButtonProps {
+  name: string;
+  FunOnClick: () => void; //Function that takes no arguments and returns nothing
+}
+
+function Button({ name, FunOnClick }: ButtonProps) {
+  return (
+    <button type="button" className="btn btn-primary" onClick={FunOnClick}>
+      {name}
+    </button>
+  );
+}
+
+export default Button;
+```
+
+==== Passing value in props
+* prop=interface is defined above(which takes input parameters).
+* Arguments/Values are passed without ,
+```tsx
+import Button from "./components/Button";
+
+function App() {
+  return (
+    <div>
+      <Button name="test" FunOnClick={() => console.log("Hi")}></Button>            //Passing values to prop
+    </div>
+  );
+}
+
+export default App;
+```
 
 == link:https://create-react-app.dev/docs/getting-started/[Create React App]
 ```c
