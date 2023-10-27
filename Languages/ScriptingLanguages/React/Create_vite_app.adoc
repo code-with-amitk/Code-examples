@@ -231,3 +231,45 @@ function ListGroup() {
 
 export default ListGroup;
 ```
+
+=== 4. Create a Button(Defining onClick()) whose text, color is configurable
+```tsx
+//src/components/Button.tsx
+interface ButtonProps {
+  name: string;
+  FunOnClick: () => void; //Function that takes no arguments and returns nothing
+  color: string;
+}
+
+function Button({ name, FunOnClick, color }: ButtonProps) {
+  var a = "btn " + color;
+  console.log(a);
+  return (
+    <button type="button" className={a} onClick={FunOnClick}>
+      {name}
+    </button>
+  );
+}
+export default Button;
+
+//src/App.tsx
+// import Button
+import Button from "./components/Button";
+
+// Create a Component called App, which contains <div>. <div> calls other components
+function App() {
+  return (
+    <div>
+      <Button
+        name="test"
+        FunOnClick={() => console.log("Hi")}
+        color="btn-danger"
+      ></Button>
+    </div>
+  );
+}
+
+// Export App component(as default) from this class so that it can be used somewhere else
+export default App;
+
+```
