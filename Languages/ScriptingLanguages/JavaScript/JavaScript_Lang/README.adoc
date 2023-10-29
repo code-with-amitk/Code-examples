@@ -1,14 +1,10 @@
 :toc:
 :toclevels: 6
 
-== Data types
-JavaScript provides eight different data types: undefined, null, boolean, string, symbol, bigint, number, and object
-
 == JavaScript
 - **JS has nothing to do with java.** In 1995 when JS was introduced, java was gaining success, Writer though to ride along sucess of java and nothing else.
 - JS is used for web development: Display dynamic contents: interactive maps, animated 2D/3D graphics, scrolling video jukeboxes, etc.
-- **1st JS Program?**
-  - [Install nodejs](/Languages/ScriptingLanguages/JavaScript/JSON/Restful_JSONServer) to compile JS program
+- *1st JS Program?* link:/Languages/ScriptingLanguages/JavaScript/JSON/Restful_JSONServer[Install nodejs]
 ```js
 test.js
 var age = 39;         //Integer
@@ -18,58 +14,30 @@ cmd> node test.js
 age: 39
 ```
 
-== Objects
-**1. JS uses functions as classes** JS does not have class statement.
-```js
-function makePerson(first, last) {                //Class 
-  return {
-    first: first,                               //members
-    last: last,
-    fullName: function() {
-      return this.first + ' ' + this.last;
-    },
-    fullNameReversed: function() {
-      return this.last + ', ' + this.first;
-    }
-  };
-}
+== Data types
+JavaScript provides 8 different data types: undefined, null, boolean, string, symbol, bigint, number, and object
 
-var s = makePerson('Simon', 'Willison');                  //Created Object
-s.fullName(); // "Simon Willison"
-s.fullNameReversed(); // "Willison, Simon"
-```
-
-== Datatypes in JS
-- **1. Number**: Number are 64 bit and floats not ints.
+=== 1. Number
+Number are 64 bit and floats not ints.
 ```js
 console.log(3 / 2);             // 1.5, not 1
 console.log(Math.floor(3 / 2)); // 1
-parseInt('123', 10);            //123.          parseInt(string,number-system-base) converts string to integer
-parseInt('0x10');               // 16
-parseInt('hello', 10);          // NaN          NaN ("Not a Number") is returned if the string is non-numeric
-isNaN(NaN); // true
  1 / 0;                         //  Infinity
 -1 / 0;                         // -Infinity
 ```
-- **2. String** These are sequences of UTF-16 code units; each code unit is represented by a 16-bit number
+
+=== 2. String
+These are sequences of UTF-16 code units; each code unit is represented by a 16-bit number
 ```js
 'hello'.length;                 // 5
 'hello'.charAt(0);              // "h"
 'hello, world'.replace('world', 'mars'); // "hello, mars"
 'hello'.toUpperCase();          // "HELLO"
 ```
-- **3. Boolean**
-- **4. Variables** Declared using one of three keywords:
-  - let(declares block level or local variable)
-  - const(declare variables whose values are never intended to change)
-  - var(global variable)
-```js
-let a;
-let name = 'Simon';
-const Pi = 3.14; // variable Pi is set 
-Pi = 1; // will throw an error because you cannot change a constant variable.
-```
-- **5. Objects** These are name=value pairs. Similar to Dictionaries in Python, Hash tables in C and C++, HashMaps in Java.
+=== 3. boolean
+
+=== 4. Objects 
+These are name=value pairs. Similar to Dictionaries in Python, Hash tables in C and C++, HashMaps in Java.
 ```js
 var obj = new Object();                 //Create Empty object
 var obj = {};                           //Object literal syntax preferred
@@ -92,7 +60,30 @@ function Person(name, age) {              //Create a object prototype(Person) an
 // Define an object
 var you = new Person('You', 24);
 ```
-- **6. Arrays:** [Complete documentation of array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+==== JS uses functions as classes
+JS does not have class statement.
+```js
+function makePerson(first, last) {                //Class 
+  return {
+    first: first,                               //members
+    last: last,
+    fullName: function() {
+      return this.first + ' ' + this.last;
+    },
+    fullNameReversed: function() {
+      return this.last + ', ' + this.first;
+    }
+  };
+}
+
+var s = makePerson('Simon', 'Willison');                  //Created Object
+s.fullName(); // "Simon Willison"
+s.fullNameReversed(); // "Willison, Simon"
+```
+
+=== 5. Arrays
+link:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array[Complete documentation of array methods]
 ```js
 var a = new Array();
 a[0] = 'dog';
@@ -111,21 +102,21 @@ typeof a[90];                       // undefined    If you query a non-existent 
 
 a.push(item);                       //Adding item to array
 ```
-<a name=o></a>
-### Operators
+
+== Operators
 ```js
 'hello' + ' world';                 // "hello world"
 '3' + 4 + 5;                         // "345"        If you add a string to a number everything is converted into a string first.
  3 + 4 + '5';                       // "75"
 ```
-- **triple-equals operator** For comparing types of different types
+* triple-equals operator: For comparing types of different types
 ```js
 123 == '123';           // true. Should not be compared this is type coercion
 1 == true;              // true
 123 === '123'; // false
 1 === true;    // false
 ```
-- **7. Functions**
+* *7. Functions*
 ```
 function add() {
   var sum = 0;
@@ -153,9 +144,9 @@ var avg = function() {                    //Lambda, Anonymous Function
   return sum / arguments.length;
 };
 ```
-<a name=c></a>
-### Control Flow
-- for, while, do while, switch, ternary operator are same. 2 additional for loops
+
+== Control Flow
+* for, while, do while, switch, ternary operator are same. 2 additional for loops
 ```js
 for (let value of array) {              //FOR OF loop
   // do something with value
@@ -164,4 +155,3 @@ for (let property in object) {            //FOR IN loop
   // do something with object property
 }
 ```
-
