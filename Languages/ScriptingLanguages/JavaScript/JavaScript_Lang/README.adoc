@@ -1,10 +1,10 @@
-**Javascript**
-- [Objects](#o)
-- [Data Types](#d)
-- [Control Flow](#c)
-- [Operators](#o)
+:toc:
+:toclevels: 6
 
-## JavaScript
+== Data types
+JavaScript provides eight different data types: undefined, null, boolean, string, symbol, bigint, number, and object
+
+== JavaScript
 - **JS has nothing to do with java.** In 1995 when JS was introduced, java was gaining success, Writer though to ride along sucess of java and nothing else.
 - JS is used for web development: Display dynamic contents: interactive maps, animated 2D/3D graphics, scrolling video jukeboxes, etc.
 - **1st JS Program?**
@@ -18,8 +18,7 @@ cmd> node test.js
 age: 39
 ```
 
-<a name=o></a>
-### Objects
+== Objects
 **1. JS uses functions as classes** JS does not have class statement.
 ```js
 function makePerson(first, last) {                //Class 
@@ -39,8 +38,8 @@ var s = makePerson('Simon', 'Willison');                  //Created Object
 s.fullName(); // "Simon Willison"
 s.fullNameReversed(); // "Willison, Simon"
 ```
-<a name=d></a>
-### Datatypes in JS
+
+== Datatypes in JS
 - **1. Number**: Number are 64 bit and floats not ints.
 ```js
 console.log(3 / 2);             // 1.5, not 1
