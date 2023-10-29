@@ -1,10 +1,7 @@
 :toc:
 :toclevels: 6
-
-== html
-doctype: 	Tells about type of page
   
-=== Tags
+== Tags
 |===
 |Name|desc
 
@@ -28,20 +25,23 @@ doctype: 	Tells about type of page
 |lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
 |===
 
-==== style
+=== style
 To add color, font, size, and more. https://www.w3schools.com/html/html_styles.asp
 ```html
-				<p style="color:red;font-size:300%;"> .. </p>
-				<body style="background-color:powderblue;">		//Background of page
+<p style="color:red;font-size:300%;"> .. </p>
+<body style="background-color:powderblue;">		//Background of page
 ```
 
-==== title
+=== Attributes of element
+style is attribute of element. Attributes contain extra information about the element that won't appear in the content. 
+
+=== title
 Defines some extra information about an element. The value of the title attribute will be displayed as a tooltip when you mouse over the element
 ```html
 				<p title="I'm a tooltip">This is a paragraph.</p>
 ```
 
-=== Formatting elements
+== Formatting elements
 |===
 
 |`<b>` |Bold text
@@ -56,19 +56,18 @@ Defines some extra information about an element. The value of the title attribut
 |<sup>|Superscript text
 |===
 
-=== Cascading Style Sheets (CSS)
-- Used to format the layout of a webpage
-- With CSS, you can control the color, font, the size of text, the spacing between elements
-- CSS can be added to HTML documents in 3 ways:
+== Cascading Style Sheets (CSS)
+* Used to format the layout of a webpage. With CSS, you can control the color, font, the size of text, the spacing between elements
+* CSS can be added to HTML documents in 3 ways:
 
-==== 1. Inline
+=== 1. Inline
 using the style attribute inside HTML elements
 ```c
 <h1 style="color:blue;">A Blue Heading</h1>
 <p style="color:red;">A red paragraph.</p>
 ```
 
-==== 2. Internal
+=== 2. Internal
 - using `<style>` element in the `<head>` section. Example:
 ```c
 <!DOCTYPE html>
@@ -83,7 +82,7 @@ p    {color: red;}
 <body>	
 ```
 
-==== 3. External (`<link>` in `<head>`)
+=== 3. External (`<link>` in `<head>`)
 - An external style sheet is used to define the style for many HTML pages.
 - To use an external style sheet, add a `<link>` to it in the `<head>` section of each HTML page
 ```c
