@@ -5,24 +5,27 @@
 |===
 |Name|desc
 
-|a|links
-|body|Contents of page
+|<a>(Anchors)|Anchors enclose text and turn them into links
+|alt|alt="Girl with a jacket". specifies an alternate text for an image
+|Attributes|provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
+|<body></body>|The <body> element. This contains all the content that displays on the page, including text, images, videos, games, playable audio tracks, or whatever else.
 |<br>|line break, Newline
+|class|Used to specify a class for an HTML element.
 |combobox|used for building forms in HTML. It is formed with select element and input type=”text” element.
+|<!DOCTYPE html>| The doctype. The doctype is a historical artifact that needs to be included for everything else to work right.
 |div|defines a division or a section in an HTML document. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_div_test[div example]
 |<hr>|Horizontal Rules. used to separate content. Add a line
 |h1,h2,h3:	Headings|Search engines use the headings to index the structure and content of your web pages
-|html|Root element of page
+|<head></head>| Includes keywords and a page description that would appear in search results, CSS to style content, character set declarations, and more.
+|<html></html>|html element. This element wraps all the content on the page. It is also known as the root element
 |img|Image
 |label|defines a label for several elements. provide a usability improvement for mouse users
+|lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
+|<meta charset="utf-8">|<meta> element. This element represents metadata. The charset attribute specifies the character encoding for your document as UTF-8, which includes most characters from the vast majority of human written languages.
 |p|Paragraph. Starts with newline & is block of text.
 |<pre>|Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
 |span|used to color a part of a text. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_span[Example]
-|title|Tile of Page
-|Attributes|provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
-|alt|alt="Girl with a jacket". specifies an alternate text for an image
-|class|Used to specify a class for an HTML element.
-|lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
+|<title></title>| The <title> element. This sets the title of the page, which is the title that appears in the browser tab the page is loaded in. 
 |===
 
 === style
@@ -33,7 +36,18 @@ To add color, font, size, and more. https://www.w3schools.com/html/html_styles.a
 ```
 
 === Attributes of element
-style is attribute of element. Attributes contain extra information about the element that won't appear in the content. 
+Attributes contain extra information about the element that won't appear in the content. Example img tag can have following attributes:
+* src(required): Tells the location of the image.
+* alt: specifies a text description of the image
+* width: specifies the width of the image etc
+
+==== boolean attributes
+Attributes written without values. Boolean attributes can only have one value, which is generally the same as the attribute name. Example:
+* disabled: assign to form input elements. (You use this to disable the form input elements so the user can't make entries)
+```html
+<!-- using the disabled attribute prevents the end user from entering text into the input box -->
+<input type="text" disabled />
+```
 
 === title
 Defines some extra information about an element. The value of the title attribute will be displayed as a tooltip when you mouse over the element
@@ -113,4 +127,19 @@ p {
   margin: 50px;				<!--defines a margin (space) outside the border-->
   
 }
+```
+
+== link:https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started#alt[Anatomy of an HTML document]
+- See description of tags above
+```html
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my page</p>
+  </body>
+</html>
 ```
