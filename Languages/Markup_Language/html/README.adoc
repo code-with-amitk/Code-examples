@@ -21,10 +21,12 @@
 |img|Image
 |label|defines a label for several elements. provide a usability improvement for mouse users
 |lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
+|link|The <link> element should always go inside the head of your document. This takes two attributes, rel="stylesheet", which indicates that it is the document's stylesheet, and href, which contains the path to the stylesheet file
 |<meta charset="utf-8">|<meta> element. This element represents metadata. The charset attribute specifies the character encoding for your document as UTF-8, which includes most characters from the vast majority of human written languages.
 |p|Paragraph. Starts with newline & is block of text.
 |<pre>|Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
 |span|used to color a part of a text. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_span[Example]
+|script| <script> element should also go into the head, and should include a src attribute containing the path to the JavaScript you want to load
 |<title></title>| The <title> element. This sets the title of the page, which is the title that appears in the browser tab the page is loaded in. 
 |===
 
