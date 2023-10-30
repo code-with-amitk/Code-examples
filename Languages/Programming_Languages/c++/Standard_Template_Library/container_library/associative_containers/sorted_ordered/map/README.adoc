@@ -1,26 +1,20 @@
-**Map**
-- **Insert**
-  - [insert()](#mins)
-  - [emplace()](#emp)
-- [erase](#merase)
-- [Multidimentional Maps](#mdm)
-- [`map <key, value, comparator>`](#m2)
+:toc:
+:toclevels: 6
 
 
-## Map<key, value>
-- All elements are always sorted means All elements are in order(ascending/descending). Some operations does not make sense Eg: push_back(), push_front().
+== Map<key, value>
+* All elements are always sorted means All elements are in order(ascending/descending). Some operations does not make sense Eg: push_back(), push_front().
 
-### Insert
-<a name=mins></a>
-#### insert()
+== Insert
+=== insert()
 For inserting element into stl. Creates object somewhere else, copies objects into the vector
 ```cpp
 <iterator, bool> insert(const val_type& val)
 map<char, int> m;
 m.insert(make_pair('a', 1));
 ```
-<a name=emp></a>
-#### emplace()
+
+=== emplace()
 Same, used for inserting elements into stl. But constructs elements inside the stl only. Does in place insertion, avoids unneccessary copy.
 ```cpp  
 <iterator,bool> emplace(Args&.. args)   //Preferred over insert()
@@ -29,26 +23,7 @@ for (auto i:m)
   cout << i;                    //a 1   b 2
 ```
 
-<a name=merase></a>
-### erase(const key_type& k)
-Find key and erase.
-```cpp
-  void find ( K key ) {
-    if ( (m.find (key)) != m.end() )   //key found
-      m.erase (key);
-  }
-```
-
-<a name=mdm></a>
-## Multidimentional Maps
-Map inside map
-```cpp   
-map<int, map<string, string>>
-```
-
-<a name=m2></a>
-### `map <key, value, comparator>`
-#### Store keys in reverse order
+=== Store keys in reverse order / `map <key, value, comparator>`
 ```c
 class cmp {
 public:
@@ -72,4 +47,27 @@ $ ./a.out
 aaa
 aa
 a
+```
+
+== erase(const key_type& k)
+Find key and erase.
+```cpp
+  void find ( K key ) {
+    if ( (m.find (key)) != m.end() )   //key found
+      m.erase (key);
+  }
+```
+
+== Multidimentional Maps
+Map inside map
+```cpp   
+map<int, map<string, string>>
+```
+
+== Iterate elements
+```c
+map<int, int> m;
+for (auto&i:m) {
+  cout << i.first << "," << i.second;
+}
 ```
