@@ -15,19 +15,42 @@
 |<!DOCTYPE html>| The doctype. The doctype is a historical artifact that needs to be included for everything else to work right.
 |div|defines a division or a section in an HTML document. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_div_test[div example]
 |<hr>|Horizontal Rules. used to separate content. Add a line
-|h1,h2,h3:	Headings|Search engines use the headings to index the structure and content of your web pages
+|h1,h2,h3,h4,h5,h6:Headings|Search engines use the headings to index the structure and content of your web pages
 |<head></head>| Includes keywords and a page description that would appear in search results, CSS to style content, character set declarations, and more.
 |<html></html>|html element. This element wraps all the content on the page. It is also known as the root element
 |img|Image
 |label|defines a label for several elements. provide a usability improvement for mouse users
 |lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
 |link|The <link> element should always go inside the head of your document. This takes two attributes, rel="stylesheet", which indicates that it is the document's stylesheet, and href, which contains the path to the stylesheet file
+|list (<ul> unordered list)|<ul>this wraps around all the list items. Then <li> wraps around 
+```
+<ul>
+  <li>milk</li>
+  <li>eggs</li>
+  <li>bread</li>
+  <li>hummus</li>
+</ul>
+```
+|list (<ol> ordered list)|<ol>This is just same as list, but all elements are ordered
+```
+<ol>
+  <li>get up</li>
+  <li>fresh</li>
+  <li>excercise</li>
+  <li>breakfast</li>
+</ol>
+```
 |<meta charset="utf-8">|<meta> element. This element represents metadata. The charset attribute specifies the character encoding for your document as UTF-8, which includes most characters from the vast majority of human written languages.
 |p|Paragraph. Starts with newline & is block of text.
 |<pre>|Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
-|span|used to color a part of a text. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_span[Example]
+|span|We use it to wrap content when we want to apply CSS to it. Text inside span looks like h1.
+```
+<span style="font-size: 32px; margin: 21px 0; display: block;">
+  Is this a top level heading?
+</span>
+```
 |script| <script> element should also go into the head, and should include a src attribute containing the path to the JavaScript you want to load
-|<title></title>| The <title> element. This sets the title of the page, which is the title that appears in the browser tab the page is loaded in. 
+|<title></title>| The <title> element. This sets the title of the page, which is the title that appears in the browser tab the page is loaded in.
 |===
 
 === style
