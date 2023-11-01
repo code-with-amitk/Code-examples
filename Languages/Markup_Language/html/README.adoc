@@ -20,6 +20,18 @@ Image Link:
 |<br>|line break, Newline
 |class|Used to specify a class for an HTML element.
 |combobox|used for building forms in HTML. It is formed with select element and input type=”text” element.
+|<dl> (description lists)|set of items and their associated descriptions, such as terms and definitions, or questions and answers
+```
+<dl>
+  <dt>soliloquy</dt>		Description Term
+  <dd>				Description Definition
+    In drama, where a character speaks to themselves, representing their inner
+    thoughts or feelings and in the process relaying them to the audience (but
+    not to other characters.)
+  </dd>
+</dl>
+```
+
 |<!DOCTYPE html>| The doctype. The doctype is a historical artifact that needs to be included for everything else to work right.
 |div|defines a division or a section in an HTML document. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_div_test[div example]
 |<hr>|Horizontal Rules. used to separate content. Add a line
