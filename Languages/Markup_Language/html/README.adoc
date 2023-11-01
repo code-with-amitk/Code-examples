@@ -5,7 +5,15 @@
 |===
 |Name|desc
 
-|<a>(Anchors)|Anchors enclose text and turn them into links
+|<a>(Anchors)|Text is inside <a> and link/webaddress inside href(Hypertext Reference).
+```
+<a href="https://www.mozilla.org/en-US/">the Mozilla homepage</a>.
+
+Image Link:
+<a href="https://developer.mozilla.org/en-US/">
+  <img src="mdn_logo.svg" alt="MDN Web Docs" />
+</a>
+```
 |alt|alt="Girl with a jacket". specifies an alternate text for an image
 |Attributes|provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
 |<body></body>|The <body> element. This contains all the content that displays on the page, including text, images, videos, games, playable audio tracks, or whatever else.
