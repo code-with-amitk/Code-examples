@@ -16,6 +16,14 @@ Image Link:
 ```
 |alt|alt="Girl with a jacket". specifies an alternate text for an image
 |Attributes|provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
+|<blockquote cite="url">|This tells content is taken from url
+```
+<p>
+<blockquote cite="http://www.worldwildlife.org/who/index.html">		Below content is taken from this url
+For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+</blockquote>
+</p>
+```
 |<body></body>|The <body> element. This contains all the content that displays on the page, including text, images, videos, games, playable audio tracks, or whatever else.
 |<br>|line break, Newline
 |class|Used to specify a class for an HTML element.
