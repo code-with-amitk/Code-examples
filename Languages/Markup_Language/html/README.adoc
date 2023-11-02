@@ -89,6 +89,7 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
 |p|Paragraph. Starts with newline & is block of text.
 |<pre>|Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
 |span|We use it to wrap content when we want to apply CSS to it. Text inside span looks like h1.
+|<time datetime="2016-01-20">20 January 2016</time>|can be written in different formats
 ```
 <span style="font-size: 32px; margin: 21px 0; display: block;">
   Is this a top level heading?
