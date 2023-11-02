@@ -14,6 +14,22 @@ Image Link:
   <img src="mdn_logo.svg" alt="MDN Web Docs" />
 </a>
 ```
+|<address>|marking up contact details — <address>. This wraps around your contact details
+```
+<address>
+  <p>
+    Chris Mills<br />
+    Manchester<br />
+    The Grim North<br />
+    UK
+  </p>
+
+  <ul>
+    <li>Tel: 01234 567 890</li>
+    <li>Email: me@grim-north.co.uk</li>
+  </ul>
+</address>
+```
 |alt|alt="Girl with a jacket". specifies an alternate text for an image
 |Attributes|provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
 |<blockquote cite="url">|This tells content is taken from url
@@ -27,6 +43,7 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
 |<body></body>|The <body> element. This contains all the content that displays on the page, including text, images, videos, games, playable audio tracks, or whatever else.
 |<br>|line break, Newline
 |class|Used to specify a class for an HTML element.
+|<code>| For marking up generic pieces of computer code.
 |combobox|used for building forms in HTML. It is formed with select element and input type=”text” element.
 |<dl> (description lists)|set of items and their associated descriptions, such as terms and definitions, or questions and answers
 ```
