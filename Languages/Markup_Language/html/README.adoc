@@ -1,6 +1,10 @@
 :toc:
 :toclevels: 6
-  
+
+== Read HTML From
+* https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Document_and_website_structure
+* Above is *most useful/meaningful/lovable documentation* i have ever found
+
 == Tags
 |===
 |Name|desc
@@ -32,21 +36,23 @@ Image Link:
 ```
 |alt|alt="Girl with a jacket". specifies an alternate text for an image
 |Attributes|provide additional information about HTML elements. Specified in in the start tag. comes in key=value pair
+|<article>|Encloses a block of related content that makes sense on its own without the rest of the page (e.g., a single blog post).
+|<aside>|Contains content that is not directly related to the main content but can provide additional information
 |<blockquote cite="url">|This tells content is taken from url
-```
+``
 <p>
 <blockquote cite="http://www.worldwildlife.org/who/index.html">		Below content is taken from this url
 For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
 </blockquote>
 </p>
-```
+``
 |<body></body>|The <body> element. This contains all the content that displays on the page, including text, images, videos, games, playable audio tracks, or whatever else.
 |<br>|line break, Newline
 |class|Used to specify a class for an HTML element.
 |<code>| For marking up generic pieces of computer code.
 |combobox|used for building forms in HTML. It is formed with select element and input type=”text” element.
 |<dl> (description lists)|set of items and their associated descriptions, such as terms and definitions, or questions and answers
-```
+``
 <dl>
   <dt>soliloquy</dt>		Description Term
   <dd>				Description Definition
@@ -55,12 +61,16 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
     not to other characters.)
   </dd>
 </dl>
-```
-
+``
 |<!DOCTYPE html>| The doctype. The doctype is a historical artifact that needs to be included for everything else to work right.
-|div|defines a division or a section in an HTML document. link:https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_div_test[div example]
-|<hr>|Horizontal Rules. used to separate content. Add a line
+|<div>
+a|
+* Is a block level non-semantic element, which you should only use if you can't think of a better semantic block element to use, or don't want to add any specific meaning. For example, imagine a shopping cart widget that you could choose to pull up at any point during your time on an e-commerce site. Now this widget is not <aside>, as it doesn't necessarily relate to the main content. This widget is also not <section>, as it isn't part of the main content of the page. So a <div> is fine in this case
+* *Warning:* Divs are so convenient to use that it's easy to use them too much. As they carry no semantic value, they just clutter your HTML code. Take care to use them only when there is no better semantic solution and try to reduce their usage to the minimum otherwise you'll have a hard time updating and maintaining your documents.
+|<footer>|Represents a group of end content for a page.
+|<hr>|Horizontal line. used to separate content. Add a line
 |h1,h2,h3,h4,h5,h6:Headings|Search engines use the headings to index the structure and content of your web pages
+|<header>|Represents a group of introductory content. If it is a child of <body> it defines the global header of a webpage
 |<head></head>| Includes keywords and a page description that would appear in search results, CSS to style content, character set declarations, and more.
 |<html></html>|html element. This element wraps all the content on the page. It is also known as the root element
 |img|Image
@@ -68,6 +78,7 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
 |lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
 |link|The <link> element should always go inside the head of your document. This takes two attributes, rel="stylesheet", which indicates that it is the document's stylesheet, and href, which contains the path to the stylesheet file
 |list (<ul> unordered list)|<ul>this wraps around all the list items. Then <li> wraps around 
+|<main>|main content of page.Use <main> only once per page, and put it directly inside <body>. Ideally this shouldn't be nested within other elements.
 ```
 <ul>
   <li>milk</li>
@@ -86,6 +97,7 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
 </ol>
 ```
 |<meta charset="utf-8">|<meta> element. This element represents metadata. The charset attribute specifies the character encoding for your document as UTF-8, which includes most characters from the vast majority of human written languages.
+|<nav>|Contains the main navigation functionality for the page. Secondary links, etc., would not go in the navigation.
 |p|Paragraph. Starts with newline & is block of text.
 |<pre>|Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
 |span|We use it to wrap content when we want to apply CSS to it. Text inside span looks like h1.
@@ -96,6 +108,7 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
 </span>
 ```
 |script| <script> element should also go into the head, and should include a src attribute containing the path to the JavaScript you want to load
+|<span>| When we cannot find a better semantic text element to wrap the content, then use span. Should be used preferably with a suitable class attribute, to provide some kind of label for them so they can be easily targeted.
 |<title></title>| The <title> element. This sets the title of the page, which is the title that appears in the browser tab the page is loaded in.
 |===
 
