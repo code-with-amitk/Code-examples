@@ -1,0 +1,36 @@
+:toc:
+:toclevels: 6
+
+== sidecar / istio / service mesh
+* In kubernets istio (or service mesh) is advanced platform which provides networking, security capabilities to microservices.
+* It places a seperate container (called sidecar or Envoy) inside the pod along side with existing application service.
+
+=== Usage of sidecar / Envoy
+* it acts as intermediary between microservice and rest of the system.
+* Istio sidecar intercepts all communication between microservice and rest of services and provide routing, policy enforcement, telemetry, TLS to traffic
+
+```mermaid
+flowchart TB
+
+    subgraph POD1
+       subgraph container_b
+            istio_sidecar1
+        end
+        subgraph container_a
+            microservice1
+        end
+    end
+
+    subgraph POD2
+        subgraph container_c
+            microservice2
+        end
+        subgraph container_d
+            istio_sidecar2
+        end
+    end
+
+    container_a <--"HTTP"--> container_b
+    container_c <--"HTTP"--> container_d
+    container_d <--"HTTPS"--> container_b
+```
