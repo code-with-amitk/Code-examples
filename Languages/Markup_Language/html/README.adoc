@@ -227,3 +227,7 @@ p {
   </body>
 </html>
 ```
+
+== Debugging
+* 1. Feed your page address into link:https://validator.w3.org/[Markup Validation Service]. This webpage takes an HTML document as an input, goes through it, and gives you a report to tell you what is wrong with your HTML.
+* 2. Inspector. Press F12 on page.
