@@ -97,7 +97,14 @@ a|
   <li>breakfast</li>
 </ol>
 ```
-|<meta charset="utf-8">|<meta> element. This element represents metadata. The charset attribute specifies the character encoding for your document as UTF-8, which includes most characters from the vast majority of human written languages.
+|<meta>|This element represents metadata.
+``
+<meta 
+    charset="utf-8"			//specifies the character encoding for your document as UTF-8
+    name="author" content="Chris Mills"	//key(name of author), value(name of author)
+    name="description" content="...."	//This is shown in google search
+/>
+``
 |<nav>|Contains the main navigation functionality for the page. Secondary links, etc., would not go in the navigation.
 |p|Paragraph. Starts with newline & is block of text.
 |<pre>|Defines preformatted text. text inside a `<pre>` element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks
