@@ -18,6 +18,7 @@ Image Link:
   <img src="mdn_logo.svg" alt="MDN Web Docs" />
 </a>
 ```
+|abbr(Abbrevations)|<abbr>HTML</abbr>, Hypertext Markup Language
 |<address>|marking up contact details — <address>. This wraps around your contact details
 ```
 <address>
