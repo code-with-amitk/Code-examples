@@ -68,13 +68,47 @@ For 50 years, WWF has been protecting the future of nature. The world's leading 
 a|
 * Is a block level non-semantic element, which you should only use if you can't think of a better semantic block element to use, or don't want to add any specific meaning. For example, imagine a shopping cart widget that you could choose to pull up at any point during your time on an e-commerce site. Now this widget is not <aside>, as it doesn't necessarily relate to the main content. This widget is also not <section>, as it isn't part of the main content of the page. So a <div> is fine in this case
 * *Warning:* Divs are so convenient to use that it's easy to use them too much. As they carry no semantic value, they just clutter your HTML code. Take care to use them only when there is no better semantic solution and try to reduce their usage to the minimum otherwise you'll have a hard time updating and maintaining your documents.
-|<footer>|Represents a group of end content for a page.
+|<footer>|The footer is also sometimes used for SEO purposes, by providing links for quick access to popular content.
+``
+<body>
+..
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+</body>
+``
 |<hr>|Horizontal line. used to separate content. Add a line
 |h1,h2,h3,h4,h5,h6:Headings|Search engines use the headings to index the structure and content of your web pages
-|<header>|Represents a group of introductory content. If it is a child of <body> it defines the global header of a webpage
+|<header>|Usually a big strip across the top with a big heading, logo, and perhaps a tagline. This usually stays the same from one webpage to another.
+``
+<body>
+    <header style="display: flex; align-items: center">	//Align all elements at center
+      <h1 >Birdwatching</h1>
+      <img src="dove.png" alt="a simple dove logo">		//image on right side of text
+    </header>
+</body>
+
+//style attribute is defined below
+``
 |<head></head>| Includes keywords and a page description that would appear in search results, CSS to style content, character set declarations, and more.
 |<html></html>|html element. This element wraps all the content on the page. It is also known as the root element
-|img|Image
+|<img>|Embed image into page. Search engines also read image filenames and count them towards SEO. Therefore, you should give your image a descriptive filename; dinosaur.jpg is better than img835.png.
+``
+<img
+  src="images/dinosaur.jpg"
+  alt="The head and torso of a dinosaur skeleton. it has a large head with long sharp teeth" 
+  width="400"		//width height in pixels
+  height="341"
+  title="A T-Rex on display in the Manchester University Museum"	//supporting information, seen on mouse hover
+/>
+//src: location of image
+//alt: Alternate text: Its value is supposed to be a textual description of the image, for use in situations where the image cannot be seen/displayed.
+Why use <alt> at all?
+- The user is visually impaired, and is using a screen reader to read the web out to them.
+- The browser doesn't support the image type. Some people still use text-only browsers, such as Lynx, which displays the alt text of images.
+- Search engines match alt text with search queries.
+- Users have turned off images to reduce data transfer volume and distractions. This is especially common on mobile phones
+``
 |label|defines a label for several elements. provide a usability improvement for mouse users
 |lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
 |link|The <link> element should always go inside the head of your document. This takes two attributes, rel="stylesheet", which indicates that it is the document's stylesheet, and href, which contains the path to the stylesheet file
