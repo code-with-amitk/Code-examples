@@ -1,26 +1,16 @@
-**XML**
-- [Advantage](#adv)
-- **Terms**
-  - [DOM](#dom)
-  - [DTD](#dtd)
-  - [XML Namespace](#name)
-  - [XPath](#xpath)
-  - [XSLT](#xslt)
-  - [XQuery](#xq)
-  - [CDATA Section](#cd)
-- [XML Parsers](#par)
-- [Rules for creating XML Doc](#rul)
+:toc:
+:toclevels: 6
 
-<a name=adv></a>
-## Advantages of XML
+== Advantages of XML
 - **Interoperatability:** 2 applications written in different languages can communicate easily using XML.
 - **Meta-data** data about data is represented clearly wrt plain text.
 
-## Terms
-<a name=dom></a>
-#### [DOM(Document Object Model)](https://www.w3.org/TR/DOM-Level-3-Core/introduction.html)
-- DOM is framework of defininig XML/html document using trees/forests. Xerces is based on DOM. In DOM each element is called object(having functions and identity).
-- World is moving away from DOM(and using other technologies to parse xml) since DOM takes huge memory. To parse 1MB XML it takes around 5MB RAM.
+== Terms
+=== link:https://www.w3.org/TR/DOM-Level-3-Core/introduction.html[DOM(Document Object Model)]
+* DOM is tree like structure.
+* The nodes are defined by their relationship to other DOM nodes. Some elements are parents of child nodes, and child nodes have siblings.
+* DOM is framework of defininig XML/html document using trees/forests. Xerces is based on DOM. In DOM each element is called object(having functions and identity).
+* World is moving away from DOM(and using other technologies to parse xml) since DOM takes huge memory. To parse 1MB XML it takes around 5MB RAM.
 ```xhtml
 <table>
   <tbody> 
@@ -48,14 +38,12 @@
 </note>                                        //Root Element End. Closing Tag is Must
 ```
 
-<a name=dtd></a>
-#### DTD / Document Type Definition
+=== DTD / Document Type Definition
 Both DTD & XML Schemas describe strucuture of XML document and what data is allowed.
 - _XML Validation:_ DTD and schema can be used to validate XML document that doc recived is as per prescribed format or not.
 - _DTD vs XML Schemas:_ DTD is older standard wrt XML schemas. XML schemas are easy an offer more functionality. Most tools use XML schemas now.
 
-<a name=name></a>
-#### XML Namespace
+=== XML Namespace
 Name conflicts in XML is used to avoid name conflict. It uses name prefix.
 ```xml
 <h:table>
@@ -72,8 +60,7 @@ Name conflicts in XML is used to avoid name conflict. It uses name prefix.
 </f:table>
 ```
 
-<a name=xpath></a>
-#### XML XPath
+=== XML XPath
 Complete path of element in XML document. XPath of 1st book=`/bookstore/book[0]`
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -87,8 +74,7 @@ Complete path of element in XML document. XPath of 1st book=`/bookstore/book[0]`
 </bookstore>
 ```
 
-<a name=xslt></a>
-#### XSLT (eXtensible Stylesheet Language Transformations)
+=== XSLT (eXtensible Stylesheet Language Transformations)
 XSLT is [sylesheet language](/Languages/StyleSheetLanguage) for XML. XSLT is used for transforming XML doc to HTML. Example
 ```xml
 //XML doc
@@ -120,8 +106,7 @@ XSLT is [sylesheet language](/Languages/StyleSheetLanguage) for XML. XSLT is use
 </html>
 ```
 
-<a name=xq></a>
-#### XQuery
+=== XQuery
 Querying XML document data using query statements. Xquery us similar to SQL in DB.
 ```xml
 for $x in doc("books.xml")/bookstore/book
@@ -130,8 +115,7 @@ order by $x/title
 return $x/title
 ```
 
-<a name=cd></a>
-#### CDATA(Character data) Section
+=== CDATA(Character data) Section
 Anything inside cdata section is considered text not markup.
 ```xml
 <conversionData><![CDATA[
@@ -139,8 +123,7 @@ Anything inside cdata section is considered text not markup.
 ]]></conversionData>  
 ```
 
-<a name=par></a>
-### XML Parsers
+== XML Parsers
 ```c
                     Name            |   About
 ------------------------------------|-----------------------
@@ -150,8 +133,7 @@ Saxon                               | Micheal Kay's product for XML parsing, que
 Xerces                              | In java and c++ by Apache open source
 ```
 
-<a name=rul></a>
-### Rules for creating XML Doc
+== Rules for creating XML Doc
 **Well Formed XML?** A document that follows W3C's XML Recommendataions and rules laid by is called well-formed xml else that is just a text document.
 - See Naming convention of elements at W3C.
 - [Elements & Attributes](..)
