@@ -10,7 +10,9 @@
 * DOM is tree like structure.
 * The nodes are defined by their relationship to other DOM nodes. Some elements are parents of child nodes, and child nodes have siblings.
 * DOM is framework of defininig XML/html document using trees/forests. Xerces is based on DOM. In DOM each element is called object(having functions and identity).
-* World is moving away from DOM(and using other technologies to parse xml) since DOM takes huge memory. To parse 1MB XML it takes around 5MB RAM.
+* DOM takes huge memory. To parse 1MB XML it takes around 5MB RAM.
+
+==== XML DOM representation
 ```xhtml
 <table>
   <tbody> 
@@ -24,11 +26,7 @@
     </tr> 
   </tbody>
 </table>
-```
 
-<img src=dom.JPG width=400/>
-
-```xml
 <?xml version="1.0" encoding="UTF-8"?>        //XML Version
 <note>                                        //Root Element
   <to>Tove</to>                               //Child Elements: to, from, heading, body
@@ -38,6 +36,26 @@
 </note>                                        //Root Element End. Closing Tag is Must
 ```
 
+==== html DOM representation
+```html
+// This HTML doc is represented by below DOM
+<p>
+  Let's use:
+  <span>Cascading</span>
+  <span>Style</span>
+  <span>Sheets</span>
+</p>
+
+// DOM representation
+P
+├─ "Let's use:"
+├─ SPAN
+|  └─ "Cascading"
+├─ SPAN
+|  └─ "Style"
+└─ SPAN
+    └─ "Sheets"
+```
 === DTD / Document Type Definition
 Both DTD & XML Schemas describe strucuture of XML document and what data is allowed.
 - _XML Validation:_ DTD and schema can be used to validate XML document that doc recived is as per prescribed format or not.
