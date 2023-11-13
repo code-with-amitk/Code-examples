@@ -36,6 +36,7 @@ flowchart TB
 ```
 
 === Istio AuthorizationPolicy
+* This is method of Authorizing Micro-Service1 to Micro-Service2 Communication. link:/System-Design/Concepts/Containers/Kubernets/Terms/README.adoc#authorization-in-kubernets[Other ways: 1. Service token]
 * Used to define access control policies for service-to-service communication within the Istio service mesh. Allows to specify rules for controlling which services are allowed to communicate with each other and under what conditions.
 * *Usage?* To enforce fine-grained access control, including scenarios where certain services should only be accessible by specific other services.
 * Example
