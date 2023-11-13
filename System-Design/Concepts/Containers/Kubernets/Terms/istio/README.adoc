@@ -39,23 +39,26 @@ flowchart TB
 * This is method of Authorizing Micro-Service1 to Micro-Service2 Communication. link:/System-Design/Concepts/Containers/Kubernets/Terms/README.adoc#authorization-in-kubernets[Other ways: 1. Service token]
 * Used to define access control policies for service-to-service communication within the Istio service mesh. Allows to specify rules for controlling which services are allowed to communicate with each other and under what conditions.
 * *Usage?* To enforce fine-grained access control, including scenarios where certain services should only be accessible by specific other services.
-* Example
+* Example: Deny all requests coming from UI(microservice) to Tams(microservice) except those listed in NotPaths
 ```yaml
-apiVersion: security.istio.io/v1beta1
+apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
-  name: example-auth-policy
+  name: ui-to-tams            //Object Name:ui-to-fams. Policy to define rules for ui(microservice) to tams(microservice) communication
   namespace: default
-spec:
-  selector:
-    matchLabels:
-      app: test-service
-  action: ALLOW                    //////////// Rule: test-service allows any source(*) to make HTTP GET reqest.
-  rules:
+spec:                              //Rules for this AuthorizationPolicy.
+  action: DENY                     //DENY everything unless explicitly specified
+  rules:                           //Describes the access control rules
   - from:
     - source:
-        principals: ["*"]
-    to:
+       principals:            
+       - cluster.local/ms/namespace/sa/ui    //Path to find service account
+  - to:                            
     - operation:
-        methods: ["GET"]
+      notPaths:                            //Only RPC/REST listed here are allowed.
+      - /endpoint/v1/test1
+      - /endpoint/v1/test2
+  selector:
+    matchLabels:
+      app:tams                            //Rule is for service=tams
 ```
