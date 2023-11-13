@@ -105,7 +105,7 @@ A basic unit of deployment in Kubernetes that runs one or more containers.
 === link:https://kubernetes.io/docs/reference/access-authn-authz/rbac/[5. RBAC (Role-based Access Control)]
 *  refers to the authorization mechanism that allows one Kubernetes service or workload to access another service or resource within a cluster based on predefined roles and permissions(eg: configmaps, secrets etc). The RBAC API declares 4 kinds of Kubernetes object
 
-==== a. Role & RoleBindings
+==== a. Role
 Defines who (subjects) can perform actions/verbs(create, get, update etc) on which resources(eg: pods, deployments, services). Roles specify the permissions, and RoleBindings associate these roles with service accounts, users, or groups. 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1    //API version of RBAC being defined
