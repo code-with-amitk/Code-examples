@@ -308,3 +308,5 @@ sequenceDiagram
   note over as: Is Service token valid?<br>Is POD1 authorized to access POD2?<br>check Role,RoleBinding in helm
   as -->> p1: ok
 ```
+
+=== 2. link:/System-Design/Concepts/Containers/Kubernets/Terms/istio#istio-authorizationpolicy[Istio Authorization Policy]
