@@ -292,6 +292,13 @@ spec:
 ```
 
 == Authorization in kubernets
+|===
+|Method|Cluster to Cluster
+
+|1. Service Token|No. Only within cluster
+|2. link:/System-Design/Concepts/Containers/Kubernets/Terms/istio#istio-authorizationpolicy[Istio Authorization Policy]|Yes
+|===
+
 === 1. Service Token
 * Each pod has a associated service account. Each service account has a service token. This service account token is mounted as a file in the pod's filesystem. The default path is `/var/run/secrets/kubernetes.io/serviceaccount/token`.
 * *Usage of service token?*
