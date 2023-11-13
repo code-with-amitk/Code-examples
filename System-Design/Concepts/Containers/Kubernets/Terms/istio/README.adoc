@@ -34,3 +34,27 @@ flowchart TB
     container_c <--"HTTP"--> container_d
     container_d <--"HTTPS"--> container_b
 ```
+
+=== Istio AuthorizationPolicy
+* Used to define access control policies for service-to-service communication within the Istio service mesh. Allows to specify rules for controlling which services are allowed to communicate with each other and under what conditions.
+* *Usage?* To enforce fine-grained access control, including scenarios where certain services should only be accessible by specific other services.
+* Example
+```yaml
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: example-auth-policy
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: test-service
+  action: ALLOW                    //////////// Rule: test-service allows any source(*) to make HTTP GET reqest.
+  rules:
+  - from:
+    - source:
+        principals: ["*"]
+    to:
+    - operation:
+        methods: ["GET"]
+```
