@@ -106,43 +106,55 @@ A basic unit of deployment in Kubernetes that runs one or more containers.
 *  refers to the authorization mechanism that allows one Kubernetes service or workload to access another service or resource within a cluster based on predefined roles and permissions(eg: configmaps, secrets etc). The RBAC API declares 4 kinds of Kubernetes object
 
 ==== a. Role
-Defines who (subjects) can perform actions/verbs(create, get, update etc) on which resources(eg: pods, deployments, services). Roles specify the permissions, and RoleBindings associate these roles with service accounts, users, or groups. 
+* Defines who (subjects) can perform actions/verbs(create, get, update etc) on which resources(eg: pods, deployments, services). Roles specify the permissions.
+* Example-1
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1    //API version of RBAC being defined
 kind: Role
 rules:
-  - apiGroups:                //Rule1: Grant Permission to create Tokenreviews is granted in group(authentication.k8s.io)
+  - apiGroups:                //Rule1: Grant Permission to create Tokenreviews in group(authentication.k8s.io)
       - authentication.k8s.io
     verbs:
       - create
     resources:
       - tokenreviews
-      
   - apiGroups:                //Rule2: Grant Permission to get jobs in group(batch)
       - batch
     verbs:
       - get
     resources:
       - jobs
-      
   - apiGroups: ["coordination.k8s.io"]    //Rule3: Grant Permission to perform actions in group(coordination.k8s.io)
     resources: ["leases"]
     verbs: ["get", "watch", "list", "delete", "update", "create", "patch"]
 ```
+* Example-2: Microservice(Tams) can invoke grpc endpoint on microservice(fams)
+```yaml
+apiVersion: rbac.test.com/v1
+kind: Role
+metadata:
+  name: tams-to-fams          //Role name. Role is defined for MicroService-1(tams) to Microservice-2(fams) communication
+spec:                          //Defines rules of Role
+  capabilities:                  //Specific capabilities defined for this Role
+  - service: famsproto.FamsRPCService    //Specifies the gRPC service for which the permissions are granted.
+    methods:
+    - GetServiceCertificate      // Lists the specific methods or operations within the specified gRPC service for which permissions are granted. 
+```
 
 ==== b. RoleBinding
-* Grants the permissions defined in a role to Subjects. Subjects can be user or set of users.
+* Binds the Role(defined above) to serviceAccount OR Grants the permissions defined in a role to Subjects(eg: serviceAccount, user, set of users).
 * Example: user:jane can read pods in default namespace
 ```yml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: read-pods
+  name: tams        //Service name
   namespace: default
 subjects:
-- kind: User
-  name: jane            #can read pods in default namespace
-  apiGroup: rbac.authorization.k8s.io
+  - kind: User              #This Role can read pods in default namespace
+    name: jane            
+  - kind: ServiceAccount    #Role is bindded to service account=tams
+    name: tams
 roleRef:                                  # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role                              # this must be Role or ClusterRole
   name: pod-reader                        # You need to already have a Role named "pod-reader" in that namespace.
@@ -277,4 +289,22 @@ spec:
       port: 80
       targetPort: 8080      //30001 is mapped to 8080 internally.
 
+```
+
+== Authorization in kubernets
+=== 1. Service Token
+* Each pod has a associated service account. Each service account has a service token. This service account token is mounted as a file in the pod's filesystem. The default path is `/var/run/secrets/kubernetes.io/serviceaccount/token`.
+* *Usage of service token?*
+** if service want to communicate/access resources of other services, then this service will present the service token to API-server and API server will authorize the service.
+* API server will check <<a-role,Role,Role Binding>> of service(whether service is allowed to access other service or not).
+```mermaid
+sequenceDiagram
+  participant p1 as POD1
+  participant p2 as POD2
+  participant as as API-Server
+
+  note over p1: POD has service account<br>Service account has service token.<br>path of token=/var/run/secrets/kubernetes.io/serviceaccount/token
+  p1 ->> as: Want to access p2 file<br>my service token:xxx
+  note over as: Is Service token valid?<br>Is POD1 authorized to access POD2?<br>check Role,RoleBinding in helm
+  as -->> p1: ok
 ```
