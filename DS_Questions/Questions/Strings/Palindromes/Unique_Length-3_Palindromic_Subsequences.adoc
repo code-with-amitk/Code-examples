@@ -1,0 +1,176 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/unique-length-3-palindromic-subsequences[1930. Unique Length-3 Palindromic Subsequences]
+Given a string s, return the number of unique palindromes of length three that are a subsequence of s.
+
+Note that even if there are multiple ways to obtain the same subsequence, it is still only counted once.
+
+A palindrome is a string that reads the same forwards and backwards.
+
+A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters. 
+```c
+Example 1:
+Input: s = "aabca"
+Output: 3
+Explanation: The 3 palindromic subsequences of length 3 are:
+- "aba" (subsequence of "aabca")
+- "aaa" (subsequence of "aabca")
+- "aca" (subsequence of "aabca")
+
+Example 2:
+Input: s = "adc"
+Output: 0
+Explanation: There are no palindromic subsequences of length 3 in "adc".
+
+Example 3:
+Input: s = "bbcbaba"
+Output: 4
+Explanation: The 4 palindromic subsequences of length 3 are:
+- "bbb" (subsequence of "bbcbaba")
+- "bcb" (subsequence of "bbcbaba")
+- "bab" (subsequence of "bbcbaba")
+- "aba" (subsequence of "bbcbaba")
+```
+
+== Approach-1. O(n^3^). TLE
+=== Logic
+* Find all combinations using 3 for loops
+* Create a string of 3 letters, check if it's palindrome push on unordered_set<string>
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool palindrome(string t){
+        if (t[0]==t[2])
+            return true;
+        return false;
+    }
+    int countPalindromicSubsequence(string s) {
+        unordered_set<string> us;
+        for (int i=0;i<s.size()-2;++i){
+            for (int j=i+1;j<s.size()-1;++j) {
+                for (int k=j+1;k<s.size();++k) {
+                    // Create 3 character string
+                    string t;
+                    t += s[i];
+                    t += s[j];
+                    t += s[k];
+                    if (palindrome(t)) {
+                        // if its palindrome insert in map
+                        us.insert(t);
+                        // In Palindrome 
+                          // if 1st and 3rd characters are same, then 3rd will also be same. Break. Nothing to find more. bbb
+                        if (t[0] == t[2])
+                            break;
+                          // if 1st and 2nd characters are same, then 3rd will also be same. Break. Nothing to find more. bbb
+                        if (t[0] == t[1]) {
+                            j += 1;  
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return us.size();
+    }
+};
+```
+
+== Approach-2. Backtracking. Find all combinations. TLE
+=== link:/DS_Questions/Algorithms/Backtracking#p[Backtrack Logic]
+* Add 3 characters to candidate string, if string is palindrome store
+* pop_back() last character and add next character and check for palindrome
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    void backtrack(string& s, unordered_set<string>& us, int count, string& cand) {
+        if (cand.size()==3 && cand[0]==cand[2]) {
+            us.insert(cand);
+            return;
+        }
+        for (int i=count; i<s.size(); ++i) {
+            cand += s[i];
+            backtrack(s,us,i+1,cand);
+            cand.pop_back();
+        }
+        return;
+    }
+    int countPalindromicSubsequence(string s) {
+        unordered_set<string> us;
+        string cand = "";
+        backtrack(s, us, 0, cand);
+        return us.size();
+    }
+};
+```
+
+== Approach-3. Count Characters between 1st and last occurance of character in string
+=== Logic
+* 1. Note 1st and last index of character in input string
+```c
+s = "bbcbaba"
+     0123456
+
+    firstIndex  lastIndex
+b     0            5
+c     2            2
+a     4            6
+```
+* 2. Count number of unique characters between 1st and last index
+```c
+    Unique character between 1st & last index
+b    3  //cba
+c    0
+a    1  //a
+```
+
+=== Complexity
+* Time: O(26 x n)
+* Space: O(26 x 2)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int countPalindromicSubsequence(string s) {
+        int n = s.size();
+        /*
+          s = "bbcbaba"
+               0123456
+
+                   a b c
+          first = |4|0|2|....26...|
+           last = |6|5|2|....26...|
+        */
+        vector<int> first(26, INT_MAX); // First occurrence of each character
+        vector<int> last(26, INT_MIN);  // Last occurrence of each character
+        int result = 0;
+
+        // Fill first, last array
+        for (int i = 0; i < n; ++i) {
+            first[s[i] - 'a'] = min(first[s[i] - 'a'], i);
+            last[s[i] - 'a'] = max(last[s[i] - 'a'], i);
+        }
+
+        // Count unique characters between 1st and last
+        for (int i = 0; i < 26; ++i) {
+            if (first[i] < last[i]) {
+                unordered_set<char> uniqueChars;
+                for (int j = first[i] + 1; j < last[i]; ++j) {
+                    uniqueChars.insert(s[j]);
+                }
+                result += uniqueChars.size();
+            }
+        }
+        return result;
+    }
+};
+
+```
