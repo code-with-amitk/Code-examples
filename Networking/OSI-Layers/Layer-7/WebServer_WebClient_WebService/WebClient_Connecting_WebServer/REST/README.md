@@ -77,6 +77,15 @@ Web Client call these [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protoco
 |Relies on|JSON,XML,CSV,RSS|XML, CORBA(Common Object Request Broker Architecture) rely on binary messaging|
 |Advgs over soap|small learning curve, smaller messages||
 
+**REST vs gRPC**
+
+||REST|gRPC(Remote Procedure Call)|
+|---|---|---|
+|What|Method to implement API|same|
+|size,speed|less(uses json)|Better. Uses Protocol Buffers (protobuf) as its interface definition language. This binary serialization format is more efficient in terms of size and speed|
+|Communication|1 direction|Bidirectional. both the client and server to send a stream of messages|
+|Efficiency|HTTP/1.1|More. uses HTTP/2 for transport|
+
 <a name=c></a>
 ### Constraints for RESTFUL application
 - **a. Uniform interface:**
