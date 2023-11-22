@@ -1,5 +1,6 @@
 :toc:
-:toclevels:6
+:toclevels: 6
+
 
 == REST / (Representation State Transfer) APIs
 **Restful Web Server/Application?** Web application that implements [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
@@ -73,7 +74,7 @@ Web Client call these [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protoco
 |===
 ||REST|gRPC(Remote Procedure Call)
 
-|What|Method to implement API|same|
+|What|Method to implement API|same
 |size,speed|less(uses json)|Better. Uses Protocol Buffers (protobuf) as its interface definition language. This binary serialization format is more efficient in terms of size and speed
 |Communication|1 direction|Bidirectional. both the client and server to send a stream of messages
 |Efficiency|HTTP/1.1|More. uses HTTP/2 for transport
