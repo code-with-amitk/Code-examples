@@ -109,6 +109,15 @@ Why use <alt> at all?
 - Search engines match alt text with search queries.
 - Users have turned off images to reduce data transfer volume and distractions. This is especially common on mobile phones
 ``
+|<input>|used to create interactive controls for web forms. It can take various types, each defining a specific kind of user input
+``
+<form class="guess-form">
+    <label for="guessField">Enter a guess: </label>
+    <input type="number" min="1" max="100" required id="guessField" class="guessField">
+    <input type="submit" value="Submit guess" class="guessSubmit">
+</form>
+//type="number" indicates that the input should accept numeric values. Other common types include text, password, checkbox, radio, etc
+``
 |label|defines a label for several elements. provide a usability improvement for mouse users
 |lang|lang attribute inside the `<html>` tag, to declare the language of the Web page. To assist search engines and browsers
 |link|The <link> element should always go inside the head of your document. This takes two attributes, rel="stylesheet", which indicates that it is the document's stylesheet, and href, which contains the path to the stylesheet file
