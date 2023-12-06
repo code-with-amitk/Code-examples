@@ -147,3 +147,22 @@ impl Solution {
     }
 }
 ```
+==== Golang
+```go
+func totalMoney(n int) int {
+        start := 1
+        j := start 
+        i := 0
+        out := 0
+        for i < n {
+            out += j
+            j += 1
+            i++
+            if (i%7 == 0) {
+                start += 1
+                j = start
+            }
+        }
+        return out
+}
+```
