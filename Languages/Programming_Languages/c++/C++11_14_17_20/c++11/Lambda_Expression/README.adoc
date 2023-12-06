@@ -3,6 +3,7 @@
 
 == Lambda Expression(C++11) / Anonymous Function
 * Function does not have a name, defined inside other function
+
 === Usecases?
 * _1._ For some logic/code to be used for only 1 time, function is not a good idea.
 * _2._ If some logic/function need to be called again and again, then function call is not good(stack creation/destroy). Store in variable(pointer).
