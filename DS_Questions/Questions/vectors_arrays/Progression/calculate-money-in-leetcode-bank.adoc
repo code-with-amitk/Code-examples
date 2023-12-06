@@ -56,3 +56,94 @@ public:
     }
 };
 ```
+==== CPP11,14 (using lambda function)
+```cpp
+class Solution {
+public:
+    int totalMoney(int n) {
+        int start = 1, j = start, i = 0, out = 0;
+        /*
+        lambda expression
+        function_pointer  = [env var] (params) mutable throw -> return_type { 
+            .....function body ......
+        };
+        */
+        auto fun = [&]() {
+            out += j;
+            j += 1;
+            i++;
+            if (i%7 == 0) {
+                start += 1;
+                j = start;
+            }
+        };
+        while (i < n) {
+            fun();
+        }
+        return out;
+    }
+};
+```
+==== C++17 (structured bindings. Multiple return types)
+```cpp
+class Solution {
+public:
+    int totalMoney(int n) {
+        int start = 1, j = start, i = 0, out = 0;
+
+        auto updateCounters = [&]() -> std::tuple<int, int, int> {
+            out += j;
+            j += 1;
+            i++;
+            if (i % 7 == 0) {
+                start += 1;
+                j = start;
+            }
+            return std::make_tuple(out, j, i);
+        };
+
+        while (i < n) {
+            std::tie(out, j, i) = updateCounters();
+        }
+        return out;
+    }
+};
+```
+==== Python
+```py
+class Solution:
+    def totalMoney(self, n: int) -> int:
+        start = 1
+        j = start
+        i = 0
+        out = 0
+        while i < n:
+            out += j
+            j += 1
+            i += 1
+            if i%7 == 0:
+                start += 1
+                j = start
+        return out
+```
+==== Rust
+```rs
+impl Solution {
+    pub fn total_money(n: i32) -> i32 {
+        let mut start = 1;
+        let mut j = start;
+        let mut i = 0; 
+        let mut out = 0;
+        while (i < n) {
+            out += j;
+            j += 1;
+            i += 1;
+            if (i%7 == 0) {
+                start += 1;
+                j = start;
+            }
+        }
+        out
+    }
+}
+```
