@@ -1,16 +1,7 @@
-- [chgrp](#chg)
-- [chown](#cho)
-- [chroot](#ch)
-- [find](#f)
-- [netstat](#net)
-- [Pipe `ls -ltr | grep test`](#pipe)
-- [Redirection `ls -ltr > a.txt`](#re)
-- [sed](#sed)
-- [systemctl](#sys)
-- [systemd-run](#sysd)
+:toc:
+:toclevels: 6
 
-<a name=chg></a>
-### chgrp
+=== chgrp
 Change the group ownership of a file or directory. All files in Linux belong to an owner and a group.
 ```c
 $ touch test_file
@@ -34,8 +25,7 @@ $ ls -ltr                                   //Newly created group has been assig
 -rw-r--r-- 1 amit testgroup1    0 Jul 23 08:32 test_file
 ```
 
-<a name=cho></a>
-### chown
+=== chown
 ```c
 $ touch test_file
 $ sudo useradd testuser
@@ -49,8 +39,7 @@ $ sudo useradd testuser1
 -rw-r--r-- 1 testuser1 amit    0 Jul 23 08:39 test_file   //1001 assigned to new user
 ```
 
-<a name=ch></a>
-### chroot
+=== chroot
 - Every process/command in Linux has root directory. chroot changes the root directory for currently running processes as well as its child processes.
 - **jailed Directory?** A process/command that runs in such a modified environment cannot access files outside the root directory. This modified environment is known as “chroot jail” or “jailed directory”.
 - **Advantages, Disadv of jail**
@@ -94,8 +83,7 @@ $ sudo chroot $HOME/jail /bin/bash              //Finally, chroot into your mini
 
 <img src=chroot-jail.png width=400 />
 
-<a name=f></a>
-### find
+=== find
 ```c
     # find   <Path-to-search>(optional)        <Search-Criteria>(optional)    <Action>(optional)
 ```    
@@ -141,8 +129,7 @@ Execute Command:
   $ find  / -type f -mtime +3 -exec rm -rf {} \;                     //Search and delete files older than 3 days
 ```
 
-<a name=net></a>
-### netstat
+=== netstat
 Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. *Options*
 ```c
 -p:show pid,    -a:all interfaces,  -n:show Numeric,  -t:tcp,   -u:udp
@@ -154,18 +141,15 @@ Print network connections, routing tables, interface statistics, masquerade conn
 - *4. Get all IP Address connected to your host:* `# netstat -lantp | grep ESTABLISHED |awk '{print $5}' | awk -F: '{print $1}' | sort -u`
 - *5. Monitor open connection to web server on port 80, count and sort it by IP:* `# watch "netstat -plan|grep :80|awk {'print \$5'} | cut -d: -f 1 | sort | uniq -c | sort -nk 1"`
 
-<a name=pipe></a>
-### Pipe `ls -ltr | grep test`
+=== Pipe `ls -ltr | grep test`
 Output of process-1 becomes the input of process-2 ie standard output (stout) of one command is sent to the standard input (stdin) of a second command.
 - Pipes are unidirectional i.e data flows from left to right through the pipeline.
 - **Filter?** Commands which takes input from prev commands are called filters. These can modify the stream
 
-<a name=re></a>
-### Redirection `ls -ltr > a.txt`
+=== Redirection `ls -ltr > a.txt`
 Redirection is implemented using dup2() system call.
 
-<a name=sed></a>
-### SED(Stream Editor)
+=== SED(Stream Editor)
 For performing file operations(Search Text, Find and replace, Insert, delete) without opening files.
 ```c
 //Replace Commands
@@ -174,7 +158,8 @@ For performing file operations(Search Text, Find and replace, Insert, delete) wi
   $ sed '3 s/unix/linux/' test.txt      //Replace occurence only on 3rd line
   $ sed '1,3 s/unix/linux/' test.txt    //Replace occurence only on 1st,3rd line
 ```
-#### Replace in file
+
+==== Replace in file
 ```c
 # cat test.txt
 Saturday after school
@@ -185,8 +170,7 @@ Saturday after school
 Tuesday after school
 ```
 
-<a name=sys></a>
-### systemctl
+=== systemctl
 [systemd](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) utility that is responsible for Controlling the systemd system and service manager.
 - **Listing units commands**
 ```c
@@ -205,8 +189,7 @@ Tuesday after school
 #systemctl list-unit-files | grep .socket       //status of socket units
 ```
 
-<a name=sysd></a>
-### systemd-run
+=== systemd-run
 systemd-run may be used to create and start a transient systemd [`*.service` or `*.scope` unit](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) and run the specified COMMAND in it.
 - **Steps**
   - *1.* Create [Transient cgroup](/Operating_Systems/Linux/Resource_Control/Kernel_Namespaces/cgroup/RHEL_Provided_cgroup)
@@ -234,4 +217,14 @@ Path                             Tasks   %CPU    Memory    Input/s   Output/s
 /                                 260     3.4     658.9M      -         -
 /group1.slice/amit_top.service      1      -        -         -         -
 ...
+```
+
+=== useradd/userdel
+```c
+/////////// Add user with home dir //////////////
+$ adduser user  //This will create shell & home dir
+
+/////////// Delete user and its home dir /////////
+$ userdel user
+$ rm -rf /home/user
 ```
