@@ -38,6 +38,7 @@ ADVANTAGES of Tree over HT       |                                              
 
 == HT Internal Implementation
 * It can be implemented in several different ways
+
 === Implementation-1 (Array of linked lists)
 image::images/ht_implementation_array_of_linked_lists.jpg?raw=true[ht_implementation_array_of_linked_lists]
 
