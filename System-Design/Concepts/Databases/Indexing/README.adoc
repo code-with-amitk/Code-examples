@@ -18,7 +18,7 @@ key=123456 has info={name: London, attractions: [Big Ben, London Eye]}
 key=42 has info={name: San Francisco, attractions: [Golden Gate, Bridge]}
 ```
 
-image:indexing.png?raw=true[indexing]
+image::indexing.png?raw=true[indexing]
 
 ==== 2. Reverse/Inverted/Secondary Indexing
 * Mapping of words to document or set of documents. Indexing is slow as it first checks that word is present or not. Searching is very fast.
