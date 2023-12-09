@@ -1,0 +1,80 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/construct-string-from-binary-tree/[606. Construct String from Binary Tree]
+Given the root of a binary tree, construct a string consisting of parenthesis and integers from a binary tree with the preorder traversal way, and return it.
+
+Omit all the empty parenthesis pairs that do not affect the one-to-one mapping relationship between the string and the original binary tree.
+
+Examples
+```c
+     1
+   /  \  
+  2    3
+ /
+4 
+Input: root = [1,2,3,4]
+Output: "1(2(4))(3)"
+Explanation: Originally, it needs to be "1(2(4)())(3()())", but you need to omit all the unnecessary empty parenthesis pairs. And it will be "1(2(4))(3)"
+
+Example-2
+      1
+     / \
+    2   3
+    \
+     4
+Input: root = [1,2,3,null,4]
+Output: "1(2()(4))(3)"
+Explanation: Almost the same as the first example, except we cannot omit the first parenthesis pair to break the one-to-one mapping relationship between the input and the output.
+```
+
+== Approach-1. Traverse preorder
+=== Logic
+* Take out string.
+* During preorder traversal, insert following as you reach node.
+```
+  out += '(';
+```
+* if node has both left, right children, jump to left, right
+* if left=null, right!=null children. Insert ()
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    string out;
+public:
+    string tree2str(TreeNode* root) {
+        preorder(root);
+        // Since we donot need opening bracket of string '(', take substr from 1st position.
+        return out.substr(1, out.size()-1);
+    }
+    void preorder(TreeNode* p) {
+        if (!p)
+            return;
+        out += "(";        
+        out += to_string(p->val);
+        if (p->left) {
+            preorder (p->left);
+            out += ")";
+        }
+        if (p->right) {
+            if (!p->left)
+                out += "()";
+            preorder (p->right);
+            out += ")";
+        }
+    }
+};
+```
