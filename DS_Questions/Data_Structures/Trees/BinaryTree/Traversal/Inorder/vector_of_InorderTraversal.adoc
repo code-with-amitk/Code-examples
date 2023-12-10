@@ -1,16 +1,7 @@
-**Inorder Traversal**
-- Recursive
-  - [CPP](#c1)
-  - [Complexity. Time:O(n), Space:O(n)](#co1)
-- Iterative Using stack
-  - [CPP](#c2)
-  - [Complexity, Time:O(n), Space:O(n)](#co2)
-- [Morris Traversal](#mt)
-  - [CPP](#c3)
-  - [Complexity, Time:O(n), Space:O(1)](#co3)
+:toc:
+:toclevels: 6
 
-
-### [Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+== link:https://leetcode.com/problems/binary-tree-inorder-traversal/[Binary Tree Inorder Traversal]
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
 ```c
 Example 1:
@@ -22,9 +13,8 @@ Input: root = []
 Output: []
 ```
 
-### 1. Recursive
-<a name=c1></a>
-#### CPP
+=== 1. Recursive
+==== CPP
 ```cpp
 struct TreeNode {
   int val;
@@ -62,58 +52,51 @@ int main(){
     cout<<i<<" ";
 }
 ```
-<a name=co1></a>
-#### Complexity
-- **Time:** O(n). Traversing all nodes
-- **Space:** 
-  - Worst case: O(n)
-  - Average Case: O(logn). At any time logn function stacks are allocated.
+==== Complexity
+* Time: O(n). Traversing all nodes
+* Space:
+** Worst case: O(n)
+** Average Case: O(logn). At any time logn function stacks are allocated.
 
-### 2. Iterative (Using stack)
-- Keep pushing left children on stack.
-- Once reach leaf node(ie node having left child). pop, push on vector.
--  Make pointer point to right child(if exist).
-<a name=c2></a>
-#### CPP
+=== 2. Iterative (Using stack)
+* Keep pushing left children on stack.
+* Once reach leaf node(ie node having left child). pop, push on vector.
+*  Make pointer point to right child(if exist).
+
+==== CPP
 ```cpp
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> out;
         if (!root)
-            return r;
-
+            return out;
         stack<TreeNode*> st;
-        
-        TreeNode* p = root;
-        while (p || !st.empty()) {
-            while (p) {
-                st.push(p);
-                p = p->left;
+        while (root || !st.empty()) {
+            while (root) {
+                st.push(root);
+                root = root->left;
             }
-            p = st.top();
+            root = st.top();
             st.pop();
-            out.push_back(p->val);
-            p = p->right;
+            out.push_back(root->val);
+            root = root->right;
         }
         return out;
     }
 };
 ```
-<a name=co1></a>
-#### Complexity
-- **Time:** O(n). Traversing all nodes
-- **Space:**
-  - Worst case: O(n)
-  - Average Case: O(logn). At any time logn function stacks are allocated.
+==== Complexity
+* Time: O(n). Traversing all nodes
+* Space:
+** Worst case: O(n)
+** Average Case: O(logn). At any time logn function stacks are allocated.
 
-<a name=mt></a>
-### 3. Morris Traversal
-**Logic**
-- if left node exist on tree, make parent as right child of left node.
-- if no left child exist
-  - Add current value to vector
-  - go to right
+=== 3. Morris Traversal
+* if left node exist on tree, make parent as right child of left node.
+* if no left child exist
+** Add current value to vector
+** go to right
 ```c
 Example-1:
     1               2
@@ -142,9 +125,7 @@ Example-3:
                                                   4
 ``` 
 
-### Code
-<a name=c3></a>
-#### CPP
+==== CPP
 ```c
 class Solution {
 public:
