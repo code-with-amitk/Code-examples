@@ -41,7 +41,7 @@ element   1st index    last index    if(last_index-first_index+1 > n/4) (9/4=2)
 * Time: O(nlogn)
 ** O(n): For going on each element in for loop
 ** O(logn): For binary search of each element.
-* Space: 
+* Space: O(n)
 
 === Code
 ==== CPP
