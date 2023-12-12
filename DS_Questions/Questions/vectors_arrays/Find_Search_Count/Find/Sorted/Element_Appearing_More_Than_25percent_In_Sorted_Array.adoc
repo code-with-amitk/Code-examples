@@ -38,8 +38,12 @@ element   1st index    last index    if(last_index-first_index+1 > n/4) (9/4=2)
 6          3            6            (6-3+1)=3.  This is has freq greater than n/4(ie 25%). return
 ```
 === Complexity
-* Time: O(nlogn)
-** O(n): For going on each element in for loop
+* Time: 
+```c
+Worst=O(nlogn)              //We found element before end, ie we need not to go thru entire array
+Average/Best=O(logn)       //We found element at end, ie last
+```
+** O(n): For going on each element in for loop.
 ** O(logn): For binary search of each element.
 * Space: O(n)
 
