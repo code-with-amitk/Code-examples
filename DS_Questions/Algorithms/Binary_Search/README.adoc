@@ -1,10 +1,11 @@
 
+*Complexity = O(logn)*
 ```c
-- Use mid = left + (right - left) // 2 to calculate the middle index.
 - This is the recommended way because it prevents potential integer overflow when dealing with large values of left and right.
   mid = left + (right-left)//2
 ```
 
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Sorted/Element_Appearing_More_Than_25percent_In_Sorted_Array.adoc[Element Appearing More Than 25% In Sorted Array]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Maximum_Running_Time_of_N_Computers.md[Maximum Running Time of N Computers]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Cost_to_Make_Array_Equal.md[Minimum Cost to Make Array Equal]
 ==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Minimum_Speed_to_Arrive_on_Time.md[Minimum Speed to Arrive on Time]
