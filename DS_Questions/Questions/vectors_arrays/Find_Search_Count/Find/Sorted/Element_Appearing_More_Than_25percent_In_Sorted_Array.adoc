@@ -1,0 +1,150 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/[1287. Element Appearing More Than 25% In Sorted Array]
+Given an integer array sorted in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time, return that integer.
+
+```c
+Example 1:
+Input: arr = [1,2,2,6,6,6,6,7,10]
+Output: 6
+
+Example 2:
+Input: arr = [1,1]
+Output: 1
+```
+
+== Approach-1. Linear Search
+=== Logic
+* Take hashmap<key=element, value=pos_in_max-heap>. max_heap<key=count_of_element, value=element>
+* top of max heap would be the count of required element.
+
+=== Complexity
+* Time: O(n)
+* Space: 2(n)
+
+== Approach-2. Modified Binary Search
+=== Logic
+```c
+arr = [1,2,2,6,6,6,6,7,10]
+       0 1 2 3 4 5 6 7 8
+```
+* Iterate through all elements of array and find 1st and last index of that element in array
+* if last_index - first_index + 1 > n/4(25%).  Return this element
+```c
+element   1st index    last index    if(last_index-first_index+1 > n/4) (9/4=2)
+1          0            0            1
+2          1            2            (2-1+1)=2
+6          3            6            (6-3+1)=3.  This is has freq greater than n/4(ie 25%). return
+```
+=== Complexity
+* Time: O(nlogn)
+** O(n): For going on each element in for loop
+** O(logn): For binary search of each element.
+* Space: 
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+    int n, quarter;
+
+    // Modified binary search to find first occurrence
+    int binary_search_first(vector<int>& arr, int target) {
+        int low = 0, high = n-1;
+        while (low <= high) {
+            int mid = low + (high - low)/2;
+            if (arr[mid] == target) {
+                if (mid == 0 or arr[mid - 1] != target) {
+                    return mid;
+                } else {
+                    high = mid - 1;
+                }
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    // Modified binary search to find last occurrence
+    int binary_search_last(vector<int>& arr, int target) {
+        int low = 0, high = n - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (arr[mid] == target) {
+                if (mid == n - 1 or arr[mid + 1] != target) {
+                    return mid;
+                } else {
+                    low = mid + 1;
+                }
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+public:
+    int findSpecialInteger(vector<int>& arr) {
+        n = arr.size();
+        quarter = n/4;
+
+        for (auto i:arr) {
+            int first_index = binary_search_first(arr, i);
+            int last_index = binary_search_last(arr, i);
+            if (last_index - first_index + 1 > quarter)
+                return i;
+        }
+        return -1;
+    }
+};
+```
+==== Python
+```py
+def findSpecialInteger(arr):
+    n = len(arr)
+    quarter = n // 4
+
+    # Modified binary search to find first occurrence
+    def binary_search_first(target):
+        low, high = 0, n - 1
+        while low <= high:
+            mid = low + (high - low) // 2
+            if arr[mid] == target:
+                if mid == 0 or arr[mid - 1] != target:
+                    return mid
+                else:
+                    high = mid - 1
+            elif arr[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return -1
+
+    # Modified binary search to find last occurrence
+    def binary_search_last(target):
+        low, high = 0, n - 1
+        while low <= high:
+            mid = low + (high - low) // 2
+            if arr[mid] == target:
+                if mid == n - 1 or arr[mid + 1] != target:
+                    return mid
+                else:
+                    low = mid + 1
+            elif arr[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return -1
+
+    for num in arr:
+        first = binary_search_first(num)
+        last = binary_search_last(num)
+        if last - first + 1 > quarter:
+            return num
+    return -1
+```
