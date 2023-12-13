@@ -1,0 +1,65 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/special-positions-in-a-binary-matrix/[1582. Special Positions in a Binary Matrix]
+Given an m x n binary matrix mat, return the number of special positions in mat.
+
+A position (i, j) is called special if mat[i][j] == 1 and all other elements in row i and column j are 0 (rows and columns are 0-indexed).
+```c
+Input: mat = [[1,0,0],[0,0,1],[1,0,0]]
+ 1 0 0
+ 0 0 1
+ 1 0 0
+Output: 1
+Explanation: (1, 2) is a special position because mat[1][2] == 1 and all other elements in row 1 and column 2 are 0.
+
+Input: mat = [[1,0,0],[0,1,0],[0,0,1]]
+ 1 0 0
+ 0 1 0
+ 0 0 1
+Output: 3
+Explanation: (0, 0), (1, 1) and (2, 2) are special positions.
+```
+
+== Approach-1
+=== Logic
+* traverse to every element of array and check whether there is 1 in that row or coloumn or not
+* How to check 1 is present in row or coloumn?
+** add all elements of row, it count>1, then more than 1 one's are present
+
+=== Complexity
+* Time: O(m^2^ n^2^)
+* Space: O(1). no extra space.
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+    bool isUnique(int row, int col,vector<vector<int>>& mat) {
+        int count = 0;
+        // check row
+        for (int i=0;i<mat[0].size();i++) 
+            count += mat[row][i];
+        if (count>1)
+            return false;
+        count = 0;
+        // check col
+        for (int i=0;i<mat.size();i++) 
+            count += mat[i][col];
+        if (count>1)
+            return false;
+        return true;
+    }
+public:
+    int numSpecial(vector<vector<int>>& mat) {
+        int count = 0;
+        for (int i=0;i<mat.size();i++){
+            for (int j=0;j<mat[0].size();j++){
+                if (mat[i][j] == 1 && isUnique(i,j,mat))
+                    count ++;
+            }
+        }
+        return count;
+    }
+};
+```
