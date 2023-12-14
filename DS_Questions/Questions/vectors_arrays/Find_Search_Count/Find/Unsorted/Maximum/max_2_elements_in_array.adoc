@@ -77,5 +77,21 @@ class Solution:
 ```
 ==== Rust
 ```rs
+impl Solution {
+    pub fn max_product(nums: Vec<i32>) -> i32 {
+        let mut maxEle = nums[0 as usize];
+        let mut secondMax = 0;
 
+        for i in nums.iter().skip(1) {
+            if *i >= maxEle {
+                secondMax = maxEle;
+                maxEle = *i;
+            }
+            else if *i > secondMax {
+                secondMax = *i;
+            }
+        }
+        (maxEle-1)*(secondMax-1)
+    }
+}
 ```
