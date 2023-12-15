@@ -91,3 +91,19 @@ public:
     }
 };
 ```
+==== Python
+```py
+class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        nodes_having_outdegree = set()
+        all_cities = set()
+        for city in paths:
+            nodes_having_outdegree.add(city[0])
+            all_cities.add(city[0])
+            all_cities.add(city[1])
+
+        for city in nodes_having_outdegree:
+            all_cities.discard(city)
+
+        return next(iter(all_cities), "")
+```
