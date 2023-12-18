@@ -35,7 +35,7 @@ The product difference is (9 * 8) - (2 * 4) = 64.
 * Space: O(1)
 
 === Code
-==== CPP
+==== CPP11
 ```cpp
 class Solution {
 public:
@@ -51,6 +51,8 @@ public:
             min2 = min1 ^ min2;
             min1 = min1 ^ min2;
         }
+
+        // Start from index=2, since we already have stored max,min from 1st 2 indexes
         for_each(nums.begin()+2, nums.end(), [&](int ele){
             if (ele >= max1) {
                 max2 = max1;
