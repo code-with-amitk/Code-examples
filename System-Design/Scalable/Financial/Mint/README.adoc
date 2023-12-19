@@ -20,6 +20,7 @@
 1. Analytics, Suggestions, Predictions, Logging
 
 === 2. BOE
+[[qps]]
 ==== QPS(Queries/sec)
 This is writes/sec
 ```
@@ -40,7 +41,7 @@ DAU = 100M. Active/sec = 100M/86400 = 1000 writes/sec
 ```
 
 ==== Reads/sec. Outgoing Reads/sec. Outgoing data/sec
-Writes/sec = 1000
+Since <<qps,Writes/sec = 1000>>
 ```
 Reads/sec = 10
 ```
