@@ -1,0 +1,46 @@
+:toc:
+:toclevels: 6
+
+== Mint (Write heavy)
+* Mint.com is a free, web-based personal financial management service, that allows its users to integrate with financial accounts to automatically extract their data, and manage their personal budget.
+* This is write heavy(100:1), since most users do transaction on their bank accounts and read rearly on app.
+
+=== 1. Requirements
+* *Functional*
+1. User connects to a financial account
+2. Service extracts transactions from the account(daily updates)
+3. Categorizes transactions: Allows manual category override by the user, No automatic re-categorization
+4. Cashflow Analyses: Analyzes monthly spending, by category.
+5. Budget: Users to manually set a budget, Sends notifications when approaching or exceeding budget. 
+
+* *Non Functional*
+1. High availability, Scalable, Secure
+
+* *Extended Functional*
+1. Analytics, Suggestions, Predictions, Logging
+
+=== 2. BOE
+==== QPS(Queries/sec)
+This is writes/sec
+```
+DAU = 100M. Active/sec = 100M/86400 = 1000 writes/sec
+```
+
+==== Storage Estimates (Writes/sec)
+* All users are doing some transactions(ie writing to their bank accounts=Mint account)
+```
+1 write size = 8k(header)+10k(payload) =~ 20KB
+1 day storage needed:   100M x 20KB = 2TB/day.
+5 years storage neede:  2TB x (365x5 ~ 2000) = 4PB
+```
+
+==== Bandwidth Estimate (bytes coming into system/sec)
+```
+2TB/day. 2TB/86400 = 20MB/sec
+```
+
+==== Reads/sec. Outgoing Reads/sec. Outgoing data/sec
+Writes/sec = 1000
+```
+Reads/sec = 10
+```
