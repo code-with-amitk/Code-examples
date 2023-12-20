@@ -8,8 +8,9 @@
 === 1. Requirements
 * *Functional*
 [[req1]]
-1. User can connect all financial accounts to mint
-2. Service extracts transactions from the account(daily updates)
+req-1. User can connect all financial accounts to mint
+[[req2]]
+req-2. Service extracts transactions from the account(daily updates)
 3. Categorizes transactions: Allows manual category override by the user, No automatic re-categorization
 4. Cashflow Analyses: Analyzes monthly spending, by category.
 5. Budget: Users to manually set a budget, Sends notifications when approaching or exceeding budget. 
@@ -25,7 +26,7 @@
 ```
 
 ```
-<<req1, add_account>> (cust_id, struct account_info{bank_name, acnt_no, cust_name, ifsc_code}, phone_no)
+<<req2, extract_transaction>> (cust_id, struct account_info{bank_name, acnt_no, cust_name, ifsc_code}, phone_no)
 ```
 ```
 
