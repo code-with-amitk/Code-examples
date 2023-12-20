@@ -7,7 +7,8 @@
 
 === 1. Requirements
 * *Functional*
-1. User connects to a financial account
+[[req1]]
+1. User can connect all financial accounts to mint
 2. Service extracts transactions from the account(daily updates)
 3. Categorizes transactions: Allows manual category override by the user, No automatic re-categorization
 4. Cashflow Analyses: Analyzes monthly spending, by category.
@@ -19,7 +20,16 @@
 * *Extended Functional*
 1. Analytics, Suggestions, Predictions, Logging
 
-=== 2. BOE
+=== 2. API Design (For every requirement)
+<<req1, add_account>> (cust_id, struct account_info{bank_name, acnt_no, cust_name, ifsc_code}, phone_no)
+```
+
+```
+<<req1, add_account>> (cust_id, struct account_info{bank_name, acnt_no, cust_name, ifsc_code}, phone_no)
+```
+```
+
+=== 3. BOE
 [[qps]]
 ==== QPS(Queries/sec)
 This is writes/sec
