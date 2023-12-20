@@ -1,0 +1,135 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/buy-two-chocolates/[2706. Buy Two Chocolates]
+You are given an integer array prices representing the prices of various chocolates in a store. You are also given a single integer money, which represents your initial amount of money.
+
+You must buy exactly two chocolates in such a way that you still have some non-negative leftover money. You would like to minimize the sum of the prices of the two chocolates you buy.
+
+Return the amount of money you will have leftover after buying the two chocolates. If there is no way for you to buy two chocolates without ending up in debt, return money. Note that the leftover must be non-negative.
+
+Example 1:
+```
+Input: prices = [1,2,2], money = 3
+Output: 0
+Explanation: Purchase the chocolates priced at 1 and 2 units respectively. You will have 3 - 3 = 0 units of money afterwards. Thus, we return 0.
+```
+
+== Approach. O(n). Find 2 minimum elements
+=== Logic
+* Traverse thru the array and find lowest element in min1, 2nd lowest element in min2
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int buyChoco(vector<int>& prices, int money) {
+        // min1=lowest, min2=2nd lowest
+        int min1 = prices[0], min2 = prices[1];
+        if (min1 > min2)
+            std::swap(min1, min2);
+        std::for_each(prices.begin()+2, prices.end(), [&](int ele){
+            if (ele < min1){
+                min2 = min1;
+                min1 = ele;
+            } else if (ele < min2)
+                min2 = ele;
+        });
+        return min1+min2 > money ? money : money-(min1+min2);
+    }
+};
+```
+==== Python
+```py
+class Solution:
+    def buyChoco(self, prices: List[int], money: int) -> int:
+        min1 = prices[0]
+        min2 = prices[1]
+        if min1 > min2:
+            min1 = min1 ^ min2
+            min2 = min1 ^ min2
+            min1 = min1 ^ min2
+        for i in range(2, len(prices)):
+            if prices[i] < min1:
+                min2 = min1
+                min1 = prices[i]
+            elif prices[i] < min2:
+                min2 = prices[i]
+        if min1+min2 > money:
+            return money
+        return money-(min1+min2)
+```
+==== Java
+```java
+class Solution {
+    public int buyChoco(int[] prices, int money) {
+        int min1 = prices[0], min2 = prices[1];
+        if (min1 > min2) {
+            min1 = min1 ^ min2;
+            min2 = min1 ^ min2;
+            min1 = min1 ^ min2;
+        }
+        for (int i=2;i<prices.length;++i) {
+            if (prices[i] < min1) {
+                min2 = min1;
+                min1 = prices[i];
+            }
+            else if (prices[i] < min2) {
+                min2 = prices[i];
+            }
+        }
+        return min1+min2 > money ? money : money-(min1+min2);
+    }
+}
+```
+==== Rust
+```rs
+impl Solution {
+    pub fn buy_choco(prices: Vec<i32>, money: i32) -> i32 {
+        let mut min1 = prices[0];
+        let mut min2 = prices[1];
+        if min1 > min2 {
+            std::mem::swap(&mut min1, &mut min2);
+        }
+        for &ele in prices.iter().skip(2) {
+            if ele < min1 {
+                min2 = min1;
+                min1 = ele;
+            } else if ele < min2 {
+                min2 = ele;
+            }
+        }
+        if money<(min1+min2) {
+            return money;
+        }
+        money-(min1+min2)
+    }
+}
+```
+==== Golang
+```go
+func buyChoco(prices []int, money int) int {
+    var min1 = prices[0]
+    var min2 = prices[1]
+    if min1 > min2 {
+        min1, min2 = min2, min1
+    }
+    for i:=2; i<len(prices); i++ { 
+        if prices[i] < min1 {
+            min2 = min1
+            min1 = prices[i]
+        } else if prices[i] < min2 {
+            min2 = prices[i]
+        }
+    }
+    if money < min1+min2 {
+        return money
+    }
+    return money - (min1+min2)
+}
+```
