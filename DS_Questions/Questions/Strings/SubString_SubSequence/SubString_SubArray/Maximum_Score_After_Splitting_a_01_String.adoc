@@ -94,3 +94,24 @@ public:
     }
 };
 ```
+
+==== Python
+```py
+class Solution:
+    def maxScore(self, s: str) -> int:
+        zeros = 1 if s[0] == '0' else 0
+        ones = 0
+        #for i in range(1,len(s)):
+        for c in s[1:]:
+            if c == '1':
+                ones += 1
+        maxi = zeros+ones
+        #for i in range(1,len(s)-1):
+        for c in s[1:-1]:
+            if c == '0':
+                zeros += 1
+            if c == '1':
+                ones -= 1
+            maxi = max(maxi, ones+zeros)
+        return maxi
+```
