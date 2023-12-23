@@ -226,24 +226,22 @@ mpstat(Multiprocessor statistics): per CPU. Dumps statistics per processor.
 
 
 == Memory/System/RAM Related
-=== 1. Is system under Memory Pressure?  
-if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressure
+=== free
 ```c
-    free: Free untouched RAM. 
-    Buffer: Temporary memory to help some processes. 
-    Cached: (Cache Page: Separate area on RAM). Whenever someone writes data disk, that's not immediately written to disk rather is accumulated in Cache(RAM area). And when cache gets full its written to disk. For Read operations cache page is called clean page. For write its called Dirty page.
-    Swap: Swap partition is hard disk partition(that will be used as Virtual Memory by kernel, other part of hard-disk will not be touched). When kernel is doing a task & real RAM fills up and more space is needed, unused/inactive pages are moved to Swap Space(swapped out). When Kernel uses Swap? if  lot of RAM is consumed, then Swapping/Virtual Memory is used. Kernel copies idle pages to swap, Give freed area to processes requiring memory in RAM.
- - There is no need to  worry if you find the swap partition filled to 50%, because swapping to hard-disk is done by kernel for efficiency.
- 
-    # free -mh                    //-m: Display memory in MB, -h: human readable
-                        total     used     free     shared     buffers        cached
- Mem/RAM:  1.0G     1.0G     0B      599M          0B           1M        //Free+ Buffers+ cached = Amount of  available RAM
-           Swap:    6M      6M       0B 
-                total: Total RAM, Used: Application used Mem+Buffers+Cached. Free: free untouched RAM, shared: Memory dedicated for multi-process use,.
-    # top
-        Memory(KB) :  2029876 total,   331784 free,   743740 used,   954352 buff/cache
-        Swap(KB):         2094076 total,  2091308 free,   2768 used.      1074884 avail Mem     //Swap is hard-disk which will be used as Virtual Memory
-    DSTAT: Tells when system was ideal, waiting, read/write bytes, send/recv bytes, in/out bytes.
+# free -mh                    //-m: Display memory in MB, -h: human readable
+         total  used    free   shared   buff/cache available
+Mem/RAM: 1.0G   1.0G    0B     599M      0B           1M        //Free+ Buffers/cached = Amount of  available RAM
+Swap:    6M     6M      0B
+```
+* free: Free untouched RAM. 
+* Buffer: Temporary memory to help some processes. 
+* Cached: (Cache Page: Separate area on RAM). Whenever someone writes data disk, that's not immediately written to disk rather is accumulated in Cache(RAM area). And when cache gets full its written to disk. For Read operations cache page is called clean page. For write its called Dirty page.
+* Swap: Swap partition is hard disk partition(that will be used as Virtual Memory by kernel, other part of hard-disk will not be touched). When kernel is doing a task & real RAM fills up and more space is needed, unused/inactive pages are moved to Swap Space(swapped out). When Kernel uses Swap? if  lot of RAM is consumed, then Swapping/Virtual Memory is used. Kernel copies idle pages to swap, Give freed area to processes requiring memory in RAM.
+```
+
+=== DSTAT
+Tells when system was ideal, waiting, read/write bytes, send/recv bytes, in/out bytes.
+```c
     # dstat -mst  2  3          //Get 3 samples at 2 sec interval     //-m: memory stats (used, buffers, cache, free), -t: timestamp
         -------memory-usage-----               -----system----
         used      buff      cache      free|              date/time
@@ -256,6 +254,7 @@ if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressur
         Cached:               188576 kB
         SwapCached:            0 kB
 ```
+
 === 2. Are number of page faults high? PF is used for swapping memory to/from hard-disk.
 ```c
     # sar -B -s 05:00:00 -e 05:30:00
