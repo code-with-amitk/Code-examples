@@ -1,0 +1,75 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/path-crossing/[1496. Path Crossing]
+string represents 1 movement in North,East,West,South directions. Retrun "true" if you crossed your own path else false
+```c
+      N
+    W   E
+      S
+
+  input = "NES"         //From (0,0). Move 1 unit North, 1 unit east, 1 1 unit south.
+  Output: false 
+```
+
+== Approach-1. Store path in unordered_set. O(n)
+=== Logic
+* Create a unordered_set<string> and store points into it (0,0) => 0,0
+```
+(0,0) would be stored as 0,0
+(1,0) would be stored as 1,0
+```
+* On every point, check whether that point is present in set or not, if present return true.
+
+=== Code
+==== CPP98
+```c++
+class Solution {
+public:
+    bool isPathCrossing(string path) {
+        std::unordered_set<string> us;
+        int x=0,y=0;
+        us.insert(std::to_string(x) + "," + std::to_string(y));
+        for (const char&ch: path){
+            switch (ch) {
+                case 'N':++y;break;
+                case 'W':++x;break;
+                case 'E':--x;break;
+                case 'S':--y;break;
+            }
+            std::string str = std::to_string(x) + "," + std::to_string(y);
+            if (us.find(str) != us.end())
+                return true;
+            us.insert(str);
+        }
+        return false;
+    }
+};
+```
+==== CPP11
+```cpp
+class Solution {
+public:
+    bool isPathCrossing(string path) {
+        std::unordered_set<string> us;
+        int x=0,y=0;
+        bool found = false;
+        us.insert(std::to_string(x) + "," + std::to_string(y));
+        for_each(path.begin(),path.end(),[&us,&x,&y,&found](const char& ch) -> void{
+            switch (ch) {
+                case 'N':++y;break;
+                case 'W':++x;break;
+                case 'E':--x;break;
+                case 'S':--y;break;
+            }
+            std::string str = std::to_string(x) + "," + std::to_string(y);
+            if (us.find(str) != us.end()) {
+                found = true;
+                return; //This returns from lambda function, not isPathCrossing, because lambda is a seperate function
+            }
+            us.insert(str);
+        });
+        return found;
+    }
+};
+```
