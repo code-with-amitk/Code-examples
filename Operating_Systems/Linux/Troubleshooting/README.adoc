@@ -226,7 +226,8 @@ mpstat(Multiprocessor statistics): per CPU. Dumps statistics per processor.
 
 
 == Memory/System/RAM Related
-=== 1. Is system under Memory Pressure?  if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressure
+=== 1. Is system under Memory Pressure?  
+if ( (free + buffer + cached + swap) == nearly 0)) //System under memory pressure
 ```c
     free: Free untouched RAM. 
     Buffer: Temporary memory to help some processes. 
