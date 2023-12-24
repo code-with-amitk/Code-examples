@@ -122,3 +122,40 @@ class Solution:
                 opse += 1
         return min(ops, opse) if ops>0 and opse>0 else 0
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn min_operations(s: String) -> i32 {
+        let mut ops_start_with_0 = 0;
+        let mut ops_start_with_1 = 0;
+
+        // Count operations for starting with '0'
+        let mut index = 0;
+        s.chars().for_each(|ele| {
+            if index % 2 == 0 && ele == '1' {
+                ops_start_with_0 += 1;
+            }
+            if index % 2 == 1 && ele == '0' {
+                ops_start_with_0 += 1;
+            }
+            index += 1;
+        });
+
+        // Reset index for the second loop
+        index = 0;
+
+        // Count operations for starting with '1'
+        s.chars().for_each(|ele| {
+            if index % 2 == 0 && ele == '0' {
+                ops_start_with_1 += 1;
+            }
+            if index % 2 == 1 && ele == '1' {
+                ops_start_with_1 += 1;
+            }
+            index += 1;
+        });
+
+        ops_start_with_0.min(ops_start_with_1)
+    }
+}
+```
