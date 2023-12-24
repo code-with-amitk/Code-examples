@@ -100,3 +100,25 @@ public:
 
         return std::min(ops_start_with_0, ops_start_with_1);
 ```
+==== Python
+```py
+class Solution:
+    def minOperations(self, s: str) -> int:
+        index = 0
+        ops = 0
+        opse=0
+        # Making 01010101
+        for i in range(0, len(s)):
+            if i%2 == 0 and s[i]=='1':    #Even index. 0,2,4
+                ops += 1
+            if i%2 == 1 and s[i]=='0':    #Even index. 1,3,5
+                ops += 1
+        index = 0
+        # Making 10101010
+        for i in range(0, len(s)):
+            if i%2 == 0 and s[i]=='0':    #Even index. 0,2,4
+                opse += 1
+            if i%2 == 1 and s[i]=='1':    #Even index. 1,3,5
+                opse += 1
+        return min(ops, opse) if ops>0 and opse>0 else 0
+```
