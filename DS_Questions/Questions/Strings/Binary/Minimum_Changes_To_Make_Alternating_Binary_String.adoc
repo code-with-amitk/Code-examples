@@ -1,0 +1,102 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/[1758. Minimum Changes To Make Alternating Binary String]
+You are given a string s consisting only of the characters '0' and '1'. In one operation, you can change any '0' to '1' or vice versa.
+
+The string is called alternating if no two adjacent characters are equal. For example, the string "010" is alternating, while the string "0100" is not.
+
+Return the minimum number of operations needed to make s alternating.
+
+```c
+Example 1:
+Input: s = "0100"
+Output: 1
+Explanation: If you change the last character to '1', s will be "0101", which is alternating.
+
+Example 2:
+Input: s = "10"
+Output: 0
+Explanation: s is already alternating.
+
+Example 3:
+Input: s = "1111"
+Output: 2
+Explanation: You need two operations to reach "0101" or "1010".
+```
+
+== Approach-1. O(n). Count changes for 010101, changes for 101010
+=== Logic
+* Count number of operations required to change string to 010101
+```c
+input = "0100"
+           |
+operations = 1
+```
+* Count number of operations required to change string to 101010
+
+```c
+input = "0100"
+         |||  
+operations = 3
+```
+* Return min of above 2 operations
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP98
+```cpp
+class Solution {
+public:
+    int minOperations(string s) {
+        int index = 0, ops = 0, opse=0;
+        // Making 01010101        
+        for (int i=0;i<s.size();i++) {
+            if (i%2 == 0 && s[i]=='1')    //Even index. 0,2,4
+                ops++;
+            if (i%2 == 1 && s[i]=='0')    //Even index. 1,3,5
+                ops++;
+        }
+        index = 0;
+        // Making 10101010
+        for (int i=0;i<s.size();i++) {
+            if (i%2 == 0 && s[i]=='0')    //Even index. 0,2,4
+                opse++;
+            if (i%2 == 1 && s[i]=='1')    //Even index. 1,3,5
+                opse++;
+        }
+        return (ops>0 && opse>0) ? min(ops, opse) : 0;
+    }
+};
+```
+==== CPP11
+```cpp
+        int ops_start_with_0 = 0, ops_start_with_1 = 0;
+
+        // Count operations for starting with '0'
+        int index = 0;
+        for_each(s.begin(), s.end(), [&index, &ops_start_with_0](char ele) {
+            if (index % 2 == 0 && ele == '1')
+                ops_start_with_0++;
+            if (index % 2 == 1 && ele == '0')
+                ops_start_with_0++;
+            index++;
+        });
+
+        // Reset index for the second loop
+        index = 0;
+
+        // Count operations for starting with '1'
+        for_each(s.begin(), s.end(), [&index, &ops_start_with_1](char ele) {
+            if (index % 2 == 0 && ele == '0')
+                ops_start_with_1++;
+            if (index % 2 == 1 && ele == '1')
+                ops_start_with_1++;
+            index++;
+        });
+
+        return std::min(ops_start_with_0, ops_start_with_1);
+```
