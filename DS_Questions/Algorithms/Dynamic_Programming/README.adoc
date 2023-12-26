@@ -97,3 +97,4 @@ start ___  ___
 ===== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Paint_House.md[Paint House]
 ===== link:/DS_Questions/Questions/Random/Power/Power_x_to_n.md[Power (x,n)]
 ===== link:/DS_Questions/Questions/Strings/EncodeDecode_EncryptDec_CompDecompress/Encode_Decode/Total_Possible_ways_to_Decode.adoc[Decode Ways]
+===== link:/DS_Questions/Questions/Permutation_Combination/Combinations/Number_of_Dice_Rolls_With_Target_Sum.adoc[Number of Dice Rolls With Target Sum]
