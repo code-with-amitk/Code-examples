@@ -24,10 +24,7 @@ Output: 2         //2 ways possible
 210,26    -> Not valid. 3 characters cannot be combined
 2,10,26   -> Valid   BJZ
 ```
-
-### [Decode Ways](https://leetcode.com/problems/decode-ways/)
-### [Solution](https://www.geeksforgeeks.org/count-possible-decodings-given-digit-sequence/)
-- 
+ 
 == Approach-1. Dynamic Programming. O(n)
 === Why DP?
 * In this problem, dynamic programming is suitable because the number of ways to decode a string of length n can be expressed in terms of the number of ways to decode substrings of smaller lengths. (ie problem has smaller overlapping subproblems property).
