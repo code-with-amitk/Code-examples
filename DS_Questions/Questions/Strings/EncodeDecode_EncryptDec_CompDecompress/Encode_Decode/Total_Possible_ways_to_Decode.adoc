@@ -1,0 +1,93 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/decode-ways/[Decode Ways]
+String contains letters from `A` to `Z`. determine the total number of ways to decode it.
+```c
+'A' -> 1, 'B' -> 2, ..., 'Z' -> 26. 0 is not valid character
+
+Input: "226"
+Output: 3       //3 ways possible
+2,2,6  -> Valid  BBF
+22,6   -> Valid  VF
+2,26   -> Valid  BZ
+226    -> Invalid
+
+Input: "024"
+Output: 0     //1st character should be valid
+
+Input: "21026"
+Output: 2         //2 ways possible
+2,1,0,2,6 -> Not valid. Since 0 is invalid
+21,0,2,6  -> Not valid. Since 0 is invalid
+2,10,2,6  -> Valid   BJBF
+210,26    -> Not valid. 3 characters cannot be combined
+2,10,26   -> Valid   BJZ
+```
+
+### [Decode Ways](https://leetcode.com/problems/decode-ways/)
+### [Solution](https://www.geeksforgeeks.org/count-possible-decodings-given-digit-sequence/)
+- 
+== Approach-1. Dynamic Programming. O(n)
+=== Why DP?
+* In this problem, dynamic programming is suitable because the number of ways to decode a string of length n can be expressed in terms of the number of ways to decode substrings of smaller lengths. (ie problem has smaller overlapping subproblems property).
+
+=== Logic 
+* 1. s = "11106". Take dp array of size+1 and init to 0 {0,0,0,0,0,0}. ie if input string size=5, dp size=6.
+** Dp Array shows number of possible ways to decode the string to present index.
+```c
+- Value at `dp[2]` shows number of ways possible with `s[0],s[1]`
+- Value at `dp[3]` shows number of ways possible with `s[0],s[1],s[2]`
+
+    s  = 1 1 1 0 6     //size=5
+    dp = 0 0 0 0 0 0   //size=6
+s     Ways        dp
+1      1         {1,1}
+11     1,1       {1,1,2}
+       11
+111    1,1,1     {1,1,2,3}
+       1,11
+       11,1
+1110   1,1,1,0   {1,1,2,3,2}
+       1,1,10
+       11,10
+11106  1,1,10,6  {1,1,2,3,2,2}
+       11,10,6
+Ans = dp[last] = 2
+```  
+
+=== Complexity
+* Time: O(n)
+* Space: O(n+1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+    int count;
+public:
+    int numDecodings(string s) {
+        vector<int> dp(s.size() + 1, 0);
+        dp[0] = 1; // Empty string has one decoding
+        
+        for (int i = 1; i <= s.size(); i++) {
+            /* Single digit
+              if (present digit == 0) 
+                10  => 10
+                Present digit need to be combined with prev. No new combination can be formed
+              if (present digit != 0)
+                11  =>  1,1  and 11
+                1 new combination can be made.
+            */
+            if (s[i - 1] != '0')
+                dp[i] += dp[i - 1];
+            
+            // Two digits
+            if (i >= 2 && s[i - 2] != '0' && stoi(s.substr(i - 2, 2)) <= 26) {
+                dp[i] += dp[i - 2];
+            }
+        }
+        return dp[s.size()];
+    }
+};
+```
