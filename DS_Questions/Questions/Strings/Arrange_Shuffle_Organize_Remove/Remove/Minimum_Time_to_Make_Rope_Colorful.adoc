@@ -1,0 +1,87 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/minimum-time-to-make-rope-colorful/[1578. Minimum Time to Make Rope Colorful]
+Alice has n balloons arranged on a rope. You are given a 0-indexed string colors where colors[i] is the color of the ith balloon.
+
+Alice wants the rope to be colorful. She does not want two consecutive balloons to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it colorful. You are given a 0-indexed integer array neededTime where neededTime[i] is the time (in seconds) that Bob needs to remove the ith balloon from the rope.
+
+Return the minimum time Bob needs to make the rope colorful.
+
+Example-1:
+
+image::https://assets.leetcode.com/uploads/2021/12/13/ballon1.jpg?raw=true[example1]
+
+```c
+ Input: colors = "abaac", neededTime = [1,2,3,4,5]
+Output: 3
+Explanation: In the above image, 'a' is blue, 'b' is red, and 'c' is green.
+Bob can remove the blue balloon at index 2. This takes 3 seconds.
+There are no longer two consecutive balloons of the same color. Total time = 3.
+```
+
+== Approach-1. O(nm) min heap
+=== Logic
+* Insert times of all same elements into min heap
+```
+aaaa bbb cc
+1234 567 89
+
+min_heap=1,2,3,4
+```
+* When element changes ie a to b. Remove min_heap leaving only 1 element. When removing all to costs.
+* Then remove last element from min heap
+
+=== Complexity
+* Time: O(nm). n=all elements, m=same elements
+* Space: O(m)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int minCost(string colors, vector<int>& neededTime) {
+        priority_queue <int, vector<int>, greater<int>> min_heap;
+        int i=0, cost=0;
+        bool found = false;
+        for (int i=0;i<colors.size()-1;++i) {
+            //Insert all consecutive same color's time in min_heap
+            while (colors[i] == colors[i+1]) {
+                min_heap.push(neededTime[i]);
+                i++;
+                found = true;
+            }
+            //Just to insert last same element
+            if (found)  
+                min_heap.push(neededTime[i]);
+            
+            // Now empty the min_heap leaving only 1 element
+            // This would be max time needed
+            while (min_heap.size() > 1) {
+                cost += min_heap.top();
+                min_heap.pop();
+            }
+            // Remove last element also from min_heap
+            if (min_heap.size())
+                min_heap = priority_queue <int, vector<int>, greater<int>>();
+            found = false;
+        }
+
+        // for_each(colors.begin(), colors.end()-1, 
+        //         [&i,&min_heap,&cost,&neededTime](const char& ele){
+        //     auto next = std::next(&ele);
+        //     if (ele == *next) {
+        //         min_heap.push(neededTime[i]);
+        //     } else {
+        //         // Remove all elements from heap until 1 element is left
+        //         cost += min_heap.top();
+        //         min_heap.pop();
+        //     }
+        //     ++i;
+        //     //min_heap.empty();
+        // });
+        return cost;
+    }
+};
+```
