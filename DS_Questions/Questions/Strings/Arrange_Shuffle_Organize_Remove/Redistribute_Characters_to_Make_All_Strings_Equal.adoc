@@ -1,0 +1,49 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/[1897. Redistribute Characters to Make All Strings Equal]
+You are given an array of strings words (0-indexed).
+
+In one operation, pick two distinct indices i and j, where words[i] is a non-empty string, and move any character from words[i] to any position in words[j].
+
+Return true if you can make every string in words equal using any number of operations, and false otherwise.
+
+Example 1:
+```c
+Input: words = ["abc","aabc","bc"]
+Output: true
+Explanation: 
+Move the first 'a' in words[1] to the front of words[2], to make words[1] = "abc" and words[2] = "abc".
+All the strings are now equal to "abc", so return true.
+```
+
+== Approach-1. Count Characters. O(n)
+=== Logic
+* Take unordered_map, count all characters from all strings.
+* Number of characters should be absolutely divisible by number of words, then only we can redistristribute equally
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool makeEqual(vector<string>& words) {
+        unordered_map<char, int> um;
+        int size = words.size();
+        for_each(words.begin(), words.end(), [&um](string& word){
+            for(char& ch: word)
+                um[ch]++;
+        });
+        for (auto ele : um) {
+            if (ele.second % size != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+```
