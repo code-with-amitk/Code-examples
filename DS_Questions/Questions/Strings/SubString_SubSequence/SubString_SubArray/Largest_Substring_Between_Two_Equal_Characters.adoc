@@ -1,0 +1,72 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/largest-substring-between-two-equal-characters/[1624. Largest Substring Between Two Equal Characters]
+Given a string s, return the length of the longest substring between two equal characters, excluding the two characters. If there is no such substring return -1.
+
+A substring is a contiguous sequence of characters within a string.
+
+``` 
+Example 1:
+Input: s = "aa"
+Output: 0
+Explanation: The optimal substring here is an empty substring between the two 'a's.
+
+Example 2:
+Input: s = "abca"
+Output: 2
+Explanation: The optimal substring here is "bc".
+
+Example 3:
+Input: s = "cbzxy"
+Output: -1
+Explanation: There are no characters that appear twice in s.
+```
+
+== Approach-1. O(n). store indexes in Hashmap
+=== Logic
+* Store index of characters in unordered_map<char,int>
+* At every new character, search it inside map, it found store (index-map_value)
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP98
+```cpp
+class Solution {
+public:
+    int maxLengthBetweenEqualCharacters(string s) {
+        unordered_map<char, int> umPosition;
+        int maxi = 0;
+        for (int i=0;i<s.size();i++) {
+            auto it = umPosition.find(s[i]);
+            if (it != umPosition.end()) {
+                maxi = max(maxi, i-it->second);
+            } else {
+                umPosition.insert({s[i], i});
+            }
+        }
+        return maxi-1;
+    }
+};
+```
+
+==== CPP11
+```cpp
+class Solution {
+public:
+    int maxLengthBetweenEqualCharacters(string s) {
+        unordered_map<char, int> umPosition;
+        int maxi = 0, index=0;
+        for_each(s.begin(), s.end(), [&umPosition, &maxi, &index](char ch){
+            auto it = umPosition.find(ch);
+            if (it != umPosition.end())
+                maxi = max(maxi, index-it->second);
+            else
+                umPosition.insert({ch, index});
+            index++;
+        });
+  }
+```
