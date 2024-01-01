@@ -54,3 +54,42 @@ public:
     }
 };
 ```
+
+== Approach-2. Greedy, Sort + 2 pointer
+=== Logic
+* Intution
+** Start from the smallest cookie and try to match it with the smallest child
+** If the match is successful, move to the next child and the next larger cookie. 
+** This way, you ensure that you use the smallest available cookie for the smallest child, maximizing the number of satisfied children
+* sort both g,s. iterate through g,s. if s[i] >= g[i], this child is satisfied. Move to next greater child and next cookie.
+
+=== Complexity
+* Time: O(nlogn) + O(mlogm) + O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+        std::sort(g.begin(), g.end());
+        std::sort(s.begin(), s.end());
+
+        int childIndex = 0;
+        int cookieIndex = 0;
+        int count = 0;
+
+        while (childIndex < g.size() && cookieIndex < s.size()) {
+            if (s[cookieIndex] >= g[childIndex]) {
+                // If the current cookie is equal to or larger than the current child's greed factor
+                count++;
+                childIndex++;
+            }
+            cookieIndex++;
+        }
+
+        return count;
+    }
+};
+```
