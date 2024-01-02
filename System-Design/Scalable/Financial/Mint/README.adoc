@@ -6,22 +6,22 @@
 * This is write heavy(100:1), since most users do transaction on their bank accounts and read rearly on app.
 
 === 1. Requirements
-* *Functional*
+==== Functional
 
 [[req1]]
-1. (req-1)User can connect all financial accounts to mint
+* Req-1. User can connect all financial accounts to mint
 
 [[req2]]
-2. Service extracts transactions from the account(daily updates)
+* Req-2. Service extracts transactions from the account(daily updates)
 
 3. Categorizes transactions: Allows manual category override by the user, No automatic re-categorization
 4. Cashflow Analyses: Analyzes monthly spending, by category.
 5. Budget: Users to manually set a budget, Sends notifications when approaching or exceeding budget. 
 
-* *Non Functional*
+==== Non Functional
 1. High availability, Scalable, Secure
 
-* *Extended Functional*
+==== Extended
 1. Analytics, Suggestions, Predictions, Logging
 
 === 2. API Design (For every requirement)
