@@ -1,0 +1,112 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty[2870. Minimum Number of Operations to Make Array Empty]
+You are given a 0-indexed array nums consisting of positive integers.
+
+There are two types of operations that you can apply on the array any number of times:
+
+Choose two elements with equal values and delete them from the array.
+Choose three elements with equal values and delete them from the array.
+Return the minimum number of operations required to make the array empty, or -1 if it is not possible.
+
+```c
+Example 1:
+Input: nums = [2,3,3,2,2,4,2,3,4]
+Output: 4
+Explanation: We can apply the following operations to make the array empty:
+- Apply the first operation on the elements at indices 0 and 3. The resulting array is nums = [3,3,2,4,2,3,4].
+- Apply the first operation on the elements at indices 2 and 4. The resulting array is nums = [3,3,4,3,4].
+- Apply the second operation on the elements at indices 0, 1, and 3. The resulting array is nums = [4,4].
+- Apply the first operation on the elements at indices 0 and 1. The resulting array is nums = [].
+It can be shown that we cannot make the array empty in less than 4 operations.
+
+Example 2:
+Input: nums = [2,1,2,2,3,3]
+Output: -1
+Explanation: It is impossible to empty the array.
+```
+
+== Approach-1. Count frequencies using hashmap & count operations
+=== Logic
+* Count frequency of elements using hashmap
+* iterate thru values of hashmap
+** check whether value is completely divisible by 3(opeartions = count/3)
+** if value is not divisible by 3, ie remainder==1 or 2. then calculate operations for divisible by 2.
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        unordered_map<int, int> um;
+        for (auto&i:nums)
+            um[i]++;
+        int count = 0;
+        for (auto&[key,value]:um){
+            if (value == 1)
+                return -1;
+            // The number of triplets that can be formed with the current frequency
+            count += value/3;
+
+            /*
+            value % 3
+                0: Means perfactly divsible no more operations needed
+                1,2: Additional pairs are needed after forming triplets
+            By dividing by 2, we account for the fact that each pair operation involves two elements.
+            */
+            count += (value%3 + 1)/2;
+        }
+        return count;
+    }
+};
+```
+
+==== Python
+```py
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        um = {}
+        for i in nums:
+            if i in um:
+                um[i] += 1
+            else:
+                um[i] = 1
+        count = 0
+        for key,value in um.items():
+            if value == 1:
+                return -1
+            count = count + value//3
+            count = count + (value%3 + 1)//2
+        return count
+```
+
+==== Rust
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn min_operations(nums: Vec<i32>) -> i32 {
+        let mut hm:HashMap<i32, i32> = HashMap::new();
+
+        // Count Occurance
+        for i in 0..nums.len() {
+            *hm.entry(nums[i]).or_insert(0) += 1;
+        }
+
+        let mut count = 0;
+        for (key, value) in hm.iter() {
+            if (*value == 1) {
+                return -1;
+            }
+            count += value/3;
+            count += (value%3 + 1)/2;
+        }
+        count
+    }
+}
+```
