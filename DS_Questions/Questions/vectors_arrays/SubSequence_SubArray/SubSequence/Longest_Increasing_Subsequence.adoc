@@ -1,0 +1,87 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/longest-increasing-subsequence/[300. Longest Increasing Subsequence]
+From array return longest increasing subsequence.
+A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. 
+
+```c
+Example
+input: [0,3,1,6,2,2,7]   //[3,6,2,7] is Subsequence but not increasing
+
+input: [10,9,2,5,3,7,101,18]
+Output: 4              //Longest increasing subsequence [2,3,7,101]
+
+Input: nums = [0,1,0,3,2,3]
+Output: 4             //LIS [0,1,2,3]
+```
+== link:https://youtu.be/mqbCl4kyDmQ[Self youtube video]
+
+== Approach-1. Dynamic Programming
+=== Why link:/DS_Questions/Algorithms/Dynamic_Programming/[Dynamic Programming?]
+* This problem has overlapping subproblem property. LIS of element[i+1] depends on LIS of element[i]
+* Problem statement contains any of these keywords min/max/longest/largest/Nth Number
+
+=== Logic
+1. Create a Array `dp` containing longest subsequnce till particular element. Initialize array by 1.
+```cpp
+vecArr:    10    9   2   5   3   7   101   18
+
+dp:         1    1   1   1   1   1    1     1
+Final dp:   1    1   1   2   2   3    4     4  //This we will calculate
+```
+2. Take 2 pointers i and j. i will point to element whose lis need to be calculated and j will start from index=0
+```cpp
+vecArr:    10    9   2   5   3   7   101   18
+            j    i
+```
+* if element[i]>element[j] and dp[i]<=dp[j]. Increment dp[i] by 1 more than dp[j]
+** This means till element 2 there was LIS of length 1, But since 5 > 2. LIS at 5 can be 1 more than LIS at 2.
+```c++
+vecArr:    10    9   2   5   3   7   101   18
+            1    1   1   2
+```
+
+=== Code
+==== CPP98
+```cpp
+int lis(std::vector<int> vecArr) {
+  int iSize = vecArr.size(), iMax = 1;
+  std::vector<int> dp(iSize, 1);        //A
+  for (int i = 1; i < iSize; ++i){
+    for (int j = 0; j < i; ++j){
+
+      if (vecArr[i] > vecArr[j] and dp[i] <= dp[j]){
+        dp[i] = dp[j] + 1;
+        if(dp[i] > iMax)
+          iMax = dp[i];
+      }
+    }
+  }
+  
+  return iMax;
+}
+```
+==== CPP11
+```cpp
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> dp(nums.size(), 1);
+        int len = 1;
+        vector<int>::iterator iti = nums.begin()+1;
+        while (iti < nums.end()) {
+            int i = distance(nums.begin(), iti);
+            for (auto itj=nums.begin(); itj<iti; ++itj) {
+                int j = distance(nums.begin(), itj);
+                if (*itj < *iti && dp[i] <= dp[j]) {
+                    dp[i] =  dp[j] + 1;
+                    len = max(len, dp[i]);
+                }
+            }
+            iti = next(iti);
+        }
+        return len;
+    }
+};
+```
