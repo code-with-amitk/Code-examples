@@ -98,3 +98,23 @@ class Solution:
                     out = max(dp[i], out)
         return out
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn length_of_lis(nums: Vec<i32>) -> i32 {
+        let size = nums.len();
+        let mut dp = vec![1; size];
+
+        let mut out = 1;
+        for i in 1..size {
+            for j in 0..i {
+                if nums[i] > nums[j] && dp[i] <= dp[j] {
+                    dp[i] = dp[j] + 1;
+                    out = std::cmp::max(out, dp[i]);
+                }
+            }
+        }
+        out
+    }
+}
+```
