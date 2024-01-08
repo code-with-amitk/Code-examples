@@ -1,0 +1,70 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/range-sum-of-bst/description/[938. Range Sum of BST]
+Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].
+```c
+Input: root = [10,5,15,3,7,null,18], low = 7, high = 15
+Output: 32
+Explanation: Nodes 7, 10, and 15 are in the range [7, 15]. 7 + 10 + 15 = 32.
+```
+
+== Approach-1. Inorder Traversal. O(n)
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    int sum;
+public:
+    void inorder (TreeNode* root, int low, int high) {
+        if (!root)
+            return;
+        inorder(root->left, low, high);
+        if (root->val>=low && root->val<=high)
+            sum += root->val;
+        inorder(root->right, low, high);
+    }
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        sum = 0;
+        inorder(root, low, high);
+        return sum;
+    }
+};
+```
+==== Python
+```py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        sum = 0
+        def inorder(root: Optional[TreeNode], low: int, high: int):
+            nonlocal sum  # Declare sum as a nonlocal variable
+            if root is None:
+                return
+            inorder(root.left, low, high)
+            if low <= root.val <= high:
+                sum = sum + root.val
+            inorder(root.right, low, high)
+        inorder(root, low, high)
+        return sum
+```
+==== Rust
+```rs
+
+```
