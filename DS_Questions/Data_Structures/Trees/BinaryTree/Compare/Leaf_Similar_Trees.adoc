@@ -1,0 +1,116 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/leaf-similar-trees[872. Leaf-Similar Trees]
+Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a leaf value sequence.
+For example, in the given tree above, the leaf value sequence is (6, 7, 4, 9, 8).
+
+Two binary trees are considered leaf-similar if their leaf value sequence is the same.
+
+Return true if and only if the two given trees with head nodes root1 and root2 are leaf-similar.
+
+image::https://assets.leetcode.com/uploads/2020/09/03/leaf-similar-1.jpg?raw=true[example-1]
+```c
+Example:
+Input: root1 = [3,5,1,6,2,9,8,null,null,7,4], root2 = [3,5,1,6,7,4,2,null,null,null,null,null,null,9,8]
+Output: true
+```
+
+== Approach. Inorder Traversal
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& tree) {
+        if (!root)
+            return;
+        inorder(root->left, tree);
+        if (!root->left && !root->right)
+            tree.push_back(root->val);
+        inorder(root->right, tree);
+    }
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        vector<int> tree1, tree2;
+        inorder(root1, tree1);
+        inorder(root2, tree2);
+        return tree1 == tree2;
+    }
+};
+```
+
+==== Python
+```py
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        def inorder(root: Optional[TreeNode], tree: []):
+            if root == None:
+                return
+            inorder (root.left, tree)
+            if root.left == None and root.right == None:
+                tree.append(root.val)
+            inorder (root.right, tree)
+        tree1 = []
+        tree2 = []
+        inorder(root1, tree1)
+        inorder(root2, tree2)
+        return tree1 == tree2
+```
+==== Rust
+```rs
+// Definition for a binary tree node.
+// #[derive(Debug, PartialEq, Eq)]
+// pub struct TreeNode {
+//   pub val: i32,
+//   pub left: Option<Rc<RefCell<TreeNode>>>,
+//   pub right: Option<Rc<RefCell<TreeNode>>>,
+// }
+// 
+// impl TreeNode {
+//   #[inline]
+//   pub fn new(val: i32) -> Self {
+//     TreeNode {
+//       val,
+//       left: None,
+//       right: None
+//     }
+//   }
+// }
+use std::rc::Rc;
+use std::cell::RefCell;
+impl Solution {
+    fn inorder(root: &Option<Rc<RefCell<TreeNode>>>, tree: &mut Vec<i32>) {
+        if let Some(node) = root {
+            Solution::inorder(&node.borrow().left, tree);
+            if node.borrow().left.is_none() && node.borrow().right.is_none() {
+                tree.push(node.borrow().val);
+            }
+            Solution::inorder(&node.borrow().right, tree);
+        }
+    }
+    pub fn leaf_similar(root1: Option<Rc<RefCell<TreeNode>>>, root2: Option<Rc<RefCell<TreeNode>>>) -> bool {
+        let mut tree1:Vec <i32> = Vec::new();
+        let mut tree2:Vec <i32> = Vec::new();
+        Self::inorder (&root1, &mut tree1);
+        Self::inorder (&root2, &mut tree2);
+        tree1 == tree2
+    }
+}
+```
