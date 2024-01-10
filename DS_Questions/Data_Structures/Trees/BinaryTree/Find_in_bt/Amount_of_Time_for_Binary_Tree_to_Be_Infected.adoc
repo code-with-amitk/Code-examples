@@ -1,0 +1,114 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected[2385. Amount of Time for Binary Tree to Be Infected]
+You are given the root of a binary tree with unique values, and an integer start. At minute 0, an infection starts from the node with value start.
+
+Each minute, a node becomes infected if:
+
+The node is currently uninfected.
+The node is adjacent to an infected node.
+Return the number of minutes needed for the entire tree to be infected.
+
+image:https://assets.leetcode.com/uploads/2022/06/25/image-20220625231744-1.png?raw=true[tree]
+```c
+Input: root = [1,5,3,null,4,10,6,9,2], start = 3
+Output: 4
+Explanation: The following nodes are infected during:
+- Minute 0: Node 3
+- Minute 1: Nodes 1, 10 and 6
+- Minute 2: Node 5
+- Minute 3: Node 4
+- Minute 4: Nodes 9 and 2
+It takes 4 minutes for the whole tree to be infected so we return 4.
+```
+
+== Approach-1. Convert Tree to graph. Perform 2-way traversal
+=== Logic
+* Convert Tree to graph unordered_map<int=node, unordered_set<int>=neighbours>
+```c
+        1
+      /  \
+    5     3
+    \    /  \
+    4   10   6
+  /  \
+  9   2
+
+graph:
+| 1, <5,3> | 3, <1,10,6> | 5, <1,4> | 10, <3> | 6, <3> | 4, <5,9,2> | 9,<4> | 2, <4>|
+```
+* Perform 2 way traversal using 2 queues.
+** q1 stores all nodes at present level. Eg: When we start from node=3. q1=<3>
+** q2 stores all neighbours at present level. Eg: q2=<1,10,6>
+** When q1 becomes empty, swap q1, q2. At time of swap, increment time variable
+** Keep noting visited nodes of graph in unordered_set<int>, so that we donot visit the same node.
+
+=== Complexity
+* Time: O(n)
+** O(n): To create graph
+** O(n): To traverse graph
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    unordered_map<int, unordered_set<int>> graph;
+public:
+    void create(TreeNode* root, int parent) {
+        if (!root)
+            return;
+        unordered_set<int> temp;
+        if (parent != -1)
+            temp.insert(parent);
+        if (root->left)
+            temp.insert(root->left->val);
+        if (root->right)
+            temp.insert(root->right->val);
+        graph[root->val] = temp;
+        if (root->left)
+            create(root->left, root->val);
+        if (root->right)
+            create(root->right, root->val);
+    }
+    int amountOfTime(TreeNode* root, int start) {
+        // Create Graph from tree
+        create(root, -1);
+
+        unordered_set<int> visited;
+        queue<int> q1, q2;
+        q1.push(start);
+        int time = 0;
+
+        // Until q1 is not empty keep traversing the graph
+        while (!q1.empty()) {
+            int front = q1.front(); q1.pop();
+            visited.insert(front);
+            auto it = graph.find(front);
+            for(auto&i:it->second) {
+                if (visited.find(i) == visited.end()) {
+                    q2.push(i);
+                    visited.insert(i);
+                }
+            }
+            if (!q1.size()) {
+                time++;
+                swap(q1,q2);
+            }
+        }
+        return time-1;
+    }
+};
+```
