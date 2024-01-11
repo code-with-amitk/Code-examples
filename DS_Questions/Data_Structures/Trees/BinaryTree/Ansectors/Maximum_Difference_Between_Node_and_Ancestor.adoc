@@ -1,0 +1,74 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/[1026. Maximum Difference Between Node and Ancestor]
+Given the root of a binary tree, find the maximum value v for which there exist different nodes a and b where v = |a.val - b.val| and a is an ancestor of b.
+
+A node a is an ancestor of b if either: any child of a is equal to b or any child of a is an ancestor of b. 
+
+Example 1:
+image:https://assets.leetcode.com/uploads/2020/11/09/tmp-tree.jpg?raw=true[example-1]
+```c
+Input: root = [8,3,10,1,6,null,14,null,null,4,7,13]
+Output: 7
+Explanation: We have various ancestor-node differences, some of which are given below :
+|8 - 3| = 5
+|3 - 7| = 4
+|8 - 1| = 7
+|10 - 13| = 3
+Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
+```
+
+== Approach-1. DFS
+=== Logic
+* Initialize the minimum and maximum values to the root node's value.
+* Traverse the tree using a recursive approach.
+* Update the minimum and maximum values encountered during the traversal.
+* At each node, calculate the difference between the current node's value and the updated minimum and maximum values.
+* Update the global maximum difference if a larger difference is found.
+* Recursively explore the left and right subtrees.
+* Return the maximum difference after the traversal.
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+    int max_diff;
+public:
+    int maxAncestorDiff(TreeNode* root) {
+        max_diff = 0;
+        if (!root)
+            return 0;
+        int min_ansector = root->val, max_ansector = root->val;
+        dfs (root, min_ansector, max_ansector);
+        return max_diff;
+    }
+    void dfs (TreeNode* root, int min_ansector, int max_ansector) {
+        if (!root)
+            return;
+        
+        // if present node value is smaller than min_ansector
+        max_diff = max(max_diff, abs(min_ansector - root->val));
+
+        // if present node value is greater than max_ansector
+        // update max_diff
+        max_diff = max(max_diff, abs(max_ansector - root->val));
+
+        min_ansector = min(min_ansector, root->val);
+        max_ansector = max(max_ansector, root->val);
+        dfs(root->left, min_ansector, max_ansector);
+        dfs(root->right, min_ansector, max_ansector);
+    }
+};
+```
