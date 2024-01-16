@@ -1,46 +1,59 @@
-- [Insert Delete GetRandom O(1)](#ques)
-- Approach unordered_map+vector
-  - [Logic](#logic)
-  - [Complexity](#comp)
-  - Code
-    - [C++](#cpp)
-    - [Rust](#rust)
+:toc:
+:toclevels: 6
 
-## [RandomizedSet](https://leetcode.com/problems/insert-delete-getrandom-o1/)
+== link:https://leetcode.com/problems/insert-delete-getrandom-o1/[380. Insert Delete GetRandom O(1)]
 - Implement the RandomizedSet class:
   - RandomizedSet() Initializes the RandomizedSet object.
   - bool insert(int val): Inserts val into the set if not present. Returns true if the item was not present, false otherwise.
   - bool remove(int val) Removes an item val from the set if present. Returns true if the item was present, false otherwise.
   - int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.
 
-## Approach unordered_map+vector
-<a name=logic></a>
-### Logic
-- insert(): can be carried in O(1)
-- getRandom(): 
-  - _Problem_: getRandom() cannot be carried in O(1) in hashset or hashmap, because we need to know what elements are present in hash before we can get random and that will take O(n)
-  - _Solution:_
-    - Use vector to store indexes of elements present in unordered_map
-    - Unordered_map<key=element, value=index_inside_vector_storing_the_element>
-    - Using this we can do getRandom() in vector in O(1) time
 ```c
+Example 1:
+Input
+["RandomizedSet", "insert", "remove", "insert", "getRandom", "remove", "insert", "getRandom"]
+[[], [1], [2], [2], [], [1], [2], []]
+Output
+[null, true, false, true, 2, true, false, 2]
+
+Explanation
+RandomizedSet randomizedSet = new RandomizedSet();
+randomizedSet.insert(1); // Inserts 1 to the set. Returns true as 1 was inserted successfully.
+randomizedSet.remove(2); // Returns false as 2 does not exist in the set.
+randomizedSet.insert(2); // Inserts 2 to the set, returns true. Set now contains [1,2].
+randomizedSet.getRandom(); // getRandom() should return either 1 or 2 randomly.
+randomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contains [2].
+randomizedSet.insert(2); // 2 was already in the set, so return false.
+randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
+```
+
+== Approach unordered_map<int, vector<int>>::iterator> + vector<int>
+=== Logic
+* insert(): can be carried in O(1)
+* getRandom(): 
+  - _Problem_: getRandom() cannot be carried in O(1) in hashset or hashmap, because we need to know what elements are present in hash before we can get random and that will take O(n)
+** Solution
+```c
+- Use vector to store indexes of elements present in unordered_map
+- Unordered_map<key=element, value=index_inside_vector_storing_the_element>
+- Using this we can do getRandom() in vector in O(1) time
+
 4,9,1,5
-  unordered_map 
-    key=element              5      4     1      9
-    ----------------------|------|-----|------|----
-    value=index_in_vector    3      0     2     1
+  unordered_map <element, index_in_vector>
+  <5, 3> , <4, 0> , <1, 2>, <9, 1>
   
 vector <int>
     element   4    9    1    5
     --------|---|----|----|-----|
     index     0    1    2    3
 ```
-- remove(ele): Eg: remove(9)
-  - _1._ Search `<key,value>` in map. Found `<key=9,val=1>`
-  - _2._ Goto index=val=1 in vector.
-    - _2a._ copy last element to present element and pop_back in vector.
-    - _2b._ Remove element from unordered_map and Update mapping.
-```c
+* remove(ele): Eg: remove(9)
+```
+- Search `<key,value>` in map. Found `<key=9,val=1>`
+- Goto index=val=1 in vector.
+- copy last element to present element and pop_back in vector.
+- Remove element from unordered_map and Update mapping.
+
 After copy, vector:
     element   4    5    1    5
     --------|---|----|----|-----|
@@ -56,13 +69,12 @@ Update, unoredered_map:
     ----------------------|------|-----|------|
     value=index_in_vector    1      0     2    
 ```
-<a name=comp></a>
-#### Complexity
-- **Time:** Insert,Delete,getRandom: O(1)
-- **Space:** O(2n)
+=== Complexity
+* Time: Insert,Delete,getRandom: O(1)
+* Space: O(2n)
 
-#### Code
-<a name=cpp></a>
+=== Code
+==== CPP
 ```cpp
 //RandomizedSet.cpp
 class RandomizedSet {
@@ -136,9 +148,9 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(runTests main.cpp)
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
 ```
-<a name=rust></a>
-- **Rust**
-[rand, thread_rng](/Languages/Programming_Languages/Rust/Crates_Packages_Modules)
+
+==== Rust
+link:/Languages/Programming_Languages/Rust/Crates_Packages_Modules[rand, thread_rng]
 ```rs
 use std::{collections::HashMap, convert::TryInto};
 use rand::{thread_rng, Rng};
