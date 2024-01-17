@@ -1,0 +1,73 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/unique-number-of-occurrences/[1207. Unique Number of Occurrences]
+Given an array of integers arr, return true if the number of occurrences of each value in the array is unique or false otherwise.
+
+```c
+Example 1:
+
+Input: arr = [1,2,2,1,1,3]
+Output: true
+Explanation: The value 1 has 3 occurrences, 2 has 2 and 3 has 1. No two values have the same number of occurrences.
+```
+
+== Approach-1. HashMap + HashSet O(n)
+=== Logic
+* Count occurences in hashmap. unordered_map<int, int>
+* iterate over hashmap and insert values into hashset. unordered_set<int>
+* if value already present in hashset, return false
+* if complete hashmap is finished and value not found in hashset return true
+
+=== Complexity
+* Time: O(n): fill in hashmap. O(n):iterate and fill in hashset
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        unordered_map<int, int> umCount;
+        unordered_set<int> us;
+        for (auto&i:arr)
+            umCount[i]++;
+        for (const auto&[key, value]:umCount) {
+            if (us.find(value) == us.end())
+                us.insert(value);
+            else
+                return false;
+        }
+        return true;
+    }
+};
+```
+
+==== Rust
+```rs
+use std::collections::{HashMap, HashSet};
+impl Solution {
+    pub fn unique_occurrences(arr: Vec<i32>) -> bool {
+        let mut hm:HashMap<i32, i32> = HashMap::new();
+        let mut hs:HashSet<i32> = HashSet::new();
+        for i in 0..arr.len() {
+            if let Some(val) = hm.get_mut(&arr[i]) {
+                *val += 1;
+            } else {
+                hm.insert(arr[i],1);
+            }
+            OR
+            //*hm.entry(arr[i]).or_insert(0) += 1;
+        }
+        for (key, value) in &hm {
+            if let Some(v) = hs.get(&value) {
+                return false;
+            } else {
+                hs.insert(*value);
+            }
+        }
+        true
+    }
+}
+```
