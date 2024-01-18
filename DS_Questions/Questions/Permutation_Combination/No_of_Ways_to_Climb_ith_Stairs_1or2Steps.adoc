@@ -1,13 +1,12 @@
-**Climbing Stairs**
-- [Approach-1, Recursion. TLE. 2<sup>n</sup>](#a1)
-- [Approach-2, DP. Time Complexity=O(n)](#a2)
-- [Approach-3, Direct nth Fibancci number](#a3)
+:toc:
+:toclevels: 6
 
 
-### [Climbing Stairs / Jumping Stairs](https://leetcode.com/problems/climbing-stairs/)
-- There are n stairs, a person standing at the bottom wants to reach the top. 
-- The person can climb either 1 stair or 2 stairs at a time. Count the number of ways, the person can reach the top.
-<img src=https://media.geeksforgeeks.org/wp-content/uploads/nth-stair.png width=200/>
+== link:https://leetcode.com/problems/climbing-stairs/[70. Climbing Stairs / Jumping Stairs]
+There are n stairs, a person standing at the bottom wants to reach the top. 
+The person can climb either 1 stair or 2 stairs at a time. Count the number of ways, the person can reach the top.
+
+image:https://media.geeksforgeeks.org/wp-content/uploads/nth-stair.png?raw=true[stairs]
 
 ```c
 Example-1:
@@ -22,9 +21,9 @@ Example-3:
 Stairs = 4
 Ways: 5. 1111, 211, 221, 212, 122
 ```
-<a name=a1></a>
-### Approach-1  //Brute Force. [Recursion](/DS_Questions/Algorithms)
-#### Logic
+
+== Approach-1  //Brute Force. link:/DS_Questions/Algorithms[Recursion]
+=== Logic
 - We take all possible step combinations i.e. 1 and 2, at every stair.
 - if we reach last stair(return 1)
 - if we reach beyond last stair(retun 0)
@@ -37,10 +36,12 @@ Ways: 5. 1111, 211, 221, 212, 122
 	/\   /\    /\  /\
        3 4   4 5   4 5 5 6
 ```
-#### Complexity
-- **Space:** O(1)
-- **Time:** [Recursion=O(2<sup>n</sup>)](/DS_Questions)
-#### Code
+=== Complexity
+* Space: O(1)
+* Time: link:/DS_Questions[Recursion=O(2<sup>n</sup>)]
+
+=== Code
+==== CPP
 ```cpp
 class Solution {
     int stairs;
@@ -62,36 +63,39 @@ int main(){
   cout << climbStairs (4);
 }
 ```
-<a name=a2></a>
-### Approach-2  //[Dynamic Programming](/DS_Questions/Algorithms)   //O(n)
-#### [Identifying DP problem](/DS_Questions/Algorithms/Dynamic_Programming/README.md#i)
+
+== Approach-2  //[Dynamic Programming](/DS_Questions/Algorithms)   //O(n)
+=== link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#i[Identifying DP problem]
 It says Count the number of ways
-#### Logic
-- Above recursion solution calculates same subproblem again and again. Repeative subproblems, hence DP.
-- We will follow [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
-- **[Steps using DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)**
-  - _1. Define State:_ Here state=number of ways to jump to ith stair
-  - _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
+
+=== Logic
+* Above recursion solution calculates same subproblem again and again. Repeative subproblems, hence DP.
+* We will follow [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
+* link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem[Steps using DP Template]
+** _1. Define State:_ Here state=number of ways to jump to ith stair
+** _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
 int dp(i) {     //For climbing stairs
   //returns number of ways to climb to ith step
 }
 ```
-  - _3. Relationship between different states:_ Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
+** _3. Relationship between different states:_ Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
 ```c
   dp(i) = dp(i-1) + dp(i-2);
 ```
-  - _4. Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
+** _4. Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
 ```c
 start ___  ___
       1st  2nd
 ```
-  - _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
+** _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
 
-#### Complexity
-- **Space:** O(n+1)
-- **Time:** O(n)
-#### Code
+=== Complexity
+* Space: O(n+1)
+* Time: O(n)
+
+=== Code
+==== CPP
 ```cpp
 class Solution {
     unordered_map<int,int> um;
@@ -110,9 +114,10 @@ public:
     }
 };
 ```
-<a name=a3></a>
-### Approach-3  //[Directly finding nth fibonacci series number](/DS_Questions/Algorithms/Dynamic_Programming)
-- **Code**
+
+== Approach-3. link:/DS_Questions/Algorithms/Dynamic_Programming[Directly finding nth fibonacci series number]
+=== Code
+==== CPP
 ```c++
 class Solution {
 public:
