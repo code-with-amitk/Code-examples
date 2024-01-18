@@ -64,7 +64,7 @@ int main(){
 }
 ```
 
-== Approach-2  //[Dynamic Programming](/DS_Questions/Algorithms)   //O(n)
+== Approach-2. link:/DS_Questions/Algorithms[Dynamic Programming]. O(n)
 === link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#i[Identifying DP problem]
 It says Count the number of ways
 
