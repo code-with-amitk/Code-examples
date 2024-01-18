@@ -115,6 +115,27 @@ public:
 };
 ```
 
+==== Rust (Beat 100%)
+```rs
+use std::collections::HashMap;
+impl Solution {
+    fn dp(i: i32, mut hm: &mut HashMap<i32, i32>) -> i32 {
+       if let Some(&value) = hm.get(&i) {
+            return value;
+        } 
+        let value = Self::dp(i - 1, &mut hm) + Self::dp(i - 2, &mut hm);
+        hm.insert(i, value);
+        value
+    }
+    pub fn climb_stairs(n: i32) -> i32 {
+        let mut hm:HashMap<i32, i32> = HashMap::new();
+        hm.insert(1,1);                 //No of ways to reach step-1 is 1
+        hm.insert(2,2);  //No of ways to reach step-2 are 2
+        Self::dp(n, &mut hm)
+    }
+}
+```
+
 == Approach-3. link:/DS_Questions/Algorithms/Dynamic_Programming[Directly finding nth fibonacci series number]
 === Code
 ==== CPP
