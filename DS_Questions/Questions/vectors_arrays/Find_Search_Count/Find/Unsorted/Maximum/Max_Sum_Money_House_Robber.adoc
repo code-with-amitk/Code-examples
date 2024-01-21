@@ -1,0 +1,128 @@
+:toc:
+:toclevels: 6
+
+### link:https://leetcode.com/problems/house-robber/[House Robber / Maximum sum such that no two elements are adjacent]
+* You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed.
+* The only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+* Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+```c
+Example 1:
+Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+
+Example 2:
+Input: nums = [2,3,4,1,9,10]
+Output: 16
+Explanation: 
+  2,4,9 = 15
+  3,1,10 = 14
+  2,4,10 = 16
+```
+
+== Approach-1, Recursion
+
+
+== Approach-2, Dynamic Programming
+link:/DS_Questions/Algorithms/Dynamic_Programming#i[Why this is DP Problem]
+
+=== link:/DS_Questions/Algorithms/Dynamic_Programming#tem[DP Logic = DP Template]
+1. Define state:_ Max Money which i can loot when I am at house number=i
+2. Function for calculating state:_ Finding recurrance relationship
+* I am at house=i
+** Scenario-1: I donot rob present house. `Money I have = dp(i-1)`
+** Scenario-2: I rob present house. Then I must not have robbed prev house. `Money I have = dp(i-2) + num[i]`
+```c
+  int dp (int i) {    //Returns money when i am at house=i
+    return max (scenario_1, scenario_2)
+  }
+```
+** 3. Base case: Find base case using clues in problem description or using logical thinking.
+```c
+  dp(0) = num[0]                  //if there is only 1 house I can rob that only
+  dp(1) = max(num[0], num[1])     //if there are 2 houses, I can start with max of 2
+```
+** 4. Memorize/Cache/Memoization: Remember the Money looted from prev houses to find max money that can be looted from present house.
+
+=== Code
+==== CPP Top Down Approach
+link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#td[What is Top Down]
+```cpp
+class Solution {
+    vector<int> vecMoney;
+public:
+    
+    //state: Max money which I can loot when i am at house=i
+    int dp(int i, vector<int>& nums, vector<int>& vecMoney) {
+        int ret = -1;
+        if (i==0)
+            ret = vecMoney[0];
+        if (i==1)
+            ret = vecMoney[1];
+        
+        if (vecMoney[i] == -1)
+            vecMoney[i] = max ((nums[i] + dp(i-2, nums, vecMoney)), dp(i-1, nums, vecMoney));
+        else
+            ret = vecMoney[i];
+
+        return ret;
+    }
+    
+    int rob(vector<int>& nums) {
+        if (nums.size() == 1)
+            return nums[0];
+        if (nums.size() == 2)
+            return max(nums[0], nums[1]);
+
+        //Aim: to fill vecMoney
+        //Ans: Last element of vecMoney
+        vector<int> vecMoney(nums.size(), -1);
+        vecMoney[0] = nums[0];
+        vecMoney[1] = max(nums[0],nums[1]);
+        
+        int _ret;
+        for (int i = 2; i<nums.size(); ++i)
+            _ret = dp (i, nums, vecMoney);
+        
+        return vecMoney.back();
+    }
+};
+```
+==== Rust
+```rs
+impl Solution {
+    //state: Max money which I can loot when i am at house=i
+    fn dp(i: usize, nums: &Vec<i32>, vec_money: &mut Vec<i32>) -> i32{
+        if vec_money[i] == -1 {
+            vec_money[i] = std::cmp::max(
+                            nums[i] + Solution::dp(i - 2, nums, vec_money), 
+                            Solution::dp(i - 1, nums, vec_money));
+        }
+        vec_money[i]
+    }
+    pub fn rob(nums: Vec<i32>) -> i32 {
+        if (nums.len() == 1) {
+            return nums[0];
+        }
+        if (nums.len() == 2) {
+            return std::cmp::max(nums[0], nums[1]);
+        }
+
+        //Aim: to fill vecMoney
+        //Ans: Last element of vecMoney
+        let mut vec_money = vec![-1; nums.len()];
+        vec_money[0] = nums[0];
+        vec_money[1] = std::cmp::max(nums[0], nums[1]);
+        
+        for i in 2..nums.len() {
+            Solution::dp(i, &nums, &mut vec_money);
+        }
+        
+        *vec_money.last().unwrap()
+    }
+}
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(n) = Taking vecMoney equal to input size, which stores the max looted money till present house.
