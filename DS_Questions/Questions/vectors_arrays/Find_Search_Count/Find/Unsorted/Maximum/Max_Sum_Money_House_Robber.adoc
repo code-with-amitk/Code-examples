@@ -27,8 +27,8 @@ Explanation:
 link:/DS_Questions/Algorithms/Dynamic_Programming#i[Why this is DP Problem]
 
 === link:/DS_Questions/Algorithms/Dynamic_Programming#tem[DP Logic = DP Template]
-1. Define state:_ Max Money which i can loot when I am at house number=i
-2. Function for calculating state:_ Finding recurrance relationship
+1. Define state: Max Money which i can loot when I am at house number=i
+2. Function for calculating state: Finding recurrance relationship
 * I am at house=i
 ** Scenario-1: I donot rob present house. `Money I have = dp(i-1)`
 ** Scenario-2: I rob present house. Then I must not have robbed prev house. `Money I have = dp(i-2) + num[i]`
