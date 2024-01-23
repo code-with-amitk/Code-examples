@@ -81,3 +81,25 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+use std::collections::HashSet;
+impl Solution {
+    pub fn max_length(arr: Vec<String>) -> i32 {
+        let mut output:Vec<String> = vec![String::from("")];
+        let mut max_len = 0;
+        for word in arr {
+            for i in 0..output.len() {
+                let mut temp = format!("{}{}",output[i], &word);
+                let mut us:HashSet<char> = temp.chars().collect();
+                if temp.len() != us.len() {
+                    continue;
+                }
+                output.push(temp.clone());
+                max_len = std::cmp::max(max_len, temp.len());
+            }
+        }
+        max_len as i32
+    }
+}
+```
