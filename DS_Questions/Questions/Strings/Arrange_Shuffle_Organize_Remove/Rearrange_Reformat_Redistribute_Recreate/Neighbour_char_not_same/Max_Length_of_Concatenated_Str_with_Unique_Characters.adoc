@@ -26,7 +26,7 @@ Output: 2
 Explanation: skip "aa" string since it has repetative characters
 ```
 
-== Approach-1. Using vector
+== Approach-1. Check All Combinations using hashset
 === Logic
 1. Take a vector in which we will note all valid combinations
 2. Create word which need to be placed into vector by combining input word and string.
