@@ -137,7 +137,7 @@ dp[5][7]                         //s1.size()+1, s2.size()+1. Represents lcs till
 dp[2][3] = 1         //Means length of LCS in `s1[0..1]=xb` and `s2[0..2]=abc` ie b is 1
 dp[3][4] = 2         //Means length of LCS in `s1[0..2]=xbd` and `s2[0..3]=abcd` ie bd is 2
 ```
-2. Start iterting dp array from `[1][1]`. Check 1st character of `s1[0] = x` in s2.
+* 2. Start iterting dp array from `[1][1]`. Check 1st character of `s1[0] = x` in s2.
 ```c++
  dp[1][1]=0         //s1[0]=x, s2[0]=a does not have any LCS
  dp[1][2]=0         //s1[0]=x, s2[0..1]=ab does not have any LCS
@@ -146,7 +146,7 @@ dp[3][4] = 2         //Means length of LCS in `s1[0..2]=xbd` and `s2[0..3]=abcd`
  - dp[1][5]=0       //s1[0]=x, s2[0..4]=abcde does not have any LCS
  - dp[1][6]=0       //s1[0]=x, s2[0..5]=abcdef does not have any LCS 
 ```
-3. Check 2 characters of `s1[0..1] = xb` in s2.
+* 3. Check 2 characters of `s1[0..1] = xb` in s2.
 ```cpp
 dp[2][1]=0         //s1[0..1]=xb, s2[0]=a does not have any LCS
 dp[2][2]=1         //s1[0..1]=xb, s2[0..1]=ab have LCS=b so dp=1
@@ -161,7 +161,7 @@ dp[2][6]=1         //s1[0..1]=xb, s2[0..5]=abcdef have only LCS=1 hence dp=1
  d  3  0  0  0  0  0  0
  y  4  0  0  0  0  0  0
 ```
-4. Check 3 characters of `s1[0..2] = xbd` in s2.
+* 4. Check 3 characters of `s1[0..2] = xbd` in s2.
 ```cpp
 dp[3][1]=0         //s1[0..2]=xbd, s2[0]=a does not have any LCS
 dp[3][2]=1         //s1[0..2]=xbd, s2[0..1]=ab have LCS = b
@@ -177,7 +177,7 @@ dp[3][6]=2         //s1[0..2]=xbd, s2[0..5]=abcdef have LCS = bd
  d  3  0  1  1  2  2  2
  y  4  0  0  0  0  0  0
 ```
-5. Check 4 characters of `s1[0..3] = xbdy` in s2.
+* 5. Check 4 characters of `s1[0..3] = xbdy` in s2.
 ```c++
 dp[4][1]=0         //s1[0..3]=xbdy, s2[0]=a does not have any LCS
 dp[4][2]=1         //s1[0..3]=xbdy, s2[0..1]=ab have LCS = b
@@ -192,10 +192,10 @@ dp[4][6]=2         //s1[0..3]=xbdy, s2[0..5]=abcdef have LCS = bd
  d  3  0  1  1  2  2  2
  y  4  0  1  1  2  2  2
 ```
-6. LCS of complete string=s1 and s2 would be last element `dp[4][6]`. Return `dp[m-1][n-1]`
+* 6. LCS of complete string=s1 and s2 would be last element `dp[4][6]`. Return `dp[m-1][n-1]`
 
 === Logic of Filling values in dp Array
-1. if character in s1 and s2 are not same, Calculate LCS using below formula:
+* 1. if character in s1 and s2 are not same, Calculate LCS using below formula:
 ```c++
   LCS(str1[0..m], str[0..n]) = max ( LCS(str1[0..m-1], str2[0..n]), LCS(str1[0..m], str2[0..n-1]) )
 
@@ -204,13 +204,14 @@ dp[4][6]=2         //s1[0..3]=xbdy, s2[0..5]=abcdef have LCS = bd
     //above=dp[3][4]=LCS(xbd,abcd)
     //back=dp[4][3]=LCS(xbdy,abc)
 ```
-2. if character in s1 and s2 are same, Calculate LCS using below formula:
+* 2. if character in s1 and s2 are same, Calculate LCS using below formula:
 ```c++
   LCS(str1[0..m], str[0..n]) = LCS(str1[0..m-1], str2[0..n-1]) + 1
 
   if (str1[i] == str2[j])
     dp[3][4] = LCS(xbd,abcd) = LCS(xb, abc) + 1;
 ```
+
 === Code
 ==== CPP98
 ```c++
