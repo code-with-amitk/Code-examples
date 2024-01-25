@@ -4,7 +4,7 @@
 <a name=w></a>
 ## Actix http Webserver exposing REST API
 - [How REST Works](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST/README.md#how). 
-- Remember REST-API exposes a resource via [HTTP CRUD Methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) and allows to perform operations on it. 
+- Remember REST-API exposes a resource via [HTTP CRUD Methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc) and allows to perform operations on it. 
 ```rs
 //Here we have taken Resource=user.
 
