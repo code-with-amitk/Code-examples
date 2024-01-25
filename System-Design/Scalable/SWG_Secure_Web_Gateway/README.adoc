@@ -3,8 +3,9 @@
 
 == SWG (secure web gateway)?
 * SWG is network security solution that helps organizations protect: 
-1. Their users and data from web-based threats(internet-borne viruses, malware)
+1. Their users and data from web-based threats(internet-borne viruses, malware, detect advanced threats)
 2. Enforce security policies for internet usage.
+* Scope: Companies today use an average of 2,415 cloud apps with  89% of their users active in the cloud. Over 98% of these apps are unmanaged
 
 == 1. Requirements
 === Functional
