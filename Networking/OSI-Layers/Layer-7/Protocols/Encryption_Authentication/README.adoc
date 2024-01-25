@@ -39,6 +39,7 @@ sequenceDiagram
  
  rect rgb(204,255, 204)
  par Get Signed Cert from Root CA
+ note over c: Generate public+pvt keypair
  c ->> r: publicKey+CSR
  r -->>c: SIGNED Client.crt<br>+ RootCA.crt
  Note over c:Client cert is SIGNED by ROOT CA<br><br>CA Added his Digital Signature to cert<br>CA encrypted Hash of cert with its PVt key
