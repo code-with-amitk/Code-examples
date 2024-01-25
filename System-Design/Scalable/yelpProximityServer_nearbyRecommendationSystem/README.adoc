@@ -6,45 +6,85 @@
 - [5. Database Schema](#d)
 - [6. Requirements(Non functional)](#rn)
 
+:toc:
+:toclevels: 6
 
-## Yelp/Proximity Server/Google Maps
-- **What?** Used to discover nearby places(eg: schools near me), events, restaurants, theaters, etc.
-- Yelp App on phone sends `(lattitude,longitude)` of user's device and yelp server sends locations within `10 km` radius of `(lattitude,longitude)` to the user.
+
+== Yelp/Proximity Server/Nearby Recommendation System
+* What? Used to discover nearby places(eg: schools near me), events, restaurants, theaters, etc.
+* Yelp App on phone sends `(lattitude,longitude)` of user's device and yelp server sends locations within `10 km` radius of `(lattitude,longitude)` to the user.
   - (lattitude,longitude) are like coordinates of point on earth.
 
-<a name=r></a> 
-### 1. Requirements(Functional)
-- Add/delete/update places.
-- Given `(longitude, lattitude)` nearby places should be listed for given radius.
-- Users should be able to give reviews, ratings, open/close times, pictures, text, and a rating
+== 1. Requirements
+=== Functional
+|| CRUD(Create=POST, Read=GET, Update, Delete)
+[[req-1]]
+1. Add places  //POST
+[[req-2]]
+2. Update Places
+[[req-3]]
+3. Delete places
+[[req-4]]
+4. Given `(longitude,lattitude)` nearby places should be listed for given radius.  //GET
+[[req-5]]
+5. Users should be able to give reviews, ratings, open/close times, pictures etc.    //POST
 
-<a name=b></a>
-### 2. BOE
-- **Storage Estimates:** 
+== 2. BOE
+* Storage Estimates:
+```c
   - 500k Places to be stored
   - Each place {string name, string address, double lat, double long, `vector<string> reviews`, string photos_url}  = 2000 KB
   - 500k * 2000k = 1 TB / year
-- **QPS:** 10k user/sec
-  
-<a name=sa></a> 
-### 3. System APIs
-**search()  //Get Place/person/thing information**
 ```
-json search(dev_key, searchTerm, struct userLocation {lat, long}, radius=10km, max_results=20, category(optional), sort(optional))
-Parameters:
-  - dev_key: Id of registered user
-  - searchTerm: This is the string which is to be searched
-  - struct userLocation{lat, long}: Location of user performing the search
-  - radius(optional): Radius in meters to be searched
-  - maximum_results_to_return (number): Number of strings to be returned as result.
-  - category(optional): Type of service resturant, gym, hotel etc.
-  - sort (Optional) Best matched (0 - default), Minimum distance (1), Highest rated (2).
-Returns: JSON containing information about 
-  - list of businesses matching the search query. 
-  - reviews
-  - photos
-  - ratings
-  - open/close time  
+* QPS
+```c
+  - Assume 10k user are accessing per sec
+```
+* Bandwidth Estimates
+```c
+  - 10k req/s.
+  - 1 request = 
+```
+  
+== 3. System APIs
+* <<req-1, add_place>>
+```c
+  POST https://url/v1/add_place
+  header {
+    Authorization: {Bearer "API_KEY_TOKEN"},
+    lat: "",
+    longitude: ""
+  }
+  body {
+    name, description, picture_url, video_url
+  }
+```
+
+* <<req-4, search_place>>  //Get Place/person/thing information**
+```c
+  GET https://url/v1/search_place
+  header {
+    Authorization: {Bearer "API_KEY_TOKEN"},
+    userLocation {
+      lat: "",
+      long: "",
+    },
+    radius: 10km,  //default
+    sort: optional,
+    category: optional
+  }
+  //Returns json:
+  {
+    {            //business-1
+      name: business-name
+      photo: photo_url,
+      ratings: array<ratings>,
+      open close time: string
+    },
+    {
+      //business-2
+    },
+  }
 ```
 **2. update() / delete()**
 ```c
