@@ -61,9 +61,9 @@ sequenceDiagram
 
  rect rgb(191, 223, 255)
  par HANDSHAKE PROTOCOL=Select Cipher Suite, Random Numbers, Compression Method
- Note over c: ssl3_connect()<br>ssl3_accept()<br>send_clienthello()
+ Note over c: ssl3_connect()<br>ssl3_accept()<br>send_clienthello()<br>Send RNc
  c ->> s:Client_Hello |version|SessionId=0|Cipher_suite_list|Random_no=RNc|Comp_methods|
- Note over s: start_handshake() <br> send_hello_req()
+ Note over s: start_handshake() <br> send_hello_req()<br><br>Send RNs
  s ->> c: Server_Hello|version|SessionId=4|Cipher_suite_selected|Random_no=RNs|Comp_method_selected|
  Note over c: Cipher suite <br> Comp Method selected
  s ->> c: SERVER-CERT + DS-of-CA |version|Len| [server.crt + DS-of-CA]
