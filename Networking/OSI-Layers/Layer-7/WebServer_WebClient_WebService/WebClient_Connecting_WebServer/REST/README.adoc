@@ -8,7 +8,7 @@
 - [Good Youtube Video](https://www.youtube.com/watch?v=SLwpqD8n3d0)
 
 === REST API
-Same as [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea)
+Same as link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc[HTTP CRUD methods]
 
 === How REST Works?
 ```c
