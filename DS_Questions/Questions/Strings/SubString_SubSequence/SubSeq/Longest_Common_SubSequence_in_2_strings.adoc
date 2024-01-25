@@ -238,6 +238,8 @@ dp[4][6]=2         //s1[0..3]=xbdy, s2[0..5]=abcdef have LCS = bd
 class Solution {
 public:
     int longestCommonSubsequence(string s1, string s2) {
+        int m = s1.size();
+        int n = s2.size();
         vector<vector<int>> dp(m+1, vector<int>(n+1,0));
 
         for (auto its1 = s1.begin()+1; its1 != s1.end()+1; ++its1) {
@@ -252,7 +254,7 @@ public:
                     dp[i][j] = max (dp[i - 1][j], dp[i][j - 1]);
             }
         }
-      return dp[s1.size()][s2.size()];
+      return dp[m][n];
     }
 };
 ```
