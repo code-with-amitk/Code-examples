@@ -17,7 +17,7 @@
 
 == 1. Requirements
 === Functional
-|| CRUD(Create=POST, Read=GET, Update, Delete)
+> CRUD(Create=POST, Read=GET, Update, Delete)
 [[req-1]]
 1. Add places  //POST
 [[req-2]]
