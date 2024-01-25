@@ -258,3 +258,24 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn longest_common_subsequence(s1: String, s2: String) -> i32 {
+        let m = s1.len();
+        let n = s2.len();
+         let mut dp: Vec<Vec<i32>> = vec![vec![0; n + 1]; m + 1];
+
+        for i in 1..m+1 {
+            for j in 1..n+1 {
+                if s1.chars().nth(i - 1) == s2.chars().nth(j - 1) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = std::cmp::max (dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        dp[m][n]
+    }
+}
+```
