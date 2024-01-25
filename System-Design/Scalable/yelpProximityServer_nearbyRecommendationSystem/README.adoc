@@ -1,11 +1,3 @@
-**Yelp or Proximity Server**
-- [1. Requirements](#r)
-- [2. BOE Calculations](#b)
-- [3. System APIs](#s)
-- [4. HLD](#h)
-- [5. Database Schema](#d)
-- [6. Requirements(Non functional)](#rn)
-
 :toc:
 :toclevels: 6
 
@@ -17,7 +9,7 @@
 
 == 1. Requirements
 === Functional
-> CRUD(Create=POST, Read=GET, Update, Delete)
+> CRUD(Create=POST, Read=GET, Update=PUT, Delete=DELETE)
 [[req-1]]
 1. Add places  //POST
 [[req-2]]
@@ -43,11 +35,15 @@
 * Bandwidth Estimates
 ```c
   - 10k req/s.
-  - 1 request = 
+  - 1 GET request = 2KB
+  - 1 UPDATE request = 4KB  //Avg of 2=3KB
+
+  Incoming bytes=
+  10k x 3k = 30MBytes/sec
 ```
   
 == 3. System APIs
-* <<req-1, add_place>>
+* 1. <<req-1, add_place>>. HTTP POST
 ```c
   POST https://url/v1/add_place
   header {
@@ -60,7 +56,24 @@
   }
 ```
 
-* <<req-4, search_place>>  //Get Place/person/thing information**
+* 2. <<req-2, update_place>>  //Update. HTTP PUT   Place/person/thing information
+```c
+  GET https://url/v1/search_place
+  header {
+    Authorization: {Bearer "API_KEY_TOKEN"},
+    sort: optional,
+    business-id: id    //unique key
+  }
+  body {              //Server will compare the data and update the changed
+    name, description, picture_url, video_url,
+    userLocation {
+      lat: "",
+      long: "",
+    },
+  }
+```
+
+* 4. <<req-4, search_place>>  //HTTP GET.     Place/person/thing information
 ```c
   GET https://url/v1/search_place
   header {
@@ -86,17 +99,8 @@
     },
   }
 ```
-**2. update() / delete()**
-```c
-struct old_info {lattitude, longitude, name, desc}
-struct new_info {lattitude, longitude, name, desc}
-HttpCode update (old_info, new_info)
 
-HttpCode delete (longitude, lattitude, name)
-```
-
-<a name=h></a>
-### 4. HLD
+== 4. HLD
 - Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree format](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
 - Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids. 1 grid can reside on multiple servers.
 ```c
