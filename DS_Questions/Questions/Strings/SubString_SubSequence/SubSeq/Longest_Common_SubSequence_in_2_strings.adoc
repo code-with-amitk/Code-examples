@@ -62,6 +62,7 @@ int main() {
 == Approach-2, Iteration, Brute Force. O(mn)
 === Logic
 * Check every occurance of char from str1 in st2 using 2 for loops
+
 === Code
 ==== CPP
 ```c
