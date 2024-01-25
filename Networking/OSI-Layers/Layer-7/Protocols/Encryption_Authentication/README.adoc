@@ -89,8 +89,10 @@ sequenceDiagram
  Note over c:Generate Pre-Master-Secret-Key(from RNc,RNs)<br>Encrypt using Server's Public-key=PMSK
  c->>s:CLIENT-KEY-EXCHANGE |version|length|type=22(handshake)|PMSK|
  Note over s:Decrypt Pre-Master-Secret-Key using Pvt Key
- Note over c:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)<br> Generate Session-key(from Master-key)
- Note over s:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)<br> Generate Session-key(from Master-key)
+ Note over c:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)
+ Note over s:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)
+ Note over c:Generate Session-key(from Master-key)
+ Note over s:Generate Session-key(from Master-key)
 
 rect rgb(191, 223, 255)
 par RECORD PROTOCOL start
