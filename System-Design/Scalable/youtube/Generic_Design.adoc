@@ -5,13 +5,12 @@
 
 === Requirements
 
-==== Functional
-* Video: Upload, Watch, search, Comment, like, dislike, share
-* Channel: Can create, Statistics(Views, comments etc)
-* Subscribe, Support ads, Live Stream
+==== Functional (MVP(Min viable Product). CRUD(Create=POST,Read=GET,Update,Delete))
+* Video: Upload, Watch, search, Comment, like, dislike, share  //Create
+* Channel: Can create, Statistics(Views, comments etc)        //Create
+* Subscribe, Support ads, Live Stream                          //Read
 
 ==== Non-Functional
-* Fast: Video upload, watching should be fast
 * highly available
 * scalable
 
