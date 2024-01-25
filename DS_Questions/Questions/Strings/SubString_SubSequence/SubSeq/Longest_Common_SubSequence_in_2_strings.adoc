@@ -1,16 +1,10 @@
-**[Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)**
-- [Problem](#p)
-- [Approach-1, Recursion, O(n<sup>2</sup>)](#a1)
-- [Approach-2, Iteration, O(mn)](#a2)
-- **Approach-3, Dynamic Programming**
-  - [Logic](#l2)
-  - [Logic of Filling values in dp Array](#l21)
-  - [Code](#c2)
+:toc:
+:toclevels: 6
 
-<a name=p></a>
-### Longest Common Subsequence
-- Given two strings str1,str2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
-- [What is Subsequence](/DS_Questions/Questions/Strings/SubString_SubSequence#s)
+== link:https://leetcode.com/problems/longest-common-subsequence/[Longest Common Subsequence]
+Given two strings str1,str2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
+
+link:/DS_Questions/Questions/Strings/SubString_SubSequence#s[What is Subsequence]
 ```c
 Input: s1 = "abcde", s2 = "ace" 
 Output: 3  
@@ -20,12 +14,11 @@ Example-2: str1 = “AGGTAB”, str2 = “GXTXAYB”
           Answer = “GTAB” of length 4. 
 ```
 
-<a name=a1></a>
-### Approach-1    //Recursive. O(2<sup>n</sup>)
-**Logic** 
-- Enumerate all subsequences of both given sequences and find LCS.
-- Match every character with other character. 
-- PROBLEM: Many subproblems which are solved again and again eg:"se,e". And in bigger string these repeated recurions will be more.
+== Approach-1    //Recursive. O(2^n^)
+=== Logic
+* Enumerate all subsequences of both given sequences and find LCS.
+* Match every character with other character. 
+* PROBLEM: Many subproblems which are solved again and again eg:"se,e". And in bigger string these repeated recurions will be more.
 ```c
 str1=sea, str2=eat
                 sea, eat
@@ -36,7 +29,8 @@ str1=sea, str2=eat
           /           /       \
          s,0        s,0       0,a
 ```
-**Code**
+=== Code
+==== CPP
 ```c++
 class Solution {
 public:
@@ -65,10 +59,11 @@ int main() {
 }
 ```
 
-<a name=a2></a>
-### Approach-2, Iteration, Brute Force. O(mn)
-#### Logic
-- Check every occurance of char from str1 in st2 using 2 for loops
+== Approach-2, Iteration, Brute Force. O(mn)
+=== Logic
+* Check every occurance of char from str1 in st2 using 2 for loops
+=== Code
+==== CPP
 ```c
 #include <iostream>
 #include <string>
@@ -116,16 +111,16 @@ int main() {
 }
 ```
 
-<a name=a3></a>
-### Approach-3, [Dynamic Programmming](/DS_Questions/Algorithms/Dynamic_Programming) O(mn) //m=strlen(str1), n=strlen(str2)
-#### [How this is DP Problem?](/DS_Questions/Algorithms/Dynamic_Programming#i)
-- _1. Overlapping subproblem:_ Do we need to solve a problem again and again? Yes
-- _2. This is optimization problem:_ Optimization problem involves finding 1 best solution out of many.
-<a name=l2></a>
-#### [Logic = DP Template](/DS_Questions/Algorithms/Dynamic_Programming#tem)
-- _1. Define State:_ state = LCS till this point.
-- _2. Function to return State:_ 
-- _1._ As in DP, Take 2-D array `dp[s1.size()+1][s2.size()+1]` & init=0. This array represents longest Common Subsequence till that element.
+== Approach-3, link:/DS_Questions/Algorithms/Dynamic_Programming[Dynamic Programmming] O(mn) //m=strlen(str1), n=strlen(str2)
+
+=== link:/DS_Questions/Algorithms/Dynamic_Programming#i[How this is DP Problem?]
+* 1. Overlapping subproblem: Do we need to solve a problem again and again? Yes
+* 2. This is optimization problem: Optimization problem involves finding 1 best solution out of many.
+
+=== Logic = DP Template
+* 1. Define State: state = LCS till this point.
+* 2. Function to return State:
+* 1. As in DP, Take 2-D array `dp[s1.size()+1][s2.size()+1]` & init=0. This array represents longest Common Subsequence till that element.
 ```c
 s1="xbdy", s2="abcdef". LCS=bd
 
@@ -142,7 +137,7 @@ dp[5][7]                         //s1.size()+1, s2.size()+1. Represents lcs till
 dp[2][3] = 1         //Means length of LCS in `s1[0..1]=xb` and `s2[0..2]=abc` ie b is 1
 dp[3][4] = 2         //Means length of LCS in `s1[0..2]=xbd` and `s2[0..3]=abcd` ie bd is 2
 ```
-_2._ Start iterting dp array from `[1][1]`. Check 1st character of `s1[0] = x` in s2.
+2. Start iterting dp array from `[1][1]`. Check 1st character of `s1[0] = x` in s2.
 ```c++
  dp[1][1]=0         //s1[0]=x, s2[0]=a does not have any LCS
  dp[1][2]=0         //s1[0]=x, s2[0..1]=ab does not have any LCS
@@ -151,7 +146,7 @@ _2._ Start iterting dp array from `[1][1]`. Check 1st character of `s1[0] = x` i
  - dp[1][5]=0       //s1[0]=x, s2[0..4]=abcde does not have any LCS
  - dp[1][6]=0       //s1[0]=x, s2[0..5]=abcdef does not have any LCS 
 ```
-_3._ Check 2 characters of `s1[0..1] = xb` in s2.
+3. Check 2 characters of `s1[0..1] = xb` in s2.
 ```cpp
 dp[2][1]=0         //s1[0..1]=xb, s2[0]=a does not have any LCS
 dp[2][2]=1         //s1[0..1]=xb, s2[0..1]=ab have LCS=b so dp=1
@@ -166,7 +161,7 @@ dp[2][6]=1         //s1[0..1]=xb, s2[0..5]=abcdef have only LCS=1 hence dp=1
  d  3  0  0  0  0  0  0
  y  4  0  0  0  0  0  0
 ```
-_4._ Check 3 characters of `s1[0..2] = xbd` in s2.
+4. Check 3 characters of `s1[0..2] = xbd` in s2.
 ```cpp
 dp[3][1]=0         //s1[0..2]=xbd, s2[0]=a does not have any LCS
 dp[3][2]=1         //s1[0..2]=xbd, s2[0..1]=ab have LCS = b
@@ -182,7 +177,7 @@ dp[3][6]=2         //s1[0..2]=xbd, s2[0..5]=abcdef have LCS = bd
  d  3  0  1  1  2  2  2
  y  4  0  0  0  0  0  0
 ```
-_5._ Check 4 characters of `s1[0..3] = xbdy` in s2.
+5. Check 4 characters of `s1[0..3] = xbdy` in s2.
 ```c++
 dp[4][1]=0         //s1[0..3]=xbdy, s2[0]=a does not have any LCS
 dp[4][2]=1         //s1[0..3]=xbdy, s2[0..1]=ab have LCS = b
@@ -197,11 +192,10 @@ dp[4][6]=2         //s1[0..3]=xbdy, s2[0..5]=abcdef have LCS = bd
  d  3  0  1  1  2  2  2
  y  4  0  1  1  2  2  2
 ```
-_6._ LCS of complete string=s1 and s2 would be last element `dp[4][6]`. Return `dp[m-1][n-1]`
+6. LCS of complete string=s1 and s2 would be last element `dp[4][6]`. Return `dp[m-1][n-1]`
 
-<a name=l21></a>
-#### Logic of Filling values in dp Array
-- _1._ if character in s1 and s2 are not same, Calculate LCS using below formula:
+=== Logic of Filling values in dp Array
+1. if character in s1 and s2 are not same, Calculate LCS using below formula:
 ```c++
   LCS(str1[0..m], str[0..n]) = max ( LCS(str1[0..m-1], str2[0..n]), LCS(str1[0..m], str2[0..n-1]) )
 
@@ -210,15 +204,15 @@ _6._ LCS of complete string=s1 and s2 would be last element `dp[4][6]`. Return `
     //above=dp[3][4]=LCS(xbd,abcd)
     //back=dp[4][3]=LCS(xbdy,abc)
 ```
-_2._ if character in s1 and s2 are same, Calculate LCS using below formula:
+2. if character in s1 and s2 are same, Calculate LCS using below formula:
 ```c++
   LCS(str1[0..m], str[0..n]) = LCS(str1[0..m-1], str2[0..n-1]) + 1
 
   if (str1[i] == str2[j])
     dp[3][4] = LCS(xbd,abcd) = LCS(xb, abc) + 1;
 ```
-<a name=c2></a>
-#### Code
+=== Code
+==== CPP98
 ```c++
  int lcs( string& str1, string& str2, int m, int n ) {
     int m = s1.size();
@@ -237,4 +231,27 @@ _2._ if character in s1 and s2 are same, Calculate LCS using below formula:
     }
     return dp[m][n];
   }
+```
+==== CPP11
+```cpp
+class Solution {
+public:
+    int longestCommonSubsequence(string s1, string s2) {
+        vector<vector<int>> dp(m+1, vector<int>(n+1,0));
+
+        for (auto its1 = s1.begin()+1; its1 != s1.end()+1; ++its1) {
+                int i = distance(s1.begin(), its1);
+            for (auto its2 = s2.begin()+1; its2 != s2.end()+1; ++its2) {
+                int j = distance(s2.begin(), its2);
+                auto its1p = prev(its1);
+                auto its2p = prev(its2);
+                if (*its1p == *its2p) 
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                else
+                    dp[i][j] = max (dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+      return dp[s1.size()][s2.size()];
+    }
+};
 ```
