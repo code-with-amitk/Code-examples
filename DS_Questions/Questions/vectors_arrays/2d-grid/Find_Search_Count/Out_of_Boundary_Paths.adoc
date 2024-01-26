@@ -20,7 +20,7 @@ Output: 6
 === Code
 ==== CPP
 ```cpp
-vector<int> rowd = {-1,0,0,1};
+vector<int> rowd = {-1,0,0,1};    //4 directions from a cell
 vector<int> cold = {0,-1,1,0};
 class Solution {
     int count;
