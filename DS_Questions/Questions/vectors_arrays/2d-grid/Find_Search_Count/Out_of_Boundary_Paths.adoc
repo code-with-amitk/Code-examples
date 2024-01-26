@@ -1,0 +1,47 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/out-of-boundary-paths/[576. Out of Boundary Paths]
+There is an m x n grid with a ball. The ball is initially at the position [startRow, startColumn]. You are allowed to move the ball to one of the four adjacent cells in the grid (possibly out of the grid crossing the grid boundary). You can apply at most maxMove moves to the ball.
+
+Given the five integers m, n, maxMove, startRow, startColumn, return the number of paths to move the ball out of the grid boundary. Since the answer can be very large, return it modulo 109 + 7.
+
+image:https://assets.leetcode.com/uploads/2021/04/28/out_of_boundary_paths_1.png?raw=true[fig-1]
+```c
+Input: m = 2, n = 2, maxMove = 2, startRow = 0, startColumn = 0
+Output: 6
+```
+
+== Approach-1. Backtracking. TLE
+=== Logic
+* Backtrack all solutions
+* if you reach edges and move>0, then increment count by 1.
+
+=== Code
+==== CPP
+```cpp
+vector<int> rowd = {-1,0,0,1};
+vector<int> cold = {0,-1,1,0};
+class Solution {
+    int count;
+    int row, col;
+public:
+    void bt(int move, int r, int c) {
+        if (r<0 || c<0 || r>=row || c>=col) {
+            count ++;
+            return;
+        }
+        if ( move == 0)
+            return;
+        for (int i=0;i<4;i++) {
+            bt (move-1, r+rowd[i], c+cold[i]);
+        }
+    }
+    int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
+        row = m, col = n;
+        count = 0;
+        bt (maxMove, startRow, startColumn);
+        return count;
+    }
+};
+```
