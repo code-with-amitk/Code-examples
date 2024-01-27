@@ -6,3 +6,30 @@
 * How achieved? Divide large tables into smaller tables and defining relationships between them
 
 == Normalization forms
+|=== 
+|Form|Meaning
+
+|1NF(1st Normal Form)|Each column in a table must contain atomic (indivisible) values. No repeating values
+|2NF(2nd Normal Form)|Table must be in 1NF. All <<ffd, non-key attributes must be fully functionally dependent on the primary key>>
+|3NF(3rd Normal Form)|Table must be in 2NF. No transitive dependencies, meaning that non-key attributes should not depend on other non-key attributes
+|Boyce-Codd Normal Form (BCNF)|More stringent form of 3NF. Every determinant must be a candidate key
+|4NF(4th Normal Form)|Addresses situations where one non-key attribute depends on another non-key attribute, independent of the primary key
+|5NF(5th Normal Form)|Addresses cases where a table has a composite key, and some non-trivial join dependencies exist between the columns
+|===
+
+[[ffd]]
+== Terms
+=== 1. Non-key attributes must be fully functionally dependent on the primary key
+* Table: Stating course taken by student
+```
+| StudentID (Primary Key) | CourseID (Primary Key) | StudentName | CourseName | Professor |
+```
+* Primary key = student-id + course-id
+* Fully Functional Dependent Attribute: Value of that attribute is determined solely by the entire primary key, and not by a subset of the key
+```c
+Non-key attribute (StudentName)
+- should be uniquely determined by the combination of StudentID and CourseID, not just by StudentID alone or CourseID alone.
+
+Non-key attribute (CourseName)
+- The course name (CourseName) should be uniquely determined by the combination of StudentID and CourseID.
+```
