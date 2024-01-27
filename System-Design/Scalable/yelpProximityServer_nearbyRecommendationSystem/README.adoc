@@ -142,6 +142,9 @@ photo_url:
 * 5. Place video table
 
 * 6. Reviews table
+```c
+| reviewId(pk) | review-text-url | placeid(fk) | stars |
+```
 
 ### 5B. DATA PARTIONING
 #### 5B1. SHARDING BASED ON REGION
