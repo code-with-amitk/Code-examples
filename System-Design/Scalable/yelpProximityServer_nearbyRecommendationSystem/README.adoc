@@ -111,7 +111,7 @@ This may increase in peak season, and may decline/remain steady other times
 * 1. Place table
 link:/System-Design/Concepts/Databases/Indexing[indexing for faster searching]
 ```c
-| ownerID(fk)[indexed] | lattitude | longitude | placeID(pk) | Description | Category | lastupdated_timestamp[indexed] |
+| ownerID(fk)[indexed] | lattitude | longitude | placeID(pk) | Description | categoryId(fk) | lastupdated_timestamp[indexed] |
 
 ownerID: id of person who created the entry
 lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
@@ -153,6 +153,14 @@ photo_url:
 ** link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Review stored on object store]
 ```c
 | reviewId(pk) | review-text-url | placeid(fk) | stars |
+```
+
+* 7. Category Table
+```c
+| categoryId(pk) | Category-text |
+
+Benefits of keeping seperate Category table:
+- Add/update category without affecting place table
 ```
 
 ### 5B. DATA PARTIONING
