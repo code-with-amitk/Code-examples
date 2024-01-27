@@ -100,7 +100,57 @@
   }
 ```
 
-== 4. HLD
+== 4. DATABASE
+* Following are entities in system: Place, Place_Owner(who adds entry), Reviews, Photos, Videos
+
+* 1. Place table
+```c
+| ownerID(fk) | lattitude | longitude | placeID(pk) | Description | Category | lastupdated_timestamp
+
+ownerID: id of person who created the entry
+lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
+longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
+  - (lattitude, longitude): precise location of features on the surface of the Earth.
+placeID(8 bytes): Uniquely identifies a location. LocationId is taken 8 bytes(64 bits) considering future in mind.
+  - 2<sup>64</sup> = Huge number of locations
+Description(512 bytes)
+Category(1 byte): E.g., coffee shop, restaurant, theater, etc.
+```
+
+* 2. Place_owner table
+```c
+| ownerID(pk) | name | email | secret_key | placeID(fk) | created_timestamp |
+
+placeId: locations this owner owns
+created_timestamp: profile created by owner at this time
+```
+
+* 3. Reviews table
+```c
+| review_id(pk) | creator_name | creator_email | review_description | placeID(fk) | created_timestamp |
+```
+
+* 4. Place Photo table
+```c
+| photo_id(pk) | active | photo_url | placeID(fk) | created_timestamp | marked_inactive_timestamp |
+
+active: Is photo active on website, ie getting displayed. We will remove photo from db
+  after 30 days, if marks inactive
+photo_url: 
+```
+
+* 5. Place video table
+
+* 6. Reviews table
+
+### 5B. DATA PARTIONING
+#### 5B1. SHARDING BASED ON REGION
+  - Storing all places having particular zip code on set of servers.
+  - Over time, some regions can end up storing a lot of places compared to others
+#### 5B1. SHARDING BASED ON LOCATION ID
+  - Using locationID to hash function. ServerID is generated. Data will be stored here.
+
+== 5. HLD
 - Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree format](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
 - Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids. 1 grid can reside on multiple servers.
 ```c
@@ -207,29 +257,6 @@ click on add New place
  
 ```
    
-## 5. DATABASE
-### 5A. DB SCHEMA
-- Each place will have following feilds
-
-| objectID | lattitude | longitude | locationID | Description | Category |
-| --- | --- | --- | --- | --- | --- |
-| ram temple | 38.8951 | -77.0364 |
-
-- objectID: This is a unique ID assigned to object(place, thing etc)
-- lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
-- longitude: Geographic coordinate specifying east–west position of a point on the Earth's surface.  
-  - (lattitude, longitude): precise location of features on the surface of the Earth.
-- locationID(8 bytes): Uniquely identifies a location. LocationId is taken 8 bytes(64 bits) considering future in mind.
-  - 2<sup>64</sup> = Huge number of locations
-- Description(512 bytes)
-- Category(1 byte): E.g., coffee shop, restaurant, theater, etc.
-
-### 5B. DATA PARTIONING
-#### 5B1. SHARDING BASED ON REGION
-  - Storing all places having particular zip code on set of servers.
-  - Over time, some regions can end up storing a lot of places compared to others
-#### 5B1. SHARDING BASED ON LOCATION ID
-  - Using locationID to hash function. ServerID is generated. Data will be stored here.
   
 ## 6. REPLICATION
   - **QUad-tree** We will have replication of quad-tree in master-slave configuration 
