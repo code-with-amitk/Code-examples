@@ -1,0 +1,8 @@
+:toc:
+:toclevels: 6
+
+== Normalization?
+* What? Design DB such that data redundancy and dependency are minimum.
+* How achieved? Divide large tables into smaller tables and defining relationships between them
+
+== Normalization forms
