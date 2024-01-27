@@ -24,22 +24,27 @@
 == 2. BOE
 * Storage Estimates:
 ```c
-  - 500k Places to be stored
+  - 200M~300M business listings are present on google
   - Each place {string name, string address, double lat, double long, `vector<string> reviews`, string photos_url}  = 2000 KB
-  - 500k * 2000k = 1 TB / year
+  - 300M * 2000k = 60 PB / year
+  - User Reviews,Photos,Videos will keep on increasing. Suppose becomes 5 times per year.  300PB
+  - New Businesses also gets added, old fade away. Suppose from last year it becomes twice.  120PB
+  500 PB/year
+  5 years = 2 Exabytes
 ```
 * QPS
 ```c
-  - Assume 10k user are accessing per sec
+Assuming 100k user are accessing per sec
+This may increase in peak season, and may decline/remain steady other times
 ```
 * Bandwidth Estimates
 ```c
-  - 10k req/s.
+  - 100k req/s.
   - 1 GET request = 2KB
   - 1 UPDATE request = 4KB  //Avg of 2=3KB
 
-  Incoming bytes=
-  10k x 3k = 30MBytes/sec
+  Incoming bytes = 100k x 3k = 300MBytes/sec
+  Outgoing bytes = 100k x (sizeof 1 listing) = 100k x 2000 KB(calculated above) = 20GB/sec
 ```
   
 == 3. System APIs
@@ -104,8 +109,9 @@
 * Following are entities in system: Place, Place_Owner(who adds entry), Reviews, Photos, Videos
 
 * 1. Place table
+link:/System-Design/Concepts/Databases/Indexing[indexing for faster searching]
 ```c
-| ownerID(fk) | lattitude | longitude | placeID(pk) | Description | Category | lastupdated_timestamp
+| ownerID(fk)[indexed] | lattitude | longitude | placeID(pk) | Description | Category | lastupdated_timestamp[indexed] |
 
 ownerID: id of person who created the entry
 lattitude: Geographic coordinate specifying north–south position of a point on the Earth's surface.
@@ -131,6 +137,7 @@ created_timestamp: profile created by owner at this time
 ```
 
 * 4. Place Photo table
+** link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[photos stored on object store]
 ```c
 | photo_id(pk) | active | photo_url | placeID(fk) | created_timestamp | marked_inactive_timestamp |
 
@@ -140,8 +147,10 @@ photo_url:
 ```
 
 * 5. Place video table
+** link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Videos stored on object store]
 
 * 6. Reviews table
+** link:/System-Design/Concepts/Databases/README.adoc#object-vs-block-vs-file-storage[Review stored on object store]
 ```c
 | reviewId(pk) | review-text-url | placeid(fk) | stars |
 ```
