@@ -106,6 +106,8 @@ This may increase in peak season, and may decline/remain steady other times
 ```
 
 == 4. DATABASE
+=== link:/System-Design/Concepts/Databases#sqlrelationalstructured-vs-nosqlnonrelationalunstructured[Why SQL, why not noSQL]?
+
 * Following are entities in system: Place, Place_Owner(who adds entry), Reviews, Photos, Videos
 
 * 1. Place table
@@ -170,8 +172,32 @@ Benefits of keeping seperate Category table:
 ==== link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc#hashofkeys[b. Sharding based on location IDs]
 
 == 5. HLD
-- Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree format](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
-- Whole whole world map is divided into **grids**. Grids will have coordinates(ie location of places). SQL DB will store information of grids. 1 grid can reside on multiple servers.
+* All SQL databases are arranged in link:/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree:[Quad Tree format] for searching faster.
+* Whole whole world map is divided into **grids**. 1 grid can reside on multiple servers. Search Complexity for DB is O(logn).
+
+=== Why Quadtree, why not hashmap
+* QuadTree vs HashMap
+|===
+||QuadTree|Hashmap<zipcode, db-location>
+
+|Advantages 
+a| 
+* No problem in non-uniform distributed data. We can increase more DBs on heavy load.
+* Allows for spatial indexing, enabling efficient range queries and proximity searches.
+a|
+* Simple to implement. 
+* Work well if data is uniformly distributed across zipcodes
+
+|Disadvantages
+a|
+* More Complex wrt Hash map
+* Maintenance overhead as the system scales, especially in scenarios where data distribution changes frequently.
+a|
+* May not handle non-uniform data distribution effectively. If certain regions have significantly more data than others, it could lead to load imbalance
+* Adding or removing servers might be challenging
+
+|===
+
 ```c
 Quad Tree 
            [root]
