@@ -36,6 +36,7 @@ keys   |a-e        |   |f-o        |   |p-z        |
 - *Disadv:*
   - _1. Certain types of keys can turn partition into <<hotspot, Hotspot>>. Eg: if a shard stores all tweets of a celebrity user
 
+[[hashofkeys]]
 === 2. By Hash of Keys
 ```c
   key -> |Hash Function| -> Hash of Shard
