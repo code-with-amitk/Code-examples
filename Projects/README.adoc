@@ -1,0 +1,34 @@
+:toc:
+:toclevels: 5
+
+== CPP / Boost/ CMake / CTest
+=== link:/Projects/Cross_Platform/Read_csv_files_Find_Total_Spending/[1. Cross Platform CMake, Boost. Read csv files find total spending]
+=== link:/Projects/C++/Median_Calculation_from_float_array/[2. Median Calculation from float Array using threads, Futures, Mutex, Boost]
+=== link:/Projects/C++/Read_File_Custom_Dump_XMLTxtJsonConsole/[3. Read files, Custom dump output on console|xml|json|txt]
+* Use CMake, CTest, Catch Exceptions
+* Boost(program_options, Tokenizer, PropertyTree, FileSystem)
+
+== link:/Projects/TLS_SSL/[SSL/TLS: Server, Client Communication using ssl,crypto libraries]
+=== link:/Projects/TLS_SSL/Mutual_TLS_client-sending-its-certs/[1. Mutual TLS. Client sending its certificate]
+=== link:/Projects/TLS_SSL/Normal_TLS_client-notsending-itsCerts/[2. Normal TLS. Client not sending its certificate]
+
+== Rust
+=== link:/Projects/Rust/REST_API_HTTP_Server_ActixWeb/[Web Server exposing n REST End points]
+=== link:/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/[CI/CD as github Action, Read yml file, hash the repo and send to Http Server]
+
+
+== OOD/Object Oriented Design
+=== Behavioral
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Chain-of-Resp/[1. Chain of Responsibilty]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Command/[2. Command DP: Remote Control]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Mediator/[3. Mediator DP: Online Auction]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Observer/Robot_Resturant/[4. Observer DP. Robot Resturant]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Observer/Whether_Display_Device/[4. Observer DP. Whether Display Device]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Template/[5. Template DP: Bevarage Making Machine]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Creational/Singleton/[6. Creational. Singleton DP: Single, Multithreaded] 
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Creational/facade/[6. Creational. Facade DP: Home Theater]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Structural/Adapter/[7. Structural. Adapter DP: FlatPinPlug RoundSwitchBoard]
+==== link:/Languages/Programming_Languages/c++/Design_Pattens/Structural/Decorator/[7. Structural. Decorator DP: Coffee Maker]
+
+
+
