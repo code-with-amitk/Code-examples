@@ -69,6 +69,16 @@ image:Partitioning_by_term.PNG?raw=true[Partitioning_by_term]
 - **Disadv:**
   - _1. Slower/complicated writes:_ Write to a single document(on 1 partition) may now affect multiple partitions of the index (every term in the document might be on a different partition, on a different node).
 
+[[regionbasedpartition]]
+=== 4. Region based Partition
+* Storing data specific to region (maybe based on pin code).
+* *Advantages:* 
+** 1. Data Localization: Users in a particular region primarily access data relevant to that region, which can reduce latency and improve response times.
+** 2. Scaling: By partitioning the database based on region, we can scale system horizontally.
+** 3. Regulatory Compliance: Data privacy laws may require certain data to be stored within specific geographic regions
+** 4. Disaster Recovery: In the event of a localized failure or disaster, having region-based partitions can make it easier to implement disaster recovery strategies. We can focus on recovering data for specific regions without affecting the entire system
+** 5. Reduced Maintenance Downtime: When need to perform maintenance tasks, such as database upgrades, we can target specific regions, minimizing the impact on the overall system.
+
 == Rebalancing Partitions
 - if partition fails(as nodes do fail) then how to move data to other node? 
 **Strategies for rebalancing**
