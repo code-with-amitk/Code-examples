@@ -16,6 +16,10 @@
 === link:/Projects/Rust/REST_API_HTTP_Server_ActixWeb/[Web Server exposing REST End points]
 === link:/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/[CI/CD as github Action, Read yml file, hash the repo and send to Http Server]
 
+== Python
+=== link:/Projects/Python/Etherscan_APIs[Etherium Blockchain APIs to get Ether balance and all transactions]
+=== link:https://github.com/RedHatInsights/insights-core/pull/2362[RedHat Support Insights Parser for /var/log/samba]
+=== link:https://github.com/RedHatInsights/insights-core/pull/2362[RedHat Support Insights Parser /etc/dirsrv/slapd-<>/dse.ldif]
 
 == OOD/Object Oriented Design
 === Behavioral
