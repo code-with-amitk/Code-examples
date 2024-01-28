@@ -13,7 +13,7 @@
 === link:/Projects/TLS_SSL/Normal_TLS_client-notsending-itsCerts/[2. Normal TLS. Client not sending its certificate]
 
 == Rust
-=== link:/Projects/Rust/REST_API_HTTP_Server_ActixWeb/[Web Server exposing n REST End points]
+=== link:/Projects/Rust/REST_API_HTTP_Server_ActixWeb/[Web Server exposing REST End points]
 === link:/Projects/Rust/CICDAsGithubAction_Readymlfile_hashRepo_SendtoHttpServer/[CI/CD as github Action, Read yml file, hash the repo and send to Http Server]
 
 
