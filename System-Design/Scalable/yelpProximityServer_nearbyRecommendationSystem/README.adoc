@@ -163,12 +163,11 @@ Benefits of keeping seperate Category table:
 - Add/update category without affecting place table
 ```
 
-### 5B. DATA PARTIONING
-#### 5B1. SHARDING BASED ON REGION
-  - Storing all places having particular zip code on set of servers.
-  - Over time, some regions can end up storing a lot of places compared to others
-#### 5B1. SHARDING BASED ON LOCATION ID
-  - Using locationID to hash function. ServerID is generated. Data will be stored here.
+=== link:/System-Design/Concepts/Databases/Database_Scaling/Sharding[Database Partioning / Sharding]
+* *Why?* Given such a huge QPS = 100k req/sec and such a huge data to store 2Exabytes, we would need to partition our DB, we cannot store everything at 1 place.
+
+==== link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc#regionbasedpartition[a. Region Based Partitioning]
+==== link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc#hashofkeys[b. Sharding based on location IDs]
 
 == 5. HLD
 - Information of places to be stored in **SQL DB** and databases are arranged in **[Quad Tree format](/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree/)** for searching faster.
