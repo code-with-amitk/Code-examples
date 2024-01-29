@@ -13,7 +13,7 @@ boolean empty() Returns true if the queue is empty, false otherwise.
 ```
 
 == Approach, 2 Stacks
-1. stack=s1 keeps elements in same order as queue would do. To achieve same order as queue, we would use stack-2
+* 1. stack=s1 keeps elements in same order as queue would do. To achieve same order as queue, we would use stack-2
 ```c
 push on queue = 1,2,3
 queue = 1  2  3
@@ -23,13 +23,13 @@ queue = 1  2  3
 3
 s1
 ```
-2. Take 2 stacks(s1, s2). s1 represents queue, while s2 represents temporary stack.
-3. Insert=1. if s1 is empty insert directly. 
+* 2. Take 2 stacks(s1, s2). s1 represents queue, while s2 represents temporary stack.
+* 3. Insert=1. if s1 is empty insert directly. 
 ```c
 Insert:1   1
           s1 s2
 ```
-4. Insert=2. if s1 is not empty, Pop all elements from s1, push on s2. Then insert 2
+* 4. Insert=2. if s1 is not empty, Pop all elements from s1, push on s2. Then insert 2
 ```c
 Insert:2
           1
@@ -42,7 +42,7 @@ Insert:2
           2
           s1 s2    //Pop all elements from s2 and place back on s1.
 ```
-5. Insert=3
+* 5. Insert=3
 ```c
 Insert:3
            1
