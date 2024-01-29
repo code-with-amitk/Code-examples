@@ -64,6 +64,10 @@ Insert:3
 
 ```
 
+=== Complexity
+* Time: Push: O(n). n elements on stack. Pop: O(1)
+* Space: O(n)
+
 === Code
 ==== CPP
 ```cpp
@@ -125,6 +129,80 @@ public:
  */
 ```
 
-=== Complexity
-* Time: Push: O(n). n elements on stack. Pop: O(1)
-* Space: O(n)
+==== Rust
+```rs
+struct MyQueue {
+    s1: Vec<i32>,
+    s2: Vec<i32>
+}
+
+/** 
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl MyQueue {
+
+    fn new() -> Self {
+        MyQueue {
+            s1: Vec::new(),
+            s2: Vec::new()
+        }
+    }
+    
+    fn push(&mut self, x: i32) {
+        if self.s1.len() == 0 {
+            self.s1.push(x);
+        } else {
+            while (self.s1.len() > 0) {
+                if let Some(ele) = self.s1.last() {
+                    self.s2.push(*ele);
+                }
+                if let Some(ele) = self.s1.pop() {
+                    //ele removed
+                }
+            }
+            self.s1.push(x);
+            while (self.s2.len() > 0) {
+                if let Some(ele) = self.s2.last() {
+                    self.s1.push(*ele);
+                }
+                if let Some(ele) = self.s2.pop() {
+                    //ele removed
+                }
+            }
+        }
+    }
+    
+    fn pop(&mut self) -> i32 {
+        let mut x = 0;
+        if let Some(ele) = self.s1.pop() {
+            x = ele;
+        }
+        x
+    }
+    
+    fn peek(&self) -> i32 {
+        let mut x = 0;
+        if let Some(&ele) = self.s1.last() {
+            x = ele;
+        }
+        x
+    }
+    
+    fn empty(&self) -> bool {
+        if self.s1.len() == 0 {
+            return true;
+        }
+        false
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * let obj = MyQueue::new();
+ * obj.push(x);
+ * let ret_2: i32 = obj.pop();
+ * let ret_3: i32 = obj.peek();
+ * let ret_4: bool = obj.empty();
+ */
+```
