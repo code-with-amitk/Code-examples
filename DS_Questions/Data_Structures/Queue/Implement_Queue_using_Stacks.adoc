@@ -1,13 +1,10 @@
-**Implement Queue using Stacks**
-- [Approach, 2 stacks](#a)
-  - Code
-    - [CPP](#cpp)
-  - [Complexity](#co) 
+:toc:
+:toclevels: 6
 
 
-### [Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)
-- Implement a queue using only 2 stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
-- Implement the MyQueue class:
+== link:https://leetcode.com/problems/implement-queue-using-stacks/[232. Implement Queue using Stacks]
+* Implement a queue using only 2 stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
+* Implement the MyQueue class:
 ```c
 void push(int x) Pushes element x to the back of the queue.
 int pop() Removes the element from the front of the queue and returns it.
@@ -15,15 +12,24 @@ int peek() Returns the element at the front of the queue.
 boolean empty() Returns true if the queue is empty, false otherwise.
 ```
 
-<a name=a></a>
-### Approach, 2 Stacks
-- _1._ Take 2 stacks(s1, s2). s1 represents queue, while s2 represents temporary stack.
-- _2._ Insert=1. if s1 is empty insert directly. 
+== Approach, 2 Stacks
+1. stack=s1 keeps elements in same order as queue would do. To achieve same order as queue, we would use stack-2
+```c
+push on queue = 1,2,3
+queue = 1  2  3
+        top
+1
+2
+3
+s1
+```
+2. Take 2 stacks(s1, s2). s1 represents queue, while s2 represents temporary stack.
+3. Insert=1. if s1 is empty insert directly. 
 ```c
 Insert:1   1
           s1 s2
 ```
-- _3._ Insert=2. if s1 is not empty, Pop all elements from s1, push on s2. Then insert 2
+4. Insert=2. if s1 is not empty, Pop all elements from s1, push on s2. Then insert 2
 ```c
 Insert:2
           1
@@ -36,7 +42,7 @@ Insert:2
           2
           s1 s2    //Pop all elements from s2 and place back on s1.
 ```
-- _4._ Insert=3
+5. Insert=3
 ```c
 Insert:3
            1
@@ -58,9 +64,8 @@ Insert:3
 
 ```
 
-#### Code
-<a name=cpp></a>
-**CPP**
+=== Code
+==== CPP
 ```cpp
 class MyQueue {
     stack<int> s1;
@@ -120,8 +125,6 @@ public:
  */
 ```
 
-#### Complexity
-- **Time:** 
-  - Push: O(n). n elements on stack
-  - Pop: O(1)
-- **Space:** O(n). O(n/2) for stack1, O(n/2) for stack2
+=== Complexity
+* Time: Push: O(n). n elements on stack. Pop: O(1)
+* Space: O(n)
