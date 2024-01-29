@@ -172,7 +172,7 @@ Benefits of keeping seperate Category table:
 ==== link:/System-Design/Concepts/Databases/Database_Scaling/Sharding/README.adoc#hashofkeys[b. Sharding based on location IDs]
 
 == 5. HLD
-* All SQL databases are arranged in link:/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree:[Quad Tree format] for searching faster.
+* All SQL databases are arranged in link:/DS_Questions/Data_Structures/Trees/M-Ary_Trees/Quad_Tree[Quad Tree format] for searching faster.
 * Whole whole world map is divided into **grids**. 1 grid can reside on multiple servers. Search Complexity for DB is O(logn).
 
 === Why Quadtree, why not hashmap
