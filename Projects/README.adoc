@@ -37,5 +37,7 @@
 ==== link:/Languages/Programming_Languages/c++/Design_Pattens/Structural/Adapter/[7. Structural. Adapter DP: FlatPinPlug RoundSwitchBoard]
 ==== link:/Languages/Programming_Languages/c++/Design_Pattens/Structural/Decorator/[7. Structural. Decorator DP: Coffee Maker]
 
+== Machine Learning
+=== link:/Projects/Machine_Learning/Image_Classification_into_10_categories_0_through_9[Image classification into 10 categories (0 through 9)]
 
 
