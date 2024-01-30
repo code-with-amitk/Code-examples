@@ -39,7 +39,8 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 ```
 
 === Logic
-|| Operator(+-) Operand(3,4)
+> Operator(+-) Operand(3,4)
+
 * Push operands on stack
 * Once operator is recieved, pop top 2 operands and apply operator on operands and again push on stack
 ```c
