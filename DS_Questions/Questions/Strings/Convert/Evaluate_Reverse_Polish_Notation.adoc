@@ -1,11 +1,10 @@
-**Evaluate Reverse Polish Notation**
-- [Approach-1, Stack](#a1)
+:toc:
+:toclevels: 6
 
-
-### [Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
-- Evaluate the value of an arithmetic expression in Reverse Polish Notation.
-- Valid operators are `+, -, *, and /`. Each operand may be an integer or another expression.
-- It is guaranteed that the given RPN expression is always valid. That means the expression would always evaluate to a result, and there will not be any division by zero operation.
+== link:https://leetcode.com/problems/evaluate-reverse-polish-notation/[150. Evaluate Reverse Polish Notation]
+* Evaluate the value of an arithmetic expression in Reverse Polish Notation.
+* Valid operators are `+, -, *, and /`. Each operand may be an integer or another expression.
+* It is guaranteed that the given RPN expression is always valid. That means the expression would always evaluate to a result, and there will not be any division by zero operation.
 ```c
 Example 1:
 Input: tokens = ["2","1","+","3","*"]
@@ -29,9 +28,8 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 = 22
 ```
 
-<a name=a1></a>
-### Approach-1, Postfix conversion
-- **What is Polish Notation?** This is prefix notation
+== Approach-1, Postfix conversion using stack
+* What is Polish Notation? This is prefix notation
 ```c
 3+4 = +34
 ```
@@ -39,10 +37,11 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 ```c
 3+4 = 34+
 ```
-#### Logic
-- To evaluate postfix expression, we use stack.
-- Push operand(3,4) on stack
-- Once operator is recieved, pop top 2 operands and apply operator on operands
+
+=== Logic
+|| Operator(+-) Operand(3,4)
+* Push operands on stack
+* Once operator is recieved, pop top 2 operands and apply operator on operands and again push on stack
 ```c
 ["2","1","+","3","*"]
 
@@ -62,7 +61,14 @@ Operator: 3 * 3
 
 Ans: 9
 ```
-#### Code
+
+=== Complexity
+* Time: O(n). n=number of characters in input
+* Space: O(m). m continious operands
+
+
+=== Code
+==== CPP98
 ```cpp
 class Solution {
 public:
@@ -102,6 +108,42 @@ public:
     }
 };
 ```
-#### Complexity
-- **Time:** O(n). n=strings on input.
-- **Space:** O(m). m continious operands
+==== CPP11
+```cpp
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        
+        stack<long> st;
+        
+		for_each(tokens.begin(), tokens.end(), [&](string str){
+			char ch = str[0];
+			if (str.size() == 1 && !isdigit(ch)) {
+                long top1 = st.top(); st.pop();
+                long top2 = st.top(); st.pop();
+                long val = 0;
+				if (ch == '+')
+					val = top1 + top2;
+				else if (ch == '-')
+					val = top2 - top1;
+				else if (ch == '/')
+					val = top2 / top1;
+				else
+					val = top1 * top2;
+				st.push(val);
+			} else {
+				// Convert to long and push
+                long a;
+                stringstream ss(str);
+                ss >> a;
+                st.push(a);
+			}
+		});
+        return st.top();
+    }
+};
+```
+==== Rust
+```rs
+
+```
