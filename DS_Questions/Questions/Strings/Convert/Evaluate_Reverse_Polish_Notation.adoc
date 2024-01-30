@@ -145,5 +145,46 @@ public:
 ```
 ==== Rust
 ```rs
+impl Solution {
+    pub fn eval_rpn(tokens: Vec<String>) -> i32 {
+        let mut st: Vec<i64> = Vec::new();
 
+        for token in tokens.iter() {
+            let ch = match token.chars().next() {
+                Some(a) => a,
+                None => 'a',
+            };
+            if token.len() == 1 && !ch.is_digit(10) {
+                // Operator
+                let mut top1 = 0;
+                if let Some(a) = st.pop() {
+                    top1 = a;
+                }
+                let mut top2 = 0;
+                if let Some(a) = st.pop() {
+                    top2 = a;
+                }
+                let val = match ch {
+                    '+' => top2 + top1,
+                    '-' => top2 - top1,
+                    '/' => top2 / top1,
+                    '*' => top2 * top1,
+                    _ => 0,
+                };
+                st.push(val);
+            } else {
+                // Operand
+                let operand: i64 = match token.parse() {
+                    Ok(val) => val,
+                    Err(_) => 0, // Handle parsing error, defaulting to 0 in this case
+                };
+                st.push(operand);                
+            }
+        }
+        match st.last() {
+            Some(last) => *last as i32,
+            None => 0, // Handle the case where the stack is empty
+        }        
+    }
+}
 ```
