@@ -1,0 +1,96 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/daily-temperatures[739. Daily Temperatures]
+Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+
+```c
+Example 1:
+Input: temperatures = [73,74,75,71,69,72,76,73]
+Output: [1,1,4,2,1,1,0,0]
+
+Example 2:
+Input: temperatures = [30,40,50,60]
+Output: [1,1,1,0]
+
+Example 3:
+Input: temperatures = [30,60,90]
+Output: [1,1,0]
+```
+
+== Approach-1. O(n^2^). TLE
+=== Logic
+* Iterate through each element in array and find next greater than present.
+* Take 2 poniters(i,j). Keep i on present element, move j to all elements in array. if(a[j]-a[i] > 0) note j-i
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        vector<int> out(temperatures.size(), 0);
+        for (int i=0;i<temperatures.size()-1;i++) {
+            for (int j=i+1;j<temperatures.size();j++) {
+                if (temperatures[j] > temperatures[i]) {
+                    out[i] = j-i;
+                    break;
+                }
+            }
+        }
+        return out;
+    }
+};
+```
+
+== Approach-2. Algorithm = Using Stack. O(nm)
+=== Logic
+1. Initialize an empty stack and create a result array of the same size as the input array, initially filled with 0 or a placeholder value.
+2. Iterate through the array from left to right.
+  - For each element, check whether the stack is not empty and the current element is greater than the element at the index stored on the stack's top.
+  - If the condition is true, update the result for the index at the top of the stack with the difference in indices (current index - index on the stack).
+  - Pop the index from the stack.
+  - Repeat these steps until the condition is false or the stack becomes empty.
+3. Push the current index onto the stack.
+4. After the iteration, the result array contains the next greater elements for each index.
+```c
+[40, 38, 36, 34, 52, 50, 54]
+  0   1   2  3   4   5   6
+
+i      st.top()        stack            out
+0                       0
+1      (38>40 no)       0 1
+2      (36>40 no)       0 1 2
+3      (34>40 no)       0 1 2 3        | | | | 
+4      (52>40 yes)      1 2 3          |4| | | | |
+
+```
+=== Complexity
+* Time: O(nm). n=Total number of elements. m=number of indexes on stack
+* Space: O(m)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        int n = temperatures.size();
+        vector<int> result(n, 0);
+        stack<int> st;
+        for (int i = 0; i < n; ++i) {
+            while (!st.empty() && temperatures[i] > temperatures[st.top()]) {
+                int prevIndex = st.top();
+                st.pop();
+                result[prevIndex] = i - prevIndex;
+            }
+            st.push(i);
+        }
+        return result;
+    }
+};
+```
+==== Rust
+```rs
+
+```
