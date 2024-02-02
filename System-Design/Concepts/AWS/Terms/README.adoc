@@ -42,9 +42,9 @@ These are also Datacenters but located very near to customer, wrt to actual data
 - Person using GovCloud need to be US citizen and located in US only.
 
 == Amazon VPC(Virtual Private Cloud)
-VPC is a isolated section in AWS Cloud. Then we can have resources inside VPC. VPC can be in multiple [AZ](#az)
+VPC is a isolated section in AWS Cloud. Then we can have resources inside VPC. VPC can be in multiple link:#az[AZ]
 
-<img src=ACL_security_group.JPG width=600 />
+image:ACL_security_group.JPG?raw=true[ACL]
 
 === Subnets 
 - All resources are organized into subnets. Subnet is a section of a VPC that can contain resources(eg: Amazon EC2 instances)
@@ -55,16 +55,19 @@ VPC is a isolated section in AWS Cloud. Then we can have resources inside VPC. V
 ==== Network ACL
 - Every packet that comes into/goes from subnet is checked against N/W ACL. N/W ACL is a firewall which applies rules to incoming/outgoing packets and allows/denies them into subnet.
 - N/W ACLs are stateless ie every packet is checked against a rule, no state is maintained.
-- Similar work is done by *[Security Group](/System-Design/Concepts/AWS/compute/EC2)* but SG are stateful.
+- Similar work is done by *link:/System-Design/Concepts/AWS/compute/EC2[Security Group]* but SG are stateful.
 - **ACL Types**
   - _1. Default ACL:_ Every AWS account has default N/W ACL. By default all inbound and outbound traffic are allowed, but you can modify it by adding your own rules.
   - _2. Custom ACL:_ We can create Custom ACL as well. By default all inbound and outbound traffic is denied until you add rules to specify which traffic to allow.
 
-||N/W ACL|Security Group|
-|---|---|---|
-|What|Firewall at boundary of subnet|Firewall at boundary of EC2 instance|
-|Stateful|no|yes|
-|Outbound traffic checking|yes|no|
+|===
+
+||N/W ACL|Security Group
+
+|What|Firewall at boundary of subnet|Firewall at boundary of EC2 instance
+|Stateful|no|yes
+|Outbound traffic checking|yes|no
+|===
 
 ==== Internet gateway
 To allow public traffic from internet to access VPC, a IG is needed to be attached to VPC.
@@ -115,7 +118,7 @@ This helps to establish a dedicated private connection between Client's datacent
 
 === Transit Gateway
 This service connects customer's [Virtual Private Clouds (VPCs)](#vpc) and their on-premises networks to a single gateway.
-<img src=transit_gateway.png width=600/>
+image:transit_gateway.png?raw=true[transit]
 
 === Which services can be reserved?
 - Discounts(up to 75%) can be availed by reservation in advance. Some of the services which can be reserved: EC2, DynamoDB, ElastiCache, RDS, and RedShift.
@@ -125,7 +128,7 @@ This service connects customer's [Virtual Private Clouds (VPCs)](#vpc) and their
    - You should be free from capacity decisions hence you only pay for actual processing time.
 
 === Serverless
-- Unlike [EC2](/System-Design/Concepts/AWS/) which is a VM which you need to create and run code on it. Serverless means you do not need to create VM. You can directly upload your code(to webservice) and it will start running.
+- Unlike link:/System-Design/Concepts/AWS/[EC2] which is a VM which you need to create and run code on it. Serverless means you do not need to create VM. You can directly upload your code(to webservice) and it will start running.
 - That means server(or EC2) instance is already created by AWS for you.
 - Examples of serverless Architectures: Lambda, DynamoDB, Fargate
 
