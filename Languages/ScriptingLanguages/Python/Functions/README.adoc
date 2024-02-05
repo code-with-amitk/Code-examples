@@ -93,50 +93,22 @@ fun(a='g', b=1.9, f="test")
 ```
 
 === Decorator
-* Functions that add functionality to an existing function, without changing the structure of the existing function itself.
-* They are represented the `@decorator_name` in Python and are called in a **bottom-up fashion**. 
-* Example-1
+* decorator is a special type of function which modifies the behavior of another function or a class method. Decorators allows to wrap or modify the functionality of functions without changing their actual code.
+* Tasks performed by decorators: logging, timing, authentication, or modifying the return value of a function.
+* Python builtin decorators: @staticmethod, @classmethod, and @property
 ```py
-# decorator function to convert to lowercase
-def lowercase_decorator(function):
-   def wrapper():
-       func = function()
-       string_lowercase = func.lower()
-       return string_lowercase
-   return wrapper
-   
-# decorator function to split words
-def splitter_decorator(function):
-   def wrapper():
-       func = function()
-       string_split = func.split()
-       return string_split
-   return wrapper
-   
-@splitter_decorator # this is executed next
-@lowercase_decorator # this is executed first
-def hello():
-   return 'Hello World'
-   
-# Driver Code
-hello()                   # output => [ hello , world ]
-```
+# Decorator always takes a function and returns a function, Else it would be normal function
+def dec(func):
+    def wrapper():
+        print("Hi")
+        func()
+    return wrapper
 
-* Example-2: Decorators can accept arguments for functions can further modify those arguments before passing it to the function itself.
-```py
-# decorator function to capitalize names
-def names_decorator(function):
-   def wrapper(arg1, arg2):
-       arg1 = arg1.capitalize()
-       arg2 = arg2.capitalize()
-       string_hello = function(arg1, arg2)
-       return string_hello
-   return wrapper
-   
-@names_decorator
-def say_hello(name1, name2):
-   return 'Hello ' + name1 + '! Hello ' + name2 + '!'
-say_hello('sara', 'ansh')   # output => 'Hello Sara! Hello Ansh!'
+@dec
+def fun():
+    print("fun")
+
+fun()
 ```
 
 == enumerate() function
