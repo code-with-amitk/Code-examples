@@ -81,41 +81,15 @@ def fun1(a, c='Again'):            #c is default arguments
         print('Test3')
 fun1(1)                 #Test1
 ```
-=== kwarg, Keyword Arguments
-kwarg MUST follow positional arguments
 
-=== Special Parameters
+=== kwarg(Keyword Arguments)
+* You can provide different sets of named parameters without having to define them explicitly in the function signature.
 ```py
-def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
-      -----------    ----------     ----------
-        |             |                  |
-        |        Positional or keyword   |
-        |                                - Keyword only
-         -- Positional only
-  - By default, arguments may be passed to function either by position or by keyword.
-  - If / and * are not present in function definition, arguments may be passed to a function by position or by keyword.
-  - POSITION ONLY PARAMETER(/):
-    Parameters cannot be passed by keyword
-    Positional-only parameters are placed before / (forward-slash)
-    Parameters after / may be positional-or-keyword or keyword-only
+def fun(**kwargs):
+    for key,value in kwargs.items():
+        print(f"{key}: {value}")
 
-  - KEYWORD ONLY PARAMETER(*):
-    Place an * in the arguments list just before the first keyword-only parameter.
-
-def fun4(a):            #No restrictions, takes arguments using pos or keyword
-    print('fun4',a)
-fun4(1)                 #fun4 1     //Argument passed using position
-fun4(a=2)               #fun4 2     //Argument passed using keyword
-
-#def fun5(a, /):
-#    print('fun5',a)
-#fun5(1)                 #fun5 1
-#fun5(a=2)              #fun5 got an unexpected keyword argument 'arg'
-
-def kwd_only_arg(*, arg):
-    print(arg)
-#kwd_only_arg(3)         #kwd_only_arg() takes 0 positional arguments but 1 was given
-kwd_only_arg(arg=3)     #3
+fun(a='g', b=1.9, f="test")
 ```
 
 === Decorator
