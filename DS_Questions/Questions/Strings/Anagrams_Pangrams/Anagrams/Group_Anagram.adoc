@@ -1,0 +1,87 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/group-anagrams/[49. Group Anagrams]
+- Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+```c
+Example 1:
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+== Approach-1. Sort+hashmap
+=== Logic
+* Take unordered_map<key=sorted_element, value=vector<string> unsorted_element>>
+```c
+["abc", "bac", "acb", "def", "fed"]
+
+unordered_map<string, vector<string>>
+  key   value
+| abc, <abc, bac, acb> | def, <def, fed> |
+```
+
+=== Complexity
+|| n: number of words, m: length of each word
+* Time: Sort every word: O(mlogm). Do it for n times. O(nmlog(m))
+* Space: O(mn)
+
+=== Code
+==== CPP98+11
+```cpp
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> um;
+
+        for (auto&i:strs) {
+            string s = i;
+            sort(s.begin(), s.end());
+            auto it = um.find(s);
+            if (it != um.end()) {
+                it->second.push_back(i);
+            } else {
+                um[s] = {i};
+            }
+        }
+
+        vector<vector<string>> out;
+        for (const auto&[key,val]: um) {
+            vector<string> temp;
+            for(auto&i:val)
+                temp.push_back(i);
+            out.push_back(temp);
+        }
+        return out;
+    }
+};
+```
+==== CPP11 (for_each)
+```cpp
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> um;
+
+        for_each(strs.begin(), strs.end(), [&um](string word){
+            string s = word;
+            sort(s.begin(), s.end());
+            auto it = um.find(s);
+            if (it != um.end())
+                it->second.push_back(word);
+            else
+                um[s] = {word};
+        });
+
+        vector<vector<string>> out;
+        for_each(um.begin(), um.end(), [&out](auto& it){
+            const auto& key = it.first;
+            const auto& val = it.second;            
+            vector<string> temp;
+            for(auto&i:val)
+                temp.push_back(i);
+            out.push_back(temp);
+        });
+        return out;
+    }
+};
+```
