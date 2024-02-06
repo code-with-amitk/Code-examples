@@ -86,3 +86,31 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
+        let mut hm:HashMap<String, Vec<String>> = HashMap::new();
+
+        for s in strs {
+            let mut chars: Vec<char> = s.chars().collect();
+            chars.sort();
+            let sorted_str: String = chars.into_iter().collect();
+
+            // Use entry API for more idiomatic HashMap insertion/update
+            hm.entry(sorted_str).or_insert_with(Vec::new).push(s);
+        }
+
+        let mut out: Vec<Vec<String>> = Vec::new();
+        for (key, value) in &hm {
+            let mut temp:Vec<String> = Vec::new();
+            for i in value {
+                temp.push(i.clone());
+            }
+            out.push(temp);
+        }
+        out
+    }
+}
+```
