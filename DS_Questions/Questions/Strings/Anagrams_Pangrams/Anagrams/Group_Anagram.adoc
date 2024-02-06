@@ -21,7 +21,8 @@ unordered_map<string, vector<string>>
 ```
 
 === Complexity
-|| n: number of words, m: length of each word
+> n: number of words, m: length of each word
+
 * Time: Sort every word: O(mlogm). Do it for n times. O(nmlog(m))
 * Space: O(mn)
 
