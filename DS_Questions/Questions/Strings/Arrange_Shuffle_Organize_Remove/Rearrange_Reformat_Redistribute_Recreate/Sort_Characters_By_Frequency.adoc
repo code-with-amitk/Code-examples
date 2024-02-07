@@ -61,3 +61,30 @@ public:
 ```
 
 ==== Rust
+```rs
+use std::collections::{HashMap, BinaryHeap};
+impl Solution {
+    pub fn frequency_sort(s: String) -> String {
+        // Count freq of characters using hm<char, i32>
+        let mut hm:HashMap<char, i32> = HashMap::new();
+        for c in s.chars() {
+            *hm.entry(c).or_insert(0) += 1;
+        }
+
+        // Store in max_heap<i32, max_heap>
+        let mut max_heap:BinaryHeap<(i32, char)> = BinaryHeap::new();
+        for (key, value) in hm.iter() {
+            max_heap.push((*value, *key));
+        }
+
+        // Iterate max_heap and create output string from it
+        let mut out:String = String::from("");
+        while let Some((num, ch)) = max_heap.pop() {
+            for i in 0..num {
+                out.push(ch);
+            }
+        }        
+        out
+    }
+}
+```
