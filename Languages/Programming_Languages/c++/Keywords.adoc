@@ -38,6 +38,7 @@ java does not have const keyword, rather it has final.
         const int a = 2;
         a=4;                 //Compilation Error
 ```
+
 === const Member Function
 ==== 1. Can only change mutable variables 
 int const fun(), const int fun()//Both are same function returning constant Integer
@@ -48,6 +49,7 @@ int const fun(), const int fun()//Both are same function returning constant Inte
             c = 2;        //OK
         }
 ```
+
 === const Function Arguments
 ==== 1. Cannot be modified
 ```cpp
@@ -55,12 +57,14 @@ int const fun(), const int fun()//Both are same function returning constant Inte
             a=10;    //Compilation Error
         } 
 ```
+
 === const Objects
 ==== 1. Member variables present in cosnt object cannot be changed
 ```cpp
         const obj s(1,2);
         obj.a=100;    //Compilation Error
 ```
+
 ==== 2. const object can only call const function
 ```cpp
 class A {
@@ -97,6 +101,7 @@ int main() {
   cout << obj1.get();			//4
 }
 ```
+
 **Explicit** Explicit can only come in front of 1 argument constructor. Prefixing the explicit keyword before constructor prevents the compiler for using that constructor for implicit conversions. Above code will give error, we need.
 ```c++
 class A {
@@ -173,6 +178,7 @@ public:
     }
 };
 ```
+
 == scope resolution
 === 1. class members can be accessed using sr
 ```cpp
@@ -194,6 +200,7 @@ int main() {
 
 == static
 It has different meaning in different contexts.
+
 === Static member variables
 ==== 1. static variable are initialized outside the class
 * static variables are shared among all Objects of class. Only 1 copy of variables is created.
