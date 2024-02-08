@@ -247,9 +247,9 @@ public class test{
 |===
 |Final|Java|C++
 
-|Class variable|<ul><li>Should be initialized at time of declaration</li></ul><ul><li>Value cannot be changed</li></ul>|same as const
-|Class Method|<ul><li>if final function is defined in base class, it cannot be overridden in derv class(Compilation error)</li></ul><ul><li>Final methods gets inherited</li></ul>|final|
-|final class|Cannnot be extended/inherited|
+|Class variable|Should be initialized at time of declaration. Value cannot be changed|same as const
+|Class Method|if final function is defined in base class, it cannot be overridden in derv class(Compilation error). Final methods gets inherited|final
+|final class|Cannnot be extended/inherited
 |===
 
 == this pointer
@@ -257,7 +257,8 @@ public class test{
 * this pointer is stored on stack, heap, DS(based on implementation)
 * We know only every object has seperate data members, But All objects have same member functions in Code segment. So How a function knows which object is calling it to set/get the variables => Using this pointer.
 * `(*this):` returns address of current object.
- ```c++
+
+```cpp
 class A{
   int a;
 public:
@@ -274,7 +275,7 @@ int main(){
 
 == Volatile
 * Request to complier to not place variable on Register(ie donot Optimize the variable).
-** _Optimization:_ 
+* Optimization:
 1. Compiler moves some variables from memory to register to perform fast & deliver speed.
 2. Programmer Optimization: Less time,space complexity of written code
 ```c
@@ -285,6 +286,7 @@ int main (){
    volatile int value;  val++;	//val not copied from Memory to CPU register.
 }
 ```
+
 === Why volatile?
 * 1. volatile variable is not placed on register, making sure variable is not changed outside current scope.
 * *Use Case:* 2 Threads are talking on global variable. This variable should not be optimized(ie should be volatile)
