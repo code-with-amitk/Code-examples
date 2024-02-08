@@ -15,7 +15,7 @@ Output: 2
 Explanation: 13 = 4 + 9.
 ```
 
-== Approach-1
+== Approach-1. Dynamic Programming
 === Logic
 * Define subproblems: Let's define a subproblem dp[i] as the least number of perfect square numbers that sum up to the given number i.
 * Base case:
