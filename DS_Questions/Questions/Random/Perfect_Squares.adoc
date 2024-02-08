@@ -1,0 +1,65 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/perfect-squares/[Perfect Squares]
+Given a positive integer n, find the least number of perfect square numbers (for example, 1, 4, 9, 16, ...) which sum to n.
+```c
+- Example 1:
+Input: n = 12
+Output: 3 
+Explanation: 12 = 4 + 4 + 4.
+
+- Example 2:
+Input: n = 13
+Output: 2
+Explanation: 13 = 4 + 9.
+```
+
+== Approach-1
+=== Logic
+* Define subproblems: Let's define a subproblem dp[i] as the least number of perfect square numbers that sum up to the given number i.
+* Base case:
+```
+    dp[0] = 0, as it takes zero perfect square numbers to sum up to zero.
+    dp[1] = 1, as the only perfect square number less than or equal to 1 is 1 itself.
+```
+* Recurrence relation:
+** For any integer i, we iterate through all possible perfect square numbers less than or equal to i and find the minimum among dp[i - j*j] + 1. 
+Here, j*j represents one of the perfect squares
+```
+Suppose we want to find the least number of perfect square numbers needed to sum up to i = 12. We iterate through all perfect square numbers less than or equal to i. 
+These perfect square numbers are 1, 4, 9.
+
+Now, for each of these perfect squares, we calculate dp[i - j*j] + 1, which represents the minimum number of perfect squares needed to sum up to i - j*j, 
+plus 1 (since we're considering one more perfect square, j*j).
+
+Let's illustrate:
+
+For j = 1, j*j = 1, so we calculate dp[12 - 1*1] + 1 = dp[11] + 1.
+For j = 2, j*j = 4, so we calculate dp[12 - 2*2] + 1 = dp[8] + 1.
+For j = 3, j*j = 9, so we calculate dp[12 - 3*3] + 1 = dp[3] + 1.
+
+We then take the minimum among these values to get dp[12], the least number of perfect square numbers needed to sum up to 12.
+```
+
+=== Complexity
+* Time: O(n * sqrt(n))
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int numSquares(int n) {
+        vector<long> dp(n+1,INT_MAX);
+        dp[0] = 0;
+        for (long i=1;i<=n;i++) {
+            for (long j=1; j*j<=i; j++) {
+                dp[i] = min(dp[i], dp[i-j*j] + 1);
+            }
+        }
+        return dp[n];
+    }
+};
+```
