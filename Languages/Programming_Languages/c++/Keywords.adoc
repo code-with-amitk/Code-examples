@@ -1,34 +1,6 @@
 :toc:
 :toclevels: 6
 
-- **const Rules**
-  - **const Member variables**
-    - [1. Initialized only once](#c1)
-  - **const Member Function**
-    - [1. can only change mutable members](#c2)
-  - **const function arguments**
-    - [1. cannot be modified](#c3)
-  - **const object**
-    - [1. Member variables present in const object cannot be changed](#c4)
-    - [2. const object can only call const function](#c5)
-- **explicit**
-  - [implicit conversion / Conversion constructor](#im)
-- **[extern](#ext)**
-  - [extern C](#extc)
-- [final keyword](#final)
-- **[new](new)**
-- **scope Resolution**
-  - [1. class members can be accessed using sr](#sr1)
-- **static**
-  - **static member variables**
-    - [1. Initialized outside class](#s1)
-  - **static class member function**
-    - [1. Called without class object](#s2)
-    - [2. Don't have access to this pointer or super](#s3)
-  - [3. static class](#sc)
-- [this](#this)
-- [volatile variable](#vo)
-
 
 == const
 === const Member Variables
