@@ -16,7 +16,7 @@
 
 === Rust vs C++
 ==== 1. Memory safety Using Ownership & borrow checker
-* link:/Languages/Programming_Languages/Rust[What is ownership]
+* link:/Languages/Programming_Languages/Rust#own[What is ownership]
 * Use-after-free or data races are detected at compile-time in rust using 
 ```c
 Example:
