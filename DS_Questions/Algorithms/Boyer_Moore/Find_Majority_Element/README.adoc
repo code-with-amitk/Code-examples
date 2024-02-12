@@ -46,7 +46,7 @@ public:
         for_each(nums.begin(), nums.end(), [&count, &majorityElement](int ele){
             if (!count)
                 majorityElement = ele;
-            count = ele == majorityElement ? 1 : -1;
+            count += (ele == majorityElement) ? 1 : -1;
         });
         return majorityElement;
     }
