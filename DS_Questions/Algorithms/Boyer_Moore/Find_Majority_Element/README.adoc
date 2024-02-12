@@ -22,32 +22,35 @@ Output: 2                       //a.size()=7. 2 appears 4 times
 
 == Code
 === CPP
-==== Ternary Operator
-> Faster than 50.71%.
+==== CPP98
 ```cpp
 int majorityElement(vector<int>& a) {
-  int count = 0, majorityElement = 0;
-  for (auto& i:a){
-    if (count == 0)                         //1
-      majorityElement = i;
-    count += (i == majorityElement) ? 1 : -1;       //2,3
+  int count = 0, majorityElement = 0; 
+  for (int i=0; i<a.size(); ++i){
+    if (!count)
+      majorityElement = a[i];
+    if (a[i] == majorityElement)
+      ++count;
+    else
+      --count;
+  }
+  return majorityElement;
 }
 ```
-==== Simplified
-> Faster than 7.10%
+==== CPP11
 ```cpp
-int majorityElement(vector<int>& a) {
-  int Count = 0, MajorityElement = 0; 
-  for (int i=0; i<a.size(); ++i){
-    if (!Count)
-      MajorityElement = a[i];
-    if (a[i] == MajorityElement)
-      ++Count;
-    else
-      --Count;
-  }
-  return MajorityElement;
-}
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int count = 0, majorityElement = 0;
+        for_each(nums.begin(), nums.end(), [&count, &majorityElement](int ele){
+            if (!count)
+                majorityElement = ele;
+            count = ele == majorityElement ? 1 : -1;
+        });
+        return majorityElement;
+    }
+};
 ```
 === Rust
 ```rs
