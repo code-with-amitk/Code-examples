@@ -35,7 +35,7 @@ int majorityElement(vector<int>& a) {
 ```
 ==== Simplified
 | Faster than 7.10%
-```
+```cpp
 int majorityElement(vector<int>& a) {
   int Count = 0, MajorityElement = 0; 
   for (int i=0; i<a.size(); ++i){
