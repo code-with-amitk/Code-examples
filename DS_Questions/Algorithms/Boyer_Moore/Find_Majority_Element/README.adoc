@@ -23,7 +23,7 @@ Output: 2                       //a.size()=7. 2 appears 4 times
 == Code
 === CPP
 ==== Ternary Operator
-| Faster than 50.71%.
+> Faster than 50.71%.
 ```cpp
 int majorityElement(vector<int>& a) {
   int count = 0, majorityElement = 0;
@@ -34,7 +34,7 @@ int majorityElement(vector<int>& a) {
 }
 ```
 ==== Simplified
-| Faster than 7.10%
+> Faster than 7.10%
 ```cpp
 int majorityElement(vector<int>& a) {
   int Count = 0, MajorityElement = 0; 
@@ -47,5 +47,25 @@ int majorityElement(vector<int>& a) {
       --Count;
   }
   return MajorityElement;
+}
+```
+=== Rust
+```rs
+impl Solution {
+    pub fn majority_element(nums: Vec<i32>) -> i32 {
+        let mut count = 0;
+        let mut majority_element = 0;
+        for ele in nums.iter() {
+            if count == 0 {
+                majority_element = *ele;
+            }
+            if *ele == majority_element {
+                count += 1
+            } else {
+                count -= 1
+            }
+        }
+        majority_element
+    }
 }
 ```
