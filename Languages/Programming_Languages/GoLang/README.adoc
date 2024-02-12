@@ -22,7 +22,7 @@ func add(x, y int) int {	//valid
 ```
 
 ==== Multiple Returns, Naked Return
-```
+```go
 //The swap function returns two strings.
 func swap(x, y string) (string, string) {
 	return y, x
@@ -62,7 +62,7 @@ world hello
 
 ==== Function values
 Functions are values too. They can be passed around just like other values.
-```
+```go
 test := func(x, y float64) float64 {
              return (x + y)
 }
@@ -71,7 +71,7 @@ fmt.Println(test(5, 12))		//17
 
 ==== Closure Function = Lambda C++
 A function that references variables from outside its body.
-```
+```go
 func add() func(int) int {
         sum := 10
         return func(x int) int {
@@ -87,7 +87,7 @@ func main() {
 
 === Loops
 ==== for
-```
+```go
  for initialization; condition; increment/decrement {
     // Code to be executed
  }
@@ -97,7 +97,7 @@ for i := 1; i < 10; i++ {}
 
 ==== while
 There is no while loop in go
-```
+```go
 for i < len(arr) {
  ...
  i++;
@@ -173,7 +173,7 @@ func main() {
 
 === Pointers
 `& operator` generates pointer to operand. `* operator` derefences pointer's value. Unlike C there is no pointer arithematic in go
-```
+```go
 package main
 import "fmt"
 func main() {
@@ -205,7 +205,7 @@ func test(node *ListNode) bool {
 === Statements
 ==== defer statement
 defer statement defers execution of a function until the surrounding function returns.
-```
+```go
 package main
 import "fmt"
 func main() {
@@ -221,7 +221,7 @@ world
 a. Expression not surrounded by parentheses ( ) but the braces { } are required.
 b. if statement can start with Short statement to execute before condition.
 c. Variables declared in if statement are also avaiable in else block.
-```
+```go
 package main
 import (
         "fmt"
@@ -250,7 +250,7 @@ There
  a. breaks statement is provided automatically in go
  b. Unlike C,C++ swtich only runs the selected case, not all cases that follow
  c. Switch cases, Need Not to be constants. values involved need not to be integers.
-```
+```go
 package main
 import (
         "fmt"
