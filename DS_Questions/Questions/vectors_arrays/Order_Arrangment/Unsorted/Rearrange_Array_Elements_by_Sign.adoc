@@ -1,0 +1,112 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/rearrange-array-elements-by-sign[2149. Rearrange Array Elements by Sign]
+You are given a 0-indexed integer array nums of even length consisting of an equal number of positive and negative integers.
+
+You should rearrange the elements of nums such that the modified array follows the given conditions:
+
+Every consecutive pair of integers have opposite signs.
+For all integers with the same sign, the order in which they were present in nums is preserved.
+The rearranged array begins with a positive integer.
+Return the modified array after rearranging the elements to satisfy the aforementioned conditions.
+
+```
+Example 1:
+
+Input: nums = [3,1,-2,-5,2,-4]
+Output: [3,-2,1,-5,2,-4]
+Explanation:
+The positive integers in nums are [3,1,2]. The negative integers are [-2,-5,-4].
+The only possible way to rearrange them such that they satisfy all conditions is [3,-2,1,-5,2,-4].
+Other ways such as [1,-2,2,-5,3,-4], [3,1,2,-2,-5,-4], [-2,3,-5,1,-4,2] are incorrect because they do not satisfy one or more conditions.  
+```
+
+== Approach-1. Time:O(n), Space:O(n)
+=== Logic
+* Take a vectors positive, negative.
+* Iterate through input vector and store positive and negative numbers in vectors respectively
+* Create output vector using positive and negative vectors.
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> positive;
+        vector<int> negative;
+        for (int&i:nums) {
+            if (i>0)
+                positive.push_back(i);
+            else
+                negative.push_back(i);
+        }
+        vector<int> out;
+        int i=0, j=0;
+        while ((i+j)<nums.size()){
+            out.push_back(positive[i++]);
+            out.push_back(negative[j++]);
+        }
+        return out;
+    }
+};
+```
+
+== Approach-2. Time:O(n), Space:O(1). 2 pointer approach
+=== Logic
+* Take 2 pointers (pos, neg). pos will point to positive number in array, neg will point to negative
+* iterate input vector and keep moving pos, neg. Fill out vector
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        vector<int> out;
+        int pos=0, neg=0;
+        while (pos < nums.size()-1 || neg < nums.size()-1) {
+            while (pos<nums.size() && nums[pos] < 0){pos++;}
+            while (neg<nums.size() && nums[neg] > 0){neg++;}
+            if (pos<nums.size() && nums[pos]>0)
+                out.push_back(nums[pos++]);
+            if (neg<nums.size() && nums[neg]<0)
+                out.push_back(nums[neg++]);
+        }
+        return out;
+    }
+};
+```
+==== Rust
+```rs
+impl Solution {
+    pub fn rearrange_array(nums: Vec<i32>) -> Vec<i32> {
+        let mut out:Vec<i32> = Vec::new();
+        let mut pos=0;
+        let mut neg=0;
+
+        while pos < nums.len()-1 || neg < nums.len()-1 {
+            while pos<nums.len() && nums[pos] < 0 {
+                pos += 1;
+            }
+            while neg<nums.len() && nums[neg] > 0 {
+                neg += 1;
+            }
+            if pos<nums.len() && nums[pos]>0 {
+                out.push(nums[pos]);
+                pos += 1;
+            }
+            if neg<nums.len() && nums[neg]<0 {
+                out.push(nums[neg]);
+                neg += 1;
+            }
+        }
+        out
+    }
+}
+```
