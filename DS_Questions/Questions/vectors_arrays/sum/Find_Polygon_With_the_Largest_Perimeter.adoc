@@ -87,3 +87,36 @@ public:
 };
 ```
 === Rust
+```rs
+impl Solution {
+    pub fn largest_perimeter(num: Vec<i32>) -> i64 {
+        let mut nums = num.clone();
+        // Equilateral Triangle
+        if nums.len() == 3 && nums[0] == nums[1] && nums[1] == nums[2] {
+            return 3*nums[0] as i64;
+        }
+
+        nums.sort();
+
+        let mut sum:i64 = 0;
+        for i in 0..nums.len()-1 {
+            sum += nums[i] as i64;
+        }
+
+        // Sliding Window
+        let mut q = nums.len()-1;
+        let mut p = q-1;
+
+        while p >= 0 && sum <= nums[q] as i64 {
+            // side remaining are 2, we cannot create polygon
+            if p==1 {
+                return -1;
+            }
+
+            sum -= nums[p] as i64;
+            q-=1;    p-=1;
+        }
+        sum + nums[q] as i64
+    }
+}
+```
