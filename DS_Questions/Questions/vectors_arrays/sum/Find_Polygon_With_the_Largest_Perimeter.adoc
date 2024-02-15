@@ -1,0 +1,89 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-polygon-with-the-largest-perimeter/[2971. Find Polygon With the Largest Perimeter]
+You are given an array of positive integers nums of length n.
+
+A polygon is a closed plane figure that has at least 3 sides. The longest side of a polygon is smaller than the sum of its other sides.
+
+Conversely, if you have k (k >= 3) positive real numbers a1, a2, a3, ..., ak where a1 <= a2 <= a3 <= ... <= ak and a1 + a2 + a3 + ... + ak-1 > ak, then there always exists a polygon with k sides whose lengths are a1, a2, a3, ..., ak.
+
+The perimeter of a polygon is the sum of lengths of its sides.
+
+Return the largest possible perimeter of a polygon whose sides can be formed from nums, or -1 if it is not possible to create a polygon.
+
+```c
+Example 1:
+
+Input: nums = [1,12,1,2,5,50,3]
+Output: 12
+Explanation: The polygon with the largest perimeter which can be made from nums has 5 sides: 1, 1, 2, 3, and 5. The perimeter is 1 + 1 + 2 + 3 + 5 = 12.
+We cannot have a polygon with either 12 or 50 as the longest side because it is not possible to include 2 or more smaller sides that have a greater sum than either of them.
+It can be shown that the largest possible perimeter is 12.
+```
+
+== Approach-1. Sort + Sliding Window. Time:O(nlogn), Space:O(1)
+=== Logic
+* Question says: Find Polygon having largest perimeter.
+** Polygon property: Sum of all sides > Largest side
+```c
+input = [1,12,1,2,5,50,3]
+
+These cannot be polygons = [5,12,50]  [3,5,12]
+```
+* if there are 3 points, check if they are equal return sum of 3 sides
+* Find sum of all sides-last.
+* sort the elements and take 2 pointers from back (q=point to last, p=point to 1 less than last)
+* sum all elements till p and check if sum < elemennt at q. if it is move p,q 1 position back
+```c
+[1,1,2,3,5,12,50]
+             p  q
+1+1+2+3+5+12 = 24  < 50  //This cannot be polygon
+
+
+[1,1,2,3,5,12,50]
+         p q
+1+1+2+3+5 = 12  < 12    //This cannot be polygon
+
+[1,1,2,3,5,12,50]
+       p q
+1+1+2+3 = 7  > 5        //Yes these can be sides of polygon
+```
+
+=== Complexity
+* Time: O(nlogn)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    long long largestPerimeter(vector<int>& nums) {
+        // Equilateral Triangle
+        if (nums.size() == 3 && nums[0] == nums[1] && nums[1] == nums[2])
+            return 3*nums[0];
+
+        sort(nums.begin(), nums.end());
+
+        long long sum = 0;
+        for (auto& n : nums)
+            sum += n;
+        sum -= nums.back();
+
+        // Sliding Window
+        int q = nums.size()-1, p = q-1;
+
+        while (p >= 0 && sum <= nums[q]) {
+            // side remaining are 2, we cannot create polygon
+            if (p==1)
+                return -1;
+
+            sum -= nums[p];
+            q--;    p--;
+        }
+        return sum + long(nums[q]);
+    }
+};
+```
+=== Rust
