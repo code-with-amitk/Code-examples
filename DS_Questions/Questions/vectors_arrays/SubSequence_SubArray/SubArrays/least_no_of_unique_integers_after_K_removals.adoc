@@ -55,3 +55,35 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+use std::collections::{HashMap,BinaryHeap};
+use std::cmp::Reverse;
+impl Solution {
+    pub fn find_least_num_of_unique_ints(nums: Vec<i32>, k: i32) -> i32 {
+        let mut hm:HashMap<i32, i32> = HashMap::new();
+        for i in 0..nums.len() {
+            *hm.entry(nums[i]).or_insert(0) += 1;
+        }
+
+        let mut min_heap: BinaryHeap<Reverse<i32>> = BinaryHeap::new();
+        //2. Create min_heap from map
+        for (_, value) in hm.iter() {
+            min_heap.push(Reverse(*value));
+        }
+
+        //3. Decrement top of min_heap until k>0
+        let mut k1 = k;
+        while let Some(Reverse(top)) = min_heap.pop() { 
+            if top - k1 > 0 {
+                min_heap.push(Reverse(top - k1));
+            }
+            k1 -= top;
+            if k1 <= 0 {
+                break;
+            }
+        }
+        min_heap.len() as i32
+    }
+}
+```
