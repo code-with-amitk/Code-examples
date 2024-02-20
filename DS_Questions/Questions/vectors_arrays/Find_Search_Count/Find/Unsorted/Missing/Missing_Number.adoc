@@ -1,0 +1,103 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/missing-number/description/[268. Missing Number]
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+```c
+Example 1:
+Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+
+Example 2:
+Input: nums = [0,1]
+Output: 2
+Explanation: n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number in the range since it does not appear in nums.
+
+Example 3:
+Input: nums = [9,6,4,2,3,5,7,0,1]
+Output: 8
+Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
+```
+
+== Approach
+=== Logic
+* Sum of n natural numbers = n(n+1)/2 //1,2,3,4,5..n
+* Question provides whole numbers //0,1,2,3,4...
+* Actual Sum = (sum of n natural numbers) - (last natural no)
+* Current Sum = //This will not include missing number.
+* Missing number = ActualSum - CurrentSum
+
+=== Complexity
+* Time: O(n)
+* Space: O(1), not included stack frame space occupied by Function itself.
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    using vec = vector<int>;
+    
+    int missingNumber(vec& nums) {
+        long CurrentSum = 0;
+        int size = nums.size()+1;
+        long ActualSum = (size*(size+1))/2 - size;
+        
+        //Traverse the array
+        for (auto i:nums)
+            CurrentSum += i;
+        
+        return ActualSum - CurrentSum;
+    }
+};
+```
+
+==== Rust
+```rs
+impl Solution {
+    pub fn missing_number(nums: Vec<i32>) -> i32 {
+        let mut current_sum = 0;
+        let size = nums.len() as i64 + 1;
+        let actual_sum:i64 = (size*(size+1))/2 - size;
+
+        //Traverse the array
+        for i in nums.iter() {
+            current_sum += i;
+        }
+        
+        actual_sum as i32 - current_sum     
+    }
+}
+```
+
+==== Python
+```py
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        current_sum = 0
+        size = len(nums) + 1
+        actual_sum = (size*(size+1))//2 - size
+
+        for i in nums:
+            current_sum += i
+
+        return actual_sum - current_sum
+```
+
+==== Go
+```go
+func missingNumber(nums []int) int {
+    current_sum := 0
+    size := len(nums) + 1
+    actual_sum := (size*(size+1))/2 - size
+
+    //Traverse the array
+    for _, i := range nums {
+        current_sum += i
+    }
+    
+    return actual_sum - current_sum     
+}
+```
