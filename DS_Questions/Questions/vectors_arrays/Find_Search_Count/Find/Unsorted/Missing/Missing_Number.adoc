@@ -21,7 +21,7 @@ Output: 8
 Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
 ```
 
-== Approach
+== Approach. Time: O(n), Space: O(1)
 === Logic
 * Sum of n natural numbers = n(n+1)/2 //1,2,3,4,5..n
 * Question provides whole numbers //0,1,2,3,4...
