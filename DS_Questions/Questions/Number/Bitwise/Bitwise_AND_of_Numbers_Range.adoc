@@ -1,0 +1,55 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/bitwise-and-of-numbers-range/[201. Bitwise AND of Numbers Range]
+Given two integers left and right that represent the range [left, right], return the bitwise AND of all numbers in this range, inclusive.
+```c
+Example 1:
+Input: left = 5, right = 7
+Output: 4
+
+Example 2:
+Input: left = 0, right = 0
+Output: 0
+```
+
+== Approach-1. TLE
+=== Logic
+* Find bitwise AND of all numbers between left and right
+* TLE for left=1, right=2147483647
+
+=== Code
+```cpp
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+      int out = left;
+      for (int i=left+1; i<right; ++i) {
+        out = out & i;
+      }
+      return out;
+    }
+};
+```
+
+== Approach-2
+=== Logic
+* When we have a range of numbers from "left" to "right", and we want to find the bitwise AND of all the numbers within that range, we need to find the common bits shared by all numbers in the range.
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+          //s = shift;
+       int s=0;
+       while(left<right){
+           left>>=1;  //l left
+           right>>=1;  //r right
+           s++;
+       }
+       return left<<s;
+    }
+};
+```
