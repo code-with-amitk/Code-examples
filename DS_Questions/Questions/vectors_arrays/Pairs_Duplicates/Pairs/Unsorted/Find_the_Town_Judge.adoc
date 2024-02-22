@@ -1,0 +1,84 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-the-town-judge/[997. Find the Town Judge]
+In a town, there are n people labeled from 1 to n. There is a rumor that one of these people is secretly the town judge.
+
+If the town judge exists, then:
+
+The town judge trusts nobody.
+Everybody (except for the town judge) trusts the town judge.
+There is exactly one person that satisfies properties 1 and 2.
+You are given an array trust where trust[i] = [ai, bi] representing that the person labeled ai trusts the person labeled bi. If a trust relationship does not exist in trust array, then such a trust relationship does not exist.
+
+Return the label of the town judge if the town judge exists and can be identified, or return -1 otherwise.
+
+Example 1:
+```c
+Input: n = 2, trust = [[1,2]]
+Output: 2
+```
+
+Example 2:
+```c
+Input: n = 3, trust = [[1,3],[2,3],[3,1]]
+Output: -1
+```
+image:https://www.plantuml.com/plantuml/png/SoWkIImgAStDuIhEpimhI2nAp5L8piyjoCzBpIi9BgdCILKeIaqkISnBpqdbYZQCLT2rKuWsZbLGhapDoSalvmAomKA6GA6Yr1IkQ2E4alIYrDGyBeVKl1IW-G00?raw=true[example 3]
+
+== Approach-1. Directed Graph
+=== Logic
+* Create a directed graph.
+* Find node which does not have any outgoing direction and that same node should be neighbour of all other nodes
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int findJudge(int n, vector<vector<int>>& trust) {
+        // Create a Graph. <node, neighbours>
+        unordered_map<int, unordered_set<int>> graph;
+
+        for (auto&i : trust) {
+            int first = i[0], second = i[1];
+            auto it = graph.find(first);
+            if (it == graph.end()) {
+                graph[first] = {second};
+            } else {
+                it->second.insert(second);
+            }
+        }
+
+        // Check all nodes are present in graph or not, if not insert
+        for (int i=1;i<=n;i++) {
+            auto it = graph.find(i);
+            if (it == graph.end())
+                graph[i] = {};
+        }
+
+        // Find a node which have no outgoing trust
+        int judge = -1;
+        for (auto&i:graph) {
+            if (i.second.size() == 0) {
+                judge = i.first;
+                break;
+            }
+        }
+
+        if (judge == -1)
+            return -1;
+        
+        // Check all nodes trust above judge except judge itself
+        for (auto&i:graph) {
+            if (judge != i.first && i.second.find(judge) == i.second.end())
+                return -1;
+        }
+        return judge;
+    }
+};
+```
