@@ -1,16 +1,16 @@
-**Cheapest Flights Within K Stops**
-- [Logic](#l)
-- [Code](#co)
+:toc:
+:toclevels: 6
 
-## [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
-<a name=l></a>
-#### Logic
+== link:https://leetcode.com/problems/cheapest-flights-within-k-stops/[Cheapest Flights Within K Stops]
+
+== Approach-1
+=== Logic
 - Similar to Dijstra's Shortest path Algo we will take `minHeap<cost,node,stops>`
 - Fill neighbours, increase stops by 1.
 - When (stops > K) continue;    //ie if any node is reachable with stops > k, then its no use to consider it.
 
-<a name=co></a>
-#### Code
+=== Code
+==== CPP
 ```cpp
 using VecI = vector<int>;
 using VecVecI = vector<VecI>;
