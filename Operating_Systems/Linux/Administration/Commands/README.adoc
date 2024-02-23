@@ -131,6 +131,22 @@ Execute Command:
 
 === ls -ltr
 ```c
+$ ls -l
+drwxr--r--   1 fjones editors     4096 Mar  2 12:52  drafts
+-rw-r--r--   3 fjones editors    30405 Mar  2 12:52  edition-32
+-r-xr-xr-x   1 fjones bookkeepers 8460 Jan 16  2022  edit.sh
+
+┌─────────── file (not a directory)
+|┌─────────── read-write (no execution) permissions for the owner
+|│  ┌───────── read-only permissions for the group
+|│  │  ┌─────── read-only permissions for others
+|│  │  │     ┌── number of hard links
+|│  │  │     │   ┌── owner
+|│  │  │     │   │     ┌── user group
+|│  │  │     │   │     │          ┌── file size in bytes
+|│  │  │     │   │     │          │    ┌── last modified on
+|│  │  │     │   │     │          │    │                ┌── filename
+-rw-r--r--   3 fjones editors    30405 Mar  2 12:52  edition-32
 ```
 
 === netstat
