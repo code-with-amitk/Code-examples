@@ -3,7 +3,8 @@
 
 == Single Source Shortest Path
 === 1a. Dijkstra Algo Using cost, visited array. O(EV)
-Find shortest path from node(0) to all other nodes in graph.
+* Find shortest path from node(0) to all other nodes in graph.
+* Store nodes in link:/DS_Questions/Data_Structures/Graphs/README.adoc#1-adjacency-listoften-used[Adjacency List]
 ```c
                                  [0] --10--[1]--20-- [2]   
                                    \50     |30      /40
