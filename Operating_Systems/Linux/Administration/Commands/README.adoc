@@ -81,7 +81,7 @@ $ sudo chroot $HOME/jail /bin/bash              //Finally, chroot into your mini
 //Create file in root it will created in `$HOME/jail`.
 ```
 
-<img src=chroot-jail.png width=400 />
+image:chroot-jail.png?raw=true[jail]
 
 === find
 ```c
@@ -134,17 +134,17 @@ Print network connections, routing tables, interface statistics, masquerade conn
 ```c
 -p:show pid,    -a:all interfaces,  -n:show Numeric,  -t:tcp,   -u:udp
 ```
-**Commands**
-- *1. Show TCP/UDP statistics of all interfaces:* `# netstat  -plunt`
-- *2. Get number of active connections:* `# netstat -ant | awk '{print $NF}' | grep -v '[a-z]' | sort | uniq -c`
-- *3. Get number of connections per ip address:* `# netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n`
-- *4. Get all IP Address connected to your host:* `# netstat -lantp | grep ESTABLISHED |awk '{print $5}' | awk -F: '{print $1}' | sort -u`
-- *5. Monitor open connection to web server on port 80, count and sort it by IP:* `# watch "netstat -plan|grep :80|awk {'print \$5'} | cut -d: -f 1 | sort | uniq -c | sort -nk 1"`
+*Commands*
+1. Show TCP/UDP statistics of all interfaces:* `# netstat  -plunt`
+2. Get number of active connections:* `# netstat -ant | awk '{print $NF}' | grep -v '[a-z]' | sort | uniq -c`
+3. Get number of connections per ip address:* `# netstat -ntu | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n`
+4. Get all IP Address connected to your host:* `# netstat -lantp | grep ESTABLISHED |awk '{print $5}' | awk -F: '{print $1}' | sort -u`
+5. Monitor open connection to web server on port 80, count and sort it by IP:* `# watch "netstat -plan|grep :80|awk {'print \$5'} | cut -d: -f 1 | sort | uniq -c | sort -nk 1"`
 
 === Pipe `ls -ltr | grep test`
-Output of process-1 becomes the input of process-2 ie standard output (stout) of one command is sent to the standard input (stdin) of a second command.
-- Pipes are unidirectional i.e data flows from left to right through the pipeline.
-- **Filter?** Commands which takes input from prev commands are called filters. These can modify the stream
+* Output of process-1 becomes the input of process-2 ie standard output (stout) of one command is sent to the standard input (stdin) of a second command.
+** Pipes are unidirectional i.e data flows from left to right through the pipeline.
+** Filter? Commands which takes input from prev commands are called filters. These can modify the stream
 
 === Redirection `ls -ltr > a.txt`
 Redirection is implemented using dup2() system call.
@@ -171,7 +171,7 @@ Tuesday after school
 ```
 
 === systemctl
-[systemd](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) utility that is responsible for Controlling the systemd system and service manager.
+link:/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1[systemd] utility that is responsible for Controlling the systemd system and service manager.
 - **Listing units commands**
 ```c
 # systemctl -t help                             //List all available units of systemd
@@ -190,9 +190,9 @@ Tuesday after school
 ```
 
 === systemd-run
-systemd-run may be used to create and start a transient systemd [`*.service` or `*.scope` unit](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) and run the specified COMMAND in it.
-- **Steps**
-  - *1.* Create [Transient cgroup](/Operating_Systems/Linux/Resource_Control/Kernel_Namespaces/cgroup/RHEL_Provided_cgroup)
+* systemd-run may be used to create and start a transient systemd [`*.service` or `*.scope` unit](/Operating_Systems/Linux/Daemons_Processes_Services/Systemd_PID1) and run the specified COMMAND in it.
+* Steps
+1. Create link:/Operating_Systems/Linux/Resource_Control/Kernel_Namespaces/cgroup/RHEL_Provided_cgroup[Transient cgroup]
 ```c
 //Create a new group called group1. Run top command inside that group. Name of command=amit_top.service
 # sudo systemd-run --unit=amit_top --slice=group1 top -b
