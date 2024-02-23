@@ -1,24 +1,10 @@
-- [What is Graph](#what)
-- **[Representation of Graph](#r)**
-  - [1. Adjacency List](#l)
-  - [2. Edge List](#el)
-  - [3. Adjacency Matrix/Lookup table](#m)
-- **[Terms:Degree, Diameter, Edge/Arc/Line, Radius, Vertex/Node, Connected Components](#t)**
-  - [Topological Sort](/DS_Questions/Algorithms/Graphs/Ordering/Toplogical_Sort/README.md)
-- **Types of Graphs**
-  - [1. Cyclic/Acyclic](#cyclic)
-    - [1a. DAG/Directed Acyclic Graph](#dag)
-  - [2. Directed/Undirected](/DS_Questions/Data_Structures/Graphs/Directed_Undirected)
-  - [3. Spanning Tree](#st)
-    - [3a. Min Spanning Tree](#mst)
-  - [4. Weighted/Unweighted Graph](#weighted)
-- **Operations**
-  - [Disjoint Set Union](#dis)
-    - [Application => Connected Component in Graph](#app)
+:toc:
+:toclevels: 6
 
 
-<a name=what></a>
-## Graph
+
+
+== Graph
 Collection of nodes/vertices with edges between some/all of them. Examples: Internet, City map, Person's Social Network, State machines.
 ```c
     0 ------- 1     4         //Nodes: 0,1,2,3,4,5
@@ -26,10 +12,8 @@ Collection of nodes/vertices with edges between some/all of them. Examples: Inte
     3 ------- 2     5
 ```
 
-<a name=r></a>
-## Representation of Graph
-<a name=l></a>
-### 1. Adjacency List	//Often used
+== Representation of Graph
+=== 1. Adjacency List	//Often used
 - Each node keeps list of adjacent neighbours.
 - Data structures can be vectors, ll etc. Advantages: Save space, only stores connected nodes.
 ```c
@@ -47,8 +31,7 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
       | 0 | [2,3]  |  1 | [3]  |  2 | [0,3]  |  3 | [0,1,2]  |  <<HashTable
       |            |           |             |               |
 ```
-<a name=el></a>
-### 2. Edge List
+=== 2. Edge List
 - Each node keeps [edges](#t)
 ```cpp
     3 -- 1
@@ -64,8 +47,7 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
   v[0].push_back(2); v[0].push_back(3);
   v[1].push_back(3); v[2].push_back(3);
 ```
-<a name=m></a>
-### 3. Adjacency Matrix/Lookup table/2D Matrix
+=== 3. Adjacency Matrix/Lookup table/2D Matrix
 - Shows whether node has connection to other node or not. `0 means No, 1 means yes`
 - For weighted graph values are cost/weights.
 - *Advantages* Easy to represent, Removing an edge takes O(1) time, Queries like whether there is an edge from vertex `u` to vertex `v` takes O(1)
@@ -82,42 +64,40 @@ Nodes | 0  |  1  |  2  |  3  |  <vector
 3  1   1   1   0
 ```
 
-<a name=t></a>
-# Terms
-### Degree
+== Terms
+=== Degree
 - _Undirected Graph:_ Number of edges incident on it.
 - _Directed Graph:_ 
   - _Indegree of Node:_ Number of edges leading into that node.
   - _Outdegree:_ the number of edges leading away from node.
 
-### Diameter/Eccentricity
+=== Diameter/Eccentricity
 Greatest distance between any pair of vertices.
 
-### Edge/Arc/Line
+=== Edge/Arc/Line
 Links connecting the nodes. Links can be directed/undirected, weighted/unweighted. Weight also means cost.
 
-### Radius 
+=== Radius 
 Minimum eccentricity of any vertex.
 
-### Vertex = Node
+=== Vertex = Node
 Interconnected objects are called vertices.
 
-### Connected Components?
+=== Connected Components?
 This is subgraph in which each pair of nodes is connected with each other via a path. Here 3
 ```c
 1---2    4--5   6
     |
     3
 ```
-[Finding connected Components: 1. DFS, 2. Disjoint set union](/DS_Questions/Questions/Graphs/Find/Undirected_Graph)
+link:/DS_Questions/Questions/Graphs/Find/Undirected_Graph[Finding connected Components: 1. DFS, 2. Disjoint set union]
 
-## Types of Graphs
-<a name=cyclic></a>
-### 1. Cyclic/Acyclic
+== Types of Graphs
+=== 1. Cyclic/Acyclic
 - *Cyclic:* If graph has cycle.  
 - *Acyclic:* No cycles in graph. When following the graph from node to node, you will never visit the same node twice.
-<a name=dag></a>
-#### 1a. DAG(Directed Acyclic Graph)
+
+==== 1a. DAG(Directed Acyclic Graph)
 - Directed graph without cycles graph. DAG will surely have 1 vertex with indegree=0 and 1 vertex with outdegree=0, because it does not have cycle.
 ```c
     a  ---->  b        //In-degree: Number of edges coming to the vertex. Eg: in-degree for c is 2
@@ -128,8 +108,7 @@ This is subgraph in which each pair of nodes is connected with each other via a 
   - Average case O(V+E). V=vertices, E=Edges
   - Best case. O(logE). Using DFS, two parallel tree traversals, one preorder traversal and other postorder traversal.
 
-<a name=st></a>
-### 3. Spanning Tree
+=== 3. Spanning Tree
 Subgraph derived from Graph satisfying these conditions:
   - No cycles(ie it is acyclic), Since it a tree
   - Should connect all vertices with minimum number of edges.
@@ -152,8 +131,7 @@ Subgraph derived from Graph satisfying these conditions:
 - *A. Civil Network Planning:* City network as a huge graph and now plans to deploy telephone lines in such a way that in minimum lines we can connect to all city nodes.    
 - *B. Computer Network Routing Protocol*
 
-<a name=mst></a>
-#### 3a. Min Spanning Tree
+==== 3a. Min Spanning Tree
 A ST where total weight of all edges is minimum. Has n-1 edges.
 - **Finding Min Spanning Tree?**
   - Start from min weight edge
@@ -213,8 +191,8 @@ Step-2    [0] -2- [1] -4- [3]           [0] -2- [1] -4- [3]
 Step-3:Include       Step-4: Include       Step-5: Include
 minimum edges        next min edges       next min edges
 ```
-<a name=weighted></a>
-### 4. Weighted/Unweighted Graph
+
+=== 4. Weighted/Unweighted Graph
 - *Weighted?* If edges has cost/weight. Ex: flight fuel cost between cities.        
 - *Unweighted?* if the edges do not have weights.
 ```c
@@ -223,9 +201,8 @@ minimum edges        next min edges       next min edges
    3 --50-- 2
 ```
 
-## Operations
-<a name=dis></a>
-### Disjoint set Union
+== Operations
+=== Disjoint set Union
 Some applications involve grouping n distinct elements/nodes into a collection of disjoint sets. These applications often need to perform two operations: 
   - Finding the unique set that contains a given element OR
   - uniting two sets. 
@@ -236,8 +213,7 @@ _Operations:_
   - UNION(x, y): unites the dynamic sets that contain x and y, say Sx and Sy, into a new set that is the union of these two sets.
   - FIND-SET(x): returns a pointer to the representative of the (unique) set containing x.
 
-<a name=app></a>
-#### Application => [Connected Component in Graph]()
+==== Application. link:[Connected Component in Graph]
 > When the edges of the graph are static(not changing over time—we) can compute the connected components faster by using depth-first search.
 
 4 Connected components in graph.
