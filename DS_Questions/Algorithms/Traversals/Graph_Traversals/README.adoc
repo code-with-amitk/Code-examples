@@ -1,18 +1,8 @@
-**Traversals**
-- **Single Source Shortest Path**
-  - 1. Dijkstra Algo. For +ve(non-negative) weights only
-    - [1a. Using cost, visited Array. O(EV)](#ev)
-    - [1b. Using minHeap, Adjacency Matrix. O(ElogV)](#am)
-    - [1c. Using minHeap. Adjacency List. O(ElogV)](#al)
-  - 2. Bellman Ford, for +ve,-ve weights
-- **Multi source** computes the shortest distances between every pair of vertices in graph
-  - Floyd-Warshall
+:toc:
+:toclevels: 6
 
-
-
-# Single Source Shortest Path
-<a name=ev></a>
-## 1a. Dijkstra Algo Using cost, visited array. O(EV)
+== Single Source Shortest Path
+=== 1a. Dijkstra Algo Using cost, visited array. O(EV)
 Find shortest path from node(0) to all other nodes in graph.
 ```c
                                  [0] --10--[1]--20-- [2]   
@@ -33,7 +23,7 @@ Vertex  Distance from Source(node=0)
  2              30
  3              40
 ```
-#### Logic
+==== Logic
 - Step-1. Take cost, visited array and initialize.
 ```c
 //NOTE: This array always represents cost to reach nodes from source node(node=0)
@@ -78,12 +68,13 @@ Sitting on Node=1.
   cost | 0 | 10 | 10+20 | 10+30 |
          0   1     2      3
 ```
-#### Complexity
-- **Time:** O(VE)
+==== Complexity
+* Time: O(VE)
   - Traverse through all node, ie Vertices=V. O(V)
   - Reach every edge from every Node. Edges=E. O(E)
-- **Space:** O(1). if stored graph is provided
-#### Code
+* Space: O(1). if stored graph is provided
+
+==== Code
 ```cpp
 #include<iostream>
 #include<vector>
@@ -165,8 +156,7 @@ Vertex           Distance/Cost from Source
 3                80
 ```
 
-<a name=am></a>
-## 1b. Dijkstra Algo using MinHeap, Adjacency Matrix. O(ElogV)
+=== 1b. Dijkstra Algo using MinHeap, Adjacency Matrix. O(ElogV)
 Task: Find Minimum distance of every node from Node=0.
 ```cpp
                                  [0] --10--[1]--20-- [2]   
@@ -192,7 +182,8 @@ Node  Cost
 2     30
 3     40
 ```
-#### Logic(very simple) O(ElogV)
+
+==== Logic(very simple) O(ElogV)
 - Step-1. Take cost, visited array, `minHeap<key=cost, value=node>` and initialize.
 ```c
 //NOTE: This array always represents cost to reach nodes from source node(node=0)
@@ -222,7 +213,7 @@ visited | 1 | 0 | 0 | 0 |       //Mark node=0 as visited
       //push (neighbour-cost, neighbour) in minHeap
   }      
 ```
-#### Example Run
+==== Example Run
 ```c++
                 [0]-10-[1]-20-[2]
                   \     |    /
@@ -305,9 +296,9 @@ Calculate cost of reaching unvisited neighbours of popped node
   neighbour=1   //visited discarded
   neighbour=2   //visited discarded                               |0  |10|30|50|  
 ```
-<a name=co></a>
-#### Code
-```c++
+
+==== Code
+```cpp
 #include<iostream>
 #include<vector>
 #include<queue>         //priority_queue
@@ -377,9 +368,8 @@ Node	Cost
 3	    40
 ```
 
-<a name=al></a>
-### 1b2. Dijstra's using minHeap, Adjacency List. O(ElogV)
-#### Code
+=== 1b2. Dijstra's using minHeap, Adjacency List. O(ElogV)
+==== Code
 ```cpp
 #include<iostream>
 #include<vector>
@@ -465,3 +455,7 @@ int main(){
     s.FindShortestPath(4, a, 0, 2, 1);  //src=2, dst=1, stops=1  //ans=20
 }
 ```
+
+== 2. Bellman Ford, for +ve,-ve weights
+== 3. Multi source computes the shortest distances between every pair of vertices in graph
+=== Floyd-Warshall
