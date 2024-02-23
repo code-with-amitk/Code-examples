@@ -52,7 +52,8 @@ visited | 1 | 0 | 0 | 0 |       //Mark node=0 as visited
 ```c
 Sitting on Node=1. 
   if ((neighbour is unvisited) { 
-    if (assumed cost of reaching neighbour(in vecCost) >  Cost to reach myself from node=0(10) + cost to reach neighbour from me(30))
+    if (assumed cost of reaching neighbour(in vecCost) >  Cost to reach myself from node=0(10) + 
+                                                          Cost to reach neighbour from me(30))
       update neighbour_cost
       //push (neighbour-cost, neighbour) in minHeap
   }
