@@ -129,6 +129,10 @@ Execute Command:
   $ find  / -type f -mtime +3 -exec rm -rf {} \;                     //Search and delete files older than 3 days
 ```
 
+=== ls -ltr
+```c
+```
+
 === netstat
 Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships. *Options*
 ```c
