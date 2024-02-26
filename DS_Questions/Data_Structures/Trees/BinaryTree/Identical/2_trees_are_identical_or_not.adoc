@@ -1,15 +1,9 @@
-**Same Tree**
-- **Approaches**
-  - [Approach-1: Extra space](#a1)
-  - [Approach-2(Without Extra Space)](#a2)
-- **Code**
-  - C++
-    - [Recursive](#cr)
-    - [Iterative](#ci)
+:toc:
+:toclevels: 6
 
-### [My Video. See it before Editing the page](https://youtu.be/ZTNCu_IiuZc)
+== link:https://youtu.be/ZTNCu_IiuZc[My Video. See it before Editing the page]
 
-### [100. Same Tree](https://leetcode.com/problems/same-tree/)
+== link:https://leetcode.com/problems/same-tree/[100. Same Tree]
 Compare 2 binary trees, return 1 if equal else 0.
 ```c
 Input: p = [1,2,3], q = [1,2,3]
@@ -25,21 +19,18 @@ Output: false
    2           2
 ```
 
-<a name=a1></a>
-#### Approach-1: Extra space
+== Approach-1: Extra space
 Traverse tree1 and tree2 in inorder traversal and save in vector1 and vector2. if vectors are same return 1 else 0
 
-<a name=a2></a>
-### Approach-2(Without Extra Space)
+== Approach-2(Without Extra Space)
 - Recursively iterate through same nodes of both trees, if at any level not found same, return false. else return true.
 - Checks to perform and return false:
   - _1._ if root nodes are not equal
   - _2._ if values of any node not same
   - _3._ if left subtree is empty & right is not empty and viceversa.
 
-#### Code
-<a name=cr></a>
-- **C++: Recursive**
+=== Code
+==== CPP (Recursive)
  ```cpp
 struct TreeNode {
     int val;
@@ -100,13 +91,12 @@ int main(){
 }
 ```
 
-<a name=ci></a>
-- **C++: Iterative**
-  - [We will use following approach To convert Itertive to recursive](/DS_Questions/Algorithms/Recursion/README.md#ci)
-  - Take stack.
-    - _1._ Push a,b root on stack.
-    - _2._ Pop top 2 elements compare and repeat step-1
-    - _3._ if stack becomes empty(that means no more child nodes are there to be added) return true.
+==== CPP Iterative
+- link:/DS_Questions/Algorithms/Recursion/README.md#ci[We will use following approach To convert Itertive to recursive]
+- Take stack.
+  - _1._ Push a,b root on stack.
+  - _2._ Pop top 2 elements compare and repeat step-1
+  - _3._ if stack becomes empty(that means no more child nodes are there to be added) return true.
 ```cpp
 class Solution {
 public:
@@ -151,9 +141,6 @@ public:
 };
 ```
 
-<a name=comp></a>
-### Complexity
-#### Time
-O(n)
-#### Space
-O(logn) because at anytime we will only have logn stacks used.
+=== Complexity
+* Time: O(n)
+* Space: O(logn) because at anytime we will only have logn stacks used.
