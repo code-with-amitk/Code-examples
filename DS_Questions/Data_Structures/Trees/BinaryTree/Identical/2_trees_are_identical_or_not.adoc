@@ -31,7 +31,7 @@ Traverse tree1 and tree2 in inorder traversal and save in vector1 and vector2. i
 
 === Code
 ==== CPP (Recursive)
- ```cpp
+```cpp
 struct TreeNode {
     int val;
     TreeNode* left;
