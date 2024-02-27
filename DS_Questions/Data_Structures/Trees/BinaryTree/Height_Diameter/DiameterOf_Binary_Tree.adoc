@@ -1,35 +1,32 @@
-**Diameter of Binary Tree**
-- [Approach-1, DFS. O(n)](#a1)
-  - [CPP](#c)
-  - [Java](#j)
-  - [Python](#p)
+:toc:
+:toclevels: 6
 
-### [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
-- **Diameter?**	Number of nodes on longest path between 2 nodes of Tree
+== link:https://leetcode.com/problems/diameter-of-binary-tree[543. Diameter of Binary Tree]
+*Diameter?*	Number of nodes on longest path between 2 nodes of Tree
 ```c
  	      1
        / 
       2
      / \
     4   5
-   / 	  \
+   / 	   \
   8  	   10
 Diameter=4, between 8 & 10 only edges are calculated 8,4,2,5,10 -> 4
 ```
  
- <a name=a1></a>
- ### Depth 1st Search. O(n)
- #### Logic
- - _1._ Traverse to every node of tree, Find leftHeight, rightHeight of that node.
- - _2._ Diameter of that node = (leftHeight + rightHeight)
- - _3._ Return max(leftHeight, rightHeight) + 1 from child node to parent, so that parent can find it's own diameter
- - _4._ keep variable to track maximum diameter. on every node, check whether `diameter of node > maxDiameter`.
- #### Complexity
- - **Time:** O(n). Traverse every node once
- - **Space:** O(n). implicit call stack during DFS. if balanced tree = O(logn)
- #### Code
- <a name=c></a>
- **CPP**
+== Approach. Depth 1st Search. O(n)
+=== Logic
+1. Traverse to every node of tree, Find leftHeight, rightHeight of that node.
+2. Diameter of that node = (leftHeight + rightHeight)
+3. Return max(leftHeight, rightHeight) + 1 from child node to parent, so that parent can find it's own diameter
+4. keep variable to track maximum diameter. on every node, check whether `diameter of node > maxDiameter`.
+
+ === Complexity
+ * Time: O(n). Traverse every node once
+ * Space: O(n). implicit call stack during DFS. if balanced tree = O(logn)
+ 
+ === Code
+==== CPP
  ```cpp
 #include<iostream>
 #include<algorithm>
@@ -86,8 +83,8 @@ int main(){
   printf("Diameter=%d\n",s.diameterOfBinaryTree(pRoot));
 }
 ```
-<a name=j></a>
-#### Java
+
+==== Java
 ```java
 /**
  * Definition for a binary tree node.
@@ -124,8 +121,8 @@ class Solution {
     }
 }
 ```
-<a name=p></a>
-#### Python
+
+==== Python
 ```py
 # Definition for a binary tree node.
 # class TreeNode:
