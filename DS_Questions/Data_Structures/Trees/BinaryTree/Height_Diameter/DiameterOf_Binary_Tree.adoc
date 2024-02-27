@@ -21,9 +21,9 @@ Diameter=4, between 8 & 10 only edges are calculated 8,4,2,5,10 -> 4
 3. Return max(leftHeight, rightHeight) + 1 from child node to parent, so that parent can find it's own diameter
 4. keep variable to track maximum diameter. on every node, check whether `diameter of node > maxDiameter`.
 
- === Complexity
- * Time: O(n). Traverse every node once
- * Space: O(n). implicit call stack during DFS. if balanced tree = O(logn)
+=== Complexity
+* Time: O(n). Traverse every node once
+* Space: O(n). implicit call stack during DFS. if balanced tree = O(logn)
  
 === Code
 ==== CPP
