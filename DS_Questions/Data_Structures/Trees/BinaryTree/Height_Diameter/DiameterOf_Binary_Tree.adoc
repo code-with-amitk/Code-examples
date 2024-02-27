@@ -25,9 +25,9 @@ Diameter=4, between 8 & 10 only edges are calculated 8,4,2,5,10 -> 4
  * Time: O(n). Traverse every node once
  * Space: O(n). implicit call stack during DFS. if balanced tree = O(logn)
  
- === Code
+=== Code
 ==== CPP
- ```cpp
+```cpp
 #include<iostream>
 #include<algorithm>
 
