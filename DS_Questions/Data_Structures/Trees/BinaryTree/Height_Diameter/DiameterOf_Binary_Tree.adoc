@@ -150,3 +150,58 @@ class Solution:
         diameter(root)
         return maxDiameter
 ```
+==== Rust
+```rs
+// Definition for a binary tree node.
+// #[derive(Debug, PartialEq, Eq)]
+// pub struct TreeNode {
+//   pub val: i32,
+//   pub left: Option<Rc<RefCell<TreeNode>>>,
+//   pub right: Option<Rc<RefCell<TreeNode>>>,
+// }
+// 
+// impl TreeNode {
+//   #[inline]
+//   pub fn new(val: i32) -> Self {
+//     TreeNode {
+//       val,
+//       left: None,
+//       right: None
+//     }
+//   }
+// }
+use std::rc::Rc;
+use std::cell::RefCell;
+impl Solution {
+    pub fn diameter_of_binary_tree(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        let mut max_dia = 0;
+        if let Some(root) = root {
+            Solution::diameter(&root.borrow(), &mut max_dia);
+        }
+        max_dia
+    }
+    fn diameter (root: &TreeNode, max_dia: &mut i32) -> i32{
+        if root == &TreeNode::new(0) {
+            return 0;
+        } else {
+            let mut left_height = 0;
+            let mut right_height = 0;
+
+            // Traverse to deepest left, right nodes
+            if let Some(left) = &root.left {
+                left_height = 1+Solution::diameter(&left.borrow(), max_dia);
+            }
+            if let Some(right) = &root.right {
+                right_height = 1+Solution::diameter(&right.borrow(), max_dia);
+            }
+
+            // Diameter of present node = leftHeight + rightHeight
+            // Keep track of the maximum diameter encountered so far
+            let diameter = left_height + right_height;
+            *max_dia = std::cmp::max(*max_dia, diameter);
+
+            std::cmp::max(left_height, right_height)
+        }
+    }    
+}
+```
