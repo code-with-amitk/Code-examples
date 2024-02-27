@@ -4,7 +4,7 @@
 == link:https://leetcode.com/problems/diameter-of-binary-tree[543. Diameter of Binary Tree]
 *Diameter?*	Number of nodes on longest path between 2 nodes of Tree
 ```c
- 	      1
+       1
        / 
       2
      / \
