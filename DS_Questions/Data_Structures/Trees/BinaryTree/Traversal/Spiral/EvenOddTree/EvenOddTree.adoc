@@ -121,7 +121,7 @@ struct TreeNode {
   
 class Solution {
 public:
-  bool CheckZigZag();
+  bool levelOrderTraversal();
   bool isEvenOddTree(TreeNode* root);
 private:
   stack<TreeNode*> mainStack;
@@ -135,10 +135,10 @@ bool Solution::isEvenOddTree(TreeNode* root){
     return false;
 
   mainStack.push(root);
-  return CheckZigZag();
+  return levelOrderTraversal();
 }
 
-bool Solution::CheckZigZag() {
+bool Solution::levelOrderTraversal() {
 
     while (mainStack.empty() != 1) {
       while (mainStack.empty() != 1) {
