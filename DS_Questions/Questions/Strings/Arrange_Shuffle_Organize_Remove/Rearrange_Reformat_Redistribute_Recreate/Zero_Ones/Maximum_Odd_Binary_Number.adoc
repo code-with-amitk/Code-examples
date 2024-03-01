@@ -1,0 +1,84 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/maximum-odd-binary-number/[2864. Maximum Odd Binary Number]
+You are given a binary string s that contains at least one '1'.
+
+You have to rearrange the bits in such a way that the resulting binary number is the maximum odd binary number that can be created from this combination.
+
+Return a string representing the maximum odd binary number that can be created from the given combination.
+
+Note that the resulting string can have leading zeros.
+
+```c
+Example 1:
+Input: s = "010"
+Output: "001"
+Explanation: Because there is just one '1', it must be in the last position. So the answer is "001".
+
+Example 2:
+Input: s = "0101"
+Output: "1001"
+Explanation: One of the '1's must be in the last position. The maximum number that can be made with the remaining digits is "100". So the answer is "1001".
+```
+
+== Approach. Count 1s and rearrange
+=== Logic
+* Count total number of 1's in input string
+* if only one 1 is present only possible way = "00001"
+* if all 1s are there in array = "1111". return input array itself
+* more than one, 1's found in input string
+** place all 1's at start, then all 0's and
+** place only last 1 at end
+```c
+input =  "1010111"
+output = "1111001"
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    string maximumOddBinaryNumber(string s) {
+        int total_chars = 0, n = 0;
+        string out;
+
+        // Count 1 bits
+        int ones_count = 0;
+        for (char& i : s) {
+            if (i == '1')
+                ones_count++;
+            total_chars++;
+        }
+        if (ones_count == total_chars)
+            return s;
+
+        // if only one, 1 we have only possible no = 0001
+        if (ones_count == 1) {
+            while (n++ < total_chars - 1) 
+                out += "0";
+            out += "1";
+            return out;
+        }
+
+        int zero_count = total_chars - ones_count;
+
+        // more than one, 1's found in input string
+        // place all 1's at start, then all 0's and
+        // place only last 1 at end
+        while (n++ < ones_count-1)
+            out += "1";
+        int val = n + zero_count;
+        while (n++ < val)
+            out += "0";
+        out += "1";
+
+        return out;
+    }
+};
+```
