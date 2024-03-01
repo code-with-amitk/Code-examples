@@ -37,7 +37,7 @@ output = "1111001"
 
 === Complexity
 * Time: O(n)
-* Space: O(1)
+* Space: O(n)
 
 === Code
 ==== CPP
