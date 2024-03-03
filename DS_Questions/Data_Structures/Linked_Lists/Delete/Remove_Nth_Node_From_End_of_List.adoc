@@ -9,7 +9,7 @@ Example 1:
 Input: head = [1,2,3,4,5], n = 2
 Output: [1,2,3,5]
 ```
-<img 
+image::https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg?raw=true[Linked List]
 ```c
 Example 2:
 Input: head = [1], n = 1
