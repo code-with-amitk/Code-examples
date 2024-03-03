@@ -1,0 +1,88 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/remove-nth-node-from-end-of-list/[19. Remove Nth Node From End of List]
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+```c
+Example 1:
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+```
+<img 
+```c
+Example 2:
+Input: head = [1], n = 1
+Output: []
+
+Example 3:
+Input: head = [1,2], n = 1
+Output: [1]
+```
+
+== Approach-1. Store nodes in vector
+=== Logic
+* Read listnode pointers into vector.
+* Find position of node to be deleted from begginning.
+```c
+  position_from_begg_of_node_to_be_deleted = vec.size() - n
+
+n = 2
+| 1 | 2 | 3 | 4 | 5 |
+              /\
+```
+* Make next of 3 to next of 5.
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        vector<ListNode*> positions;
+        ListNode* p = head;
+        while (p) {
+           positions.push_back(p);
+           p = p->next;
+        }
+        int totalNodes = positions.size();
+
+        // Handle the case when the node to be deleted is the head of the list
+        if (n == totalNodes) {
+            ListNode* newHead = head->next;
+            delete head;
+            return newHead;
+        }
+        // For other nodes
+        int nth = totalNodes - n;
+        int toBeDeleted = nth + 1;
+        
+        // Update the next pointer of the previous node
+        if (toBeDeleted > 1) {
+            positions[toBeDeleted - 2]->next = positions[toBeDeleted - 1]->next;
+        } else {
+            // If toBeDeleted is the first node, update head
+            head = positions[toBeDeleted - 1]->next;
+        }
+        
+        // Delete the node
+        delete positions[toBeDeleted - 1];
+        
+        return head;
+    }
+};
+```
