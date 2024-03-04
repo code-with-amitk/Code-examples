@@ -1,0 +1,79 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/bag-of-tokens[948. Bag of Tokens]
+You start with an initial power of power, an initial score of 0, and a bag of tokens given as an integer array tokens, where each tokens[i] donates the value of tokeni.
+
+Your goal is to maximize the total score by strategically playing these tokens. In one move, you can play an unplayed token in one of the two ways (but not both for the same token):
+
+Face-up: If your current power is at least tokens[i], you may play tokeni, losing tokens[i] power and gaining 1 score.
+Face-down: If your current score is at least 1, you may play tokeni, gaining tokens[i] power and losing 1 score.
+Return the maximum possible score you can achieve after playing any number of tokens.
+```c
+Example 1:
+Input: tokens = [100], power = 50
+Output: 0
+Explanation: Since your score is 0 initially, you cannot play the token face-down. You also cannot play it face-up since your power (50) is less than tokens[0] (100).
+
+Example 2:
+Input: tokens = [200,100], power = 150
+Output: 1
+Explanation: Play token1 (100) face-up, reducing your power to 50 and increasing your score to 1.
+There is no need to play token0, since you cannot play it face-up to add to your score. The maximum score achievable is 1.
+
+Example 3:
+Input: tokens = [100,200,300,400], power = 200
+Output: 2
+```
+
+== Approach-1. O(nlogn) Sort+2 Pointer Approach Faceup from Front, FaceDown from back
+=== Logic
+* Sort the tokens array and take 2 pointers front, back.
+```c
+tokens = [100,200,300,400], power = 200
+          f            b
+```
+* if score=0 and power<front. Return 0
+* if score>0 and power>front. Increase score, reduce power and move front.  //Face up
+```c
+score    [100,200,300,400], power
+1              f       b     100
+```
+* if front>power, We need to increase power(But we will increase from back)  // Face Down.. so on
+```
+score    [100,200,300,400], power
+0              f   b        500
+```
+
+=== Complexity
+* Time: O(nlogn):Sort, O(n):Traverse using 2 pointer
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int bagOfTokensScore(vector<int>& tokens, int power) {
+        sort (tokens.begin(), tokens.end());
+        int front = 0, score = 0, back=tokens.size()-1;
+        while (front <= back) {
+            if (score == 0 && tokens[front] > power) {
+                return 0;
+            } else if (score > 0 && tokens[front] > power) { //face-down
+                // Donot loose score, if it's last element
+                if (front == back)
+                    break;
+                score--;
+                power += tokens[back];
+                back--;
+            } else {  //face-up
+                power -= tokens[front];
+                score++;
+                front++;
+            }
+        }
+        return score;
+    }
+};
+```
