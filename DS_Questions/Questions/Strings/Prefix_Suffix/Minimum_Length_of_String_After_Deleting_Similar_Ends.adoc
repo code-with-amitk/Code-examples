@@ -1,0 +1,90 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends[1750. Minimum Length of String After Deleting Similar Ends]
+Given a string s consisting only of characters 'a', 'b', and 'c'. You are asked to apply the following algorithm on the string any number of times:
+
+Pick a non-empty prefix from the string s where all the characters in the prefix are equal.
+Pick a non-empty suffix from the string s where all the characters in this suffix are equal.
+The prefix and the suffix should not intersect at any index.
+The characters from the prefix and suffix must be the same.
+Delete both the prefix and the suffix.
+Return the minimum length of s after performing the above operation any number of times (possibly zero times).
+
+```c
+Example 1:
+Input: s = "ca"
+Output: 2
+Explanation: You can't remove any characters, so the string stays as is.
+
+Example 2:
+Input: s = "cabaabac"
+Output: 0
+Explanation: An optimal sequence of operations is:
+- Take prefix = "c" and suffix = "c" and remove them, s = "abaaba".
+- Take prefix = "a" and suffix = "a" and remove them, s = "baab".
+- Take prefix = "b" and suffix = "b" and remove them, s = "aa".
+- Take prefix = "a" and suffix = "a" and remove them, s = "".
+
+Example 3:
+Input: s = "aabccabba"
+Output: 3
+Explanation: An optimal sequence of operations is:
+- Take prefix = "aa" and suffix = "a" and remove them, s = "bccabb".
+- Take prefix = "b" and suffix = "bb" and remove them, s = "cca".
+```
+
+== Approach. 2 Pointer. O(n)
+=== Logic
+* Take 2 pointers(start, end)
+* if characters are start, end are same. Skip same characters from start and end
+```c
+s = "a a b c c a b b a"      //Since aa, a match. skip all a's from begg and end
+     |               |
+   start            end  
+
+s = "a a b c c a b b a"
+         |         |
+       start       end
+```
+* Continue above operation until start crosses end.
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```c
+class Solution {
+public:
+    int minimumLength(string s) {
+        int start = 0, end = s.size() - 1;
+        if (s.size() == 1)
+            return 1;
+        while (start < end) {
+            if (s[start] == s[end]) {
+                // skip all same characters from start
+                while (start < end && s[start] == s[start+1])
+                    start++;
+
+                // skip all same characters from end
+                while (start < end && s[end] == s[end-1])
+                    end--;
+                if (start >= end)
+                    return 0;
+
+                // Move to next character in string
+                start++;
+                end--;
+            }
+            else {
+                return end-start+1;
+            }
+        }
+        // When all characters are same(ie prefix,suffix)
+        // We are left with 1 character at end
+        return 1;
+    }
+};
+```
