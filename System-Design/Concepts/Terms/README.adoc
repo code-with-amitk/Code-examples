@@ -132,9 +132,9 @@ State information of node-A?
 One key/node in database that is linked to millions of other keys/nodes in DB. Eg: Celebrities have many millions of followers.
 
 == Latency 
-Latency is time that request is waiting to be handled ie awaiting service. [Response Time](#rt) means RTT.
+Latency is time that request is waiting to be handled ie awaiting service. <<response_time,Response Time>> means RTT.
 === How to reduce Latency
-* 1. For read heavy system, Add more Read Replicas in [Replication](/System-Design/Concepts/Databases/Database_Scaling/1.Replication).
+* 1. For read heavy system, Add more Read Replicas in link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication[Replication]
 
 == Linearizability
 * This is recency(Means MOST Recent) gurantee. All replicas only return very recent data. ie System is very very Strongly consistent.
@@ -185,6 +185,7 @@ Node selects k neighbours randomly, sends key-100(data to searched) to them, aga
 * This is fault that breaks communication between nodes.
 * Solution:link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication[Replication]
 
+[[response_time]]
 == Response Time
 * Measured as a round trip time ie time taken for packet to reach dest and ACK to come to source again.
 * The response time is what the client sees, includes (actual time to process the request (the service time), network delays and queueing delays).
