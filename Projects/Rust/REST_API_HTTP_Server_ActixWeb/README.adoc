@@ -1,11 +1,10 @@
-- [Actix http Webserver exposing REST API](#w)
-  - [Code](Code)
+:toc:
+:toclevels: 6
 
-<a name=w></a>
-## Actix http Webserver exposing REST API
-- [How REST Works](/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST/README.md#how). 
-- Remember REST-API exposes a resource via [HTTP CRUD Methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc) and allows to perform operations on it. 
-```rs
+== Actix http Webserver exposing REST API
+* link:/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/WebClient_Connecting_WebServer/REST/README.adoc#how[How REST Works]
+- Remember REST-API exposes a resource via link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc[HTTP CRUD Methods] and allows to perform operations on it. 
+```c
 //Here we have taken Resource=user.
 
 REST API           |   Desc                                         |   function
