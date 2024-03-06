@@ -133,6 +133,7 @@ One key/node in database that is linked to millions of other keys/nodes in DB. E
 
 == Latency 
 Latency is time that request is waiting to be handled ie awaiting service. <<response_time,Response Time>> means RTT.
+
 === How to reduce Latency
 * 1. For read heavy system, Add more Read Replicas in link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication[Replication]
 
