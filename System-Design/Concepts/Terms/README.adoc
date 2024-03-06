@@ -131,8 +131,12 @@ State information of node-A?
 == Hot Key / linchpin objects
 One key/node in database that is linked to millions of other keys/nodes in DB. Eg: Celebrities have many millions of followers.
 
-== Latency 
-Latency is time that request is waiting to be handled ie awaiting service. <<response_time,Response Time>> means RTT.
+== Latency (Delay in Network)
+* Latency is 1 way <<response_time,rtt>>.
+* A webserver is serving the requests, latency is amount of time needed for packet to reach server from webclient.
+* Networks with a longer delay or lag have high latency, while those with fast response times have lower latency.
+* Factors affecting latency
+** 
 
 === How to reduce Latency
 * 1. For read heavy system, Add more Read Replicas in link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication[Replication]
@@ -235,7 +239,17 @@ JAMS case:
   (site-3)JAMS_Kallactor-3 -------/
 ```
 
+[[throughput]]
 === Throughput
-* Rate of successful message delivery over a communication channel(Ethernet, wifi etc).
-* Measured in Bits/sec(bps), data packets per second (p/s or pps).
+* Throughput is amount of data that system can ingest per second, measured in Bytes/sec.
 * *Tit for Tat Strategy:*  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
+
+|===
+||Latency|Throughput
+
+|Determines|Delay that a user experiences when accessing a system|number of users that can access the network at the same time
+|Unit|millisec|Bytes per second. GBps, MBps, Kbps
+|Best Network|Low Latency|High throughtput
+|How to measure|ping response time|Send a file. Note time it took to reach dest. throughput=file_size/time_taken_to_reach_dest
+
+|===
