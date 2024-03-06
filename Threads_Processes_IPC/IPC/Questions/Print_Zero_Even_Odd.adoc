@@ -1,0 +1,136 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/print-zero-even-odd/description/[1116. Print Zero Even Odd]
+You have a function printNumber that can be called with an integer parameter and prints it to the console.
+
+For example, calling printNumber(7) prints 7 to the console.
+You are given an instance of the class ZeroEvenOdd that has three functions: zero, even, and odd. The same instance of ZeroEvenOdd will be passed to three different threads:
+
+Thread A: calls zero() that should only output 0's.
+Thread B: calls even() that should only output even numbers.
+Thread C: calls odd() that should only output odd numbers.
+Modify the given class to output the series "010203040506..." where the length of the series must be 2n.
+
+Implement the ZeroEvenOdd class:
+
+ZeroEvenOdd(int n) Initializes the object with the number n that represents the numbers that should be printed.
+void zero(printNumber) Calls printNumber to output one zero.
+void even(printNumber) Calls printNumber to output one even number.
+void odd(printNumber) Calls printNumber to output one odd number.
+```c 
+Example 1:
+Input: n = 2
+Output: "0102"
+Explanation: There are three threads being fired asynchronously.
+One of them calls zero(), the other calls even(), and the last one calls odd().
+"0102" is the correct output.
+
+Example 2:
+Input: n = 5
+Output: "0102030405"
+```
+
+== Approach-1. Synchronization using condition_variable
+=== Logic
+* There are 3 threads created (t1,t2,t3). t1 to call zero(), t2 to call odd(), t3 to call even()
+* But order of execution is not fixed, ie t2 can be called 1st, t3 can be called 2nd and so on.
+* But we want threads to be executed in following order:
+```c
+t1       //print 0
+t2       //print 1
+t3       //print 2  ..so on
+
+t1 
+t2
+t3
+
+and so on
+```
+* This How we set order of execution of threads:
+** Take 2 bools. 
+```c
+    bool bOddOrEven;    //1=odd, 0=even. Used for printing odd or even
+
+    bool bZeroPrinted;  //Check whether 0 is printed or not. true=printed, false=not. Used for printing 0
+```
+* Logic:
+** Initize with bZeroPrinted=false, bOddOrEven=true(ie print odd 1st)
+** Enter zero() when (bZeroPrinted == false) and after printing zero make bZeroPrinted=true
+** Enter odd() when (bZeroPrinted == true) && (bOddOrEven == true) and print odd number. and set bOddOrEven=false(to print event next)
+** Also, we need to sit in for() loop to print all numbers till n. Because threads will call function only once
+
+=== Code
+==== CPP
+```cpp
+class ZeroEvenOdd {
+private:
+    int n;
+    mutex mtx;
+    condition_variable cv;
+    bool bOddOrEven;    //1=odd, 0=even
+    bool bZeroPrinted;  //Check whether 0 is printed or not. true=printed, false=not
+
+public:
+    ZeroEvenOdd(int n) {
+        this->n = n;
+        bOddOrEven = true;
+        bZeroPrinted = false;          
+    }
+
+    // printNumber(x) outputs "x", where x is an integer.
+    void zero(function<void(int)> printNumber) {
+        for (int i=0; i<n; ++i) {
+            unique_lock<mutex> ul(mtx);
+
+            //lambda [capture list](arguments){body}
+            auto wait_condition = [this](){
+                if (bZeroPrinted == false)
+                    return true;
+                return false;
+            };
+            cv.wait(ul, wait_condition);
+            printNumber(0);
+            bZeroPrinted = true;
+            //bOddOrEven = true;         //print odd now
+            cv.notify_all();            //notify all waiting threads
+        }
+    }
+
+    void even(function<void(int)> printNumber) {
+        for (int i=2; i<=n; i+=2) {
+            unique_lock<mutex> ul(mtx);
+
+            //lambda [capture list](arguments){body}
+            auto wait_condition = [this](){
+                if ((bZeroPrinted == true) && (bOddOrEven==false))
+                    return true;
+                return false;
+            };
+            cv.wait(ul, wait_condition);
+            printNumber(i);
+            bZeroPrinted = false;
+            bOddOrEven= true;       //print odd next
+            cv.notify_all();
+        }
+    }
+
+    void odd(function<void(int)> printNumber) {
+        for (int i=1; i<=n; i+=2) {
+            unique_lock<mutex> ul(mtx);
+
+            //lambda [capture list](arguments){body}
+            auto wait_condition = [this](){
+                if ((bZeroPrinted == true) && (bOddOrEven == true))
+                    return true;
+                return false;
+            };
+            cv.wait(ul, wait_condition);
+            printNumber(i);
+            bZeroPrinted = false;
+            bOddOrEven= false;      //print even next
+            cv.notify_all();
+        }
+    }
+};
+```
