@@ -3,9 +3,9 @@
 
 
 == REST / (Representation State Transfer) APIs
-**Restful Web Server/Application?** Web application that implements [HTTP CRUD methods](/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea) in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
-- When web-client calls Restful APIs then Web-Server can return [JSON](/Languages/ScriptingLanguages/JavaScript) or HTML or [XML](/Languages/Markup_Language).
-- [Good Youtube Video](https://www.youtube.com/watch?v=SLwpqD8n3d0)
+* *Restful Web Server/Application?* Web application that implements link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea[HTTP CRUD methods] in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
+* When web-client calls Restful APIs then Web-Server can return link:/Languages/ScriptingLanguages/JavaScript[JSON] or HTML or link:/Languages/Markup_Language[XML]
+* link:https://www.youtube.com/watch?v=SLwpqD8n3d0[Good Youtube Video]
 
 === REST API
 Same as link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc[HTTP CRUD methods]
@@ -36,7 +36,7 @@ Same as link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc[HTTP CRUD
                                           Implement APIs GET(){..} POST(){..} PUT(){..} DELETE(){..}
                      <---data----
 ```
-**Why Restful**
+* *Why Restful?*
 - *1. Rest makes Web Service OS Independent:* Web applications can reside on different operating systems, some could be on Windows, and others could be on Linux.
 - *2. Rest makes Web Service language independent:* Web services can be implemented in any language(C++,RUST etc)
 - *3. On Cloud:* RESTful applications are moved can reside on cloud. Azure and Amazon provide a lot of API's based on the Restful architecture. 
