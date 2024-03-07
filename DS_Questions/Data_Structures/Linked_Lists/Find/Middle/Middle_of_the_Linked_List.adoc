@@ -1,0 +1,71 @@
+:toc:
+:toclevels: 6
+
+== list:https://leetcode.com/problems/middle-of-the-linked-list/[876. Middle of the Linked List]
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+
+ ```c
+Example 1:
+Input: head = [1,2,3,4,5]
+1 -> 2 -> 3 -> 4 -> 5
+          |
+        output
+Explanation: The middle node of the list is node 3.
+
+Example-2
+Input: head = [1,2,3,4,5,6]
+1 -> 2 -> 3 -> 4 -> 5 -> 6
+               |
+              output
+Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
+```
+
+== Approach. Fast, slow pointer
+=== Logic
+* if 0 elements. []. output null
+* if 1 elements. [1]. output 1
+* if 2 elements. [1,2]. output is 2
+* Take 2 pointers (fast, slow) pointing to head.
+** Advance fast by 2 steps, slow by 1
+** When fast reaches end, slow would be at middle
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        if (!head)          //0 elements. []
+            return nullptr;
+        if (!head->next)    //1 element. [1].   middle=1
+            return head;
+        if (head->next && !head->next->next)    //2 elements. [1,2]. middle=2
+            return head->next;
+
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        if (fast->next)
+            return slow->next;
+        return slow;
+    }
+};
+```
