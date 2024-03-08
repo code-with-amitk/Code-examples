@@ -1,1 +1,64 @@
-:
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/count-elements-with-maximum-frequency[3005. Count Elements With Maximum Frequency]
+You are given an array nums consisting of positive integers.
+
+Return the total frequencies of elements in nums such that those elements all have the maximum frequency.
+
+The frequency of an element is the number of occurrences of that element in the array.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,2,3,1,4]
+Output: 4
+Explanation: The elements 1 and 2 have a frequency of 2 which is the maximum frequency in the array.
+So the number of elements in the array with maximum frequency is 4.
+Example 2:
+
+Input: nums = [1,2,3,4,5]
+Output: 5
+Explanation: All elements of the array have a frequency of 1 which is the maximum.
+So the number of elements in the array with maximum frequency is 5.
+
+== Approach-1. Count freq using hashmap
+=== Logic
+* Count freq using hashmap
+```c
+nums = [1,2,2,3,1,4]
+Hashmap = <1,2> <2,2> <3,1> <4,1>
+```
+* Traverse hashmap and keep maximum value till present inside maxi. if present value is greater than maxi. update maxi
+* Also add count into count variable.
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+        unordered_map<int, int> umFrequency;
+        for (auto&i:nums)
+            umFrequency[i] ++;
+
+        // Find max Freq
+        int count = 0, maxi = INT_MIN;
+        for (const auto[key, value]: umFrequency) {
+            if (value > maxi) {
+                maxi = value;
+                count = value;
+            } else if (value == maxi)
+                count += value;
+        }
+        return count;
+    }
+};
+```
+
+
