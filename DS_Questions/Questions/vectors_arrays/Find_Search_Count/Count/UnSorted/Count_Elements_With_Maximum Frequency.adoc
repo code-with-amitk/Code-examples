@@ -59,5 +59,33 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn max_frequency_elements(nums: Vec<i32>) -> i32 {
+        let mut hm = HashMap::new();
+        // Count occurance
+        for i in 0..nums.len() {
+            if let Some(val) = hm.get_mut(&nums[i]) {
+                *val += 1;
+            } else {
+                hm.insert(nums[i],1);
+            }
+        } 
 
-
+        // Find max Freq
+        let mut count = 0;
+        let mut maxi = -1;
+        for (key, value) in hm {
+            if value > maxi {
+                maxi = value;
+                count = value;
+            } else if value == maxi {
+                count += value;
+            }
+        }
+        count
+    }
+}
+```
