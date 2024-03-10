@@ -1,7 +1,10 @@
-### [Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/)
-- Given two arrays, write a function to compute their intersection.
-- Examples
-```c++
+:Toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/intersection-of-two-arrays/[349. Intersection of Two Arrays]
+Given two arrays, write a function to compute their intersection.
+Examples
+```cpp
 Example1
 Input: nums1 = [1,2,2,1], nums2 = [2,2]
 Output: [2]
@@ -11,21 +14,22 @@ Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
 Output: [9,4]
 ```
 
-### Approach-1(Linear Search)
+== Approach-1(Linear Search)
 - Traverse array-1, array-2 until any 1 array is finished.
 - Find duplicates. Move on that array which has element smaller than other
 - **Time Complexity** O(mn)
 
-### Approach-2 (Binary Search)
-- *1.* Sort both array. O(nlogn), O(mlogm)
-- *2.* Remove duplicates. O(n), O(m)
-- *3.* if element-array-1 < element-array-2. Find element-array-2 inside array-1 using binary search and viceversa. O(logn) + O(logm)
-- **Time Complexity** O(nlogn) + O(mlogm) + O(n) + O(m) + O(logn) + O(logm)
+== Approach-2 (Binary Search). O(nlogn) + O(mlogm)
+1. Sort both array. O(nlogn), O(mlogm)
+2. Remove duplicates. O(n), O(m)
+3. if element-array-1 < element-array-2. Find element-array-2 inside array-1 using binary search and viceversa. O(logn) + O(logm)
 
-### Code-Approach-2
-```c++
-class Solution {
-    
+=== Complexity 
+* Time: O(nlogn) + O(mlogm) + O(n) + O(m) + O(logn) + O(logm)
+
+=== Code
+```cpp
+class Solution { 
 public:
 using vec = std::vector<int>;
 
@@ -91,4 +95,40 @@ int BinarySearch(const vec& v, int element, int start, int end){
   return out;        
     }
 };
+```
+
+== Approach-3. HashSet
+=== Logic
+* Insert all elements of array1 in HashSet
+* Traverse array2 and find elements in HashSet, whichever elements are found create vector and return.
+
+=== Complexity
+* Time: O(m) + O(n)
+* Space: O(m)
+
+=== Code
+```cpp
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2)  {
+	vector<int> vecOut;
+	unordered_set<int> usOut;
+	
+	//Insert Elements in HashSet
+	unordered_set<int> usNums1;
+	for (auto i:nums1)
+	    usNums1.insert(i);
+	
+	//Search each element in HashSet
+	for (int i=0; i<nums2.size(); ++i){
+	    if (usNums1.find(nums2[i]) != usNums1.end()){
+		usOut.insert(nums2[i]);
+	    }
+	}
+	
+	//Create vector from HashSet
+	for (auto i:usOut)
+	    vecOut.push_back(i);
+	return vecOut;
+    }
 ```
