@@ -240,7 +240,7 @@ JAMS case:
 ```
 
 [[throughput]]
-=== Throughput
+== Throughput
 * Throughput is amount of data that system can ingest per second, measured in Bytes/sec.
 * *Tit for Tat Strategy:*  if the node-1 was cooperative, then node-2 is also cooperative. if node-1 is not cooperative then node-2 is also not.
 
