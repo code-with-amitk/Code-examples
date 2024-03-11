@@ -83,3 +83,38 @@ public:
     }
 };
 ```
+
+==== CPP11(using lambda)
+```cpp
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        unordered_set<char> us;
+        unordered_map<char, int> um;
+        for (auto&c: s) {
+            us.insert(c);
+            um[c]++;
+        }
+        string out;
+                         //[capture list] (args) {}
+        auto lambda_fun = [&um, &out](char c) {
+            auto itr = um.find(c);
+            int i=0;
+            while (i++<itr->second) {
+                out += c;
+            }
+            um.erase(itr);
+        };
+        for (auto&c: order) {
+            auto it = us.find(c);
+            if (it != us.end()) {
+                lambda_fun(c);
+                us.erase(it);
+            }
+        }
+        for (auto&c: us)
+            lambda_fun(c);
+        return out;
+    }
+};
+```
