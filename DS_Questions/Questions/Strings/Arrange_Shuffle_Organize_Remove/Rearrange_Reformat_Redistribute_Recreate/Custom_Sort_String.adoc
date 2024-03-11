@@ -49,7 +49,7 @@ uordered_map = <k,1> <q,1>
 * Space: O(n)
 
 === Code
-==== CPP
+==== CPP11 (Basic)
 ```cpp
 class Solution {
     void delete1(unordered_map<char, int>& um, char c, string& out) {
