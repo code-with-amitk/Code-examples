@@ -1,0 +1,85 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/custom-sort-string/description[791. Custom Sort String]
+You are given two strings order and s. All the characters of order are unique and were sorted in some custom order previously.
+
+Permute the characters of s so that they match the order that order was sorted. More specifically, if a character x occurs before a character y in order, then x should occur before y in the permuted string.
+
+Return any permutation of s that satisfies this property.
+```c
+Example 1:
+Input:  order = "cba", s = "abcd" 
+Output:  "cbad" 
+Explanation: "a", "b", "c" appear in order, so the order of "a", "b", "c" should be "c", "b", and "a".
+Since "d" does not appear in order, it can be at any position in the returned string. "dcba", "cdba", "cbda" are also valid outputs.
+
+Example 2:
+Input:  order = "bcafg", s = "abcd" 
+Output:  "bcad" 
+Explanation: The characters "b", "c", and "a" from order dictate the order for the characters in s. 
+The character "d" in s does not appear in order, so its position is flexible.
+Following the order of appearance in order, "b", "c", and "a" from s should be arranged as "b", "c", "a". "d" 
+can be placed at any position since it's not in order. The output "bcad" correctly follows this rule. Other arrangements 
+like "bacd" or "bcda" would also be valid, as long as "b", "c", "a" maintain their order.
+```
+
+== Approach-1. map and set
+=== Logic
+* Store input string in set and count of each element in map
+```c
+order = "kqep"
+s = "pekeq"
+unordered_set = {p e k q}
+uordered_map = <p,1> <e,2> <k,1> <q,1>
+```
+* Traverse order, find element in set and insert n elements into output whose count is equal to in map. And delete from set and map.
+```c
+out = p
+unordered_set = {e k q}
+uordered_map = <e,2> <k,1> <q,1>
+
+out = pee
+unordered_set = {k q}
+uordered_map = <k,1> <q,1>
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+    void delete1(unordered_map<char, int>& um, char c, string& out) {
+        auto itr = um.find(c);
+        int i=0;
+        while (i++<itr->second) {
+            out += c;
+        }
+        um.erase(itr);
+    }
+public:
+    string customSortString(string order, string s) {
+        unordered_set<char> us;
+        unordered_map<char, int> um;
+        for (auto&c: s) {
+            us.insert(c);
+            um[c]++;
+        }
+        string out;
+        for (auto&c: order) {
+            auto it = us.find(c);
+            if (it != us.end()) {
+                delete1(um, c, out);
+                us.erase(it);
+            }
+        }
+        for (auto&c: us) {
+            delete1(um, c, out);
+        }
+        return out;
+    }
+};
+```
