@@ -1,0 +1,64 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-the-pivot-integer/[2485. Find the Pivot Integer]
+Given a positive integer n, find the pivot integer x such that:
+
+The sum of all elements between 1 and x inclusively equals the sum of all elements between x and n inclusively.
+Return the pivot integer x. If no such integer exists, return -1. It is guaranteed that there will be at most one pivot index for the given input.
+```c
+Example 1:
+Input: n = 8
+Output: 6
+Explanation: 6 is the pivot integer since: 1 + 2 + 3 + 4 + 5 + 6 = 6 + 7 + 8 = 21.
+
+Example 2:
+Input: n = 1
+Output: 1
+Explanation: 1 is the pivot integer since: 1 = 1.
+
+Example 3:
+Input: n = 4
+Output: -1
+Explanation: It can be proved that no such integer exist.
+```
+
+== Approach-1. O(n). Sum of n elements
+=== Logic
+* Find sum till nth element. n=8. 8*9/2 = 36
+* Start from i=2 and find sum of all elements (n*(n+1))/2
+* Then find (sum_till_n - sum_till_i +i)
+* if (sum_till_i == (sum_till_n - sum_till_i +i)). We found the pivot ie i
+```c
+Input: n = 8
+
+i    sum_till_i    (sum_till_n - sum_till_i +i)
+2    2                36 - 2 + 1 = 35
+3    6                36 - 6 + 3 = 33
+4    10               36 - 10+4  = 30
+5    15               36 - 15+5  = 26
+6    21               36 - 21+6 =  21
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int pivotInteger(int n) {
+        if (n==1)
+            return 1;
+        int sum_till_n = (n * (n+1)) / 2;
+        for (int i=2;i<n;++i) {
+            int sum_till_i = (i*(i+1))/2;
+            if (sum_till_i == sum_till_n-sum_till_i+i)
+                return i;
+        }
+        return -1;
+    }
+};
+```
