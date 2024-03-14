@@ -50,7 +50,7 @@ k = 5
   }
 ```
 
-== Approach-2. Cumulative Sum (Prefix Sum), Time:O(n^2^), Space:O(n+1)
+== Approach-2. Cumulative Sum (Prefix Sum), Time:O(n^2^), Space:O(n+1). TLE
 === Logic
 1. Find cumulative sum(ie sum of all prev elements of array upto this element) and store in seperate array `sum` size=arr+1
 ```c
@@ -101,7 +101,7 @@ cum_sum-ele(0)     -1-0     1-0     4-0       6-0       4-0
   }
 ```
 
-== Approach-3  //Cumulative Sum, Time:O(n<sup>2</sup>), Space:O(1)
+== Approach-3  //Cumulative Sum, Time:O(n^2^), Space:O(1). TLE
 === Logic
 Same as approach-2, But donot take seperate array to store cumulative sum(ie sum of all prev elements of array upto this element), calculate during for loop.
 
