@@ -87,3 +87,28 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn find_min_arrow_shots(points1: Vec<Vec<i32>>) -> i32 {
+        // points1 is not mutable reference, hence we cannnot sort
+        // the array. Hence we need to create a mutable copy of vector
+        let mut points:Vec<Vec<i32>> = points1.clone();
+        points.sort();
+
+        let mut arrows = 1;
+        let mut end = points[0][1];
+
+        for i in (1..points.len()) {
+            if points[i][0] > end {
+                arrows += 1;
+                end = points[i][1];
+            }
+            else {
+                end = std::cmp::min(end, points[i][1]);
+            }            
+        }
+        arrows
+    }
+}
+```
