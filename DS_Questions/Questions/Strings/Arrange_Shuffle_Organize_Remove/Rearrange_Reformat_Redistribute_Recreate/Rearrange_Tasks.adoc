@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-== link:https://leetcode.com/problems/task-scheduler/[Task Scheduler]
+== link:https://leetcode.com/problems/task-scheduler/[621. Task Scheduler]
 Given a array of tasks, representing the tasks a CPU needs to do, where each letter represents a different task. Each task is done in one unit of time. For each unit of time.
 
 There is a non-negative integer n that represents the cooldown period between two same tasks (the same letter in the array), that is that there must be at least n units of time between any two same tasks.
