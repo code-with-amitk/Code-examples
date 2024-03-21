@@ -12,7 +12,7 @@ Input: head = [1,2,3,4,5]
 Output: [5,4,3,2,1]
 ```
 
-== Approach-1 (3 pointers)
+== Approach-1 Iterative (3 pointers)
 === link:https://youtu.be/UheqFiqUbgQ[Self Video Explanation]
 === Logic
 1. Take 3 pointers pointing 3 consecutive nodes in LL.
@@ -108,4 +108,77 @@ $ ./a.out
 1 2 3 4
 Done rev
 4 3 2 1
+```
+
+== Approach-2 Recursive
+=== Logic
+* Reach last node using recursion
+```c
+1 -> 2 -> 3 -> 4 -> 5
+            rev(1)
+              node = rev(2)
+      
+          rev(2)
+            node = rev(3)
+
+      rev(3)
+        node = rev(4)
+
+    rev(4)
+     node = rev(5)
+```
+* return node when reached on last node, ie at recursion stack of node(4), returned node=5
+```c
+    rev(4)
+      node = 5
+```
+* Now make present node's(4) next pointer = presentNode->next->next = presentNode. 
+```c
+Original state:
+  -> 4 -> 5->N
+
+New state:
+      |------|
+     \/      |
+  -> 4 -> 5--|
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(n). n recursion stacks.
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        // Base case: if head is null or head->next is null, return head
+        if (!head || !head->next)
+            return head;
+        
+        // Recursively reverse the sublist starting from head->next
+        ListNode* reversedList = reverseList(head->next);
+        
+        // After the recursion, head->next points to the last node of the reversed sublist.
+        // We need to make the last node point back to the current head, effectively reversing the list.
+        head->next->next = head;
+        
+        // Set the current head's next pointer to null to make it the last node in the reversed list
+        head->next = nullptr;
+        
+        // Return the new head of the reversed list
+        return reversedList;
+    }
+};
 ```
