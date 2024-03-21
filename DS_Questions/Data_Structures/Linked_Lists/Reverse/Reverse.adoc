@@ -13,7 +13,7 @@ Output: [5,4,3,2,1]
 ```
 
 == Approach-1 (3 pointers)
-=== [Self Video Explanation](https://youtu.be/UheqFiqUbgQ)
+=== link:https://youtu.be/UheqFiqUbgQ[Self Video Explanation]
 === Logic
 1. Take 3 pointers pointing 3 consecutive nodes in LL.
 ```c
