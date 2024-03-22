@@ -1,0 +1,145 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/palindrome-linked-list/description[234. Palindrome Linked List]
+* Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+* Follow up: Could you do it in O(n) time and O(1) space?
+
+Example 1:
+
+image:https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg?raw=true[ll1]
+```c
+Input: head = [1,2,2,1]
+Output: true
+```
+
+Example 2:
+
+image:https://assets.leetcode.com/uploads/2021/03/03/pal2linked-list.jpg?raw=true[ll1]
+```c
+Input: head = [1,2]
+Output: false
+```
+
+== Approach-1. Time: O(n). Space: O(1)
+=== Logic
+* Find middle of LL using slow and fast pointer approach. (ie move slow by 1 fast by 2 steps). next of slow would be middle
+```
+  1    2    3    4    3    2    1
+  s    f
+       s         f
+            s              f
+```
+* Reverse from slow->next to end.
+```c
+    1    2    3    4    1    2    3
+```
+* Move slow to head and compare values from reversed LL and head
+```c
+    1    2    3    4    1    2    3
+    slow               revH
+```
+
+==== Inplace Reverse Logic
+* Reach last node using recursion
+```c
+1 -> 2 -> 3 -> 4 -> 5
+            rev(1)
+              node = rev(2)
+      
+          rev(2)
+            node = rev(3)
+
+      rev(3)
+        node = rev(4)
+
+    rev(4)
+     node = rev(5)
+```
+* return node when reached on last node, ie at recursion stack of node(4), returned node=5
+```c
+    rev(4)
+      node = 5
+```
+* Now make present node's(4) next pointer = presentNode->next->next = presentNode. 
+```c
+Original state:
+  -> 4 -> 5->N
+
+New state:
+      |------|
+     \/      |
+  -> 4 -> 5--|
+```
+
+
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if (!head || !head->next)
+            return true;
+
+        // Find mid of LL to reverse from there
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        // Finding the midpoint of the linked list using slow and fast pointers
+        while (fast->next && fast->next->next) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        // Reverse from middle till end (In place)
+        ListNode* secondHalf = reverseList(slow->next);
+                
+        // Reset slow pointer to head for comparison
+        slow = head;
+
+        // Check for palindrome
+        while (secondHalf) {
+            if (slow->val != secondHalf->val)
+                return false;
+            slow = slow->next;
+            secondHalf = secondHalf->next;
+        }
+
+        return true;
+    }
+    ListNode* reverseList(ListNode* head) {
+        // Base case: if head is null or head->next is null, return head
+        if (!head || !head->next)
+            return head;
+
+        // Recursively reverse the sublist starting from head->next
+        ListNode* reversedList = reverseList(head->next);
+
+        // After the recursion, head->next points to the last node of the reversed sublist.
+        // We need to make the last node point back to the current head, effectively reversing the list.
+        head->next->next = head;
+
+        // Set the current head's next pointer to null to make it the last node in the reversed list
+        head->next = nullptr;
+
+        // Return the new head of the reversed list
+        return reversedList;
+    }
+};
+```
