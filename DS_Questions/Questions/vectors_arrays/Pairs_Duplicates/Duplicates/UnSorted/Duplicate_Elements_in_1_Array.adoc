@@ -1,8 +1,5 @@
-**[Duplicate elements in unsorted array](https://leetcode.com/problems/find-all-duplicates-in-an-array/)**
-- [Approach-1, Store count, O(n), O(n)](#a1)
-- [Approach-2, Hash Table, O(n), O(n)](#a2)
-- [Approach-3, O(n), O(1)](#a3)
-  - [Logic](#l)
+:toc:
+:toclevels: 5
 
 == link:https://leetcode.com/problems/find-all-duplicates-in-an-array/[442. Find All Duplicates in an Array]
 Find duplicates in array in O(n) time & constant extra space. where all the integers of nums are in the range `[1, n]`
