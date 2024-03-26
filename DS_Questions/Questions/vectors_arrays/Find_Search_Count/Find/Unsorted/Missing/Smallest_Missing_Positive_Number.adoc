@@ -40,8 +40,10 @@ public:
 };
 ```
 
-== Approach-2. Time:O(n), Space:O(1). Cyclic Sort
+== Approach-2. Time:O(n), Space:O(1). Modified Cyclic Sort
 === Logic
+* link:/DS_Questions/Sorting/Cyclic_Sort.adoc[What is cyclic sort?]
+
 === Code
 ==== CPP
 ```cpp
