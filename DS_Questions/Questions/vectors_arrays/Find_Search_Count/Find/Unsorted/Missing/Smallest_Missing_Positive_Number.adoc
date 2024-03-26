@@ -39,3 +39,33 @@ public:
   }
 };
 ```
+
+== Approach-2. Time:O(n), Space:O(1). Cyclic Sort
+=== Logic
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int size = nums.size();
+        int i = 0;
+        while (i < size) {
+            // Check if the current number is within the range [1, n]
+            // and if it's not in its correct position
+            if (1 <= nums[i] && nums[i] <= size && nums[i] != nums[nums[i] - 1])
+                // Swap the number to its correct position
+                swap(nums[nums[i] - 1], nums[i]);
+            else
+                i += 1;
+        }
+
+        // Iterate through the sorted array to find the first missing positive integer
+        for (int i=0;i<size;i++)
+            if (nums[i] != i + 1)
+                return i + 1;
+        return size+1;
+    }
+
+};
+```
