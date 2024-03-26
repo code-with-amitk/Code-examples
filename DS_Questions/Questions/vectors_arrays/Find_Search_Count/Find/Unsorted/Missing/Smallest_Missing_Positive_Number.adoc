@@ -1,10 +1,10 @@
 :toc:
-:toclevels: 6
+:toclevels:5
 
 == link:https://leetcode.com/problems/first-missing-positive/submissions/[41. First Missing Positive]
-From unsorted int array, find the smallest missing positive integer.
-Examples
- ```c
+* From unsorted int array, find the smallest missing positive integer.
+* Examples
+```c
 Input: nums = [1,2,0]
 Output: 3
 
