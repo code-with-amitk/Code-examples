@@ -20,7 +20,8 @@ arr = [5,2,4,3,1]
        0 1 2 3 4 
 ```
 * Assuming we have elements from {1 to n}. So 1's place is index=0, 2's place is index=1
-** correct place for 5? index=4. Correct place for 4? index=3.
+** correct place for 5? index=4. 
+** Correct place for 4? index=3.
 ** correct place of arr[i] is i-1
 
 == Code
