@@ -1,0 +1,12 @@
+:toc:
+:toclevels: 5
+
+== Cyclic Sort
+* works for arrays containing values within a specific range
+* It's an in-place, unstable algorithm that aims to sort the elements by arranging them in their correct positions, 1 at a time through a series of swaps.
+* The basic idea is to iterate through the array and place each element in its intended position until the entire array is sorted.
+* Example:
+```cpp
+arr = [3,4,1,5,2]
+
+```
