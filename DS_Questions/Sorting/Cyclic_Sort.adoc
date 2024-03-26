@@ -14,7 +14,11 @@ output = [1,2,3,4,5]
 ```
 
 == Logic
-* Input array is not sorted. We check whether arr[i] is at its correct place or not?
+* Input array is not sorted. 
+* it is also assumed, input array have ALL elements from (1 to n), with no element missing. 
+** Eg: (4,2,3,1) is valid input
+** (6,2,3,4,1) is invalid since 5 is missing
+* We check whether arr[i] is at its correct place or not?
 ```cpp
 arr = [5,2,4,3,1]
        0 1 2 3 4 
