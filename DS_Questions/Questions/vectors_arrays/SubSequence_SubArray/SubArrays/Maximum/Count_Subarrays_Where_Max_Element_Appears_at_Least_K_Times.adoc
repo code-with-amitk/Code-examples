@@ -20,7 +20,7 @@ Output: 0
 Explanation: No subarray contains the element 4 at least 3 times.
 ```
 
-== Approach-1. O(n^2^). Count using 2 for loops
+== Approach-1. O(n^2^). Count using 2 for loops. TLE
 === Code
 ==== CPP
 ```cpp
