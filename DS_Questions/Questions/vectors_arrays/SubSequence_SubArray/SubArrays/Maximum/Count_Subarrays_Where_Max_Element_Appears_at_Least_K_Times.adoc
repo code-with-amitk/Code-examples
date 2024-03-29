@@ -45,3 +45,53 @@ public:
     }
 };
 ```
+
+== Approach-2. Sliding Window. O(n)
+=== Logic
+* Find the max_element.
+```c
+k = 2
+arr    1 3 2 3 1 2 3
+       |
+    left
+    right
+
+max_ele = 3
+```
+* Expand the window using right pointer until k max_elements are not found
+```c
+arr    1 3 2 3 1 2 3
+       |     |
+    left     |
+          right
+present window has k max_elements
+```
+* Shrink the window using left pointer until 1 max_element is found.
+* Number of subarrays is equal to the number of elements to the left of the window with the maximum element included.
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    long long countSubarrays(vector<int>& nums, int k) {
+        int max_ele = *max_element(begin(nums),end(nums));
+        long long out = 0;
+        
+        int left = 0, right = 0;
+
+        while (right < nums.size()) {
+            if (nums[right] == max_ele)
+                k -= 1;
+            right++;
+            while (k == 0) {
+                if (nums[left]==max_ele)
+                    k += 1;
+                left++;
+            }
+            out += left;
+        }
+        return out;
+    }
+};
+```
