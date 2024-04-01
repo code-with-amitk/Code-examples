@@ -1,0 +1,50 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/length-of-last-word/[58. Length of Last Word]
+* Given a string s consisting of words and spaces, return the length of the last word in the string.
+* A word is a maximal substring consisting of non-space characters only.
+```c
+Example 1:
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+
+Example 2:
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+
+Example 3:
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+```
+
+== Approach-1. Traverse from back. O(n)
+=== Logic
+* Start traversing string from back until string len == 0
+* Keep increasing len variable to keep track of characters traversed.
+* When 1st space is found return len.
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int i = s.size() -1, len = 0;  
+        //Remove trailing whitespaces (if any)
+        while (s[i]==' ')
+            i--;
+        while (i>=0) {
+            if (s[i] != ' ')
+                len += 1;
+            else
+                break;
+            i--;
+        }
+        return len;
+    }
+};
+```
