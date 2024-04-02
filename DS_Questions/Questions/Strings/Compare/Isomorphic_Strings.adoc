@@ -1,0 +1,64 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/isomorphic-strings[205. Isomorphic Strings]
+Given two strings s and t, determine if they are isomorphic.
+
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+
+```c
+Example 1:
+Input: s = "egg", t = "add"
+Output: true
+
+Example 2:
+Input: s = "foo", t = "bar"
+Output: false
+
+Example 3:
+Input: s = "paper", t = "title"
+Output: true
+```
+
+== Approach-1. O(n). Using 2 Hashmaps
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        if (s.size() != t.size()) return false;
+
+        //s="paper", t="title"
+        //m1 stores mapping from s to t.    {<p,t>, <a,i>}
+        //m1 stores mapping from t to s     {<t,p>, <i,a>}
+        unordered_map<char, char> um1, um2;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            char cs = s[i];
+            char ct = t[i];
+            
+            // Check if there's a mapping for cs in um1 
+            //and if it maps to the same character in t
+            if (um1.find(s[i]) != um1.end()) {
+                if (um1[s[i]] != t[i]) {
+                    return false;
+                }
+            } else { 
+                // If no mapping exists, check if t[i] is already 
+                //mapped to some other character in um2
+                if (um2.find(t[i]) != um2.end()) {
+                    return false;
+                }
+                
+                // Create new mapping since it's valid
+                um1[s[i]] = t[i];
+                um2[t[i]] = s[i];
+            }
+        }     
+        return true;
+    }
+};
+```
