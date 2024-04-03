@@ -1,0 +1,42 @@
+:toc:
+:toclevels: 6
+
+== Python
+link:/Threads_Processes_IPC/Threads/Code/Python[Threading library]
+```py
+import threading
+import queue
+import time
+import random
+
+# Define a shared queue
+# synchronization provided by the queue
+q = queue.Queue(maxsize=5)  # Maximum size of the queue is 5
+
+# Producer function
+def producer():
+    while True:
+        item = random.randint(1, 100)
+        q.put(item)  # Put item into the queue
+        print(f"Produced: {item}")
+        time.sleep(random.uniform(0.5, 1.5))  # Simulate some work
+
+# Consumer function
+def consumer():
+    while True:
+        item = q.get()  # Get item from the queue
+        print(f"Consumed: {item}")
+        time.sleep(random.uniform(0.5, 1.5))  # Simulate some work
+        q.task_done()  # Indicate that the item has been processed
+
+# Create and start producer and consumer threads
+producer_thread = threading.Thread(target=producer)
+consumer_thread = threading.Thread(target=consumer)
+producer_thread.start()
+consumer_thread.start()
+
+# Wait for both threads to finish
+producer_thread.join()
+consumer_thread.join()
+
+```
