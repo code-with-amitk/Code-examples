@@ -1,0 +1,61 @@
+:toc:
+:toclevels: 6
+
+== Channels
+* Used for communication and synchronization between goroutines
+
+== Characteristics of channels in Go
+* Typed
+** they can only transmit values of a specific data type
+
+* Buffered or Unbuffered
+** Unbuffered channels block the sender until the receiver is ready to receive the value
+** Buffered channels allow the sender to proceed without blocking until the buffer is full.
+
+* Concurrency-safe
+** channels are inherently thread-safe
+
+== Channel code
+```go
+package main
+
+import (
+"fmt"
+    "time"
+)
+
+// ch is Recv-only channel.
+// Channels of type(chan<-) are recieve only
+func producer(ch chan<- int) {
+    for i := 0; i < 5; i++ {
+        fmt.Println("Producing", i)
+      
+        // Send value to channel (will block until someone receives it)
+        ch <- i
+      
+        time.Sleep(time.Second) // Simulate some work
+    }
+    close(ch) // Close the channel after producing all values
+}
+
+func consumer(ch <-chan int) {
+    for num := range ch {
+        fmt.Println("Consuming", num)
+        time.Sleep(2 * time.Second) // Simulate some work
+    }
+}
+
+func main() {
+    // Create a channel.
+    // make() function is used to create slices, maps, and channels.
+    // Create unbuffered channel that can transmit integer values.
+    ch := make(chan int)
+
+    // Start producer and consumer goroutines=Threads
+    go producer(ch)
+    go consumer(ch)
+
+    // Wait for the goroutines to finish
+    time.Sleep(10 * time.Second) // Wait for 10 seconds to see the output
+}
+```
