@@ -78,5 +78,108 @@ func getItemByID(w http.ResponseWriter, r *http.Request) {
     // Encode and return the item
     json.NewEncoder(w).Encode(item)
 }
+```
+
+== Server inserting(Tenant,domain,userid,dn,guid,upn,groups,updated_at) in postgres using REST endpoint
+```go
+package main
+
+import (
+    "database/sql"
+    "encoding/json"
+    "fmt"
+    "log"
+    "net/http"
+    "strconv"
+    "github.com/lib/pq"
+)
+
+type User struct {
+    ID        int    `json:"id"`
+    Tenant    string `json:"tenant"`
+    Domain    string `json:"domain"`
+    UserID    string `json:"userid"`
+    DN        string `json:"dn"`
+    GUID      string `json:"guid"`
+    UPN       string `json:"upn"`
+    Groups    string `json:"groups"`
+    UpdatedAt string `json:"updated_at"`
+}
+
+var db *sql.DB
+
+func main() {
+    var err error
+    db, err = sql.Open("postgres", "postgres://username:password@localhost/dbname?sslmode=disable")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer db.Close()
+
+    // Initialize database schema
+    _, err = db.Exec(`CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        tenant TEXT,
+        domain TEXT,
+        userid TEXT,
+        dn TEXT,
+        guid TEXT,
+        upn TEXT,
+        groups TEXT,
+        updated_at TEXT
+    )`)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    http.HandleFunc("/users", createUser)
+    http.HandleFunc("/users/", getUserByID)
+
+    log.Println("Server started on port 8080")
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+func createUser(w http.ResponseWriter, r *http.Request) {
+    var user User
+    if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+    defer r.Body.Close()
+
+    // Insert user into database
+    _, err := db.Exec(`INSERT INTO users (tenant, domain, userid, dn, guid, upn, groups, updated_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+        user.Tenant, user.Domain, user.UserID, user.DN, user.GUID, user.UPN, user.Groups, user.UpdatedAt)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.WriteHeader(http.StatusCreated)
+}
+
+func getUserByID(w http.ResponseWriter, r *http.Request) {
+    idStr := r.URL.Path[len("/users/"):]
+    id, err := strconv.Atoi(idStr)
+    if err != nil {
+        http.Error(w, "Invalid user ID", http.StatusBadRequest)
+        return
+    }
+
+    var user User
+    err = db.QueryRow("SELECT tenant, domain, userid, dn, guid, upn, groups, updated_at FROM users WHERE id = $1", id).
+        Scan(&user.Tenant, &user.Domain, &user.UserID, &user.DN, &user.GUID, &user.UPN, &user.Groups, &user.UpdatedAt)
+    if err == sql.ErrNoRows {
+        http.NotFound(w, r)
+        return
+    } else if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(user)
+}
 
 ```
