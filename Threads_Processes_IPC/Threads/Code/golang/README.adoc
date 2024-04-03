@@ -1,0 +1,33 @@
+:toc:
+:toclevels: 6
+
+== go routine(Threads)
+* A goroutine is a lightweight thread of execution managed by the Go runtime. 
+* Goroutines are inexpensive to create and manage, and they can be used to improve the performance of concurrent programs.
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func sayHello() {
+    fmt.Println("Hello from goroutine!")
+}
+
+func main() {
+    // Start a goroutine
+    go sayHello()
+
+    // Print from the main goroutine
+    fmt.Println("Hello from main!")
+
+    // Sleep for a while to allow the goroutine to execute
+    time.Sleep(time.Second)
+}
+
+$ go run main.go
+Hello from main!
+Hello from goroutine!
+```
