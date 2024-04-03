@@ -1,0 +1,82 @@
+:toc:
+:toclevels: 6
+
+== Go HTTP Server, Exposing REST Endpoints
+```go
+package main
+
+import (
+    "encoding/json"
+    "log"
+    "net/http"
+)
+
+type Item struct {
+    ID    int    `json:"id"`
+    Name  string `json:"name"`
+    Price int    `json:"price"`
+}
+
+var inventory []Item
+
+func main() {
+    // Initialize some data
+    inventory = []Item{
+        {ID: 1, Name: "Item 1", Price: 100},
+        {ID: 2, Name: "Item 2", Price: 200},
+    }
+
+    // Define HTTP routes
+    http.HandleFunc("/items", getItems)
+    http.HandleFunc("/items/", getItemByID)
+
+    // Start the server
+    log.Println("Server started on port 8080")
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+// Handler function to get all items
+// w http.ResponseWriter: used to write the response back to the client
+// r *http.Request: HTTP request received from the client(contains information such as the HTTP method, URL, headers)
+func getItems(w http.ResponseWriter, r *http.Request) {
+    // Sets the Content-Type header of the response to application/json
+    w.Header().Set("Content-Type", "application/json")
+
+    // creates a new JSON encoder that writes to the w (response writer)
+    // Encodes the inventory variable (which is a slice of Item structs) into JSON format and writes it to the response writer w
+    json.NewEncoder(w).Encode(inventory)
+}
+
+// Handler function to get an item by ID
+func getItemByID(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+
+    // Extract item ID from URL path
+    id := r.URL.Path[len("/items/"):]
+    
+    // Convert ID to integer
+    // Handle errors if any
+    // Return appropriate response if item not found
+    // Otherwise, encode and return the item
+    // Omitted for brevity
+    
+    // Example: Fetch item by ID
+    var item Item
+    for _, i := range inventory {
+        if i.ID == itemID {
+            item = i
+            break
+        }
+    }
+
+    // If item not found, return 404 Not Found
+    if item.ID == 0 {
+        w.WriteHeader(http.StatusNotFound)
+        return
+    }
+
+    // Encode and return the item
+    json.NewEncoder(w).Encode(item)
+}
+
+```
