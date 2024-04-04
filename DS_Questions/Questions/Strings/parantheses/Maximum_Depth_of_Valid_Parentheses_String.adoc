@@ -1,0 +1,47 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/[Maximum Nesting Depth of the Parentheses]
+* A string is a valid parentheses string (denoted VPS) if it meets one of the following:
+* It is an empty string "", or a single character not equal to "(" or ")",
+* It can be written as AB (A concatenated with B), where A and B are VPS's, or
+* It can be written as (A), where A is a VPS.
+* We can similarly define the nesting depth depth(S) of any VPS S as follows:
+```c
+Example-1
+Input: s = "(1+(2*3)+((8)/4))+1"
+Output: 3
+Explanation: Digit 8 is inside of 3 nested parentheses in the string.
+
+Example-2
+Input: s = "(1)+((2))+(((3)))"
+Output: 3
+
+Example-3
+Input: s = "1+(2*3)/(2-1)"
+Output: 1
+```
+
+=== Code
+==== CPP
+```c++
+class Solution {
+public:
+    int maxDepth(string s) {
+        unsigned long out = 0;
+        stack<char> st;
+        
+        for (auto i:s) {
+            if (i == '(')
+                st.push(i);
+
+            out = max(st.size(), out);
+
+            if (i==')')
+                st.pop();
+        }
+
+        return out;
+    }
+};
+```
