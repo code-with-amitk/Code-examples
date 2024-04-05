@@ -42,6 +42,8 @@ import (
 )
 
 func worker(id int, wg *sync.WaitGroup) {
+    // defer: keyword in Go schedules a function call to be executed just before the surrounding function returns.
+    // ie wg.Done() would be called when surrounding function finishes
     defer wg.Done()
     fmt.Printf("Worker %d started\n", id)
     time.Sleep(time.Second) // Simulate work
@@ -49,6 +51,7 @@ func worker(id int, wg *sync.WaitGroup) {
 }
 
 func main() {
+    // Create WaitGroup object
     var wg sync.WaitGroup
 
     // Number of goroutines to create
@@ -97,10 +100,12 @@ All workers finished
 * it is used to synchronize the execution of a group of goroutines.
 
 === How it works
-* A WaitGroup has a counter internally(which is initially set to zero). 
-```
-go routine 
-    - Launched: Increment couter using Add()
-    - exits:    Decrement counter using Done()
-```
+* A WaitGroup maintains shared counter internally(which is initially set to 0). counter is thread-safe.
+* At start of goroutine wg.Add(numberOfWorkers) is called. This makes counter=10
+* goroutine finishes (defer make wg.Done() to called after function finishes), and counter is decremented
+* wg.Wait() method in main waits until counter=0
 
+=== defer
+* defer: keyword in Go schedules a function call to be executed just before the surrounding function returns.
+* ie wg.Done() would be called when surrounding function finishes
+* defer wg.Done() is called reliably, even in case of errors or unexpected goroutine termination.
