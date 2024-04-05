@@ -113,3 +113,60 @@ All workers finished
 == Worker Pool Pattern
 * *Problem:* Launching seperate goroutine for each task
 * *Solution:* Get fixed number of goroutines that process tasks from a shared queue
+
+=== Code
+ * [unbuffered channel](/Threads_Processes_IPC/IPC/synchronization/golang_channel/README.adoc#buffered-or-unbuffered)
+```go
+package main
+
+import (
+    "fmt"
+    "sync"
+    "time"
+)
+
+func worker(id int, jobs <-chan int, results chan<- int, wg *sync.WaitGroup) {
+    defer wg.Done()
+    for job := range jobs {
+        fmt.Printf("Worker %d started job %d\n", id, job)
+        time.Sleep(time.Second) // Simulate work
+        fmt.Printf("Worker %d finished job %d\n", id, job)
+        results <- job * 2 // Example result
+    }
+}
+
+func main() {
+    numWorkers := 5    //5 workers in pool
+    numJobs := 10        //10 jobs to be executed
+
+    // Waitgroup to wait for all goroutines
+    var wg sync.WaitGroup
+
+    // Create 2 unbuffered channels
+    // unbuffered channel for jobs, 1 unbufered channel for results
+    jobs := make(chan int, numJobs)
+    results := make(chan int, numJobs)
+
+    // Start workers
+    for i := 1; i <= numWorkers; i++ {
+        wg.Add(1)
+        go worker(i, jobs, results, &wg)
+    }
+
+    // Produce jobs
+    for i := 1; i <= numJobs; i++ {
+        jobs <- i
+    }
+    close(jobs)
+    // Collect results
+    go func() {
+        wg.Wait()
+        close(results)
+    }()
+
+    // Print results
+    for result := range results {
+        fmt.Printf("Result: %d\n", result)
+    }
+}
+```
