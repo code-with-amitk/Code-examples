@@ -3,17 +3,24 @@
 
 == Channels
 * Used for communication and synchronization between goroutines
+* Channels are thread-safe
 
-== Characteristics of channels in Go
-* Typed
-** they can only transmit values of a specific data type
+== Characteristics
+=== Typed
+* they can only transmit values of a specific data type
 
-* Buffered or Unbuffered
-** Unbuffered channels block the sender until the receiver is ready to receive the value
-** Buffered channels allow the sender to proceed without blocking until the buffer is full.
+=== Buffered or Unbuffered
+==== Unbuffered channel `make(chan int)` [Channel without size]
+* When you create a channel without specifying a buffer size (e.g., `make(chan int)`), it creates an unbuffered channel
+* Each send operation (ch <- value) will block until there is a corresponding receive operation (value := <-ch) ready to receive the value
+* block the sender until the receiver is ready to receive the value
 
-* Concurrency-safe
-** channels are inherently thread-safe
+==== Buffered channels `make(chan int, bufferSize)` [sized channels]
+* When you create a channel with a buffer size
+* send operations (ch <- value) will only block if the buffer is full, Otherwise, the value is stored in the buffer, and the send operation proceeds immediately.
+* Receive operations (value := <-ch) from a buffered channel will only block if the buffer is empty. Otherwise, it retrieves a value from the buffer and proceeds immediately.
+* *Advantage:* Buffered channels allow goroutines to communicate asynchronously without needing both sender and receiver to be ready simultaneously.
+* *Use case:* Buffered channels are commonly used in scenarios where the producer and consumer operate at different speeds, such as in worker pools, pipelines,
 
 == Channel code
 ```go
