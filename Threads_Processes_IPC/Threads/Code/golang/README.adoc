@@ -109,3 +109,7 @@ All workers finished
 * defer: keyword in Go schedules a function call to be executed just before the surrounding function returns.
 * ie wg.Done() would be called when surrounding function finishes
 * defer wg.Done() is called reliably, even in case of errors or unexpected goroutine termination.
+
+== Worker Pool Pattern
+* *Problem:* Launching seperate goroutine for each task
+* *Solution:* Get fixed number of goroutines that process tasks from a shared queue
