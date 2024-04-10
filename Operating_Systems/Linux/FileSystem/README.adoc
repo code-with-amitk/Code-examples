@@ -2,7 +2,7 @@
 :toclevels: 6
 
 == Filesystem
-* Format of storing data on Hard disk or usb. Every resource in Linux is treated as File, we can read/write on them. Eg: IBM's OS: HPFS(High Performance File System)
+Format of storing data on Hard disk or usb. Every resource in Linux is treated as File, we can read/write on them. Eg: IBM's OS: HPFS(High Performance File System)
 
 === 1. Windows File system  
 ```c
@@ -25,7 +25,16 @@ NTFS                         | Windows NT
 ```
 
 === 2. Linux FS
-* Examples: Ext2(extended file system),ext3,ext4, xfs, gfs(Gluster)
+|===
+|Filesystem|Info
+
+|Ext2,ext3,ext4,xfs(extended file system)|
+|gfs(Gluster)|
+|udev|device manager for the Linux kernel. It handles the dynamic creation of device nodes in /dev
+|tmpfs(temporary filesystem)|Store temporary files or directories that do not need to be persistent across reboots. These are cleared upon system shutdown or reboot.
+|/dev/mapper/ubuntu-vg-ubuntu--lv|Logical Volume managed by LVM on ubuntu
+|/dev/loop3|loop device on the system. Specifically used for mounting disk images
+|===
 
 image:images/filesystem.PNG?raw=true[Filesystem]
 
