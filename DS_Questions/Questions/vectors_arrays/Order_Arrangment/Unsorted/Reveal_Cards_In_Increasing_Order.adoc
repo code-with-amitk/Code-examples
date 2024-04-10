@@ -1,0 +1,123 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/reveal-cards-in-increasing-order/[950. Reveal Cards In Increasing Order]
+You are given an integer array deck. There is a deck of cards where every card has a unique integer. The integer on the ith card is deck[i].
+
+You can order the deck in any order you want. Initially, all the cards start face down (unrevealed) in one deck.
+
+You will do the following steps repeatedly until all cards are revealed:
+
+Take the top card of the deck, reveal it, and take it out of the deck.
+If there are still cards in the deck then put the next top card of the deck at the bottom of the deck.
+If there are still unrevealed cards, go back to step 1. Otherwise, stop.
+Return an ordering of the deck that would reveal the cards in increasing order.
+
+Note that the first entry in the answer is considered to be the top of the deck.
+
+```c
+Example 1:
+Input: deck = [17,13,11,2,3,5,7]
+Output: [2,13,3,11,5,17,7]
+Explanation: 
+We get the deck in the order [17,13,11,2,3,5,7] (this order does not matter), and reorder it.
+After reordering, the deck starts as [2,13,3,11,5,17,7], where 2 is the top of the deck.
+We reveal 2, and move 13 to the bottom.  The deck is now [3,11,5,17,7,13].
+We reveal 3, and move 11 to the bottom.  The deck is now [5,17,7,13,11].
+We reveal 5, and move 17 to the bottom.  The deck is now [7,13,11,17].
+We reveal 7, and move 13 to the bottom.  The deck is now [11,17,13].
+We reveal 11, and move 17 to the bottom.  The deck is now [13,17].
+We reveal 13, and move 17 to the bottom.  The deck is now [17].
+We reveal 17.
+Since all the cards revealed are in increasing order, the answer is correct.
+```
+
+== Understanding problem
+* There are only 2 steps. 
+** Remove card from hand(Reveal)
+** Place next card at back of deck
+* After above operations on all cards in hand, All revlead cards should be in sorted order 
+* we need to return the arrangement, on which above 2 steps are executed, it returns elements in sorted order.
+```c
+deck = [17,13,11,2,3,5,7]
+
+order = [2,13,3,11,5,17,7]
+Reveal  push_to_back
+  2        13          //3,11,5,17,7,13
+  3        11          //5,17,7,13,11
+  5        17          //7,13,11,17
+  7        13          //11,17,13
+  11       17          //13,17
+  13                   //17
+  17
+```
+
+== Approach-1. Deque
+=== Logic
+* Sort all elements
+```c
+input deck = [2,13,3,11,5,17,7]
+sorted deck = [2,3,5,7,11,13,17]
+```
+* Take deque<int>, traverse sorted deck from back and push element to deque.
+```c
+if (dq.back()!=empty)
+  // Pop element from back push to front
+Push element from deck on deque
+
+ 2 3 5 7 11 13 17 
+ 0 1 2 3  4  5  6 
+
+i      deque
+6       17
+
+5       17         //Remove from back, push at front
+        13,17      //Push new element always at front
+
+4       17,13      //Remove from back, push at front
+        11,17,13   //Push new element always at front
+
+3       13,11,17        //Remove from back, push at front
+        7,13,11,17      //Push new element always at front
+
+2       17,7,13,11        //Remove from back, push at front
+        5,17,7,13,11
+
+1       11,5,17,7,13
+        3,11,5,17,7,13
+
+0       3,11,5,17,7,13
+        2,13,3,11,5,17,7      //Answer
+```
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> deckRevealedIncreasing(vector<int>& deck) {
+        // Sort the vector
+        sort(deck.begin(), deck.end());
+        deque<int> dq;
+        dq.push_front(deck.back());
+
+        /*
+        For every element on deck, traversing backward direction
+        1. Pop element from back of dq & push to front
+        2. Push element from deck on deque
+        */
+        for (auto it = deck.rbegin()+1; it != deck.rend(); it++) {
+            dq.push_front(dq.back());
+            dq.pop_back();
+            dq.push_front(*it);
+        }
+        // Convert dq to vector to return
+        vector<int> out;
+        for (auto&i: dq) {
+            out.push_back(i);
+            dq.pop_front();
+        }
+        return out;
+    }
+};
+```
