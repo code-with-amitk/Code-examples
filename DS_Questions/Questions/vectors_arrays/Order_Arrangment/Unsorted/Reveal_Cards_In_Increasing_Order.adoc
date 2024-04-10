@@ -52,7 +52,7 @@ Reveal  push_to_back
   17
 ```
 
-== Approach-1. Deque
+== Approach-1. Rearrange using Deque
 === Logic
 * Sort all elements
 ```c
