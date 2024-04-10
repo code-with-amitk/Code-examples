@@ -89,6 +89,9 @@ i      deque
 0       3,11,5,17,7,13
         2,13,3,11,5,17,7      //Answer
 ```
+=== Complexity
+* Time: O(nlogn)
+* Space: O(n)
 
 === Code
 ==== CPP
