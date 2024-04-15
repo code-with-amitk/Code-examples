@@ -27,6 +27,7 @@ else
   go_to right
 ```
 * When exiting node, pop_back node's value
+* This will keep all nodes in reverse order.
 
 === Code
 ```cpp
