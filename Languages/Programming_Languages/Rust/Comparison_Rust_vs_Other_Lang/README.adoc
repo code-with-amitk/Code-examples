@@ -2,8 +2,6 @@
 :toclevels: 6
 
 === Rust vs All Languages
-* No Garbage collector(Java,python has garbage collectors)               //Garbage collector is runtime heavy
-* No monolithic runtime.
 * Statically typed(means type of variable is specified at compile time), Catching the bugs at compile time reduces runtime crashes. Compiler does lot of heavy lifting.
 ** No Type confusion
 ```
@@ -15,25 +13,7 @@
 * No need to call delete(),free(). Compiler will insert free()/delete() knows when memory is not used.
 
 === Rust vs C++
-==== 1. Memory safety Using Ownership & link:/Languages/Programming_Languages/Rust#bow[borrow checker]
-* link:/Languages/Programming_Languages/Rust#own[What is ownership]
-* Use-after-free or data races are detected at compile-time in rust using 
-```c
-Example:
-///////////C++ Code///////
-int main() {
-  vector<int> a = {1,2,3};
-  vector<int> b = &a;      //Borrowed
-  a.push_back(4);          //Works, no error
-}
-
-////////Rust/////////////////
-fn main() {
-  let mut a = vec![1,2,3];
-  let mut b = &a;          //Borrowed
-  a.push_back(4);          //Compilation Error. This avoid 
-}
-```
+==== 1. link:https://amitkumar50.github.io//Languages/Programming/Rust/index.html#ownership[Ownership removes Nonull pointer Exception(Crash) in Rust], which is present in c++
 ==== 2. Built-in support for concurrent programming and thread safety
 * Example: 2 threads (thread1 and thread2) concurrently access/modify a shared variable (shared_data).
 ** *Rust*
