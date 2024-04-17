@@ -7,7 +7,7 @@
 - [Asynchronous, block_on, await, async](/Threads_Processes_IPC/Terms)
 - [Attributes: no_mangle, feature](Attributes)
 - [Statements & Expressions](#statements)
-- [Ownership](#own)
+- link:https://amitkumar50.github.io/Languages/Programming/Rust/#ownership[Ownership]
 - [Reference = Borrowing](#bow)
 - [Smart Pointers](#smart)
 - [Data Types](#datatypes)
@@ -65,47 +65,6 @@ fn fun() -> i32 {
   let y = 5;
   y + 1                   //Expression returning a value.
   //y + 1;                   //When ; is placed it becomes statement and will not return a value
-}
-```
-
-<a name="own"></a>
-### Ownership
-- Variable or data can have single owner at a time. When a value is assigned to a variable, that variable becomes the owner of the value. When the owner goes out of scope, Rust automatically deallocates the memory used by the value.
-- **Memory management approaches**
-  - _1._ Some languages have garbage collection(java,python,ruby) that constantly looks for no longer used memory as the program runs 
-  - _2._ C,C++ the programmer must explicitly allocate and free the memory.
-  - _3._ Rust memory is managed through ownership with a set of rules that the compiler checks at compile time.
-    - Ownership applies to memory allocated on heap(dynamically), Eg: String(), vector ie those are moved. For variable allocated on Stack (Eg: int, float) variable is copied.
-```rust
-fn main() {
-  let s = String::from("hello");    //Allocated on HEAP
-  fun(s);                           //s's value is MOVED into function and no longer valid here
-  println!("s: {}", s);             //Complie time error
-                                    
-  let x = 5;                        //Allocated on STACK
-  fun1(x);                          
-  println!("x: {}", x);            //Ok, x=5
-
-}
-fn fun(some_string: String) { 
-    println!("{}", some_string);
-} //Here, some_string goes out of scope and `drop()` is called. The backing memory is freed.
-```
-- **Transferring Ownership In Return Value:** Returning values can also transfer ownership
-```rust
-fn main() {
-  let s1 = fun1();                     //fun() moves its return value into s1
-  let s2 = String::from("hello");
-  let s3 = fun2(s2);                  //s2 is moved into fun2() which also moves its return value into s3
-}
-
-fn fun1() -> String {            //fun() will move its return value into the function that calls it
-  let some_string = String::from("hello");
-  some_string                   //some_string is returned ie moved
-}
-
-fn fun2(a_string: String) -> String {     
-    a_string                  // a_string is returned and moves out to the calling function
 }
 ```
 
