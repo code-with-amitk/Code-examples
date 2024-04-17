@@ -13,8 +13,10 @@
 * No need to call delete(),free(). Compiler will insert free()/delete() knows when memory is not used.
 
 === Rust vs C++
-* 1. link:https://amitkumar50.github.io//Languages/Programming/Rust/index.html#ownership[Ownership removes Nonull pointer Exception(Crash) in Rust], which is present in c++
-* 2. Built-in support for concurrent programming and thread safety
+=== 1. Ownership 
+* link:https://amitkumar50.github.io//Languages/Programming/Rust/index.html#ownership[Ownership removes Nonull pointer Exception(Crash) in Rust], which is present in c++
+
+=== 2. Built-in support for concurrent programming and thread safety
 * Example: 2 threads (thread1 and thread2) concurrently access/modify a shared variable (shared_data).
 ** *Rust*
 *** Rust's built-in support for concurrency and thread safety ensures that the shared variable is protected from data races.
