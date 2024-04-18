@@ -107,13 +107,13 @@ impl Solution {
             let neigh_col = c as i32 + col_dir[i];
 
             // if this element is on boundary, add 1 to perimeter
-			if neigh_row < 0 || neigh_row >= rows ||
-				neigh_col < 0 || neigh_col >= cols {
-				perimeter += 1;
-				continue;
-			}
+            if neigh_row < 0 || neigh_row >= rows ||
+               neigh_col < 0 || neigh_col >= cols {
+                 perimeter += 1;
+                 continue;
+            }
             // if neighbbour element is 0, add 1 to perimeter
-			if v[neigh_row as usize][neigh_col as usize] == 0 {
+            if v[neigh_row as usize][neigh_col as usize] == 0 {
                 perimeter += 1;
             }
         }
