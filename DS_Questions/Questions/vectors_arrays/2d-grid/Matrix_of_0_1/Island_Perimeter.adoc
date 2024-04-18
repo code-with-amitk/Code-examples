@@ -197,8 +197,8 @@ fn main() {
 |===
 ||Rust|C++
 
-|Runtime|7ms|83ms
-|Memory|2.20MB|100.71MB
-|Beats in Time|79.17% of users|31.44% of users
-|Beats in Space|91.69% of users|76.64% of users
+|Code Runtime|7ms|83ms
+|Memory needed by Code|2.20MB|100.71MB
+|Code Beats in other users in Time|79.17% of users|31.44% of users
+||Code Beats in other users in Space|91.69% of users|76.64% of users
 |===
