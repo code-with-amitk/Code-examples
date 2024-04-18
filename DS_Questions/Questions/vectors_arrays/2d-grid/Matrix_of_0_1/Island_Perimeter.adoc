@@ -1,0 +1,94 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/island-perimeter/[463. Island Perimeter]
+You are given row x col grid representing a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water.
+
+Grid cells are connected horizontally/vertically (not diagonally). The grid is completely surrounded by water, and there is exactly one island (i.e., one or more connected land cells).
+
+The island doesn't have "lakes", meaning the water inside isn't connected to the water around the island. One cell is a square with side length 1. The grid is rectangular, width and height don't exceed 100. Determine the perimeter of the island.
+
+image::https://assets.leetcode.com/uploads/2018/10/12/island.png?raw=true[example1]
+ 
+```c
+Example 1:
+Input: grid = [[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]
+Output: 16
+Explanation: The perimeter is the 16 yellow stripes in the image above.
+
+Example 2:
+Input: grid = [[1]]
+Output: 4
+
+Example 3:
+Input: grid = [[1,0]]
+Output: 4
+```
+
+== Approach-1. O(mn)
+=== Logic
+* Iterate over array and find 1
+```c
+  0 1 0 0
+  1 1 1 0
+  0 1 0 0
+  1 1 0 0
+
+element        perimeter  Reason
+a[0][1] = 1      3        Border will have perimeter=1, 2 sides have 0
+```
+* Whenever 1 is found, calculate that element's perimeter.
+** if this element is on boundary wall of matrix (add 1)
+** if neighbour element=0 (add 1)
+
+=== Complexity
+* Time: O(mn)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+using vvI = vector<vector<int>>;
+class Solution {
+	int rows, cols;
+	int find_perim(int r, int c, vvI& v) {
+		/*
+		* if neighbour cell is 0, then add 1 to perimeter
+		* if this is border cell, add 1 to perimeter
+		* if neighbour is 1 donot add to perimeter
+		*/
+		int perimeter = 0;	//Perimeter of this cell
+		int row_dir[] = {-1,0,0,1};
+		int col_dir[] = {0,1,-1,0};
+		for (int i = 0;i < 4;i++) {
+			int neigh_row = r + row_dir[i];
+			int neigh_col = c + col_dir[i];
+
+            // if this element is on boundary, add 1 to perimeter
+			if (neigh_row < 0 || neigh_row >= rows ||
+				neigh_col < 0 || neigh_col >= cols) {
+				perimeter += 1;
+				continue;
+			}
+            // if neighbbour element is 0, add 1 to perimeter
+			if (v[neigh_row][neigh_col] == 0)
+				perimeter += 1;
+		}
+		return perimeter;
+	}    
+public:
+    int islandPerimeter(vector<vector<int>>& v) {
+		int out = 0;
+		rows = v.size();
+		cols = v[0].size();
+		for (int i = 0;i < rows; ++i) {
+			for (int j = 0;j < cols; ++j) {
+				if (v[i][j] == 1) {
+					out += find_perim(i, j, v);
+				}
+			}
+		}
+		return out;
+    }
+};
+```
