@@ -13,8 +13,7 @@
 - [Static lifetime](#static)
 
 
-<a name="bow"></a> 
-## Borrowing = Reference (&var)
+== Borrowing = Reference (&var)
 - Means passing the reference of a variable.
   - **Mutable Reference/Mutable Borrow:** Allow the borrower to modify the data.
   - **Immutable Reference:** Donot allow the borrower to modify the data.
@@ -31,12 +30,10 @@ fn main() {
 }
 ```
 
-<a name="danglingref"></a>
-## link:https://amitkumar50.github.io/Languages/Programming/Rust/#danglingreferences[Dangling Reference]
+== link:https://amitkumar50.github.io/Languages/Programming/Rust#danglingreferences[Dangling Reference]
 - Allowed in C++, Not allowed in Rust
 
-<a name="mutref"></a>
-## Mutable Reference
+== Mutable Reference
 - We know a borrowed item cannot be changed, but mutable reference can be changed.
 ```rust
 fn print( a : &mut Vec<i32>) {        //3. Accept mutable reference using `some_string: &mut String`
@@ -52,8 +49,7 @@ fn main() {
 # test.exe
 ```
 
-<a name="MutImmutable"></a>
-### 1. Mutable & immutable References in same scope not allowed
+=== 1. Mutable & immutable References in same scope not allowed
 ```rust
     let mut v = vec![1, 2, 3, 4, 5];
     let first = &v[0];
@@ -66,8 +62,7 @@ fn main() {
   - if there isn’t enough room to put all the elements next to each other where the vector currently is. In that case, the reference to the first element would be pointing to deallocated memory. 
   - The borrowing rules prevent programs from ending up in that situation.
 
-<a name="MutMut"></a>
-### 2. Two Mutable references are not allowed in same scope
+=== 2. Two Mutable references are not allowed in same scope
 - *Why?* To avoid data race conditions. Race condition occurs when any of 3 behaviours happen:
     - Two or more pointers access the same data at the same time.
     - At least one of the pointers is being used to write to the data.
@@ -78,8 +73,7 @@ fn main() {
   let r2 = &mut s;                            //Compilation Error
   println!("{}, {}", r1, r2);
 ```
-<a name="MutSep"></a>
-### 3. Mutable References are allowed in seperate scope
+=== 3. Mutable References are allowed in seperate scope
 ```rustc
   let mut s = String::from("hello");
   {
@@ -88,8 +82,7 @@ fn main() {
   let r2 = &mut s;
 ```
 
-<a name=bc></a>
-## Borrow Checker
+== Borrow Checker
 - Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.
 - _Lifetimes_
   - a is main()'s block
@@ -103,8 +96,7 @@ fn main() {
   println!("{}",b);   //Compile Error, Borrow=Reference of variable goes out of scope and used.
 }
 ```
-<a name=genericlt></a>
-### 1. Generic / Named Lifetimes
+=== 1. Generic / Named Lifetimes
 - **Compliation Error. Why?** rustc cannot ascertain Return value (&str) is reference of a or reference of b.
 ```rs
 fn largest(x:&str, y:&str) -> &str{
@@ -152,8 +144,7 @@ $ test.exe
 abcd
 ```
 
-<a name=smaller></a>
-#### 1.1 Function will return smaller of both lifetimes
+==== 1.1 Function will return smaller of both lifetimes
 ```rs
 fn main() {                           //Block-1
     let x = String::from("abcd");
@@ -169,13 +160,12 @@ Compliation Error Why?
 - largest() will return smaller lifetime from x and y. y has smaller lifetime(ie Block-2).
 - largest() will return y, which goes out of scope and we try printing string which is out of scope
 
-<a name=lifee></a>
-## Lifetime Elision
+== Lifetime Elision
 - The patterns programmed into Rust complier which applies lifetime rules in desired situtation.
 - **Input lifetimes:** Lifetimes on function or method parameters.
 - **Output Lifetimes:** lifetimes on return values.
-<a name=how></a>
-### 1. How compiler determines Lifetime
+
+=== 1. How compiler determines Lifetime
 - Compiler uses 3 rules to figure out what lifetimes references have when there aren’t explicit annotations. If the compiler gets to the end of the three rules and there are still references for which it can’t figure out lifetimes, the compiler will stop with an error.
 - _Rule-1:_ Each parameter that is a reference gets its own lifetime parameter. 
 ```rs
@@ -187,8 +177,7 @@ fn foo<'a>(x: &'a i32) -> &'a i32.
 ```
 - _Rule-3:_ If there are multiple input lifetime parameters, but one of them is `&self` or `&mut self`, the lifetime of self is assigned to all output lifetime parameters.
 
-<a name=struct></a>
-## Lifetime variables for structs
+== Lifetime variables for structs
 ```rs
 struct test<'a> {                       //struct having 1 member having lifetime
     part: &'a str,
@@ -199,8 +188,8 @@ impl<'a> test<'a> {                     //impl need to be declared with lifetime
     }
 }
 ```
-<a name=static></a>
-## Static lifetime
+
+==Static lifetime
 - This reference can live for the entire duration of the program. All string literals have the 'static lifetime. 
 - The text of this string is stored directly in the program’s binary, which is always available
 ```rs
