@@ -1,16 +1,5 @@
-- [Reference = Borrowing](#bow)
-- [Dangling Reference](#danglingref)
-- [Mutable Reference](#mutref)
-  - [1. Mutable & immutable References in same scope not allowed](#MutImmutable)
-  - [2. Two Mutable references are not allowed in same scope](#MutMut)
-  - [3. Mutable References are allowed in seperate scope](#MutSep)
-- [Borrow Checker](#bc)
-  - [1. Generic / Named Lifetimes](#genericlt)
-    - [1.1 Function will return smaller of both lifetimes](#smaller)
-- [Lifetime Elision](#lifee)
-  - [1. How compiler determines Lifetime](#how)
-- [Lifetime for structs](#struct)
-- [Static lifetime](#static)
+:toc:
+:toclevels: 6
 
 
 == Borrowing = Reference (&var)
