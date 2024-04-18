@@ -52,49 +52,48 @@ using vvI = vector<vector<int>>;
 class Solution {
 	int rows, cols;
 	int find_perim(int r, int c, vvI& v) {
-		/*
-		* if neighbour cell is 0, then add 1 to perimeter
-		* if this is border cell, add 1 to perimeter
-		* if neighbour is 1 donot add to perimeter
-		*/
-		int perimeter = 0;	//Perimeter of this cell
-		int row_dir[] = {-1,0,0,1};
-		int col_dir[] = {0,1,-1,0};
-		for (int i = 0;i < 4;i++) {
-			int neigh_row = r + row_dir[i];
-			int neigh_col = c + col_dir[i];
+            /*
+            * if neighbour cell is 0, then add 1 to perimeter
+            * if this is border cell, add 1 to perimeter
+            * if neighbour is 1 donot add to perimeter
+            */
+            int perimeter = 0;	//Perimeter of this cell
+            int row_dir[] = {-1,0,0,1};
+            int col_dir[] = {0,1,-1,0};
+            for (int i = 0;i < 4;i++) {
+                int neigh_row = r + row_dir[i];
+                int neigh_col = c + col_dir[i];
 
-            // if this element is on boundary, add 1 to perimeter
-			if (neigh_row < 0 || neigh_row >= rows ||
-				neigh_col < 0 || neigh_col >= cols) {
-				perimeter += 1;
-				continue;
-			}
-            // if neighbbour element is 0, add 1 to perimeter
-			if (v[neigh_row][neigh_col] == 0)
-				perimeter += 1;
-		}
-		return perimeter;
+                // if this element is on boundary, add 1 to perimeter
+                if (neigh_row < 0 || neigh_row >= rows ||
+                    neigh_col < 0 || neigh_col >= cols) {
+                    perimeter += 1;
+                    continue;
+                }
+                // if neighbbour element is 0, add 1 to perimeter
+                if (v[neigh_row][neigh_col] == 0)
+                    perimeter += 1;
+            }
+            return perimeter;
 	}    
 public:
     int islandPerimeter(vector<vector<int>>& v) {
-		int out = 0;
-		rows = v.size();
-		cols = v[0].size();
-		for (int i = 0;i < rows; ++i) {
-			for (int j = 0;j < cols; ++j) {
-				if (v[i][j] == 1) {
-					out += find_perim(i, j, v);
-				}
-			}
-		}
-		return out;
+        int out = 0;
+        rows = v.size();
+        cols = v[0].size();
+        for (int i = 0;i < rows; ++i) {
+            for (int j = 0;j < cols; ++j) {
+                if (v[i][j] == 1) {
+                    out += find_perim(i, j, v);
+                }
+            }
+        }
+        return out;
     }
 };
 ```
 
 ==== Rust
-
 ```rs
 impl Solution {
     pub fn find_perim(v: &Vec<Vec<i32>>, r: i32, c: i32) -> i32 {
