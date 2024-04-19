@@ -1,8 +1,9 @@
-**Number of Islands**
-- [Approach-1, DFS Graph. Connected Components](#a1)
+:toc:
+:toclevels: 6
 
-### [200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
-- Given matrix '1's (land) and '0's (water). We need to count islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
+
+== link:https://leetcode.com/problems/number-of-islands/[200. Number of Islands]
+Given matrix '1's (land) and '0's (water). We need to count islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
 ```cpp
 Example-1
 Input: grid = [
@@ -23,13 +24,11 @@ Input: grid = [
 Output: 3               //3 islands
 ```
 
-<a name=a1></a>
-### Approach-1, Find [Connected Components](/DS_Questions/Data_Structures/Graphs#t). DFS
-- **Logic-1**
-- _1._ Take visited[][] vector same sized as original 2D vector.
-- _2._ Mark all adjacent `1's` as visited using recursion.
-  - Do not use queue/stack because it will slow adding and removing elements to queue.
-- _3._ Traverse whole array and check unvisited `1's`: count++ whenever unvisited 1 is found.
+== Approach-1, Find link:/DS_Questions/Data_Structures/Graphs#t[Connected Components]. DFS
+=== Logic-1
+1. Take visited[][] vector same sized as original 2D vector.
+2. Mark all adjacent `1's` as visited using recursion. Do not use queue/stack because it will slow adding and removing elements to queue.
+3. Traverse whole array and check unvisited `1's`: count++ whenever unvisited 1 is found.
 ```cpp
 using vecVecC = vector<vector<char>>;
 using vecI = vector<int>;
@@ -73,19 +72,21 @@ public:
 ```
 
 
-- **Logic-2 (Modify input array):**
-  - _1._ Each visited node is marked as 2
-  - _2._ Start from index=0,0. Mark Island as 2.
+=== Logic-2 (Modify input array)
+1. Each visited node is marked as 2
+2. Start from index=0,0. Mark Island as 2.
 ```cpp
    1  1  1  1  0      2 2 2 2 0
    1  1  0  1  0      2 2 0 2 0
    1  1  0  0  0      2 2 0 0 0 
    0  0  0  0  0      0 0 0 0 0
 ```
-#### Complexity
-- **Time:** O(mxn). m=rows, n=cols
-- **Space:** O(1)
-#### CPP
+=== Complexity
+* Time: O(mxn). m=rows, n=cols
+* Space: O(1)
+
+=== Code
+==== CPP
 ```cpp
 class Solution {
     int rows, cols;
@@ -126,4 +127,48 @@ public:
         return count;
     }
 };
+```
+
+==== Rust
+```rs
+impl Solution {
+  fn check_all_directions(row: i32, col: i32, grid: &Vec<Vec<char>>) -> bool {
+    let rows = grid.len() as i32;
+    let cols = grid[0].len() as i32;
+    if row < 0 || col < 0 || row >= rows || col >= cols {
+      return false;
+    }
+    if grid[row as usize][col as usize] == '1' {
+      return true;
+    }
+    false
+  }
+  pub fn search_neighbours(row: i32, col: i32, grid: &mut Vec<Vec<char>>) {
+    let row_directions:Vec<i32> = vec![-1,0,0,1];
+    let col_directions:Vec<i32> = vec![0,-1,1,0];
+    grid[row as usize][col as usize] = '2';
+    // Check all 4 directions
+    for i in 0..4 {
+      let r = row + row_directions[i as usize];
+      let c = col + col_directions[i as usize];
+      if Self::check_all_directions(r as i32,c as i32,grid) {
+        Self::search_neighbours(r, c, grid);
+      }
+    }
+  }
+  pub fn num_islands(mut grid: Vec<Vec<char>>) -> i32 {
+    let mut count = 0;
+    let rows = grid.len();
+    let cols = grid[0].len();
+    for i in 0..rows {
+      for j in 0..cols {
+        if grid[i][j] == '1' {
+          count += 1;
+          Solution::search_neighbours (i as i32, j as i32, &mut grid);
+        }
+      }
+    }
+    count
+  }
+}
 ```
