@@ -2,42 +2,6 @@
 :toclevels: 6
 
 
-== Borrowing = Reference (&var)
-
-=== 2. Two Mutable references are not allowed in same scope
-- *Why?* To avoid data race conditions. Race condition occurs when any of 3 behaviours happen:
-    - Two or more pointers access the same data at the same time.
-    - At least one of the pointers is being used to write to the data.
-    - There’s no mechanism being used to synchronize access to the data.
-```rust
-  let mut s = String::from("hello");
-  let r1 = &mut s;
-  let r2 = &mut s;                            //Compilation Error
-  println!("{}, {}", r1, r2);
-```
-=== 3. Mutable References are allowed in seperate scope
-```rustc
-  let mut s = String::from("hello");
-  {
-    let r1 = &mut s;
-  } // r1 goes out of scope here, so we can make a new reference with no problems.
-  let r2 = &mut s;
-```
-
-== Borrow Checker
-- Rust compiler has a borrow checker that compares scopes to determine whether all borrows are valid.
-- _Lifetimes_
-  - a is main()'s block
-  - b is Block-1
-```rs
-fn main() {
-  let a = 10;
-  {                   //Block-1
-    let mut b = &a;
-  }
-  println!("{}",b);   //Compile Error, Borrow=Reference of variable goes out of scope and used.
-}
-```
 === 1. Generic / Named Lifetimes
 - **Compliation Error. Why?** rustc cannot ascertain Return value (&str) is reference of a or reference of b.
 ```rs
