@@ -72,20 +72,18 @@ public:
 		}
 	}
 	bool find(int source) {
+        if (visited.find(source) != visited.end())
+            return false;
+        if (source == dest)
+            return true;
+        
 		auto it = g.find(source);
 		if (it != g.end()) {
-			for (auto& i : it->second) {
-				if (visited.find(i) == visited.end()) {
-					// if dest is any of neighbour
-					if (i == dest)
-						return true;
-
-					// jump to unvisited neighbour
-					visited.insert(i);
-					if (find(i))
-						return true;
-				}
-			}
+			for (auto& neighbour : it->second) {
+                visited.insert(source);
+                if (find(neighbour))
+                    return true;
+            }
 		}
 		return false;
 	}
@@ -102,4 +100,64 @@ public:
 		return find(source);
 	}
 };
+```
+
+==== Rust
+```rs
+use std::collections::{HashMap, HashSet};
+impl Solution {
+  fn add_node(src:i32, dst:i32, graph: &mut HashMap<i32, HashSet<i32>>) {
+    if !graph.contains_key(&src) {
+      // Graph does not have a node
+      let mut hs:HashSet<i32> = HashSet::new();
+      hs.insert(dst);
+      graph.insert(src, hs);
+    }else {
+      // Insert neighbour into existing node
+      if let Some(val) = graph.get_mut(&src) {
+        val.insert(dst);
+      }
+    }
+  }
+  fn create_graph(edges: &Vec<Vec<i32>>, mut graph: &mut HashMap<i32, HashSet<i32>>) {
+    for i in edges {
+      Self::add_node(i[0], i[1], &mut graph);
+      Self::add_node(i[1], i[0], &mut graph);
+    }
+  }
+  fn find(source: i32, graph: &HashMap<i32, HashSet<i32>>, visited: &mut HashSet<i32>, dst: i32) -> bool{
+    if visited.contains(&source) {
+      return false; // Avoid revisiting the same node
+    }
+    
+    if source == dst {
+        return true;
+    }
+    
+    if let Some(neighbors) = graph.get(&source) {
+        for neighbor in neighbors {
+            visited.insert(source); // Mark current node as visited
+            if Self::find(*neighbor, graph, visited, dst) {
+                return true;
+            }
+        }
+    }
+    
+    false
+  }    
+    pub fn valid_path(n: i32, edges: Vec<Vec<i32>>, source: i32, destination: i32) -> bool {
+      let mut graph:HashMap<i32, HashSet<i32>> = HashMap::new();
+      let mut visited:HashSet<i32> = HashSet::new();
+      if edges.len() == 0 {
+        return true;
+      }
+      Self::create_graph (&edges, &mut graph);
+
+      if let Some(_a) = graph.get(&source) {
+      } else {
+        return false;
+      }
+      Self::find(source, &graph, &mut visited, destination)
+    }
+}
 ```
