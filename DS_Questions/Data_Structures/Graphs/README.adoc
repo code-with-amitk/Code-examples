@@ -1,9 +1,6 @@
 :toc:
 :toclevels: 6
 
-
-
-
 == Graph
 Collection of nodes/vertices with edges between some/all of them. Examples: Internet, City map, Person's Social Network, State machines.
 ```c
@@ -109,50 +106,48 @@ link:/DS_Questions/Questions/Graphs/Find/Undirected_Graph[Finding connected Comp
   - Best case. O(logE). Using DFS, two parallel tree traversals, one preorder traversal and other postorder traversal.
 
 === 3. Spanning Tree
-Subgraph derived from Graph satisfying these conditions:
-  - No cycles(ie it is acyclic), Since it a tree
-  - Should connect all vertices with minimum number of edges.
-- **Properties of ST**
-  - 1 graph can have many spanning trees.
-  - Graph can be weighted or unweighted
-  - Every connected and undirected Graph G has at least 1 ST.
-  - A disconnected graph does not have any ST, as it cannot be spanned to all its vertices.
-  - Number of Spanning Trees, for graph having `n` vertices = n<sup>n-2</sup>
-  - Number of edges, for graph having `n` vertices = n - 1
-- Example
-```
+* Subgraph derived from Graph satisfying these conditions:
+** No cycles(ie it is acyclic), Since it a tree
+** Should connect all vertices with minimum number of edges.
+
+* *Properties of ST*
+1. graph can have many spanning trees.
+2. Graph can be weighted or unweighted. Every connected and undirected Graph G has at least 1 ST.
+3. A disconnected graph does not have any ST, as it cannot be spanned to all its vertices.
+4. Number of Spanning Trees, for graph having `n` vertices = n<sup>n-2</sup>
+5. Number of edges, for graph having `n` vertices = n - 1
+```c
+Example
     a ------ b               a ----- b              a ------ b           a --- b
     |    /   |                       |              |                      \
     |   /    |               c ----- d              c ------ d               \
     c  ----- d                                                           c --- d
     Main Graph                1 ST                  Another ST          Another ST
 ```
-- **Applications of ST**
-- *A. Civil Network Planning:* City network as a huge graph and now plans to deploy telephone lines in such a way that in minimum lines we can connect to all city nodes.    
-- *B. Computer Network Routing Protocol*
+* *Applications of ST
+1. Civil Network Planning: City network as a huge graph and now plans to deploy telephone lines in such a way that in minimum lines we can connect to all city nodes.    
+2. Computer Network Routing Protocol
 
 ==== 3a. Min Spanning Tree
 A ST where total weight of all edges is minimum. Has n-1 edges.
-- **Finding Min Spanning Tree?**
-  - Start from min weight edge
-  - Go on connecting all min weight edges. 
-  - Donot connect any edge that creates a cycle. We cannot connect cb.
+
+* *Finding Min Spanning Tree?*
+* Start from min weight edge > Go on connecting all min weight edges. > Donot connect any edge that creates a cycle. We cannot connect cb.
  ```c
     a --5-- b                         b               b       a        
    3|   /4  |3                        |3              |3     3|         
     c --1-- d        c --1-- d        c --1-- d       c --1-- d                                    
 ```
-- **Algorithms for finding Min Spanning Tree**
+* *Algorithms for finding Min Spanning Tree*
 ```c
              Algo | Kruskal's  | Prim's
   --------------- |----------- | -------
   Time Complexity | O(E log V) | O(E + V log V) //slow 
   When to use     |            | Works faster in graph with many more edges than vertices 
 ```
-- **A. PRIM's Algorithm**  //Time Complexity = O(E + V log V) //slow wrt kruskal's
-  - _1._ Choose arbitrary vertex to start
-  - _2._ Choose min weight edge that is not in(output mst), note that in mst.  
-  - _3._ Repeat step-2 until all edges are in mst.
+* *A. PRIM's Algorithm*  
+* Time Complexity = O(E + V log V) //slow wrt kruskal's
+* Choose arbitrary vertex to start > Choose min weight edge that is not in(output mst), note that in mst > Repeat step-2 until all edges are in mst.
 ```c
    ---            
   |   \/Loop                              [0] -2- [1] -4- [2]            [0] -2- [1]         
@@ -167,10 +162,10 @@ Step-2    [0] -2- [1] -4- [3]           [0] -2- [1] -4- [3]
                                        d. Choose min weighted edge going from [1] or [0] or [3]
 ```
 
-- **B. KRUSKAL'S Algorithm** //Time Complexity = O(E log V)
-  - Keep including minimum edges, as long as no cycles are formed. Once all vertices are covered, stop.
-  - Example
+* B. KRUSKAL'S Algorithm* //Time Complexity = O(E log V)
+* Keep including minimum edges, as long as no cycles are formed. Once all vertices are covered, stop.
 ```c
+  - Example
   -----
   |   \/Loop
   --- a ---------  b                        a --6---b                       a    b
@@ -193,8 +188,8 @@ minimum edges        next min edges       next min edges
 ```
 
 === 4. Weighted/Unweighted Graph
-- *Weighted?* If edges has cost/weight. Ex: flight fuel cost between cities.        
-- *Unweighted?* if the edges do not have weights.
+* Weighted? If edges has cost/weight. Ex: flight fuel cost between cities.        
+* Unweighted? if the edges do not have weights.
 ```c
    0 --50-- 1
  10|        |20
