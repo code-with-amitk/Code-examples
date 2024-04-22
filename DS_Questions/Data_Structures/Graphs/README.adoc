@@ -81,7 +81,7 @@ Minimum eccentricity of any vertex.
 Interconnected objects are called vertices.
 
 === Connected Components?
-This is subgraph in which each pair of nodes is connected with each other via a path. Here 3
+Subgraph in which each pair of nodes is connected with each other via a path. Here 3
 ```c
 1---2    4--5   6
     |
@@ -91,8 +91,13 @@ link:/DS_Questions/Questions/Graphs/Find/Undirected_Graph[Finding connected Comp
 
 == Types of Graphs
 === 1. Cyclic/Acyclic
-- *Cyclic:* If graph has cycle.  
-- *Acyclic:* No cycles in graph. When following the graph from node to node, you will never visit the same node twice.
+* *Cyclic* 
+** If graph has cycle.
+
+link:/DS_Questions/Questions/Graphs/Find/Undirected_Graph/Path_from_Src_to_dst/Find_if_Path_Exists_in_Graph.adoc[1971. Find if Path Exists in Graph]
+
+* *Acyclic:* 
+** No cycles in graph. When following the graph from node to node, you will never visit the same node twice.
 
 ==== 1a. DAG(Directed Acyclic Graph)
 - Directed graph without cycles graph. DAG will surely have 1 vertex with indegree=0 and 1 vertex with outdegree=0, because it does not have cycle.
