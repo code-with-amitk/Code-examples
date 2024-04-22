@@ -1,0 +1,105 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-if-path-exists-in-graph/[1971. Find if Path Exists in Graph]
+There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 (inclusive). The edges in the graph are represented as a 2D integer array edges, where each edges[i] = [ui, vi] denotes a bi-directional edge between vertex ui and vertex vi. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself.
+
+You want to determine if there is a valid path that exists from vertex source to vertex destination.
+
+Given edges and the integers n, source, and destination, return true if there is a valid path from source to destination, or false otherwise.
+
+ 
+
+Example 1:
+
+image::https://assets.leetcode.com/uploads/2021/08/14/validpath-ex1.png?raw=true[example1]
+
+```
+Input: n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2
+Output: true
+Explanation: There are two paths from vertex 0 to vertex 2:
+- 0 → 1 → 2
+- 0 → 2
+```
+
+Example 2:
+
+image::https://assets.leetcode.com/uploads/2021/08/14/validpath-ex2.png?raw=true[example2]
+
+```c
+Input: n = 6, edges = [[0,1],[0,2],[3,5],[5,4],[4,3]], source = 0, destination = 5
+Output: false
+Explanation: There is no path from vertex 0 to vertex 5.
+```
+
+== Approach-1. Depth 1st Search
+=== Logic
+* Create graph unordered_map<node, unordered_set<int>>  //unordered_set=All neighbours of node
+* Take visited matrix unordered_set<int> visited.
+* Start from source node.
+* Traverse to all unvisited neighours of present node, if dst is any of node return true.
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)//Graph + O(n)//visited array = O(n)
+
+=== Code
+==== CPP
+```cpp
+using vvI = vector<vector<int>>;
+using graph = unordered_map<int, unordered_set<int>>;
+class Solution {
+	graph g;
+	unordered_set<int> visited;
+	int dest;
+public:
+	void add_node(int src, int dst) {
+		auto it = g.find(src);
+		if (it != g.end()) {
+			auto& itr = it->second;
+			itr.insert(dst);
+		}
+		else {
+			unordered_set<int> us;
+			us.insert(dst);
+			g[src] = us;
+		}
+	}
+	void create_graph(vvI& edges) {
+		for (auto& i : edges) {
+			add_node(i[0], i[1]);
+			add_node(i[1], i[0]);
+		}
+	}
+	bool find(int source) {
+		auto it = g.find(source);
+		if (it != g.end()) {
+			for (auto& i : it->second) {
+				if (visited.find(i) == visited.end()) {
+					// if dest is any of neighbour
+					if (i == dest)
+						return true;
+
+					// jump to unvisited neighbour
+					visited.insert(i);
+					if (find(i))
+						return true;
+				}
+			}
+		}
+		return false;
+	}
+	bool validPath(int n, vvI& edges, int source, int destination) {
+        if (edges.empty())
+            return true;
+		dest = destination;
+		create_graph(edges);
+		
+		auto it = g.find(source);
+		if (it == g.end())
+			return false;
+
+		return find(source);
+	}
+};
+```
