@@ -2,9 +2,9 @@
 :toclevels: 6
 
 
-=== 1. Generic / Named Lifetimes
-- **Compliation Error. Why?** rustc cannot ascertain Return value (&str) is reference of a or reference of b.
+== Generic / Named Lifetimes
 ```rs
+//Compliation Error
 fn largest(x:&str, y:&str) -> &str{
     if x.len() > y.len() {
         x
@@ -13,7 +13,13 @@ fn largest(x:&str, y:&str) -> &str{
     }
 }
 fn main() {
-    println!("{}", largest(String::from("abcd"), String::from("xyz")));
+    let s1 = String::from("h");
+    let result;
+    {
+        let s2 = String::from("www");
+        result = longest(&s1, &s2);
+    }
+    println!("The longest string is: {}", result);
 }
 $ cargo run                 //Compilation error
    Compiling 
@@ -23,17 +29,18 @@ error[E0106]: missing lifetime specifier
 9 | fn largest(x: &str, y: &str) -> &str {
   |               ----     ----     ^ expected named lifetime parameterr
 ```
-- **Solution: Generic lifetime parameter `'a`** 
-  - Prefix every parameter with `'a`. Apostrophe a (`'a`) denotes reference has generic lifetime. This is also called _Lifetime Annotation Syntax_.
-  - Lifetime of references still does not change. 
-  - Lifetime annotations only need to be declared in function parameters, it does not goes inside body of function.
-  - Examples
-```rs
-&i32        // a reference
-&'a i32     // a reference with an explicit lifetime
-&'a mut i32 // a mutable reference with an explicit lifetime
-```
-- Fixed code
+=== Why Compilation Error?
+* if the compiler is unable to infer the lifetimes, it will result in a compilation error.
+* The longest() attempts to return a reference to the longer of two string slices (&str).
+* problem arises because the lifetimes of s1 and s2 are different. s1 has a longer lifetime than s2 because it was declared outside the inner block. 
+* when s2 goes out of scope at the end of the inner block, the reference to s2 becomes invalid, but result will hold reference of s2, which has already been deallocated.
+* This results in a dangling reference, which is a memory safety violation.
+
+=== Solution: Generic lifetime parameter `'a`
+* To fix this issue, you need to specify lifetimes for the function parameters to ensure that the returned reference is valid for the appropriate duration
+* Prefix every parameter with `'a`. Apostrophe a (`'a`) denotes reference has generic lifetime. This is also called _Lifetime Annotation Syntax_.
+
+=== Fixed code
 ```rs
 fn largest<'a>(x:&'a str, y:&'a str) -> &'a str{           //Need to declare generic lifetime parameters inside <> before parameter list.
     if x.len() > y.len() {
@@ -42,15 +49,9 @@ fn largest<'a>(x:&'a str, y:&'a str) -> &'a str{           //Need to declare gen
         y
     }
 }
-fn main() {
-    println!("{}", largest(&String::from("abcd"), &String::from("xyz")));
-}
-$ cargo run
-$ test.exe
-abcd
 ```
 
-==== 1.1 Function will return smaller of both lifetimes
+=== Function will return smaller of both lifetimes
 ```rs
 fn main() {                           //Block-1
     let x = String::from("abcd");
@@ -95,7 +96,7 @@ impl<'a> test<'a> {                     //impl need to be declared with lifetime
 }
 ```
 
-==Static lifetime
+=== Static lifetime
 - This reference can live for the entire duration of the program. All string literals have the 'static lifetime. 
 - The text of this string is stored directly in the program’s binary, which is always available
 ```rs
