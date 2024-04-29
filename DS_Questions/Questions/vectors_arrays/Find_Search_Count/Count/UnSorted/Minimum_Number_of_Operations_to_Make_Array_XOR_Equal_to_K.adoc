@@ -27,7 +27,7 @@ Output: 0
 Explanation: The XOR of elements of the array is (2 XOR 0 XOR 2 XOR 0) == 0 == k. So no operation is needed.
 ```
 
-== Approach-1. 
+== Approach-1. xor all nums and store in bitset. Time:O(n)
 === Logic
 * Take a bit array of size 20. Since Max number of bits 10^6^ can have are 20 bits
 * Do xor of all numbers in nums array 1 byt 1 with above array.  (XOR: same=0, diff=1)
