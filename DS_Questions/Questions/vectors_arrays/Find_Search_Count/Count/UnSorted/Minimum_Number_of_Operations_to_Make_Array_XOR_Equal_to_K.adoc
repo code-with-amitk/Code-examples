@@ -1,0 +1,81 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/minimum-number-of-operations-to-make-array-xor-equal-to-k/[2997. Minimum Number of Operations to Make Array XOR Equal to K]
+You are given a 0-indexed integer array nums and a positive integer k.
+
+You can apply the following operation on the array any number of times:
+
+Choose any element of the array and flip a bit in its binary representation. Flipping a bit means changing a 0 to 1 or vice versa.
+Return the minimum number of operations required to make the bitwise XOR of all elements of the final array equal to k.
+
+Note that you can flip leading zero bits in the binary representation of elements. For example, for the number (101)2 you can flip the fourth bit and obtain (1101)2.
+
+```c
+Example 1:
+Input: nums = [2,1,3,4], k = 1
+Output: 2
+Explanation: We can do the following operations:
+- Choose element 2 which is 3 == (011)2, we flip the first bit and we obtain (010)2 == 2. nums becomes [2,1,2,4].
+- Choose element 0 which is 2 == (010)2, we flip the third bit and we obtain (110)2 = 6. nums becomes [6,1,2,4].
+The XOR of elements of the final array is (6 XOR 1 XOR 2 XOR 4) == 1 == k.
+It can be shown that we cannot make the XOR equal to k in less than 2 operations.
+
+Example 2:
+Input: nums = [2,0,2,0], k = 0
+Output: 0
+Explanation: The XOR of elements of the array is (2 XOR 0 XOR 2 XOR 0) == 0 == k. So no operation is needed.
+```
+
+== Approach-1. 
+=== Logic
+* Take a bit array of size 20. Since Max number of bits 10^6^ can have are 20 bits
+* Do xor of all numbers in nums array 1 byt 1 with above array.  (XOR: same=0, diff=1)
+** XOR will flips the bit in bitset whereever bit=1 in number in nums array
+* xor resulting bitset array with k.
+**  This operation flips the bits in bs that need to be changed to make the XOR of all elements in the array equal to k
+** Count number of on bits in bitset and return the same.
+
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+	int minOperations(vector<int>& nums, int k) {
+		//0 <= nums[i] <= 10 pow 6
+		//hence max bits = 20
+		std::bitset<20> bs(0);
+		for (int i : nums) {
+			// This flips the bit in bitset whereever
+			// bit=1 in num
+			bs ^= i;
+		}
+
+		// This operation flips the bits in bs that need 
+		// to be changed to make the XOR of all elements 
+		// in the array equal to k
+		auto a = bs ^ bitset < 20>(k);
+		return a.count();		//number of on bits
+
+	}
+};
+```
+==== Rust
+```rs
+impl Solution {
+    pub fn min_operations(nums: Vec<i32>, k: i32) -> i32 {
+        // Max bits = 20
+        // we can also use crate bit_set in rust
+        let mut bs = 0;
+        for &i in &nums {
+            bs ^= i;
+        }
+        let a = bs ^ k;
+        a.count_ones() as i32 // Count the number of set bits
+    }
+}
+```
