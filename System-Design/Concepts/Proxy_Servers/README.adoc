@@ -35,6 +35,6 @@ Node sitting in front of 1 or more web servers. User requests will reach Reverse
 * Browser can be configured to use link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/#pac[PAC file], which again uses explicit proxy.
 * The disadvantage to explicit proxy is that each desktop must be properly configured to use the proxy, which might not be feasible in a large organization.
 
-=== 4. Transparent Proxy
+==== 4. Transparent Proxy
 * Client Browser does not know the traffic is being processed by a proxy other than the origin server.
 * To enable the Transparent Proxy we must create a service and define it as transparent. The service is configured to intercept traffic for a specified port, or for all IP addresses on that port.
