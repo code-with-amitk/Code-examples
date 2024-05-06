@@ -1,0 +1,93 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/remove-nodes-from-linked-list/[2487. Remove Nodes From Linked List]
+You are given the head of a linked list.
+
+Remove every node which has a node with a greater value anywhere to the right side of it.
+
+Return the head of the modified linked list.
+
+Example 1:
+
+image::https://assets.leetcode.com/uploads/2022/10/02/drawio.png?raw=true[ex-1]
+
+```c
+Input: head = [5,2,13,3,8]
+Output: [13,8]
+Explanation: The nodes that should be removed are 5, 2 and 3.
+- Node 13 is to the right of node 5.
+- Node 13 is to the right of node 2.
+- Node 8 is to the right of node 3.
+
+Example 2:
+Input: head = [1,1,1,1]
+Output: [1,1,1,1]
+Explanation: Every node has value 1, so no nodes are removed.
+```
+
+== Approach-1. Stack
+=== Logic
+* Store all nodes on stack
+```c
+st      |8 |  top1
+        |3 |  top2
+        |13|
+        |2 |
+        |5 |
+```
+* pop from stack and create a vector where top2 > top1
+```c
+vector<int> v = |8|13|
+```
+* Create linked list from vector after traversing from back.
+```c
+  LL  13 -> 8 -> N
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNodes(ListNode* head) {
+        ListNode* p = head;
+        stack<int> st;
+        while (p) {
+            st.push(p->val);
+            p = p->next;
+        }
+        delete head;
+        vector<int> v;
+        while(!st.empty()) {
+            int top = st.top(); st.pop();
+            while (!st.empty() && st.top() < top) {
+                st.pop();
+            }
+            v.push_back(top);
+        }
+        return create(v,v.size()-1);
+    }
+    ListNode* create(vector<int>& v, int i) {
+        if (i<0)
+            return nullptr;
+        ListNode* p = new ListNode(v[i]);
+        p->next = create(v,i-1);
+        return p;
+    }
+};
+```
