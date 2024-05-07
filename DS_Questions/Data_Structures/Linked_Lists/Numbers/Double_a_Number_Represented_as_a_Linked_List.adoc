@@ -94,11 +94,89 @@ private:
 === Logic
 * Reverse the Linked list
 ```c
-1 -> 8 -> 9
+Example-1
+          9 -> 9 -> 9      //Llama fails on this input
+reversed  9 -> 9 -> 9
 
-9 -> 8 -> 1
+Example-2
+          1 -> 8 -> 9
+reversed  9 -> 8 -> 1
 ```
+* Multiply each digit by 2 and take carry to next digit
+```c
+Example-1
+          9 -> 9 -> 9
+          0    1    2
+carry=0
+    i     pro            digit    carry
+    0     9x2+carry=18    8        1
+
+          8 -> 9 -> 9
+    1     9x2+1=19        9        1
+
+          8 -> 9 -> 9
+    2     9x2+1=19        9        1
+
+Now Reverse                //Llama is missing this step, whenever carry is present
+          9 -> 9 -> 8
+```
+* if carry is present, add new head of carry. And 
+```c
+  new node = 1
+  1 -> 9 -> 9 -> 8
+```
+
 === Code
 ==== CPP
 ```cpp
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* doubleIt(ListNode* head) {
+        ListNode* current = reverseList(head);
+        ListNode* node = current;
+        int carry = 0;
+        
+        while (node) {
+            int sum = node->val * 2 + carry;
+            node->val = sum % 10;
+            carry = sum / 10;
+            node = node->next;
+        }
+        
+        if (carry) {
+            // Reverse in every case, whether carry is present or not
+            current = reverseList(current);
+            ListNode* newHead = new ListNode(carry);
+            newHead->next = current;
+            return newHead;
+        }
+        
+        return reverseList(current);
+    }
+    
+private:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* current = head;
+        
+        while (current) {
+            ListNode* nextNode = current->next;
+            current->next = prev;
+            prev = current;
+            current = nextNode;
+        }
+        
+        return prev;
+    }
+};
 ```
