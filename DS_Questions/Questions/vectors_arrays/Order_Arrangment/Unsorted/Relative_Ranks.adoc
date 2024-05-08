@@ -1,0 +1,66 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/relative-ranks/description/[506. Relative Ranks]
+You are given an integer array score of size n, where score[i] is the score of the ith athlete in a competition. All the scores are guaranteed to be unique.
+
+The athletes are placed based on their scores, where the 1st place athlete has the highest score, the 2nd place athlete has the 2nd highest score, and so on. The placement of each athlete determines their rank:
+
+The 1st place athlete's rank is "Gold Medal".
+The 2nd place athlete's rank is "Silver Medal".
+The 3rd place athlete's rank is "Bronze Medal".
+For the 4th place to the nth place athlete, their rank is their placement number (i.e., the xth place athlete's rank is "x").
+Return an array answer of size n where answer[i] is the rank of the ith athlete.
+
+```c
+Example 1:
+Input: score = [5,4,3,2,1]
+Output: ["Gold Medal","Silver Medal","Bronze Medal","4","5"]
+Explanation: The placements are [1st, 2nd, 3rd, 4th, 5th].
+
+Example 2:
+Input: score = [10,3,8,9,4]
+Output: ["Gold Medal","5","Bronze Medal","Silver Medal","4"]
+Explanation: The placements are [1st, 5th, 3rd, 2nd, 4th].
+```
+
+== Approach-1. Max_heap. O(n)
+=== Logic
+* Take max_heap <pair<rank, index>>.
+* iterate score array and fill in heap
+* Traverse heap. Now we will have decending order of ranks.
+* place medals on output array based on indexes.
+
+=== Complexity
+* Time:O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& score) {
+        priority_queue<pair<int, int>> max_heap;
+        for (auto it = score.begin(); it != score.end(); ++it) {
+            max_heap.push({*it, it-score.begin()});
+        }
+        vector<string> out(score.size(), "");
+        int count = 1;
+        while (!max_heap.empty()) {
+            auto front = max_heap.top();    max_heap.pop();
+            int index = front.second;
+            switch (count) {
+                case 1: out[index] = "Gold Medal"; break;
+                case 2: out[index] = "Silver Medal"; break;
+                case 3: out[index] = "Bronze Medal"; break;
+                default: {
+                    out[index] = to_string(count);
+                }
+            }
+            count++;
+        }
+        return out;
+    }
+};
+```
