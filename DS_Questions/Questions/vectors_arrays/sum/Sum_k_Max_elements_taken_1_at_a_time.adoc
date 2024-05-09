@@ -70,3 +70,30 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+use std::collections::BinaryHeap;
+impl Solution {
+    pub fn maximum_happiness_sum(happiness: Vec<i32>, mut k: i32) -> i64 {
+        let mut max_heap:BinaryHeap<i64> = BinaryHeap::new();
+        for i in happiness {
+            max_heap.push(i as i64);
+        }
+        let mut out = 0;
+        let mut temp = 0;
+
+        while !max_heap.is_empty() && k > 0 {
+            if let Some(top) = max_heap.pop() {
+                let present_happiness = top + temp;
+                if present_happiness < 1 {
+                    break;
+                }
+                out += present_happiness;
+                temp -= 1;
+                k -= 1;
+            }
+        }
+        out
+    }
+}
+```
