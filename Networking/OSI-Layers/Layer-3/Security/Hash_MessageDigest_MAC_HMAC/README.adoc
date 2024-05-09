@@ -5,7 +5,7 @@
 * Transforming String into FIXED-LENGTH-Integer Value. From Hash Message cannot be retrieved back. Hash function should not generate same value for different input strings. 
 * MD5 started producing that and hence considered broken.
 ```c
-Kumar >  | Hash Function |  > 4421
+Kumar >  | Hash Function |  > random_string
 ```
 ==== Why Hash?
 Determine if their content has been corrupted or not. 
