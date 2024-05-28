@@ -75,6 +75,7 @@ Most of BT problems can be solved using below pattern.
   - [Palindrome Partitioning](/DS_Questions/Questions/Strings/SubString_SubSequence/SubString_SubArray/Palindrome_Partitioning.md)
 - **Permutations**
   - [All Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_permutations.md)
+  - [All Unique Permutations](/DS_Questions/Questions/Permutation_Combination/Permutations/All_Unique_Permutations.adoc)
   - [Next Greater Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/Next_Greater_Permutation.md)
   - [Alternating Parity Permutation](/DS_Questions/Questions/Permutation_Combination/Permutations/alternating-parity-permutation.md)
 - [Robot Room Cleaner](/DS_Questions/Questions/vectors_arrays/2d-grid/Robot_Room_Cleaner/)
