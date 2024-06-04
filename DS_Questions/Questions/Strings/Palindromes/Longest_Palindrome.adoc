@@ -1,0 +1,106 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/longest-palindrome/description/[409. Longest Palindrome]
+Given a string s which consists of lowercase or uppercase letters, return the length of the longest 
+palindrome
+ that can be built with those letters.
+
+Letters are case sensitive, for example, "Aa" is not considered a palindrome.
+```c
+Example 1:
+Input: s = "abccccdd"
+Output: 7
+Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
+
+Example 2:
+Input: s = "a"
+Output: 1
+Explanation: The longest palindrome that can be built is "a", whose length is 1.
+```
+
+== Approach. Count Characters. O(n)
+=== Logic
+```c
+s = "abccccdd"
+a=1
+b=1
+c=3
+d=2
+```
+* Count number of characters using hash table
+* if character count == even      //Taken completely into palindrome
+* if character count == odd       //We have not found any character with count=1 before
+                                    Take odd count, and we will not take any element count=1 coming next
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        unordered_map<char, int> umCount;
+        int count = 0;
+        bool one = false;
+        for (auto&ch:s)
+            umCount[ch]++;
+        if (umCount.size() == 1) {
+            auto it = umCount.find(s[0]);
+            return it->second;
+        }
+        for (auto [k, v]: umCount) {
+            if (v%2 == 0) {   //Even counted element, take all
+                count += v;
+            } else if (v>2 && v%2==1) { //odd elements, greater than 2
+                if (!one) {         // if middle element of palindrome is not yet choosen
+                    count += v;
+                    one = true;
+                }else
+                    count += v-1;
+            }
+            else if (v==1 && one==false) {  //if middle element of palindrome not yet choosen
+                one = true;
+                count += 1;
+            }
+        }
+        return count;
+    }
+};
+```
+==== Rust
+```rs
+use std::collections::HashMap;
+impl Solution {
+    pub fn longest_palindrome(s: String) -> i32 {
+        let mut hm:HashMap<char, i32> = HashMap::new();
+        let mut one:bool = false;
+        let mut count = 0;
+        // Count the occurrences of each character
+        for c in s.chars() {
+            *hm.entry(c).or_insert(0) += 1;
+        }
+        if hm.len() == 1 {
+            
+        }
+        // Calculate the length of the longest palindrome
+        for &v in hm.values() {
+            if v % 2 == 0 {
+                count += v;
+            } else {
+                count += v - 1;
+                one = true;
+            }
+        }
+        // Add one if there was at least one odd count
+        if one {
+            count += 1;
+        }
+
+        count
+    }
+}
+```
