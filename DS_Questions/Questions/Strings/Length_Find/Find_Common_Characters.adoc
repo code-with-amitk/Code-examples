@@ -1,0 +1,65 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-common-characters[1002. Find Common Characters]
+Given a string array words, return an array of all characters that show up in all strings within the words (including duplicates). You may return the answer in any order.
+```c
+Example 1:
+Input: words = ["bella","label","roller"]
+Output: ["e","l","l"]
+
+Example 2:
+Input: words = ["cool","lock","cook"]
+Output: ["c","o"]
+```
+
+== Approach-1. Count using unordered_map
+=== Logic
+```c
+Input: words = ["bella","label","roller"]
+Output: ["e","l","l"]
+
+vector<unordered_map<char, int>> = [b1 e1 l2 a1] [l2 a1 b1 e1] [r2 o1 l2 e1]
+```
+* Count characters from each word into vector<unordered_map<char, int>>
+* Iterate through each map and find, whether character is present in other maps or not
+** if present, find the min freq of characters.
+
+=== Complexity
+* Time: O(mn)
+* Space: O(mn)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& words) {
+        vector<string> out;
+        vector<unordered_map<char, int>> vumCount(words.size());
+        for (int i=0;i<words.size();i++) {
+            for (auto&ch:words[i])
+                vumCount[i][ch]++;
+        }
+        for (const auto& [k, v]: vumCount[0]) {
+            int mini = v;
+            bool skip = false;
+            // Search key in all other unnordered maps
+            for (int i=1;i<words.size();i++) {
+                auto it = vumCount[i].find(k);
+                if (it == vumCount[i].end()) {
+                    skip = true;
+                    break;
+                }
+                mini = min(mini, it->second);
+            }
+            if (!skip) {
+                while(mini-->0) {
+                    out.push_back(string(1, k));
+                }
+            }
+        }
+        return out;
+    }
+};
+```
