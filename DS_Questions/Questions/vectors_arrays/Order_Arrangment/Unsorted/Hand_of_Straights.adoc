@@ -1,0 +1,82 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/hand-of-straights[846. Hand of Straights]
+Alice has some number of cards and she wants to rearrange the cards into groups so that each group is of size groupSize, and consists of groupSize consecutive cards.
+
+Given an integer array hand where hand[i] is the value written on the ith card and an integer groupSize, return true if she can rearrange the cards, or false otherwise.
+```c
+Example 1:
+Input: hand = [1,2,3,6,2,3,4,7,8], groupSize = 3
+Output: true
+Explanation: Alice's hand can be rearranged as [1,2,3],[2,3,4],[6,7,8]
+
+Example 2:
+Input: hand = [1,2,3,4,5], groupSize = 4
+Output: false
+Explanation: Alice's hand can not be rearranged into groups of 4.
+```
+
+== Approach-1. 
+=== Logic
+* Count the card and their freq using hashmap
+```c
+[1,2,3,6,2,3,4,7,8]
+<1,1> <2,2> <3,2> <4,1> <7,1> <6,1> <8,1>
+```
+* Store cards in min_heap<key, value>
+```c
+  <1,1>
+  <2,2>
+  <3,2>
+  ..
+```
+* Now pop groupSized unique cards from heap.
+* if min_heap gets empty in between of poping cards (return false) that means we donot have cards in factor of groupSizes
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool isNStraightHand(vector<int>& hand, int groupSize) {
+        if (hand.size() % groupSize != 0) return false;
+
+        // Count frequency of each card
+        unordered_map<int, int> cardCount;
+        for (int card : hand)
+            cardCount[card]++;
+
+        // Use a min-heap to process cards in sorted order
+        priority_queue<int, vector<int>, greater<int>> minHeap;
+        for (auto& entry : cardCount) {
+            minHeap.push(entry.first);
+        }
+
+        while (!minHeap.empty()) {
+            int firstCard = minHeap.top();
+            // Try to form a group starting with the smallest card
+            for (int i = 0; i < groupSize; ++i) {
+                int card = firstCard + i;
+                if (cardCount[card] == 0) {
+                    return false; // Can't form a consecutive group
+                }
+                cardCount[card]--;
+                if (cardCount[card] == 0) {
+                    // Remove card from heap if count is zero
+                    if (card != minHeap.top()) {
+                        return false; // Card out of order in the heap
+                    }
+                    minHeap.pop();
+                }
+            }
+        }
+
+        return true;
+    }
+};
+```
