@@ -1,3 +1,4 @@
+- [Virtual, Physical Memory](#vpmemory)
 - [Memory Types](#mt)
   - **[1. CPU Registers](#m1)**
     - [1a. General Purpose Registers](#gp)
@@ -8,8 +9,8 @@
   - **[2. CPU Cache](#cc)**
   - **[3. ROM](ROM)**
 
-
-
+<a name=vpmemory></a>
+# [Virtual, Physical Memory](https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html)
 
 <a name=mt></a>
 # Memory Types
