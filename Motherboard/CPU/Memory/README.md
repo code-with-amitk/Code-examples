@@ -10,7 +10,7 @@
   - **[3. ROM](ROM)**
 
 <a name=vpmemory></a>
-# [Virtual, Physical Memory](https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html)
+# [Virtual, Physical Memory HTML](https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html)
 
 <a name=mt></a>
 # Memory Types
