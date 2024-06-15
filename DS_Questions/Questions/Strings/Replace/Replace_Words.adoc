@@ -1,0 +1,76 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/replace-words/description/[648. Replace Words]
+In English, we have a concept called root, which can be followed by some other word to form another longer word - let's call this word derivative. For example, when the root "help" is followed by the word "ful", we can form a derivative "helpful".
+
+Given a dictionary consisting of many roots and a sentence consisting of words separated by spaces, replace all the derivatives in the sentence with the root forming it. If a derivative can be replaced by more than one root, replace it with the root that has the shortest length.
+
+Return the sentence after the replacement.
+```c
+Example 1:
+Input: dictionary = ["cat","bat","rat"], sentence = "the cattle was rattled by the battery"
+Output: "the cat was rat by the bat"
+
+Example 2:
+Input: dictionary = ["a","b","c"], sentence = "aadsfasf absbs bbab cadsfafs"
+Output: "a a b c"
+```
+
+== Approach-1
+=== Logic
+* Store dictionary into unordered_set<string>.
+* Parse every word from input sentence and store in vector<string>
+* Traverse each word from vector<string> and find in set and create a new output string
+** match character by character
+```c
+unordered_set = ["cat","bat","rat"]
+word = cattle
+0, Check c is present No
+1, Check ca is present No
+1, Check cat is present yes.  copy on output string
+```
+
+=== Complexity
+```
+m = words in dictionary
+n = words in sentence
+```
+* Time: O(n)
+* Space: O(m+n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    string replaceWords(vector<string>& dictionary, string sentence) {
+        unordered_set<string> us;
+        string out = "";
+        bool found = false;
+        for(auto&i:dictionary)
+            us.insert(i);
+        //Tokenize sentence on " "
+        vector<string> vSen = {};
+        string temp = "";
+        stringstream ss(sentence);             //Fed string to ss constructor
+        while(getline(ss, temp, ' '))          //Space tokenization
+            vSen.push_back(temp);
+        for (string&s:vSen) {
+            string t = "";
+            found = false;
+            for(char&c:s) {
+                t += c;
+                if (us.find(t) != us.end()) {
+                    out += t + " ";
+                    found = true;
+                    break;
+                }
+            }
+            if(!found)
+                out += t + " ";
+        }
+        return out.substr(0, out.size()-1);
+    }
+};
+```
