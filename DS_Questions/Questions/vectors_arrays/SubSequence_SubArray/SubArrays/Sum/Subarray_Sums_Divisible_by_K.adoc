@@ -1,0 +1,78 @@
+:toc:
+:toclevels: 6
+
+
+== link:https://leetcode.com/problems/subarray-sums-divisible-by-k/description/[974. Subarray Sums Divisible by K]
+Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+
+A subarray is a contiguous part of an array.
+```c
+Example 1:
+Input: nums = [4,5,0,-2,-3,1], k = 5
+Output: 7
+Explanation: There are 7 subarrays with a sum divisible by k = 5:
+[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
+
+Example 2:
+Input: nums = [5], k = 9
+Output: 0
+```
+
+== Approach-1
+=== Logic
+* Calculate the prefix sum. prefix sum=sum upto that index
+```c
+arr       =   [4,5,0,-2,-3,1]
+prefixSum =   [4,9,9, 7, 4,5]
+```
+* Divide every prefixsum by k
+```c
+prefixSum =   [4,9,9, 7, 4,5]
+               0 1 2  3  4 5
+rem=ele%k     [4,4,4, 2, 4,0]
+```
+* if 2 remainders are same it means Difference of their Sums is divisible by k
+```c
+  rem[0] == rem[1].         //means prefixsum[1] - prefixsum[0] is divisible by 5. ie We found 1 subarray divisible by 5
+  rem[2] == rem[0], rem[1]  //means prefixsum[2] - prefixsum[0] is divisible by 5. ie We found 1 subarray divisible by 5
+                            //means prefixsum[2] - prefixsum[1] is divisible by 5. ie We found 2 subarrays divisible by 5
+```
+
+=== Complexity
+* Time: O(n)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        
+    int sum=0;
+    int count=0;
+    map<int,int>mp;
+    mp[0]++;                  // always one prefix sum that is initially 0
+
+    
+    for(int i=0;i<nums.size();i++)
+    {
+        sum+=nums[i];
+        int rem=sum%k;        //Calculte the remainders of current sun
+        
+        if(rem<0)             // Handle negative remainders to ensure they are positive
+        {
+            rem=k+rem;
+        }
+        
+        if(mp[rem]>0)          // If remainder has seen before, it means there are subarrays
+            count+=mp[rem];    // which sum to multiple of k. Add the count of occurrences
+
+        mp[rem]++;              // Increment the count for this remainder in the map
+    }
+    return count;
+        
+    }
+};
+```
+
