@@ -1,0 +1,65 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/sum-of-square-numbers/description/[633. Sum of Square Numbers]
+Given a non-negative integer c, decide whether there're two integers a and b such that a2 + b2 = c.
+```c
+Example 1:
+Input: c = 5
+Output: true
+Explanation: 1 * 1 + 2 * 2 = 5
+
+Example 2:
+Input: c = 3
+Output: false
+```
+
+== Approach-1. 2 Pointer
+=== Logic
+```c
+c = 52
+               2   2
+52 = 16 + 36 (4 + 6)
+```
+* Decide a range for 2 pointer approach. Range = (0, sqrt(c)
+```c
+sqrt(c) = 7.  c=52
+start=0,  end=7
+```
+* compare sum=(start*start+end*end) with c
+```c
+  int sum = start*start + end*end;
+  if (sum > c)
+    //increment start
+  else if (sum < c)
+    //decrement end
+  else  //sum==c
+    //return true
+```
+
+=== Complexity
+* Time: O(sqrt(n))
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    bool judgeSquareSum(int c) {        
+        // c = 52 = 16+36
+        // start = 0, end = 7
+        long start = 0, end = (long) sqrt(c);
+        while (start <= end) {
+            long sum = start*start + end*end;
+            if (sum < c)
+                start++;
+            else if (sum > c)
+                end--;
+            else
+                return true;
+        }
+        return false;
+    }
+};
+```
