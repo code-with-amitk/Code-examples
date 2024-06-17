@@ -63,3 +63,27 @@ public:
     }
 };
 ```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn judge_square_sum(c: i32) -> bool {
+        // c = 52 = 16+36
+        // start = 0, end = 7
+        let mut start:i64 = 0;
+        let mut end = (c as f64).sqrt() as i64;
+        while start <= end {
+            let mut sum = start*start + end*end;
+            if sum < c as i64 {
+                start += 1;
+            }
+            else if sum > c as i64{
+                end -= 1;
+            } else {
+                return true;
+            }
+        }
+        false
+    }
+}
+```
