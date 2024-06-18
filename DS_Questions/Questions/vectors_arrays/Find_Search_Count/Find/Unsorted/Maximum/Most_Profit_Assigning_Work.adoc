@@ -1,4 +1,4 @@
- :toc:
+:toc:
 :toclevels: 5
 
 == link:https://leetcode.com/problems/most-profit-assigning-work/description[826. Most Profit Assigning Work]
