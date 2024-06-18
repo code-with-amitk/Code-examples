@@ -1,4 +1,4 @@
-:toc:
+ :toc:
 :toclevels: 5
 
 == link:https://leetcode.com/problems/most-profit-assigning-work/description[826. Most Profit Assigning Work]
@@ -29,7 +29,7 @@ difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]
 
 vector<int> jobs = {2,10 | 4,20 | 6,30 | 8,40 | 10,50}
 ```
-* Iterate through worker array and also iterate through jobs array. Find job which is <= worker
+* Iterate through worker array and also iterate through jobs array. Find job which is < = worker
 ```c
   i    job     worker          profit
   0    2,10    4      //is next job_difficuly <= worker. Yes
@@ -41,6 +41,7 @@ vector<int> jobs = {2,10 | 4,20 | 6,30 | 8,40 | 10,50}
 
 === Complexity
 > n:size of difficutly array. m:size of worker array
+
 * Time:
 ```c
 O(nlogn) + O(mlogm)  //sort
