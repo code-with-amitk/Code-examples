@@ -1,0 +1,82 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/most-profit-assigning-work/description[826. Most Profit Assigning Work]
+You have n jobs and m workers. You are given three arrays: difficulty, profit, and worker where:
+
+difficulty[i] and profit[i] are the difficulty and the profit of the ith job, and
+worker[j] is the ability of jth worker (i.e., the jth worker can only complete a job with difficulty at most worker[j]).
+Every worker can be assigned at most one job, but one job can be completed multiple times.
+
+For example, if three workers attempt the same job that pays $1, then the total profit will be $3. If a worker cannot complete any job, their profit is $0.
+Return the maximum profit we can achieve after assigning the workers to the jobs.
+```c
+Example 1:
+Input: difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]
+Output: 100
+Explanation: Workers are assigned jobs of difficulty [4,4,6,6] and they get a profit of [20,20,30,30] separately.
+
+Example 2:
+Input: difficulty = [85,47,57], profit = [24,66,99], worker = [40,25,25]
+Output: 0
+```
+
+== Approach. sort. O(nlogn)+O(mlogm)+O(mn)
+=== Logic
+* sort the worker and <difficulty,profit> pairs
+```
+difficulty = [2,4,6,8,10], profit = [10,20,30,40,50], worker = [4,5,6,7]
+
+vector<int> jobs = {2,10 | 4,20 | 6,30 | 8,40 | 10,50}
+```
+* Iterate through worker array and also iterate through jobs array. Find job which is <= worker
+```c
+  i    job     worker          profit
+  0    2,10    4      //is next job_difficuly <= worker. Yes
+       4,20    4      //is next job_difficuly <= worker. no. Take this job's profit as out
+                               20
+       6,30    5      //is job_difficuly <= worker. no. Take this job's profit as out
+                              20+30
+```
+
+=== Complexity
+> n:size of difficutly array. m:size of worker array
+* Time:
+```c
+O(nlogn) + O(mlogm)  //sort
+O(nm)                //while inside for
+```
+* Space: O(n)
+
+=== Code
+```cpp
+using mpair = pair<int,int>;
+class Solution {
+public:
+    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit, vector<int>& worker) {
+        vector<mpair> jobs;
+        for (int i = 0; i < difficulty.size(); ++i) {
+            jobs.push_back(make_pair(difficulty[i], profit[i]));
+        }
+        
+        // Sort jobs by difficulty
+        sort(jobs.begin(), jobs.end());
+        // Sort worker array
+        sort(worker.begin(), worker.end());
+        
+        int out = 0;
+        int max_profit = 0;
+        int job_index = 0;
+
+        for (int i = 0; i < worker.size(); ++i) {
+            while (job_index < jobs.size() && jobs[job_index].first <= worker[i]) {
+                max_profit = max(max_profit, jobs[job_index].second);
+                ++job_index;
+            }
+            out += max_profit;
+        }
+        
+        return out;
+    }
+};
+```
