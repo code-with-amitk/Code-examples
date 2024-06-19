@@ -4,7 +4,8 @@
 
 
 
-= link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Virtual, Physical Memory HTML]
+== link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Virtual, Physical Memory HTML]
+== link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Page, Paging, Demand Paging, Pure Demand Paging, Page Table, Frame, MMU, TLB, Page Fault, Page Eviction]
 
 == Memory Types
 Program only runs when its in RAM.
