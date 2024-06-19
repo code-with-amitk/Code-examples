@@ -4,6 +4,6 @@
 
 
 
-== link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Virtual, Physical Memory HTML]
-== link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Page, Paging, Demand Paging, Pure Demand Paging, Page Table, Frame, MMU, TLB, Page Fault, Page Eviction]
-== link:https://code-with-amitk.github.io/Motherboard/Memory/Memory_Types.html[Memory Types(CPU Registers(General Purpose Registers, Segment Registers(16 bit),Special Purpose, IP(Instruction Pointer) / PC(Program Counter) RIP/EIP, Program Status Word / PSW (16 bit), XMM Registers, RFLAGS Register (64 Bits), CPU Cache,Cache Lines/Cache Block]
+=== link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Virtual, Physical Memory HTML]
+=== link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html[Page, Paging, Demand Paging, Pure Demand Paging, Page Table, Frame, MMU, TLB, Page Fault, Page Eviction]
+=== link:https://code-with-amitk.github.io/Motherboard/Memory/Memory_Types.html[Memory Types(CPU Registers(General Purpose Registers, Segment Registers(16 bit),Special Purpose, IP(Instruction Pointer) / PC(Program Counter) RIP/EIP, Program Status Word / PSW (16 bit), XMM Registers, RFLAGS Register (64 Bits), CPU Cache,Cache Lines/Cache Block]
