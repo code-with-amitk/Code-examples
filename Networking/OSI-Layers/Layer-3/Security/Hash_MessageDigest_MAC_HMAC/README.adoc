@@ -1,1 +1,1 @@
-link:https://amitkumar50.github.io/Networking/OSI-Layers/Layer-3/Security/Hash%20MAC.html[Hash, MAC, HMAC]
+== link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/Hash%20MAC.html[Hash, MAC, HMAC]
