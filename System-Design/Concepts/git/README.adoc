@@ -266,6 +266,17 @@ $ git push origin master
 ==== status
 tells what's modified by you, what's not modified on local repo
 
+==== submodule
+```c
+$ git rm openssl/      //remove existing submodule
+rm 'openssl'
+$ git submodule add -b stable https://github.com/jedisct1/libsodium
+$ vim .gitmodules
+$ git add .
+$ git commit -m "added libsodium submodule"
+$ git push origin libsodium
+```
+
 ==== [Split pull request]https://www.youtube.com/watch?v=e26Zx9K3cdQ)
 ```c
 $ git clone repo
