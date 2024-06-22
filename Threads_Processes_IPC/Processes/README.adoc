@@ -5,5 +5,5 @@
 == Process
 === link:https://code-with-amitk.github.io/Motherboard/Memory/fork.html[Creating Child Process, fork(), Code: 1 Child, 2 children, fork, n forks, COW(copy on write)]
 === link:https://code-with-amitk.github.io/Motherboard/Memory/Processes.html[Memory Layout of Process, Code Segment, Data Segment, Stack Segmentstack frame, stack overflow, stack smashing, segmentation fault, Heap, Heap overflow]
-=== link:https://code-with-amitk.github.io/Motherboard/Memory/Processes.html[Process states, PCB / Process Control Block, process table]
+=== link:https://code-with-amitk.github.io/Motherboard/Memory/Processes.html[Process states(start, ready, running, Waiting, terminated), PCB / Process Control Block, process table]
 === link:https://code-with-amitk.github.io/Motherboard/Memory/Processes.html[Process Creation Ways, Process Termination ways]
