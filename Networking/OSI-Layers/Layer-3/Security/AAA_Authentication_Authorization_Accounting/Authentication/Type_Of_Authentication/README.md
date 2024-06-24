@@ -9,7 +9,10 @@
       - Remember PPP protocol is used for connection of Home Based user(Serial Cable User) to IP Network.  Ethernet cannot run on Serial/Telephone lines.    PAP(Password Authentication Protocol), CHAP(Challenge Handshake Authentication Protocol), MSCHAP(Microsoft CHAP), EAP(Extended Authentication Protocol), SPAP(Shiva PAP)
     - *[b. Pre-shared keys (PSK)](Pre_Shared_Key)*
     - _[c. Certificates](/Networking/OSI-Layers/Layer-7/Protocols/Encryption_Authentication/Certificates)_
-    - *d. Smart-cards:* smart card authentication is variant of Certificate auth. SC also stores the certificates, when login is asked, SC presents certs & authenticates 
+    - *d. Smart-cards:* smart card authentication is variant of Certificate auth. SC also stores the certificates, when login is asked, SC presents certs & authenticates
+```c
+Smart Card -> libusb -> libccid(pscs-lite-ccid) <-devicefile-> pcsc-lite(pcscd) -> coolkey.so/opensc(DRIVERS) ->   SSSD-pam_sss,p11_child/pam_pkcs11/pam_krb5(PAM Module) ->   Login(sudo, su, gdm)/ESC
+```
     - *[e. AAA Protocols](AAA_Protocols)*
 ```c
 [Home User/SSL Browser]   ---- IP N/W --  [ASA G/W -> AAA Server]
