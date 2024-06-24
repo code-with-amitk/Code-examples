@@ -13,7 +13,8 @@
 ```c
 Smart Card -> libusb -> libccid(pscs-lite-ccid) <-devicefile-> pcsc-lite(pcscd) -> coolkey.so/opensc(DRIVERS) ->   SSSD-pam_sss,p11_child/pam_pkcs11/pam_krb5(PAM Module) ->   Login(sudo, su, gdm)/ESC
 ```
-    - *[e. AAA Protocols](AAA_Protocols)*
+
+- *[e. AAA Protocols](AAA_Protocols)*
 ```c
 [Home User/SSL Browser]   ---- IP N/W --  [ASA G/W -> AAA Server]
 ```
