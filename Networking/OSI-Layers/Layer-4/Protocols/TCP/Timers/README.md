@@ -12,7 +12,7 @@ Timers are used for:
 
 <a name=rto></a>
 ### 1. RTO(RE-TRANSMISSION TIMEOUT)
-  - Default:3 seconds
+  - Default:3 milliseconds
   - For tracking lost segments. When a segment is sent, a RTO is started. If the segment is acknowledged before the timer expires, the timer is stopped.
   - If, on the other hand, the timer goes off before the acknowledgement comes in, the segment is retransmitted (and the timer is started again).    
     - RTT(ROUND TRIP TIME)/RTD(ROUND TRIP DELAY TIME)/PING TIME? Time taken for a packet reach destination + time for it's acknowledgement to be received. This time delay includes the propagation times for the paths between the two endpoints.
