@@ -1,5 +1,5 @@
 :toc:
-:toclevels:6
+:toclevels: 6
 
 == link:https://leetcode.com/discuss/interview-question/1901653/nuro-phone-determine-if-a-symmetrical-vertical-line-exists[Axis of symmetry / Line of Symmetry]
 Given a list of 2D point coordinates, determine if a symmetrical vertical line x=a exists and return the value of that vertical line.
