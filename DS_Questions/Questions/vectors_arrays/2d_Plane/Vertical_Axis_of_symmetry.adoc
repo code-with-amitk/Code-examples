@@ -1,0 +1,71 @@
+:toc:
+:toclevels:6
+
+== link:https://leetcode.com/discuss/interview-question/1901653/nuro-phone-determine-if-a-symmetrical-vertical-line-exists[Axis of symmetry / Line of Symmetry]
+Given a list of 2D point coordinates, determine if a symmetrical vertical line x=a exists and return the value of that vertical line.
+E.g:
+
+```c
+[(1, 3), (2, 5), (3, 5), (4,3)] has a symmetrical line x=2.5
+[(1, 3), (2, 5), (3, 5), (4, 2)] does not have a symmetrical line 
+```
+
+== Approach-1. O(nlogn)
+=== Logic
+* Take a left and a right point pointer at beginning and end.
+* For Y coordinate keep checking for same numbers and for X coordinates the sum/2 (at each step) should be equal across all left pointers and right pointers.
+* If it fails in any one case then return False
+
+=== Complexity
+* Time: O(nlogn)
+* Space: O(n)
+
+=== Code
+==== CPP
+```cpp
+bool compareX(mpair& a, mpair& b) {
+    return a.first < b.first;
+}
+
+class Solution {
+public:
+    bool axisOfSymmetry(vector<mpair>& points) {
+        sort(points.begin(), points.end(), compareX);
+        int i = 0, j = points.size() - 1;
+        double axis = 0;
+        bool bfirst = false;
+        // 2 pointer approach
+        while (i <= j) {
+            if (i == j) {
+                if (points[i].first != axis)
+                    return false;
+                else
+                    return true;
+            }
+            if (points[i].second != points[j].second)
+                return false;
+            else {
+                double present_axis = (points[i].first + points[j].first) / 2.0;
+                if (!bfirst) {
+                    axis = present_axis;
+                    bfirst = true;
+                }
+                else {
+                    if (present_axis != axis)
+                        return false;
+                }
+            }
+            i++; j--;
+        }
+        return true;
+    }
+};
+int main() {
+    Solution o;
+    vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5} };       //true
+    //vector<mpair> i = { {1, 3}, {2, 5}, {4,2 }, {3, 5} };           //false
+    //vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5}, {3.5,0} };    //false
+    //vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5}, {2.5,0} };       //true
+    cout << o.axisOfSymmetry(i);
+}
+```
