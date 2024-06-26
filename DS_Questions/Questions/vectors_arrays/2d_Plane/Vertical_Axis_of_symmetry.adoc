@@ -10,7 +10,7 @@ E.g:
 [(1, 3), (2, 5), (3, 5), (4, 2)] does not have a symmetrical line 
 ```
 
-== Approach-1. O(nlogn)
+== Approach-1. O(nlogn). sort
 === Logic
 * Take a left and a right point pointer at beginning and end.
 * For Y coordinate keep checking for same numbers and for X coordinates the sum/2 (at each step) should be equal across all left pointers and right pointers.
@@ -66,6 +66,80 @@ int main() {
     //vector<mpair> i = { {1, 3}, {2, 5}, {4,2 }, {3, 5} };           //false
     //vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5}, {3.5,0} };    //false
     //vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5}, {2.5,0} };       //true
+    cout << o.axisOfSymmetry(i);
+}
+```
+
+== Approach-2. O(n). hashset
+=== Logic
+* Find min, max of x coordinates and find the average, ie axis of symmetry.
+```c
+input = {1, 3}, {2, 5}, {4,3 }, {3, 5}, {2.5,0}
+min_x = 1
+max_x = 4
+axis of symmetry = (4+1)/2 = 2.5
+```
+* Insert all pairs into hashset
+```c
+using mpair = pair<double, double>;
+
+unordered_set<mpair, Hash> pointSet(points.begin(), points.end());
+```
+* Traverse all points and find, if(matching y axis found) && (2*axisOf_symmetry-x) found in set. if not found return false.
+```c
+for (const auto& p : points) {
+    mpair symmetricPoint(2 * axis - p.first, p.second);
+    if (pointSet.find(symmetricPoint) == pointSet.end()) {
+        return false;
+    }
+}
+```
+
+=== Code
+==== CPP
+```cpp
+using mpair = pair<double, double>;
+
+struct Hash {
+    size_t operator()(const mpair& p) const {
+        return hash<double>()(p.first) ^ hash<double>()(p.second);
+    }
+};
+
+class Solution {
+public:
+    bool axisOfSymmetry(vector<mpair>& points) {
+            if (points.empty()) return true;
+
+            int minX = points[0].first;
+            int maxX = points[0].first;
+
+            // Find min and max x-coordinates
+            for (const auto& p : points) {
+                if (p.first < minX) minX = p.first;
+                if (p.first > maxX) maxX = p.first;
+            }
+
+            double axis = (minX + maxX) / 2.0;
+            unordered_set<mpair, Hash> pointSet(points.begin(), points.end());
+
+            // Check symmetry
+            for (const auto& p : points) {
+                mpair symmetricPoint(2 * axis - p.first, p.second);
+                if (pointSet.find(symmetricPoint) == pointSet.end()) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+};
+int main() {
+    Solution o;
+    //vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5} };       //true
+    //vector<mpair> i = { {1, 3}, {2, 5}, {4,2 }, {3, 5} };           //false
+    //vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5}, {3.5,0} };    //false
+    vector<mpair> i = { {1, 3}, {2, 5}, {4,3 }, {3, 5}, {2.5,0} };       //true
     cout << o.axisOfSymmetry(i);
 }
 ```
