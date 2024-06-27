@@ -1,0 +1,98 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/find-center-of-star-graph/description[1791. Find Center of Star Graph]
+There is an undirected star graph consisting of n nodes labeled from 1 to n. A star graph is a graph where there is one center node and exactly n - 1 edges that connect the center node with every other node.
+
+You are given a 2D integer array edges where each edges[i] = [ui, vi] indicates that there is an edge between the nodes ui and vi. Return the center of the given star graph.
+
+```c
+Input: edges = [[1,2],[2,3],[4,2]]
+Output: 2
+Explanation: As shown in the figure above, node 2 is connected to every other node, so 2 is the center.
+          4
+          |
+     3 -- 2 -- 1
+```
+
+== Approach-1. O(1)
+=== Logic
+* Find common point in edge[0] and edge[1] and return
+
+=== Complexity
+* Time: O(1)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        int point00 = edges[0][0], point01 = edges[0][1];
+        int point10 = edges[1][0], point11 = edges[1][1];
+
+        if (point00 == point10)
+            return point10;
+        if (point00 == point11)
+            return point11;
+        return point01;
+    }
+};
+```
+
+==== Rust
+```rs
+impl Solution {
+    pub fn find_center(edges: Vec<Vec<i32>>) -> i32 {
+        let point00 = edges[0][0];
+        let point01 = edges[0][1];
+        let point10 = edges[1][0];
+        let point11 = edges[1][1]; 
+
+        if point00 == point10 {
+            return point10;
+        }
+        if point00 == point11 {
+            return point11;
+        }
+        point01
+    }
+}
+```
+
+==== Go
+```go
+func findCenter(edges [][]int) int {
+        point00 := edges[0][0]
+        point01 := edges[0][1]
+        point10 := edges[1][0]
+        point11 := edges[1][1]
+
+        if point00 == point10 {
+            return point10
+        }
+        if point00 == point11 {
+            return point11
+        }
+        return point01
+}
+```
+
+==== Python
+```py
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+        point00 = edges[0][0]
+        point01 = edges[0][1]
+        point10 = edges[1][0]
+        point11 = edges[1][1]
+
+        if point00 == point10:
+            return point10
+        
+        if point00 == point11:
+            return point11
+        
+        return point01
+```
