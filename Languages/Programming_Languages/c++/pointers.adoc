@@ -1,10 +1,5 @@
-**Pointers**
-- _1._ Raw/Normal
-- [_2._ Smart Pointers](#sp)
-  - [2a. Unique ptr](#up)
-  - [2b. Shared ptr (Reference Counted. Multiple Owners Allowed)](#shp)
-    - [How shared_ptr is implemented internally?](#hsp)
-- _3. WEAK POINTER weak_ptr_
+:toc:
+:toclevels: 2
 
 == link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/[Raw, Smart pointers]
 == link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/[Unique, shared pointers(How internally implemented)]
