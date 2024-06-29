@@ -1,0 +1,95 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/[2192. All Ancestors of a Node in a Directed Acyclic Graph]
+You are given a positive integer n representing the number of nodes of a Directed Acyclic Graph (DAG). The nodes are numbered from 0 to n - 1 (inclusive).
+
+You are also given a 2D integer array edges, where edges[i] = [fromi, toi] denotes that there is a unidirectional edge from fromi to toi in the graph.
+
+Return a list answer, where answer[i] is the list of ancestors of the ith node, sorted in ascending order.
+
+A node u is an ancestor of another node v if u can reach v via a set of edges.
+
+image::https://assets.leetcode.com/uploads/2019/12/12/e1.png?raw=true[example 1]
+
+```c
+Input: n = 8, edgeList = [[0,3],[0,4],[1,3],[2,4],[2,7],[3,5],[3,6],[3,7],[4,6]]
+Output: [[],[],[],[0,1],[0,2],[0,1,3],[0,1,2,3,4],[0,1,2,3]]
+Explanation:
+The above diagram represents the input graph.
+- Nodes 0, 1, and 2 do not have any ancestors.
+- Node 3 has two ancestors 0 and 1.
+- Node 4 has two ancestors 0 and 2.
+- Node 5 has three ancestors 0, 1, and 3.
+- Node 6 has five ancestors 0, 1, 2, 3, and 4.
+- Node 7 has four ancestors 0, 1, 2, and 3.
+```
+
+== Approach-1. Hashmap of reverse relationship
+=== Logic
+* Construct a hashmap of child to parent
+```c
+unordered_map<int, unordered_set<int>>
+  key=child    value=direct parents
+    3            0,1
+    4            0,1,2
+    5            3
+    6            3,4
+    7            2,3
+```
+* Traverse all childs, fill in direct parents, recursively jump to one of parent and find its parent
+```c
+parents of 6
+    3    //jump to parents of 3 from hashmap
+    0    //is there any parent of 0? No
+    1    //is there any parent of 1? No
+    4
+    2
+```
+
+=== Complexity
+* Time: O(mn). m=nodes, n=parents
+* Space: O(mn). m=unordered_map, n=stack frames can be created at a time
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+        unordered_map<int, unordered_set<int>> parentNodes;
+        
+        // Create a reverse relation map
+        for (auto& edge : edges) {
+            int child = edge[1];
+            int parent = edge[0];
+            parentNodes[child].insert(parent);
+        }
+
+        vector<vector<int>> out(n);
+        for (int i = 0; i < n; ++i) {
+            unordered_set<int> ancestors;
+            findParents(i, parentNodes, ancestors);
+            out[i] = vector<int>(ancestors.begin(), ancestors.end());
+            sort(out[i].begin(), out[i].end()); // Optional: sort the result
+        }
+        
+        return out;
+    }
+
+private:
+    void findParents(int start, 
+                     unordered_map<int, unordered_set<int>>& parentNodes, 
+                     unordered_set<int>& ancestors) {
+        if (parentNodes.find(start) == parentNodes.end()) {
+            return;
+        }
+        for (auto& parent : parentNodes[start]) {
+            if (ancestors.find(parent) == ancestors.end()) {
+                ancestors.insert(parent);
+                findParents(parent, parentNodes, ancestors);
+            }
+        }
+    }
+};
+```
