@@ -1,7 +1,8 @@
 :toc:
 :toclevels: 6
 
-link:https://leetcode.com/problems/average-waiting-time/description[1701. Average Waiting Time]
+== link:https://leetcode.com/problems/average-waiting-time/description[1701. Average Waiting Time]
+
 There is a restaurant with a single chef. You are given an array customers, where customers[i] = [arrivali, timei]:
 
 arrivali is the arrival time of the ith customer. The arrival times are sorted in non-decreasing order.
@@ -30,7 +31,7 @@ Explanation:
 So the average waiting time = (2 + 6 + 4 + 1) / 4 = 3.25.
 ```
 
-== Approach-1
+== Approach-1. Linear Traversal
 === Logic
 * take a variable timestamp(which would represent the time at which chef delivers order). Keep on adding food preperation time to timestamp.
 * Subtract arrival_time from timestamp to find how much time customer need to wait for getting food on table.
@@ -62,4 +63,57 @@ public:
         return waiting_time / customers.size();
     }
 };
+```
+==== Go
+```go
+func averageWaitingTime(customers [][]int) float64 {
+    var timestamp float64 = 0.0
+    var waiting_time float64 = 0.0
+    first_customer := true
+    for _, customer := range customers {
+        arrival_time := float64(customer[0])
+        prep_time := float64(customer[1])
+        if first_customer {
+            timestamp = arrival_time + prep_time
+            first_customer = false
+        } else {
+            if arrival_time > timestamp {
+                timestamp = arrival_time+prep_time
+            } else {
+                timestamp += prep_time
+            }
+        }
+        waiting_time += timestamp - arrival_time
+    }
+    return waiting_time / float64(len(customers))
+}
+```
+==== Rust
+```rs
+impl Solution {
+    pub fn average_waiting_time(customers: Vec<Vec<i32>>) -> f64 {
+        let mut timestamp: f64 = 0.0; 
+        let mut waiting_time: f64 = 0.0;
+        let mut first_customer: bool = true;
+
+        // Iterating over reference of elements, since we are not
+        // Changing the elements
+        for customer in &customers {
+            let arrival_time = customer[0] as f64;
+            let prep_time = customer[1] as f64;
+            if first_customer == true {
+                timestamp = arrival_time + prep_time;
+                first_customer = false;
+            } else {
+                if arrival_time > timestamp {
+                    timestamp = arrival_time+prep_time;
+                } else {
+                    timestamp += prep_time;
+                }
+            }
+            waiting_time += timestamp - arrival_time;
+        }
+        waiting_time / customers.len() as f64
+    }
+}
 ```
