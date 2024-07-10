@@ -14,7 +14,7 @@ go library provides built-in collection types to handle different data structure
 ==== Sets
 Go doesn't have a built-in set data type, but you can simulate sets using maps.
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/Collections.html#slices[Slice [] (Dynamic Array) = C++(vector`<int>`) = Rust(vec`<i32>`)]
+=== link:https://code-with-amitk.github.io/Languages/Programming/Go/Collections.html#slices[Slice(Dynamic Array) = C++(vector<int>) = Rust(vec<i32>)]
 ==== link:https://code-with-amitk.github.io/Languages/Programming/Go/Collections.html#slices[2D Vector]
 
 ==== Heaps (implemented using slice)
