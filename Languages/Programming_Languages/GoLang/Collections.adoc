@@ -1,17 +1,10 @@
 :toc:
 :toclevels: 6
 
-== Collections
+== link:https://code-with-amitk.github.io/Languages/Programming/Go/Collections.html[Collections]
 go library provides built-in collection types to handle different data structures.
 
-=== Array (fixed size)
-* An array in Go is a fixed-size collection of elements of the same type. Once you define the size of an array, it cannot be changed
-```go
-func main() {
-  arr := [6]int{1,2,3,4,5,6}    //[n values] type {}
-  var len = len(arr);
-}
-```
+=== link:https://code-with-amitk.github.io/Languages/Programming/Go/Collections.html#arrays[Array (fixed size)]
 
 === channels
 - Communication and synchronization between goroutines=Tasks in Rust (concurrently executing functions). They provide a way to send and receive data safely between goroutines.
