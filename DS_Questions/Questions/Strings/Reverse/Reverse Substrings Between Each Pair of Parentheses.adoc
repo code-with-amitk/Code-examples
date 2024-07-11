@@ -1,8 +1,7 @@
-**Reverse Substrings Between Each Pair of Parentheses**
-- [Approach-1, Using `vector<int>` O(n<sup>2</sup>)](#a1)
-- [Approach-2, stack O(n<sup>2</sup>)](#a2)
+:toc:
+:toclevels: 6
 
-### [1190. Reverse Substrings Between Each Pair of Parentheses](https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/description/)
+== link:https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/description/[1190. Reverse Substrings Between Each Pair of Parentheses]
 - You are given a string s that consists of lower case English letters and brackets.
 - Reverse the strings in each pair of matching parentheses, starting from the innermost one.
 - Your result should not contain any brackets.
@@ -20,9 +19,8 @@ a(iloveu)b
 ailoveub
 ```
 
-<a name=a1></a>
-### Approach-1, Brute Force. O(n<sup>2</sup>)
-#### Logic
+== Approach-1, Brute Force. O(n<sup>2</sup>)
+=== Logic
 - _1._ Take output string, `vector<positions>`
   - Push all alphabets on `string out`
   - Push positions of opening brackets. We judge position of bracket using present length of out
@@ -48,11 +46,11 @@ Reverse
   reverse (alpha.begin()+ position.back(), alpha.end())
 ```
 
-#### Complexity
+=== Complexity
 - **Time**
 - **Space:**
-#### Code
-**CPP**
+=== Code
+==== CPP
 ```cpp
 class Solution {
 public:
@@ -74,11 +72,10 @@ public:
 };
 ```
 
-<a name=a2></a>
-### Approach-2. Stack. O(n<sup>2</sup>)
-#### Logic
-- _1._ Take a stack of string. `stack<string>`
-- _2._ Keep building string until we find `(`. On finding `(` push string to stack
+== Approach-2. Stack. O(n<sup>2</sup>)
+=== Logic
+1. Take a stack of string. `stack<string>`
+2. Keep building string until we find `(`. On finding `(` push string to stack
 ```c
 a(u(love)i)b
 
@@ -87,7 +84,7 @@ stack |  u   |  //Found (, push u
        ------
 out = love
 ```
-- _3._ On finding ')'
+4. On finding ')'
   - pop last element from stack
   - reverse present out
   - Add both above, store in out
@@ -98,34 +95,40 @@ out = love
   out = uevol
 
 stack | a |
-       ---
 ```
-#### Complexity
-- **Time:** O(n<sup>2</sup>). Traverse and build string. Reverse string on finding `)`
-- **Space:** O(n)
-#### Code
-**CPP**
+4. Character=i. Add to out
+```c
+  out = uevoli
+```
+5. Closing bracket. )
+```c
+  Reverse out = iloveu
+  pop stack & add = iloveu+a
+  out = ilovea
+```
+
+=== Complexity
+* Time: O(n<sup>2</sup>). Traverse and build string. Reverse string on finding `)`
+* Space: O(n)
+
+=== Code
+==== CPP
 ```cpp
 class Solution {
 public:
     string reverseParentheses(string s) {
-        // out to store output string
         string out;
         stack<string> st;
-        for (int i=0; i<s.length(); ++i){
-            if (s[i] == '(') {    //Finding `(` push string to stack
+        for (auto&i:s) {
+            if (i == '(') {
                 st.push(out);
                 out.clear();
-            } else if (s[i] == ')'){
-                // Finding ')'
-                // pop last element from stack
-                // reverse present out
-                // Add both above, store in out
+            } else if (i == ')') {
                 reverse(out.begin(), out.end());
                 out = st.top() + out;
                 st.pop();
-            } else            // Keep building string until we find `(`. 
-                out += s[i];
+            } else
+                out += i;
         }
         return out;
     }
