@@ -1,0 +1,11 @@
+:toc:
+:toclevels: 6
+
+== Daemon
+* main should relaunch itself in background once main exits
+* daemon process should read cpu, gpu usage and log the same in 
+```c
+linux = /tmp/gpu_usage.txt and /tmp/cpu_usage.txt
+windows = c:/temp/gpu_usage.txt and c:/temp/cpu_usage.txt
+```
+* This should work seemlessly on cross platform on windows and linux.
