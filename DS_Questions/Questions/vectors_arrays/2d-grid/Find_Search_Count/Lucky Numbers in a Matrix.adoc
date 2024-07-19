@@ -115,3 +115,33 @@ vector<int> luckyNumbers (vector<vector<int>>& matrix) {
 }
 };
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn lucky_numbers (matrix: Vec<Vec<i32>>) -> Vec<i32> {
+        let mut v:Vec<i32> = Vec::new();
+        let m = matrix.len();
+        let n = matrix[0].len();
+
+        for i in 0..m {
+            let mut min_col = 0;
+            for j in 1..n {
+                if matrix[i][j] < matrix[i][min_col] {
+                    min_col = j;
+                }
+            }
+            let mut lucky = true;
+            for k in 0..m {
+                if matrix[k][min_col] > matrix[i][min_col] {
+                    lucky = false;
+                    break;
+                }
+            }
+            if lucky {
+                v.push(matrix[i][min_col]);
+            }
+        }
+        v
+    }
+}
+```
