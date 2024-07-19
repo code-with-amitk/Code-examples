@@ -1,0 +1,116 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/lucky-numbers-in-a-matrix/[1380. Lucky Numbers in a Matrix]
+Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
+
+A lucky number is an element of the matrix such that it is the minimum element in its row and maximum in its column.
+```c
+Example 1:
+Input: matrix = [[3,7,8],[9,11,13],[15,16,17]]
+Output: [15]
+Explanation: 15 is the only lucky number since it is the minimum in its row and the maximum in its column.
+
+Example 2:
+Input: matrix = [[1,10,4,2],[9,3,8,7],[15,16,17,12]]
+Output: [12]
+Explanation: 12 is the only lucky number since it is the minimum in its row and the maximum in its column.
+
+Example 3:
+Input: matrix = [[7,8],[1,2]]
+Output: [7]
+Explanation: 7 is the only lucky number since it is the minimum in its row and the maximum in its column.
+```
+
+== Approach-1. O(mn)
+=== Logic
+* Take min,max,min_index elements. min,max will store minimum in row, max will store max in col
+* Find min in row, store it in min, also store index of min element
+* Find max in col, if min==max, push_back in out vector
+
+=== Complexity
+* Time: O(mn)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int> v;
+        int matsize = matrix.size();
+        int max=INT_MIN, min=INT_MAX, min_index=-1,j;
+
+        for(int i=0;i<matsize;i++){
+
+                //Finding min in row
+                int size=matrix[i].size();
+                for(j=0; j<size;j++){
+                        if(matrix[i][j]<min){
+                                min=matrix[i][j];
+                                min_index = j;
+                        }
+                }
+
+                //Finding max in col
+                int k=0;
+                while(k<matsize){
+                        if(matrix[k][min_index]>max){
+                                max=matrix[k][min_index];
+                                cout<<"max="<<max<<endl;
+                        }
+                        k++;
+                }
+
+                if(max==min){
+                        v.push_back(max);
+                }
+
+                max=INT_MIN, min=INT_MAX,min_index=-1;
+        }
+        return v;
+}
+```
+
+== Approach-2. O(mn). Reduce number of iterations
+=== Logic
+* Reduce the number of iterations required
+* Iterating through each column to check if the minimum element is the maximum in that column: O(m)
+* reduces the number of iterations required, as it only iterates through each column once to find the maximum element, instead of iterating through the entire column for each row.
+
+=== Complexity
+* Time: O(n)
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+    vector<int> v;
+    int m = matrix.size();
+    int n = matrix[0].size();
+
+    for (int i = 0; i < m; i++) {
+        int minCol = 0;
+        for (int j = 1; j < n; j++) {
+            if (matrix[i][j] < matrix[i][minCol]) {
+                minCol = j;
+            }
+        }
+
+        bool isLucky = true;
+        for (int k = 0; k < m; k++) {
+            if (matrix[k][minCol] > matrix[i][minCol]) {
+                isLucky = false;
+                break;
+            }
+        }
+
+        if (isLucky) {
+            v.push_back(matrix[i][minCol]);
+        }
+    }
+
+    return v;
+}
+};
+```
