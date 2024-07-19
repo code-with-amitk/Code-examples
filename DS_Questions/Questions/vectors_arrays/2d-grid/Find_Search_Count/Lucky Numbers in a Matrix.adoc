@@ -75,32 +75,92 @@ vector<int> luckyNumbers (vector<vector<int>>& matrix) {
 === Logic
 * Reduce the number of iterations required
 * Iterating through each column to check if the minimum element is the maximum in that column: O(m)
-* reduces the number of iterations required, as it only iterates through each column once to find the maximum element, instead of iterating through the entire column for each row.
+ * Find minimum element in the row
+```c
+ 1 10  4  2
+ 9  3  8  7
+15 16 17 12
 
+Traverse all elements in row
+compare all row elements with mat[i][0]
+if (element < mat[i][0]). update minCol
+
+i	j	mat[0][j]	minCol
+0	0	1			0
+0	1	10			0	//1<10
+0	2	4			0	//1<4
+0	3	2			0	//1<3
+mat[0][minCol=0] = 1
+
+i	j	mat[1][j]	minCol
+1	0	9			0
+1	1	3			1	//3 is smaller than 9
+1	2	8			0	//8 is not smaller than 3
+1	3	7			0	//7 is not smaller than 3
+mat[1][minCol=1] = 3
+```
+* Find maximum element in coloumn
+```c
+Compare element recieved in prev Step with
+all elements in the coloumn. 
+if element > element_recv_in_prev_step break; we did not found the element
+We want element_recv_in_prev_step should be maximum in the col
+```
 === Complexity
 * Time: O(n)
 
 === Code
 ==== CPP
 ```cpp
+/*
+	 1 10  4  2
+	 9  3  8  7
+	15 16 17 12
+*/
 class Solution {
 public:
 vector<int> luckyNumbers (vector<vector<int>>& matrix) {
     vector<int> v;
-    int m = matrix.size();
-    int n = matrix[0].size();
+    int rows = matrix.size();	//3
+    int cols = matrix[0].size();	//4
 
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < rows; i++) {
         int minCol = 0;
-        for (int j = 1; j < n; j++) {
+		
+        /* Find minimum element in the row
+                Traverse all elements in row
+                compare all row elements with mat[i][0]
+                if (element < mat[i][0]). update minCol
+
+                i	j	mat[0][j]	minCol
+                0	0	1			0
+                0	1	10			0	//1<10
+                0	2	4			0	//1<4
+                0	3	2			0	//1<3
+                mat[0][minCol=0] = 1
+
+                i	j	mat[1][j]	minCol
+                1	0	9			0
+                1	1	3			1	//3 is smaller than 9
+                1	2	8			0	//8 is not smaller than 3
+                1	3	7			0	//7 is not smaller than 3
+                mat[1][minCol=1] = 3
+        */
+        for (int j = 1; j < cols; j++) {
             if (matrix[i][j] < matrix[i][minCol]) {
                 minCol = j;
             }
         }
 
+        /* Find maximum element in coloumn
+                Compare element recieved in prev Step with
+                all elements in the coloumn. 
+                if element > element_recv_in_prev_step break; we did not found the element
+                We want element_recv_in_prev_step should be maximum in the col
+        */
         bool isLucky = true;
-        for (int k = 0; k < m; k++) {
-            if (matrix[k][minCol] > matrix[i][minCol]) {
+        for (int j = 0; j < rows; j++) {
+            if (matrix[j][minCol] > matrix[i][minCol]) {
                 isLucky = false;
                 break;
             }
