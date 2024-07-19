@@ -110,7 +110,7 @@ We want element_recv_in_prev_step should be maximum in the col
 * Time: O(n)
 
 === Code
-==== CPP
+==== CPP98
 ```cpp
 /*
 	 1 10  4  2
@@ -173,6 +173,33 @@ vector<int> luckyNumbers (vector<vector<int>>& matrix) {
 
     return v;
 }
+};
+```
+==== CPP11
+```cpp
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int> luckyNumbers;
+
+        for (const auto& row : matrix) {
+            // Find the minimum element in the current row
+            auto minElemIter = min_element(row.begin(), row.end());
+            int minCol = distance(row.begin(), minElemIter);
+            int minValue = *minElemIter;
+            
+            // Check if the minimum element is the largest in its column
+            bool isLucky = all_of(matrix.begin(), matrix.end(), [&](const vector<int>& r) {
+                return r[minCol] <= minValue;
+            });
+            
+            if (isLucky) {
+                luckyNumbers.push_back(minValue);
+            }
+        }
+        
+        return luckyNumbers;
+    }
 };
 ```
 ==== Rust
