@@ -185,11 +185,15 @@ public:
         for (const auto& row : matrix) {
             // Find the minimum element in the current row
             auto minElemIter = min_element(row.begin(), row.end());
-            int minCol = distance(row.begin(), minElemIter);
-            int minValue = *minElemIter;
+            int minCol = distance(row.begin(), minElemIter);		//index of min element
+            int minValue = *minElemIter;				//value of min element
+
+	    // We got minelement and minelement_index in a row
             
             // Check if the minimum element is the largest in its column
+	    // all_of() It checks for a given property on every element and returns true when each element in range
             bool isLucky = all_of(matrix.begin(), matrix.end(), [&](const vector<int>& r) {
+		// r[minCol] retrieves the element at the column index minCol in the current row r.
                 return r[minCol] <= minValue;
             });
             
