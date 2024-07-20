@@ -120,3 +120,66 @@ impl Solution {
     }
 }
 ```
+==== Python
+```py
+class Solution:
+    def restoreMatrix(self, rowSum: List[int], colSum: List[int]) -> List[List[int]]:
+        rows = len(rowSum)
+        cols = len(colSum)
+
+        out = [[0 for _ in range(cols)] for _ in range(rows)]
+
+        # Iterate to create out array
+        i=0
+        j=0
+
+        while i < rows and j < cols:
+            val = min(rowSum[i], colSum[j])
+            out[i][j] = val
+            rowSum[i] -= val
+            colSum[j] -= val
+            
+            # Since row[0]=0, We will move to next row
+            if rowSum[i] == 0:
+                i += 1
+            if colSum[j] == 0:
+                j += 1
+        return out
+```
+==== Go
+```go
+func mini(a, b int) int {
+    if a < b {
+        return a
+    }
+    return b
+}
+func restoreMatrix(rowSum []int, colSum []int) [][]int {
+    rows := len(rowSum)
+    cols := len(colSum)
+
+    // Create output array
+    out := make([][]int, rows)
+    for i := range out {
+        out[i] = make([]int, cols)
+    }
+
+    // Iterate to create out array
+    i, j := 0, 0
+    for i < rows && j < cols {
+        val := min(rowSum[i], colSum[j])
+        out[i][j] = val
+        rowSum[i] -= val
+        colSum[j] -= val
+
+        // Move to the next row or column if their sum is 0
+        if rowSum[i] == 0 {
+            i += 1
+        }
+        if colSum[j] == 0 {
+            j += 1
+        }
+    }
+    return out
+}
+```
