@@ -1,0 +1,52 @@
+:toc:
+:toclevels: 6
+
+== All Permutations of String
+Count all unique combinations of string
+```c
+input = "CCB"
+output = 8 
+Since combinations are "C","B","CC","CB","BC","CCB","CBC","BCC"
+```
+
+== Approach-1
+=== Logic
+* we need to take a two-step approach:
+** Generate all permutations of the input string.
+** Generate all unique substrings from these permutations.
+
+=== Code
+==== CPP
+```cpp
+#include <iostream>
+#include <unordered_set>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+unordered_set<string> us;
+
+// Generate all unique substrings of a given string `s`
+void generateSubstrings(const string& s) {
+    int n = s.size();
+    for (int len = 1; len <= n; ++len) {  // Length of substrings
+        for (int i = 0; i <= n - len; ++i) {  // Starting index
+            us.insert(s.substr(i, len));
+        }
+    }
+}
+
+// Generate all permutations of the string `s`
+void generatePermutations(string s) {
+    sort(s.begin(), s.end());
+    do {
+        generateSubstrings(s);
+    } while (next_permutation(s.begin(), s.end()));
+}
+
+int main() {
+    string s = "CCB";
+    generatePermutations (s);
+    cout << "Number of unique combinations: " << us.size();    //8
+}
+```
