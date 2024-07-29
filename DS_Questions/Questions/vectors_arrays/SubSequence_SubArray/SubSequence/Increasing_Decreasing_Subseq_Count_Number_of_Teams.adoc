@@ -88,7 +88,8 @@ public:
 ```
 
 ==== CPP11
-* *function<bool(int, int)> is a function pointer from c++11*. link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/Function%20pointer.html[link]
+* *function<bool(int, int)> is a function pointer from c++11*. 
+* link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/Function%20pointer.html[link]
 ```c
 #include<functional>
 class Solution {
