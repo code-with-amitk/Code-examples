@@ -1,5 +1,5 @@
 :toc:
-:toclevels:5
+:toclevel: 5
 
 == link:https://leetcode.com/problems/count-number-of-teams/[1395. Count Number of Teams]
 There are n soldiers standing in a line. Each soldier is assigned a unique rating value.
@@ -88,6 +88,7 @@ public:
 ```
 
 ==== CPP11
+link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/Function%20pointer.html[function<bool(int, int)> is a function pointer from c++11]
 ```c
 #include<functional>
 class Solution {
