@@ -1,6 +1,6 @@
 :toc:
 :toclevels: 2
 
-== link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/[Raw, Smart pointers]
-== link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/[Unique, shared pointers(How internally implemented)]
+== link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/smart_shared_unique.html[Raw, Smart pointers]
+== link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/smart_shared_unique.html[Unique, shared pointers(How internally implemented)]
 
