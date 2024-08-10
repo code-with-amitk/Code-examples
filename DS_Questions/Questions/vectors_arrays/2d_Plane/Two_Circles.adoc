@@ -19,9 +19,14 @@ Circle-A center=(0,1). radius=4
 Circle-A center=(0,1). radius=5
 ```
 
-Now we need to find whether circle A and circle B are "Touching", "Disjoint-Outside", "Concentric", "Intersecting", "Disjoint-Inside"
+Now we need to find whether circle A and circle B are 
+```
+"Touching", "Disjoint-Outside", "Concentric", "Intersecting", "Disjoint-Inside"
+```
 And we need to return that as output.
+```
 So output of above input string would be ["disjoint-Inside", "Concentric"]
+```
 
 == Code
 === CPP
