@@ -1,0 +1,67 @@
+:toc:
+:toclevels: 4
+
+== Two Circles (Concentric, Touching, Disjoint-Inside, Disjoint-Outside, Intersecting)
+* circles are respresented by vector of string
+```c
+input = ["3 0 10 5 0 3", "0 1 4 0 1 5"]
+```
+* input[0] represents 2 circles. and input[1] represent another 2 circles.
+* How input[i] represents a circle?
+```c
+"3 0 10 5 0 3".
+Circle-A center=(3,0). radius=10
+Circle-A center=(5,0). radius=3
+
+Similarly
+"0 1 4 0 1 5".
+Circle-A center=(0,1). radius=4
+Circle-A center=(0,1). radius=5
+```
+
+Now we need to find whether circle A and circle B are "Touching", "Disjoint-Outside", "Concentric", "Intersecting", "Disjoint-Inside"
+And we need to return that as output.
+So output of above input string would be ["disjoint-Inside", "Concentric"]
+
+== Code
+=== CPP
+```cpp
+vector<string> circles(vector<string> circlePairs) {
+    vector<string> results;
+
+    for (const auto& pair : circlePairs) {
+        stringstream ss(pair);
+        double x1, y1, r1, x2, y2, r2;
+        ss >> x1 >> y1 >> r1 >> x2 >> y2 >> r2;
+
+        // Distance between centers
+        double sq = (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
+        double dist = sqrt(sq);
+
+        // Sum of 2 radii
+        double rSum = r1 + r2;
+
+        if ((x2==x1 && y2==y1) && r1 != r2) {
+            // Center of 2 circles should be same and radius should be different
+            results.push_back("Concentric");
+        } else if (dist == rSum) {
+            // sq(Distance bet centers) must be equal to rSum^2
+            results.push_back("Touching");
+        } else if (dist > rSum) {
+            results.push_back("Disjoint-Outside");
+        } else if (dist < r1 || dist < r2) {
+            results.push_back("Disjoint-Inside");
+        } else if (r1 != r2 && (x2!=x1 || y2!=y1)) {
+            results.push_back("Intersecting");
+        }
+    }
+
+    return results;
+}
+int main(){
+    vector<string> in = {"3 0 1 5 0 2", "2 0 1 4 0 1", "2 0 1 2 0 2", "2 0 1 5 0 1"};
+    vector<string> out = circles(in);
+    for (auto&i:out)
+        cout << i << " ";
+}
+```
