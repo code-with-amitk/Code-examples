@@ -6,11 +6,11 @@
     - [CPP](#cpp)
     - [Rust](#rs)
 
-### [703. Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/description/)
-- Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
-- Implement KthLargest class:
-  - `KthLargest(int k, int[] nums)` Initializes the object with the integer k and the stream of integers nums.
-  - `int add(int val)` Appends the integer val to the stream and returns the element representing the kth largest element in the stream.
+== link:https://leetcode.com/problems/kth-largest-element-in-a-stream/description/[703. Kth Largest Element in a Stream]
+* Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+* Implement KthLargest class:
+** `KthLargest(int k, int[] nums)` Initializes the object with the integer k and the stream of integers nums.
+** `int add(int val)` Appends the integer val to the stream and returns the element representing the kth largest element in the stream.
  ```c
 Example 1:
 Input
@@ -27,19 +27,17 @@ kthLargest.add(9);   // return 8
 kthLargest.add(4);   // return 8
 ```
 
-<a name=a1></a>
-### Approach-1. Min Heap
-<a name=l></a>
-#### Logic
-- Add element in minHeap, Remove all elements until sizeof minHeap != k
+== Approach-1. Min Heap
+=== Logic
+* We need not to remove newly added element everytime. We need to keep only k elements at a time.
+* Add element in minHeap, Remove all elements until sizeof minHeap != k
 
-<a name=com></a>
-#### Complexity
-- O(1)
+=== Complexity
+* Time: O(klogk). Minheap=BBST need rebalance
+* Space: O(k)
 
-#### Code
-<a name=cpp></a>
-**CPP**
+=== Code
+==== CPP
 ```cpp
 class KthLargest {
     //min Heap
@@ -71,8 +69,8 @@ public:
  * int param_1 = obj->add(val);
  */
 ```
-<a name=rs></a>
-**Rust**
+
+==== Rust
 ```rs
 use std::collections::BinaryHeap;
 use std::cmp::Reverse;
