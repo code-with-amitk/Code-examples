@@ -134,6 +134,41 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn rb(cand: &mut Vec<i32>, nums: &Vec<i32>, target: i32, start: usize, sum: i32, out: &mut Vec<Vec<i32>>) {
+        if sum > target {
+            return;
+        }
+        if sum == target {
+            out.push(cand.to_vec());
+            return;
+        }
+        for i in start..nums.len() {
+            if nums[i] > target {
+                break;
+            }
+            if i > start && nums[i] == nums[i - 1] {
+                continue;
+            }
+            cand.push(nums[i]);
+            Self::rb(cand, nums, target, i + 1, sum + nums[i], out);
+            cand.pop();
+        }
+    }
+
+    pub fn combination_sum2(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
+        let mut cand: Vec<i32> = Vec::new();
+        let mut out: Vec<Vec<i32>> = Vec::new();
+        let mut nums = nums;
+        nums.sort();
+        Self::rb(&mut cand, &nums, target, 0, 0, &mut out);
+        out
+    }
+}
+```
+
 === Complexity
 * Time: O(2^n) + O(nlogn)
 ** Worst case algorithm will exhaust all possible combinations from the input array.
