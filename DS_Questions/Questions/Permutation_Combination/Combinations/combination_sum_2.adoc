@@ -135,6 +135,6 @@ public:
 };
 ```
 === Complexity
-* Time: O(2<sup>n</sup>) + O(nlogn)
+* Time: O(2^n) + O(nlogn)
 ** Worst case algorithm will exhaust all possible combinations from the input array.
 * Space: O(n)
