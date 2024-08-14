@@ -1,7 +1,6 @@
 :toc:
 :toclevels: 6
 
-== Templates
 === link:https://code-with-amitk.github.io/Languages/Programming/C++/Characteristics%20of%20OOPS/Polymorphism/Static_CompileTime/Templates/[Function Templates]
 * How function templates work internally? Assembly (Function Templates)
 
