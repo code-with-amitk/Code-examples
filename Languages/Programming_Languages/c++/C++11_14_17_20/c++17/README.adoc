@@ -1,5 +1,11 @@
-ABOUT ASSEMBLY:
+:toc:
+:toclevels: 6
 
+== Fold Expression
+* link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++17/index.html[Unary left fold, Unary right fold, Binary left fold, binary right fold]
+
+== ABOUT ASSEMBLY
+```c
 1. Stack grows in reverse direction.
   |----stack grows-----|-------------><------heap grows------
  0x450                0x200
@@ -13,3 +19,4 @@ ABOUT ASSEMBLY:
 4. rax, rcx, rdx, rdi, rsi, rsp, r8-r11: These are caller save registers. 
    rbx, rbp, r12-r15: These are callee save registers. These are saved across function calls.   	
    |- As per telephone system. Caller is main(), callee fun()
+```
