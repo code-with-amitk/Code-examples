@@ -221,6 +221,15 @@ $ git push origin master         //Push changes on master
 
 ==== pull
 Synching with latest branch code
+```c
+// Fetches commits from remote=origin, branch=master into the local origin/master branch
+$ git pull origin master
+
+$ vim .git/config
+[remote "origin"]
+  url = https://github.com/amit/test.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+```
 
 ==== rebase
 Reapply commits on top of another base tip. When we have merge conflicts we do
