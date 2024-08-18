@@ -286,7 +286,8 @@ $ git commit -m "added libsodium submodule"
 $ git push origin libsodium
 ```
 
-**How to update submodule**
+*How to update submodule?*
+
 * I have a project=A(seperate repository) which is a library and it is used in a project=B(seperate repository).
 * Inside B we have a submodule of A.
 * I changed some classes inside project=A & pushed, so the library (repo A) is updated.
