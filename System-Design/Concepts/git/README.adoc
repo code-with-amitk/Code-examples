@@ -286,6 +286,22 @@ $ git commit -m "added libsodium submodule"
 $ git push origin libsodium
 ```
 
+**How to update submodule**
+* I have a project=A(seperate repository) which is a library and it is used in a project=B(seperate repository).
+* Inside B we have a submodule of A.
+* I changed some classes inside project=A & pushed, so the library (repo A) is updated.
+* These updates do not reflect on the "reference" (the submodule), what should I do in order to update the submodule on project=B?
+```c
+$ cd project=B
+$ git submodule update --init --recursive submod-dir
+$ cd submod-dir
+$ git checkout <commit-hash>
+$ cd ..; git status
+$ git add .
+$ git commit -m "submodule updated"
+$ git push origin branch
+```
+
 ==== [Split pull request]https://www.youtube.com/watch?v=e26Zx9K3cdQ)
 ```c
 $ git clone repo
