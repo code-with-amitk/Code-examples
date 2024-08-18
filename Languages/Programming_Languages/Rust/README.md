@@ -20,7 +20,7 @@
 - [Functions, Associated Functions=Methods, Closure=Lambda, impl block](Functions)
 - [Frameworks: Actix_web](Frameworks)
 - [Crates, Packages, Modules](#cpm)
-- [Enum](#enum)
+- [Enum, Option<enum>](https://code-with-amitk.github.io/Languages/Programming/Rust/enum.html)
 - [Error Handling](Error_Handling)
 - [FFI, Foreign Function Interface, Shared Library](FFI)
 - [Generic Types/Templates](#temp)
@@ -105,10 +105,6 @@ Constructor inside class, Functions inside class
   - _3._ struct inside module
   - _4._ enum inside module
   - _5._ use keyword: use as, pub use / Reexporting
-
-<a name=enum></a>
-### [Enum](Enum)
-- Option Enum
 
 <a name=temp></a>
 ### [Generic Types/Templates](Generic_Types)
