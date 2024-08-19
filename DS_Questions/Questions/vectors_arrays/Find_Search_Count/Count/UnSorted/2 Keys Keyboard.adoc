@@ -59,26 +59,26 @@ else
 class Solution {
     public int minSteps(int n) {
         int charCountOnNotepad = 1;		// Number of characters present on notepad
-        int charsInCopiedBuffer = 0;	// Number of characters present in buffer after Cntl^C
+        int charsInCopiedBuffer = 0;	       // Number of characters present in buffer after Cntl^C
         int steps = 0;
         while (charCountOnNotepad < n){		// Iterate until we have n characters on notepad
-			  int neededCharsOnNotepad = n - charCountOnNotepad;
+            int neededCharsOnNotepad = n - charCountOnNotepad;
             if (neededCharsOnNotepad % charCountOnNotepad == 0) {
-        				/*
-        					Condition-1: Needed characters are multiple of character on notepad,
+                /*
+        	  Condition-1: Needed characters are multiple of character on notepad,
                                We can copy all characters and paste all
-        				               steps = 2 (copy, paste)	
-        				*/
+                               steps = 2 (copy, paste)	
+                */
                 charsInCopiedBuffer = charCountOnNotepad;
                 charCountOnNotepad += charCountOnNotepad;
                 steps += 2;
             }else if (charsInCopiedBuffer!=0 && (neededCharsOnNotepad % charsInCopiedBuffer == 0)){
-        				/*
-        					Condition-2: Needed characters are not multiple of character on notepad,
+        	/*
+        	  Condition-2: Needed characters are not multiple of character on notepad,
                                We cannot copy all characters on notepad, only option is
-        								       Just paste chars copied earlier
+        		       Just paste chars copied earlier
                                Steps=1 (paste)
-        				*/
+                */
                 charCountOnNotepad += charsInCopiedBuffer;
                 steps++;
             } else {
