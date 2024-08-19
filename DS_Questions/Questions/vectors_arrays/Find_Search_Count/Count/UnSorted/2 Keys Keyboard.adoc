@@ -62,7 +62,7 @@ class Solution {
         int charsInCopiedBuffer = 0;	// Number of characters present in buffer after Cntl^C
         int steps = 0;
         while (charCountOnNotepad < n){		// Iterate until we have n characters on notepad
-			int neededCharsOnNotepad = n - charCountOnNotepad;
+			  int neededCharsOnNotepad = n - charCountOnNotepad;
             if (neededCharsOnNotepad % charCountOnNotepad == 0) {
         				/*
         					Condition-1: Needed characters are multiple of character on notepad,
