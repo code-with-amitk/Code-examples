@@ -1,0 +1,91 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/2-keys-keyboard/[650. 2 Keys Keyboard]
+There is only one character 'A' on the screen of a notepad. You can perform one of two operations on this notepad for each step:
+
+Copy All: You can copy all the characters present on the screen (a partial copy is not allowed).
+Paste: You can paste the characters which are copied last time.
+Given an integer n, return the minimum number of operations to get the character 'A' exactly n times on the screen.
+```c
+Example 1:
+Input: n = 3
+Output: 3
+Explanation: Initially, we have one character 'A'.
+In step 1, we use Copy All operation.
+In step 2, we use Paste operation to get 'AA'.
+In step 3, we use Paste operation to get 'AAA'.
+
+Example 2:
+Input: n = 1
+Output: 0
+```
+
+== Approach-1. Count
+=== Logic
+* We donot need to copy all characters on notepad all times.
+```c
+Number of characters needed on notepad: 5
+Operation Characters on notepad  Steps
+ Copy         A                   1
+ paste        AA                  2
+ paste        AAA                 3    //if we have copied(AA), then we never had reached 5
+ paste        AAAA                4
+ paste        AAAAA               5
+
+Number of characters needed on notepad: 6
+Operation Characters on notepad  Steps
+ Copy         A                   1
+ paste        AA                  2
+ copy         AA                  3
+ paste        AAAA                4
+ paste        AAAAAA              5
+ paste        AAAAA               5
+```
+* At each step, we need to check whether we can reach(desired no of characters using copy of present chars on notepad) or we donot need copy
+```c
+if ((number of still chars needed) % (chars on notepad presently) == 0)
+  We can copy and paste characters
+else
+  We cannot copy just paste the characters copied earlier
+```
+=== Complexity
+* Time: O(n)
+* Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+    public int minSteps(int n) {
+        int charCountOnNotepad = 1;		// Number of characters present on notepad
+        int charsInCopiedBuffer = 0;	// Number of characters present in buffer after Cntl^C
+        int steps = 0;
+        while (charCountOnNotepad < n){		// Iterate until we have n characters on notepad
+			int neededCharsOnNotepad = n - charCountOnNotepad;
+            if (neededCharsOnNotepad % charCountOnNotepad == 0) {
+        				/*
+        					Condition-1: Needed characters are multiple of character on notepad,
+                               We can copy all characters and paste all
+        				               steps = 2 (copy, paste)	
+        				*/
+                charsInCopiedBuffer = charCountOnNotepad;
+                charCountOnNotepad += charCountOnNotepad;
+                steps += 2;
+            }else if (charsInCopiedBuffer!=0 && (neededCharsOnNotepad % charsInCopiedBuffer == 0)){
+        				/*
+        					Condition-2: Needed characters are not multiple of character on notepad,
+                               We cannot copy all characters on notepad, only option is
+        								       Just paste chars copied earlier
+                               Steps=1 (paste)
+        				*/
+                charCountOnNotepad += charsInCopiedBuffer;
+                steps++;
+            } else {
+                return -1;
+            }
+        }
+        return steps;
+    }
+}
+```
