@@ -1,1 +1,1 @@
-link:https://amitkumar50.github.io/Languages/Programming/C++/6%20Implicit%20Functions/Constructors.html[Constructor]
+link:https://code-with-amitk.github.io/Languages/Programming/C++/6%20Implicit%20Functions/[Constructor]
