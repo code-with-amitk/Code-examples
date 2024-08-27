@@ -76,7 +76,7 @@ fn fun() -> i32 {
   - 2 Mutable references are not allowed in same scope
   - Mutable References are allowed in seperate scope
 - Borrow checker
-- Lifetimes: lifetime elision
+- [Lifetimes: lifetime elision](https://code-with-amitk.github.io/Languages/Programming/Rust/lifetime.html)
 
 <a name=smart></a>
 ### [Smart Pointers](Smart_Pointers)
