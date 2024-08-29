@@ -1,0 +1,145 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/count-sub-islands/description/[1905. Count Sub Islands]
+You are given two m x n binary matrices grid1 and grid2 containing only 0's (representing water) and 1's (representing land). An island is a group of 1's connected 4-directionally (horizontal or vertical). Any cells outside of the grid are considered water cells.
+
+An island in grid2 is considered a sub-island if there is an island in grid1 that contains all the cells that make up this island in grid2.
+
+Return the number of islands in grid2 that are considered sub-islands.
+
+Example-1
+
+image::https://assets.leetcode.com/uploads/2021/06/10/test1.png?raw=true[grid]
+
+```c
+Input: 
+grid1 = [[1,1,1,0,0],[0,1,1,1,1],[0,0,0,0,0],[1,0,0,0,0],[1,1,0,1,1]], 
+grid2 = [[1,1,1,0,0],[0,0,1,1,1],[0,1,0,0,0],[1,0,1,1,0],[0,1,0,1,0]]
+
+Output: 3
+Explanation: In the picture above, the grid on the left is grid1 and the grid on the right is grid2.
+The 1s colored red in grid2 are those considered to be part of a sub-island. There are three sub-islands.
+```
+
+== Approach-1. DFS
+=== Logic
+* Traverse each cell in grid2. if cell=1, its land.
+** Start DFS on grid2 and check in grid1 (from same cell)
+* Base case. Recursively perform DFS until you find water(ie grid2[i][j] == 0)
+* Mark the visited cell using grid2[i][j] = 0
+* if current cell in grid1 is not land, then its not sub island.
+* Check 4 directions, if cell==1, traverse to that cell. And all results of island and return.
+
+=== Code
+==== CPP
+```cpp
+using vI = vector<int>;
+using vvI = vector<vector<int>>;
+using usS = unordered_set<string>;
+
+class Solution {
+     vector<int> ROW = {-1, 0, 0, 1};  // Direction vectors for N, E, W, S
+     vector<int> COL = {0, 1, -1, 0};
+
+    // DFS function to explore the island in grid2 and check if it's a sub-island in grid1
+    bool dfs(vvI& grid1, vvI& grid2, int r, int c) {
+
+        // Base case.
+        // Traversed whole island. If this cell in grid2 is water, return true
+        if (grid2[r][c] == 0) return true;
+
+        // Mark the current cell in grid2 as visited (set to 0)
+        grid2[r][c] = 0;
+
+        // Check if the current cell in grid1 is land (1). If not, it's not a sub-island.
+        bool isSubIsland = (grid1[r][c] == 1);
+
+        // Explore all 4 directions (N, E, W, S)
+        for (int i = 0; i < 4; i++) {
+            int row = r + ROW[i];
+            int col = c + COL[i];
+            if (row >= 0 && col >= 0 && row < grid1.size() && col < grid1[0].size()) {
+                if (grid2[row][col] == 1) {
+                    // Recursively check the next cell, and accumulate the result
+                    isSubIsland &= dfs(grid1, grid2, row, col);
+                }
+            }
+        }
+        return isSubIsland;
+    }
+
+public:
+    int countSubIslands(vvI& grid1, vvI& grid2) {
+        int count = 0;
+        // Traverse each cell in grid2
+        for (int i = 0; i < grid2.size(); i++) {
+            for (int j = 0; j < grid2[0].size(); j++) {
+                // If it's a land cell in grid2, start DFS
+                if (grid2[i][j] == 1) {
+                    // If DFS returns true, it's a sub-island
+                    if (dfs(grid1, grid2, i, j)) {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+};
+```
+
+==== Rust
+```cpp
+impl Solution {
+
+    // DFS function to explore the island in grid2 and check if it's a sub-island in grid1
+    fn dfs (grid1: &Vec<Vec<i32>>, grid2: &mut Vec<Vec<i32>>, r:usize, c:usize) -> bool {
+        // If this cell in grid2 is water, return true (base case)
+        if grid2[r][c] == 0 {
+            return true;
+        }
+
+        // Mark the current cell in grid2 as visited (set to 0)
+        grid2[r][c] = 0;
+
+        // Check if the current cell in grid1 is land (1). If not, it's not a sub-island.
+        let mut is_sub_island = grid1[r][c] == 1;
+
+        let row_dir: Vec<i32> = vec![-1,0,0,1];// Direction vectors for N, E, W, S
+        let col_dir: Vec<i32> = vec![0,1,-1,0];
+
+        // Explore all 4 directions (N, E, W, S)
+        for i in 0 .. 4 {
+            let row:i32 = r as i32 + row_dir[i];
+            let col:i32 = c as i32 + col_dir[i];
+            if row >= 0 && col >= 0 && row < grid1.len() as i32 && col < grid1[0].len() as i32 {
+                if grid2[row as usize][col as usize] == 1 {
+                    // Recursively check the next cell, and accumulate the result
+                    is_sub_island &= Self::dfs(grid1, grid2, row as usize, col as usize);
+                }
+            }
+        }
+        is_sub_island
+    }
+
+    pub fn count_sub_islands(grid1: Vec<Vec<i32>>, mut grid2: Vec<Vec<i32>>) -> i32 {
+        let mut count = 0;
+
+        // Traverse each cell in grid2
+        for i in 0 .. grid2.len() {
+            for j in 0 .. grid2[0].len() {
+                // If it's a land cell in grid2, start DFS
+                if grid2[i][j] == 1 {
+                    // If DFS returns true, it's a sub-island
+                    if Self::dfs(&grid1, &mut grid2, i, j) {
+                        count += 1;
+                    }
+                }
+            }
+        }
+        count
+    }
+}
+```
