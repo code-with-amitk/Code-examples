@@ -12,4 +12,6 @@
 
 [remove_pointer_t](http://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/remove_pointer_t.html)
 
+[Type Traits. Primary, Composite, Supported, Miscellaneous transformations](http://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/Type%20Triats.html)
+
 
