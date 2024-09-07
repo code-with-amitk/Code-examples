@@ -1,0 +1,65 @@
+:toc:
+:toclevels: 5
+
+== link:https://leetcode.com/problems/linked-list-in-binary-tree/description/[1367. Linked List in Binary Tree]
+Given a binary tree root and a linked list with head as the first node. 
+
+Return True if all the elements in the linked list starting from the head correspond to some downward path connected in the binary tree otherwise return False.
+
+In this context downward path means a path that starts at some node and goes downwards.
+
+image::https://assets.leetcode.com/uploads/2020/02/12/sample_1_1720.png?raw=true[example 1]
+```
+Input: head = [4,2,8], root = [1,4,4,null,2,2,null,1,null,6,8,null,null,null,null,1,3]
+Output: true
+Explanation: Nodes in blue form a subpath in the binary Tree.
+```
+
+== Approach
+=== Logic
+* Create vector from list.
+* if vector[i] == node->val
+** Move to left or right child of tree
+* which ever path (left or right) returns true, return from function
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+    vector<int> vll;
+public:
+    bool isSubPath(ListNode* head, TreeNode* root) {
+        // Create vector from ll
+        while (head) {
+            vll.push_back(head->val);
+            head = head->next;
+        }
+        return traverse(root);
+    }
+    
+    bool traverse(TreeNode* root) {
+        if (!root) 
+            return false;
+
+        // Try finding the subpath starting at this node
+        if (find(root, 0)) 
+            return true;
+        // Continue searching in the left and right subtrees
+        return traverse(root->left) || traverse(root->right);
+    }
+
+    bool find(TreeNode* root, int i) {
+        // Base case: if we have matched the entire linked list
+        if (i == vll.size()) 
+            return true;
+        // If root is null or the current node doesn't match the linked list
+        if (!root || root->val != vll[i]) 
+            return false;
+        // This means vll[i] == root->val
+        // Recur for left and right children, incrementing the index of the linked list
+        // Try to find the matching path in either the left or right subtree
+        return find(root->left, i + 1) || find(root->right, i + 1);
+    }
+};
+
+```
