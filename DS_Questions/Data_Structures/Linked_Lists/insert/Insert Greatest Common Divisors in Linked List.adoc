@@ -8,7 +8,9 @@ Return the linked list after insertion.
 The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.
 
 Example 1:
+
 image::https://assets.leetcode.com/uploads/2023/07/18/ex1_copy.png?raw=true[ex 1]
+
 ```c
 Input: head = [18,6,10,3]
 Output: [18,6,6,2,10,1,3]
@@ -20,7 +22,9 @@ There are no more adjacent nodes, so we return the linked list.
 ```
 
 Example 2:
+
 image::https://assets.leetcode.com/uploads/2023/07/18/ex2_copy1.png?raw=true[ex 2]
+
 ```
 Input: head = [7]
 Output: [7]
