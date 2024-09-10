@@ -80,4 +80,66 @@ public:
 
 ==== Rust
 ```rs
+// Definition for singly-linked list.
+// #[derive(PartialEq, Eq, Clone, Debug)]
+// pub struct ListNode {
+//   pub val: i32,
+//   pub next: Option<Box<ListNode>>
+// }
+// 
+// impl ListNode {
+//   #[inline]
+//   fn new(val: i32) -> Self {
+//     ListNode {
+//       next: None,
+//       val
+//     }
+//   }
+// }
+impl Solution {
+    /*
+        Pointer is represented as Option<Box>
+        int *x 
+        x: Option<Box<i32>>
+    */
+    pub fn insert_greatest_common_divisors(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        // Save head, we will return it
+        let mut current = &mut head;
+        
+        // Until node is not null
+        while let Some(ref mut node) = current {
+
+            // if node.next has Some value
+            if let Some(ref mut next_node) = node.next {
+                
+                // GCD or HCF using Euclid Method
+                use std::cmp::min;
+                fn gcd(mut a: i32, mut b: i32) -> i32 {
+                    while b != 0 {
+                        let temp = b;
+                        b = a % b;
+                        a = temp;
+                    }
+                    a
+                }
+                
+                // Create new ListNode with the calculated GCD
+                let new_node = Some(Box::new(ListNode {
+                    val: gcd(node.val, next_node.val),  //gcd(present, next)
+                    next: node.next.take(),     //point new node to next of present
+                }));
+
+                // Point current node's next to the new node
+                node.next = new_node;
+
+                // Move to the next node in the original list
+                current = &mut node.next.as_mut().unwrap().next;
+            } else {
+                break;
+            }
+        }
+        
+        head
+    }
+}
 ```
