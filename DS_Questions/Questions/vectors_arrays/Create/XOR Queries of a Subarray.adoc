@@ -54,3 +54,25 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+impl Solution {
+    pub fn xor_queries(arr: Vec<i32>, queries: Vec<Vec<i32>>) -> Vec<i32> {
+        let mut out: Vec<i32> = Vec::new();
+        
+        // Iterate over each query
+        for query in queries {
+            let mut temp = arr[query[0] as usize]; // Get the starting value from arr
+            
+            // XOR over the range from query[0] to query[1]
+            for j in (query[0] + 1) as usize ..= query[1] as usize {
+                temp ^= arr[j];
+            }
+            
+            out.push(temp);
+        }
+        
+        out
+    }
+}
+```
