@@ -11,7 +11,7 @@
 **Donot Spend major time on Minor Things. Eg: BOE**
 
 ### To Cover (SD is Iterative process. Start from 1 then scale to 1M)
-- **1. Requirements: 2 min**
+- **1. Requirements: 2 min** CRUD(Create, Read, Update, Delete)
   - *1a. Functional(Basic functionality, should work)*
   - *1b. Non-functional(defines quality)*
   - *1c. Extended:  S<sup>3</sup> L<sup>3</sup> A<sup>3</sup> C<sup>2</sup> R<sup>2</sup> F<sup>2</sup>: *   
