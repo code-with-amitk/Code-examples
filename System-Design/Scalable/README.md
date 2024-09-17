@@ -21,12 +21,12 @@
     - Cache(Invalidation, negative cache)
     - Reliable, Redundant(Using DB)
     - Fast, Fault Tolerant
-- **2. Back of Envelope Calculations: 3 min** Storage estimates, QPS(Queries per second)
+- **2. Back of Envelope Calculations: 3 min** Storage estimates, QPS
 - **3. API Design. 5 min**
-- **4. HLD: 20 min** _For 2, 100, 1 lac users_
-- **5. Database schema: 10 min**
-- **6. Tradeoffs/Bottlenecks & correction**
-- **7. Adjusting to changing requirements: 5 min**
+- **4. HLD: 20 min** _For 2, 100, 1 lac users_. Include Components(Application server, Load Balancer, DB, Caches, CDN, Message Queues)
+- **5. Database schema: 10 min**. Discuss(SQL vs NoSQL)
+- **6. Scaling the system under load**. Discuss(Sharing, Replication, Partioning)
+- **7. Failure Handling**. Discuss(Replicas, Fallbacks, Retries)
   
 | | CDN | AWS Cloud |
 | --- | --- | --- |
