@@ -114,8 +114,8 @@ Constructor inside class, Functions inside class
 Trait bounds, Future, 
 
 <a name=tests></a>
-### [Automated Tests](Automated_Tests)
-- Unit test, Integration tests
+### [Automated Tests](https://code-with-amitk.github.io/Languages/Programming/Rust/Automated%20Tests.html)
+- Automated Tests, Examples(Simple Function, Modules for Test, Run test by name, Ignore some tests, async function tests), Unit test, Integration tests
 
 <a name=custom></a>
 ### [Custom Programs](Custom_Programs)
