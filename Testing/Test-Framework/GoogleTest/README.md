@@ -65,13 +65,24 @@ int main(int argc, char **argv) {
 }
 
 # vim CMakeLists.txt
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.0)
+project(runTests)
+
+# Enable testing with GoogleTest
+enable_testing()
+
+# Find gtest package
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-# Link runTests with what we want to test and the GTest and pthread library
+# Find and link threading library
+find_package(Threads REQUIRED)
+
+# Add the test executable
 add_executable(runTests main.cpp)
-target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+
+# Link libraries (GTest and Threads)
+target_link_libraries(runTests ${GTEST_LIBRARIES} Threads::Threads)
 ```
 - **Compile and Run tests**
 ```c++
