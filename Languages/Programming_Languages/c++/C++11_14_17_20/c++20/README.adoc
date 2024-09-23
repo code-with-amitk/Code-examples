@@ -1,4 +1,4 @@
 :toc:
 :toclevels: 4
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++20/3%20way%20Comparator.html[3 way comparison <=>]
+=== link:https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++20/3%20way%20Comparator.html[3 way comparison < = >]
