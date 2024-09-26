@@ -99,7 +99,7 @@ Constructor inside class, Functions inside class
 <a name=cpm></a>
 ### [Crates, Packages, Modules](Crates_Packages_Modules)
 - Crates, Packages
-- Modules
+- [Modules](https://code-with-amitk.github.io/Languages/Programming/Rust/Modules.html)
   - _1._ Creating a module & accessing its function
   - _2._ super keyword
   - _3._ struct inside module
