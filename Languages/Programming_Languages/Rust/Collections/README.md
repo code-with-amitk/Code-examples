@@ -3,4 +3,4 @@
 - Collections are **always allocated on Heap**.
 - Types
   - [vector](vector)
-  - [string](String)
+  - [string, string slice &str](https://code-with-amitk.github.io/Languages/Programming/Rust/Collections/String.html)
