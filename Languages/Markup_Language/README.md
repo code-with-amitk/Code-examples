@@ -1,4 +1,5 @@
-**Markup Language**
+**Markup Languages**
+- [SAML(Security Assertion Markup Language)](https://code-with-amitk.github.io/Languages/Markup/SAML/index.html)
 - [Terms: Elements, Attributes](#ter)
 - [HTML vs XML](#vs)
 
