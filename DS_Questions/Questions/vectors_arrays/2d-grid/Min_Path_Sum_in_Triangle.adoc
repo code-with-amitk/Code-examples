@@ -1,0 +1,76 @@
+:toc:
+:toclevels: 6
+
+== link:https://leetcode.com/problems/triangle/description[120. Triangle]
+Given a triangle array, return the minimum path sum from top to bottom.
+
+For each step, you may move to an adjacent number of the row below. More formally, if you are on index i on the current row, you may move to either index i or index i + 1 on the next row.
+
+```c
+Example 1:
+Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+Output: 11
+Explanation: The triangle looks like:
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
+
+Example 2:
+Input: triangle = [[-10]]
+Output: -10
+```
+
+== Approach (Dynamic Programming)
+=== Logic
+```c
+   2
+  3 4
+ 6 5 7    <- Start from here
+4 1 8 3
+```
+* Start from 2nd last row
+* Iterate over all elements in row and find min element in next row(i, i+1) position and add to element.
+```c
+    2
+  3   4
+ 6+1 5+1 7+3    //6+min(4,1)  5+min(1,8)  7+min(8,3)
+ 4   1   8  3
+
+    2
+  3  4
+ 7 6 10
+```
+* Move upward
+```c
+    2
+  3+6  4+6
+ 7   6  10
+```
+
+=== Complexity
+* Time: O(mn).  m=rows,n n=cols
+* Space: O(1). No extra space used
+
+=== Code
+==== CP
+```cpp
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int rows = triangle.size();
+        
+        // Start from the second last row and move upwards
+        for (int i = rows - 2; i >= 0; --i) {
+            for (int j = 0; j <= i; ++j) {
+                // Update the current cell with the minimum path sum
+                triangle[i][j] += min(triangle[i + 1][j], triangle[i + 1][j + 1]);
+            }
+        }
+        
+        // The top element now contains the minimum path sum
+        return triangle[0][0];
+    }
+};
+```
