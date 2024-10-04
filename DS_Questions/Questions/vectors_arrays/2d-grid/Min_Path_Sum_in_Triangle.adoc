@@ -74,3 +74,26 @@ public:
     }
 };
 ```
+==== Rust
+```rs
+use std::cmp;
+impl Solution {
+    pub fn minimum_total(triangle: Vec<Vec<i32>>) -> i32 {
+		let mut triangle = triangle;
+        let rows = triangle.len();
+        let mut i = 0;
+		let mut j = 0;
+		
+		// Start from the second last row and move upwards
+		for i in (0..rows - 1).rev() {  //reverse the iteration
+			for j in 0..=i { // Include i in the range
+                // Update the current cell with the minimum path sum
+                triangle[i][j] += cmp::min(triangle[i + 1][j], triangle[i + 1][j + 1]);
+			}
+		}
+        
+        // The top element now contains the minimum path sum
+        triangle[0][0]
+    }
+}
+```
