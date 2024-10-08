@@ -232,9 +232,32 @@ $ vim .git/config
 ```
 
 ==== rebase
-Reapply commits on top of another base tip. When we have merge conflicts we do
+You were working on feature branch, and master branch contains commits which are not in feature branch. Now we want to pick all commits from master branch, apply commits on my feature branch and apply changes which are there in feature branch on top of these.
 ```c
-# git rebase master
+// Ensure your local master branch is up to date
+$ git checkout master
+$ git pull origin master
+From https://github.com/code-with-amitk/test-repo
+ * branch            master     -> FETCH_HEAD
+Already up to date.
+
+$ git branch
+  branch2
+* master
+
+$ git checkout branch2
+
+// Bring my changes on top of master
+$ git rebase -i master
+
+RESOLVE MERGE CONFLICTS
+- open conflicting file
+- After resolving conflicts
+$ git add file
+$ git rebase --continue
+
+// Push the changes to the remote branch2
+$ git push origin branch2 -f
 ```
 
 ==== show
