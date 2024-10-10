@@ -20,6 +20,7 @@
   - [6.2 Solutions](#solutions)
 - [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements)
 
+# [HTML NewFeed Design](https://code-with-amitk.github.io/System_Design/Scalable/Facebook/Facebook%20News%20Feed.html)
 
 <a name=what></a>
 ## What is FB News Feed
