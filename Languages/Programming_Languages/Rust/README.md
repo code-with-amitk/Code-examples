@@ -111,14 +111,10 @@ Constructor inside class, Functions inside class
 
 <a name=ti></a>
 ### [Trait = Interface = Virtual (not pure virtual)](https://code-with-amitk.github.io/Languages/Programming/Rust/Trait/)
-- Traits provided by Rust (Copy, Clone, Default, Drop, Future)
-- What is Triat:
-** User defined triats
+* What is Triat: User defined triats, Traits provided by Rust (Copy, Clone, Default, Drop, Future)
 * Passing trait as argument to function
 * Returning trait from function
-* Trait Bound
-** Using +
-** Using where clause
+* Trait Bound (Using +, Using where clause)
 
 <a name=tests></a>
 ### [Automated Tests](https://code-with-amitk.github.io/Languages/Programming/Rust/Automated%20Tests.html)
