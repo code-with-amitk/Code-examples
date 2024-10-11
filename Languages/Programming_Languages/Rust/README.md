@@ -111,7 +111,7 @@ Constructor inside class, Functions inside class
 
 <a name=ti></a>
 ### [Trait = Interface = Virtual (not pure virtual)](Triat_Interface)
-Trait bounds, Future, 
+- Traits provided by Rust (Copy, Clone, Default, Drop, Future)
 
 <a name=tests></a>
 ### [Automated Tests](https://code-with-amitk.github.io/Languages/Programming/Rust/Automated%20Tests.html)
