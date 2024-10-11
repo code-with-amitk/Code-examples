@@ -6,6 +6,9 @@
   - [4. Server Sent Events](#m4)
   - _5._ Webhooks = HTTP POST. Send data as its available
 - **[Web Service](#ws)**
+- Web Servers
+  - [Nginx Web Server](https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/WebServers/Nginx/)
+  - [Apache Web Server](https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/WebServers/Apache/)
 
 ## Methods of Connection
 <a name=vs></a>
