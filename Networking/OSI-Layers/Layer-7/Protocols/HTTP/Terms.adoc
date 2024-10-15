@@ -2,7 +2,7 @@
 :toclevels:6
 
 
-== link:[HTTP Cookie / Web cookie / Internet cookie / browser cookie](https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/)
+== link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/[HTTP Cookie / Web cookie / Internet cookie / browser cookie (github.io)]
 * What is cookie?
 * Why cookie?
 * Storage Example on browser
