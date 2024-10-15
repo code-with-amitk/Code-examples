@@ -2,40 +2,11 @@
 :toclevels:6
 
 
-== HTTP Cookie / Web cookie / Internet cookie / browser cookie
-=== What is cookie?
-Web Server asks web browser to store some information on user's PC. Information is stored in a file(called Cookie) _created by Web browser_ & placed on the user's computer.
-
-=== Why cookie?
-* To track the user's browsing activity(clicking particular buttons, recording which pages were visited in the past, User Preferences).
-* Saving info user entered in forms: names, addresses, passwords(stored as hashed), and payment card numbers.
-```c
-  Web Browser                                   Web server
-         -- GET /sample_page.html HTTP/2.0 ->
-            Host: www.example.org
-	    
-         <------- HTTP/2.0 200 OK---------------
-                 Content-Type: text/html
-                 Set-Cookie: yummy_cookie=choco       //Store cookie
-                 Set-Cookie: tasty_cookie=strawberry
-                 [page content]
-		 
- store information
- in Cookie file
-```
-=== Example?
-```c
-* _Path:_ "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie(SQL Lite DB)"
-* _In Browser:_ Right-click on your browser window > Inspect > Applications tab > Cookies > Check installed cookies
-# cat "C:\Users\user_name\AppData\Local\Google\Chrome\User Data\Default\Network\Cookie"
-cookie_name      cookie_value				domain			valid_timestamp			cookie_len	cookie_priority
-cookie_1	lwyMCcUDlsziLcAF/AOF3W1gCBO1aeb291	.google.com	/	2024-10-09T14:58:52.469Z	51			High
-```
-cookie_value is application specific and only server side application understand it
-
-=== Stolen Cookie? 
-* If hacker steals and installs your cookies into their web browser, hacker will get access your account.
-* _How cookie theaft can be avoided?_ Cleaning cookies every 7-14 days.
+== link:[HTTP Cookie / Web cookie / Internet cookie / browser cookie](https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/)
+* What is cookie?
+* Why cookie?
+* Storage Example on browser
+* Terms(Stolen Cookie, Cookie Surrogate)
 
 == Inbound, Outbound Requests
 * inbound means "toward the origin server"
