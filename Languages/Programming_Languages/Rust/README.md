@@ -69,7 +69,7 @@ fn fun() -> i32 {
 ```
 
 <a name=bow></a>
-### [Reference = Borrowing](References_and_Borrowing)
+### [Reference = Borrowing](https://code-with-amitk.github.io/Languages/Programming/Rust/References%20Borrowing/)
 - Dangling Reference
 - Mutable Reference. Mutable means changable. By default variables are immutable in rust
   - Mutable & immutable References in same scope not allowed
