@@ -128,5 +128,4 @@ Constructor inside class, Functions inside class
 ### [Design Guidelines](Design_Guidelines)
 
 <a name=th></a>
-### [Threading](Threading)
-- `Arc<T>`
+### [Rust Arc](https://code-with-amitk.github.io/Threads_Processes_IPC/Synchronization/)
