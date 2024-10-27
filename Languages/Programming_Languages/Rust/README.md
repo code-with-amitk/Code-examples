@@ -128,4 +128,4 @@ Constructor inside class, Functions inside class
 ### [Design Guidelines](Design_Guidelines)
 
 <a name=th></a>
-### [Rust Arc](https://code-with-amitk.github.io/Threads_Processes_IPC/Synchronization/)
+### [Rust Arc<T> Atomically Reference Counted](https://code-with-amitk.github.io/Threads_Processes_IPC/Synchronization/)
