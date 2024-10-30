@@ -139,37 +139,4 @@ fn main() {
 }   //box deallocated here
 ```
 <a name=rc></a>
-### `Rc<T>` = Reference Counting Pointer = Multiple Owners
-- Allows multiple owners to share ownership of the same **immutable** data. Multiple owners can reference but not modify the data.
-- **Not Thread Safe:** Since its not thread safe, Rc should be used in single threaded programs only.
-- **How `Rc<T>` works?** It keeps track of the number of references to data. When reference count=0, value can be cleaned up.
-```rs
-use std::rc::Rc;
-
-struct Person {
-    name: String,
-    age: u8,
-}
-
-fn main() {
-    let person = Rc::new(Person {
-        name: String::from("Alice"),
-        age: 25,
-    });
-
-    println!("Name: {}", person.name);              //Alice
-    println!("Age: {}", person.age);                //25
-
-    let person_clone1 = person.clone();
-    let person_clone2 = person.clone();
-
-    println!("Number of owners: {}", Rc::strong_count(&person));
-
-    drop(person_clone2);
-    println!("Number of owners: {}", Rc::strong_count(&person));
-
-    drop(person_clone1);
-    println!("Number of owners: {}", Rc::strong_count(&person));
-}
-
-```
+### [Rc<T> = Reference Counting Pointer = Multiple Owners](https://code-with-amitk.github.io/Languages/Programming/Rust/Smart%20Pointers/index.html)
