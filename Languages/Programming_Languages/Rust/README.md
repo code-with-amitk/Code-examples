@@ -81,7 +81,7 @@ fn fun() -> i32 {
 <a name=smart></a>
 ### [Smart Pointers](Smart_Pointers)
 - `Box <T>`, deref trait, drop triat
-- `Rc<T>`, sharing ownership, Reference Counter, Reference counting
+- [Rc<T>](https://code-with-amitk.github.io/Languages/Programming/Rust/Smart%20Pointers/index.html#what)
 
 <a name=datatypes></a>
 ### [Data Types](Data_Types)
