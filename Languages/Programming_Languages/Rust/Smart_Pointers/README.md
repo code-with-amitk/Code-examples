@@ -6,7 +6,6 @@
 - **Most Common SP**
   - [Box`<T>`](#box)
   - [Rc`<T>` = Reference Counting = Multiple Owners](#rc)
-    - [Sharing ownership](#so)
 
 <a name=sp></a>
 ## Smart Pointers
