@@ -13,14 +13,8 @@
 
 
 <a name=as></a>
-## Asynchronous
-Async program are [concurrent](/Threads_Processes_IPC/Terms/README.md#con) ie work on many tasks at a time but only using 1 thread, it usually returns a [future](#fut)
-```c
-main () {
-  future = send()          //Does not block
-  //execution resumes
-}
-```
+## [Asynchronous](https://code-with-amitk.github.io/Async_Programming/)
+
 <a name=vs1></a>
 #### Asynchronous vs Multithreaded
 Asynchronous can be both single and multithreaded
