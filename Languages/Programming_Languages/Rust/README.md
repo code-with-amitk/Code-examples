@@ -32,6 +32,7 @@
 - [macros](macros)
 - [notify-rs](notify-rs)
 - [Logging: env_Logger, log4rs](Logging)
+- [unsafe](https://code-with-amitk.github.io/Languages/Programming/Rust/Unsafe/index.html)
 
 <a name=install></a>
 ### Install
@@ -111,7 +112,7 @@ Constructor inside class, Functions inside class
 
 <a name=ti></a>
 ### [Trait = Interface = Virtual (not pure virtual)](https://code-with-amitk.github.io/Languages/Programming/Rust/Trait/)
-* What is Triat: User defined triats, Traits provided by Rust (Copy, Clone, Default, Drop, Future)
+* What is Triat: User defined triats, Traits provided by Rust (Copy, Clone, Default, Drop, Future, Send Sync)
 * Passing trait as argument to function
 * Returning trait from function
 * Trait Bound (Using +, Using where clause)
