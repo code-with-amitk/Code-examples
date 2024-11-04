@@ -5,6 +5,7 @@
 
 <a name=vs></a>
 ### Thread(miniprocess) vs Process
+- [Memory Layout of process](https://code-with-amitk.github.io/Motherboard/Memory/Processes.html)
 ```c
                          UserSpace Thread                                    |                             Process                           |
 -------|------------------------------------------------------------------ --|---------------------------------------------------------------|
