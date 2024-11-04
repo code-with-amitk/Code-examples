@@ -8,3 +8,5 @@
 ** lock_guard
 ** unique_lock
 ** scoped_lock C++17
+
+== link:Mutex_Types.md[mutex types]
