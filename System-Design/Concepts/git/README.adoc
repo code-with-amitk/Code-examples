@@ -445,6 +445,7 @@ $ git push origin amit_sdc
 
 == git hooks
 * These are scripts that run automatically when a specific event occurs in a Git repository, stored in .git/hooks directory
+
 === Usage
 ```
 Enforcing a commit policy
