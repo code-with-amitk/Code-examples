@@ -1,7 +1,7 @@
 ## How System Call Works
 > Example Reading Disk File or socket using [read()](/Networking/OSI-Layers/Layer-4/Socket_Programming/APIs_Structures)
 
-- [Stack](https://sites.google.com/site/amitinterviewpreparation/c-1), [trap()](/Motherboard/CPU/Memory/Virtual_Physical_Memory/Terms.md), [rax](https://code-with-amitk.github.io/Motherboard/Memory/Memory_Types.html), [ISR](https://github.com/code-with-amitk/Code-examples/tree/master/Operating_Systems/Linux/Kernel/Interrupts#isr), [Device Driver](/Device_Drivers), [file_operations](/Device_Drivers/Linux), [Interrupt Controller](/Operating_Systems/Linux/Kernel/Interrupts), [Hard Disk](/Motherboard/CPU/Memory/Hard_Disk)
+- [Stack](https://code-with-amitk.github.io/Motherboard/Memory/Processes.html#ss), [trap()](/Motherboard/CPU/Memory/Virtual_Physical_Memory/Terms.md), [rax](https://code-with-amitk.github.io/Motherboard/Memory/Memory_Types.html), [ISR](https://github.com/code-with-amitk/Code-examples/tree/master/Operating_Systems/Linux/Kernel/Interrupts#isr), [Device Driver](/Device_Drivers), [file_operations](/Device_Drivers/Linux), [Interrupt Controller](/Operating_Systems/Linux/Kernel/Interrupts), [Hard Disk](/Motherboard/CPU/Memory/Hard_Disk)
 ```c
     USER PROCESS
 count = read(fd, buffer, nbytes);
