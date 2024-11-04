@@ -1,0 +1,10 @@
+
+
+== link:https://code-with-amitk.github.io/Threads_Processes_IPC/Synchronization/mutex.html[mutex]
+* What is mutex
+** How internally implemented, Problems with Mutex
+* Creating Mutex(C++, POSIX, Rust)
+* Wrappers over Mutex
+** lock_guard
+** unique_lock
+** scoped_lock C++17
