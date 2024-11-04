@@ -442,3 +442,21 @@ $ git push origin amit_sdc
 ==== Types of Actions
 ===== 1. Docker container Action
 ===== 2. Javascript Action
+
+== git hooks
+* These are scripts that run automatically when a specific event occurs in a Git repository, stored in .git/hooks directory
+=== Usage
+```
+Enforcing a commit policy
+Changing the project environment based on the repository state
+Implementing continuous integration workflows
+Running automated tests
+Checking for spelling errors
+Emailing team members about new commits
+Pushing code to production
+```
+=== Categories
+* pre-commit: Checks the commit message for spelling errors
+* pre-receive: Enforces project coding standards
+* post-commit: Emails or texts team members about a new commit
+* post-receive: Pushes the code to production
