@@ -1,0 +1,27 @@
+:toc:
+:toclevels: 5
+
+== Thread(miniprocess) vs Process
+|===
+||UserSpace Thread|Process
+|Weight|Light(Since no duplication of process space)|Heavy(Complete process space(CS,DS,SS,HS) duplicated to child.) link:https://code-with-amitk.github.io/Motherboard/Memory/Processes.html[Process Memory Layout]
+|Speed|Fast (No Context Switch(No memory cache flush, No Trap instruction)). bcoz: Everything is inside process(No need to go in kernel space)|Slow(Context Switch needed (Memory cache flushing needed, Trap needed and to achieve))
+|Disadv|If 1 thread blocks, whole process blocks. [See userspace, kernel Threads]|
+|===
+
+== Thread Usecases
+* **1. Editing/Displaying/(Storing on cloud) Big word document at same time**
+** Suppose user is editing 10000 lined word document online. if he edits 9000th page and click save, word process need to search from starting text changed, pick and store the diff on cloud. If user want to scroll to some other page while word process is saving on cloud(Since this is single threaded) this will hang the Word Document(making user annooyed).
+  - **Solution** 3 threads, 1 for diplay, 1 for saving on cloud, 1 for editing the file(ie picking up the changes). Benefits of 3 threads: while thread-2 is saving on cloud. Thread-1 can still display contents of user without delay.
+* **2. Webserver:** if webserver is single threaded, then it has to wait everytime to get resource from DB/backend while incoming connections keep on getting discarded.
+* **3. Downloading big file:** Suppose client want download 2-GB file from Internet. File is available from mirror servers, each can deliver 512 MB. With Threads we can download all chunks parallely, but again if there's a single network link shared by all threads, this can become bottleneck as the number of threads becomes very large.
+
+== Multiprocessing vs Multitasking
+```c
+                 Multiprocessing          |               Multitasking
+----------|-------------------------------|-------------------------------------------
+What      |                               | - Only 1 processor, multiple threads are run in time sliced manner.
+```
+
+=== Hyperthreading / SMT(Simultaneous Hyper Threading)
+Split a core into virtual link:/Threads_Processes_IPC/MultiCPU_MultiCore[cores] and assign a thread to each of core.
