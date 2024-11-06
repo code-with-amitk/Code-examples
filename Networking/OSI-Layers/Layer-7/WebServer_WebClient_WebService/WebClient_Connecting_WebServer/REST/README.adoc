@@ -2,7 +2,7 @@
 :toclevels: 6
 
 
-== REST / (Representation State Transfer) APIs
+== REST API / Representation State Transfer
 * *Restful Web Server/Application?* Web application that implements link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.md#mea[HTTP CRUD methods] in Restful way. Eg: Twitter, facebook are implemented using restful APIs.
 * When web-client calls Restful APIs then Web-Server can return link:/Languages/ScriptingLanguages/JavaScript[JSON] or HTML or link:/Languages/Markup_Language[XML]
 * link:https://www.youtube.com/watch?v=SLwpqD8n3d0[Good Youtube Video]
