@@ -1,4 +1,3 @@
-:toc:
-:toclevels:2
+
 
 == link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/REST%20API/[REST API / RESTful API]
