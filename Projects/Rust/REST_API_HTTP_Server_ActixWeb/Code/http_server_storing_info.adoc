@@ -1,0 +1,105 @@
+:toc:
+:toclevels: 4
+
+== Code
+=== Cargo.toml
+```toml
+[package]
+name = "hello"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4"  # Update to a stable version
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+```
+
+=== main.rs
+```rs
+use actix_web::{post, web, get, App, HttpResponse, HttpServer, Responder};
+use serde::Deserialize;
+use std::sync::{Arc, Mutex};
+
+#[derive(Deserialize)]
+struct CreateBoard {
+    name: String,
+}
+
+// Shared state for boards (if needed)
+struct AppState {
+    boards: Mutex<Vec<String>>,
+}
+
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    let app_state = Arc::new(AppState {
+        boards: Mutex::new(vec![]),
+    });
+
+    HttpServer::new(move || {
+        let app_state = app_state.clone();
+        App::new()
+            .app_data(web::Data::new(app_state))
+            .service(create_board)
+            .service(get_boards)
+    })
+    .bind(("127.0.0.1", 8080))?
+    .run()
+    .await
+}
+
+#[post("/v1/board/create")]
+async fn create_board(board: web::Json<CreateBoard>, data: web::Data<Arc<AppState>>) -> impl Responder {
+    let mut boards = data.boards.lock().unwrap();
+    boards.push(board.name.clone());
+    println!("boards: {:?}", boards);
+    HttpResponse::Ok().body(format!("Board '{}' created\n", board.name))
+}
+
+#[get("/v1/board/get")]
+async fn get_boards(data: web::Data<Arc<AppState>>) -> impl Responder {
+    let boards = data.boards.lock().unwrap();
+    // Process translations here
+    HttpResponse::Ok().body(format!("Boards: {:?}", boards))
+}
+```
+
+=== POST Request
+```c
+# curl -X POST -H "Content-Type: application/json" -d '{"name": "board1"}' http://127.0.0.1:8080/v1/board/create -vvv
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 127.0.0.1:8080...
+* Connected to 127.0.0.1 (127.0.0.1) port 8080
+> POST /v1/board/create HTTP/1.1
+> Host: 127.0.0.1:8080
+> User-Agent: curl/8.5.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 26
+> 
+< HTTP/1.1 200 OK
+< content-length: 31
+< date: Sat, 09 Nov 2024 12:55:53 GMT
+< 
+Board 'board1' created
+```
+
+=== GET Request
+```c
+# curl -X GET http://127.0.0.1:8080/v1/board/get -vvv
+Note: Unnecessary use of -X or --request, GET is already inferred.
+*   Trying 127.0.0.1:8080...
+* Connected to 127.0.0.1 (127.0.0.1) port 8080
+> GET /v1/board/get HTTP/1.1
+> Host: 127.0.0.1:8080
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< content-length: 26
+< date: Sat, 09 Nov 2024 12:56:16 GMT
+< 
+* Connection #0 to host 127.0.0.1 left intact
+Boards: ["board1"]
+```
