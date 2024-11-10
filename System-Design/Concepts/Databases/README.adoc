@@ -1,11 +1,11 @@
 :toc:
 :toclevels: 6
 
-=== link:https://amitkumar50.github.io/System_Design/Concepts/Databases/SQL_vs_NoSQL.html[SQL/Relational/Structured vs noSQL/nonRelational/unStructured]
+=== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/SQL_vs_NoSQL.html[SQL/Relational/Structured vs noSQL/nonRelational/unStructured]
 Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL + MongoDB: 34.15%,  MySQL + PostgreSQL: 9.76%
 
-==== link:http://127.0.0.1:5500/System_Design/Concepts/Databases/SQL/SQL_Issues.html[1. SQL cannot store Huge data?]
-==== link:http://127.0.0.1:5500/System_Design/Concepts/Databases/SQL/SQL_Issues.html[2. Why SQL cannot be scaled Horizontally?]
+==== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/SQL/SQL_Issues.html[1. SQL cannot store Huge data?]
+==== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/SQL/SQL_Issues.html[2. Why SQL cannot be scaled Horizontally?]
 
 === Object vs Block vs File storage
 
