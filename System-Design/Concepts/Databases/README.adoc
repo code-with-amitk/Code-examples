@@ -51,3 +51,4 @@ used
 ** _2. Expensive:_ RAM is always costlier than Disk, Huge amounts cannot be stored here.
 * *IMDB vs link:/System-Design/Concepts/Cache[DBCache]:** DBCache stores: Mostly used, less frequently changing data is stored in cache. IMDB stores: Frequently changing data.
 
+== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/Indexing/[Indexing, Reverse Indexing]
