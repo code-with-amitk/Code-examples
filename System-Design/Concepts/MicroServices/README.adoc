@@ -12,15 +12,13 @@
 
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Microservices/[Microservices vs Deployment Monolith]
   
-<a name=mig></a>  
-### Migrating from Depolyment Monolith to microserves
-#### Reasons for Migrations
-  - **Outdated technology** Microservices would be developed a fresh using new technology without using old monolith code.
-  - All other reasons incresed security, robustness, speed of development etc.
-  - Increase development speed.
+== Migrating from Depolyment Monolith to microserves
+=== Reasons for Migrations
+- **Outdated technology** Microservices would be developed a fresh using new technology without using old monolith code.
+- All other reasons incresed security, robustness, speed of development etc.
+- Increase development speed.
  
-<a name=pat></a> 
-#### Migration Patterns
+=== Migration Patterns
 _1._ Strangler pattern
      - When a change would have to be made to the legacy system, a new microservice must be created first. The change is then implemented in this microservice instead.
      - microservices increasingly strangle the legacy system until nothing is left of the legacy system.
@@ -32,8 +30,7 @@ _2._ Migration based on layers
 _3._ Copy/Change Approach
      - microservices system is developed as exact replica of DM, while old code is still not removed.
   
-<a name=ar></a>
-### Architecture
+== Architecture
 Components of microservices architecture:
 - **Micro architecture** comprises all decisions that can be made individually for each microservice.
 - **Macro architecture** consists of all decisions that can be made at a global level and apply to all microservices.
@@ -50,8 +47,8 @@ Table shows the typical micro and macro architecture decisions:
 | Documentation | |
 
   
-## Design Types
-### Domain Driven Design(DDD)
+== Design Types
+=== Domain Driven Design(DDD)
 Each Micro-service serves a different domain.
 - *Bounded Context* Each domain model is valid only in a bounded context.
 - *Domain Events* For the communication between bounded contexts, we can use domain events.
@@ -60,36 +57,30 @@ Each Micro-service serves a different domain.
 
 DDD describes in several patterns how exactly communication takes place.
 
-<a name=cust></a>
-#### 1. CUSTOMER/SUPPLIER PATTERN
+=== 1. CUSTOMER/SUPPLIER PATTERN
 There is 1 supplier(upstream) and 1 customer/consumer(downstream). Example: if upstream/supplier(order-process) does not provide correct data downstream/customer(Payment). Transaction cannot be processed. So consumer can provide his requirements to supplier.
 
-<a name=con></a>
-#### 2. CONFORMIST PATTERN
+==== 2. CONFORMIST PATTERN
 A `bounded context` simply uses a `domain model` from `another bounded context`. Example: Processing online order
 - `Dataware house team` takes information from `order process team`.
 -  `Dataware house team` cannot demand more information from other bounded context. It has to work with information from other bounded contexts
 
-<a name=an></a>
-#### 3. ANTI-CORRUPTION LAYER/ACL PATTERN
+==== 3. ANTI-CORRUPTION LAYER/ACL PATTERN
 `Bounded context` does not directly use the domain model/information of the other bounded context. It contains a `layer for decoupling` its own domain model from the model of the bounded context
 
-<a name=sep></a>
-#### 4. SEPERATE WAYS PATTERN
+==== 4. SEPERATE WAYS PATTERN
 The bounded contexts are `not related` at the software level. Example: Ecommerce website
 - There is a micro service for payment. Let's suppose a new MS/bounded context is added (ie Purchasing). Purchasing would be separate from the remaining system
 
-<a name=sh></a>
-#### 5. SHARED KERNEL PATTERN    
+==== 5. SHARED KERNEL PATTERN    
 Describes a common core that is shared by multiple bounded contexts. `It is an anti-pattern` for microservices systems. But because DDD can also be applied to deployment monoliths, there are still scenarios in which a shared kernel is used.
 
-<a name=open></a>
-#### 6. OPEN HOST SERVICE PATTERN
+==== 6. OPEN HOST SERVICE PATTERN
 The `bounded context-1` offers a generic interface with several services. Other bounded contexts can implement their own integration with `bounded context-1`, its their choice.
   - `Published language` is a domain model accessible by all bounded contexts.
   - *Example* This pattern is frequently found at public APIs on the Internet. 
 
-#### How to select a pattern?
+== How to select a pattern?
 Pattern should be choosen based on 
     1. Domain  
     2. communication relationships between the teams  
