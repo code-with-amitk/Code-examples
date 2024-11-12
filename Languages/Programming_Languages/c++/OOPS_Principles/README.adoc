@@ -87,7 +87,59 @@ class derv: public IBase1, public IBase2 .. {
 === e. Dependency Inversion Principle (DIP)
 * High-level modules should not depend on low-level modules. Both should depend on abstractions(means Interface(class having PVF).
 * Abstractions should not depend on details. Details should depend on abstractions.
-
+==== Example (Notification Service)
+Let's suppose there is a notification service which sends (Email)
+===== Voilation of DIP
+* Problems with approach:
+** NotificationSender class is tightly coupled to the Email class. if we want to send SMS, we need to modify NotificationService class.
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+class Email {
+  public:
+    void send() { cout<<"Email sent"; }
+};
+class NotificationService {
+  Email email;
+  public:
+    void send() { email.send(); }
+};
+int main() {
+    NotificationService obj;
+    obj.send();
+    return 0;
+}
+```
+==== Solution to above problem using DIP
+* Decoupling: The NotificationSender class now depends only on the INotification interface, not on concrete implementations like Email 
+* Flexible: We can easily add new notification types (e.g. SMS) without modifying NotificationService class
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+class INotification {
+  public:
+    virtual void send() = 0;
+    virtual ~INotification() = default;
+};
+class Email : public INotification {
+  public:
+    void send() override { cout<<"Email sent"; }
+};
+class NotificationService {
+  INotification& OINotification;
+  public:
+    NotificationService(INotification& n) : OINotification(n) {}
+    void send() { OINotification.send(); }
+};
+int main() {
+    Email email;
+    NotificationService obj(email);
+    obj.send();
+    return 0;
+}
+```
 
 == Other Principles
 === a. DRY(Donot repeat yourself) 
