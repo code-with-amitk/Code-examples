@@ -50,7 +50,8 @@ int main(){
 ** ie if derived class implements an interface, it should only implement methods that are needed. Derived class should not be forced to implement methods which it does not use.
 
 ==== Example
-**Voilation of ISP:** Derv class only need fun1(), But below code will not compile if fun2() is not overridden in derived class.
+===== Voilation of ISP
+Derv class only need fun1(), But below code will not compile if fun2() is not overridden in derived class.
 ```cpp
 #include <iostream>
 using namespace std;
@@ -70,7 +71,8 @@ int main() {
 $ g++ test.cpp
 'virtual void base::fun2()' must be defined
 ```
-**Correct Approach (as per ISP)**
+===== Correct Approach (as per ISP)
+derv class uses the interface which it wants
 ```c
 class IBase1 {
   virtual void fun1() = 0;
@@ -78,24 +80,31 @@ class IBase1 {
 class IBase2 {
   virtual void fun2() = 0;
 };
+class derv: public IBase1, public IBase2 .. {
+}
 ```
 
-=== e. Dependency Inversion
-Decoupling modules. High-level modules should not depend on low-level modules. Both should depend on abstractions(ie interfaces).
+=== e. Dependency Inversion Principle (DIP)
+* High-level modules should not depend on low-level modules. Both should depend on abstractions(means Interface(class having PVF).
+* Abstractions should not depend on details. Details should depend on abstractions.
 
-<a name=op></a>
-### Other Principles
-- *a. DRY(Donot repeat yourself):* If you have a block of code in more than two places, consider making it a separate method
-- *c. ODR(One Definition Rule):*    A compiled source code(also called compilation unit/translation unit) will have only 1 definition but can have multiple declarations.
-- *d. Separation of concerns:* Dividing code into distinct sections so that each section addresses separate concern. Concern here means problems that code is going to address  
 
-<a name=hf></a>
-### Head 1st Design Patterns Principles
-#### 1. Identify the aspects of application that vary and separate them from what stays the same.
-#### 2. Program to an interface, not an implementation.
-#### 3. Favour composition over inheritance
+== Other Principles
+=== a. DRY(Donot repeat yourself) 
+If you have a block of code in more than two places, consider making it a separate method
 
-### RAII(Resource Acquisition is Initialization) OR SBRM(Scope Bound Resource Management):
-- Resource(Anything that exists in limited supply eg: socket, files, disk, mutex, Heap, threads etc) lifetime should be bounded to object lifetime. Means when object's lifetime ends, resources are also freed in reverse order of allocation.
-- resource would be available to any function that accesses the object. 
-- How this is achieved? Acquire resources in constructor, release in destructor or smart pointer.
+=== c. ODR(One Definition Rule)    
+A compiled source code(also called compilation unit/translation unit) will have only 1 definition but can have multiple declarations.
+
+=== d. Separation of concerns
+Dividing code into distinct sections so that each section addresses separate concern. Concern here means problems that code is going to address  
+
+== Head 1st Design Patterns Principles
+=== 1. Identify the aspects of application that vary and separate them from what stays the same.
+=== 2. Program to an interface, not an implementation.
+--- 3. Favour composition over inheritance
+
+== RAII(Resource Acquisition is Initialization) OR SBRM(Scope Bound Resource Management):
+* Resource(Anything that exists in limited supply eg: socket, files, disk, mutex, Heap, threads etc) lifetime should be bounded to object lifetime. Means when object's lifetime ends, resources are also freed in reverse order of allocation.
+* resource would be available to any function that accesses the object. 
+* How this is achieved? Acquire resources in constructor, release in destructor or smart pointer.
