@@ -1,18 +1,16 @@
-- [SOLID Principles](#sp)
-- [Other Principles](#op)
-- [Head 1st Design Principles](#hf)
+:toc:
+:toclevels: 6
 
-<a name=sp></a>
-### SOLID Principles
-#### a. Single Responsibility 
+== SOLID Principles
+=== a. Single Responsibility 
 Every module/class should have one responsibility and should work on single part of functionality provided by software. Microservices are build around this.
-#### b. Open-Closed
-- Software entities(classes/modules) should be open for extension but closed for modification.
-  - Extension: Existing classes can be extended/coupled with any new behavior.
-  - Modifications: Coders have spent day & night for making code bug free & fast. We cannot get code changes in existing now.
-- **How Achieved?** By creating a abstract class and every derived class has its own custom implementation.
-  - Example: Calculate area of any shape.
-    - Initially we have only Rectangle. We can include circle, Triagle, polygon etc later on and add new code, without touching abstract class code.
+
+=== b. Open-Closed
+* Software entities(classes/modules) should be open for extension but closed for modification.
+** Extension: Existing classes can be extended/coupled with any new behavior.
+** Modifications: Coders have spent day & night for making code bug free & fast. We cannot get code changes in existing now.
+* **How Achieved?** By creating a abstract class and every derived class has its own custom implementation.
+** Example: Calculate area of any shape. Initially we have only Rectangle. We can include circle, Triagle, polygon etc later on and add new code, without touching abstract class code.
 ```cpp
 class Shape {   //Pure Virtual class. Abstract class
 public:
@@ -41,13 +39,48 @@ int main(){
         cout << c.Area();
 }
 ```
-#### c. Liskov Substitution Principle (LSP)
+
+=== c. Liskov Substitution Principle (LSP)
 * Derv class object can be used in place of base class object without any issues.
-* [Example C++](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Dynamic_RunTime/README.md)
+* link:/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Dynamic_RunTime/README.md[Example C++]
   
-#### d. Interface Segregation (Interaface in C++ = Base class having pvf)
-Split the Bigger Interfaces into smaller once. Also program to interface.
-#### e. Dependency Inversion
+=== d. Interface Segregation Principle (ISP) 
+* Interface in C++ = Base class having Pure Virtual Function.
+* Interface(base class having PVF) should be designed to be specific to the needs of the client(Derived classes) that use them.
+** ie if derived class implements an interface, it should only implement methods that are needed. Derived class should not be forced to implement methods which it does not use.
+
+==== Example
+**Voilation of ISP:** Derv class only need fun1(), But below code will not compile if fun2() is not overridden in derived class.
+```cpp
+#include <iostream>
+using namespace std;
+class IBase {
+  virtual void fun1() = 0;
+  virtual void fun2() = 0;
+};
+class derv:public base {
+  public:
+    void fun1() override { cout << "derv fun1\n"; }
+};
+int main() {
+    derv oDerv;
+    oDerv.fun1();
+    return 0;
+}
+$ g++ test.cpp
+'virtual void base::fun2()' must be defined
+```
+**Correct Approach (as per ISP)**
+```c
+class IBase1 {
+  virtual void fun1() = 0;
+};
+class IBase2 {
+  virtual void fun2() = 0;
+};
+```
+
+=== e. Dependency Inversion
 Decoupling modules. High-level modules should not depend on low-level modules. Both should depend on abstractions(ie interfaces).
 
 <a name=op></a>
