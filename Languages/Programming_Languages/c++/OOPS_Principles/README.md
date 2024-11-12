@@ -41,8 +41,10 @@ int main(){
         cout << c.Area();
 }
 ```
-#### c. Liskov Substitution
-Derv class object can be used in place of base class object without any issues.
+#### c. Liskov Substitution Principle (LSP)
+* Derv class object can be used in place of base class object without any issues.
+* [Example C++](/Languages/Programming_Languages/c++/Characteristics_of_OOPS/Polymorphism/Dynamic_RunTime/README.md)
+  
 #### d. Interface Segregation (Interaface in C++ = Base class having pvf)
 Split the Bigger Interfaces into smaller once. Also program to interface.
 #### e. Dependency Inversion
