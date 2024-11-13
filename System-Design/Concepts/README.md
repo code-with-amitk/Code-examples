@@ -1,2 +1,2 @@
 - [Distributed Systems: Cloud, Types of DS{Cluster, Grid, Cloud Computing, Edge, HPC}, Stream Processing, Batch Processing](DistributedSystems)
-- [Load Balancer](https://code-with-amitk.github.io/System_Design/Concepts/Load%20Balancer/)
+- [Load Balancer, Types of Load Balancers](https://code-with-amitk.github.io/System_Design/Concepts/Load%20Balancer/)
