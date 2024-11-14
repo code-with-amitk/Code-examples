@@ -2,64 +2,16 @@
 :toclevels: 6
 
 
-== Where DB Cache sits
-If the caching strategy is efficient, the number of trips to memcached wrt DB (10:1).
-```c
-                                                            Redis/
-    Web-server/DB-Client                 DB-frontEnd        memCached(servers)    Databases
-                    -------query table1--->     -----table1---->
-                                                <--NULL------
-                                             --------query table1----------------->
-                                           <-table1-     table1|expiry-time  <-table1-
+== link:https://code-with-amitk.github.io/System_Design/Concepts/Cache/[DB Cache]
+* Where DB Cache sits
+* Cache Eviction Policies
+* Memcached(in Memory) vs Redis(in Memory)
 
+== AWS DAX (DynamoDB Accelerator)
+This is in-memory cache for DynamoDB. It helps improve response times from single-digit milliseconds to microseconds.
 
-                   |- |Web Server-1| -------\         Server-1 -------------\         DB-1
-  ---------------  |                         \          |                     \       |
-  |Load-Balancer|- |- |Web Server-2| ------> LB --- DB-Cache(redis)/Server-2 - LB --- DB-2(Postgres)
-  ---------------  |                         /          |                     /       |
-                   |- |Web Server-n| -------/       Server-n  --------------/         DB-n
-```
+== AWS ElastiCache
+* Web service acting as in-memory cache in the cloud.
+* This improves the performance of web applications by allowing you to retrieve information from fast, managed store.
+* ElasticCache supports two types of data stores: Redis and Memcached: memcached, redis. Replication Support supports master-slave replication, multi-AZ deployments
 
-=== Cache Eviction Policies
-- No eviction returning an error the memory limit is reached.
-- All keys LRU removing keys by the least recently used first
-- Volatile LRU removing keys, that have an expiration time set, by the least recently used first.
-- All keys random removing keys randomly
-- Volatile random removing keys, that have an expiration time set, randomly
-- Volatile TTL removing keys, that have an expiration time set, by the shortest time to live first.
-
-== Caches
-=== Memcached(in Memory) vs Redis(in Memory)
-|===
-||Memcached|Redis(Recommended bcoz of speed)
-
-|In-memory|y|y
-|Key-value pair| y (key<250B, value<1MB)| y (key<512MB, value<512MB)
-|Overhead|less. It does not have any inbuilt datatypes|More. Bcoz it supports datatypes as(string,hash,list,set)
-|opensource | y | y 
-|Language|C|C
-|How internally implemented|Slab Allocator|encapsulated version of the malloc/free
-|Scaling|Multi-threaded. Scales vertically. Give more cores, more memory|Single Threaded. Scales horizontally
-|Replication||2 slave nodes with master
-|Cache Eviction policies|Only 1(LRU)|6 different policies
-|Speed|less|more(since it supports different datatypes)
-|===
-
-==== Memcached
-Open-source distributed hash-table<key,value> Implemented as LRU. Caches data/objects in RAM from Databases. Can store upto 1 Million entries.
-
-===== Data structures used by Memcached?
-a. Cache item: Data structure for holding the <key, data, flags, and pointers>
-b. Hash table: to locate a cache item. Implemented as Separate chaining
-c. Least Recently Used (LRU): determine cache item eviction order when the cache is full.
-d. slab allocator: Memory manager for cache item data structures.
-```c
-                                    cache-item-1 > cache-iten2 > NULL
-                                       |
-                                |    |    |    |    |    |    |    |
-                                  0    1   ...                9   Hash-table
-```
-
-==== Redis
-
-== link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Consistency Problem]
