@@ -1,9 +1,0 @@
-:toc:
-:toclevels: 6
-
-== What
-* Redis is an open-source, in-memory data structure store that can be used as a database, cache, and message broker.
-* supports various data structures such as strings, hashes, lists, sets, sorted sets, and more
-
-== Advantages:
-* High speed (making it suitable for caching, real-time analytics, messaging systems, job queues, and session management.)
