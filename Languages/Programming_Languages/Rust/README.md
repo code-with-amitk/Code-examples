@@ -3,7 +3,7 @@
   - [Rust vs C++](Comparison_Rust_vs_Other_Lang)
 - [Install on linux/windows](#install)
 - [Stack=CompileTime is faster than Heap=Runtime](StackHeap_CompileRuntime)
-- [Cargo: cargo build, cargo test, cargo doc, cargo publish](https://code-with-amitk.github.io/Languages/Programming/Rust/cargo.htm)
+- [Cargo: cargo build, cargo test, cargo doc, cargo publish](https://code-with-amitk.github.io/Languages/Programming/Rust/cargo.html)
 - [Asynchronous, block_on, await, async](/Threads_Processes_IPC/Terms)
 - [Attributes: no_mangle, feature](Attributes)
 - [Statements & Expressions](#statements)
