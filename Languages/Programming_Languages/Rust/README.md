@@ -33,6 +33,7 @@
 - [notify-rs](notify-rs)
 - [Logging: env_Logger, log4rs](Logging)
 - [unsafe](https://code-with-amitk.github.io/Languages/Programming/Rust/Unsafe/index.html)
+- [wasm(web-assembly), wasm-bindgen](https://code-with-amitk.github.io/Languages/Programming/Rust/)
 
 <a name=install></a>
 ### Install
