@@ -1,0 +1,12 @@
+:toc:
+:toclevels: 4
+
+== link:https://react.dev/learn/tutorial-tic-tac-toe[How to Run?]
+```c
+$ git clone ..
+$ npm start
+http://localhost:3000
+```
+
+=== Understanding Code
+* Proper comments are provided in App.js
