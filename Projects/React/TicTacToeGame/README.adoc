@@ -10,3 +10,5 @@ http://localhost:3000
 
 === Understanding Code
 * Proper comments are provided in App.js
+
+image::without_state.png?raw=true[Tic Tac Toe]
