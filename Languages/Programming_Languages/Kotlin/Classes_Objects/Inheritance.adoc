@@ -1,0 +1,18 @@
+:toc:
+:toclevels: 4
+
+== Inheritance
+```kt
+open class Base {        //open keyword in front of the superclass
+    var a = 5;
+};
+class derv:Base() {      //superclass's constructor is used
+    fun disp() {
+        println(a);
+    }
+}
+fun main() {
+    var d = derv();
+    d.disp();        //5
+}
+```
