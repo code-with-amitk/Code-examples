@@ -76,3 +76,16 @@ for (x in cars) {
   println(x)
 }
 ```
+=== Ranges
+Print all alphabets
+```kt
+for (chars in 'a'..'x') {
+  println(chars)
+}
+```
+Print numbers in range
+```kt
+for (nums in 5..15) {
+  println(nums)
+} 
+```
