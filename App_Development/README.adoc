@@ -1,0 +1,30 @@
+:toc:
+:toclevels: 5
+
+== link:https://developer.android.com/codelabs/basic-android-kotlin-compose-first-app#0[Android Studio]
+=== link:https://developer.android.com/studio#downloads[Download & Install Android studio (Windows]]
+
+=== link:https://developer.android.com/codelabs/basic-android-kotlin-compose-first-app#1[Create Project using Empty Template]
+- Templates create the structure of the project
+- Select API 24: Android 7.0 (Nougat) from the menu in the Minimum SDK field
+
+=== Project Structure
+```kt
+C:\Users\ursam\AndroidStudioProjects\GreetingCard\app\src\main\java\com\example\greetingcard\MainActivity.kt
+onCreate(), setContent() are automatically generated functions
+
+onCreate()        // entry point to this Android app. main() of andriod apps
+setContent()      
+  // define your layout through composable functions
+  // All functions marked with the @Composable annotation can be called from the setContent() function or from other Composable functions. 
+```
+Greeting() function
+```
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {      //@Composable functions can't return anything.
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+```
