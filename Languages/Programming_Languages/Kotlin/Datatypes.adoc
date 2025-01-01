@@ -1,0 +1,70 @@
+:toc:
+:toclevels: 5
+
+== Datatypes
+Datatypes are decided on assigned value
+```kt
+val myNum = 5             // Int
+val myDoubleNum = 5.99    // Double
+val myLetter = 'D'        // Char
+val myBoolean = true      // Boolean
+val myText = "Hello"      // String
+```
+
+== Numbers
+Number types are divided into two groups: Integers, Floats
+
+=== Integers(Byte, Short, Int, Long)
+
+|===
+|Type|Range
+|Byte|-128 to 127
+|Short|-32768 to 32767
+|Int|-2147483648 to 2147483647
+|Long|-9223372036854775808 to 9223372036854775807
+|===
+
+```kt
+////////////// byte ////////////////
+val b: Byte = 100
+println(b)      //100
+//b = 1002      //Initializer type mismatch: expected 'kotlin.Byte', actual 'kotlin.Int'
+
+////////////////// short //////////
+val s: Short = 5000
+println(s)          //5000
+```
+
+=== Float(Float, Double)
+
+|===
+|Type|Precision
+|Float|6-7 decimal digits
+|Double|upto 15 digits
+|===
+
+```kt
+val f: Float = 5.75F
+println(f)            //5.75
+```
+
+=== Boolean (true, false)
+```kt
+val t: Boolean = true
+val f: Boolean = false
+println(t)   // Outputs true
+println(f)   // Outputs false 
+```
+
+=== Characters (1 char)
+```kt
+val c: Char = 'B'
+println(c)
+```
+
+=== String 
+store a sequence of characters
+```kt
+val s: String = "Hello World"
+println(s)
+```
