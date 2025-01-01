@@ -1,0 +1,33 @@
+:toc:
+:toclevels: 5
+
+== Function Parameters
+Parameter type(String, Int etc) need to specified in function
+```kt
+fun myFunction(fname: String) {
+  println(fname + " Doe")
+}
+
+fun main() {
+  myFunction("John")
+  myFunction("Jane")
+  myFunction("George")
+}
+```
+
+== Return value
+Return type is specified after function's parantheses.
+```kt
+fun add(x: Int): Int {
+  return (x + 5)
+}
+OR
+fun add(x: Int, y: Int) = x + y
+
+fun main() {
+  var result = add(3)
+  println(result)
+}
+
+// 8 (3 + 5) 
+```
