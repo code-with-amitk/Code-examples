@@ -27,8 +27,10 @@
 import { useState } from "react";
 
 function Button({ value, cbHandleClick }) { //2
+
+  const cname = value === "Reset" ? "resetButton" : "square";
   return (
-    <button className="square" onClick={cbHandleClick}>
+    <button className={cname} onClick={cbHandleClick}>
       {value}
     </button>
   );
@@ -39,6 +41,11 @@ export default function Board() {  //1
   const [ele, setEle] = useState(Array(9).fill(null)); //1b
 
   function handleClick(i) { //3
+    if (i == 9) {
+      setX(true);
+      setEle(Array(9).fill(null));
+      return;
+    }
     if (ele[i]) { //3a
       return;
     }
@@ -77,6 +84,10 @@ export default function Board() {  //1
         <Button value={ele[6]} cbHandleClick={() => handleClick(6)} />
         <Button value={ele[7]} cbHandleClick={() => handleClick(7)} />
         <Button value={ele[8]} cbHandleClick={() => handleClick(8)} />
+      </div>
+      <br></br>
+      <div className="status">
+        <Button value={"Reset"} cbHandleClick={() => handleClick(9)} />
       </div>
     </>
   );
