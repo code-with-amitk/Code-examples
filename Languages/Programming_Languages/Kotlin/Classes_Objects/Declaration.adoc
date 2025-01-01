@@ -1,0 +1,26 @@
+:toc:
+:toclevels: 5
+
+== Class Declaration
+=== Method-1
+```kt
+class Man {        // Class is created using keyword class
+    var age = 0;   // Varibles need to be initialized at declaration
+    var height = 0;
+}
+fun main() {
+	var o = Man();    // Object of class
+  o.age = 10;
+  o.height = 15;
+  println(o.age);    // Print variable
+}
+```
+
+=== Method-2(Using constructor)
+```kt
+class Man(var age: Int, var height: Int)
+fun main() {
+    val c1 = Man(10, 20);
+    println(c1.age);            //10
+}
+```
