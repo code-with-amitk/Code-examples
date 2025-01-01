@@ -48,7 +48,7 @@ val f: Float = 5.75F
 println(f)            //5.75
 ```
 
-=== Boolean (true, false)
+== Boolean (true, false)
 ```kt
 val t: Boolean = true
 val f: Boolean = false
@@ -56,15 +56,23 @@ println(t)   // Outputs true
 println(f)   // Outputs false 
 ```
 
-=== Characters (1 char)
+== Characters (1 char)
 ```kt
 val c: Char = 'B'
 println(c)
 ```
 
-=== String 
+== String 
 store a sequence of characters
 ```kt
 val s: String = "Hello World"
 println(s)
+```
+
+== Array
+```kt
+val cars = arrayOf("Volvo", "BMW", "Ford", "Mazda")
+for (x in cars) {
+  println(x)
+}
 ```
