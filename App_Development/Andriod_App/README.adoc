@@ -1,0 +1,76 @@
+:toc:
+:toclevels: 5
+
+== link:https://developer.android.com/codelabs/basic-android-kotlin-compose-first-app#0[Using Android Studio]
+=== link:https://developer.android.com/studio#downloads[Download & Install Android studio (Windows)]
+
+=== link:https://developer.android.com/codelabs/basic-android-kotlin-compose-first-app#1[Create Project using Empty Template]
+- Templates create the structure of the project
+- Select API 24: Android 7.0 (Nougat) from the menu in the Minimum SDK field
+
+=== Project Structure
+> C:\Users\ursam\AndroidStudioProjects\GreetingCard\app\src\main\java\com\example\greetingcard\MainActivity.kt
+This is automatically generated file
+```kt
+package com.example.greetingcard
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.greetingcard.ui.theme.GreetingCardTheme
+
+// onCreate(): entry point to this Android app. main() of andriod apps
+// setContent():
+//  define your layout through composable functions
+//  All functions marked with the @Composable annotation can be called from the setContent()
+//  function or from other Composable functions.
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            GreetingCardTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Amit",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+// @Composable functions can't return anything.
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello My name is: $name!",
+        modifier = modifier
+    )
+}
+
+// The GreetingPreview() function is a cool feature that lets you see what
+// your composable looks like without having to build your entire app.
+// You can call Greeting Method using Preview method
+/*
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    GreetingCardTheme {
+        Greeting("Amit")
+    }
+}
+*/
+```
+=== Run 
+==== On Device
+==== On Emulator
+
