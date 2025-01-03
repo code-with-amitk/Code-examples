@@ -4,6 +4,14 @@
 == link:https://reactnative.dev/docs/environment-setup[react-native]
 React Native is an open source framework for building Android and iOS applications using React and the app platform’s native capabilities
 
+== React vs React-Native
+|===
+||React|React-Native
+|Platform|	Web browsers|	iOS and Android devices
+|UI Components|	HTML and CSS|	Native mobile components (View, Text)
+|Rendering|	Virtual DOM in browsers|	Bridge to native mobile UI elements
+|===
+
 == View
 * A view is the basic building block of UI. Even the smallest visual elements of an app, like a line of text or a button, are kinds of views. View can contain other views
 |===
