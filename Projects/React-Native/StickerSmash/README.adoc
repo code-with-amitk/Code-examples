@@ -21,3 +21,7 @@ $ npm run reset-project
 npx expo start --tunnel
 ```
 
+== Understanding project
+1. Entry point of our app (app/index.tsx). It uses core React Native components such as <View> and <Text> to display background and text.
+
+
