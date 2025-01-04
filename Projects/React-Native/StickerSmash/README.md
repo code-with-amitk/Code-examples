@@ -1,0 +1,23 @@
+:toc:
+:toclevels: 5
+
+== StickerSmash
+=== link:https://docs.expo.dev/tutorial/create-your-first-app/[Create a new project from default template]
+```c
+vscode
+$ npx create-expo-app@latest StickerSmash && cd StickerSmash
+```
+
+=== link:https://docs.expo.dev/tutorial/create-your-first-app/#download-assets[Download assets]
+Download images,unzip and replace inside your-project-name/assets/images
+
+=== link:https://docs.expo.dev/tutorial/create-your-first-app/#run-reset-project-script[Reset project]
+* This will remove the boilerplate code and place all code inside app-example(which we can delete)
+* only 2 files(index.tsx and _layout.tsx) are left inside app.
+```
+$ npm run reset-project
+
+// Run the app in Phone(Scan QR code)
+npx expo start --tunnel
+```
+
