@@ -31,3 +31,16 @@ React Native is an open source framework for building Android and iOS applicatio
 |<TextInput>|Allows the user to enter text
 |===
 
+== link:https://docs.expo.dev/get-started/create-a-project/[Create 1st app and see in Andriod]
+=== App code on vscode
+```c
+$ mkdir react; cd react
+$ npx create-expo-app@latest
+$ npm install @expo/ngrok
+
+// Start app in tunnel mode
+$ npx expo start --tunnel
+```
+
+=== Open app on Andriod phone
+* Install expo Go App on Phone, Scan QR code which appears on vscode screen after running `npx expo start`
