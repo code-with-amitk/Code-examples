@@ -1,0 +1,46 @@
+:toc:
+:toclevels: 5
+
+== link:https://reactnative.dev/docs/environment-setup[react-native]
+React Native is an open source framework for building Android and iOS applications using React and the app platform’s native capabilities
+
+== React vs React-Native
+|===
+||React|React-Native
+|Platform|	Web browsers|	iOS and Android devices
+|UI Components|	HTML and CSS|	Native mobile components (View, Text)
+|Rendering|	Virtual DOM in browsers|	Bridge to native mobile UI elements
+|===
+
+== View
+* A view is the basic building block of UI. Even the smallest visual elements of an app, like a line of text or a button, are kinds of views. View can contain other views
+|===
+|Development|View Written in
+|Android| Java or Kotlin
+|iOS | Swift or Objective-C
+|React Native(Android or iOS)| JavaScript using React Native components
+|===
+
+== link:https://reactnative.dev/docs/components-and-apis[React Native Components]
+|===
+|Component|Description
+|<View>|Most basic component to build UI
+|<Text>|Displays, styles, and nests strings of text and even handles touch event
+|<Image>|
+|<ScrollView>|generic scrolling container
+|<TextInput>|Allows the user to enter text
+|===
+
+== link:https://docs.expo.dev/get-started/create-a-project/[Create 1st app and see in Andriod]
+=== App code on vscode
+```c
+$ mkdir react; cd react
+$ npx create-expo-app@latest
+$ npm install @expo/ngrok
+
+// Start app in tunnel mode
+$ npx expo start --tunnel
+```
+
+=== Open app on Andriod phone
+* Install expo Go App on Phone, Scan QR code which appears on vscode screen after running `npx expo start`
