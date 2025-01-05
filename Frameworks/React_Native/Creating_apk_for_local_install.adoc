@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 5
 
-== Create apk file using expo
+== link:https://docs.expo.dev/build-reference/apk/[Create apk file using expo]
 goto project containing react-native code
 ```
 $  npm install -g eas-cli
