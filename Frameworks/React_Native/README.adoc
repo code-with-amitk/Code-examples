@@ -6,3 +6,5 @@
 ** View, React native components
 * React vs React Native
 * 1st App in React, Open app on Phone (using Expo)
+
+== link:Creating_apk_for_local_install.adoc[Building apk file for Andriod Install]
