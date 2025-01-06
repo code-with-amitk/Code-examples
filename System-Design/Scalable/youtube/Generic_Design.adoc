@@ -90,7 +90,7 @@ A media stream (a video chunk) from the given offset.
 
 === HLD
 ==== Uploading Video
-* *Thumbnails:* Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails.
+* *Thumbnails:* Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails. A thumbnail is a small image that represents a larger image or video. Thumbnails are used to help people quickly recognize the video.
 * Metadata of video:
 ```c
   - title
