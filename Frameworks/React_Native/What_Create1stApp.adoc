@@ -35,7 +35,11 @@ React Native is an open source framework for building Android and iOS applicatio
 === App code on vscode
 ```c
 $ mkdir react; cd react
+
+// Node Package eXecute. NPM package runner. It allows developers to execute any Javascript Package available on the NPM registry
 $ npx create-expo-app@latest
+
+// Node Package Manager, a free, open-source registry and command-line tool for JavaScript software packages
 $ npm install @expo/ngrok
 
 // Start app in tunnel mode
