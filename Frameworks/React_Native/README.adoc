@@ -1,10 +1,17 @@
 :toc:
 :toclevels: 5
 
-== link:What_Create1stApp.adoc[About React]
-* What is React Native
-** View, React native components
-* React vs React Native
-* 1st App in React, Open app on Phone (using Expo)
+== link:https://code-with-amitk.github.io/Frameworks/React_Native/[React Native]
+* Introduction
+```
+What is React Native
+React Native vs React
+Create 1st app and see in Andriod
+Create apk file using expo
+```
 
-== link:Creating_apk_for_local_install.adoc[Building apk file for Andriod Install]
+* Component: FlatList, ScrollView, Text, Textinput, View
+* Hooks: useState, useEffect
+* Terms: Props, State
+* Navigation b/w Screens
+* Networking(Talking to REST Endpoints)
