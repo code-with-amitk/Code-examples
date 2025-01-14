@@ -18,11 +18,11 @@ Python is interpreted(executes statement line by line), general Purpose language
 - Function passed as Object, argument
 - Variable number of arguments to Function
 - Types of Functions
-  - kwargs
-  - decorator
-  - enumerate()
-  - lambda
-  - generator & yeild
+** kwargs
+** decorator
+** enumerate()
+** lambda
+** generator & yeild
   
 ### Features
 #### 1. Python is dynamic typed language.
