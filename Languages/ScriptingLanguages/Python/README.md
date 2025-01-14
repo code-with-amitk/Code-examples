@@ -10,8 +10,13 @@
 - [Types: Arrays, Dictionary, vector=List, OrderedDict, Sets, Tuples](containers)
 - [Input,Output: Taking input from keyboard](Input_Output)
 
-## Python
-Python is interpreted(executes statement line by line), general Purpose language. Other Interpreted languages: Ruby, R, PHP, JS.
+## [Python](https://code-with-amitk.github.io/Languages/Scripting/Python/)
+- What is Python?
+- Python is dynamic typed language
+- Global Interpreter Lock?
+- Memory Management
+- PEP 8
+- virtualenv / virtual enviornment
 
 ## [Functions](https://code-with-amitk.github.io/Languages/Scripting/Python/)
 - Call by Value, Call by Reference
@@ -29,19 +34,3 @@ Python is interpreted(executes statement line by line), general Purpose language
 - Dynamic typed means type checking is done at run time.
 - **What is Typed?** This means type checking.
 
-|Typed Language|Example|
-|---|---|
-|1. Strongly|"1" + 2  results in type error|
-|2. Weakly|"1" + 2  = "12". Eg: Javascript|
-
-#### 2. virtualenv / virtual enviornment
-* Virtual environment is like vm for python program each with their own independent set of Python packages installed in their site directories.
-```py
-C:\Users\amitk\source\repos\Python>pip3 install virtualenv
-C:\Users\amitk\source\repos\Python>python3 -m venv venv_ml
-C:\Users\amitk\source\repos\Python>venv_ml\Scripts\activate
-
-(venv_ml) C:\Users\amitk\source\repos\Python>
-(venv_ml) C:\Users\amitk\source\repos\Python>venv_ml\Scripts\deactivate.bat
-C:\Users\amitk\source\repos\Python>
-```
