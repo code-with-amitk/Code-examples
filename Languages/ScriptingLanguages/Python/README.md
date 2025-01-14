@@ -29,8 +29,9 @@
 ** lambda
 ** generator & yeild
   
-### Features
-#### 1. Python is dynamic typed language.
-- Dynamic typed means type checking is done at run time.
-- **What is Typed?** This means type checking.
+## [Containers](https://code-with-amitk.github.io/Languages/Scripting/Python/Containers/)
+- Seqeunce Containers (List, Tuples, Strings)
+- Mapping Types (Dictionaries, NamedTuple, OrderedDict)
+- Set Types (Sets, FrozenSets)
+- Advanced Container Types (Deque, Counters)
 
