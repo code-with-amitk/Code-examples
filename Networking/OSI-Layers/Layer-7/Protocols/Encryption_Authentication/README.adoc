@@ -1,32 +1,9 @@
 :toc:
 :toclevels: 6
 
-== SSL/TLS
-* SSL/TLS are Layer7 protocol for Authentication+Encryption. Layer-4 can have TCP or UDP.
-* TLS Implementation: NSS, openSSL, gnuTLS, Boring SSL(by Google written in C, C++, Go, assembly), GNUTLS(By GnuTLS project)
-
-=== SSL vs TLS
-|===
-||SSL(predecessor of TLS)|TLS
-
-|Versions|v2,v3|v1(based on sslv3), v1.2(2008), v1.3(2018 to present): MD5,SHA224 support removed. Handshake messages not encrypted after "Server-hello"
-|Why||Lot of security vulnerabilities were found in SSL
-|Encryption Algo's||Stronger wrt SSL
-|On-Record-Layer|Uses MAC|Uses HMAC
-|Vulnerabilities present|POODLE,DROWN|
-|===
-
-=== NSS(TLS Implementation) vs Openssl
-|===
-||NSS(Network Security Services)|OpenSSL
-
-|Developed By|Mozilla, AOL, Red Hat, Sun, Oracle, Google and others|OpenSSL project
-|Open Source|Yes|Yes
-|License|MPL 2.0|OpenSSL-SSLeay dual-license
-|Written|C, assembly|C, assembly
-|Recent Version|3.62|1.1.1k
-|Supports PKCS#11(Smart card tokens)|Yes|No
-|===
+== link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/[SSL/TLS]
+* SSL vs TLS
+* NSS(TLS Implementation) vs Openssl
 
 === SSL Client validating SSL Server Certificate & viceversa
 ==== 1. Mutual TLS(client validate server and viceversa) / Public Key Exchange
