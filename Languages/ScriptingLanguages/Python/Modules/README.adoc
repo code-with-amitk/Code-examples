@@ -1,59 +1,28 @@
-**Module**
-- [Creating & using Module](#create)
-- [Modules as scripts](#asscript)
-- [Examples](#ex)
-  - [1. Calender module](#calender)
-  - [2. OS module](#os)
-  - [3. re Module](#re)
-  - [4. datetime module](#datetime)
-  - [5. testmod](#testmod)
-- Packages
-  - [Creating Package](#cp)
+:toc:
+:toclevels: 5
 
 
-## Module
+== Module
 - Module is a File in python with .py extension containing python functions, class, variables etc.
 - They can be imported and initialized once using the import statement. If partial functionality is needed, `from foo import bar`.
 
-**builtin** Built-in identifiers of Python
+=== Create & use Modules
+* *Import the module:* Means including the module to use its functionality. There are 2 methods of importing a module.
+** Import complete Module
+** Import 1 function from Module
 ```py
-import builtins
-print(dir(builtins)) #['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 
-'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 
-'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 
-'Exception', 'False', ...]
+# test.py    //define module
+def fun(a,b):
+  return a+b
+
+# main.py  
+from test import fun    //import module
+print(fun(1,2))    
 ```
 
-<a name=c></a>
-### Create & use Modules
-- _1. Define a module_
-- _2. Import the module:_ means including the module to use its functionality. There are 2 methods of importing a module.
-  - _2A._ Import complete Module
-  - _2B._ Import 1 function from Module
+=== Modules as scripts
+* Means passing command line arguments to module. This code needed to be added at end of module:
 ```py
-# vim Multiply_Sum.py                 #1. Defined module(Multiply_Sum)
-def Multiply(a,b):
-  print('Multiplies:', a*b)
-def Sum(a,b):
-  print('Sum:', a+b)  
-  
-########## 2. Import module  ####
-# vim test.py                               # 2A. Import complete module
-import Multiply_Sum as MS
-#OR from Multiply_Sum import *
-MS.Multiply(1,2)                    #2
-MS.SUM(4,5)                         #9
-print(MS.__name__)                   #Print the module name: Multiply_Sum
-
-# vim test2.py                              # 2B. Import 1 function from module
-from Multiply_Sum import Multiply
-Multiply(2,3)                         #6
-```
-
-<a name=asscript></a>
-## Modules as scripts
-- Means passing command line arguments to module. This code needed to be added at end of module:
-```python
     # vim mult_sum.py
         def mult1(a,b):
             print('Mult:',a*b)
@@ -66,11 +35,18 @@ Multiply(2,3)                         #6
     # python3.6 mult_sum.py 2 3         #6
 ```
 
-<a name=ex></a>
-## Examples
+=== builtin identifiers of Python
+```py
+import builtins
+print(dir(builtins)) #['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BlockingIOError', 
+'BrokenPipeError', 'BufferError', 'BytesWarning', 'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError', 
+'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning', 'EOFError', 'Ellipsis', 'EnvironmentError', 
+'Exception', 'False', ...]
+```
 
-<a name=calender></a>
-### 1. Calender module
+== Examples
+
+=== 1. Calender module
 - Output calendars and provides additional useful functions related to the calendar.
 - _1._ Print calendar for any year and month
 ```py
@@ -91,25 +67,23 @@ Mo Tu We Th Fr Sa Su
 27 28
 ```
 
-<a name=os></a>
-### 2. OS module
+=== 2. OS module
 - Miscellaneous operating system interfaces
 - **Functions available**
   - rename()
 
-<a name=re></a>
-### 3. re Module
-- Used for string manipulations. Eg: Checking whether email address is of correct format or not.
-- **Regular Expressions**
+=== 3. re Module
+* Used for string manipulations. Eg: Checking whether email address is of correct format or not.
 
+==== Regular Expressions
+```
 |Regular Expression|Meaning|
 |---|---|
 |\S |Match any non-whitespace character|
 |+ |Repeats a character one or more times|
+```
 
-
-<a name=datetime></a>
-### 4. datetime module
+=== 4. datetime module
 - Contains classes for manipulating dates and times.
 - _1. Print number of days between two dates_
 ```py
@@ -120,8 +94,7 @@ diff = ldate - fdate
 print(diff.days)
 ```
 
-<a name=testmod></a>
-### 5. testmod
+=== 5. testmod
 ```py
 """
 https://www.geeksforgeeks.org/testing-in-python-using-doctest-module/
@@ -183,12 +156,11 @@ total=2
 """
 ```
 
-## Package
-- This is Collection of modules grouped together
-- `__INIT__.PY`: if this file is present in directory python treats that directory as package.
+== Package
+* This is Collection of modules grouped together
+* `__INIT__.PY`: if this file is present in directory python treats that directory as package.
 
-<a name=cp></a>
-### Creating Packages
+=== Creating Packages
 ```py
 sound_package
     |
