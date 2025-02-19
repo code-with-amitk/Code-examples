@@ -1,7 +1,14 @@
 :toc:
 :toclevels: 6
 
-=== link:Collections.adoc[Collections(Array, Slice, stack, queue, map, channel, heap]
+=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Collections]
+* Arrays
+* Channels
+* Slices = vector<int>
+* Queue(using slice)
+* Stack(using slice)
+* struct = class
+* Linked List
 
 === link://https://tour.golang.org/basics/7[Functions]
 ```go
