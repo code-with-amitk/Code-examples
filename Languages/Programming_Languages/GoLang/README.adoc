@@ -17,25 +17,8 @@
 * range()
 
 === Loops
-==== for
-```go
- for initialization; condition; increment/decrement {
-    // Code to be executed
- }
-
-for i := 1; i < 10; i++ {}
-```
-
-==== while
-There is no while loop in go
-```go
-for i < len(arr) {
- ...
- i++;
-}
-```
-
-==== link:https://code-with-amitk.github.io/Languages/Programming/Go/[range()]
+* for
+* while
 
 === link:https://code-with-amitk.github.io/Languages/Programming/Go/Modules/[Package/Modules in Go]
 * import statement
