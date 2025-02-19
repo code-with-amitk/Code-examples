@@ -2,13 +2,7 @@
 :toclevels: 6
 
 === link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Collections]
-* Arrays
-* Channels
-* Slices = vector<int>
-* Queue(using slice)
-* Stack(using slice)
-* struct = class
-* Linked List
+* Arrays, Channels, Slices = vector<int>, Queue(using slice), Stack(using slice), struct = class, Linked List
 
 === link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Functions]
 * Multiple Returns, Naked Return
@@ -17,152 +11,17 @@
 * range()
 
 === Loops
-* for
-* while
+* for, while
 
 === link:https://code-with-amitk.github.io/Languages/Programming/Go/Modules/[Package/Modules in Go]
 * import statement
 * error package
 
-=== Pointers
-`& operator` generates pointer to operand. `* operator` derefences pointer's value. Unlike C there is no pointer arithematic in go
-```go
-package main
-import "fmt"
-func main() {
-        a := 1
-        ptr := &a                       //Points to a
-        fmt.Println(*ptr)               //1
-        //ptr = ptr + 1;                //c
-}
-# /usr/local/go/bin/go build pointer.go
-# ./pointer
-1
-```
+=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Pointers, Singly Linked List]
 
-==== Singly Linked List
-```go
- type ListNode struct {
-     Val int
-     Next *ListNode
- }
-func test(node *ListNode) bool {
-	if node == nil {		// nil, Not NULL
-		return false
-	}
-	var val int = node.Val
-	var next ListNode* = node.Next		//Value accessed from pointer using .
-}	
-```
+=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Statements]
+* defer, if, switch
 
-=== Statements
-==== defer statement
-defer statement defers execution of a function until the surrounding function returns.
-```go
-package main
-import "fmt"
-func main() {
-        defer fmt.Println("world")
-        fmt.Println("hello")
-}
-# /usr/local/go/bin/go build defer-statement.go
-# ./defer-statement
-hello
-world
-```
-==== if statement
-a. Expression not surrounded by parentheses ( ) but the braces { } are required.
-b. if statement can start with Short statement to execute before condition.
-c. Variables declared in if statement are also avaiable in else block.
-```go
-package main
-import (
-        "fmt"
-        "math"
-)
-func main() {
-        a := 1.1 
-        if a < 4 {                              //1a
-                fmt.Println("Hi")
-        }
+=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Variables]
+* Declaration & Initialization, Built in variables
 
-        b := 2.2
-        if v := math.Pow(a, b); v < 4 {         //1b
-                fmt.Println("There")
-        } else {                                //1c
-                fmt.Println(v)
-        }
-}
-# /usr/local/go/bin/go build if-statement.go
-# ./if-statement
-Hi
-There
-```
-
-==== Switch
- a. breaks statement is provided automatically in go
- b. Unlike C,C++ swtich only runs the selected case, not all cases that follow
- c. Switch cases, Need Not to be constants. values involved need not to be integers.
-```go
-package main
-import (
-        "fmt"
-        "runtime"
-)
-func main() {
-        switch os := runtime.GOOS; os {
-        case "darwin":
-                fmt.Println("OS X")             //a. go provides break automatically
-        case "linux":                           //c. switch case need not to be constants
-                fmt.Println("Linux")
-        case "ubuntu":
-                fmt.Println("Ubuntu")
-        default:
-                fmt.Printf("%s.\n", os)
-        }
-}
-# /usr/local/go/bin/go build switch.go
-# ./switch
-Linux
-```
-
-=== String
-==== Convert
-```go
-import (
-  "strconv"
-}
-func test(a int) {
-    var s string = strconv.Itoa(a)	//Convert int to String
-}
-```
-
-=== Variables
-==== Declaration & Initialization
-```go
-fun main() {
-     // Variable declaration and initialization
-    var num int = 10
-    var name string = "John Doe"
-    var flag bool = true
- 
-    // Variable declaration without initialization (zero value assignment)
-    var age int
-    var score float64
-    var isValid bool
- 
-     // Short variable declaration (with type inference)
-    count := 5
-    message := "Hello, world!"
-    isFound := false
- 
-    // Printing the variables
-    fmt.Println(num)
-    fmt.Println(name)
-}
-```
-
-==== Built in variables
-- bool, string, int  int8  int16  int32  int64, uint uint8 uint16 uint32 uint64 uintptr,
-- byte{alias for uint8}, rune{alias for int32}//Represents a Unicode code point, float32 float64,
-- complex64 complex128
