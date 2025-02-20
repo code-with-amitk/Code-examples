@@ -1,0 +1,5 @@
+:toc:
+:toclevels: 5
+
+== link:https://code-with-amitk.github.io/Frameworks/Python/Unittest/[Pyunit or Unitest]
+* mock time consuming API with mock object
