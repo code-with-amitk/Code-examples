@@ -8,7 +8,7 @@
 == Feature of Python
 * link:#st[Dynamically Typed]
 
-== link:#Functions[Functions: decorator, generator, filter(), format(), input(), join(), lambda, map(), range(), xrange(), reduce(), split() & rsplit(), strip(), type(), `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__()`, call by value, call by reference]
+
 == [Keywords: self, yeild](Keywords)
 == link:/Threads_Processes_IPC/Threads/Code#p1[Threading]
 == link:containers[Types: Arrays, Dictionary, vector=List, OrderedDict, Sets, Tuples]
@@ -25,6 +25,8 @@
 == link:https://code-with-amitk.github.io/Languages/Scripting/Python/[Functions]
 * Call by Value, Call by Reference
 * Function passed as Object, argument
+* filter(), format()
+* input(), join(), lambda, map(), range(), xrange(), reduce(), split() & rsplit(), strip(), type()
 * Variable number of arguments to Function
 * Types of Functions
 ** kwargs
