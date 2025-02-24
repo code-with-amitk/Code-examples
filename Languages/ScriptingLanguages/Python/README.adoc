@@ -1,0 +1,41 @@
+:toc:
+:toclevels: 6
+
+== link:Objects-and-Classes[Class,Object: isinstance(),issubclass(), copy objects]
+== link:#Concepts[Concepts: GIL, Memory Management, PEP 8, Picking/Unpickling, Scope Resolution]
+== link:containers[Containers: HashMap/Dictionary, dequeu=doubly linked list]
+== link:Control_Flow[Control Flow: if, for, range(), match statement]
+== Feature of Python
+* link:#st[Dynamically Typed]
+
+== link:#Functions[Functions: decorator, generator, filter(), format(), input(), join(), lambda, map(), range(), xrange(), reduce(), split() & rsplit(), strip(), type(), `__ITER__(), __CONTAINS__, __REPR__(), __STR__(), __doc__, __init__()`, call by value, call by reference]
+== [Keywords: self, yeild](Keywords)
+== link:/Threads_Processes_IPC/Threads/Code#p1[Threading]
+== link:containers[Types: Arrays, Dictionary, vector=List, OrderedDict, Sets, Tuples]
+== link:Input_Output[Input,Output: Taking input from keyboard]
+
+== link:https://code-with-amitk.github.io/Languages/Scripting/Python/[Python]
+- What is Python?
+- Python is dynamic typed language
+- Global Interpreter Lock?
+- Memory Management
+- PEP 8
+- virtualenv / virtual enviornment
+
+== link:https://code-with-amitk.github.io/Languages/Scripting/Python/[Functions]
+* Call by Value, Call by Reference
+* Function passed as Object, argument
+* Variable number of arguments to Function
+* Types of Functions
+** kwargs
+** decorator (staticmethod, classmethod, property)
+** enumerate()
+** lambda
+** generator & yeild
+  
+== link:https://code-with-amitk.github.io/Languages/Scripting/Python/Containers/[Containers]
+- Seqeunce Containers (List, Tuples, Strings)
+- Mapping Types (Dictionaries, NamedTuple, OrderedDict)
+- Set Types (Sets, FrozenSets)
+- Advanced Container Types (Deque, Counters)
+
