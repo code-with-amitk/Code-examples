@@ -1,0 +1,7 @@
+:toc:
+:toclevels: 5
+
+== link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/[Integrity]
+* Achieved using:
+** 1. Hashing (SHA256, MD5, Argon2), MAC, HMAC
+** 2. Signing / Digital Signatures
