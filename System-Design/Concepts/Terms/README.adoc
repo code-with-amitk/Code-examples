@@ -37,6 +37,9 @@ System is doing what's it's supposed to do.
 ** a. Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
 ** b. Using Replication
 
+== Authentication
+* link:https://code-with-amitk.github.io/System_Design/Concepts/Terms/[JWT (Json Web Token), Cookie based Auth]
+
 == Autoscaling
 In cloud, infrastructure can increase/decrese based on demand. 
 
