@@ -1,0 +1,16 @@
+:toc:
+:toclevels: 4
+
+== https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[C++11]
+=== https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[attributes]
+```c
+carries_dependency
+depreacated
+fallthrough
+likely, unlikely
+maybe_unused
+nodiscard
+noreturn
+no_unique_address
+optimize_for_synchronized
+```
