@@ -3,6 +3,6 @@
 
 
 == https://code-with-amitk.github.io/Libraries/[OpenGL]
-=== Glue for OpenGL
+=== https://code-with-amitk.github.io/Libraries/[Glue for OpenGL]
 
 == https://code-with-amitk.github.io/Libraries/[DirectX]
