@@ -14,3 +14,6 @@ noreturn
 no_unique_address
 optimize_for_synchronized
 ```
+
+== https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[C++20]
+=== __has_cpp_attribute
