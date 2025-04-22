@@ -20,4 +20,6 @@ optimize_for_synchronized
 === Aggregate initialization
 === 3 way comparison
 === __has_cpp_attribute
+=== Concept, Constriant
+* Constriants Types (Conjunctions, Disjunctions, Atomic)
 
