@@ -1,2 +1,5 @@
 - [Types of ML. Supervised Learning, Unsupervised Learning, Semisupervised Learning, Supervised Learning](Types)
-- [Terms: AI vs ML, Bias, CNTK, Keras, overfitting, scalar, Tensors, Theano, vector, underfitting, variance](Terms)
+- [Terms](https://code-with-amitk.github.io/Machine%20Learning/)
+  - AI vs ML, Bias, CNTK, Keras, overfitting, scalar, Tensors, Theano, vector, underfitting, variance
+- [LangChain](https://code-with-amitk.github.io/Machine%20Learning/LangChain/)
+  - Messages, LangChain Messages 
