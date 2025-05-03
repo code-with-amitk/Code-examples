@@ -6,7 +6,7 @@ Today most organization are using SQL+noSQL DB combinations. 2019 stats:   MySQL
 
 ==== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/SQL/SQL_Issues.html[1. SQL cannot store Huge data?]
 ==== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/SQL/SQL_Issues.html[2. Why SQL cannot be scaled Horizontally?]
-==== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Stored Procedures and Functions in postgresql]
+=== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Stored Procedures and Functions in postgresql]
 
 === Object vs Block vs File storage
 
