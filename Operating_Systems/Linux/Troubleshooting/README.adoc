@@ -226,6 +226,19 @@ mpstat(Multiprocessor statistics): per CPU. Dumps statistics per processor.
 
 
 == Memory/System/RAM Related
+=== atop
+==== top vs atop
+|===
+||top|atop
+|View|Real time|non
+|Analysis|less|More indepth
+|===
+
+==== rgrow, vgrow, psize, swapsz in atop
+* *VGROW (Virtual Memory Growth):* growth in virtual memory used by a process since the last update interval
+* *RGROW (Resident Memory Growth):* growth in resident memory (RSS) used by a process since the last update interval. process's virtual memory that is currently held in physical RAM.
+** -ve value meaning: part of the process is paged out due to lack of memory
+
 === free
 ```c
 # free -mh                    //-m: Display memory in MB, -h: human readable
