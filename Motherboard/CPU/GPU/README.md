@@ -9,6 +9,6 @@
 - [Kubernetes Cluster Configuration on Nvidia GPU for ML Workload](https://code-with-amitk.github.io/Motherboard/)
 
 
-### [CUDA]((https://code-with-amitk.github.io/Motherboard/)
+### [CUDA](https://code-with-amitk.github.io/Motherboard/)
 - Kernels
 - Coding in C++
