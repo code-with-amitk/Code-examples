@@ -1,1 +1,13 @@
+:toc:
+:toclevels: 3
+
 == link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/Hash%20MAC.html[Hash, MAC, HMAC]
+=== Hashing Algorithms
+* MD4, MD5
+* SHA1=128
+* SHA2=256
+* SHA3=512(Keccak)
+* Argon2,Argon2i,Argon2id
+* bcrypt. How bcrypt works
+
+== MAC, HMAC
