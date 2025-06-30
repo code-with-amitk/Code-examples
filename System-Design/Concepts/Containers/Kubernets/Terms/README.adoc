@@ -1,12 +1,5 @@
 :toc:
-:toclevels: 6
-
-== Ambassador API Gateway
-- This is Kubernetes-native API Gateway for controlling and managing traffic between microservices within a Kubernetes cluster. Built on top of Envoy Proxy.
-- It integrates with Kubernetes Service objects to route traffic to the appropriate microservices based on the service name and port.
-- *Advatanges*
-  - _1. Supports Multiple Protocols:_ HTTP/1.1, HTTP/2, WebSocket, gRPC, and OpenAPI/Swagger
-  - _2. Other Functions:_ traffic splitting, load balancing, rate limiting, and authentication.
+:toclevels: 3
 
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Containers/Kubernets/[Kubernets Resources and Objects]
 * Kubernets Resource
@@ -14,6 +7,7 @@
 ** ClusterRole, ConfigMap, Deployment, Job, RBAC, ServiceAccount, Services, Secrets, POD
 
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Containers/Kubernets/[Terms]
+* Ambassador API Gateway
 * Namespaces
 * Nodeport
 * Authorization in kubernets
