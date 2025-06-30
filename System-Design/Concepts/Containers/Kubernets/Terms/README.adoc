@@ -13,62 +13,9 @@
 * kubernets Object
 ** ClusterRole, ConfigMap, Deployment, Job, RBAC, ServiceAccount, Services, Secrets, POD
 
-<a name=ns></a>
-## Namespaces
-- Namespace divides cluster into smaller units to isolate services,volumes and manage.
-- Namespace contains pods.
-- 3 predefined namespaces:
-  - _a. Default_ 
-  - _b. Kube-system:_ resources created by kubernets
-  - _c. Kube-public:_ reserved for future
-```c
-$ kubectl create namespace test                       //Creating new namespace
-$ kubectl --namespace=test  run ngnix --image=nginx   //Deploy namespace
-```
-
-== Nodeport
-* When we create a NodePort service in Kubernetes, Kubernetes will dynamically allocate a port (in the range of 30000-32767) for a Application running container. Eg:30001
-* Then this port=30001 is mapped to targetPort=8080 internally.
-* *Why NodePort?*w 2 Applications can use same internal ports. Eg: App1 uses 8080 & App2 uses 8080. And with NodePort both can be accessed using external port without port change on application level.
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: jams-server         //Application using Nodeport. Kubernets will assign an IP=30001
-spec:
-  selector:
-    app: my-app             //Run application on pods with Label = my-app
-  type: NodePort
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080      //30001 is mapped to 8080 internally.
-
-```
-
-== Authorization in kubernets
-|===
-|Method|Cluster to Cluster
-
-|1. Service Token|No. Only within cluster
-|2. link:/System-Design/Concepts/Containers/Kubernets/Terms/istio#istio-authorizationpolicy[Istio Authorization Policy]|Yes
-|===
-
-=== 1. Service Token
-* Each pod has a associated service account. Each service account has a service token. This service account token is mounted as a file in the pod's filesystem. The default path is `/var/run/secrets/kubernetes.io/serviceaccount/token`.
-* *Usage of service token?*
-** if service want to communicate/access resources of other services, then this service will present the service token to API-server and API server will authorize the service.
-* API server will check <<a-role,Role,Role Binding>> of service(whether service is allowed to access other service or not).
-```mermaid
-sequenceDiagram
-  participant p1 as POD1
-  participant p2 as POD2
-  participant as as API-Server
-
-  note over p1: POD has service account<br>Service account has service token.<br>path of token=/var/run/secrets/kubernetes.io/serviceaccount/token
-  p1 ->> as: Want to access p2 file<br>my service token:xxx
-  note over as: Is Service token valid?<br>Is POD1 authorized to access POD2?<br>check Role,RoleBinding in helm
-  as -->> p1: ok
-```
-
-=== 2. link:/System-Design/Concepts/Containers/Kubernets/Terms/istio#istio-authorizationpolicy[Istio Authorization Policy]
+== link:https://code-with-amitk.github.io/System_Design/Concepts/Containers/Kubernets/[Terms]
+* Namespaces
+* Nodeport
+* Authorization in kubernets
+** Service Token
+** link:/System-Design/Concepts/Containers/Kubernets/Terms/istio#istio-authorizationpolicy[Istio Authorization Policy]
