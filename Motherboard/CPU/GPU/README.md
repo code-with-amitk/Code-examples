@@ -10,5 +10,6 @@
 
 
 ### [CUDA](https://code-with-amitk.github.io/Motherboard/)
-- Kernels
-- Coding in C++
+- Coding in C++(Vector Addition on GPU)
+- Kernels, Blocks, Grid, Threads, Inter Thread Communication
+- Streaming Multiprocessor (SMs), Graphics Processing Clusters (GPCs)
