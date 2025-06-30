@@ -12,7 +12,7 @@
 * *Kubernets Resource = C++ Class* Resource is a blueprint for creating objects.
 * *kubernets Object = C++ Object* is Instance created from resource(using yaml,json file), having behaviour, state, metadata, and configuration.
 
-== Types of k8 Resources/Objects
+== Kubernets Resources/Objects
 === 1. ClusterRole 
 Defines set of permissions or access control rules for resources across an entire Kubernetes cluster. it applies to all namespaces in the cluster.
 ```yaml
