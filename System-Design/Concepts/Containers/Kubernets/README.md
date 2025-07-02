@@ -5,10 +5,13 @@
 
 
 ## [Kubernets](https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Architecture.html)
-* Architecture
-** Master Node / Control Plane (Daemon in master node)
-** Worker Node(Daemon in Worker node)
-*** POD
+- Architecture
+
+-- Master Node / Control Plane (Daemon in master node)
+
+-- Worker Node(Daemon in Worker node)
+
+* POD
   
 <a name=com></a>
 ## Kubernets commands (kubectl -h)
