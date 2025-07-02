@@ -1,69 +1,15 @@
-- [Docker vs Kubernets](/System-Design/Concepts/Containers/Docker/README.md#vs)
-- [Kubernets Architecture](#ka) 
-  - [Master Node](#mn)
-  - [Worker Node](#wn)
-    - [Pod](#pod)
-- [Terms: configMap, Objects(service, deployment, configmap, secrets, clusterrole, rbac), Nodeport, namespace](Terms)
+
 - [Installing Kubernets](Install_Kubernets)
 - [Commands](#com)
   - [Connect to postgres pod](#cp) 
 
 
-## Kubernets: Container Orchestrator
-**Orhestration?** Managing the lifecycles of containers. These are GUI/tools to automate following tasks: Deployment, Scaling up/down, Movement of containers from one host to another, Load balancing, Health monitoring.
-- *Examples of Container Orhestrators:* Kubernets, Docker swarm, Nomad
-- Kubernets Cluster has different microservices inside it.
-```c
-  <--------------------k8s cluster----------------------------------->
-    |----control-plane,master-------|   |---------Worker node-----|
-    | micro_service1                |   |micro_service2           |
-    |               micro_service4  |   |       micro_servicen    |
-    |-------------------------------|   |-------------------------|
-```
-
-<a name=ka></a>
-## Kubernets Architecture
-<img src="/System-Design/Concepts/Containers/Kubernets/images/kubernets_architecture4.png" width=1500/>
-
-- **1 service can run on 2 Containers(jams-dbcreate, jams-server)**
-
-<a name=mn></a>
-### A. Master Node / Control Plane
-- User Intercts with Master node(using yaml file). Master node create/destroy worker nodes.
-#### Daemon in master node
-- **1. API Server:** Manages all communication with Worker nodes(using kubelet).
-- **2. etcd `<key,value>` store:** Stores state of kubernets cluster.
-- **3. Scheduler:** Schedules pods to run on worker nodes.
-- **4. Controller Manager:** Runs controllers that monitors state of cluster and maintains desired state.
-  - _Replication Controller:_ Manages replication sets.
-  - _Node Controller:_ Monitor health of worker nodes.
-- **5. Add-ons:** Provides additional functionality.
-
-<a name=wn></a>
-### B. Worker Node
-- handles workload. Worker nodes hosts [PODS](#pod). 1 Pod can contain 1 or more [containers, Eg: docker](#doc).
-#### Daemon in Worker node
-- **1. Kubelets:** Recieves instructions from master node to run/manage container.
-- **2. Container Runtime:** This actually runs the container. Several runtimes kubernets supports:
-  - Docker
-  - containerd
-  - CRI-O
-- **3. Kube-proxy:** for communication with other nodes in cluster
-- **4. Add-Ons:** Additional functionality.
-- **5. Node status & Meta-data:** Each worker node maintains meta-data about itself. Example:
-  - IP Address, hostname
-  - Current status (Ready, Not Ready, Out of Disk space etc)
-
-<a name=pod></a>
-#### POD 
-- POD is smallest deployable unit in kubernets.
-- Each POD has its own:
-  - IP & namespace.
-- Containers in POD share resources and can communicate using 'localhost'.
-- Complete package which Kubernets creates to install application on Worker Node. 
-- Memory is allocated to Pods using [Volumes](/Operating_Systems/Linux/Partitions_Mounting).
-
-
+## [Kubernets](https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Architecture.html)
+* Architecture
+** Master Node / Control Plane (Daemon in master node)
+** Worker Node(Daemon in Worker node)
+*** POD
+  
 <a name=com></a>
 ## Kubernets commands (kubectl -h)
 ```c
