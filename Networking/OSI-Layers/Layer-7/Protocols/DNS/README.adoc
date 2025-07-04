@@ -93,12 +93,14 @@ VALUE: Value of RR can be Number, domain name or string.
 ```
 ==== AAAA RECORD
 128bit-IPv6 to hostname map.  (google.com, 2404:6800:4003:c00::65)
+
 ==== CNAME RECORD
 Stores Alternate name(alias) of domain. Example
 ```c
 test.com 86400 IN CNAME test1.com     //test.com and test1.com both belongs to same host. 
 # host    -v    -t  A ca.example.com
 ```
+
 ==== MX RECORD (Value 15) 
 Host responsible for handling incoming mails for zone. A preference value and the host name for a mail server/exchanger that will service this zone. 
       
