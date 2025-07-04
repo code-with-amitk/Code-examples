@@ -1,8 +1,4 @@
 
-- [Installing Kubernets](Install_Kubernets)
-- [Commands](#com)
-  - [Connect to postgres pod](#cp) 
-
 
 ## [Kubernets](https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Architecture.html)
 - Architecture
@@ -12,7 +8,9 @@
 -- Worker Node(Daemon in Worker node)
 
 * POD
-  
+
+## [k3s](https://code-with-amitk.github.io/System_Design/Concepts/)
+
 <a name=com></a>
 ## Kubernets commands (kubectl -h)
 ```c
