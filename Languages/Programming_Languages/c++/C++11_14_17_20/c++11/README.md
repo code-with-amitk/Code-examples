@@ -1,6 +1,6 @@
 [decltype, decltype(auto)](https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/decltype.html)
 
-[Lambda Expression](https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/C++11/)
+[Lambda Expression](https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/)
 * Lambda capture initializer
 * this capture in lambda
 * capture list (RO, RW)
