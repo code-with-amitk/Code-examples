@@ -141,7 +141,7 @@ fn main() {
 ```
 
 <a name=closure></a>
-## Closure / [Lambda Function](/Languages/Programming_Languages/c++/C++11_14_17_20/c++11/Lambda_Expression)
+## Closure / [Lambda Function](https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/)
 - Anonymous functions(ie with no name) which can be saved in a variable or and then this variable can be passed as argument to other functions.
 - Unlike normal functions, [Type annotation](#fun) of parameters is not required. complier can infer on his own.
 
