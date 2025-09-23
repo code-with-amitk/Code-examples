@@ -32,7 +32,7 @@ Node sitting in front of 1 or more web servers. User requests will reach Reverse
 
 ==== 3. Explicit Proxy
 * Client Browser is explicitly configured to use a proxy server, meaning the browser knows that all requests will go through a proxy. 
-* Browser can be configured to use link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/#pac[PAC file], which again uses explicit proxy.
+* Browser can be configured to use link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/Terms.adoc[PAC file], which again uses explicit proxy.
 * The disadvantage to explicit proxy is that each desktop must be properly configured to use the proxy, which might not be feasible in a large organization.
 
 ==== 4. Transparent Proxy
