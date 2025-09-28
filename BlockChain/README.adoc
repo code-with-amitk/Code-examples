@@ -50,34 +50,11 @@ int main() {
 }
 ```
 
-== What is Block?
-* Blockchain is composed of blocks(Header + payload). Block stores the transactions.
-* Header is metadata, while payload is actual transaction data.
-```c
-Header/Metadata => |block number | timestamp (when the block was created) | block hash | nonce |
-Data/Payload =>  |Sender address | Recipient address | amount of transaction | fee |
+== link:https://code-with-amitk.github.io/BlockChain/[Block]
+- Genesis Block. 
+- Block creation
 
-struct block {
-  struct block_header* bh;
-  struct block* prev_block;   //This is Hash pointer(not normal pointer)
-  long timestamp;
-  long nonce;
-  long transaction_counter
-  struct transactions* t;
-  struct other_attribute* oa;
-}
-```
-
-=== Genesis Block. link:https://www.blockchain.com/explorer/blocks/btc/000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f[Bitcoin block#0]
-1st block in blockchain. This is hardcoded at time when blockchain started. This is same as other blocks, just it does not have pointer to prev block.
-
-=== Block creation
-* The only way to add new information to the blockchain is to add a block to the end of it.
-* Only Qualified users create blocks and send them to other nodes.
-** If the block is valid, other users accept it.
-** If it’s invalid, they ignore it and may punish block creator. The valid block propagates through the network in a few seconds.
-
-=== Transaction
+== link:https://code-with-amitk.github.io/BlockChain/[Transaction]
 * 1 block can store 1 or multiple transactions. Whenever a transaction(s) happens on blockchain, a block is created and stored on chain.
 * Transactions are used to record various activities, such as cryptocurrency transfers, smart contract executions, and other changes to the blockchain's state. 
 
