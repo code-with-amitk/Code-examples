@@ -55,33 +55,14 @@ int main() {
 - Block creation
 
 == link:https://code-with-amitk.github.io/BlockChain/[Transaction]
-* 1 block can store 1 or multiple transactions. Whenever a transaction(s) happens on blockchain, a block is created and stored on chain.
-* Transactions are used to record various activities, such as cryptocurrency transfers, smart contract executions, and other changes to the blockchain's state. 
 
-[[pow]]
-==== POW(Proof of Work)
-* There are 2 types of blockchain systems: POW & link:/System-Design/Concepts/Terms/Consensus/README.adoc[POS(Proof of Stake)]
-* In POW system, to add a new block <<mining, mining>> needed to be done. Miner who solves the puzzle(finds hash of transaction) is rewarded some bitcoins and transaction fee.
-* *Problems with POW:*
-** _1. Energy efficiency:_ Miners compete to solve complex mathematical puzzles using huge computational power.
-** _2. Centralization Concerns:_ More power more chances to solve 1st, this means more bitcoins goes with people/companies who own huge machines.
-** _3. Accessibility:_ Only those having specialized mining hardware, have more bitcoins.
+== link:https://code-with-amitk.github.io/BlockChain/[POW(Proof of Work)]
 
-== BlockChain Clients
-* There are two main types of Bitcoin clients:
-** *1. Full Node:* These clients download and validate the entire Bitcoin blockchain
-** *2. Lightweight Node:* These clients do not download the entire blockchain. Instead, they rely on full nodes to verify transactions for them. Examples:
-
-=== 1. Bitcoin Core (Fullnode Bitcoin client)
-Holds complete blockchain in local system. Requires ~500GB of space.
-
-=== 2. Electrum (Lightweight Bitcoin client)
-* It allows to interact with the Bitcoin network(bitcoin network is blockchain). With client we can send and receive transactions, and manage your Bitcoin holdings.
-*** Mycelium, Electrum, Exodus
-
-=== 3. Kukai (Lightweight Tezos client)
-* This is wallet service on <<blockcha, Tezos blockchain>>. Tezos is based on link:/System-Design/Concepts/Terms/Consensus/README.adoc#2-posproof-of-stake-ethereum-uses-it[Proof of stake], while Bitcoin core, electrum are <<pow, Proof of work blockchains>>
-* link:/System-Design/Scalable/Kukai_Tezos_Wallet[kukai System Design]
+== link:https://code-with-amitk.github.io/BlockChain/[BlockChain Clients]
+* 1. Bitcoin Core (Fullnode Bitcoin client)
+* 2. Electrum (Lightweight Bitcoin client)
+* 3. Mycelium, Electrum, Exodus
+* 4. Kukai (Lightweight Tezos client)
 
 == Ethereum
 Framework/platform for creating smart contracts. Etherum runs solidity programming language.
@@ -94,32 +75,10 @@ Ether is intended as a utility currency to pay for use of the Ethereum platform
 * In blockchain, Public Pvt keys are generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
 * secp256k1 ECC is not same as RSA or DH.
 
-[[mining]]
-== Mining 
-* Let's suppose Alice wants to send 1 BTC(bitcoin) to Bob, alice sends message on network.
-* Miner Nodes(Verfiers of transaction) recieve the Alice's message and starts a race to find HASH of desired diffculty(defined by software). 
-* Node(Miner) who solves it 1st is rewarded with some transaction fee(0.001 BTC) + bitcoin reward. 
-* Miner-1, solves the puzzle and sends to network for verification. Other miners verifies it using link:/System-Design/Concepts/Terms/Consensus[consensus] and transaction is added as a node to ledger=blockchain.
-* As more and more miners join the network, the total hash rate — the combined computing power of all miners — increases
-```c
-Transaction
-  src_add = Alice_hash    //Hash is public address of entity on blockchain
-  amount = 1 BTC
-  dst_add = Bob_Hash
-```
-
-== How bitcoin can be issued?
-* _1. Using crypto exchange:_ Here if someone sells the bitcoin, its purchased by other
-* _2. Mining:_ Miners are rewarded transaction fee + Bitcoins. Once a miner verifies a transaction and adds to blockchain.
-
-=== Rate of bitcoin Issuance?
-* 2012: 25 bitcoins/block. ie on verification of 1 transaction, adding to blockchain. 25 bitcoins
-* 2016: 12.5
-* 2140: 0. (All 21 million bitcoin will be issued). Miners will be rewarded solely through the transaction fees.
-* 210000 is around every 4 years with a 10 minute block interval
-
-=== Why only 21Million bitcoins. Inflation?
-* The finite and diminishing issuance creates a fixed monetary supply that resists inflation.
+== link:https://code-with-amitk.github.io/BlockChain/[Mining]
+* How bitcoin can be issued?
+* Rate of bitcoin Issuance?
+* Why only 21Million bitcoins. Inflation?
 
 === Deflation?
 * But with limited supply of currency(ie 21Million), will it not cause deflation?
@@ -128,25 +87,5 @@ Transaction
 ** People will stock the money, instead of spending it hoping prices will fall more
 ** _But deflation is not bad as inflation._ Stocking instincts can be supressed by sellers providing discounts and stockers tend to spend money.
 
-== Smart Contract
-* These are the programs that run on blockchain having business logic. This get automatically executed when certain conditions are met. These are secure and unstoppable.
-* Represents aggrement b/w 2 parties & allows parties to securly conduct business. Properties:
-** _1. Immutable(cannot be changed):_ SC creates logs which are immutable, those cannot be changed.
-** _2. Distributed:_ Output of contract is Validated/verified by other nodes on the network.
-
-=== Solidity
-* High level Object oriented programming language for writing smart contracts.
-* Features;
-** _1._ Based on C,C++,python
-** _2._ Statically typed: Checking happens at compile time.
-** _3. Supports inheritance:_ 1 smart contract can be used by other.
-
-== Wallet
-* In the context of blockchain(eg: bitcoin, tezoz), a wallet is a digital tool that allows you to store, manage, and interact with your Bitcoin holdings. It's used to create and manage Bitcoin addresses, which are used to send and receive Bitcoin transactions. A Bitcoin wallet consists of two main components:
-* *1. Public Addresses(Hash number):* These are account numbers in blockchain network. You share these addresses with others when you want to receive Bitcoin. They are derived from your wallet's public key.
-* *2. Private Keys:* These are secret keys that helps control/access bitcoins associated with your addresses. Whoever has access to the private key has control over the Bitcoin at that address.
-
-== Features
-=== Distributed consensus
-=== Transaction verification
-Only valid transactions are included in blockchain. When a node publishes a transactions its verified based on a predetermined set of rules, then its included.
+== link:https://code-with-amitk.github.io/BlockChain/[Smart Contract]
+== link:https://code-with-amitk.github.io/BlockChain/[Solidity]
