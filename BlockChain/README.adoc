@@ -2,42 +2,10 @@
 :toclevels: 5   // Set the desired depth of the table of contents
 
 [[blockcha]]
-== Blockchain
-* This is append-only, immutable distributed ledger that is updateable only via consensus/agreement among peers. There is no single authority of this ledger.
-* This is link:(/Networking/OSI-Layers/Layer-7/P2P_OverlayNetwork/)[Peer to Peer] network running over TCP. Same as HTTP,FTP over TCP
-* *Examples blockchains*
-** _Tezos:_ Uses link:/System-Design/Concepts/Terms/Consensus/README.adoc[Proof of Stake]
-** _Bitcoin:_ Use <<pow, Proof of Work>>
-
-=== Why to learn blockchain
-* *Decentralization:* no need for a trusted third party or intermediary to validate transactions; instead a consensus mechanism is used to agree on the validity of transactions.
-* *Transparency and trust:* As blockchains are shared and everyone can see what is on the blockchain, this allows the system to be transparent and as a result trust is established.
-* *Immutable:* Once the data has been written to the blockchain, it is extremely difficult to change it back.
-* *High availability:* As the system is based on thousands of nodes in a peerto-peer network, and the data is replicated and updated on each and every node.
-* *Highly Secure:* All transactions on a blockchain are cryptographically secured and provide integrity.
-* *Cost saving:* As no third party is required in the blockchain model.
-
-=== Limitations of Blockchain
-* *Denial-of-Service Attack:* An attacker can overload a node by sending a lot of data or Huge block or transactions which too long to execute.
-** How to mitigate? bitcoin & many cryptocurrencies have a maximum possible block size limit.
-* *Scalability:* Very few nodes can maitain complete blockchain because of its big size.
-* Adaptability
-* Regulation
-* Relatively immature technology
-* Privacy
-* *Sybil Attack:* A single person controls few nodes and persuades few other nodes to block user(bob) from the network completely. This can result in transaction censoring for user(bob). This can result in double spending.
-** How to Avoid? look for nodes with suspiciously-low hashrate.
-
-[[address]]
-== Blockchain Address (Sender or Receiver)
-* Bitcoin address of node is calculated using Hash of Public key.
-* Public generated using <</Networking/OSI-Layers/Layer-3/Security/README.adoc#secp256k1, secp256k1 ECC Algorithm>>.
-* Hash is generated using RIPEMD160 + <</Networking/OSI-Layers/Layer-3/Security/Hash_MessageDigest_MAC_HMAC/README.adoc, SHA256>>.
-```c
-K(public key) = k(pvt key) * G(constant)
-K --> |SHA256| --256bit--> |RIPEMD160| --> 160bit(Address)
-160bit(Address) --> |Encode(Base58 Check)| --> Bitcoin Address      //Base58-Check(RIPEMD160(SHA256(K)))
-```
+== link:https://code-with-amitk.github.io/BlockChain/[Blockchain]
+- Why to learn blockchain
+- Limitations of Blockchain
+- Blockchain Address (Sender or Receiver)
 
 == Base58, Base58-Check Encoding
 === Base58
