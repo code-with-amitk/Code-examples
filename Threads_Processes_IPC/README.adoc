@@ -1,13 +1,7 @@
 :toc:
 :toclevels: 5
 
-== Thread(miniprocess) vs Process
-|===
-||UserSpace Thread|Process
-|Weight|Light(Since no duplication of process space)|Heavy(Complete process space(CS,DS,SS,HS) duplicated to child.) link:https://code-with-amitk.github.io/Motherboard/Memory/Processes.html[Process Memory Layout]
-|Speed|Fast (link:/Threads_Processes_IPC/Terms/README.adoc#context-switch[No Context Switch](No memory cache flush, No Trap instruction)). bcoz: Everything is inside process(No need to go in kernel space)|Slow(Context Switch needed (Memory cache flushing needed, Trap needed and to achieve))
-|Disadv|If 1 thread blocks, whole process blocks. [See userspace, kernel Threads]|
-|===
+== link:https://code-with-amitk.github.io/Threads_Processes_IPC/#whyprocess[Thread(miniprocess) vs Process]
 
 == Thread Usecases
 * **1. Editing/Displaying/(Storing on cloud) Big word document at same time**
