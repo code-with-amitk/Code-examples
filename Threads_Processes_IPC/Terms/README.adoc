@@ -110,7 +110,7 @@ Alternate between two tasks, then you are working on both tasks concurrently, bu
 
 === Tasks Done before CS
 - **Suppose CS needed to be done from processA to processB**
-  - _a._ Save processA registers, Remove Physical to Virtual Map (in MMU), Flush TLB for processA.
+  - _a._ Save processA registers, Remove Physical to Virtual Map (in link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html#tlb[MMU]), Flush link:https://code-with-amitk.github.io/Motherboard/Memory/virtual_and_physical.html#tlb[TLB] for processA.
   - _b._ Load processB registers, Update Physical to Virtual Map (in MMU), Update TLB for processB.
 - **Context switch from ProcessB to processA:** perform operations a and b again.
   - _c._ Additionally, Flushing memory caches(L1,L2,L3), reloading memory caches
