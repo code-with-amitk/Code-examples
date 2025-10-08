@@ -106,7 +106,7 @@ Alternate between two tasks, then you are working on both tasks concurrently, bu
 == Context Switch
 - Means giving CPU from 1 process to other by scheduler.
 - Each process is given a time interval(called its quantum) during which it is allowed to run. If the process keeps on running after the quantum also, CPU is preempted(fetched) from process and given to another process. 
-- When the scheduler switches the CPU from executing process-1 to another process-2, the state of the current running process-1 is stored in its PCB. 
+- When the scheduler switches the CPU from executing process-1 to another process-2, the state of the current running process-1 is stored in its [Process Control Block](https://code-with-amitk.github.io/Motherboard/Memory/Processes.html#pcb). 
 
 === Tasks Done before CS
 - **Suppose CS needed to be done from processA to processB**
