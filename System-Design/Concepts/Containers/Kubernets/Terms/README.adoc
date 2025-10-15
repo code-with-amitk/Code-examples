@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 3
 
-== link:https://code-with-amitk.github.io/System_Design/Concepts/Containers/Kubernets/[Kubernets Resources and Objects]
+== link:http://127.0.0.1:6601/System_Design/Concepts/Kubernets/Kubernets_Objects.html[Kubernets Resources and Objects]
 * Kubernets Resource
 * kubernets Object
 ** ClusterRole, ConfigMap, Deployment, Job, RBAC, ServiceAccount, Services, Secrets, POD
