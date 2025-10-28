@@ -1,5 +1,5 @@
 :toc:
 :toclevels: 5
 
-== link:https://amitkumar50.github.io/Machine%20Learning/Code/Image%20Classification.html[Documentation on github.io]
+== link:https://code-with-amitk.github.io/Machine%20Learning/Code/Image%20Classification.html[Documentation on github.io]
 == link:Projects/Machine_Learning/Image_Classification_into_10_categories_0_through_9/image_classification.py[Code]
