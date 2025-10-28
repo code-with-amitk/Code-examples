@@ -4,6 +4,10 @@
 == Consensus
 Consensus is a process of agreement between distrusting nodes on a final state of data.
 
+== Consensus Algorithms
+=== link:https://code-with-amitk.github.io/System_Design/Concepts/Terms/index.html[1. Raft]
+=== link:https://code-with-amitk.github.io/System_Design/Concepts/Terms/index.html[2. Paxos]
+
 == Categories of Consensus
 === 1. Byzantine fault tolerance-based / voting
 when a certain number of messages are received, then an agreement is reached
