@@ -1,12 +1,24 @@
 :toc:
 :toclevels: 4
 
-== Hello World Example Steps
+== Steps
+=== Source file, CMakeLists file
 * Create main.cpp, CMakeLists.txt
+
+=== build directory
+* Create build directory and run (cmake ..) inside it
 ```
-mkdir build
-cd build
-cmake ..
-make
-./MyExecutable
+$ mkdir build
+$ cd build
+$ cmake ..
+```
+* Once compiled, it will create following files inside build
+```c
+$ ls
+cmake_install.cmake  Makefile  CMakeFiles  CMakeCache.txt
+```
+* Run make from build directory generate executable
+```
+$ make
+$ ./MyExecutable
 ```
