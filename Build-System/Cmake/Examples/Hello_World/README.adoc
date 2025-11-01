@@ -1,4 +1,12 @@
 :toc:
 :toclevels: 4
 
-== Hello World Example
+== Hello World Example Steps
+* Create main.cpp, CMakeLists.txt
+```
+mkdir build
+cd build
+cmake ..
+make
+./MyExecutable
+```
