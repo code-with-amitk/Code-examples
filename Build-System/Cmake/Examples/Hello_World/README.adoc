@@ -5,20 +5,18 @@
 === Source file, CMakeLists file
 * Create main.cpp, CMakeLists.txt
 
-=== build directory
-* Create build directory and run (cmake ..) inside it
 ```
 $ mkdir build
 $ cd build
-$ cmake ..
-```
-* Once compiled, it will create following files inside build
-```c
-$ ls
+build$ cmake ..
+build$ ls
 cmake_install.cmake  Makefile  CMakeFiles  CMakeCache.txt
-```
-* Run make from build directory generate executable
-```
-$ make
+
+build$ make
+[ 50%] Building CXX object CMakeFiles/MyExecutable.dir/main.cpp.o
+[100%] Linking CXX executable MyExecutable
+[100%] Built target MyExecutable
+build$ ls
+CMakeCache.txt  CMakeFiles  Makefile  MyExecutable  cmake_install.cmake
 $ ./MyExecutable
 ```
