@@ -5,6 +5,7 @@
 === Source file, CMakeLists file
 * Create main.cpp, CMakeLists.txt
 
+==== Option-1
 ```
 $ mkdir build
 $ cd build
@@ -19,4 +20,15 @@ build$ make
 build$ ls
 CMakeCache.txt  CMakeFiles  Makefile  MyExecutable  cmake_install.cmake
 $ ./MyExecutable
+```
+
+==== Option-2
+```
+$ cmake -B build            //Create build directory
+$ ls build/
+CMakeCache.txt  CMakeFiles  Makefile  cmake_install.cmake
+
+$ cmake --build build      //Create Executable
+$ ls build/
+CMakeCache.txt  CMakeFiles  Makefile  Tutorial  cmake_install.cmake
 ```
