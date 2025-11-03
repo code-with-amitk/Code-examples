@@ -2,7 +2,9 @@
 
 ## Examples
 ### [cmake commands](https://code-with-amitk.github.io/Build_Systems/index.html)
-
+- Create Executable: cmake_minimum_required, project, add_executable, target_sources
+- Build Library: add_library, target_sources
+      
 ### [2. Folder hierarchies](/Languages/Programming_Languages/c++/Design_Pattens/Behavioral/Mediator/Online_Auction/)
 ```c
  - driver
