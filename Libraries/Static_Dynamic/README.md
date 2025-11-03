@@ -49,12 +49,14 @@ Advantages  |                                                                  |
   total.c total.o
 # nm total.o                                //Step-2: list symbols from object files 
   0000000000000000 T _Z5totalii
-# ar rs libtotal.a total.o                  //Step-3: Create Archive  [OR ar -cvq]
+
+//Step-3: Create Archive( An archive is a single file holding a collection of other files)
+// r: Insert the files member... into archive (with replacement)
+// s: Add an index to the archive, or update it if it already exists.
+# ar rs libtotal.a total.o                  
   creating libtotal.a
 # ls
   libtotal.a  total.c  total.o
-r: Insert the files member... into archive (with replacement)
-s: Add an index to the archive, or update it if it already exists.
 ```
 - _2._ Link static library to code `libtotal.a`
 ```c
