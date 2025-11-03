@@ -15,7 +15,9 @@ Windows > kitware provides msi package
 ```
 
 <a name=cmds></a>
-## [cmake commands](Commands)
+## [cmake commands](https://code-with-amitk.github.io/Build_Systems/index.html)
+- Create Executable: cmake_minimum_required, project, add_executable, target_sources
+- Build Library: add_library, target_sources
 
 ## Examples
 <a name=simp></a>
