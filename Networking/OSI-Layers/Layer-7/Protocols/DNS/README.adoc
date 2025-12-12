@@ -133,6 +133,13 @@ Human readable information associated with domain name.
 spf1 ip4:72.51.34.34 ip4:70.33.254.29 -all--
 ```
 
+==== ALIAS RECORD
+* Works at the root (apex) domain (e.g., example.com). This domain(example.com) can point to another hostname(eg: best.com)
+* So if someone types example.com in browser, he will see contents of best.com
+```
+example.com ---points to--> best.com
+```
+
 ====  DNS Zone File
 Plain text file which stores resource records of particular domain. Zone file always start with a Start of Authority (SOA) record.
 ```c
