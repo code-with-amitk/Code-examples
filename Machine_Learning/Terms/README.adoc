@@ -32,14 +32,7 @@
 == CNTK
 This is Microsoft Cognitive Toolkit (CNTK) backend, plugged with keras.
 
-== Keras
-* Library(in Python) which provides functions/APIs to build deep-learning models. Different backends can be plugged with keras
-```c
-                  Keras
-     Tensorflow / Theano / CNTK
-      CUDA           BLAS,Eigen
-      GPU            CPU
-```
+== link:https://code-with-amitk.github.io/Machine%20Learning/Terms.html[Keras]
 
 == Layer
 - Neural network is created by cascading multiple layers.
