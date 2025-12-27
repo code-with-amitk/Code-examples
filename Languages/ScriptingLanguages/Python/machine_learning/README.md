@@ -7,5 +7,4 @@
 <a name=c1></a>
 ### Code
 1. [Creating Tensors](Code)
-2. [Supervised Learning using imdb Dataset](Code)
-positive samples.
+2. [50k reviews are in DB, Classify Review as +ve or -ve based on text of review](https://code-with-amitk.github.io/Machine%20Learning/index.html)
