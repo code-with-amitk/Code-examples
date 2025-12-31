@@ -45,10 +45,7 @@ Loss function = (Actual O/P) - (Expected output)
 
 ```
 
-== Tensorflow
-- This is ML Open source library(EXPOSING APIs) for numerical computation and large-scale ML supports CPUs & GPUs. 
-- Python Front-end APIs & backend written in c++ for high performance.
-
+== link:https://code-with-amitk.github.io/Libraries/[Tensorflow]
 
 == Underfitting
 - Does not produces good results on traning data.
