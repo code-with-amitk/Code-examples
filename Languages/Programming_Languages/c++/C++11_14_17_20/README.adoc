@@ -2,7 +2,7 @@
 :toclevels: 4
 
 == https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[C++11]
-=== https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[attributes]
+=== :cpp-url: https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[attributes]
 ```c
 carries_dependency
 depreacated
