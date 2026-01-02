@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-== [go routine(Threads)](https://code-with-amitk.github.io/Threads_Processes_IPC/index.html)
+== link:https://code-with-amitk.github.io/Threads_Processes_IPC/index.html[go routine(Threads)]
 - 1 Thread creation.
 - 10 threads creation(sync.waitgroup, defer function)
 
