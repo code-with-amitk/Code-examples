@@ -15,11 +15,11 @@ no_unique_address
 optimize_for_synchronized
 ```
 
-== https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/[C++20]
-=== Abbreviated Function Template
-=== Aggregate initialization
-=== 3 way comparison
-=== __has_cpp_attribute
-=== Concept, Constriant
-* Constriants Types (Conjunctions, Disjunctions, Atomic)
+== C++20 = https://code-with-amitk.github.io/Languages/Programming/C++/C++_11,14,17,20,23/
+- Abbreviated Function Template
+- Aggregate initialization
+- 3 way comparison
+- __has_cpp_attribute
+- Concept, Constriant
+- Constriants Types (Conjunctions, Disjunctions, Atomic)
 
