@@ -1,68 +1,11 @@
 :toc:
 :toclevels: 6
 
-== Channels
-* Used for communication and synchronization between goroutines
-* Channels are thread-safe
+== link:https://code-with-amitk.github.io/Threads_Processes_IPC/index.html[golang Channels]
+- What is Channel?
+- closing the channel
+- select (wait on many channels)
+- Types of Channels
 
-== Characteristics
-=== Typed
-* they can only transmit values of a specific data type
-
-=== Buffered or Unbuffered
-==== Unbuffered channel `make(chan int)` [Channel without size]
-* When you create a channel without specifying a buffer size (e.g., `make(chan int)`), it creates an unbuffered channel
-* Each send operation (ch <- value) will block until there is a corresponding receive operation (value := <-ch) ready to receive the value
-* block the sender until the receiver is ready to receive the value
-
-==== Buffered channels `make(chan int, bufferSize)` [sized channels]
-* When you create a channel with a buffer size
-* send operations (ch <- value) will only block if the buffer is full, Otherwise, the value is stored in the buffer, and the send operation proceeds immediately.
-* Receive operations (value := <-ch) from a buffered channel will only block if the buffer is empty. Otherwise, it retrieves a value from the buffer and proceeds immediately.
-* *Advantage:* Buffered channels allow goroutines to communicate asynchronously without needing both sender and receiver to be ready simultaneously.
-* *Use case:* Buffered channels are commonly used in scenarios where the producer and consumer operate at different speeds, such as in worker pools, pipelines,
-
-== Channel code
-```go
-package main
-
-import (
-"fmt"
-    "time"
-)
-
-// ch is Recv-only channel.
-// Channels of type(chan<-) are recieve only
-func producer(ch chan<- int) {
-    for i := 0; i < 5; i++ {
-        fmt.Println("Producing", i)
-      
-        // Send value to channel (will block until someone receives it)
-        ch <- i
-      
-        time.Sleep(time.Second) // Simulate some work
-    }
-    close(ch) // Close the channel after producing all values
-}
-
-func consumer(ch <-chan int) {
-    for num := range ch {
-        fmt.Println("Consuming", num)
-        time.Sleep(2 * time.Second) // Simulate some work
-    }
-}
-
-func main() {
-    // Create a channel.
-    // make() function is used to create slices, maps, and channels.
-    // Create unbuffered channel that can transmit integer values.
-    ch := make(chan int)
-
-    // Start producer and consumer goroutines=Threads
-    go producer(ch)
-    go consumer(ch)
-
-    // Wait for the goroutines to finish
-    time.Sleep(10 * time.Second) // Wait for 10 seconds to see the output
-}
-```
+    -- Buffered / Bounded
+    -- Unbounded / Unbuffered
