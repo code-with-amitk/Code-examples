@@ -52,10 +52,10 @@ image:Partitioning_by_hash_of_keys.PNG?raw=true[Partitioning_by_hash_of_keys]
 ** _1. Range based key search property is lost._ ie Advantage of [Partitioning by Key range](#kr) is lost.
 ** - _2. Hotspots still exists:_ In extreme conditions, where keys differ by millisec, same hash gets generated and all load goes to same shard.
 
-=== 3. link:/System-Design/Concepts/Databases/Indexing[By reverse/secondary indexes]
+=== 3. link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/Terms/Indexing/[By reverse/secondary indexes]
 
 ==== 3.1 Document Based / Per Node Indexing
-- link:/System-Design/Concepts/Databases/Indexing[keyword to key mapping] is created.
+- link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/Terms/Indexing/[keyword to key mapping] is created.
 - if someone want to search keyword, all partitions need to be queried.
 
 ==== 3.2 Term Based / Global Indexing
