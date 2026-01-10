@@ -3,8 +3,6 @@
   - [SQS vs Kafka](#vs1)
   - [Broker vs Database](#vs2)
 - [Kafka](#kafka)
-- Examples
-  - [Apache Kafka](Apache_Kafka)
 - [ESB(Enterprise Service Bus](#esb)
 
 ## MOM / Broker
