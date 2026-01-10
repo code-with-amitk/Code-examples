@@ -2,8 +2,7 @@
 - Comparison
   - [SQS vs Kafka](#vs1)
   - [Broker vs Database](#vs2)
-- **Terms**
-  - [1. Message broker](#mb)
+- [Kafka](#kafka)
 - Examples
   - [Apache Kafka](Apache_Kafka)
 - [ESB(Enterprise Service Bus](#esb)
@@ -35,10 +34,12 @@ Consumer1   Consumer2   Consumer3   //microservice
 |Search|Supports different ways(eg: Secondary index)|Provides methods to subscribe|
 |Writing|Data can be overwritten|Append only|
 
-## Terms
-<a name=mb></a>
-#### Broker
-Service that gathers and routes messages from senders to the right receivers.
+<a name=Kafka></a>
+## [Kafka](https://code-with-amitk.github.io/System_Design/Concepts/index.html)
+* Message delivery methods
+* Architecture
+* Terms: Cluster, Consumer, Consumer Group, Broker, Topics & Messages, Stream
+* Replication & Fault Tolerance: Leader, Replica, High-water mark
 
 <a name=esb></a>
 ## ESB / Enterprise Service Bus
