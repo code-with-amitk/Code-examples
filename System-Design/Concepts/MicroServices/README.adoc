@@ -2,15 +2,15 @@
 :toclevels: 5
 
 
-== link:https://code-with-amitk.github.io/System_Design/Concepts/Microservices/[Microservice?]
+== link:https://code-with-amitk.github.io/System_Design/Concepts/[Microservice?]
 * Advantages, Disadvantages
 * Microservice Deign patters (CQRS, Saga, API Gateway, Service Discovery Pattern, Circuit Breaker Pattern, Externalized Configuration, Event-Driven Architecture)
 
-== link:https://code-with-amitk.github.io/System_Design/Concepts/Microservices/[Monolith?]
+== link:https://code-with-amitk.github.io/System_Design/Concepts/[Monolith?]
 * Advantages, Disadvantages
 * Situations where monolithic is suitable
 
-== link:https://code-with-amitk.github.io/System_Design/Concepts/Microservices/[Microservices vs Deployment Monolith]
+== link:https://code-with-amitk.github.io/System_Design/Concepts/[Microservices vs Deployment Monolith]
   
 == Migrating from Depolyment Monolith to microserves
 === Reasons for Migrations
