@@ -4,7 +4,7 @@
 
 == link:https://code-with-amitk.github.io/System_Design/Concepts/[Microservice?]
 * Advantages, Disadvantages
-* Microservice Deign patters (CQRS, Saga, API Gateway, Service Discovery Pattern, Circuit Breaker Pattern, Externalized Configuration, Event-Driven Architecture)
+* Microservice Deign patters (CQRS, Saga, API Gateway, Service Discovery Pattern, https://code-with-amitk.github.io/System_Design/Concepts/[Circuit Breaker Pattern], Externalized Configuration, Event-Driven Architecture)
 
 == link:https://code-with-amitk.github.io/System_Design/Concepts/[Monolith?]
 * Advantages, Disadvantages
