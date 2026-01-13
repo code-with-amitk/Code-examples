@@ -5,7 +5,7 @@
 System is doing what's it's supposed to do.
 
 == ACID
-<<atomicity, Atomicity>>, <<con, Consistency>>, link:/System-Design/Concepts/Databases/Terms/Isolation[Isolation], <<dur, Durability>>
+<<atomicity, Atomicity>>, <<con, Consistency>>, link:System-Design/Concepts/Databases/Terms/Isolation#isolation[Isolation], <<dur, Durability>>
 
 == Antisnubbing 
 - snub means ignoring someone or something. 
