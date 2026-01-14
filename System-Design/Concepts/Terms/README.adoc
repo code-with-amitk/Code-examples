@@ -13,13 +13,7 @@ System is doing what's it's supposed to do.
 - *Solution:* Finds a better peer than any of the current ones.
 
 [[atomicity]]
-== Atomicity (better word should be Abortibilty)
-- Atomic means something that cannot be broken down into smaller parts.
-- link:/Threads_Processes_IPC/Terms/README.md#at[Atomic in multi-threaded program] is different from Atomic in Distributed Systems.
-- In Distributed systems Atomic means
-  - When Application is writing to DB and some fault occurs(process crash, LAN cable loose, Disk full) then application will not see DB in inconsistent state.
-- **How to achieve Atomicity?**
-- Using link:Transaction[Transaction], ie when some transaction fails then its Aborted and DB comes in old state.
+== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Atomicity (better word should be Abortibilty)]
 
 [[ava]]
 == Availability  (System is Available)
@@ -75,16 +69,7 @@ Basically Available, Soft state, and Eventual consistency
 ** 3. AP: nodes remain online even if they can't communicate with each other
 
 [[con]]
-== Consistency (System is consistent)
-```c
-node-1  ------\
-              client
-node-2  -----/
-```
-* Client will get(same, latest data) to whatever node they connect to in system.
-* OR Every read operation will recieve most recent Write (or error).
-* *Consistency Problem?* With mutiple databases doing sync(link:/System-Design/Concepts/Databases/Database_Scaling[master slave] etc), client should be returned accurate and most recent information.
-* *Solution:* Consensus Algorithm
+== link:link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
 
 == Consistency patterns
 |===
