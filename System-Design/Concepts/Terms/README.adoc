@@ -85,10 +85,7 @@ Basically Available, Soft state, and Eventual consistency
 * *End Game / End Mode:* To download all end fragments, Bittorrent client sends requests to all of its peers. As soon client gets the ending fragment it sends cancel to peers.
 
 [[dur]]
-== Durability
-* Once link:Transaction[Transaction] has been committed successfully(ie data is written to DB), then that data will not be forgotten, even in case of hardware fault/ database crashes
-* *How to achieve Durability?*
-** On Single node system using SSD or Hard-disks. On multinode using [Replication](/System-Design/Concepts/Databases/Database_Scaling)
+== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Durability]
 
 == Fault Tolerance
 * In cluster of 100 machines, when some machines/disks fail, if system can still respond to client's queries then system is fault tolerant.
