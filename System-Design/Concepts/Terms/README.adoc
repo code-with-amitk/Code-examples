@@ -69,7 +69,7 @@ Basically Available, Soft state, and Eventual consistency
 ** 3. AP: nodes remain online even if they can't communicate with each other
 
 [[con]]
-== link:link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
+== link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
 
 == Consistency patterns
 |===
