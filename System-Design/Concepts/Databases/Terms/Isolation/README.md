@@ -1,18 +1,19 @@
 - **Terms**
   - [Phenomena](#p)
-    - [Dirty Write](#dw)
-    - [Dirty Read](#dr)
-    - [Non repeatable read](#nrr)
+    - [Dirty Write](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
+    - [Dirty Read](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
+    - [Non repeatable read](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
     - [Phantom read](#pr)
-    - [Read Skew](#rs)
+    - [Read Skew](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
     - [Write Skew](#ws)
     - [Lost Update](#lu)
 - **Isolation**
-  - [Isolation Levels](#isol)
+  - [Isolation Levels](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
     - [1. Read uncommitted](#ruc)
-    - [2. Read Committed](#rc)
-    - [3. Repetable Reads](#rr)
-    - [4. Serializable](#ser)
+    - [2. Snapshot Isolation](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
+    - [3. Read Committed](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
+    - [4. Repetable Reads](#rr)
+    - [5. Serializable](#ser)
     - [Default Isolation Levels in Postgres, Oracle,](#dil)
 
 # Terms
@@ -26,37 +27,6 @@
   - Phantom read
   - lost update
 
-<a name=dw></a>
-### Dirty Write
-- **Means** after [1 transaction](/System-Design/Concepts/Terms/Transaction) into DB, data is not consistent.
-- **When happens?** When 2 concurrent transactions are allowed to modify the same row at the same time, ie 2nd transaction can overwrite 1st transaction's pending change.
-Example: post is a table
-<img src=images/dirty_write.JPG width=500/>
-- **How to avoid Dirty Write?** Writing to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
-
-
-
-<a name=dr></a>
-### Dirty Read
-- A dirty read occurs, a transaction reads uncommitted changes of some other ongoing transaction.
-<img src=images/dirty_read1.JPG width=500/>
-
-#### How to avoid Dirty Read?
-- _1._ Reading to DB only when ongoing [transaction](/System-Design/Concepts/Terms/Transaction) has been committed or aborted.
-- **2. Snapshot Isolation/Keeping old value until new is committed:** For every object that is written:
-  - Writer takes a write lock.
-  - DB remembers both(old committed value and new ongoing transaction value)
-  - While transaction is ongoing, any other transactions that tries to read the object are given the old value.
-  - Only when new value is committed, a:ll new transactions switch over to reading the new value.
-- **3. MVCC(Multiversion Concurrency Control)**
-  - Instead of keeping 2 copies(as in [Snapshot isolation](#si), MVCC keeps multiple copies(seperate for each query)
-
-<a name=nrr></a>
-### Non repeatable read
-- When 1st transaction is updating a DB row(Still not committed whole transaction) and 2nd transaction comes in (reads same DB row) and makes business decision.
-- **How to avoid?** Using shared lock
-<img src=images/non_repeatable_read.JPG width=500/>
-
 <a name=pr></a>
 ### Phantom read
 - Associated with multiple Table(s) or rows from table.
@@ -64,17 +34,6 @@ Example: post is a table
 - **How to avoid?** Using range lock
 <img src=images/phantom_read.JPG width=500/>
 
-<a name=rs></a>
-### Read Skew
-- Suppose person has 2 bank accounts(DB Tables) in same bank(Database) and has 500 in each account.
-- He plans to transfer 100 from Account-1(Table-1) to Account-2(table-2), if person reads account balance(when data is not committed), He will see Account-1(400), Account-2(500)
-```c
-            Account-1                     Account-2
-balance      500                            500
-              |----100--->
-                    Data not committed
-balance      400                            500
-```
 
 <a name=ws></a>
 ### Write Skew
@@ -88,14 +47,6 @@ balance      400                            500
 ### Lost update
 - This happens when a transaction reads a Table row while another transaction, modifies it prior to the first transaction to finish.
 <img src=images/lost_update.JPG width=500/>
-
-# Isolation
-- Concurrently executing [transactions](/System-Design/Concepts/Terms/Transaction) are isolated from each other ie they cannot step on each other.
-- **How to achieve Complete Isolation:**
-  - Complete isolation(Correctness of data) commited by transaction can only be achieved using Locking, ie 1 transaction locks the db row, commits and then another transaction is allowed to do the change.
-  - **Disadvantage of locking:** 0 Concurrency, less Scalability.
-  - **Solution:** SQL-92 introduced 4 Isolation levels(ie isolation is provided at multiple levels in transaction). 
-    - DB Client can choose the Isolation level based on desired concurrency and data correctness.
 
 <a name=isol></a>
 ## 4 Isolation levels in Databases
