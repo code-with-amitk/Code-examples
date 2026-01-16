@@ -11,7 +11,7 @@
   - [3. Predicate Lock](#s3)
   - [4. Index range locks / next key lock](#s4)
 - **Terms**
-  - [Write Skew / Phantom](#ws)
+  - [Write Skew / Phantom](https://code-with-amitk.github.io/System_Design/Concepts/Databases/)
 
 # Transaction
 ```c
@@ -82,33 +82,3 @@ For objects that do not yet exist in the database, but which might be added in t
 - Suppose a meeting room booking example has [reverse index](/System-Design/Concepts/Databases/Indexing/) on room number.
 - Shared Lock is given to 3 transactions which want to book a room number, When 4th transaction comes it need to wait.
 
-
-## Terms
-<a name=ws></a>
-### Write Skew / Phantom
-- When 2 transactions update different objects after reading common object causing Race condition.
-```c
-Example:
-There is a hospital where atleast 1 doctor is required to be on shift(always) in hospital.
-Doctors can giveup their shifts if they are Sick, provided atleast 1 of their collegue stays in hospital.
-- Alice & Bob are 2 doctors(on particular shift) feeling unwell and decide to request leave.
-- Both click "Apply leave" button at same time.
-
-Doctors
-  Alice true
-  Bob   true
-  
-    Alice                                     Bob
-  select * from doctors                     select * from doctors
-  where on_call=true and id=12              where on_call=true and id=12
-  > currently oncall=2                      > currently oncall=2
-  
-  if(currently oncall>2)                    if(currently oncall>2)
-  update doctors                            update doctors
-  set on_call=false                         set on_call=false
-  where name=Alice and id=12                where name=Bob and id=12
-
-Doctors
-  Alice false
-  Bob   false
-```
