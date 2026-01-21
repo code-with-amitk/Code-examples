@@ -1,7 +1,10 @@
 :toc:
 :toclevels: 6
 
-== Daemon
+== Requirement
+- Write a Cross platform golang daemon to find CPU,GPU usage and send to backend
+
+=== Golang Daemon
 * main should relaunch itself in background once main exits
 * daemon process should read cpu, gpu usage and log the same in 
 ```c
