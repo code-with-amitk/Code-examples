@@ -11,3 +11,8 @@
 * link:https://code-with-amitk.github.io/Data_Structures/[Hash Table vs Self Balancing BT]
 
 === link:https://code-with-amitk.github.io/Data_Structures/[Direct Access Table(DAT)]
+
+=== Code
+* link:hashtableExample.c[1. Student Hash table]
+* link:Design_HT.adoc[2. Leetcode Question. 706. Design HashMap]
+
