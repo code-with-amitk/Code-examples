@@ -1,0 +1,175 @@
+== link:https://leetcode.com/problems/design-hashmap/description/?envType=daily-question&envId=2023-10-04[Leetcode Question. 706. Design HashMap]
+Design a HashMap without using any built-in hash table libraries.
+
+Implement the MyHashMap class:
+
+MyHashMap() initializes the object with an empty map.
+void put(int key, int value) inserts a (key, value) pair into the HashMap. If the key already exists in the map, update the corresponding value.
+int get(int key) returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key.
+void remove(key) removes the key and its corresponding value if the map contains the mapping for the key.
+```c
+Example 1:
+
+Input
+["MyHashMap", "put", "put", "get", "get", "put", "get", "remove", "get"]
+[[], [1, 1], [2, 2], [1], [3], [2, 1], [2], [2], [2]]
+Output
+[null, null, null, 1, -1, null, 1, null, -1]
+
+Explanation
+MyHashMap myHashMap = new MyHashMap();
+myHashMap.put(1, 1); // The map is now [[1,1]]
+myHashMap.put(2, 2); // The map is now [[1,1], [2,2]]
+myHashMap.get(1);    // return 1, The map is now [[1,1], [2,2]]
+myHashMap.get(3);    // return -1 (i.e., not found), The map is now [[1,1], [2,2]]
+myHashMap.put(2, 1); // The map is now [[1,1], [2,1]] (i.e., update the existing value)
+myHashMap.get(2);    // return 1, The map is now [[1,1], [2,1]]
+myHashMap.remove(2); // remove the mapping for 2, The map is now [[1,1]]
+myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
+```
+
+=== <<dat, Approach-1. Direct Access Table>>
+* Create a array of size=100001. Store hash_table[key] = value
+
+==== Code
+===== CPP
+```cpp
+class MyHashMap {
+    array<int, 1000001> ar1;
+public:
+    MyHashMap() {
+        ar1.fill(-1);
+    }    
+    void put(int key, int value) {
+        ar1[key] = value;
+    }
+    int get(int key) {
+        return ar1[key];
+    }
+    void remove(int key) {
+        ar1[key] = -1;
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
+```
+
+=== Approach-2. Resizable HashTable. O(1)
+==== Logic
+1. Hash table will be vector<vector<pair<int,int>>. This will store same keyed value in chain format.
+```c
+|                                   |                                    |
+| {<key=1,val=2>, <key=100,val=10>} | {<key=13,val=3>, <key=130,val=8>}  |
+|                                   |                                    |
+      key=hash_from_fun
+```
+2. Start with Hash table size=19997
+3. Hash Function. mult and size are prime numbers in hope that we get unique indexes for unique keys most of times.
+```c
+hash = index_in_array = (key * mult) % size;
+```
+4. put(key, value)
+```c
+a. Find hash of key, ie index in hasharray
+b. traverse in internal vector, to find we have matching key. once key is found insert into value, if key is not found insert new entry into hash array
+```
+5. count number of keys hasharray, if keys > present size of hash array. resize the hasharray and REHASH all existing keys
+
+==== Complexity
+* *Time:* 
+** Search: number of hash collisions
+** Insert: number of hash collisions
+* *Space:* number of unique keys
+
+==== Code
+===== CPP
+```cpp
+class MyHashMap {
+    int numKeys;
+                        //key, value
+    using pII = std::pair<int, int>;
+    using vP = std::vector<pII>;    //vector<pair>
+    using vvP = std::vector<vP>;    //vector<vector<pair>>
+public:
+
+    // Taking size, mult as Big prime numbers
+    // in hope we will have even distribution
+    // of entries in hashmap array
+    const static int size = 19997;
+    const static int mult = 12582917;
+
+    vvP data;
+
+    MyHashMap() :numKeys(0) {
+        // Start with small hashmap, resize
+        // as more keys come in
+        data.resize(size);
+    }
+
+    int hash(int key) {
+        return (int)((long)key * mult % size);
+    }
+
+    void put(int key, int val) {
+        remove(key);
+        int index = hash(key);
+        data[index].emplace_back(key, val);
+
+        // Keep track of keys in hashmap array
+        numKeys++;
+
+        // Check if it's time to resize the table
+        if (numKeys >= data.size() / 2) {
+            rehash(data.size() * 2);
+        }
+    }
+
+    int get(int key) {
+        int index = hash(key);
+        for (const auto& entry : data[index]) {
+            if (entry.first == key)
+                return entry.second;
+        }
+        return -1;
+    }
+
+    void remove(int key) {
+        int index = hash(key);
+        auto& bucket = data[index];
+        for (auto it = bucket.begin(); it != bucket.end(); ++it) {
+            if (it->first == key) {
+                bucket.erase(it);
+                numKeys--;
+                return;
+            }
+        }
+    }
+
+    // Resize the hash table and rehash existing elements
+    void rehash(size_t newTableSize) {
+        vvP newData(newTableSize);
+        for (const auto& bucket : data) {
+            for (const auto& entry : bucket) {
+                size_t newIndex = entry.first % newTableSize;
+                newData[newIndex].emplace_back(entry);
+            }
+        }
+        data.swap(newData);
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
+```
+
