@@ -7,7 +7,9 @@
 * Hash Collision
 ** Solutions: Open Addressing(Types: Linear/Sequential probing, Quadratic Probing, Double Hashing), Seperate Chaining
 * Rehashing
-* Implementations(2-left hashing, d-left hashing)
+* Hash table Implementations
+** 2-left hashing (Cockoo Hashing)
+** d-left hashing
 * link:https://code-with-amitk.github.io/Data_Structures/[Hash Table vs Self Balancing BT]
 
 === link:https://code-with-amitk.github.io/Data_Structures/[Direct Access Table(DAT)]
