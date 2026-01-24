@@ -9,6 +9,8 @@
 * Rehashing
 * Implementations(2-left hashing, d-left hashing)
 
+=== link:https://code-with-amitk.github.io/Data_Structures/[Direct Access Table(DAT)]
+
 == HT vs Self Balanced BT
 ```c
                                                          Hash-Tables            |        Self-Balancing BT
