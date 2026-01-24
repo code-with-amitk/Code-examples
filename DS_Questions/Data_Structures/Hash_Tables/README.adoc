@@ -4,7 +4,9 @@
 === link:https://code-with-amitk.github.io/Data_Structures/[Hash Table]
 * What is Hash Table
 * Internal implementation of Hash Table
-* Hash Collision(Solutions: Open Addressing, ), Rehashing
+* Hash Collision
+  * Solutions: Open Addressing(Types: Linear/Sequential probing, Quadratic Probing, Double Hashing), Seperate Chaining
+* Rehashing
 * Implementations(2-left hashing, d-left hashing)
 
 == HT vs Self Balanced BT
@@ -18,74 +20,3 @@ ADVANTAGES of Tree over HT       |                                              
                                                                                 | 2. lowest, biggest element finding: easy
                                                                                 | 3. No need to guess size of input data.
 ```
-
-
-=== Solution-1: Seperate Chaining
-* Each cell of HT point to a **DOUBLY LINKED LIST** of records that have same hash function value. This requires additional memory outside the table.
-* *Complexities:*
-** Insert(x): O(1). Insert at head of LL
-** Search(x): O(n). Need to search complete list
-** Delete(x): O(1). Assumed we are at element in chain, we delete x. copy prev to next pointer. In singly LL we need O(n) time to search prev node.
-* *Advantages:* Simple implementation, Space will never exhaust, Less sensitive to hash function
-* *Disadvantages:*
-** Once LL/chain grows long, performance will degrade search time=O(n)
-** Space wastage, some parts of hash table may never be used
-** Devotes huge amount of memory to pointers. This is space that could be used to make the table larger
-* *Load Factor α = n/m* where m=slots, n=elements
-
-image::https://i.ibb.co/XWZfxwX/chain.png?raw=true[Seperate Chaining]
-
-```c
-  Example:  Hash Function = xmod7, a[]={50, 700, 76, 85, 46, 92, 73, 10}        
-  50mod7=1, 700mod7=0,  76mod7=6,  85mod7=1,    46mod7=1
-                     46
-                     |
-                    85
-                     |
-        |  700  |   50     |        |        |        |        |    76    |        Hash Table
-             0         1          2      3       4        5       6
-```
-=== Solution-2: Open Addressing  
-All elements are stored in HT itself. Once same hash is derived, insert element in hash table itself no seperate chains.
-
-image::https://i.ibb.co/b7Qnkh2/oa.png?raw=true[Open Addressing]
-
-==== Types of Open addressing
-* *1. Linear/Sequential probing*
-** *INSERTION*: Once same hash is derived, inserts the new item in the next open spot in the table ie next to already existent element with same hash. If the table is not too full, the contiguous runs of items should be fairly small, hence this location should be only a few slots from its intended position
-** *DELETION:* Ugly here removing one element might break a chain of insertions, making some elements inaccessible. We need to reinsert all the items into new holes.
-  
-* *2. Quadratic Probing*
-look for i<sup>2</sup>th slot in i'th iteration. New hash function = (xmod7 + i2)%hash_table_size
-```c
-  h0 = (xmod7 + 0*0)%hash_table_size
-  h1 = (xmod7 + 1*1)%hash_table_size
-  h1 = (xmod7 + 2*2)%hash_table_size
-  Example: Hash Function = xmod11  a[]=7,36,18,62.   7mod11=7,  36mod11=3,  18mod11=7,  62mod11=7
-    Insert: Collision at insertion of 18. Since collision had occurred, we calculate h1 = (18mod11 + 1*1 = 8)
-    Collision at insertion of 62. Since collision had occurred, we calculate h1 = (18mod11 + 1*1 = 8) which is occupied.  We calculate h2= (62mod11+ 2*2 = 11). This goes to index 0. And we insert.
-    |   62   |        |        |   36  |        |        |        |    7     |   18     |        |        |
-        0        1       2       3        4          5       6         7          8        9        10
-```
-
-* *3. DOUBLE HASHING:* We use double hash function to re-calculate the hash if collision occurs.  In case of collision: hash1(x) = (hash1(x) + i*hash2(x))%hash_table_size
-** Comparison
-```
-                          Advantages                                     Disadvantages
-Linear Probing      Easy to implement, best cache performance        Suffers from clustering
-Quadratic Probing   Avg cache performance                            Small clustering occurs
-Double hashing      worst cache performance                          No clustering occurs, More computation time is required.
-```
-
-== Rehashing
-Let's consider `unordered_map<int,string>` storing unique keys. At start of program sizeof hash table=3
-```c
-  Key | Value
-  ----------
-  01  | amit
-  02  | never
-  03  | give
-```
-* Now, (4, up) need to be stored, but hash table has no space so size of hash table is increased to 6. 
-* (old Hash function = %3) we can only goto index number=2. But we want to reach 5. Hence Hash function is changed (old Hash function = %6). So hash is again calculated for existing values.
-
