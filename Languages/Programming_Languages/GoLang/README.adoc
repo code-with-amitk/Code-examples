@@ -1,27 +1,32 @@
 :toc:
 :toclevels: 6
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Collections]
+== link:https://code-with-amitk.github.io/Languages/Programming/Go[Go on html]
+=== Collections
 * Arrays, Channels, Slices = vector<int>, Queue(using slice), Stack(using slice), struct = class, Linked List
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Functions]
+=== Functions
 * Multiple Returns, Naked Return
 * Function as values
 * Closure = Lambda Function
 * range()
 
+=== Features
+* Struct Embedding = Composition in C++
+* Interface
+
 === Loops
 * for, while
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/Modules/[Package/Modules in Go]
+=== Package/Modules in Go
 * import statement
 * error package
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Pointers, Singly Linked List]
+=== Pointers, Singly Linked List
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Statements]
+=== Statements
 * defer, if, switch
 
-=== link:https://code-with-amitk.github.io/Languages/Programming/Go/index.html[Variables]
+=== Variables
 * Declaration & Initialization, Built in variables
 
