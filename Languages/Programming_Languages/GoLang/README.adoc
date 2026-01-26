@@ -30,7 +30,7 @@
 * Basic: int, float64, bool, string
 * Aggregate: Arrays, struct
 * Reference: Pointers, slices, maps, channels, functions
-* Interface
+* Interface: Interface Pollution Problem
 
 === Variables
 * Declaration & Initialization, Built in variables
