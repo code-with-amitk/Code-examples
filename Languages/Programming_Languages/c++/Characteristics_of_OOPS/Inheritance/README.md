@@ -150,33 +150,9 @@ int main(){
 <img src=Specialization1.png width=300/>
 
 <a name=as></a>
-### 3. Association
-Means any kind of relationship between 2 objects.
-<a name=ag></a>
+### [3. Association](https://code-with-amitk.github.io/Languages/Programming/C++/)
 #### 3.1 Aggregation
-Contained Object can exist without container Object. Owner-ship is present.
-```cpp
-class A{
-    int a;
-};
-
-class B{
-    A *ptr;
-};
-```
-
-<a name=co></a>
 #### 3.2 Composition
-If container Object is deleted, contained object will also deleted.
-```cpp
-class A{
-  int a;
-};
-
-class B{
-       A  a;    //Composition
-};
-```
 
 <a name=fo></a>
 ### Function Overriding
