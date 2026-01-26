@@ -13,7 +13,6 @@
 
 === Features
 * Struct Embedding = Composition in C++
-* Interface
 
 === Loops
 * for, while
@@ -26,6 +25,12 @@
 
 === Statements
 * defer, if, switch
+
+=== Types
+* Basic: int, float64, bool, string
+* Aggregate: Arrays, struct
+* Reference: Pointers, slices, maps, channels, functions
+* Interface
 
 === Variables
 * Declaration & Initialization, Built in variables
