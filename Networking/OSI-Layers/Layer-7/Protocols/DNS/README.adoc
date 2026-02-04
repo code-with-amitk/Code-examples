@@ -112,8 +112,8 @@ Type Name Priority Content                 TTL
 CAA	  @	    0	      0 issue "amazon.com"	 300
 ```
 
-==== CNAME RECORD
-Stores Alternate name(alias) of domain. Example
+==== CNAME(Canonical Name) RECORD
+Stores Alternate name(alias) of domain.
 ```c
 test.com 86400 IN CNAME test1.com     //test.com and test1.com both belongs to same host. 
 # host    -v    -t  A ca.example.com
