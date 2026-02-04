@@ -75,15 +75,18 @@ Selling a domain to interested party at much higher price.
 - RECURSIVE DNS SERVER? Recursive means referring to itself. This DNS server caches the DNS records and sends DNS query further if record is not found.
 - AUTHORITATIVE DNS SERVER? This server holds information about domain(eg: google.com) and delivers it to internet.
 
-=== Resource Records / RR
-- Data/Information about particular domain. For single host most common resource record is IP Address. 
-- Format:
+====  DNS Zone File
+Plain text file which stores resource records of particular domain. Zone file always start with a Start of Authority (SOA) record.
 ```c
-DOMAINNAME    TIMETOLIVE(sec)    CLASS(IN:for internet)    TYPE_OF_RR    VALUE
-
-DOMAINNAME: Domain to which this RR applies. Each domain can have RRs of multiple domains. This filed is primary search key for search.
-TTL: How stable RR is. Eg: 86400(1 day)
-VALUE: Value of RR can be Number, domain name or string.
+; Authoritative data for test.com
+    test.com.     86400    IN    SOA        star boss (9527,7200,7200,241920,86400)
+    star                   IN    A          130.37.56.201       //IP Address of star.test.com is <>
+    flits         86400    IN    A          130.37.16.112       //flits.test.com has IP address <>
+    test.com.     86400    IN    MX         1 rambo                //Email should be 1st sent to rambo@test.com
+    test.com.     86400    IN    MX         2 sambo                //if rambo@test.com fails sambo should be tried as 2nd choice
+    test.com.     86400    IN    NS         star
+    www           86400    IN    CNAME      star.cs.vu.nl        //www is aliased to star.cs.vu.nl
+10.30.20.10.in-addr.arpa.  IN    PTR        host.domain.com
 ```
 
 ==== A Record
@@ -93,6 +96,21 @@ VALUE: Value of RR can be Number, domain name or string.
 ```
 ==== AAAA RECORD
 128bit-IPv6 to hostname map.  (google.com, 2404:6800:4003:c00::65)
+
+==== ALIAS RECORD
+* Works at the root (apex) domain (e.g., example.com). This domain(example.com) can point to another hostname(eg: best.com)
+* So if someone types example.com in browser, he will see contents of best.com
+```
+example.com ---points to--> best.com
+```
+
+==== CAA(Certificate Authority Authorization) Record
+- Domain owners specify which Certificate Authorities (CAs) are allowed to issue SSL/TLS certificates for their domain
+- If no CAA record exists, any CA can issue a certificate; but if a CAA record is present, only the CAs listed within it are permitted
+```
+Type Name Priority Content                 TTL
+CAA	  @	    0	      0 issue "amazon.com"	 300
+```
 
 ==== CNAME RECORD
 Stores Alternate name(alias) of domain. Example
@@ -109,6 +127,16 @@ Defines Name server for domain or subdomain.
       
 ==== PTR RECORD(Value 12) //For Reverse Lookup
 We need to create PTR record for each IP Address. This Stores hostname corresponding to reverse-dns-name.
+
+=== Resource Records / RR
+- Data/Information about particular domain. For single host most common resource record is IP Address. 
+```c
+DOMAINNAME    TIMETOLIVE(sec)    CLASS(IN:for internet)    TYPE_OF_RR    VALUE
+
+DOMAINNAME: Domain to which this RR applies. Each domain can have RRs of multiple domains. This filed is primary search key for search.
+TTL: How stable RR is. Eg: 86400(1 day)
+VALUE: Value of RR can be Number, domain name or string.
+```
 
 ==== SOA(Start of Authority) (value 6)
 Provides name of primary source of information about name server’s zone. Eg(Email of admin etc).    
@@ -131,25 +159,4 @@ dig SRV _ldap._tcp.lab.example.net;
 Human readable information associated with domain name.
 ```c
 spf1 ip4:72.51.34.34 ip4:70.33.254.29 -all--
-```
-
-==== ALIAS RECORD
-* Works at the root (apex) domain (e.g., example.com). This domain(example.com) can point to another hostname(eg: best.com)
-* So if someone types example.com in browser, he will see contents of best.com
-```
-example.com ---points to--> best.com
-```
-
-====  DNS Zone File
-Plain text file which stores resource records of particular domain. Zone file always start with a Start of Authority (SOA) record.
-```c
-; Authoritative data for test.com
-    test.com.     86400    IN    SOA        star boss (9527,7200,7200,241920,86400)
-    star                   IN    A          130.37.56.201       //IP Address of star.test.com is <>
-    flits         86400    IN    A          130.37.16.112       //flits.test.com has IP address <>
-    test.com.     86400    IN    MX         1 rambo                //Email should be 1st sent to rambo@test.com
-    test.com.     86400    IN    MX         2 sambo                //if rambo@test.com fails sambo should be tried as 2nd choice
-    test.com.     86400    IN    NS         star
-    www           86400    IN    CNAME      star.cs.vu.nl        //www is aliased to star.cs.vu.nl
-10.30.20.10.in-addr.arpa.  IN    PTR        host.domain.com
 ```
