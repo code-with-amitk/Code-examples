@@ -1,4 +1,4 @@
 :toc:
 :toclevels: 6
   
-== link:https://code-with-amitk.github.io/Networking/OSI-Layers/[DNS / Domain Name Service / Port 53]c
+== link:https://code-with-amitk.github.io/Networking/OSI-Layers/[DNS / Domain Name Service / Port 53]
