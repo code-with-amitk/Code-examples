@@ -189,7 +189,27 @@ Move from [staging area](#add) to git repo
 
 ==== delete
 ```c
-$ git branch -d <branch-name>
+      local-fork    <-------- upstream
+        lfork                  |-main
+        |-main
+        |-branch1
+Laptop
+lfork
+ |-main
+ |-branch1
+
+// Delete on Laptop
+$ git branch -d branch1
+
+// Delete on local fork(github)
+$ git push origin -d branch2
+
+      local-fork    <-------- upstream
+        lfork                  |-main
+        |-main
+Laptop
+lfork
+ |-main
 ```
 
 ==== diff
