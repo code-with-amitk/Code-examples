@@ -160,6 +160,7 @@ Node selects k neighbours randomly, sends key-100(data to searched) to them, aga
 
 == Reliable
 - **Meaning?** System to continue to work correctly, even when things go wrong.(Application crash, node(s) goes down under load)
+
 === How to make system Reliable?
 * link:/System-Design/Concepts/Databases/Database_Scaling/1.Replication/[1. Prevent node failures: Replication]
 * *2.* Hard Disk Failure: RAID configuration
