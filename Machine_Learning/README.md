@@ -1,5 +1,9 @@
 - [Types of ML. Supervised Learning, Unsupervised Learning, Semisupervised Learning, Supervised Learning](Types)
 - [Terms](https://code-with-amitk.github.io/Machine%20Learning/)
   - AI vs ML, Bias, CNTK, Keras, overfitting, scalar, Tensors, Theano, vector, underfitting, variance
-- [LangChain](https://code-with-amitk.github.io/Machine%20Learning/LangChain/)
-  - Messages, LangChain Messages 
+- [HTML Site](https://code-with-amitk.github.io/Machine%20Learning)
+  - Langchain: Messages, LangChain Messages
+  - MCP(Model Context Protocol): Message Exchange, Modes of Operation, MCP vs HTTP, Common MCP Request Examples
+  - RAG (Retrieval-Augmented Generation)
+    - vector db, embedding models, RAG Pipeline code, flow
+  -  
