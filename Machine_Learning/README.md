@@ -1,8 +1,26 @@
 - [Types of ML. Supervised Learning, Unsupervised Learning, Semisupervised Learning, Supervised Learning](Types)
-- [Terms](https://code-with-amitk.github.io/Machine%20Learning/)
-  - AI vs ML, Bias, CNTK, Keras, overfitting, scalar, Tensors, Theano, vector, underfitting, variance
 - [HTML Site](https://code-with-amitk.github.io/Machine%20Learning)
+  - Code
+    - Opencv: Draw rectangle around faces
+    - speech_recognition: Convert Voice to Text
+    - OpenAI APIs: Call openai APIs from code/PostmanML Model
+  - Calories Predictor during workout using: DecisionTreeRegressor, Random Forest Regression model
+    - Claude Code
+    - Ollama: Open Source Model Runner
+  - ML Libraries
+    - Keras(build Neural Networks): keras, Comparison(Networks vs. Traditional ML Models(scikit-learn)), Layers & APIs(Dense, Convolutional..)
+      - Code: Classify grayscale images into(0 to 9), Classify movie Review as +ve or -ve based on 50k review.
+    - Pandas:
+      - Introduction(series, dataframes), Conversion(dataframe to numpy array), Plots(Histograms, boxplot and save in png file)
+      - RW(Data from csv, excel file: columns, read_csv(), describe(), dropna())
+    - scikit-learn(build light weight models) Introduction
+      - Code: Anomaly Detection using scikit learn
+    - Tensorflow
+  - Terms:
+    - AI vs ML vs DL, Activation Function, Bias/Sampling Bias, Conda, CNTK, Overfitting, Underfitting, Optimizer, Large Language Model(LLM), Layer, Learning Types, Loss Function, Matplotlib, Metrics, Neuron, Neural Network, Tensor: Add Vector & matrix, Dot Product, Tensor Reshaping stochastic gradient descent (SGD) Tensorflow Variance 
   - Langchain: Messages, LangChain Messages
+  - Machine Learning & Types
+    - Supervised Learning, SemiSupervised Learning, unsupervised Learning, Reinforcement Learning, Generative AI
   - MCP(Model Context Protocol): Message Exchange, Modes of Operation, MCP vs HTTP, Common MCP Request Examples
   - RAG (Retrieval-Augmented Generation)
     - vector db, embedding models, RAG Pipeline code, flow
