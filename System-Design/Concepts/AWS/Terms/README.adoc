@@ -1,10 +1,13 @@
 :toc:
 :toclevels: 6
 
-=== Availabilty zones
+=== (AZ) Availabilty zones
+* An AZ is one or more fully isolated physical data centers within a specific geographic link:#region[AWS Region]
 * Single or Group of data centers owned by AWS is called AZ. Naming convention {Geographic location}{letter}. Example AZs for us-east are: us-east-1a, us-east-1b
 * Latency between AZ's is <10ms, distance less than 100km(60 miles).
 * A best practice is to run a application across at least 2 Availability Zones in a Region.
+* *Properties of AZs*:
+** While they are physically separated (typically many kilometers apart but within 100 km), AZs are connected by high-bandwidth, ultra-low-latency, and encrypted private metro fiber. This makes replicating data between them incredibly fast and reliable.
 ```c
    ---------------------------------  Region   ----------------------------------------------
    
@@ -13,16 +16,13 @@
    |------------------------------|  <distance(60miles)    |------------------------------|
 ```
 
-=== link:https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2[Geographic Region]
-* AWS region consists of multiple, isolated, physically seperated [Availablity Zones](#az)
-* **Largest Region of AWS is US-EAST(ie North Virginia)**, new services becomes available here 1st.
-
-image::regions_and_az.JPG?raw=true[regions_and_az]
-
-image::north-america-political-map.jpg?raw=true[north-america-political-map]
-
-
-==== Properties
+=== link:https://aws.amazon.com/about-aws/global-infrastructure/regions_az/?p=ngi&loc=2[Geographic Region / AWS Region]
+* AWS region consists of multiple, isolated, physically seperated AZ
+* Example: Asia Pacific (Mumbai) Region, which is written in AWS code as ap-south-1. This Region is subdivided into 3 discrete, physically separated Availability Zones.
+** ap-south-1a (A cluster of data centers in one location)
+** ap-south-1b (A completely separate cluster of data centers a few kilometers away)
+** ap-south-1c (Another completely separate cluster of data centers)
+* *Why Use Multiple AZs? (Fault Tolerance)* If you host your entire website's server in ap-south-1a, and that specific building experiences an unrecoverable power failure, your website will go down completely. Instead, you create a copy of your website and databases in both ap-south-1a and ap-south-1b. You can place an Elastic Load Balancer (ELB) in front of them to equally distribute incoming traffic. If the data centers in ap-south-1a go offline, the ELB detects the failure and instantly routes all of your website visitors to the healthy servers sitting in ap-south-1b
 * Data stored in region is not replicated outside of that region unless customers replicates to other regions.
 
 ==== In which region should I place my service / Factors to consider before choosing a region
