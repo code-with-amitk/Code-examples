@@ -7,7 +7,7 @@ Running programs on someone else's cluster of computers, ie not running program 
 - **3. Community:** Used by specific community
 - **4. Hybrid:** Composed of 2 or more different clouds.
 
-## [Distributed System](https://code-with-amitk.github.io/System_Design/Concepts/Terms/Distributed_System/index.html)**
+## [Distributed System](https://code-with-amitk.github.io/System_Design/Concepts/Terms/Distributed_System/index.html)
 - Architecture of DS
 - Types of DS
   - 1. High Performance Distributed Computing
