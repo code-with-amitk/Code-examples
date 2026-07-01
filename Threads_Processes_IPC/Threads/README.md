@@ -9,9 +9,7 @@
 - [Problems with Threads / Problems in turning Single Threaded Code to Multithreaded](#p)
 - [Synchronization needed to access shared resource](#sy)
 - [POSIX Thread APIs](#ta)
-- **[User Space/Green Threads, Kernel Space/OS Threads](#usks)**
-  - [User space threads](#us)
-  - [Kernel space threads](#ks)
+- [User Space/Green Threads, Kernel Space/OS Threads](https://code-with-amitk.github.io/Threads_Processes_IPC/)
 - [Scheduler Activation](#sa)
 - [Upcall](#up)
 - **[Code](#co)**
@@ -151,41 +149,13 @@ int pthread_yield(void): Causes the calling thread to give up CPU(ie terminate h
 pthread_exit();    //This will exit calling Thread
 ```
 
-<a name=usks></a>
-## User Space, Kernel Space Threads
-<img src=./userspace_kernelspace_threads.PNG width=500 />
-
-<a name=us></a>
-### User Space/Green Threads (Eg: [Tokio::task](https://docs.rs/tokio/0.2.4/tokio/task/index.html), Go’s goroutine)
-- Kernel is not aware about UST. Kernel see it as ordinary, single-threaded process. 
-- Each process will need its own **[Thread Table](#tt)**(to keep track of threads in process). 
-- **Advantages**
-  - *1.* [Context switch](/Threads_Processes_IPC/Terms/#cos) between threads is done in user space, no call into kernel space or call trap().
-  - *2.* UST can be implemented on OS which does not support threads
-  - *3.* Each process can have its own customized Thread scheduling algos.
-- **Disadvantages**
-  - *1.* If any of thread [busy waits]() on kernel for IO or [system call]() Eg: blocking read() then whole process will block/sleep. All other threads will also block(even if other threads are in runnable state).
-    - *Solutions:* 
-      - *1.* Making blocking calls as non-blocking.
-      - *2.* [Upcall](#up)
-
 <a name=tt></a>
-#### Thread Table
+### Thread Table
 - When thread is moved to sleep or blocked state(ie it finished its execution for moment), it state information is stored in thread-table so that later thread can come back to running state.For example thread1 waiting for input from thread2.
 - This is Similar to process table containing following entries:
 ```c
  Each thread’s program counter, stack pointer, registers, state etc
 ```
-<a name=ks></a>
-### Kernel Space/OS threads
-- When a thread wants to create/destroy an existing thread, it makes a kernel call, which then does the creation or destruction by updating the kernel [thread table](#tt).
-- kernel have thread-Table having same contents.
-- **Advantages**
-  - *1.* No Thread-Table in each process.
-- **Disadvantages**
-  - *1.* Every thread will need some Thread-Control-block and stack space in kernel, in case of large number of threads this will become problem.
-  - *2.* Every thread will make [system calls](https://sites.google.com/site/amitinterviewpreparation/c-1/device-driver) in kernel and its cost is high.
-  - *3.* Slower than user level threads.
 
 <a name=sa></a>
 ## Scheduler Activation
