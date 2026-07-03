@@ -12,7 +12,7 @@ Conversion of Data/Plain-text into unreadable/cipher text.
     Data > | Encryptor | > cipher Text  > | Decryptor |  > Data 
 ```
 ==== Problem with Symmetric Key Algo
-* With same plaintext they will produce same ciphertext everytime. [Solution: Chaining](#sb)
+* With same plaintext they will produce same ciphertext everytime. link:#cb[Solution: Chaining]
 * 1st block is XORed with IV(initialization vector) then successive blocks are XORed with output of prev block and IV is sent with cipher text and reverse is done on receveing side.
 
 ==== a. AES / Rijndael
