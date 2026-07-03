@@ -11,7 +11,7 @@
 - a. DH(Diffe-Helman)
 - b. RSA (Ronald Rivest, Adi Shamir, Len Adleman)
 - c. Ecliptic Curve Cryptography / ECC / 2 key
--- c.1 secp256k1 ECC Algorithm (Used in Bitcoin)
+  - c.1 secp256k1 ECC Algorithm (Used in Bitcoin)
 
 ### How safe is 128, 256 bit Keys
 - How Long Hacker(having super Computer) need to crack key?
