@@ -19,7 +19,7 @@
 - **Nounce:** Random generated number by initiator. This protects against reply attacks
 - **[PFS(Perfect Forward Secrecy)](PFS)**
 - **[Pre Shared Keys](../Part1_IKE/IKE_Authentication)**
-- **[SA(Security Association)](Security_Association)**
+- **[SA(Security Association)](https://code-with-amitk.github.io/Networking/OSI-Layers/)**
   - *SAD(Security Association DB)* Stored SAs
 - **[SP(SECURITY POLICY):](SP)** Policies to be enforced on Traffic crossing IPSec boundaries
   - *SPD: Security policy Database*
