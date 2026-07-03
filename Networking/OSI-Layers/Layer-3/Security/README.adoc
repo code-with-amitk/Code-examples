@@ -63,6 +63,8 @@ AES(byte plaintext[LENGTH], byte ciphertext[LENGTH], byte key[LENGTH]) {
 * 2. Bob also created his own public(Pub_B), Pvt(Pvt_B) key pairs and published on his website.
 * 3. Alice and bob can communicate using each other's public keys.
 ```html
+Alice create [Pub_A, Pvt_A] and kept public key on http://alice.com
+
                          Bob  <--read Alice public key-- http://alice.com
                         Pub_A                                        
                          \/
