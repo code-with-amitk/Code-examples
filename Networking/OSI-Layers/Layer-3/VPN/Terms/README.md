@@ -1,5 +1,5 @@
-## VPN Terms
-- **[Anti Replay Protections](Anti_Replay_Protection)**
+## [VPN Terms](https://code-with-amitk.github.io/Networking/OSI-Layers/)
+- Anti Replay Protections
 - **Cookie**
   - This is [MAC(not hash)](../../Security) which is generated during IKE Phase-1 (IKE SA) exchange. 
   - Initiator Generates {Initiator SPI = Initiator Cookie}
@@ -8,22 +8,22 @@
 ```c
     [Src-IP] [Dst-IP] [Src-Port-UDP] [Dst-Port-UDP] + [Secret Random Key] --->   | Hash Function |  -->  Cookie or SPI
 ```
-- **[Dead Peer Detection](Dead_Peer_Detection)**
+- Dead Peer Detection
 - **DOI(Domain on Interpretation)**
   - IPsec DOI is a document containing definitions for all the security parameters required for the successful negotiation of a VPN tunnel
   - All the attributes required for SA and IKE negotiations. 
 - **Key Lifetime?**
   - 86400 sec = Phase-1 (IKEv1 or IKEv2)
   - 3600 sec  = Phase-2 (IPsec data excahnge keys)
-- **[NAT Traversal](VPN_NAT_Traversal)**
+- VPN NAT Traversal
 - **Nounce:** Random generated number by initiator. This protects against reply attacks
-- **[PFS(Perfect Forward Secrecy)](PFS)**
+- PFS(Perfect Forward Secrecy)
 - **[Pre Shared Keys](../Part1_IKE/IKE_Authentication)**
-- **[SA(Security Association)](https://code-with-amitk.github.io/Networking/OSI-Layers/)**
-  - *SAD(Security Association DB)* Stored SAs
-- **[SP(SECURITY POLICY):](SP)** Policies to be enforced on Traffic crossing IPSec boundaries
-  - *SPD: Security policy Database*
-- **[SPI(SECURITY PARAMETER INDEX)](SPI)**
+- SA(Security Association
+  - SAD(Security Association DB) Stored SAs
+- SP(SECURITY POLICY): Policies to be enforced on Traffic crossing IPSec boundaries
+  - SPD: Security policy Database
+- SPI(SECURITY PARAMETER INDEX)
 - **IPSec(Over TCP):** IPSec is set of open standards for ensuring secure private communication over Internet. IPSec does not support broadcast & multicast. Parts of IPSec:
   - Part-1: Key Exchange for Data Encryption + Peer Authentication. Eg: IKE
   - Part-2: Encrypting the data with Keys exchanged in part-1. Eg: AH, ESP
