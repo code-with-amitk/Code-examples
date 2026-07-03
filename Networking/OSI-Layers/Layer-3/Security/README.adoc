@@ -70,8 +70,8 @@ Alice create [Pub_A, Pvt_A] and kept public key on http://alice.com
                          \/
 message(plain text) > |Encrypt| > XXX  
 
-                                                                     Alice <-read Bob public key- http://bob.com
-                                                                     Pvt_A
+                                                                     Alice
+                                                                    own Pvt_A
                                                                        \/
                                      ---sent to Alice--->      XXX > |Decrypt| > message
 ```
