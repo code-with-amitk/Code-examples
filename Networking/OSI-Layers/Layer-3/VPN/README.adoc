@@ -6,7 +6,7 @@
 - *VPN Clients:* ExpressVPN, NordVPN, IPVanish, phantom VPN(Avira): 61% user satisfaction, Anyconnect (Cisco): 81% user satisfaction-
 - *Opensource VPN Servers:* Libreswan, openVPN
 
-== [Terms](Terms)
+== link:Terms[Terms]
   - Cookie
   - DOI(Domain on Interpretation)
   - Nonce
