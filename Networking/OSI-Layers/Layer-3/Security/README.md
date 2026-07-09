@@ -15,3 +15,5 @@
 
 ### How safe is 128, 256 bit Keys
 - How Long Hacker(having super Computer) need to crack key?
+
+## [Remediating CVE-2021-3712 / Vunerability](https://github.com/code-with-amitk/CentOS7_CVE-2021-3712_Remediation/tree/main/docs)
