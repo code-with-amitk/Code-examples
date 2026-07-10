@@ -1,12 +1,12 @@
 
 
 ## Rust framework
-* link:https://code-with-amitk.github.io/Frameworks/Dioxus/[Dioxus, dioxus-cli]
+* [Dioxus, dioxus-cli](https://code-with-amitk.github.io/Frameworks/Dioxus/)
 
 ## Go framework 
-link:https://code-with-amitk.github.io/Frameworks/[go test]
+[go test](https://code-with-amitk.github.io/Frameworks/)
 
 ## Python 
-### link:https://code-with-amitk.github.io/Frameworks/[Django]
+### [Django](https://code-with-amitk.github.io/Frameworks/)
 
-### link:https://code-with-amitk.github.io/Frameworks/[FastAPI]
+### [FastAPI](https://code-with-amitk.github.io/Frameworks/)
