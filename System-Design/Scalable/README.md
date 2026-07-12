@@ -1,3 +1,13 @@
+- system Design
+  - [Box.com, Upload 10 GB File](#box)
+
+## System Design
+
+<a name=box></a>
+### [Box.com, Upload 10 GB File](https://code-with-amitk.github.io/System_Design/Scalable/)
+- Pre signed URLs / presigned URLs
+
+## Powers
 |Power of 2|Name|Value|
 |---|---|---|
 |10|1K (Kilo)|10<sup>3</sup>|
@@ -10,7 +20,7 @@
 
 **Donot Spend major time on Minor Things. Eg: BOE**
 
-### To Cover (SD is Iterative process. Start from 1 then scale to 1M)
+## To Cover (SD is Iterative process. Start from 1 then scale to 1M)
 - **1. Requirements: 2 min** CRUD(Create, Read, Update, Delete)
   - *1a. Functional(Basic functionality, should work)*
   - *1b. Non-functional(defines quality)*
