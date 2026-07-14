@@ -43,19 +43,19 @@ Tree Evaluation: From bottom
 
 <a name=ex2></a>
 ### Example (Policy Rule)
->  IF User == "Alice" AND App == "Jira" AND Action == "Download" THEN PolicyAction = Block
+>  IF User == "Alice" AND App == "box" AND Action == "Download" THEN PolicyAction = Block
 
 ```c
 Tree Creation
 Tokenize: Keywords(IF, AND, THEN), BlockIdentifiers/Variables(User, Application, Action), Operators(: ==), Literals("Alice", "Jira", "Download")
 
-              [Conditional: IF-THEN]
-                     /            \
-                  [AND]        [Block]
-                  /              \
-             [ AND]              [==]
-               /     \            /    \
-             [==]    [==]    Action "Download"
-             /  \     /  \
-        User "Alice" App "Jira"
+                  then
+                /      \
+              &&        policyAction = Block
+          /        \
+        &&          ==
+      /    \        /  \
+    ==        ==  action download
+  /   \      /  \
+user alice app  box  
 ```
