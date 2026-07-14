@@ -5,7 +5,7 @@
 
 <a name=vs></a>
 ## AST vs Prefix Tree
-Prefix tree(Trie) and an abstract syntax tree (AST) are completely different data structures used for entirely different purposes.
+[Prefix tree(Trie)](DS_Questions/Data_Structures/Trees/Trie) and an abstract syntax tree (AST) are completely different data structures used for entirely different purposes.
 
 ||Prefix Tree|AST|
 |---|---|---|
