@@ -1,7 +1,13 @@
+- [AST](#ast)
 - [AST vs Prefix Tree](#vs)
 - [How an AST is Constructed](#how)
   - [Example (x = 2 + 3)](#ex1)
   - [Example (Policy Rule)](#ex2)
+
+
+<a name=ast></a>
+## AST / Syntax Tree (n-array Tree)
+- This is a data structure used to represent the structure of a program or source code written in a formal language. Each node of the tree denotes a construct occurring in the text.
 
 <a name=vs></a>
 ## AST vs Prefix Tree
@@ -66,12 +72,9 @@ Every node is simply an object in memory.
 struct Node
 {
     NodeType type;
-
     Node* left;
     Node* right;
-
     Condition condition;
-
     Action action;
 };
 ```
