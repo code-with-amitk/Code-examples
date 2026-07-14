@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-== link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/[SSL/TLS]
+== link:https://code-with-amitk.github.io/Networking/OSI-Layers/[SSL/TLS]
 * SSL vs TLS
 * NSS(TLS Implementation) vs Openssl
 
