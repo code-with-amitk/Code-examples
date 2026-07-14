@@ -59,3 +59,19 @@ Tokenize: Keywords(IF, AND, THEN), BlockIdentifiers/Variables(User, Application,
   /   \      /  \
 user alice app  box  
 ```
+
+## Datastructure for AST
+Every node is simply an object in memory.
+```c
+struct Node
+{
+    NodeType type;
+
+    Node* left;
+    Node* right;
+
+    Condition condition;
+
+    Action action;
+};
+```
