@@ -169,6 +169,7 @@ main(){
   pthread_join(tid2, NULL);    ////Wait until thread-2 to terminate
 }
 ```
+
 **Using [lock_guard]()**
 ```cpp
 //f1(), f2() created on process stack
@@ -218,7 +219,7 @@ Q: Find whether a process is IO Bound or CPU Bound?
     if(i==98)
         i=0;
  }
- ```
+```
 
 == Parallelism
 2 tasks assigned to 2 threads running on different cores.
