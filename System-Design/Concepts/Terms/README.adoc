@@ -68,6 +68,31 @@ Basically Available, Soft state, and Eventual consistency
 ** 2. CP: When nodes are partitioned, then consistency can be achieved.
 ** 3. AP: nodes remain online even if they can't communicate with each other
 
+=== Example
+Suppose there are 2 computers A,B directly connected via a wire. A has int a =1, B has int b = 1. Reader A is reading from Computer A, Reader B reading from computer B
+```
+|-----------------|          |-----------------|
+|   int a = 1     |          |    int b = 1    |
+|== Computer A ===|----------|== Computer B ===|
+      Reader-A                    Reader-B
+```
+==== AP(Available, Partition Tolerent). (❌ Consistency) 
+- t=0, Cable is cut and never comes up. 
+- t=1. a=2, b=2
+- t=2. ReaderA read b=1. Reader-A a=1 (Inconsistent)
+- System is working (ie Available) and Partition Tolerant. But data is not consistent on reads
+
+==== CP(Consistent, Partition Tolerent). (❌ Available)
+- t=0, Cable is cut 
+- t=1. A tries making a=2. But system denies. Cannot write. System becomes Unavailable
+- t=2. Cable up
+- System is working (ie Available) and Partition Tolerant. But data is not consistent on reads
+
+==== CA(Consistent, Available). (❌ Partition Tolerent)
+- The network never partitions (the cable is always working).
+- a=2, b=2. Reader-A get b=2, Reader-B gets a=2. Consistent
+- All writes/reads succeed. Available
+
 [[con]]
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
 
