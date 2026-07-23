@@ -19,8 +19,9 @@
 ## About
 - By Sun micro systems(1995)
 - **What?** Java is a language+collection of run-time-libraries.  Compiler javac(written in java). IDE's(Netbeans, Eclipse).
-  - _J2EE?_ Platform for Enterprise Applications    J2ME?Platform for Mobile Applications. 
-  - _JDK(JAVA DEVELOPMENT KIT)_ SDK, for developing application and applets. This includes JRE,  JavaDoc(documentation generator), javac(compiler), jar(archiver) etc. For development and running you need this.
+  - _J2EE?_ Platform for Enterprise Applications
+  - _J2ME?_ Platform for Mobile Applications. 
+  - _JDK(JAVA DEVELOPMENT KIT)_ SDK, for developing application and applets. This includes JRE, JavaDoc(documentation generator), javac(compiler), jar(archiver) etc. For development and running you need this.
   - _JRE(JAVA RUNTIME ENV)_: Includes JVM+library classes. If you only want to run Java applications you would need JRE.
   - _JVM(JAVA VIRTUAL MACHINE)/INTERPRETER_: JVM executes the java program line-by-line. JVM becomes an instance of JRE at runtime of a Java program.
 - **CATEGORIES**     a. core-java    b. Advanced-java    c. J2EE(without completing core, advanced java, You will not understand J2EE)
@@ -32,8 +33,7 @@
 <a name=f></a>
 ## Features of Java
 - **Architecture Neutral:** Compiler generates bytecode which has nothing to do with computer architecture.
-- **Automatic Garbage Collection:** 
-  - Unlike C/C++ programmer need not to worry about freeing the memory. Garbage Collector runs periodically and frees all memory which is not longer needed.
+- **Automatic Garbage Collection:**  Unlike C/C++ programmer need not to worry about freeing the memory. Garbage Collector runs periodically and frees all memory which is not longer needed.
 ```java
 public class main{
 	public static void main(String[] args) {
