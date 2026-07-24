@@ -5,6 +5,7 @@
 - [Data types](Data_Types)
 - [Exception Handling, finally](Exception_Handling)
 - [Features](#f)
+- [Garbage Collector, How it runs?](https://code-with-amitk.github.io/Programming/Java)
 - **Input Output**
   - [1. Reading stdin & dump on stdout](#i1)
   - [2. Formatted Output](#fo)
