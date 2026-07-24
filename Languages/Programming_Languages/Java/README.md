@@ -15,6 +15,7 @@
 - [String: Tokenize, convert](String)
 - [Spring framework, spring boot](https://code-with-amitk.github.io/Programming)
 	- [Spring Terms](https://code-with-amitk.github.io/Programming/Java): @Configuration, @SpringBootApplication, AOP, application.properties / yml, ApplicationContext, Auto-configuration, Bean, BOM, Component scan, Convention over configuration, DataSource / EntityManagerFactory, Dependency Injection, DispatcherServlet, Embedded server vs WAR, IoC, Profiles, Servlet container, Spring Boot Actuator, Spring Data / JPA, Spring MVC, Spring Security, Starters, WebApplicationInitializer
+ - [ORM: Hibernate](https://code-with-amitk.github.io/Programming/Java)
 
 
 <a name=a></a>
