@@ -5,6 +5,13 @@
 - [Data types](https://code-with-amitk.github.io/Programming/Java)
 	- Primitive types: byte, short, int, long, float, double, boolean, char
 	- Reference types: String, arrays, classes, interfaces, enums, records, Collections
+ 		- Collections:
+```
+    		- List (ArrayList, LinkedList, Vector, Stack)
+    		- Set (HashSet, LinkedHashSet, TreeSet)
+    		- Map (HashMap, LinkedHashMap, TreeMap Hashtable)
+    		- Queue/Deque (PriorityQueue, ArrayDeque)
+```
 - [Exception Handling, finally](Exception_Handling)
 - [Features](#f)
 - [Garbage Collector, How it runs?](https://code-with-amitk.github.io/Programming/Java)
