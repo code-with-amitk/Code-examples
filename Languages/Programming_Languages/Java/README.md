@@ -3,8 +3,8 @@
 - [Classes: Calendar, Integer, NumberFormat, Object, java.lang.Math, Scanner](Classes)
 - [Collections: HashMap, Hashset, List(ArrayList= vector(C++))](Collections)
 - [Data types](https://code-with-amitk.github.io/Programming/Java)
-	- Byte, short, bool, int, long, float, double, char
- 	- String
+	- Primitive types: byte, short, int, long, float, double, boolean, char
+	- Reference types: String, arrays, classes, interfaces, enums, records, Collections
 - [Exception Handling, finally](Exception_Handling)
 - [Features](#f)
 - [Garbage Collector, How it runs?](https://code-with-amitk.github.io/Programming/Java)
