@@ -34,3 +34,6 @@ int a = 10;    //c++
 let a = 10;    //rust
 var a int;    //go
 ```
+
+=== link:https://code-with-amitk.github.io/Threads_Processes_IPC/Thread_Pool/[Thread Pool]
+Java, C++, Golang, Rust
