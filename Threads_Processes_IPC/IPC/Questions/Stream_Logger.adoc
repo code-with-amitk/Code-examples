@@ -17,6 +17,7 @@ log8  8.35
 
 == Solution
 - Add all logs into queue
+
 === 1 Producer 1 Consumer
 ```cpp
 #include <iostream>
