@@ -1,0 +1,72 @@
+:toc:
+:toclevels: 4
+
+== Stream Logger
+- We are getting stream of log messages in this format(log message, timestamp)
+```text
+log1  8.01
+log2  8.05
+log3  8.10
+log4  8.15
+log5  8.20
+log6  8.25
+log7  8.30
+log8  8.35
+```
+- Print the logs every 10 seconds interval. Make sure not to repeat the logs from prev window
+
+== Solution
+- Add all logs into queue
+=== 1 Producer 1 Consumer
+```cpp
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <queue>
+#include <unistd.h>
+using namespace std;
+mutex m;
+
+using Log = pair<string, float>;
+queue<Log> q;
+
+void streamFill(Log log) {
+    //lock_guard<mutex> lock(m);
+    q.push(log);
+}
+
+// Print logs older than the current timestamp and keep newer logs in the queue.
+void printer(float timestamp) {
+    while (!q.empty()) {
+        lock_guard<mutex> lg(m);
+        Log l = q.front();
+        if (l.second < timestamp) {
+            cout << l.first << "\n";
+            q.pop();
+        }
+        else
+            break;
+    }
+}
+int main() {
+    streamFill(make_pair<string, float>("log1", 8.01));
+    streamFill(make_pair<string, float>("log2", 8.05));
+    streamFill(make_pair<string, float>("log3", 8.10));
+    streamFill(make_pair<string, float>("log4", 8.15));
+
+    float timestamp = 8.10;
+    while (1) {
+        thread t1(printer, timestamp);
+        t1.join();
+        timestamp += 10;
+        sleep(2);
+    }
+    return 0;
+}
+$ g++ Streamlogger_1printer.cpp -lpthread
+$ ./a.out 
+log1
+log2
+log3
+log4
+```
