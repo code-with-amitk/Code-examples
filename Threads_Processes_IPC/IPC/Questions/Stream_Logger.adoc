@@ -73,7 +73,6 @@ log4
 ```
 
 === n Producer, n Consumer
-==== 1. Producers push to queue > Signal consumers > Consumers read from queue
 ```cpp
 #include <iostream>
 #include <thread>
@@ -84,78 +83,118 @@ log4
 using namespace std;
 mutex m;
 condition_variable cv;
-bool test = false;
+bool producersDone = false;   // This will be done true = when all producers have finished
 
 using Log = pair<string, float>;
 queue<Log> q;
 
-void producerFillFromStream(Log log, int tid)
-{
+void producer(Log log, int tid) {
     unique_lock<mutex> ul(m);
     cv.wait(ul, []
-            { return !test; });
+            { return !producersDone; });
     cout << "producer pushed tid:" << tid << "\n";
     q.push(log);
 }
 
 void producers_finished() {
-    unique_lock<mutex> ul(m);
-    // If the lambda returns true,
-    // thread moves forward to execute the code after cv.wait.
-    cv.wait(ul, []
-            { return !test; });
-    test = true;
+
+    {
+        // --------------------------------------------------
+        // Important concurrency principle.
+        // Keep the critical section as small as possible
+        // --------------------------------------------------
+        lock_guard<mutex> lock(m);
+        producersDone = true;        // All producers have finished
+    }
+
+    // Wake all consumers
     cv.notify_all();
 }
 
 // Print logs older than the current timestamp and keep newer logs in the queue.
-void consumerReading(float timestamp, int tid) {
+void consumer(float timestamp, int tid) {
+
     unique_lock<mutex> ul(m);
 
-    // Consumers wait till
-    //  Signalled
-    //  any item in queue
-    cv.wait(ul, []
-            { return !q.empty() || test; });
+    // --------------------------------------------------
+    // Without this loop consumer will come and go, will not wait for data on q
+    // --------------------------------------------------
+    while (true) {
 
-    while (!q.empty())
-    {
-        Log l = q.front();
-        if (l.second <= timestamp) {
-            cout << "consumerReading tid:" << tid << ", " << l.first << "\n";
+        // --------------------------------------------------
+        // If the lambda returns true, thread moves forward to execute the code after cv.wait
+        // Wait until
+        // 1. All producers have finished. (test = true)
+        // OR
+        // 2. I have finished all logs designated for me
+        // --------------------------------------------------
+        cv.wait(ul, [&]
+        {
+            return producersDone ||
+                   (!q.empty() && q.front().second <= timestamp);
+        });
+
+        while (!q.empty() && q.front().second <= timestamp) {
+            Log l = q.front();
+
+            cout << "consumerReading tid:"
+                 << tid << ", "
+                 << l.first << "\n";
+
             q.pop();
+
+            // A producer may now be able to add another item.
+            // Other consumers should get a chance.
+            cv.notify_all();
         }
-        else
+
+        // Producers are finished AND this consumer has
+        // consumed everything that it is interested in.
+        if (producersDone &&
+            (q.empty() || q.front().second > timestamp)) {
             break;
+        }
     }
 }
+
 int main()
 {
-    // 3 consumers
+    // --------------------------------------------------
+    // Start consumers FIRST.
+    // They will wait because the queue is initially empty.
+    // --------------------------------------------------
     vector<thread> tConsumers;
     float timestamp = 8.10;
-    tConsumers.emplace_back(consumerReading, timestamp, 7);
+    tConsumers.emplace_back(consumer, timestamp, 7);
     timestamp += .10;
-    tConsumers.emplace_back(consumerReading, timestamp, 8);
+    tConsumers.emplace_back(consumer, timestamp, 8);
     timestamp += .10;
-    tConsumers.emplace_back(consumerReading, timestamp, 9);
+    tConsumers.emplace_back(consumer, timestamp, 9);
 
-    // Multiple producers
+    // --------------------------------------------------
+    // Start producers.
+    // They now run concurrently with consumers.
+    // --------------------------------------------------
     int nthreads = 7;
     thread tproducers[nthreads];
-    tproducers[0] = thread(producerFillFromStream, make_pair<string, float>("log1", 8.01), 0);
-    tproducers[1] = thread(producerFillFromStream, make_pair<string, float>("log2", 8.05), 1);
-    tproducers[2] = thread(producerFillFromStream, make_pair<string, float>("log3", 8.10), 2);
-    tproducers[3] = thread(producerFillFromStream, make_pair<string, float>("log4", 8.15), 3);
-    tproducers[4] = thread(producerFillFromStream, make_pair<string, float>("log5", 8.20), 4);
-    tproducers[5] = thread(producerFillFromStream, make_pair<string, float>("log6", 8.25), 5);
-    tproducers[6] = thread(producerFillFromStream, make_pair<string, float>("log6", 8.30), 6);
+    tproducers[0] = thread(producer, make_pair<string, float>("log1", 8.01), 0);
+    tproducers[1] = thread(producer, make_pair<string, float>("log2", 8.05), 1);
+    tproducers[2] = thread(producer, make_pair<string, float>("log3", 8.10), 2);
+    tproducers[3] = thread(producer, make_pair<string, float>("log4", 8.15), 3);
+    tproducers[4] = thread(producer, make_pair<string, float>("log5", 8.20), 4);
+    tproducers[5] = thread(producer, make_pair<string, float>("log6", 8.25), 5);
+    tproducers[6] = thread(producer, make_pair<string, float>("log6", 8.30), 6);
+
+    // --------------------------------------------------
+    // Wait for producers.
+    // Consumers are STILL running during this time.
+    // --------------------------------------------------
     for (int i = 0; i < nthreads; i++) {
         tproducers[i].join();
     }
     // No producer after this point.
 
-    // Printing
+    // Printing. This is not thread safe
     queue<Log> temp = q;
     cout << "printing q\n";
     while (!temp.empty()) {
@@ -164,35 +203,42 @@ int main()
         cout << l.first << "," << l.second << "\n";
     }
 
+    // --------------------------------------------------
+    // Tell consumers that no more logs will arrive.
+    // --------------------------------------------------
     producers_finished();
 
+    // --------------------------------------------------
+    // Wait for consumers to finish remaining logs.
+    // --------------------------------------------------
     for (int i = 0; i < 3; i++) {
         tConsumers[i].join();
     }
 
     return 0;
 }
+
 $ ./a.out
 producer pushed tid:0
-producer pushed tid:6
-producer pushed tid:5
+producer pushed tid:1
+producer pushed tid:2
 producer pushed tid:3
 producer pushed tid:4
-producer pushed tid:2
-producer pushed tid:1
+producer pushed tid:5
+producer pushed tid:6
 printing q
 log1,8.01
-log6,8.3
-log6,8.25
+log2,8.05
+log3,8.1
 log4,8.15
 log5,8.2
-log3,8.1
-log2,8.05
-consumerReading tid:8, log1
-consumerReading tid:9, log6
-consumerReading tid:9, log6
+log6,8.25
+log6,8.3
+consumerReading tid:7, log1
+consumerReading tid:7, log2
+consumerReading tid:7, log3
 consumerReading tid:9, log4
 consumerReading tid:9, log5
-consumerReading tid:9, log3
-consumerReading tid:9, log2
+consumerReading tid:9, log6
+consumerReading tid:9, log6
 ```
