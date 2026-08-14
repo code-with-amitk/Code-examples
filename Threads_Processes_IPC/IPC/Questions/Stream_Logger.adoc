@@ -71,3 +71,128 @@ log2
 log3
 log4
 ```
+
+=== n Producer, n Consumer
+==== 1. Producers push to queue > Signal consumers > Consumers read from queue
+```cpp
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <queue>
+#include <condition_variable>
+#include <unistd.h>
+using namespace std;
+mutex m;
+condition_variable cv;
+bool test = false;
+
+using Log = pair<string, float>;
+queue<Log> q;
+
+void producerFillFromStream(Log log, int tid)
+{
+    unique_lock<mutex> ul(m);
+    cv.wait(ul, []
+            { return !test; });
+    cout << "producer pushed tid:" << tid << "\n";
+    q.push(log);
+}
+
+void producers_finished() {
+    unique_lock<mutex> ul(m);
+    // If the lambda returns true,
+    // thread moves forward to execute the code after cv.wait.
+    cv.wait(ul, []
+            { return !test; });
+    test = true;
+    cv.notify_all();
+}
+
+// Print logs older than the current timestamp and keep newer logs in the queue.
+void consumerReading(float timestamp, int tid) {
+    unique_lock<mutex> ul(m);
+
+    // Consumers wait till
+    //  Signalled
+    //  any item in queue
+    cv.wait(ul, []
+            { return !q.empty() || test; });
+
+    while (!q.empty())
+    {
+        Log l = q.front();
+        if (l.second <= timestamp) {
+            cout << "consumerReading tid:" << tid << ", " << l.first << "\n";
+            q.pop();
+        }
+        else
+            break;
+    }
+}
+int main()
+{
+    // 3 consumers
+    vector<thread> tConsumers;
+    float timestamp = 8.10;
+    tConsumers.emplace_back(consumerReading, timestamp, 7);
+    timestamp += .10;
+    tConsumers.emplace_back(consumerReading, timestamp, 8);
+    timestamp += .10;
+    tConsumers.emplace_back(consumerReading, timestamp, 9);
+
+    // Multiple producers
+    int nthreads = 7;
+    thread tproducers[nthreads];
+    tproducers[0] = thread(producerFillFromStream, make_pair<string, float>("log1", 8.01), 0);
+    tproducers[1] = thread(producerFillFromStream, make_pair<string, float>("log2", 8.05), 1);
+    tproducers[2] = thread(producerFillFromStream, make_pair<string, float>("log3", 8.10), 2);
+    tproducers[3] = thread(producerFillFromStream, make_pair<string, float>("log4", 8.15), 3);
+    tproducers[4] = thread(producerFillFromStream, make_pair<string, float>("log5", 8.20), 4);
+    tproducers[5] = thread(producerFillFromStream, make_pair<string, float>("log6", 8.25), 5);
+    tproducers[6] = thread(producerFillFromStream, make_pair<string, float>("log6", 8.30), 6);
+    for (int i = 0; i < nthreads; i++) {
+        tproducers[i].join();
+    }
+    // No producer after this point.
+
+    // Printing
+    queue<Log> temp = q;
+    cout << "printing q\n";
+    while (!temp.empty()) {
+        Log l = temp.front();
+        temp.pop();
+        cout << l.first << "," << l.second << "\n";
+    }
+
+    producers_finished();
+
+    for (int i = 0; i < 3; i++) {
+        tConsumers[i].join();
+    }
+
+    return 0;
+}
+$ ./a.out
+producer pushed tid:0
+producer pushed tid:6
+producer pushed tid:5
+producer pushed tid:3
+producer pushed tid:4
+producer pushed tid:2
+producer pushed tid:1
+printing q
+log1,8.01
+log6,8.3
+log6,8.25
+log4,8.15
+log5,8.2
+log3,8.1
+log2,8.05
+consumerReading tid:8, log1
+consumerReading tid:9, log6
+consumerReading tid:9, log6
+consumerReading tid:9, log4
+consumerReading tid:9, log5
+consumerReading tid:9, log3
+consumerReading tid:9, log2
+```
