@@ -54,4 +54,36 @@ int main() {
 | |------------------|---------------------|-------------------------|
 ```
 
-=== Solution
+== Solution (std::lock())
+std::lock prevents this by using a smart algorithm (like a try-lock loop) that acquires multiple mutexes in a safe order, or backs off if it cannot get them all, ensuring a deadlock never happens.
+```cpp
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <unistd.h>
+using namespace std;
+mutex m1, m2;
+
+void fun1(int val) {
+    // Safely lock both m1 and m2 at the same time, preventing deadlocks
+    std::lock(m1, m2);
+    cout << "val: " << val << "\n";
+    m2.unlock();
+    m1.unlock();
+}
+void fun2(int val) {
+    // Safely lock both m1 and m2 at the same time, preventing deadlocks
+    std::lock(m1, m2);
+    cout << "val: " << val << "\n";
+    m1.unlock();
+    m2.unlock();
+}
+
+int main() {
+    std::thread t1(fun1, 1);
+    std::thread t2(fun2, 2);
+    t1.join();
+    t2.join();
+    return 0;
+}
+```
