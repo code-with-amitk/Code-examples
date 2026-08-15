@@ -1,0 +1,57 @@
+:toc:
+:toclevels: 4
+
+== Deadlock
+2 or more threads waits on resources which is/are held by each other. None of thread releases the resource and in turn waits for other to release. 
+
+=== Deadlock Example
+- t=0, Thread1 enters fun1, locks m1(global, Data segment) and sleep
+- t=1, Thread2 enters fun2, locks m2(global, Data segment), tries locking m1(which is already locked by thread1) // Thread2 Deadlocked
+- t=2 Thread1 awakes and tries locking m2(which is already locked by thread2) // Thread1 Deadlocked
+```c
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <unistd.h>
+using namespace std;
+mutex m1, m2;
+void fun1(int val) {
+    m1.lock();          
+    // If we remove the sleep_for, the code can still deadlock. 
+    // Most of the time it might work, but randomly under heavy load, the OS will switch threads and due to locking order it will deadlock
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    m2.lock();      // m1 acquired waiting for m2
+    cout << "val: " << val << "\n";
+    m2.unlock();
+    m1.unlock();
+}
+void fun2(int val) {
+    m2.lock();
+    m1.lock();      // m2 acquired waiting for m1
+    cout << "val: " << val << "\n";
+    m1.unlock();
+    m2.unlock();
+}
+int main() {
+    std::thread t1(fun1, 1);
+    std::thread t2(fun2, 2);
+    t1.join();
+    t2.join();
+    return 0;
+}
+```
+
+=== Memory layout
+```text
+|----------- Code Segment -------|    |--------- Data Segment --------|
+|  fun1()          fun2()        |    |  mutex m1, m2                 |
+|--------------------------------|    |-------------------------------|
+
+|--------- Stack segment --------
+|
+| |- main() stack ---|--- thread t1 stack -|------ thread2 stack ----|
+| | retAdd, t1,t2    | retAdd, no var      | retAdd, no local var    |
+| |------------------|---------------------|-------------------------|
+```
+
+=== Solution
