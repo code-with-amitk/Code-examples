@@ -3,6 +3,7 @@
 
 == TOCTOU (Time-of-Check to Time-of-Use)
 - Start by drawing memory layout(See below) for understanding
+
 === Code
 ```cpp
 #include <iostream>
