@@ -1,0 +1,120 @@
+:toc:
+:toclevels: 4
+
+== TOCTOU (Time-of-Check to Time-of-Use)
+=== Code
+```cpp
+#include <iostream>
+#include <vector>
+#include <thread>
+#include <mutex>
+
+class SafeQueue {
+private:
+    std::vector<int> data;
+    std::mutex mtx;
+
+public:
+    void push(int val) {
+        std::lock_guard<std::mutex> lock(mtx);
+        data.push_back(val);
+    }
+
+    bool pop_if_not_empty(int& result) {
+        mtx.lock();
+        if (data.empty()) {
+            mtx.unlock();
+            return false;
+        }
+        mtx.unlock();
+
+        // Processing window
+        std::lock_guard<std::mutex> lock(mtx);
+        if (!data.empty()) {
+            result = data.back();
+            data.pop_back();
+            return true;
+        }
+        return false;
+    }
+};
+
+SafeQueue queue;
+
+void producer() {
+    for (int i = 0; i < 100; ++i) {
+        queue.push(i);
+    }
+}
+
+void consumer() {
+    int val;
+    for (int i = 0; i < 100; ++i) {
+        if (queue.pop_if_not_empty(val)) {
+            // Process value
+        }
+    }
+}
+
+int main() {
+    std::thread p(producer);
+    std::thread c1(consumer);
+    std::thread c2(consumer);
+
+    p.join();
+    c1.join();
+    c2.join();
+    return 0;
+}
+```
+
+=== Issue (Flawed Design)
+==== Broken Atomicity
+- The check (data.empty()) and the action (data.pop_back()) are supposed to be a single, atomic operation. By manually unlocking the mutex in between checking the queue and re-locking it,
+you create a window of vulnerability.
+- The Interleaving Risk:
+** Thread C1 locks the mutex, sees that the queue has 1 item left, and unlocks the mutex. 
+** Right at that millisecond, Thread C2 locks the mutex, pops that 1 remaining item, and empties the queue.
+** Thread C1 then acquires the lock_guard, checks !data.empty(), realizes the queue is now empty, and fails. While it didn't crash this time, splitting the lock breaks thread safety guarantees. If multiple things depend on that state remaining unchanged between the check and the pop, everything falls apart.
+
+- let queue size=1
+- t=0, consumer1 enters pop_if_not_empty(). mtx.lock()=>find data is not empty=>mtx.unlock(); And Now OS schedules consumer2
+- t=1, consumer2 enters pop_if_not_empty(). mtx.lock()=>find data is not empty=>mtx.unlock()=>lock_guard => Empties data and exit
+- t=2, Now consumer1 resumes=>lock_guard, but finds data is empty {But consumer1 expected data to be present!! That's the Issue}
+```cpp
+bool pop_if_not_empty(int& result) {
+    mtx.lock();
+    if (data.empty()) {
+        mtx.unlock();
+        return false;
+    }
+    mtx.unlock(); // <--- PROBLEM AREA: Mutex is completely released here!
+
+    // --- RACE WINDOW STARTS HERE ---
+    // Another thread can jump in right now and change the queue state!
+    // --- 
+
+    // Processing window
+    std::lock_guard<std::mutex> lock(mtx); // Re-locks the mutex
+    if (!data.empty()) {
+        result = data.back();
+        data.pop_back();
+        return true;
+    }
+    return false;
+}
+```
+
+==== Fix
+- A thread-safe queue should never unlock mid-operation. The check and the pop must happen inside a single, continuous lock
+```cpp
+bool pop_safe(int& result) {
+    std::lock_guard<std::mutex> lock(mtx); // Locked once for the entire operation
+    if (data.empty()) {
+        return false;
+    }
+    result = data.back();
+    data.pop_back();
+    return true;
+}
+```
