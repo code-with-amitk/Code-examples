@@ -1,7 +1,9 @@
 :toc:
 :toclevels: 4
 
-== TOCTOU (Time-of-Check to Time-of-Use)
+== TOCTOU (Time-of-Check to Time-of-Use) Bug
+- This a software bug and security vulnerability. It happens when a program checks a system state or resource permission (like checking if a user can access a file), but changes the state or uses the resource a moment later. If an attacker changes the resource during that tiny time gap, the program acts on the modified resource using the old approv
+
 - Start by drawing memory layout(See below) for understanding
 
 === Code
