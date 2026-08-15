@@ -87,3 +87,21 @@ int main() {
     return 0;
 }
 ```
+
+=== unique_lock with std::lock()
+- While you can use std::lock with raw mutexes, it is considered dangerous because of exception safety. If an exception is thrown inside your critical section (before unlock() is called), your program will leak the locks, leading to a permanent crash or deadlock elsewhere.
+- To fix this, C++ developers usually use std::defer_lock with std::unique_lock so that the locks automatically clean themselves up (RAII) when the function exits.
+```cpp
+void fun1(int val)
+{
+    std::unique_lock<std::mutex> lock1(m1, std::defer_lock);
+    std::unique_lock<std::mutex> lock2(m2, std::defer_lock);
+
+    std::lock(lock1, lock2); // Locks safely
+
+    cout << "val: " << val << "\n";
+    
+    // No need to manually unlock! lock1 and lock2 automatically unlock 
+    // when they go out of scope, even if an exception is thrown.
+}
+```
