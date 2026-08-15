@@ -12,4 +12,4 @@
 
 ### [mutex types](Mutex_Types.md)
 - [std::lock](/Threads_Processes_IPC/Terms/Deadlock.adoc#solution-stdlock)
-- [unique_lock<mutex, defer_lock>](/Threads_Processes_IPC/Terms/Deadlock.adoc#solution-stdlock)
+- [unique_lock<mutex> lock1(mutex, defer_lock)](/Threads_Processes_IPC/Terms/Deadlock.adoc#solution-stdlock)
