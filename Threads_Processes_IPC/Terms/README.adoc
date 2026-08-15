@@ -129,6 +129,7 @@ Alternate between two tasks, then you are working on both tasks concurrently, bu
 Process spends most of time with CPU executing instructions. From Source: Program doing lot of calculations Eg: finding all possible permutations of a string.
 
 == link:Deadlock.adoc[Deadlock]
+=== Solution link:Deadlock.adoc#solution-stdlock[std::lock()]
 
 **Using [lock_guard]()**
 ```cpp
