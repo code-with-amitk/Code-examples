@@ -70,7 +70,7 @@ int main() {
 }
 ```
 
-== Memory Layout
+=== Memory Layout
 Important for understanding
 ```mermaid
 graph TD
@@ -124,6 +124,7 @@ graph TD
 ```
 
 === Issue (Flawed Design)
+
 ==== Broken Atomicity
 - The check (data.empty()) and the action (data.pop_back()) are supposed to be a single, atomic operation. By manually unlocking the mutex in between checking the queue and re-locking it,
 you create a window of vulnerability.
