@@ -68,6 +68,59 @@ int main() {
 }
 ```
 
+== Memory Layout
+Important for understanding
+```mermaid
+graph TD
+    subgraph Process Virtual Memory
+        subgraph Text Code Segment [Code Segment / RO]
+            C_MAIN["main()"]
+            C_PROD["producer()"]
+            C_CONS["consumer()"]
+            C_PUSH["SafeQueue::push()"]
+            C_POP["SafeQueue::pop_if_not_empty()"]
+        end
+
+        subgraph Data / BSS Segment [BSS / Global and static]
+            subgraph GLOBAL_QUEUE ["SafeQueue queue"]
+                D_VEC["vector metadata[startPtr,size,endPtr]"]
+                D_MTX["mutex mtx"]
+            end
+        end
+
+        subgraph Heap Segment [Heap]
+            HP["vector data"]
+        end
+        D_VEC --> HP
+
+        subgraph Stacks Region [Independent Thread Stacks]
+            subgraph Main Thread Stack
+                MS1["Return Address"]
+                MS2["Local Variables: <br>• Thread p object<br>• Thread c1 object<br>• Thread c2 object"]
+            end
+
+            subgraph Producer Thread Stack /Thread p
+                PS1["Return Address"]
+                PS2["Local Variables:i (0 to 100)"]
+            end
+
+            subgraph Consumer 1 Stack /Thread c1
+                C1S0["Input params = {}"]
+                C1S1["Return Address=0x21"]
+                C1S2["Local Variables: val, i"]
+            end
+
+            subgraph Consumer 2 Stack /Thread c2
+                C2S0["Input params = {}"]
+                C2S1["Return Address=0x11"]
+                C2S2["Local Variables: val, i"]
+            end
+        end
+    end
+
+    %% Pointers & Access Lines
+```
+
 === Issue (Flawed Design)
 ==== Broken Atomicity
 - The check (data.empty()) and the action (data.pop_back()) are supposed to be a single, atomic operation. By manually unlocking the mutex in between checking the queue and re-locking it,
