@@ -1,0 +1,91 @@
+:toc:
+:toclevels: 4
+
+== Circular Reference
+Consider a situation where Collector(using threads) is reading from Identity data from Domain controller.
+
+- There are many partitions on AD but let's consider 2 patitions:
+```
+1: Domain Partition(DP). mutexA: Protect DP Data
+2: Global Catalog(GC). mutexB: Protect GC Data
+```
+Thread1: Starts reading DP & there is reference to GC inside DP. So thread1 need to read GC. => Circular Reference
+
+=== Problematic Code (Deadlock)
+- t=0, thread1 reach worker1(), lock mutexA
+- t=1, Scheduler preempts thread1, schedules thread2. thread2 reaches worker2() and locks mutexB
+- t=2, Scheduler preempts thread2, schedules thread1. Thread1 comes back to worker1() and starts from where it left off, ie after mutexA.lock(), now thread1 tries locking mutexB(Deadlock here). Since thread2 has already locked mutexB.
+```c
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <chrono>
+using namespace std;
+mutex mutexA;           // Protect Domain Partition Data
+mutex mutexB;           // Protects Global Catalog data
+
+void worker1() {     // Reading Domain Partition
+  mutexA.lock();
+  this_thread::sleep_for(chrono::milliseconds(500));
+  mutexB.lock();
+  cout << "[Thread 1] Critical section\n";
+  mutexB.unlock();
+  mutexA.unlock();
+}
+
+void worker2() {     // Reading Global Catalog
+  mutexB.lock();
+  this_thread::sleep_for(chrono::milliseconds(500));
+  mutexA.lock();
+  cout << "[Thread 2] Critical section\n";
+  mutexA.unlock();
+  mutexB.unlock();
+}
+int main() {
+  thread t1(worker1);
+  thread t2(worker2);
+  t1.join();
+  t2.join();
+  return 0;
+}
+```
+
+=== Solution-1: Same lock/unlock order
+```
+void worker1() {
+    mutexA.lock();
+    mutexB.lock();
+    this_thread::sleep_for(chrono::milliseconds(500));
+    cout << "[Thread 1] Critical section\n";
+    mutexA.unlock();
+    mutexB.unlock();
+}
+void worker2() {
+    mutexA.lock();
+    mutexB.lock();
+    this_thread::sleep_for(chrono::milliseconds(500));
+    cout << "[Thread 2] Critical section\n";
+    mutexA.unlock();
+    mutexB.unlock();
+}
+```
+
+=== Solution-2: deadlock avoidance algorithm std::lock() & unique_lock<defer_lock>
+- If std::lock() cannot acquire all requested mutexes, it releases the mutexes it already acquired and retries.
+- Donot lock immediately., Most of deadlock problem occur because of immediate mutex locking. defer_lock delays locking on mutex for some time it becomes available
+```c
+void worker1() {
+  std::unique_lock<std::mutex> ul1(mutexA, std::defer_lock);
+  std::unique_lock<std::mutex> ul2(mutexB, std::defer_lock);
+  std::lock(ul1, ul2);
+  this_thread::sleep_for(chrono::milliseconds(500));
+  cout << "[Thread 1] Locked mutexB\n";
+}
+void worker2() {
+    std::unique_lock<std::mutex> ul1(mutexA, std::defer_lock);
+    std::unique_lock<std::mutex> ul2(mutexB, std::defer_lock);
+    std::lock(ul1, ul2);
+    this_thread::sleep_for(chrono::milliseconds(500));
+    cout << "[Thread 2] Critical section\n";
+}
+```
