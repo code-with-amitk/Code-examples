@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 4
 
-== Circular Reference
+== Circular Reference / Deadlock
 Consider a situation where Collector(using threads) is reading from Identity data from Domain controller.
 
 - There are many partitions on AD but let's consider 2 patitions:
