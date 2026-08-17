@@ -4,12 +4,17 @@
 == Circular Reference / Deadlock
 Consider a situation where Collector(using threads) is reading from Identity data from Domain controller.
 
-- There are many partitions on AD but let's consider 2 patitions:
+- There are many partitions on AD.
 ```
-1: Domain Partition(DP). mutexA: Protect DP Data
-2: Global Catalog(GC). mutexB: Protect GC Data
+1. Domain Partition (DC=domain,DC=com)(DP). Stores user objects (user), group objects (group), and their membership attributes like member or memberOf.
+2. Global Catalog(GC). If groups contain Universal Group members from other domains across a multi-domain forest, querying a Global Catalog port
+3. Configuration Partition: Physical and logical structure of network, AD Sites, subnets, site links, services, enterprise-wide configurations
+
+mutexA: Protect DP Data
+mutexB: Protect GC Data
 ```
-Thread1: Starts reading DP & there is reference to GC inside DP. So thread1 need to read GC. => Circular Reference
+- But let us consider 2 partitions(DP, GC)
+- Thread1: Starts reading DP & there is reference to GC inside DP. So thread1 need to read GC. => Circular Reference
 
 === Problematic Code (Deadlock)
 - t=0, thread1 reach worker1(), lock mutexA
