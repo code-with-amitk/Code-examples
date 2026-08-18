@@ -1,0 +1,151 @@
+:toc:
+:toclevels: 4
+
+== Rate limiter
+- Allow 10 requests per 60 seconds
+
+=== Single Threaded
+```cpp
+#include <iostream>
+#include <unordered_map>
+#include <string>
+#include <chrono>
+#include <mutex>
+using namespace std;
+
+/*
+    HashMap
+    key(string)         |           Value(struct{count, timestamp})
+            ------------|--------------
+t=0     user1           |   {1, now}
+t=1     user1           |   {}
+*/
+class RateLimiter {
+private:
+    struct Entry {
+        int count;
+        chrono::steady_clock::time_point timestamp; //Time when last request hit
+    };
+
+    unordered_map<string, Entry> rate_map;
+    //mutex mtx;
+    const int max_requests;
+    const chrono::seconds window_duration;
+
+public:
+    RateLimiter(int max_req = 10, int window_sec = 60)
+        : max_requests(max_req), window_duration(window_sec) {}
+
+    bool IsRequestAllowed(const string& key) {
+
+        // Present timestamp
+        auto now = chrono::steady_clock::now();
+
+        auto it = rate_map.find(key);
+        if (it == rate_map.end()) {
+            // First request: create entry with count=1, timestamp=now
+            rate_map[key] = {1, now};
+            return true;
+        }
+
+        auto last_time_req_recvd = it->second.timestamp;
+
+        // Time elapsed
+        // Find duration between last req hit and present time
+        // present_time - time_stored_in_hashmap
+        auto elapsed = chrono::duration_cast<chrono::seconds>(
+            now - last_time_req_recvd).count();
+
+        // if elapsed time is greater than 60
+        // Reset the counter and window
+        if (elapsed >= window_duration.count()) {
+            it->second.count = 1;
+            it->second.timestamp = now;
+            return true;
+        }
+
+        // Within window: check count
+        if (it->second.count < max_requests) {
+            it->second.count++;
+            return true;
+        }
+
+        // Rate limit exceeded
+        return false;
+    }
+
+    // Optional: get current count for a key in the active window
+    int getCurrentCount(const string& key) {
+        //lock_guard<mutex> lock(mtx);
+        auto now = chrono::steady_clock::now();
+        auto it = rate_map.find(key);
+        if (it == rate_map.end()) {
+            return 0;
+        }
+        auto elapsed = chrono::duration_cast<chrono::seconds>(
+            now - it->second.timestamp).count();
+        if (elapsed >= window_duration.count()) {
+            return 0; // expired
+        }
+        return it->second.count;
+    }
+};
+
+int main() {
+    RateLimiter limiter(10, 60); // 10 requests per 60 seconds
+    string key = "user1";
+
+    for (int i = 0; i < 15; ++i) {
+        if (limiter.IsRequestAllowed(key)) {
+            cout << "[Request-" << (i + 1) << "] allowed (count: " 
+                      << limiter.getCurrentCount(key) << ")\n";
+        } else {
+            cout << "Request " << (i + 1) << " DENIED (rate limit exceeded)\n";
+        }
+    }
+    return 0;
+}
+$ ./a.out
+[Request-1] allowed (count: 1)
+[Request-2] allowed (count: 2)
+[Request-3] allowed (count: 3)
+[Request-4] allowed (count: 4)
+[Request-5] allowed (count: 5)
+[Request-6] allowed (count: 6)
+[Request-7] allowed (count: 7)
+[Request-8] allowed (count: 8)
+[Request-9] allowed (count: 9)
+[Request-10] allowed (count: 10)
+Request 11 DENIED (rate limit exceeded)
+Request 12 DENIED (rate limit exceeded)
+Request 13 DENIED (rate limit exceeded)
+Request 14 DENIED (rate limit exceeded)
+Request 15 DENIED (rate limit exceeded)
+```
+
+=== Multithreaded
+- Redis rate limiter is running in 1 pod
+- Other pods can read, only 1 pod can write
+
+==== 1. lock_guard (lock for everyone)
+- All operations (read or write) take an exclusive lock.
+- Simple, correct, but not optimal if reads vastly outnumber writes.
+```c
+bool IsRequestAllowed(const string& key) {
+  lock_guard<std::mutex> lock(mtx);
+  // ..everything else same
+}
+```
+
+=== 2. shared_mutex (1 Writer, Multiple Readers)
+```c
+#include <shared_mutex>
+
+std::shared_mutex mtx;
+
+// For read-only operations (e.g., getCurrentCount)
+std::shared_lock<std::shared_mutex> rlock(mtx); // multiple readers allowed
+
+// For write operations (e.g., allowRequest when it modifies state)
+std::unique_lock<std::shared_mutex> wlock(mtx); // single writer
+```
