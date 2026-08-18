@@ -137,7 +137,7 @@ bool IsRequestAllowed(const string& key) {
 }
 ```
 
-=== 2. shared_mutex (1 Writer, Multiple Readers)
+==== 2. shared_mutex (1 Writer, Multiple Readers)
 ```c
 #include <shared_mutex>
 
