@@ -1,6 +1,6 @@
 **Replication**
-- Types of Replication
-  - [1. Master/Slave or Leader/Follower](#ms)
+- [Types of Replication](https://code-with-amitk.github.io/System_Design/Concepts/Databases/DB_Scaling/Replication/)
+  - 1. Master/Slave or Leader/Follower
   - [2. Master/Master or Active/Active or Leader/Leader](#mm)
   - [3. Leaderless](#ll)
 - [Synchronous, Asynchronous Replication](#sa)
@@ -9,9 +9,9 @@
   - [1. Master Node dies. Failover](#p1)
   - [2. Slave Node outrages, Dying slaves](#p2)
   - [2. Consistency problems](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/)
-- Implementation of Replication Log
-  - [1. Statement-based replication](#i1)
-  - [2. Write-ahead log (WAL) shipping](#i2)
+- [Implementation of Replication Log](https://code-with-amitk.github.io/System_Design/Concepts/Databases/DB_Scaling/Replication/)
+  - 1. Statement-based replication
+  - 2. Write-ahead log (WAL)
   - [3. Logical (row-based) log replication](#i3)
   - [4. Trigger based replication](#i4)
 
@@ -22,23 +22,7 @@ Replication means keeping a copy of the **same data** on multiple machines. Each
 ## Types of Replication
 <a name=ms></a>
 ### 1. Master/Slave or Leader/Follower
-- 1 node is designated as Leader/master. Client does RW operations with master, and only Read on any of slave. If master goes down slaves serve as RO DB. Slaves can also replicate among themselves.
-- **How it works**?
-  - Master stores session in it'd DB 1st then master writes(or slave reads) data to replicas/slaves(as replication log or change stream).
-  - Each slave takes the log from master and updates its local copy of the database in the same order as they were processed on the leader.
-- **Disadv:**    
-  - _a._ Logic is required to promote slave to master    
-  - _b._ If high number of slaves, more write operations can lead to replication lag.
-```c
-//Write only to Master
-                                       |-Write--> RO-SlaveReplica-DB-1
-  client  ----Write----->  MasterDB ---|                           
-                           /\          |-Write--> RO-SlaveReplica-DB-2
-                           |                      /\
-  client  ----Read---------|-----------------------|
-//Read to Master or Replica(any)
-```
-<img src=master_slave.PNG width=600/>
+
 
 <a name=mm></a>
 ### 2. Master/Master or Active/Active or Leader/Leader
