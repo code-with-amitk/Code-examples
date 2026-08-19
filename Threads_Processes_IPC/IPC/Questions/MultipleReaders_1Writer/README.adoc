@@ -1,0 +1,54 @@
+:toc:
+:toclevels: 4
+
+== Multiple Reader, 1 Writer
+- Consider a new bulletin board at school.
+- Where multiple readers can read from board(standing and seeing the board)
+- But only 1 Writer(Who clamps the board down) then write to it.
+  - While Writer is rubbing and writing no other reader is allowed to see the board
+
+=== shared_mutex, shared_lock (C++17)
+```cpp
+#include <iostream>
+#include <mutex>
+#include <shared_mutex>
+#include <thread>
+#include <chrono>
+#include <unistd.h>
+using namespace std;
+shared_mutex smtx;
+mutex mtx;
+
+string new_board = "No news yet.";
+
+void read_news(int reader_id) {
+    shared_lock<shared_mutex> lock(smtx);
+    cout << "Reader " << reader_id << " reads: " << new_board << "\n";
+    sleep(1);
+}
+
+void write_news(const string& new_news) {
+    // Only 1 writer allowed
+    lock_guard<mutex> lc(mtx);
+    //  OR  unique_lock<shared_mutex> lock(mtx); // Exclusive write lock
+    new_board = new_news;
+    cout << "--- WRITER updated news to: " << new_board << " ---\n";
+}
+
+int main() {
+    thread t[6];
+    t[0] = thread(read_news, 0);
+    t[1] = thread(read_news, 1);
+    t[2] = thread(write_news, "News1");
+    t[3] = thread(write_news, "News2");
+    t[4] = thread(read_news, 4);
+    t[5] = thread(read_news, 1);
+
+    for (int i = 0;  i < 6; i++)
+    {
+        t[i].join();
+    }
+
+    return 0;
+}
+```
