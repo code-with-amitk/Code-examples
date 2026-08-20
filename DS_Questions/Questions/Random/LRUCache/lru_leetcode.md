@@ -152,21 +152,31 @@ int main() {
 #include<mutex>
 #include <shared_mutex>
 #include<unistd.h>
+#include<condition_variable>
 
 using namespace std;
 using lp = list<pair<int, int>>;
 
-class LRUCache {
+// Threads should wait for signal of LRU creation
+bool lruCreationDone = false;
+condition_variable cv;
+mutex gmtx;
+
+class LRUCache
+{
     int c;
     lp dll;
     unordered_map<int, lp::iterator> um;
-    mutex m;
-    shared_mutex smtx;
+    //mutex m;
+    mutable shared_mutex smtx;
 
 public:
     LRUCache(int capacity) : c(capacity)
     {
+        //unique_lock ul(m);
         um.reserve(capacity);
+        // lruCreationDone = true;
+        // cv.notify_all();
     }
     int get(int key) {
         shared_lock<shared_mutex> rlock(smtx);
@@ -183,7 +193,7 @@ public:
     }
     
     void put(int key, int value) {
-        lock_guard<mutex> lg(m);
+        unique_lock<shared_mutex> ul(smtx);
         auto it = um.find(key);
         // if Key found in um
         //  - Replace value of key
@@ -219,7 +229,11 @@ public:
 
 int main() {
     LRUCache lRUCache(2);
-    sleep(1);
+    
+    // unique_lock<mutex> lk(gmtx);
+    // cv.wait(lk, [] { return lruCreationDone; }); // Block until ready
+    // lk.unlock();
+
     // T1: put(1, 1), put(2, 2)
     thread t1([&lRUCache]() {
         lRUCache.put(1, 1);
@@ -227,20 +241,18 @@ int main() {
     });
     thread t2([&lRUCache]() {
         cout << lRUCache.get(1) << "\n";        //1
-        //lRUCache.put(2, 2);
     });
     thread t3([&lRUCache]() {
         lRUCache.put(3, 3);
     });
     thread t4([&lRUCache]() {
-        cout << lRUCache.get(2) << "\n";
-        //lRUCache.put(2, 2);
+        cout << lRUCache.get(2) << "\n";        //-1
     });
      thread t5([&lRUCache]() {
         lRUCache.put(4, 4);
     });
     thread t6([&lRUCache]() {
-        cout << lRUCache.get(1) << "\n";
+        cout << lRUCache.get(1) << "\n";        //
         cout << lRUCache.get(3) << "\n";
         cout << lRUCache.get(4) << "\n";
     });
@@ -250,17 +262,15 @@ int main() {
     t4.join();
     t5.join();
     t6.join();
-
-    // lRUCache.put(1, 1); // cache is {1=1}
-    // lRUCache.put(2, 2); // cache is {1=1, 2=2}
-    // cout << lRUCache.get(1) << "\n";    // return 1
-    // lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
-    // cout << lRUCache.get(2) << "\n";    // returns -1 (not found)
-    // lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
-    // cout << lRUCache.get(1) << "\n";    // return -1 (not found)
-    // cout << lRUCache.get(3) << "\n";    // return 3
-    // cout << lRUCache.get(4) << "\n";    // return 4
 }
+/*
+./a.out
+1
+-1
+-1
+3
+4
+*/
 ```
 
 <a name=py></a>
