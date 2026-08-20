@@ -167,7 +167,6 @@ class LRUCache
     int c;
     lp dll;
     unordered_map<int, lp::iterator> um;
-    //mutex m;
     mutable shared_mutex smtx;
 
 public:
@@ -179,7 +178,8 @@ public:
         // cv.notify_all();
     }
     int get(int key) {
-        shared_lock<shared_mutex> rlock(smtx);
+        shared_lock<shared_mutex> rlock(smtx);    // Many readers allowed
+
         auto it = um.find(key);
         // if key not found return -1
         if (it == um.end()) {
@@ -193,7 +193,8 @@ public:
     }
     
     void put(int key, int value) {
-        unique_lock<shared_mutex> ul(smtx);
+        unique_lock<shared_mutex> ul(smtx);    // Only 1 writer can enter
+
         auto it = um.find(key);
         // if Key found in um
         //  - Replace value of key
