@@ -5,9 +5,9 @@
     - [CPP](#cpp)
     - [Python](#py)
 
-### [Self Good Video](https://www.youtube.com/watch?v=mhcTL2lqwI0)
+## [Self Good Video](https://www.youtube.com/watch?v=mhcTL2lqwI0)
 
-### [146. LRU Cache](https://leetcode.com/problems/lru-cache/)
+## [146. LRU Cache](https://leetcode.com/problems/lru-cache/)
 - Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
 - get and put in O(1) time complexity
 - Implement the LRUCache class:
@@ -25,9 +25,9 @@ Output
 ```
 
 <a name=a1></a>
-### Approach-1     //Doubly LL+ Hash
+## Approach-1     //Doubly LL+ Hash
 <a name=l></a>
-#### Logic
+### Logic
 - Most Recently used(MRU) is stored at front, LRU at back of doubly LL.
 ```c
 Cache capacity = 3
@@ -56,11 +56,18 @@ else    // No space in cache
   else
     - return -1
 ```
-#### Code
+## Code
+
 <a name=cpp></a>
-**CPP**
+### CPP
+#### Single Threaded
 ```cpp
-using lp = list <pair<int,int>>;
+#include<iostream>
+#include<unordered_map>
+#include<list>
+
+using namespace std;
+using lp = list<pair<int, int>>;
 
 class LRUCache {
   int c;
@@ -120,16 +127,24 @@ public:
     }
 };
 
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache* obj = new LRUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
+int main() {
+    LRUCache lRUCache(2);
+    lRUCache.put(1, 1); // cache is {1=1}
+    lRUCache.put(2, 2); // cache is {1=1, 2=2}
+    cout << lRUCache.get(1) << "\n";    // return 1
+    lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+    cout << lRUCache.get(2) << "\n";    // returns -1 (not found)
+    lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+    cout << lRUCache.get(1) << "\n";    // return -1 (not found)
+    cout << lRUCache.get(3) << "\n";    // return 3
+    cout << lRUCache.get(4) << "\n";    // return 4
+}
 ```
+
+
 <a name=py></a>
-**Python**
-```cpp
+### Python
+```py
 """
     dll | 5 | 4 | 1 | 3 | 2 |
         MRU              LRU
