@@ -1,9 +1,10 @@
 **LRU Cache**
 - [Approach1](#a1)
   - [Logic](#l)
-  - Code
-    - [CPP](#cpp)
-    - [Python](#py)
+  - CPP
+    - [Single Threaded](#cppsingle)
+    - [Multi Threaded](#cppmulti)
+  - [Python](#py)
 
 ## [Self Good Video](https://www.youtube.com/watch?v=mhcTL2lqwI0)
 
@@ -56,11 +57,9 @@ else    // No space in cache
   else
     - return -1
 ```
-## Code
-
-<a name=cpp></a>
-### CPP
-#### Single Threaded
+## CPP
+<a name=cppsingle></a>
+### Single Threaded
 ```cpp
 #include<iostream>
 #include<unordered_map>
@@ -141,6 +140,128 @@ int main() {
 }
 ```
 
+<a name=cppmulti></a>
+### CPP Multithreaded
+[shared_lock<shared_mutex>](https://code-with-amitk.github.io/Threads_Processes_IPC/Synchronization/mutex.html#wrappers)
+
+```cpp
+#include<iostream>
+#include<unordered_map>
+#include<list>
+#include<thread>
+#include<mutex>
+#include <shared_mutex>
+#include<unistd.h>
+
+using namespace std;
+using lp = list<pair<int, int>>;
+
+class LRUCache {
+    int c;
+    lp dll;
+    unordered_map<int, lp::iterator> um;
+    mutex m;
+    shared_mutex smtx;
+
+public:
+    LRUCache(int capacity) : c(capacity)
+    {
+        um.reserve(capacity);
+    }
+    int get(int key) {
+        shared_lock<shared_mutex> rlock(smtx);
+        auto it = um.find(key);
+        // if key not found return -1
+        if (it == um.end()) {
+            return -1;
+        }
+
+        // if key found, Move entry to front ie MRU(Most recently used)
+        // void splice (const_iterator position, list& x, const_iterator i)
+        dll.splice(dll.begin(), dll, it->second);
+        return it->second->second;
+    }
+    
+    void put(int key, int value) {
+        lock_guard<mutex> lg(m);
+        auto it = um.find(key);
+        // if Key found in um
+        //  - Replace value of key
+        //  - key comes to front, ie becomes MRU(Most recently used)
+        if (it != um.end()){
+            it->second->second = value;     //Replace the value in dll
+            dll.splice(dll.begin(), dll, it->second); //Move element to end of dll
+            return;
+        }
+
+        // if key not found
+        if (dll.size() < c) {
+            // Cache has space
+            //  Insert at front of dll ie becomes MRU(Most recently used)
+            um[key] = dll.insert(dll.begin(), {key, value});
+        } else {
+            // Size of cache is full.
+            //  - Remove last entry from cache ie remove LRU (Least recently used)
+            //  - Remove key from hashmap
+            if (!dll.empty()) {
+                int temp_key = dll.back().first;
+                um.erase(temp_key);
+                dll.pop_back();
+            }
+
+            // Insert (key,value) at start
+            // Note address in hashmap
+            dll.push_front({key, value});
+            um[key] = dll.begin();
+        }
+    }
+};
+
+int main() {
+    LRUCache lRUCache(2);
+    sleep(1);
+    // T1: put(1, 1), put(2, 2)
+    thread t1([&lRUCache]() {
+        lRUCache.put(1, 1);
+        lRUCache.put(2, 2);
+    });
+    thread t2([&lRUCache]() {
+        cout << lRUCache.get(1) << "\n";        //1
+        //lRUCache.put(2, 2);
+    });
+    thread t3([&lRUCache]() {
+        lRUCache.put(3, 3);
+    });
+    thread t4([&lRUCache]() {
+        cout << lRUCache.get(2) << "\n";
+        //lRUCache.put(2, 2);
+    });
+     thread t5([&lRUCache]() {
+        lRUCache.put(4, 4);
+    });
+    thread t6([&lRUCache]() {
+        cout << lRUCache.get(1) << "\n";
+        cout << lRUCache.get(3) << "\n";
+        cout << lRUCache.get(4) << "\n";
+    });
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+    t6.join();
+
+    // lRUCache.put(1, 1); // cache is {1=1}
+    // lRUCache.put(2, 2); // cache is {1=1, 2=2}
+    // cout << lRUCache.get(1) << "\n";    // return 1
+    // lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+    // cout << lRUCache.get(2) << "\n";    // returns -1 (not found)
+    // lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+    // cout << lRUCache.get(1) << "\n";    // return -1 (not found)
+    // cout << lRUCache.get(3) << "\n";    // return 3
+    // cout << lRUCache.get(4) << "\n";    // return 4
+}
+```
 
 <a name=py></a>
 ### Python
