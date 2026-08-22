@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 4
 
-== link:https://leetcode.com/problems/count-primes/description/[Count Primes]
+= link:https://leetcode.com/problems/count-primes/description/[Count Primes]
 Given an integer n, return the number of prime numbers that are strictly less than n.
 
 ```txt
@@ -19,6 +19,7 @@ Input: n = 1
 Output: 0
 ```
 
+= Solution
 == Brute Force (TLE)
 === Logic (check n i prime)
 - Loop through every integer i from 2 up to n-1.
