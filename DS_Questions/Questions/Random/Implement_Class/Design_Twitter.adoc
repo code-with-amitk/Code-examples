@@ -6,11 +6,11 @@ Design a simplified version of Twitter where users can post tweets, follow/unfol
 
 - Implement the Twitter class:
 
-Twitter() Initializes your twitter object.
-void postTweet(int userId, int tweetId) Composes a new tweet with ID tweetId by the user userId. Each call to this function will be made with a unique tweetId.
-List<Integer> getNewsFeed(int userId) Retrieves the 10 most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets must be ordered from most recent to least recent.
-void follow(int followerId, int followeeId) The user with ID followerId started following the user with ID followeeId.
-void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the user with ID followeeId.
+- Twitter() Initializes your twitter object.
+-void postTweet(int userId, int tweetId) Composes a new tweet with ID tweetId by the user userId. Each call to this function will be made with a unique tweetId.
+- List<Integer> getNewsFeed(int userId) Retrieves the 10 most recent tweet IDs in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user themself. Tweets must be ordered from most recent to least recent.
+- void follow(int followerId, int followeeId) The user with ID followerId started following the user with ID followeeId.
+- void unfollow(int followerId, int followeeId) The user with ID followerId started unfollowing the user with ID followeeId.
  
 ```
 Example 1:
@@ -30,3 +30,78 @@ twitter.getNewsFeed(1);  // User 1's news feed should return a list with 2 tweet
 twitter.unfollow(1, 2);  // User 1 unfollows user 2.
 twitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet id -> [5], since user 1 is no longer following user 2.
 ```
+
+== CPP
+```cpp
+class Twitter {
+public:
+    int timestamp; // Global timestamp to order tweets chronologically
+
+    // userId -> list of {timestamp, tweetId}
+    unordered_map<int, vector<pair<int, int>>> tweets; 
+
+    // userId -> set of followeeIds
+    unordered_map<int, unordered_set<int>> following;
+
+    Twitter() {
+        timestamp = 0;
+    }
+    
+    void postTweet(int userId, int tweetId) {
+        // Automatically creates the vector if userId doesn't exist. Also add entry if user exists
+        tweets[userId].push_back({timestamp++, tweetId});
+    }
+    
+    vector<int> getNewsFeed(int userId) {
+        // Push all entries on priority_queue (max heap). Max timestamp on top
+        priority_queue <pair<int, int>> pq;
+
+        // 1. Add user's own tweets
+        if (tweets.count(userId)) {
+            for (const auto& p : tweets[userId]) {
+                pq.push(p);
+            }
+        }
+
+        // 2. Add followees' tweets
+        if (following.count(userId)) {
+            for (int followeeId : following[userId]) {
+                if (tweets.count(followeeId)) {
+                    for (const auto& p : tweets[followeeId]) {
+                        pq.push(p);
+                    }
+                }
+            }
+        }
+
+        vector<int> res;
+        int count = 0;
+        // 3. Extract the top 10 most recent tweets
+        while (!pq.empty() && count < 10) {
+            res.push_back(pq.top().second); // push the tweetId
+            pq.pop();
+            count++;
+        }
+        
+        return res;
+    }
+    
+    void follow(int followerId, int followeeId) {
+        if (followerId != followeeId) {
+            following[followerId].insert(followeeId);
+        }
+    }
+    
+    void unfollow(int followerId, int followeeId) {
+        if (following.count(followerId)) {
+            following[followerId].erase(followeeId);
+        }
+    }
+};
+```
+=== Complexity
+- Time: getFeed(): O(nlogn). n=total tweets stored
+- Space: O(T+F). T: Total number of tweets stored globally across all users in the tweets map. F: Total number of follow relationships stored globally in the following map.
+
+=== Optimization
+- 
