@@ -1,4 +1,6 @@
 
+This code is referenced [here](https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#Kubebuilder): DONOT DELETE
+
 # Hello World Kubernetes Controller
 
 A tiny Go controller that keeps **one pod** named `hello-world` alive.
