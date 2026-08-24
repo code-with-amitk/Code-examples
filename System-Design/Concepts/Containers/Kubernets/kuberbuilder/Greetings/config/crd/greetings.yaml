@@ -1,0 +1,36 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: greetings.demo.example.com
+spec:
+  group: demo.example.com
+  names:
+    kind: Greeting
+    listKind: GreetingList
+    plural: greetings
+    singular: greeting
+    shortNames:
+      - gr
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                message:
+                  type: string
+            status:
+              type: object
+              properties:
+                phase:
+                  type: string
+                said:
+                  type: string
