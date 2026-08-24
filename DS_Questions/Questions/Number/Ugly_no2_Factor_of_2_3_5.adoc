@@ -1,0 +1,64 @@
+:toc:
+:toclevels: 4
+
+== link:https://leetcode.com/problems/ugly-number-ii/description/?envType=problem-list-v2&envId=heap-priority-queue[264. Ugly Number II]
+An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
+
+Given an integer n, return the nth ugly number.
+
+```
+Example 1:
+Input: n = 10
+Output: 12
+Explanation: [1, 2, 3, 4, 5, 6, 8, 9, 10, 12] is the sequence of the first 10 ugly numbers.
+
+Example 2:
+Input: n = 1
+Output: 1
+Explanation: 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.
+```
+
+== CPP
+=== Logic
+- i=1 is taken ugly number(defined in question)
+- Start from i=2, if i is divisible by only 2,3,5 (ie not by any other number eg: 7) then only increment the count
+- when count==n, return the number (ie i)
+
+=== TLE
+```cpp
+class Solution {
+public:
+    bool isUgly(int num) {
+        if (num <= 0) return false;
+        vector<int> v = {2,3,5};
+
+        // Continuously divide by 2, 3, and 5 as long as possible
+        for (int p : v) {
+            while (num % p == 0) {
+                num /= p;
+            }
+        }
+        // If we are left with 1, it had no other prime factors!
+        return num == 1;
+    }
+
+    int nthUglyNumber(int n) {
+        int ugly = 1;
+        if (n == 1)
+            return ugly;
+
+        int count = 1, i=2;
+        while(1) {
+            if (isUgly(i)) {
+                count++;
+            }
+            if (count == n) {
+                ugly = i;
+                break;
+            }
+            i++;
+        }
+        return ugly;
+    }
+};
+```
