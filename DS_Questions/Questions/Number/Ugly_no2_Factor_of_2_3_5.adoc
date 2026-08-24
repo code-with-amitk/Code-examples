@@ -19,12 +19,13 @@ Explanation: 1 has no prime factors, therefore all of its prime factors are limi
 ```
 
 == CPP
-=== Logic
+=== Sol-1.
+==== Logic
 - i=1 is taken ugly number(defined in question)
 - Start from i=2, if i is divisible by only 2,3,5 (ie not by any other number eg: 7) then only increment the count
 - when count==n, return the number (ie i)
 
-=== TLE
+==== TLE
 ```cpp
 class Solution {
 public:
@@ -59,6 +60,58 @@ public:
             i++;
         }
         return ugly;
+    }
+};
+```
+
+=== Sol-2
+==== Logic
+- Start with 1: We know 1 is the first ugly number. Push it into a min-heap.
+- Extract the minimum: Pop the smallest element from the heap. This will be the next correct ugly number in our sequence. 
+- Generate new candidates: Multiply that popped number by 2,3,5, and push all three results back into the heap.  
+- Avoid duplicates: Because numbers like 6 can be formed in multiple ways (2x3, 3x2), we use a hash set to keep track of numbers we've already added so we don't push duplicates.
+- Repeat: Do this n times, and the n-th popped number is your answer.  
+
+==== Code
+```
+#include <vector>
+#include <queue>
+#include <unordered_set>
+
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        // Min-heap to always extract the smallest ugly number
+        priority_queue<long long, vector<long long>, greater<long long>> pq;
+        
+        // Set to track numbers already added to the heap to prevent duplicates
+        unordered_set<long long> visited;
+        
+        // Start with the first ugly number
+        pq.push(1);
+        visited.insert(1);
+        
+        long long current = 1;
+        vector<int> primes = {2, 3, 5};
+        
+        for (int i = 0; i < n; i++) {
+            // Get the smallest number from the heap
+            current = pq.top();
+            pq.pop();
+            
+            // Generate the next potential ugly numbers
+            for (int p : primes) {
+                long long next_ugly = current * p;
+                
+                // If it hasn't been added yet, push it into the heap and set
+                if (visited.find(next_ugly) == visited.end()) {
+                    visited.insert(next_ugly);
+                    pq.push(next_ugly);
+                }
+            }
+        }
+        
+        return static_cast<int>(current);
     }
 };
 ```
