@@ -3,7 +3,6 @@
 This Code is reference [here](https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#Kubebuilder): Donot Delete
 
 ## [What is Kubebuilder?](https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#Kubebuilder)
-- Kubebuilder just creates a kind / manifest in kubernets which would be deployed later using controller or `kubectl apply -f` or any kubernets command
 
 ### What `main.go` does
 
