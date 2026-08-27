@@ -1,0 +1,54 @@
+:toc:
+:toclevels: 5
+
+== Concurrent HashMap
+=== 1 Global lock, unordered_map<int, int>
+```cpp
+#include<iostream>
+#include<unordered_map>
+#include<thread>
+#include<shared_mutex>
+#include<unistd.h>
+using namespace std;
+
+unordered_map<int, int> um;
+shared_mutex m;                    <<<<<<< 1 Global Lock
+
+void put(int tid, int key, int val) {
+    lock_guard<shared_mutex> lock(m);
+    um[key] = val;
+    cout << "[Producer] tid: " << tid << ", inserted: " << key << "\n";
+}
+
+void getVal(int tid, int key) {
+    shared_lock<shared_mutex> sm(m);              // Multiple Readers can enter same time
+    auto it = um.find(key);
+    if (it != um.end()) {
+        cout << "[Reader] tid:"<< tid << ", value:" << it->second << endl;
+    } else {
+        cout << "[Reader] tid:"<< tid << ". Nothing found" << endl;
+    }
+}
+
+int main() {
+    thread t[6];
+
+    // Reader
+    t[0] = thread(getVal, 0, 1);
+    t[1] = thread(getVal, 1, 2);
+
+    // Producer
+    t[2] = thread(put, 2, 1, 1);
+    t[3] = thread(put, 3, 2, 2);
+    sleep(1);
+    // Reader
+    t[4] = thread(getVal, 4, 1);
+    t[5] = thread(getVal, 5, 2);
+    
+    for (auto& worker : t) {
+        worker.join();
+    }
+    return 0;
+}
+```
+
