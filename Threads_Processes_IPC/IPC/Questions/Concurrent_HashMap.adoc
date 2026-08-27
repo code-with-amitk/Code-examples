@@ -3,6 +3,8 @@
 
 == Concurrent HashMap
 === 1 Global lock, unordered_map<int, int>
+- Writers (put) take an exclusive lock: lock_guard<shared_mutex>. 1 writer allowed at a time
+- Readers (getVal) take a shared lock: shared_lock<shared_mutex>. Multiple readers can run concurrently.
 ```cpp
 #include<iostream>
 #include<unordered_map>
