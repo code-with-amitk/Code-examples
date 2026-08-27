@@ -54,3 +54,82 @@ int main() {
 }
 ```
 
+=== Global lock, unordered_map<int, shared_ptr<Session>>
+```cpp
+#include<iostream>
+#include<unordered_map>
+#include<thread>
+#include<shared_mutex>
+#include<unistd.h>
+#include <memory>
+#include <string>
+#include <chrono>
+using namespace std;
+using timestamp = chrono::_V2::steady_clock::time_point;
+struct Session
+{
+    string data;
+    timestamp ts;
+    explicit Session(const char *sess_str) : data(sess_str) { 
+        ts = chrono::steady_clock::now(); 
+    }
+};
+
+            //connectionId
+unordered_map<int, shared_ptr<Session>> um;
+shared_mutex m;
+
+void put(int tid, int key, const char* val) {
+    lock_guard<shared_mutex> lock(m);
+    um[key] = make_shared<Session>(val);
+    cout << "[Producer] tid: " << tid << ", inserted (" << key << "," << val << ")\n";
+}
+void deleteEntry() {
+    // Only 1 thread allowed to enter.
+    lock_guard<shared_mutex> lock(m);
+    for (auto it = um.begin(); it != um.end(); ) {
+        if (chrono::steady_clock::now() - it->second->ts > chrono::milliseconds(50)) {
+            cout << "Deleted key " << it->first << "\n";
+            it = um.erase(it); // erase returns next iterator
+        } else {
+            ++it;
+        }
+    }
+}
+void getVal(int tid, int key) {
+    shared_lock<shared_mutex> sm(m);
+    auto it = um.find(key);
+    if (it != um.end()) {
+        cout << "[Reader] tid:"<< tid << " value:" << key << ", Key: " << it->second->data << endl;
+    } else {
+        cout << "[Reader] tid:"<< tid << ". Nothing found" << endl;
+    }
+}
+
+void erase() {
+
+}
+int main() {
+    thread t[8];
+
+    t[0] = thread(getVal, 0, 1);        // Reader
+    t[1] = thread(getVal, 1, 2);
+
+    t[2] = thread(put, 2, 1, "test");       // Producer
+    t[3] = thread(put, 3, 2, "best");
+    
+    sleep(1);               // This is undeterministic behaviour
+    
+    t[4] = thread(getVal, 4, 1);            // Reader
+    t[5] = thread(getVal, 5, 2);
+
+    t[6] = thread(deleteEntry);             // Delete
+
+    t[7] = thread(getVal, 7, 2);            // Reader
+    
+    for (auto& worker : t) {
+        worker.join();
+    }
+    return 0;
+}
+```
