@@ -54,7 +54,7 @@ int main() {
 }
 ```
 
-=== Global lock, unordered_map<int, shared_ptr<Session>>
+=== 1 Global lock, unordered_map<int, shared_ptr<Session>>
 - Writers (put), deleter take an exclusive lock: lock_guard<shared_mutex>. 1 writer allowed at a time
 - Readers (getVal) take a shared lock: shared_lock<shared_mutex>. Multiple readers can run concurrently.
 ```cpp
@@ -134,4 +134,42 @@ int main() {
     }
     return 0;
 }
+```
+
+=== Production Style. Multiple HashMaps
+==== N shards = N mutex
+```cpp
+struct Shard {
+    shared_mutex m;
+    unordered_map<int, shared_ptr<Session>> um;
+};
+vector<Shard> shards(N);
+```
+
+==== Key to a shard
+```
+size_t shard_index(int key) {
+    return std::hash<int>{}(key) % N;
+}
+```
+
+==== Benefits
+- Threads working on different keys often hit different shards → less contention.
+- Eviction can be done shard-by-shard, so you never lock the entire dataset at once.
+```
+In put, getVal, deleteEntry:
+Compute idx = shard_index(key).
+Lock only shards[idx].m.
+```
+
+==== Changes in deleteEntry(), put()
+- Presnt single-map version, global lock while iterating, blocks all readers/writers during that time. Sharding reduces that pause per shard.
+
+===== Logical deletion + lazy cleanup
+Instead of physically erasing during the scan. Mark sessions as expired or closed (a flag inside Session).
+
+```
+Actual removal from the map happens:
+    On next access to that key, or
+    During a separate compaction pass.
 ```
