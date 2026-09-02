@@ -65,58 +65,11 @@ impl TreeNode {
 - **7. Diameter of Tree:** Number of nodes on longest path between 2 nodes of Tree. 
 
 <a name=ty></a>
-## Types of Tree
+## [Types of Tree](https://code-with-amitk.github.io/Data_Structures/)
 #### 1. Binary Trees
-- Every node will have **upto 2 Children**.
-- Types: Full BT, Complete BT, Perfact BT, Balanced BT, Degenerated or Pathological BT
-
 ##### 1a. Complete BT
-- Binary tree(having max 2 children) in which every level of the tree is fully filled(means 2 children), except for perhaps the last level.
-- Last level is filled as left, not right.
-<img src=images/cbt.JPG width=500/>
-
 #### 1b. Full BT
-- Binary Tree where every node has 0 or 2 children.
-```c
-        1                        1
-       / \                      / \
-      2   3                    2   3
-     /    /\                       /\ 
-    4     5 6                      5 6
-    Not Full BT               Full BT
-```
-
 ##### 1c. Perfact BT
-- BT which full and complete.
-```c
-        1
-       / \
-      2   3
-     /\   /\
-    4 5   6 7 
-      
-```
-
 #### 2. Binary Search Tree(BST)/Ordered
-Mainly used for Searching. Duplicate elements cannot exist. `Left-child < parent, right-child > parent`. Insert/search/delete: O(log(n))
-```c
-        2
-       /  \
-      1   3
-``` 
 #### 3. Sum Tree
-Each node is sum of all nodes in its tree
-```c
-
-        10
-      /   \
-     4     6
-```    
 #### 4. M Tree
-Max m children of any node
-```c
-              a
-          /   |    \
-          b   c    d
-             | \  /|\ 
-````
