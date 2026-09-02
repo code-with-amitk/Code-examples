@@ -2,30 +2,7 @@
 :toclevels: 6
 
 
-== link:https://en.cppreference.com/w/cpp/atomic/atomic[Atomic]
-* Atomic means something that cannot be broken down into smaller parts
-* if one thread executes an atomic operation, it means that other thread will never see half-finished result.
-* The end result of Atomic Operation is predictable and correct.
-* If one thread writes to an atomic object while another thread reads from it, the behavior is well-defined. 
-* This can used as Inter Process Synchronization. Example:
-```cpp
-a = 0;
-void fun () {     //2 Threads executing this function
-  a += 12;
-}
-
-=== Problem without Atomic
-- Thread-1 enters fun() does a=12, At this point of execution, thread-1 is preempted and another thread-2 gets into same function.
-- Thread-2 does a=12
-- Thread-1 comes back and has previous value (12), instead of writing(24), it ends up in writing (12). But value should be 24.
-  
-=== Solution(Make operation a+=12 atomic):
-a. Take a as volatile
-b. Use synchronization methods.
-```
-
-=== Atomic Variables
-- Used for shared-memory communication between threads these are safe to share between threads ie values at end in these variables in not vague/unpredictable after n threads finished operating.
+== link:https://code-with-amitk.github.ioThreads_Processes_IPC/Synchronization/CPP/atomics.html[Atomic]
 
 ==== C++
 - std::atomic is neither copyable nor movable.
