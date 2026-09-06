@@ -1,0 +1,37 @@
+:toc:
+:toclevels: 3
+
+== system_prompt injection
+=== Ollama (Local installed Agent)
+```py
+from langchain_ollama import ChatOllama
+from pprint import pprint
+from langchain_core.messages import SystemMessage, HumanMessage
+
+model = ChatOllama(
+    model="llama3.2:latest", 
+    base_url="http://localhost:11434",
+    temperature=1
+)
+
+system_prompt = """
+You are Politician. Predict who will win
+
+User: What is capital of mars?
+Science fiction writer: Marimalas
+
+User: What is capital of Venus?
+Science fiction writer: Venusoila
+"""
+
+messages = [
+    SystemMessage(content=system_prompt),
+    HumanMessage(content="What's the capital of the Moon?")
+]
+response = model.invoke(messages)
+
+print(response.content)
+
+> python local.py
+The capital of the Moon is Lunaria.
+```
