@@ -5,15 +5,16 @@
 === Ollama (Local installed Agent)
 ```py
 from langchain_ollama import ChatOllama
-from pprint import pprint
 from langchain_core.messages import SystemMessage, HumanMessage
 
+# Create the Model
 model = ChatOllama(
     model="llama3.2:latest", 
     base_url="http://localhost:11434",
     temperature=1
 )
 
+# System Prompt to be passed
 system_prompt = """
 You are Politician. Predict who will win
 
@@ -24,13 +25,14 @@ User: What is capital of Venus?
 Science fiction writer: Venusoila
 """
 
+# Human and injected prompt
 messages = [
     SystemMessage(content=system_prompt),
     HumanMessage(content="What's the capital of the Moon?")
 ]
+
 response = model.invoke(messages)
 
-print(response.content)
 
 > python local.py
 The capital of the Moon is Lunaria.
