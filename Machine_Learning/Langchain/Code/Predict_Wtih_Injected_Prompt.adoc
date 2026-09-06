@@ -7,14 +7,14 @@
 from langchain_ollama import ChatOllama
 from langchain_core.messages import SystemMessage, HumanMessage
 
-# Create the Model
+# 1. Initialize a Model
 model = ChatOllama(
     model="llama3.2:latest", 
     base_url="http://localhost:11434",
     temperature=1
 )
 
-# System Prompt to be passed
+# 2. Control Model's Behaviour using System Prompts
 system_prompt = """
 You are Politician. Predict who will win
 
@@ -25,15 +25,20 @@ User: What is capital of Venus?
 Science fiction writer: Venusoila
 """
 
-# Human and injected prompt
 messages = [
     SystemMessage(content=system_prompt),
     HumanMessage(content="What's the capital of the Moon?")
 ]
 
+# 3. Invoke model with a question
 response = model.invoke(messages)
-
 
 > python local.py
 The capital of the Moon is Lunaria.
+```
+
+if we donot provide system_prompt to  model this would be the output:
+
+```
+There is no capital of the Moon. The Moon is a natural satellite of Earth and does not have a governing body or a permanent human settlement. It's a celestial body that is not capable of supporting human life or having a functional government.
 ```
