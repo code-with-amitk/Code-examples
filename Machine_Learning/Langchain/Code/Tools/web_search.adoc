@@ -1,0 +1,191 @@
+:toc:
+:toclevels: 3
+
+== Problem (LLM Knowledge is till Nov 2023)
+- LLM Agent(eg: llama locally installed) may not have updated information. llama is trained information until Nov 2023.
+- if you ask recent information from Model it will not provide updated information.
+
+```py
+from langchain_ollama import ChatOllama
+from pprint import pprint
+from langchain_core.messages import SystemMessage, HumanMessage
+from langchain.tools import tool
+from langchain.agents import create_agent
+
+# Initialize the Ollama LLM
+llm = ChatOllama(
+    model="llama3.2:latest",
+    base_url="http://localhost:11434",
+    temperature=0
+)
+
+# Create the agent
+agent = create_agent(
+    model=llm,
+    tools=[tool1],
+    system_prompt="You are an intelligent knowlegable agent"
+)
+
+question1 = HumanMessage(content="How upto date your training knowledge is?")
+question2 = HumanMessage(content="Who is Chief Minister of Tamil Nadu?")
+
+response = agent.invoke(
+    {"messages": [question1, question2]}
+)
+
+print("Output:", response)
+"""
+Output:
+{'messages': 
+	[HumanMessage(
+		content='How upto date your training knowledge is?', 
+		additional_kwargs={}, 
+		response_metadata={}, 
+		id='25037190-a760-48a0-8f4a-82230703172e'),
+		
+		HumanMessage(
+		content='Who is Chief Minister of Tamil Nadu?', 
+		additional_kwargs={}, 
+		response_metadata={}, 
+		id='92ee0089-c774-46ba-8359-58c059813d68'), 
+		
+		AIMessage(
+			content='My training knowledge is up to date until December 2023. I have been trained on a vast amount of text data, including but not limited to:\n\n* General knowledge up to 2023\n* News articles and events up to 2023\n* Books, 
+      research papers, and academic journals up to 2023\n* Web pages and online resources up to 2023\n\nHowever, please note that my knowledge may not be entirely up to date, and I may not have information on very recent events or 
+      developments.\n\nRegarding your question, as of my knowledge cutoff in December 2023, the Chief Minister of Tamil Nadu is M.K. Stalin. He has been serving as the Chief Minister of Tamil Nadu since May 2016.', 
+			additional_kwargs={}, 
+			response_metadata={
+				'model': 'llama3.2:latest', 
+				'created_at': '2026-09-07T09:12:04.2347399Z', 
+				'done': True, 
+				'done_reason': 'stop', 
+				'total_duration': 19584883000, 
+				'load_duration': 4644009700, 
+				'prompt_eval_count': 49, 
+				'prompt_eval_duration': 314150000, 
+				'eval_count': 151, 
+				'eval_duration': 14617683000, 
+				'logprobs': None, 
+				'model_name': 'llama3.2:latest', 
+				'model_provider': 'ollama'
+			}, 
+			
+			id='lc_run--01a07b23-4705-7931-b726-67377274e2e9-0', 
+			tool_calls=[], 
+			invalid_tool_calls=[], 
+			usage_metadata={
+				'input_tokens': 49, 
+				'output_tokens': 151, 
+				'total_tokens': 200
+			}
+		)
+	]
+}
+"""
+```
+
+== Solution(Web Search Tool)
+- Agent does tools call and provide complete result to LLM. Where LLM parses and provides to the point result back to agent.
+
+```py
+from langchain_ollama import ChatOllama
+from pprint import pprint
+from langchain_core.messages import SystemMessage, HumanMessage
+from langchain.tools import tool
+from langchain.agents import create_agent
+from tavily import TavilyClient
+from typing import Dict, Any
+import os
+import json
+
+os.environ["TAVILY_API_KEY"] = "API_KEY"
+
+#(toolname, "tool description for agent understanding")
+@tool("web_search", description="Search the web for information")
+def tool1(query:str) -> Dict[str, Any]:
+    # Instantiating TavilyClient without arguments automatically reads TAVILY_API_KEY from environment
+    tavily = TavilyClient()
+    return tavily.search(query=query)
+
+# Initialize the Ollama LLM
+llm = ChatOllama(
+    model="llama3.2:latest",
+    base_url="http://localhost:11434",
+    temperature=0
+)
+
+# Create the agent
+agent = create_agent(
+    model=llm,
+    tools=[tool1],
+    system_prompt="You are an intelligent knowlegable agent"
+)
+
+question = HumanMessage(content="Who is Chief Minister of Tamil Nadu?")
+
+response = agent.invoke(
+    {"messages": [question]}
+)
+
+print("Output:", response)
+"""
+{'messages': 
+	[
+		HumanMessage(
+			content='Who is Chief Minister of Tamil Nadu?', 
+			additional_kwargs={}, 
+			response_metadata={}, 
+			id='7b487e90-3e99-43ee-a196-6ef22c0c43f5'), 
+		
+		AIMessage(
+			content='',
+			additional_kwargs={}, 
+			response_metadata={
+				'model': 'llama3.2:latest', 
+				'created_at': '2026-09-07T09:32:18.2593992Z', 
+				'done': True, 
+				'done_reason': 
+				'stop', 
+				'total_duration': 5879100600,
+				'load_duration': 3885343900, 
+				'prompt_eval_count': 164, 
+				'prompt_eval_duration': 950664000, 
+				'eval_count': 17, 
+				'eval_duration': 1033858000, 
+				'logprobs': None, 
+				'model_name': 'llama3.2:latest',
+				'model_provider': 'ollama'
+			}, 
+			id='lc_run--01a07b36-02e6-75d2-99c9-69a53253a131-0', 
+			tool_calls=[{'name': 'web_search', 'args': {'query': 'Chief Minister of Tamil Nadu'}, 'id': '0157178e-777d-41cd-a4bf-8091f0fe7b53', 'type': 'tool_call'}], 
+			invalid_tool_calls=[], 
+			usage_metadata={'input_tokens': 164, 'output_tokens': 17, 'total_tokens': 181}), 
+			ToolMessage(
+				content='{
+					"query": "Chief Minister of Tamil Nadu", 
+					"follow_up_questions": null, 
+					"answer": null, 
+					"images": [], 
+					"results": [
+						{
+							"url": "https://en.wikipedia.org/wiki/Chief_Minister_of_Tamil_Nadu", 
+							"title": "Chief Minister of Tamil Nadu - Wikipedia", 
+							"content": "..C. Joseph Vijay ministry ..
+						}
+					], 
+					"response_time": 0.0, 
+					"request_id": "1c989e41-9f26-460e-ac67-b574a9dc02cc"}', 
+					name='web_search', 
+					id='fed818b3-b370-4204-9176-f52c09f47a57', 
+					tool_call_id='0157178e-777d-41cd-a4bf-8091f0fe7b53'
+				), 
+					
+				AIMessage(
+					content='The current Chief Minister of Tamil Nadu is C. Joseph Vijay, who has been in office since May 10, 2026.', 
+					additional_kwargs={}, 
+					response_metadata={'model': 'llama3.2:latest', 'created_at': '2026-09-07T09:32:33.7124348Z', ..}
+				)
+			]
+		}
+"""
+```
