@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 3
 
-== Problem (LLM Knowledge is till Nov 2023)
+== Problem (LLM Knowledge is till Nov 2023. Question to LLM: Who is present CM of TN?)
 - LLM Agent(eg: llama locally installed) may not have updated information. llama is trained information until Nov 2023.
 - if you ask recent information from Model it will not provide updated information.
 
