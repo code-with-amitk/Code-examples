@@ -24,7 +24,7 @@ agent = create_agent(
 )
 
 out = tool1.invoke({"x": 9})
-print(out)
+print(out)        # 27.0
 
 question = HumanMessage(content="What is the square root of 4?")
 
@@ -32,10 +32,35 @@ response = agent.invoke(
     {"messages": [question]}
 )
 
-print(response['messages'][-1].content)
-
+print("Output:", response['messages'][-1].content)
 """
-> python .\tool.py
-27.0
-The square root of 4 is 2.
+Output:
+[
+  {
+    "role": "user",
+    "content": "What is the square root of 4?"
+  },
+  {
+    "role": "assistant",
+    "tool_calls": [
+      {
+        "name": "square_root",
+        "args": {
+          "x": 4
+        },
+        "id": "408a9a10-2bf5-4fae-b9ed-2cb3aaa48b47"
+      }
+    ]
+  },
+  {
+    "role": "tool",
+    "name": "square_root",
+    "tool_call_id": "408a9a10-2bf5-4fae-b9ed-2cb3aaa48b47",
+    "content": "12.0"
+  },
+  {
+    "role": "assistant",
+    "content": "The square root of 4 is 2."
+  }
+]
 """
