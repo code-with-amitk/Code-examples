@@ -12,7 +12,7 @@ def tool1(x: float) -> float:
 # Initialize the Ollama LLM
 llm = ChatOllama(
     model="llama3.2:latest",
-    base_url="http://localhost:11434",
+    base_url="http://localhost:11434",       # Running LLM Locally
     temperature=0
 )
 
