@@ -56,3 +56,5 @@ print(response)
 
 == Benefits of Langsmith (wrt print)
 - Structured display of every parameter, which call took how much time. What calls were made etc.
+
+image::Agent_sending_logs_to_langsmith.png[Langsmith]
