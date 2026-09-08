@@ -1,4 +1,7 @@
 :toc:
 :toclevels: 3
 
-== link:https://code-with-amitk.github.io/Machine%20Learning/LangChain/[What is Langsmith?]
+== link:https://code-with-amitk.github.io/Machine%20Learning/Langsmith/[What is Langsmith?]
+
+== Code
+- link:Code[AI Agent sending Logs to Langsmith]
