@@ -1,0 +1,70 @@
+:toc:
+:toclevels: 3
+
+== Multimodal Agent
+- A agent which can accept any form of input(Audio, Text, Image) is called multimodal agent.
+- Using langchain we can create a Agent which accepts Image as input and answers questions asked about the same
+
+
+=== Code
+1. All multimodal inputs(images, Audios) need to be converted to base64 and base64 encoding is passed to model as a question
+2. Multimodal message to agent contains (Text, base64 encoded image file)
+```py
+from langchain_ollama import ChatOllama
+from pprint import pprint
+from langchain_core.messages import HumanMessage
+from langchain.agents import create_agent
+import base64
+
+# 1. All images, Audios are converted to base64 and base64 encoding is passed to model as a question
+file_path = "./moon_image.jpg"
+with open(file_path, "rb") as f:
+    img_bytes = f.read()
+img_b64 = base64.b64encode(img_bytes).decode("utf-8")
+print("img_b64:", img_b64)
+"""
+8GoXrnuM1e9QUVUMfqPSG3VQQOCzaqxpgq6awruAZz/Uc7Wc+ISpAobUDuWBgjXXatYJaJOwJQ
+tDC6p2WxGRwc+TBCnuCRXsysLd/zLVCblWVzHAVHXhi8hfMF2OYM4+GWS+4S1X7lXa3dShRfcG
+iq+oCFcpiazi6mWO83Ma5IsAowdMc1LQcNSoX4E2KpIrtVXxAkDNs2FrqFlHzD1By4M8CILs4b
+Y2kFkPlHIMSgN9NQyVMhp4hAsijQIJQWN3cbVy4tftxGFxkQj9pgYzsJaAB6/yaExLTtMlkSaB
+...
+"""
+
+# Initialize the Ollama LLM
+llm = ChatOllama(
+    model="llava:latest",                         # NOTE: llama3.2 is Text only model. llava is multimodal LLM.
+    base_url="http://localhost:11434",
+    temperature=0,
+)
+
+# Create the agent
+agent = create_agent(
+    model=llm,
+    system_prompt="You are an Astronaut"
+)
+
+# 2. Multimodal input contains more than 1 message
+#  Message1: Text input
+#  Message2: Image input
+multimodal_question = HumanMessage(content=[
+    {"type": "text", "text": "Tell me about this capital"},
+    {"type": "image", "base64": img_b64, "mime_type": "image/jpg"}
+    # "mime_type": "audio/wav"
+])
+response = agent.invoke(
+    {"messages": [multimodal_question]},
+)
+pprint(response["messages"][-1].content)
+"""
+(" The image you've provided shows a nighttime scene with a full moon "
+ 'illuminating the sky. The moon is visible in the upper right corner, casting '
+ 'a bright light that contrasts with the dark sky. Below the moon, there are '
+ 'silhouettes of tall grass or reeds, which are common in wetland areas. The '
+ 'grass is swaying gently, suggesting a calm and possibly windy night. The '
+ 'overall atmosphere of the image is serene and somewhat mysterious due to the '
+ "darkness and the silhouette of the grass. The moon's position in the sky and "
+ 'the angle of the shot give a sense of depth and perspective. The image does '
+ 'not contain any text or additional elements that would provide more context '
+ 'or information about the location or the time of the photo. ')
+"""
+```
