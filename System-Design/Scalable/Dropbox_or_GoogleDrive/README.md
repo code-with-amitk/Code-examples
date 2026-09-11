@@ -1,8 +1,13 @@
+
+
+- [Requirements](#req)
+
+
 - **Distributed DropBox/Google Drive/Cloud File Storage?**
   - This is file hosting service. Securely storing data on Distributed remote servers. Read:Write ratio is same.
 
-## [To Cover](/System-Design/Scalable)
 
+<a name=req></a>
 ## 1. Requirements
 - **Functional:**
   - *1.* File upload/download/edit supported simultaneously by multiple users
@@ -29,18 +34,20 @@
 
 ### 1 New File Creation
 
-- *a.* User creates a file. A client Application running on user's machine sends following information (userId, fileId, file content, hash of file)
-- *b.* Server stores file on [Object-DB]() and meta-data SQL-DB.
+1. User creates a new file. Client Application running on user's machine sends following meta data (userId, fileId, file content, hash of file) to Appserver
+2. Server will store metadata to SQL DB and generate a pre-signed URL and sent to client App
+3. Client App will send file chunks to pre signed URL and file is assemble inside object store
+
 ```
-                                         |--------------- Datacenter -----------------------------------------|
-User -> ClientApp --> GLB(GlobalLB)      |                                                                    |
-           |           \/                |                                                                    |
-           |          Regional LB  -------> Nginx ---> KubernetsIngressLB ---> AppServer --metadata--> SQLDB  |
-           |                             |                                                                    |
-           |----------upload using presigned URL --------------> Object Store                                 | 
-                                         |--------------------------------------------------------------------|
+|--- laptop ------|                    |--------------- Datacenter --------------------------------------------|
+|User -> ClientApp| --> GLB(GlobalLB)  |                                                                       |
+|--------- | -----|        \/          |                                                                       |
+           |           Regional LB  -------> Nginx ---> KubernetsIngressLB ---> AppServer --metadata--> SQLDB  |
+           |                           |                                                                       |
+           |----------upload FILE CHUNK using presigned URL --------------> Object Store                       | 
+                                       |-----------------------------------------------------------------------|
 File's Metadata table:   
-| userId | uniqueFileID (uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocation (PtrOnDB) | Directory structure | Shared-With |
+file_id, owner, filename, size, chunks, object-store keys, version
 ```
 
 ### 2 Updating Existing File
