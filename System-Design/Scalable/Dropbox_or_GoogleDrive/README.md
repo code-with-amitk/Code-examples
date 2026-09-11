@@ -1,21 +1,18 @@
-- **DropBox/Google Drive/Cloud File Storage?**
-  - This is file hosting service. Securely storing data on remote servers. Read:Write ratio is same.
-  - If files are stored/transffered in smaller chunks(eg: 4MB) it will save lot of BW and space.
-  - *Advantages?* 
-    - Data is available anytime,anywhere on any device(mobile,linux,windows etc).
-    - Reliable(multiple copies are stored) data will not be lost.
+- **Distributed DropBox/Google Drive/Cloud File Storage?**
+  - This is file hosting service. Securely storing data on Distributed remote servers. Read:Write ratio is same.
 
 ## [To Cover](/System-Design/Scalable)
 
 ## 1. Requirements
 - **Functional:**
-  - *1.* Upload files/photos from any device ie create/write and auto-saving of document.
-  - *2.* Other users can download the files/photos from any device.
-  - *3.* Offline editing. User should be able to upload/edit while he's offline, information should go on drive as he comes online.
-  - *4.* Share files with others.
-  - *5. Synchronization* Automatic synchronization between devices, i.e., after updating a file on one device, it should get synchronized on all devices.
-- **Non-functional:** S<sup>3</sup> L<sup>3</sup> C<sup>2</sup> A<sup>3</sup> R<sup>2</sup> F
-- **Extended:** Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
+  - *1.* File upload/download/edit supported simultaneously by multiple users
+  - *2.* Offline editing. User is offline, he edits the file, Once User comes online information should go on drive.
+  - *3.* After updating a file on one device, it should get synchronized on all devices.
+- **Non-functional:**
+  - Highly available
+  - Eventual consistent
+- **Extended:**
+  - Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
 
 ## 2. BOE
 
@@ -29,26 +26,31 @@
 - **Traffic Estimates:** Assume 1M active users/min. Each sending 100KB file. 100GB/min. 166MB/sec
 
 ## 3. HLD
-> User creates gmail account, 15GB space is reserved for him, once he logs in dashboard is provided to user.
 
-### 3.1 Use Cases
-- **1 New File Creation**
-  - *a.* User creates a file. A client Application running on user's machine sends following information (userId, fileId, file content, hash of file)
-  - *b.* Server stores text/photo/video on [Object-DB]() and following on meta-data SQL server.
-```c
-File's Metadata table:
-   
+### 1 New File Creation
+
+- *a.* User creates a file. A client Application running on user's machine sends following information (userId, fileId, file content, hash of file)
+- *b.* Server stores file on [Object-DB]() and meta-data SQL-DB.
+```
+                                         |--------------- Datacenter -----------------------------------------|
+User -> ClientApp --> GLB(GlobalLB)      |                                                                    |
+           |           \/                |                                                                    |
+           |          Regional LB  -------> Nginx ---> KubernetsIngressLB ---> AppServer --metadata--> SQLDB  |
+           |                             |                                                                    |
+           |----------upload using presigned URL --------------> Object Store                                 | 
+                                         |--------------------------------------------------------------------|
+File's Metadata table:   
 | userId | uniqueFileID (uniqueFID) | startPtr of File | endPtr of File | sha3HashOfFile | ActualFileLocation (PtrOnDB) | Directory structure | Shared-With |
 ```
 
-- **2 Updating Existing File**
-  - Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
-    - *a.* User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
-    - *b.* User erases last 100 lines and adds new 200 lines. File size is changed.
-      - **Hash based solution:** We will pre-divide whole file into chunks. Chunk-1{0-100 lines=10kb}, Chunk-2, Chunk-3 and so on.
-      - Client will store hash of chunks. Whenever user writes to file, Client Application will recalculate the hashes for chunk. Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
+### 2 Updating Existing File
+- Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
+  - *a.* User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
+  - *b.* User erases last 100 lines and adds new 200 lines. File size is changed.
+    - **Hash based solution:** We will pre-divide whole file into chunks. Chunk-1{0-100 lines=10kb}, Chunk-2, Chunk-3 and so on.
+    - Client will store hash of chunks. Whenever user writes to file, Client Application will recalculate the hashes for chunk. Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
 
-### 3.2 Flow
+## Flow Diagram
 - *1-6.* Same as [Facebook newsfeed]()
 - *7.* Application server stores connection info in conn_db. Push file Content, MetaData recieved from client on [MOM]().
 - *8.* Updater will receive notification, stores file Content on [Object Store]() and meta data on [SQL DB]().
