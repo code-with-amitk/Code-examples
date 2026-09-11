@@ -1,0 +1,72 @@
+:toc:
+:toclevels: 4
+
+== Context Schema vs InMemorySaver 
+|===
+||Context Schema|InMemorySaver 
+|What|
+Similar to local variable or function parameter in C. 
+when we pass a context structured by a context_schema into an agent run, it is available to the tools and middleware during that specific function call.
+For 2nd agent call it goes away|
+Similar to static/global variable in C. It stays for all agent calls
+|How it is passed to Agent|Context -> Tool Runtime -> Agent|
+|===
+
+```py
+from dataclasses import dataclass
+from langchain_ollama import ChatOllama
+from pprint import pprint
+from langchain_core.messages import HumanMessage
+from langchain.tools import tool
+from langchain.agents import create_agent
+from langchain.tools import tool, ToolRuntime
+
+@dataclass
+class ColourContext:
+    favourite_colour: str = "blue"                  # Favorite Color
+    least_favourite_colour: str = "yellow"          # Less Favorite Color
+
+@tool
+def get_favourite_colour(runtime: ToolRuntime[ColourContext]) -> str:
+    """Get the favourite colour of the user"""
+    return runtime.context.favourite_colour
+
+@tool
+def get_least_favourite_colour(runtime: ToolRuntime[ColourContext]) -> str:
+    """Get the least favourite colour of the user"""
+    return runtime.context.least_favourite_colour
+
+llm = ChatOllama(
+    model="llama3.2:latest",
+    base_url="http://localhost:11434",
+    temperature=0,
+)
+
+# Create the agent
+agent = create_agent(
+    model=llm,
+    tools=[get_favourite_colour, get_least_favourite_colour],       # Context Schema is passed using tools to agent
+    context_schema=ColourContext
+)
+
+question = HumanMessage(content="What is my favourite colour?")
+
+response = agent.invoke(
+    {"messages": [question]},
+    context=ColourContext()                                         # Passing default context
+)
+pprint(response)
+"""
+The user's favourite colour is blue.
+"""
+
+response = agent.invoke(
+    {"messages": [question]},
+    context=ColourContext(favourite_colour="green")                # Changed default context
+)
+pprint(response)
+"""
+The user's favourite colour is green.
+"""
+
+```
