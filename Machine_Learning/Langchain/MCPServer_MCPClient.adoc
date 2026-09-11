@@ -1,0 +1,129 @@
+:toc:
+:toclevels: 4
+
+== MCP Server
+- link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/MCP/#terms[MCP Server] provides Tools, Resources, prompt
+
+```py
+from langchain_mcp_adapters.client import MultiServerMCPClient
+import sys
+import asyncio
+
+from mcp.server.fastmcp import FastMCP
+from tavily import TavilyClient
+from typing import Dict, Any
+from requests import get
+import os
+
+os.environ["TAVILY_API_KEY"] = "XXX"
+mcp = FastMCP("mcp_server")
+tavily_client = TavilyClient()
+
+# Tools available to MCP Server
+@mcp.tool()
+def search_web(query: str) -> Dict[str, Any]:
+    """Search the web for information"""
+
+    results = tavily_client.search(query)
+
+    return results
+
+
+# Resources - provide access to langchain-ai repo files
+@mcp.resource("https://code-with-amitk.github.io/")
+def get_my_system_design_page():
+    """
+    Resource for accessing Coding, system design knowledge
+    """
+    url = f"https://code-with-amitk.github.io/"
+    try:
+        resp = get(url)
+        return resp.text
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.prompt()
+def prompt():
+    """Analyze data from a code-with-amitk.github.io website with comprehensive insights"""
+    return """
+    You are a helpful assistant that answers user questions about System Design.
+
+    You can use the following tools/resources to answer user questions:
+    - search_web: Search the web for information
+    - files: Access the code-with-amitk.github.io html files
+
+    If the user asks a question that is not related to system design, you should say "I'm sorry, I can only answer questions about LangChain, LangGraph and LangSmith."
+
+    You may try multiple tool and resource calls to answer the user's question.
+
+    You may also ask clarifying questions to the user to better understand their question.
+    """
+
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
+```
+
+== MCP Client
+- https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/MCP/#terms[MCP Client] connects to server and asks a question. MCP Server responds after:
+  * Reads from resource(if can found information)
+  * Use Tool(eg: web search) if cannot find answer to question in resource
+
+```py
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_ollama import ChatOllama
+from langchain.agents import create_agent
+import asyncio
+from pprint import pprint
+
+async def main():
+    # 1. Instantiate client directly (Do NOT use `async with` here)
+    mcp_client = MultiServerMCPClient(
+        {
+            "local_server": {
+                "transport": "stdio",
+                "command": "python",
+                "args": ["local_mcp_server.py"],  # Ensure filename is correct
+            }
+        }
+    )
+
+    tools = await mcp_client.get_tools()                                # get tools
+
+    # get resource=get_my_system_design_page
+    resources = await mcp_client.get_resources("local_server")
+    prompt = await mcp_client.get_prompt(
+        "local_server",
+        "prompt"
+    )
+    prompt = prompt[0].content
+
+    llm = ChatOllama(
+        model="llama3.2:latest",
+        base_url="http://localhost:11434",
+        temperature=0,
+        
+    )
+    agent = create_agent(
+        model=llm,
+        tools=tools,
+        system_prompt=prompt
+    )
+    config = {"configurable": {"thread_id": "1"}}
+
+    response = await agent.ainvoke(
+        {"messages": [HumanMessage(content="Tell me about the box.com system design")]},
+        config=config
+    )
+
+    pprint(response)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+"""
+> python client.py
+"""
+```
