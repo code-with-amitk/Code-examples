@@ -1,11 +1,12 @@
 
 
 - [Requirements](#req)
+- [BOE](#boe)
+- [HLD](#hld)
+  - [1. New File Creation](#new_file_creation)
 
-
-- **Distributed DropBox/Google Drive/Cloud File Storage?**
-  - This is file hosting service. Securely storing data on Distributed remote servers. Read:Write ratio is same.
-
+# Distributed DropBox/Google Drive/Cloud File Storage?
+This is file hosting service. Securely storing data on Distributed remote servers. Read:Write ratio is same.
 
 <a name=req></a>
 ## 1. Requirements
@@ -19,6 +20,7 @@
 - **Extended:**
   - Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
 
+<a name=boe></a>
 ## 2. BOE
 
 |World Population|InternetUsers(60%)|DropBox users(2%)|Daily Active users(10~12%)|
@@ -30,9 +32,11 @@
 
 - **Traffic Estimates:** Assume 1M active users/min. Each sending 100KB file. 100GB/min. 166MB/sec
 
+<a name=hld></a>
 ## 3. HLD
 
-### 1 New File Creation
+<a name=new_file_creation></a>
+### 1. New File Creation
 
 1. User creates a new file. Client Application running on user's machine sends following meta data (userId, fileId, file content, hash of file) to Appserver
 2. Server will store metadata to SQL DB and generate a pre-signed URL and sent to client App
