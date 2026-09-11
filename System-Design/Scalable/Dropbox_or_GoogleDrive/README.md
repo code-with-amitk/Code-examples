@@ -4,8 +4,11 @@
 - [BOE](#boe)
 - [HLD](#hld)
   - [1. New File Creation](#new_file_creation)
-    - [Fault Tolerance (Client Side)](#Fault_Tolerance)
-    - [Idempotency Handling (Server Side)](#Idempotency_Handling)
+    - [Client Side](#client_side)
+      - [Fault Tolerance](#ft_client)
+    - [Server Side](#server_side)
+      - [Fault Tolerance](#ft_server)
+      - [Idempotency Handling](#Idempotency_Handling_ss)
   - [2. Edit Existing File](#edit)
 
 # Distributed DropBox/Google Drive/Cloud File Storage?
@@ -55,8 +58,10 @@ file_id, owner, filename, size, chunks, object-store keys, version
 2. Server will store metadata to SQL DB and generate a pre-signed URL and sent to client App
 3. Client App will send file chunks to pre signed URL and file is assemble inside object store
 
-<a name=Fault_Tolerance></a>
-### Fault Tolerance (Client Side)
+### client side
+
+<a name=ft_client></a>
+#### Fault Tolerance (Client Side)
 ```
 file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
 ```
@@ -64,8 +69,12 @@ file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
 **1. ClientApp crashes after sending chunk-0**
 - Once clientApplication restarts, it will get information from AppServer that chunk-0 is received and will start from chunk-1
 
+### Server side
+
 <a name=Idempotency_Handling></a>
-### Idempotency Handling (Server Side)
+#### Idempotency Handling (Server Side)
+> operation or function produces the same result or final state
+
 - ClientApp sends chunk-0, chunk-1. Server recieved chunk-0, chunk-1 and sends ACK1, ACK2. ClientApp recieves ACK1 & network failure happened, ClientApp did not recieve ACK2.
 - Network resumes and clientApp sends chunk-1 again.
 - In order for server to not create 2 copies of chunk-1, Server need to maintain a idempotency key which is(file_id + version + chunk_number). if same key is found duplicate is rejected.
