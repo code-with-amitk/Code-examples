@@ -1,0 +1,146 @@
+:toc:
+:toclevels: 3
+
+== MultiAgent System
+- A system where more than 1 agent works with each other to achieve 1 big task.
+- Eg: Stock Market analysis report. 
+** This tasks has multiple subtasks inside it(eg: collecting report from web, aggregating required data, correlating the data, preparing a comprehensive report, sending report via email)
+** if this task is given to 1 agent it will take lot of sequential time. Hence multiagent system is good choice here.
+
+== Orchestrator Pattern
+- Multiagent systems are implemented using orchestrator pattern ie 1 main agent delegating tasks to subagents
+```
+Main Agent
+  |- subagent {Tool = square()}
+  |
+  |- subagent {Tool = squareroot()}
+```
+=== Code
+```py
+from dataclasses import dataclass
+from langchain_ollama import ChatOllama
+from pprint import pprint
+from langchain_core.messages import HumanMessage
+from langchain.tools import tool
+from langchain.agents import create_agent
+from langchain.tools import tool, ToolRuntime
+
+llm = ChatOllama(
+    model="llama3.2:latest",
+    base_url="http://localhost:11434",
+    temperature=0,
+)
+
+@tool
+def square_root(x: float) -> float:
+    """Calculate the square root of a number"""
+    return x ** 0.5
+@tool
+def square(x: float) -> float:
+    """Calculate the square of a number"""
+    return x ** 2
+
+# create subagents using Tools defined above
+subagent_square_root = create_agent(
+    model=llm,
+    tools=[square_root]
+)
+subagent_square = create_agent(
+    model=llm,
+    tools=[square]
+)
+
+
+# Tools to be used by main Orchestrator Agent
+@tool
+def call_subagent_square_root(x: float) -> float:
+    """Call subagent 1 in order to calculate the square root of a number"""
+    response = subagent_square_root.invoke({"messages": [HumanMessage(content=f"Calculate the square root of {x}")]})
+    return response["messages"][-1].content
+@tool
+def call_subagent_square(x: float) -> float:
+    """Call subagent 2 in order to calculate the square of a number"""
+    response = subagent_square.invoke({"messages": [HumanMessage(content=f"Calculate the square of {x}")]})
+    return response["messages"][-1].content
+
+# Create Main Agent
+main_agent = create_agent(
+    model=llm,
+    tools=[call_subagent_square_root, call_subagent_square],
+    system_prompt="You are a helpful assistant who can call subagents to calculate the square root or square of a number.")
+
+question = "What is the square root of 456?"
+
+response = main_agent.invoke({"messages": [HumanMessage(content=question)]})
+pprint(response)
+"""
+{'messages': 
+	[
+	HumanMessage(
+		content='What is the square root of 456?', 
+		additional_kwargs={}, 
+		response_metadata={}, 
+		id='29610506-cbb6-43ea-8f68-24784e207263'
+	),
+    AIMessage(
+		content='', 
+		additional_kwargs={}, 
+		response_metadata={
+			'model': 'llama3.2:latest', 
+			'created_at': '2026-09-11T13:36:31.1720022Z', 
+			'done': True, 
+			'done_reason': 'stop', 
+			'total_duration': 7607722900, 
+			'load_duration': 5309736900, 
+			'prompt_eval_count': 241, 
+			'prompt_eval_duration': 1089660000, 
+			'eval_count': 20, 
+			'eval_duration': 1187792000, 
+			'logprobs': None, 
+			'model_name': 'llama3.2:latest', 
+			'model_provider': 'ollama'
+		}, 
+		id='lc_run--01a090af-01fc-7e11-976d-73555c43d123-0', 
+		tool_calls=[
+			{
+				'name': 'call_subagent_square_root',			<<<<<<<<< SUBAGENT called
+				'args': {'x': 456}, 
+				'id': '470470d4-ddb6-4c2b-814c-694c8bf5b4b5', 
+				'type': 'tool_call'
+			}], 
+			invalid_tool_calls=[], 
+			usage_metadata={'input_tokens': 241, 'output_tokens': 20, 'total_tokens': 261}
+	),
+	ToolMessage(
+		content='The square root of 456.0 is 21.354156504062622.', 
+		name='call_subagent_square_root', 
+		id='48730175-812d-4e29-8e4d-9328daaa533c', 
+		tool_call_id='470470d4-ddb6-4c2b-814c-694c8bf5b4b5'
+	),
+	AIMessage(
+		content='The square root of 456 is approximately 21.35.', 
+		additional_kwargs={}, 
+		response_metadata={
+			'model': 'llama3.2:latest', 
+			'created_at': '2026-09-11T13:36:36.0887101Z', 
+			'done': True, 
+			'done_reason': 'stop', 
+			'total_duration': 1273506400, 
+			'load_duration': 6578300, 
+			'prompt_eval_count': 133, 
+			'prompt_eval_duration': 327286000, 
+			'eval_count': 14, 
+			'eval_duration': 810690000, 
+			'logprobs': None, 
+			'model_name': 'llama3.2:latest', 
+			'model_provider': 'ollama'
+		}, 
+		id='lc_run--01a090af-2dfe-7f11-a421-35bd1a3f8748-0', 
+		tool_calls=[], 
+		invalid_tool_calls=[], 
+		usage_metadata={'input_tokens': 133, 'output_tokens': 14, 'total_tokens': 147}
+	)
+]}
+"""
+
+```
