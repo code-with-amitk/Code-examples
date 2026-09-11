@@ -7,7 +7,6 @@
     - [Client Side](#client_side)
       - [Fault Tolerance](#ft_client)
     - [Server Side](#server_side)
-      - [Fault Tolerance](#ft_server)
       - [Idempotency Handling](#Idempotency_Handling_ss)
   - [2. Edit Existing File](#edit)
 
@@ -71,7 +70,7 @@ file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
 
 ### Server side
 
-<a name=Idempotency_Handling></a>
+<a name=Idempotency_Handling_ss></a>
 #### Idempotency Handling (Server Side)
 > operation or function produces the same result or final state
 
@@ -81,11 +80,19 @@ file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
 
 <a name=edit></a>
 ## 2. Edit Existing File
-- Let's suppose a file of 50kb already exists, maybe 500 lines. There are 2 cases here:
-  - *a.* User erases last 100 lines and adds new 100 lines. File size is still same but contents are changed.
-  - *b.* User erases last 100 lines and adds new 200 lines. File size is changed.
-    - **Hash based solution:** We will pre-divide whole file into chunks. Chunk-1{0-100 lines=10kb}, Chunk-2, Chunk-3 and so on.
-    - Client will store hash of chunks. Whenever user writes to file, Client Application will recalculate the hashes for chunk. Whichever hash mismatches, means this chunk is changed & this needed to be transmitted to server.
+```
+v1: chunk-0 → A
+    chunk-1 → B 
+    chunk-2 → C
+
+v2: chunk-0 → A
+    chunk-1 → D <<< Changed
+    chunk-2 → C
+
+// v1. Metadata stored on SQL. pointer to object store
+```
+- user changes bytes chunk1(C). ClientApp will send Delta:(file_id, version, chunk_id, start_offset, end_offset, delta_object_pointer) to server
+- File displayed to client would be version 2 → chunk 0(original), chunk 1(updated), chunk 2(original).
 
 <a name=flow></a>
 # Flow Diagram
