@@ -4,6 +4,8 @@
 - [BOE](#boe)
 - [HLD](#hld)
   - [1. New File Creation](#new_file_creation)
+    - [Fault Tolerance (Client Side)](#Fault_Tolerance)
+    - [Idempotency Handling (Server Side)](#Idempotency_Handling)
   - [2. Edit Existing File](#edit)
 
 # Distributed DropBox/Google Drive/Cloud File Storage?
@@ -54,7 +56,7 @@ file_id, owner, filename, size, chunks, object-store keys, version
 3. Client App will send file chunks to pre signed URL and file is assemble inside object store
 
 <a name=Fault_Tolerance></a>
-### Fault Tolerance
+### Fault Tolerance (Client Side)
 ```
 file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
 ```
@@ -63,7 +65,7 @@ file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
 - Once clientApplication restarts, it will get information from AppServer that chunk-0 is received and will start from chunk-1
 
 <a name=Idempotency_Handling></a>
-### Idempotency Handling
+### Idempotency Handling (Server Side)
 - ClientApp sends chunk-0, chunk-1. Server recieved chunk-0, chunk-1 and sends ACK1, ACK2. ClientApp recieves ACK1 & network failure happened, ClientApp did not recieve ACK2.
 - Network resumes and clientApp sends chunk-1 again.
 - In order for server to not create 2 copies of chunk-1, Server need to maintain a idempotency key which is(file_id + version + chunk_number). if same key is found duplicate is rejected.
