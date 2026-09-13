@@ -6,6 +6,8 @@
 - In this code we calculated embedding of word(apple) using model(nomic-embed-text:latest) which is pretrained Ollama emdedding model
 - Ollama's embedding model(nomic-embed-text) has 768 dimension. Hence every word is represented by array of 768 floats
 - We calculate embeddings of words ['apple', 'car', 'fruit', 'automobile', 'love', 'sentiment'] and then find (Cosine Similarity and Euclidian distance) between apple and every other word
+- **Cosine similarity:** the closer to 1, the more similar two words 
+- **Euclidean distance:** Similar words have a smaller distance
 
 ```py
 from langchain_ollama import OllamaEmbeddings
