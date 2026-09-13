@@ -1,0 +1,238 @@
+:toc:
+:toclevels: 3
+
+== RAG pieline 
+- This fetches security logs data(vpn.log, firewaill.log) from sql DB and log files, answer user Queries(using LLM)
+
+=== Explanation of Code
+==== //////// Retriever Phase /////////
+- 1. Read log files (vpn.log, firewall.log)
+
+- 2. Create chunks.
+```
+	chunk = actual log + meta data
+	{'content': '[VPN] 2025-05-01 08:01:05 VPN_LOGIN_FAILED user=john.doe ip=185.22.11.4', 'metadata': {'source': 'vpn.log', 'line': 1}}, 	//chunk1
+	{'content': '[VPN] 2025-05-01 08:03:44 VPN_LOGIN_FAILED user=john.doe ip=185.22.11.4', 'metadata': {'source': 'vpn.log', 'line': 2}}, 	//chunk2
+	{'content': '[VPN] 2025-05-01 08:06:12 VPN_LOGIN_FAILED user=john.doe ip=185.22.11.4', 'metadata': {'source': 'vpn.log', 'line': 3}},	//chunk3
+	chunks = chunk1+chunk2+chunk3
+```
+	
+- 3. Find embedding of content of every chunk
+```
+	for c in chunk:		
+		HTTP POST http://localhost:11434//api/embed
+		payload = {
+			"model": nomic-embed-text:latest,		<< embedding model
+			"input": c.content						<< Embedding is calculated for content(NOT metadata)
+		}
+	return embedding(ie n dimensional float array)
+```
+
+- 4. Store into vector database(pinecone)/[] in RAM
+```
+	{
+		"content",			// Store content
+		"metadata",			// store metadata
+		embedding			// store embedding
+	}
+```
+
+==== ///////// Augmentation Phase /////////
+- 4. User_Query embedding is calculated
+- 5. closeness of Stored embeddings(of all logs in vector) and user_query is calculated using semantic search(using cosine similarity or euclidian distance)
+- 6. All those logs which are closer to user_query's embeddings are taken and sorted in order of distance, ie most relevant logs are at top. sorted_closest_embeddings
+
+==== ///////// Generation Phase /////////
+- 7. Convert embeddings back to string. To model(like llama3.2) embeddings are of no use.
+- 8. Create a prompt to be provided to LLM.
+```
+	created_prompt =		// Ollama expects "prompt" to be a single concatenated string, not an unformatted dictionary or list
+	{
+		"You are a Security Operations Center (SOC) analyst.\n"		//system prompt
+		sorted_closest_text_embeddings								
+		user_query
+	}
+	eg: "You are a network admin"
+```
+- 8. Send question to LLM: 
+```
+	HTTP POST http://localhost:11434/api/generate 
+    payload = {
+        "model": llama3.2:latest,
+        "prompt": created_prompt,
+        "options": {"temperature": 0.0}
+    }
+```
+- 9. Response to above is the answer
+
+=== Code
+```py
+import json
+import requests
+import numpy as np
+
+# Configuration
+OLLAMA_BASE_URL = "http://localhost:11434"
+EMBEDDING_MODEL = "nomic-embed-text:latest"
+LLM_MODEL = "llama3.2:latest"
+
+def get_embedding(text: str) -> list[float]:
+    """Fetch 768-dim vector directly from Ollama REST API."""
+    url = f"{OLLAMA_BASE_URL}/api/embed"
+    payload = {"model": EMBEDDING_MODEL, "input": text}
+    
+    response = requests.post(url, json=payload)
+    response.raise_for_status()
+    # The API returns a list under key 'embeddings'
+    return response.json()["embeddings"][0]
+
+# ==========================================
+# 1. RETRIEVER PHASE: Ingestion & Vectoring
+# ==========================================
+def load_and_chunk_logs(filepath: str, source_type: str) -> list[dict]:
+    """Read log files line-by-line and wrap them into chunks."""
+    chunks = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line_num, line in enumerate(f, 1):
+            line = line.strip()
+            if not line:
+                continue
+            
+            # Enrich line with context so the embedder understands source
+            content = f"[{source_type.upper()}] {line}"
+            chunks.append({
+                "content": content,
+                "metadata": {"source": filepath, "line": line_num}
+            })
+    return chunks
+
+# --- Step A: Ingest Files ---
+vpn_chunks = load_and_chunk_logs("vpn.log", "vpn")
+firewall_chunks = load_and_chunk_logs("firewall.log", "firewall")
+all_chunks = vpn_chunks + firewall_chunks
+#print("all chunks:", all_chunks)
+
+print(f"[Ingestion] Loaded {len(all_chunks)} log records.")
+
+# --- Step B: Create Embeddings Database in Memory ---
+vector_database = []
+
+for item in all_chunks:
+    print("item:", item)
+    embedding = get_embedding(item["content"])
+    vector_database.append({
+        "content": item["content"],
+        "metadata": item["metadata"],
+        "vector": np.array(embedding, dtype=np.float32)
+    })
+
+print(f"[Embeddings] Generated vectors for {len(vector_database)} chunks.")
+
+# ==========================================
+# 2. RETRIEVER PHASE: Vector Search
+# ==========================================
+
+def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
+    """Compute cosine similarity between two 1D vectors."""
+    dot_product = np.dot(v1, v2)
+    norm_v1 = np.linalg.norm(v1)
+    norm_v2 = np.linalg.norm(v2)
+    return float(dot_product / (norm_v1 * norm_v2))
+
+def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
+    """Embed prompt and return top K closest log entries."""
+    query_vector = np.array(get_embedding(query), dtype=np.float32)
+    
+    scored_chunks = []
+    for record in vector_database:
+        score = cosine_similarity(query_vector, record["vector"])
+        scored_chunks.append((score, record))
+        
+    # Sort descending by score
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+    
+    return [record for score, record in scored_chunks[:top_k]]
+
+# ==========================================
+# 3. AUGMENTATION & GENERATION PHASE
+# ==========================================
+
+def generate_rag_response(user_prompt: str) -> str:
+    # 1. Retrieve relevant contexts
+    retrieved_records = retrieve_top_k(user_prompt, top_k=6)
+    
+    context_str = "\n".join([r["content"] for r in retrieved_records])
+    
+    # 2. Augment prompt with context
+    system_prompt = (
+        "You are a Security Operations Center (SOC) analyst.\n"
+        "Answer the question strictly based on the provided log context.\n"
+        "Cross-reference IP addresses, usernames, and firewall block rules to explain reasons.\n\n"
+        f"LOG CONTEXT:\n{context_str}\n\n"
+        f"USER QUESTION: {user_prompt}\n\n"
+        "ANALYSIS:"
+    )
+    
+    # 3. Call Ollama Chat API
+    url = f"{OLLAMA_BASE_URL}/api/generate"
+    payload = {
+        "model": LLM_MODEL,
+        "prompt": system_prompt,
+        "stream": False,
+        "options": {"temperature": 0.0}
+    }
+    
+    response = requests.post(url, json=payload)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# ==========================================
+# Execution
+# ==========================================
+if __name__ == "__main__":
+    query = "reason of failure for user john.doe?"
+    print(f"\nPrompt: '{query}'\n" + "-" * 50)
+    
+    answer = generate_rag_response(query)
+    print(answer)
+
+"""
+> ollama list
+NAME                       ID              SIZE      MODIFIED
+nomic-embed-text:latest    0a109f422b47    274 MB    3 minutes ago
+llava:latest               8dd30f6b0cb1    4.7 GB    3 days ago
+llama3.2:latest            a80c4f17acd5    2.0 GB    2 weeks ago
+
+> ollama ps
+NAME                       ID              SIZE      PROCESSOR    CONTEXT    UNTIL
+llama3.2:latest            a80c4f17acd5    2.5 GB    100% GPU     4096       4 minutes from now
+nomic-embed-text:latest    0a109f422b47    323 MB    100% GPU     2048       3 minutes from now
+
+> python test.py
+[Embeddings] Generated vectors for 18 chunks.
+
+Prompt: 'reason of failure for user john.doe?'
+--------------------------------------------------
+Based on the provided log context, I can analyze the situation to determine the reason for the VPN login failure for user john.doe.
+
+From the logs, we can see that user john.doe is attempting to log in to the VPN three times with the same IP address (185.22.11.4). This suggests that the user is trying to connect from the same IP address each time.
+
+However, there is no direct correlation between the IP address 185.22.11.4 and the user john.doe. The IP address is not associated with any specific user account or device.
+
+To investigate further, I would need to cross-reference the IP address with other logs to determine if it's a valid IP address that is allowed to connect to the VPN. Unfortunately, the provided logs do not contain any information about the IP address being blocked or allowed.
+
+However, I can suggest a few possible reasons for the VPN login failure:
+
+1. **Invalid IP address**: The IP address 185.22.11.4 might be invalid or not in the allowed IP range for VPN connections.
+2. **Firewall block**: Although there is no direct correlation between the IP address and the user, it's possible that thefirewall block rule (FIREWALL_DENY) is blocking the VPN connection due to the IP address being in a restricted range.
+3. **Network issue**: There might be a network issue or connectivity problem that's preventing the user from establishing a VPN connection.
+
+To resolve the issue, I would recommend the following steps:
+
+1. Verify the IP address: Check if the IP address 185.22.11.4 is valid and allowed for VPN connections.
+2. Check firewall rules: Review the firewall block rules to ensure that the IP address is not being blocked.
+3. Investigate network issues: Check the network connectivity and ensure that there are no issues that could be preventingthe VPN connection.
+
+Without further information or logs, it's difficult to provide a definitive reason for the VPN login failure. However, by cross-referencing the IP address with other logs and investigating potential network issues, we can try to determine the cause of the failure.
+"""
+```
