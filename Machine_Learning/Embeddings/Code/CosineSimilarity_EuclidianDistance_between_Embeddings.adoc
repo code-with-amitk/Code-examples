@@ -2,6 +2,10 @@
 :toclevels: 3
 
 == link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#semantic[Cosine Similarity, Euclidian Distance]
+- link:https://code-with-amitk.github.io/Machine%20Learning/Terms.html#Embedding[What is embedding]
+- In this code we calculated embedding of word(apple) using model(nomic-embed-text:latest) which is pretrained Ollama emdedding model
+- Ollama's embedding model(nomic-embed-text) has 768 dimension. Hence every word is represented by array of 768 floats
+- We calculate embeddings of words ['apple', 'car', 'fruit', 'automobile', 'love', 'sentiment'] and then find (Consine Similarity and Euclidian distance) between apple and every other word
 
 ```py
 from langchain_ollama import OllamaEmbeddings
