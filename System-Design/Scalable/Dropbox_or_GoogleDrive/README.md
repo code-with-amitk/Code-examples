@@ -19,9 +19,10 @@ This is file hosting service. Securely storing data on Distributed remote server
   - *1.* File upload/download/edit supported simultaneously by multiple users
   - *2.* Offline editing. User is offline, he edits the file, Once User comes online information should go on drive.
   - *3.* After updating a file on one device, it should get synchronized on all devices.
+ 
 - **Non-functional:**
   - Highly available
-  - Eventual consistent
+  - Eventual consistent: Means replicas may temporarily return different versions but eventually converge. What is SLA to be eventual consistent(5 sec or 30 sec)?
 - **Extended:**
   - Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
 
@@ -47,8 +48,18 @@ This is file hosting service. Securely storing data on Distributed remote server
            |                           |                                                                       |
            |----------upload FILE CHUNK using presigned URL --------------> Object Store                       | 
                                        |-----------------------------------------------------------------------|
-File's Metadata table:   
-file_id, owner, filename, size, chunks, object-store keys, version
+File's Metadata table (Document db json mongodb):   
+file_id
+owner_id
+filename
+size
+version
+object_key
+upload_id
+status
+checksum
+created_at
+
 ```
 
 <a name=new_file_creation></a>
