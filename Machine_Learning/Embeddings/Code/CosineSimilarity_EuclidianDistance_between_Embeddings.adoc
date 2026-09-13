@@ -1,0 +1,93 @@
+:toc:
+:toclevels: 3
+
+== link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#semantic[Cosine Similarity, Euclidian Distance]
+
+```py
+from langchain_ollama import OllamaEmbeddings
+import numpy as np
+
+def cosine_similarity(v1, array_of_vectors):
+    v1 = np.array(v1)
+    similarities = []
+    
+    if len(np.shape(array_of_vectors)) == 1:
+        array_of_vectors = [array_of_vectors]
+    
+    for v2 in array_of_vectors:
+        v2 = np.array(v2)
+        dot_product = np.dot(v1, v2)
+        norm_v1 = np.linalg.norm(v1)
+        norm_v2 = np.linalg.norm(v2)
+        similarity = dot_product / (norm_v1 * norm_v2)
+        similarities.append(similarity)
+    return [float(x) for x in similarities]
+
+def euclidean_distance(v1, array_of_vectors):
+    v1 = np.array(v1)
+    distances = []
+    
+    if len(np.shape(array_of_vectors)) == 1:
+        array_of_vectors = [array_of_vectors]
+    
+    for v2 in array_of_vectors:
+        v2 = np.array(v2)
+        if v1.shape != v2.shape:
+            raise ValueError(f"Shapes don't match: v1 shape: {v1.shape}, v2 shape: {v2.shape}")
+        dist = np.sqrt(np.sum((v1 - v2) ** 2))
+        distances.append(dist)
+    return [float(x) for x in distances]
+
+embeddings_model = OllamaEmbeddings(
+    model="nomic-embed-text:latest",  # Convert each word into a list of 768 floating-point numbers.
+    base_url="http://localhost:11434"
+)
+
+# Pass 6 words to pretrained Ollama embedding model(nomic-embed-text:latest 768 dimensional)
+# Model will convert every word into 768 floats
+# Every word has 1 float value on 768 dimensions
+words = ['apple', 'car', 'fruit', 'automobile', 'love', 'sentiment']
+vectorized_words = embeddings_model.embed_documents(words)
+print("Len", len(vectorized_words), ", Len[0]: ", len(vectorized_words[0]))
+"""
+Len: 6
+Len[0]:  768
+"""
+
+word = 'apple'
+print(f"{word}")
+
+# Take embedding of apple
+apple_embeddings = vectorized_words[0]  # apple is at index=0
+
+print ("Cosine Similarity of Apple from other words:")
+for i, w in enumerate(words):
+    print(f"\t{w}:\t\t{cosine_similarity(apple_embeddings, vectorized_words[i])[0]:.4f}")
+print("\n")
+
+print("Euclidian Distance of Apple from other words:")
+for i, w in enumerate(words):
+    print(f"\t{w}:\t\t {euclidean_distance(apple_embeddings, vectorized_words[i])[0]:.4f}")
+
+"""
+python .\similarity.py
+Len 6 , Len[0]:  768
+apple
+Cosine Similarity of Apple from other words:
+        apple:          1.0000               <<<<<<<<< 1 means similar
+        car:            0.5087               <<<<<<<<< Not similar
+        fruit:          0.6968
+        automobile:     0.5304
+        love:           0.4992
+        sentiment:      0.4000
+
+
+Euclidian Distance of Apple from other words:
+        apple:           0.0000               <<<<<<<<<
+        car:             0.9913               <<<<<<<<< Car is not similar to apple (Distance Apart)
+        fruit:           0.7787               <<<<<<<<< apple similar to apple (Distance less)
+        automobile:      0.9692               <<<<<<<<< automobile is not similar to apple (Distance Apart)
+        love:            1.0008
+        sentiment:       1.0955
+"""
+```
