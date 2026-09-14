@@ -88,6 +88,8 @@ def get_embedding(text: str) -> list[float]:
 
 # ==========================================
 # 1. RETRIEVER PHASE: Ingestion & Vectoring
+#   Ingest firewall logs, create chunks, convert to embeddings
+#   Store embeddings in vector
 # ==========================================
 def load_and_chunk_logs(filepath: str, source_type: str) -> list[dict]:
     """Read log files line-by-line and wrap them into chunks."""
@@ -130,6 +132,8 @@ print(f"[Embeddings] Generated vectors for {len(vector_database)} chunks.")
 
 # ==========================================
 # 2. RETRIEVER PHASE: Vector Search
+#   Convert user query to embedding
+#   Find top k chunks whose embeddings is closest to embedding of user query
 # ==========================================
 
 def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
@@ -155,6 +159,8 @@ def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
 
 # ==========================================
 # 3. AUGMENTATION & GENERATION PHASE
+#   Create prompt = user query + (top k chunks whose embeddings closest to query)
+#   Provide prompt to LLM to get response
 # ==========================================
 
 def generate_rag_response(user_prompt: str) -> str:
