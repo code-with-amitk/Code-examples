@@ -59,7 +59,7 @@ created_at
 
 == 1. Create(Upload/PUT) new file
 
-
+image::post_new_file.png[Post File]
 
 === Non-Functional
 ==== a. High Availability
