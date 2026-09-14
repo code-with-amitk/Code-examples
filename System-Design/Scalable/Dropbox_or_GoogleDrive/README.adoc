@@ -7,8 +7,8 @@ This is file hosting service. Securely storing data on Distributed remote server
 = 1. Requirements
 - **Functional:**
   1. Create(Upload/PUT) new file on google drive, save this on cloud
-  2. Edit existing file
-  3. Read(GET) file when cerate on cloud shared with this user. Sharing/authorization userA(editor), userB(reader only)
+  2. Read(GET) file when cerate on cloud shared with this user. Sharing/authorization userA(editor), userB(reader only)
+  3. Edit existing file
   4. Once login to goggle drive, sync all files in workspace.
   5. Concurrent Edit
 
@@ -66,16 +66,19 @@ image::post_new_file.png[Post File]
 - Metadata Database replication
 - multipods
 
-==== b. Resumable Upload
-**1. Server Crash:**
+==== b. Resumable Upload (HTTP Range Requests)
+**Client Crash:**
 
-a. After recieving metadata before saving in DB Client did not received ACK, it will send meatadata again
-b. After storing in metadata but did not sent presigned url flag sent_presigned_url would be false
+- Client uploading 50GB file to pre-signed URL. After uploading 10GB client crashes.
+```
+Client: {file_id = F1, to_be_uploaded = 50GB, actual_uploaded_bytes = 10 GB}
+```
+- Once client restarts it will ask for presigned URL from server and will upload the remaining bytes
+```
+GET <presigned-upload-URL>
+Range: bytes=10G-
+```
 
-**2. Client Crash**
-
-a. After sending metadata. Server sends presigned url(expiry in 15min) Client restarts checks ACK chunks=0, send metadata again and start sending chunks to Object store.
-b. Client crashed after sending 2 chunks. Every chunk received by server is ACKed. Client will check which are unacknowledged chunks.
 
 ==== c. Fault Tolerance (failover to other Pod, DB Redundancy)
 if some pods crash system still continue working without downtime. server(pod1) writes the meta data to shared DB, if pod1 crashes pod2 will pick from that state and continue work
@@ -95,9 +98,11 @@ file2 → version 5
 - In order for server to not create 2 copies of chunk-1, Server need to maintain a idempotency key which is(file_id + version + chunk_number). if same key is found duplicate is rejected.
 
 
+== 2. GET. Read file from server
 
+image::get_file.png[Get File]
 
-== 2. Edit Existing File
+== 3. Edit Existing File
 ```
 v1: chunk-0 → A
     chunk-1 → B 
