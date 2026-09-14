@@ -16,15 +16,16 @@ This is file hosting service. Securely storing data on Distributed remote server
 <a name=req></a>
 # 1. Requirements
 - **Functional:**
-  - *1.* File upload/download/edit supported simultaneously by multiple users
-  - *2.* Offline editing. User is offline, he edits the file, Once User comes online information should go on drive.
-  - *3.* After updating a file on one device, it should get synchronized on all devices.
+  1. Create(Upload/PUT) new file on google drive, save this on cloud
+  2. Read(GET) file when cerate on cloud shared with this user
+  3. Once login to goggle drive, sync all files in workspace.
  
 - **Non-functional:**
-  - Highly available
-  - Eventual consistent: Means replicas may temporarily return different versions but eventually converge. What is SLA to be eventual consistent(5 sec or 30 sec)?
+  1. Highly available
+  2. Eventual consistent: Means replicas may temporarily return different versions but eventually converge. What is SLA to be eventual consistent(5 sec or 30 sec)?
+  3. Offline edit. User is offline, he edits the file, Once User comes online information should go on drive.
 - **Extended:**
-  - Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
+  1. Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
 
 <a name=boe></a>
 # 2. BOE
