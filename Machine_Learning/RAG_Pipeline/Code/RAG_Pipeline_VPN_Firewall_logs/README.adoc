@@ -5,10 +5,10 @@
 - This fetches security logs data(vpn.log, firewaill.log) from sql DB and log files, answer user Queries(using LLM)
 
 === Explanation of Code
-==== //////// Retriever Phase /////////
-- 1. Read log files (vpn.log, firewall.log)
+==== //////// Retriever Phase (Retrieve Embeddings of chunks & store in vector DB) /////////
+- 1. Read log files (vpn.log, firewall.log, distractor.log)
 
-- 2. Create chunks.
+- 2. Create chunks from logs
 ```
 	chunk = actual log + meta data
 	{'content': '[VPN] 2025-05-01 08:01:05 VPN_LOGIN_FAILED user=john.doe ip=185.22.11.4', 'metadata': {'source': 'vpn.log', 'line': 1}}, 	//chunk1
@@ -28,7 +28,7 @@
 	return embedding(ie n dimensional float array)
 ```
 
-- 4. Store into vector database(pinecone)/[] in RAM
+- 4. Store into vector database(pinecone) or list in RAM
 ```
 	{
 		"content",			// Store content
@@ -37,12 +37,12 @@
 	}
 ```
 
-==== ///////// Augmentation Phase /////////
-- 4. User_Query embedding is calculated
-- 5. closeness of Stored embeddings(of all logs in vector) and user_query is calculated using semantic search(using cosine similarity or euclidian distance)
+==== ///////// Augmentation Phase (Find embedding of user Query, Find closest chunks using semantic search) /////////
+- 4. User_Query link:https://code-with-amitk.github.io/Machine%20Learning/Terms.html#Embedding[embedding] is calculated
+- 5. closeness of Stored embeddings(of all logs in vector) and user_query is calculated using link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#semantic[Semantic Search](using cosine similarity or euclidian distance)
 - 6. All those logs which are closer to user_query's embeddings are taken and sorted in order of distance, ie most relevant logs are at top. sorted_closest_embeddings
 
-==== ///////// Generation Phase /////////
+==== ///////// Generation Phase (Send User query+Closest Chunks to LLM) /////////
 - 7. Convert embeddings back to string. To model(like llama3.2) embeddings are of no use.
 - 8. Create a prompt to be provided to LLM.
 ```
