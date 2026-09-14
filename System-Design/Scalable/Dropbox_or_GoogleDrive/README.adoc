@@ -1,46 +1,40 @@
+:toc:
+:toclevels: 6
 
-
-- [Requirements](#req)
-- [BOE](#boe)
-- [HLD](#hld)
-  - [1. New File Creation](#new_file_creation)
-    - [Client Side](#client_side)
-      - [Fault Tolerance](#ft_client)
-    - [Server Side](#server_side)
-      - [Idempotency Handling](#Idempotency_Handling_ss)
-  - [2. Edit Existing File](#edit)
-
-# Distributed DropBox/Google Drive/Cloud File Storage?
+= Distributed DropBox/Google Drive/Cloud File Storage?
 This is file hosting service. Securely storing data on Distributed remote servers. Read:Write ratio is same.
 
-<a name=req></a>
-# 1. Requirements
+= 1. Requirements
 - **Functional:**
   1. Create(Upload/PUT) new file on google drive, save this on cloud
-  2. Read(GET) file when cerate on cloud shared with this user
-  3. Once login to goggle drive, sync all files in workspace.
+  2. Edit existing file
+  3. Read(GET) file when cerate on cloud shared with this user. Sharing/authorization userA(editor), userB(reader only)
+  4. Once login to goggle drive, sync all files in workspace.
+  5. Concurrent Edit
+
  
 - **Non-functional:**
   1. Highly available
   2. Eventual consistent: Means replicas may temporarily return different versions but eventually converge. What is SLA to be eventual consistent(5 sec or 30 sec)?
   3. Offline edit. User is offline, he edits the file, Once User comes online information should go on drive.
+  4. Deduplication: Same file upload(PUT) 2 times, should only be stored once on DB
+  
 - **Extended:**
   1. Snaphot of data: System should support snapshotting of the data, so that users can go back to any version of the files.
 
-<a name=boe></a>
-# 2. BOE
-
+= 2. BOE
+```
 |World Population|InternetUsers(60%)|DropBox users(2%)|Daily Active users(10~12%)|
 |---|---|---|---|
 |7 Billion //Year 2020|7 x 0.6 = 4.2 Billion|4.2 x 0.2 = 840 Million |840 x .12 = 100 Million|
+```
 
 - **Storage Estimates:** Assume On average each user has 500 file/photos daily. 
   - Each file=100KB. Storage/day 100M x 100K x 500 = 5PB. For 5 years = 5 x 30 x 12 x 5 = 9ExaBytes
 
 - **Traffic Estimates:** Assume 1M active users/min. Each sending 100KB file. 100GB/min. 166MB/sec
 
-<a name=hld></a>
-# 3. HLD
+= 3. HLD
 ```
 |--- laptop ------|                    |--------------- Datacenter --------------------------------------------|
 |User -> ClientApp| --> GLB(GlobalLB)  |                                                                       |
@@ -63,35 +57,47 @@ created_at
 
 ```
 
-<a name=new_file_creation></a>
-## 1. New File Creation
-1. User creates a new file. Client Application running on user's machine sends following meta data (userId, fileId, file content, hash of file) to Appserver
-2. Server will store metadata to SQL DB and generate a pre-signed URL and sent to client App
-3. Client App will send file chunks to pre signed URL and file is assemble inside object store
+== 1. Create(Upload/PUT) new file
 
-### client side
 
-<a name=ft_client></a>
-#### Fault Tolerance (Client Side)
+
+=== Non-Functional
+==== a. High Availability
+- Metadata Database replication
+- multipods
+
+==== b. Resumable Upload
+**1. Server Crash:**
+
+a. After recieving metadata before saving in DB Client did not received ACK, it will send meatadata again
+b. After storing in metadata but did not sent presigned url flag sent_presigned_url would be false
+
+**2. Client Crash**
+
+a. After sending metadata. Server sends presigned url(expiry in 15min) Client restarts checks ACK chunks=0, send metadata again and start sending chunks to Object store.
+b. Client crashed after sending 2 chunks. Every chunk received by server is ACKed. Client will check which are unacknowledged chunks.
+
+==== c. Fault Tolerance (failover to other Pod, DB Redundancy)
+if some pods crash system still continue working without downtime. server(pod1) writes the meta data to shared DB, if pod1 crashes pod2 will pick from that state and continue work
+
+==== d. Eventual Consistent
+- Ask from interviewer. What's agreed SLA for eventual consistency (3 or 30 sec)?
+- Replicas may temporarily return different versions but eventually converge
 ```
-file => chunk-0(10-30), chunk-1(31-60), chunk-2(61-90)
+file1 → version 4
+file2 → version 5
 ```
+- Files will be versioned, once clientApp finds locally metadata DB has version=4 and version=5 from server, it will sync
 
-**1. ClientApp crashes after sending chunk-0**
-- Once clientApplication restarts, it will get information from AppServer that chunk-0 is received and will start from chunk-1
-
-### Server side
-
-<a name=Idempotency_Handling_ss></a>
-#### Idempotency Handling (Server Side)
-> operation or function produces the same result or final state
-
+==== e. Idempotency / Deduplication
 - ClientApp sends chunk-0, chunk-1. Server recieved chunk-0, chunk-1 and sends ACK1, ACK2. ClientApp recieves ACK1 & network failure happened, ClientApp did not recieve ACK2.
 - Network resumes and clientApp sends chunk-1 again.
 - In order for server to not create 2 copies of chunk-1, Server need to maintain a idempotency key which is(file_id + version + chunk_number). if same key is found duplicate is rejected.
 
-<a name=edit></a>
-## 2. Edit Existing File
+
+
+
+== 2. Edit Existing File
 ```
 v1: chunk-0 → A
     chunk-1 → B 
@@ -106,8 +112,8 @@ v2: chunk-0 → A
 - user changes bytes chunk1(C). ClientApp will send Delta:(file_id, version, chunk_id, start_offset, end_offset, delta_object_pointer) to server
 - File displayed to client would be version 2 → chunk 0(original), chunk 1(updated), chunk 2(original).
 
-<a name=flow></a>
-# Flow Diagram
+
+== Flow Diagram
 - *1-6.* Same as [Facebook newsfeed]()
 - *7.* Application server stores connection info in conn_db. Push file Content, MetaData recieved from client on [MOM]().
 - *8.* Updater will receive notification, stores file Content on [Object Store]() and meta data on [SQL DB]().
@@ -116,18 +122,17 @@ v2: chunk-0 → A
 
 <img src=Dropbox.jpg width=1000 />
 
-<a name=db></a>
-# DB
+== DB
 - **Data Partitioning?** We can use Hash based [Sharding](/System-Design/Concepts/Databases/Database_Scaling). Take hash of fileId. Hashes from 1-100 goes to DB-server1, 100-200 goes to DB-server2 and so on.
   - Sharding based on Hash of fileId can fail on overloaded environment, We should use [Consistent hashing](/System-Design/Concepts/Hashing)
 - **[Caching](/System-Design/Concepts/Cache)?** Before Meta-data-DB: Memcached
 
-## 5. Load Balancers
+== Load Balancers
 - [Where Load Balancer can be placed](/System-Design/Concepts/Load_Balancer)? 
   - *a.* B/W client application & Application server. 
   - *b.* B/W client application & meta data sever
 
-## 6. [Overall Tradeoffs/Bottlenecks & correction](/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md)
+== link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Overall Tradeoffs/Bottlenecks & correction]
 - *1.* if 2 users are viewing same file at a time, how consistent view can be provided?
   - *Solution:* 
     - Introduce a synchronization server will read meta-data server and will provide info to users.
@@ -139,4 +144,3 @@ v2: chunk-0 → A
 - *3.* Sharding based on Hash of fileId can fail on overloaded environment.
   - Solution: Consistent hashing
 
-## [7. Adjusting to changing requirements](/System-Design/Concepts/Changing_Requirements/README.md)
