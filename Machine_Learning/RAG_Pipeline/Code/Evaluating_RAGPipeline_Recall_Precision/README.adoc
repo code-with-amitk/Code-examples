@@ -22,16 +22,19 @@ vector_database = []
 
 # ==========================================
 # 1. RETRIEVER PHASE: Ingestion & Vectoring
+#   Injest the log file
+#   Generate embeddings
+#   Store embeddings into vector database
 # ==========================================
 def get_embedding_from_llm(text: str) -> list[float]:
     """Fetch 768-dim vector directly from Ollama REST API."""
     url = f"{OLLAMA_BASE_URL}/api/embed"
     payload = {"model": EMBEDDING_MODEL, "input": text}
-
+    
     response = requests.post(url, json=payload)
     response.raise_for_status()
-    # The API returns a list under key 'embeddings'
     return response.json()["embeddings"][0]
+
 
 def load_and_chunk_logs(filepath: str, source_type: str) -> list[dict]:
     """Read log files line-by-line and wrap them into chunks."""
@@ -41,8 +44,7 @@ def load_and_chunk_logs(filepath: str, source_type: str) -> list[dict]:
             line = line.strip()
             if not line:
                 continue
-
-            # Enrich line with context so the embedder understands source
+            
             content = f"[{source_type.upper()}] {line}"
             chunks.append({
                 "content": content,
@@ -54,15 +56,13 @@ def generate_embeddings():
     # --- Step A: Ingest Files ---
     vpn_chunks = load_and_chunk_logs("vpn_1.log", "vpn")
     firewall_chunks = load_and_chunk_logs("firewall_1.log", "firewall")
-    distractor_chunks = load_and_chunk_logs("distractor_1.log", "firewall")
+    distractor_chunks = load_and_chunk_logs("distractor_1.log", "distractor")
     all_chunks = vpn_chunks + firewall_chunks + distractor_chunks
-    #print("all chunks:", all_chunks)
 
     print(f"[Ingestion] Loaded {len(all_chunks)} log records.")
 
     # --- Step B: Store Embeddings vector Database in Memory ---
     for item in all_chunks:
-        #sprint("item:", item)
         embedding = get_embedding_from_llm(item["content"])
         vector_database.append({
             "content": item["content"],
@@ -74,7 +74,6 @@ def generate_embeddings():
 # ==========================================
 # 2. RETRIEVER PHASE: Vector Search
 # ==========================================
-
 def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
     """Compute cosine similarity between two 1D vectors."""
     dot_product = np.dot(v1, v2)
@@ -83,30 +82,55 @@ def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
     return float(dot_product / (norm_v1 * norm_v2))
 
 def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
-    """Embed prompt and return top K closest log entries."""
+    # Get embedding for query, ie 768 float numbers in list. ie 768 dimensions
     query_vector = np.array(get_embedding_from_llm(query), dtype=np.float32)
-
+    
     scored_chunks = []
     for record in vector_database:
         score = cosine_similarity(query_vector, record["vector"])
         scored_chunks.append((score, record))
-
-    # Sort descending by score
+        
     scored_chunks.sort(key=lambda x: x[0], reverse=True)
-
     return [record for score, record in scored_chunks[:top_k]]
 
 # ==========================================
-# 3. AUGMENTATION & GENERATION PHASE
+# 3. EVALUATION PHASE: Precision & Recall
 # ==========================================
 
-def generate_rag_response(user_prompt: str) -> str:
-    # 1. Retrieve relevant contexts
-    retrieved_records = retrieve_top_k(user_prompt, top_k=6)
+def evaluate_retrieval(query: str, ground_truth_sources: list[dict], top_k: int) -> dict:
+    """Calculate Precision@K and Recall@K using metadata matching."""
+    retrieved_records = retrieve_top_k(query, top_k=top_k)
+    
+    # Convert metadata to comparable tuple keys: (filepath, line_number)
+    retrieved_keys = set(
+        (r["metadata"]["source"], r["metadata"]["line"]) for r in retrieved_records
+    )
+    expected_keys = set(
+        (g["source"], g["line"]) for g in ground_truth_sources
+    )
+    
+    # Hits = items both expected AND retrieved
+    hits = retrieved_keys.intersection(expected_keys)
+    
+    precision = len(hits) / top_k if top_k > 0 else 0.0
+    recall = len(hits) / len(expected_keys) if len(expected_keys) > 0 else 0.0
+    
+    return {
+        "top_k": top_k,
+        "hits": len(hits),
+        "expected_total": len(expected_keys),
+        "precision": precision,
+        "recall": recall,
+        "retrieved_records": retrieved_records
+    }
 
+# ==========================================
+# 4. AUGMENTATION & GENERATION PHASE
+# ==========================================
+
+def generate_rag_response(user_prompt: str, retrieved_records: list[dict]) -> str:
     context_str = "\n".join([r["content"] for r in retrieved_records])
-
-    # 2. Augment prompt with context
+    
     system_prompt = (
         "You are a Security Operations Center (SOC) analyst.\n"
         "Answer the question strictly based on the provided log context.\n"
@@ -115,8 +139,7 @@ def generate_rag_response(user_prompt: str) -> str:
         f"USER QUESTION: {user_prompt}\n\n"
         "ANALYSIS:"
     )
-
-    # 3. Call Ollama Chat API
+    
     url = f"{OLLAMA_BASE_URL}/api/generate"
     payload = {
         "model": LLM_MODEL,
@@ -124,23 +147,47 @@ def generate_rag_response(user_prompt: str) -> str:
         "stream": False,
         "options": {"temperature": 0.0}
     }
-
+    
     response = requests.post(url, json=payload)
     response.raise_for_status()
     return response.json()["response"]
 
 # ==========================================
-# Execution
+# EXECUTION
 # ==========================================
 if __name__ == "__main__":
     generate_embeddings()
 
-    query = "reason of failure for user john.doe?"
-    print(f"\nPrompt: '{query}'\n" + "-" * 50)
+    user_query = "reason of failure for user john.doe?"
 
-    answer = generate_rag_response(query)
-    print(answer)
-
+    # Load ground truth from JSON
+    # Ground truth is the human-verified gold standard answer—it defines 
+    # which log records should be retrieved for a specific query. 
+    # This is helpful in comparing results returned by retriever and expected(actual) results
+    # Retriever will provide top-k matching documents.
+    # ground_truth are actual top-k matching documents.
+    # We will compare retriever output with ground-truth to find how accurate is the retriver
+    with open("ground_truth.json", "r", encoding="utf-8") as f:
+        ground_truth_dataset = json.load(f)
+    
+    for item in ground_truth_dataset:
+        expected_sources = item["expected_sources"]
+        
+        print(f"\nPrompt: '{user_query}'")
+        print("=" * 60)
+        
+        # Evaluate retriever across different K values
+        for k in [3, 5, 8]:
+            eval_results = evaluate_retrieval(user_query, expected_sources, top_k=k)
+            print(f"Top-K={k:<2} | Hits: {eval_results['hits']}/{eval_results['expected_total']} | "
+                  f"Precision@{k}: {eval_results['precision']:.4f} | "
+                  f"Recall@{k}: {eval_results['recall']:.4f}")
+        
+        # Run Generation step using top-6 retrieved contexts
+        print("-" * 60)
+        final_retrieval = evaluate_retrieval(user_query, expected_sources, top_k=6)
+        answer = generate_rag_response(user_query, final_retrieval["retrieved_records"])
+        print("\n[LLM Response]:\n" + answer)
 """
 """
 ```
