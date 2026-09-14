@@ -1,0 +1,146 @@
+:toc:
+:toclevels: 3
+
+== Evaluating link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Introduction.html[RAG Pipeline]
+- Evaluation of RAG pipeline is done using link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Introduction.html#evaluate[Recall, Precision]
+
+=== Code Explanation
+- link:/Machine_Learning/RAG_Pipeline/Code/RAG_Pipeline_VPN_Firewall_logs#explanation-of-code[RAG Pipeline Code Explained]
+
+
+=== Code
+```py
+import json
+import requests
+import numpy as np
+
+# Configuration
+OLLAMA_BASE_URL = "http://localhost:11434"
+EMBEDDING_MODEL = "nomic-embed-text:latest"
+LLM_MODEL = "llama3.2:latest"
+vector_database = []
+
+# ==========================================
+# 1. RETRIEVER PHASE: Ingestion & Vectoring
+# ==========================================
+def get_embedding_from_llm(text: str) -> list[float]:
+    """Fetch 768-dim vector directly from Ollama REST API."""
+    url = f"{OLLAMA_BASE_URL}/api/embed"
+    payload = {"model": EMBEDDING_MODEL, "input": text}
+
+    response = requests.post(url, json=payload)
+    response.raise_for_status()
+    # The API returns a list under key 'embeddings'
+    return response.json()["embeddings"][0]
+
+def load_and_chunk_logs(filepath: str, source_type: str) -> list[dict]:
+    """Read log files line-by-line and wrap them into chunks."""
+    chunks = []
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line_num, line in enumerate(f, 1):
+            line = line.strip()
+            if not line:
+                continue
+
+            # Enrich line with context so the embedder understands source
+            content = f"[{source_type.upper()}] {line}"
+            chunks.append({
+                "content": content,
+                "metadata": {"source": filepath, "line": line_num}
+            })
+    return chunks
+
+def generate_embeddings():
+    # --- Step A: Ingest Files ---
+    vpn_chunks = load_and_chunk_logs("vpn_1.log", "vpn")
+    firewall_chunks = load_and_chunk_logs("firewall_1.log", "firewall")
+    distractor_chunks = load_and_chunk_logs("distractor_1.log", "firewall")
+    all_chunks = vpn_chunks + firewall_chunks + distractor_chunks
+    #print("all chunks:", all_chunks)
+
+    print(f"[Ingestion] Loaded {len(all_chunks)} log records.")
+
+    # --- Step B: Store Embeddings vector Database in Memory ---
+    for item in all_chunks:
+        #sprint("item:", item)
+        embedding = get_embedding_from_llm(item["content"])
+        vector_database.append({
+            "content": item["content"],
+            "metadata": item["metadata"],
+            "vector": np.array(embedding, dtype=np.float32)
+        })
+    print(f"[Embeddings] Generated vectors for {len(vector_database)} chunks.")
+
+# ==========================================
+# 2. RETRIEVER PHASE: Vector Search
+# ==========================================
+
+def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
+    """Compute cosine similarity between two 1D vectors."""
+    dot_product = np.dot(v1, v2)
+    norm_v1 = np.linalg.norm(v1)
+    norm_v2 = np.linalg.norm(v2)
+    return float(dot_product / (norm_v1 * norm_v2))
+
+def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
+    """Embed prompt and return top K closest log entries."""
+    query_vector = np.array(get_embedding_from_llm(query), dtype=np.float32)
+
+    scored_chunks = []
+    for record in vector_database:
+        score = cosine_similarity(query_vector, record["vector"])
+        scored_chunks.append((score, record))
+
+    # Sort descending by score
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+
+    return [record for score, record in scored_chunks[:top_k]]
+
+# ==========================================
+# 3. AUGMENTATION & GENERATION PHASE
+# ==========================================
+
+def generate_rag_response(user_prompt: str) -> str:
+    # 1. Retrieve relevant contexts
+    retrieved_records = retrieve_top_k(user_prompt, top_k=6)
+
+    context_str = "\n".join([r["content"] for r in retrieved_records])
+
+    # 2. Augment prompt with context
+    system_prompt = (
+        "You are a Security Operations Center (SOC) analyst.\n"
+        "Answer the question strictly based on the provided log context.\n"
+        "Cross-reference IP addresses, usernames, and firewall block rules to explain reasons.\n\n"
+        f"LOG CONTEXT:\n{context_str}\n\n"
+        f"USER QUESTION: {user_prompt}\n\n"
+        "ANALYSIS:"
+    )
+
+    # 3. Call Ollama Chat API
+    url = f"{OLLAMA_BASE_URL}/api/generate"
+    payload = {
+        "model": LLM_MODEL,
+        "prompt": system_prompt,
+        "stream": False,
+        "options": {"temperature": 0.0}
+    }
+
+    response = requests.post(url, json=payload)
+    response.raise_for_status()
+    return response.json()["response"]
+
+# ==========================================
+# Execution
+# ==========================================
+if __name__ == "__main__":
+    generate_embeddings()
+
+    query = "reason of failure for user john.doe?"
+    print(f"\nPrompt: '{query}'\n" + "-" * 50)
+
+    answer = generate_rag_response(query)
+    print(answer)
+
+"""
+"""
+```
