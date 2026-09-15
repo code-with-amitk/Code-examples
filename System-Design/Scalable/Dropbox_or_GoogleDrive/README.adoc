@@ -8,7 +8,7 @@ This is file hosting service. Securely storing data on Distributed remote server
 - **Functional:**
   1. Create(Upload/PUT) new file on google drive, save this on cloud
   2. Read(GET) file when cerate on cloud shared with this user. Sharing/authorization userA(editor), userB(reader only)
-  3. Edit existing file
+  3. Sync(GET) Updated file. User-A changes a file, User-B want to sync the updated file on its Google Driver Desktop
   4. Once login to goggle drive, sync all files in workspace.
   5. Concurrent Edit
 
@@ -111,7 +111,7 @@ file2 → version 5
 
 image::get_file.png[Get File]
 
-== 3. Edit Existing File
+== 3. Sync the updated File
 ```
 v1: chunk-0 → A
     chunk-1 → B 
@@ -121,10 +121,10 @@ v2: chunk-0 → A
     chunk-1 → D <<< Changed
     chunk-2 → C
 
-// v1. Metadata stored on SQL. pointer to object store
 ```
 - user changes bytes chunk1(C). ClientApp will send Delta:(file_id, version, chunk_id, start_offset, end_offset, delta_object_pointer) to server
-- File displayed to client would be version 2 → chunk 0(original), chunk 1(updated), chunk 2(original).
+
+image::sync_updated_file.png[Sync File]
 
 
 = Flow Diagram
