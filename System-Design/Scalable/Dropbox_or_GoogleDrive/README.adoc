@@ -134,7 +134,7 @@ image::sync_updated_file.png[Sync File]
 - *9.* Pooler service keeps on pooling for changed row from Meta-data server and recieves notification, it Reads newly/changed added row. Read userId, fileId and pushes on MOM.
 - *10.* Acknowledgement service will recieve notification from MOM, gets connection information from conn-DB and sends ACK to userId for FileID.
 
-<img src=Dropbox.jpg width=1000 />
+image::Dropbox.jpg[Overall System Architecture]
 
 = DB
 - **Data Partitioning?** We can use Hash based [Sharding](/System-Design/Concepts/Databases/Database_Scaling). Take hash of fileId. Hashes from 1-100 goes to DB-server1, 100-200 goes to DB-server2 and so on.
