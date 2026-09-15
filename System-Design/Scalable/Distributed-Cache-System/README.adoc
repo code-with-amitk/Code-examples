@@ -1,6 +1,15 @@
 :toc:
 :toclevels: 6
 
+== Cache?
+- Cache is Frequently-read value stored near to App server instead of DB
+- Eg: key(session_token) → data(user/session data) stored in Redis.
+```
+key        Value
+abc123    user_id: A123, role: admin, expires: 10:30
+```
+- Every HTTP connection requires session information(Valid beraer token etc), Million req/sec going everytime to DB would make Disk read and that's slow wrt RAM.
+- Indexing on SQL makes search operation in O(logn) not less than that.
 
 == Distributed Cache
 > link:/System-Design/Concepts/Cache/DB_Caches/Redis/README.md[Redis, Memcached]
