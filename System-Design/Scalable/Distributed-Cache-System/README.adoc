@@ -1,0 +1,55 @@
+:toc:
+:toclevels: 6
+
+
+== Distributed Cache
+> link:/System-Design/Concepts/Cache/DB_Caches/Redis/README.md[Redis, Memcached]
+
+**Meaning of Distributed Cache**
+
+- Distributed does not mean Region1(redis) will sync data to Region2(redis).
+- Redis is a cache—not the source of truth—so regions do not synchronize cached data with one another; they rebuild cache entries from the database or other authoritative backend when needed.
+- "Distributed" means how cache data is partitioned across multiple Redis nodes (shards) within a 1 region ONLY.
+- Each region maintains its own independent Redis cluster(Cache), which caches data for requests served in that region.
+
+= Requirements
+**Functional**
+
+- 1. Support basic operations
+```
+SET(key, value)
+GET(key)
+DELETE(key)
+```
+- 2. Have TTL/expiration
+- 3. Cache Eviction mechanism. What happens when memory is full, whether the system supports cache refresh/invalidation.
+
+**Non Functional**
+
+1. Low latency. (p99: 99% of requests finish in that amount of time or less)
+2. Strong consistency
+3. Fault Tolerance
+4. Memory efficient
+
+= link:/System-Design/Scalable/twitter/README.md[BOE]
+- Assuming Cache is deployed at twiteer. BOE same as twitter
+- **Traffic Estimates**: same as twitter
+- **Storage Estimates:**
+  - 1 Machine can store 10TB to 50TB.
+  - Number of machines required to build Distributed cache = (Total storage for 1 day = 300TB)/10TB = 300-400. 
+- **Latency** 1ms (GET or POST)
+  
+= HLD
+- **3a. Where Cache Fits?**
+- Cache will only be used during fannout of tweets, ie updating timelines. While storing tweets to DB cache will only be updated.
+<img src="Distributed_Cache_overall.png" width="1000" />
+
+- **3b. [Places where cache fits](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md)**
+  
+- **3c. [Distributed Cache:Memcached](/System-Design/Concepts/Cache/Where_Cache_Can_Be_Placed/README.md)**
+  - [1. Cache Purging: LRU](/DS_Questions/Questions/random/LRUCache/lru_cache_key_and_value.md)
+    - LRU uses Doubly Linked List and Hash Table to achieve O(1) for search/insert/remove `<key=priority,value=Address>`
+  
+- **[Types of Cache](/System-Design/Concepts/Cache)**
+
+= link:/System-Design/Concepts/Bottlenecks_of_Distributed_Systems/Bottlenecks.md[Tradeoffs/Bottlenecks of Distributed systems and overcoming bottlenecks]
