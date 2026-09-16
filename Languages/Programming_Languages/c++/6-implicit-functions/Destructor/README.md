@@ -6,6 +6,8 @@
   - [Ex2: Non Inheritance case](#e2)
   - [Ex3: Calling base destructor when derv destructor has exception](#e3)
 
+- [Virtual Destructor](https://code-with-amitk.github.io/Languages/Programming/C++/Characteristics%20of%20OOPS/Polymorphism/Runtime/#vd)
+
 ## Destructor
 `~classname()` that is called when lifetime of an object ends. Dtr frees resources that object may have acquired during its lifetime.
 ```c
