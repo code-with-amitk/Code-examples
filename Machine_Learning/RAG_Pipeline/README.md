@@ -1,5 +1,6 @@
 
-# RAG?
+# [RAG?](https://code-with-amitk.github.io/Machine%20Learning/RAG/Introduction.html)
+
 
 # Code
 - [RAG Pipeline for VPN,syslog,firewall logs](Code/RAG_Pipeline_VPN_Firewall_logs/)
