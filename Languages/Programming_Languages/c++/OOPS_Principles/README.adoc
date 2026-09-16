@@ -158,7 +158,4 @@ Dividing code into distinct sections so that each section addresses separate con
 === 2. Program to an interface, not an implementation.
 --- 3. Favour composition over inheritance
 
-== RAII(Resource Acquisition is Initialization) OR SBRM(Scope Bound Resource Management):
-* Resource(Anything that exists in limited supply eg: socket, files, disk, mutex, Heap, threads etc) lifetime should be bounded to object lifetime. Means when object's lifetime ends, resources are also freed in reverse order of allocation.
-* resource would be available to any function that accesses the object. 
-* How this is achieved? Acquire resources in constructor, release in destructor or smart pointer.
+== link:https://code-with-amitk.github.io/Languages/Programming/C++/[RAII(Resource Acquisition is Initialization) OR SBRM(Scope Bound Resource Management)]
