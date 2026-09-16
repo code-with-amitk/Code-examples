@@ -36,7 +36,7 @@ DELETE(key)
 **Non Functional**
 
 1. Low latency. (p99: 99% of requests finish in that amount of time or less)
-2. Strong consistency
+2. Eventual consistency
 3. Fault Tolerance
 4. Memory efficient
 
@@ -49,6 +49,44 @@ DELETE(key)
 - **Latency** 1ms (GET or POST)
   
 = HLD
+
+== 1. Writing to Redis
+- HTTP request arrives at the application server. AppServer calls SET(key, value).
+- Redis client library calculates the hash(key)%number_of_pods, and send SET request to Redis pod. 
+- Kubernetes provide IP:port for redis pod, pod writes to RAM sends ACK back to app server
+
+
+
+=== Non Func Requirements
+==== Fault Tolerance & Idempotency
+- Scenarios for failure:
+** Kubernetes networking fails or 
+** Redis Client library crash or 
+** Redis pod crash or
+** Application pod crash and data does not reach Redis pod.
+- Application Pod: Will SET(key,value) and client library will send to redis pod, but redis not duplicate the key(Idempotency) after writing ACK is returned.
+- Failover(switch to healthy pod), Replicas comes default with redis. Failure on redis cluster is rare.
+
+==== Low p99 latency
+- Latency means time taken between Application server write to redis and ACK arriving delay
+```
+App → Redis client → Kubernetes Service/network → Redis pod → RAM → response
+```
+- Latency is driven by kubernets networking delays. But we can do these to reduce latency
+** Keep Redis and application pods in the same region/zone where possible
+** Use persistent connections, connection pooling
+** Avoid expensive Redis operations such as large KEYS, huge values
+
+==== Low Memory
+- This depends on how internally the Redis stores key value pairs. Redis uses keys + values + object metadata + dictionary/hash-table overhead + allocator fragmentation.
+- From design perspective we can:
+** small keys, compact values. avoiding unnecessary duplication, TTLs
+
+==== Eventual consistent
+- Caching systems has eventual consistency as DB is the source of truth not cache
+- Consistency is achieved by replicating the data to other pods by running replication
+
+= Other
 - **3a. Where Cache Fits?**
 - Cache will only be used during fannout of tweets, ie updating timelines. While storing tweets to DB cache will only be updated.
 <img src="Distributed_Cache_overall.png" width="1000" />
