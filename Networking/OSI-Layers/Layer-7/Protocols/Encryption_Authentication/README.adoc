@@ -5,7 +5,7 @@
 * SSL vs TLS
 * NSS(TLS Implementation) vs Openssl
 
-== SSL Client, Server
+== SSL Client, Server Handshake & Key Exchange
 - link:Certificates.adoc#certificate-example[Certificate]
 
 **Flow**
