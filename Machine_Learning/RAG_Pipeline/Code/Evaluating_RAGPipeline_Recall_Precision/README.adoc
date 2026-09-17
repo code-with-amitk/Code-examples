@@ -7,6 +7,22 @@
 === Code Explanation
 - link:/Machine_Learning/RAG_Pipeline/Code/RAG_Pipeline_VPN_Firewall_logs#explanation-of-code[RAG Pipeline Code Explained]
 
+**How Benchmarking is done?**
+
+- Generate embeddings for all log lines in input documents. 3 input documents(vpn_1.log, firewall_1.log, distractor_1.log), having 25 log lines
+- Insert (content, metadata, embedding) into vector DB
+```
+[
+    {
+        'content': '[DISTRACTOR] 2025-05-01 09:10:00 DISK_FULL host=srv-web-02 partition=/var/log threshold=95%', //log line
+        'metadata': {'source': 'distractor_1.log', 'line': 7},     // information
+        'vector': array([ 4.33659414e-03, -1.52865574e-02, -1.94004759e-01, -4.80691083e-02.. ])    // Embedding of 768 length
+    },
+    {
+        ...
+    }
+]
+```
 
 === Code
 ```py
@@ -23,7 +39,7 @@ vector_database = []
 # ==========================================
 # 1. RETRIEVER PHASE: Ingestion & Vectoring
 #   Injest the log file
-#   Generate embeddings
+#   Generate embeddings from log file
 #   Store embeddings into vector database
 # ==========================================
 def get_embedding_from_llm(text: str) -> list[float]:
@@ -73,6 +89,8 @@ def generate_embeddings():
 
 # ==========================================
 # 2. RETRIEVER PHASE: Vector Search
+#   Convert user query to embedding
+#   Find top k chunks whose embeddings is closest to embedding of user query
 # ==========================================
 def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
     """Compute cosine similarity between two 1D vectors."""
@@ -81,17 +99,33 @@ def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
     norm_v2 = np.linalg.norm(v2)
     return float(dot_product / (norm_v1 * norm_v2))
 
+# Return top k matching records to query
+# Every line in log file is 1 record
 def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
-    # Get embedding for query, ie 768 float numbers in list. ie 768 dimensions
+    # Embedding for query, ie 768 float numbers in list
     query_vector = np.array(get_embedding_from_llm(query), dtype=np.float32)
     
     scored_chunks = []
     for record in vector_database:
         score = cosine_similarity(query_vector, record["vector"])
         scored_chunks.append((score, record))
-        
+
+    # 1 record
+    #   {
+    #       'content': '[VPN] 2025-05-01 08:01:05 VPN_LOGIN_FAILED user=john.doe ip=1.1.1.1', 
+    #       'metadata': {'source': 'vpn_1.log', 'line': 1}, 
+    #       'vector': array([-3.53309438e-02,  2.44691037e-02.. 768 embeddings])
+    #   }
+
+    # Sorted embeddings
     scored_chunks.sort(key=lambda x: x[0], reverse=True)
-    return [record for score, record in scored_chunks[:top_k]]
+
+    top_k_records = []
+    for score, record in scored_chunks[:top_k]:
+        top_k_records.append(record)
+    #top_k_records = [record for score, record in scored_chunks[:top_k]]
+
+    return top_k_records
 
 # ==========================================
 # 3. EVALUATION PHASE: Precision & Recall
@@ -99,30 +133,44 @@ def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
 
 def evaluate_retrieval(query: str, ground_truth_sources: list[dict], top_k: int) -> dict:
     """Calculate Precision@K and Recall@K using metadata matching."""
+
+    # Get top k records whose embeddings are closer to query using consine Similarity
     retrieved_records = retrieve_top_k(query, top_k=top_k)
+
+    # Create set of source, line
+    retrieved_keys = set()
+    for r in retrieved_records:
+        # Parse source, line from metadata
+        source = r["metadata"]["source"]
+        line = r["metadata"]["line"]
+        record_pair = (source, line)
+        retrieved_keys.add(record_pair)
+    print("Retrieved Documents: ", retrieved_keys)
+    # retrieved_keys = {('vpn_1.log', 1), ('vpn_1.log', 2), ('vpn_1.log', 3)}
+    # top 3 log lines which match the query embedding
+
+    expected_keys = set()
+    for g in ground_truth_sources:
+        # Parse source, line from metadata
+        source = g["source"]
+        line = g["line"]
+        expected_pair = (source, line)
+        expected_keys.add(expected_pair)
+    print("Expected Documents: ", expected_keys)
+    # expected_keys:  {('firewall_1.log', 2), ('vpn_1.log', 1), ('firewall_1.log', 11), 
+    # ('firewall_1.log', 1), ('vpn_1.log', 3), ('vpn_1.log', 2), ('firewall_1.log', 3)}
     
-    # Convert metadata to comparable tuple keys: (filepath, line_number)
-    retrieved_keys = set(
-        (r["metadata"]["source"], r["metadata"]["line"]) for r in retrieved_records
-    )
-    expected_keys = set(
-        (g["source"], g["line"]) for g in ground_truth_sources
-    )
-    
-    # Hits = items both expected AND retrieved
+    # Hits = intersection of retrieved and expected
     hits = retrieved_keys.intersection(expected_keys)
+    # hits = {('vpn_1.log', 1),  ('vpn_1.log', 2), ('vpn_1.log', 3)}
     
-    precision = len(hits) / top_k if top_k > 0 else 0.0
-    recall = len(hits) / len(expected_keys) if len(expected_keys) > 0 else 0.0
-    
-    return {
-        "top_k": top_k,
-        "hits": len(hits),
-        "expected_total": len(expected_keys),
-        "precision": precision,
-        "recall": recall,
-        "retrieved_records": retrieved_records
-    }
+    # Precision = (Relevant documents retrieved)/(Total number of documents retrieved)
+    precision = len(hits) / top_k
+
+    # Recall = (Relevant documents retrieved)/(Total relevant documents)
+    recall = len(hits) / len(expected_keys)
+
+    print("For Top:", top_k, ", Precision:", precision,", Recall: ", recall)
 
 # ==========================================
 # 4. AUGMENTATION & GENERATION PHASE
@@ -160,9 +208,9 @@ if __name__ == "__main__":
 
     user_query = "reason of failure for user john.doe?"
 
-    # Load ground truth from JSON
-    # Ground truth is the human-verified gold standard answer—it defines 
-    # which log records should be retrieved for a specific query. 
+    # Load ground truth from JSON. This is always true answer
+    # Ground truth is the human-verified gold standard answer
+    # It defines which log records should be retrieved for a specific query. 
     # This is helpful in comparing results returned by retriever and expected(actual) results
     # Retriever will provide top-k matching documents.
     # ground_truth are actual top-k matching documents.
@@ -172,22 +220,60 @@ if __name__ == "__main__":
     
     for item in ground_truth_dataset:
         expected_sources = item["expected_sources"]
-        
+
         print(f"\nPrompt: '{user_query}'")
-        print("=" * 60)
-        
-        # Evaluate retriever across different K values
-        for k in [3, 5, 8]:
-            eval_results = evaluate_retrieval(user_query, expected_sources, top_k=k)
-            print(f"Top-K={k:<2} | Hits: {eval_results['hits']}/{eval_results['expected_total']} | "
-                  f"Precision@{k}: {eval_results['precision']:.4f} | "
-                  f"Recall@{k}: {eval_results['recall']:.4f}")
-        
-        # Run Generation step using top-6 retrieved contexts
-        print("-" * 60)
-        final_retrieval = evaluate_retrieval(user_query, expected_sources, top_k=6)
-        answer = generate_rag_response(user_query, final_retrieval["retrieved_records"])
-        print("\n[LLM Response]:\n" + answer)
+
+        print("\n------------------")
+        k = 3
+        evaluate_retrieval(user_query, expected_sources, top_k=k)
+
+        print("\n------------------")
+        k = 5
+        evaluate_retrieval(user_query, expected_sources, top_k=k)
+
+        print("\n------------------")
+        k = 8
+        evaluate_retrieval(user_query, expected_sources, top_k=k)
+
+        print("\n")
+        print("As k increases precision decreases")
+
 """
+> ollama list
+NAME                       ID              SIZE      MODIFIED
+nomic-embed-text:latest    0a109f422b47    274 MB    3 minutes ago
+llava:latest               8dd30f6b0cb1    4.7 GB    3 days ago
+llama3.2:latest            a80c4f17acd5    2.0 GB    2 weeks ago
+
+> ollama ps
+NAME                       ID              SIZE      PROCESSOR    CONTEXT    UNTIL
+llama3.2:latest            a80c4f17acd5    2.5 GB    100% GPU     4096       4 minutes from now
+nomic-embed-text:latest    0a109f422b47    323 MB    100% GPU     2048       3 minutes from now
+
+> python test.py
+
+[Ingestion] Loaded 25 log records.
+[Embeddings] Generated vectors for 25 chunks.
+
+Prompt: 'reason of failure for user john.doe?'
+
+------------------
+Retrieved Documents:  {('vpn_1.log', 3), ('vpn_1.log', 1), ('vpn_1.log', 2)}
+Expected Documents:  {('firewall_1.log', 3), ('firewall_1.log', 2), ('vpn_1.log', 1), ('firewall_1.log', 11), ('firewall_1.log', 1), ('vpn_1.log', 3), ('vpn_1.log', 2)}
+For Top: 3 , Precision: 1.0 , Recall:  0.42857142857142855
+
+------------------
+Retrieved Documents:  {('vpn_1.log', 5), ('vpn_1.log', 4), ('vpn_1.log', 1), ('vpn_1.log', 3), ('vpn_1.log', 2)}
+Expected Documents:  {('firewall_1.log', 3), ('firewall_1.log', 2), ('vpn_1.log', 1), ('firewall_1.log', 11), ('firewall_1.log', 1), ('vpn_1.log', 3), ('vpn_1.log', 2)}
+For Top: 5 , Precision: 0.6 , Recall:  0.42857142857142855
+
+------------------
+Retrieved Documents:  {('vpn_1.log', 5), ('vpn_1.log', 4), ('vpn_1.log', 1), ('distractor_1.log', 4), ('distractor_1.log', 3), ('vpn_1.log', 3), ('distractor_1.log', 6), ('vpn_1.log', 2)}
+Expected Documents:  {('firewall_1.log', 3), ('firewall_1.log', 2), ('vpn_1.log', 1), ('firewall_1.log', 11), ('firewall_1.log', 1), ('vpn_1.log', 3), ('vpn_1.log', 2)}
+For Top: 8 , Precision: 0.375 , Recall:  0.42857142857142855
+
+
+As k increases precision decreases
+
 """
 ```
