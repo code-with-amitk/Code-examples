@@ -7,80 +7,104 @@
 
 == SSL Client, Server
 - link:Certificates.adoc#certificate-example[Certificate]
-- link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/Signing.html[Digital Signature] of CA is included in Certificate
+
+**Flow**
+
+- client, server provides public key+CSK to CA and get their Certificate + CA Cert respectively
+- Server sends its certificate to client in Server Hello. Client verifies the server cert using link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/Signing.html[Digital Signature] in Certificate
+- Client generates a random Pre-Master Secret(PMS), encrypts it with the Server's public key(which is present in Certificate), and sends it to the server.
+- Server decrypts the Message using its own Pvt key and gets PMS key
+- Client and server both independently calculate Master Key using Mater key = PRF(PMS+RNc, RNs). Note (RNc, RNs) are exchanged in Client Hello, Server Hello
+- Using Master key, Both client and server derive their 2 session keys. Session Key client(SKc), Session Key server(SKs). When sending data client encrypts using SKs and viceversa.
+
+```
+Pre-Master Secret = ABC
+Client Random     = 123
+Server Random     = XYZ
+
+ABC + 123 + XYZ
+        ↓
+  Master Secret
+        ↓
+    KDF / PRF
+     ↙       ↘
+Session Key   Session Key
+client        server
+```
 
 ```mermaid
 sequenceDiagram
-  participant r as Root CA
-  participant c as SSL Client
-  participant s as SSL Server
- 
- rect rgb(204,255, 204)
- par Get Signed Cert from Root CA
- note over c: Generate public+pvt keypair
- c ->> r: publicKey+CSR
- r -->>c: SIGNED Client.crt<br>+ RootCA.crt
- Note over c:Client cert is SIGNED by ROOT CA<br><br>CA Added his Digital Signature to cert<br>CA encrypted Hash of cert with its PVt key
- s ->> r: publicKey+CSR
- r -->>s: SIGNED server.crt + RootCA.crt
- Note over s:server cert is SIGNED by ROOT CA<br><br><br>CA Added his Digital Signature to cert<br>CA encrypted Hash of cert with its PVt key
- end
- end
+    participant CA as Root/Intermediate CA
+    participant C as TLS Client / Browser
+    participant S as TLS Server
 
- Note over c: Browser installed self.crt, RootCA.crt<br><br>User type google.com
+    rect rgb(220,255,220)
+        Note over C: Generate Public, Pvt key
+        C->>CA: CSR + Client Public Key
+        CA-->>C: Client Certificate + CA Certificate
 
- rect rgb(255, 204, 229)
- par 3 Way TCP Handshake
- c ->> s: SYN
- s ->>c: SYN+ACK
- c ->>s: ACK
- end
- end
+        Note over S: Generate Public, Pvt key
+        S->>CA: CSR + Server Public Key
+        CA-->>S: Server Certificate + CA Certificate
+    end
 
- rect rgb(191, 223, 255)
- par HANDSHAKE PROTOCOL=Select Cipher Suite, Random Numbers, Compression Method
- Note over c: ssl3_connect()<br>ssl3_accept()<br>send_clienthello()
- Note over c: Send RNc
- c ->> s:Client_Hello |version|SessionId=0|Cipher_suite_list|Random_no=RNc|Comp_methods|
- Note over s: start_handshake() <br> send_hello_req()
- Note over s: Send RNs
- s ->> c: Server_Hello|version|SessionId=4|Cipher_suite_selected|Random_no=RNs|Comp_method_selected|
- Note over c: Cipher suite <br> Comp Method selected
- s ->> c: SERVER-CERT + DS-of-CA |version|Len| [server.crt + DS-of-CA]
- Note over s: send_server_done()
- s ->> c: SERVER-HELLO-DONE |version|length|type=hello-done|
- end
- end
+    Note over C: Browser trusts Root CA<br/>Root CA certificate added to trust store
 
- rect rgb(224, 224, 224)
- par VALIDATE Server.crt
- Note over c: Browser has preinstalled Root CA certs in cert store
- Note over c: Checks which RootCA has signed server.crt get its <br> Issuer: C = <>, ST = <>, L = <>, O = Verisign, OU = <>, CN = <>, emailAddress = <>
- Note over c: Retrieve same RootCA.crt from DB<br>Gets Public Key from RootCA.crt stored in DB<br>Verify [Digital Signature] present on server.crt<br><br>Decrypt DS of received server.crt using Public key of CA=Hash<br>server.crt > [sha256] > Hash<br>if Hash Match. Good
- end
- end
- 
- s->> c:CERTIFICATE-REQ(Optional)
- c-->>s:Client-Certificate<br>Client Certificate will have EKU value of OID=1.3.6.1.5.5.7.3.2
- Note over s:Verify using same Method
+    rect rgb(255,220,235)
+        C->>S: TCP SYN
+        S->>C: SYN + ACK
+        C->>S: ACK
+    end
 
- Note over c:Generate Pre-Master-Secret-Key(from RNc,RNs)<br>Encrypt using Server's Public-key=PMSK
- c->>s:CLIENT-KEY-EXCHANGE |version|length|type=22(handshake)|PMSK|
- Note over s:Decrypt Pre-Master-Secret-Key using Pvt Key
- Note over c:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)
- Note over s:Generate Master-key(from Pre-master-Secret-key+RNc+RNs)
- Note over c:Generate Session-key(from Master-key)
- Note over s:Generate Session-key(from Master-key)
+    rect rgb(200,225,255)
+        C->>S: ClientHello<br/>TLS version + Cipher Suites + RNc
+        S->>C: ServerHello<br/>Selected Cipher Suite + RNs
 
-rect rgb(191, 223, 255)
-par RECORD PROTOCOL start
-Note over c:SSL_write(ssl,buf,strlen(buf)) / BIO_write<br>SSL_read(ssl,buf,strlen(buf)) / BIO_read
-Note over c: L5 Data >|Compress| > xyz > |Add MAC| > MMMxyz<br> Encyrpt MMMxyz using Session-key
-c->>s: Encrypted Data
-s-->>c:close_notify_message
-c->>s:close_notify_message
-end
-end
+        S->>C: Server Certificate<br/>Server Certificate Chain
+        S->>C: ServerKeyExchange (if required)
+        S->>C: CertificateRequest (optional - mTLS)
+        S->>C: ServerHelloDone
+    end
+
+    rect rgb(230,230,230)
+        Note over C: Validate Certificate Chain
+        Note over C: Check issuer, validity period,<br/>hostname/SAN, Key Usage/EKU
+
+        Note over C: Validate Server Cert<br>Retrieve same RootCA.crt from DB<br>Gets Public Key from RootCA.crt stored in DB<br>Verify [Digital Signature] present on server.crt<br><br>Decrypt DS of received server.crt using Public key of CA=Hash<br>server.crt > [sha256] > Hash<br>if Hash Match. Good
+
+    end
+
+    alt mTLS requested
+        C->>S: Client Certificate
+        Note over S: Validate Client Certificate
+        C->>S: CertificateVerify
+        Note over S: Verify Client signature
+    end
+
+    C->>S: ClientKeyExchange<br/>Encrypted Pre-Master Secret
+
+    Note over C: Client generates <br>Random Pre-Master Secret(PMS)<br><br>Encrypt using Server's Public Key
+
+    C->>S: Encrypted(Pre Master Secret(PMS) Key)
+    Note over S: Decrypt (PMS) using Self Private Key
+
+    Note over C: Calculate<br>Master key = PRF(PMS, RNc, RNs)<br><br>RNs sent in Server Hello
+    Note over S: Calculate<br>Master key = PRF(PMS, RNc, RNs)<br><br>RNc sent in Client Hello
+
+    Note over C: Calculate<br>Session keys from Master key<br><br>SKc(Session key client),<br>SKs(Session key server)
+    Note over S: Calculate<br>Session keys from Master key<br><br>SKc(Session key client),<br>SKs(Session key server)
+
+    C->>S: ChangeCipherSpec
+    S->>C: ChangeCipherSpec
+
+    rect rgb(200,225,255)
+        Note over C,S: TLS Record Protocol
+
+        C->>S: Encrypt SKc(Data)
+        Note over S: Server has derived SKc<br>It decrypts using SKc
+        S->>C: Encrypt SKs(Data)
+
+    end
 ```
 
 ===== ALERT-PROTOCOL
