@@ -52,10 +52,16 @@ DELETE(key)
 
 == 1. Writing to Redis
 - HTTP request arrives at the application server. AppServer calls SET(key, value).
-- Redis client library calculates the hash(key)%number_of_pods, and send SET request to Redis pod. 
+- Redis client library calculates the hash(key) to find redis pod/shard/partition to which data should be sent and send SET request to Redis pod/shard/partition.
 - Kubernetes provide IP:port for redis pod, pod writes to RAM sends ACK back to app server
 
 
+
+**Sharding Key**
+
+- We take {tenant name}+{customer name} as key, since all traffic from same tenant will be stored on same shard, which will help to query faster.
+- Suppose shard-0 is dedicated to tenant name=A. But what if tenantName=A starts generating 50x traffic, then this shard will become hotspot
+** Solution: HPA more shards, Consistent Hashing
 
 === Non Func Requirements
 ==== Fault Tolerance & Idempotency
