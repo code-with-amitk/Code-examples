@@ -50,12 +50,14 @@ DELETE(key)
   
 = HLD
 
+image::redis_hld.png[HLD]
+
 == 1. Writing to Redis
 - HTTP request arrives at the application server. AppServer calls SET(key, value).
 - Redis client library calculates the hash(key) to find redis pod/shard/partition to which data should be sent and send SET request to Redis pod/shard/partition.
 - Kubernetes provide IP:port for redis pod, pod writes to RAM sends ACK back to app server
 
-
+image::redis_set_key_value.png[SET KEY VALUE]
 
 **Sharding Key**
 
