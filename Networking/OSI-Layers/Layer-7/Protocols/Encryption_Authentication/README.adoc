@@ -7,7 +7,7 @@
 
 === SSL Client validating SSL Server Certificate & viceversa
 ==== 1. Mutual TLS(client validate server and viceversa) / Public Key Exchange
-* link:/Networking/OSI-Layers/Layer-3/Security/Integrity/Digital_Signature.adoc[Digital Signature] of CA is included in link:/Networking/OSI-Layers/Layer-7/Protocols/Encryption_Authentication/Certificates.adoc[Digital Signature Section of certificate]
+* link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/Signing.html[Digital Signature] of CA is included in Certificate
 ```mermaid
 sequenceDiagram
   participant r as Root CA
