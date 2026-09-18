@@ -9,8 +9,7 @@
 
 **How Benchmarking is done?**
 
-- Generate embeddings for all log lines in input documents. 3 input documents(vpn_1.log, firewall_1.log, distractor_1.log), having 25 log lines
-- Insert (content, metadata, embedding) into vector DB
+- 1. Generate embeddings for all log lines in input documents. 3 input documents(vpn_1.log, firewall_1.log, distractor_1.log), having 25 log lines
 ```
 [
     {
@@ -23,6 +22,49 @@
     }
 ]
 ```
+- 2. Insert (content, metadata, embedding) into vector DB
+- 3. Take ground truth json, file containing exact information where the logs related to user query are present in input documents. For example query: "reason of failure for user john.doe?". Information is present at
+```
+[
+  {
+    "expected_sources": [    // ground truth
+      { "source": "vpn_1.log", "line": 1 },
+      { "source": "vpn_1.log", "line": 2 },
+      { "source": "vpn_1.log", "line": 3 },
+      { "source": "firewall_1.log", "line": 1 },
+      { "source": "firewall_1.log", "line": 2 },
+      { "source": "firewall_1.log", "line": 3 },
+      { "source": "firewall_1.log", "line": 11 }
+    ]
+  }
+]
+```
+- 4. Get top k records whose embeddings are closer to query using consine Similarity. ie 
+** Calculate vector embedding of user query.
+** Compare closeness of user's query vector embedding to stored embeddings of logs in vector DB(calculated in step 1)
+** Return top k records from logs whose embeddings are closest to user's query embedding.
+```
+retrieved_keys = {('vpn_1.log', 1), ('vpn_1.log', 2), ('vpn_1.log', 3)}        // 3 closest matching logs to query
+```
+- 5. Now we need to compare the retrieved keys with ground truth, to check how accurate is the retriever
+```
+expected_keys:  {('firewall_1.log', 2), ('vpn_1.log', 1), ('firewall_1.log', 11), ('firewall_1.log', 1), ('vpn_1.log', 3), ('vpn_1.log', 2), ('firewall_1.log', 3)}
+```
+- 6. Intersection of retrieved_keys, expected_keys tells how accurate retriever has retrived logs closer to user query
+```
+hits = retrieved_keys.intersection(expected_keys)
+```
+- 7. Precision tells how precisely Retriver has retrieved the documents ie how close the retireved documents are to ground truth
+```
+# Precision = (Relevant documents retrieved)/(Total number of documents retrieved)
+precision = len(hits) / top_k
+```
+- 8. Out of all actual positives(relevant documents), how many did retriever detected.
+```
+# Recall = (Relevant documents retrieved)/(Total relevant documents)
+recall = len(hits) / len(expected_keys)
+```
+
 
 === Code
 ```py
