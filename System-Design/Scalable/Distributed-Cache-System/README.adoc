@@ -63,17 +63,13 @@ image::redis_set_key_value.png[SET KEY VALUE]
 
 - We take {tenant name}+{customer name} as key, since all traffic from same tenant will be stored on same shard, which will help to query faster.
 - Suppose shard-0 is dedicated to tenant name=A. But what if tenantName=A starts generating 50x traffic, then this shard will become hotspot
-** Solution: HPA more shards, Consistent Hashing
+** Solution: HPA more shards
 
 === Non Func Requirements
 ==== Fault Tolerance & Idempotency
-- Scenarios for failure:
-** Kubernetes networking fails or 
-** Redis Client library crash or 
-** Redis pod crash or
-** Application pod crash and data does not reach Redis pod.
-- Application Pod: Will SET(key,value) and client library will send to redis pod, but redis not duplicate the key(Idempotency) after writing ACK is returned.
-- Failover(switch to healthy pod), Replicas comes default with redis. Failure on redis cluster is rare.
+- **Crash**:
+** Redis pod crash: Redis Replica bring up. keys gets distributed among existing pods. To save cost of rehashing we use link:/System-Design/Concepts/Hashing/README.md[Consisten Hashing]
+** Application pod crash: Failover(switch to healthy pod).
 
 ==== Low p99 latency
 - Latency means time taken between Application server write to redis and ACK arriving delay
