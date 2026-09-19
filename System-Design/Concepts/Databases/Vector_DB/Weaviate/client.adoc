@@ -1,0 +1,170 @@
+:toc:
+:toclevels: 6
+
+== Connects to DB
+=== Install Weaviate DB inside container
+```
+docker run -d -p 8080:8080 -p 50051:50051 --name weaviate-local semitechnologies/weaviate:1.25.0
+```
+
+=== Weaviate Client connect to DB
+==== Install Client in venv
+```py
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On macOS/Linux:
+source venv/bin/activate
+# On Windows:
+# venv\Scripts\activate
+
+# Install the latest Weaviate Python v4 client
+pip install "weaviate-client>=4.0.0"
+```
+
+==== Client code
+- 1. Connect client to DB running on docker container `connect_to_local`
+** In production or hosted environments, authentication is enabled using API Keys or OIDC (OpenID Connect).
+```
+client = weaviate.connect_to_weaviate_cloud(
+    cluster_url="https://your-cluster-url.weaviate.network",
+    auth_credentials=Auth.api_key("YOUR-API-KEY")
+)
+```
+- 2. Create a Table named "Document". Table is also called "Collection". And create 2 coloumns(Properties) Title, Content inside table.
+```
+Table = "Document"
+id (Auto-generated)  title(Property)  content(Property)
+```
+- 3. Insert data into table. Pass coloumn names, vector Embedding to insert in Table
+```
+data = [
+    {
+        "properties": {"title": "log_line1", "2025-05-01 08:06:12 VPN_LOGIN_FAILED user=john.doe ip=1.1.1.1"},
+        "vector": [0.1, 0.2, 0.3, 0.4, 0.5]
+    }
+]
+
+for item in data:
+    documents.data.insert(
+        properties=item["properties"],
+        vector=item["vector"]
+    )
+
+id (Auto-generated)  title(Property)  content(Property)                                                vector(Vector Storage)
+a1b2c3...            "log_line1"     2025-05-01 08:06:12 VPN_LOGIN_FAILED user=john.doe ip=1.1.1.1     [0.1, 0.2, 0.3, 0.4, 0.5]
+```
+- 4. Find the user's query embedding. 
+```
+query_vector = [0.75, 0.65, 0.85, 0.15, 0.25]
+```
+- 5. Search the nearst vector in DB to User's query embedding
+
+===== link:https://code-with-amitk.github.io/Machine%20Learning/ML_and_Types_Algorithms.html#knn[KNN Search]
+```
+results = documents.query.near_vector(
+    near_vector=query_vector,
+    limit=2,
+    return_metadata=MetadataQuery(distance=True)
+)
+```
+===== link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#bm25[BM25 Search]
+```
+results = documents.query.bm25(
+    near_vector=query_vector,
+    limit=2,
+    return_metadata=MetadataQuery(distance=True)
+)
+```
+===== link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#semantic[Hybrid Search] = Keyword + Semantic Search
+```
+results = documents.query.hybrid(
+    near_vector=query_vector,
+    alpha = 0.25,                      # 25%=vector, 75%=Hybrid
+    return_metadata=MetadataQuery(distance=True)
+)
+```
+===== link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#semantic[Hybrid Search]. Added Filters additionally to search
+```
+results = documents.query.hybrid(
+    near_vector=query_vector,
+    filters = Filter.by_property('title').contain_any(['test')]
+    alpha = 0.25,                      # 25%=vector, 75%=Hybrid
+    return_metadata=MetadataQuery(distance=True)
+)
+```
+
+```py
+import weaviate
+import weaviate.classes.config as wvc
+from weaviate.classes.query import MetadataQuery
+
+# 1. Connect to the Docker container
+weaviate.connect_to_local(
+    host="localhost",    #hostname
+    port=8080,           #port
+    grpc_port=50051
+)
+
+try:
+    print("Is Weaviate ready?", client.is_ready())
+
+    collection_name = "Document"
+
+    # Clean up old collection if it exists
+    if client.collections.exists(collection_name):
+        client.collections.delete(collection_name)
+
+    # 2. Create collection with vectorizer set to None (manual embeddings)
+    documents = client.collections.create(
+        name=collection_name,
+        properties=[
+            wvc.Property(name="title", data_type=wvc.DataType.TEXT),
+            wvc.Property(name="content", data_type=wvc.DataType.TEXT),
+        ],
+        # Tell Weaviate you will supply your own vectors
+        vectorizer_config=wvc.Configure.Vectorizer.none()
+    )
+
+    # 3. Dummy embeddings (e.g., generated from SentenceTransformers, OpenAI, or PyTorch)
+    # Vectors must have matching dimensions across all objects
+    sample_data = [
+        {
+            "properties": {"title": "log_line1", "content": "2025-05-01 08:06:12 VPN_LOGIN_FAILED user=john.doe ip=1.1.1.1"},
+            "vector": [0.1, 0.2, 0.3, 0.4, 0.5]
+        },
+        {
+            "properties": {"title": "log_line2", "content": "2025-05-01 08:10:30 VPN_LOGIN_SUCCESS user=alice.smith ip=192.168.1.50"},
+            "vector": [0.8, 0.7, 0.9, 0.1, 0.2]
+        }
+    ]
+
+    # Insert items with custom embeddings
+    for item in sample_data:
+        documents.data.insert(
+            properties=item["properties"],
+            vector=item["vector"]
+        )
+
+    print("Data successfully ingested!")
+
+    # 4. Perform vector similarity search (near_vector)
+    query_vector = [0.75, 0.65, 0.85, 0.15, 0.25]  # Vector close to "Vector Databases"
+    
+    results = documents.query.near_vector(
+        near_vector=query_vector,
+        limit=2,
+        return_metadata=MetadataQuery(distance=True)
+    )
+
+    print("\n--- Search Results ---")
+    for obj in results.objects:
+        print(f"Title: {obj.properties['title']}")
+        print(f"Content: {obj.properties['content']}")
+        print(f"Distance: {obj.metadata.distance}\n")
+
+finally:
+    # 5. Always close the client connection
+    client.close()
+```
