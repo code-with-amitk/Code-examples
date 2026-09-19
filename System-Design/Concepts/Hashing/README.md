@@ -16,32 +16,31 @@ ce(99101)	-->	 |ascii%3|  --> 2
 		     |
            |Hash function = ascii%3|
 		     |
-	 ---------------------------
-	 |	     |		   |
-	\/ab	    \/bc	   \/ce
- -----------	 -----------	 -----------
-| server-0 |	| server-1 |	| server-2 |
- ----------	 ----------	 -----------
+	 -----------------------------
+	 |	         |		        |
+	\/ab	     \/bc	        \/ce
+ -----------	 -----------	-----------
+| server-0 |	| server-1 |    | server-2 |
+ ----------	     ----------	    -----------
 ```
 ### Issues in Hashing
 #### Rehashing
-- Suppose Server2 goes down or removed. New Hash-Function = |ascii%2|.
+- Suppose Server2 goes down or load reduced and admin removed it. New Hash-Function = |ascii%2|.
 - Rehashing: Existent data need to moved to remaining servers, existing keys are again passed thru new hash-function.
 ```c
-key			hash-function	  storage-server
+key			hash-function	  server
 ab(9798)	-->	 |ascii%2|	-->  0
 bc(9899)	-->	 |ascii%2|	-->  1
 ce(99101)	-->	 |ascii%2|	-->  1
-						server0 [ab]
-						server1 [bc, ce]
 ```
 **Issue in Rehashing:** if hash function takes 1microsec and 10M keys to be rehashed. `10M * 1microsec = 10 sec`. Time is consumed in rehashing.
 
 <a name=ch></a>
 ## Consistent Hashing / Consistent Hash Ring = (Solution to above problem)
+- Consistent hashing solves above problem using virtual circle (a hash ring), ensuring that adding or removing a node only impacts a fraction of the keys (1/N on average).
 - Consistent hashing is technique where only k/n keys need to be rehashed, where k is the number of keys, and n is the number of servers.
 - keys are stored in ring of servers.
-- Range assigned to each node is also called TOKEN.
+
 #### Storing data
 - server0(stores keys 0-10), server1(11-20), server2(21-30)
 
