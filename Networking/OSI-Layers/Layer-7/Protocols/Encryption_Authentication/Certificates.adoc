@@ -7,8 +7,8 @@ Certificate:
     Data:
         Version: 3 (0x2)                                                  //Version of X.509 standard
         Serial Number: 3 (0x3)    
-        Signature Algorithm: sha512WithRSAEncryption                      //Digital Signature Algorithm. Algo used by CA to sign cert
-        Issuer:                                                           //CA that Issued the Certificate
+        Signature Algorithm: sha512WithRSAEncryption             //Digital Signature Algorithm used by CA to sign cert
+        Issuer:                                                  //CA that Issued the Certificate
             C=ZA,                                                         //country
             ST=Western Cape,                                              //State
             L=Cape Town,                                                 //Locality
