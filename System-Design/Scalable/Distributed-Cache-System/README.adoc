@@ -52,7 +52,7 @@ DELETE(key)
 
 image::redis_hld.png[HLD]
 
-== 1. Writing to Redis
+== 1. Writing to Redis SET(Key, value)
 - HTTP request arrives at the application server. AppServer calls SET(key, value).
 - Redis client library calculates the hash(key) to find redis pod/shard/partition to which data should be sent and send SET request to Redis pod/shard/partition.
 - Kubernetes provide IP:port for redis pod, pod writes to RAM sends ACK back to app server
@@ -65,11 +65,16 @@ image::redis_set_key_value.png[SET KEY VALUE]
 - Suppose shard-0 is dedicated to tenant name=A. But what if tenantName=A starts generating 50x traffic, then this shard will become hotspot
 ** Solution: HPA more shards
 
+[[non-func-req]]
 === Non Func Requirements
 ==== Fault Tolerance & Idempotency
-- **Crash**:
-** Redis pod crash: Redis Replica bring up. keys gets distributed among existing pods. To save cost of rehashing we use link:/System-Design/Concepts/Hashing/README.md[Consisten Hashing]
-** Application pod crash: Failover(switch to healthy pod).
+**Crash**:
+
+- **Redis pod crash:** Redis Replica bring up. keys gets distributed among existing pods. To save cost of rehashing we use link:/System-Design/Concepts/Hashing/README.md[Consisten Hashing]
+- **Application pod crash:** 
+** Application server calls SET(key, value) from client library. redis client library sends requests to pod0. Pod0 writing to RAM, inbetween App server crashed>redis client library died. Connection between redis client lib and pod0 closed.
+** pod0 wrote to RAM, now want to send ACK to redis_client_lib, but there is no one listening. ACK will be dropped by pod0
+** Client Retry to app-server-1(pod1) and it will call SET(Key, val) to redis.
 
 ==== Low p99 latency
 - Latency means time taken between Application server write to redis and ACK arriving delay
@@ -89,6 +94,23 @@ App → Redis client → Kubernetes Service/network → Redis pod → RAM → re
 ==== Eventual consistent
 - Caching systems has eventual consistency as DB is the source of truth not cache
 - Consistency is achieved by replicating the data to other pods by running replication
+
+== 2. Reading from Redis GET(key)
+- GET(key) from application server will call redis_client_library. redis_client_library will call pod0. pod0 will check RAM if key is present?
+- when key is expired, it returns null to redis_client_library > appserver. appserver will read value from DB and do a SET on DB for this value
+
+image::redis_get_value.png[GET VALUE]
+
+=== link:non-func-req[Non Functional Req]
+
+== 3. DELETE(Key)
+- appserver will call delete to redis_client_library, which will call DELETE(key) to pod0. pod0 will delete entry from RAM and return ACK to redis_client_library
+
+=== link:non-func-req[Non Functional Req]
+
+==== Low p99 latency
+- When appserver call DELETE(key), redis does not immediately go and delete key from RAM, rather it marks key as stale and keeps for later deletion by cleaner thread.
+- *Why this approach?* At 1 time redis have 1000s of entries to be deleted, if redis keeps on deleting every key it might add delete latency spike.
 
 = Other
 - **3a. Where Cache Fits?**
