@@ -65,7 +65,6 @@ image::redis_set_key_value.png[SET KEY VALUE]
 - Suppose shard-0 is dedicated to tenant name=A. But what if tenantName=A starts generating 50x traffic, then this shard will become hotspot
 ** Solution: HPA more shards
 
-[[non-func-req]]
 === Non Func Requirements
 ==== Fault Tolerance & Idempotency
 **Crash**:
@@ -101,7 +100,7 @@ App → Redis client → Kubernetes Service/network → Redis pod → RAM → re
 
 image::redis_get_value.png[GET VALUE]
 
-=== link:non-func-req[Non Functional Req]
+=== link:#non-func-requirements[Non Functional Req]
 
 == 3. DELETE(Key)
 - appserver will call delete to redis_client_library, which will call DELETE(key) to pod0. pod0 will delete entry from RAM and return ACK to redis_client_library
