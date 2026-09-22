@@ -105,7 +105,7 @@ image::redis_get_value.png[GET VALUE]
 == 3. DELETE(Key)
 - appserver will call delete to redis_client_library, which will call DELETE(key) to pod0. pod0 will delete entry from RAM and return ACK to redis_client_library
 
-=== link:non-func-req[Non Functional Req]
+=== link:#non-func-requirements[Non Functional Req]
 
 ==== Low p99 latency
 - When appserver call DELETE(key), redis does not immediately go and delete key from RAM, rather it marks key as stale and keeps for later deletion by cleaner thread.
