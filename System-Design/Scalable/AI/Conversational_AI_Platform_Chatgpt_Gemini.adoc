@@ -1,0 +1,34 @@
+:toc:
+:toclevels: 5
+
+== Conversational AI Platform (Chatgpt, Gemini)
+System exposes an STREAMING API REST endpoint, where client hits and gets the response.
+
+```
+POST /v1/chat/completions 
+Headers
+Body: User Query(prompt) + conversation/session context
+```
+
+== Requirements
+**Functional**
+
+1. Model should generate contextually relevant responses: based on the user's query and previous conversation.
+2. Support streaming responses: so users start receiving generated text without waiting for the complete response.
+
+**Non-Functional**
+
+1. Low latency — Minimize time-to-first-token (TTFT) and overall response latency
+2. High reliability/availability — handle failures, model overload, and traffic spikes without losing conversations
+
+== HLD
+```
+                                                                                   Model-1(Embedding)
+                                                                                   Model-2(Image Generation)
+Client      API Gateway     Conversation/Session Service    AI/LLM Orchestrator    Model-3/Tools/RAG
+  -- HTTP Msg -->
+                ------------->
+                                                  ---------->
+                                                                            ---------> Generate response
+  <-----------------------------    Streaming response      -------------------------------
+```
