@@ -82,3 +82,24 @@ func maxDepthAfterSplit(seq string) []int {
     return out
 }
 ```
+
+=== Java
+```java
+class Solution {
+    public int[] maxDepthAfterSplit(String seq) {
+        int depth = 0;
+        int[] out = new int[seq.length()];  // Preallocate array
+        for (int i=0;i<seq.length();i++) {
+            if (seq.charAt(i) == '(') {
+                depth++;
+                out[i] = depth%2;
+            }
+            else {
+                out[i] = depth%2;
+                depth--;
+            }
+        }
+        return out;
+    }
+}
+```
