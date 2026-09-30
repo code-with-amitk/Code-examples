@@ -1,0 +1,36 @@
+:toc:
+:toclevels: 6
+
+== Excel Sheet / Smart Sheets
+
+= Requirements
+**Functional**
+
+1. Create a new file: File in workspace should be visible to collegue.
+2. Update Row: Should be visible to another users
+3. Delete row: Should get deleted on all users
+4. Delete file: deleted for all users.
+3. AI automation: Users can define triggers/actions such as “when status becomes Approved → notify manager”; AI can summarize/analyze sheet data and potentially execute authorized actions through tools.
+
+**Non-Functional**
+
+1. Eventual Consistent
+2. Scalable: Support large numbers of concurrent users/sheets and high read/write rates; horizontally scalable
+3. Low latency: Changes should reach collaborators quickly
+
+= HLD
+== 1. File Creation
+> User1 create a file, User2 syncs the file to its workspace
+
+- **Creating:**
+** User1 creates a file in its workspaace. Client App(in User1) sends the meta data(file_name, owner_id, workspace_id, creation_timestamp, path, size) to App server which stores it in SQL Metadata DB. Data is sent over HTTP/gRPC
+** App server generates a unique file_id and increments the workspace/file version.
+
+- **Real-time synchronization:** 
+** After the DB transaction succeeds, the Application Service creates a FileCreated event (file_id, workspace_id, version). 
+** A Sync Service receives the event and pushes the relevant metadata to currently connected clients over WebSocket. It should not query the DB for every event if the event already contains the required metadata.
+
+- **New/reconnected client:**
+** Newly online Client sends (workspace_id + last_known_version) to the Sync Service.
+** if server_version > client_version → send missing changes to client App. We will use monotonically increasing workspace revision/sequence number, rather than comparing timestamps.
+
