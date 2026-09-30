@@ -1,0 +1,21 @@
+:toc:
+:toclevels: 6
+
+== Excel Sheet / Smart Sheets
+
+== Requirements
+**Functional**
+
+1. Create a new file: File in workspace should be visible to collegue.
+2. Update Row: Should be visible to another users
+3. Delete row: Should get deleted on all users
+4. Delete file: deleted for all users.
+3. AI automation: Users can define triggers/actions such as “when status becomes Approved → notify manager”; AI can summarize/analyze sheet data and potentially execute authorized actions through tools.
+
+**Non-Functional**
+
+1. Eventual Consistent
+2. Scalable: Support large numbers of concurrent users/sheets and high read/write rates; horizontally scalable
+3. Low latency: Changes should reach collaborators quickly
+
+== HLD
