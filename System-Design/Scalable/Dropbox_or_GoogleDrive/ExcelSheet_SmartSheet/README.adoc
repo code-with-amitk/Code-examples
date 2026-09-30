@@ -39,3 +39,4 @@
 ** Fault tolerance: Client sends meta data to server. Server writes to DB & crashes before sending ACK to client. Client retries the meta_data. Server will not create a duplicate record using **Idempotency key**. Successful DB writes are also written to event logs cannot lose its corresponding synchronization event
 ** Scalability: Sync Service should be horizontally scalable
 
+image::Create_Sheet.png[Create New Sheet]
