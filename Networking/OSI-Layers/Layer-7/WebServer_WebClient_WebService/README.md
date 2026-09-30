@@ -45,8 +45,9 @@ Web client repeatedly pools web server for data. Implemented using XMLHttpReques
 ```
 
 <a name=m2></a>
-### 2. Long Pooling/Push Method/Hanging GET
-Server holds client’s connection open for as long as possible. Data is delivered to web client once becomes available or threshold timer expired.
+### 2. Long Pooling / Half Duplex
+- Client sends an HTTP request. The server holds the request open until new data is available, sends a response, and closes it. The client immediately opens a new request.
+- Half-duplex/simulated: Client must always initiate the request cycle repeatedly.
 - **Flow**
   - *a.* Client-server completes 3-way-handshake. Connection established.
   - *b.* Client asks data from server(page1). Data is not available at the moment. Connection is not closed.
@@ -72,14 +73,11 @@ Server holds client’s connection open for as long as possible. Data is deliver
 
 <a name=m3></a>
 ### 3. Websockets / Web Sockets / Bi-Directional / Full Duplex
-- (Web client or Web server) can do TCP Connect() and start sending the data.
-- Full duplex bidirectional data transfer. Enhanced version of Http,can work over TCP.
-- **Flow**
-  - *a.* Client establishes a WebSocket connection through a process known as the WebSocket handshake.
-  - *b.* Client asks data from server(page1). server sends page1 back to client and connection is closed.
-  - *c.* Client asks page4 from server, which is not available at server. Unlike [Long Pooling]() server does not keep connection open, rather closes it
-  - *d.* When Page4 becomes available server does websocket handshake sends data page4 to client and close() connection.
-- **How server maintains open connections?** Server will maintain hash-table <key=sockfd, value="Requested Page">
+- WebSocket: An application-layer protocol that runs on top of TCP. It starts as a standard HTTP request with an upgrade header. Once the server accepts via a handshake, the connection switches ("upgrades") to the WebSocket protocol, reusing that exact same TCP socket for framed, bidirectional message passing.
+- Client performs an HTTP handshake, then the TCP connection stays open permanently for continuous two-way data flow.
+- Full-duplex: Either client or server can push data asynchronously at any time.
+- Network overhead: Low. Headers are tiny after the initial handshake, sending only compact data frames.
+- Latency: Near-zero/Real-time (instantaneous push/receive).
 - **Adv:**
   - Server need not to keep open file descriptor as it need to do with [Long Pooling](). Server will not run out of socket descriptors.
   - Unlike [Normal Pooling]() server does not send empty message when resource is not available and hence n/w BW is saved.
@@ -98,9 +96,9 @@ Server holds client’s connection open for as long as possible. Data is deliver
 ```
 
 <a name=m4></a>
-### 4. Server Sent Events / Bidirectional
-This is also bidirectional as [WebSockets](#m3) but unlike wbesockets connection is persistently maintained, ie connection is not closed.
-
+### 4. Server Sent Events / unidirectional (one-way, server-to-client only).
+- Data format: Text only (usually formatted as JSON)
+- Limited by HTTP/1.1 limits (max 6 per browser/domain), though HTTP/2 removes this limit.
 
 <a name=ws></a>
 ## Web Service
