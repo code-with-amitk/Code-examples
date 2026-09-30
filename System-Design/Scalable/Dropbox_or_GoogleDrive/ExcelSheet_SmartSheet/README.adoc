@@ -22,7 +22,7 @@
 == 1. File Creation
 > User1 create a file, User2 syncs the file to its workspace
 
-- **Creating:**
+- **Creating a file**
 ** User1 creates a file in its workspaace. Client App(in User1) sends the meta data(file_name, owner_id, workspace_id, creation_timestamp, path, size) to App server which stores it in SQL Metadata DB. Data is sent over HTTP/gRPC
 ** App server generates a unique file_id and increments the workspace/file version.
 
@@ -33,4 +33,9 @@
 - **New/reconnected client:**
 ** Newly online Client sends (workspace_id + last_known_version) to the Sync Service.
 ** if server_version > client_version → send missing changes to client App. We will use monotonically increasing workspace revision/sequence number, rather than comparing timestamps.
+
+- **Non Functional Req**
+** Eventual consistency, Low latency: User2 is connected over Web socket. When new file is created metadata is sent over link:/Networking/OSI-Layers/Layer-7/WebServer_WebClient_WebService/README.md[websocket]
+** Fault tolerance: Client sends meta data to server. Server writes to DB & crashes before sending ACK to client. Client retries the meta_data. Server will not create a duplicate record using **Idempotency key**. Successful DB writes are also written to event logs cannot lose its corresponding synchronization event
+** Scalability: Sync Service should be horizontally scalable
 
