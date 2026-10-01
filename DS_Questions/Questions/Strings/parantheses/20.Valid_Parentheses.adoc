@@ -1,0 +1,109 @@
+:toc:
+:toclevels: 4
+
+== link:https://leetcode.com/problems/valid-parentheses/[20. Valid Parentheses]
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+```
+Example 1:
+Input: s = "()"
+Output: true
+
+Example 2:
+Input: s = "()[]{}"
+Output: true
+
+Example 3:
+Input: s = "(]"
+Output: false
+
+Example 4:
+Input: s = "([])"
+Output: true
+
+Example 5:
+Input: s = "([)]"
+Output: false
+```
+
+== Approach
+- Create hashmap of key=closing bracket, value=opening bracket
+- Iterate over every character of string, push on stack.
+- if incoming bracket is 'Closing Bracket' then top of stack should be matching opening bracket, else return false.
+- if incoming bracket is a opening bracket push on stack. We will not push closing bracket on stack
+
+== Complexity
+- Time complexity: O(n)
+
+- Space complexity: O(n)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    bool isValid(string s) {
+        std::stack<char> st;
+        // Map closing bracket -> corresponding opening bracket
+        const std::unordered_map<char, char> matching_bracket = {
+            {')', '('},
+            {'}', '{'},
+            {']', '['}
+        };
+
+        for (char c : s) {
+            // Check if 'c' is a closing bracket
+            auto it = matching_bracket.find(c);
+            if (it != matching_bracket.end()) {
+                // If closing bracket: stack must not be empty and top must match
+                if (st.empty() || st.top() != it->second) {
+                    return false;
+                }
+                st.pop();
+            } else {
+                // 'c' is an opening bracket
+                st.push(c);
+            }
+        }
+
+        // Valid only if all opening brackets were closed
+        return st.empty();
+    }
+};
+```
+=== Java
+```java
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> st = new Stack<>();
+        HashMap<Character, Character> matchingBracket = new HashMap<>();
+        matchingBracket.put(')', '(');
+        matchingBracket.put('}', '{');
+        matchingBracket.put(']', '[');
+
+        for (int i =0; i<s.length(); i++) {
+            // Check if 'c' is a closing bracket
+            char c = s.charAt(i);
+            // Check if 'c' is a closing bracket
+            if (matchingBracket.containsKey(c)) {
+                // Stack must not be empty AND top element must match corresponding opening bracket
+                if (st.isEmpty() || st.peek() != matchingBracket.get(c)) {
+                    return false;
+                }
+                st.pop();
+            } else {
+                // 'c' is an opening bracket
+                st.push(c);
+            }
+        }
+
+        return st.isEmpty();
+    }
+}
+```
