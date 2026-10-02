@@ -3,6 +3,7 @@
   - [Logic](#l)
   - Code
     - [CPP](#c1)
+    - [Rust](#rs)
 
 ### [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)
 - Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
@@ -93,5 +94,42 @@ int main (){
     vs o = s.generateParenthesis(2);
     for  (auto i:o)
         cout << i << ", ";
+}
+```
+
+<a name=rs></a>
+#### Rust
+```rs
+impl Solution {
+    pub fn generate_parenthesis(n: i32) -> Vec<String> {
+        let mut out = Vec::new();
+        let mut curr = String::new();
+        Self::backtrack(&mut out, &mut curr, 0, 0, n);
+        out 
+    }
+    fn backtrack(
+        out: &mut Vec<String>,
+        curr: &mut String,
+        open: i32,
+        close: i32,
+        max: i32,
+    ) {
+        if curr.len() == (max * 2) as usize {
+            out.push(curr.clone());
+            return;
+        }
+
+        if open < max {
+            curr.push('(');
+            Self::backtrack(out, curr, open + 1, close, max);
+            curr.pop();
+        }
+
+        if close < open {
+            curr.push(')');
+            Self::backtrack(out, curr, open, close + 1, max);
+            curr.pop();
+        }
+    }
 }
 ```
