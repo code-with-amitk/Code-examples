@@ -1,0 +1,102 @@
+:toc:
+:toclevels: 4
+
+== Temperature Parameter of LLM
+- The temperature parameter in a large language model (LLM) controls the randomness and creativity of the text the model generates
+- Low Temperature (closer to 0.0):
+```
+	• Makes the output deterministic, sharp, and predictable.
+	• The model almost always picks the single most likely next word.
+	• Best used for: Factual answers, math, code generation, and data extraction where accuracy matters most.
+```
+- High Temperature (closer to 1.0 or higher):
+```
+	• Flattens the probability distribution.
+	• Gives less probable words a higher chance of being selected, increasing variety and unexpected phrasing.
+	• Best used for: Creative writing, brainstorming, poetry, and storytelling.
+	• Note: Setting the value too high (above 1.0 or 2.0) can make the text incoherent, chaotic, or complete nonsense.
+```
+
+=== Code
+```py
+import json
+import requests
+
+
+def chat():
+    system_prompt = {
+        "role": "system",
+        "content": (
+            "You're a friendly and funny assistant who always adds a touch of"
+            " humor when answering questions."
+        ),
+    }
+    assistant_prompt = {
+        "role": "assistant",
+        "content": (
+            "Hey there, fabulous! Ready to have some fun and get things done?"
+            " How can this charming assistant help you today?"
+        ),
+    }
+
+    user_input = input("You: ")
+    user_prompt = {"role": "user", "content": user_input}
+
+    # Append user prompt so the LLM receives the full conversation history
+    messages = [system_prompt, assistant_prompt, user_prompt]
+
+    # Specify a model pulled in Ollama (e.g., qwen2.5:7b, llama3.2, etc.)
+    model = "llama3.2:latest"
+
+    payload = {
+        "model": model,
+        "messages": messages,
+        "max_tokens": 500,
+        "options": {
+            # Lower temp: Makes the output deterministic, sharp, and predictable. Eg: code generation
+            # High temp: increasing variety and unexpected phrasing. eg: Peotry, creative writing
+            "temperature": 10 
+        },  # Ollama accepts temperature inside 'options'
+    }
+
+    # Ollama's OpenAI-compatible API endpoint
+    url = "http://localhost:11434/v1/chat/completions"
+
+    try:
+        response = requests.post(url, json=payload)
+        #response.raise_for_status()
+
+        json_dict = response.json()
+        reply = json_dict["choices"][0]["message"]["content"]
+        print(f"\nAssistant: {reply}")
+
+    except Exception as e:
+        raise Exception(f"Failed to call local Ollama instance.\nError: {e}")
+
+
+if __name__ == "__main__":
+    chat()
+"""
+$ python test.py          //temp=0.0
+You: give me a joke
+
+Assistant: Here's one:
+
+What do you call a fake noodle?
+
+(Wait for it...)
+
+An impasta!
+
+Hope that made you giggle! Do you want another one?
+
+
+$ python test.py          //temp=10.0
+You: give me a joke
+
+Assistant: Get ready for some silly humor! Here's one: What do you call a fake noodle? An impasta!
+
+Did I "dough" it justice?
+"""
+
+```
