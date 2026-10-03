@@ -1,0 +1,247 @@
+:toc:
+:toclevels: 4
+
+
+== link:https://leetcode.com/problems/print-in-order/description/[Print in Order]
+- Suppose we have a class:
+```c
+public class Foo {
+  public void first() { print("first"); }
+  public void second() { print("second"); }
+  public void third() { print("third"); }
+}
+```
+- The same instance of Foo will be passed to three different threads. Thread A will call first(), thread B will call second(), and thread C will call third(). Design a mechanism and modify the program to ensure that second() is executed after first(), and third() is executed after second().
+- We do not know how the threads will be scheduled in the operating system, even though the numbers in the input seem to imply the ordering. The input format you see is mainly to ensure our tests' comprehensiveness.
+```c
+Example 1:
+Input: nums = [1,2,3]
+Output: "firstsecondthird"
+Explanation: There are three threads being fired asynchronously. The input [1,2,3] means thread A calls first(), thread B calls second(), and thread C calls third(). "firstsecondthird" is the correct output.
+
+Example 2:
+Input: nums = [1,3,2]
+Output: "firstsecondthird"
+Explanation: The input [1,3,2] means thread A calls first(), thread B calls third(), and thread C calls second(). "firstsecondthird" is the correct output.
+```
+
+== Approach-1, 1 mutex
+=== Logic
+- _1._ Lock mutex before entering into functions
+- _2._ Take 2 bools to decide on order of function execution
+- **When this approach works?**
+```c
+main () {
+  thread t1 (first);    //t1 reaches first(), lock mutex. a=true. unlock
+  thread t2 (second);   //t2 finds mutex lock, waits.                   . acquires lock. b=true
+  thread t3 (third);
+}
+```
+- **When approach not work?**
+```c
+main () {
+  thread t1 (first);
+  thread t3 (third);
+  thread t2 (second);
+}
+```
+**Code**
+```c
+class Foo {
+    bool a,b;
+    mutex m;
+public:
+    Foo() {
+        a = false;
+        b = false;
+    }
+
+    void first(function<void()> printFirst) {
+        m.lock();
+        printFirst();
+        a = true;
+        m.unlock();
+    }
+
+    void second(function<void()> printSecond) {
+        m.lock();
+        if (a==false) {
+            m.unlock();
+            return;
+        }
+        printSecond();
+        b =true;
+        m.unlock();
+    }
+
+    void third(function<void()> printThird) {
+        m.lock();
+        if (a==false || b==false) {
+            m.unlock();
+            return;        
+        }
+        printThird();
+        m.unlock();
+    }
+};
+```
+
+
+== Approach-2, unique_lock, condition_variable
+=== CPP
+- _Logic:_
+  - _1._ Take 3 booleans. b1, b2,b3 for stopping threads entering other's functions.
+  - _2._ Use [condition_variable & unique_lock](/Threads_Processes_IPC/IPC/synchronization/Condition_Variable) to check count at entry of function.
+```cpp
+class Foo {
+    mutex mtx;
+    condition_variable cv;
+    bool bEnterF,bEnterS,bEnterT;
+public:
+    Foo() {
+        bEnterF = true;
+        bEnterS = false;
+        bEnterT = false;
+    }
+
+    void first(function<void()> printFirst) {
+        unique_lock<mutex> ul(mtx);
+        cv.wait(ul, [this](){
+            // Enter into function if it return true
+            return bEnterF;
+        });
+        // printFirst() outputs "first". Do not change or remove this line.
+        printFirst();
+        bEnterS = true;
+        bEnterF = false;
+        cv.notify_all();
+    }
+
+    void second(function<void()> printSecond) {
+        unique_lock<mutex> ul(mtx);
+        cv.wait(ul, [this](){
+            // Enter into function if it return true
+            return bEnterS;
+        });
+        bEnterT = true;
+        bEnterS = false;
+        // printSecond() outputs "second". Do not change or remove this line.
+        printSecond();
+        cv.notify_all();
+    }
+
+    void third(function<void()> printThird) {
+        unique_lock<mutex> ul(mtx);
+        cv.wait(ul, [this](){
+            // Enter into function if it return true
+            return bEnterT;
+        });
+        bEnterT = false;
+        bEnterF = true;
+        // printThird() outputs "third". Do not change or remove this line.
+        printThird();
+        cv.notify_all();
+    }
+};
+
+/*
+main () {
+    thread t1;
+    t1.first();
+    thread t2;
+    t2.first();
+    thread t3;
+    t3.first();
+}
+*/
+```
+
+=== Rust
+```rs
+struct State {
+    b_enter_f: bool,
+    b_enter_s: bool,
+    b_enter_t: bool,
+}
+
+struct Foo {
+    state: Mutex<State>,
+    cv: Condvar,
+}
+
+impl Foo {
+    fn new() -> Self {
+        Foo {
+            state: Mutex::new(
+                State{
+                    b_enter_f: true,
+                    b_enter_s: false,
+                    b_enter_t: false,
+                }),
+            cv: Condvar::new(),
+        }
+    }
+
+    fn first<F>(&self, print_first: F)
+    where
+        F: FnOnce(),
+    {
+        // After acquiring lock, data inside mutex can be changed
+        let mut state = self.state.lock().unwrap();
+
+        // Wait until b_enter_f becomes true
+        while !state.b_enter_f {
+            state = self.cv.wait(state).unwrap();
+        }
+        // Do not change this line
+        print_first();
+
+        state.b_enter_s = true;
+        state.b_enter_f = false;
+
+        self.cv.notify_all();
+    }
+
+    fn second<F>(&self, print_second: F)
+    where
+        F: FnOnce(),
+    {
+        let mut state = self.state.lock().unwrap();
+
+        // Wait until b_enter_s becomes true
+        while !state.b_enter_s {
+            state = self.cv.wait(state).unwrap();
+        }
+
+        // State transition: S -> T
+        state.b_enter_t = true;
+        state.b_enter_s = false;
+
+        // Output "second"
+        print_second();
+
+        self.cv.notify_all();
+    }
+
+    fn third<F>(&self, print_third: F)
+    where
+        F: FnOnce(),
+    {
+        let mut state = self.state.lock().unwrap();
+
+        // Wait until b_enter_t becomes true
+        while !state.b_enter_t {
+            state = self.cv.wait(state).unwrap();
+        }
+
+        // State transition: T -> F (resets loop)
+        state.b_enter_t = false;
+        state.b_enter_f = true;
+
+        // Output "third"
+        print_third();
+
+        self.cv.notify_all();
+    }
+}
+```
