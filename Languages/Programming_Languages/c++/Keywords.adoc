@@ -53,36 +53,42 @@ Compilation Error				//Can be resolved either by making fun() const. or making o
 ```
 
 == explicit
-=== Implicit conversion / Conversion Constructor
-* Compiler converts data-type to class object which is wrong. This is allowed for contructor taking 1 argument.
-* Example-1: fun() takes object as argument but we passed int and compiler did conversion internally. This is done using default constructor(1).
+**Without explicit**
 ```cpp
 class A {
   int a;
 public:
-    A(int b) : a(b) {}             //Conversion ctr
+    A(int x) : a(x) {}
     int get() {
       return a;
     }
 };
 
 int main() {
-  A obj1 (3);
+  A obj1 (1);
   cout << obj1.get();			//3
-  obj1 = 4;				//Implicit Conversion
-  cout << obj1.get();			//4
+  obj2 = 4;				//Also works
 }
 ```
-
-**Explicit** Explicit can only come in front of 1 argument constructor. Prefixing the explicit keyword before constructor prevents the compiler for using that constructor for implicit conversions. Above code will give error, we need.
-```c++
+**With explicit**
+```cpp
 class A {
-  ...
-  public:
-     explicit A(int b) : a(b) {}             //CONSTRUCTOR PREFIXED with EXPLICIT stops implicit conversion
-  ...
+  int a;
+public:
+    explicit A(int x) : a(x) {}
+    int get() {
+      return a;
+    }
 };
+
+int main() {
+  A obj1 (1);
+  cout << obj1.get();			//3
+  obj2 = 4;				// COMPILATION ERROR
+}
 ```
+- explicit does not allow creation of object using assignment operator, because it can lead to unintended implicit conversions, improves code readbility
+- explicit can only come in front of 1 argument constructor.
 
 == extern
 === extern C
