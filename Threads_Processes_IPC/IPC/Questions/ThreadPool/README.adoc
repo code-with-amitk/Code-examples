@@ -1,0 +1,146 @@
+:toc:
+:toclevels: 5
+
+== ThreadPool
+- Create a threadpool of 5 threads. These will keep on running in while(1) loop.
+- Threads will monitor a shared queue. When task(ie function pointer) is avaialble on queue, 1 thread will pop the task and execute the function
+- All threads will exit based on boolean(stop)
+
+=== CPP
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <functional>
+#include <chrono>
+
+using taskPtr = std::function<void()>;
+class ThreadPool
+{
+public:
+    explicit ThreadPool(size_t num_threads = 6) : stop_(false) {
+        vecWorkersThreads_.reserve(num_threads);
+        for (size_t i = 0; i < num_threads; ++i) {
+            std::cout << "Creating thread " << i << "\n";
+            vecWorkersThreads_.emplace_back([this, i] {
+                while (true) {
+                    taskPtr tp;
+                    {
+                        std::unique_lock<std::mutex> ul(mutex_);
+                        
+                        // it goes inside if return statement true
+                        // That is if process is stopped OR queue is not empty
+                        cv_.wait(ul, [this] { 
+                            return stop_ || !TasksQueue_.empty(); 
+                        });
+
+                        // if process is stopped and Queue is empty, exit
+                        if (stop_ && TasksQueue_.empty()) {
+                            return;
+                        }
+
+                        // Extract task
+                        tp = std::move(TasksQueue_.front());
+                        TasksQueue_.pop();
+                    }
+
+                    // Run task outside lock boundary
+                    tp();
+                }
+            });
+        }
+    }
+
+    // Submit a void() function or lambda
+    void enqueue(taskPtr task) {
+        {
+            std::unique_lock<std::mutex> ul(mutex_);
+            if (stop_) {
+                return;
+            }
+            std::cout << "Pushing task to queue\n";
+            TasksQueue_.push(task);
+        }
+        cv_.notify_one();
+    }
+
+    ~ThreadPool() {
+        {
+            std::unique_lock<std::mutex> ul(mutex_);
+            stop_ = true;
+        }
+        cv_.notify_all();
+
+        for (std::thread &worker : vecWorkersThreads_) {
+            if (worker.joinable()) {
+                worker.join();
+            }
+        }
+    }
+
+    // Non-copyable
+    ThreadPool(const ThreadPool&) = delete;
+    ThreadPool& operator=(const ThreadPool&) = delete;
+
+private:
+    std::vector<std::thread> vecWorkersThreads_;    //class members are postfixed with _
+    std::queue<std::function<void()>> TasksQueue_;
+    std::mutex mutex_;
+    std::condition_variable cv_;
+    bool stop_;
+};
+
+// Work function to execute
+void process_work(int task_id) {
+    std::cout << "[Thread " << std::this_thread::get_id() 
+              << "] Executing task " << task_id << "\n";
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+}
+
+int main() {
+    // Fixed 6-thread pool
+    ThreadPool pool(5);
+
+    // Enqueue 12 tasks using standard std::bind or simple lambdas
+    for (int i = 0; i < 10; ++i) {
+        pool.enqueue([i]() {
+            process_work(i);
+        });
+    }
+
+    // ThreadPool destructor executes here, flushing the queue before join
+    return 0;
+}
+
+/*
+$ ./a.out 
+Creating thread 0
+Creating thread 1
+Creating thread 2
+Creating thread 3
+Creating thread 4
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+Pushing task to queue
+[Thread 126144447759936] Executing task 0
+[Thread 126144472938048] Executing task 1
+[Thread 126144464545344] Executing task 3
+[Thread 126144439367232] Executing task 2
+[Thread 126144456152640] Executing task 4
+[Thread 126144447759936] Executing task 5
+[Thread 126144472938048] Executing task 6
+[Thread 126144439367232] Executing task 8
+[Thread 126144456152640] Executing task 9
+[Thread 126144464545344] Executing task 7
+*/
+```
