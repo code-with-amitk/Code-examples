@@ -1,0 +1,139 @@
+:toc:
+:toclevels: 4
+
+== link:https://leetcode.com/problems/score-of-parentheses/description/[856. Score of Parentheses]
+Given a balanced parentheses string s, return the score of the string.
+
+The score of a balanced parentheses string is based on the following rule:
+
+- "()" has score 1.
+- AB has score A + B, where A and B are balanced parentheses strings.
+- (A) has score 2 * A, where A is a balanced parentheses string.
+ 
+```
+Example 1:
+Input: s = "()"
+Output: 1
+
+Example 2:
+Input: s = "(())"
+Output: 2
+
+Example 3:
+Input: s = "()()"
+Output: 2
+```
+
+== Approach
+```
+((()))
+```
+- Create a stack where numbers are added not characters of input string
+- Add 0 as base on stack
+- For 1st ( add 0 again
+```
+0  //for (
+0  //base
+```
+- if ( is seen add 0, else add 1 for closing bracket
+```
+0  //for (
+0  
+0
+```
+- For closing bracket if top of stack of 0 add 1. if top of stack is other than 0 add val*2
+```
+1    //for )
+0
+0
+```
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    int scoreOfParentheses(string s) {
+        stack<int> st;
+        st.push(0); // Base 0
+
+        for (char& c : s) {
+            if (c == '(') {
+                st.push(0); // 1st ( always 0
+            } else {
+                int val = st.top();
+                st.pop();
+                
+                int new_val = (val == 0) ? 1 : 2 * val;
+                // Modifying the top element via reference
+                st.top() += new_val; 
+            }
+        }
+
+        return st.top();
+    }
+};
+```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn score_of_parentheses(s: String) -> i32 {
+        let mut st: Vec <i32> = Vec::new();
+        st.push(0); // Base 0
+
+        for c in s.chars() {
+            //let c = k.asChar();
+            if (c == '(') {
+                st.push(0); // 1st ( always 0
+            } else {
+                let mut val = st.pop().unwrap();
+                //st.pop();
+                
+                let mut new_val;
+                if val == 0 {
+                    new_val = 1;
+                } else {
+                    new_val = 2 * val;
+                }
+                if let Some(top) = st.last_mut() {
+                    *top += new_val;
+                }
+            }
+        }
+
+        st.pop().unwrap()
+    }
+}
+```
+
+=== Go
+```go
+func scoreOfParentheses(s string) int {
+    // Stack taken as slice, initialized to 0
+	st := []int{0}
+
+    for _, c := range s {
+        if c == '(' {
+            st = append(st, 0); // 1st ( always 0
+        } else {
+            size := len(st)
+            val := st[size-1];
+            
+            st = st[:size-1]        //st.pop();
+            
+            new_val := 0
+            if val == 0 {
+                new_val = 1;
+            } else {
+                new_val = 2 * val;
+            }
+
+            // Modifying the top element via reference
+            st[len(st)-1] += new_val
+        }
+    }
+    size := len(st)
+    return st[size-1]
+}
+```
