@@ -1,0 +1,86 @@
+:toc:
+:toclevels: 4
+
+== link:https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/[921. Minimum Add to Make Parentheses Valid]
+A parentheses string is valid if and only if:
+
+- It is the empty string,
+- It can be written as AB (A concatenated with B), where A and B are valid strings, or
+- It can be written as (A), where A is a valid string.
+- You are given a parentheses string s. In one move, you can insert a parenthesis at any position of the string.
+
+- For example, if s = "()))", you can insert an opening parenthesis to be "(()))" or a closing parenthesis to be "())))".
+- Return the minimum number of moves required to make s valid.
+
+```
+Example 1:
+Input: s = "())"
+Output: 1
+
+Example 2:
+Input: s = "((("
+Output: 3
+```
+
+== Approach
+- push characters of string into stack
+- if top of stack == '(' && incoming character == ')'. pop
+- else keep pushing
+- length of stack is the output
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        // Insert in stack to cancel
+        stack<char> st;
+        for (auto&c: s) {
+            if (!st.empty() && st.top() == '(' && c == ')')
+                st.pop();
+            else
+                st.push(c);
+        }
+        return st.size();
+    }
+};
+```
+
+=== Go
+```go
+func minAddToMakeValid(s string) int {
+    st := []rune{}
+	for _, c := range s {
+		size := len(st)
+		if size != 0 && st[len(st)-1] == '(' && c == ')' {
+			st = st[:len(st)-1]
+		} else {
+			st = append(st, c)
+		}
+	}
+	return len(st)
+}
+```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn min_add_to_make_valid(s: String) -> i32 {
+        let mut st: Vec<char> = Vec::new();
+		for c in s.chars() {
+            let mut popped = false;
+			 if let Some(top) = st.last_mut() {
+				if *top == '(' && c == ')' {
+					st.pop();
+                    popped = true;
+				}
+			 } 
+             if popped == false {
+				st.push(c);
+			 }
+		}
+		st.len() as i32
+    }   
+}
+```
