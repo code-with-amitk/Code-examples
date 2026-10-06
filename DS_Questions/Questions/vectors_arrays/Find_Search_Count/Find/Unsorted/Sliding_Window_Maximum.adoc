@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 6
 
-=== link:https://leetcode.com/problems/sliding-window-maximum/description/[239. Sliding Window Maximum]
+== link:https://leetcode.com/problems/sliding-window-maximum/description/[239. Sliding Window Maximum]
 * You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
 * Return the max sliding window.
 ```c
@@ -19,8 +19,8 @@ Window position                Max
  1  3  -1  -3  5 [3  6  7]      7
 ```
   
-=== Approach-1. Maintain window in multiset<int>
-==== Logic
+== Approach-1. Maintain window in multiset<int>
+=== Logic
 * 1. Keep window inside `multiset<int>`. multiset can have duplicate elements and stores elements in sorted order.
 ```c
  multiset<int>              will store {1,3,5,6,7}
@@ -35,13 +35,13 @@ Window position                Max
   |     |
 ```
 
-==== Complexity
+=== Complexity
 * *Time:*
 ** `set<int>` search,rebalance = nlog(n). Since window size=k. klog(k). n=number of elements. nklog(k)
 * *Space:* k. Window size
 
-==== Code
-===== CPP
+=== Code
+==== CPP
 ```cpp
 class Solution {
 public:
@@ -66,6 +66,50 @@ public:
             }
         }
         return out;
+    }
+};
+```
+
+
+== Approach-2. Deque
+- maintain a deque of size=window size. Insert at back. Remove from front
+- if element incoming vector > front of deque. remove all elements smaller than current element
+
+=== Code
+```cpp
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+        deque<pair<int, int>> dq;  // {value, index}
+        vector<int> result;
+
+        for (int i = 0; i < nums.size(); i++) {
+
+            // 1. Remove elements outside the current window
+            if (!dq.empty() && dq.front().second <= i - k) {
+                dq.pop_front();
+            }
+
+            // Remove all elements from dq front till present element's value greater than element in deque
+            while (!dq.empty() && dq.back().first <= nums[i]) {
+                dq.pop_back();
+            }
+
+            // 3. Add current {value, index}
+            dq.push_back({nums[i], i});
+            
+            /*for (auto&i:dq) {
+                cout << i.first << ", " << i.second << "|";
+            }
+            cout << "\n";*/
+
+            // 4. Once window reaches size k, front has maximum
+            if (i >= k - 1) {
+                result.push_back(dq.front().first);
+            }
+        }
+
+        return result;
     }
 };
 ```
