@@ -151,26 +151,22 @@ Pushing task to queue
 use std::sync::{mpsc, Arc, Mutex};
 use std::thread;
 
-// Pointer to task function
-type TaskPtr = Box<dyn FnOnce() + Send + 'static>;
-
 pub struct ThreadPool {
     workers: Vec<Worker>,
-    sender: Option<mpsc::Sender<TaskPtr>>,  //Sending end owned by threadpool. receiver is moved into the threads
+    sender: Option<mpsc::Sender<i32>>,  //Sending end owned by threadpool. receiver moved into threads
 }
 
 impl ThreadPool {
-
     /*
     Create queue=channel on which tasks would be arrive
     Create vector<threads>, assigned to threadpool
     */
     pub fn new(size: usize) -> ThreadPool {
-
         // Task Queue mpsc(Multi-producer, single-consumer FIFO queue) 
         // Similar to queue in C++
         // Only reciever need to be protected, since Sender is only 1 main thread
-        let (sender, receiver) = std::sync::mpsc::channel::<TaskPtr>();
+        //let (sender, receiver) = std::sync::mpsc::channel::<TaskPtr>();
+        let (sender, receiver) = std::sync::mpsc::channel::<i32>();
         let receiver = Arc::new(Mutex::new(receiver));
 
         // Create workers=threads and add to thread pool
@@ -179,7 +175,6 @@ impl ThreadPool {
             // Ownership of mpsc::reciever is MOVED to each thread.
             workers.push(Worker::new(id, Arc::clone(&receiver)));
         }
-
         // Pool of n worker threads, waiting for task to arrive on channel
         ThreadPool {
             workers,
@@ -187,17 +182,17 @@ impl ThreadPool {
         }
     }
 
-    /// Enqueue a closure/task for execution by the thread pool.
-    pub fn execute<F>(&self, f: F)
-    where
-        F: FnOnce() + Send + 'static,
+    pub fn execute(&self, i: i32)
     {
-        // Pointer to task function
-        let task = Box::new(f);
-
-        // Send task on mpsc::channel
-        if let Some(ref sender) = self.sender {
-            sender.send(task).expect("ThreadPool has shut down.");
+        if let Some(ref s) = self.sender {
+            match s.send(i) {
+                Ok(r) => {
+                    r
+                },
+                Err(e) => {
+                    println!("{}", e);
+                }
+            }
         }
     }   
 }
@@ -223,43 +218,39 @@ struct Worker {
 }
 
 impl Worker {
-    fn new(id: usize, queue_reciever: Arc<Mutex<mpsc::Receiver<TaskPtr>>>) -> Worker {
+    fn new(id: usize, queue_reciever: Arc<Mutex<mpsc::Receiver<i32>>>) -> Worker {
 
-        let lambda_closure = loop {
-            
-            // Run loop inside thread waiting for task to arrive on queue=channel
+        Worker {
+            id,
+            thread: Some(thread::spawn(move || loop {   // Every thread runs in infinite loop
             match queue_reciever.lock().unwrap().recv() {
-                Ok(task_ptr) => {
-                    // Lock is dropped HERE before calling task(), ensuring worker doesn't block other threads
-                    task_ptr();
+                Ok(val) => {
+                    println!("thread {} Executing Task {}", id, val);
                 }
                 Err(_) => {
                     // Channel disconnected (sender dropped in ThreadPool::drop)
                     break;
                 }
             };
-        };
-        let thread = thread::spawn(move || lambda_closure);
-
-        Worker {
-            id,
-            thread: Some(thread),
+        })),
         }
     }
 }
 
 fn main() {
-    // Initialize pool with 5 worker threads
-    let pool = ThreadPool::new(5);
+    // Initialize pool with 3 worker threads
+    let pool = ThreadPool::new(3);
 
-    // Send tasks on queue
-    for i in 0..10 {
-        pool.execute(move || {
-            println!("[Worker] Executing task {}", i);
-            thread::sleep(std::time::Duration::from_millis(100));
-        });
+    for i in 0..5 {
+        pool.execute(i);
     }
 
-    // ThreadPool drops automatically at end of main, joining all 6 threads safely
+    // ThreadPool drops automatically at end of main, joining all threads safely
 }
+$ cargo run
+thread 1 Executing Task 0
+thread 2 Executing Task 1
+thread 0 Executing Task 2
+thread 0 Executing Task 3
+thread 0 Executing Task 4
 ```
