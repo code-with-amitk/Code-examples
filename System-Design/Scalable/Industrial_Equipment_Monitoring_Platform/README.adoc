@@ -1,0 +1,36 @@
+:toc:
+:toclevels: 5
+
+== What?
+- sensors/monitoring devices are installed on industrial equipment(such as power transformers, circuit breakers, and other electrical assets).
+- Sensors/monitoring devices sends the data to this product(Industrial Equipment Monitoring) and this will provide Real time, historical data for analysis.
+- There will be a Edge Computer(on customer premises) which accepts data from sensors(on propertiory protocols) and send the data to AWS component after converting/adding metadata.
+
+== Requirements
+=== Functional
+**Edge computer** 
+
+- Recieve data from Sensors on properitory protocol(normalize it into a common format, timestamp it)
+- Send data to TCP/IP, send to Cloud using MQTT or HTTPS
+- Support new sensor protocols using remote updates
+
+**Cloud Component**
+
+- Multi-tenant
+- Time series storage
+- Real time Dashboards
+- Configurable Alerts(measurements exceed thresholds)
+- authentication, authorization, encryption, and audit logging.
+
+=== Non-Functional
+**Edge Computer**
+
+- Fault tolerance
+- Buffer data locally during network outages and forward it after reconnection without losing measurements.
+
+**Cloud Component**
+
+- Disaster recovery
+- Scalable(With numbers), Fault tolerance
+- Deduplication, out of order message handling
+- Invalid sensor data
