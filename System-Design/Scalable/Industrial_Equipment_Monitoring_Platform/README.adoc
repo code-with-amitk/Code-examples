@@ -38,4 +38,39 @@
 == BOE
 
 == HLD
+- Sensor sends data to the site gateway on proprietary protocol. 
+- Site gateway will convert the data to TCP/IP, HTTPS, send to the API gateway. It will send to the ingestion tier, which will be Kubernetes, which will be the Kubernetes pods. 
+- Ingestion pods, will convert the data to standard format and send to Kafka. 
+- Kafka consumers will fetch the data and push into the timeseries database. 
+- Dashboard will query API tier(group of the pods), which will query the data from DB and provide to the dashboard API, which will render the dashboard on real-time.
 
+=== Site Gateway
+- This is vendor dependent, some sensors will support Serial Cable, while some Modus or TCP, Poll or Push
+- Site Gateway will different configuration options to connect and collect data from sensors
+
+**Sensor packet:** Transformer-monitoring device might send
+```
+Protocol: Modbus RTU over RS-485
+Device address: 7
+Register 40001: 865  → oil temperature = 86.5 °C
+Register 40002: 1100 → voltage = 110.0 kV (illustrative scaling)
+```
+
+- Site Gateway converts device-specific readings into a normalized format
+- Adds context that the sensor may not provide.
+
+```
+{
+  "tenant_id": "tenant-1042",
+  "site_id": "site-021",
+  "asset_id": "transformer-008",
+  "device_id": "monitor-007",          //1 asset can have multiple sensors connected
+  "message_id": "msg-981273",          //Generated locally
+  "timestamp": "2026-10-09T10:30:00Z",
+  "schema_version": 1,
+  "measurements": [
+    {"name": "oil_temperature", "value": 86.5, "unit": "C"},
+    {"name": "voltage", "value": 110.0, "unit": "kV"}
+  ]
+}
+```
