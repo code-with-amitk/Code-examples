@@ -3,12 +3,12 @@
 
 == What?
 - sensors/monitoring devices are installed on industrial equipment(such as power transformers, circuit breakers, and other electrical assets).
-- Sensors/monitoring devices sends the data to this product(Industrial Equipment Monitoring) and this will provide Real time, historical data for analysis.
-- There will be a Edge Computer(on customer premises) which accepts data from sensors(on propertiory protocols) and send the data to AWS component after converting/adding metadata.
+- Sensors/monitoring devices sends the data to (Industrial Equipment Monitoring) via Site Gateway and IEM will provide Real time, historical data for analysis.
+- Site Gateway(on customer premises) accepts data from sensors(on propertiory protocols) and send the data to AWS component after converting/adding metadata.
 
 == Requirements
 === Functional
-**Edge computer** 
+**Site Gateway** 
 
 - Recieve data from Sensors on properitory protocol(normalize it into a common format, timestamp it)
 - Send data to TCP/IP, send to Cloud using MQTT or HTTPS
@@ -23,7 +23,7 @@
 - authentication, authorization, encryption, and audit logging.
 
 === Non-Functional
-**Edge Computer**
+**Site Gateway**
 
 - Fault tolerance
 - Buffer data locally during network outages and forward it after reconnection without losing measurements.
@@ -34,3 +34,8 @@
 - Scalable(With numbers), Fault tolerance
 - Deduplication, out of order message handling
 - Invalid sensor data
+
+== BOE
+
+== HLD
+
