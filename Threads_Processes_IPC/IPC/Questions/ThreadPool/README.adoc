@@ -254,3 +254,85 @@ thread 0 Executing Task 2
 thread 0 Executing Task 3
 thread 0 Executing Task 4
 ```
+
+=== Go
+- [channel is a thread safe buffer](https://code-with-amitk.github.io/Threads_Processes_IPC/IPC/Golang/channels.html)
+- [WaitGroup is like join()](https://code-with-amitk.github.io/Threads_Processes_IPC/IPC/Golang/channels.html)  main need to wait for all go routines before exit
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+type TaskFun func()
+
+type ThreadPool struct {
+	tasks_ptr chan TaskFun
+	wg        sync.WaitGroup
+}
+
+func NewThreadPool(numWorkers int) *ThreadPool {
+	p := &ThreadPool{
+		// Pointer to hchan struct
+		// Allocate ring buffer(size=100) for sending messages
+		tasks_ptr: make(chan TaskFun, 100),
+	}
+
+	// Declaring that main() need to wait for 3 go routines
+	// struct WaitGroup.state = 3
+	// Donot exit main until 3 go routines are joined
+	p.wg.Add(numWorkers)
+
+	// Create 3 go routines
+	for i := 0; i < numWorkers; i++ {
+		go func() {
+
+			// defer will be called when go routine exits
+			// WaitGroup.Done() reduces the WaitGroup.state
+			// by 1 that means present go routine has completed the work
+			defer p.wg.Done()
+
+			// Every go routine checks shared ThreadPool.task_ptr
+			// if any task is present execute that task
+			for task := range p.tasks_ptr {
+				task()
+			}
+		}()
+	}
+	return p
+}
+
+func (p *ThreadPool) Submit(task TaskFun) {
+	// Write task on channel
+	p.tasks_ptr <- task
+}
+
+func (p *ThreadPool) Shutdown() {
+	close(p.tasks_ptr)
+	p.wg.Wait()
+}
+
+func main() {
+	pool := NewThreadPool(3) // 3 goroutines
+
+	for i := 0; i < 5; i++ {
+		// Create 5 task functions to be placed
+		// on hchan struct
+		task_fun := func() {
+			fmt.Printf("Executing task %d\n", i)
+		}
+		pool.Submit(task_fun)
+	}
+	pool.Shutdown()
+}
+
+$ go run main.go
+Executing task 0
+Executing task 1
+Executing task 2
+Executing task 3
+Executing task 4
+```
