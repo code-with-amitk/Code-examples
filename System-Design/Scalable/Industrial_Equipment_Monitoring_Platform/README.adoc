@@ -56,9 +56,8 @@ Register 40001: 865  → oil temperature = 86.5 °C
 Register 40002: 1100 → voltage = 110.0 kV (illustrative scaling)
 ```
 
-- Site Gateway converts device-specific readings into a normalized format
+- Site Gateway converts device-specific specific readings into normalized format. Normalized format means adding some data helpful for product(tenant_id, timestamp, 
 - Adds context that the sensor may not provide.
-
 ```
 {
   "tenant_id": "tenant-1042",
