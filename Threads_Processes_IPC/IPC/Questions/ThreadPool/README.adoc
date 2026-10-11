@@ -256,8 +256,8 @@ thread 0 Executing Task 4
 ```
 
 === Go
-- [channel is a thread safe buffer](https://code-with-amitk.github.io/Threads_Processes_IPC/IPC/Golang/channels.html)
-- [WaitGroup is like join()](https://code-with-amitk.github.io/Threads_Processes_IPC/IPC/Golang/channels.html)  main need to wait for all go routines before exit
+- link:https://code-with-amitk.github.io/Threads_Processes_IPC/IPC/Golang/channels.html[channel is a thread safe buffer]
+- link:https://code-with-amitk.github.io/Threads_Processes_IPC/IPC/Golang/channels.html[WaitGroup is like join()]  main need to wait for all go routines before exit
 
 ```go
 package main
