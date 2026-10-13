@@ -57,7 +57,7 @@ out += 2*2 - 2*2  (nums[2] - nums[3])
 
 == Code
 === CPP
-```cpp []
+```cpp
 class Solution {
 public:
     long long maxAlternatingSum(vector<int>& nums) {
