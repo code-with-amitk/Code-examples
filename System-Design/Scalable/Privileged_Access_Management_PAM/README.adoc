@@ -1,0 +1,18 @@
+:toc:
+:toclevels: 5
+
+== Privileged Access Management (PAM)
+- A priviledged account can be accessed by Admin, agent, service account etc
+- PAM protects priviledged account access by controlling who can access the account, auditing, duration of access. Also manages credentials, approvals, and session monitoring.
+
+== Requirements
+=== Functional
+1. Access control: An administrator authenticates through SSO/MFA, requests access to production Linux server, and PAM checks permissions and approvals before granting time-limited access.
+2. Storing Privileged Credentials: PAM stores priviledged credentials securely without exposing them to users, and records who accessed which server, when, and for how long.
+
+=== Non-Func
+1. High availability: PAM should be 99.99% available
+2. Secure
+3. Scalable: 10k concurrent admin sessions with significant latency
+
+== HLD
