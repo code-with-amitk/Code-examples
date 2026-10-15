@@ -1,0 +1,89 @@
+:toc:
+:toclevels: 3
+
+== link:https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-i/[2913. Subarrays Distinct Element Sum of Squares I]
+You are given a 0-indexed integer array nums.
+
+The distinct count of a subarray of nums is defined as:
+
+Let nums[i..j] be a subarray of nums consisting of all the indices from i to j such that 0 <= i <= j < nums.length. Then the number of distinct values in nums[i..j] is called the distinct count of nums[i..j].
+Return the sum of the squares of distinct counts of all subarrays of nums.
+
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+```
+Example 1:
+Input: nums = [1,2,1]
+Output: 15
+Explanation: Six possible subarrays are:
+[1]: 1 distinct value
+[2]: 1 distinct value
+[1]: 1 distinct value
+[1,2]: 2 distinct values
+[2,1]: 2 distinct values
+[1,2,1]: 2 distinct values
+The sum of the squares of the distinct counts in all subarrays is equal to 1^2 + 1^2 + 1^2 + 2^2 + 2^2 + 2^2 = 15.
+
+Example 2:
+Input: nums = [1,1]
+Output: 3
+Explanation: Three possible subarrays are:
+[1]: 1 distinct value
+[1]: 1 distinct value
+[1,1]: 1 distinct value
+The sum of the squares of the distinct counts in all subarrays is equal to 1^2 + 1^2 + 1^2 = 3.
+```
+
+== Approach
+- Take out variable
+- Add number of variables into out, that's 1st distinct variables count
+- Take 2 for loops and start 2nd loop from i+1, store variables in unordered_set and count size of set. Then square and add
+
+== Complexity
+- Time complexity: O(n<sup>2</sup>)
+
+- Space complexity: O(1)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    int sumCounts(vector<int>& nums) {
+        int out = 0;
+        int size = nums.size();
+
+        out += size;        // Sum of single array distinct values
+
+        for (int i=0;i<nums.size();i++) {
+            unordered_set<int> us;
+            us.insert(nums[i]);
+            for (int j=i+1;j<nums.size();j++) {
+                us.insert(nums[j]);
+                out += pow(us.size(), 2);
+            }
+        }
+        return out;
+    }
+};
+```
+=== Go
+```go
+func sumCounts(nums []int) int {
+        out := 0
+        size := len(nums)
+
+        out += size        // Sum of single array distinct values
+
+        for i := 0; i< size; i++ {
+            hs := make(map[int]struct{})
+            hs[nums[i]] = struct{}{}
+            for j := i+1; j<size; j++ {
+                hs[nums[j]] = struct{}{}
+                out += len(hs)*len(hs)
+            }
+        }
+        
+        return out
+}
+```
