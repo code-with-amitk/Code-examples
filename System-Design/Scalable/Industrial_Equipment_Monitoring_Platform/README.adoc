@@ -56,7 +56,11 @@ Register 40001: 865  → oil temperature = 86.5 °C
 Register 40002: 1100 → voltage = 110.0 kV (illustrative scaling)
 ```
 
-- Site Gateway converts device-specific specific readings into normalized format. Normalized format means adding some data helpful for product(timestamp etc). Because every sensor can send timestamp in its own format. Converting to Product's format is done.
+- Site Gateway performs following functions:
+** Aonverts device-specific specific readings into normalized format. Normalized format means adding some data helpful for product(timestamp, seq numbers etc). Because every sensor can send timestamp in its own format. Converting to Product's format is done.
+** Buffer the data/readings to local storage for network outrage.
+** Keepalive messages to device sensors
+** Detecting malformed data from sensors and discarding.
 - Adds context that the sensor may not provide. Example: 2 sensors on 1 site. Site gateway will Label as sensor-1, sensor-2
 ```
 {
@@ -72,4 +76,53 @@ Register 40002: 1100 → voltage = 110.0 kV (illustrative scaling)
     {"name": "voltage", "value": 110.0, "unit": "kV"}
   ]
 }
+```
+
+
+== Flow
+```mermaid
+
+sequenceDiagram
+
+    box Customer_Premise
+    participant S@{ "type" : "control" } as Transformer_Sensor
+    participant G as Site Gateway
+    end
+
+    participant GLB as RLB_GLB
+
+    box Cloud
+    participant A as AWS API Gateway
+    participant I@{ "type" : "collections" } as Ingestion Pods
+    participant R@{ "type" : "queue" } as Redpanda
+    participant C@{ "type" : "collections" } as Consumer Tier
+    participant DB@{ "type" : "database" } as Time-Series DB
+    participant API as Dashboard API
+    participant D as Web Dashboard
+    end
+
+    S->>G: Modbus<br>261126, register 40001 = 865
+    Note over G: Temp is written on register=40001<br/>temp=86.5 °C
+    G->>G: Functions<br>1.Add seqno=1<br>2.Normalize timestamp=2026-11-26:12AM<br>3.Add Tenant_id<br>4.device=transformer-1
+
+    G->>GLB:
+    GLB->>A: HTTPS POST /v1/telemetry/batch<br/>temp=86.5 °C<br>2026-11-26:12AM seqno=1<br>tenant_id=1<br>device=transformer-1<br>BearerToken=XXX
+
+    Note over A: Authenticate Site gateway<br>Bearer Token<br/>Enforce request limits<br>Route
+    A->>I: HTTPS POST /v1/telemetry/batch<br/>temp=86.5 °C<br>2026-11-26:12AM seqno=1<br>tenant_id=1<br>device=transformer-1
+    Note over I: Verify tenant(is tenant_id=1 valid?)<br>Verify listed params for tenant's sensor<br>Validate param schema, units etc
+    I->>R: Publish<br/>key=transformer-1, <br>value={<br>temp=86.5 °C<br>2026-11-26:12AM<br>}
+    R-->>I: ACK
+
+    R->>C: Consume event
+    C->>DB: Write timestamped measurement<br>transformer-1, <br>{temp=86.5 °C<br>2026-11-26:12AM}
+    DB-->>C: ACK
+
+    D->>API: HTTPS GET<br>/v1/assets/transformer-1/measurements?from=...
+    Note over API: Authenticate user<br>authorize tenant<br/>and asset access
+    API->>DB: Query asset/time range
+    DB-->>API: measurements
+    API-->>D: JSON data points
+    D->>D: Render historical graph
+
 ```
