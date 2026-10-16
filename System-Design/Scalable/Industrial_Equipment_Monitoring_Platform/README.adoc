@@ -89,7 +89,7 @@ sequenceDiagram
     participant G as Site Gateway
     end
 
-    participant GLB as RLB_GLB
+    participant GLB as Regional LB<br>Global LB
 
     box Cloud
     participant A as AWS API Gateway
@@ -124,5 +124,6 @@ sequenceDiagram
     DB-->>API: measurements
     API-->>D: JSON data points
     D->>D: Render historical graph
+
 
 ```
