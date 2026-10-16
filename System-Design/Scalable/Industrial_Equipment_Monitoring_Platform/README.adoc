@@ -56,14 +56,14 @@ Register 40001: 865  → oil temperature = 86.5 °C
 Register 40002: 1100 → voltage = 110.0 kV (illustrative scaling)
 ```
 
-- Site Gateway converts device-specific specific readings into normalized format. Normalized format means adding some data helpful for product(tenant_id, timestamp, 
-- Adds context that the sensor may not provide.
+- Site Gateway converts device-specific specific readings into normalized format. Normalized format means adding some data helpful for product(timestamp etc). Because every sensor can send timestamp in its own format. Converting to Product's format is done.
+- Adds context that the sensor may not provide. Example: 2 sensors on 1 site. Site gateway will Label as sensor-1, sensor-2
 ```
 {
   "tenant_id": "tenant-1042",
   "site_id": "site-021",
   "asset_id": "transformer-008",
-  "device_id": "monitor-007",          //1 asset can have multiple sensors connected
+  "device_id | sensor_id": "monitor-007",          //1 asset can have multiple sensors connected
   "message_id": "msg-981273",          //Generated locally
   "timestamp": "2026-10-09T10:30:00Z",
   "schema_version": 1,
