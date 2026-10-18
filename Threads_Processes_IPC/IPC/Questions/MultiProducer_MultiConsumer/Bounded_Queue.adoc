@@ -1,0 +1,99 @@
+:toc:
+:toclevels: 5
+
+== Bounded Queue
+- We have a bounded queue<int> of size=3.
+- Producers can write to queue when space is present on queue
+- consumers can read when data is present on queue.
+- Producers, Consumers execute simultaneously.
+- On shutdown, all items from are emptied and then process exits
+
+== Code
+=== CPP
+```cpp
+#include <iostream>
+#include <queue>
+#include <thread>
+#include <mutex>
+#include <unistd.h>
+#include <condition_variable>
+using namespace std;
+
+# define CAPACITY 3
+bool Done = false;
+condition_variable cv;
+int elements = -1;
+queue<int> q;
+
+mutex m;
+
+void producer (string pid, int val) {
+    unique_lock<mutex> ul(m);
+    cv.wait(ul, []{
+       return q.size() < CAPACITY || Done;
+    });
+    q.push(val);
+    cout << "Producer " << pid << " pushed " << val << "\n";
+    cv.notify_all();
+}
+void consumer(string cid) {
+    while (true) {
+        unique_lock<mutex> ul(m);
+        cv.wait(ul, []{
+           return !q.empty() || Done;
+        });
+        if (q.empty() && Done) {
+            return;
+        }
+        cout << "Consumer " << cid << ", val: " << q.front() << "\n";
+        q.pop();
+        cv.notify_all();
+    }
+}
+void shutdown() {
+    {
+        unique_lock<mutex> ul(m);
+        Done = true;
+    }
+    cv.notify_all();
+}
+int main()
+{
+    thread c1(consumer, "c1");
+    thread c2(consumer, "c2");
+    thread c3(consumer, "c3");
+    sleep(3);
+    thread t1(producer, "p1", 1);
+    thread t2(producer, "p2", 2);
+    thread t3(producer, "p3", 3);
+    thread t4(producer, "p4", 4);
+    thread t5(producer, "p5", 5);
+    
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+    shutdown();
+    c1.join();
+    c2.join();
+    c3.join();
+    shutdown();
+    cout << "Exiting..";
+    
+    return 0;
+}
+
+$ ./a.out
+Producer p1 pushed 1
+Consumer c1, val: 1
+Producer p3 pushed 3
+Consumer c1, val: 3
+Producer p4 pushed 4
+Consumer c3, val: 4
+Producer p2 pushed 2
+Consumer c3, val: 2
+Producer p5 pushed 5
+Consumer c2, val: 5
+Exiting..
+```
