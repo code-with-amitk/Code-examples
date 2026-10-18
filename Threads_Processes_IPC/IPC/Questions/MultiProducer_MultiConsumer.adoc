@@ -15,7 +15,7 @@ log8  8.35
 ```
 - Print the logs every 10 seconds interval. Make sure not to repeat the logs from prev window
 
-== Solution
+== Approach
 - Add all logs into queue
 
 === 1 Producer 1 Consumer
@@ -26,18 +26,16 @@ log8  8.35
 #include <queue>
 #include <unistd.h>
 using namespace std;
-mutex m;
 
 using Log = pair<string, float>;
 queue<Log> q;
 
-void streamFill(Log log) {
-    //lock_guard<mutex> lock(m);
+void fillQueue (Log log) {
     q.push(log);
 }
 
 // Print logs older than the current timestamp and keep newer logs in the queue.
-void printer(float timestamp) {
+void readQueue (float timestamp) {
     while (!q.empty()) {
         lock_guard<mutex> lg(m);
         Log l = q.front();
@@ -50,21 +48,21 @@ void printer(float timestamp) {
     }
 }
 int main() {
-    streamFill(make_pair<string, float>("log1", 8.01));
-    streamFill(make_pair<string, float>("log2", 8.05));
-    streamFill(make_pair<string, float>("log3", 8.10));
-    streamFill(make_pair<string, float>("log4", 8.15));
+    fillQueue(make_pair<string, float>("log1", 8.01));
+    fillQueue(make_pair<string, float>("log2", 8.05));
+    fillQueue(make_pair<string, float>("log3", 8.10));
+    fillQueue(make_pair<string, float>("log4", 8.15));
 
     float timestamp = 8.10;
     while (1) {
-        thread t1(printer, timestamp);
+        thread t1(readQueue, timestamp);
         t1.join();
         timestamp += 10;
         sleep(2);
     }
     return 0;
 }
-$ g++ Streamlogger_1printer.cpp -lpthread
+$ g++ mpmc.cpp -lpthread
 $ ./a.out 
 log1
 log2
@@ -73,6 +71,7 @@ log4
 ```
 
 === n Producer, n Consumer
+==== CPP
 ```cpp
 #include <iostream>
 #include <thread>
@@ -83,7 +82,7 @@ log4
 using namespace std;
 mutex m;
 condition_variable cv;
-bool producersDone = false;   // This will be done true = when all producers have finished
+bool AllProducersDone = false;   // This will be done true = when all producers have finished
 
 using Log = pair<string, float>;
 queue<Log> q;
@@ -91,7 +90,7 @@ queue<Log> q;
 void producer(Log log, int tid) {
     unique_lock<mutex> ul(m);
     cv.wait(ul, []
-            { return !producersDone; });
+            { return !AllProducersDone; });
     cout << "producer pushed tid:" << tid << "\n";
     q.push(log);
 }
@@ -104,7 +103,7 @@ void producers_finished() {
         // Keep the critical section as small as possible
         // --------------------------------------------------
         lock_guard<mutex> lock(m);
-        producersDone = true;        // All producers have finished
+        AllProducersDone = true;        // All producers have finished
     }
 
     // Wake all consumers
@@ -124,13 +123,13 @@ void consumer(float timestamp, int tid) {
         // --------------------------------------------------
         // If the lambda returns true, thread moves forward to execute the code after cv.wait
         // Wait until
-        // 1. All producers have finished. (test = true)
+        // All producers have finished
         // OR
-        // 2. I have finished all logs designated for me
+        // Queue has data and consumer can read the data 
         // --------------------------------------------------
         cv.wait(ul, [&]
         {
-            return producersDone ||
+            return AllProducersDone ||
                    (!q.empty() && q.front().second <= timestamp);
         });
 
@@ -159,10 +158,7 @@ void consumer(float timestamp, int tid) {
 
 int main()
 {
-    // --------------------------------------------------
-    // Start consumers FIRST.
-    // They will wait because the queue is initially empty.
-    // --------------------------------------------------
+    // Start consumers FIRST. They will wait because the queue is initially empty.
     vector<thread> tConsumers;
     float timestamp = 8.10;
     tConsumers.emplace_back(consumer, timestamp, 7);
@@ -171,10 +167,7 @@ int main()
     timestamp += .10;
     tConsumers.emplace_back(consumer, timestamp, 9);
 
-    // --------------------------------------------------
-    // Start producers.
-    // They now run concurrently with consumers.
-    // --------------------------------------------------
+    // 7 producers running concurrently with consumers.
     int nthreads = 7;
     thread tproducers[nthreads];
     tproducers[0] = thread(producer, make_pair<string, float>("log1", 8.01), 0);
@@ -185,14 +178,10 @@ int main()
     tproducers[5] = thread(producer, make_pair<string, float>("log6", 8.25), 5);
     tproducers[6] = thread(producer, make_pair<string, float>("log6", 8.30), 6);
 
-    // --------------------------------------------------
     // Wait for producers.
-    // Consumers are STILL running during this time.
-    // --------------------------------------------------
     for (int i = 0; i < nthreads; i++) {
         tproducers[i].join();
     }
-    // No producer after this point.
 
     // Printing. This is not thread safe
     queue<Log> temp = q;
@@ -203,14 +192,10 @@ int main()
         cout << l.first << "," << l.second << "\n";
     }
 
-    // --------------------------------------------------
     // Tell consumers that no more logs will arrive.
-    // --------------------------------------------------
     producers_finished();
 
-    // --------------------------------------------------
     // Wait for consumers to finish remaining logs.
-    // --------------------------------------------------
     for (int i = 0; i < 3; i++) {
         tConsumers[i].join();
     }
