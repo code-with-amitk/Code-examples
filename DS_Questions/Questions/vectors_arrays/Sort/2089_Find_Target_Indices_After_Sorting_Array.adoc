@@ -1,0 +1,140 @@
+:toc:
+:toclevels: 4
+
+== link:https://leetcode.com/problems/find-target-indices-after-sorting-array/[2089. Find Target Indices After Sorting Array]
+You are given a 0-indexed integer array nums and a target element target.
+
+A target index is an index i such that nums[i] == target.
+
+Return a list of the target indices of nums after sorting nums in non-decreasing order. If there are no target indices, return an empty list. The returned list must be sorted in increasing order.
+
+```
+Example 1:
+Input: nums = [1,2,5,2,3], target = 2
+Output: [1,2]
+Explanation: After sorting, nums is [1,2,2,3,5].
+The indices where nums[i] == 2 are 1 and 2.
+
+Example 2:
+Input: nums = [1,2,5,2,3], target = 3
+Output: [3]
+Explanation: After sorting, nums is [1,2,2,3,5].
+The index where nums[i] == 3 is 3.
+
+Example 3:
+Input: nums = [1,2,5,2,3], target = 5
+Output: [4]
+Explanation: After sorting, nums is [1,2,2,3,5].
+The index where nums[i] == 5 is 4.
+```
+
+== Approach-1. Sort O(nlogn)
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        int less 
+        sort(nums.begin(), nums.end());
+        vector<int> out;
+        for (int i=0;i<nums.size();i++) {
+            if (nums[i]==target)
+                out.push_back(i);
+        }
+        return out;
+    }
+};
+```
+
+== Approach-2. O(n). Counting 
+```
+target = 3
+arr=[1,2,100,9,20,3,1,4,3]
+     0 1 2   3 4  5 6 7 8
+```
+- Count all elements less than target and all elements equal to target in input array
+```
+less_than_target = [1,2,1] = 3
+equal_to_target = [3,3] = 2
+```
+- if we sort the input array, Elements which are less than target will always be present in before the target elements
+```
+sorted = [1,1,2,3,3...
+```
+- Index of target elements would be count of less_than_target+x
+
+=== Complexity
+- Time: O(n)
+- Space: O(1)
+
+=== Code
+==== CPP
+```cpp
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        int less_than_target = 0;
+        int equal_to_target = 0;
+        for (auto&i:nums) {
+            if (i<target)
+                less_than_target++;
+            if (i==target)
+                equal_to_target++;
+        }
+        vector<int> out;
+        for (int i=0;i<equal_to_target;i++) {
+            out.push_back(less_than_target+i);
+        }
+        
+        return out;
+    }
+};
+```
+
+==== Rust
+```rs
+impl Solution {
+    pub fn target_indices(nums: Vec<i32>, target: i32) -> Vec<i32> {
+        let mut less_than_target = 0;
+        let mut equal_to_target = 0;
+        for i in nums {
+            if i<target {
+                less_than_target += 1;
+            }
+            if i==target {
+                equal_to_target += 1;
+            }
+        }
+        let mut out = Vec::new();
+        for i in 0..equal_to_target {
+            out.push(less_than_target+i);
+        }
+        out
+    }
+}
+```
+
+==== Go
+```go
+func targetIndices(nums []int, target int) []int {
+        less_than_target := 0
+        equal_to_target := 0
+        // index, value
+        for _, val := range nums {
+            if val<target {
+                less_than_target++
+            }
+            if val==target {
+                equal_to_target++
+            }
+        }
+        // Pre-allocate slice with capacity for optimal memory management
+        out := make([]int, 0, equal_to_target)
+
+        for i := 0; i < equal_to_target; i++ {
+            out = append(out, less_than_target+i)
+        }
+        return out
+}
+```
