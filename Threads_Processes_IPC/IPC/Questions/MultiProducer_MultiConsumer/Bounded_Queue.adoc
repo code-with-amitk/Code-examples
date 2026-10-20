@@ -98,3 +98,82 @@ Producer p5 pushed 5
 Consumer c2, val: 5
 Exiting..
 ```
+
+=== Go (goroutine, channel, waitgroups)
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var capacity = 3
+
+type ReceiveOnlyChannel = <-chan int
+type SendOnlyChannel = chan<- int
+
+// Producer will write on Channel
+func producer(pid string, val int, ch SendOnlyChannel, wg *sync.WaitGroup) {
+	// Execute wg.Done function after producer
+	defer wg.Done()
+
+	// Write value on Channel
+	ch <- val
+	fmt.Printf("Producer %s pushed %d\n", pid, val)
+}
+
+// Consumer will read from Channel
+func consumer(cid string, ch ReceiveOnlyChannel, wg *sync.WaitGroup) {
+	// Execute wg.Done function after consume
+	defer wg.Done()
+
+	// infinite loop to check channel
+	for {
+		// close the channel, if Producers are not writing data on channel
+		// Reading from empty channel will block/deadlock consumer goroutine
+		val, ok := <-ch
+		if ok {
+			fmt.Printf("Consumer %s read %d\n", cid, val)
+		} else {
+			break
+		}
+	}
+}
+func main() {
+
+	ch := make(chan int, capacity)
+	var wgConsumer sync.WaitGroup
+	var wgProducer sync.WaitGroup
+	wgConsumer.Add(3)
+	wgProducer.Add(5)
+	go consumer("c1", ch, &wgConsumer)
+	go consumer("c2", ch, &wgConsumer)
+	go consumer("c3", ch, &wgConsumer)
+
+	go producer("p1", 1, ch, &wgProducer)
+	go producer("p2", 2, ch, &wgProducer)
+	go producer("p3", 3, ch, &wgProducer)
+	go producer("p4", 4, ch, &wgProducer)
+	go producer("p5", 5, ch, &wgProducer)
+
+	// join()
+	wgProducer.Wait()
+	close(ch)
+	wgConsumer.Wait()
+
+	fmt.Printf("Exiting..")
+}
+$ go run
+Producer p3 pushed 3
+Producer p1 pushed 1
+Consumer c3 read 1
+Consumer c3 read 4
+Consumer c3 read 2
+Producer p5 pushed 5
+Consumer c1 read 3
+Consumer c2 read 5
+Producer p4 pushed 4
+Producer p2 pushed 2
+Exiting..
+```
