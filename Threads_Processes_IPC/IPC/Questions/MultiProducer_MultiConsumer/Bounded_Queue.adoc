@@ -22,14 +22,14 @@ using namespace std;
 
 # define CAPACITY 3
 bool Done = false;
-condition_variable cv;
+condition_variable cv;					// pthread_cond_t --> Sequence counter + *ptr_list_of_waiting_threads[i]
 int elements = -1;
 queue<int> q;
 
-mutex m;
+mutex m;								// Underhood --calls-> pthread_mutex_t --calls-> Kernel Space (int futex = 0)
 
 void producer (string pid, int val) {
-    unique_lock<mutex> ul(m);
+    unique_lock<mutex> ul(m);			// RAII wrapper object over mutex. unique_lock{ *ptr_to_mutex, bool own }
     cv.wait(ul, []{
        return q.size() < CAPACITY || Done;
     });
@@ -60,6 +60,9 @@ void shutdown() {
 }
 int main()
 {
+	/*
+	thread > pthread_create() --calls--> clone(){system call} to create struct task_struct
+	*/
     thread c1(consumer, "c1");
     thread c2(consumer, "c2");
     thread c3(consumer, "c3");
