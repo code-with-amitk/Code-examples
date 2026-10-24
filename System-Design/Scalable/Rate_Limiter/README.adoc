@@ -1,0 +1,26 @@
+:toc:
+:toclevels: 5
+
+= Rate Limiter 
+
+== Requirements
+=== Func
+1. Rate Limit the requests
+2. Identify tenant: Apply RL Quota/tenant
+3. Return HTTP 429 Too Many Requests, with Retry-After header
+
+=== Non Func
+1. Reliable: should not allow more than limit
+2. Scalable: if new region is added
+3. Tenant Quota per region
+4. Low latency
+5. Available: Define behavior when region losses connectivity with Control Plane
+
+== HLD
+**Redis Replicated Cluster**
+
+- One Redis pod is single point of failure. Replication is for availability.
+
+**Quota Service**
+
+- Refresh allocations every few seconds
