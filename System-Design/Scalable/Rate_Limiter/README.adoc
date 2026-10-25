@@ -57,12 +57,12 @@ rateLimiter.Allow(tenantID)         // In Go or C++
 ===== Tokens on Rate Limiter
 - Rate limiter initially recieves the token from Redis.
 - 2 ways to get tokens:
-** In Memory/RAM. Tokens are stored in memory
-** Redis. Once in memory tokens are nearing expiry, Proxy will send request to Redis
+** **Local RAM Check (The Fast Path):** The .so library checks an in-memory token counter (using atomic operations).
+** **Async/Batch Sync with Redis:** The local pods sync with Redis in the background (e.g., every 100ms or when local tokens run low)
 
 === Redis(Multi pods, multi master)
-- **Local RAM Check (The Fast Path):** The .so library checks an in-memory token counter (using atomic operations).
-- **Async/Batch Sync with Redis:** The local pods sync with Redis in the background (e.g., every 100ms or when local tokens run low)
+- Sharding inside the cluster is by hash(rule_id + tenant)
 
-==== 3. Quota Service
-- Refresh allocations every few seconds
+=== Quota Service
+- The Global Control Plane calculates global allocations (e.g., Tenant X has 1000 tokens/sec total, split across 3 regions).
+- The Regional Quota Service periodically polls or receives push notifications from the Control Plane, updating the regional Redis cluster or local memory pools with the newly authorized regional quotas.
