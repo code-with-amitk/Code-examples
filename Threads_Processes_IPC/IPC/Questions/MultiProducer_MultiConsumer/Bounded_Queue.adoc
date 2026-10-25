@@ -61,7 +61,7 @@ void shutdown() {
 int main()
 {
 	/*
-	thread > pthread_create() --calls--> clone(){system call} to create struct task_struct
+	thread > pthread_create() --calls--> clone()/clone3(){system call} to create struct task_struct
 	*/
     thread c1(consumer, "c1");
     thread c2(consumer, "c2");
@@ -101,6 +101,7 @@ Producer p5 pushed 5
 Consumer c2, val: 5
 Exiting..
 ```
+==== link:/Threads_Processes_IPC/Terms/README.adoc#context-switch[How Context Switch Happens]
 
 === Go (goroutine, channel, waitgroups)
 ```go
