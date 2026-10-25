@@ -17,7 +17,21 @@
 5. Available: Define behavior when region losses connectivity with Control Plane
 
 == HLD
-=== SSL Termination
+=== Proxy / Gateway (SLL Term + Rate Limiting(*.so))
+- Proxy node will run 1 binary which will do SSL Termination + rate limiting
+- Steps 1, 2, 3, and 4 happen inside the same process memory space, there are no network hops between the SSL terminator, the gateway, and the rate limiter.
+```
+┌──────  Single API Gateway Pod / Container ─────────────┐
+│  1. SSL Termination (Decrypts HTTPS to HTTP)           │
+│  2. Authentication & Header Extraction (Gets Tenant ID)│
+│  3. RATE LIMITER MIDDLEWARE (In-process code/library)  │
+│      ├── Checks Local RAM Cache (< 0.1ms)              │
+│      └── Updates Local/Redis Counters                  │
+│  4. Route to Microservice Backend                      │
+└────────────────────────────────────────────────────────┘
+```
+
+==== 1. SSL Termination
 ```
 GET /v1/orders/12345 HTTP/1.1
 Host: api.enterprise.com
@@ -28,10 +42,17 @@ X-API-Key: XXX
 User-Agent: MyApp/1.0
 ```
 
-=== Rate Limiter(Multi pods, multi master, Stateless)
+==== 2. Rate Limiter(Multi pods, multi master, Stateless)
+- Rate limiter will run as library linked to proxy
 - Each pod stores tokens in memory(RAM) for fast lookup, but once tokens were about to expire, it connects to local Redis cluster to get more tokens
 - All pods handle the traffic(its not master slave). Quota has to be distributed amongst pods.
 - If Pod A and Pod B both handle traffic for Tenant X, they cannot use local in-memory counters alone without risking over-allocating tokens. Redis handles high-velocity increments (INCRBY) entirely in memory with sub-millisecond latencies.
+
+===== How Rate limiter is called?
+- Instead of making a network call over TCP/gRPC to a remote rate-limiter pod, Gateway simply calls the functions
+```
+rateLimiter.Allow(tenantID)         // In Go or C++
+```
 
 === Redis(Multi pods, multi master)
 - One Redis pod is single point of failure, hence multiple pods are deployed.
