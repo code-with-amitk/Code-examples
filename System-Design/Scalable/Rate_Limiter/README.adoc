@@ -31,6 +31,8 @@
 └────────────────────────────────────────────────────────┘
 ```
 
+image::rate-limiter-hld.png[HLD]
+
 ==== 1. SSL Termination
 ```
 GET /v1/orders/12345 HTTP/1.1
