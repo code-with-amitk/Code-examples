@@ -17,7 +17,11 @@
 5. Available: Define behavior when region losses connectivity with Control Plane
 
 == HLD
-=== Proxy / Gateway (SSL Term + Rate Limiting(*.so))
+=== AWS NLB (Layer 4 Forwarding. TCP)
+- NLB operates purely at the transport layer (TCP). It does not decrypt the traffic, hence cannot read headers. It forwards TCP to 1 of healthy Kubernetes cluster nodes using a standard 5-tuple hash routing algorithm.
+- Forwarding done on 5-tuple hash routing algorithm.
+
+=== Proxy / Gateway (SSL Term + Rate Limiting(*.so)) (Layer 7)
 - Proxy node will run 1 binary which will do SSL Termination + rate limiting
 - Steps 1, 2, 3, and 4 happen inside the same process memory space, there are no network hops between the SSL terminator, the gateway, and the rate limiter.
 ```
@@ -38,11 +42,13 @@ image::rate-limiter-hld.png[HLD]
 GET /v1/orders/12345 HTTP/1.1
 Host: api.enterprise.com
 Authorization: Bearer xxx
-Session Cookie: SSS <<<<<<< Mapped to tenantID
-X-Tenant-ID: tenant_test
+Session Cookie: SSS       
+X-Tenant-ID: tenant_test    <<<<<<<<<<<<<<<<< tenant id
 X-API-Key: XXX
 User-Agent: MyApp/1.0
 ```
+- Proxy uses its installed SSL/TLS certificates to decrypt the incoming HTTPS traffic to HTTP
+- From decrypted HTTP proxy parses `Path: /v1/checkout`, `Tenant ID: X-Tenant-ID: tenant_test`, JWT claims etc
 
 ==== 2. Rate Limiter(Multi pods, multi master, Stateless)
 - Rate limiter will run as library linked to proxy
@@ -61,6 +67,66 @@ rateLimiter.Allow(tenantID)         // In Go or C++
 - 2 ways to get tokens:
 ** **Local RAM Check (The Fast Path):** The .so library checks an in-memory token counter (using atomic operations).
 ** **Async/Batch Sync with Redis:** The local pods sync with Redis in the background (e.g., every 100ms or when local tokens run low)
+
+===== Code. Token Bucket
+- Token bucket is in C++/C/Rust, not python.
+```
+#include <chrono>
+#include <mutex>
+#include <algorithm>
+
+class TokenBucket {
+private:
+    double capacity;             // Maximum burst capacity
+    double refill_rate_per_sec;  // Tokens added per second
+    double tokens_in_bucket;               // Available tokens
+    int64_t timestamp_last_refill_ms; // Timestamp of last refill in milliseconds
+    mutable std::mutex mtx;      // Thread Safe
+
+    // Monotonic time (immune to system clock adjustments)
+    int64_t get_current_time_ms() const {
+        using namespace std::chrono;
+        return duration_cast<milliseconds>(
+            steady_clock::now().time_since_epoch()
+        ).count();
+    }
+
+public:
+    TokenBucket(double capacity, double refill_rate)
+        : capacity(capacity),
+          refill_rate_per_sec(refill_rate),
+          tokens_in_bucket(capacity),
+          last_refill_ms(get_current_time_ms()) {}
+
+    // Evaluates and consumes tokens atomically
+    bool is_request_allowed(double tokens_requested = 1) {
+        std::lock_guard<std::mutex> lock(mtx);
+        int64_t now = get_current_time_ms();
+        int64_t elapsed_ms = now - last_refill_ms;
+
+        // Step 1: Lazy Refill calculation
+    		// Rather than thread running constantly bucket refills lazily—meaning tokens 
+    		// are calculated only when a request arrives, based on how much 
+    		// time elapsed since the last check.
+        if (elapsed_ms > 0) {
+            double elapsed_seconds = static_cast<double>(elapsed_ms) / 1000.0;
+            double tokens_to_add = elapsed_seconds * refill_rate_per_sec;
+            
+            // Replenish tokens, capping them at the maximum capacity
+            tokens_in_bucket = std::min(capacity, tokens_in_bucket + tokens_to_add);
+            last_refill_ms = now; // Update timestamp
+        }
+
+        // Step 2: Threshold evaluation & consumption
+        if (tokens_in_bucket >= tokens_requested) {
+            tokens_in_bucket -= tokens_requested;
+            return true;  // ALLOWED
+        }
+
+        return false;     // OVER_LIMIT (HTTP 429)
+    }
+};
+```
 
 === Redis(Multi pods, multi master)
 - Sharding inside the cluster is by hash(rule_id + tenant)
