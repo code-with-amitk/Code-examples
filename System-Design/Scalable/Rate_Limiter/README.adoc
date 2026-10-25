@@ -17,9 +17,25 @@
 5. Available: Define behavior when region losses connectivity with Control Plane
 
 == HLD
-**Redis Replicated Cluster**
+=== SSL Termination
+```
+GET /v1/orders/12345 HTTP/1.1
+Host: api.enterprise.com
+Authorization: Bearer xxx
+Session Cookie: SSS <<<<<<< Mapped to tenantID
+X-Tenant-ID: tenant_test
+X-API-Key: XXX
+User-Agent: MyApp/1.0
+```
 
-- One Redis pod is single point of failure. Replication is for availability.
+=== Rate Limiter(Multi pods, multi master, Stateless)
+- Each pod stores tokens in memory(RAM) for fast lookup, but once tokens were about to expire, it connects to local Redis cluster to get more tokens
+- All pods handle the traffic(its not master slave). Quota has to be distributed amongst pods.
+- If Pod A and Pod B both handle traffic for Tenant X, they cannot use local in-memory counters alone without risking over-allocating tokens. Redis handles high-velocity increments (INCRBY) entirely in memory with sub-millisecond latencies.
+
+=== Redis(Multi pods, multi master)
+- One Redis pod is single point of failure, hence multiple pods are deployed.
+- Redis pods are sharded based on TenantId as key
 
 **Quota Service**
 
