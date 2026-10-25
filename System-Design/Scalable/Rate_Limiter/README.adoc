@@ -17,7 +17,7 @@
 5. Available: Define behavior when region losses connectivity with Control Plane
 
 == HLD
-=== Proxy / Gateway (SLL Term + Rate Limiting(*.so))
+=== Proxy / Gateway (SSL Term + Rate Limiting(*.so))
 - Proxy node will run 1 binary which will do SSL Termination + rate limiting
 - Steps 1, 2, 3, and 4 happen inside the same process memory space, there are no network hops between the SSL terminator, the gateway, and the rate limiter.
 ```
