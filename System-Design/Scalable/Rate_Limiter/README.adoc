@@ -128,8 +128,25 @@ public:
 };
 ```
 
-=== Redis(Multi pods, multi master)
+=== Redis(Multi pods, multi master) Cluster
 - Sharding inside the cluster is by hash(rule_id + tenant)
+
+==== link:https://code-with-amitk.github.io/System_Design/Scalable/Distributed_Cache/#LuaScript[LUA Script on Redis to GET/SET tokens]
+**Problem: Race Condition**
+
+- Multiple rate-limiter pods talk to the same Redis cluster at same time. Each Rate limiter pod calls `get_n_tokens()` API of Redis
+- Redis pod reads token count from link:https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#pvc[PVC], return value and decrement token count on PVC. This is Critical Section
+```
+Rate Limiter pod-a                 Redis Pod                   Rate Limiter pod-b
+    t=0(get_n_tokens())                                        t=0(get_n_tokens())
+            |------- call API ---> Read/Write PVC <-------------------|
+                                THIS IS Critical Section
+```
+
+**Solution: Lua Script**
+
+- Instead of sending multiple network packets by Application(ie Rate limiter pods) to Redis (GET/SET), the entire token-checking and decrementing logic is pushed to Redis as a single script execution (EVAL or EVALSHA).
+- EVAL=Read-Modify-Write. Application will Read in 1 HTTP Packet, then Modify in other HTTP Packet. Both are done in EVAL at once
 
 === Quota Service
 - The Global Control Plane calculates global allocations (e.g., Tenant X has 1000 tokens/sec total, split across 3 regions).
