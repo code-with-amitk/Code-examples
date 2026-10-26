@@ -1,0 +1,5 @@
+:toc:
+:toclevels: 5
+
+== HTTP Request Parser
+we have a forward proxy, Netskope style forward proxy, which has the gateways: PAC file gateway for receiving traffic from PAC browser, VPN gateway for receiving traffic from VPN client. Raw bytes are received on the interface, that is on the socket, on the Linux socket where the proxy is running. There is a module which converts these packets, raw bytes, to HTTP. Now this system design is about designing that module for converting the raw bytes to HTTP requests. Am I correct?
