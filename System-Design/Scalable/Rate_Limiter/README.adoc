@@ -142,49 +142,51 @@ sequenceDiagram
     actor Client as Mobile
     participant DNS as DNS
     participant NLB as AWS NLB<br>Layer 4
-    participant Gateway as API Gateway Pod <br>NGINX/Envoy
-    box PROXY
-    participant TLS as TLS Termination<br>& HTTP Parser
-    participant RL as Rate Limiter<br>(.so Middleware)
-    participant Cache as RAM Token Bucket
+    box PROXY CLUSTER MULTIPOD
+        participant Gateway@{ "type" : "collections" } as K8s Ingress LB
+        participant TLS as TLS Terminator
+        participant RL as Rate Limiter<br>(.so Middleware)
+        participant Cache@{ "type" : "database" } as Token Bucket in RAM
     end
     participant Redis as Regional<br>Redis Cluster
-    participant Checkout as Checkout Svc
+    participant C as Checkout Svc
+    participant F as Forwarder
 
-    Client->>DNS: Resolve api.tenant.com
+    Client->>DNS: api.tenant.com
     DNS-->>Client: NLB IP address
 
-    Client->>NLB: TCP connection + TLS handshake (Port 443)
-    Note over NLB: Layer 4 forwarding using TCP 5-tuple hash
-    Note over NLB: No HTTP header or path inspection
+    Client->>NLB: HTTPS/1.1 443
+    Note over NLB: Layer 4 forwarding<br>using TCP 5-tuple hash
 
-    NLB->>Gateway: Forward TCP traffic to healthy Kubernetes node / gateway
-    Note over Gateway: Minimal network hops within cluster
+    NLB->>Gateway: Healthy Kubernetes node / gateway
+    
 
-    Gateway->>TLS: Pass incoming HTTPS traffic
-    TLS->>TLS: Terminate TLS and decrypt HTTPS
+    Gateway->>TLS: HTTPS
+    TLS->>TLS: Decrypt HTTPS
     TLS->>TLS: Parse HTTP request and extract metadata
     Note over TLS: Path: /v1/checkout
     Note over TLS: X-Tenant-ID: tenant_acme_corp_88
     Note over TLS: Extract API key / JWT claims
 
-    TLS->>RL: Invoke in-process rate limiter
+    TLS->>RL: Invoke in-process<br>rate limiter
     RL->>Cache: Check tenant token bucket
 
     alt Local tokens available
-        Cache->>Cache: Atomically decrement token count
+        Cache->>Cache: Atomically decrement<br>token count
         Cache-->>RL: Token available
     else Local token chunk depleted
         Cache-->>RL: Cache miss / insufficient tokens
-        RL->>Redis: EVALSHA Lua script (atomic token lease)
-        Redis->>Redis: Validate quota and allocate token lease
-        Redis-->>RL: Return token lease / quota result
+        RL->>Redis: EVALSHA Lua script<br>(atomic token lease)
+        Redis->>Redis: Validate quota <br> allocate token lease
+        Redis-->>RL: Return tokens
         RL->>Cache: Refill local token bucket
         RL->>Cache: Consume token
     end
 
+    Note over C: Get Tokens from Global<br>Control Plane
+    C->>Redis: Tokens filled
     opt Periodic synchronization
-        RL->>Redis: EVALSHA Lua script (sync counts / replenish lease)
+        RL->>Redis: EVALSHA Lua script<br>(sync counts / replenish lease)
         Redis-->>RL: Updated quota / token lease
     end
 
@@ -195,9 +197,7 @@ sequenceDiagram
         NLB-->>Client: Forward HTTP 429 response
     else Within quota
         RL-->>Gateway: OK
-        Gateway->>Checkout: Forward HTTP request via ClusterIP
-        Checkout->>Checkout: Process checkout request
-        Checkout-->>Gateway: HTTP 200 OK
+        Gateway->>F: Forward HTTP request<br>via ClusterIP
         Gateway-->>NLB: Forward HTTP 200 response
         NLB-->>Client: Return HTTP 200 OK
     end
