@@ -1,0 +1,90 @@
+:toc:
+:toclevels: 4
+
+== Maximum size of subset of intersecting intervals
+- In scheduling system there are n events represented by two arrays, start and finish, both of size n. The ith event begins at start[i] and ends at finish[i].
+- A subset of these events is considered high priority if at least one event within it overlaps or intersects with every other event in the subset.
+- Determine the maximum size of high-priority subset of events.
+
+Note: 
+- The events that overlap at their start or end times are considered to intersect.
+- There may be multiple events with the same start and end times.
+
+```
+Example-1:
+n=4
+start = [1,2,3,4]
+finish = [2,3,5,5]
+the largest high priority sunset is {[2,3], [3,5], [4,5]} where event[3,5] intersets the remaining events in the subset. Therefore the largest size of such a subset is possible is 3
+
+Exaample-2
+start = [1,3,4,6,9]
+finish=[2,8,5,7,10]
+output = 3
+```
+
+== Understanding the Question
+Find the interval that intersects with the maximum number of intervals, including itself.
+```
+Example 1: {[1,2], [2,3], [3,5], [4,5]}
+Intersecting subsets
+  i    arr[0]    Interects with          Size
+  0     [1,2]    {[1,2],[2,3]}            2      // {1,2} does not intersect with {3,5} by itself
+  1     [2,3]    {[1,2],[2,3],[3,5]}      3
+  2     [3,5]    {[2,3],[3,5],[4,5]}      3
+  3     [4,5]    {[3,5],[4,5]}            2
+Answer = 3
+
+Example 1: {[1,2],[3,8],[4,5],[6,7],[9,10]}
+Intersecting subsets
+  i    arr[0]    Interects with          Size
+  0     [1,2]    {[1,2]}                  1      // {1,2} does not intersect with anyone
+  1     [3,8]    {[3,8],[4,5],[6,7]}      3
+  2     [4,5]    {[4,5],[3,8]}            2
+  3     [4,5]    {[3,8],[6,7]}            2
+  4     [9,10]   {[9,10]}                 1
+Answer = 3
+```
+
+== Approach
+- Two intervals [i], [j] intersect only if:
+```
+  start[j] <= finish[i] && finish[j] >= start[i]
+```
+
+== Code
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+int getSubsetLength(vector<int> start, vector<int> finish) {
+    int n = start.size();
+
+    vector<int> starts = start;
+    vector<int> finishes = finish;
+
+    sort(starts.begin(), starts.end());
+    sort(finishes.begin(), finishes.end());
+
+    int answer = 0;
+
+    for (int i = 0; i < n; i++) {
+        int s = start[i];
+        int f = finish[i];
+
+        // Number of events with start <= f
+        int startingBeforeEnd =
+            upper_bound(starts.begin(), starts.end(), f) - starts.begin();
+
+        // Number of events with finish < s
+        int endingBeforeStart =
+            lower_bound(finishes.begin(), finishes.end(), s) - finishes.begin();
+
+        int intersecting = startingBeforeEnd - endingBeforeStart;
+
+        answer = max(answer, intersecting);
+    }
+
+    return answer;
+}
+```
