@@ -1,0 +1,108 @@
+:toc:
+:toclevels: 4
+
+== link:https://leetcode.com/problems/create-grid-with-exactly-one-path/[3963. Create Grid With Exactly One Path]
+You are given two integers m and n, representing the number of rows and columns of a grid.
+
+Construct any m x n grid consisting only of the characters '.' and '#', where:
+
+'.' represents a free cell.
+'#' represents an obstacle cell.
+A valid path is a sequence of free cells that:
+
+Starts at the top-left cell (0, 0).
+Ends at the bottom-right cell (m - 1, n - 1).
+Moves only:
+Right, from (i, j) to (i, j + 1), or
+Down, from (i, j) to (i + 1, j).
+Return any grid such that there is exactly one valid path from the top-left cell to the bottom-right cell.
+
+``` 
+Example 1:
+Input: m = 2, n = 3
+Output: ["..#","#.."]
+Explanation:
+The only valid path is: (0,0) → (0,1) → (1,1) → (1,2)
+
+Example 2:
+Input: m = 3, n = 3
+Output: ["..#","#..","##."]
+Explanation:
+The only valid path is: (0,0) → (0,1) → (1,1) → (1,2) → (2,2)
+
+Example 3:
+Input: m = 1, n = 4
+Output: ["...."]
+Explanation:
+The only valid path is: (0,0) → (0,1) → (0,2) → (0,3)
+```
+
+== Approach
+- We will always create a grid where 1st row and last col are "."
+```
+m=3,n=3
+. . .
+# # .
+# # .
+
+m=4, n=5
+. . . . .
+# # # # .
+# # # # .
+# # # # .
+```
+
+== Complexity
+- Time complexity: O(mn)
+- Space complexity: O(mn)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    vector<string> createGrid(int m, int n) {
+        vector<string> out;
+        string s = "";
+        
+        // 1st row is always "."
+        for (int i=0;i<n;i++) 
+            s += ".";
+        out.push_back(s);
+
+        for (int i=1;i<m;i++) {
+            s.clear();
+            for (int i=0;i<n-1;i++) 
+                s += "#";
+            s += ".";
+            out.push_back(s);
+        }
+
+        return out;
+    }
+};
+```
+
+=== Go
+```go
+func createGrid(m int, n int) []string {
+ 	var out []string
+
+	// 1st row is always all "."
+	firstRow := strings.Repeat(".", n)
+	out = append(out, firstRow)
+
+	// Remaining m-1 rows (or m rows depending on your exact bounds)
+	for i := 1; i < m; i++ {
+		// Reset s for each row so characters don't accumulate from previous loops
+		s := ""
+		for j := 0; j < n-1; j++ {
+			s += "#"
+		}
+		s += "."
+		out = append(out, s)
+	}
+
+	return out
+}
+```
