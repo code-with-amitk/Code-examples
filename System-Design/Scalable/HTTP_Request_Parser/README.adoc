@@ -50,23 +50,32 @@ image::Layers_adding_headers.png[Flow]
 - DDOS prevention: Methods to prevent denial-of-service attacks.
 
 == Req-1 Incremental Parsing
+- **Means** 2 back to back HTTP Requests or 1 HTTP packet recieved in chunks should be identified and parsed successfully
+- **How HTTP Header, Body is seperated?**
+** HTTP headers and the body are separated by exactly \r\n\r\n (two carriage return and line feed sequences)
+
+=== 2 HTTP Requests(1st POST, 2nd GET) arriving back to back on same TCP connection
+```
+POST /upload HTTP/1.1\r\n
+Host: example.com\r\n
+Content-Length: 12\r\n
+\r\n
+[FILE DATA!]GET /status HTTP/1.1\r\n
+Host: example.com\r\n
+\r\n
+```
+==== Step-by-Step Parsing Logic
+**Parse HTTP Req 1**
+
+- HTTP parser reads the incoming stream line-by-line (looking for \r\n).
+- It stops when it hits \r\n\r\n. Now, It looks inside the headers & finds Content-Length: 12.
+- Since it knows content-length=12, it blindly reads exactly 12 bytes from the stream immediately following the \r\n\r\n. It captures [FILE DATA!] as the file payload.
+
+**Parse HTTP Req 2**
+
+- Because the parser read exactly 12 bytes, the stream pointer is now positioned precisely at the start of the next request: GET /status....
+- The parser loops back to step 1, reading line-by-line until it hits the next \r\n\r\n.
+
 - recv() returns whatever bytes are currently available. It might return 100 bytes or 4 KB, There is no guarantee that a read data is complete HTTP or not.
 - For example, read 1 might contain `GET /api HTTP/1.1\r\nHo`, and read 2 might contain `st: example.com\r\n\r\n`. 
 - Parser maintains state across reads, recognizes that the first read contains an incomplete header, and continues parsing when the next bytes arrive.
-
-=== Identify chunks belong to the same request
-```
-Content-Length: 40    //HTTP Header
-Transfer-Encoding: chunked
-\r\n\r\n                <<<<<< End of HTTP Header
-Body
-
-recv() #1:  GET /endpoint-1 HTTP/1.1\r\nHost: example.com\r\n
-recv() #2:  \r\nGET /endpoint-2 HTTP/1.1\r\nHost: example.com\r\n\r\n
-Parser output:
-    Request 1: GET /endpoint-1
-    Request 2: GET /endpoint-2
-```
-- End of Header recognization `\r\n\r\n`
-- Body parsed using "Content-Length"
-- Once one request is complete, remaining bytes may belong to the next request on the same connection.
