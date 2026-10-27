@@ -3,7 +3,9 @@
 
 == HTTP Request Parser
 - recv() System call on Linux gets bytes from kernel. Then these bytes are provided to HTTP Parser which converts the bytes to HTTP Messages
-- See HTTP Packet Flow link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/AdvDis_Features_Methods.html#flow[here]
+
+image::Layers_adding_headers.png[Flow]
+
 - Netskope style forward proxy has gateways: PAC file gateway for receiving traffic from PAC browser, VPN gateway for receiving traffic from VPN client.
 - Raw bytes/chunks are received on the interface/socket
 - HTTP Request Parser will convert these bytes/chunks to HTTP.
