@@ -3,6 +3,33 @@
 
 == HTTP Request Parser
 - recv() System call on Linux gets raw bytes from kernel. HTTP Request Parser will convert these bytes/chunks to HTTP.
+```
+ssize_t recv(int sockfd, void *buf, size_t len, int flags);
+Arguments:
+  sockfd: The file descriptor of the connected socket.
+  buf: A pointer to the buffer where the incoming data will be stored
+  len: The maximum number of bytes to read into the buffer.
+  flags: Special options that modify the behavior of the call (pass 0 for default behavior)
+Return:
+  > 0: The actual number of bytes successfully received.
+  0: The remote peer has closed the connection gracefully (Orderly Shutdown)
+  -1: An error occurred. The global variable errno is set to specify the error (e.g., EAGAIN, ECONNRESET)
+
+void receive_data(int client_fd) {
+    char buffer[BUFFER_SIZE];
+    ssize_t bytes_received;
+    // Loop to keep receiving data until the client disconnects or an error occurs
+    while ((bytes_received = recv(client_fd, buffer, sizeof(buffer) - 1, 0)) > 0) {
+        buffer[bytes_received] = '\0'; // Null-terminate the string safely
+        printf("Received %ld bytes: %s\n", (long)bytes_received, buffer);
+    }
+    if (bytes_received == 0) {
+        printf("Client disconnected gracefully.\n");
+    } else {
+        perror("Recv failed");
+    }
+}
+```
 
 image::Layers_adding_headers.png[Flow]
 
@@ -22,5 +49,24 @@ image::Layers_adding_headers.png[Flow]
 - Memory limit per connection
 - DDOS prevention: Methods to prevent denial-of-service attacks.
 
-== Flow
-- HTTP Packet 
+== Req-1 Incremental Parsing
+- recv() returns whatever bytes are currently available. It might return 100 bytes or 4 KB, There is no guarantee that a read data is complete HTTP or not.
+- For example, read 1 might contain `GET /api HTTP/1.1\r\nHo`, and read 2 might contain `st: example.com\r\n\r\n`. 
+- Parser maintains state across reads, recognizes that the first read contains an incomplete header, and continues parsing when the next bytes arrive.
+
+=== Identify chunks belong to the same request
+```
+Content-Length: 40    //HTTP Header
+Transfer-Encoding: chunked
+\r\n\r\n                <<<<<< End of HTTP Header
+Body
+
+recv() #1:  GET /endpoint-1 HTTP/1.1\r\nHost: example.com\r\n
+recv() #2:  \r\nGET /endpoint-2 HTTP/1.1\r\nHost: example.com\r\n\r\n
+Parser output:
+    Request 1: GET /endpoint-1
+    Request 2: GET /endpoint-2
+```
+- End of Header recognization `\r\n\r\n`
+- Body parsed using "Content-Length"
+- Once one request is complete, remaining bytes may belong to the next request on the same connection.
