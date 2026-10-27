@@ -54,7 +54,7 @@ Answer = 3
 ```
 
 == Code
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -74,10 +74,12 @@ int getSubsetLength(vector<int> start, vector<int> finish) {
         int f = finish[i];
 
         // Number of events with start <= f
+        // Perform binary search to find the first element in a sorted range that is strictly greater than a specified value
         int startingBeforeEnd =
             upper_bound(starts.begin(), starts.end(), f) - starts.begin();
 
         // Number of events with finish < s
+        // first element in a sorted range that is greater than or equal to a specified value
         int endingBeforeStart =
             lower_bound(finishes.begin(), finishes.end(), s) - finishes.begin();
 
