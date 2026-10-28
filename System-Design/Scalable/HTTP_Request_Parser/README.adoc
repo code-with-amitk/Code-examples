@@ -33,32 +33,22 @@ void receive_data(int client_fd) {
 
 image::Layers_adding_headers.png[Flow]
 
-== Requirements
-=== Functional
+== Requirements (Functional)
 1. Support HTTP/1.1 Parsing. 
 ** Parse link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html[Headers](Content-Length, Host etc), body from raw bytes recieved after recv()
 2. Support Incremental parsing
 ** 2 HTTP requests comes back to back(POST GET). Parse 2 requests without issues
+** Reliable: Reject ambiguous/malformed frames, invalid header, oversized requests/headers
 3. Handle TCP Fragments. Content-Header: 12, recv() got 5 bytes. Parser will wait for another 7 bytes.
 4. Handle Chunks/Streams of data
-5. Handling longlived & multiple requests on the same socket.
+5. Handling Timeouts.
 
-=== Non-Functional
-- Reliabile: 
-** Reject ambiguous or malformed framing, invalid header, oversized requests/headers, and incomplete requests after timeout.
-** Never reinterpret bytes.
-- Throughput: req/sec
-- Latency: Max Parsing latency
-- Max concurrent connections
-- Memory limit per connection
-- DDOS prevention: Methods to prevent denial-of-service attacks.
-
-== Req-2 Incremental Parsing
+=== Req-2 Incremental Parsing
 - **Means** 2 back to back HTTP Requests or 1 HTTP packet recieved in chunks should be identified and parsed successfully
 - **How HTTP Header, Body is seperated?**
 ** HTTP headers and the body are separated by exactly \r\n\r\n (two carriage return and line feed sequences)
 
-=== 2 HTTP Requests(1st link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/AdvDis_Features_Methods.html#methods[POST], 2nd GET) arriving back to back on same TCP connection
+==== 2 HTTP Requests(1st link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/AdvDis_Features_Methods.html#methods[POST], 2nd GET) arriving back to back on same TCP connection
 ```
 POST /upload HTTP/1.1\r\n
 Host: example.com\r\n
@@ -68,7 +58,7 @@ Content-Length: 12\r\n
 Host: example.com\r\n
 \r\n
 ```
-==== Step-by-Step Parsing Logic
+===== Step-by-Step Parsing Logic
 **Parse HTTP Req 1**
 
 - HTTP parser reads the incoming stream line-by-line (looking for \r\n).
@@ -84,11 +74,11 @@ Host: example.com\r\n
 - For example, read 1 might contain `GET /api HTTP/1.1\r\nHo`, and read 2 might contain `st: example.com\r\n\r\n`. 
 - Parser maintains state across reads, recognizes that the first read contains an incomplete header, and continues parsing when the next bytes arrive.
 
-== Req-3 Handling TCP fragments
+=== Func-Req-3 Handling TCP fragments
 - Content-Length: 12, But recv() only read 5 bytes and returned 5 bytes of the 12 bytes. 
 - Parser realizes it is short on bytes & retain 5 bytes in buffer & wait for the next recv(), and accumulate until it hits 12 bytes.
 
-== Req-4 Handle Chunks/Streams of Data
+=== Func-Req-4 Handle Chunks/Streams of Data
 - This is done using HTTP header link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html#TransferEncoding[Transfer-Encoding: chunked]
 ```
 if (header == Content-Length) {
@@ -101,3 +91,14 @@ if (header == Content-Length) {
     Append the payload bytes to assembled request body
   }
 }
+
+=== Func Req-5 Handing Timeouts
+- HTTP does not enforce any timeouts server can wait on `recv()` indefinetly, but we can configure a timeout to close the fd and release resource
+- Alternatively, a nonblocking socket with epoll can notify the connection handler when data is available.
+
+== Requirements (Non-Functional)
+- Throughput: req/sec
+- Latency: Max Parsing latency
+- Max concurrent connections
+- Memory limit per connection
+- DDOS prevention: Methods to prevent denial-of-service attacks.
