@@ -35,9 +35,13 @@ image::Layers_adding_headers.png[Flow]
 
 == Requirements
 === Functional
-- Support incremental parsing: TCP data can arrive in chunks
-- Handle HTTP/1.1 request lines, headers, and bodies, including Content-Length and chunked transfer encoding.
-- Handling longlived & multiple requests on the same socket.
+1. Support HTTP/1.1 Parsing. 
+** Parse link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html[Headers](Content-Length, Host etc), body from raw bytes recieved after recv()
+2. Support Incremental parsing
+** 2 HTTP requests comes back to back(POST GET). Parse 2 requests without issues
+3. Handle TCP Fragments. Content-Header: 12, recv() got 5 bytes. Parser will wait for another 7 bytes.
+4. Handle Chunks/Streams of data
+5. Handling longlived & multiple requests on the same socket.
 
 === Non-Functional
 - Reliabile: 
@@ -49,7 +53,7 @@ image::Layers_adding_headers.png[Flow]
 - Memory limit per connection
 - DDOS prevention: Methods to prevent denial-of-service attacks.
 
-== Req-1 Incremental Parsing
+== Req-2 Incremental Parsing
 - **Means** 2 back to back HTTP Requests or 1 HTTP packet recieved in chunks should be identified and parsed successfully
 - **How HTTP Header, Body is seperated?**
 ** HTTP headers and the body are separated by exactly \r\n\r\n (two carriage return and line feed sequences)
@@ -79,3 +83,21 @@ Host: example.com\r\n
 - recv() returns whatever bytes are currently available. It might return 100 bytes or 4 KB, There is no guarantee that a read data is complete HTTP or not.
 - For example, read 1 might contain `GET /api HTTP/1.1\r\nHo`, and read 2 might contain `st: example.com\r\n\r\n`. 
 - Parser maintains state across reads, recognizes that the first read contains an incomplete header, and continues parsing when the next bytes arrive.
+
+== Req-3 Handling TCP fragments
+- Content-Length: 12, But recv() only read 5 bytes and returned 5 bytes of the 12 bytes. 
+- Parser realizes it is short on bytes & retain 5 bytes in buffer & wait for the next recv(), and accumulate until it hits 12 bytes.
+
+== Req-4 Handle Chunks/Streams of Data
+- This is done using HTTP header link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html#TransferEncoding[Transfer-Encoding: chunked]
+```
+if (header == Content-Length) {
+  malloc (content-length)
+  Read exact N bytes following headers.
+  After N bytes, remainder of the stream is the next HTTP request
+} else {    // Transfer-Encoding: chunked
+  while (chunk size != 0) {  // chunk parsing loop
+    Read exactly N bytes of payload, followed by the trailing \r\n.
+    Append the payload bytes to assembled request body
+  }
+}
