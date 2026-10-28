@@ -28,6 +28,13 @@ output = 3
 Find the interval that intersects with the maximum number of intervals, including itself.
 ```
 Example 1: {[1,2], [2,3], [3,5], [4,5]}
+
+0----1----2----3-----4------5-----------------------
+     ======
+          ======
+               ==============          <<< This intersects 2 other intervals in addition to itself
+                     ========
+
 Intersecting subsets
   i    arr[0]    Interects with          Size
   0     [1,2]    {[1,2],[2,3]}            2      // {1,2} does not intersect with {3,5} by itself
@@ -54,6 +61,69 @@ Answer = 3
 ```
 
 == Code
+=== Understanding
+```c
+Example
+start  = {1, 3, 4, 6, 9};
+finish = {2, 8, 5, 7, 10};
+1----2----3----4----5----6----7----8----9----10
+=====
+          ==========================    =======
+               ======    ======
+
+Step-1: Make copy of original array. starts=start, finishes=finish
+
+Step-2: Sort new array to apply binary search. (upper_bound and lower_bound)
+start  = {1, 3, 4, 6, 9};
+finish = {2, 8, 5, 7, 10};
+
+starts  = {1, 3, 4, 6, 9};
+finishes = {2, 5, 7, 8, 10};
+
+Step-3: 
+  for (i in .. finish) {
+    upper_bound(starts.begin(), starts.end(), f)
+  }
+                                          What is position of finish from end in starts array
+  i    f = finish[i]   startingBeforeEnd   upper_bound(starts.begin(), starts.end(), f) - starts.begin()
+  0      2                    1              [1 | 3  4  6 9]  // position of 2 is at index=1
+                                                2
+  1      8                    4              [1 3  4  6 | 9]  // position of 8 is at index=4
+                                                        8
+  2      5                    3              [1 3  4 | 6 9]  // position of 5 is at index=3 
+                                                     5
+  3      7                    4              [1 3  4 6 | 9]  // position of 7 is at index=4
+                                                       7
+  3      10                   5              [1 3  4 6 9 |]  // position of 10 is at index=5
+                                                         10
+
+Step-4: 
+  for (i in .. finish) {
+    lower_bound(finishes.begin(), finishes.end(), s) - finishes.begin();
+  }
+                                            What is position of start from beginning in finishes array
+  i    s = start[i]   endingBeforeStart      lower_bound(finishes.begin(), finishes.end(), s) - finishes.begin();
+  0      1                0                  [| 2  5  7  8  10]  // position of 1 is at index=0
+                                              1
+  1      3                1                  [2 | 5  7  8  10]  // position of 3 is at index=1
+                                                3
+  2      4                1                  [2 | 5  7  8  10]  // position of 4 is at index=1
+                                                4
+  3      6                2                  [2  5 | 7  8  10]    // position of 6 is at index=2
+                                                   2
+  4      9                4                  [2  5  7  8 | 10]    // position of 9 is at index=4
+                                                         9
+
+Step-5: Intersecting = startingBeforeEnd - endingBeforeStart
+  i    Intersecting
+  0    1-0  = 1
+  1    4-1  = 3
+  2    3-1  = 2
+  3    4-2  = 2 
+  4    5-4  = 1
+```
+
+=== CPP
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
