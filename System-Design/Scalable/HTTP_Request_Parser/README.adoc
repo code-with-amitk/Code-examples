@@ -58,6 +58,7 @@ Content-Length: 12\r\n
 Host: example.com\r\n
 \r\n
 ```
+
 ===== Step-by-Step Parsing Logic
 **Parse HTTP Req 1**
 
@@ -74,11 +75,11 @@ Host: example.com\r\n
 - For example, read 1 might contain `GET /api HTTP/1.1\r\nHo`, and read 2 might contain `st: example.com\r\n\r\n`. 
 - Parser maintains state across reads, recognizes that the first read contains an incomplete header, and continues parsing when the next bytes arrive.
 
-=== Func-Req-3 Handling TCP fragments
+=== Req-3 Handling TCP fragments
 - Content-Length: 12, But recv() only read 5 bytes and returned 5 bytes of the 12 bytes. 
 - Parser realizes it is short on bytes & retain 5 bytes in buffer & wait for the next recv(), and accumulate until it hits 12 bytes.
 
-=== Func-Req-4 Handle Chunks/Streams of Data
+=== Req-4 Handle Chunks/Streams of Data
 - This is done using HTTP header link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html#TransferEncoding[Transfer-Encoding: chunked]
 ```
 if (header == Content-Length) {
@@ -91,8 +92,9 @@ if (header == Content-Length) {
     Append the payload bytes to assembled request body
   }
 }
+```
 
-=== Func Req-5 Handing Timeouts
+=== Req-5 Handing Timeouts
 - HTTP does not enforce any timeouts server can wait on `recv()` indefinetly, but we can configure a timeout to close the fd and release resource
 - Alternatively, a nonblocking socket with epoll can notify the connection handler when data is available.
 
@@ -102,3 +104,88 @@ if (header == Content-Length) {
 - Max concurrent connections
 - Memory limit per connection
 - DDOS prevention: Methods to prevent denial-of-service attacks.
+
+=== Req-1 Scalable
+
+
+== HLD
+- HTTP Parser would sit after `recv()` system call, recieve raw bytes and convert to HTTP Request.
+
+=== Single recv()
+```c
+#define PORT 8080
+#define BUFFER_SIZE 1024
+int main() {
+    int server_fd, client_fd;
+    struct sockaddr_in server_addr, client_addr;
+    socklen_t client_len;
+    char buffer[BUFFER_SIZE];
+    int opt = 1;
+
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_fd < 0)
+        exit(EXIT_FAILURE);
+
+    // Forcefully attaching socket to the port 8080, prevents "Address already in use" errors if you restart the server quickly.
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
+        close(server_fd);
+        exit(EXIT_FAILURE);
+    }
+
+    // Configure the server address structure
+    memset(&server_addr, 0, sizeof(server_addr));
+    server_addr.sin_family = AF_INET;                  // IPv4
+    server_addr.sin_addr.s_addr = INADDR_ANY;          // Bind to all available interfaces
+    server_addr.sin_port = htons(PORT);               // Convert port to network byte order
+
+    if (bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+        close(server_fd);
+        exit(EXIT_FAILURE);
+    }
+
+    // 5 is the backlog queue size for pending connections
+    if (listen(server_fd, 5) < 0) {
+        close(server_fd);
+        exit(EXIT_FAILURE);
+    }
+
+    printf("Server is listening on port %d...\n", PORT);
+
+    client_len = sizeof(client_addr);
+
+    // Blocked until a client connects. Extracts the first connection. Create a *new* socket descriptor for this specific client.
+    client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &client_len);
+    if (client_fd < 0) {
+        close(server_fd);
+        exit(EXIT_FAILURE);
+    }
+
+    memset(buffer, 0, BUFFER_SIZE);
+    ssize_t bytes_received = recv(client_fd, buffer, BUFFER_SIZE - 1, 0);      // recv() from connected client
+    
+    if (bytes_received < 0) {
+        perror("Receive failed");
+    } else if (bytes_received == 0) {
+        printf("Client disconnected gracefully.\n");
+    } else {
+        buffer[bytes_received] = '\0';
+        printf("Received message from client: %s\n", buffer);
+    }
+    close(client_fd);
+    close(server_fd);
+    printf("Server shut down.\n");
+
+    return 0;
+}
+```
+
+=== Multi Client Server
+```
+Client A ------|    
+               |    socket()
+Client B ------|--> bind(), listen()
+               |    client_fd = accept() ------client_fd1 ----|   +----------------------+
+Client C ------|                         ------client_fd2 ----|-->|   Connection Handler |--> Parser A
+                                         ------client_fd3 ----|   |  epoll / event loop  |--> Parser B  ---Validated HTTP Requests-> Policy Engine
+                                                                  +----------------------+--> Parser C
+```
