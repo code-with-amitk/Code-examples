@@ -184,8 +184,8 @@ int main() {
 Client A ------|    
                |    socket()
 Client B ------|--> bind(), listen()
-               |    client_fd = accept() ------client_fd1 ----|   +----------------------+
-Client C ------|                         ------client_fd2 ----|-->|   Connection Handler |--> Parser A
-                                         ------client_fd3 ----|   |  epoll / event loop  |--> Parser B  ---Validated HTTP Requests-> Policy Engine
-                                                                  +----------------------+--> Parser C
+               |    client_fd = accept() ----client_fd1 ----|   +----------------------+
+Client C ------|                         ----client_fd2 ----|-->|   Connection Handler |--> Parser A
+                                         ----client_fd3 ----|   |  epoll / event loop  |--> Parser B  -Validated -> Policy Engine
+                                                                +----------------------+--> Parser C   HTTP Requests
 ```
