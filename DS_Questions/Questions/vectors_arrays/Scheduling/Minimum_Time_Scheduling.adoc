@@ -1,0 +1,138 @@
+:toc:
+:toclevels: 4
+
+== Minimum Time Scheduling Algo
+- There are n processes to be executed, each with the specific size given by processSize[i].
+- Additionally, there are m processors, each with different capacity given by capacity.
+- A processor can execute a task in 1 second if the task size is less than or equal to its capacity; otherwise it cannot execute the task. 
+- A processor can execute multiple processes one after another but need to pause for 1 second after completing one task.
+- Multiple processors can work on different tasks simultaneously.
+- Determine the minimum time required to execute all processes, or return -1 if it is not possible to execute them all. Example: 
+
+```
+Example 1:
+processSize =[2, 5, 3] 
+Processorcapacity=[6, 2, 4] 
+Time	    Capacity 6(Processor 1)	    Capacity 2(Processor 2)    Capacity 4(Processor 3)
+0–1 sec	      Process 5	                 Process 2	                  Process 3
+output=1 sec
+The optimal way to assign processes is to give the first processor the second process
+second processor the first process, and third processor the third process. 
+All of them complete their processes in one second. Therefore minimum time required is one second.
+
+Example 2:
+processSize = [1,2,3,4,6]
+Processorcapacity = [4,7,4]
+Time	    Capacity 4(Processor 1)	    Capacity 7(Processor 2)    Capacity 4(Processor 3)
+0–1 sec	      Process 3	                 Process 6	                  Process 2
+1–2 sec	      Pause	                      Pause	                      Pause
+2–3 sec	      Process 1	                 Process 4	                  Idle
+Total time=3
+
+Example 3:
+processSize=[2,5,8]
+capacity=[6,7,4]
+output=-1
+```
+
+== Understanding the question
+- Find a processor whose capacity is greater than or equal to that process size
+- Each processor can execute multiple processes sequentially, with a 1-second pause between processes. If a processor executes k processes, the total time is 2k-1 seconds
+```
+processes = {1 1 1}
+processor = 1
+t=0 p[0] execute 
+t=1 pause
+t=2 p[1] execute
+t=3 pause
+t=4 p[2] execute
+Total time: 2k - 1
+```
+
+== Code
+=== Understanding Code
+```
+processSize = [1,2,3,4,6]        n=5
+Processorcapacity = [4,7,4]      m=3
+```
+- Step-1. Sort both for binary search
+```
+processSize = [6,4,3,2,1].
+Processorcapacity = [7,4,4]. 
+```
+- Step-2: Binary search over process size
+```
+  2n-1 = 10-1 = 9
+
+  6   4   3   2   1
+      |  
+     low
+
+ low      high  
+  1        
+```
+
+=== CPP
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int getMinimumTime(vector<int> processSize, vector<int> capacity) {
+    int n = processSize.size();
+    int m = capacity.size();
+
+    // if max processSize is Greater than any processorSize return -1. O(n)
+    if (*max_element(processSize.begin(), processSize.end()) >
+        *max_element(capacity.begin(), capacity.end())) {
+        return -1;
+    }
+
+    // Largest processes first.  O(logn)
+    sort(processSize.rbegin(), processSize.rend());
+    sort(capacity.rbegin(), capacity.rend());
+
+    
+    auto canFinish = [&](int time) -> bool {
+        // If a processor handles k processes:
+        // time = k + (k - 1) = 2k - 1
+        // Therefore k <= (time + 1) / 2.
+        int maxTasksPerProcessor = (time + 1) / 2;
+
+        int processIndex = 0;
+
+        // Processors with larger capacity should handle larger processes.
+        for (int i = 0; i < m && processIndex < n; ++i) {
+
+            // This processor can handle at most maxTasksPerProcessor tasks.
+            int tasks = 0;
+
+            while (tasks < maxTasksPerProcessor &&
+                   processIndex < n &&
+                   capacity[i] >= processSize[processIndex]) {
+                ++processIndex;
+                ++tasks;
+            }
+        }
+
+        return processIndex == n;
+    };
+
+    // At most one processor executing all processes:
+    // 1 + 1 + ... + 1, with pauses between them = 2*n - 1.
+    int low = 1;
+    int high = 2 * n - 1;
+    int answer = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (canFinish(mid)) {
+            answer = mid;
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return answer;
+}
+```
