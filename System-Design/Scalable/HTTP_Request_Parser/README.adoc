@@ -54,7 +54,7 @@ image::Layers_adding_headers.png[Flow]
 - **How HTTP Header, Body is seperated?**
 ** HTTP headers and the body are separated by exactly \r\n\r\n (two carriage return and line feed sequences)
 
-=== 2 HTTP Requests(1st POST, 2nd GET) arriving back to back on same TCP connection
+=== 2 HTTP Requests(1st link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/AdvDis_Features_Methods.html#methods[POST], 2nd GET) arriving back to back on same TCP connection
 ```
 POST /upload HTTP/1.1\r\n
 Host: example.com\r\n
