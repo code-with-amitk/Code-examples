@@ -1,0 +1,133 @@
+:toc:
+:toclevels: 5
+
+== select() vs poll() vs epoll()
+|===
+||select|poll|epoll
+|What|Polling|polling|event driven
+|Limit on number of fds to watch|1024|unlimited|unlimited
+|How|O(n). Iterate through all fds(0 to n) to find the active fd|O(n). Same as select|O(1)Only return fds which are ready
+|Internally|Bitmasks (fd_set)|Array of pollfd structs|In-kernel Red-Black Tree + Ready List
+|===
+
+== select()=Polling. O(n)
+=== Code
+```cpp
+vector<int> client_sockets = { ... }; // N connections
+
+while (true) {
+    fd_set read_fds;                    // bitmask
+    FD_ZERO(&read_fds);
+    
+    // 1. Re-populate the bitmask EVERY LOOP for ALL N connections
+    int max_fd = 0;
+    for (int fd : client_sockets) {
+        FD_SET(fd, &read_fds);
+        if (fd > max_fd) max_fd = fd;
+    }
+
+    // 2. Kernel scans ALL N descriptors from 0 to max_fd
+    int activity = select(max_fd + 1, &read_fds, NULL, NULL, NULL);
+
+    // 3. User space must loop through ALL N connections to see who woke up
+    for (int fd : client_sockets) {    <<<<<<<<<<<<<<<<<<<<<<<<<< O(n)
+        if (FD_ISSET(fd, &read_fds)) {
+            handle_client_data(fd);
+        }
+    }
+}
+```
+=== Limit of 1024 fds
+- `fd_set` is fixed-size bit array (bitmap).
+- `FD_SETSIZE` was defined as `1024 in <sys/select.h>`, because 1024 file descriptors were considered more than enough for any single process in the early days of UNIX.
+
+== poll()=Polling. O(n)
+=== Code
+- `poll()` replaces bitmasks with an array of `pollfd structs`. It removes the 1024 file descriptor ceiling, though it still scans the array linearly in the kernel
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <poll.h>
+
+int main() {
+    struct pollfd fds[1];
+    char buffer[128];
+
+    // 1. Configure the pollfd struct array
+    fds[0].fd = STDIN_FILENO;
+    fds[0].events = POLLIN;  // Request notification when read data is available
+
+    printf("Waiting for input using poll() (5s timeout)...\n");
+
+    // 2. Pass array and timeout in milliseconds (5000ms = 5s)
+    int activity = poll(fds, 1, 5000);
+
+    if (activity < 0) {
+        perror("poll error");
+    } else if (activity == 0) {
+        printf("Timeout! No input received.\n");
+    } else {
+        // 3. Check revents (returned events) bitfield
+        if (fds[0].revents & POLLIN) {
+            int n = read(STDIN_FILENO, buffer, sizeof(buffer) - 1);
+            buffer[n] = '\0';
+            printf("poll() caught input: %s", buffer);
+        }
+    }
+    return 0;
+}
+```
+
+== epoll()=Event Driven. O(1)
+=== Code
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/epoll.h>
+
+int main() {
+    char buffer[128];
+
+    // 1. Create an epoll instance in the kernel
+    int epoll_fd = epoll_create1(0);
+    if (epoll_fd < 0)
+        return 1;
+
+    // 2. Register STDIN once into the kernel's red-black tree
+    struct epoll_event ev;
+    ev.events = EPOLLIN;
+    ev.data.fd = STDIN_FILENO;
+    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, STDIN_FILENO, &ev) < 0) {
+        close(epoll_fd);
+        return 1;
+    }
+
+    struct epoll_event events[10];
+    printf("Waiting for input using epoll() (5s timeout)...\n");
+
+    // 3. Wait for events. The kernel returns ONLY active FDs in the events array.
+    int nfds = epoll_wait(epoll_fd, events, 10, 5000);
+
+    if (nfds < 0) {
+        perror("epoll_wait error");
+    } else if (nfds == 0) {
+        printf("Timeout! No input received.\n");
+    } else {
+        // 4. Iterate only over the ready descriptors returned by the kernel <<<<<<<<<<<<<<<
+        for (int i = 0; i < nfds; i++) {
+            if (events[i].data.fd == STDIN_FILENO) {
+                int n = read(STDIN_FILENO, buffer, sizeof(buffer) - 1);
+                buffer[n] = '\0';
+                printf("epoll() caught input: %s", buffer);
+            }
+        }
+    }
+
+    close(epoll_fd);
+    return 0;
+}
+```
+=== epoll_wait does not iterate through all N fds
+- Unlike `select()` which maintains list of all fds. 
+- In `epoll()`, kernel maintains a Ready Linked List (`rdllist`). When network packets arrive, TCP interrupts trigger NIC drivers, which call epoll's internal callback function. That callback instantly appends the specific file descriptor to the kernel's ready list.
+- When you call epoll_wait(), the kernel simply checks if that ready list has items.
