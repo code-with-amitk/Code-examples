@@ -190,14 +190,14 @@ fcntl(sockfd, F_GETFL, 0); // nonblocking
 epoll_ctl(efd, sockfd)
 while (1) {
 int nfds = epoll_wait(efd);
-for (i in nfds) {
-  if (i == sockfd) {
+for (fd in nfds) {
+  if (fd == sockfd) {
     newfd = accept(sockfd)
     epoll.fds = newfd;
   } else {
-    bytes = read(i)
+    bytes = read(fd) / recv(fd)
   }
 }
-
-
 ```
+- Server reads the raw bytes using recv() inside epoll() loop.
+
