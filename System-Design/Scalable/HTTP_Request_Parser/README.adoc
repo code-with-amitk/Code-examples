@@ -179,13 +179,25 @@ int main() {
 }
 ```
 
-=== Multi Client Server
-```
-Client A ------|    
-               |    socket()
-Client B ------|--> bind(), listen()
-               |    client_fd = accept() ----client_fd1 ----|   +----------------------+
-Client C ------|                         ----client_fd2 ----|-->|   Connection Handler |--> Parser A
-                                         ----client_fd3 ----|   |  epoll / event loop  |--> Parser B  -Validated -> Policy Engine
-                                                                +----------------------+--> Parser C   HTTP Requests
+=== Multi Client Server (epoll() event driven)
+- Server code listening using link:/Networking/OSI-Layers/Layer-4/Socket_Programming/Polling_vs_EventDriven/README.adoc#epollevent-driven-o1[epoll()]
+```c
+sockfd = socket()  
+setsockopt(sockfd, SO_REUSEADDR)
+bind(8000), listen(sockfd)      
+fcntl(sockfd, F_GETFL, 0); // nonblocking
+
+epoll_ctl(efd, sockfd)
+while (1) {
+int nfds = epoll_wait(efd);
+for (i in nfds) {
+  if (i == sockfd) {
+    newfd = accept(sockfd)
+    epoll.fds = newfd;
+  } else {
+    bytes = read(i)
+  }
+}
+
+
 ```
