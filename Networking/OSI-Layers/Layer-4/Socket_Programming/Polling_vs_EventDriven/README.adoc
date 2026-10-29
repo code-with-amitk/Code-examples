@@ -82,47 +82,146 @@ int main() {
 === Code
 ```c
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <sys/epoll.h>
 
+#define PORT 8080
+#define MAX_EVENTS 1000  // Maximum events epoll_wait can return at once
+#define BUFFER_SIZE 1024
+
+// Helper function to make a socket non-blocking
+int make_socket_non_blocking(int fd) {
+    int flags = fcntl(fd, F_GETFL, 0);
+    if (flags == -1) return -1;
+    return fcntl(fd, F_SETFL, flags | O_NONBLOCK);
+}
+
 int main() {
-    char buffer[128];
+    int server_fd, epoll_fd;
+    struct sockaddr_in address;
+    struct epoll_event ev, events[MAX_EVENTS];
 
-    // 1. Create an epoll instance in the kernel
-    int epoll_fd = epoll_create1(0);
-    if (epoll_fd < 0)
+    // 1. Create a TCP listening socket
+    server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_fd < 0) {
+        perror("Socket creation failed");
         return 1;
+    }
 
-    // 2. Register STDIN once into the kernel's red-black tree
-    struct epoll_event ev;
+    // Allow quick re-binding to the port
+    int opt = 1;
+    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
+    // Bind to port 8080
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(PORT);
+
+    if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
+        perror("Bind failed");
+        close(server_fd);
+        return 1;
+    }
+
+    // Listen for incoming connections
+    if (listen(server_fd, SOMAXCONN) < 0) {
+        perror("Listen failed");
+        close(server_fd);
+        return 1;
+    }
+
+    make_socket_non_blocking(server_fd);
+    printf("Server listening on port %d...\n", PORT);
+
+    // 2. Create the epoll instance
+    epoll_fd = epoll_create1(0);
+    if (epoll_fd < 0) {
+        perror("epoll_create1 failed");
+        close(server_fd);
+        return 1;
+    }
+
+    // 3. Register the server listening socket to watch for incoming clients (EPOLLIN)
     ev.events = EPOLLIN;
-    ev.data.fd = STDIN_FILENO;
-    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, STDIN_FILENO, &ev) < 0) {
+    ev.data.fd = server_fd;
+    if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_fd, &ev) < 0) {
+        perror("epoll_ctl failed for server socket");
+        close(server_fd);
         close(epoll_fd);
         return 1;
     }
 
-    struct epoll_event events[10];
-    printf("Waiting for input using epoll() (5s timeout)...\n");
+    // Server loop: Can scale to monitor 1000+ client sockets simultaneously
+    while (1) {
+        // 4. Wait for events. Kernel returns ONLY active sockets in the 'events' array.
+        // It blocks indefinitely (-1 timeout) until at least one socket becomes active.
+        int nfds = epoll_wait(epoll_fd, events, MAX_EVENTS, -1);
+        if (nfds < 0) {
+            perror("epoll_wait error");
+            break;
+        }
 
-    // 3. Wait for events. The kernel returns ONLY active FDs in the events array.
-    int nfds = epoll_wait(epoll_fd, events, 10, 5000);
-
-    if (nfds < 0) {
-        perror("epoll_wait error");
-    } else if (nfds == 0) {
-        printf("Timeout! No input received.\n");
-    } else {
-        // 4. Iterate only over the ready descriptors returned by the kernel <<<<<<<<<<<<<<<
+        // 5. Iterate ONLY through the ready/active descriptors returned by the kernel
         for (int i = 0; i < nfds; i++) {
-            if (events[i].data.fd == STDIN_FILENO) {
-                int n = read(STDIN_FILENO, buffer, sizeof(buffer) - 1);
-                buffer[n] = '\0';
-                printf("epoll() caught input: %s", buffer);
+            
+            // Case A: The active socket is the server socket (New connection incoming)
+            if (events[i].data.fd == server_fd) {
+                struct sockaddr_in client_addr;
+                socklen_t client_len = sizeof(client_addr);
+                
+                int client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &client_len);
+                if (client_fd < 0) {
+                    perror("accept failed");
+                    continue;
+                }
+
+                make_socket_non_blocking(client_fd);
+
+                // Add this new client socket to our epoll interest list
+                ev.events = EPOLLIN | EPOLLET; // Watch for input using Edge Triggered mode
+                ev.data.fd = client_fd;
+                
+                if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &ev) < 0) {
+                    perror("epoll_ctl: client_fd");
+                    close(client_fd);
+                } else {
+                    printf("New client connected on socket FD: %d\n", client_fd);
+                }
+            } 
+            
+            // Case B: The active socket is an existing client socket (Data sent or disconnected)
+            else {
+                int client_fd = events[i].data.fd;
+                char buffer[BUFFER_SIZE];
+                
+                // Read from the active network socket
+                ssize_t bytes_read = read(client_fd, buffer, sizeof(buffer) - 1);
+                
+                if (bytes_read > 0) {
+                    buffer[bytes_read] = '\0';
+                    printf("Received from socket %d: %s", client_fd, buffer);
+                    
+                    // Optional: Echo back to the client
+                    write(client_fd, "Data received!\n", 15);
+                } 
+                else {
+                    // bytes_read <= 0 means client disconnected or an error occurred
+                    printf("Client on socket FD %d disconnected.\n", client_fd);
+                    
+                    // Remove from epoll and close the socket descriptor
+                    epoll_ctl(epoll_fd, EPOLL_CTL_DEL, client_fd, NULL);
+                    close(client_fd);
+                }
             }
         }
     }
 
+    close(server_fd);
     close(epoll_fd);
     return 0;
 }
