@@ -181,6 +181,22 @@ int main() {
 ```
 
 === Multi Client Server (epoll() event driven)
+```
+Client1 ---|
+           |    sockfd = socket()
+Client2 ---|--> epoll_fds(sockfd)
+           |                      ----> while (1) {
+Client3 ---|                              int ready_fds = epoll_wait()
+     |                                     for (fd in ready_fds) {
+     |                                        if (fd == sockfd)
+     |                                           newfd = accept(fd); Put in epoll
+     |                                        else
+     |---------------------------------------> HttpParser for this client
+                                               bytes = recv(fd) // Manage state
+                                               Packet Completed -------------------------> DLP/TSS/Policy Engine
+                                          }
+```                        
+
 - Server code listening using link:/Networking/OSI-Layers/Layer-4/Socket_Programming/Polling_vs_EventDriven/README.adoc#epollevent-driven-o1[epoll()]
 ```c
 sockfd = socket()  
@@ -202,3 +218,950 @@ for (fd in nfds) {
 ```
 - Server reads the raw bytes using recv() inside epoll() loop.
 
+==== HTTP Parser
+_1. Create HTTP server & register the server with epoll_
+```
+sockfd = socket()  
+setsockopt(sockfd, SO_REUSEADDR)
+bind(8000), listen(sockfd)      
+fcntl(sockfd, F_GETFL, 0); // nonblocking
+epoll_ctl(efd, sockfd)
+```
+_2. Accept Client connections_
+
+- accept() to obtain a new client, set nonblocking mode and register it with epoll
+```
+for (fd in nfds) {
+  if (fd == sockfd) {
+    newfd = accept(sockfd)
+    epoll.fds = newfd;
+  } else {
+    bytes = read(fd) / recv(fd)
+  }
+}
+```
+_3. Maintain connection state_
+
+- Every http client will have seperate context
+- Client1 can send 10 bytes, then pause. Client2 sends some bytes. Later client1 resumes and sends 20 bytes. Http Server should add bytes from Client1 to that buffer only
+- Each connection from client will be stored, converted to Http request seperately, once all data is recieved buffer will be freed and packet is sent for DLP,TSS,policy engine
+
+_4. Read data from the client FD, Feed read data into the HTTP parser_
+
+- epoll reports the client FD as readable, call `data = read()`
+- `parser.feed(data, length)`, append to buffer.
+- parser returns NeedMoreData, RequestComplete, or ParseError
+
+_5. Parse HTTP request line, Parse HTTP headers, HTTP body_
+
+- Parse Method, HTTP Version, endpoint `GET /index.html HTTP/1.1`
+- Read headers one line at a time until the empty line marking the end of the header section
+- Body. Content-Length, Transfer-Encoding: chunked. Parse chunked bodies
+
+_6. Incremental parsing and TCP fragmentation_
+
+- read() calls, so the parser preserves incomplete data.
+
+```c
+// http_proxy_parser.cpp
+// Scope / limitations:
+//   - This is a parser/demo server, NOT production-ready proxy code.
+//   - Handles HTTP/1.x request syntax and framing, but does not implement TLS,
+//     forwarding, response generation for a real proxy, or full RFC conformance.
+//   - Chunked trailers are consumed but not exposed as ordinary headers.
+//   - Bodies are buffered in memory up to MAX_BODY_BYTES.
+//   - For HTTPS interception, feed decrypted TLS application bytes to this parser.
+//   - Build: g++ -std=c++17 -O2 -Wall -Wextra -pedantic http_proxy_parser.cpp -o http_parser
+//   - Run:   ./http_parser
+//   - Test:  curl -v http://127.0.0.1:8080/hello
+
+#include <arpa/inet.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <netinet/in.h>
+#include <sys/epoll.h>
+#include <sys/socket.h>
+#include <unistd.h>
+
+#include <algorithm>
+#include <cctype>
+#include <chrono>
+#include <cstdint>
+#include <cstring>
+#include <iostream>
+#include <optional>
+#include <string>
+#include <string_view>
+#include <unordered_map>
+#include <utility>
+#include <vector>
+
+namespace {
+
+constexpr int PORT = 8080;
+constexpr int MAX_EVENTS = 256;
+constexpr std::size_t READ_BUFFER_SIZE = 16 * 1024;
+constexpr std::size_t MAX_HEADER_BYTES = 32 * 1024;
+constexpr std::size_t MAX_BODY_BYTES = 1 * 1024 * 1024;
+constexpr std::size_t MAX_BUFFERED_BYTES = MAX_HEADER_BYTES + MAX_BODY_BYTES + 64 * 1024;
+constexpr auto IDLE_TIMEOUT = std::chrono::seconds(30);
+
+using Clock = std::chrono::steady_clock;
+
+enum class ParseStatus {
+    NeedMoreData,
+    RequestComplete,
+    ParseError
+};
+
+struct HttpRequest {
+    std::string method;
+    std::string target;
+    std::string version;
+    // Header names are normalized to lowercase. Duplicate headers are preserved.
+    std::vector<std::pair<std::string, std::string>> headers;
+    std::string body;
+
+    std::optional<std::string> header_value(const std::string& name) const {
+        const std::string wanted = lower_ascii(name);
+        for (const auto& h : headers) {
+            if (h.first == wanted) return h.second;
+        }
+        return std::nullopt;
+    }
+
+    static std::string lower_ascii(std::string s) {
+        for (char& c : s) {
+            c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        }
+        return s;
+    }
+};
+
+bool set_nonblocking(int fd) {
+    int flags = fcntl(fd, F_GETFL, 0);
+    return flags != -1 && fcntl(fd, F_SETFL, flags | O_NONBLOCK) != -1;
+}
+
+bool is_token_char(unsigned char c) {
+    // HTTP token character set (tchar), RFC 9110.
+    if (std::isalnum(c)) return true;
+    switch (c) {
+        case '!': case '#': case '$': case '%': case '&': case '\'':
+        case '*': case '+': case '-': case '.': case '^': case '_':
+        case '`': case '|': case '~':
+            return true;
+        default:
+            return false;
+    }
+}
+
+std::string trim_ows(std::string_view s) {
+    std::size_t begin = 0;
+    std::size_t end = s.size();
+    while (begin < end && (s[begin] == ' ' || s[begin] == '\t')) ++begin;
+    while (end > begin && (s[end - 1] == ' ' || s[end - 1] == '\t')) --end;
+    return std::string(s.substr(begin, end - begin));
+}
+
+std::string lower_ascii(std::string s) {
+    for (char& c : s) {
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    }
+    return s;
+}
+
+bool parse_decimal_size(std::string_view s, std::size_t& out) {
+    if (s.empty()) return false;
+    std::size_t value = 0;
+    for (unsigned char c : s) {
+        if (c < '0' || c > '9') return false;
+        const std::size_t digit = static_cast<std::size_t>(c - '0');
+        if (value > (static_cast<std::size_t>(-1) - digit) / 10) return false;
+        value = value * 10 + digit;
+    }
+    out = value;
+    return true;
+}
+
+bool contains_ctl_except_htab(std::string_view s) {
+    for (unsigned char c : s) {
+        if ((c < 0x20 && c != '\t') || c == 0x7f) return true;
+    }
+    return false;
+}
+
+class HttpParser {
+public:
+    ParseStatus feed(const char* data, std::size_t length) {
+        if (failed_) return ParseStatus::ParseError;
+        if (length > MAX_BUFFERED_BYTES || buffer_.size() > MAX_BUFFERED_BYTES - length) {
+            return fail("input buffer limit exceeded");
+        }
+        buffer_.append(data, length);
+        return parse_available();
+    }
+
+    // Call after consuming a completed request to parse any pipelined request
+    // already present in the same input buffer.
+    ParseStatus next_request() {
+        if (failed_) return ParseStatus::ParseError;
+        if (status_ != ParseStatus::RequestComplete) return status_;
+        reset_message_state();
+        return parse_available();
+    }
+
+    const HttpRequest& request() const { return request_; }
+    const std::string& error() const { return error_; }
+    bool failed() const { return failed_; }
+
+private:
+    std::string buffer_;
+    HttpRequest request_;
+    State state_ = State::RequestLine;
+    ParseStatus status_ = ParseStatus::NeedMoreData;
+    std::size_t header_bytes_seen_ = 0;
+    std::size_t trailer_bytes_seen_ = 0;
+    std::size_t remaining_body_ = 0;
+    std::size_t remaining_chunk_ = 0;
+    bool failed_ = false;
+    std::string error_;
+    enum class State {
+        RequestLine,
+        Headers,
+        FixedBody,
+        ChunkSize,
+        ChunkData,
+        ChunkDataCRLF,
+        Trailers,
+        Complete,
+        Error
+    };
+
+    ParseStatus parse_available() {
+        while (!failed_) {
+            switch (state_) {
+                case State::RequestLine:
+					// By default we assume 1st we get header
+                    if (!parse_request_line()) return current_status();
+                    state_ = State::Headers;
+                    break;
+
+                case State::Headers:
+                    if (!parse_headers()) return current_status();
+                    break;
+
+                case State::FixedBody:
+                    if (!parse_fixed_body()) return current_status();
+                    break;
+
+                case State::ChunkSize:
+                    if (!parse_chunk_size()) return current_status();
+                    break;
+
+                case State::ChunkData:
+                    if (!parse_chunk_data()) return current_status();
+                    break;
+
+                case State::ChunkDataCRLF:
+                    if (!parse_chunk_data_crlf()) return current_status();
+                    break;
+
+                case State::Trailers:
+                    if (!parse_trailers()) return current_status();
+                    break;
+
+                case State::Complete:
+                    status_ = ParseStatus::RequestComplete;
+                    return status_;
+
+                case State::Error:
+                    return ParseStatus::ParseError;
+            }
+        }
+        return ParseStatus::ParseError;
+    }
+
+    ParseStatus current_status() const {
+        return failed_ ? ParseStatus::ParseError : ParseStatus::NeedMoreData;
+    }
+
+    ParseStatus fail(const std::string& message) {
+        failed_ = true;
+        state_ = State::Error;
+        error_ = message;
+        status_ = ParseStatus::ParseError;
+        return status_;
+    }
+
+	// Remove \r\n from it and return
+		/*
+		Below HTTP Request
+POST /upload HTTP/1.1\r\n
+Host: example.com\r\n
+Content-Length: 12\r\n
+\r\n
+[FILE DATA!]GET /status HTTP/1.1\r\n
+Host: example.com\r\n
+\r\n
+		Becomes
+POST /upload HTTP/1.1
+Host: example.com
+Content-Length: 12
+
+[FILE DATA!]GET /status HTTP/1.1
+Host: example.com
+		*/
+    bool take_line(std::string& line, std::size_t max_line_bytes) {
+        const std::size_t pos = buffer_.find("\r\n");
+        if (pos == std::string::npos) {
+            // A bare LF is invalid; reject it rather than waiting forever.
+            if (buffer_.find('\n') != std::string::npos) {
+                fail("bare LF encountered; CRLF required");
+            } else if (buffer_.size() > max_line_bytes) {
+                fail("line length limit exceeded");
+            }
+            return false;
+        }
+        if (pos > max_line_bytes) {
+            fail("line length limit exceeded");
+            return false;
+        }
+        line.assign(buffer_.data(), pos);
+        buffer_.erase(0, pos + 2);
+        return true;
+    }
+
+    bool parse_request_line() {
+        std::string line;
+        if (!take_line(line, 8192)) return false;
+        if (failed_) return false;
+		
+		// if line contains \t, its invalid
+        if (line.empty() || contains_ctl_except_htab(line)) {
+            fail("invalid request line");
+            return false;
+        }
+
+        // Require exactly three components separated by single SP characters
+		// Search for 2 spaces in 1st line "POST /upload HTTP/1.1"
+        const std::size_t first = line.find(' ');
+        if (first == std::string::npos || first == 0) {
+            fail("malformed request line");
+            return false;
+        }
+        const std::size_t second = line.find(' ', first + 1);
+        if (second == std::string::npos || second == first + 1 ||
+            second + 1 >= line.size() || line.find(' ', second + 1) != std::string::npos) {
+            fail("malformed request line");
+            return false;
+        }
+
+        request_.method = line.substr(0, first);		//Method=POST
+        request_.target = line.substr(first + 1, second - first - 1);	//target=upload
+        request_.version = line.substr(second + 1);		//version = HTTP/1.1
+
+		// Is method valid character?
+        for (unsigned char c : request_.method) {
+            if (!is_token_char(c)) {
+                fail("invalid method token");
+                return false;
+            }
+        }
+		
+        if (request_.version != "HTTP/1.1" && request_.version != "HTTP/1.0") {
+            fail("unsupported HTTP version");
+            return false;
+        }
+        // A target must not contain controls or spaces.
+        for (unsigned char c : request_.target) {
+            if (c <= 0x20 || c == 0x7f) {
+                fail("invalid request target");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool parse_headers() {
+        std::string line;
+		
+		// remove \r\n from recieved bytes
+        if (!take_line(line, MAX_HEADER_BYTES)) return false;
+        if (failed_) return false;
+
+        header_bytes_seen_ += line.size() + 2;
+        if (header_bytes_seen_ > MAX_HEADER_BYTES) {
+            fail("total header bytes limit exceeded");
+            return false;
+        }
+
+        if (line.empty()) {
+            return finish_headers();
+        }
+        if (line[0] == ' ' || line[0] == '\t') {
+            fail("obsolete folded header rejected");
+            return false;
+        }
+
+        const std::size_t colon = line.find(':');
+        if (colon == std::string::npos || colon == 0) {
+            fail("malformed header field");
+            return false;
+        }
+
+        const std::string_view name(line.data(), colon);
+        for (unsigned char c : name) {
+            if (!is_token_char(c)) {
+                fail("invalid header name");
+                return false;
+            }
+        }
+
+        const std::string_view raw_value(line.data() + colon + 1, line.size() - colon - 1);
+        if (contains_ctl_except_htab(raw_value)) {
+            fail("control character in header value");
+            return false;
+        }
+
+        std::string key = lower_ascii(std::string(name));
+        std::string value = trim_ows(raw_value);
+        request_.headers.emplace_back(std::move(key), std::move(value));
+        return true;
+    }
+
+    bool finish_headers() {
+        // HTTP/1.1 requests require exactly one non-empty Host field.
+        std::vector<std::string> hosts;
+        std::vector<std::string> content_lengths;
+        std::vector<std::string> transfer_encodings;
+
+        for (const auto& h : request_.headers) {
+            if (h.first == "host") hosts.push_back(h.second);
+            else if (h.first == "content-length") content_lengths.push_back(h.second);
+            else if (h.first == "transfer-encoding") transfer_encodings.push_back(h.second);
+        }
+
+        if (request_.version == "HTTP/1.1") {
+            if (hosts.size() != 1 || hosts[0].empty()) {
+                fail("HTTP/1.1 requires exactly one non-empty Host header");
+                return false;
+            }
+        } else if (hosts.size() > 1) {
+            fail("duplicate Host header");
+            return false;
+        }
+
+        // Reject all duplicate Content-Length fields in this strict example.
+        // This is intentionally stricter than accepting identical duplicates.
+        std::optional<std::size_t> content_length;
+        if (!content_lengths.empty()) {
+            if (content_lengths.size() != 1) {
+                fail("duplicate Content-Length rejected");
+                return false;
+            }
+            std::size_t parsed = 0;
+            if (!parse_decimal_size(content_lengths[0], parsed)) {
+                fail("invalid Content-Length");
+                return false;
+            }
+            if (parsed > MAX_BODY_BYTES) {
+                fail("request body too large");
+                return false;
+            }
+            content_length = parsed;
+        }
+
+        // This parser only supports a single "chunked" transfer coding.
+        // Reject multiple values/codings and TE + CL to avoid framing ambiguity.
+        if (!transfer_encodings.empty()) {
+            if (transfer_encodings.size() != 1) {
+                fail("duplicate Transfer-Encoding rejected");
+                return false;
+            }
+            const std::string te = lower_ascii(trim_ows(transfer_encodings[0]));
+            if (te != "chunked") {
+                fail("unsupported Transfer-Encoding");
+                return false;
+            }
+            if (content_length.has_value()) {
+                fail("Transfer-Encoding together with Content-Length rejected");
+                return false;
+            }
+            state_ = State::ChunkSize;
+            return true;
+        }
+
+        if (content_length.has_value() && *content_length > 0) {
+            remaining_body_ = *content_length;
+            state_ = State::FixedBody;
+            return true;
+        }
+
+        state_ = State::Complete;
+        status_ = ParseStatus::RequestComplete;
+        return true;
+    }
+
+    bool parse_fixed_body() {
+        if (buffer_.empty()) return false;
+        const std::size_t n = std::min(remaining_body_, buffer_.size());
+        request_.body.append(buffer_.data(), n);
+        buffer_.erase(0, n);
+        remaining_body_ -= n;
+
+        if (remaining_body_ == 0) {
+            state_ = State::Complete;
+            status_ = ParseStatus::RequestComplete;
+        }
+        return true;
+    }
+
+    bool parse_chunk_size() {
+        std::string line;
+        if (!take_line(line, 1024)) return false;
+        if (failed_) return false;
+
+        // Chunk extensions are deliberately rejected in this example.
+        if (line.empty() || line.find(';') != std::string::npos) {
+            fail("invalid chunk size or unsupported chunk extension");
+            return false;
+        }
+
+        std::size_t value = 0;
+        for (unsigned char c : line) {
+            unsigned int digit;
+            if (c >= '0' && c <= '9') digit = c - '0';
+            else if (c >= 'a' && c <= 'f') digit = c - 'a' + 10;
+            else if (c >= 'A' && c <= 'F') digit = c - 'A' + 10;
+            else {
+                fail("invalid hexadecimal chunk size");
+                return false;
+            }
+            if (value > (static_cast<std::size_t>(-1) - digit) / 16) {
+                fail("chunk size overflow");
+                return false;
+            }
+            value = value * 16 + digit;
+        }
+
+        if (value > MAX_BODY_BYTES - request_.body.size()) {
+            fail("chunked body exceeds configured limit");
+            return false;
+        }
+
+        if (value == 0) {
+            state_ = State::Trailers;
+        } else {
+            remaining_chunk_ = value;
+            state_ = State::ChunkData;
+        }
+        return true;
+    }
+
+    bool parse_chunk_data() {
+        if (buffer_.empty()) return false;
+        const std::size_t n = std::min(remaining_chunk_, buffer_.size());
+        request_.body.append(buffer_.data(), n);
+        buffer_.erase(0, n);
+        remaining_chunk_ -= n;
+        if (remaining_chunk_ == 0) state_ = State::ChunkDataCRLF;
+        return true;
+    }
+
+    bool parse_chunk_data_crlf() {
+        if (buffer_.size() < 2) return false;
+        if (buffer_[0] != '\r' || buffer_[1] != '\n') {
+            fail("missing CRLF after chunk data");
+            return false;
+        }
+        buffer_.erase(0, 2);
+        state_ = State::ChunkSize;
+        return true;
+    }
+
+    bool parse_trailers() {
+        std::string line;
+        if (!take_line(line, MAX_HEADER_BYTES)) return false;
+        if (failed_) return false;
+
+        trailer_bytes_seen_ += line.size() + 2;
+        if (trailer_bytes_seen_ > MAX_HEADER_BYTES) {
+            fail("trailer bytes limit exceeded");
+            return false;
+        }
+
+        if (line.empty()) {
+            state_ = State::Complete;
+            status_ = ParseStatus::RequestComplete;
+            return true;
+        }
+
+        // Validate trailer syntax, but do not merge trailers into initial headers.
+        if (line[0] == ' ' || line[0] == '\t') {
+            fail("folded trailer rejected");
+            return false;
+        }
+        const std::size_t colon = line.find(':');
+        if (colon == std::string::npos || colon == 0) {
+            fail("malformed trailer field");
+            return false;
+        }
+        for (std::size_t i = 0; i < colon; ++i) {
+            if (!is_token_char(static_cast<unsigned char>(line[i]))) {
+                fail("invalid trailer name");
+                return false;
+            }
+        }
+        if (contains_ctl_except_htab(std::string_view(line).substr(colon + 1))) {
+            fail("control character in trailer");
+            return false;
+        }
+        return true;
+    }
+
+    void reset_message_state() {
+        // Preserve unconsumed bytes so pipelined requests can be parsed.
+        request_ = HttpRequest{};
+        state_ = State::RequestLine;
+        status_ = ParseStatus::NeedMoreData;
+        header_bytes_seen_ = 0;
+        trailer_bytes_seen_ = 0;
+        remaining_body_ = 0;
+        remaining_chunk_ = 0;
+        error_.clear();
+    }
+
+public:
+    // Bytes not consumed by the current request remain here for a pipelined one.
+    std::size_t buffered_bytes() const { return buffer_.size(); }
+};
+
+/*
+struct 
+| int client_fd | HttpParser parser | clock=now | bool close_after_response |
+*/
+struct ConnectionContext {
+    int fd = -1;
+    HttpParser parser;
+    Clock::time_point last_activity = Clock::now();
+    bool close_after_response = false;
+};
+
+bool add_epoll_fd(int epoll_fd, int fd, std::uint32_t events) {
+    epoll_event ev{};
+    ev.events = events;
+    ev.data.fd = fd;
+    return epoll_ctl(epoll_fd, EPOLL_CTL_ADD, fd, &ev) == 0;
+}
+
+void close_connection(int epoll_fd,
+                      int fd,
+                      std::unordered_map<int, ConnectionContext>& connections) {
+    epoll_ctl(epoll_fd, EPOLL_CTL_DEL, fd, nullptr);
+    close(fd);
+    connections.erase(fd);
+}
+
+bool write_all_nonblocking_demo(int fd, const std::string& data) {
+    // Small demo response. Production code must queue partial writes and watch
+    // EPOLLOUT; a nonblocking write may send fewer bytes or return EAGAIN.
+    std::size_t sent = 0;
+    while (sent < data.size()) {
+        const ssize_t n = write(fd, data.data() + sent, data.size() - sent);
+        if (n > 0) {
+            sent += static_cast<std::size_t>(n);
+        } else if (n < 0 && errno == EINTR) {
+            continue;
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::string make_response(const HttpRequest& req) {
+    const std::string body =
+        "HTTP request parsed successfully\n"
+        "Method: " + req.method + "\n"
+        "Target: " + req.target + "\n"
+        "Version: " + req.version + "\n"
+        "Header count: " + std::to_string(req.headers.size()) + "\n"
+        "Body bytes: " + std::to_string(req.body.size()) + "\n";
+
+    return "HTTP/1.1 200 OK\r\n"
+           "Content-Type: text/plain; charset=utf-8\r\n"
+           "Content-Length: " + std::to_string(body.size()) + "\r\n"
+           "Connection: keep-alive\r\n"
+           "\r\n" + body;
+}
+
+void on_complete_request(int epoll_fd,
+                         ConnectionContext& conn,
+                         std::unordered_map<int, ConnectionContext>& connections) {
+    const HttpRequest& req = conn.parser.request();
+
+    // This is where a real proxy would submit the validated request/context
+    // to URL filtering, DLP, threat prevention, and forwarding components.
+    std::cout << "FD " << conn.fd << ": complete request "
+              << req.method << " " << req.target
+              << ", body=" << req.body.size() << " bytes\n";
+
+    const std::string response = make_response(req);
+    if (!write_all_nonblocking_demo(conn.fd, response)) {
+        close_connection(epoll_fd, conn.fd, connections);
+        return;
+    }
+
+    // A request with "Connection: close" closes after its response.
+    const auto connection_header = req.header_value("connection");
+    if (connection_header && lower_ascii(*connection_header) == "close") {
+        close_connection(epoll_fd, conn.fd, connections);
+        return;
+    }
+
+    // Reset parser message state and immediately process any pipelined bytes
+    // already buffered inside the parser.
+    ParseStatus status = conn.parser.next_request();
+    while (status == ParseStatus::RequestComplete) {
+        // Do not use a reference to the request after next_request() resets it.
+        const HttpRequest& next_req = conn.parser.request();
+        std::cout << "FD " << conn.fd << ": pipelined request "
+                  << next_req.method << " " << next_req.target << "\n";
+        if (!write_all_nonblocking_demo(conn.fd, make_response(next_req))) {
+            close_connection(epoll_fd, conn.fd, connections);
+            return;
+        }
+        status = conn.parser.next_request();
+    }
+
+    if (status == ParseStatus::ParseError) {
+        std::cerr << "FD " << conn.fd << ": parser error: "
+                  << conn.parser.error() << "\n";
+        close_connection(epoll_fd, conn.fd, connections);
+    }
+}
+
+}  // namespace
+
+int main() {
+    // 1. Create the listening socket.
+    const int server_fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_fd < 0) {
+        perror("socket");
+        return 1;
+    }
+
+    int reuse = 1;
+    (void)setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
+
+    sockaddr_in address{};
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = htonl(INADDR_ANY);
+    address.sin_port = htons(PORT);
+
+    if (bind(server_fd, reinterpret_cast<sockaddr*>(&address), sizeof(address)) < 0) {
+        perror("bind");
+        close(server_fd);
+        return 1;
+    }
+    if (listen(server_fd, SOMAXCONN) < 0) {
+        perror("listen");
+        close(server_fd);
+        return 1;
+    }
+    if (!set_nonblocking(server_fd)) {
+        perror("set_nonblocking(listener)");
+        close(server_fd);
+        return 1;
+    }
+
+    // 2. Create epoll and register the listening FD.
+    const int epoll_fd = epoll_create1(EPOLL_CLOEXEC);
+    if (epoll_fd < 0) {
+        perror("epoll_create1");
+        close(server_fd);
+        return 1;
+    }
+    if (!add_epoll_fd(epoll_fd, server_fd, EPOLLIN)) {
+        perror("epoll_ctl(listener)");
+        close(epoll_fd);
+        close(server_fd);
+        return 1;
+    }
+
+    // One context per accepted client FD. A production server may use a
+    // connection pool/slab allocator to reduce allocation overhead.
+	/*
+		| key(fd) 	|	Value(struct ConnectionContext)	|
+		|	10		|	ptr to struct					|
+	*/
+    std::unordered_map<int, ConnectionContext> connections;
+    epoll_event events[MAX_EVENTS]{};
+    char read_buffer[READ_BUFFER_SIZE];
+
+    std::cout << "HTTP parser demo listening on port " << PORT << "\n";
+
+    bool running = true;
+    while (running) {
+        // Returns number of ready file descriptors populated in the events buffer.
+        const int ready_fds_count = epoll_wait(epoll_fd, events, MAX_EVENTS, 1000);
+        if (ready_fds_count < 0) {
+            if (errno == EINTR) continue;
+            perror("epoll_wait");
+            break;
+        }
+
+        for (int i = 0; i < ready_fds_count; ++i) {
+            const int ready_fd = events[i].data.fd;
+            const std::uint32_t flags = events[i].events;
+
+            if (ready_fd == server_fd) {
+				// New connection from Client
+                for (;;) {
+                    sockaddr_in peer{};
+                    socklen_t peer_len = sizeof(peer);
+					
+					// accept the new client fd
+                    const int newfd =
+                        accept(server_fd, reinterpret_cast<sockaddr*>(&peer), &peer_len);
+
+                    if (newfd < 0) {
+                        if (errno == EINTR) continue;
+                        if (errno == EAGAIN || errno == EWOULDBLOCK) break;
+                        perror("accept");
+                        break;
+                    }
+
+                    if (!set_nonblocking(newfd)) {
+                        perror("set_nonblocking(client)");
+                        close(newfd);
+                        continue;
+                    }
+
+					// Add to epoll for listening
+                    if (!add_epoll_fd(epoll_fd, newfd,
+                                      EPOLLIN | EPOLLET | EPOLLRDHUP)) {
+                        perror("epoll_ctl(client)");
+                        close(newfd);
+                        continue;
+                    }
+
+                    ConnectionContext context;
+                    context.fd = newfd;
+                    context.last_activity = Clock::now();
+                    connections.emplace(client_fd, std::move(context));
+
+                    std::cout << "Accepted client FD " << newfd << "\n";
+                }
+                continue;
+            }
+
+			// Read Write from existing Client
+			
+            auto it = connections.find(fd);
+            if (it == connections.end()) continue;
+
+            if (flags & (EPOLLERR | EPOLLHUP | EPOLLRDHUP)) {
+                // A production implementation may drain remaining readable data
+                // before closing on half-close. This demo closes the connection.
+                close_connection(epoll_fd, fd, connections);
+                continue;
+            }
+
+            if (flags & EPOLLIN) {
+                // Edge-triggered mode: keep reading until EAGAIN/EWOULDBLOCK.
+                bool should_close = false;
+                for (;;) {
+					
+					// Read from fd
+                    const ssize_t bytes = read(fd, read_buffer, sizeof(read_buffer));
+
+                    if (bytes > 0) {
+						// We have not read completely from fd
+						// Put in map, so that once data is recieved on same fd.
+                        it = connections.find(fd);
+                        if (it == connections.end()) {
+                            should_close = true;
+                            break;
+                        }
+						
+						// if data is received on this fd for 
+						// 2nd or more time, invoke http parser
+                        ConnectionContext& conn = it->second;
+                        conn.last_activity = Clock::now();
+
+						// Append to already existing buffer for this client
+						// returns status of this raw request from client,
+						// if bytes are completed. status=RequestComplete
+                        const ParseStatus status =
+                            conn.parser.feed(read_buffer, static_cast<std::size_t>(bytes));
+
+                        if (status == ParseStatus::ParseError) {
+                            std::cerr << "FD " << fd << ": malformed HTTP request: "
+                                      << conn.parser.error() << "\n";
+                            // Do not attempt to resynchronize ambiguous/malformed
+                            // HTTP framing; close the connection.
+                            should_close = true;
+                            break;
+                        }
+
+                        if (status == ParseStatus::RequestComplete) {
+                            on_complete_request(epoll_fd, conn, connections);
+                            if (connections.find(fd) == connections.end()) {
+                                should_close = true;
+                                break;
+                            }
+                            // Note: on_complete_request calls next_request() to
+                            // preserve/parse pipelined data already in parser buffer.
+                            // Continue reading until EAGAIN.
+                        }
+                        continue;
+                    }
+
+                    if (bytes == 0) {
+                        // EOF: close. A production server may distinguish a clean
+                        // EOF from EOF in the middle of a request for diagnostics.
+                        should_close = true;
+                        break;
+                    }
+
+                    if (errno == EINTR) continue;
+                    if (errno == EAGAIN || errno == EWOULDBLOCK) break;
+
+                    perror("read");
+                    should_close = true;
+                    break;
+                }
+
+                if (should_close && connections.find(fd) != connections.end()) {
+                    close_connection(epoll_fd, fd, connections);
+                }
+            }
+        }
+
+        // Basic idle timeout scan. For very large connection counts, use a
+        // timer wheel/min-heap rather than scanning every connection every second.
+        const auto now = Clock::now();
+        std::vector<int> expired;
+        expired.reserve(16);
+        for (const auto& entry : connections) {
+            if (now - entry.second.last_activity > IDLE_TIMEOUT) {
+                expired.push_back(entry.first);
+            }
+        }
+        for (int fd : expired) {
+            std::cout << "Closing idle client FD " << fd << "\n";
+            close_connection(epoll_fd, fd, connections);
+        }
+    }
+
+    // Cleanup all remaining connections.
+    while (!connections.empty()) {
+        close_connection(epoll_fd, connections.begin()->first, connections);
+    }
+    close(epoll_fd);
+    close(server_fd);
+    return 0;
+}
+```
