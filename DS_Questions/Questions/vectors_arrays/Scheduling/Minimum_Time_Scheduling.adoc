@@ -60,16 +60,18 @@ Processorcapacity = [4,7,4]      m=3
 processSize = [6,4,3,2,1].
 Processorcapacity = [7,4,4]. 
 ```
-- Step-2: Binary search over process size
+- Step-2: Binary search over time range. Binary search starts with mid = 5 because it searches the time range, not the process sizes or capacities. The code asks whether all processes can finish within 5 seconds, if answer is yes, then time is reduced and again the same question is asked can processes finish in less time?
 ```
-  2n-1 = 10-1 = 9
+low = 1, high = 2n-1 = 10-1 = 9, mid = low + (high - low) / 2 = 1 + 4 = 5
 
-  6   4   3   2   1
-      |  
-     low
-
- low      high  
-  1        
+Why is high = 9? Because the largest-capacity processor(7) can handle all 5 processes sequentially in 2n-1 time
+```
+- Step-3: mid=5. Testing whether time limit of 5 is sufficient to execute all processes?
+```
+canFinish(5) {
+  int maxTasksPerProcessor = (time + 1) / 2;    // (5+1)/2 = 3.  //Each processor can execute at most 3 processes within 5 seconds.
+  
+}
 ```
 
 === CPP
