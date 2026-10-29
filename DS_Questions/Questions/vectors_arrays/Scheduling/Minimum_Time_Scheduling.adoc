@@ -57,8 +57,8 @@ Processorcapacity = [4,7,4]      m=3
 ```
 - Step-1. Sort both for binary search
 ```
-processSize = [6,4,3,2,1].
-Processorcapacity = [7,4,4]. 
+processSize = [6,4,3,2,1]
+Processorcapacity = [7,4,4]
 ```
 - Step-2: Binary search over time range. Binary search starts with mid = 5 because it searches the time range, not the process sizes or capacities. The code asks whether all processes can finish within 5 seconds, if answer is yes, then time is reduced and again the same question is asked can processes finish in less time?
 ```
@@ -68,9 +68,32 @@ Why is high = 9? Because the largest-capacity processor(7) can handle all 5 proc
 ```
 - Step-3: mid=5. Testing whether time limit of 5 is sufficient to execute all processes?
 ```
+processSize = [6,4,3,2,1]
+               0 1 2 3 4   <- processIndex
+
 canFinish(5) {
   int maxTasksPerProcessor = (time + 1) / 2;    // (5+1)/2 = 3.  //Each processor can execute at most 3 processes within 5 seconds.
   
+  for loop (i)
+  i=0, capacity[0]=7(1st processor), tasks=0, maxTasksPerProcessor=3, processIndex=0. All processes assigned to processor=0
+    while loop
+      maxTasksPerProcessor=(time+1)/2 = 3, n=5
+      tasks  capacity[0]  processIndex processSize[processIndex] capacity[0]=7 >= processSize[0]=6 (process=6 assigned to capacity=7)  
+        0         7          0                 6                   yes. processIndex++; tasks++; // Move to 2nd process
+
+      tasks  capacity[0]  processIndex  processSize[processIndex] capacity[0]=7 >= processSize[1]=4 (process=4 assigned to capacity=7)
+        1         7          1                 4                   yes. processIndex++; tasks++; // Move to 3rd process
+
+      tasks  capacity[0]  processIndex  processSize[processIndex] capacity[0]=7 >= processSize[2]=3 (process=3 assigned to capacity=7)
+        2         7          2                 3                   yes. processIndex++; tasks++; // Move to 4th process
+
+      tasks     
+        3    while (tasks < maxTasksPerProcessor) Break
+      Sucessfully assigned 3 processes to processor=7. Move to next processor.
+      Inner while loop stops. Outer for loop moves to the next processor.
+
+  i=1, capacity[1]=4(2nd Processor), tasks=0, maxTasksPerProcessor=3, processIndex=3
+
 }
 ```
 
