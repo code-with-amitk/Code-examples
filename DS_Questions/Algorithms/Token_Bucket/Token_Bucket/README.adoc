@@ -2,6 +2,8 @@
 :toclevels: 5
 
 
+image::token_bucket.png?raw=true[Token Bucket]
+
 == Methods to fill tokens in Bucket
 === 1. Proactive filling
 Thread running constantly to fill the bucket per second
