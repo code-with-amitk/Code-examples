@@ -1,0 +1,82 @@
+:toc:
+:toclevels: 5
+
+
+== Methods to fill tokens in Bucket
+=== 1. Proactive filling
+Thread running constantly to fill the bucket per second
+
+=== 2. Lazy Refill
+Tokens are calculated only when a request arrives, based on how much time elapsed since the last checked.
+
+==== How it works
+```c
+tokens_in_bucket = std::min(capacity, tokens_in_bucket + (elapsed.count() * refill_rate));
+if (tokens_in_bucket >= tokens_requested) {
+    tokens_in_bucket -= tokens_requested;
+    return true; // Request allowed
+}
+return false;
+
+Example: How it works?
+bucket = 6, token = 1  // Let bucket is of size=6, we start with 1 token
+refill_rate = 2        // 2 token will be filled/sec
+
+time  (Incoming HTTP Req)  time_elapsed_since_last_refill  to_be_added_tokens    tokens_in_bucket
+                                                           (elapsed*refill_rate)
+0      0                   0                               0                     1
+1      4                   1-0=1                           1*2=2                 1+2=3       // Bucket has 3 tokens, 3 Req allwed
+  
+```
+
+==== Code (Lazy refill)
+```cpp
+using time_point = std::chrono::steady_clock::time_point;
+
+class TokenBucket {
+private:
+    double bucket_capacity;		// Bucket size
+    double refill_rate; 		// Tokens per second
+    double tokens_in_bucket;
+    
+    time_point last_refill_time;
+    std::mutex mtx;
+
+	void refill() {		
+		auto now = std::chrono::steady_clock::now();
+		duration elapsed = now - last_refill_time;			// Time elapsed Since last refill
+		last_refill_time = now;
+
+		// Add tokens accrued over the elapsed time, up to the maximum bucket_capacity
+		// Convert elapsed to int elapsed.count()
+		tokens_in_bucket = std::min(bucket_capacity, tokens_in_bucket + (elapsed * refill_rate));		
+	}
+public:
+	// Token bucket of size=6. With 1 token filled
+	// 2 tokens/sec will be filled
+    TokenBucket(double c=6, double rr=2, double t=1) 
+        : bucket_capacity(c), refill_rate(rr), tokens_in_bucket(t) {
+        last_refill_time = std::chrono::steady_clock::now();
+    }
+
+    // Returns true if the request is allowed, false if rate-limited
+    bool consume(double tokens_requested = 1.0) {
+		using duration = std::chrono::duration<double>;
+		
+        std::lock_guard<std::mutex> lock(mtx);							// Thread Safe
+		refill();
+
+        if (tokens_in_bucket >= tokens_requested) {
+            tokens_in_bucket -= tokens_requested;
+            return true; // Request allowed
+        }
+        return false; // Request blocked 429
+    }
+
+    double current_tokens() {
+        std::lock_guard<std::mutex> lock(mtx);
+        refill();
+        return tokens;
+    }
+};
+```
