@@ -39,13 +39,13 @@ image::rate-limiter-hld.png[HLD]
 
 ==== 1. SSL Termination
 ```
-GET /v1/orders/12345 HTTP/1.1
-Host: api.enterprise.com
-Authorization: Bearer xxx
-Session Cookie: SSS       
-X-Tenant-ID: tenant_test    <<<<<<<<<<<<<<<<< tenant id
-X-API-Key: XXX
-User-Agent: MyApp/1.0
+GET /v1/orders/12345 HTTP/1.1\r\n            <<<<< Format (Method Request-URI HTTP-Version CRLF)
+Host: api.enterprise.com\r\n
+Authorization: Bearer xxx\r\n
+Session Cookie: SSS\r\n
+X-Tenant-ID: tenant_test\r\n    <<<<<<<<<<<<<<<<< tenant id
+X-API-Key: XXX\r\n
+User-Agent: MyApp/1.0\r\n
 ```
 - Proxy uses its installed SSL/TLS certificates to decrypt the incoming HTTPS traffic to HTTP
 - From decrypted HTTP proxy parses `Path: /v1/checkout`, `Tenant ID: X-Tenant-ID: tenant_test`, JWT claims etc
