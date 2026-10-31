@@ -1,0 +1,12 @@
+:toc:
+:toclevels: 5
+
+= Bucket Algorithms
+
+|===
+|Algorithm|Mechanism|Production Dominance|Languages|Real-World Examples
+|Token Bucket|Tokens fill the bucket at a fixed rate| * * * * * Highest|Go, C++, Java, Rust|Stripe API, AWS API Gateway, Kong (via Redis Lua)
+|Token Bucket with Leaky Rate Control((Lazy-Refill variant)|Instead of active background timers, token counts are calculated using the time difference (timestamp_now - timestamp_last_request)| * * * Very High|
+C++, Go|Envoy Proxy, Nginx
+|Leaky Bucket(Queue / Blocking variant)|Requests flow into a queue bucket. The system extracts and executes them at a perfectly uniform, steady pace.| * * Medium|Go,Java|Uber Engine, Shopify
+|===
