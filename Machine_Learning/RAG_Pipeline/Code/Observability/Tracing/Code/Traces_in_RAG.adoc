@@ -314,3 +314,22 @@ The reason for the failure is not explicitly stated in the logs, but it can be i
 It's also worth noting that the logs do not provide any information about the specific reason for the failure, such as a password mismatch, IP address blocking, or account lockout. Further investigation would be required to determine the exact reason for the failure.
 
 ```
+
+== Arize Phoenix
+- We can add html view to traces at `http://localhost:6006/`
+```
+pip install arize-phoenix
+```
+- And add this code(to above python code) to pass traces to Phoenix
+```py
+import phoenix as px
+px.launch_app()       # Launch app on http://localhost:6006/
+
+from openinference.instrumentation.llama_index import LlamaIndexInstrumentor
+from phoenix.otel import register
+tracer_provider = register()
+```
+
+image::Pheonix1.png?raw=true[Pheonix1]
+
+image::Pheonix2.png?raw=true[Pheonix2]
