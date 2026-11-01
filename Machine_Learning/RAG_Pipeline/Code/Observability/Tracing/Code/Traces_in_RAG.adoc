@@ -1,0 +1,273 @@
+:toc:
+:toclevels: 5
+
+== Code
+```py
+import json
+from pathlib import Path
+import warnings
+import numpy as np
+import requests
+
+from opentelemetry import trace
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
+from opentelemetry.trace import Status, StatusCode
+
+warnings.filterwarnings("ignore")
+
+# Initialize OpenTelemetry once
+resource = Resource(attributes={"service.name": "soc-rag-production"})
+tracer_provider = TracerProvider(resource=resource)
+span_processor = SimpleSpanProcessor(ConsoleSpanExporter())
+tracer_provider.add_span_processor(span_processor)
+trace.set_tracer_provider(tracer_provider)
+tracer = trace.get_tracer(__name__)
+
+OLLAMA_BASE_URL = "http://localhost:11434"
+EMBEDDING_MODEL = "nomic-embed-text:latest"
+LLM_MODEL = "llama3.2:latest"
+BASE_DIR = Path(__file__).resolve().parent
+vector_database: list[dict] = []
+
+"""
+Sent to http://localhost:11434/api/embed
+
+POST /api/embed HTTP/1.1\r\n
+Content-Type: application/json\r\n
+
+{
+    "model": nomic-embed-text:latest,
+    "input": string_to_find_embedding
+}
+"""
+def get_embedding(text: str) -> list[float]:
+    """Plain helper without noisy individual traces in production."""
+    url = f"{OLLAMA_BASE_URL}/api/embed"
+    payload = {"model": EMBEDDING_MODEL, "input": text}
+    response = requests.post(url, json=payload, timeout=120)
+    response.raise_for_status()
+    return response.json()["embeddings"][0]
+
+"""
+Create chunks, see header of build_vector_database()
+"""
+def load_and_chunk_logs(filepath: str | Path, source_type: str) -> list[dict]:
+    """No tracing."""
+    path = Path(filepath)
+    if not path.is_absolute():
+        path = BASE_DIR / path
+    chunks = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line_num, line in enumerate(f, 1):
+            line = line.strip()
+            if line:
+                chunks.append({
+                    "content": f"[{source_type.upper()}] {line}",
+                    "metadata": {"source": str(path.name), "line": line_num}
+                })
+    return chunks
+
+"""
+vector_database [
+    {
+        'content': '[VPN_1] 2025-05-01 08:01:05 VPN_LOGIN_FAILED user=john.doe ip=1.1.1.1',
+        'metadata': {
+            'source': 'vpn_1.log',      //Name of the log file
+            'line': 1,                  //Line number in the log file
+            'doc_id': 'doc_vpn_1_1',    //Unique document identifier
+            'source_type': 'vpn_1'      //Type of log source (e.g., vpn_1, firewall_1)
+        },
+        'vector': array([-4.08442989e-02.. embedding 768 ..])   //embedding vector as a NumPy array
+    },
+    other records...
+]
+
+"""
+def build_vector_database(log_files: list[str] | None = None) -> list[dict]:
+    """No tracing."""
+    global vector_database
+    if log_files is None:
+        log_files = ["vpn_1.log", "firewall_1.log", "distractor_1.log"]
+
+    all_chunks = []
+    for filename in log_files:
+        source_type = Path(filename).stem
+        chunks = load_and_chunk_logs(filename, source_type)
+        for idx, chunk in enumerate(chunks, 1):
+            chunk["metadata"]["doc_id"] = f"doc_{source_type}_{idx}"
+            chunk["metadata"]["source_type"] = source_type
+            all_chunks.append(chunk)
+
+    vector_database = [
+        {
+            "content": item["content"],
+            "metadata": item["metadata"],
+            "vector": np.array(get_embedding(item["content"]), dtype=np.float32)
+        }
+        for item in all_chunks
+    ]
+    return vector_database
+
+def cosine_similarity(v1: np.ndarray, v2: np.ndarray) -> float:
+    dot_product = np.dot(v1, v2)
+    norm_v1 = np.linalg.norm(v1)
+    norm_v2 = np.linalg.norm(v2)
+    return float(dot_product / (norm_v1 * norm_v2)) if norm_v1 and norm_v2 else 0.0
+
+def retrieve_top_k(query: str, top_k: int = 5) -> list[dict]:
+    """Tracing"""
+    with tracer.start_as_current_span("retrieve_top_k()") as span:
+        span.set_attribute("query", query)
+        span.set_attribute("top_k", top_k)
+
+        query_vector = np.array(get_embedding(query), dtype=np.float32)
+        scored = [(cosine_similarity(query_vector, r["vector"]), r) for r in vector_database]
+        scored.sort(key=lambda x: x[0], reverse=True)
+        retrieved = [rec for _, rec in scored[:top_k]]
+
+        span.set_attribute("len(retrieved)", len(retrieved))
+        span.set_status(Status(StatusCode.OK))
+        return retrieved
+
+def generate_rag_response(user_prompt: str) -> str:
+    """Tracing"""
+    with tracer.start_as_current_span("generate_rag_response") as root_span:
+        root_span.set_attribute("user_prompt", user_prompt)
+
+        retrieved_records = retrieve_top_k(user_prompt, top_k=6)
+        context_str = "\n".join(r["content"] for r in retrieved_records)
+
+        system_prompt = (
+            "You are a Security Operations Center (SOC) analyst.\n"
+            "Answer strictly based on the provided log context.\n\n"
+            f"LOG CONTEXT:\n{context_str}\n\n"
+            f"USER QUESTION: {user_prompt}\n\nANALYSIS:"
+        )
+
+        with tracer.start_as_current_span("rag.llm_generation") as llm_span:
+            llm_span.set_attribute("llm.model", LLM_MODEL)
+            
+            response = requests.post(
+                f"{OLLAMA_BASE_URL}/api/generate",
+                json={"model": LLM_MODEL, "prompt": system_prompt, "stream": False, "options": {"temperature": 0.0}},
+                timeout=120
+            )
+            response.raise_for_status()
+            result = response.json()
+
+            if "eval_count" in result:
+                llm_span.set_attribute("llm.tokens.eval", result["eval_count"])
+
+            llm_span.set_status(Status(StatusCode.OK))
+            root_span.set_status(Status(StatusCode.OK))
+            return result["response"]
+
+if __name__ == "__main__":
+    build_vector_database()
+    query = "reason of failure for user john.doe?"
+    print(f"\nPrompt: '{query}'\n" + "-" * 50)
+    print(generate_rag_response(query))
+
+if __name__ == "__main__":
+    build_vector_database()
+    query = "reason of failure for user john.doe?"
+    print(f"\nPrompt: '{query}'\n" + "-" * 50)
+    print(generate_rag_response(query))
+
+> python trace.py
+
+Prompt: 'reason of failure for user john.doe?'
+--------------------------------------------------
+{
+    "name": "retrieve_top_k()",
+    "context": {
+        "trace_id": "0x9dbc473ad7a4f21a1d5a8793f8904c32",
+        "span_id": "0xd5a1805f62edc81a",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "0xf4d2b9e562b5a508",
+    "start_time": "2026-11-01T14:17:29.802892Z",                    <<<<<< Start time
+    "end_time": "2026-11-01T14:17:30.008751Z",                      <<<<<< End time
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {                                                  <<<<<< Parameters
+        "query": "reason of failure for user john.doe?",  
+        "top_k": 6,
+        "len(retrieved)": 6
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "soc-rag-production"
+        },
+        "schema_url": ""
+    }
+}
+
+{
+    "name": "rag.llm_generation",
+    "context": {
+        "trace_id": "0x9dbc473ad7a4f21a1d5a8793f8904c32",
+        "span_id": "0x81b923577c4d75bb",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "0xf4d2b9e562b5a508",
+    "start_time": "2026-11-01T14:17:30.009613Z",
+    "end_time": "2026-11-01T14:18:09.487370Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "llm.model": "llama3.2:latest",
+        "llm.tokens.eval": 157
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "soc-rag-production"
+        },
+        "schema_url": ""
+    }
+}
+
+{
+    "name": "generate_rag_response",
+    "context": {
+        "trace_id": "0x9dbc473ad7a4f21a1d5a8793f8904c32",
+        "span_id": "0xf4d2b9e562b5a508",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": null,
+    "start_time": "2026-11-01T14:17:29.802760Z",
+    "end_time": "2026-11-01T14:18:09.489438Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "user_prompt": "reason of failure for user john.doe?"
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "soc-rag-production"
+        },
+        "schema_url": ""
+    }
+}
+
+Based on the provided log context, I can see that user john.doe has attempted to log in to the VPN three times with different IP addresses (4.4.4.4, 1.1.1.1, and 1.1.1.1). However, none of these login attempts were successful.
+
+The reason for the failure is not explicitly stated in the logs, but it can be inferred that the VPN system is blocking or rejecting the login attempts due to some form of authentication or authorization issue.
+
+It's also worth noting that the logs do not provide any information about the specific reason for the failure, such as a password mismatch, IP address blocking, or account lockout. Further investigation would be required to determine the exact reason for the failure.
+
+```
