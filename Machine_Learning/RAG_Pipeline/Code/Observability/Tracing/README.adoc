@@ -1,0 +1,19 @@
+:toc:
+:toclevels: 5
+
+== Terms
+=== Tracer
+A Tracer is the core component responsible for creating and managing spans.
+
+=== Span
+- A single unit of work or operation within a distributed trace 
+- Finds:
+** Time taken by function
+** Whether function succeed or failed
+
+==== span.add_event()
+- Event is log message to which timestamp is added
+
+==== span.set_attribute()
+- key-value pairs (key: value) attached to a span to provide context about the operation. 
+- For example, span.set_attribute("input.query", query) records what the user searched for
