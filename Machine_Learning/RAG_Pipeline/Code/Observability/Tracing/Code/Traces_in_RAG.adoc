@@ -1,7 +1,50 @@
 :toc:
 :toclevels: 5
 
-== Code
+== Tracing
+**Explanation**
+
+- Trace is added per function to dump json data showing:
+** Time taken by function to execute
+** arguments to the function
+** function exit code
+ 
+```
+def fun():
+    with tracer.start_as_current_span("generate_rag_response") as root_span:        // Start the span in function and name it as "root_span"
+        root_span.set_attribute("user_prompt", user_prompt)                         // Add attributes to span, to display using json
+        ..if worked..
+            root_span.set_status(Status(StatusCode.OK))
+
+    with tracer.start_as_current_span("rag.llm_generation") as llm_span:        // Take another scope in same function
+        llm_span.set_attribute("llm.model", LLM_MODEL)
+
+2 spans would be dumped as seperate json
+{
+    "name": "rag.llm_generation",
+    ..
+    "start_time": "2026-11-01T14:17:30.009613Z",
+    "end_time": "2026-11-01T14:18:09.487370Z",
+    "status": {
+        "status_code": "OK"
+    }
+}
+{
+    "name": "generate_rag_response",
+    ..
+    "start_time": "2026-11-01T14:17:29.802760Z",
+    "end_time": "2026-11-01T14:18:09.489438Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "user_prompt": "reason of failure for user john.doe?"
+    }
+}
+```
+
+=== Code
+- Trace is added using span, attributes
 ```py
 import json
 from pathlib import Path
