@@ -1,0 +1,26 @@
+:toc:
+:toclevels: 5
+
+== Observability
+- Finding internal health, behavior, and performance of the entire Retrieval-Augmented Generation (RAG) pipeline using
+** Traces
+** Logs
+** Metrices
+** External outputs
+- Methods to achieve Observability:
+
+=== 1. Traces (OpenTelemetry)
+- Records the path and lifecycle of a single user request as it traverses the RAG pipeline, final LLM response into a connected graph (Directed Acyclic Graph / span tree).
+
+==== How it works?
+- Wrap the functions (eg: vector searches, LM calls) inside spans using tracking frameworks or open standards. 
+- Each span records inputs, outputs, execution time, and metadata (such as chunk_id, similarity_score, doc_version, and retriever_strategy
+
+=== 2. Structured Logging (Prompt & Context Logging)
+- Proper log messages
+
+=== 3. Metrics 
+• Retrieval Latency & Vector DB Speed (e.g., time to search FAISS/Pinecone).
+• Time to First Token (TTTF) and Total LLM Generation Latency.
+• Hit Rate / Relevance Scores: Average cosine similarity or reranker scores of retrieved chunks
+                                                                   
