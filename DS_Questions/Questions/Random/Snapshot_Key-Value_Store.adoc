@@ -58,12 +58,7 @@ get(key, snapshot_id).
 - search snapshot id in vector using binary search O(logn)
 ```
 
-== Approach-2. O(1). HashMap<HashMap>
-```c
-unordered_map<string, unordered_map<int, int>> store;
-```
-
-== Code
+=== Code
 ```cpp
 class SnapshotKV {
     int snapshotId = 0;
@@ -106,3 +101,22 @@ public:
     }
 };
 ```
+
+== Approach-2. O(1). HashMap<HashMap>
+```c
+unordered_map<string, unordered_map<int, int>> store;
+```
+
+== Comparison
+|===
+|Approach|Lookup|Memory characteristics
+|Vector + binary search|O(log V). 1 million entries. log(1000000) = 20 comparisons|Compact, contiguous storage
+|Nested unordered maps|Average O(1)|link:https://code-with-amitk.github.io/Data_Structures/Hash_Tables/Introduction.html#ExtraOverhead[Higher memory overhead for Hash Table]
+
+== Recommendation = vector
+- The snapshot IDs are naturally sorted.
+- Binary search provides O(log V) lookup.
+- Appending new versions is O(1) amortized.
+- Contiguous vector storage is memory-efficient and link:https://code-with-amitk.github.io/Data_Structures/Terms.html#CacheLocality[cache-locality].
+- We don't need an additional hash table for snapshot IDs because we are searching for the latest version less than or equal to the requested snapshot.
+
