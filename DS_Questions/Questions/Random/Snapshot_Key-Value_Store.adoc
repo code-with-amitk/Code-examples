@@ -1,0 +1,102 @@
+:toc:
+:toclevels: 5
+
+== Snapshot Key-Value Store
+- Implement a key-value structure that supports `put(key, val), get(key), and take_snapshot()`. 
+- When retrieving via `get(key, snapshot_id)`, it must return the exact value at that time. 
+- Follow-up constraint: Optimize the memory so you avoid copying the entire dataset every time a snapshot is created.  
+- Core concepts: Hash Maps, Versioning, Memory Efficiency, Structural Sharing
+
+Example:
+```
+put("A", 10);          t=0
+put("B", 20);
+put("C", 30);
+      Key     Value
+      A        10
+      B        20
+      C        30
+
+take_snapshot();        // return 0;   0 is latest snapshot
+
+    Key	      Version,Value
+    A	        (0, 10)
+    B	        (0, 20)
+    C	        (0, 30)
+
+put("A", 15);
+put("B", 25);
+    Key	      Version,Value
+    A	        (0, 10)(1, 15)
+    B	        (0, 20)(1, 25)
+    C	        (0, 30)
+
+take_snapshot();        // return 1;   1 is latest snapshot
+
+get("A", 0); // 10
+get("A", 1); // 15
+
+get("B", 0); // 20
+get("B", 1); // 25
+
+get("C", 0); // 30
+get("C", 1); // 30            // C hasn't changed, so its original value is still valid in snapshot 1
+```
+
+== Approach
+We will store in
+```c
+              //key,  (snapshot_id, value)
+unordered_map<string, vector<pair<int, int>>> store;
+
+    Key	      Version,Value
+    A	        (0, 10)(1, 15)
+    B	        (0, 20)(1, 25)
+    C	        (0, 30)
+
+get(key, snapshot_id).  Reach key, search snapshot id
+```
+
+== Code
+```cpp
+class SnapshotKV {
+    int snapshotId = 0;
+
+    unordered_map<string, vector<pair<int, int>>> store;
+
+public:
+    void put(string key, int value) {
+        auto& history = store[key];
+
+        // Replace value if already written in current version.
+        if (!history.empty() &&
+            history.back().first == snapshotId) {
+            history.back().second = value;
+        } else {
+            history.push_back({snapshotId, value});
+        }
+    }
+
+    int take_snapshot() {
+        return snapshotId++;
+    }
+
+    int get(string key, int id) {
+        auto it = store.find(key);
+        if (it == store.end()) return -1;
+
+        auto& history = it->second;
+
+        auto pos = upper_bound(
+            history.begin(), history.end(), id,
+            [](int id, const pair<int, int>& entry) {
+                return id < entry.first;
+            }
+        );
+
+        if (pos == history.begin()) return -1;
+
+        return prev(pos)->second;
+    }
+};
+```
