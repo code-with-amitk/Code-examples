@@ -43,8 +43,7 @@ get("C", 0); // 30
 get("C", 1); // 30            // C hasn't changed, so its original value is still valid in snapshot 1
 ```
 
-== Approach
-We will store in
+== Approach-1. O(logn). Binary search
 ```c
               //key,  (snapshot_id, value)
 unordered_map<string, vector<pair<int, int>>> store;
@@ -54,7 +53,14 @@ unordered_map<string, vector<pair<int, int>>> store;
     B	        (0, 20)(1, 25)
     C	        (0, 30)
 
-get(key, snapshot_id).  Reach key, search snapshot id
+get(key, snapshot_id).  
+- Reach key O(1)
+- search snapshot id in vector using binary search O(logn)
+```
+
+== Approach-2. O(1). HashMap<HashMap>
+```c
+unordered_map<string, unordered_map<int, int>> store;
 ```
 
 == Code
