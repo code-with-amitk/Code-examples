@@ -33,9 +33,17 @@ mutex m;								// Underhood --calls-> pthread_mutex_t --calls-> Kernel Space (i
 
 void producer (string pid, int val) {
     unique_lock<mutex> ul(m);			// RAII wrapper object over mutex. unique_lock{ *ptr_to_mutex, bool own }
+
     cv.wait(ul, []{
+		// Producers only care about space. 
+        // If shutdown is signaled, they should stop producing entirely.
        return q.size() < CAPACITY || Done;
     });
+	// If we woke up because of shutdown, do not push!
+    if (Done) {
+        cout << "Producer " << pid << " aborted: System is shutting down.\n";
+        return;
+    }
     q.push(val);
     cout << "Producer " << pid << " pushed " << val << "\n";
     cv.notify_all();
@@ -44,6 +52,8 @@ void consumer(string cid) {
     while (true) {
         unique_lock<mutex> ul(m);
         cv.wait(ul, []{
+			// Consume when queue is not empty
+			// Or shutdown is called
            return !q.empty() || Done;
         });
         if (q.empty() && Done) {
