@@ -112,6 +112,7 @@ unordered_map<string, unordered_map<int, int>> store;
 |Approach|Lookup|Memory characteristics
 |Vector + binary search|O(log V). 1 million entries. log(1000000) = 20 comparisons|Compact, contiguous storage
 |Nested unordered maps|Average O(1)|link:https://code-with-amitk.github.io/Data_Structures/Hash_Tables/Introduction.html#ExtraOverhead[Higher memory overhead for Hash Table]
+|===
 
 == Recommendation = vector
 - The snapshot IDs are naturally sorted.
