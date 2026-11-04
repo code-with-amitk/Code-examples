@@ -69,11 +69,13 @@ Basically Available, Soft state, and Eventual consistency
               <-- failure -----                    |----------|
 ```
 - User(amit) authenticated to US(Virginia) and his information is stored in US DB.
-- Link between Mumbai Datacenter and Virginia is broken and when User(amit) tries to login to Mumbai's Appserver it fails.
+- Before user information could flow to Mumbai-DB from Virginia, link between Mumbai Datacenter and Virginia is broken and when User(amit) tries to login to Mumbai's Appserver it fails.
 - That means though Partition is Broken, But system is still functioning, though not consistent(Not complete Shut down), hence system is Partition Tolerant.
 - Decision between Availaibilty Or Consistency:
 ** We need to choose between Availaibilty & Consistency AND at exact same microsecond when Link between systems are broken.
 ** I again repeat we do not choose between Consistency and Availability on a normal day when all network links are green, choice is made AT SAME TIME WHEN PARTITION/LINK BETWEEN SYSTEMS IS BROKEN.
+- **Choosing Availiability:** Both India and US keep accepting reads and writes locally, even though they can no longer talk to each other
+- **Choosing Consistency:** One or both sides start rejecting requests with errors because they cannot verify their data across the broken link
 
 [[con]]
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
