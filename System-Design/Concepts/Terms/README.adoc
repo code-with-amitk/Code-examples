@@ -55,32 +55,25 @@ Basically Available, Soft state, and Eventual consistency
 
 == CAP Theorem <<con,Consistency>>, <<ava,Availability>> <<pt,Partition-Tolerance>>
 - CAP theorem says, Only 2 out 3 can be guaranteed. We cannot achieve all 3 at same time.
-- <<pt,Partition-Tolerance>> is always required, ie it is Must.
-
-=== Example
-Suppose there are 2 computers A,B directly connected via a wire. A has int a =1, B has int b = 1. Reader A is reading from Computer A, Reader B reading from computer B
+- <<pt, Partition Tolerance>> is not a Choice, It is Must Have inevitable option for every system
+- Consider this example:
 ```
-|-----------------|          |-----------------|
-|   int a = 1     |          |    int b = 1    |
-|== Computer A ===|----------|== Computer B ===|
-      Reader-A                    Reader-B
+                                                   |-Virginia-|
+    User(amit) --authenticate--->  app-server ---- | DB       |
+              <-- pass -----                       |----------|
+                                                        |
+                                                        X broken link (replication failed)
+                                                        |
+                                                   |--Mumbai--|
+    User(amit) --authenticate--->  app-server ---- |   DB     |
+              <-- failure -----                    |----------|
 ```
-==== AP(Available, Partition Tolerent). (❌ Consistency) 
-- t=0, Cable is cut and never comes up. 
-- t=1. a=2, b=2
-- t=2. ReaderA read b=1. Reader-A a=1 (Inconsistent)
-- System is working (ie Available) and Partition Tolerant. But data is not consistent on reads
-
-==== CP(Consistent, Partition Tolerent). (❌ Available)
-- t=0, Cable is cut 
-- t=1. A tries making a=2. But system denies. Cannot write. System becomes Unavailable
-- t=2. Cable up
-- System is working (ie Available) and Partition Tolerant. But data is not consistent on reads
-
-==== CA(Consistent, Available). (❌ Partition Tolerent)
-- The network never partitions (the cable is always working).
-- a=2, b=2. Reader-A get b=2, Reader-B gets a=2. Consistent
-- All writes/reads succeed. Available
+- User(amit) authenticated to US(Virginia) and his information is stored in US DB.
+- Link between Mumbai Datacenter and Virginia is broken and when User(amit) tries to login to Mumbai's Appserver it fails.
+- That means though Partition is Broken, But system is still functioning, though not consistent(Not complete Shut down), hence system is Partition Tolerant.
+- Decision between Availaibilty Or Consistency:
+** We need to choose between Availaibilty & Consistency AND at exact same microsecond when Link between systems are broken.
+** I again repeat we do not choose between Consistency and Availability on a normal day when all network links are green, choice is made AT SAME TIME WHEN PARTITION/LINK BETWEEN SYSTEMS IS BROKEN.
 
 [[con]]
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
@@ -164,22 +157,8 @@ One key/node in database that is linked to millions of other keys/nodes in DB. E
 === What?
 - System continues to work, even when there is link broken between the nodes. Messages from 1 service not reaching other in the system.
 
-=== Why Parition Tolerance is must?
+=== Why Partition Tolerance is must?
 - In distributed systems, It is assumed that link between 2 datacenters/regions will fail (or Undersea cables get cut, routers fail, BGP routes flap, firewalls misbehave that will happen) and PT means even after failure whole system will not shut down. It will keep on working.
-```
-                                                   |-Virginia-|
-    User(amit) --authenticate--->  app-server ---- | DB       |
-              <-- pass -----                       |----------|
-                                                        |
-                                                        X broken link (replication failed)
-                                                        |
-                                                   |--Mumbai--|
-    User(amit) --authenticate--->  app-server ---- |   DB     |
-              <-- failure -----                    |----------|
-```
-- Consider above system, here User(amit) authenticated to US(Virginia) and his information is stored in US DB.
-- Link between Mumbai Datacenter and Virginia is broken and when User(amit) tries to login to Mumbai's Appserver it fails.
-- That means though Partition is Broken, But system is still functioning(Not complete Shut down), hence system is Partition Tolerant.
 
 == Path Folding / Location Swapping 
 * During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
