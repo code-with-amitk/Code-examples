@@ -17,19 +17,10 @@ System is doing what's it's supposed to do.
 
 [[ava]]
 == Availability  (System is Available)
-```c
-|----------System--------|
-| node1(up)              |
-|          node2(down)   |  => Client
-|  noden(down)           |
-|------------------------|
-```
-* Even if some of nodes are down in system, If client requests data, it will get a response(without guarantee that it contains the most recent version of information).
-* OR Every read will get response without gurantee its most recent data or not.
-* *Availabilty Problem* System is down and it cannot take requests and send responses.
-** link:/System-Design/Concepts/Databases/Database_Scaling/[Availability patterns / Solutions]
-** a. Fail-over: Active-Passive/Master-Slave, Active-Active/Master-Master
-** b. Using Replication
+- Means every request gets a Response. if system is fine, good response. if system is in bad/crashing state 500 Internal server error
+- link:/System-Design/Concepts/Databases/Database_Scaling/[Availability patterns / Solutions]
+- Methods to achieve Availability: 
+** Replication (Multimaster(Master-Master), Master-Slave)
 
 == Authentication
 * link:https://code-with-amitk.github.io/System_Design/Concepts/Terms/[JWT (Json Web Token), Cookie based Auth]
@@ -95,6 +86,7 @@ Suppose there are 2 computers A,B directly connected via a wire. A has int a =1,
 
 [[con]]
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
+- Consistency means all users sees same data at same time.
 
 == Consistency patterns
 |===
@@ -171,7 +163,7 @@ One key/node in database that is linked to millions of other keys/nodes in DB. E
 
 [[pt]]
 == Partition Tolerance (System is PT)
-System will continue to function even when network partitions occur, causing messages between nodes to be delayed or lost.
+System will continues to work, even when there is link broken between the nodes. Messages from 1 service not reaching other in the system.
 
 == Path Folding / Location Swapping 
 * During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
