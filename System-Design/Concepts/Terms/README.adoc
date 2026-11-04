@@ -54,10 +54,8 @@ Basically Available, Soft state, and Eventual consistency
   - Different clocks(on different machines) tend to run at different rates, so we cannot assume that time t on node a happened before time t + 1 on node b .
 
 == CAP Theorem <<con,Consistency>>, <<ava,Availability>> <<pt,Partition-Tolerance>>
-* CAP theorem says: Only 2 out 3 can be guaranteed.
-** 1. CA: data is consistent between all nodes - as long as all nodes are online 
-** 2. CP: When nodes are partitioned, then consistency can be achieved.
-** 3. AP: nodes remain online even if they can't communicate with each other
+- CAP theorem says, Only 2 out 3 can be guaranteed. We cannot achieve all 3
+- <<pt,Partition-Tolerance>> is always required, ie it is Must.
 
 === Example
 Suppose there are 2 computers A,B directly connected via a wire. A has int a =1, B has int b = 1. Reader A is reading from Computer A, Reader B reading from computer B
@@ -163,7 +161,11 @@ One key/node in database that is linked to millions of other keys/nodes in DB. E
 
 [[pt]]
 == Partition Tolerance (System is PT)
-System will continues to work, even when there is link broken between the nodes. Messages from 1 service not reaching other in the system.
+=== What?
+- System continues to work, even when there is link broken between the nodes. Messages from 1 service not reaching other in the system.
+
+=== Why Parition Tolerance is must?
+
 
 == Path Folding / Location Swapping 
 * During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
