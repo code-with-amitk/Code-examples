@@ -74,8 +74,8 @@ Basically Available, Soft state, and Eventual consistency
 - Decision between Availaibilty Or Consistency:
 ** We need to choose between Availaibilty & Consistency AND at exact same microsecond when Link between systems are broken.
 ** I again repeat we do not choose between Consistency and Availability on a normal day when all network links are green, choice is made AT SAME TIME WHEN PARTITION/LINK BETWEEN SYSTEMS IS BROKEN.
-- **Choosing Availiability:** Both India and US keep accepting reads and writes locally, even though they can no longer talk to each other
-- **Choosing Consistency:** One or both sides start rejecting requests with errors because they cannot verify their data across the broken link
+- **Choosing Consistency:** Writes are only accepted to Virgnia region(not to India region). Once link comes up, data is synced to Mumbai region. Systems remain consistent
+- **Choosing Availiability:** User goes to Virginia or Mumbai, he should be allowed to login, ie systems are not consistent but all regions are available.
 
 [[con]]
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
