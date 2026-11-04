@@ -165,7 +165,21 @@ One key/node in database that is linked to millions of other keys/nodes in DB. E
 - System continues to work, even when there is link broken between the nodes. Messages from 1 service not reaching other in the system.
 
 === Why Parition Tolerance is must?
-
+- In distributed systems, It is assumed that link between 2 datacenters/regions will fail (or Undersea cables get cut, routers fail, BGP routes flap, firewalls misbehave that will happen) and PT means even after failure whole system will not shut down. It will keep on working.
+```
+                                                   |-Virginia-|
+    User(amit) --authenticate--->  app-server ---- | DB       |
+              <-- pass -----                       |----------|
+                                                        |
+                                                        X broken link (replication failed)
+                                                        |
+                                                   |--Mumbai--|
+    User(amit) --authenticate--->  app-server ---- |   DB     |
+              <-- failure -----                    |----------|
+```
+- Consider above system, here User(amit) authenticated to US(Virginia) and his information is stored in US DB.
+- Link between Mumbai Datacenter and Virginia is broken and when User(amit) tries to login to Mumbai's Appserver it fails.
+- That means though Partition is Broken, But system is still functioning(Not complete Shut down), hence system is Partition Tolerant.
 
 == Path Folding / Location Swapping 
 * During routing(finding route to node which has data), its important to find shortest/least cost path for scalability and efficiency.
