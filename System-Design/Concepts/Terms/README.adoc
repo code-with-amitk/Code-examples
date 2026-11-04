@@ -54,7 +54,7 @@ Basically Available, Soft state, and Eventual consistency
   - Different clocks(on different machines) tend to run at different rates, so we cannot assume that time t on node a happened before time t + 1 on node b .
 
 == CAP Theorem <<con,Consistency>>, <<ava,Availability>> <<pt,Partition-Tolerance>>
-- CAP theorem says, Only 2 out 3 can be guaranteed. We cannot achieve all 3
+- CAP theorem says, Only 2 out 3 can be guaranteed. We cannot achieve all 3 at same time.
 - <<pt,Partition-Tolerance>> is always required, ie it is Must.
 
 === Example
