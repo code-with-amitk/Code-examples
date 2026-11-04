@@ -55,7 +55,7 @@ Basically Available, Soft state, and Eventual consistency
 
 == CAP Theorem <<con,Consistency>>, <<ava,Availability>> <<pt,Partition-Tolerance>>
 - CAP theorem says, Only 2 out 3 can be guaranteed. We cannot achieve all 3 at same time.
-- <<pt, Partition Tolerance>> is not a Choice, It is Must Have inevitable option for every system
+- <<pt, Partition Tolerance>> is not a Choice, It is Must Have for all systems. This is inevitable option for every distributed system.
 - Consider this example:
 ```
                                                    |-Virginia-|
