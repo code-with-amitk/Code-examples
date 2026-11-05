@@ -43,14 +43,12 @@ Output: 1
 
 == Complexity
 - Time complexity: O(n2)
-<!-- Add your time complexity here, e.g. $$O(n)$$ -->
 
 - Space complexity: O(1)
-<!-- Add your space complexity here, e.g. $$O(n)$$ -->
 
 == Code
 === CPP
-```cpp []
+```cpp
 class Solution {
 public:
     int findTheDistanceValue(vector<int>& arr1, vector<int>& arr2, int d) {
