@@ -14,7 +14,7 @@ Social networking site, where people can post short messages(called tweets 150 c
 * Add himself as follower
 
 === Non-Functional 
-From CAP Theorem, Twitter is **AP(High Available(A), Partition Tolerant(P))** and Eventual Consistent system not CP(Strong Consistent) system.
+From CAP Theorem, Twitter is **AP(High Available(A), Partition Tolerant(P))**. system does not need strong consistency, eventual consistency is fine.
 
 - Partition Tolerance: System should be partition tolerant, ie if link between datacenter in US and datacenter in India is broken. Twitter should still function, it should not globally shut down.
 - Highly Available: When link breaks between US and India datacenter, users in US, India should be able to use service at their side, though tweets done in US will be available in India once link get green.
