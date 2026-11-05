@@ -1,38 +1,44 @@
 :toc:
 :toclevels: 6
 
-== link:(/System-Design/Scalable/)[To Cover]
+= Youtube
 
-=== Requirements
+link:(/System-Design/Scalable/)[To Cover]
 
-==== Functional (MVP(Min viable Product). CRUD(Create=POST,Read=GET,Update,Delete))
+== Requirements
+
+=== Functional (MVP(Min viable Product). CRUD(Create=POST,Read=GET,Update,Delete))
 * Video: Upload, Watch, search, Comment, like, dislike, share  //Create
 * Channel: Can create, Statistics(Views, comments etc)        //Create
 * Subscribe, Support ads, Live Stream                          //Read
 
-==== Non-Functional
-* highly available
-* scalable
+=== Non-Functional
+From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], Youtube is **AP(Highly Available, Partition Tolerant)** eventual consistent system. Strong consistency is not needed.
 
-=== BOE
+- link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[Partition Tolerance]: Every distributed System should Always be partition tolerant, ie if link between datacenter in US and datacenter in India is broken. Service should still function, it should not globally shut down.
+- Highly Available: Even link between US and India is broken. System should be available. if video is uploaded in US, US users can see it immediately, while Users in India cannot see it until link is restored. But India viewers should be able to see videos stored in India.
+- Eventual Consistent: Once broken link is restored, videos would be synced and Users in India can see video uploaded in US.
+- Scalable
+
+== BOE
 *Ask Interviewer:* 
 
 ** What are DAU(Daily active users)? = 5 Million
 ** What is average Video Size? = 300 MB
 
-==== Storage Estimates
+=== Storage Estimates
 * Assuming 10% of DAU upload 1 video/day.
 * Videos uploaded in 1 day = 5x10^5^. Space needed = 5x10^5^ x 300M = 150x10^12^ = 150TB/day
 * 5 years = 150 x 30 x 365 x 5 = 8x10^18^ = 8 Exa bytes
 
-==== QPS(Queries/sec)
+=== QPS(Queries/sec)
 * DAU = 5 Million. 1 user watch 5 videos/day
 * QPS = 25M/86400 = 250
 
-==== Bandwidth Estimates
+=== Bandwidth Estimates
 
 
-=== API_Design (Upload, Search, Play)
+== API_Design (Upload, Search, Play)
 * link:/Networking/OSI-Layers/Layer-7/Protocols/HTTP/README.adoc#methods[HTTP Methods]
 * *Upload API*
 ```c
@@ -88,8 +94,8 @@ Returns: (STREAM)
 A media stream (a video chunk) from the given offset.
 ```
 
-=== HLD
-==== Uploading Video
+== HLD
+=== Uploading Video
 * *Thumbnails:* Each video can have thumbnails of other videos. we can assume each video will have 5 other thumbnails. A thumbnail is a small image that represents a larger image or video. Thumbnails are used to help people quickly recognize the video.
 * Metadata of video:
 ```c
@@ -130,7 +136,7 @@ User                App-server
         - CH is used to balance load among servers.
 - Less popular videos (1-20 views per day) that are not cached by CDNs can be served by our servers in various data centers.      
 ```
-==== Playing_Video
+=== Playing_Video
 ```c
   user        
     -videoID->  CDN                     [Cache]==[App-server]         <<<DB-servers>>       
@@ -145,8 +151,8 @@ User                App-server
 - **DETECTING DUPLICATE VIDEOS**
   - At time of uploading the videos, a service can run video matching algorithms (e.g., Block Matching, Phase Correlation, etc.) to find duplications.
 
-=== DB_Schema
-==== 5.1 Video_Metadata_DB
+== DB_Schema
+=== 5.1 Video_Metadata_DB
 - MySQL DB
 ```c
 - ***Table for each video***
@@ -162,10 +168,10 @@ User                App-server
 | --- | --- | --- | --- | --- |
 ```
 
-=== Load_Balancing
+== Load_Balancing
 - Load between cache servers is balanced using link:/System-Design/Concepts/Hashing/Consistent_Hashing.md[Consistent Hashing]
 
-=== Cache
+== Cache
 - memcached in front of 'App-servers'.
 - Cache Eviction Policy: LRU. Discard least recently viewed contents from cache.
 
