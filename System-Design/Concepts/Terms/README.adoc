@@ -77,7 +77,13 @@ Basically Available, Soft state, and Eventual consistency
 - **Choosing Consistency:** Writes are only accepted to Virgnia region(not to India region). Once link comes up, data is synced to Mumbai region. Systems remain consistent
 - **Choosing Availiability:** User goes to Virginia or Mumbai, he should be allowed to login, ie systems are not consistent but all regions are available.
 - Examples:
-** link:/System-Design/Scalable/twitter/README.adoc[Twitter is AP(Highly Available, Partition Tolerant)]. System does not need strong consistency, eventual consistency is fine.
+
+|===
+|System|Domain|CAP Choice
+|link:/System-Design/Scalable/twitter/README.adoc[Twitter]|Social Media|AP(Highly Available, Partition Tolerant) & Eventual Consistency
+|link:/System-Design/Scalable/youtube/Generic_Design.adoc[Youtube]|Streaming|AP & Eventual Consistency
+|===
+
 
 [[con]]
 == link:https://code-with-amitk.github.io/System_Design/Concepts/Databases/[Consistency (System is consistent)]
