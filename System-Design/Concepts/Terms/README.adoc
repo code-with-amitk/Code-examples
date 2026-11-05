@@ -81,7 +81,8 @@ Basically Available, Soft state, and Eventual consistency
 |===
 |System|Domain|CAP Choice
 |link:/System-Design/Scalable/twitter/README.adoc[Twitter]|Social Media|AP(Highly Available, Partition Tolerant) & Eventual Consistency
-|link:/System-Design/Scalable/youtube/Generic_Design.adoc[Youtube]|Streaming|AP & Eventual Consistency
+|link:/System-Design/Scalable/youtube/Generic_Design.adoc[Youtube]|Streaming|AP(Highly Available, Partition Tolerant) & Eventual Consistency
+|HDFC,ICICI|Banking Applications|CP(Strongly Consistent, Partition Tolerant) & Eventually Available
 |===
 
 
