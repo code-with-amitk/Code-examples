@@ -2,7 +2,7 @@
 :toclevels: 7
 
   
-== Twitter?
+= Twitter
 Social networking site, where people can post short messages(called tweets 150 characters), follow other people etc. This is read heavy system.
 
 == 1. Requirements
@@ -14,8 +14,14 @@ Social networking site, where people can post short messages(called tweets 150 c
 * Add himself as follower
 
 === Non-Functional 
-* Scalable
-* Reliable
+From CAP Theorem, Twitter is **AP(High Available(A), Partition Tolerant(P))** and Eventual Consistent system not CP(Strong Consistent) system.
+
+- Partition Tolerance: System should be partition tolerant, ie if link between datacenter in US and datacenter in India is broken. Twitter should still function, it should not globally shut down.
+- Highly Available: When link breaks between US and India datacenter, users in US, India should be able to use service at their side, though tweets done in US will be available in India once link get green.
+- Eventual Consistent: System does not require tweets to be become available immediately, Once link become green(after 2 or 3 seconds), tweets can be synced.
+** if system was Strong Consistent & link goes down, system will wait for link to become green sync tweets globally and then system will come up. Until then system will hang
+- Scalable
+- Reliable
 
 === Extended
 * Retweet, reply
