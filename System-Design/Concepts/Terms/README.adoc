@@ -71,7 +71,7 @@ Basically Available, Soft state, and Eventual consistency
 - User(amit) authenticated to US(Virginia) and his information is stored in US DB.
 - Before user information could flow to Mumbai-DB from Virginia, link between Mumbai Datacenter and Virginia is broken and when User(amit) tries to login to Mumbai's Appserver it fails.
 - That means though Partition is Broken, But system is still functioning, though not consistent(Not complete Shut down), hence system is Partition Tolerant.
-- Decision is always between Availaibilty Or Consistency:
+- Decision is always between Availaibilty Or Consistency. ie Wether System is AP or CP?
 ** We need to choose between Availaibilty & Consistency AND at exact same microsecond when Link between systems are broken.
 ** I again repeat we do not choose between Consistency and Availability on a normal day when all network links are green, choice is made AT SAME TIME WHEN PARTITION/LINK BETWEEN SYSTEMS IS BROKEN.
 - **Choosing Consistency:** Writes are only accepted to Virgnia region(not to India region). Once link comes up, data is synced to Mumbai region. Systems remain consistent
