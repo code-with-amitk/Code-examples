@@ -10,6 +10,8 @@
 3. Return HTTP 429 Too Many Requests, with Retry-After header
 
 === Non Func
+From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], this should be **AP(Highly Available, Parition Tolerant)** system
+
 1. Reliable: should not allow more than limit
 2. Scalable: if new region is added
 3. Tenant Quota per region
