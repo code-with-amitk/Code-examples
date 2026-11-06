@@ -4,4 +4,72 @@
 = Sliding Window Counter
 
 == What
-- Sliding Window Log stores an exact timestamp array for every request per user ([t1, t2, t3, ...]). Under heavy traffic, if a user makes thousands of requests per minute, memory consumption scales linearly ($O(N)$) with the request volume
+- Sliding Window Log suffers from link:/DS_Questions/Algorithms/Token_Bucket/Sliding_Window_Log/README.adoc#1-memory-overhead[Memory Overhead] Issue.
+
+== How it works
+- Instead of saving individual timestamps, the Sliding Window Counter only stores two integer counters per user
+```
+The request count of the previous fixed window
+The request count of the current fixed window.
+```
+- Memory usage drops from O(n) to O(1)
+- By using a rolling weighted calculation, it approximates the traffic in the rolling window without needing a historical log. 
+```
+Formula:
+Estimated_count = previous_window_count x (1 - time_elapsed_in_current_window/window_size) + current_window_count
+```
+
+=== Example
+```
+LIMIT = 3            // Only 3 requests allowed per window
+WINDOW_SIZE = 60     // Window of size 60 seconds
+
+time  HTTP request  previous_window_count  time_elapsed_in_current_window
+                                                                            ------|
+1        1              0                                                         |
+2        1              0                                                        Window=0
+3        1              0                                                         |
+60                                                                          ------|
+
+                                                                          Weight_of_Previous_Window  estimated_count
+75        1             3                      15                            .75                      2.25 
+                                                                                                    // if (estimated count<3) //ALLOW
+```
+
+== Code
+```py
+LIMIT = 3
+WINDOW_SIZE = 60
+
+def allow_request(user_id):
+    current_time = get_current_epoch_time()
+    current_window_key = current_time - (current_time % WINDOW_SIZE)
+    previous_window_key = current_window_key - WINDOW_SIZE
+    
+    # Retrieve state for this user (stored as a hash or JSON object)
+    # user_data = { 'current_window': epoch, 'current_count': int, 'prev_count': int }
+    user_data = storage.get(user_id)
+    
+    if not user_data or user_data['current_window'] != current_window_key:
+        # Shift windows: current becomes previous, new window starts at 0
+        prev_count = user_data['current_count'] if user_data and user_data['current_window'] == previous_window_key else 0
+        user_data = {
+            'current_window': current_window_key,
+            'current_count': 0,
+            'prev_count': prev_count
+        }
+    
+    # Calculate weight of the previous window
+    time_elapsed = current_time % WINDOW_SIZE
+    weight = (WINDOW_SIZE - time_elapsed) / WINDOW_SIZE
+    
+    # Estimate total requests in the rolling 60-second window
+    estimated_count = (user_data['prev_count'] * weight) + user_data['current_count']
+    
+    if estimated_count < LIMIT:
+        user_data['current_count'] += 1
+        storage.set(user_id, user_data, ttl=WINDOW_SIZE * 2)
+        return ALLOW_REQUEST
+    else:
+        return REJECT_REQUEST_429()
+```
