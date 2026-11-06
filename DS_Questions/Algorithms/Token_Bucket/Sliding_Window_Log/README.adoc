@@ -71,5 +71,5 @@ def allow_request(user_id):
 
 == Drawbacks
 === 1. Memory overhead
-- The sliding window log stores every individual request timestamp for the duration of the window. For high-throughput services with large user bases, this requires significant memory.
+- The sliding window log stores every individual request timestamp for the duration of the window ([t1, t2, t3, ...]). Under heavy traffic, if a user makes thousands of requests per minute, memory consumption scales linearly (O(N)) with the request volume. More the number of requests, more memory is needed by this Algorithm
 
