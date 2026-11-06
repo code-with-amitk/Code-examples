@@ -125,14 +125,14 @@ Rate Limiter pod-a                 Redis Pod                   Rate Limiter pod-
 - The Global Control Plane calculates global allocations (e.g., Tenant X has 1000 tokens/sec total, split across 3 regions).
 - The Regional Quota Service periodically polls or receives push notifications from the Control Plane, updating the regional Redis cluster or local memory pools with the newly authorized regional quotas.
 
-=== Non Functional Requirements
-==== High Availablilty/fault Tolerance
+== Non Functional Requirements
+=== High Availablilty/fault Tolerance
 - if Redis-pod-1 fails, and Alice bucket was on that Redis pod. We have 2 options:
 ** Fail Open: Rate limiter is down, every single request gets through. All backend services are bombarded and may die 1 by 1.
 ** Fail Close(Choose this): Rate limiter is down, no request should get through. Service is down and users maybe upset for some time.
 - REPLICAS. Redis pod has 1 or 2 replicas. When one goes down, other will become master and all reads comes to replicate
 
-==== Low Latency
+=== Low Latency
 1. Redis Client library(on proxy) does not create new connection to redis every time, rather it reuses the connection using connection pooling. It automatically does it. This reduces TCP Handshake time for every request(some milliseconds)
 2. Proxy and redis should be in same data center
 
