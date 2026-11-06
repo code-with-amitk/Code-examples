@@ -108,7 +108,7 @@ rateLimiter.isAllowed(userId, n Http requests)         // In Go or C++
 - Every redis pod would be sharded using Shard key = userIds or IP Address or API Key.
 - keys on redis pods can be distributes using 
 ** link:/System-Design/Concepts/Hashing/README.md[Consistent Hashing]
-** link:https://code-with-amitk.github.io/System_Design/Scalable/Distributed_Cache/#rediscluster[Has
+** link:https://code-with-amitk.github.io/System_Design/Scalable/Distributed_Cache/#rediscluster[Hash calculation on Redis] 
 
 Multi-Master Redis pods reads token count from link:https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#pvc[PVC], return True/False and decrement token count on PVC.
 ```
