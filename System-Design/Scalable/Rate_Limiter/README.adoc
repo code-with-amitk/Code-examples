@@ -19,7 +19,7 @@
 2. Limit requests based on Configurable Rules. Eg: Any user can make only 100 requets to specific endpoint.
 ** Alice can make 100 req/sec
 ** API X can make 500 req/sec
-3. Return Proper Status Code(HTTP 429 Too Many Requests) & HTTP Headers(Retry-After, ). Headers will tell after how much time user can retry.
+3. Return HTTP Status Code(429 Too Many Requests) & link:/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html#X-RateLimit[HTTP Headers(X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset)]. Headers will tell after how much time user can retry.
 
 === Non Func
 From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], this should be **AP(Highly Available, Parition Tolerant)**, eventual consistent system
