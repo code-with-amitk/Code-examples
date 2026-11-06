@@ -4,16 +4,43 @@
 
 image::token_bucket.png?raw=true[Token Bucket]
 
+== What
+- Token Bucket algorithm is a widely used method for rate limiting and traffic shaping in API gateways
+- It can handle both:
+** Steady-state traffix
+** Short bursts of traffic.
+- Industry giants like AWS and Stripe use it as a standard mechanism to protect servers from abuse while keeping user experience smooth
+
+== Problems Token Bucket Solves
+- Fixes link:/DS_Questions/Algorithms/Token_Bucket/Fixed_Window_Counter[Fixed Window Counter Algorithm's Boundary Burst Problem]
+- Fixes link:/DS_Questions/Algorithms/Token_Bucket/Sliding_Window_Log[Sliding Window Log Algorithm's Memory Overhead Problem]
+- Fixes link:/DS_Questions/Algorithms/Token_Bucket/Sliding_Window_Counter/[Sliding Window Counter Algorithm's Approximation Error Problem]
+
+== How the Token Bucket Works
+Consider we want to allow only 3 requests/minute for a user. 3/60 = 0.05 tokens/sec
+```
+refill_rate = 3		// 3 token added  per minute
+
+time   HTTP_Requests  Time_elapsed_since_last_update   tokens_to_be_added  Tokens_before_consumption  Tokens
+0         0                                             0                   3                           3
+10        1             10-0=10                         10x.05=.5           min(3, 3+.05)=3             2 //1 consumed by HTTP Req
+12        1                                                                                             1
+15        1                                                                                             0
+20        1             20-15=5                         5x.05=.25           min(3, .25)=.25             .25	//Reject (429 Too Many Requests)
+40        1             40-20=20                        20x.05=1.25         min(3, .25+1.25)=1.50        .5	//Allow
+```
+
 == Methods to fill tokens in Bucket
 === 1. Proactive filling
-Thread running constantly to fill the bucket per second
+- Thread running constantly to fill the bucket per second
+- Resources: Thread
 
 === 2. Lazy Refill
 Tokens are calculated only when a request arrives, based on how much time elapsed since the last checked.
 
 ==== How it works
 ```c
-tokens_in_bucket = std::min(capacity, tokens_in_bucket + (elapsed.count() * refill_rate));
+tokens_in_bucket = min(capacity, tokens_in_bucket + (elapsed.count() * refill_rate));
 if (tokens_in_bucket >= tokens_requested) {
     tokens_in_bucket -= tokens_requested;
     return true; // Request allowed
