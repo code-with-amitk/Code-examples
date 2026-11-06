@@ -49,7 +49,7 @@ time        current_window_start      entry present in HT    HashTable
 # Assume a storage/cache (like Redis or an in-memory hash map) storing:
 # tracker[user_id] = { 'count': int, 'window_start_time': timestamp }
 
-LIMIT = 3            # Max allowed requests
+LIMIT = 3              # Max allowed requests with in window
 WINDOW_SIZE = 60       # Window size in seconds (1 minute)
 
 def allow_request(user_id):
