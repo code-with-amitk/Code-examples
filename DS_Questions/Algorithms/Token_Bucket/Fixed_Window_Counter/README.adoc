@@ -28,10 +28,20 @@ Window: 12:01:00–12:01:59. Counter for UserId=0
 ```
 
 === Pseudo Code
-Hashtable
+**Understanding**
+
+- 3 requests are allowed per minute per user
+- window=1 minute. Present Window=60-120 seconds
 ```
+Hashtable (user_data)
 Key(userId)        Value(count, window_start_time)
     123                count=incrementing 
+
+
+time        current_window_start      entry present in HT    HashTable
+80th sec        60                        No                   {'count': 1, 'window_start_time': 60}    //1st time user(123), makes HTTP request. Allow
+95th sec        60                        Yes                  {'count': 2, 'window_start_time': 60}    //user(123) makes HTTP req within window. Allow
+125th sec       120                       Yes                  {'count': 1, 'window_start_time': 120}   //Counter resets and storage is updated
 ```
 
 **Code**
@@ -39,7 +49,7 @@ Key(userId)        Value(count, window_start_time)
 # Assume a storage/cache (like Redis or an in-memory hash map) storing:
 # tracker[user_id] = { 'count': int, 'window_start_time': timestamp }
 
-LIMIT = 100            # Max allowed requests
+LIMIT = 3            # Max allowed requests
 WINDOW_SIZE = 60       # Window size in seconds (1 minute)
 
 def allow_request(user_id):
