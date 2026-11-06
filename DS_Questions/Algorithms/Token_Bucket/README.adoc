@@ -10,7 +10,7 @@ Languages written in: Go, C++, Java, Rust
 
 |link:Sliding_Window_Log[Sliding Window Log]|Tracks exact timestamp of every single request, it looks backward on a rolling time window|||Memory Overhead|Sliding Window Counter
 
-|link:Sliding_Window_Counter[Sliding Window Counter]|Uses 2 counters (request_count_in_prev_window, request_count_in_present_window)||||
+|link:Sliding_Window_Counter[Sliding Window Counter]|Uses 2 counters (request_count_in_prev_window, request_count_in_present_window)|||Approximation Error|Token Bucket
 
 |link:Token_Bucket[Token Bucket]|Tokens filled into bucket at a fixed rate| * * * * * Highest|Rate Limiters, API Gateway||
 
