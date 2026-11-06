@@ -28,6 +28,13 @@ Window: 12:01:00–12:01:59. Counter for UserId=0
 ```
 
 === Pseudo Code
+Hashtable
+```
+Key(userId)        Value(count, window_start_time)
+    123                count=incrementing 
+```
+
+**Code**
 ```py
 # Assume a storage/cache (like Redis or an in-memory hash map) storing:
 # tracker[user_id] = { 'count': int, 'window_start_time': timestamp }
