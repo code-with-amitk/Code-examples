@@ -1,0 +1,7 @@
+:toc:
+:toclevels: 5
+
+= Sliding Window Counter
+
+== What
+- Sliding Window Log stores an exact timestamp array for every request per user ([t1, t2, t3, ...]). Under heavy traffic, if a user makes thousands of requests per minute, memory consumption scales linearly ($O(N)$) with the request volume
