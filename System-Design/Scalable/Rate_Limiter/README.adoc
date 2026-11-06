@@ -3,20 +3,36 @@
 
 = Rate Limiter 
 
+== What is Rate Limiter
+- Consider Users are using Social media Apps(Facebook, Instagram, Twitter) or browsing on google etc
+- RL will limit requests made by 1 USER in specific time frame. For example 100 requests/min/user
+- **Why RL?** Protect backend services from abuse(Spamming with 1000's of requests to hog CPU and making system unusable for other users)
+
+== Questions to Interviewer
+- What I am Rate limiting?
+** User facing application (eg: Facebook)?
+** RL between intra micro services?
+
 == Requirements
-=== Func
-1. Rate Limit the requests
-2. Identify tenant: Apply RL Quota/tenant
-3. Return HTTP 429 Too Many Requests, with Retry-After header
+=== Functional (Features of system)
+1. Identify Users by something(Id, IP, API Key)
+2. Limit requests based on Configurable Rules. Eg: Any user can make only 100 requets to specific endpoint.
+3. Return Proper Status Code(HTTP 429 Too Many Requests) & HTTP Headers(Retry-After, ). Headers will tell after how much time user can retry.
 
 === Non Func
-From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], this should be **AP(Highly Available, Parition Tolerant)** system
+From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], this should be **AP(Highly Available, Parition Tolerant)**, eventual consistent system
 
-1. Reliable: should not allow more than limit
-2. Scalable: if new region is added
-3. Tenant Quota per region
-4. Low latency
-5. Available: Define behavior when region losses connectivity with Control Plane
+- link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[Fault Tolerance / Partition Tolerance]: Every distributed System should always be partition tolerant, ie if link between datacenter in US and datacenter in India is broken. Service should still function, it should not globally shut down.
+- Highly Available: Define behavior when region losses connectivity with Control Plane
+- Reliable: should not allow more than limit
+- Scalable: Ask Interviewer(What is Scale?).
+```
+Consider, 100M DAU. 1 user send 1000 requests/day. 
+Total Request/day 100Mx1000 = 100000 M
+Requests/sec = 100000 M / 86400 = 1 Million req/sec
+```
+- Tenant Quota per region
+- Low latency
 
 image::/System-Design/Scalable/HTTP_Request_Parser/Layers_adding_headers.png[SSL Flow]
 
