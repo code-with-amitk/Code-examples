@@ -4,3 +4,63 @@
 = Sliding Window Log
 
 == What
+- The fixed window Counter algorithm's main drawback is the link:/DS_Questions/Algorithms/Token_Bucket/Fixed_Window_Counter/README.adoc#problems[Boundary Burst Problem]: A user can exhaust their entire limit right at the end of Window A (e.g., at t = 59) and immediately exhaust it again at the start of Window B (e.g., at t = 60), effectively doubling their allowed throughput in a 2-second span.
+- The Sliding Window Log algorithm eliminates this flaw by tracking the exact timestamp of every single request.
+- Instead of counting requests in a static bucket, it looks backward on a rolling time window.
+
+== Algorithm
+- Now we store timestamps on which request came for userId.
+- if (count(set) > Allowed)  Drop
+```
+HashMap
+  Key(userId)  |  Value(unordered_set<timestamps>)
+
+3 Requests allowed in 60 seconds Window
+
+Window 0-60 sec
+t    userId  Requests  unordered_set<timestamps>
+10    123      1        [10]
+25    123      1        [10,25]
+45    123      1        [10,25,45]
+50    123      1        Drop (429 Too Many Requests)
+```
+
+== Pseudo Code
+```py
+LIMIT = 3              # Max allowed requests
+WINDOW_SIZE = 60       # Rolling window size in seconds (1 minute)
+
+def allow_request(user_id):
+    current_time = get_current_epoch_time()
+    window_start = current_time - WINDOW_SIZE
+    
+    # Storage key for this user's log
+    key = f"rate_limit:{user_id}"
+    
+    # Pipeline operations for atomicity (e.g., Redis MULTI/EXEC)
+    storage.start_transaction()
+    
+    # Step 1: Remove timestamps older than the sliding window boundary
+    storage.zremrangebyscore(key, 0, window_start)
+    
+    # Step 2: Get the count of active timestamps in the current window
+    current_count = storage.zcard(key)
+    
+    if current_count < LIMIT:
+        # Step 3: Add the current request timestamp to the sorted set
+        storage.zadd(key, {current_time: current_time})
+        
+        # Set an expiry on the key to prevent memory leaks for inactive users
+        storage.expire(key, WINDOW_SIZE)
+        
+        storage.commit_transaction()
+        return ALLOW_REQUEST
+    else:
+        storage.discard_transaction()
+        return REJECT_REQUEST_429()
+```
+
+== Drawbacks
+=== 1. Memory overhead
+- The sliding window log stores every individual request timestamp for the duration of the window. For high-throughput services with large user bases, this requires significant memory.
+
