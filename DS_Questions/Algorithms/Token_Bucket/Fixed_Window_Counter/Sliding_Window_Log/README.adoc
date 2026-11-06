@@ -9,6 +9,15 @@
 - Instead of counting requests in a static bucket, it looks backward on a rolling time window.
 
 == Algorithm
+- Has sliding window which stores timestamps on which HTTP request came in
+```
+0--|---|---|-----------60--------------------120
+   5  10  20
+/\                    /\
+| 5,10,20              |
+|----------------------|
+```
+
 - Now we store timestamps on which request came for userId.
 - if (count(set) > Allowed)  Drop
 ```
