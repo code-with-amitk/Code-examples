@@ -73,3 +73,8 @@ def allow_request(user_id):
     else:
         return REJECT_REQUEST_429()
 ```
+
+== Problem with this Algorithm
+=== Approximation Error
+- It assumes uniform distribution of requests across the previous window. 
+- If all requests in the previous window happened in the final second, the estimation can slightly over- or under-count.
