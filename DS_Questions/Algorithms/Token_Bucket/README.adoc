@@ -8,6 +8,7 @@ Languages written in: Go, C++, Java, Rust
 |Algorithm|Mechanism|Production Dominance|Where Deployed|Drawback
 |link:Fixed_Window_Counter[Fixed Window Counter]|Allow fixed number of request/user per timeslice|||Boundary Burst Problem
 |link:Sliding_Window_Log[Sliding Window Log]|Eliminates Burst Problem by tracking the exact timestamp of every single request, it looks backward on a rolling time window|||Memory Overhead
+|link:Sliding_Window_Counter[Sliding Window Counter]|Eliminates Memory Overhead of Sliding Window|||
 |Token Bucket|Tokens filled into bucket at a fixed rate| * * * * * Highest|Rate Limiters, API Gateway|
 |Token Bucket with Leaky Rate Control((Lazy-Refill variant)|Instead of active background timers, token counts are calculated using the time difference (timestamp_now - timestamp_last_request)| * * * Very High|Envoy Proxy, Nginx|
 |Leaky Bucket(Queue / Blocking variant)|Requests flow into a queue bucket. The system extracts and executes them at a perfectly uniform, steady pace.| * * Medium|Uber Engine, Shopify|
