@@ -87,7 +87,7 @@ rateLimiter.isAllowed(userId, n Http requests)         // In Go or C++
 ==== All Allowed or All Dropped
 - Proxy recieves 100 HTTP requests and asks `isAllowed(userId=123, 100)` from redis master pod.
 ** If the bucket has >= 100 tokens: It subtracts exactly 100 tokens, and returns 1 (Allowed).
-** If the bucket has <= 100 tokens: It leaves the token balance untouched and returns 0 (Blocked).
+** If the bucket has < = 100 tokens: It leaves the token balance untouched and returns 0 (Blocked).
 - Redis pod executes the link:/DS_Questions/Algorithms/Token_Bucket[Token Bucket Algorithm] inside Lua script to check Do I have 100 tokens, if has returns Binary 1(Yes), if has 90 tokens returns 0(No). No token counts are sent back to proxy. Other Algorithms & comparison:
 ** link:/DS_Questions/Algorithms/Token_Bucket[Fixed Window Counter, Sliding Window Log, Sliding Window Counter]
 - Instead of sending multiple network packets by Application(ie Rate limiter pods) to Redis (GET/SET), the entire token-checking and decrementing logic is pushed to Redis as a single script execution (EVAL or EVALSHA).
@@ -99,6 +99,8 @@ rateLimiter.isAllowed(userId, n Http requests)         // In Go or C++
 
 
 ==== Configuration-2 (Master Master)
+
+image::redis-multimaster.png[Master Master]
 
 - t=0, Proxy/Gateway gets Alice HTTP request and calls `isAllowed(alice,1)` function on Redis pod-1.
 - t=1, 100 requests comes from Alice, proxy call `isAllowed(alice,100)` and should go to same redis pod-1, because alice token count cannot be replicated to all redis pods This will create lot of data for 1M users.
