@@ -19,7 +19,7 @@
 2. Limit requests based on Configurable Rules. Eg: Any user can make only 100 requets to specific endpoint.
 ** Alice can make 100 req/sec
 ** API X can make 500 req/sec
-3. Return HTTP Status Code(429 Too Many Requests) & link:/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html#X-RateLimit[HTTP Headers(X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset)]. Headers will tell after how much time user can retry.
+3. Return HTTP Status Code(429 Too Many Requests) & link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html#X-RateLimit[HTTP Headers(X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset)]. Headers will tell after how much time user can retry.
 
 === Non Func
 From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], this should be **AP(Highly Available, Parition Tolerant)**, eventual consistent system
@@ -67,32 +67,50 @@ bool isRequestAllowed(clientId, ruleId)
 image::rate-limiter-hld.png[HLD]
 
 ==== 1. SSL Termination
-- Proxy uses its installed SSL/TLS certificates to decrypt the incoming HTTPS traffic to HTTP
+- Proxy uses its installed link:/Networking/OSI-Layers/Layer-7/Protocols/Encryption_Authentication/Certificates.adoc[SSL/TLS certificates] to decrypt the incoming HTTPS traffic to HTTP
 - From decrypted HTTP proxy parses `Path: /v1/checkout`, `Tenant ID: X-Tenant-ID: tenant_test`, JWT claims etc
 - Proxy need to decrypt HTTP Packet to see the following and apply
 ** Request URI(`GET /users HTTP/1.1`) to apply `Endpoint(/users)` based rate limiting
 ** User is present in HTTP header. Per user Rate limiting
-- Also Proxy need to send HTTPS Reponse(429) hence it must establish the TLS handshake, setup TLS to encrypt HTTP 429 response.
+- Also Proxy need to send HTTPS Reponse(429) hence it must establish the link:/Networking/OSI-Layers/Layer-7/Protocols/Encryption_Authentication[TLS handshake], setup TLS to encrypt HTTP 429 response.
 
 ==== 2. HTTP Parser
-- Bytes from `recv()` system call are fed HTTP Parser, which extracts the link:[HTTP headers] and request path (e.g., POST /v1/charges). It determines if this specific route or user has a rate limit policy applied to it.
+- Bytes from `recv()` system call are fed HTTP Parser, which extracts the link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-7/HTTP/HTTP%20Headers.html[HTTP headers] and request path (e.g., POST /v1/charges). It determines if this specific route or user has a rate limit policy applied to it.
 
 ==== 3. *.so (Rate limiter) + redis client library
-- This process have link:https://code-with-amitk.github.io/System_Design/Scalable/Distributed_Cache/#redis-client[redis client library], which calls redis `bool isAllowed(requests)` function. Redis will return response yes or no
+- This process have link:https://code-with-amitk.github.io/System_Design/Scalable/Distributed_Cache/#redis-client[redis client library], which calls redis `bool isAllowed(userId, int num_of_requests)` function. Redis will return response yes or no
 ```c
-rateLimiter.isAllowed(n Http requests)         // In Go or C++
+rateLimiter.isAllowed(userId, n Http requests)         // In Go or C++
 ```
 
-=== Redis Cluster (Master Slave)
+=== Redis Cluster
 ==== All Allowed or All Dropped
-- Proxy recieves 100 HTTP requests and asks isAllowed(100) from redis master pod.
+- Proxy recieves 100 HTTP requests and asks `isAllowed(userId=123, 100)` from redis master pod.
 ** If the bucket has >= 100 tokens: It subtracts exactly 100 tokens, and returns 1 (Allowed).
 ** If the bucket has <= 100 tokens: It leaves the token balance untouched and returns 0 (Blocked).
-
 - Redis pod executes the link:/DS_Questions/Algorithms/Token_Bucket[Token Bucket Algorithm] inside Lua script to check Do I have 100 tokens, if has returns Binary 1(Yes), if has 90 tokens returns 0(No). No token counts are sent back to proxy. Other Algorithms & comparison:
 ** link:/DS_Questions/Algorithms/Token_Bucket[Fixed Window Counter, Sliding Window Log, Sliding Window Counter]
-- Multiple proxy pods talk to the same Redis master node. 
-- This is Master Slave config but for Multi-Master Redis pods reads token count from link:https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#pvc[PVC], return True/False and decrement token count on PVC. This is Critical Section
+- Instead of sending multiple network packets by Application(ie Rate limiter pods) to Redis (GET/SET), the entire token-checking and decrementing logic is pushed to Redis as a single script execution (EVAL or EVALSHA).
+- EVAL=Read-Modify-Write. Application will Read in 1 HTTP Packet, then Modify in other HTTP Packet. Both are done in EVAL at once
+
+==== Configuration-1 (Master Slave)
+- All proxy pods connect to same Redis Master Pod. Replica Pod sits right next to it, asynchronously replicating Master Pod's memory state.
+- **Failover** If Master Pod goes offline, the cluster automatically promotes Replica Pod to be the new Master.
+
+
+==== Configuration-2 (Master Master)
+
+- t=0, Proxy/Gateway gets Alice HTTP request and calls `isAllowed(alice,1)` function on Redis pod-1.
+- t=1, 100 requests comes from Alice, proxy call `isAllowed(alice,100)` and should go to same redis pod-1, because alice token count cannot be replicated to all redis pods This will create lot of data for 1M users.
+
+===== Sharding Redis
+- Meaning how proxy/gateway reache particular redis pod?
+- Every redis pod would be sharded using Shard key = userIds or IP Address or API Key.
+- keys on redis pods can be distributes using 
+** link:/System-Design/Concepts/Hashing/README.md[Consistent Hashing]
+** link:https://code-with-amitk.github.io/System_Design/Scalable/Distributed_Cache/#rediscluster[Has
+
+Multi-Master Redis pods reads token count from link:https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#pvc[PVC], return True/False and decrement token count on PVC.
 ```
 Rate Limiter pod-a                 Redis Pod                   Rate Limiter pod-b
     t=0(isAllowed())                                        t=0(isAllowed())
@@ -100,15 +118,6 @@ Rate Limiter pod-a                 Redis Pod                   Rate Limiter pod-
                             THIS IS Critical Section and Lua script
                              executes
 ```
-
-==== Replication
-- All proxy pods connect to Redis Master Pod.
-- Replica Pod sits right next to it, asynchronously replicating Master Pod's memory state.
-- **Failover** If Master Pod goes offline, the cluster automatically promotes Replica Pod to be the new Master.
-
-
-- Instead of sending multiple network packets by Application(ie Rate limiter pods) to Redis (GET/SET), the entire token-checking and decrementing logic is pushed to Redis as a single script execution (EVAL or EVALSHA).
-- EVAL=Read-Modify-Write. Application will Read in 1 HTTP Packet, then Modify in other HTTP Packet. Both are done in EVAL at once
 
 === Quota Service
 - The Global Control Plane calculates global allocations (e.g., Tenant X has 1000 tokens/sec total, split across 3 regions).
