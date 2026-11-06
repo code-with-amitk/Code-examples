@@ -70,7 +70,11 @@ def allow_request(user_id):
             return REJECT_REQUEST_429()
 ```
 
-== Boundary Burst Problem
+== Problems
+=== 1. Boundary Burst
 - UserId=123 sends 3 requests at 12:00:59        //Allowed
 - UserId=123 again sends 3 requests at 12:01:00  //Allowed
 - That means UserId=123 is allowed 6 requests(in 2 seconds), which is wrong behaviour for RL
+
+=== 2. Starvation
+- if user makes 3 requests in very 1st second, Then he cannot make more requests for entire duration of time window
