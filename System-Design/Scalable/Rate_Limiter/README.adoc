@@ -9,7 +9,7 @@
 - **Why RL?** Protect backend services from abuse(Spamming with 1000's of requests to hog CPU and making system unusable for other users)
 
 == Questions to Interviewer
-- What I am Rate limiting?
+- What we are Rate limiting?
 ** User facing application (eg: Facebook)?
 ** RL between intra micro services?
 
@@ -17,24 +17,36 @@
 === Functional (Features of system)
 1. Identify Users by something(Id, IP, API Key)
 2. Limit requests based on Configurable Rules. Eg: Any user can make only 100 requets to specific endpoint.
+** Alice can make 100 req/sec
+** API X can make 500 req/sec
 3. Return Proper Status Code(HTTP 429 Too Many Requests) & HTTP Headers(Retry-After, ). Headers will tell after how much time user can retry.
 
 === Non Func
 From link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[CAP Theorem], this should be **AP(Highly Available, Parition Tolerant)**, eventual consistent system
 
 - link:/System-Design/Concepts/Terms/README.adoc#cap-theorem-consistency-availability-partition-tolerance[Fault Tolerance / Partition Tolerance]: Every distributed System should always be partition tolerant, ie if link between datacenter in US and datacenter in India is broken. Service should still function, it should not globally shut down.
-- Highly Available: Define behavior when region losses connectivity with Control Plane
-- Reliable: should not allow more than limit
+- Highly Available: Define behavior rules/tokens are not avialable. Should RL go offline until all rules are propagated? We choose highly available.
 - Scalable: Ask Interviewer(What is Scale?).
 ```
 Consider, 100M DAU. 1 user send 1000 requests/day. 
 Total Request/day 100Mx1000 = 100000 M
 Requests/sec = 100000 M / 86400 = 1 Million req/sec
 ```
-- Tenant Quota per region
-- Low latency
+- Low Latency: Rate limit checks would be take < 10 milliseconds.
+- Reliable: should not allow more than limit
 
 image::/System-Design/Scalable/HTTP_Request_Parser/Layers_adding_headers.png[SSL Flow]
+
+== Core Entities
+- HTTP Request
+- Client(who is making the request) identified using IP, userId, API Key etc
+- Rules. Eg: 100 requets/user/sec
+
+== API / System Interface
+- Function to ask whether clientId is allowed or not?
+```
+bool isRequestAllowed(clientId, ruleId)
+```
 
 == HLD
 === AWS NLB (Layer 4 Forwarding. TCP)
@@ -77,7 +89,8 @@ rateLimiter.isAllowed(n Http requests)         // In Go or C++
 ** If the bucket has >= 100 tokens: It subtracts exactly 100 tokens, and returns 1 (Allowed).
 ** If the bucket has <= 100 tokens: It leaves the token balance untouched and returns 0 (Blocked).
 
-- Redis pod executes the link:/Code-examples/tree/master/DS_Questions/Algorithms/Token_Bucket[Token Bucket Algorithm] inside Lua script to check Do I have 100 tokens, if has returns Binary 1(Yes), if has 90 tokens returns 0(No). No token counts are sent back to proxy.
+- Redis pod executes the link:/DS_Questions/Algorithms/Token_Bucket[Token Bucket Algorithm] inside Lua script to check Do I have 100 tokens, if has returns Binary 1(Yes), if has 90 tokens returns 0(No). No token counts are sent back to proxy. Other Algorithms & comparison:
+** link:/DS_Questions/Algorithms/Token_Bucket[Fixed Window Counter, Sliding Window Log, Sliding Window Counter]
 - Multiple proxy pods talk to the same Redis master node. 
 - This is Master Slave config but for Multi-Master Redis pods reads token count from link:https://code-with-amitk.github.io/System_Design/Concepts/Kubernets/Terms.html#pvc[PVC], return True/False and decrement token count on PVC. This is Critical Section
 ```
