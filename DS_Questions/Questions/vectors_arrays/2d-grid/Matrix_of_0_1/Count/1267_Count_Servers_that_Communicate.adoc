@@ -1,0 +1,197 @@
+:toc:
+:toclevels: 5
+
+= link:https://leetcode.com/problems/count-servers-that-communicate/[1267. Count Servers that Communicate]
+You are given a map of a server center, represented as a m * n integer matrix grid, where 1 means that on that cell there is a server and 0 means that it is no server. Two servers are said to communicate if they are on the same row or on the same column.
+
+Return the number of servers that communicate with any other server.
+
+```
+Example-1
+Input: grid = [[1,0],[0,1]]
+Output: 0
+Explanation: No servers can communicate with others.
+```
+image::https://assets.leetcode.com/uploads/2019/11/14/untitled-diagram-6.jpg[ex-1]
+
+```
+Example-2
+Input: grid = [[1,0],[1,1]]
+Output: 3
+Explanation: All three servers can communicate with at least one other server.
+```
+image::https://assets.leetcode.com/uploads/2019/11/13/untitled-diagram-4.jpg[ex-2]
+
+```
+Example-3
+Input: grid = [[1,1,0,0],[0,0,1,0],[0,0,1,0],[0,0,0,1]]
+Output: 4
+Explanation: The two servers in the first row can communicate with each other. The two servers in the third column can communicate with each other. The server at right bottom corner can't communicate with any other server.
+```
+image::https://assets.leetcode.com/uploads/2019/11/14/untitled-diagram-1-3.jpg[ex-3]
+
+== Approach
+- Count number of 1's in each row and coloumn
+```
+Example:
+1 1 0 0     <row0 has 2 1's
+1 1 0 0     <row1 has 2 1's
+0 1 1 0     <row2 has 2 1's
+0 1 1 0     <row3 has 2 1's
+0 1 0 1     <row4 has 2 1's
+
+col0 has 2 1's
+col1 has 5 1's
+col2 has 2 1's
+col3 has 1 1's
+
+rowCount = [2,2,2,2,2]
+colCount = [2,5,2,1]
+```
+- Iterate the grid again
+** if (grid[i][j] == 1) && (rowCount[i]>1 && colCount[j]>1) that means there is a adjacent 1 to this element in grid, hence increament the count
+
+== Complexity
+- Time complexity: O(mxn)
+
+- Space complexity: O(1)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    int countServers(vector<vector<int>>& grid) {
+int rows = grid.size();
+        int cols = grid[0].size();
+        
+        std::vector<int> rowCount(rows, 0);
+        std::vector<int> colCount(cols, 0);
+        
+        // Pass 1: Count servers in each row and column
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                if (grid[i][j] == 1) {
+                    rowCount[i]++;
+                    colCount[j]++;
+                }
+            }
+        }
+        
+        // Pass 2: Count servers that can communicate
+        int communicatingServers = 0;
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                if (grid[i][j] == 1) {
+                    if (rowCount[i] > 1 || colCount[j] > 1) {
+                        communicatingServers++;
+                    }
+                }
+            }
+        }
+        
+        return communicatingServers;
+    }
+};
+```
+
+=== Python
+```py
+class Solution:
+    def countServers(self, grid: list[list[int]]) -> int:
+        rows = len(grid);
+        cols = len(grid[0]);
+        
+        rowCount = [0] * (rows)
+        colCount = [0] * (cols)
+        
+        # Pass 1: Count servers in each row and column
+        for i in range(0,rows):
+            for j in range(0,cols):
+                if grid[i][j] == 1:
+                    rowCount[i] += 1
+                    colCount[j] += 1
+        
+        # Pass 2: Count servers that can communicate
+        communicatingServers = 0
+        for i in range(0,rows):
+            for j in range(0,cols):
+                if grid[i][j] == 1:
+                    if rowCount[i] > 1 or colCount[j] > 1:
+                        communicatingServers += 1
+        
+        return communicatingServers
+```
+
+=== Go
+```go
+func countServers(grid [][]int) int {
+        rows := len(grid);
+        cols := len(grid[0]);
+        rowCount := make([]int, rows)
+        colCount := make([]int, cols)
+
+        
+        // Pass 1: Count servers in each row and column
+        for i := 0; i < rows; i++ {
+            for j := 0; j < cols; j++ {
+                if grid[i][j] == 1 {
+                    rowCount[i] += 1
+                    colCount[j] += 1
+                }
+            }
+        }
+        
+        // Pass 2: Count servers that can communicate
+        communicatingServers := 0
+        for i := 0; i < rows; i++ {
+            for j := 0; j < cols; j++ {
+                if grid[i][j] == 1 {
+                    if rowCount[i] > 1 || colCount[j] > 1 {
+                        communicatingServers += 1
+                    }
+                }
+            }
+        }
+        
+        return communicatingServers
+}
+```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn count_servers(grid: Vec<Vec<i32>>) -> i32 {
+        let rows = grid.len();
+        let cols = grid[0].len();
+        
+        // Initialize fixed-size count vectors filled with 0
+        let mut rowCount = vec![0; rows];
+        let mut colCount = vec![0; cols];
+        
+        // Pass 1: Count servers in each row and column
+        for i in 0..rows {
+            for j in 0..cols {
+                if (grid[i][j] == 1) {
+                    rowCount[i] += 1;
+                    colCount[j] += 1;
+                }
+            }
+        }
+        
+        // Pass 2: Count servers that can communicate
+        let mut communicatingServers = 0;
+        for i in 0..rows {
+            for j in 0..cols {
+                if (grid[i][j] == 1) {
+                    if (rowCount[i] > 1 || colCount[j] > 1) {
+                        communicatingServers += 1;
+                    }
+                }
+            }
+        }
+        
+        communicatingServers
+    }
+}
+```
