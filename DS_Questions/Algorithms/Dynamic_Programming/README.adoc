@@ -59,7 +59,7 @@ for i from 2 to n:
 
 == DP Template
 === link:https://www.youtube.com/watch?v=TJ0qPxdnKnQ[Self Video DP Template]
-* Eg: link:DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md[Climbing Stairs]
+* Eg: link:/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md[Climbing Stairs]
 ** _1. Define State:_ state means reaching nth stair or nth number etc. Eg: state=number of ways to jump to nth stair
 ** _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
