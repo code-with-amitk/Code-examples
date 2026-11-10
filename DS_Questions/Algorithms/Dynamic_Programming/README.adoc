@@ -59,26 +59,27 @@ for i from 2 to n:
 
 == DP Template
 === link:https://www.youtube.com/watch?v=TJ0qPxdnKnQ[Self Video DP Template]
-* Eg: link:/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.adoc[Climbing Stairs]
-** _1. Define State:_ state means reaching nth stair or nth number etc. Eg: state=number of ways to jump to nth stair
-** _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
+ Eg: link:/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.adoc[Climbing Stairs]
+
+- _1. Define State:_ state means reaching nth stair or nth number etc. Eg: state=number of ways to jump to nth stair
+- _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
 int dp(i) {     //For climbing stairs
   //returns number of ways to climb to ith step
 }
 ```
-** _3. Recurrence relation to transition between states:_
-  - Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
+- _3. Recurrence relation to transition between states:_
+** Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
 ```c
   dp(i) = dp(i-1) + dp(i-2);
 ```
-** _4. Base case:_ Try finding base case from problem itself and logical thinking.
-  - Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
+- _4. Base case:_ Try finding base case from problem itself and logical thinking.
+** Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
 ```c
 start ___  ___
       1st  2nd
 ```
-** _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
+- _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
 
 
 == Examples
