@@ -68,27 +68,24 @@ int main(){
 === link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#i[Identifying DP problem]
 It says Count the number of ways
 
-=== Logic
-* Above recursion solution calculates same subproblem again and again. Repeative subproblems, hence DP.
-* We will follow [DP Template](/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem)
-* link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem[Steps using DP Template]
-** _1. Define State:_ Here state=number of ways to jump to ith stair
-** _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
+=== Logic link:/DS_Questions/Algorithms/Dynamic_Programming/README.md#tem[DP Template]
+- _1. Define State:_ Here state=number of ways to jump to ith stair
+- _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
 ```c
 int dp(i) {     //For climbing stairs
   //returns number of ways to climb to ith step
 }
 ```
-** _3. Relationship between different states:_ Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
+- _3. Relationship between different states:_ Number of ways to reach 30th stair = No of ways to reach 28th stair + No of ways to reach 29th stair
 ```c
   dp(i) = dp(i-1) + dp(i-2);
 ```
-** _4. Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
+- _4. Base case:_ Ask yourself, Number of ways to reach 1st step=1, No of ways to reach 2nd step = 2.
 ```c
 start ___  ___
       1st  2nd
 ```
-** _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
+- _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
 
 === Complexity
 * Space: O(n+1)
