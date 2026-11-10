@@ -1,10 +1,11 @@
 :toc:
 :toclevels: 4
 
-=== link:https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/[Dynamic Programming / Tabular Method / Caching LC Explore Cards]
+= link:https://leetcode.com/explore/featured/card/dynamic-programming/630/an-introduction-to-dynamic-programming/4034/[Dynamic Programming]
 
-==== Identifying DP Problem / DP Characteristics / DP Properties
-* _1. Overlapping subproblems:_ Does this problem involves solving a subproblem again and again. Is solution equals cumulation of smaller subproblems?
+== Identify DP Problem
+* _1. Optimal Substructure Property:_ Can solution F(n) be formed from the solutions to the subproblems F(n−1)+F(n−2)=F(n) (Eg: Fibonacci sequence), if yes it is Optimal substructure.
+* _2. Overlapping subproblems property:_ Does this problem involves solving a subproblem again and again. Is solution equals cumulation of smaller subproblems? ie To solve F(4), F(5) would we need to solve F(3)?
 ```c
                 fib(5)
               /        \ 
@@ -13,17 +14,13 @@
          fib(3) fib(2)     fib(2)  fib(1)
         /   \     /  \
    fib(2) fib(1) fib(1) fib(0) 
-
-fib(2): function need to be executed 3 times
-fib(2): function need to be executed 2 times
-..
 ```
-* _2. Optimal Substructure Property:_ if optimal(feasible) solution can be constructed from optimal solutions of its subproblems. ie smaller solution cumulate to give bigger solution.
 * _3. Problem statement:_ **min/max/longest/largest/Nth Number**
 ** Minimum cost, Maximum profit, No of ways, longest, Is it possible to reach a certain point etc
-* _4. Greedy solution should not fit in:_ Test greedy, we should not reach solution using greedy.
+* _4. Greedy solution will not fit in:_ Greedy problems have optimal substructure, but not overlapping subproblems
+* _5. Divide and conquer:_ Breaks the problem into subproblems, but these subproblems are not overlapping (which is why DP and divide and conquer are commonly mistaken for one another).
 
-=== Methods in DP
+== Methods in DP
 
 |===
 ||Top Down / Memoization|Bottom Up / Tabulation|
@@ -33,7 +30,7 @@ fib(2): function need to be executed 2 times
 |Implemented using|Recursive Function + HashMap|nested for loop + Array|
 |===
 
-==== 1. Top Down / Memoization 
+=== 1. Top Down / Memoization 
 Remembering/caching the results instead of calculating them again. 
 ```c
 ///// Pseudocode example Fibnacci series//////
@@ -46,7 +43,7 @@ Function F(integer i):
     return memo[i]
 ```
 
-==== 2. Bottom up / Tabulation
+=== 2. Bottom up / Tabulation
 * Solution is built from base case and upward (uses Recursion).
 ```c
 Example: Fibonacci sequence.
@@ -60,8 +57,8 @@ for i from 2 to n:
     F[i] = F[i - 1] + F[i - 2]
 ```
 
-=== DP Template
-==== link:https://www.youtube.com/watch?v=TJ0qPxdnKnQ[Self Video DP Template]
+== DP Template
+=== link:https://www.youtube.com/watch?v=TJ0qPxdnKnQ[Self Video DP Template]
 * Eg: [Climbing Stairs](DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md)
 ** _1. Define State:_ state means reaching nth stair or nth number etc. Eg: state=number of ways to jump to nth stair
 ** _2. Function to return State:_ Write a function or data structure that will compute answer to the problem for every given state
@@ -84,18 +81,18 @@ start ___  ___
 ** _5. Cache/Memoize:_ Memorize the repeatative steps that are calculated and return result from cache.
 
 
-=== Examples
-==== Combinations/Ways
-===== link:/DS_Questions/Questions/Permutation_Combination/Coin_Change_2.adoc[Coin Change 2]
-===== link:/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md[Climbing Stairs]
-===== link:/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md[Minimum Cost Climbing Stairs]
-===== link:/DS_Questions/Questions/Number/Delete_and_Earn_or_Max_Gains.md[Delete and Earn]
-===== link:/DS_Questions/Questions/Number/Fibonacci_Number.md[Fibonacci Series]
-===== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Sum_Money_House_Robber.md[House Robber]
-===== link:/DS_Questions/Questions/Strings/SubString_SubSequence/Longest_Common_SubSequence_in_2_strings.md[Longest Common Subsequence]
-===== link:DS_Questions/Questions/vectors_arrays/2d-grid/Find_Search_Count/Number_of_Increasing_Paths_in_a_Grid.md[Number of Increasing Paths in a Grid]
-===== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Paint_House.md[Paint House]
-===== link:/DS_Questions/Questions/Random/Power/Power_x_to_n.md[Power (x,n)]
-===== link:/DS_Questions/Questions/Strings/EncodeDecode_EncryptDec_CompDecompress/Encode_Decode/Total_Possible_ways_to_Decode.adoc[Decode Ways]
-===== link:/DS_Questions/Questions/Permutation_Combination/Combinations/Number_of_Dice_Rolls_With_Target_Sum.adoc[Number of Dice Rolls With Target Sum]
-===== link:/DS_Questions/Questions/vectors_arrays/2d-grid/Min_Path_Sum_in_Triangle.adoc[Minimum Path Sum in Triangle]
+== Examples
+=== Combinations/Ways
+==== link:/DS_Questions/Questions/Permutation_Combination/Coin_Change_2.adoc[Coin Change 2]
+==== link:/DS_Questions/Questions/Permutation_Combination/No_of_Ways_to_Climb_ith_Stairs_1or2Steps.md[Climbing Stairs]
+==== link:/DS_Questions/Questions/Number/Minimum_Cost_Climbing_Stairs.md[Minimum Cost Climbing Stairs]
+==== link:/DS_Questions/Questions/Number/Delete_and_Earn_or_Max_Gains.md[Delete and Earn]
+==== link:/DS_Questions/Questions/Number/Fibonacci_Number.md[Fibonacci Series]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Maximum/Max_Sum_Money_House_Robber.md[House Robber]
+==== link:/DS_Questions/Questions/Strings/SubString_SubSequence/Longest_Common_SubSequence_in_2_strings.md[Longest Common Subsequence]
+==== link:DS_Questions/Questions/vectors_arrays/2d-grid/Find_Search_Count/Number_of_Increasing_Paths_in_a_Grid.md[Number of Increasing Paths in a Grid]
+==== link:/DS_Questions/Questions/vectors_arrays/Find_Search_Count/Find/Unsorted/Minimum/Paint_House.md[Paint House]
+==== link:/DS_Questions/Questions/Random/Power/Power_x_to_n.md[Power (x,n)]
+==== link:/DS_Questions/Questions/Strings/EncodeDecode_EncryptDec_CompDecompress/Encode_Decode/Total_Possible_ways_to_Decode.adoc[Decode Ways]
+==== link:/DS_Questions/Questions/Permutation_Combination/Combinations/Number_of_Dice_Rolls_With_Target_Sum.adoc[Number of Dice Rolls With Target Sum]
+==== link:/DS_Questions/Questions/vectors_arrays/2d-grid/Min_Path_Sum_in_Triangle.adoc[Minimum Path Sum in Triangle]
