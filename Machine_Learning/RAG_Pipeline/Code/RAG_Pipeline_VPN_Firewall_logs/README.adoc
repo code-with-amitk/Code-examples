@@ -1,11 +1,15 @@
 :toc:
 :toclevels: 3
 
-== RAG pieline 
+= RAG pieline 
 - This fetches security logs data(vpn.log, firewaill.log) from sql DB and log files, answer user Queries(using LLM)
 
-=== Explanation of Code
-==== //////// Retriever Phase (Retrieve Embeddings of chunks & store in vector DB) /////////
+== Flow
+
+image::RAG_for_VPN_Logs.png[RAG Flow]
+
+== Explanation of Code
+=== //////// Retriever Phase (Retrieve Embeddings of chunks & store in vector DB) /////////
 - 1. Read log files (vpn.log, firewall.log, distractor.log)
 
 - 2. Create chunks from logs
@@ -37,12 +41,12 @@
 	}
 ```
 
-==== ///////// Augmentation Phase (Find embedding of user Query, Find closest chunks using semantic search) /////////
+=== ///////// Augmentation Phase (Find embedding of user Query, Find closest chunks using semantic search) /////////
 - 4. User_Query link:https://code-with-amitk.github.io/Machine%20Learning/Terms.html#Embedding[embedding] is calculated
 - 5. closeness of Stored embeddings(of all logs in vector) and user_query is calculated using link:https://code-with-amitk.github.io/Machine%20Learning/RAG/Searches_in_RAG.html#semantic[Semantic Search](using cosine similarity or euclidian distance)
 - 6. All those logs which are closer to user_query's embeddings are taken and sorted in order of distance, ie most relevant logs are at top. sorted_closest_embeddings
 
-==== ///////// Generation Phase (Send User query+Closest Chunks to LLM) /////////
+=== ///////// Generation Phase (Send User query+Closest Chunks to LLM) /////////
 - 7. Convert embeddings back to string. To model(like llama3.2) embeddings are of no use.
 - 8. Create a prompt to be provided to LLM.
 ```
@@ -65,7 +69,7 @@
 ```
 - 9. Response to above is the answer
 
-=== Code
+== Code
 ```py
 import json
 import requests
