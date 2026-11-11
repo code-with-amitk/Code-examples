@@ -1,16 +1,21 @@
 :toc:
 :toclevels: 6
 
-== link:https://code-with-amitk.github.io/Networking/OSI-Layers/[SSL/TLS]
+= link:https://code-with-amitk.github.io/Networking/OSI-Layers/[SSL/TLS]
 * SSL vs TLS
 * NSS(TLS Implementation) vs Openssl
 
-== SSL Client, Server Handshake & Key Exchange
+== TLSv1.2. SSL Client, Server Handshake & Key Exchange
 - link:Certificates.adoc#certificate-example[Certificate]
 
 **Flow**
 
-- client, server provides public key+CSK to CA and get their Certificate + CA Cert respectively
+- client, server provides public key+CSR to CA and get their Certificate + CA Cert respectively
+```
+Client                    CA                   Server
+   --public key + CSR -->    <-public key + CSR--
+   <-CA Cert+Client Cert-  -CA Cert+Server Cert->
+```
 - Server sends its certificate to client in Server Hello. Client verifies the server cert using link:https://code-with-amitk.github.io/Networking/OSI-Layers/Layer-3/Security/Signing.html[Digital Signature] in Certificate
 - Client generates a random Pre-Master Secret(PMS), encrypts it with the Server's public key(which is present in Certificate), and sends it to the server.
 - Server decrypts the Message using its own Pvt key and gets PMS key
@@ -107,8 +112,12 @@ sequenceDiagram
     end
 ```
 
-===== ALERT-PROTOCOL
+=== ALERT-PROTOCOL
 * Mechanism to inform other end that some thing wrong happened(either in handshake, record protocol). This message consists of two fields. (Alert Message,Criticality of the alert).
+
+== TLSv1.3
+- Does not have (ClientKeyExchange, ServerKeyExchange, ServerHelloDone, ChangeCipherSpec)
+- Key exchange happens via ECDHE parameters sent directly inside ClientHello and ServerHello
 
 == Decrypting Traffic in Wireshark
 === link:https://techzone.cisco.com/t5/Troubleshooting-and-Tools/How-to-Decrypt-SSL-traffic-using-Wireshark/ta-p/355403[1. SSL Traffic]
