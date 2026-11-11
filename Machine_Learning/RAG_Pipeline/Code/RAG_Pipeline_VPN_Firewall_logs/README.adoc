@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 3
 
-= RAG pieline 
+= RAG pipeline 
 - This fetches security logs data(vpn.log, firewaill.log) from sql DB and log files, answer user Queries(using LLM)
 
 == Flow
