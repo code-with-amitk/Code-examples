@@ -43,7 +43,7 @@ Hence, we return 3.
 
 == Code
 === CPP
-```cpp []
+```cpp
 #include <vector>
 #include <algorithm>
 
