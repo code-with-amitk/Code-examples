@@ -1,0 +1,192 @@
+:toc:
+:toclevels: 4
+
+= link:https://leetcode.com/problems/longest-strictly-increasing-or-strictly-decreasing-subarray/[3105. Longest Strictly Increasing or Strictly Decreasing Subarray]
+You are given an array of integers nums. Return the length of the longest subarray of nums which is either strictly increasing or strictly decreasing.
+ 
+```
+Example 1:
+Input: nums = [1,4,3,3,2]
+Output: 2
+Explanation:
+The strictly increasing subarrays of nums are [1], [2], [3], [3], [4], and [1,4].
+The strictly decreasing subarrays of nums are [1], [2], [3], [3], [4], [3,2], and [4,3].
+Hence, we return 2.
+
+Example 2:
+Input: nums = [3,3,3,3]
+Output: 1
+Explanation:
+The strictly increasing subarrays of nums are [3], [3], [3], and [3].
+The strictly decreasing subarrays of nums are [3], [3], [3], and [3].
+Hence, we return 1.
+
+Example 3:
+Input: nums = [3,2,1]
+Output: 3
+Explanation:
+The strictly increasing subarrays of nums are [3], [2], and [1].
+The strictly decreasing subarrays of nums are [3], [2], [1], [3,2], [2,1], and [3,2,1].
+Hence, we return 3.
+```
+
+== Approach
+- Iterate through the array
+- while next element > present element, keep incrementing the increasing count
+- while next element < present element, keep incrementing the decreasing count
+- while next element == present element, move to next element
+- out = max(incresing count, decreasing count)
+
+== Complexity
+- Time complexity: O(n)
+- Space complexity: O(1)
+
+== Code
+=== CPP
+```cpp []
+#include <vector>
+#include <algorithm>
+
+class Solution {
+public:
+    int longestMonotonicSubarray(vector<int>& nums) {
+        int lon = 1, i=0, n = nums.size()-1;
+        while (i<n) {
+            int count = 1;
+            while (i<n && nums[i+1] > nums[i]) {
+                count ++;
+                lon = max(lon, count);
+                i++;              
+            }
+            count = 1;
+            while (i<n && nums[i+1] < nums[i]) {
+                count ++;
+                lon = max(lon, count);                
+                i++;
+            }
+            while (i<n && nums[i+1] == nums[i]) {
+                i++;
+            }
+        }
+        return lon;
+    }
+};
+```
+
+=== CPP
+> Less complex, but not 100% faster
+
+```cpp
+#include <vector>
+#include <algorithm>
+
+class Solution {
+public:
+    int longestMonotonicSubarray(vector<int>& nums) {
+        if (nums.empty()) return 0;
+
+        int max_len = 1;
+        int inc_len = 1;
+        int dec_len = 1;
+
+        for (size_t i = 1; i < nums.size(); ++i) {
+            if (nums[i] > nums[i-1]) {
+                inc_len++;
+                dec_len = 1; // Reset decreasing streak
+            } else if (nums[i] < nums[i-1]) {
+                dec_len++;
+                inc_len = 1; // Reset increasing streak
+            } else {
+                inc_len = 1; // Reset both on equality
+                dec_len = 1;
+            }
+
+            max_len = max({max_len, inc_len, dec_len});
+        }
+
+        return max_len;
+    }
+};
+```
+
+=== Python
+```py
+class Solution:
+    def longestMonotonicSubarray(self, nums: List[int]) -> int:
+        lon = 1
+        i = 0
+        n = len(nums)-1
+
+        while i<n:
+            count = 1
+            while i<n and nums[i+1] > nums[i]:
+                count += 1
+                lon = max(lon, count)
+                i += 1
+            count = 1
+            while i<n and nums[i+1] < nums[i]:
+                count += 1
+                lon = max(lon, count)
+                i += 1
+            while i<n and nums[i+1] == nums[i]:
+                i += 1
+        return lon
+```
+
+=== Go
+```go
+func longestMonotonicSubarray(nums []int) int {
+        lon := 1
+        i := 0
+        n := len(nums)-1
+        for  i<n {
+            count := 1
+            for  i<n && nums[i+1] > nums[i] {
+                count += 1
+                lon = max(lon, count)
+                i += 1
+            }
+            count = 1
+            for  i<n && nums[i+1] < nums[i] {
+                count += 1
+                lon = max(lon, count)
+                i += 1
+            }
+            for  i<n && nums[i+1] == nums[i] {
+                i += 1
+            }
+
+        }
+        return lon;
+}
+```
+
+
+=== Rust
+```rs
+impl Solution {
+    pub fn longest_monotonic_subarray(nums: Vec<i32>) -> i32 {
+        let mut lon = 1;
+        let mut i = 0;
+        let n = nums.len() - 1;
+        while i<n {
+            let mut count = 1;
+            while i<n && nums[i+1] > nums[i] {
+                count += 1;
+                lon = std::cmp::max(lon, count);
+                i += 1;              
+            }
+            count = 1;
+            while i<n && nums[i+1] < nums[i] {
+                count += 1;
+                lon = std::cmp::max(lon, count);                
+                i += 1;
+            }
+            while i<n && nums[i+1] == nums[i] {
+                i += 1;
+            }
+        }
+        return lon;
+    }
+}
+```
