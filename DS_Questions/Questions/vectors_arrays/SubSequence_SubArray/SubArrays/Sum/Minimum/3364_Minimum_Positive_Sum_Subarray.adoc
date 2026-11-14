@@ -1,0 +1,173 @@
+:toc:
+:toclevels: 4
+
+= link:https://leetcode.com/problems/minimum-positive-sum-subarray/[3364. Minimum Positive Sum Subarray]
+You are given an integer array nums and two integers l and r. Your task is to find the minimum sum of a subarray whose size is between l and r (inclusive) and whose sum is greater than 0.
+
+Return the minimum sum of such a subarray. If no such subarray exists, return -1.
+
+A subarray is a contiguous non-empty sequence of elements within an array.
+
+```
+Example 1:
+Input: nums = [3, -2, 1, 4], l = 2, r = 3
+Output: 1
+Explanation:
+The subarrays of length between l = 2 and r = 3 where the sum is greater than 0 are:
+[3, -2] with a sum of 1
+[1, 4] with a sum of 5
+[3, -2, 1] with a sum of 2
+[-2, 1, 4] with a sum of 3
+Out of these, the subarray [3, -2] has a sum of 1, which is the smallest positive sum. Hence, the answer is 1.
+
+Example 2:
+Input: nums = [-2, 2, -3, 1], l = 2, r = 3
+Output: -1
+Explanation:
+There is no subarray of length between l and r that has a sum greater than 0. So, the answer is -1.
+
+Example 3:
+Input: nums = [1, 2, 3, 4], l = 2, r = 4
+Output: 3
+Explanation:
+The subarray [1, 2] has a length of 2 and the minimum sum greater than 0. So, the answer is 3.
+```
+
+== Approach
+- Take every subarray or size l to r
+- Calculate the sum of subarrays and compare with minimum
+- if sum>0 and smaller than minimum, then replace the sum
+
+== Complexity
+- Time complexity: O(n<sup>3</sup>)
+- Space complexity: O(1)
+
+== Code
+=== CPP
+```cpp []
+class Solution {
+public:
+    int minimumSumSubarray(vector<int>& nums, int l, int r) {
+        int min_sum = INT_MAX;
+        int n = nums.size();
+
+        // Iterate over all possible subarray lengths from l to r
+        while (l <= r) {
+
+            for (int j=0; j<=n-l; j++) {
+                int subarr_sum = 0;
+                for (int i=j; i<j+l; i++) {
+                    subarr_sum += nums[i];
+                }
+                if (subarr_sum > 0)
+                    min_sum = min(min_sum, subarr_sum);
+            }
+            l++;
+        }
+        return min_sum > 0 && min_sum < INT_MAX ? min_sum : -1;
+    }
+};
+```
+
+=== Go
+```go
+func minimumSumSubarray(nums []int, l int, r int) int {
+        min_sum := math.MaxInt
+        n := len(nums)
+
+        // Iterate over all possible subarray lengths from l to r
+        for l <= r {
+            for j:=0; j<=n-l; j++ {
+                subarr_sum := 0
+                for i:=j; i<j+l; i++ {
+                    subarr_sum += nums[i]
+                }
+                if subarr_sum > 0 {
+                    min_sum = min(min_sum, subarr_sum)
+                }
+            }
+            l += 1
+        }
+        if min_sum > 0 && min_sum < math.MaxInt {
+            return min_sum
+        }
+        return -1
+}
+```
+
+=== Python
+```py
+class Solution:
+    def minimumSumSubarray(self, nums: List[int], l: int, r: int) -> int:
+        min_sum = math.inf
+        n = len(nums)
+
+        # Iterate over all possible subarray lengths from l to r
+        while l <= r:
+            for j in range(0, n-l+1):
+                subarr_sum = 0
+                for i in range(j, j+l):
+                    subarr_sum += nums[i]
+                if subarr_sum > 0:
+                    min_sum = min(min_sum, subarr_sum)
+            l += 1
+        if min_sum > 0 and min_sum < math.inf:
+            return min_sum
+        return -1
+```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn minimum_sum_subarray(nums: Vec<i32>, l: i32, r: i32) -> i32 {
+        let mut min_sum = i32::MAX;
+        let n = nums.len();
+        let mut ll = l;
+
+        // Iterate over all possible subarray lengths from l to r
+        while (ll <= r) {
+
+            for j in 0..n as usize - ll as usize+1{
+                let mut subarr_sum = 0;
+                for i in j..j as usize  + ll as usize  {
+                    subarr_sum += nums[i];
+                }
+                if subarr_sum > 0 {
+                    min_sum = std::cmp::min(min_sum, subarr_sum);
+                }
+            }
+            ll += 1;
+        }
+        if min_sum > 0 && min_sum < i32::MAX {
+            return min_sum;
+        }
+        -1
+    }
+}
+```
+
+=== C#
+```
+public class Solution {
+    public int MinimumSumSubarray(IList<int> nums, int l, int r) {
+        int min_sum = int.MaxValue;
+        int n = nums.Count;
+
+        // Iterate over all possible subarray lengths from l to r
+        while (l <= r) {
+
+            for (int j=0; j<=n-l; j++) {
+                int subarr_sum = 0;
+                for (int i=j; i<j+l; i++) {
+                    subarr_sum += nums[i];
+                }
+                if (subarr_sum > 0)
+                    min_sum = Math.Min(min_sum, subarr_sum);
+            }
+            l++;
+        }
+        return min_sum > 0 && min_sum < int.MaxValue ? min_sum : -1;
+    
+    }
+}
+```
