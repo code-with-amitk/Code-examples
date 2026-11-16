@@ -1,11 +1,8 @@
-**Calculate Digit Sum of a String**
-- **Approach-1**
-  - [Logic](#l)
-  - **Code**
-    - [CPP](#c1)
-  - [Complexity](#co)
+:toc:
+:toclevels: 4
 
-### [Calculate Digit Sum of a String](https://leetcode.com/problems/calculate-digit-sum-of-a-string/)
+= link:https://leetcode.com/problems/calculate-digit-sum-of-a-string/[Calculate Digit Sum of a String]
+
 - You are given a string s consisting of digits and an integer k.
 - A round can be completed if the length of s is greater than k. In one round, do the following:
 - Divide s into consecutive groups of size k such that the first k characters are in the first group, the next k characters are in the second group, and so on. Note that the size of the last group can be smaller than k.
@@ -27,17 +24,15 @@ Explanation:
 Now, s.length <= k, so we return "135" as the answer.
 ```
 
-### Approach-1
-<a name=l></a>
-#### Logic
+== Approach-1
+=== Logic
 - Take k characters at a time from string
   - Calculate sum after converting to int
   - Convert back to string, push_back into a temporary string
 - Repeat above step for whole string and again.
 
-#### Code
-<a name=c1></a>
-**CPP**
+=== Code
+==== CPP
 ```cpp
 class Solution {
     string sum(string& s, int k){
@@ -82,12 +77,14 @@ public:
 };
 ```
 
-<a name=co></a>
-#### Complexity
-- **Time:** O(n) + O(n/k) + O(n/2k) ..
-  - O(n) string traversed at 1st pass. Let n=100, k=3
-  - Now string size=100/3=33. Next time need to traverse O(n/k)
-  - Then string size=33/3=11. Next time need to traverse O(n/2k)..
-- **Space:** O(n) + O(n/k) + O(n/2k) ..
-  - Intially for string size=n, we need temporary string of O(n/k)
-  - For string size=n/k, we need temporary string of O(n/2k)
+=== Complexity
+**Time:** O(n) + O(n/k) + O(n/2k) ..
+
+- O(n) string traversed at 1st pass. Let n=100, k=3
+- Now string size=100/3=33. Next time need to traverse O(n/k)
+- Then string size=33/3=11. Next time need to traverse O(n/2k)..
+  
+**Space:** O(n) + O(n/k) + O(n/2k) ..
+
+- Intially for string size=n, we need temporary string of O(n/k)
+- For string size=n/k, we need temporary string of O(n/2k)
