@@ -76,6 +76,38 @@ public:
     }
 };
 ```
+==== Go
+```go
+func convert(sstr string) string {
+    sum := 0
+    for _, c := range sstr {
+        sum += int(c - '0')
+    }
+    return strconv.Itoa(sum)
+}
+func divide1(s string, k int) string {
+    str := ""
+    quo := len(s) / k
+    reminder := len(s) % k
+
+    for i := 0; i < quo; i++ {
+        t := s[i*k : (i+1)*k]
+        str += convert(t)
+    }
+    if reminder > 0 {
+        t := s[quo*k:]
+        str += convert(t)
+    }
+    return str
+}
+func digitSum(s string, k int) string {
+    out := s
+    for len(out) > k {
+        out = divide1(out, k)
+    }
+    return out
+}
+```
 
 === Complexity
 **Time:** O(n) + O(n/k) + O(n/2k) ..
