@@ -1,7 +1,7 @@
 :toc:
 :toclevels: 4
 
-= link:https://leetcode.com/problems/calculate-digit-sum-of-a-string/[Calculate Digit Sum of a String]
+= link:https://leetcode.com/problems/calculate-digit-sum-of-a-string/[2243. Calculate Digit Sum of a String]
 
 - You are given a string s consisting of digits and an integer k.
 - A round can be completed if the length of s is greater than k. In one round, do the following:
