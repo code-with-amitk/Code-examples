@@ -1,0 +1,205 @@
+:toc:
+:toclevels: 4
+
+= link:https://leetcode.com/problems/3sum-closest/description/[16. 3Sum Closest]
+You are given an integer array nums of length n and an integer target.
+
+Find three integers at distinct indices in nums such that the sum is closest to target.
+
+Return the sum of the three integers.
+
+You may assume that each input would have exactly one solution.
+
+```
+Example 1:
+Input: nums = [-1,2,1,-4], target = 1
+Output: 2
+Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
+Example 2:
+Input: nums = [0,0,0], target = 1
+Output: 0
+Explanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
+```
+
+== Approach
+- We need to take 2 sums
+** Closest sum to the target
+** Current sum of variables in iteration
+** if current sum is more closer to target, update closest_sum to current_sum
+
+Follow 3 pointer approach:
+- Fix 1st pointer at index=0
+- left pointer=1, right pointer=n-1
+- iterate until left and right pointers cross.
+```
+if (current_sum < target)
+  decrement right pointer by 1
+else
+  increment left pointer by 1
+```
+
+== Complexity
+- Time complexity: O(n2)
+
+- Space complexity: O(1)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        int closest_sum = nums[0] + nums[1] + nums[2];
+
+        for (int i=0;i<nums.size()-2;i++) {
+            int left = i + 1;
+            int right = nums.size() - 1;
+            
+            while (left < right) {
+                int current_sum = nums[i] + nums[left] + nums[right];
+                
+                if (current_sum == target)
+                    return target;
+                
+                if (abs(current_sum - target) < abs(closest_sum - target))
+                    closest_sum = current_sum;
+                
+                if (current_sum < target)
+                    left += 1;
+                else
+                    right -= 1;
+            }
+        }
+        return closest_sum;
+    }   
+};
+```
+
+=== Go
+```go
+func threeSumClosest(nums []int, target int) int {
+    sort.Ints(nums)
+    closest_sum := nums[0] + nums[1] + nums[2]
+
+    for i:=0;i<len(nums)-2;i++ {
+        left := i + 1
+        right := len(nums) - 1
+        
+        for left < right {
+            current_sum := nums[i] + nums[left] + nums[right]
+            
+            if current_sum == target {
+                return target
+            }
+            
+            if math.Abs(float64(current_sum - target)) < math.Abs(float64(closest_sum - target)) {
+                closest_sum = current_sum
+            }
+            
+            if current_sum < target {
+                left += 1
+            } else {
+                right -= 1
+            }
+        }
+    }
+    return closest_sum
+}
+```
+
+=== Python
+```py
+class Solution:
+    def threeSumClosest(self, nums: list[int], target: int) -> int:
+        nums.sort()
+        closest_sum = nums[0] + nums[1] + nums[2]
+
+        for i in range(0, len(nums)-2):
+            left = i + 1
+            right = len(nums) - 1
+            
+            while left < right:
+                current_sum = nums[i] + nums[left] + nums[right]
+                
+                if current_sum == target:
+                    return target
+                
+                if abs(current_sum - target) < abs(closest_sum - target):
+                    closest_sum = current_sum
+                
+                if current_sum < target:
+                    left += 1
+                else:
+                    right -= 1
+        return closest_sum
+```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn three_sum_closest(nums1: Vec<i32>, target: i32) -> i32 {
+        let mut nums = nums1.clone();
+        nums.sort();
+        let n = nums.len();
+        let mut closest_sum = nums[0] + nums[1] + nums[2];
+
+        for i in 0..n-2 {
+            let mut left = i + 1;
+            let mut right = n - 1;
+            
+            while left < right {
+                let mut current_sum = nums[i] + nums[left] + nums[right];
+                
+                if current_sum == target {
+                    return target;
+                }
+                
+                if (current_sum - target).abs() < (closest_sum - target).abs() {
+                    closest_sum = current_sum;
+                }
+                
+                if current_sum < target {
+                    left += 1;
+                } else {
+                    right -= 1;
+                }
+            }
+        }
+        return closest_sum;
+    }
+}
+```
+
+=== C#
+```
+public class Solution {
+    public int ThreeSumClosest(int[] nums, int target) {
+        Array.Sort(nums); 
+        int closest_sum = nums[0] + nums[1] + nums[2];
+        int n = nums.Length;
+
+        for (int i=0;i<n-2;i++) {
+            int left = i + 1;
+            int right = n - 1;
+            
+            while (left < right) {
+                int current_sum = nums[i] + nums[left] + nums[right];
+                
+                if (current_sum == target)
+                    return target;
+                
+                if (Math.Abs(current_sum - target) < Math.Abs(closest_sum - target))
+                    closest_sum = current_sum;
+                
+                if (current_sum < target)
+                    left += 1;
+                else
+                    right -= 1;
+            }
+        }
+        return closest_sum;
+    }
+}
+```
