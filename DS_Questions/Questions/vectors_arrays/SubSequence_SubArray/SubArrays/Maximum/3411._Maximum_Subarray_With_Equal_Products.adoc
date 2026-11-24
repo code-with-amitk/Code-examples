@@ -1,0 +1,96 @@
+:toc:
+:toclevels: 4
+
+= link:https://leetcode.com/problems/maximum-subarray-with-equal-products/[3411. Maximum Subarray With Equal Products]
+You are given an array of positive integers nums.
+
+An array arr is called product equivalent if prod(arr) == lcm(arr) * gcd(arr), where:
+
+prod(arr) is the product of all elements of arr.
+gcd(arr) is the GCD of all elements of arr.
+lcm(arr) is the LCM of all elements of arr.
+Return the length of the longest product equivalent subarray of nums.
+
+ 
+```
+Example 1:
+Input: nums = [1,2,1,2,1,1,1]
+Output: 5
+Explanation: 
+The longest product equivalent subarray is [1, 2, 1, 1, 1], where prod([1, 2, 1, 1, 1]) = 2, gcd([1, 2, 1, 1, 1]) = 1, and lcm([1, 2, 1, 1, 1]) = 2.
+
+Example 2:
+Input: nums = [2,3,4,5,6]
+Output: 3
+Explanation: 
+The longest product equivalent subarray is [3, 4, 5].
+
+Example 3:
+Input: nums = [1,2,3,1,4,5,1]
+Output: 5
+```
+
+== Approach
+- iterate over array find subarray and check if `prod(arr) == lcm(arr) * gcd(arr)`
+- While calculating product of subarray, `prod` will overflow the `long long` bounds, take maximum_p to prevent the overflow.
+
+== Complexity
+- Time complexity: O(n<sup>2</sup>)
+- Space complexity:O(1)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    int maxLength(vector<int>& nums) {
+        int n = nums.size();
+		int ans = 1;	//1 element
+
+        // max_p is calculated to prevent overflow
+        long long total_lcm = 1;
+        for (int x : nums) {
+            total_lcm = std::lcm(total_lcm, (long long)x);
+        }
+        long long max_p = total_lcm * (*max_element(nums.begin(), nums.end()));
+        
+		for (int i=0;i<n;i++) {
+			long long prod = 1, g = 0, l = 1;
+			for (int j=i;j<n;j++) {
+				prod *= nums[j];
+                if (prod > max_p)
+                    break;  // Prevents long long overflow
+                
+				g = std::gcd(g, nums[j]);
+                l = std::lcm(l, nums[j]);
+				if (prod == g*l)
+					ans = max(ans, j-i+1);
+			}
+		}
+		return ans;
+    }
+};
+```
+
+=== Python
+```py
+class Solution:
+    def maxLength(self, nums: List[int]) -> int:
+        n = len(nums)
+        ans = 1  # 1 element
+
+        # Python takes care of overflows
+        for i in range(n):
+            prod = 1
+            g = 0
+            l = 1
+            for j in range(i, n):
+                prod *= nums[j]
+                g = math.gcd(g, nums[j])
+                l = math.lcm(l, nums[j])
+
+                if prod == g * l:
+                    ans = max(ans, j - i + 1)
+
+        return ans
+```
