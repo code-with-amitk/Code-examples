@@ -1,0 +1,192 @@
+:toc:
+:toclevels: 5
+
+= link:https://leetcode.com/problems/stone-removal-game/description/[3360. Stone Removal Game]
+Alice and Bob are playing a game where they take turns removing stones from a pile, with Alice going first.
+
+Alice starts by removing exactly 10 stones on her first turn.
+For each subsequent turn, each player removes exactly 1 fewer stone than the previous opponent.
+The player who cannot make a move loses the game.
+
+Given a positive integer n, return true if Alice wins the game and false otherwise.
+
+ 
+```
+Example 1:
+Input: n = 12
+Output: true
+Explanation:
+Alice removes 10 stones on her first turn, leaving 2 stones for Bob.
+Bob cannot remove 9 stones, so Alice wins.
+
+Example 2:
+Input: n = 1
+Output: false
+Explanation:
+Alice cannot remove 10 stones, so Alice loses.
+
+Constraints:
+1 <= n <= 50
+```
+
+
+== Approach
+- Take stones to pick=10. Give chance to alice 1st
+- Iterate until either stones reduce to 0, or n reduces to 0
+- On every change(alice or bob), reduce stones by 1. n by stones
+- The one which has LAST CHANCE > Will LOOSE, because n becomes negative now
+
+== Complexity
+- Time complexity: O(n)
+
+- Space complexity: O(1)
+
+== Code
+=== CPP
+```cpp
+class Solution {
+public:
+    bool canAliceWin(int n) {
+int stones = 10;
+        bool aliceTurn = true;
+        bool bobTurn = false;
+
+        while (n >= stones && stones > 0) {
+            if (aliceTurn) {
+                n -= stones;
+                stones--;
+                aliceTurn = false;
+                bobTurn = true;
+            } else if (bobTurn) {
+                n -= stones;
+                stones--;
+                bobTurn = false;
+                aliceTurn = true;
+            }
+        }
+
+        // Now stones are negative, and whomsoever was last turn he will loose
+        // if aliceTurn == true. Alice loose
+        return aliceTurn ? false : true;
+    }
+};
+```
+
+=== C#
+```c
+public class Solution {
+    public bool CanAliceWin(int n) {
+        int stones = 10;
+        bool aliceTurn = true;
+        bool bobTurn = false;
+
+        while (n >= stones && stones > 0) {
+            if (aliceTurn) {
+                n -= stones;
+                stones--;
+                aliceTurn = false;
+                bobTurn = true;
+            } else if (bobTurn) {
+                n -= stones;
+                stones--;
+                bobTurn = false;
+                aliceTurn = true;
+            }
+        }
+
+        // Now stones are negative, and whomsoever was last turn he will loose
+        // if aliceTurn == true. Alice loose
+        return aliceTurn ? false : true;
+    }
+}
+```
+
+=== Go
+```go
+func canAliceWin(n int) bool {
+    stones := 10
+    aliceTurn := true
+    bobTurn := false
+
+    for n >= stones && stones > 0 {
+            if aliceTurn {
+                n -= stones
+                stones--
+                aliceTurn = false
+                bobTurn = true
+            } else if bobTurn {
+                n -= stones
+                stones--
+                bobTurn = false
+                aliceTurn = true
+            }
+        }
+
+        // Now stones are negative, and whomsoever was last turn he will loose
+        // if aliceTurn == true. Alice loose
+        if aliceTurn {
+            return false
+        }
+        return true
+}
+```
+
+=== Python
+```py
+class Solution:
+    def canAliceWin(self, n: int) -> bool:
+        stones = 10
+        aliceTurn = True
+        bobTurn = False
+
+        while n >= stones and stones > 0:
+            if aliceTurn:
+                n -= stones
+                stones -= 1
+                aliceTurn = False
+                bobTurn = True
+            elif bobTurn:
+                n -= stones
+                stones -= 1
+                bobTurn = False
+                aliceTurn = True
+
+        # Now stones are negative, and whomsoever was last turn he will loose
+        # if aliceTurn == true. Alice loose
+        if aliceTurn:
+            return False
+        return True
+```
+
+=== Rust
+```rs
+impl Solution {
+    pub fn can_alice_win(n1: i32) -> bool {
+        let mut n = n1;
+        let mut stones = 10;
+        let mut aliceTurn = true;
+        let mut bobTurn = false;
+
+        while n >= stones && stones > 0 {
+            if aliceTurn == true{
+                n -= stones;
+                stones-=1;
+                aliceTurn = false;
+                bobTurn = true;
+            } else if bobTurn == true {
+                n -= stones;
+                stones-=1;
+                bobTurn = false;
+                aliceTurn = true;
+            }
+        }
+
+        // Now stones are negative, and whomsoever was last turn he will loose
+        // if aliceTurn == true. Alice loose
+        if aliceTurn == true {
+            return false;
+        }
+        true
+    }
+}
+```
