@@ -44,5 +44,4 @@ Suppose your bag can hold at most 5 kg, and you have 3 items (you must take a wh
 |Each item has multiple constraints (e.g., both weight and volume limits).
 |DP or Heuristic Algorithms.
 |===
-=== 
 
