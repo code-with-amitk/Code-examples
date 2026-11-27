@@ -20,7 +20,29 @@ Suppose your bag can hold at most 5 kg, and you have 3 items (you must take a wh
 - Laptop+Water bottle. No
 - Camera + Bottle. Yes
 
-== Common Algorithms to Solve Knapsack problem
-- Dynamic Programming
-- Greedy Algorithm
-- Backtracking / Branch and Bound
+== Types of Knapsack & how to solve
+|===
+|Type|What|Solved Using
+
+|0/1 Knapsack problem(Most common)
+|You must either take an entire item (1) or leave it behind (0)—you cannot break items into smaller pieces or take multiples of the same item.
+|Dynamic Programming
+
+|Fractional Knapsack
+|You can break items into smaller pieces and take a fraction of them
+|Greedy
+
+|Bounded knapsack
+|Each item has a specific, limited quantity available (e.g., 3 identical laptops)
+|DP
+
+|Multiple knapsack
+|You have more than one bag (knapsack), each with its own weight limit
+|DP
+
+|Multi-dimensional Knapsack
+|Each item has multiple constraints (e.g., both weight and volume limits).
+|DP or Heuristic Algorithms.
+|===
+=== 
+
