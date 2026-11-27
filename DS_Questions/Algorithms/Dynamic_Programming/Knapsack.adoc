@@ -1,0 +1,26 @@
+:toc:
+:toclevels: 5
+
+= Knapsack Optimization Problem
+
+== What
+Knapsack is not a algorithm, but it is a optimization problem where you pick items with given weights and values & try to MAXIMIZE total VALUE without exceeding a weight limit.
+
+=== Example
+Suppose your bag can hold at most 5 kg, and you have 3 items (you must take a whole item or leave it):
+```
+• Camera: 3 kg, value ₹600
+• Laptop: 4 kg, value ₹800
+• Water bottle: 2 kg, value ₹300
+```
+
+**How to choose?**
+
+- 4 kg, 800(Laptop) + 3 kg, 600(Camera). Value becomes max=1400. But 3+4>5. Cannot choose
+- Laptop+Water bottle. No
+- Camera + Bottle. Yes
+
+== Common Algorithms to Solve Knapsack problem
+- Dynamic Programming
+- Greedy Algorithm
+- Backtracking / Branch and Bound
